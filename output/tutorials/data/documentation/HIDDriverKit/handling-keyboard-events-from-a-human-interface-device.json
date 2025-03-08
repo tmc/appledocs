@@ -1,0 +1,1419 @@
+{
+  "abstract": [
+    {
+      "text": "Process keyboard-related data from a human interface device and dispatch events to the system.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/handling-keyboard-events-from-a-human-interface-device"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "HIDDriverKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "19.0",
+        "name": "DriverKit"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.15",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Handling Keyboard Events from a Human Interface Device"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The human interface device (HID) specification defines how hardware, such as keyboards and mice, communicates information to a host computer. HID hardware comes in a variety of types, and corresponds to an expected type of usage. Each device communicates this usage information, along with data values, to the host computer. A driver processes the data and uses it to dispatch relevant events to the operating system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The HIDKeyboardDriver sample implements an event service that processes keyboard-related data. The event service is a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/HIDDriverKit/IOUserHIDEventService",
+              "isActive": true,
+              "overridingTitle": "IOUserHIDEventService",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "IOUserHIDEventService",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", which processes the incoming device data and turns it into a set of easily accessible element objects. The sample iterates over these objects looking for changes to the data. For example, when the user presses or releases a key, the keyboard reports that change to the sample’s event service. The sample forwards the data to the system as part of an event, which the system then dispatches to relevant apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For details about working with HID hardware, see the HID specification at ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.usb.org/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can’t use automatic code signing for this sample app. You must create an explicit App ID and provisioning profile, and your provisioning profile must contain the following set of entitlements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.eventservice",
+                      "isActive": true,
+                      "overridingTitle": "com.apple.developer.driverkit.family.hid.eventservice",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "com.apple.developer.driverkit.family.hid.eventservice",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.hid",
+                      "isActive": true,
+                      "overridingTitle": "com.apple.developer.driverkit.transport.hid",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "com.apple.developer.driverkit.transport.hid",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit",
+                      "isActive": true,
+                      "overridingTitle": "com.apple.developer.driverkit",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "com.apple.developer.driverkit",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Request these entitlements from Apple, and use them to configure a provisioning profile for the sample. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development",
+              "isActive": true,
+              "overridingTitle": "Requesting Entitlements for DriverKit Development",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Requesting Entitlements for DriverKit Development",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test this sample with custom keyboard hardware, update the ",
+              "type": "text"
+            },
+            {
+              "code": "IOKitPersonalities",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary in the driver’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. The ",
+              "type": "text"
+            },
+            {
+              "code": "HIDKeyboardDriver",
+              "type": "codeVoice"
+            },
+            {
+              "text": " personality contains hypothetical values of the kind of keys to include. Change the values of the ",
+              "type": "text"
+            },
+            {
+              "code": "VendorID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "ProductID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keys to match values from your own custom hardware. You can also change the ",
+              "type": "text"
+            },
+            {
+              "code": "PrimaryUsagePage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "PrimaryUsage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keys to support different device usages. Leave the other keys unchanged.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The normal installation of a DriverKit extension includes security checks to validate the DriverKit extension. During development, you typically disable these checks to speed up the turnaround time for your builds. Disable these checks for the sample app by doing the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Disable system integrity protection (SIP) on your system.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "systemextensionsctl developer on",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from Terminal to enable developer mode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Enabling developer mode allows you to run and debug the HIDKeyboardApp in place, without moving it to one of your system’s Applications folders. You must also disable SIP to skip the notarization checks that normally occur when installing DriverKit extensions. HIDKeyboardApp attempts to install the HIDKeyboardDriver extension at launch time. When installation is successful, the system asks you to open Security & Privacy system preferences. In the General tab, allow the system to install the driver.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you install the DriverKit extension, you can verify its installation by running the ",
+              "type": "text"
+            },
+            {
+              "code": "systemextensionsctl list",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command in Terminal. You can also use that tool to uninstall your extension or reset the state of your system extensions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note: If an error occurs during the installation process, the app writes an appropriate error message to the Xcode console. If you get an unknown error, verify that the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SystemExtensions/OSBundleUsageDescriptionKey",
+              "isActive": true,
+              "overridingTitle": "OSBundleUsageDescription",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "OSBundleUsageDescription",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " key in the driver’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file has the correct spelling.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions",
+              "isActive": true,
+              "overridingTitle": "Debugging and Testing System Extensions",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Debugging and Testing System Extensions",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Start-Up-the-Event-Service",
+          "level": 3,
+          "text": "Start Up the Event Service",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After matching an event service to a device, the system calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/Start",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of that service. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/Start",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method verifies that the event service is able to run, and puts it into the running state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Start",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "code": "HIDKeyboardDriver",
+              "type": "codeVoice"
+            },
+            {
+              "text": " performs three tasks:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It calls the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/Start",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method of its parent class.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It calls the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/getElements",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method to create the initial set of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/HIDDriverKit/IOHIDElement",
+                      "isActive": true,
+                      "overridingTitle": "IOHIDElement",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "IOHIDElement",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It caches the subset of element objects that contain keyboard data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After each step, the ",
+              "type": "text"
+            },
+            {
+              "code": "Start",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method checks the result to see if the step was successful. If any step fails, the sample calls the inherited ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/Stop",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to stop the event service. For example, it stops the event service if it is unable to retrieve the element objects or if none of the objects contains keyboard data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "kern_return_t",
+            "IMPL(HIDKeyboardDriver, Start)",
+            "{",
+            "    kern_return_t ret;",
+            "    ",
+            "    ret = Start(provider, SUPERDISPATCH);",
+            "    if (ret != kIOReturnSuccess) {",
+            "        Stop(provider, SUPERDISPATCH);",
+            "        return ret;",
+            "    }"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Notice that the implementation of the ",
+              "type": "text"
+            },
+            {
+              "code": "Start",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method includes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/impl",
+              "isActive": true,
+              "overridingTitle": "IMPL",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "IMPL",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " macro instead of the normal list of parameters. This macro provides binding between the kernel (which calls the method), and the method itself (which runs in user space). The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/superdispatch",
+              "isActive": true,
+              "overridingTitle": "SUPERDISPATCH",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "SUPERDISPATCH",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " macro provides a similar binding in the other direction. The sample uses it to call inherited methods that run in the kernel, such as the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/Start",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/HIDDriverKit/IOUserHIDEventService",
+              "isActive": true,
+              "overridingTitle": "IOUserHIDEventService",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "IOUserHIDEventService",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-Keyboard-Related-Elements",
+          "level": 3,
+          "text": "Identify Keyboard-Related Elements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/HIDDriverKit/IOUserHIDEventService",
+              "isActive": true,
+              "overridingTitle": "IOUserHIDEventService",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "IOUserHIDEventService",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " class automatically handles incoming reports from the device, turning the raw bytes of the report into a set of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/HIDDriverKit/IOHIDElement",
+              "isActive": true,
+              "overridingTitle": "IOHIDElement",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "IOHIDElement",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " objects. Each element object contains details about a particular piece of data that the device supports. For example, some elements from a keyboard contain the current state of a specific key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At startup, the sample calls ",
+              "type": "text"
+            },
+            {
+              "code": "parseKeyboardElement",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for all relevant element objects. That method checks the HID-defined usage value for each element, and saves a reference to all keyboard elements. During subsequent parsing, the event service examines only the objects in its cached collections, instead of all element objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "bool HIDKeyboardDriver::parseKeyboardElement(IOHIDElement *element)",
+            "{",
+            "    bool result = false;",
+            "    uint32_t usagePage = element->getUsagePage();",
+            "    uint32_t usage = element->getUsage();",
+            "    ",
+            "    // Determine whether the element contains keyboard-related data. ",
+            "    if (usagePage == kHIDPage_KeyboardOrKeypad) {",
+            "        if (usage >= kHIDUsage_KeyboardA &&",
+            "            usage <= kHIDUsage_KeyboardRightGUI) {",
+            "            result = true;",
+            "        }",
+            "    }",
+            "    ",
+            "    if (!result) {",
+            "        return false;",
+            "    }",
+            "    ",
+            "    if (!_keyboard.elements) {",
+            "        _keyboard.elements = OSArray::withCapacity(4);",
+            "    }",
+            "    ",
+            "    // Save a reference to the element for later.",
+            "    _keyboard.elements->setObject(element);",
+            "    ",
+            "exit:",
+            "    return result;",
+            "}"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Dispatch-a-Keyboard-Event-Using-the-Element-Data",
+          "level": 3,
+          "text": "Dispatch a Keyboard Event Using the Element Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When HID hardware detects changes in its state, it reports the details of those changes to the system. When the system receives a new report from the device, it forwards that report to the relevant drivers. In a custom subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/HIDDriverKit/IOUserHIDEventService",
+              "isActive": true,
+              "overridingTitle": "IOUserHIDEventService",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "IOUserHIDEventService",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/handleReport",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method receives the report data and processes it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "HIDKeyboardDriver",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class overrides ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/handleReport",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and dispatches new reports immediately to its custom ",
+              "type": "text"
+            },
+            {
+              "code": "handleKeyboardReport",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method. This custom method iterates over the array of cached keyboard elements and uses each element’s timestamp and report ID to determine whether the element contains new data. If it does, the ",
+              "type": "text"
+            },
+            {
+              "code": "handleKeyboardReport",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method calls the inherited ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDEventService/dispatchKeyboardEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to dispatch the event information to the system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Get the previous value of the element.",
+            "preValue = element->getValue(kIOHIDValueOptionsFlagPrevious) != 0;",
+            "value = element->getValue(0) != 0;",
+            "",
+            "// If the element's value didn't change, skip it.",
+            "if (value == preValue) {",
+            "    continue;",
+            "}",
+            "",
+            "// If the code reaches this point, the element has new data, so",
+            "//  dispatch an event with the new value to the system.",
+            "usagePage = element->getUsagePage();",
+            "usage = element->getUsage();",
+            "",
+            "os_log(OS_LOG_DEFAULT,",
+            "       \"Dispatching key with ussagPage: 0x%02x usage: 0x%02x value: %d\",",
+            "       usagePage, usage, value);",
+            "dispatchKeyboardEvent(timestamp, usagePage, usage, value, 0, true);"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike other inherited methods, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/HIDDriverKit/IOHIDEventService",
+              "isActive": true,
+              "overridingTitle": "IOHIDEventService",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "IOHIDEventService",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " class defines the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDEventService/dispatchKeyboardEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method as a local method to the driver. Because it is a local method, the sample doesn’t use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/superdispatch",
+              "isActive": true,
+              "overridingTitle": "SUPERDISPATCH",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "SUPERDISPATCH",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " macro to call it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "40a242cdc60b/HandlingKeyboardEventsFromAHumanInterfaceDevice.zip": {
+      "checksum": "40a242cdc60bc2060358affc70ebceb103c33b7477df0585a6848d660af591ee7c87eff1ebd2c7ef6aad859943822c7c5bdbe5e4e69d19ca6f0af3235ad0bbb1",
+      "identifier": "40a242cdc60b/HandlingKeyboardEventsFromAHumanInterfaceDevice.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/40a242cdc60b/HandlingKeyboardEventsFromAHumanInterfaceDevice.zip"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether your extension has permission to run as a user-space driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.driverkit"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.eventservice": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the driver provides a HID-related event service to the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.eventservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.family.hid.eventservice",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.eventservice"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.hid": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the driver communicates with human interface devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.hid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.transport.hid",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.hid"
+    },
+    "doc://com.apple.documentation/documentation/HIDDriverKit/IOHIDElement": {
+      "abstract": [
+        {
+          "text": "An object that contains parsed information from a HID input report.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOHIDElement"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HIDDriverKit/IOHIDElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDElement",
+      "type": "topic",
+      "url": "/documentation/HIDDriverKit/IOHIDElement"
+    },
+    "doc://com.apple.documentation/documentation/HIDDriverKit/IOHIDEventService": {
+      "abstract": [
+        {
+          "text": "The base class for implementing a device or operating system service that dispatches events to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOHIDEventService"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HIDDriverKit/IOHIDEventService",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDEventService",
+      "type": "topic",
+      "url": "/documentation/HIDDriverKit/IOHIDEventService"
+    },
+    "doc://com.apple.documentation/documentation/HIDDriverKit/IOUserHIDEventService": {
+      "abstract": [
+        {
+          "text": "A service that parses HID report data into elements that you can use to dispatch events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOUserHIDEventService"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HIDDriverKit/IOUserHIDEventService",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserHIDEventService",
+      "type": "topic",
+      "url": "/documentation/HIDDriverKit/IOUserHIDEventService"
+    },
+    "doc://com.apple.documentation/documentation/SystemExtensions/OSBundleUsageDescriptionKey": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is trying to install a driver extension bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSBundleUsageDescriptionKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SystemExtensions/OSBundleUsageDescriptionKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSBundleUsageDescriptionKey",
+      "type": "topic",
+      "url": "/documentation/SystemExtensions/OSBundleUsageDescriptionKey"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions": {
+      "abstract": [
+        {
+          "text": "Debug your system extensions by temporarily disabling the security checks that macOS performs during the installation process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging and testing system extensions",
+      "type": "topic",
+      "url": "/documentation/driverkit/debugging_and_testing_system_extensions"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/impl": {
+      "abstract": [
+        {
+          "text": "Tells the system that the superclass implementation of this method runs in the kernel.  ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/impl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IMPL",
+      "type": "topic",
+      "url": "/documentation/driverkit/impl"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development": {
+      "abstract": [
+        {
+          "text": "Request the entitlement for DriverKit development, and request other entitlements your driver needs to interact with specific devices and interfaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting Entitlements for DriverKit Development",
+      "type": "topic",
+      "url": "/documentation/driverkit/requesting_entitlements_for_driverkit_development"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/superdispatch": {
+      "abstract": [
+        {
+          "text": "Tells the system to execute the superclass' implementation of the current method in the kernel. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/superdispatch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SUPERDISPATCH",
+      "type": "topic",
+      "url": "/documentation/driverkit/superdispatch"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for human-interface devices, such as keyboards, pointing devices, and digitizers like pens and touch pads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HIDDriverKit",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDEventService/dispatchKeyboardEvent": {
+      "abstract": [
+        {
+          "text": "Dispatches a keyboard-related event to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatchKeyboardEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDEventService/dispatchKeyboardEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatchKeyboardEvent",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohideventservice/dispatchkeyboardevent"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/Start": {
+      "abstract": [
+        {
+          "text": "Starts the current event service and associates it with the specified provider object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Start"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/Start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Start",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice/start"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/Stop": {
+      "abstract": [
+        {
+          "text": "Stops the event service associated with the specified provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Stop"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/Stop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Stop",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice/stop"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/getElements": {
+      "abstract": [
+        {
+          "text": "Returns an array of elements that contain the parsed data from the HID device’s report.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getElements"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/getElements",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getElements",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice/getelements"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/handleReport": {
+      "abstract": [
+        {
+          "text": "Converts an incoming device report into dispatchable events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "handleReport"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/handleReport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleReport",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice/handlereport"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/handling-stylus-input-from-a-human-interface-device": {
+      "abstract": [
+        {
+          "text": "Process stylus-related input from a human interface device and dispatch events to the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/handling-stylus-input-from-a-human-interface-device",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Handling Stylus Input from a Human Interface Device",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/handling-stylus-input-from-a-human-interface-device"
+    },
+    "https://www.usb.org/": {
+      "identifier": "https://www.usb.org/",
+      "title": "https://www.usb.org/",
+      "titleInlineContent": [
+        {
+          "text": "https://www.usb.org/",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.usb.org/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "40a242cdc60b/HandlingKeyboardEventsFromAHumanInterfaceDevice.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.hid",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/handling-stylus-input-from-a-human-interface-device"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SystemExtensions~1OSBundleUsageDescriptionKey/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "OSBundleUsageDescriptionKey"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/hiddriverkit/handling-keyboard-events-from-a-human-interface-device"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

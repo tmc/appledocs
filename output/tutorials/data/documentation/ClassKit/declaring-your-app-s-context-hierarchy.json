@@ -1,0 +1,843 @@
+{
+  "abstract": [
+    {
+      "text": "Tell ClassKit about your context hierarchy so teachers can see your assignable content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.classkit/documentation/ClassKit",
+        "doc://com.apple.classkit/documentation/ClassKit/advertising-your-app-s-assignable-content"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.classkit/documentation/ClassKit/declaring-your-app-s-context-hierarchy"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ClassKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Declaring your app’s context hierarchy"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you design a context hierarchy for your app, tell ClassKit about it to make your app’s assignable content available to teachers in Apple’s Schoolwork app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Assign-a-unique-identifier-to-each-context",
+          "level": 3,
+          "text": "Assign a unique identifier to each context",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Begin by giving each context a string identifier that’s unique among its siblings. For example, the chapters of a book might have the identifiers ",
+              "type": "text"
+            },
+            {
+              "code": "chapter-1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "chapter-2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "chapter-3",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and so on. This enables you to position each context within the hierarchy using an array of string identifiers—an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "identifier path",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "—that traces exactly one route from an ancestor context to one of its descendants.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Identifiers only need to be unique among contexts with the same parent. So you might declare a ",
+              "type": "text"
+            },
+            {
+              "code": "section-2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " context for each of ",
+              "type": "text"
+            },
+            {
+              "code": "chapter-1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "chapter-2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " because the complete identifier path uniquely identifies each section. But you can only declare one ",
+              "type": "text"
+            },
+            {
+              "code": "section-2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " context for a given chapter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The identifiers don’t require a particular format because they aren’t ever displayed to a user. For example, if your chapter model happens to store a universally unique identifier in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/uuid",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance, you can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/uuid/1779712-uuidstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to obtain a suitable identifier string for the corresponding context. As the name implies, the identifier is guaranteed to be unique (more than strictly necessary because it’s universally unique). And because you already keep the UUID with the chapter instance, you can easily look up the identifier when you need it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Declare-each-leaf-context",
+          "level": 3,
+          "text": "Declare each leaf context",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next declare the existence of each context at the edge of your hierarchy by asking ClassKit for it, using its identifier path to call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext/descendant(matchingIdentifierPath:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. For example, to declare a context corresponding to a particular section in a book, you request it with the identifier path ",
+              "type": "text"
+            },
+            {
+              "code": "[\"my-textbook\", \"chapter-1\", \"section-2\"]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let context = CLSDataStore.shared.mainAppContext",
+            "context.descendant(matchingIdentifierPath: [\"my-textbook\",",
+            "                                            \"chapter-1\",",
+            "                                            \"section-2\"]) { _, _ in }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method call is the same one you would use to retrieve the context to do something with it, but for the purposes of declaration, you can ignore the context returned as an argument to the trailing closure. Instead, you only make this call to indicate the existence of the ",
+              "type": "text"
+            },
+            {
+              "code": "section-2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " context, plus its ancestors ",
+              "type": "text"
+            },
+            {
+              "code": "chapter-1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "my-textbook",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Each is taken to be the child of the context that comes before it in the array, with the first context as the child of the context receiving the method call, in this case the main app context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The above call declares a single context, but you can generalize this approach to declare your entire context hierarchy. For example, to declare the contexts for an entire book, just request the contexts for each section. This explicitly declares the sections, and implicity declares all of the chapters and the book itself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let book = <# A Book instance #>",
+            "let context = CLSDataStore.shared.mainAppContext",
+            "",
+            "for chapter in book.chapters {",
+            "    for section in chapter.sections {",
+            "        context.descendant(matchingIdentifierPath: [book.identifier,",
+            "                                                    chapter.identifier,",
+            "                                                    section.identifier]) { _, _ in }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Declare-contexts-early",
+          "level": 3,
+          "text": "Declare contexts early",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s important to declare the entire context hierarchy early in your app’s lifecycle, typically from within ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If you have dynamic material, such as new game levels that the user downloads long after first running your app, declare that additional content as soon as you know about it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use these declarations to advertise your app’s assignable content to Apple’s Schoolwork app, which is where teachers go to create assignments. Until a teacher’s instance of your app has performed context declaration on their own device, the teacher’s view of Schoolwork won’t offer your app’s content for assignments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In Schoolwork, teachers can browse assignable contexts, and assign them to students. Students only see the contexts in Schoolwork once they are assigned by a teacher.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.classkit/documentation/ClassKit": {
+      "abstract": [
+        {
+          "text": "Enable teachers to assign activities from your app’s content and to view student progress.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClassKit",
+      "type": "topic",
+      "url": "/documentation/classkit"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSContext/descendant(matchingIdentifierPath:completion:)": {
+      "abstract": [
+        {
+          "text": "Finds the context with the given identifier path relative to this context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "descendant"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "matchingIdentifierPath"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLSContext",
+          "text": "CLSContext"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext/descendant(matchingIdentifierPath:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "descendantMatchingIdentifierPath:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "descendant(matchingIdentifierPath:completion:)",
+      "type": "topic",
+      "url": "/documentation/classkit/clscontext/descendant(matchingidentifierpath:completion:)"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/advertising-your-app-s-assignable-content": {
+      "abstract": [
+        {
+          "text": "Assemble a hierarchy of contexts and declare your app’s assignable content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/advertising-your-app-s-assignable-content",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Advertising your app’s assignable content",
+      "type": "topic",
+      "url": "/documentation/classkit/advertising-your-app-s-assignable-content"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/building-missing-contexts": {
+      "abstract": [
+        {
+          "text": "Create and initialize missing contexts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/building-missing-contexts",
+      "kind": "article",
+      "role": "article",
+      "title": "Building missing contexts",
+      "type": "topic",
+      "url": "/documentation/classkit/building-missing-contexts"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/informing-classkit-that-a-task-is-about-to-begin": {
+      "abstract": [
+        {
+          "text": "Activate and deactivate contexts according to user interaction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/informing-classkit-that-a-task-is-about-to-begin",
+      "kind": "article",
+      "role": "article",
+      "title": "Informing ClassKit that a task is about to begin",
+      "type": "topic",
+      "url": "/documentation/classkit/informing-classkit-that-a-task-is-about-to-begin"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the launch process is almost done and the app is almost ready to run.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFinishLaunchingWithOptions"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "launchOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIApplicationLaunchOptionsKey",
+          "text": "LaunchOptionsKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]? = nil) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:didFinishLaunchingWithOptions:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/uuid": {
+      "abstract": [
+        {
+          "text": "A universally unique value to identify types, interfaces, and other items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "UUID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/uuid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UUID",
+      "type": "topic",
+      "url": "/documentation/foundation/uuid"
+    },
+    "doc://com.apple.documentation/documentation/foundation/uuid/1779712-uuidstring": {
+      "abstract": [
+        {
+          "text": "Returns a string created from the UUID, such as “E621E1F8-C36C-495A-93FC-0C247A3E6E5F”",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "uuidString"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/uuid/1779712-uuidstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uuidString",
+      "type": "topic",
+      "url": "/documentation/foundation/uuid/1779712-uuidstring"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Context-management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.classkit/documentation/ClassKit/building-missing-contexts",
+        "doc://com.apple.classkit/documentation/ClassKit/informing-classkit-that-a-task-is-about-to-begin"
+      ],
+      "title": "Context management"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Context-management",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.classkit/documentation/ClassKit/building-missing-contexts",
+                "doc://com.apple.classkit/documentation/ClassKit/informing-classkit-that-a-task-is-about-to-begin"
+              ],
+              "title": "Context management"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:didFinishLaunchingWithOptions:)/title",
+          "value": "application:didFinishLaunchingWithOptions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:didFinishLaunchingWithOptions:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didFinishLaunchingWithOptions:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+              "text": "NSDictionary<NSString *,id>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "launchOptions"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext~1descendant(matchingIdentifierPath:completion:)/title",
+          "value": "descendantMatchingIdentifierPath:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext~1descendant(matchingIdentifierPath:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "descendantMatchingIdentifierPath:completion:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/classkit/declaring-your-app-s-context-hierarchy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/classkit/declaring-your-app-s-context-hierarchy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

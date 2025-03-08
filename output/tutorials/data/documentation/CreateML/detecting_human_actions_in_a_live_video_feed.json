@@ -1,0 +1,3307 @@
+{
+  "abstract": [
+    {
+      "text": "Identify body movements by sending a person’s pose data from a series of video frames to an action-classification model.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/createml"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/vision",
+        "doc://com.apple.documentation/documentation/vision/original-objective-c-and-swift-api"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/createml",
+        "doc://com.apple.documentation/documentation/createml/creating-an-action-classifier-model"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed"
+  },
+  "kind": "article",
+  "legacy_identifier": 3663305,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "14.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "14.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "12.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Detecting Human Actions in a Live Video Feed"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app recognizes a person’s body moves, called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "actions",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", by analyzing a series of video frames with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and predicting the name of the movement by applying an action classifier. The action classifier in this sample recognizes three exercises:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Jumping jacks",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Lunges",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Burpees",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3744173",
+              "metadata": {
+                "anchor": "3744173",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "See ",
+                  "type": "text"
+                },
+                {
+                  "code": "Creating an Action Classifier Model",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for information about creating your own action classifier.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app continually presents its current action prediction on top of a live, full-screen video feed from the device’s camera. When the app recognizes one or more people in the frame, it overlays a wireframe body pose on each person. At the same time, the app predicts the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "prominent",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " person’s current action; typically this is the person closest to the camera.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3744174",
+              "metadata": {
+                "anchor": "3744174",
+                "title": "Figure 2"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At launch, the app configures the device’s camera to generate video frames and then directs the frames through a series of methods it chains together with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". These methods work together to analyze the frames and make action predictions by performing the following sequence of steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Locate all human body poses in each frame.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Isolate the prominent pose.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Aggregate the prominent pose’s position data over time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make action predictions by sending the aggregate data to the action classifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3744175",
+              "metadata": {
+                "anchor": "3744175",
+                "title": "Figure 3"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3744220",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app uses a camera, so you can’t run it in Simulator — you need to run it on an iOS or iPadOS device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3744221",
+          "level": 3,
+          "text": "Start a Video Capture Session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app’s ",
+              "type": "text"
+            },
+            {
+              "code": "VideoCapture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class configures the device’s camera to generate video frames by creating an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app first launches, or when the user rotates the device or switches between cameras, video capture configures a camera input, a frame output, and the connection between them in its ",
+              "type": "text"
+            },
+            {
+              "code": "configureCaptureSession()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set the video camera to run at the action classifier's frame rate.",
+            "let modelFrameRate = ExerciseClassifier.frameRate",
+            "",
+            "let input = AVCaptureDeviceInput.createCameraInput(position: cameraPosition,",
+            "                                                   frameRate: modelFrameRate)",
+            "",
+            "let output = AVCaptureVideoDataOutput.withPixelFormatType(kCVPixelFormatType_32BGRA)",
+            "",
+            "let success = configureCaptureConnection(input, output)",
+            "return success ? output : nil"
+          ],
+          "metadata": {
+            "anchor": "3744178",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "createCameraInput(position:frameRate:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method selects the front- or rear-facing camera and configures its frame rate so it matches that of the action classifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you replace the ",
+                  "type": "text"
+                },
+                {
+                  "code": "ExerciseClassifier.mlmodel",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file with your own action classifier model, set the ",
+                  "type": "text"
+                },
+                {
+                  "code": "frameRate",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " property to match the Frame Rate training parameter you used in the Create ML developer tool.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "AVCaptureVideoDataOutput.withPixelFormatType(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoDataOutput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that produces frames with a specific pixel format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "configureCaptureConnection(_:_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method configures the relationship between the capture session’s camera input and video output by:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Selecting a video orientation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Deciding whether to horizontally flip the video",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enabling image stabilization when applicable",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "if connection.isVideoOrientationSupported {",
+            "    // Set the video capture's orientation to match that of the device.",
+            "    connection.videoOrientation = orientation",
+            "}",
+            "",
+            "if connection.isVideoMirroringSupported {",
+            "    connection.isVideoMirrored = horizontalFlip",
+            "}",
+            "",
+            "if connection.isVideoStabilizationSupported {",
+            "    if videoStabilizationEnabled {",
+            "        connection.preferredVideoStabilizationMode = .standard",
+            "    } else {",
+            "        connection.preferredVideoStabilizationMode = .off",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3744179",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method keeps the app operating in real time — and avoids building up a frame backlog — by setting the video output’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoDataOutput/alwaysDiscardsLateVideoFrames",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Discard newer frames if the app is busy with an earlier frame.",
+            "output.alwaysDiscardsLateVideoFrames = true"
+          ],
+          "metadata": {
+            "anchor": "3744180",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/setting-up-a-capture-session",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information on how to configure capture sessions and connect their inputs and outputs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3744222",
+          "level": 3,
+          "text": "Create a Frame Publisher",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The video capture publishes frames from its capture session by creating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/PassthroughSubject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in its ",
+              "type": "text"
+            },
+            {
+              "code": "createVideoFramePublisher()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a new passthrough subject that publishes frames to subscribers.",
+            "let passthroughSubject = PassthroughSubject<Frame, Never>()",
+            "",
+            "// Keep a reference to the publisher.",
+            "framePublisher = passthroughSubject"
+          ],
+          "metadata": {
+            "anchor": "3744182",
+            "title": "Listing 4"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A passthrough subject is a concrete implementation of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Subject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that adapts imperative code to work with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". It immediately publishes the instance you pass to its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Subject/send(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, if it has a subscriber at that time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, the video capture registers itself as the video output’s delegate so it receives the video frames from the capture session by calling the output’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoDataOutput/setSampleBufferDelegate(_:queue:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set the video capture as the video output's delegate.",
+            "videoDataOutput.setSampleBufferDelegate(self, queue: videoCaptureQueue)"
+          ],
+          "metadata": {
+            "anchor": "3744183",
+            "title": "Listing 5"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The video capture forwards each frame it receives to its ",
+              "type": "text"
+            },
+            {
+              "code": "framePublisher",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by passing the frame to its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Subject/send(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension VideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {",
+            "    func captureOutput(_ output: AVCaptureOutput,",
+            "                       didOutput frame: Frame,",
+            "                       from connection: AVCaptureConnection) {",
+            "",
+            "        // Forward the frame through the publisher.",
+            "        framePublisher?.send(frame)",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3744184",
+            "title": "Listing 6"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "3744223",
+          "level": 3,
+          "text": "Build a Publisher Chain",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample processes each video frame, and its derivative data, with a series of methods that it connects together into a chain of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " publishers in the ",
+              "type": "text"
+            },
+            {
+              "code": "VideoProcessingChain",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each time the video capture creates a new frame publisher it notifies the main view controller, which then assigns the publisher to the video-processing chain’s ",
+              "type": "text"
+            },
+            {
+              "code": "upstreamFramePublisher",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func videoCapture(_ videoCapture: VideoCapture,",
+            "                  didCreate framePublisher: FramePublisher) {",
+            "    updateUILabelsWithPrediction(.startingPrediction)",
+            "    ",
+            "    // Build a new video-processing chain by assigning the new frame publisher.",
+            "    videoProcessingChain.upstreamFramePublisher = framePublisher",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3744187",
+            "title": "Listing 7"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each time the property’s value changes, the video-processing chain creates a new daisy chain of publishers by calling its ",
+              "type": "text"
+            },
+            {
+              "code": "buildProcessingChain()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3744186",
+              "metadata": {
+                "anchor": "3744186",
+                "title": "Figure 4"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method creates each new publisher by calling one of the following ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/map(_:)-99evh",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ",",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/compactMap(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ",",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/scan(_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/filter(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the publisher that subscribes to the initial frame publisher is a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publishers/CompactMap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that converts each ",
+              "type": "text"
+            },
+            {
+              "code": "Frame",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (a type alias of ",
+              "type": "text"
+            },
+            {
+              "code": "CMSampleBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") it receives into a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by calling the video-processing chain’s ",
+              "type": "text"
+            },
+            {
+              "code": "imageFromFrame(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create the chain of publisher-subscribers that transform the raw video",
+            "// frames from upstreamFramePublisher.",
+            "frameProcessingChain = upstreamFramePublisher",
+            "    // ---- Frame (aka CMSampleBuffer) -- Frame ----",
+            "",
+            "    // Convert each frame to a CGImage, skipping any that don't convert.",
+            "    .compactMap(imageFromFrame)",
+            "",
+            "    // ---- CGImage -- CGImage ----",
+            "",
+            "    // Detect any human body poses (or lack of them) in the frame.",
+            "    .map(findPosesInFrame)",
+            "",
+            "    // ---- [Pose]? -- [Pose]? ----"
+          ],
+          "metadata": {
+            "anchor": "3744188",
+            "title": "Listing 8"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The next sections explain the remaining publishers in the chain and the methods they use to transform their inputs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3744224",
+          "level": 3,
+          "text": "Analyze Each Frame for Body Poses",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The next publisher in the chain is a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publishers/Map",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that receives each ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from the previous publisher (the compact map) by subscribing to it. The map publisher locates any human body poses in the frame by using the video-processing chain’s ",
+              "type": "text"
+            },
+            {
+              "code": "findPosesInFrame(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method. The method invokes a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNDetectHumanBodyPoseRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by creating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the image and submitting the video-processing chain’s ",
+              "type": "text"
+            },
+            {
+              "code": "humanBodyPoseRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to the handler’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler/perform(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Improve your app’s efficiency by creating and reusing a single ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.vision/documentation/Vision/VNDetectHumanBodyPoseRequest",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instance.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "code": [
+            "// Create a request handler for the image.",
+            "let visionRequestHandler = VNImageRequestHandler(cgImage: frame)",
+            "",
+            "// Use Vision to find human body poses in the frame.",
+            "do { try visionRequestHandler.perform([humanBodyPoseRequest]) } catch {",
+            "    assertionFailure(\"Human Pose Request failed: \\(error)\")",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3744190",
+            "title": "Listing 9"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the request completes, the method creates and returns a ",
+              "type": "text"
+            },
+            {
+              "code": "Pose",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array that contains one pose for every ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNHumanBodyPoseObservation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance in the request’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNDetectHumanBodyPoseRequest/results",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let poses = Pose.fromObservations(humanBodyPoseRequest.results)"
+          ],
+          "metadata": {
+            "anchor": "3744191",
+            "title": "Listing 10"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Pose",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure in this sample serves three main purposes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Calculating the observation’s area within a frame (see “Isolate A Body Pose”)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Storing the the observation’s multiarray (see “Retrieve the Multiarray”)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drawing an observation as a wireframe of points and lines (see “Present the Poses to the User”)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNDetectHumanBodyPoseRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/detecting-human-body-poses-in-images",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3744225",
+          "level": 3,
+          "text": "Isolate a Body Pose",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The next publisher in the chain is a map that chooses a single pose from the array of poses by using the video-processing chain’s ",
+              "type": "text"
+            },
+            {
+              "code": "isolateLargestPose(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method. This method selects the the most prominent pose by passing a closure to the pose array’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Array/max(by:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func isolateLargestPose(_ poses: [Pose]?) -> Pose? {",
+            "    return poses?.max(by:) { pose1, pose2 in pose1.area < pose2.area }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3744193",
+            "title": "Listing 11"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The closure compares the poses’ area estimates, with the goal of consistently selecting the same person’s pose over time, when multiple people are in frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Get the most accurate predictions from an action classifier by using whatever technique you think best tracks a person from frame to frame, and use the multiarray from that person’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.vision/documentation/Vision/VNHumanBodyPoseObservation",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " result.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "3744226",
+          "level": 3,
+          "text": "Retrieve the Multiarray",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The next publisher in the chain is a map that publishes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreml/documentation/CoreML/MLMultiArray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from the pose’s ",
+              "type": "text"
+            },
+            {
+              "code": "multiArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property by using the video processing chain’s ",
+              "type": "text"
+            },
+            {
+              "code": "multiArrayFromPose(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func multiArrayFromPose(_ item: Pose?) -> MLMultiArray? {",
+            "    return item?.multiArray",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3744195",
+            "title": "Listing 12"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Pose",
+              "type": "codeVoice"
+            },
+            {
+              "text": " initializer copies the multiarray from its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNHumanBodyPoseObservation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " parameter by calling the observation’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizedPointsObservation/keypointsMultiArray()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Save the multiarray from the observation.",
+            "multiArray = try? observation.keypointsMultiArray()"
+          ],
+          "metadata": {
+            "anchor": "3744196",
+            "title": "Listing 13"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "3744227",
+          "level": 3,
+          "text": "Gather a Window of Multiarrays",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The next publisher in the chain is a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publishers/Scan",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that receives each multiarray from its upstream publisher and gathers them into an array by providing two arguments:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An empty multiarray-optional array (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "[",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLMultiArray",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "code": "?]",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") as the scan publisher’s initial value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The video-processing chain’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "gatherWindow(previousWindow:multiArray:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " method as the scan publisher’s transform.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "// ---- MLMultiArray? -- MLMultiArray? ----",
+            "",
+            "// Gather a window of multiarrays, starting with an empty window.",
+            ".scan([MLMultiArray?](), gatherWindow)",
+            "",
+            "// ---- [MLMultiArray?] -- [MLMultiArray?] ----"
+          ],
+          "metadata": {
+            "anchor": "3744198",
+            "title": "Listing 14"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A scan publisher behaves similarly to a map, but it also maintains a state. The following scan publisher’s state is an array of multiarray optionals that’s initially empty. As the scan publisher receives multiarray optionals from its upstream publisher, the scan publisher passes its previous state and the incoming multiarray optional as arguments to its transform.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func gatherWindow(previousWindow: [MLMultiArray?],",
+            "                          multiArray: MLMultiArray?) -> [MLMultiArray?] {",
+            "    var currentWindow = previousWindow",
+            "",
+            "    // If the previous window size is the target size, it",
+            "    // means sendWindowWhenReady() just published an array window.",
+            "    if previousWindow.count == predictionWindowSize {",
+            "        // Advance the sliding array window by stride elements.",
+            "        currentWindow.removeFirst(windowStride)",
+            "    }",
+            "",
+            "    // Add the newest multiarray to the window.",
+            "    currentWindow.append(multiArray)",
+            "",
+            "    // Publish the array window to the next subscriber.",
+            "    // The currentWindow becomes this method's next previousWindow when",
+            "    // it receives the next multiarray from the upstream publisher.",
+            "    return currentWindow",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3744199",
+            "title": "Listing 15"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copies the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "previousWindow",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "currentWindow",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Removes ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "windowStride",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " elements from the front of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "currentWindow",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", if it’s full",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Appends the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "multiArray",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter to the end of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "currentWindow",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The video-processing chain considers a window to be full if it contains ",
+              "type": "text"
+            },
+            {
+              "code": "predictionWindowSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements. When the window is full, this method removes (in step 2) the oldest elements to make room for newer elements, effectively sliding the window forward in time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Exercise Classifier’s ",
+              "type": "text"
+            },
+            {
+              "code": "calculatePredictionWindowSize()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method determines the value of the prediction window size at runtime by inspecting the model’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModel/modelDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3744228",
+          "level": 3,
+          "text": "Monitor the Window Size",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The next publisher in the chain is a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publishers/Filter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which only publishes an array window when the ",
+              "type": "text"
+            },
+            {
+              "code": "gateWindow(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method returns ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Only publish a window when it grows to the correct size.",
+            ".filter(gateWindow)",
+            "",
+            "// ---- [MLMultiArray?] -- [MLMultiArray?] ----"
+          ],
+          "metadata": {
+            "anchor": "3744201",
+            "title": "Listing 16"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method returns ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the window array contains exactly the number of elements defined in ",
+              "type": "text"
+            },
+            {
+              "code": "predictionWindowSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Otherwise, the method returns ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which instructs the filter publisher to discard the current window and not publish it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func gateWindow(_ currentWindow: [MLMultiArray?]) -> Bool {",
+            "    return currentWindow.count == predictionWindowSize",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3744202",
+            "title": "Listing 17"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This filter publisher, in combination with its upstream scan publisher, publishes an array of multiarray optionals (",
+              "type": "text"
+            },
+            {
+              "code": "[",
+              "type": "codeVoice"
+            },
+            {
+              "identifier": "doc://com.apple.coreml/documentation/CoreML/MLMultiArray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "code": "?]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") once per each number of frames defined in ",
+              "type": "text"
+            },
+            {
+              "code": "windowStride",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3744229",
+          "level": 3,
+          "text": "Predict the Person’s Action",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The next publisher in the chain makes an ",
+              "type": "text"
+            },
+            {
+              "code": "ActionPrediction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from the multiarray window by using the ",
+              "type": "text"
+            },
+            {
+              "code": "predictActionWithWindow(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method as its transform.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Make an activity prediction from the window.",
+            ".map(predictActionWithWindow)",
+            "",
+            "// ---- ActionPrediction -- ActionPrediction ----"
+          ],
+          "metadata": {
+            "anchor": "3744204",
+            "title": "Listing 18"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method’s input array contains multiarray optionals where each ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element represents a frame in which ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " wasn’t able to find any human body poses. An action classifier requires a valid, non-",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " multiarray for every frame. To remove the ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements in the array, the method creates a new multiarray, ",
+              "type": "text"
+            },
+            {
+              "code": "filledWindow",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", by:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copying each each valid element in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "currentWindow",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Replacing each ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " element in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "currentWindow",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "emptyPoseMultiArray",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "var poseCount = 0",
+            "",
+            "// Fill the nil elements with an empty pose array.",
+            "let filledWindow: [MLMultiArray] = currentWindow.map { multiArray in",
+            "    if let multiArray = multiArray {",
+            "        poseCount += 1",
+            "        return multiArray",
+            "    } else {",
+            "        return Pose.emptyPoseMultiArray",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3744205",
+            "title": "Listing 19"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The empty pose multiarray has:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Every element set to zero",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The same value for its ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLMultiArray/shape",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property as a multiarray from a human body-pose observation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As the method iterates through each element in ",
+              "type": "text"
+            },
+            {
+              "code": "currentWindow",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", it tallies the number of non-",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements with ",
+              "type": "text"
+            },
+            {
+              "code": "poseCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the value of ",
+              "type": "text"
+            },
+            {
+              "code": "poseCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is too low, the method directly creates a ",
+              "type": "text"
+            },
+            {
+              "code": "noPersonPrediction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " action prediction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Only use windows with at least 60% real data to make a prediction",
+            "// with the action classifier.",
+            "let minimum = predictionWindowSize * 60 / 100",
+            "guard poseCount >= minimum else {",
+            "    return ActionPrediction.noPersonPrediction",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3744206",
+            "title": "Listing 20"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Otherwise, the method merges the array of multiarrays into a single, combined multiarray by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreml/documentation/CoreML/MLMultiArray/init(byConcatenatingMultiArrays:alongAxis:dataType:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Merge the array window of multiarrays into one multiarray.",
+            "let mergedWindow = MLMultiArray(concatenating: filledWindow,",
+            "                                axis: 0,",
+            "                                dataType: .float)"
+          ],
+          "metadata": {
+            "anchor": "3744207",
+            "title": "Listing 21"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method generates an action prediction by passing the combined multiarray to the action classifier’s ",
+              "type": "text"
+            },
+            {
+              "code": "predictActionFromWindow(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " helper method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Make a genuine prediction with the action classifier.",
+            "let prediction = actionClassifier.predictActionFromWindow(mergedWindow)",
+            "",
+            "// Return the model's prediction if the confidence is high enough.",
+            "// Otherwise, return a \"Low Confidence\" prediction.",
+            "return checkConfidence(prediction)"
+          ],
+          "metadata": {
+            "anchor": "3744208",
+            "title": "Listing 22"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method checks the prediction’s confidence by passing the prediction to the ",
+              "type": "text"
+            },
+            {
+              "code": "checkConfidence(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " helper method, which returns the same prediction if its confidence is high enough; otherwise ",
+              "type": "text"
+            },
+            {
+              "code": "lowConfidencePrediction",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3744230",
+          "level": 3,
+          "text": "Present the Prediction to the User",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The final component in the chain is a subscriber that notifies the video-processing chain’s delegate with the prediction using the ",
+              "type": "text"
+            },
+            {
+              "code": "sendPrediction(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Send the action prediction to the delegate.",
+            ".sink(receiveValue: sendPrediction)"
+          ],
+          "metadata": {
+            "anchor": "3744210",
+            "title": "Listing 23"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method sends the action prediction and the number of frames the prediction represents (",
+              "type": "text"
+            },
+            {
+              "code": "windowStride",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") to the video-processing chain’s ",
+              "type": "text"
+            },
+            {
+              "code": "delegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the main view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Send the prediction to the delegate on the main queue.",
+            "DispatchQueue.main.async {",
+            "    self.delegate?.videoProcessingChain(self,",
+            "                                        didPredict: actionPrediction,",
+            "                                        for: windowStride)",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3744211",
+            "title": "Listing 24"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each time the main view controller receives an action prediction, it updates the app’s UI with the prediction and confidence in a helper method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func videoProcessingChain(_ chain: VideoProcessingChain,",
+            "                          didPredict actionPrediction: ActionPrediction,",
+            "                          for frameCount: Int) {",
+            "",
+            "    if actionPrediction.isModelLabel {",
+            "        // Update the total number of frames for this action.",
+            "        addFrameCount(frameCount, to: actionPrediction.label)",
+            "    }",
+            "",
+            "    // Present the prediction in the UI.",
+            "    updateUILabelsWithPrediction(actionPrediction)",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3744212",
+            "title": "Listing 25"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The main view controller also updates its ",
+              "type": "text"
+            },
+            {
+              "code": "actionFrameCounts",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property for action labels that come from the model, which it later sends to the Summary View Controller when the user taps the ",
+              "type": "text"
+            },
+            {
+              "code": "Summary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3744231",
+          "level": 3,
+          "text": "Present the Poses to the User",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app visualizes the result of each human body-pose request by drawing the poses on top of the frame in which ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " found them. Each time the video-processing chain’s ",
+              "type": "text"
+            },
+            {
+              "code": "findPosesInFrame(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " creates an array of ",
+              "type": "text"
+            },
+            {
+              "code": "Pose",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instances, it sends the poses to its delegate, the main view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Send the frame and poses, if any, to the delegate on the main queue.",
+            "DispatchQueue.main.async {",
+            "    self.delegate?.videoProcessingChain(self, didDetect: poses, in: frame)",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3744214",
+            "title": "Listing 26"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The main view controller’s ",
+              "type": "text"
+            },
+            {
+              "code": "drawPoses(_:onto:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method uses the frame as the background by first drawing the frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Draw the camera image first as the background.",
+            "let imageRectangle = CGRect(origin: .zero, size: frameSize)",
+            "cgContext.draw(frame, in: imageRectangle)"
+          ],
+          "metadata": {
+            "anchor": "3744215",
+            "title": "Listing 27"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, the method draws the poses by calling their ",
+              "type": "text"
+            },
+            {
+              "code": "drawWireframeToContext(_:applying:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, which draws the pose as a wireframe of lines and circles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Draw all the poses Vision found in the frame.",
+            "for pose in poses {",
+            "    // Draw each pose as a wireframe at the scale of the image.",
+            "    pose.drawWireframeToContext(cgContext, applying: pointTransform)",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3744216",
+            "title": "Listing 28"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The main view controller presents the finished image to the user by assigning it to its full-screen image view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Update the UI's full-screen image view on the main thread.",
+            "DispatchQueue.main.async { self.imageView.image = frameWithPosesRendering }"
+          ],
+          "metadata": {
+            "anchor": "3744217",
+            "title": "Listing 29"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Combine/documentation/Combine": {
+      "identifier": "doc://com.apple.Combine/documentation/Combine",
+      "kind": "article",
+      "role": "collection",
+      "title": "Combine",
+      "type": "topic",
+      "url": "/documentation/combine"
+    },
+    "doc://com.apple.Combine/documentation/Combine/PassthroughSubject": {
+      "identifier": "doc://com.apple.Combine/documentation/Combine/PassthroughSubject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PassthroughSubject",
+      "type": "topic",
+      "url": "/documentation/combine/passthroughsubject"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher": {
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Publisher",
+      "type": "topic",
+      "url": "/documentation/combine/publisher"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/compactMap(_:)": {
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/compactMap(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "compactMap(_:)",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/compactmap(_:)"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/filter(_:)": {
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/filter(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "filter(_:)",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/filter(_:)"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/map(_:)-99evh": {
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/map(_:)-99evh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "map(_:)",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/map(_:)-99evh"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/scan(_:_:)": {
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/scan(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scan(_:_:)",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/scan(_:_:)"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publishers/CompactMap": {
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publishers/CompactMap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Publishers.CompactMap",
+      "type": "topic",
+      "url": "/documentation/combine/publishers/compactmap"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publishers/Filter": {
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publishers/Filter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Publishers.Filter",
+      "type": "topic",
+      "url": "/documentation/combine/publishers/filter"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publishers/Map": {
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publishers/Map",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Publishers.Map",
+      "type": "topic",
+      "url": "/documentation/combine/publishers/map"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publishers/Scan": {
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publishers/Scan",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Publishers.Scan",
+      "type": "topic",
+      "url": "/documentation/combine/publishers/scan"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Subject": {
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Subject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Subject",
+      "type": "topic",
+      "url": "/documentation/combine/subject"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Subject/send(_:)": {
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Subject/send(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "send(_:)",
+      "type": "topic",
+      "url": "/documentation/combine/subject/send(_:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/creating-an-action-classifier-model": {
+      "abstract": [
+        {
+          "text": "Train a machine learning model to recognize a person’s body movements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/creating-an-action-classifier-model",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating an Action Classifier Model",
+      "type": "topic",
+      "url": "/documentation/createml/creating-an-action-classifier-model"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Array/max(by:)": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Array/max(by:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "max(by:)",
+      "type": "topic",
+      "url": "/documentation/swift/array/max(by:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession": {
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureSession",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturesession"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoDataOutput": {
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoDataOutput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureVideoDataOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturevideodataoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoDataOutput/alwaysDiscardsLateVideoFrames": {
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoDataOutput/alwaysDiscardsLateVideoFrames",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alwaysDiscardsLateVideoFrames",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturevideodataoutput/alwaysdiscardslatevideoframes"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoDataOutput/setSampleBufferDelegate(_:queue:)": {
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoDataOutput/setSampleBufferDelegate(_:queue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setSampleBufferDelegate(_:queue:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturevideodataoutput/setsamplebufferdelegate(_:queue:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/setting-up-a-capture-session": {
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/setting-up-a-capture-session",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up a Capture Session",
+      "type": "topic",
+      "url": "/documentation/avfoundation/setting-up-a-capture-session"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModel/modelDescription": {
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModel/modelDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "modelDescription",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodel/modeldescription"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLMultiArray": {
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLMultiArray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLMultiArray",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmultiarray"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLMultiArray/init(byConcatenatingMultiArrays:alongAxis:dataType:)": {
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLMultiArray/init(byConcatenatingMultiArrays:alongAxis:dataType:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(byConcatenatingMultiArrays:alongAxis:dataType:)",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmultiarray/init(byconcatenatingmultiarrays:alongaxis:datatype:)"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLMultiArray/shape": {
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLMultiArray/shape",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shape",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmultiarray/shape"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImage",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgimage"
+    },
+    "doc://com.apple.documentation/documentation/createml": {
+      "identifier": "doc://com.apple.documentation/documentation/createml",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML",
+      "type": "topic",
+      "url": "/documentation/createml"
+    },
+    "doc://com.apple.documentation/documentation/createml/creating-an-action-classifier-model": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/creating-an-action-classifier-model",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Action Classifier Model",
+      "type": "topic",
+      "url": "/documentation/createml/creating-an-action-classifier-model"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed": {
+      "abstract": [
+        {
+          "text": "Identify body movements by sending a person’s pose data from a series of video frames to an action-classification model.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Detecting Human Actions in a Live Video Feed",
+      "type": "topic",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744178": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744178",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744178"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744179": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744179",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744179"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744180": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744180",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744180"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744182": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744182",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744182"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744183": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744183",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744183"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744184": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744184",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 6",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744184"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744187": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744187",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 7",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744187"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744188": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744188",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 8",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744188"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744190": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744190",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 9",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744190"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744191": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744191",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 10",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744191"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744193": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744193",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 11",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744193"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744195": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744195",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 12",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744195"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744196": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744196",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 13",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744196"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744198": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744198",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 14",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744198"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744199": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744199",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 15",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744199"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744201": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744201",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 16",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744201"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744202": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744202",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 17",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744202"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744204": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744204",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 18",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744204"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744205": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744205",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 19",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744205"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744206": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744206",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 20",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744206"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744207": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744207",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 21",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744207"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744208": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744208",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 22",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744208"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744210": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744210",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 23",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744210"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744211": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744211",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 24",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744211"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744212": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744212",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 25",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744212"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744214": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744214",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 26",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744214"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744215": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744215",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 27",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744215"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744216": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744216",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 28",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744216"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744217": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744217",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 29",
+      "type": "section",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744217"
+    },
+    "doc://com.apple.documentation/documentation/createml/mlactionclassifier": {
+      "abstract": [
+        {
+          "text": "A model you train with videos to classify a person’s body movements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLActionClassifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/createml/mlactionclassifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLActionClassifier",
+      "type": "topic",
+      "url": "/documentation/createml/mlactionclassifier"
+    },
+    "doc://com.apple.documentation/documentation/createml/mlhandactionclassifier": {
+      "abstract": [
+        {
+          "text": "A task that creates a hand action classification model by training with videos of people’s hand movements that you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLHandActionClassifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/createml/mlhandactionclassifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLHandActionClassifier",
+      "type": "topic",
+      "url": "/documentation/createml/mlhandactionclassifier"
+    },
+    "doc://com.apple.documentation/documentation/createml/mlstyletransfer": {
+      "abstract": [
+        {
+          "text": "A model you train to apply an image’s style to other images or videos.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLStyleTransfer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/createml/mlstyletransfer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLStyleTransfer",
+      "type": "topic",
+      "url": "/documentation/createml/mlstyletransfer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/vision": {
+      "identifier": "doc://com.apple.documentation/documentation/vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.documentation/documentation/vision/original-objective-c-and-swift-api": {
+      "identifier": "doc://com.apple.documentation/documentation/vision/original-objective-c-and-swift-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original Objective-C and Swift API",
+      "type": "topic",
+      "url": "/documentation/vision/original-objective-c-and-swift-api"
+    },
+    "doc://com.apple.vision/documentation/Vision": {
+      "identifier": "doc://com.apple.vision/documentation/Vision",
+      "kind": "article",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNDetectHumanBodyPoseRequest": {
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNDetectHumanBodyPoseRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNDetectHumanBodyPoseRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vndetecthumanbodyposerequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNDetectHumanBodyPoseRequest/results": {
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNDetectHumanBodyPoseRequest/results",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "results",
+      "type": "topic",
+      "url": "/documentation/vision/vndetecthumanbodyposerequest/results"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNHumanBodyPoseObservation": {
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNHumanBodyPoseObservation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNHumanBodyPoseObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vnhumanbodyposeobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler": {
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNImageRequestHandler",
+      "type": "topic",
+      "url": "/documentation/vision/vnimagerequesthandler"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler/perform(_:)": {
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler/perform(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "perform(_:)",
+      "type": "topic",
+      "url": "/documentation/vision/vnimagerequesthandler/perform(_:)"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNRecognizedPointsObservation/keypointsMultiArray()": {
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizedPointsObservation/keypointsMultiArray()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keypointsMultiArray()",
+      "type": "topic",
+      "url": "/documentation/vision/vnrecognizedpointsobservation/keypointsmultiarray()"
+    },
+    "doc://com.apple.vision/documentation/Vision/detecting-human-body-poses-in-images": {
+      "identifier": "doc://com.apple.vision/documentation/Vision/detecting-human-body-poses-in-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Detecting Human Body Poses in Images",
+      "type": "topic",
+      "url": "/documentation/vision/detecting-human-body-poses-in-images"
+    },
+    "https://docs-assets.developer.apple.com/published/1f8dc264ab/DetectingHumanActionsInALiveVideoFeed.zip": {
+      "checksum": "c3b2531f3a1ce55127e1700d31fe52399877b3cc4d6dfe6a981c658d4fbe791352a905f42990b5b0f9ee9b07b6752ad963ecfd3fa7a57c3e497d5a4d6b4239bf",
+      "identifier": "https://docs-assets.developer.apple.com/published/1f8dc264ab/DetectingHumanActionsInALiveVideoFeed.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/1f8dc264ab/DetectingHumanActionsInALiveVideoFeed.zip"
+    },
+    "link-media-3744173": {
+      "identifier": "link-media-3744173",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744173"
+    },
+    "link-media-3744174": {
+      "identifier": "link-media-3744174",
+      "title": "Figure 2",
+      "type": "link",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744174"
+    },
+    "link-media-3744175": {
+      "identifier": "link-media-3744175",
+      "title": "Figure 3",
+      "type": "link",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744175"
+    },
+    "link-media-3744186": {
+      "identifier": "link-media-3744186",
+      "title": "Figure 4",
+      "type": "link",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed#3744186"
+    },
+    "media-3744173": {
+      "alt": "Flow diagram that illustrates the purpose of an action classifier starting with a human performing jumping jacks in front of the device’s camera and ending with a prediction label. Starting at the top of the flow diagram, a camera generates video frames. The Vision framework consumes the frames to generate a data window of body location data. The action classifier consumes the data window and predicts the label: Jumping Jacks.",
+      "identifier": "media-3744173",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6969ad3794/rendered2x-1612563032.png"
+        },
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8b393d0641/renderedDark2x-1616516452.png"
+        }
+      ]
+    },
+    "media-3744174": {
+      "alt": "A diagram that represents the sample app’s main view. The image prominently shows a human figure performing jumping jacks. The app draws a body wireframe of circles connected by lines at key locations, overlaid on the arms, legs, and torso. Two text labels at the bottom of the view read Jumping Jacks and 98.7%. ",
+      "identifier": "media-3744174",
+      "title": "Figure 2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/799c02125a/rendered2x-1612816327.png"
+        },
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7c0f431630/renderedDark2x-1616516271.png"
+        }
+      ]
+    },
+    "media-3744175": {
+      "alt": "A flow diagram that illustrates the path of video frames through the sample app, beginning with the device camera, and continuing through a video capture, video-processing chain, and the main view controller, ending at a mockup of the app’s interface. The interface shows a human figure augmented with a wireframe overlaid on the arms, legs, and torso, performing jumping jacks above two labels that read: “Jumping Jacks” and “98.7%.”",
+      "identifier": "media-3744175",
+      "title": "Figure 3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d6120914d4/rendered2x-1612816330.png"
+        },
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0b342ccc06/renderedDark2x-1616516455.png"
+        }
+      ]
+    },
+    "media-3744186": {
+      "alt": "Flow diagram of the video-processing chain that consumes video frames and produces information to the main view controller. The first two items in the chain are Convert to CGImage and Find poses. The final item in the chain is Send Prediction, which the diagram separates from the Find Poses item with a vertical ellipsis that indicates an indeterminate number of chain items in between. An arrow, labeled CGImage plus poses, goes from the chain item Find Poses to the main view controller. Another arrow, labeled action prediction goes from the chain item Send Prediction to the main view controller. ",
+      "identifier": "media-3744186",
+      "title": "Figure 4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e599394187/rendered2x-1612563035.png"
+        },
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc1801bc9f/renderedDark2x-1616516273.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/1f8dc264ab/DetectingHumanActionsInALiveVideoFeed.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/creating-an-action-classifier-model",
+        "doc://com.apple.documentation/documentation/createml/mlactionclassifier",
+        "doc://com.apple.documentation/documentation/createml/mlhandactionclassifier",
+        "doc://com.apple.documentation/documentation/createml/mlstyletransfer"
+      ],
+      "title": "Video Models"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/createml/detecting_human_actions_in_a_live_video_feed",
+        "documentation/vision/original_objective-c_and_swift_api/detecting_human_actions_in_a_live_video_feed",
+        "documentation/createml/creating_an_action_classifier_model/detecting_human_actions_in_a_live_video_feed"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

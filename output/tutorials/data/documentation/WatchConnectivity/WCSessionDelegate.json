@@ -1,0 +1,2239 @@
+{
+  "abstract": [
+    {
+      "text": "A delegate protocol that defines methods for receiving messages sent by a ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSession",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": " object.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchconnectivity/documentation/WatchConnectivity"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)WCSessionDelegate",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "WCSessionDelegate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Watch Connectivity"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "WCSessionDelegate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "WCSessionDelegate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WCSessionDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Session objects are used to communicate between a WatchKit extension and the companion iOS app on a paired and active iPhone. When configuring your session object, you must specify a delegate object that implements this protocol. The session calls your delegate methods to deliver incoming data from the counterpart app and to manage session-related changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most methods of this protocol are optional. You implement the methods you need to respond to the data transfer operations that your apps support. However, apps must implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:activationDidCompleteWith:error:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, supporting asynchronous activation. On iOS, you must also implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/sessionDidBecomeInactive(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/sessionDidDeactivate(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods, supporting multiple Apple Watches.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object calls the methods of its delegate serially, so your method implementations do not need to be reentrant. Immediate messages can be sent only while both the WatchKit extension and iOS app are running. By contrast, context updates and file transfers can be initiated at any time and delivered in the background to the other device. All transfers are delivered in the order in which they were sent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The methods of this protocol are called on a background thread of your app, so any code you write should be written with that fact in mind. In particular, if your method implementations initiate modifications to your app’s interface, make sure to redirect those modifications to your app’s main thread.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Supporting-Communication-with-Multiple-Apple-Watches",
+          "level": 3,
+          "text": "Supporting Communication with Multiple Apple Watches",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An iPhone running iOS 9.3 or later may pair with more than one Apple Watch running watchOS 2.2 or later. Implement the following methods in your session delegate:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:activationDidCompleteWith:error:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/sessionDidBecomeInactive(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " (iOS only)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/sessionDidDeactivate(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " (iOS only)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the activation-related methods to track the activation state of the session in your iOS app. With Auto Switch enabled on the user’s iPhone, the session automatically moves to the inactive state when the user puts on a different Apple Watch than the one that is currently active. (If Auto Switch is disabled, the user must manually select which watch is active.) While your iOS app is in the inactive state, the system finishes delivering any data that has been received before moving your app to the deactivated state. While inactive or deactivated, you cannot initiate any new transfers. When your iOS app reaches the deactivated state, call the session’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSession/activate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method again to connect to the new Apple Watch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the flow of messages when a user switches from one Apple Watch to another, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchconnectivity/documentation/WatchConnectivity": {
+      "abstract": [
+        {
+          "text": "Implement two-way communication between an iOS app and its paired watchOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Watch Connectivity",
+      "type": "topic",
+      "url": "/documentation/watchconnectivity"
+    },
+    "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSession": {
+      "abstract": [
+        {
+          "text": "The object that initiates communication between a WatchKit extension and its companion iOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WCSession"
+        }
+      ],
+      "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WCSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "WCSession",
+      "type": "topic",
+      "url": "/documentation/watchconnectivity/wcsession"
+    },
+    "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSession/activate()": {
+      "abstract": [
+        {
+          "text": "Activates the session asynchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSession/activate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activateSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "activate()",
+      "type": "topic",
+      "url": "/documentation/watchconnectivity/wcsession/activate()"
+    },
+    "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate": {
+      "abstract": [
+        {
+          "text": "A delegate protocol that defines methods for receiving messages sent by a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSession",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WCSessionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WCSessionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "WCSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/watchconnectivity/wcsessiondelegate"
+    },
+    "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:activationDidCompleteWith:error:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the session has finished activating.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WCSession",
+          "text": "WCSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "activationDidCompleteWith"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@WCSessionActivationState",
+          "text": "WCSessionActivationState"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:activationDidCompleteWith:error:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:activationDidCompleteWithState:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "session(_:activationDidCompleteWith:error:)",
+      "type": "topic",
+      "url": "/documentation/watchconnectivity/wcsessiondelegate/session(_:activationdidcompletewith:error:)"
+    },
+    "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didFinish:error:)-6dtcu": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a file transfer has finished successfully or ended because of an error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WCSession",
+          "text": "WCSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFinish"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WCSessionFileTransfer",
+          "text": "WCSessionFileTransfer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didFinish:error:)-6dtcu",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didFinishFileTransfer:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "session(_:didFinish:error:)",
+      "type": "topic",
+      "url": "/documentation/watchconnectivity/wcsessiondelegate/session(_:didfinish:error:)-6dtcu"
+    },
+    "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didFinish:error:)-8627b": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a data transfer operation has finished successfully or ended because of an error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WCSession",
+          "text": "WCSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFinish"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WCSessionUserInfoTransfer",
+          "text": "WCSessionUserInfoTransfer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didFinish:error:)-8627b",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didFinishUserInfoTransfer:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "session(_:didFinish:error:)",
+      "type": "topic",
+      "url": "/documentation/watchconnectivity/wcsessiondelegate/session(_:didfinish:error:)-8627b"
+    },
+    "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceive:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the session successfully received a file from its counterpart.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WCSession",
+          "text": "WCSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didReceive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WCSessionFile",
+          "text": "WCSessionFile"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceive:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didReceiveFile:"
+        }
+      ],
+      "role": "symbol",
+      "title": "session(_:didReceive:)",
+      "type": "topic",
+      "url": "/documentation/watchconnectivity/wcsessiondelegate/session(_:didreceive:)"
+    },
+    "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceiveApplicationContext:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the session has received context data from the counterpart.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WCSession",
+          "text": "WCSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didReceiveApplicationContext"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceiveApplicationContext:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didReceiveApplicationContext:"
+        }
+      ],
+      "role": "symbol",
+      "title": "session(_:didReceiveApplicationContext:)",
+      "type": "topic",
+      "url": "/documentation/watchconnectivity/wcsessiondelegate/session(_:didreceiveapplicationcontext:)"
+    },
+    "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceiveMessage:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that an immediate message has arrived.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WCSession",
+          "text": "WCSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didReceiveMessage"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceiveMessage:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didReceiveMessage:"
+        }
+      ],
+      "role": "symbol",
+      "title": "session(_:didReceiveMessage:)",
+      "type": "topic",
+      "url": "/documentation/watchconnectivity/wcsessiondelegate/session(_:didreceivemessage:)"
+    },
+    "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceiveMessage:replyHandler:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that an immediate message has arrived, and it requires a response.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WCSession",
+          "text": "WCSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didReceiveMessage"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "replyHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceiveMessage:replyHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didReceiveMessage:replyHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "session(_:didReceiveMessage:replyHandler:)",
+      "type": "topic",
+      "url": "/documentation/watchconnectivity/wcsessiondelegate/session(_:didreceivemessage:replyhandler:)"
+    },
+    "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceiveMessageData:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that an immediate data message has arrived.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WCSession",
+          "text": "WCSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didReceiveMessageData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceiveMessageData:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didReceiveMessageData:"
+        }
+      ],
+      "role": "symbol",
+      "title": "session(_:didReceiveMessageData:)",
+      "type": "topic",
+      "url": "/documentation/watchconnectivity/wcsessiondelegate/session(_:didreceivemessagedata:)"
+    },
+    "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceiveMessageData:replyHandler:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that an immediate data message has arrived, and it requires a response.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WCSession",
+          "text": "WCSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didReceiveMessageData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "replyHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceiveMessageData:replyHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didReceiveMessageData:replyHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "session(_:didReceiveMessageData:replyHandler:)",
+      "type": "topic",
+      "url": "/documentation/watchconnectivity/wcsessiondelegate/session(_:didreceivemessagedata:replyhandler:)"
+    },
+    "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceiveUserInfo:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the session successfully received a data directory from its counterpart.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WCSession",
+          "text": "WCSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didReceiveUserInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceiveUserInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didReceiveUserInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "session(_:didReceiveUserInfo:)",
+      "type": "topic",
+      "url": "/documentation/watchconnectivity/wcsessiondelegate/session(_:didreceiveuserinfo:)"
+    },
+    "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/sessionCompanionAppInstalledDidChange(_:)": {
+      "abstract": [
+        {
+          "text": "Indicates a change to the companion app’s installed state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sessionCompanionAppInstalledDidChange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WCSession",
+          "text": "WCSession"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/sessionCompanionAppInstalledDidChange(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sessionCompanionAppInstalledDidChange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sessionCompanionAppInstalledDidChange(_:)",
+      "type": "topic",
+      "url": "/documentation/watchconnectivity/wcsessiondelegate/sessioncompanionappinstalleddidchange(_:)"
+    },
+    "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/sessionDidBecomeInactive(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the session will stop communicating with the current Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sessionDidBecomeInactive"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WCSession",
+          "text": "WCSession"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/sessionDidBecomeInactive(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sessionDidBecomeInactive:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "sessionDidBecomeInactive(_:)",
+      "type": "topic",
+      "url": "/documentation/watchconnectivity/wcsessiondelegate/sessiondidbecomeinactive(_:)"
+    },
+    "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/sessionDidDeactivate(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the session has delivered all the data from the previous session, and that communication with the Apple Watch has ended.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sessionDidDeactivate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WCSession",
+          "text": "WCSession"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/sessionDidDeactivate(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sessionDidDeactivate:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "sessionDidDeactivate(_:)",
+      "type": "topic",
+      "url": "/documentation/watchconnectivity/wcsessiondelegate/sessiondiddeactivate(_:)"
+    },
+    "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/sessionReachabilityDidChange(_:)": {
+      "abstract": [
+        {
+          "text": "Indicates a change to the counterpart’s reachability status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sessionReachabilityDidChange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WCSession",
+          "text": "WCSession"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/sessionReachabilityDidChange(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sessionReachabilityDidChange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sessionReachabilityDidChange(_:)",
+      "type": "topic",
+      "url": "/documentation/watchconnectivity/wcsessiondelegate/sessionreachabilitydidchange(_:)"
+    },
+    "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/sessionWatchStateDidChange(_:)": {
+      "abstract": [
+        {
+          "text": "Indicates a change to the counterpart’s information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sessionWatchStateDidChange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WCSession",
+          "text": "WCSession"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/sessionWatchStateDidChange(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sessionWatchStateDidChange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sessionWatchStateDidChange(_:)",
+      "type": "topic",
+      "url": "/documentation/watchconnectivity/wcsessiondelegate/sessionwatchstatedidchange(_:)"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSession"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Managing-Session-Activation",
+      "identifiers": [
+        "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:activationDidCompleteWith:error:)",
+        "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/sessionDidBecomeInactive(_:)",
+        "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/sessionDidDeactivate(_:)"
+      ],
+      "title": "Managing Session Activation"
+    },
+    {
+      "anchor": "Managing-State-Changes",
+      "identifiers": [
+        "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/sessionWatchStateDidChange(_:)",
+        "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/sessionReachabilityDidChange(_:)",
+        "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/sessionCompanionAppInstalledDidChange(_:)"
+      ],
+      "title": "Managing State Changes"
+    },
+    {
+      "anchor": "Receiving-Context-Data",
+      "identifiers": [
+        "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceiveApplicationContext:)"
+      ],
+      "title": "Receiving Context Data"
+    },
+    {
+      "anchor": "Receiving-Immediate-Messages",
+      "identifiers": [
+        "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceiveMessage:)",
+        "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceiveMessage:replyHandler:)",
+        "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceiveMessageData:)",
+        "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceiveMessageData:replyHandler:)"
+      ],
+      "title": "Receiving Immediate Messages"
+    },
+    {
+      "anchor": "Managing-Data-Dictionary-Transfers",
+      "identifiers": [
+        "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceiveUserInfo:)",
+        "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didFinish:error:)-8627b"
+      ],
+      "title": "Managing Data Dictionary Transfers"
+    },
+    {
+      "anchor": "Managing-File-Transfers",
+      "identifiers": [
+        "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceive:)",
+        "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didFinish:error:)-6dtcu"
+      ],
+      "title": "Managing File Transfers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "WCSessionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WCSessionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WCSessionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.watchconnectivity/documentation/WatchConnectivity"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Managing-Session-Activation",
+              "identifiers": [
+                "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:activationDidCompleteWith:error:)",
+                "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/sessionDidBecomeInactive(_:)",
+                "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/sessionDidDeactivate(_:)"
+              ],
+              "title": "Managing Session Activation"
+            },
+            {
+              "anchor": "Managing-State-Changes",
+              "identifiers": [
+                "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/sessionWatchStateDidChange(_:)",
+                "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/sessionReachabilityDidChange(_:)",
+                "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/sessionCompanionAppInstalledDidChange(_:)"
+              ],
+              "title": "Managing State Changes"
+            },
+            {
+              "anchor": "Receiving-Context-Data",
+              "identifiers": [
+                "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceiveApplicationContext:)"
+              ],
+              "title": "Receiving Context Data"
+            },
+            {
+              "anchor": "Receiving-Immediate-Messages",
+              "identifiers": [
+                "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceiveMessage:)",
+                "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceiveMessage:replyHandler:)",
+                "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceiveMessageData:)",
+                "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceiveMessageData:replyHandler:)"
+              ],
+              "title": "Receiving Immediate Messages"
+            },
+            {
+              "anchor": "Managing-Data-Dictionary-Transfers",
+              "identifiers": [
+                "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceiveUserInfo:)",
+                "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didFinish:error:)-8627b"
+              ],
+              "title": "Managing Data Dictionary Transfers"
+            },
+            {
+              "anchor": "Managing-File-Transfers",
+              "identifiers": [
+                "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didReceive:)",
+                "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSessionDelegate/session(_:didFinish:error:)-6dtcu"
+              ],
+              "title": "Managing File Transfers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/WCSession"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "WCSessionDelegate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1session(_:activationDidCompleteWith:error:)/title",
+          "value": "session:activationDidCompleteWithState:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1session(_:activationDidCompleteWith:error:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:activationDidCompleteWithState:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1session(_:didFinish:error:)-6dtcu/title",
+          "value": "session:didFinishFileTransfer:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1session(_:didFinish:error:)-6dtcu/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didFinishFileTransfer:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSession/title",
+          "value": "WCSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WCSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WCSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSession~1activate()/title",
+          "value": "activateSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSession~1activate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "activateSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1session(_:didReceiveMessageData:replyHandler:)/title",
+          "value": "session:didReceiveMessageData:replyHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1session(_:didReceiveMessageData:replyHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didReceiveMessageData:replyHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1session(_:didFinish:error:)-8627b/title",
+          "value": "session:didFinishUserInfoTransfer:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1session(_:didFinish:error:)-8627b/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didFinishUserInfoTransfer:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1sessionWatchStateDidChange(_:)/title",
+          "value": "sessionWatchStateDidChange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1sessionWatchStateDidChange(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sessionWatchStateDidChange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate/title",
+          "value": "WCSessionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WCSessionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WCSessionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1sessionDidBecomeInactive(_:)/title",
+          "value": "sessionDidBecomeInactive:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1sessionDidBecomeInactive(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sessionDidBecomeInactive:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1session(_:didReceiveUserInfo:)/title",
+          "value": "session:didReceiveUserInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1session(_:didReceiveUserInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didReceiveUserInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1session(_:didReceiveApplicationContext:)/title",
+          "value": "session:didReceiveApplicationContext:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1session(_:didReceiveApplicationContext:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didReceiveApplicationContext:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1sessionCompanionAppInstalledDidChange(_:)/title",
+          "value": "sessionCompanionAppInstalledDidChange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1sessionCompanionAppInstalledDidChange(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sessionCompanionAppInstalledDidChange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1session(_:didReceiveMessage:)/title",
+          "value": "session:didReceiveMessage:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1session(_:didReceiveMessage:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didReceiveMessage:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1session(_:didReceive:)/title",
+          "value": "session:didReceiveFile:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1session(_:didReceive:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didReceiveFile:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1session(_:didReceiveMessage:replyHandler:)/title",
+          "value": "session:didReceiveMessage:replyHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1session(_:didReceiveMessage:replyHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didReceiveMessage:replyHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1sessionDidDeactivate(_:)/title",
+          "value": "sessionDidDeactivate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1sessionDidDeactivate(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sessionDidDeactivate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1sessionReachabilityDidChange(_:)/title",
+          "value": "sessionReachabilityDidChange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1sessionReachabilityDidChange(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sessionReachabilityDidChange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1session(_:didReceiveMessageData:)/title",
+          "value": "session:didReceiveMessageData:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchconnectivity~1documentation~1WatchConnectivity~1WCSessionDelegate~1session(_:didReceiveMessageData:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didReceiveMessageData:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/watchconnectivity/wcsessiondelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/watchconnectivity/wcsessiondelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

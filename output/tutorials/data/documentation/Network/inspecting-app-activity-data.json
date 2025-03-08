@@ -1,0 +1,1572 @@
+{
+  "abstract": [
+    {
+      "text": "Verify that your app accesses only the user data and network resources that you expect it to access.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.network/documentation/Network",
+        "doc://com.apple.network/documentation/Network/privacy-management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.network/documentation/Network/inspecting-app-activity-data"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Network"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Inspecting app activity data"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 15.2, iPadOS 15.2, and watchOS 8.3 or later, users can view a privacy report of when your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Accesses certain kinds of user data, like photos and contacts.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Accesses sensitive device resources, like the camera and microphone.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Contacts network domains, including websites that a user visits from within your app (iOS- and iPadOS-only).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Examine the data that your app contributes to this summary to find out what the report shows users, and to make sure that your app behaves as you expect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Start-recording-app-activity",
+          "level": 3,
+          "text": "Start recording app activity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users can enable app activity recording on their device from the Settings app by choosing Privacy > App Privacy Report, and then tapping Turn On App Privacy Report.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system keeps a record — stored only on the user’s device — of the last seven days of app activity. After turning on this feature on your own device, use your app to fully test its data, resource, and network accesses. Be sure to use the app for long enough to allow for any delayed accesses. How long depends on the behavior of your app. For example, if an analytics framework in your app caches data to avoid frequent server accesses, be sure to run your app until it experiences an analytics server access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Get-the-app-activity-data",
+          "level": 3,
+          "text": "Get the app activity data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After running your app for a while, you can get a report on your app’s activity by tapping the Share button on the App Privacy Report screen:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3899243",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Save the report to a location where you can examine it. For example, you can use AirDrop to send it to a nearby Mac.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The report uses a newline-delimited JSON format (NDJSON), which you can open with any text editor, and contains a collection of JSON dictionaries separated by newlines. Dictionaries that have the ",
+              "type": "text"
+            },
+            {
+              "code": "type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key with a value set to ",
+              "type": "text"
+            },
+            {
+              "code": "access",
+              "type": "codeVoice"
+            },
+            {
+              "text": " provide information about resource accesses, while those that have the ",
+              "type": "text"
+            },
+            {
+              "code": "type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key with a value set to ",
+              "type": "text"
+            },
+            {
+              "code": "networkActivity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " provide information about network activity:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{..., \"type\":\"access\", ...}",
+            "{..., \"type\":\"access\", ...}",
+            "...",
+            "{..., \"type\":\"networkActivity\", ...}",
+            "{..., \"type\":\"networkActivity\", ...}",
+            "..."
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Examine-resource-access-data",
+          "level": 3,
+          "text": "Examine resource access data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each access dictionary in the file represents the start or end of an access made by a particular app. The following shows an example of this dictionary with whitespace, newlines, and comments added for readability:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"accessor\" : { ",
+            "    \"identifier\" : \"com.example.calendar\", // The app accessing the resource.",
+            "    \"identifierType\" : \"bundleID\"",
+            "  },",
+            "  \"broadcaster\": { // Only present for screen recording.",
+            "    \"identifier\" : \"com.apple.springboard\", // The app broadcasting the screen.",
+            "    \"identifierType\" : \"bundleID\"",
+            "  },",
+            "  \"category\" : \"screenRecording\", // The accessed resource.",
+            "  \"identifier\" : \"8A4054BB-1810-4F8B-8163-483409E2D35C\", // A unique identifier.",
+            "  \"kind\" : \"intervalBegin\", // Whether this the beginning or end of an interval.",
+            "  \"timeStamp\" : \"2021-08-06T15:46:13.532-07:00\", // The time of the access.",
+            "  \"type\" : \"access\" // This is resource access data.",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To find accesses made by your app, look for all of the access dictionaries that have an ",
+              "type": "text"
+            },
+            {
+              "code": "accessor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key with a dictionary value that contains the bundle identifier of your app. Use the ",
+              "type": "text"
+            },
+            {
+              "code": "category",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field to determine which resource your app accessed, and the ",
+              "type": "text"
+            },
+            {
+              "code": "timeStamp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field to associate the access with the activity that generated the access. You might encounter any of the following category values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Category",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resource",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "camera",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The device’s camera",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "contacts",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user’s contacts",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "location",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Location data",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "mediaLibrary",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user’s media library",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "microphone",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The device’s microphone",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "photos",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user’s photo library",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "screenRecording",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Screen sharing",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every resource access occurs over a time interval and generates a pair of access dictionaries to indicate:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The start of the interval with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "kind",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field set to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "intervalBegin",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", as shown in the example above.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The end of the interval with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "kind",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field set to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "intervalEnd",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The two dictionaries that bound an access interval have the same value for the ",
+              "type": "text"
+            },
+            {
+              "code": "identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the ",
+              "type": "text"
+            },
+            {
+              "code": "screenRecording",
+              "type": "codeVoice"
+            },
+            {
+              "text": " category, the dictionary also includes a ",
+              "type": "text"
+            },
+            {
+              "code": "broadcaster",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key with a value that indicates the app broadcasting the screen to the accessor, which is typically Springboard.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Examine-network-activity",
+          "level": 3,
+          "text": "Examine network activity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A file exported from iOS or iPadOS contains another set of dictionaries that have the ",
+              "type": "text"
+            },
+            {
+              "code": "type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key with a value set to ",
+              "type": "text"
+            },
+            {
+              "code": "networkActivity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to report network accesses. Each dictionary describes a connection made by a specified app to a particular domain. The following shows an example of this dictionary, again with whitespace and newlines added for clarity:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"domain\" : \"api.example.com\",",
+            "  \"firstTimeStamp\" : \"2021-06-06T16:15:48Z\",",
+            "  \"context\" : \"\",",
+            "  \"timeStamp\" : \"2021-06-06T16:15:59Z\",",
+            "  \"domainType\" : 2,",
+            "  \"initiatedType\" : \"AppInitiated\",",
+            "  \"hits\" : 10,",
+            "  \"type\" : \"networkActivity\",",
+            "  \"domainOwner\" : \"\",",
+            "  \"bundleID\" : \"com.example.App1\"",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The dictionary includes the following keys to describe the network activity:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The domain of the network connection.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "domain",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The time of the first connection to this domain.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "firstTimeStamp",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The website that made the connection, if applicable.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "context",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The time of the most recent connection.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "timeStamp",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "When the associated value is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "1",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", the domain has been identified as potentially collecting information across apps and sites, and potentially profiling users. A value of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "2",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " means that the domain hasn’t been identified as such.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "domainType",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Whether the app (",
+                        "type": "text"
+                      },
+                      {
+                        "code": "AppInitiated",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ") or the user (",
+                        "type": "text"
+                      },
+                      {
+                        "code": "NonAppInitiated",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ") initiated the connection.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "initiatedType",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The number of times the app contacted the domain in the last seven days.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "hits",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An associated value of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "networkActivity",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " means that this dictionary describes network activity data.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "type",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The owner of the domain, if applicable.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "domainOwner",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The bundle identifier of the initiating app.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "bundleID",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When deciding how to set the value for the ",
+              "type": "text"
+            },
+            {
+              "code": "initiatedType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key, the system attributes connections made from a web browser in your app, like when you instantiate an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to the user. Otherwise, the system considers any connection that your app makes with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or lower-level interfaces like the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework, as app-initiated. This includes user data that you load from a server in direct response to a user action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can change the associated value of this key when you make a general network request by setting a property. For example, when creating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/3767318-attribution",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property; when using an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/NWConnection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/nw_parameters_set_attribution(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. However, only change the attribution for connections that the user directly and completely controls, such as when the user enters a URL or taps or clicks a URL that they can read. For more information about network attribution, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/indicating-the-source-of-network-activity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Consider-whether-your-app-needs-changes",
+          "level": 3,
+          "text": "Consider whether your app needs changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you see that your app makes network connections that you don’t recognize, or accesses resources that it shouldn’t, review your app. Closely examine any third-party frameworks or modules that you’ve integrated because they might make unexpected connections.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController": {
+      "abstract": [
+        {
+          "text": "An object that provides a visible standard interface for browsing the web.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SFSafariViewController",
+      "type": "topic",
+      "url": "/documentation/SafariServices/SFSafariViewController"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "abstract": [
+        {
+          "text": "Interact with URLs and communicate with servers using standard Internet protocols. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "article",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest": {
+      "abstract": [
+        {
+          "text": "A URL load request that is independent of protocol or URL scheme.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/3767318-attribution": {
+      "abstract": [
+        {
+          "text": "The entity that initiates the network request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "attribution"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest.Attribution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/3767318-attribution",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attribution",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/3767318-attribution"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.network/documentation/Network": {
+      "abstract": [
+        {
+          "text": "Create network connections to send and receive data using transport and security protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/network"
+    },
+    "doc://com.apple.network/documentation/Network/NWConnection": {
+      "abstract": [
+        {
+          "text": "A bidirectional data connection between a local endpoint and a remote endpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWConnection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWConnection"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWConnection",
+      "type": "topic",
+      "url": "/documentation/network/nwconnection"
+    },
+    "doc://com.apple.network/documentation/Network/indicating-the-source-of-network-activity": {
+      "abstract": [
+        {
+          "text": "Control whether the App Privacy Report attributes network traffic to the app or to the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/indicating-the-source-of-network-activity",
+      "kind": "article",
+      "role": "article",
+      "title": "Indicating the source of network activity",
+      "type": "topic",
+      "url": "/documentation/network/indicating-the-source-of-network-activity"
+    },
+    "doc://com.apple.network/documentation/Network/nw_parameters_attribution_t": {
+      "abstract": [
+        {
+          "text": "The entities that can make a network request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_parameters_attribution_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_parameters_attribution_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_parameters_attribution_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_parameters_attribution_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_parameters_attribution_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_parameters_get_attribution(_:)": {
+      "abstract": [
+        {
+          "text": "Gets a flag that indicates whether the network request originates from the developer or the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_parameters_get_attribution"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_parameters_t",
+          "text": "nw_parameters_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@nw_parameters_attribution_t",
+          "text": "nw_parameters_attribution_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_parameters_get_attribution(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_parameters_get_attribution"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_parameters_get_attribution(_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_parameters_get_attribution(_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_parameters_set_attribution(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets a flag that indicates whether the network request originates from the developer or the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_parameters_set_attribution"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_parameters_t",
+          "text": "nw_parameters_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@nw_parameters_attribution_t",
+          "text": "nw_parameters_attribution_t"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_parameters_set_attribution(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_parameters_set_attribution"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_parameters_set_attribution(_:_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_parameters_set_attribution(_:_:)"
+    },
+    "doc://com.apple.network/documentation/Network/privacy-management": {
+      "abstract": [
+        {
+          "text": "Configure parameters related to user privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/privacy-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Privacy Management",
+      "type": "topic",
+      "url": "/documentation/network/privacy-management"
+    },
+    "media-3899243": {
+      "alt": "A screenshot of the Settings app showing the App Privacy Report view inside the Privacy section. A Share button in the upper right corner of the screen is highlighted.",
+      "identifier": "media-3899243",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/49cc117555809d14dcc86e3f511c6940/media-3899243@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/127e849f8d58fd4f128378db93b2b04b/media-3899243~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Traffic-Attribution",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/indicating-the-source-of-network-activity",
+        "doc://com.apple.network/documentation/Network/nw_parameters_set_attribution(_:_:)",
+        "doc://com.apple.network/documentation/Network/nw_parameters_get_attribution(_:)",
+        "doc://com.apple.network/documentation/Network/nw_parameters_attribution_t"
+      ],
+      "title": "Traffic Attribution"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Traffic-Attribution",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.network/documentation/Network/indicating-the-source-of-network-activity",
+                "doc://com.apple.network/documentation/Network/nw_parameters_set_attribution(_:_:)",
+                "doc://com.apple.network/documentation/Network/nw_parameters_get_attribution(_:)",
+                "doc://com.apple.network/documentation/Network/nw_parameters_attribution_t"
+              ],
+              "title": "Traffic Attribution"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_get_attribution(_:)/title",
+          "value": "nw_parameters_get_attribution"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_get_attribution(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_parameters_get_attribution"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SafariServices~1SFSafariViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SFSafariViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_attribution_t/title",
+          "value": "nw_parameters_attribution_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_attribution_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_parameters_attribution_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_attribution_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_parameters_attribution_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_set_attribution(_:_:)/title",
+          "value": "nw_parameters_set_attribution"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_set_attribution(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_parameters_set_attribution"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/network/inspecting-app-activity-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/network/inspecting-app-activity-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,700 @@
+{
+  "abstract": [
+    {
+      "text": "Generates a gradient that varies from one color to another using a Gaussian distribution.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage",
+        "doc://com.apple.documentation/documentation/coreimage/gradient_filters"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/gradient_filters"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/quartz"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/quartz",
+        "doc://com.apple.documentation/documentation/quartz/imagekit",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/gradient_filters"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228332-gaussiangradient"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3228332,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CIFilter(cm)gaussianGradientFilter",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class func "
+      },
+      {
+        "kind": "identifier",
+        "text": "gaussianGradient"
+      },
+      {
+        "kind": "text",
+        "text": "() -> any CIFilter & CIGaussianGradient"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Image"
+      }
+    ],
+    "parent": {
+      "title": "CIFilter"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.15",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "clm",
+    "title": "gaussianGradient()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "gaussianGradient"
+            },
+            {
+              "kind": "text",
+              "text": "() -> "
+            },
+            {
+              "kind": "text",
+              "text": "any "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CIFilter",
+              "text": "CIFilter"
+            },
+            {
+              "kind": "text",
+              "text": " & "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cigaussiangradient",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)CIGaussianGradient",
+              "text": "CIGaussianGradient"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The generated image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method generates a Gaussian gradient image. The effect uses the Gaussian kernel to calculate the even dispersal of the first color in the center to the second color in the image’s periphery.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Gaussian gradient filter uses the following properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgpoint",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " representing the center of the effect as x and y coordinates.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "center",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " representing the first color to use in the gradient.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "color0",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor",
+                        "isActive": false,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " representing the second color to use in the gradient.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "color1",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "float",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " representing the radius of the Gaussian distribution as an ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "radius",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code creates a filter that generates a gradient image:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func gaussian() -> CIImage {",
+            "    let gaussianGradient = CIFilter.gaussianGradient()",
+            "    gaussianGradient.center = CGPoint (x: 150, y: 150)",
+            "    gaussianGradient.color0 = CIColor(red: 88/255, green: 201",
+            "/255, blue: 175/255)",
+            "    gaussianGradient.color1 = CIColor(red: 153/255, green: 153/255, blue: 204/255)",
+            "    gaussianGradient.radius = 10",
+            "    return gaussianGradient.outputImage!",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3558799",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3558795",
+              "metadata": {
+                "anchor": "3558795",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation/cgpoint": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgpoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPoint",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgpoint"
+    },
+    "doc://com.apple.documentation/documentation/coreimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Image",
+      "type": "topic",
+      "url": "/documentation/coreimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIColor",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIFilter",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228332-gaussiangradient": {
+      "abstract": [
+        {
+          "text": "Generates a gradient that varies from one color to another using a Gaussian distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "gaussianGradient"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIGaussianGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228332-gaussiangradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gaussianGradient()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228332-gaussiangradient"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228332-gaussiangradient#3558799": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228332-gaussiangradient#3558799",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/coreimage/cifilter/3228332-gaussiangradient#3558799"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228342-huesaturationvaluegradient": {
+      "abstract": [
+        {
+          "text": "Generates a gradient representing a specified color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hueSaturationValueGradient"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIHueSaturationValueGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228342-huesaturationvaluegradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hueSaturationValueGradient()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228342-huesaturationvaluegradient"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228351-lineargradient": {
+      "abstract": [
+        {
+          "text": "Generates a color gradient that varies along a linear axis between two defined endpoints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "linearGradient"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CILinearGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228351-lineargradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "linearGradient()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228351-lineargradient"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228395-radialgradient": {
+      "abstract": [
+        {
+          "text": "Generates a gradient that varies radially between two circles having the same center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "radialGradient"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIRadialGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228395-radialgradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "radialGradient()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228395-radialgradient"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228407-smoothlineargradient": {
+      "abstract": [
+        {
+          "text": "Generates a gradient that blends colors along a linear axis between two defined endpoints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "smoothLinearGradient"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CISmoothLinearGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228407-smoothlineargradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "smoothLinearGradient()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228407-smoothlineargradient"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/gradient_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/gradient_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Gradient Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/gradient_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cigaussiangradient": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cigaussiangradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIGaussianGradient",
+      "type": "topic",
+      "url": "/documentation/coreimage/cigaussiangradient"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/gradient_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/gradient_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Gradient Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/gradient_filters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumber": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNumber",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumber"
+    },
+    "doc://com.apple.documentation/documentation/quartz": {
+      "identifier": "doc://com.apple.documentation/documentation/quartz",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Quartz",
+      "type": "topic",
+      "url": "/documentation/quartz"
+    },
+    "doc://com.apple.documentation/documentation/quartz/imagekit": {
+      "identifier": "doc://com.apple.documentation/documentation/quartz/imagekit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ImageKit",
+      "type": "topic",
+      "url": "/documentation/quartz/imagekit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-media-3558795": {
+      "identifier": "link-media-3558795",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/coreimage/cifilter/3228332-gaussiangradient#3558795"
+    },
+    "media-3558795": {
+      "alt": "A photo of a Gaussian gradient that gradually changes in color from purple in the center and shifts to light blue in the periphery.",
+      "identifier": "media-3558795",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/55ba95dcf6/rendered2x-1583863315.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228342-huesaturationvaluegradient",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228351-lineargradient",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228395-radialgradient",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228407-smoothlineargradient"
+      ],
+      "title": "Filters"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreimage/cifilter/3228332-gaussiangradientfilter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreimage/cifilter/3228332-gaussiangradient"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

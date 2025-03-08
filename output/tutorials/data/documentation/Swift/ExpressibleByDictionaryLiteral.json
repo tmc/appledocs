@@ -1,0 +1,869 @@
+{
+  "abstract": [
+    {
+      "text": "A type that can be initialized using a dictionary literal.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/ExpressibleByDictionaryLiteral"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:s30ExpressibleByDictionaryLiteralP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ExpressibleByDictionaryLiteral"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ExpressibleByDictionaryLiteral"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "ExpressibleByDictionaryLiteral"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ExpressibleByDictionaryLiteral"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A dictionary literal is a simple way of writing a list of key-value pairs.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You write each key-value pair with a colon (",
+              "type": "text"
+            },
+            {
+              "code": ":",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") separating the key and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the value. The dictionary literal is made up of one or more key-value",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pairs, separated by commas and surrounded with square brackets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To declare a dictionary, assign a dictionary literal to a variable or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "constant:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let countryCodes = [\"BR\": \"Brazil\", \"GH\": \"Ghana\",",
+            "                    \"JP\": \"Japan\", \"US\": \"United States\"]",
+            "// 'countryCodes' has type '[String: String]'",
+            "",
+            "print(countryCodes[\"BR\"]!)",
+            "// Prints \"Brazil\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the context provides enough type information, you can use a special",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "form of the dictionary literal, square brackets surrounding a single",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "colon, to initialize an empty dictionary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var frequencies: [String: Int] = [:]",
+            "print(frequencies.count)",
+            "// Prints \"0\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "A dictionary literal is ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "not",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " the same as an instance of ",
+                  "type": "text"
+                },
+                {
+                  "code": "Dictionary",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can’t initialize a type that conforms to ",
+                  "type": "text"
+                },
+                {
+                  "code": "ExpressibleByDictionaryLiteral",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "simply by assigning an instance of ",
+                  "type": "text"
+                },
+                {
+                  "code": "Dictionary",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "KeyValuePairs",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", or similar.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Conforming-to-the-ExpressibleByDictionaryLiteral-Protocol",
+          "level": 1,
+          "text": "Conforming to the ExpressibleByDictionaryLiteral Protocol",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add the capability to be initialized with a dictionary literal to your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "own custom types, declare an ",
+              "type": "text"
+            },
+            {
+              "code": "init(dictionaryLiteral:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " initializer. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "following example shows the dictionary literal initializer for a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "hypothetical ",
+              "type": "text"
+            },
+            {
+              "code": "CountedSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type, which uses setlike semantics while keeping",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "track of the count for duplicate elements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct CountedSet<Element: Hashable>: Collection, SetAlgebra {",
+            "    // implementation details",
+            "",
+            "    /// Updates the count stored in the set for the given element,",
+            "    /// adding the element if necessary.",
+            "    ///",
+            "    /// - Parameter n: The new count for `element`. `n` must be greater",
+            "    ///   than or equal to zero.",
+            "    /// - Parameter element: The element to set the new count on.",
+            "    mutating func updateCount(_ n: Int, for element: Element)",
+            "}",
+            "",
+            "extension CountedSet: ExpressibleByDictionaryLiteral {",
+            "    init(dictionaryLiteral elements: (Element, Int)...) {",
+            "        self.init()",
+            "        for (element, count) in elements {",
+            "            self.updateCount(count, for: element)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Dictionary": {
+      "abstract": [
+        {
+          "text": "A collection whose elements are key-value pairs.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Key",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Hashable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", ",
+            "type": "text"
+          },
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", and ",
+            "type": "text"
+          },
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Dictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Dictionary"
+        }
+      ],
+      "role": "symbol",
+      "title": "Dictionary",
+      "type": "topic",
+      "url": "/documentation/swift/dictionary"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ExpressibleByArrayLiteral": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized using an array literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByArrayLiteral"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ExpressibleByArrayLiteral",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByArrayLiteral"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExpressibleByArrayLiteral",
+      "type": "topic",
+      "url": "/documentation/swift/expressiblebyarrayliteral"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ExpressibleByDictionaryLiteral": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized using a dictionary literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByDictionaryLiteral"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ExpressibleByDictionaryLiteral",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByDictionaryLiteral"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExpressibleByDictionaryLiteral",
+      "type": "topic",
+      "url": "/documentation/swift/expressiblebydictionaryliteral"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ExpressibleByDictionaryLiteral/Key": {
+      "abstract": [
+        {
+          "text": "The key type of a dictionary literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Key"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ExpressibleByDictionaryLiteral/Key",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Key",
+      "type": "topic",
+      "url": "/documentation/swift/expressiblebydictionaryliteral/key"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ExpressibleByDictionaryLiteral/Value": {
+      "abstract": [
+        {
+          "text": "The value type of a dictionary literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ExpressibleByDictionaryLiteral/Value",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Value",
+      "type": "topic",
+      "url": "/documentation/swift/expressiblebydictionaryliteral/value"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ExpressibleByDictionaryLiteral/init(dictionaryLiteral:)": {
+      "abstract": [
+        {
+          "text": "Creates an instance initialized with the given key-value pairs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "dictionaryLiteral"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s30ExpressibleByDictionaryLiteralP3KeyQa",
+          "text": "Key"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s30ExpressibleByDictionaryLiteralP5ValueQa",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ")...)"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ExpressibleByDictionaryLiteral/init(dictionaryLiteral:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "init(dictionaryLiteral:)",
+      "type": "topic",
+      "url": "/documentation/swift/expressiblebydictionaryliteral/init(dictionaryliteral:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/KeyValuePairs": {
+      "abstract": [
+        {
+          "text": "A lightweight collection of key-value pairs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "KeyValuePairs"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/KeyValuePairs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "KeyValuePairs"
+        }
+      ],
+      "role": "symbol",
+      "title": "KeyValuePairs",
+      "type": "topic",
+      "url": "/documentation/swift/keyvaluepairs"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Dictionary",
+        "doc://com.apple.Swift/documentation/Swift/KeyValuePairs"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Collection-Literals",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/ExpressibleByArrayLiteral"
+      ],
+      "title": "Collection Literals"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Associated-Types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/ExpressibleByDictionaryLiteral/Key",
+        "doc://com.apple.Swift/documentation/Swift/ExpressibleByDictionaryLiteral/Value"
+      ],
+      "title": "Associated Types"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/ExpressibleByDictionaryLiteral/init(dictionaryLiteral:)"
+      ],
+      "title": "Initializers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/expressiblebydictionaryliteral"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

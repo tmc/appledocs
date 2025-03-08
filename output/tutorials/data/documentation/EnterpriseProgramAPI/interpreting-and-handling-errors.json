@@ -1,0 +1,346 @@
+{
+  "abstract": [
+    {
+      "text": "Learn how the Enterprise Program API returns errors and handle them in your code.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/interpreting-and-handling-errors"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Enterprise Program API"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Interpreting and Handling Errors"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you send a request to the Enterprise Program API, you receive a response that includes an HTTP status code and, in most cases, a response body. To determine your request’s status and handle errors, use the HTTP status code along with the ",
+              "type": "text"
+            },
+            {
+              "code": "code",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Interpret the error starting with the most general information first.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Read-the-HTTP-Status-Code",
+          "level": 3,
+          "text": "Read the HTTP Status Code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The HTTP status code informs you if the request succeeded or failed. If it succeeded, the HTTP status code is in the 200 range, and the response body contains the requested data. If the request failed, the HTTP status code is in the 400 or 500 range, and the response body contains information about the error. In many cases, the status code may be all you need to properly handle errors.  See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/about-the-http-status-code",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Interpret-the-Error-Response",
+          "level": 3,
+          "text": "Interpret the Error Response",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the API request failed, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object contains details to help you troubleshoot the error, and a ",
+              "type": "text"
+            },
+            {
+              "code": "code",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to use for programmatic error handling. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/parsing-the-error-response-code",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Pinpoint-the-Source-of-the-Error",
+          "level": 3,
+          "text": "Pinpoint the Source of the Error",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In some cases, the error information includes a ",
+              "type": "text"
+            },
+            {
+              "code": "source",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property that precisely locates the problem in your request. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/pinpointing-the-location-of-errors",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Enterprise Program API",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorLinks": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorLinks"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorLinks",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorLinks"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorLinks",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/errorlinks"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse": {
+      "abstract": [
+        {
+          "text": "The error details that an API returns in the response body whenever the API request isn’t successful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorResponse",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/errorresponse"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/about-the-http-status-code": {
+      "abstract": [
+        {
+          "text": "Learn how the status code helps you determine if an Enterprise Program  API request succeeded or why it failed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/about-the-http-status-code",
+      "kind": "article",
+      "role": "article",
+      "title": "About the HTTP Status Code",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/about-the-http-status-code"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/parsing-the-error-response-code": {
+      "abstract": [
+        {
+          "text": "Interpret the error details to troubleshoot API requests and perform programmatic error handling.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/parsing-the-error-response-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Parsing the Error Response Code",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/parsing-the-error-response-code"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/pinpointing-the-location-of-errors": {
+      "abstract": [
+        {
+          "text": "Locate the specific source of the error.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/pinpointing-the-location-of-errors",
+      "kind": "article",
+      "role": "article",
+      "title": "Pinpointing the Location of Errors",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/pinpointing-the-location-of-errors"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Error-Handling",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse"
+      ],
+      "title": "Error Handling"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Handling-Errors",
+      "identifiers": [
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/about-the-http-status-code",
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/parsing-the-error-response-code",
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/pinpointing-the-location-of-errors"
+      ],
+      "title": "Handling Errors"
+    },
+    {
+      "anchor": "Objects",
+      "identifiers": [
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorLinks",
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse"
+      ],
+      "title": "Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/enterpriseprogramapi/interpreting-and-handling-errors"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

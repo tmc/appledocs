@@ -1,0 +1,1277 @@
+{
+  "abstract": [
+    {
+      "text": "Confirm that your app provides a good experience for everyone",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "by testing system accessibility settings in Accessibility Inspector.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Accessibility/documentation/Accessibility",
+        "doc://com.apple.Accessibility/documentation/Accessibility/accessibility-inspector"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Accessibility/documentation/Accessibility/testing-system-accessibility-features-in-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accessibility"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Testing system accessibility features in your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Accessibility Inspector, the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Settings pane",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " provides quick access",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to common accessibility settings for easier testing.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use this pane to toggle these system-wide settings",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so you can test how your app behaves for a person who uses",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "one or more of these accessibility features.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Turning these settings on or off updates the corresponding setting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the Accessibility section of the target device’s system settings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "accessibility-inspector-settings-pane",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-sufficient-color-contrast",
+          "level": 3,
+          "text": "Provide sufficient color contrast",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People rely on accessibility features that increase contrast to improve the legibility of content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Ensure that your app provides sufficient color contrast and continues to provide a good experience",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when people turn on system settings that affect color.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Listed below are the platform-specific accessibility settings that affect color contrast.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Accessibility Inspector provides a color contrast calculator to help you test the contrast for certain color combinations. To open this tool, choose Window > Show Color Contrast Calculator (⌥⌘C).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "All-platforms",
+          "level": 4,
+          "text": "All platforms",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Invert colors",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": ". This option toggles the Invert Colors setting, which reverses the colors of the display with some behavior differences depending on the platform.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "invert-colors-before",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Default colors",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "invert-colors-after",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Inverted colors",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Increase contrast",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": ". This option toggles the Increase Contrast setting, which raises color contrast between app foreground and background colors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "increase-contrast-before",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Default contrast",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "increase-contrast-after",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Increased contrast",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Reduce transparency",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": ". This option toggles the Reduce Transparency setting, which improves contrast and legibility by reducing transparency and blur effects on certain backgrounds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "reduce-transparency-before",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Default transparency",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "reduce-transparency-after",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Reduced transparency",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "anchor": "iOS-watchOS-and-tvOS",
+          "level": 4,
+          "text": "iOS, watchOS, and tvOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Grayscale",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": ". This option toggles the Grayscale setting, which removes color by rendering the UI as grayscale.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Adjust-animations-to-reduce-onscreen-motion",
+          "level": 3,
+          "text": "Adjust animations to reduce onscreen motion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People with motion sensitivity can opt to decrease the amount of movement in screen elements,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which can affect animations like parallax, animated images, and screen transitions.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Ensure that your app doesn’t present any issues when a person chooses to reduce motion on their device.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Listed below is the accessibility setting that affects motion in the UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "All-platforms",
+          "level": 4,
+          "text": "All platforms",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Reduce motion",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": ". This option toggles the Reduce Motion setting, which decreases motion in the UI like parallax and animations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "identifier": "reduce-motion-before.mp4",
+                  "metadata": {
+                    "abstract": [
+                      {
+                        "text": "Default motion",
+                        "type": "text"
+                      }
+                    ]
+                  },
+                  "type": "video"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "identifier": "reduce-motion-after.mp4",
+                  "metadata": {
+                    "abstract": [
+                      {
+                        "text": "Reduced motion",
+                        "type": "text"
+                      }
+                    ]
+                  },
+                  "type": "video"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "anchor": "Support-keyboard-interaction",
+          "level": 3,
+          "text": "Support keyboard interaction",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People can use an external hardware keyboard to control their devices, including iPhone.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Ensure that your app works well with keyboard input, and test that your people can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "navigate and perform actions in your app using an external keyboard.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Listed below is the accessibility setting that affects keyboard interaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "All-platforms",
+          "level": 4,
+          "text": "All platforms",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Full Keyboard Access",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": ". This option toggles the Full Keyboard Access setting, which allows a person to use an external keyboard to control the device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Communicate-information-without-relying-solely-on-color",
+          "level": 3,
+          "text": "Communicate information without relying solely on color",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People who are colorblind can find it difficult to distinguish between certain colors.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Ensure that your app doesn’t rely solely on color to differentiate between objects or communicate important information, and test your app with these system settings.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Listed below are the platform-specific accessibility settings that affect color.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "All-platforms",
+          "level": 4,
+          "text": "All platforms",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Differentiate without color",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": ". This option toggles the Differentiate Without Color setting, which replaces UI elements that rely solely on color to convey information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "iOS-watchOS-and-tvOS",
+          "level": 4,
+          "text": "iOS, watchOS, and tvOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Button shapes",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": ". This option toggles the Button Shapes setting, which draws a more prominent UI for buttons to help differentiate them from noninteractive elements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On/Off labels",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": ". This option toggles the On/Off Labels setting, which adds a label to each side of a switch to help reinforce which state it’s in.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Ensure-text-is-legible-at-any-size",
+          "level": 3,
+          "text": "Ensure text is legible at any size",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People can adjust the font weight and size on their devices to improve text legibility.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Ensure that your app doesn’t make assumptions about font size, and your UI scales appropriately for different font weights and sizes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Listed below are the platform-specific accessibility settings that affect text legibility.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "iOS-watchOS-and-tvOS",
+          "level": 4,
+          "text": "iOS, watchOS, and tvOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Bold fonts",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": ". This option toggles the Bold Text setting, which increases the font weight for text throughout the system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "bold-fonts-before",
+                      "metadata": {
+                        "deviceFrame": "iPhone14Pro-top-half"
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "Default fonts"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "bold-fonts-after",
+                      "metadata": {
+                        "deviceFrame": "iPhone14Pro-top-half"
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "Bold fonts"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Dynamic type",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": ". This option adjusts the system font size using Dynamic Type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about designing an accessible app, read",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/accessibility",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in Human Interface Guidelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Accessibility-PageImage-card.png": {
+      "alt": "",
+      "identifier": "Accessibility-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/718b8a161d77a3423dde2dd53ac35ffb/Accessibility-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ed433f19cfa41ebf0c9f495a066b6bbd/Accessibility-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "accessibility-inspector-settings-pane": {
+      "alt": "Settings pane with a list of system accessibility options and corresponding checkboxes.",
+      "identifier": "accessibility-inspector-settings-pane",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a9836405ca25e883b2f8edea000ed64c/accessibility-inspector-settings-pane@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f0a2bb906684401d77236066119ff81d/accessibility-inspector-settings-pane~dark@2x.png"
+        }
+      ]
+    },
+    "accessibility.svg": {
+      "alt": null,
+      "identifier": "accessibility.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "accessibility",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/83c941607786e0ba1f582082f4e94361/accessibility.svg"
+        }
+      ]
+    },
+    "bold-fonts-after": {
+      "alt": "System settings with bold fonts.",
+      "identifier": "bold-fonts-after",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/98c476a523e7433a0ca10d391e75c58b/bold-fonts-after@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/412cbe6d35484039c8654046ce340dad/bold-fonts-after~dark@2x.png"
+        }
+      ]
+    },
+    "bold-fonts-before": {
+      "alt": "System settings with default fonts.",
+      "identifier": "bold-fonts-before",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4aa4d6ecd711a7d1476ab68e3b89810e/bold-fonts-before@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e7eba59584848e377100442d7ec58285/bold-fonts-before~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility": {
+      "abstract": [
+        {
+          "text": "Make your apps accessible to everyone who uses Apple devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility",
+      "images": [
+        {
+          "identifier": "Accessibility-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accessibility",
+      "type": "topic",
+      "url": "/documentation/accessibility"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/accessibility-inspector": {
+      "abstract": [
+        {
+          "text": "Reveal how your app represents itself to people using accessibility features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/accessibility-inspector",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessibility Inspector",
+      "type": "topic",
+      "url": "/documentation/accessibility/accessibility-inspector"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/accessibility": {
+      "abstract": [
+        {
+          "text": "Accessible user interfaces empower everyone to have a great experience with your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/accessibility",
+      "images": [
+        {
+          "identifier": "accessibility.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "foundations-accessibility-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Accessibility",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/accessibility"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "foundations-accessibility-thumbnail.png": {
+      "alt": null,
+      "identifier": "foundations-accessibility-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8b7b11d06dd958f4e9449f0a5acdadbd/foundations-accessibility-thumbnail@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fea544b1ff706c10ba3a1d06f528da46/foundations-accessibility-thumbnail~dark@2x.png"
+        }
+      ]
+    },
+    "increase-contrast-after": {
+      "alt": "Color picker with increased contrast, showing more prominent element outlines.",
+      "identifier": "increase-contrast-after",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/de2c7e95e40d98ba932deda57c01c719/increase-contrast-after@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8b16a62f0552ac2fd24390c6137595a6/increase-contrast-after~dark@2x.png"
+        }
+      ]
+    },
+    "increase-contrast-before": {
+      "alt": "Color picker with default contrast.",
+      "identifier": "increase-contrast-before",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0d5c3d1f05e72e3189d2eb5f6bde3010/increase-contrast-before@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fe54dba9deef4319a3bcccbb18c8e64c/increase-contrast-before~dark@2x.png"
+        }
+      ]
+    },
+    "invert-colors-after": {
+      "alt": "The word Accessibility in a black font on an orange background to demonstrate the previous image using inverted colors.",
+      "identifier": "invert-colors-after",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7f3a35781d3407f545da28ff19591f06/invert-colors-after@2x.png"
+        }
+      ]
+    },
+    "invert-colors-before": {
+      "alt": "The word Accessibility in a white font on a blue background when the display uses default colors.",
+      "identifier": "invert-colors-before",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6474a6a9b285a17fc71c455efcc07653/invert-colors-before@2x.png"
+        }
+      ]
+    },
+    "reduce-motion-after.mp4": {
+      "alt": "Example of content that uses minimal motion in the UI when scrolling the content with the reduce motion option.",
+      "identifier": "reduce-motion-after.mp4",
+      "poster": "reduce-motion-after.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/48d4dd5c3b65e09969ec7432114503d0/reduce-motion-after.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5198de193874bd6fa454b4f9a3cb753b/reduce-motion-after~dark.mp4"
+        }
+      ]
+    },
+    "reduce-motion-after.png": {
+      "alt": null,
+      "identifier": "reduce-motion-after.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/061b775fd5aab35eaef8aecbc5d5e3c5/reduce-motion-after@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/724af3e8fb02c15d7bbc4fa50c81fc21/reduce-motion-after~dark@2x.png"
+        }
+      ]
+    },
+    "reduce-motion-before.mp4": {
+      "alt": "Example of content that uses significant motion in the UI when scrolling the content.",
+      "identifier": "reduce-motion-before.mp4",
+      "poster": "reduce-motion-before.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3ff01a1b18a57d349af78913a1958c18/reduce-motion-before.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9db3d50ce2041e5dee7c6c0625d82694/reduce-motion-before~dark.mp4"
+        }
+      ]
+    },
+    "reduce-motion-before.png": {
+      "alt": null,
+      "identifier": "reduce-motion-before.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6df2ada9e985c7fd2d5d8e5865a2245c/reduce-motion-before@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/401dfc84ce73c3b401964dfb7adad93f/reduce-motion-before~dark@2x.png"
+        }
+      ]
+    },
+    "reduce-transparency-after": {
+      "alt": "Menu with reduced transparency, with menu items that have an opaque background.",
+      "identifier": "reduce-transparency-after",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1e859d78b2cada3263a321da7b8db0c2/reduce-transparency-after@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/35cd6fdfa3d3b03e507553108b314498/reduce-transparency-after~dark@2x.png"
+        }
+      ]
+    },
+    "reduce-transparency-before": {
+      "alt": "Menu with default transparency, with background material peeking through the menu items.",
+      "identifier": "reduce-transparency-before",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e1add19526b49dc9f8480a58ce450929/reduce-transparency-before@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cdab77a78513101a3951e97aed75cb61/reduce-transparency-before~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accessibility/testing-system-accessibility-features-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/accessibility/testing-system-accessibility-features-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

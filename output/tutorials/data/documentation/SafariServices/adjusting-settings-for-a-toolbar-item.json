@@ -1,0 +1,1746 @@
+{
+  "abstract": [
+    {
+      "text": "Customize a toolbar item for your Safari app extension.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safariservices/documentation/SafariServices",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extension-information-property-list-keys"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safariservices/documentation/SafariServices/adjusting-settings-for-a-toolbar-item"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adjusting settings for a toolbar item"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Safari has a user-customizable toolbar that can contain a selection of buttons. A Safari app extension can provide a new toolbar item, and when the Safari app extension is in an enabled state, Safari adds that item to the toolbar by default. The user may choose to hide your toolbar item by customizing the toolbar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2958181",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app extension can enable or disable the toolbar item or add a badge with text to it. When the user clicks it, the toolbar item can either execute a command or display a popover. The decision of which behavior to implement occurs at design time. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/adjusting-settings-for-a-toolbar-item#Display-a-popover-for-a-toolbar-item",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a toolbar item with the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an image.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fill out the appropriate fields in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add logic that executes when the user clicks the toolbar button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn how to add a toolbar item, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/using-contextual-menu-and-toolbar-item-keys",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Localize-the-toolbar-label",
+          "level": 3,
+          "text": "Localize the toolbar label",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provide an ",
+              "type": "text"
+            },
+            {
+              "code": "InfoPlist.strings",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file and include localized text for a custom key based on your toolbar identifier. For example, to provide a Polish translation for a toolbar item with an identifier of ",
+              "type": "text"
+            },
+            {
+              "code": "translate",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", add the following entry to your strings file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"Toolbar Button Label for Identifier: translate\" = \"Przetłumacz\";"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/managing-your-app-s-information-property-list#Localize-the-Information-Property-List",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Dynamically-change-the-image-of-a-toolbar-item",
+          "level": 3,
+          "text": "Dynamically change the image of a toolbar item",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To update a toolbar item’s image dynamically, Safari uses the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariToolbarItem/setImage(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method for ",
+              "type": "text"
+            },
+            {
+              "code": "SFSafariToolbarItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Setting the image to ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " sets the default image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Adjust-the-state-of-the-toolbar-item",
+          "level": 3,
+          "text": "Adjust the state of the toolbar item",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app extension has the following control over the toolbar item:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app extension can enable or disable the button. Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariToolbarItem/setEnabled(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " if your toolbar item is usable only some of the time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app extension can add a string to the toolbar item as a badge. For example, if your extension contains a list of items that the user can see by clicking the button, you might add a badge to the toolbar item using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariToolbarItem/setBadgeText(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " with the number of unread items.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "State changes can trigger in either of the following ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Based on the user’s actions, Safari can implement a change to the button’s state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app extension can force a state change to happen explicitly.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "An injected content script can’t directly force the toolbar item to become enabled or disabled. However, you can implement this control yourself by sending a message to your app extension, and changing the toolbar state in your message handler. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.safariservices/documentation/SafariServices/passing-messages-between-safari-app-extensions-and-injected-scripts",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Validate-the-Safari-toolbar-item",
+          "level": 3,
+          "text": "Validate the Safari toolbar item",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an event occurs that may require your toolbar’s state to change, Safari calls your app extension’s event handler. The event handler receives parameters that indicate the window the toolbar appears in, and a completion handler for your app extension to call. Your event handler determines whether to enable or disable the toolbar button and whether to display a badge, and then returns this information to Safari.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code below shows one possible implementation of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling/validateToolbarItem(in:validationHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "method. In this case, the app extension has a list of items that it keeps track of, and it adds a badge to the toolbar item with the number of available items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "override func validateToolbarItem(in window: SFSafariWindow, validationHandler: ((Bool, String) -> Void)) {",
+                    "    // The system calls this when Safari's state changes in a way that requires revalidation of the extension's toolbar item.",
+                    "    if items.count == 0",
+                    "    {",
+                    "        validationHandler(false,\"\")",
+                    "    }",
+                    "    else",
+                    "    {",
+                    "        validationHandler(true,\"\\(items.count)\")",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void)validateToolbarItemInWindow:(SFSafariWindow *)window validationHandler:(void (^)(BOOL enabled, NSString *badgeText))validationHandler {",
+                    "    // The system calls this when Safari's state changes in a way that requires revalidation of the extension's toolbar item.",
+                    "    if (self.items.count == 0)",
+                    "    {",
+                    "        validationHandler(NO,nil);",
+                    "    }",
+                    "    else",
+                    "    {",
+                    "        validationHandler(YES, [NSString stringWithFormat:@\"%lu\", (unsigned long)self.items.count] );",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Set-the-toolbar-information-explicitly",
+          "level": 3,
+          "text": "Set the toolbar information explicitly",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have a reference to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariWindow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, you can use it to get a proxy object for the toolbar item, and then use that object to set the toolbar’s status directly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "override func toolbarItemClicked(in window: SFSafariWindow) {",
+                    "    window.getToolbarItem { (toolbarItem) in",
+                    "        toolbarItem?.setEnabled(true, withBadgeText: \"1\")",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void)toolbarItemClickedInWindow:(SFSafariWindow *)window",
+                    "{",
+                    "    [window getToolbarItemWithCompletionHandler:^(SFSafariToolbarItem *toolbarItem)",
+                    "     {",
+                    "         [toolbarItem setEnabled:NO withBadgeText:@\"1\"];",
+                    "     }];",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Add-commands-to-the-toolbar-item",
+          "level": 3,
+          "text": "Add commands to the toolbar item",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you configure your toolbar item to send a command, clicking the toolbar button in Safari calls your extension handler’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling/toolbarItemClicked(in:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. You can then process the event however you like. The window passes in as a parameter, so this code retrieves the toolbar item for that window and updates its badge.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Another common usage when the toolbar item activates is to forward the message to an injected script on the page, so that you can modify the page in some way. The code below shows one possible way to forward the toolbar action. This code retrieves the active tab on the window that the user clicks, uses the tab to retrieve the page, and then dispatches a message to the page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "window.getActiveTab { (activeTab) in",
+                    "    activeTab?.getActivePage { (activePage) in",
+                    "        activePage?.dispatchMessageToScript(withName: \"DoSomethingInteresting\", userInfo: nil)",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "[window getActiveTabWithCompletionHandler:^(SFSafariTab *activeTab) {",
+                    "    [activeTab getActivePageWithCompletionHandler:^(SFSafariPage *activePage) {",
+                    "        [activePage dispatchMessageToScriptWithName:@\"DoSomethingInteresting\" userInfo:nil];",
+                    "    }];",
+                    "}];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Display-a-popover-for-a-toolbar-item",
+          "level": 3,
+          "text": "Display a popover for a toolbar item",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A popover is a window that pops up over an active window when the user clicks a toolbar button — no navigation is necessary. You can use a popover to show a small amount of information or to complete a small action. The popover closes automatically when the user changes focus (by clicking another window, for example). The ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/guidelines/overview",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " describe how to best use popovers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a Safari app extension, you implement the popover content using native view and view controller objects based on AppKit. When your native app and your Safari app extension share the same data model, this design also makes it easier to share other pieces of view code between the two. Safari and the operating system do all of the work to display this content within the Safari browser and to process events as they come in.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You implement your popover as a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". As with other macOS development, typically you add your own outlets and actions to the view controller, and provide an XIB file for its user interface. The Xcode template for a Safari app extension provides some boilerplate code to get you started. Use Auto Layout so that your content adapts to different sizes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you configure your toolbar item to display a popover, clicking the toolbar button in Safari calls your extension handler’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling/popoverViewController()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Your app extension instantiates and returns the popover view controller. In the template, the popover implements as a singleton object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "override func popoverViewController() -> SFSafariExtensionViewController {",
+                    "    return SafariExtensionViewController.shared",
+                    "}",
+                    ""
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (SFSafariExtensionViewController *)popoverViewController {",
+                    "    return [SafariExtensionViewController sharedController];",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before displaying the popover, the system calls your handler’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling/popoverWillShow(in:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. You can use this method to populate the contents of the window with new information. Similarly, after the popover disappears, the system calls the handler’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling/popoverDidClose(in:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method so that you can perform any necessary cleanup.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/managing-your-app-s-information-property-list#Localize-the-Information-Property-List": {
+      "abstract": [
+        {
+          "text": "Create and customize an information property list file for your app using Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/managing-your-app-s-information-property-list#Localize-the-Information-Property-List",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Your App’s Information Property List",
+      "type": "topic",
+      "url": "/documentation/BundleResources/managing-your-app-s-information-property-list"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices": {
+      "abstract": [
+        {
+          "text": "Enable web views and services in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Services",
+      "type": "topic",
+      "url": "/documentation/safariservices"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling/popoverDidClose(in:)": {
+      "abstract": [
+        {
+          "text": "Tells the handler that the app extension’s popover was closed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "popoverDidClose"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SFSafariWindow",
+          "text": "SFSafariWindow"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling/popoverDidClose(in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "popoverDidCloseInWindow:"
+        }
+      ],
+      "role": "symbol",
+      "title": "popoverDidClose(in:)",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafariextensionhandling/popoverdidclose(in:)"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling/popoverViewController()": {
+      "abstract": [
+        {
+          "text": "Asks the handler to provide a popover view controller for display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "popoverViewController"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SFSafariExtensionViewController",
+          "text": "SFSafariExtensionViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling/popoverViewController()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "popoverViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "popoverViewController()",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafariextensionhandling/popoverviewcontroller()"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling/popoverWillShow(in:)": {
+      "abstract": [
+        {
+          "text": "Tells the handler that the app extension’s popover is about to be opened.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "popoverWillShow"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SFSafariWindow",
+          "text": "SFSafariWindow"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling/popoverWillShow(in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "popoverWillShowInWindow:"
+        }
+      ],
+      "role": "symbol",
+      "title": "popoverWillShow(in:)",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafariextensionhandling/popoverwillshow(in:)"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling/toolbarItemClicked(in:)": {
+      "abstract": [
+        {
+          "text": "A method the system calls when a user clicks a toolbar item associated with the app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toolbarItemClicked"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SFSafariWindow",
+          "text": "SFSafariWindow"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling/toolbarItemClicked(in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "toolbarItemClickedInWindow:"
+        }
+      ],
+      "role": "symbol",
+      "title": "toolbarItemClicked(in:)",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafariextensionhandling/toolbaritemclicked(in:)"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling/validateToolbarItem(in:validationHandler:)": {
+      "abstract": [
+        {
+          "text": "Determines if a toolbar menu item should be enabled or have badge text when browser state changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "validateToolbarItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SFSafariWindow",
+          "text": "SFSafariWindow"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "validationHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling/validateToolbarItem(in:validationHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "validateToolbarItemInWindow:validationHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "validateToolbarItem(in:validationHandler:)",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafariextensionhandling/validatetoolbaritem(in:validationhandler:)"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionViewController": {
+      "abstract": [
+        {
+          "text": "The view controller for a popover associated with your app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariExtensionViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSafariExtensionViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSafariExtensionViewController",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafariextensionviewcontroller"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariToolbarItem": {
+      "abstract": [
+        {
+          "text": "A proxy for a Safari app extension toolbar item in a Safari window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariToolbarItem"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariToolbarItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSafariToolbarItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSafariToolbarItem",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafaritoolbaritem"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariToolbarItem/setBadgeText(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the badge text for the toolbar item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBadgeText"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariToolbarItem/setBadgeText(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setBadgeText:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setBadgeText(_:)",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafaritoolbaritem/setbadgetext(_:)"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariToolbarItem/setEnabled(_:)": {
+      "abstract": [
+        {
+          "text": "Sets whether the toolbar item is enabled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setEnabled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariToolbarItem/setEnabled(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setEnabled:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setEnabled(_:)",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafaritoolbaritem/setenabled(_:)"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariToolbarItem/setImage(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the image displayed in the toolbar button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImage",
+          "text": "NSImage"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariToolbarItem/setImage(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setImage:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setImage(_:)",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafaritoolbaritem/setimage(_:)"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariWindow": {
+      "abstract": [
+        {
+          "text": "A proxy for a Safari window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariWindow"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariWindow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSafariWindow"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSafariWindow",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafariwindow"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/adjusting-settings-for-a-toolbar-item#Display-a-popover-for-a-toolbar-item": {
+      "abstract": [],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/adjusting-settings-for-a-toolbar-item#Display-a-popover-for-a-toolbar-item",
+      "kind": "section",
+      "title": "Display a popover for a toolbar item",
+      "type": "topic",
+      "url": "/documentation/safariservices/adjusting-settings-for-a-toolbar-item#Display-a-popover-for-a-toolbar-item"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/adjusting-settings-for-contextual-menu-items": {
+      "abstract": [
+        {
+          "text": "Customize contextual menu items for your Safari app extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/adjusting-settings-for-contextual-menu-items",
+      "kind": "article",
+      "role": "article",
+      "title": "Adjusting settings for contextual menu items",
+      "type": "topic",
+      "url": "/documentation/safariservices/adjusting-settings-for-contextual-menu-items"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/passing-messages-between-safari-app-extensions-and-injected-scripts": {
+      "abstract": [
+        {
+          "text": "Communicate between your Safari app extension and injected scripts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/passing-messages-between-safari-app-extensions-and-injected-scripts",
+      "kind": "article",
+      "role": "article",
+      "title": "Passing messages between Safari app extensions and injected scripts",
+      "type": "topic",
+      "url": "/documentation/safariservices/passing-messages-between-safari-app-extensions-and-injected-scripts"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extension-information-property-list-keys": {
+      "abstract": [
+        {
+          "text": "Specify keys in your information property list file that provide information about your Safari app extension, UI, and permissions to the operating system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extension-information-property-list-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari app extension information property list keys",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-app-extension-information-property-list-keys"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions": {
+      "abstract": [
+        {
+          "text": "Learn how Safari app extensions extend the web-browsing experience in Safari by leveraging web technologies and native code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari app extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-app-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/using-contextual-menu-and-toolbar-item-keys": {
+      "abstract": [
+        {
+          "text": "Learn about adding contextual menu items and toolbar items to a Safari app extension with information property list keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/using-contextual-menu-and-toolbar-item-keys",
+      "kind": "article",
+      "role": "article",
+      "title": "Using contextual menu and toolbar item keys",
+      "type": "topic",
+      "url": "/documentation/safariservices/using-contextual-menu-and-toolbar-item-keys"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/guidelines/overview": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/guidelines/overview",
+      "title": "Human Interface Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/guidelines/overview"
+    },
+    "media-2958181": {
+      "alt": "A screenshot of the Safari toolbar. It shows standard toolbar items, as well as an app extension toolbar item that looks like a lightning bolt inside a circle. ",
+      "identifier": "media-2958181",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c4108e139b0ba0285b01ac6b2fb411b1/media-2958181@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b050de6e04c9e6952a0b96fb0a1c4c63/media-2958181~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Contextual-menu-and-toolbar-items",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/using-contextual-menu-and-toolbar-item-keys",
+        "doc://com.apple.safariservices/documentation/SafariServices/adjusting-settings-for-contextual-menu-items",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFSafariToolbarItem",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionViewController"
+      ],
+      "title": "Contextual menu and toolbar items"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Contextual-menu-and-toolbar-items",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/using-contextual-menu-and-toolbar-item-keys",
+                "doc://com.apple.safariservices/documentation/SafariServices/adjusting-settings-for-contextual-menu-items",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFSafariToolbarItem",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionViewController"
+              ],
+              "title": "Contextual menu and toolbar items"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandling~1popoverWillShow(in:)/title",
+          "value": "popoverWillShowInWindow:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandling~1popoverWillShow(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "popoverWillShowInWindow:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandling~1toolbarItemClicked(in:)/title",
+          "value": "toolbarItemClickedInWindow:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandling~1toolbarItemClicked(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "toolbarItemClickedInWindow:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandling~1popoverDidClose(in:)/title",
+          "value": "popoverDidCloseInWindow:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandling~1popoverDidClose(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "popoverDidCloseInWindow:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariToolbarItem~1setEnabled(_:)/title",
+          "value": "setEnabled:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariToolbarItem~1setEnabled(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setEnabled:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionViewController/title",
+          "value": "SFSafariExtensionViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariExtensionViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariExtensionViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariWindow/title",
+          "value": "SFSafariWindow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariWindow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariWindow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariWindow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariWindow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandling~1validateToolbarItem(in:validationHandler:)/title",
+          "value": "validateToolbarItemInWindow:validationHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandling~1validateToolbarItem(in:validationHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "validateToolbarItemInWindow:validationHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariToolbarItem~1setImage(_:)/title",
+          "value": "setImage:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariToolbarItem~1setImage(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setImage:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariToolbarItem~1setBadgeText(_:)/title",
+          "value": "setBadgeText:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariToolbarItem~1setBadgeText(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setBadgeText:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariToolbarItem/title",
+          "value": "SFSafariToolbarItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariToolbarItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariToolbarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariToolbarItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariToolbarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandling~1popoverViewController()/title",
+          "value": "popoverViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandling~1popoverViewController()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "popoverViewController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safariservices/adjusting-settings-for-a-toolbar-item"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safariservices/adjusting-settings-for-a-toolbar-item"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

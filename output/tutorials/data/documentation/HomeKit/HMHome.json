@@ -1,0 +1,5511 @@
+{
+  "abstract": [
+    {
+      "text": "The primary unit of living space, typically composed of rooms organized into zones.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.homekit/documentation/HomeKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.homekit/documentation/HomeKit/HMHome"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)HMHome",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "HMHome"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HomeKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "HMHome"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "HMHome"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "HMHome"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance is a top-level container in HomeKit representing a structure that a user considers as a single home. Users might have multiple homes that are far apart, like a primary home and a vacation home. Or they might have two homes that are close together, but that they consider as distinct units—for example, a main home and a guest cottage on the same property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Is the main access point for communicating with and configuring accessories, like a garage door opener or a thermostat.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Organizes accessories into a number of rooms, which are themselves optionally grouped into zones, such as the upstairs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allows the user to define sets of actions that can be performed with a single operation, and triggers that cause an action set to be performed at a specific time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create a new home only in response to a specific user request, but you don’t do it directly. When the user asks your app to create a new home—for example, by tapping an Add button in your interface—your app calls the home manager’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager/addHome(withName:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method with a name that the user supplies. To get a list of existing home instances, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager/homes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array of the home manager (an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because HomeKit gives your app access to a shared database of home automation information, other apps can change the home’s configuration. Adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol in your app to stay informed of any such changes that happen outside your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit": {
+      "abstract": [
+        {
+          "text": "Configure, control, and communicate with home automation accessories.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HomeKit",
+      "type": "topic",
+      "url": "/documentation/homekit"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessControl": {
+      "abstract": [
+        {
+          "text": "An abstract superclass for accessing user privileges.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMAccessControl"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMAccessControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMAccessControl",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccesscontrol"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessory": {
+      "abstract": [
+        {
+          "text": "A home automation accessory, like a garage door opener or a thermostat.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMAccessory"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMAccessory"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMAccessory",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessory"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMActionSet": {
+      "abstract": [
+        {
+          "text": "A collection of actions that you trigger as a group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMActionSet"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMActionSet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMActionSet"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMActionSet",
+      "type": "topic",
+      "url": "/documentation/homekit/hmactionset"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMEventTrigger": {
+      "abstract": [
+        {
+          "text": "A trigger to activate an action set based on a set of events and optional conditions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMEventTrigger"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMEventTrigger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMEventTrigger"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMEventTrigger",
+      "type": "topic",
+      "url": "/documentation/homekit/hmeventtrigger"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome": {
+      "abstract": [
+        {
+          "text": "The primary unit of living space, typically composed of rooms organized into zones.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMHome"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMHome"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMHome",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/accessories": {
+      "abstract": [
+        {
+          "text": "The collection of accessories that are part of the home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessories"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMAccessory",
+          "text": "HMAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/accessories",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accessories"
+        }
+      ],
+      "role": "symbol",
+      "title": "accessories",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/accessories"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/actionSets": {
+      "abstract": [
+        {
+          "text": "An array of the action sets in the home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "actionSets"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMActionSet",
+          "text": "HMActionSet"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/actionSets",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "actionSets"
+        }
+      ],
+      "role": "symbol",
+      "title": "actionSets",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/actionsets"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/addAccessory(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Adds a new accessory to the home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMAccessory",
+          "text": "HMAccessory"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/addAccessory(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addAccessory:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addAccessory(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/addaccessory(_:completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/addActionSet(withName:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Adds a new action set to the home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addActionSet"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMActionSet",
+          "text": "HMActionSet"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/addActionSet(withName:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addActionSetWithName:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addActionSet(withName:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/addactionset(withname:completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/addAndSetupAccessories(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Finds and adds nearby accessories to the home.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAndSetupAccessories"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/addAndSetupAccessories(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addAndSetupAccessoriesWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addAndSetupAccessories(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/addandsetupaccessories(completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/addAndSetupAccessories(with:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Finds and adds nearby accessories to the home using a HomeKit code provided by your app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAndSetupAccessories"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMAccessorySetupPayload",
+          "text": "HMAccessorySetupPayload"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMAccessory",
+          "text": "HMAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "]?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/addAndSetupAccessories(with:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addAndSetupAccessoriesWithPayload:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addAndSetupAccessories(with:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/addandsetupaccessories(with:completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/addRoom(withName:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Creates a new room with the specified name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addRoom"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMRoom",
+          "text": "HMRoom"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/addRoom(withName:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addRoomWithName:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addRoom(withName:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/addroom(withname:completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/addServiceGroup(withName:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Adds a service group to the home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addServiceGroup"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMServiceGroup",
+          "text": "HMServiceGroup"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/addServiceGroup(withName:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addServiceGroupWithName:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addServiceGroup(withName:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/addservicegroup(withname:completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/addTrigger(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Adds a trigger to the home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addTrigger"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMTrigger",
+          "text": "HMTrigger"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/addTrigger(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addTrigger:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addTrigger(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/addtrigger(_:completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/addUser(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Adds a user to the home.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addUser"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMUser",
+          "text": "HMUser"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/addUser(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addUserWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addUser(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/adduser(completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/addZone(withName:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Adds a new zone to the home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addZone"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMZone",
+          "text": "HMZone"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/addZone(withName:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addZoneWithName:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addZone(withName:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/addzone(withname:completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/assignAccessory(_:to:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Assigns an accessory to a different room.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "assignAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMAccessory",
+          "text": "HMAccessory"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMRoom",
+          "text": "HMRoom"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/assignAccessory(_:to:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "assignAccessory:toRoom:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "assignAccessory(_:to:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/assignaccessory(_:to:completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/builtinActionSet(ofType:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the builtin action set for the specified type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "builtinActionSet"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMActionSet",
+          "text": "HMActionSet"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/builtinActionSet(ofType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "builtinActionSetOfType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "builtinActionSet(ofType:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/builtinactionset(oftype:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/currentUser": {
+      "abstract": [
+        {
+          "text": "The current HomeKit user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentUser"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMUser",
+          "text": "HMUser"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/currentUser",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentUser"
+        }
+      ],
+      "role": "symbol",
+      "title": "currentUser",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/currentuser"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/delegate": {
+      "abstract": [
+        {
+          "text": "A delegate that receives updates on the state of the home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)HMHomeDelegate",
+          "text": "HMHomeDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/delegate"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/executeActionSet(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Executes all the actions in a specified action set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeActionSet"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMActionSet",
+          "text": "HMActionSet"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/executeActionSet(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "executeActionSet:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "executeActionSet(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/executeactionset(_:completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/homeAccessControl(for:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the access level of a user associated with the home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "homeAccessControl"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMUser",
+          "text": "HMUser"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHomeAccessControl",
+          "text": "HMHomeAccessControl"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/homeAccessControl(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "homeAccessControlForUser:"
+        }
+      ],
+      "role": "symbol",
+      "title": "homeAccessControl(for:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/homeaccesscontrol(for:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/homeHubState": {
+      "abstract": [
+        {
+          "text": "The state of the home hub.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "homeHubState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HMHomeHubState",
+          "text": "HMHomeHubState"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/homeHubState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "homeHubState"
+        }
+      ],
+      "role": "symbol",
+      "title": "homeHubState",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/homehubstate"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/isPrimary": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether this is the primary home for its home manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPrimary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/isPrimary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "primary"
+        }
+      ],
+      "role": "symbol",
+      "title": "isPrimary",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/isprimary"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/manageUsers(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Presents a view controller to manage users of the home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "manageUsers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/manageUsers(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "manageUsersWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "manageUsers(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/manageusers(completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/matterControllerID": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "matterControllerID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/matterControllerID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "matterControllerID"
+        }
+      ],
+      "role": "symbol",
+      "title": "matterControllerID",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/mattercontrollerid"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/matterControllerXPCConnectBlock": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "matterControllerXPCConnectBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSXPCConnection",
+          "text": "NSXPCConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/matterControllerXPCConnectBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "matterControllerXPCConnectBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "matterControllerXPCConnectBlock",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/mattercontrollerxpcconnectblock"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/matterStartupParametersXPCConnectBlock": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "matterStartupParametersXPCConnectBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSXPCConnection",
+          "text": "NSXPCConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/matterStartupParametersXPCConnectBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "matterStartupParametersXPCConnectBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "matterStartupParametersXPCConnectBlock",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/matterstartupparametersxpcconnectblock"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/name": {
+      "abstract": [
+        {
+          "text": "The name the user gives to the home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/name",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "name"
+        }
+      ],
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/name"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeAccessory(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Removes an accessory from the home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMAccessory",
+          "text": "HMAccessory"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeAccessory(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeAccessory:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeAccessory(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/removeaccessory(_:completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeActionSet(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Removes an action set from the home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeActionSet"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMActionSet",
+          "text": "HMActionSet"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeActionSet(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeActionSet:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeActionSet(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/removeactionset(_:completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeRoom(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Removes a room from the home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeRoom"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMRoom",
+          "text": "HMRoom"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeRoom(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeRoom:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeRoom(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/removeroom(_:completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeServiceGroup(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Removes a service group from the home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeServiceGroup"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMServiceGroup",
+          "text": "HMServiceGroup"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeServiceGroup(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeServiceGroup:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeServiceGroup(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/removeservicegroup(_:completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeTrigger(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Removes a trigger from the home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeTrigger"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMTrigger",
+          "text": "HMTrigger"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeTrigger(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeTrigger:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeTrigger(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/removetrigger(_:completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeUser(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Removes a user from the home.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeUser"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMUser",
+          "text": "HMUser"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeUser(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeUser:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeUser(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/removeuser(_:completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeZone(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Removes a zone from the home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeZone"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMZone",
+          "text": "HMZone"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeZone(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeZone:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeZone(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/removezone(_:completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/roomForEntireHome()": {
+      "abstract": [
+        {
+          "text": "A room that represents all parts of the home that don’t have a more specific room to represent them.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "roomForEntireHome"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMRoom",
+          "text": "HMRoom"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/roomForEntireHome()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "roomForEntireHome"
+        }
+      ],
+      "role": "symbol",
+      "title": "roomForEntireHome()",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/roomforentirehome()"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/rooms": {
+      "abstract": [
+        {
+          "text": "An array of the rooms created and managed by the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rooms"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMRoom",
+          "text": "HMRoom"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/rooms",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rooms"
+        }
+      ],
+      "role": "symbol",
+      "title": "rooms",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/rooms"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/serviceGroups": {
+      "abstract": [
+        {
+          "text": "An array of all service groups in the home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "serviceGroups"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMServiceGroup",
+          "text": "HMServiceGroup"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/serviceGroups",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "serviceGroups"
+        }
+      ],
+      "role": "symbol",
+      "title": "serviceGroups",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/servicegroups"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/servicesWithTypes(_:)": {
+      "abstract": [
+        {
+          "text": "Returns an array of all services provided by accessories in the home that match the specified types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "servicesWithTypes"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMService",
+          "text": "HMService"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/servicesWithTypes(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "servicesWithTypes:"
+        }
+      ],
+      "role": "symbol",
+      "title": "servicesWithTypes(_:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/serviceswithtypes(_:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/supportsAddingNetworkRouter": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether a home supports all of the requirements for adding a network router.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportsAddingNetworkRouter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/supportsAddingNetworkRouter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportsAddingNetworkRouter"
+        }
+      ],
+      "role": "symbol",
+      "title": "supportsAddingNetworkRouter",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/supportsaddingnetworkrouter"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/triggers": {
+      "abstract": [
+        {
+          "text": "An array of triggers defined in the home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "triggers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMTrigger",
+          "text": "HMTrigger"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/triggers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "triggers"
+        }
+      ],
+      "role": "symbol",
+      "title": "triggers",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/triggers"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/unblockAccessory(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Unblocks a blocked accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unblockAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMAccessory",
+          "text": "HMAccessory"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/unblockAccessory(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unblockAccessory:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "unblockAccessory(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/unblockaccessory(_:completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/uniqueIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for the home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uniqueIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/uniqueIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "uniqueIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "uniqueIdentifier",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/uniqueidentifier"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/updateName(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Updates the name of the home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/updateName(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateName:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "updateName(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/updatename(_:completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/users": {
+      "abstract": [
+        {
+          "text": "All users associated with the home.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "users"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMUser",
+          "text": "HMUser"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/users",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "users"
+        }
+      ],
+      "role": "symbol",
+      "title": "users",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/users"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/zones": {
+      "abstract": [
+        {
+          "text": "An array of all the zones in the home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zones"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMZone",
+          "text": "HMZone"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/zones",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "zones"
+        }
+      ],
+      "role": "symbol",
+      "title": "zones",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/zones"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeAccessControl": {
+      "abstract": [
+        {
+          "text": "The access privileges of a user associated with a home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMHomeAccessControl"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeAccessControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMHomeAccessControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMHomeAccessControl",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomeaccesscontrol"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate": {
+      "abstract": [
+        {
+          "text": "An interface that communicates changes to a home’s configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMHomeDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMHomeDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMHomeDelegate",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeHubState": {
+      "abstract": [
+        {
+          "text": "The possible states of the home hub.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMHomeHubState"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeHubState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMHomeHubState"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMHomeHubState",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomehubstate"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager": {
+      "abstract": [
+        {
+          "text": "The manager for a collection of one or more of a user’s homes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMHomeManager"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMHomeManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMHomeManager",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomemanager"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager/addHome(withName:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Adds a new home to this home manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addHome"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager/addHome(withName:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addHomeWithName:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addHome(withName:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomemanager/addhome(withname:completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager/homes": {
+      "abstract": [
+        {
+          "text": "An array of all homes managed by this home manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "homes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager/homes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "homes"
+        }
+      ],
+      "role": "symbol",
+      "title": "homes",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomemanager/homes"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMRoom": {
+      "abstract": [
+        {
+          "text": "The smallest subdivision of a home’s space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMRoom"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMRoom",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMRoom"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMRoom",
+      "type": "topic",
+      "url": "/documentation/homekit/hmroom"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceGroup": {
+      "abstract": [
+        {
+          "text": "A collection of accessory services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceGroup",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicegroup"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMTimerTrigger": {
+      "abstract": [
+        {
+          "text": "A trigger to activate an action set based on a periodic timer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMTimerTrigger"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMTimerTrigger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMTimerTrigger"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMTimerTrigger",
+      "type": "topic",
+      "url": "/documentation/homekit/hmtimertrigger"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMTrigger": {
+      "abstract": [
+        {
+          "text": "An abstract base class for triggering actions based on a set of conditions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMTrigger"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMTrigger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMTrigger"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMTrigger",
+      "type": "topic",
+      "url": "/documentation/homekit/hmtrigger"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMUser": {
+      "abstract": [
+        {
+          "text": "A person in the home who may have access to control accessories and services in the home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMUser"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMUser",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMUser"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMUser",
+      "type": "topic",
+      "url": "/documentation/homekit/hmuser"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMUserFailedAccessoriesKey": {
+      "abstract": [
+        {
+          "text": "The key for retrieving details of what accessories failed to add or remove a user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMUserFailedAccessoriesKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMUserFailedAccessoriesKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMUserFailedAccessoriesKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMUserFailedAccessoriesKey",
+      "type": "topic",
+      "url": "/documentation/homekit/hmuserfailedaccessorieskey"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMZone": {
+      "abstract": [
+        {
+          "text": "A collection of rooms that users think of as a single area, like upstairs or downstairs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMZone"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMZone",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMZone"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMZone",
+      "type": "topic",
+      "url": "/documentation/homekit/hmzone"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Working-with-the-home-layout",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager/homes"
+      ],
+      "title": "Working with the home layout"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Keeping-track-of-home-configuration-changes",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/delegate",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate"
+      ],
+      "title": "Keeping track of home configuration changes"
+    },
+    {
+      "anchor": "Identifying-a-home",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/name",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/updateName(_:completionHandler:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/uniqueIdentifier",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/isPrimary"
+      ],
+      "title": "Identifying a home"
+    },
+    {
+      "anchor": "Dividing-a-house-into-rooms",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/rooms",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/roomForEntireHome()",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/addRoom(withName:completionHandler:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeRoom(_:completionHandler:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMRoom"
+      ],
+      "title": "Dividing a house into rooms"
+    },
+    {
+      "anchor": "Grouping-rooms-into-zones",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/zones",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/addZone(withName:completionHandler:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeZone(_:completionHandler:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMZone"
+      ],
+      "title": "Grouping rooms into zones"
+    },
+    {
+      "anchor": "Managing-accessories",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/accessories",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/addAndSetupAccessories(completionHandler:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/addAndSetupAccessories(with:completionHandler:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/addAccessory(_:completionHandler:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/assignAccessory(_:to:completionHandler:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeAccessory(_:completionHandler:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/supportsAddingNetworkRouter",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/unblockAccessory(_:completionHandler:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessory"
+      ],
+      "title": "Managing accessories"
+    },
+    {
+      "anchor": "Grouping-services",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/servicesWithTypes(_:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/serviceGroups",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/addServiceGroup(withName:completionHandler:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeServiceGroup(_:completionHandler:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceGroup"
+      ],
+      "title": "Grouping services"
+    },
+    {
+      "anchor": "Querying-the-state-of-a-home-hub",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/homeHubState",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeHubState"
+      ],
+      "title": "Querying the state of a home hub"
+    },
+    {
+      "anchor": "Creating-action-sets",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/actionSets",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/addActionSet(withName:completionHandler:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeActionSet(_:completionHandler:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/executeActionSet(_:completionHandler:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/builtinActionSet(ofType:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMActionSet"
+      ],
+      "title": "Creating action sets"
+    },
+    {
+      "anchor": "Triggering-an-action-set",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/triggers",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/addTrigger(_:completionHandler:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeTrigger(_:completionHandler:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMTimerTrigger",
+        "doc://com.apple.homekit/documentation/HomeKit/HMEventTrigger",
+        "doc://com.apple.homekit/documentation/HomeKit/HMTrigger"
+      ],
+      "title": "Triggering an action set"
+    },
+    {
+      "anchor": "Managing-users",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/manageUsers(completionHandler:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/currentUser",
+        "doc://com.apple.homekit/documentation/HomeKit/HMUser"
+      ],
+      "title": "Managing users"
+    },
+    {
+      "anchor": "Controlling-user-access",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/homeAccessControl(for:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeAccessControl",
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessControl",
+        "doc://com.apple.homekit/documentation/HomeKit/HMUserFailedAccessoriesKey"
+      ],
+      "title": "Controlling user access"
+    },
+    {
+      "anchor": "Deprecated-symbols",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/users",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/addUser(completionHandler:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeUser(_:completionHandler:)"
+      ],
+      "title": "Deprecated symbols"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/matterControllerID",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/matterControllerXPCConnectBlock",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/matterStartupParametersXPCConnectBlock"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "HMHome"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHome"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHome"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.homekit/documentation/HomeKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Keeping-track-of-home-configuration-changes",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/delegate",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate"
+              ],
+              "title": "Keeping track of home configuration changes"
+            },
+            {
+              "anchor": "Identifying-a-home",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/name",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/updateName(_:completionHandler:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/uniqueIdentifier",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/isPrimary"
+              ],
+              "title": "Identifying a home"
+            },
+            {
+              "anchor": "Dividing-a-house-into-rooms",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/rooms",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/roomForEntireHome()",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/addRoom(withName:completionHandler:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeRoom(_:completionHandler:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMRoom"
+              ],
+              "title": "Dividing a house into rooms"
+            },
+            {
+              "anchor": "Grouping-rooms-into-zones",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/zones",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/addZone(withName:completionHandler:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeZone(_:completionHandler:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMZone"
+              ],
+              "title": "Grouping rooms into zones"
+            },
+            {
+              "anchor": "Managing-accessories",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/accessories",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/addAndSetupAccessories(completionHandler:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/addAndSetupAccessories(with:completionHandler:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/addAccessory(_:completionHandler:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/assignAccessory(_:to:completionHandler:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeAccessory(_:completionHandler:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/supportsAddingNetworkRouter",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/unblockAccessory(_:completionHandler:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessory"
+              ],
+              "title": "Managing accessories"
+            },
+            {
+              "anchor": "Grouping-services",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/servicesWithTypes(_:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/serviceGroups",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/addServiceGroup(withName:completionHandler:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeServiceGroup(_:completionHandler:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceGroup"
+              ],
+              "title": "Grouping services"
+            },
+            {
+              "anchor": "Querying-the-state-of-a-home-hub",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/homeHubState",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeHubState"
+              ],
+              "title": "Querying the state of a home hub"
+            },
+            {
+              "anchor": "Creating-action-sets",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/actionSets",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/addActionSet(withName:completionHandler:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeActionSet(_:completionHandler:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/executeActionSet(_:completionHandler:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/builtinActionSet(ofType:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMActionSet"
+              ],
+              "title": "Creating action sets"
+            },
+            {
+              "anchor": "Triggering-an-action-set",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/triggers",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/addTrigger(_:completionHandler:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeTrigger(_:completionHandler:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMTimerTrigger",
+                "doc://com.apple.homekit/documentation/HomeKit/HMEventTrigger",
+                "doc://com.apple.homekit/documentation/HomeKit/HMTrigger"
+              ],
+              "title": "Triggering an action set"
+            },
+            {
+              "anchor": "Managing-users",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/manageUsers(completionHandler:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/currentUser",
+                "doc://com.apple.homekit/documentation/HomeKit/HMUser"
+              ],
+              "title": "Managing users"
+            },
+            {
+              "anchor": "Controlling-user-access",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/homeAccessControl(for:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeAccessControl",
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessControl",
+                "doc://com.apple.homekit/documentation/HomeKit/HMUserFailedAccessoriesKey"
+              ],
+              "title": "Controlling user access"
+            },
+            {
+              "anchor": "Deprecated-symbols",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/users",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/addUser(completionHandler:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/removeUser(_:completionHandler:)"
+              ],
+              "title": "Deprecated symbols"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/matterControllerID",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/matterControllerXPCConnectBlock",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/matterStartupParametersXPCConnectBlock"
+              ],
+              "title": "Instance Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Working-with-the-home-layout",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager/homes"
+              ],
+              "title": "Working with the home layout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "HMHome"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1users/title",
+          "value": "users"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1users/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "users"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1servicesWithTypes(_:)/title",
+          "value": "servicesWithTypes:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1servicesWithTypes(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "servicesWithTypes:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1triggers/title",
+          "value": "triggers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1triggers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "triggers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1matterControllerID/title",
+          "value": "matterControllerID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1matterControllerID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "matterControllerID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1matterControllerXPCConnectBlock/title",
+          "value": "matterControllerXPCConnectBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1matterControllerXPCConnectBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "matterControllerXPCConnectBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessControl/title",
+          "value": "HMAccessControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessControl/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1builtinActionSet(ofType:)/title",
+          "value": "builtinActionSetOfType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1builtinActionSet(ofType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "builtinActionSetOfType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMZone/title",
+          "value": "HMZone"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMZone/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMZone"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMZone/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMZone"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1actionSets/title",
+          "value": "actionSets"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1actionSets/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "actionSets"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1serviceGroups/title",
+          "value": "serviceGroups"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1serviceGroups/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "serviceGroups"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMTimerTrigger/title",
+          "value": "HMTimerTrigger"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMTimerTrigger/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMTimerTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMTimerTrigger/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMTimerTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome/title",
+          "value": "HMHome"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHome"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHome"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate/title",
+          "value": "HMHomeDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1addRoom(withName:completionHandler:)/title",
+          "value": "addRoomWithName:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1addRoom(withName:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addRoomWithName:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1rooms/title",
+          "value": "rooms"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1rooms/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rooms"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1removeRoom(_:completionHandler:)/title",
+          "value": "removeRoom:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1removeRoom(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeRoom:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMUserFailedAccessoriesKey/title",
+          "value": "HMUserFailedAccessoriesKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMUserFailedAccessoriesKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMUserFailedAccessoriesKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMEventTrigger/title",
+          "value": "HMEventTrigger"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMEventTrigger/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMEventTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMEventTrigger/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMEventTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1addZone(withName:completionHandler:)/title",
+          "value": "addZoneWithName:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1addZone(withName:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addZoneWithName:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1removeTrigger(_:completionHandler:)/title",
+          "value": "removeTrigger:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1removeTrigger(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeTrigger:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1addActionSet(withName:completionHandler:)/title",
+          "value": "addActionSetWithName:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1addActionSet(withName:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addActionSetWithName:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory/title",
+          "value": "HMAccessory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1addTrigger(_:completionHandler:)/title",
+          "value": "addTrigger:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1addTrigger(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addTrigger:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceGroup/title",
+          "value": "HMServiceGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1addAccessory(_:completionHandler:)/title",
+          "value": "addAccessory:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1addAccessory(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addAccessory:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManager~1homes/title",
+          "value": "homes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManager~1homes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "homes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMTrigger/title",
+          "value": "HMTrigger"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMTrigger/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMTrigger/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1removeUser(_:completionHandler:)/title",
+          "value": "removeUser:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1removeUser(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeUser:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1isPrimary/title",
+          "value": "primary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1isPrimary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "primary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMRoom/title",
+          "value": "HMRoom"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMRoom/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMRoom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMRoom/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMRoom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1executeActionSet(_:completionHandler:)/title",
+          "value": "executeActionSet:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1executeActionSet(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "executeActionSet:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1manageUsers(completionHandler:)/title",
+          "value": "manageUsersWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1manageUsers(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "manageUsersWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeAccessControl/title",
+          "value": "HMHomeAccessControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeAccessControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeAccessControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeAccessControl/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeAccessControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1matterStartupParametersXPCConnectBlock/title",
+          "value": "matterStartupParametersXPCConnectBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1matterStartupParametersXPCConnectBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "matterStartupParametersXPCConnectBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1unblockAccessory(_:completionHandler:)/title",
+          "value": "unblockAccessory:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1unblockAccessory(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unblockAccessory:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1addUser(completionHandler:)/title",
+          "value": "addUserWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1addUser(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addUserWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMUser/title",
+          "value": "HMUser"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMUser/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMUser"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMUser/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMUser"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1addServiceGroup(withName:completionHandler:)/title",
+          "value": "addServiceGroupWithName:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1addServiceGroup(withName:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addServiceGroupWithName:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1homeHubState/title",
+          "value": "homeHubState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1homeHubState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "homeHubState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1uniqueIdentifier/title",
+          "value": "uniqueIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1uniqueIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "uniqueIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1currentUser/title",
+          "value": "currentUser"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1currentUser/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "currentUser"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMActionSet/title",
+          "value": "HMActionSet"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMActionSet/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMActionSet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMActionSet/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMActionSet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1addAndSetupAccessories(with:completionHandler:)/title",
+          "value": "addAndSetupAccessoriesWithPayload:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1addAndSetupAccessories(with:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addAndSetupAccessoriesWithPayload:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1zones/title",
+          "value": "zones"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1zones/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "zones"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1accessories/title",
+          "value": "accessories"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1accessories/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accessories"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1removeActionSet(_:completionHandler:)/title",
+          "value": "removeActionSet:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1removeActionSet(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeActionSet:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1updateName(_:completionHandler:)/title",
+          "value": "updateName:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1updateName(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateName:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1addAndSetupAccessories(completionHandler:)/title",
+          "value": "addAndSetupAccessoriesWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1addAndSetupAccessories(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addAndSetupAccessoriesWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1homeAccessControl(for:)/title",
+          "value": "homeAccessControlForUser:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1homeAccessControl(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "homeAccessControlForUser:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeHubState/title",
+          "value": "HMHomeHubState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeHubState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeHubState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeHubState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeHubState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1assignAccessory(_:to:completionHandler:)/title",
+          "value": "assignAccessory:toRoom:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1assignAccessory(_:to:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "assignAccessory:toRoom:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1name/title",
+          "value": "name"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1name/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "name"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1removeServiceGroup(_:completionHandler:)/title",
+          "value": "removeServiceGroup:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1removeServiceGroup(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeServiceGroup:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManager~1addHome(withName:completionHandler:)/title",
+          "value": "addHomeWithName:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManager~1addHome(withName:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addHomeWithName:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1removeAccessory(_:completionHandler:)/title",
+          "value": "removeAccessory:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1removeAccessory(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeAccessory:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManager/title",
+          "value": "HMHomeManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1supportsAddingNetworkRouter/title",
+          "value": "supportsAddingNetworkRouter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1supportsAddingNetworkRouter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "supportsAddingNetworkRouter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1roomForEntireHome()/title",
+          "value": "roomForEntireHome"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1roomForEntireHome()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "roomForEntireHome"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1removeZone(_:completionHandler:)/title",
+          "value": "removeZone:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1removeZone(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeZone:completionHandler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/homekit/hmhome"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/homekit/hmhome"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

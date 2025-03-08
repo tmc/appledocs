@@ -1,0 +1,1818 @@
+{
+  "abstract": [
+    {
+      "text": "An object that manages an app’s schema and model storage configuration.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftData/documentation/SwiftData"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:9SwiftData14ModelContainerC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ModelContainer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftData"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ModelContainer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.9",
+        "name": "Swift",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "ModelContainer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ModelContainer"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/Reverting-data-changes-using-the-undo-manager",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Syncing-model-data-across-a-persons-devices"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A model container mediates between its associated model contexts and your app’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "underlying persistent storage. The container manages all aspects of that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "storage and ensures it remains in a consistent and usable state. Whenever you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "run a fetch or call a context’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext/save()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, the container",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "performs the actual read or write of the underlying data using information from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the schema you provide. This helps safeguard an app’s resources and ensures",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "those operations happen only in an efficient and coordinated manner.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Additionally, if your app’s entitlements include CloudKit, the container",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "automatically handles syncing the persisted storage across devices. For more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information about syncing model data, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Syncing-model-data-across-a-persons-devices",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As your app’s schema evolves, the container performs automatic migrations of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the persisted model data so it remains consistent with the app’s model classes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the aggregate changes between two versions of your schema exceed the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "capabilities of automatic migrations, provide the container with a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/SchemaMigrationPlan",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to participate in those migrations and help ensure they",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "complete successfully.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, a model container makes a number of assumptions about how it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "configures an app’s persistent storage. If you need to customize this behavior,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provide the container with one or more instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, you may want use a particular app group container or specify that the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "storage is ephemeral and should exist only in memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app that uses SwiftData requires at least one model container. You create a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "container using one of the class’s initializers or the corresponding SwiftUI",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view modifier. Using the view modifier ensures all windows in the modified",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "window group, or all child views of the modified view, access the same model",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "container. Additionally, the view modifier makes an associated model context",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "available in the SwiftUI environment, which the ",
+              "type": "text"
+            },
+            {
+              "code": "Query()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macro depends on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@main",
+            "struct RecipesApp: App {",
+            "    var body: some Scene {",
+            "        WindowGroup {",
+            "            RecipesList()",
+            "        }",
+            "        .modelContainer(for: Recipe.self)",
+            "    }",
+            "}",
+            "",
+            "struct RecipesList: View {",
+            "    @Query private var recipes: [Recipe]",
+            "    ",
+            "    var body: some View {",
+            "        List(recipes) { RecipeRowView($0) }",
+            "    }",
+            "} ",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.SwiftData/documentation/SwiftData": {
+      "abstract": [
+        {
+          "text": "Write your model code declaratively to add managed persistence and efficient",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "model fetching.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData",
+      "images": [
+        {
+          "identifier": "swiftData-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftData",
+      "type": "topic",
+      "url": "/documentation/swiftdata"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ConcurrencySupport": {
+      "abstract": [
+        {
+          "text": "Types you use to access model attributes and perform storage-related tasks in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a safe and isolated way.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ConcurrencySupport",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Concurrency support",
+      "type": "topic",
+      "url": "/documentation/swiftdata/concurrencysupport"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Deleting-persistent-data-from-your-app": {
+      "abstract": [
+        {
+          "text": "Explore different ways to use SwiftData to delete persistent data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Deleting-persistent-data-from-your-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Deleting persistent data from your app",
+      "type": "topic",
+      "url": "/documentation/swiftdata/deleting-persistent-data-from-your-app"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Fetching-and-filtering-time-based-model-changes": {
+      "abstract": [
+        {
+          "text": "Track all inserts, updates, and deletes that occur in a data store and process",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "them as a series of chronological transactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Fetching-and-filtering-time-based-model-changes",
+      "images": [
+        {
+          "identifier": "fetching-and-filtering-time-based-models-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Fetching and filtering time-based model changes",
+      "type": "topic",
+      "url": "/documentation/swiftdata/fetching-and-filtering-time-based-model-changes"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelConfiguration": {
+      "abstract": [
+        {
+          "text": "A type that describes the configuration of an app’s schema or specific group of models.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelConfiguration",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelconfiguration"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer": {
+      "abstract": [
+        {
+          "text": "An object that manages an app’s schema and model storage configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelContainer",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontainer"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/==(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "=="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData14ModelContainerC",
+          "text": "ModelContainer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData14ModelContainerC",
+          "text": "ModelContainer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/==(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontainer/==(_:_:)"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/Equatable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/Equatable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equatable Implementations",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontainer/equatable-implementations"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/configurations": {
+      "abstract": [
+        {
+          "text": "The configurations that describe how to manage the persisted data for specific",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "groups of models.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "configurations"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData18ModelConfigurationV",
+          "text": "ModelConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/configurations",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configurations",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontainer/configurations"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/deleteAllData()": {
+      "abstract": [
+        {
+          "text": "Removes all persisted model data from the app’s persistent storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deleteAllData"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/deleteAllData()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deleteAllData()",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontainer/deletealldata()"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/erase()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "erase"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/erase()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "erase()",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontainer/erase()"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/init(for:configurations:)-621ei": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData15PersistentModelP",
+          "text": "PersistentModel"
+        },
+        {
+          "kind": "text",
+          "text": ".Type..., "
+        },
+        {
+          "kind": "externalParam",
+          "text": "configurations"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData0B18StoreConfigurationP",
+          "text": "DataStoreConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "...) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/init(for:configurations:)-621ei",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(for:configurations:)",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontainer/init(for:configurations:)-621ei"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/init(for:configurations:)-93ifi": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC",
+          "text": "Schema"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "configurations"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData0B18StoreConfigurationP",
+          "text": "DataStoreConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/init(for:configurations:)-93ifi",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(for:configurations:)",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontainer/init(for:configurations:)-93ifi"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/init(for:migrationPlan:configurations:)-1czix": {
+      "abstract": [
+        {
+          "text": "Creates a model container using the specified schema, migration plan, and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "configurations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC",
+          "text": "Schema"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "migrationPlan"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData19SchemaMigrationPlanP",
+          "text": "SchemaMigrationPlan"
+        },
+        {
+          "kind": "text",
+          "text": ".Type)?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "configurations"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData18ModelConfigurationV",
+          "text": "ModelConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/init(for:migrationPlan:configurations:)-1czix",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(for:migrationPlan:configurations:)",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontainer/init(for:migrationplan:configurations:)-1czix"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/init(for:migrationPlan:configurations:)-8s4ts": {
+      "abstract": [
+        {
+          "text": "Creates a model container using the specified model types, migration plan, and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "zero or more configurations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData15PersistentModelP",
+          "text": "PersistentModel"
+        },
+        {
+          "kind": "text",
+          "text": ".Type..., "
+        },
+        {
+          "kind": "externalParam",
+          "text": "migrationPlan"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData19SchemaMigrationPlanP",
+          "text": "SchemaMigrationPlan"
+        },
+        {
+          "kind": "text",
+          "text": ".Type)?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "configurations"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData18ModelConfigurationV",
+          "text": "ModelConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "...) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/init(for:migrationPlan:configurations:)-8s4ts",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(for:migrationPlan:configurations:)",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontainer/init(for:migrationplan:configurations:)-8s4ts"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/init(for:migrationPlan:configurations:)-qof9": {
+      "abstract": [
+        {
+          "text": "Creates a model container using the specified schema, migration plan, and zero",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "or more configurations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC",
+          "text": "Schema"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "migrationPlan"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData19SchemaMigrationPlanP",
+          "text": "SchemaMigrationPlan"
+        },
+        {
+          "kind": "text",
+          "text": ".Type)?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "configurations"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData18ModelConfigurationV",
+          "text": "ModelConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "...) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/init(for:migrationPlan:configurations:)-qof9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(for:migrationPlan:configurations:)",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontainer/init(for:migrationplan:configurations:)-qof9"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/mainContext": {
+      "abstract": [
+        {
+          "text": "A model context that’s bound to app’s main actor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mainContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData12ModelContextC",
+          "text": "ModelContext"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/mainContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mainContext",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontainer/maincontext"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/migrationPlan": {
+      "abstract": [
+        {
+          "text": "The plan that describes the evolution of your app’s schema and how to migrate",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "between specific versions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "migrationPlan"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData19SchemaMigrationPlanP",
+          "text": "SchemaMigrationPlan"
+        },
+        {
+          "kind": "text",
+          "text": ".Type)?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/migrationPlan",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "migrationPlan",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontainer/migrationplan"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/schema": {
+      "abstract": [
+        {
+          "text": "The schema that maps your app’s model classes to the associated data in the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "app’s persistent storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "schema"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC",
+          "text": "Schema"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/schema",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "schema",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontainer/schema"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext": {
+      "abstract": [
+        {
+          "text": "An object that enables you to fetch, insert, and delete models, and save any",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "changes to disk.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelContext"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelContext",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontext"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext/save()": {
+      "abstract": [
+        {
+          "text": "Writes any pending inserts, changes, and deletes to the persistent storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "save"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext/save()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "save()",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontext/save()"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/PersistentModel": {
+      "abstract": [
+        {
+          "text": "An interface that enables SwiftData to manage a Swift class as a stored model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PersistentModel"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/PersistentModel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PersistentModel"
+        }
+      ],
+      "role": "symbol",
+      "title": "PersistentModel",
+      "type": "topic",
+      "url": "/documentation/swiftdata/persistentmodel"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Reverting-data-changes-using-the-undo-manager": {
+      "abstract": [
+        {
+          "text": "Automatically record data change operations that people perform in your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "SwiftUI app, and let them undo and redo those changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Reverting-data-changes-using-the-undo-manager",
+      "kind": "article",
+      "role": "article",
+      "title": "Reverting data changes using the undo manager",
+      "type": "topic",
+      "url": "/documentation/swiftdata/reverting-data-changes-using-the-undo-manager"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Schema": {
+      "abstract": [
+        {
+          "text": "An object that maps model classes to data in the model store, and helps with the migration of that data",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "between releases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Schema"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Schema",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Schema"
+        }
+      ],
+      "role": "symbol",
+      "title": "Schema",
+      "type": "topic",
+      "url": "/documentation/swiftdata/schema"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/SchemaMigrationPlan": {
+      "abstract": [
+        {
+          "text": "An interface for describing the evolution of a schema and how to migrate between specific versions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SchemaMigrationPlan"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/SchemaMigrationPlan",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SchemaMigrationPlan"
+        }
+      ],
+      "role": "symbol",
+      "title": "SchemaMigrationPlan",
+      "type": "topic",
+      "url": "/documentation/swiftdata/schemamigrationplan"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Syncing-model-data-across-a-persons-devices": {
+      "abstract": [
+        {
+          "text": "Add the required capabilities and define a compatible schema to enable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "SwiftData to automatically sync your app’s model data using iCloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Syncing-model-data-across-a-persons-devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Syncing model data across a person’s devices",
+      "type": "topic",
+      "url": "/documentation/swiftdata/syncing-model-data-across-a-persons-devices"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "fetching-and-filtering-time-based-models-PageImage-card.png": {
+      "alt": "A light blue Swift logo above a background of clock icons and binary ones and zeros.",
+      "identifier": "fetching-and-filtering-time-based-models-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/075a7852ebc042773b65c445265171ee/fetching-and-filtering-time-based-models-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/511dbb1cea4900702d613a33524b1ff9/fetching-and-filtering-time-based-models-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "swiftData-PageImage-card.png": {
+      "alt": "A gray and white Swift logo on a swirly blue background.",
+      "identifier": "swiftData-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8f347b5f4b93bb57bf95423987e9a6c9/swiftData-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f0a5e8a43bc94c93e07c48dc59f884ed/swiftData-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Model-life-cycle",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Fetching-and-filtering-time-based-model-changes",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Deleting-persistent-data-from-your-app",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Reverting-data-changes-using-the-undo-manager",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Syncing-model-data-across-a-persons-devices",
+        "doc://com.apple.SwiftData/documentation/SwiftData/ConcurrencySupport"
+      ],
+      "title": "Model life cycle"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-model-container",
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/init(for:migrationPlan:configurations:)-1czix",
+        "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/init(for:migrationPlan:configurations:)-8s4ts",
+        "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/init(for:migrationPlan:configurations:)-qof9",
+        "doc://com.apple.SwiftData/documentation/SwiftData/PersistentModel",
+        "doc://com.apple.SwiftData/documentation/SwiftData/ModelConfiguration",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Schema",
+        "doc://com.apple.SwiftData/documentation/SwiftData/SchemaMigrationPlan"
+      ],
+      "title": "Creating a model container"
+    },
+    {
+      "anchor": "Managing-schema-and-configuration-details",
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/schema",
+        "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/configurations",
+        "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/migrationPlan"
+      ],
+      "title": "Managing schema and configuration details"
+    },
+    {
+      "anchor": "Accessing-the-context",
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/mainContext"
+      ],
+      "title": "Accessing the context"
+    },
+    {
+      "anchor": "Deleting-the-container",
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/deleteAllData()"
+      ],
+      "title": "Deleting the container"
+    },
+    {
+      "anchor": "Comparing-model-containers",
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/==(_:_:)"
+      ],
+      "title": "Comparing model containers"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/init(for:configurations:)-621ei",
+        "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/init(for:configurations:)-93ifi"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/erase()"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/Equatable-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftdata/modelcontainer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

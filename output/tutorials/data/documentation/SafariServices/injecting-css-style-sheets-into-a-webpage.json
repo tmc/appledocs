@@ -1,0 +1,777 @@
+{
+  "abstract": [
+    {
+      "text": "Add to or override styles by injecting CSS style sheets into webpages.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safariservices/documentation/SafariServices",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safariservices/documentation/SafariServices/injecting-css-style-sheets-into-a-webpage"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Injecting CSS style sheets into a webpage"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you write a style sheet that can modify page presentation, you need to add it to your Safari app extension and apply it to webpages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A style sheet can apply to a single webpage, all webpages, or only some webpages — for example, webpages from certain domains. To inject your style sheet, you specify either ",
+              "type": "text"
+            },
+            {
+              "code": "Some",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "All",
+              "type": "codeVoice"
+            },
+            {
+              "text": " website access for your app extension. In Safari 17 or later, users also need to grant your extension access to a website. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/adjusting-website-access-permissions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information about injected style sheets, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/using-injected-style-sheets-and-scripts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-style-sheet",
+          "level": 3,
+          "text": "Add a style sheet",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After specifying website access, add the style sheet to your Safari app extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the CSS files to your extension’s Xcode target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SFSafariStyleSheet",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSExtension",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " element in your extension’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file. The value for this key is an array of dictionaries.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For each CSS file, add a dictionary to this array. Each dictionary must have a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Style Sheet",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key with a value that specifies the path (relative to the Resources directory of the bundle) to the style sheet to include.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "By default, the system injects a style sheet when the extension has permission to access the webpage. However, you can specify additional dictionary keys to provide more fine-grained control over whether to inject that style sheet into the webpage. For more information, see Access and permissions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can have more than one injected style sheet. Style sheets process in the order in which you specify them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your style sheet can reference resources in your app extension’s bundle. All relative URLs are relative to the Resources folder in the app extension’s bundle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices": {
+      "abstract": [
+        {
+          "text": "Enable web views and services in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Services",
+      "type": "topic",
+      "url": "/documentation/safariservices"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionProfileKey": {
+      "abstract": [
+        {
+          "text": "A string the system uses as a key in a user info dictionary to identify a profile identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFExtensionProfileKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionProfileKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFExtensionProfileKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFExtensionProfileKey",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfextensionprofilekey"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandler": {
+      "abstract": [
+        {
+          "text": "A base class that you subclass to handle events in your Safari app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariExtensionHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSafariExtensionHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSafariExtensionHandler",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafariextensionhandler"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling": {
+      "abstract": [
+        {
+          "text": "A protocol for implementing event handling in a Safari app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariExtensionHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSafariExtensionHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSafariExtensionHandling",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafariextensionhandling"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionManager": {
+      "abstract": [
+        {
+          "text": "A class that your app uses to find out the current state of a Safari app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariExtensionManager"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSafariExtensionManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSafariExtensionManager",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafariextensionmanager"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionState": {
+      "abstract": [
+        {
+          "text": "The state of a Safari app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariExtensionState"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSafariExtensionState"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSafariExtensionState",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafariextensionstate"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariPageProperties": {
+      "abstract": [
+        {
+          "text": "An object that captures information about a webpage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariPageProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariPageProperties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSafariPageProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSafariPageProperties",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafaripageproperties"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/adjusting-website-access-permissions": {
+      "abstract": [
+        {
+          "text": "Set website access permissions in a Safari app extension using information property list keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/adjusting-website-access-permissions",
+      "kind": "article",
+      "role": "article",
+      "title": "Adjusting website access permissions",
+      "type": "topic",
+      "url": "/documentation/safariservices/adjusting-website-access-permissions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/injecting-a-script-into-a-webpage": {
+      "abstract": [
+        {
+          "text": "Inject a script that you write for a Safari app extension into a webpage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/injecting-a-script-into-a-webpage",
+      "kind": "article",
+      "role": "article",
+      "title": "Injecting a script into a webpage",
+      "type": "topic",
+      "url": "/documentation/safariservices/injecting-a-script-into-a-webpage"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/passing-messages-between-safari-app-extensions-and-injected-scripts": {
+      "abstract": [
+        {
+          "text": "Communicate between your Safari app extension and injected scripts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/passing-messages-between-safari-app-extensions-and-injected-scripts",
+      "kind": "article",
+      "role": "article",
+      "title": "Passing messages between Safari app extensions and injected scripts",
+      "type": "topic",
+      "url": "/documentation/safariservices/passing-messages-between-safari-app-extensions-and-injected-scripts"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions": {
+      "abstract": [
+        {
+          "text": "Learn how Safari app extensions extend the web-browsing experience in Safari by leveraging web technologies and native code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari app extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-app-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/using-injected-style-sheets-and-scripts": {
+      "abstract": [
+        {
+          "text": "Learn how you can affect the appearance or behavior of a webpage by using injected style sheets and scripts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/using-injected-style-sheets-and-scripts",
+      "kind": "article",
+      "role": "article",
+      "title": "Using injected style sheets and scripts",
+      "type": "topic",
+      "url": "/documentation/safariservices/using-injected-style-sheets-and-scripts"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Injected-style-sheets-and-scripts",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/using-injected-style-sheets-and-scripts",
+        "doc://com.apple.safariservices/documentation/SafariServices/injecting-a-script-into-a-webpage",
+        "doc://com.apple.safariservices/documentation/SafariServices/passing-messages-between-safari-app-extensions-and-injected-scripts",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandler",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionManager",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionState",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFSafariPageProperties",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionProfileKey"
+      ],
+      "title": "Injected style sheets and scripts"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Injected-style-sheets-and-scripts",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/using-injected-style-sheets-and-scripts",
+                "doc://com.apple.safariservices/documentation/SafariServices/injecting-a-script-into-a-webpage",
+                "doc://com.apple.safariservices/documentation/SafariServices/passing-messages-between-safari-app-extensions-and-injected-scripts",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandler",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionManager",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionState",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFSafariPageProperties",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionProfileKey"
+              ],
+              "title": "Injected style sheets and scripts"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandling/title",
+          "value": "SFSafariExtensionHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariExtensionHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariExtensionHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionState/title",
+          "value": "SFSafariExtensionState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariExtensionState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariExtensionState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFExtensionProfileKey/title",
+          "value": "SFExtensionProfileKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFExtensionProfileKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFExtensionProfileKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariPageProperties/title",
+          "value": "SFSafariPageProperties"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariPageProperties/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariPageProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariPageProperties/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariPageProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandler/title",
+          "value": "SFSafariExtensionHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariExtensionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariExtensionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionManager/title",
+          "value": "SFSafariExtensionManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariExtensionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariExtensionManager"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safariservices/injecting-css-style-sheets-into-a-webpage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safariservices/injecting-css-style-sheets-into-a-webpage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1414 @@
+{
+  "abstract": [
+    {
+      "text": "Validate your ad impressions and test your postbacks by creating unit tests using the StoreKit Test framework.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekittest/documentation/StoreKitTest"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekittest/documentation/StoreKitTest/testing-and-validating-ad-impression-signatures-and-postbacks-for-skadnetwork"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit Test"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.4",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.4",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.4",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Testing and validating ad impression signatures and postbacks for SKAdNetwork"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project provides examples of how to use the StoreKit Test framework to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "test individual units of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/storekit/skadnetwork",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " implementation.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample code runs each type of test that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " makes possible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, it creates and validates ad impressions. In a typical ad attribution flow, the ad network cryptographically signs an ad impression. This unit test checks the signature and validates other aspects of the impression.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, the sample code creates a test postback and updates the conversion value. In a typical ad attribution flow, the system creates a postback after a user installs and opens an advertised app. In the unit test, you can see and control every aspect of the test postback, so you can test your app’s conversion values and decide which postback to annotate as the winner.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, the sample code sends and receives the test postbacks. In a typical ad attribution flow, the system sends a postback after a timer expires. In the unit test, you control when to send the postback so that you can test that your server receives the postback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the unit tests in your environment with your settings, you’ll need the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your ad network identifier. Configure the value in your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/skadnetwork/configuring_a_source_app",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". In the sample code, use the same value everywhere that the ad network identifier is required.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A source app identifier. In the testing environment, this value is always ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A cryptographic key pair, consisting of a public key and a private key, created with the Elliptic Curve Digital Signature Algorithm (ECDSA) with a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "prime256v1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " curve. In the sample code, use the private key when you generate a signature, and use the public key when you call ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "validateImpression",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Set the ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "publicKey",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " variable in the sample code project to your public key.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "For more information on generating a private and public key pair for signing ads, visit ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "https://developer.apple.com/documentation/storekit/skadnetwork/registering_an_ad_network",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ".",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A local or remote server to listen for postbacks. Specify your server’s URL when you create test postbacks as shown in the sample code’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "testAddingPostbacks()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A device running iOS 16.4 or later. iOS Simulator doesn’t support ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "skadnetwork_linkid",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Create-and-validate-the-ad-impression",
+          "level": 3,
+          "text": "Create and validate the ad impression",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "code": "testImpressionValidity()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, the unit test creates an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/storekit/skadimpression",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to represent a view-through ad.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All of the properties are required. In the testing environment, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/storekit/skadimpression/3727300-sourceappstoreitemidentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is always ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Form the SKAdImpression instance and configure it.",
+            "let impression = SKAdImpression()",
+            "impression.version = \"4.0\"",
+            "impression.adNetworkIdentifier = \"com.apple.test-1\"",
+            "impression.sourceIdentifier = 3120",
+            "impression.advertisedAppStoreItemIdentifier = 525_463_029",
+            "impression.adImpressionIdentifier = \"b7c9da2b-15c7-4f3b-9326-135f9630033d\"",
+            "impression.sourceAppStoreItemIdentifier = 0",
+            "impression.timestamp = 1_676_057_605_705",
+            "impression.signature = \"MEQCIAtBBiadCFlMOEOh3K43xyKaU1/sj/CtgDOB+Wm7J+29AiBDfreX67mm4X9ZoM4xkHHLtuMM2OXcS5kQ7UpVb69A/Q==\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The unit test then calls the ",
+              "type": "text"
+            },
+            {
+              "code": "validateImpression",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and checks for errors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If ",
+              "type": "text"
+            },
+            {
+              "code": "validateImpression",
+              "type": "codeVoice"
+            },
+            {
+              "text": " returns an error, the unit test fails, and the error contains",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "further information. If ",
+              "type": "text"
+            },
+            {
+              "code": "validateImpression",
+              "type": "codeVoice"
+            },
+            {
+              "text": " doesn’t return an error, the unit test succeeds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "code": "testImpressionParametersValidity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, the unit test creates a dictionary containing the parameters for a StoreKit-rendered ad and validates it using the ",
+              "type": "text"
+            },
+            {
+              "code": "validateImpressionWithParameters",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method. For more information about StoreKit-rendered ads, visit ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/storekit/skadnetwork/signing_and_providing_ads#3732910",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "code": "testWebAdImpressionPayloadValidity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method creates and validates a web ad impression payload. For more information on web ads, visit ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/skadnetworkforwebads/get_a_signed_web_ad_impression_payload",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For signature verification to succeed, provide the validate impression methods with the public key of the key pair used to generate the cryptographic signature for the ad impression.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-the-test-postbacks",
+          "level": 3,
+          "text": "Create the test postbacks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The unit test creates three winning postbacks in the ",
+              "type": "text"
+            },
+            {
+              "code": "testAddingPostbacks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestPostback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class. The fields of a postback are specific to each version of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/storekit/skadnetwork",
+              "isActive": true,
+              "overridingTitle": "SKAdNetwork",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "SKAdNetwork",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " API. This class provides an initializer that specifies the postback fields and the ",
+              "type": "text"
+            },
+            {
+              "code": "SKAdNetwork",
+              "type": "codeVoice"
+            },
+            {
+              "text": " API version.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For ad postbacks using ",
+              "type": "text"
+            },
+            {
+              "code": "SKAdNetwork",
+              "type": "codeVoice"
+            },
+            {
+              "text": " version 4.0 or later, test multiple conversion windows by creating an array of three postbacks corresponding to the three conversion windows using the ",
+              "type": "text"
+            },
+            {
+              "code": "winningPostbacks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " static method on ",
+              "type": "text"
+            },
+            {
+              "code": "SKAdTestPostback",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Create a single winning or nonwinning postback using the initializer with the ",
+              "type": "text"
+            },
+            {
+              "code": "sourceIdentifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter. For more information on multiple conversion windows, visit ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/storekit/skadnetwork/receiving_postbacks_in_multiple_conversion_windows",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let testPostbacks = SKAdTestPostback.winningPostbacks(withVersion: .version4_0,",
+            "                                                            adNetworkIdentifier: \"com.apple.test-1\",",
+            "                                                            sourceIdentifier: \"3120\",",
+            "                                                            appStoreItemIdentifier: 0,",
+            "                                                            sourceAppStoreItemIdentifier: 525_463_029,",
+            "                                                            sourceDomain: nil,",
+            "                                                            fidelityType: 1,",
+            "                                                            isRedownload: false,",
+            "                                                            postbackURL: \"TEST SERVER ENDPOINT\") else {",
+            "    XCTFail(\"Failed to create postbacks.\")",
+            "    return",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After creating the ",
+              "type": "text"
+            },
+            {
+              "code": "SKAdTestPostback",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instances, the unit test calls the ",
+              "type": "text"
+            },
+            {
+              "code": "setPostbacks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method on ",
+              "type": "text"
+            },
+            {
+              "code": "SKAdTestSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to add the newly created postbacks to the test session. Test postbacks added to the test session are available to the unit tests for further testing, including updating the conversion value or sending the postbacks.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Test sessions can handle up to eight postbacks. Each call to the ",
+              "type": "text"
+            },
+            {
+              "code": "setPostbacks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method overwrites the test postbacks in the test session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "try testSession.setPostbacks(testPostbacks)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Test-updating-the-conversion-value",
+          "level": 3,
+          "text": "Test updating the conversion value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A postback isn’t ready to send to the server until it has a conversion value. The unit test updates the conversion value of the first test postback by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/storekit/skadnetwork/4090669-updatepostbackconversionvalue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method on ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/storekit/skadnetwork",
+              "isActive": true,
+              "overridingTitle": "SKAdNetwork",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "SKAdNetwork",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". To confirm the conversion value after updating it, the unit test retrieves the postbacks using the ",
+              "type": "text"
+            },
+            {
+              "code": "postbacks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property on ",
+              "type": "text"
+            },
+            {
+              "code": "SKAdTestSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and then checks the conversion value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let fetchedPostbacks = testSession.postbacks",
+            "guard fetchedPostbacks.count == 3 else {",
+            "    XCTFail(\"Expecting 3 postbacks, received \\(fetchedPostbacks.count).\")",
+            "    return",
+            "}",
+            "",
+            "// A test session's `postbacks` property maintains the order of the postbacks.",
+            "let firstPostback = fetchedPostbacks[0]",
+            "XCTAssertEqual(firstPostback.fineConversionValue, 42)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Send-and-receive-the-test-postback",
+          "level": 3,
+          "text": "Send and receive the test postback",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The unit test sends the postbacks with updated conversion values to the network server by calling the ",
+              "type": "text"
+            },
+            {
+              "code": "flushPostbacks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method on ",
+              "type": "text"
+            },
+            {
+              "code": "SKAdTestSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " The server URL is specified in the ",
+              "type": "text"
+            },
+            {
+              "code": "testAddingPostbacks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, where the test postbacks are created.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Before attempting to send postbacks using the ",
+                  "type": "text"
+                },
+                {
+                  "code": "flushPostbacks",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " method, check that",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the specified test server is running and accepting connections.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After sending the test postbacks, the unit test waits for a response from the server. The server responds",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with one ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestPostbackResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance for each test postback. The response contains",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information about the success or failure of the postback, the error details, and the HTTP response the server received, if any.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "code": "testSendingPostback()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, the unit test checks the response for the success or failure flag and the error object.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The unit test passes only if it receives a success signal in combination with a ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " error.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Calling the ",
+              "type": "text"
+            },
+            {
+              "code": "flushPostbacks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method removes the test postbacks from the test session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "testSession.flushPostbacks { responses, error in",
+            "    XCTAssertNil(error)",
+            "    guard let concreteResponses = responses else {",
+            "        XCTFail(\"No responses received.\")",
+            "        return",
+            "    }",
+            "    for response in concreteResponses {",
+            "        let postbackResponse = response.value",
+            "        XCTAssertNil(postbackResponse.error)",
+            "        XCTAssertTrue(postbackResponse.didSucceed)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest": {
+      "abstract": [
+        {
+          "text": "Create and automate tests in Xcode for your app’s subscription and in-app purchase transactions, and SKAdNetwork implementations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit Test",
+      "type": "topic",
+      "url": "/documentation/storekittest"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestPostback": {
+      "abstract": [
+        {
+          "text": "A test postback that contains ad conversion information in the testing environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKAdTestPostback"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestPostback",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKAdTestPostback"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKAdTestPostback",
+      "type": "topic",
+      "url": "/documentation/storekittest/skadtestpostback"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestPostbackResponse": {
+      "abstract": [
+        {
+          "text": "The status and error information for a postback that the system sends in the testing environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKAdTestPostbackResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestPostbackResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKAdTestPostbackResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKAdTestPostbackResponse",
+      "type": "topic",
+      "url": "/documentation/storekittest/skadtestpostbackresponse"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestPostbackVersion": {
+      "abstract": [
+        {
+          "text": "A constant that indicates the postback version.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKAdTestPostbackVersion"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestPostbackVersion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKAdTestPostbackVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKAdTestPostbackVersion",
+      "type": "topic",
+      "url": "/documentation/storekittest/skadtestpostbackversion"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestSession": {
+      "abstract": [
+        {
+          "text": "The class you use to test ad impressions and postbacks in Xcode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKAdTestSession"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKAdTestSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKAdTestSession",
+      "type": "topic",
+      "url": "/documentation/storekittest/skadtestsession"
+    },
+    "ed00341d878d/TestingAndValidatingAdImpressionSignaturesAndPostbacksForSKAdNetwork.zip": {
+      "checksum": "ed00341d878d2409150a6178a0c5217ca386f6fb5839e54386ff921b56554452eda1fff2064fe28de62140736a8ef8c1914f9ab7b6434365e7a0f932a2c4a085",
+      "identifier": "ed00341d878d/TestingAndValidatingAdImpressionSignaturesAndPostbacksForSKAdNetwork.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/ed00341d878d/TestingAndValidatingAdImpressionSignaturesAndPostbacksForSKAdNetwork.zip"
+    },
+    "https://developer.apple.com/documentation/skadnetworkforwebads/get_a_signed_web_ad_impression_payload": {
+      "identifier": "https://developer.apple.com/documentation/skadnetworkforwebads/get_a_signed_web_ad_impression_payload",
+      "title": "Get a Signed Web Ad Impression Payload",
+      "titleInlineContent": [
+        {
+          "text": "Get a Signed Web Ad Impression Payload",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/skadnetworkforwebads/get_a_signed_web_ad_impression_payload"
+    },
+    "https://developer.apple.com/documentation/storekit/skadimpression": {
+      "identifier": "https://developer.apple.com/documentation/storekit/skadimpression",
+      "title": "SKAdImpression",
+      "titleInlineContent": [
+        {
+          "code": "SKAdImpression",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/skadimpression"
+    },
+    "https://developer.apple.com/documentation/storekit/skadimpression/3727300-sourceappstoreitemidentifier": {
+      "identifier": "https://developer.apple.com/documentation/storekit/skadimpression/3727300-sourceappstoreitemidentifier",
+      "title": "sourceAppStoreItemIdentifier",
+      "titleInlineContent": [
+        {
+          "code": "sourceAppStoreItemIdentifier",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/skadimpression/3727300-sourceappstoreitemidentifier"
+    },
+    "https://developer.apple.com/documentation/storekit/skadnetwork": {
+      "identifier": "https://developer.apple.com/documentation/storekit/skadnetwork",
+      "title": "SKAdNetwork",
+      "titleInlineContent": [
+        {
+          "code": "SKAdNetwork",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/skadnetwork"
+    },
+    "https://developer.apple.com/documentation/storekit/skadnetwork/4090669-updatepostbackconversionvalue": {
+      "identifier": "https://developer.apple.com/documentation/storekit/skadnetwork/4090669-updatepostbackconversionvalue",
+      "title": "updatePostbackConversionValue",
+      "titleInlineContent": [
+        {
+          "code": "updatePostbackConversionValue",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/skadnetwork/4090669-updatepostbackconversionvalue"
+    },
+    "https://developer.apple.com/documentation/storekit/skadnetwork/configuring_a_source_app": {
+      "identifier": "https://developer.apple.com/documentation/storekit/skadnetwork/configuring_a_source_app",
+      "title": "Configuring a Source App",
+      "titleInlineContent": [
+        {
+          "text": "Configuring a Source App",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/skadnetwork/configuring_a_source_app"
+    },
+    "https://developer.apple.com/documentation/storekit/skadnetwork/receiving_postbacks_in_multiple_conversion_windows": {
+      "identifier": "https://developer.apple.com/documentation/storekit/skadnetwork/receiving_postbacks_in_multiple_conversion_windows",
+      "title": "Receiving postbacks in multiple conversion windows",
+      "titleInlineContent": [
+        {
+          "text": "Receiving postbacks in multiple conversion windows",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/skadnetwork/receiving_postbacks_in_multiple_conversion_windows"
+    },
+    "https://developer.apple.com/documentation/storekit/skadnetwork/registering_an_ad_network": {
+      "identifier": "https://developer.apple.com/documentation/storekit/skadnetwork/registering_an_ad_network",
+      "title": "Registering an ad network",
+      "titleInlineContent": [
+        {
+          "text": "Registering an ad network",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/skadnetwork/registering_an_ad_network"
+    },
+    "https://developer.apple.com/documentation/storekit/skadnetwork/signing_and_providing_ads#3732910": {
+      "identifier": "https://developer.apple.com/documentation/storekit/skadnetwork/signing_and_providing_ads#3732910",
+      "title": "Signing and providing ads",
+      "titleInlineContent": [
+        {
+          "text": "Signing and providing ads",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/skadnetwork/signing_and_providing_ads#3732910"
+    },
+    "skadnetwork_linkid": {
+      "identifier": "skadnetwork_linkid",
+      "title": "SKAdNetwork",
+      "titleInlineContent": [
+        {
+          "code": "SKAdNetwork",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "skadnetwork_linkid"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "ed00341d878d/TestingAndValidatingAdImpressionSignaturesAndPostbacksForSKAdNetwork.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Ad-impression-and-postback-testing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestSession",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestPostback",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestPostbackResponse",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestPostbackVersion"
+      ],
+      "title": "Ad impression and postback testing"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestSession/title",
+          "value": "SKAdTestSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdTestSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdTestSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestPostbackResponse/title",
+          "value": "SKAdTestPostbackResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestPostbackResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdTestPostbackResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestPostbackResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdTestPostbackResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestPostback/title",
+          "value": "SKAdTestPostback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestPostback/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdTestPostback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestPostback/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdTestPostback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestPostbackVersion/title",
+          "value": "SKAdTestPostbackVersion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestPostbackVersion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdTestPostbackVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestPostbackVersion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdTestPostbackVersion"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekittest/testing-and-validating-ad-impression-signatures-and-postbacks-for-skadnetwork"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

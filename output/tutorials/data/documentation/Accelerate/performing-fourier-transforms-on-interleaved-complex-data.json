@@ -1,0 +1,1091 @@
+{
+  "abstract": [
+    {
+      "text": "Optimize discrete Fourier transform (DFT) performance with the vDSP interleaved DFT routines.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/discrete-fourier-transforms"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/fast-fourier-transforms"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/discrete-fourier-transforms"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/fast-fourier-transforms"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/performing-fourier-transforms-on-interleaved-complex-data"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Performing Fourier transforms on interleaved-complex data"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In many cases, your code performs Fourier transforms on data that originates as interleaved-complex values. An interleaved-complex representation stores the real and imaginary parts of complex values together as collections of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/DSPComplex",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/DSPDoubleComplex",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structures. Many Fourier-related routines in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " accept complex values in a split-complex representation that stores real and imaginary parts as separate collections.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the following shows a collection of four complex values in a single interleaved collection:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let interleaved = [DSPComplex(real: real₀, imag: imag₀),",
+            "                   DSPComplex(real: real₁, imag: imag₁),",
+            "                   DSPComplex(real: real₂, imag: imag₂),",
+            "                   DSPComplex(real: real₃, imag: imag₃)]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following shows the same four complex values as two collections in a split representation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let reals = [real₀, real₁, real₂, real₃]",
+            "let imaginaries = [imag₀, imag₁, imag₂, imag₃]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "vDSP routines accept split-complex values either as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/DSPSplitComplex",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structures or as two separate collections.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Convert-interleaved-values-to-split-complex-format",
+          "level": 3,
+          "text": "Convert interleaved values to split-complex format",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Given an array ",
+              "type": "text"
+            },
+            {
+              "code": "signal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that contains 32 interleaved-complex values, the following code performs a Fourier transform on the values. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_ctoz",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to populate the split collections ",
+              "type": "text"
+            },
+            {
+              "code": "splitSignalReal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "splitSignalImag",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the interleaved values from ",
+              "type": "text"
+            },
+            {
+              "code": "signal",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let complexValuesCount = 32",
+            "",
+            "let signal: [DSPComplex] = [ ... ] // `signal.count` equals `complexValuesCount`.",
+            "",
+            "var splitSignalReal = [Float](repeating: 0,",
+            "                              count: complexValuesCount)",
+            "var splitSignalImag = [Float](repeating: 0,",
+            "                              count: complexValuesCount)",
+            "",
+            "signal.withUnsafeBufferPointer { signalPtr in",
+            "    splitSignalReal.withUnsafeMutableBufferPointer { signalRealPtr in",
+            "        splitSignalImag.withUnsafeMutableBufferPointer { signalImagPtr in",
+            "            var splitComplex = DSPSplitComplex(realp: signalRealPtr.baseAddress!,",
+            "                                               imagp: signalImagPtr.baseAddress!)",
+            "            ",
+            "            vDSP_ctoz(signalPtr.baseAddress!, 2,",
+            "                      &splitComplex, 1,",
+            "                      vDSP_Length(complexValuesCount))",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Perform-a-Fourier-transform-on-split-data",
+          "level": 3,
+          "text": "Perform a Fourier transform on split data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the vDSP function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_zop_CreateSetup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create a setup object for complex-to-complex DFTs. The execute function, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Execute",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", automatically switches to a fast Fourier transform (FFT) when the specified count supports the FFT algorithm.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var splitOutputReal = [Float](repeating: 0,",
+            "                              count: complexValuesCount)",
+            "var splitOutputImag = [Float](repeating: 0,",
+            "                              count: complexValuesCount)",
+            "",
+            "if let splitComplexSetup = vDSP_DFT_zop_CreateSetup(nil,",
+            "                                                    vDSP_Length(complexValuesCount),",
+            "                                                    .FORWARD) {",
+            "    ",
+            "    vDSP_DFT_Execute(splitComplexSetup,",
+            "                     splitSignalReal, splitSignalImag,",
+            "                     &splitOutputReal, &splitOutputImag)",
+            "    ",
+            "    vDSP_DFT_DestroySetup(splitComplexSetup)",
+            "}",
+            "",
+            "",
+            "let splitComplexDominantFrequency = vDSP.indexOfMaximum(splitOutputReal)",
+            "",
+            "print(\"Split-complex dominant frequency\",",
+            "      splitComplexDominantFrequency.0,",
+            "      splitComplexDominantFrequency.1)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return,",
+              "type": "text"
+            },
+            {
+              "code": "splitOutputReal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "splitOutputImag",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contain the split format frequency-domain representation of the values in ",
+              "type": "text"
+            },
+            {
+              "code": "signal",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/indexOfMaximum(_:)-5qdtm",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to find the dominant frequency.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Convert-split-complex-values-to-interleaved-format",
+          "level": 3,
+          "text": "Convert split-complex values to interleaved format",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_ztoc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to convert the split result to the interleaved format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var dftOutputInterleaved = [DSPComplex](repeating: DSPComplex(),",
+            "                                        count: complexValuesCount)",
+            "",
+            "splitOutputReal.withUnsafeMutableBufferPointer { dftOutputRealPtr in",
+            "    splitOutputImag.withUnsafeMutableBufferPointer { dftOutputImagPtr in",
+            "        var splitComplex = DSPSplitComplex(realp: dftOutputRealPtr.baseAddress!,",
+            "                                           imagp: dftOutputImagPtr.baseAddress!)",
+            "        ",
+            "        vDSP_ztoc(&splitComplex, 1,",
+            "                  &dftOutputInterleaved, 2,",
+            "                  vDSP_Length(complexValuesCount))",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "dftOutputInterleaved",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the DFT result in the interleaved format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Perform-a-Fourier-transform-directly-on-interleaved-data",
+          "level": 3,
+          "text": "Perform a Fourier transform directly on interleaved data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "vDSP provides routines for DFTs directly on interleaved data. Use these functions instead of using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_ctoz",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_ztoc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to convert between interleaved and split formats.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code performs the transform from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accelerate/performing-fourier-transforms-on-interleaved-complex-data#Perform-a-Fourier-transform-on-split-data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " section directly on the interleaved data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var interleavedOutput = [DSPComplex](repeating: DSPComplex(real: 0, imag: 0),",
+            "                                     count: complexValuesCount)",
+            "",
+            "if let interleavedSetup = vDSP_DFT_Interleaved_CreateSetup(nil,",
+            "                                                           vDSP_Length(complexValuesCount),",
+            "                                                           .FORWARD,",
+            "                                                           .interleaved_ComplextoComplex) {",
+            "    vDSP_DFT_Interleaved_Execute(interleavedSetup,",
+            "                                 signal,",
+            "                                 &interleavedOutput)",
+            "    ",
+            "    vDSP_DFT_Interleaved_DestroySetup(interleavedSetup)",
+            "}",
+            "",
+            "let interleavedDominantFrequency = interleavedOutput.enumerated().max {",
+            "    a, b in a.element.real < b.element.real",
+            "}",
+            "",
+            "print(\"Interleaved dominant frequency\",",
+            "      interleavedDominantFrequency?.offset ?? -1,",
+            "      interleavedDominantFrequency?.element.real ?? 0)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "interleavedOutput",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the FFT result in the interleaved format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/DSPComplex": {
+      "abstract": [
+        {
+          "text": "A structure that represents a single-precision complex value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DSPComplex"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/DSPComplex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DSPComplex"
+        }
+      ],
+      "role": "symbol",
+      "title": "DSPComplex",
+      "type": "topic",
+      "url": "/documentation/accelerate/dspcomplex"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/DSPDoubleComplex": {
+      "abstract": [
+        {
+          "text": "A structure that represents a double-precision complex value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DSPDoubleComplex"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/DSPDoubleComplex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DSPDoubleComplex"
+        }
+      ],
+      "role": "symbol",
+      "title": "DSPDoubleComplex",
+      "type": "topic",
+      "url": "/documentation/accelerate/dspdoublecomplex"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/DSPSplitComplex": {
+      "abstract": [
+        {
+          "text": "A structure that represents a single-precision complex vector with the real and imaginary parts stored in separate arrays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DSPSplitComplex"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/DSPSplitComplex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DSPSplitComplex"
+        }
+      ],
+      "role": "symbol",
+      "title": "DSPSplitComplex",
+      "type": "topic",
+      "url": "/documentation/accelerate/dspsplitcomplex"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/discrete-cosine-transforms": {
+      "abstract": [
+        {
+          "text": "Transform vectors of temporal and spatial domain real values to the frequency domain, and vice versa.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/discrete-cosine-transforms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Discrete Cosine transforms",
+      "type": "topic",
+      "url": "/documentation/accelerate/discrete-cosine-transforms"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/discrete-fourier-transforms": {
+      "abstract": [
+        {
+          "text": "Transform vectors of temporal and spatial domain complex values to the frequency domain, and vice versa.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/discrete-fourier-transforms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Discrete Fourier transforms",
+      "type": "topic",
+      "url": "/documentation/accelerate/discrete-fourier-transforms"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/fast-fourier-transforms": {
+      "abstract": [
+        {
+          "text": "Transform vectors and matrices of temporal and spatial domain complex values to the frequency domain, and vice versa.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/fast-fourier-transforms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Fast Fourier transforms",
+      "type": "topic",
+      "url": "/documentation/accelerate/fast-fourier-transforms"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/finding-the-component-frequencies-in-a-composite-sine-wave": {
+      "abstract": [
+        {
+          "text": "Use 1D fast Fourier transform to compute the frequency components of a signal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/finding-the-component-frequencies-in-a-composite-sine-wave",
+      "kind": "article",
+      "role": "article",
+      "title": "Finding the component frequencies in a composite sine wave",
+      "type": "topic",
+      "url": "/documentation/accelerate/finding-the-component-frequencies-in-a-composite-sine-wave"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/halftone-descreening-with-2d-fast-fourier-transform": {
+      "abstract": [
+        {
+          "text": "Reduce or remove periodic artifacts from images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/halftone-descreening-with-2d-fast-fourier-transform",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Halftone descreening with 2D fast Fourier transform",
+      "type": "topic",
+      "url": "/documentation/accelerate/halftone-descreening-with-2d-fast-fourier-transform"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/performing-fourier-transforms-on-multiple-signals": {
+      "abstract": [
+        {
+          "text": "Use Accelerate’s multiple-signal fast Fourier transform (FFT) functions to transform multiple signals with a single function call.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/performing-fourier-transforms-on-multiple-signals",
+      "kind": "article",
+      "role": "article",
+      "title": "Performing Fourier Transforms on Multiple Signals",
+      "type": "topic",
+      "url": "/documentation/accelerate/performing-fourier-transforms-on-multiple-signals"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/reducing-spectral-leakage-with-windowing": {
+      "abstract": [
+        {
+          "text": "Multiply signal data by window sequence values when performing transforms with noninteger period signals.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/reducing-spectral-leakage-with-windowing",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing spectral leakage with windowing",
+      "type": "topic",
+      "url": "/documentation/accelerate/reducing-spectral-leakage-with-windowing"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/signal-extraction-from-noise": {
+      "abstract": [
+        {
+          "text": "Use Accelerate’s discrete cosine transform to remove noise from a signal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/signal-extraction-from-noise",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Signal extraction from noise",
+      "type": "topic",
+      "url": "/documentation/accelerate/signal-extraction-from-noise"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/understanding-data-packing-for-fourier-transforms": {
+      "abstract": [
+        {
+          "text": "Format source data for the vDSP Fourier functions, and interpret the results.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/understanding-data-packing-for-fourier-transforms",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding data packing for Fourier transforms",
+      "type": "topic",
+      "url": "/documentation/accelerate/understanding-data-packing-for-fourier-transforms"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP": {
+      "abstract": [
+        {
+          "text": "An enumeration that acts as a namespace for Swift overlays to vDSP.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vDSP"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vDSP"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/indexOfMaximum(_:)-5qdtm": {
+      "abstract": [
+        {
+          "text": "Returns the maximum value and corresponding index in a single-precision vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "indexOfMaximum"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/indexOfMaximum(_:)-5qdtm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "indexOfMaximum(_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/indexofmaximum(_:)-5qdtm"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Execute": {
+      "abstract": [
+        {
+          "text": "Calculates the discrete single-precision Fourier transform for a vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_Execute"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Execute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_DFT_Execute",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_execute"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_zop_CreateSetup": {
+      "abstract": [
+        {
+          "text": "Returns a setup structure that contains precalculated data for forward and inverse, complex, single-precision DFT functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_zop_CreateSetup"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_zop_CreateSetup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_DFT_zop_CreateSetup",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_zop_createsetup"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_ctoz": {
+      "abstract": [
+        {
+          "text": "Copies the contents of an interleaved single-precision complex vector to a split complex vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_ctoz"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_ctoz",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_ctoz",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_ctoz"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_ztoc": {
+      "abstract": [
+        {
+          "text": "Copies the contents of a split single-precision complex vector to an interleaved vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_ztoc"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_ztoc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_ztoc",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_ztoc"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library": {
+      "abstract": [
+        {
+          "text": "Perform basic arithmetic operations and common digital signal processing (DSP) routines on large vectors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vDSP",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp-library"
+    },
+    "doc://com.apple.documentation/documentation/Accelerate/performing-fourier-transforms-on-interleaved-complex-data#Perform-a-Fourier-transform-on-split-data": {
+      "abstract": [
+        {
+          "text": "Optimize discrete Fourier transform (DFT) performance with the vDSP interleaved DFT routines.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accelerate/performing-fourier-transforms-on-interleaved-complex-data#Perform-a-Fourier-transform-on-split-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Performing Fourier transforms on interleaved-complex data",
+      "type": "topic",
+      "url": "/documentation/Accelerate/performing-fourier-transforms-on-interleaved-complex-data"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Fourier-and-Cosine-Transforms",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/understanding-data-packing-for-fourier-transforms",
+        "doc://com.apple.accelerate/documentation/Accelerate/finding-the-component-frequencies-in-a-composite-sine-wave",
+        "doc://com.apple.accelerate/documentation/Accelerate/reducing-spectral-leakage-with-windowing",
+        "doc://com.apple.accelerate/documentation/Accelerate/signal-extraction-from-noise",
+        "doc://com.apple.accelerate/documentation/Accelerate/performing-fourier-transforms-on-multiple-signals",
+        "doc://com.apple.accelerate/documentation/Accelerate/halftone-descreening-with-2d-fast-fourier-transform",
+        "doc://com.apple.accelerate/documentation/Accelerate/fast-fourier-transforms",
+        "doc://com.apple.accelerate/documentation/Accelerate/discrete-fourier-transforms",
+        "doc://com.apple.accelerate/documentation/Accelerate/discrete-cosine-transforms"
+      ],
+      "title": "Fourier and Cosine Transforms"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DSPSplitComplex/title",
+          "value": "DSPSplitComplex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DSPSplitComplex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DSPSplitComplex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DSPSplitComplex/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DSPSplitComplex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DSPDoubleComplex/title",
+          "value": "DSPDoubleComplex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DSPDoubleComplex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DSPDoubleComplex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DSPDoubleComplex/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DSPDoubleComplex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DSPComplex/title",
+          "value": "DSPComplex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DSPComplex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DSPComplex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DSPComplex/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DSPComplex"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

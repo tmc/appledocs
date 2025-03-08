@@ -1,0 +1,459 @@
+{
+  "abstract": [
+    {
+      "text": "Tells the extension to prepare for a host app’s request.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/app_extension_support",
+        "doc://com.apple.documentation/documentation/foundation/nsextensionrequesthandling"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/uikit",
+        "doc://com.apple.documentation/documentation/uikit/app-extensions",
+        "doc://com.apple.documentation/documentation/foundation/nsextensionrequesthandling"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/appkit",
+        "doc://com.apple.documentation/documentation/appkit/app-extensions",
+        "doc://com.apple.documentation/documentation/foundation/nsextensionrequesthandling"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsextensionrequesthandling/1413395-beginrequest"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1413395,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)NSExtensionRequestHandling(im)beginRequestWithExtensionContext:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "beginRequest"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "identifier",
+        "text": "with"
+      },
+      {
+        "kind": "text",
+        "text": ": NSExtensionContext)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSExtensionRequestHandling"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.10",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "required": true,
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "intfm",
+    "title": "beginRequest(with:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "beginRequest"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "with"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "context"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensioncontext",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSExtensionContext",
+              "text": "NSExtensionContext"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensioncontext",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object that represents the context in which the host app makes the request. Typically, the context contains data that the extension can work on.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "context"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An extension prepares for a host app’s request by getting the context passed in this method and requesting related data items, if appropriate. This method is received after the extension is initialized, but before the principal object is asked to do anything with the context. For example, if the principal object is a view controller, it receives this message before ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/loadView()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is called. After an extension receives this message, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/extensionContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the view controller returns a non",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your subclass conforms to this protocol and overrides ",
+              "type": "text"
+            },
+            {
+              "code": "beginRequestWithExtensionContext:",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the subclass is expected to call ",
+              "type": "text"
+            },
+            {
+              "code": "[super beginRequestWithExtensionContext:]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1752514": {
+      "identifier": "devLink-1752514",
+      "title": "App Extension Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/index.html#//apple_ref/doc/uid/TP40014214"
+    },
+    "doc://com.apple.documentation/documentation/appkit": {
+      "identifier": "doc://com.apple.documentation/documentation/appkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.documentation/documentation/appkit/app-extensions": {
+      "identifier": "doc://com.apple.documentation/documentation/appkit/app-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App Extensions",
+      "type": "topic",
+      "url": "/documentation/appkit/app-extensions"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/app_extension_support": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/app_extension_support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App Extension Support",
+      "type": "topic",
+      "url": "/documentation/foundation/app_extension_support"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsextensioncontext": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensioncontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionContext",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensioncontext"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsextensionrequesthandling": {
+      "abstract": [
+        {
+          "text": "The interface an app extension uses to respond to a request from a host app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensionrequesthandling",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionRequestHandling",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensionrequesthandling"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsextensionrequesthandling/1413395-beginrequest": {
+      "abstract": [
+        {
+          "text": "Tells the extension to prepare for a host app’s request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": NSExtensionContext)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensionrequesthandling/1413395-beginrequest",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "beginRequest(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensionrequesthandling/1413395-beginrequest"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/uikit": {
+      "identifier": "doc://com.apple.documentation/documentation/uikit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.documentation/documentation/uikit/app-extensions": {
+      "identifier": "doc://com.apple.documentation/documentation/uikit/app-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App extensions",
+      "type": "topic",
+      "url": "/documentation/uikit/app-extensions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/extensionContext": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/extensionContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "extensionContext",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/extensioncontext"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/loadView()": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/loadView()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadView()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/loadview()"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": false,
+      "identifiers": [
+        "devLink-1752514"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsextensionrequesthandling/1413395-beginrequestwithextensioncontext"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsextensionrequesthandling/1413395-beginrequest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

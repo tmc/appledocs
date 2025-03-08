@@ -1,0 +1,754 @@
+{
+  "abstract": [
+    {
+      "text": "A port name server that takes and returns socket ports.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime/distributed_objects_support"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1401740,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSSocketPortNameServer",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "10.13",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSSocketPortNameServer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSSocketPortNameServer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsportnameserver",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSPortNameServer",
+              "text": "NSPortNameServer"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Port removal functionality is supported by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1401754-removeportforname",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and should be used to remove invalid socket ports.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike the other port name servers, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " can operate over a network. By registering your socket ports, you make them available to other computers on the local network without hard-coding the TCP port numbers. Clients just need to know the name of the port.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsportnameserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is implemented using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnetservice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and registers ports in the local network domain. The registered name of a port must be unique within the local domain, not just the local host. The name server only supports TCP/IP (either IPv4 or IPv6) sockets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Prior to OS X 10.2, ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " was inoperable.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsconnection": {
+      "abstract": [
+        {
+          "text": "An object that manages the communication between objects in different threads or between a thread and a process running on a local or remote system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsconnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSConnection",
+      "type": "topic",
+      "url": "/documentation/foundation/nsconnection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsconnectiondelegate": {
+      "abstract": [
+        {
+          "text": "An interface for interacting with low-level, interprocess connections.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsconnectiondelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSConnectionDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsconnectiondelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdistantobject": {
+      "abstract": [
+        {
+          "text": "A proxy for objects in other applications or threads.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistantobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDistantObject",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdistantobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdistantobjectrequest": {
+      "abstract": [
+        {
+          "text": "An object used by the distributed objects system to help handle invocations between different processes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistantobjectrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDistantObjectRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdistantobjectrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmachbootstrapserver": {
+      "abstract": [
+        {
+          "text": "A port name server that takes and returns Mach port objects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachbootstrapserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMachBootstrapServer",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmachbootstrapserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmachport": {
+      "abstract": [
+        {
+          "text": "A port that can be used as an endpoint for distributed object connections (or raw messaging).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMachPort",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmachport"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmachportdelegate": {
+      "abstract": [
+        {
+          "text": "An interface for handling incoming Mach messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachportdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMachPortDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmachportdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmessageport": {
+      "abstract": [
+        {
+          "text": "A port that can be used as an endpoint for distributed object connections (or raw messaging).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmessageport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMessagePort",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmessageport"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmessageportnameserver": {
+      "abstract": [
+        {
+          "text": "A server takes and returns message ports.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmessageportnameserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMessagePortNameServer",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmessageportnameserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnetservice": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnetservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNetService",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnetservice"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsportcoder": {
+      "abstract": [
+        {
+          "text": "A coder used to transmit object proxies (and sometimes objects themselves) between connections.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsportcoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPortCoder",
+      "type": "topic",
+      "url": "/documentation/foundation/nsportcoder"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsportdelegate": {
+      "abstract": [
+        {
+          "text": "An interface for handling incoming messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsportdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPortDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsportdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsportmessage": {
+      "abstract": [
+        {
+          "text": "A low-level, operating system-independent type for inter-application (and inter-thread) messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsportmessage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPortMessage",
+      "type": "topic",
+      "url": "/documentation/foundation/nsportmessage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsportnameserver": {
+      "abstract": [
+        {
+          "text": "An object-oriented interface to the port registration service used by the distributed objects system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsportnameserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPortNameServer",
+      "type": "topic",
+      "url": "/documentation/foundation/nsportnameserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsprotocolchecker": {
+      "abstract": [
+        {
+          "text": "An object that restricts the messages that can be sent to another object (referred to as the checker’s delegate).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsprotocolchecker",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSProtocolChecker",
+      "type": "topic",
+      "url": "/documentation/foundation/nsprotocolchecker"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver": {
+      "abstract": [
+        {
+          "text": "A port name server that takes and returns socket ports.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSocketPortNameServer",
+      "type": "topic",
+      "url": "/documentation/foundation/nssocketportnameserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1401713-registerport": {
+      "abstract": [
+        {
+          "text": "Registers a given port as a network service with the specified name in the local domain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerPort:name:nameServerPortNumber:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1401713-registerport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerPort:name:nameServerPortNumber:",
+      "type": "topic",
+      "url": "/documentation/foundation/nssocketportnameserver/1401713-registerport"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1401717-portforname": {
+      "abstract": [
+        {
+          "text": "Looks up and returns the port registered under the specified name on a specified host.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "portForName:host:nameServerPortNumber:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1401717-portforname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "portForName:host:nameServerPortNumber:",
+      "type": "topic",
+      "url": "/documentation/foundation/nssocketportnameserver/1401717-portforname"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1401723-sharedinstance": {
+      "abstract": [
+        {
+          "text": "Returns the shared socket port name server.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "sharedInstance"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1401723-sharedinstance",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sharedInstance",
+      "type": "topic",
+      "url": "/documentation/foundation/nssocketportnameserver/1401723-sharedinstance"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1401727-portforname": {
+      "abstract": [
+        {
+          "text": "Looks up and returns the port registered under the specified name on a specified host.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "portForName:host:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1401727-portforname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "portForName:host:",
+      "type": "topic",
+      "url": "/documentation/foundation/nssocketportnameserver/1401727-portforname"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1401730-registerport": {
+      "abstract": [
+        {
+          "text": "Registers a given port as a network service with the specified name in the local domain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerPort:name:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1401730-registerport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerPort:name:",
+      "type": "topic",
+      "url": "/documentation/foundation/nssocketportnameserver/1401730-registerport"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1401750-portforname": {
+      "abstract": [
+        {
+          "text": "Looks up and returns the port registered under the specified name on the local host.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "portForName:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1401750-portforname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "portForName:",
+      "type": "topic",
+      "url": "/documentation/foundation/nssocketportnameserver/1401750-portforname"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1401754-removeportforname": {
+      "abstract": [
+        {
+          "text": "Unregisters the port for a given name on the local host.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removePortForName:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1401754-removeportforname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removePortForName:",
+      "type": "topic",
+      "url": "/documentation/foundation/nssocketportnameserver/1401754-removeportforname"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1401755-defaultnameserverportnumber": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1401755-defaultnameserverportnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultNameServerPortNumber",
+      "type": "topic",
+      "url": "/documentation/foundation/nssocketportnameserver/1401755-defaultnameserverportnumber"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1806767-defaultnameserverportnumber": {
+      "abstract": [
+        {
+          "text": "Returns the port number used to contact the name server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1806767-defaultnameserverportnumber",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "defaultNameServerPortNumber",
+      "type": "topic",
+      "url": "/documentation/foundation/nssocketportnameserver/1806767-defaultnameserverportnumber"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1806775-setdefaultnameserverportnumber": {
+      "abstract": [
+        {
+          "text": "Sets the default port number used to contact the name server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1806775-setdefaultnameserverportnumber",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setDefaultNameServerPortNumber:",
+      "type": "topic",
+      "url": "/documentation/foundation/nssocketportnameserver/1806775-setdefaultnameserverportnumber"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime/distributed_objects_support": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime/distributed_objects_support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Distributed Objects Support",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime/distributed_objects_support"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsportnameserver"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmachportdelegate",
+        "doc://com.apple.documentation/documentation/foundation/nsconnectiondelegate",
+        "doc://com.apple.documentation/documentation/foundation/nsconnection",
+        "doc://com.apple.documentation/documentation/foundation/nsdistantobject",
+        "doc://com.apple.documentation/documentation/foundation/nsdistantobjectrequest",
+        "doc://com.apple.documentation/documentation/foundation/nsmachbootstrapserver",
+        "doc://com.apple.documentation/documentation/foundation/nsmachport",
+        "doc://com.apple.documentation/documentation/foundation/nsmessageport",
+        "doc://com.apple.documentation/documentation/foundation/nsmessageportnameserver",
+        "doc://com.apple.documentation/documentation/foundation/nsportcoder",
+        "doc://com.apple.documentation/documentation/foundation/nsportdelegate",
+        "doc://com.apple.documentation/documentation/foundation/nsportmessage",
+        "doc://com.apple.documentation/documentation/foundation/nsportnameserver",
+        "doc://com.apple.documentation/documentation/foundation/nsprotocolchecker"
+      ],
+      "title": "Legacy"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1679239",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1401723-sharedinstance"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the Server Object"
+    },
+    {
+      "anchor": "1679246",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1401750-portforname",
+        "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1401727-portforname",
+        "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1401717-portforname"
+      ],
+      "kind": "taskGroup",
+      "title": "Looking up Ports"
+    },
+    {
+      "anchor": "1679266",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1401730-registerport",
+        "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1401713-registerport",
+        "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1401754-removeportforname"
+      ],
+      "kind": "taskGroup",
+      "title": "Registering and Removing Ports"
+    },
+    {
+      "anchor": "1679301",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1806767-defaultnameserverportnumber",
+        "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1806775-setdefaultnameserverportnumber"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring the Default Port Number"
+    },
+    {
+      "anchor": "2855411",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver/1401755-defaultnameserverportnumber"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nssocketportnameserver"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

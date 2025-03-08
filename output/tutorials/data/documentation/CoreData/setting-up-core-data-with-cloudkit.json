@@ -1,0 +1,1444 @@
+{
+  "abstract": [
+    {
+      "text": "Set up the classes and capabilities that sync your store to CloudKit.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coredata/documentation/CoreData",
+        "doc://com.apple.coredata/documentation/CoreData/mirroring-a-core-data-store-with-cloudkit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coredata/documentation/CoreData/setting-up-core-data-with-cloudkit"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Data"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Setting Up Core Data with CloudKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To sync your Core Data store to CloudKit, you enable the CloudKit capability for your app. You also set up the Core Data stack with a persistent container that is capable of managing one or more local persistent stores that are backed by a CloudKit private database.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-a-new-Xcode-project",
+          "level": 3,
+          "text": "Configure a new Xcode project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a new project, you specify whether you want to add support for Core Data with CloudKit directly from the project setup interface. The resulting project contains an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Once you enable CloudKit in your project, you use this container to manage one or more local stores that are backed with a CloudKit database.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose File > New > Project to create a new project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select a project template to use as the starting point for your project, and click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Core Data option for Storage.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Host in Cloudkit checkbox.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter any other project details and click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify a location for your project and click Create.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4434183",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Not all project templates support Core Data. If the template you want to use doesn’t currently support Core Data, add Core Data to the project as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/setting-up-a-core-data-stack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Then add Core Data with CloudKit as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/setting-up-core-data-with-cloudkit#Update-an-existing-Xcode-project",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-iCloud",
+          "level": 3,
+          "text": "Enable iCloud",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core Data with CloudKit requires specific entitlements for your app to communicate with the server. If you have created a new template following the steps above, this will be done for you. For an existing app, begin by adding the iCloud capability to your Xcode project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Project Settings, select the Signing & Capabilities tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make sure that “Automatically manage signing” is selected.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify your development team.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the + Capability button, then do a search for iCloud in the Add Capability editor and select that capability.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4436809",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An iCloud section appears on your app’s Signing & Capabilities page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-CloudKit-and-push-notifications",
+          "level": 3,
+          "text": "Enable CloudKit and push notifications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core Data with CloudKit uses the CloudKit service to access your team’s containers. To enable CloudKit, configure the iCloud capability.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Project Settings, select the Signing & Capabilities tab and find the iCloud section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the CloudKit checkbox. This selection also adds push notifications that notify your app when remote content changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Under Containers, add or select a container. For more information about working with CloudKit containers and setting up profiles, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/library/archive/documentation/DataManagement/Conceptual/CloudKitQuickStart/EnablingiCloudandConfiguringCloudKit/EnablingiCloudandConfiguringCloudKit.html#//apple_ref/doc/uid/TP40014987-CH2",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4436808",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode checks that your development team supports the Push Notification and iCloud capabilities, then registers your app’s bundle identifier and manages provisioning profiles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-Remote-notifications-in-the-background",
+          "level": 3,
+          "text": "Enable Remote notifications in the background",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For CloudKit to silently notify your app when new content is available, without presenting a user notification such as an alert, sound, or badge, you need to enable the Remote notifications Background Mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Project Settings, select the Signing & Capabilities tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the + Capability button, then do a search for Background Modes in the Add Capability editor and select that capability.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the “Remote notifications” checkbox.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4436810",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about silent notifications, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications/pushing-background-updates-to-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-an-existing-Xcode-project",
+          "level": 3,
+          "text": "Update an existing Xcode project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want to add Core Data with CloudKit to an app that already uses Core Data, you need to modify both your project’s configuration and some of its code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, enable iCloud, CloudKit, Push notifications, and Remote notifications in the background as described in the preceding sections. Then, replace your persistent container with an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if you created a project from the Multiplatform App template, with the Use Core Data checkbox selected, the following code appeared in the ",
+              "type": "text"
+            },
+            {
+              "code": "PersistenceController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "init(inMemory: Bool = false) {",
+            "    container = NSPersistentContainer(name: \"Earthquakes\")",
+            "    if inMemory {",
+            "        container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: \"/dev/null\")",
+            "    }",
+            "    container.loadPersistentStores(completionHandler: { (storeDescription, error) in",
+            "        if let error = error as NSError? {",
+            "            fatalError(\"Unresolved error \\(error), \\(error.userInfo)\")",
+            "        }",
+            "    })",
+            "    container.viewContext.automaticallyMergesChangesFromParent = true",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentContainer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " supports only local persistent stores. To add the ability to sync a local store to a CloudKit database, replace ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentContainer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    let container = NSPersistentCloudKitContainer(name: \"Earthquakes\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Manage-multiple-stores",
+          "level": 3,
+          "text": "Manage multiple stores",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You might need to mirror a subset of your data using CloudKit, while keeping other data completely local. You can add configurations to your model to organize your data in separate stores, then choose which stores to sync to CloudKit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open your project’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".xcdatamodeld",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Editor > Add Configuration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag each entity into a configuration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select a configuration that you want to sync to CloudKit, then select the “Used with CloudKit” checkbox in the data model editor. Repeat for each configuration that you want to sync.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4445965",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an app without configurations, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " matches the first store description with the first CloudKit container identifier in the entitlements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an app with configurations, you need to tell it which CloudKit container, if any, to use with each store. For each of your configurations, make the following changes to your container setup:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentStoreDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the store description’s configuration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If this configuration needs to synchronize to CloudKit, set the store description’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentStoreDescription/cloudKitContainerOptions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to an instance of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainerOptions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Provide the container identifier of your CloudKit container in the initializer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the store description to the persistent container before loading the store.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example code creates two store descriptions: one for the “Local” configuration, and one for the “Cloud” configuration. It then sets the cloud store description’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentStoreDescription/cloudKitContainerOptions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to match the store with its CloudKit container. Finally, it updates the container’s list of persistent store descriptions to include all local and cloud-backed store descriptions, and loads both stores.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "lazy var persistentContainer: NSPersistentCloudKitContainer = {",
+            "    let container = NSPersistentCloudKitContainer(name: \"Earthquakes\")",
+            "    ",
+            "    // Create a store description for a local store.",
+            "    let localStoreLocation = URL(fileURLWithPath: \"/path/to/local.store\")",
+            "    let localStoreDescription =",
+            "        NSPersistentStoreDescription(url: localStoreLocation)",
+            "    localStoreDescription.configuration = \"Local\"",
+            "    ",
+            "    // Create a store description for a CloudKit-backed local store.",
+            "    let cloudStoreLocation = URL(fileURLWithPath: \"/path/to/cloud.store\")",
+            "    let cloudStoreDescription =",
+            "        NSPersistentStoreDescription(url: cloudStoreLocation)",
+            "    cloudStoreDescription.configuration = \"Cloud\"",
+            "",
+            "    // Set the container options on the cloud store.",
+            "    cloudStoreDescription.cloudKitContainerOptions = ",
+            "        NSPersistentCloudKitContainerOptions(",
+            "            containerIdentifier: \"com.my.container\")",
+            "    ",
+            "    // Update the container's list of store descriptions.",
+            "    container.persistentStoreDescriptions = [",
+            "        cloudStoreDescription,",
+            "        localStoreDescription",
+            "    ]",
+            "    ",
+            "    // Load both stores.",
+            "    container.loadPersistentStores { storeDescription, error in",
+            "        guard error == nil else {",
+            "            fatalError(\"Could not load persistent stores. \\(error!)\")",
+            "        }",
+            "    }",
+            "    ",
+            "    return container",
+            "}()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coredata/documentation/CoreData": {
+      "abstract": [
+        {
+          "text": "Persist or cache data on a single device, or sync data to multiple devices with CloudKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Data",
+      "type": "topic",
+      "url": "/documentation/coredata"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer": {
+      "abstract": [
+        {
+          "text": "A container that encapsulates the Core Data stack in your app, and mirrors select persistent stores to a CloudKit private database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPersistentCloudKitContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPersistentCloudKitContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPersistentCloudKitContainer",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistentcloudkitcontainer"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainerOptions": {
+      "abstract": [
+        {
+          "text": "An object that customizes how a store description aligns with a CloudKit database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPersistentCloudKitContainerOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainerOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPersistentCloudKitContainerOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPersistentCloudKitContainerOptions",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistentcloudkitcontaineroptions"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentContainer": {
+      "abstract": [
+        {
+          "text": "A container that encapsulates the Core Data stack in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPersistentContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPersistentContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPersistentContainer",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistentcontainer"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentStoreDescription": {
+      "abstract": [
+        {
+          "text": "A description object used to create and load a persistent store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPersistentStoreDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentStoreDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPersistentStoreDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPersistentStoreDescription",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistentstoredescription"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentStoreDescription/cloudKitContainerOptions": {
+      "abstract": [
+        {
+          "text": "Options that customize how this store description aligns with a CloudKit database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cloudKitContainerOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPersistentCloudKitContainerOptions",
+          "text": "NSPersistentCloudKitContainerOptions"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentStoreDescription/cloudKitContainerOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cloudKitContainerOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "cloudKitContainerOptions",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistentstoredescription/cloudkitcontaineroptions"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/creating-a-core-data-model-for-cloudkit": {
+      "abstract": [
+        {
+          "text": "Design a CloudKit-compatible data model and initialize your CloudKit schema.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/creating-a-core-data-model-for-cloudkit",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Core Data Model for CloudKit",
+      "type": "topic",
+      "url": "/documentation/coredata/creating-a-core-data-model-for-cloudkit"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/mirroring-a-core-data-store-with-cloudkit": {
+      "abstract": [
+        {
+          "text": "Back user interfaces with a local replica of a CloudKit private database.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/mirroring-a-core-data-store-with-cloudkit",
+      "kind": "article",
+      "role": "article",
+      "title": "Mirroring a Core Data store with CloudKit",
+      "type": "topic",
+      "url": "/documentation/coredata/mirroring-a-core-data-store-with-cloudkit"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/reading-cloudkit-records-for-core-data": {
+      "abstract": [
+        {
+          "text": "Access CloudKit records created from Core Data managed objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/reading-cloudkit-records-for-core-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Reading CloudKit Records for Core Data",
+      "type": "topic",
+      "url": "/documentation/coredata/reading-cloudkit-records-for-core-data"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/setting-up-a-core-data-stack": {
+      "abstract": [
+        {
+          "text": "Set up the classes that manage and persist your app’s objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/setting-up-a-core-data-stack",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up a Core Data stack",
+      "type": "topic",
+      "url": "/documentation/coredata/setting-up-a-core-data-stack"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/setting-up-core-data-with-cloudkit#Update-an-existing-Xcode-project": {
+      "abstract": [],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/setting-up-core-data-with-cloudkit#Update-an-existing-Xcode-project",
+      "kind": "section",
+      "title": "Update an existing Xcode project",
+      "type": "topic",
+      "url": "/documentation/coredata/setting-up-core-data-with-cloudkit#Update-an-existing-Xcode-project"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/syncing-a-core-data-store-with-cloudkit": {
+      "abstract": [
+        {
+          "text": "Synchronize objects between devices, and handle store changes in the user interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/syncing-a-core-data-store-with-cloudkit",
+      "kind": "article",
+      "role": "article",
+      "title": "Syncing a Core Data Store with CloudKit",
+      "type": "topic",
+      "url": "/documentation/coredata/syncing-a-core-data-store-with-cloudkit"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/pushing-background-updates-to-your-app": {
+      "abstract": [
+        {
+          "text": "Deliver notifications that wake your app and update it in the background.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/pushing-background-updates-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Pushing background updates to your App",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/pushing-background-updates-to-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/library/archive/documentation/DataManagement/Conceptual/CloudKitQuickStart/EnablingiCloudandConfiguringCloudKit/EnablingiCloudandConfiguringCloudKit.html#//apple_ref/doc/uid/TP40014987-CH2": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/DataManagement/Conceptual/CloudKitQuickStart/EnablingiCloudandConfiguringCloudKit/EnablingiCloudandConfiguringCloudKit.html#//apple_ref/doc/uid/TP40014987-CH2",
+      "title": "Enabling CloudKit in Your App",
+      "titleInlineContent": [
+        {
+          "text": "Enabling CloudKit in Your App",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/DataManagement/Conceptual/CloudKitQuickStart/EnablingiCloudandConfiguringCloudKit/EnablingiCloudandConfiguringCloudKit.html#//apple_ref/doc/uid/TP40014987-CH2"
+    },
+    "media-4434183": {
+      "alt": "Screenshot showing the new project creation dialog with the Core Data Storage option and Host in CloudKit checkbox selected.",
+      "identifier": "media-4434183",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f748f77f7568bed1705e93b795580c6d/media-4434183@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/97b3902ea855449df5931b7f833e4f67/media-4434183~dark@2x.png"
+        }
+      ]
+    },
+    "media-4436808": {
+      "alt": "Screenshot showing the iCloud section of the Signing & Capabilities tab with CloudKit enabled.",
+      "identifier": "media-4436808",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/06abe307359943cc63cd1d8c73640f81/media-4436808@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/31e7deea0febeb97c2799d45da3e3ca4/media-4436808~dark@2x.png"
+        }
+      ]
+    },
+    "media-4436809": {
+      "alt": "Screenshot showing the locations of the Add Capability button, Automatically manage signing checkbox, and Team dropdown in the Signing & Capabilities tab in Project Settings.",
+      "identifier": "media-4436809",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/52078c8b70403835bbd18631b9101788/media-4436809@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/250a1f2c2444f47fa011fdb0076bf30d/media-4436809~dark@2x.png"
+        }
+      ]
+    },
+    "media-4436810": {
+      "alt": "Screenshot showing the Background Modes section of the Signing & Capabilities tab with the Remote notifications checkbox selected.",
+      "identifier": "media-4436810",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ada6c9909dace104f96da43d22dc037d/media-4436810@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7db4fea22a0170884714f39e631038eb/media-4436810~dark@2x.png"
+        }
+      ]
+    },
+    "media-4445965": {
+      "alt": "Screenshot showing the .xcdatamodeld file with the Configuration list at left containing Default, Cache, Cloud, and Local configurations. The Cloud configuration is selected and its “Used with CloudKit” checkbox is selected in the Data Model inspector.",
+      "identifier": "media-4445965",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ecf5d61fd34f3d17ac184ba7bccf9bf1/media-4445965@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/34e0727685ceb58a0ccfb8d6d1c64644/media-4445965~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-CloudKit-Mirroring",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/creating-a-core-data-model-for-cloudkit",
+        "doc://com.apple.coredata/documentation/CoreData/syncing-a-core-data-store-with-cloudkit",
+        "doc://com.apple.coredata/documentation/CoreData/reading-cloudkit-records-for-core-data"
+      ],
+      "title": "Configuring CloudKit Mirroring"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Configuring-CloudKit-Mirroring",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/creating-a-core-data-model-for-cloudkit",
+                "doc://com.apple.coredata/documentation/CoreData/syncing-a-core-data-store-with-cloudkit",
+                "doc://com.apple.coredata/documentation/CoreData/reading-cloudkit-records-for-core-data"
+              ],
+              "title": "Configuring CloudKit Mirroring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentContainer/title",
+          "value": "NSPersistentContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentStoreDescription~1cloudKitContainerOptions/title",
+          "value": "cloudKitContainerOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentStoreDescription~1cloudKitContainerOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cloudKitContainerOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentStoreDescription/title",
+          "value": "NSPersistentStoreDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentStoreDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentStoreDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentStoreDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentStoreDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentCloudKitContainerOptions/title",
+          "value": "NSPersistentCloudKitContainerOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentCloudKitContainerOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentCloudKitContainerOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentCloudKitContainerOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentCloudKitContainerOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentCloudKitContainer/title",
+          "value": "NSPersistentCloudKitContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentCloudKitContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentCloudKitContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentCloudKitContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentCloudKitContainer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coredata/setting-up-core-data-with-cloudkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coredata/setting-up-core-data-with-cloudkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

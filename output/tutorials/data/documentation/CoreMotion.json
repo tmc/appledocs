@@ -1,0 +1,3095 @@
+{
+  "abstract": [
+    {
+      "text": "Process accelerometer, gyroscope, pedometer, and environment-related events.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremotion/documentation/CoreMotion"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "CoreMotion",
+    "modules": [
+      {
+        "name": "Core Motion"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "4.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "4.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.15",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Core Motion"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core Motion reports motion- and environment-related data from the available onboard hardware of iOS, iPadOS, watchOS, and visionOS devices. This hardware includes the device’s accelerometers and gyroscopes, and, when available, the pedometer, magnetometer, and barometer. Use this data in your app as input for user interactions, fitness tracking, health-related matters, and more. For example, a game might use accelerometer and gyroscope input to control onscreen game behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The services of this framework provide access to motion data either as raw or processed values, and many services provide both types of values. Raw values reflect the unmodified data from the hardware, while processed values eliminate forms of bias that might adversely affect your usage of the data. For example, a processed accelerometer value reflects only the acceleration caused by the user and not the acceleration caused by gravity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Not all services are available on all devices, and some services might be unavailable even on devices with the required hardware. For example, many Core Motion services are available to visionOS apps, but those services aren’t available to compatible iPad and iPhone apps running in visionOS. Before you try to use any motion-related services, check the availability of those services using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "An iOS app must include usage description keys in its ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file for the types of data it needs. If these keys aren’t present, the app crashes when you try to access the corresponding service. To access motion and fitness data, include ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMotionUsageDescription",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". To access the fall-detection service, include ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSFallDetectionUsageDescription",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremotion/documentation/CoreMotion": {
+      "abstract": [
+        {
+          "text": "Process accelerometer, gyroscope, pedometer, and environment-related events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Motion",
+      "type": "topic",
+      "url": "/documentation/coremotion"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAbsoluteAltitudeData": {
+      "abstract": [
+        {
+          "text": "Data that records a change in absolute altitude.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMAbsoluteAltitudeData"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAbsoluteAltitudeData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMAbsoluteAltitudeData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMAbsoluteAltitudeData",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmabsolutealtitudedata"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAccelerometerData": {
+      "abstract": [
+        {
+          "text": "A data sample from the device’s three accelerometers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMAccelerometerData"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAccelerometerData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMAccelerometerData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMAccelerometerData",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmaccelerometerdata"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAltimeter": {
+      "abstract": [
+        {
+          "text": "An object that initiates the delivery of altitude-related changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMAltimeter"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAltimeter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMAltimeter"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMAltimeter",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmaltimeter"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAltitudeData": {
+      "abstract": [
+        {
+          "text": "Data for a recorded change in altitude.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMAltitudeData"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAltitudeData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMAltitudeData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMAltitudeData",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmaltitudedata"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAmbientPressureData": {
+      "abstract": [
+        {
+          "text": "A measurement of the ambient pressure and temperature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMAmbientPressureData"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAmbientPressureData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMAmbientPressureData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMAmbientPressureData",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmambientpressuredata"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude": {
+      "abstract": [
+        {
+          "text": "The device’s orientation relative to a known frame of reference at a point in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMAttitude"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMAttitude"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMAttitude",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmattitude"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitudeReferenceFrame": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the frame of reference for attitude-related motion data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMAttitudeReferenceFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitudeReferenceFrame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMAttitudeReferenceFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMAttitudeReferenceFrame",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmattitudereferenceframe"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMBatchedSensorManager": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBatchedSensorManager"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMBatchedSensorManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBatchedSensorManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBatchedSensorManager",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmbatchedsensormanager"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMDeviceMotion": {
+      "abstract": [
+        {
+          "text": "Encapsulated measurements of the attitude, rotation rate, and acceleration of a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMDeviceMotion"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMDeviceMotion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMDeviceMotion"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMDeviceMotion",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmdevicemotion"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMDyskineticSymptomResult": {
+      "abstract": [
+        {
+          "text": "A result object that contains data about the likely presence of dyskinetic symptoms during a one-minute interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMDyskineticSymptomResult"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMDyskineticSymptomResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMDyskineticSymptomResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMDyskineticSymptomResult",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmdyskineticsymptomresult"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionDelegate": {
+      "abstract": [
+        {
+          "text": "A delegate that receives information about fall detection events and authorization status changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMFallDetectionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMFallDetectionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMFallDetectionDelegate",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmfalldetectiondelegate"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionEvent": {
+      "abstract": [
+        {
+          "text": "An object that contains data about a fall detection event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMFallDetectionEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMFallDetectionEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMFallDetectionEvent",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmfalldetectionevent"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionManager": {
+      "abstract": [
+        {
+          "text": "An object for managing fall detection events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMFallDetectionManager"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMFallDetectionManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMFallDetectionManager",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmfalldetectionmanager"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMGyroData": {
+      "abstract": [
+        {
+          "text": "A single measurement of the device’s rotation rate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMGyroData"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMGyroData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMGyroData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMGyroData",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmgyrodata"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager": {
+      "abstract": [
+        {
+          "text": "An object that starts and manages headphone activity services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMHeadphoneActivityManager"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMHeadphoneActivityManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMHeadphoneActivityManager",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmheadphoneactivitymanager"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneMotionManager": {
+      "abstract": [
+        {
+          "text": "An object that starts and manages headphone motion services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMHeadphoneMotionManager"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneMotionManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMHeadphoneMotionManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMHeadphoneMotionManager",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmheadphonemotionmanager"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMHighFrequencyHeartRateData": {
+      "abstract": [
+        {
+          "text": "A class that represents heart rate data collected at 1 Hz.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMHighFrequencyHeartRateData"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMHighFrequencyHeartRateData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMHighFrequencyHeartRateData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMHighFrequencyHeartRateData",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmhighfrequencyheartratedata"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMLogItem": {
+      "abstract": [
+        {
+          "text": "The base class for all motion-related data objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMLogItem"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMLogItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMLogItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMLogItem",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmlogitem"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMagnetometerData": {
+      "abstract": [
+        {
+          "text": "Measurements of the Earth’s magnetic field relative to the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMMagnetometerData"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMagnetometerData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMMagnetometerData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMMagnetometerData",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmagnetometerdata"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionActivity": {
+      "abstract": [
+        {
+          "text": "The data for a single motion update event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMMotionActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMMotionActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMMotionActivity",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionactivity"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionActivityManager": {
+      "abstract": [
+        {
+          "text": "An object that manages access to the motion data stored by the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMMotionActivityManager"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionActivityManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMMotionActivityManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMMotionActivityManager",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionactivitymanager"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager": {
+      "abstract": [
+        {
+          "text": "The object for starting and managing motion services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMMotionManager"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMMotionManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMMotionManager",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager": {
+      "abstract": [
+        {
+          "text": "A manager for recording and querying movement disorder data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMMovementDisorderManager"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMMovementDisorderManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMMovementDisorderManager",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmovementdisordermanager"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMOdometerData": {
+      "abstract": [
+        {
+          "text": "A class that represents odometer data for workouts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMOdometerData"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMOdometerData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMOdometerData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMOdometerData",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmodometerdata"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer": {
+      "abstract": [
+        {
+          "text": "An object for fetching the system-generated live walking data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMPedometer"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMPedometer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMPedometer",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmpedometer"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometerData": {
+      "abstract": [
+        {
+          "text": "Information about the distance traveled by a user on foot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMPedometerData"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometerData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMPedometerData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMPedometerData",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmpedometerdata"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometerEvent": {
+      "abstract": [
+        {
+          "text": "A change in the user’s pedestrian activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMPedometerEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometerEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMPedometerEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMPedometerEvent",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmpedometerevent"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMRecordedAccelerometerData": {
+      "abstract": [
+        {
+          "text": "A single piece of accelerometer data that was recorded by the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMRecordedAccelerometerData"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMRecordedAccelerometerData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMRecordedAccelerometerData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMRecordedAccelerometerData",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmrecordedaccelerometerdata"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMRecordedPressureData": {
+      "abstract": [
+        {
+          "text": "A recorded measurement of pressure data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMRecordedPressureData"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMRecordedPressureData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMRecordedPressureData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMRecordedPressureData",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmrecordedpressuredata"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMSensorDataList": {
+      "abstract": [
+        {
+          "text": "A list of the accelerometer data recorded by the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSensorDataList"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMSensorDataList",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSensorDataList"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSensorDataList",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmsensordatalist"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMSensorRecorder": {
+      "abstract": [
+        {
+          "text": "An object that gathers and retrieves accelerometer data from a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSensorRecorder"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMSensorRecorder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSensorRecorder"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSensorRecorder",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmsensorrecorder"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMStepCounter": {
+      "abstract": [
+        {
+          "text": "The number of steps the user has taken with the device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMStepCounter"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMStepCounter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMStepCounter"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMStepCounter",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmstepcounter"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMTremorResult": {
+      "abstract": [
+        {
+          "text": "A result object that contains data about the presence and strength of tremors during a one-minute interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTremorResult"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMTremorResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTremorResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTremorResult",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmtremorresult"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionEvent": {
+      "abstract": [
+        {
+          "text": "An event indicating that the device’s submersion state has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMWaterSubmersionEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMWaterSubmersionEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMWaterSubmersionEvent",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmwatersubmersionevent"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManager": {
+      "abstract": [
+        {
+          "text": "An object for managing the collection of pressure and temperature data during submersion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMWaterSubmersionManager"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMWaterSubmersionManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMWaterSubmersionManager",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmwatersubmersionmanager"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManagerDelegate": {
+      "abstract": [
+        {
+          "text": "A delegate that receives updates about ambient pressure, water pressure, water temperature, and submersion events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMWaterSubmersionManagerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManagerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMWaterSubmersionManagerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMWaterSubmersionManagerDelegate",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmwatersubmersionmanagerdelegate"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionMeasurement": {
+      "abstract": [
+        {
+          "text": "An update that contains data about the pressure and depth.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMWaterSubmersionMeasurement"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionMeasurement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMWaterSubmersionMeasurement"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMWaterSubmersionMeasurement",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmwatersubmersionmeasurement"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterTemperature": {
+      "abstract": [
+        {
+          "text": "An update that contains data about the water temperature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMWaterTemperature"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterTemperature",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMWaterTemperature"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMWaterTemperature",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmwatertemperature"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CM_EXTERN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CM_EXTERN"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CM_EXTERN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CM_EXTERN",
+      "type": "topic",
+      "url": "/documentation/coremotion/cm_extern"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/COREMOTION_EXPORT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "COREMOTION_EXPORT"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/COREMOTION_EXPORT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "COREMOTION_EXPORT",
+      "type": "topic",
+      "url": "/documentation/coremotion/coremotion_export"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/accessing-submersion-data": {
+      "abstract": [
+        {
+          "text": "Use a water-submersion manager to receive water pressure, temperature, and depth data on Apple Watch Ultra.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/accessing-submersion-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing submersion data",
+      "type": "topic",
+      "url": "/documentation/coremotion/accessing-submersion-data"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/adhering-to-the-movement-disorder-data-collection-requirements": {
+      "abstract": [
+        {
+          "text": "Ensure that your users understand and have control over the data your app collects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/adhering-to-the-movement-disorder-data-collection-requirements",
+      "kind": "article",
+      "role": "article",
+      "title": "Adhering to the movement disorder data collection requirements",
+      "type": "topic",
+      "url": "/documentation/coremotion/adhering-to-the-movement-disorder-data-collection-requirements"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/getting-motion-activity-data-from-headphones": {
+      "abstract": [
+        {
+          "text": "Configure your app to listen for motion-activity changes from headphones.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/getting-motion-activity-data-from-headphones",
+      "images": [
+        {
+          "identifier": "getting-motion-activity-data-from-headphones.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Getting motion-activity data from headphones",
+      "type": "topic",
+      "url": "/documentation/coremotion/getting-motion-activity-data-from-headphones"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/getting-movement-disorder-symptom-data": {
+      "abstract": [
+        {
+          "text": "Retrieve data from the Apple Watch’s movement disorder manager.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/getting-movement-disorder-symptom-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting movement disorder symptom data",
+      "type": "topic",
+      "url": "/documentation/coremotion/getting-movement-disorder-symptom-data"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/getting-processed-device-motion-data": {
+      "abstract": [
+        {
+          "text": "Retrieve motion data that the system processed to remove environmental bias, such as the effects of gravity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/getting-processed-device-motion-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting processed device-motion data",
+      "type": "topic",
+      "url": "/documentation/coremotion/getting-processed-device-motion-data"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/getting-raw-accelerometer-events": {
+      "abstract": [
+        {
+          "text": "Retrieve data from the onboard accelerometers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/getting-raw-accelerometer-events",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting raw accelerometer events",
+      "type": "topic",
+      "url": "/documentation/coremotion/getting-raw-accelerometer-events"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/getting-raw-gyroscope-events": {
+      "abstract": [
+        {
+          "text": "Retrieve data from the onboard gyroscopes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/getting-raw-gyroscope-events",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting raw gyroscope events",
+      "type": "topic",
+      "url": "/documentation/coremotion/getting-raw-gyroscope-events"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/movement-disorder-algorithm-changelog": {
+      "abstract": [
+        {
+          "text": "A chronological log of notable changes to the movement disorder algorithm.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/movement-disorder-algorithm-changelog",
+      "kind": "article",
+      "role": "article",
+      "title": "Movement disorder algorithm changelog",
+      "type": "topic",
+      "url": "/documentation/coremotion/movement-disorder-algorithm-changelog"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSFallDetectionUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message to the user that explains the app’s request for permission to access fall detection event data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSFallDetectionUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFallDetectionUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSFallDetectionUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMotionUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the device’s motion data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMotionUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMotionUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSMotionUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/Updates/CoreMotion": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Core Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Updates/CoreMotion",
+      "kind": "article",
+      "role": "article",
+      "title": "Core Motion updates",
+      "type": "topic",
+      "url": "/documentation/Updates/CoreMotion"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "getting-motion-activity-data-from-headphones.png": {
+      "alt": "Abstract illustration of a person moving while wearing headphones.",
+      "identifier": "getting-motion-activity-data-from-headphones.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fdf8e8887a3a3cb3c3375e813138c3db/getting-motion-activity-data-from-headphones.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c34157444c1926730c849d10cd7665b3/getting-motion-activity-data-from-headphones~dark.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/Updates/CoreMotion",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Access acceleration, attitude, rotation, and magnetic field data that is adjusted for gravity and other forms of bias.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Device-motion",
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/getting-processed-device-motion-data",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMDeviceMotion",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitudeReferenceFrame",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneMotionManager"
+      ],
+      "title": "Device motion"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Access accelerometer data for all three axes of the device.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Accelerometers",
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/getting-raw-accelerometer-events",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMAccelerometerData",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMRecordedAccelerometerData",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMSensorRecorder",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMSensorDataList"
+      ],
+      "title": "Accelerometers"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Access the raw gyroscope data.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Gyroscopes",
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/getting-raw-gyroscope-events",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMGyroData"
+      ],
+      "title": "Gyroscopes"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Access raw magnetometer data.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Magnetometer",
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMMagnetometerData"
+      ],
+      "title": "Magnetometer"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Access altitude data based on barometric sensor information.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Altitude-data",
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMAltimeter",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMAbsoluteAltitudeData",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMAltitudeData"
+      ],
+      "title": "Altitude data"
+    },
+    {
+      "anchor": "Ambient-pressure",
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMRecordedPressureData",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMAmbientPressureData"
+      ],
+      "title": "Ambient pressure"
+    },
+    {
+      "anchor": "Water-submersion",
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/accessing-submersion-data",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManager",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManagerDelegate",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionEvent",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionMeasurement",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterTemperature"
+      ],
+      "title": "Water submersion"
+    },
+    {
+      "anchor": "Activity",
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionActivityManager",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionActivity",
+        "doc://com.apple.coremotion/documentation/CoreMotion/getting-motion-activity-data-from-headphones"
+      ],
+      "title": "Activity"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Access step-counting data from the built-in motion processor.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Pedometer-and-fitness",
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometerData",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometerEvent",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMStepCounter",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMOdometerData",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMHighFrequencyHeartRateData"
+      ],
+      "title": "Pedometer and fitness"
+    },
+    {
+      "anchor": "Movement-disorder",
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/getting-movement-disorder-symptom-data",
+        "doc://com.apple.coremotion/documentation/CoreMotion/adhering-to-the-movement-disorder-data-collection-requirements",
+        "doc://com.apple.coremotion/documentation/CoreMotion/movement-disorder-algorithm-changelog",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMTremorResult",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMDyskineticSymptomResult"
+      ],
+      "title": "Movement disorder"
+    },
+    {
+      "anchor": "Fall-detection",
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionManager",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionDelegate",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionEvent",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSFallDetectionUsageDescription"
+      ],
+      "title": "Fall detection"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Access recorded motion events to help you analyze movement patterns.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Historical-data",
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMBatchedSensorManager"
+      ],
+      "title": "Historical data"
+    },
+    {
+      "anchor": "Common-data",
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMLogItem"
+      ],
+      "title": "Common data"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/Updates/CoreMotion",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Access acceleration, attitude, rotation, and magnetic field data that is adjusted for gravity and other forms of bias.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Device-motion",
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/getting-processed-device-motion-data",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMDeviceMotion",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitudeReferenceFrame",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneMotionManager"
+              ],
+              "title": "Device motion"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Access accelerometer data for all three axes of the device.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Accelerometers",
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/getting-raw-accelerometer-events",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMAccelerometerData",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMRecordedAccelerometerData",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMSensorRecorder",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMSensorDataList"
+              ],
+              "title": "Accelerometers"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Access the raw gyroscope data.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Gyroscopes",
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/getting-raw-gyroscope-events",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMGyroData"
+              ],
+              "title": "Gyroscopes"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Access raw magnetometer data.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Magnetometer",
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMMagnetometerData"
+              ],
+              "title": "Magnetometer"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Access altitude data based on barometric sensor information.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Altitude-data",
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMAltimeter",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMAbsoluteAltitudeData",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMAltitudeData"
+              ],
+              "title": "Altitude data"
+            },
+            {
+              "anchor": "Ambient-pressure",
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMRecordedPressureData",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMAmbientPressureData"
+              ],
+              "title": "Ambient pressure"
+            },
+            {
+              "anchor": "Water-submersion",
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/accessing-submersion-data",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManager",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManagerDelegate",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionEvent",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionMeasurement",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterTemperature"
+              ],
+              "title": "Water submersion"
+            },
+            {
+              "anchor": "Activity",
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionActivityManager",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionActivity",
+                "doc://com.apple.coremotion/documentation/CoreMotion/getting-motion-activity-data-from-headphones"
+              ],
+              "title": "Activity"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Access step-counting data from the built-in motion processor.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Pedometer-and-fitness",
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometerData",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometerEvent",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMStepCounter",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMOdometerData",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMHighFrequencyHeartRateData"
+              ],
+              "title": "Pedometer and fitness"
+            },
+            {
+              "anchor": "Movement-disorder",
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/getting-movement-disorder-symptom-data",
+                "doc://com.apple.coremotion/documentation/CoreMotion/adhering-to-the-movement-disorder-data-collection-requirements",
+                "doc://com.apple.coremotion/documentation/CoreMotion/movement-disorder-algorithm-changelog",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMTremorResult",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMDyskineticSymptomResult"
+              ],
+              "title": "Movement disorder"
+            },
+            {
+              "anchor": "Fall-detection",
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionManager",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionDelegate",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionEvent",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSFallDetectionUsageDescription"
+              ],
+              "title": "Fall detection"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Access recorded motion events to help you analyze movement patterns.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Historical-data",
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMBatchedSensorManager"
+              ],
+              "title": "Historical data"
+            },
+            {
+              "anchor": "Common-data",
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMLogItem"
+              ],
+              "title": "Common data"
+            },
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CM_EXTERN",
+                "doc://com.apple.coremotion/documentation/CoreMotion/COREMOTION_EXPORT"
+              ],
+              "title": "Macros"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterTemperature/title",
+          "value": "CMWaterTemperature"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterTemperature/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMWaterTemperature"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterTemperature/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMWaterTemperature"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitudeReferenceFrame/title",
+          "value": "CMAttitudeReferenceFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitudeReferenceFrame/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAttitudeReferenceFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitudeReferenceFrame/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAttitudeReferenceFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMRecordedPressureData/title",
+          "value": "CMRecordedPressureData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMRecordedPressureData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMRecordedPressureData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMRecordedPressureData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMRecordedPressureData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAmbientPressureData/title",
+          "value": "CMAmbientPressureData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAmbientPressureData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAmbientPressureData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAmbientPressureData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAmbientPressureData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionActivityManager/title",
+          "value": "CMMotionActivityManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionActivityManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMotionActivityManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionActivityManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMotionActivityManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager/title",
+          "value": "CMMotionManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMotionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMotionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMTremorResult/title",
+          "value": "CMTremorResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMTremorResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTremorResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMTremorResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTremorResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAbsoluteAltitudeData/title",
+          "value": "CMAbsoluteAltitudeData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAbsoluteAltitudeData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAbsoluteAltitudeData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAbsoluteAltitudeData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAbsoluteAltitudeData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMDyskineticSymptomResult/title",
+          "value": "CMDyskineticSymptomResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMDyskineticSymptomResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMDyskineticSymptomResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMDyskineticSymptomResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMDyskineticSymptomResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHighFrequencyHeartRateData/title",
+          "value": "CMHighFrequencyHeartRateData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHighFrequencyHeartRateData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMHighFrequencyHeartRateData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHighFrequencyHeartRateData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMHighFrequencyHeartRateData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneMotionManager/title",
+          "value": "CMHeadphoneMotionManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneMotionManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMHeadphoneMotionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneMotionManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMHeadphoneMotionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMStepCounter/title",
+          "value": "CMStepCounter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMStepCounter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMStepCounter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMStepCounter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMStepCounter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionManager/title",
+          "value": "CMFallDetectionManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMFallDetectionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMFallDetectionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMDeviceMotion/title",
+          "value": "CMDeviceMotion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMDeviceMotion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMDeviceMotion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMDeviceMotion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMDeviceMotion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAltitudeData/title",
+          "value": "CMAltitudeData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAltitudeData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAltitudeData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAltitudeData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAltitudeData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMOdometerData/title",
+          "value": "CMOdometerData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMOdometerData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMOdometerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMOdometerData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMOdometerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionActivity/title",
+          "value": "CMMotionActivity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionActivity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMotionActivity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionActivity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMotionActivity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionManagerDelegate/title",
+          "value": "CMWaterSubmersionManagerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionManagerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMWaterSubmersionManagerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionManagerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMWaterSubmersionManagerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer/title",
+          "value": "CMPedometer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMPedometer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMPedometer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMagnetometerData/title",
+          "value": "CMMagnetometerData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMagnetometerData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMagnetometerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMagnetometerData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMagnetometerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMGyroData/title",
+          "value": "CMGyroData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMGyroData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMGyroData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMGyroData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMGyroData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionEvent/title",
+          "value": "CMFallDetectionEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMFallDetectionEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMFallDetectionEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAltimeter/title",
+          "value": "CMAltimeter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAltimeter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAltimeter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAltimeter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAltimeter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionEvent/title",
+          "value": "CMWaterSubmersionEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMWaterSubmersionEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMWaterSubmersionEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMLogItem/title",
+          "value": "CMLogItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMLogItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMLogItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMLogItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMLogItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMBatchedSensorManager/title",
+          "value": "CMBatchedSensorManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMBatchedSensorManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBatchedSensorManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMBatchedSensorManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBatchedSensorManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionDelegate/title",
+          "value": "CMFallDetectionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMFallDetectionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMFallDetectionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAccelerometerData/title",
+          "value": "CMAccelerometerData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAccelerometerData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAccelerometerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAccelerometerData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAccelerometerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMSensorDataList/title",
+          "value": "CMSensorDataList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMSensorDataList/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSensorDataList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMSensorDataList/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSensorDataList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionManager/title",
+          "value": "CMWaterSubmersionManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMWaterSubmersionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMWaterSubmersionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometerData/title",
+          "value": "CMPedometerData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometerData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMPedometerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometerData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMPedometerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometerEvent/title",
+          "value": "CMPedometerEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometerEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMPedometerEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometerEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMPedometerEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude/title",
+          "value": "CMAttitude"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAttitude"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAttitude"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMovementDisorderManager/title",
+          "value": "CMMovementDisorderManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMovementDisorderManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMovementDisorderManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMovementDisorderManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMovementDisorderManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager/title",
+          "value": "CMHeadphoneActivityManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMHeadphoneActivityManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMHeadphoneActivityManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMRecordedAccelerometerData/title",
+          "value": "CMRecordedAccelerometerData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMRecordedAccelerometerData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMRecordedAccelerometerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMRecordedAccelerometerData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMRecordedAccelerometerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionMeasurement/title",
+          "value": "CMWaterSubmersionMeasurement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionMeasurement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMWaterSubmersionMeasurement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionMeasurement/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMWaterSubmersionMeasurement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMSensorRecorder/title",
+          "value": "CMSensorRecorder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMSensorRecorder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSensorRecorder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMSensorRecorder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSensorRecorder"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremotion"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremotion"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

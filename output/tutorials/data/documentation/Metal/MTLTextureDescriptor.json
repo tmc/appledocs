@@ -1,0 +1,3288 @@
+{
+  "abstract": [
+    {
+      "text": "An object that you use to configure new Metal texture objects.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MTLTextureDescriptor",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MTLTextureDescriptor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MTLTextureDescriptor"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "MTLTextureDescriptor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLTextureDescriptor"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.metal/documentation/Metal/setting-resource-storage-modes",
+        "doc://com.apple.metal/documentation/Metal/choosing-a-resource-storage-mode-for-apple-gpus",
+        "doc://com.apple.metal/documentation/Metal/synchronizing-a-managed-resource-in-macos"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a new texture, first create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and set its property values. Then, call either the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeTexture(descriptor:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeTexture(descriptor:iosurface:plane:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer/makeTexture(descriptor:offset:bytesPerRow:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a texture, Metal copies property values from the descriptor into the new texture. You can reuse a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, modifying its property values as needed, to create more ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects, without affecting any textures you already created.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/MetalKit/MTKTextureLoader": {
+      "abstract": [
+        {
+          "text": "An object that creates textures from existing data in common image formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTKTextureLoader"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKTextureLoader",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTKTextureLoader",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKTextureLoader"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer": {
+      "abstract": [
+        {
+          "text": "A resource that stores data in a format defined by your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer/makeTexture(descriptor:offset:bytesPerRow:)": {
+      "abstract": [
+        {
+          "text": "Creates a texture that shares its storage with the buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeTexture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLTextureDescriptor",
+          "text": "MTLTextureDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bytesPerRow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer/makeTexture(descriptor:offset:bytesPerRow:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newTextureWithDescriptor:offset:bytesPerRow:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeTexture(descriptor:offset:bytesPerRow:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer/maketexture(descriptor:offset:bytesperrow:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice": {
+      "abstract": [
+        {
+          "text": "The main Metal interface to a GPU that apps use to draw graphics and run computations in parallel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDevice",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeTexture(descriptor:)": {
+      "abstract": [
+        {
+          "text": "Creates a new texture instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeTexture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLTextureDescriptor",
+          "text": "MTLTextureDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeTexture(descriptor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newTextureWithDescriptor:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeTexture(descriptor:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/maketexture(descriptor:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeTexture(descriptor:iosurface:plane:)": {
+      "abstract": [
+        {
+          "text": "Creates a texture instance that uses I/O surface to store its underlying data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeTexture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLTextureDescriptor",
+          "text": "MTLTextureDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "iosurface"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@IOSurfaceRef",
+          "text": "IOSurfaceRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "plane"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeTexture(descriptor:iosurface:plane:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newTextureWithDescriptor:iosurface:plane:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeTexture(descriptor:iosurface:plane:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/maketexture(descriptor:iosurface:plane:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat": {
+      "abstract": [
+        {
+          "text": "The data formats that describe the organization and characteristics of individual pixels in a texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPixelFormat",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSharedTextureHandle": {
+      "abstract": [
+        {
+          "text": "A texture handle that can be shared across process address space boundaries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLSharedTextureHandle"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSharedTextureHandle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLSharedTextureHandle"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLSharedTextureHandle",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsharedtexturehandle"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTexture": {
+      "abstract": [
+        {
+          "text": "A resource that holds formatted image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLTexture",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexture"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureCompressionType": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTextureCompressionType"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureCompressionType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLTextureCompressionType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLTextureCompressionType",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturecompressiontype"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that you use to configure new Metal texture objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTextureDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLTextureDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLTextureDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/allowGPUOptimizedContents": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the GPU is allowed to adjust the texture’s contents to improve GPU performance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowGPUOptimizedContents"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/allowGPUOptimizedContents",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowGPUOptimizedContents"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowGPUOptimizedContents",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor/allowgpuoptimizedcontents"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/arrayLength": {
+      "abstract": [
+        {
+          "text": "The number of array elements for this texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "arrayLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/arrayLength",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "arrayLength"
+        }
+      ],
+      "role": "symbol",
+      "title": "arrayLength",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor/arraylength"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/compressionType": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compressionType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLTextureCompressionType",
+          "text": "MTLTextureCompressionType"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/compressionType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compressionType"
+        }
+      ],
+      "role": "symbol",
+      "title": "compressionType",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor/compressiontype"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/cpuCacheMode": {
+      "abstract": [
+        {
+          "text": "The CPU cache mode used for the CPU mapping of the texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cpuCacheMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLCPUCacheMode",
+          "text": "MTLCPUCacheMode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/cpuCacheMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cpuCacheMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "cpuCacheMode",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor/cpucachemode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/depth": {
+      "abstract": [
+        {
+          "text": "The depth of the texture image for the base level mipmap, in pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "depth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/depth",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "depth"
+        }
+      ],
+      "role": "symbol",
+      "title": "depth",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor/depth"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/hazardTrackingMode": {
+      "abstract": [
+        {
+          "text": "The texture’s hazard tracking mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hazardTrackingMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLHazardTrackingMode",
+          "text": "MTLHazardTrackingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/hazardTrackingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hazardTrackingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "hazardTrackingMode",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor/hazardtrackingmode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/height": {
+      "abstract": [
+        {
+          "text": "The height of the texture image for the base level mipmap, in pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/height",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "height"
+        }
+      ],
+      "role": "symbol",
+      "title": "height",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor/height"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/mipmapLevelCount": {
+      "abstract": [
+        {
+          "text": "The number of mipmap levels for this texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mipmapLevelCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/mipmapLevelCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mipmapLevelCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "mipmapLevelCount",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor/mipmaplevelcount"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/pixelFormat": {
+      "abstract": [
+        {
+          "text": "The size and bit layout of all pixels in the texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPixelFormat",
+          "text": "MTLPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/pixelFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pixelFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "pixelFormat",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor/pixelformat"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/resourceOptions": {
+      "abstract": [
+        {
+          "text": "The behavior of a new memory allocation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resourceOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLResourceOptions",
+          "text": "MTLResourceOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/resourceOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resourceOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "resourceOptions",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor/resourceoptions"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/sampleCount": {
+      "abstract": [
+        {
+          "text": "The number of samples in each fragment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sampleCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/sampleCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sampleCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "sampleCount",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor/samplecount"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/storageMode": {
+      "abstract": [
+        {
+          "text": "The location and access permissions of the texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storageMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLStorageMode",
+          "text": "MTLStorageMode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/storageMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "storageMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "storageMode",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor/storagemode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/swizzle": {
+      "abstract": [
+        {
+          "text": "The pattern you want the GPU to apply to pixels when you read or sample pixels from the texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "swizzle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLTextureSwizzleChannels",
+          "text": "MTLTextureSwizzleChannels"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/swizzle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "swizzle"
+        }
+      ],
+      "role": "symbol",
+      "title": "swizzle",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor/swizzle"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/texture2DDescriptor(pixelFormat:width:height:mipmapped:)": {
+      "abstract": [
+        {
+          "text": "Creates a texture descriptor object for a 2D texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "texture2DDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "pixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPixelFormat",
+          "text": "MTLPixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mipmapped"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLTextureDescriptor",
+          "text": "MTLTextureDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/texture2DDescriptor(pixelFormat:width:height:mipmapped:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "texture2DDescriptorWithPixelFormat:width:height:mipmapped:"
+        }
+      ],
+      "role": "symbol",
+      "title": "texture2DDescriptor(pixelFormat:width:height:mipmapped:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor/texture2ddescriptor(pixelformat:width:height:mipmapped:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/textureBufferDescriptor(with:width:resourceOptions:usage:)": {
+      "abstract": [
+        {
+          "text": "Creates a texture descriptor object for a texture buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureBufferDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPixelFormat",
+          "text": "MTLPixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "resourceOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLResourceOptions",
+          "text": "MTLResourceOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLTextureUsage",
+          "text": "MTLTextureUsage"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLTextureDescriptor",
+          "text": "MTLTextureDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/textureBufferDescriptor(with:width:resourceOptions:usage:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureBufferDescriptorWithPixelFormat:width:resourceOptions:usage:"
+        }
+      ],
+      "role": "symbol",
+      "title": "textureBufferDescriptor(with:width:resourceOptions:usage:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor/texturebufferdescriptor(with:width:resourceoptions:usage:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/textureCubeDescriptor(pixelFormat:size:mipmapped:)": {
+      "abstract": [
+        {
+          "text": "Creates a texture descriptor object for a cube texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureCubeDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "pixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPixelFormat",
+          "text": "MTLPixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mipmapped"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLTextureDescriptor",
+          "text": "MTLTextureDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/textureCubeDescriptor(pixelFormat:size:mipmapped:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureCubeDescriptorWithPixelFormat:size:mipmapped:"
+        }
+      ],
+      "role": "symbol",
+      "title": "textureCubeDescriptor(pixelFormat:size:mipmapped:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor/texturecubedescriptor(pixelformat:size:mipmapped:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/textureType": {
+      "abstract": [
+        {
+          "text": "The dimension and arrangement of texture image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLTextureType",
+          "text": "MTLTextureType"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/textureType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureType"
+        }
+      ],
+      "role": "symbol",
+      "title": "textureType",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor/texturetype"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/usage": {
+      "abstract": [
+        {
+          "text": "Options that determine how you can use the texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLTextureUsage",
+          "text": "MTLTextureUsage"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/usage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "usage"
+        }
+      ],
+      "role": "symbol",
+      "title": "usage",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor/usage"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/width": {
+      "abstract": [
+        {
+          "text": "The width of the texture image for the base level mipmap, in pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/width",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "width"
+        }
+      ],
+      "role": "symbol",
+      "title": "width",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor/width"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureSwizzle": {
+      "abstract": [
+        {
+          "text": "A set of options to choose from when creating a texture swizzle pattern.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTextureSwizzle"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureSwizzle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLTextureSwizzle"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLTextureSwizzle",
+      "type": "topic",
+      "url": "/documentation/metal/mtltextureswizzle"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureSwizzleChannels": {
+      "abstract": [
+        {
+          "text": "A pattern that modifies the data read or sampled from a texture by rearranging or duplicating the elements of a vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTextureSwizzleChannels"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureSwizzleChannels",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLTextureSwizzleChannels"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLTextureSwizzleChannels",
+      "type": "topic",
+      "url": "/documentation/metal/mtltextureswizzlechannels"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureSwizzleChannelsMake": {
+      "abstract": [
+        {
+          "text": "Creates a new swizzle pattern.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MTLTextureSwizzleChannelsMake"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureSwizzleChannelsMake",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLTextureSwizzleChannelsMake",
+      "type": "topic",
+      "url": "/documentation/metal/mtltextureswizzlechannelsmake"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureType": {
+      "abstract": [
+        {
+          "text": "The dimension of each image, including whether multiple images are arranged into an array or a cube.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTextureType"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLTextureType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLTextureType",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturetype"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureUsage": {
+      "abstract": [
+        {
+          "text": "An enumeration for the various options that determine how you can use a texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTextureUsage"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureUsage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLTextureUsage"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLTextureUsage",
+      "type": "topic",
+      "url": "/documentation/metal/mtltextureusage"
+    },
+    "doc://com.apple.metal/documentation/Metal/choosing-a-resource-storage-mode-for-apple-gpus": {
+      "abstract": [
+        {
+          "text": "Select an appropriate storage mode for your textures and buffers on Apple GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/choosing-a-resource-storage-mode-for-apple-gpus",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing a Resource Storage Mode for Apple GPUs",
+      "type": "topic",
+      "url": "/documentation/metal/choosing-a-resource-storage-mode-for-apple-gpus"
+    },
+    "doc://com.apple.metal/documentation/Metal/optimizing-texture-data": {
+      "abstract": [
+        {
+          "text": "Optimize a texture’s data to improve GPU or CPU access.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/optimizing-texture-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing Texture Data",
+      "type": "topic",
+      "url": "/documentation/metal/optimizing-texture-data"
+    },
+    "doc://com.apple.metal/documentation/Metal/setting-resource-storage-modes": {
+      "abstract": [
+        {
+          "text": "Set a storage mode that defines the memory location and access permissions of a resource.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/setting-resource-storage-modes",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Resource Storage Modes",
+      "type": "topic",
+      "url": "/documentation/metal/setting-resource-storage-modes"
+    },
+    "doc://com.apple.metal/documentation/Metal/synchronizing-a-managed-resource-in-macos": {
+      "abstract": [
+        {
+          "text": "Manually synchronize memory for a Metal resource in apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/synchronizing-a-managed-resource-in-macos",
+      "kind": "article",
+      "role": "article",
+      "title": "Synchronizing a Managed Resource in macOS",
+      "type": "topic",
+      "url": "/documentation/metal/synchronizing-a-managed-resource-in-macos"
+    },
+    "doc://com.apple.metal/documentation/Metal/understanding-color-renderable-pixel-format-sizes": {
+      "abstract": [
+        {
+          "text": "Know the size limits of color render targets in Apple GPUs based on the target’s pixel format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/understanding-color-renderable-pixel-format-sizes",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding Color-Renderable Pixel Format Sizes",
+      "type": "topic",
+      "url": "/documentation/metal/understanding-color-renderable-pixel-format-sizes"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Texture-Basics",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/understanding-color-renderable-pixel-format-sizes",
+        "doc://com.apple.metal/documentation/Metal/optimizing-texture-data",
+        "doc://com.apple.metal/documentation/Metal/MTLTexture",
+        "doc://com.apple.metal/documentation/Metal/MTLTextureCompressionType",
+        "doc://com.apple.documentation/documentation/MetalKit/MTKTextureLoader",
+        "doc://com.apple.metal/documentation/Metal/MTLSharedTextureHandle",
+        "doc://com.apple.metal/documentation/Metal/MTLPixelFormat"
+      ],
+      "title": "Texture Basics"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-Texture-Descriptors",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/texture2DDescriptor(pixelFormat:width:height:mipmapped:)",
+        "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/textureCubeDescriptor(pixelFormat:size:mipmapped:)",
+        "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/textureBufferDescriptor(with:width:resourceOptions:usage:)"
+      ],
+      "title": "Creating Texture Descriptors"
+    },
+    {
+      "anchor": "Specifying-Texture-Attributes",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/textureType",
+        "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/pixelFormat",
+        "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/width",
+        "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/height",
+        "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/depth",
+        "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/mipmapLevelCount",
+        "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/sampleCount",
+        "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/arrayLength",
+        "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/resourceOptions",
+        "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/cpuCacheMode",
+        "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/storageMode",
+        "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/hazardTrackingMode",
+        "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/allowGPUOptimizedContents",
+        "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/usage",
+        "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/swizzle",
+        "doc://com.apple.metal/documentation/Metal/MTLTextureSwizzleChannels",
+        "doc://com.apple.metal/documentation/Metal/MTLTextureSwizzle",
+        "doc://com.apple.metal/documentation/Metal/MTLTextureType",
+        "doc://com.apple.metal/documentation/Metal/MTLTextureUsage"
+      ],
+      "title": "Specifying Texture Attributes"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/compressionType"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MTLTextureDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTextureDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTextureDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.metal/documentation/Metal"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-Texture-Descriptors",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/texture2DDescriptor(pixelFormat:width:height:mipmapped:)",
+                "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/textureCubeDescriptor(pixelFormat:size:mipmapped:)",
+                "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/textureBufferDescriptor(with:width:resourceOptions:usage:)"
+              ],
+              "title": "Creating Texture Descriptors"
+            },
+            {
+              "anchor": "Specifying-Texture-Attributes",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/textureType",
+                "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/pixelFormat",
+                "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/width",
+                "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/height",
+                "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/depth",
+                "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/mipmapLevelCount",
+                "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/sampleCount",
+                "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/arrayLength",
+                "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/resourceOptions",
+                "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/cpuCacheMode",
+                "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/storageMode",
+                "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/hazardTrackingMode",
+                "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/allowGPUOptimizedContents",
+                "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/usage",
+                "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/swizzle",
+                "doc://com.apple.metal/documentation/Metal/MTLTextureSwizzleChannels",
+                "doc://com.apple.metal/documentation/Metal/MTLTextureSwizzleChannelsMake",
+                "doc://com.apple.metal/documentation/Metal/MTLTextureSwizzle",
+                "doc://com.apple.metal/documentation/Metal/MTLTextureType",
+                "doc://com.apple.metal/documentation/Metal/MTLTextureUsage"
+              ],
+              "title": "Specifying Texture Attributes"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/compressionType"
+              ],
+              "title": "Instance Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Texture-Basics",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/understanding-color-renderable-pixel-format-sizes",
+                "doc://com.apple.metal/documentation/Metal/optimizing-texture-data",
+                "doc://com.apple.metal/documentation/Metal/MTLTexture",
+                "doc://com.apple.metal/documentation/Metal/MTLTextureCompressionType",
+                "doc://com.apple.documentation/documentation/MetalKit/MTKTextureLoader",
+                "doc://com.apple.metal/documentation/Metal/MTLSharedTextureHandle",
+                "doc://com.apple.metal/documentation/Metal/MTLPixelFormat"
+              ],
+              "title": "Texture Basics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MTLTextureDescriptor"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1pixelFormat/title",
+          "value": "pixelFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1pixelFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pixelFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedTextureHandle/title",
+          "value": "MTLSharedTextureHandle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedTextureHandle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedTextureHandle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedTextureHandle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedTextureHandle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKTextureLoader/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTKTextureLoader"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureSwizzle/title",
+          "value": "MTLTextureSwizzle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureSwizzle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTextureSwizzle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureSwizzle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTextureSwizzle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1resourceOptions/title",
+          "value": "resourceOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1resourceOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "resourceOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture/title",
+          "value": "MTLTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1arrayLength/title",
+          "value": "arrayLength"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1arrayLength/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "arrayLength"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1depth/title",
+          "value": "depth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1depth/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "depth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1textureCubeDescriptor(pixelFormat:size:mipmapped:)/title",
+          "value": "textureCubeDescriptorWithPixelFormat:size:mipmapped:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1textureCubeDescriptor(pixelFormat:size:mipmapped:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureCubeDescriptorWithPixelFormat:size:mipmapped:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1mipmapLevelCount/title",
+          "value": "mipmapLevelCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1mipmapLevelCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mipmapLevelCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1swizzle/title",
+          "value": "swizzle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1swizzle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "swizzle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1compressionType/title",
+          "value": "compressionType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1compressionType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compressionType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer~1makeTexture(descriptor:offset:bytesPerRow:)/title",
+          "value": "newTextureWithDescriptor:offset:bytesPerRow:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer~1makeTexture(descriptor:offset:bytesPerRow:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newTextureWithDescriptor:offset:bytesPerRow:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeTexture(descriptor:)/title",
+          "value": "newTextureWithDescriptor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeTexture(descriptor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newTextureWithDescriptor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureUsage/title",
+          "value": "MTLTextureUsage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureUsage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTextureUsage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureUsage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTextureUsage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1sampleCount/title",
+          "value": "sampleCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1sampleCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sampleCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1textureType/title",
+          "value": "textureType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1textureType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "textureType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1textureBufferDescriptor(with:width:resourceOptions:usage:)/title",
+          "value": "textureBufferDescriptorWithPixelFormat:width:resourceOptions:usage:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1textureBufferDescriptor(with:width:resourceOptions:usage:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureBufferDescriptorWithPixelFormat:width:resourceOptions:usage:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1hazardTrackingMode/title",
+          "value": "hazardTrackingMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1hazardTrackingMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hazardTrackingMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1allowGPUOptimizedContents/title",
+          "value": "allowGPUOptimizedContents"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1allowGPUOptimizedContents/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowGPUOptimizedContents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureType/title",
+          "value": "MTLTextureType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTextureType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTextureType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/title",
+          "value": "MTLDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/title",
+          "value": "MTLBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1cpuCacheMode/title",
+          "value": "cpuCacheMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1cpuCacheMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cpuCacheMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureCompressionType/title",
+          "value": "MTLTextureCompressionType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureCompressionType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTextureCompressionType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureCompressionType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTextureCompressionType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1width/title",
+          "value": "width"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1width/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "width"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1usage/title",
+          "value": "usage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1usage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "usage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeTexture(descriptor:iosurface:plane:)/title",
+          "value": "newTextureWithDescriptor:iosurface:plane:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeTexture(descriptor:iosurface:plane:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newTextureWithDescriptor:iosurface:plane:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1texture2DDescriptor(pixelFormat:width:height:mipmapped:)/title",
+          "value": "texture2DDescriptorWithPixelFormat:width:height:mipmapped:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1texture2DDescriptor(pixelFormat:width:height:mipmapped:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "texture2DDescriptorWithPixelFormat:width:height:mipmapped:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1height/title",
+          "value": "height"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1height/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "height"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat/title",
+          "value": "MTLPixelFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureSwizzleChannels/title",
+          "value": "MTLTextureSwizzleChannels"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureSwizzleChannels/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTextureSwizzleChannels"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureSwizzleChannels/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTextureSwizzleChannels"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor/title",
+          "value": "MTLTextureDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTextureDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTextureDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1storageMode/title",
+          "value": "storageMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1storageMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "storageMode"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mtltexturedescriptor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/mtltexturedescriptor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

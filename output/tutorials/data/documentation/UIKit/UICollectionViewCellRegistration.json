@@ -1,0 +1,974 @@
+{
+  "abstract": [
+    {
+      "text": "A registration for the collection view’s cells.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCellRegistration"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UICollectionViewCellRegistration",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "UICollectionViewCellRegistration"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UICollectionViewCellRegistration"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UICollectionViewCellRegistration"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewCellRegistration"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a cell registration to register cells with your collection view and configure each cell for display. You create a cell registration with your cell type and data item type as the registration’s generic parameters, passing in a registration handler to configure the cell. In the registration handler, you specify how to configure the content and appearance of that type of cell.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example creates a cell registration for cells of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewListCell",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". It creates a content configuration with a system default style, customizes the content and appearance of the configuration, and then assigns the configuration to the cell.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "UICollectionViewCellRegistration *cellRegistration = [UICollectionViewCellRegistration registrationWithCellClass:[UICollectionViewListCell class] configurationHandler:^(UICollectionViewListCell *cell, NSIndexPath *indexPath, id item) {",
+            "    UIListContentConfiguration *contentConfiguration = cell.defaultContentConfiguration;",
+            "    ",
+            "    contentConfiguration.text = [NSString stringWithFormat:@\"%@\", item];",
+            "    contentConfiguration.textProperties.color = UIColor.lightGrayColor;",
+            "    ",
+            "    cell.contentConfiguration = contentConfiguration;",
+            "}];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you create a cell registration, you pass it in to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView/dequeueConfiguredReusableCellWithRegistration:forIndexPath:item:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which you call from your data source’s cell provider.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "self.dataSource = [[UICollectionViewDiffableDataSource alloc] initWithCollectionView:self.collectionView cellProvider:^UICollectionViewCell *(UICollectionView *collectionView, NSIndexPath *indexPath, id item) {",
+            "    return [collectionView dequeueConfiguredReusableCellWithRegistration:cellRegistration forIndexPath:indexPath item:item];",
+            "}];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t need to call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView/register(_:forCellWithReuseIdentifier:)-6z6t4",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView/register(_:forCellWithReuseIdentifier:)-3vaho",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The collection view registers your cell automatically when you pass the cell registration to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView/dequeueConfiguredReusableCellWithRegistration:forIndexPath:item:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Don’t create your cell registration inside a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSourceReferenceCellProvider",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " closure; doing so prevents cell reuse, and generates an exception in iOS 15 and higher.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionView/dequeueConfiguredReusableCellWithRegistration:forIndexPath:item:": {
+      "abstract": [
+        {
+          "text": "Dequeues a configured reusable cell object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "dequeueConfiguredReusableCellWithRegistration:forIndexPath:item:"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView/dequeueConfiguredReusableCellWithRegistration:forIndexPath:item:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dequeueConfiguredReusableCellWithRegistration:forIndexPath:item:"
+        }
+      ],
+      "role": "symbol",
+      "title": "dequeueConfiguredReusableCellWithRegistration:forIndexPath:item:",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionview/dequeueconfiguredreusablecellwithregistration:forindexpath:item:"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionView/dequeueReusableCell(withReuseIdentifier:for:)": {
+      "abstract": [
+        {
+          "text": "Dequeues a reusable cell object located by its identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dequeueReusableCell"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withReuseIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UICollectionViewCell",
+          "text": "UICollectionViewCell"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView/dequeueReusableCell(withReuseIdentifier:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dequeueReusableCellWithReuseIdentifier:forIndexPath:"
+        }
+      ],
+      "role": "symbol",
+      "title": "dequeueReusableCell(withReuseIdentifier:for:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionview/dequeuereusablecell(withreuseidentifier:for:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionView/register(_:forCellWithReuseIdentifier:)-3vaho": {
+      "abstract": [
+        {
+          "text": "Registers a class for use in creating new collection view cells.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "register"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8AnyClassa",
+          "text": "AnyClass"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forCellWithReuseIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView/register(_:forCellWithReuseIdentifier:)-3vaho",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "registerClass:forCellWithReuseIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "register(_:forCellWithReuseIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionview/register(_:forcellwithreuseidentifier:)-3vaho"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionView/register(_:forCellWithReuseIdentifier:)-6z6t4": {
+      "abstract": [
+        {
+          "text": "Registers a nib file for use in creating new collection view cells.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "register"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UINib",
+          "text": "UINib"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forCellWithReuseIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView/register(_:forCellWithReuseIdentifier:)-6z6t4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "registerNib:forCellWithReuseIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "register(_:forCellWithReuseIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionview/register(_:forcellwithreuseidentifier:)-6z6t4"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCellRegistration": {
+      "abstract": [
+        {
+          "text": "A registration for the collection view’s cells.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewCellRegistration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCellRegistration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICollectionViewCellRegistration",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcellregistration"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCellRegistration/cellClass": {
+      "abstract": [
+        {
+          "text": "The class associated with the cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cellClass"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCellRegistration/cellClass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cellClass",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcellregistration/cellclass"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCellRegistration/cellNib": {
+      "abstract": [
+        {
+          "text": "The nib file associated with the cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cellNib"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCellRegistration/cellNib",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cellNib",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcellregistration/cellnib"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCellRegistration/configurationHandler": {
+      "abstract": [
+        {
+          "text": "The closure that handles the cell registration and configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "configurationHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCellRegistration/configurationHandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configurationHandler",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcellregistration/configurationhandler"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCellRegistration/registrationWithCellClass:configurationHandler:": {
+      "abstract": [
+        {
+          "text": "Creates a cell registration with the specified registration handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "registrationWithCellClass:configurationHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCellRegistration/registrationWithCellClass:configurationHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "registrationWithCellClass:configurationHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "registrationWithCellClass:configurationHandler:",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcellregistration/registrationwithcellclass:configurationhandler:"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCellRegistration/registrationWithCellNib:configurationHandler:": {
+      "abstract": [
+        {
+          "text": "Creates a cell registration with the specified registration handler and nib file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "registrationWithCellNib:configurationHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCellRegistration/registrationWithCellNib:configurationHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "registrationWithCellNib:configurationHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "registrationWithCellNib:configurationHandler:",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcellregistration/registrationwithcellnib:configurationhandler:"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCellRegistrationConfigurationHandler": {
+      "abstract": [
+        {
+          "text": "A closure that handles the cell registration and configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewCellRegistrationConfigurationHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCellRegistrationConfigurationHandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICollectionViewCellRegistrationConfigurationHandler",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcellregistrationconfigurationhandler"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSourceReferenceCellProvider": {
+      "abstract": [
+        {
+          "text": "A closure that configures and returns a cell for a collection view from its diffable data source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDiffableDataSourceReferenceCellProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSourceReferenceCellProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDiffableDataSourceReferenceCellProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewDiffableDataSourceReferenceCellProvider",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdiffabledatasourcereferencecellprovider"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewListCell": {
+      "abstract": [
+        {
+          "text": "A collection view cell that provides list features and default styling.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewListCell"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewListCell",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewListCell"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewListCell",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlistcell"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-cells",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionView/dequeueConfiguredReusableCellWithRegistration:forIndexPath:item:",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionView/register(_:forCellWithReuseIdentifier:)-3vaho",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionView/register(_:forCellWithReuseIdentifier:)-6z6t4",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionView/dequeueReusableCell(withReuseIdentifier:for:)"
+      ],
+      "title": "Creating cells"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-cell-registration",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCellRegistration/registrationWithCellClass:configurationHandler:",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCellRegistration/registrationWithCellNib:configurationHandler:",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCellRegistrationConfigurationHandler"
+      ],
+      "title": "Creating a cell registration"
+    },
+    {
+      "anchor": "Querying-a-cell-registration",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCellRegistration/configurationHandler",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCellRegistration/cellClass",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCellRegistration/cellNib"
+      ],
+      "title": "Querying a cell registration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewListCell/title",
+          "value": "UICollectionViewListCell"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewListCell/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewListCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewListCell/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewListCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView~1register(_:forCellWithReuseIdentifier:)-6z6t4/title",
+          "value": "registerNib:forCellWithReuseIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView~1register(_:forCellWithReuseIdentifier:)-6z6t4/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerNib:forCellWithReuseIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDiffableDataSourceReferenceCellProvider/title",
+          "value": "UICollectionViewDiffableDataSourceCellProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDiffableDataSourceReferenceCellProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDiffableDataSourceCellProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDiffableDataSourceReferenceCellProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDiffableDataSourceCellProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView~1register(_:forCellWithReuseIdentifier:)-3vaho/title",
+          "value": "registerClass:forCellWithReuseIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView~1register(_:forCellWithReuseIdentifier:)-3vaho/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerClass:forCellWithReuseIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView~1dequeueReusableCell(withReuseIdentifier:for:)/title",
+          "value": "dequeueReusableCellWithReuseIdentifier:forIndexPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView~1dequeueReusableCell(withReuseIdentifier:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "dequeueReusableCellWithReuseIdentifier:forIndexPath:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uicollectionviewcellregistration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

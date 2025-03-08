@@ -1,0 +1,550 @@
+{
+  "abstract": [
+    {
+      "text": "Get the set of assets managed by your organization.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "This legacy API is currently in maintenance mode. Apple won’t add any new functionality to it.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-44p83"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:vpp:post:getVPPAssetsSrv",
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Get Assets"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "Device Assignment Services"
+      },
+      {
+        "beta": false,
+        "name": "VPP License Management"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get Assets"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://vpp.itunes.apple.com/mdm/"
+        },
+        {
+          "kind": "path",
+          "text": "getVPPAssetsSrv"
+        }
+      ]
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetVppAssetRequest",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "mdm-apps:vpp:GetVppAssetRequest",
+          "text": "GetVppAssetRequest"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "missing",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetVppAssetResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:GetVppAssetResponse",
+              "text": "GetVppAssetResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/upgrading-to-apple-school-manager-asm-and-apple-business-manager-abm",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/handling-error-responses"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "anchor": "Example-Request-and-Response",
+          "level": 3,
+          "text": "Example Request and Response",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"sToken\": \"h40Gte9aQnZFDNM39IUkRPCsQDxBxbZB4Wy34pxefOuQkeeb3h2 a5Rlopo4KDn3MrFKf4CM3OY+WGAoZ1cD6iZ6yzsMk1+5PVBNc66YS6ZQ=\",",
+                    "  \"includeLicenseCounts\": true,",
+                    "  \"pricingParam\": null",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"assets\": [",
+                    "    {",
+                    "      \"adamIdStr\": \"748057890\",",
+                    "      \"assignedCount\": 0,",
+                    "      \"availableCount\": 25,",
+                    "      \"deviceAssignable\": true,",
+                    "      \"isIrrevocable\": false,",
+                    "      \"pricingParam\": \"STDQ\",",
+                    "      \"productTypeId\": 8,",
+                    "      \"productTypeName\": \"Application\",",
+                    "      \"retiredCount\": 0,",
+                    "      \"totalCount\": 25",
+                    "    },",
+                    "    {",
+                    "      \"adamIdStr\": \"635851129\",",
+                    "      \"assignedCount\": 0,",
+                    "      \"availableCount\": 40,",
+                    "      \"deviceAssignable\": true,",
+                    "      \"isIrrevocable\": false,",
+                    "      \"pricingParam\": \"STDQ\",",
+                    "      \"productTypeId\": 8,",
+                    "      \"productTypeName\": \"Application\",",
+                    "      \"retiredCount\": 0,",
+                    "      \"totalCount\": 40",
+                    "    },",
+                    "    {",
+                    "      \"adamIdStr\": \"284035177\",",
+                    "      \"assignedCount\": 0,",
+                    "      \"availableCount\": 0,",
+                    "      \"deviceAssignable\": false,",
+                    "      \"isIrrevocable\": false,",
+                    "      \"pricingParam\": \"STDQ\",",
+                    "      \"productTypeId\": 8,",
+                    "      \"productTypeName\": \"Application\",",
+                    "      \"retiredCount\": 10,",
+                    "      \"totalCount\": 0",
+                    "    }",
+                    "  ],",
+                    "  \"clientContext\": \"{\\\"guid\\\":\\\"b92\\\",\\\"hostname\\\":\\\"test.test.org\\\",\\\"ac2\\\":1}\",",
+                    "   \"location\": {",
+                    "    \"locationId\": 22222222222,",
+                    "    \"locationName\": \"LocationName\"",
+                    "  },",
+                    "  \"expirationMillis\": 1898103480266,",
+                    "  \"status\": 0,",
+                    "  \"totalCount\": 3,",
+                    "  \"uId\": \"103614\"",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Example-Request-and-Response-with-a-Legacy-Token",
+          "level": 3,
+          "text": "Example Request and Response with a Legacy Token",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"sToken\": \"h40Gte9aQnZFDNM39IUkRPCsQDxBxbZB4Wy34pxefOuQkeeb3h2 a5Rlopo4KDn3MrFKf4CM3OY+WGAoZ1cD6iZ6yzsMk1+5PVBNc66YS6ZQ=\",",
+                    "  \"includeLicenseCounts\": true,",
+                    "  \"pricingParam\": null",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"assets\": [",
+                    "    {",
+                    "      \"adamIdStr\": \"748057890\",",
+                    "      \"assignedCount\": 0,",
+                    "      \"availableCount\": 10,",
+                    "      \"deviceAssignable\": true,",
+                    "      \"isIrrevocable\": false,",
+                    "      \"pricingParam\": \"STDQ\",",
+                    "      \"productTypeId\": 8,",
+                    "      \"productTypeName\": \"Application\",",
+                    "      \"retiredCount\": 0,",
+                    "      \"totalCount\": 10",
+                    "    }",
+                    "  ],",
+                    "  \"clientContext\": \"{\\\"guid\\\":\\\"b92\\\",\\\"hostname\\\":\\\"test.test.org\\\",\\\"ac2\\\":1}\",",
+                    "  \"expirationMillis\": 1898103480266,",
+                    "  \"status\": 0,",
+                    "  \"totalCount\": 1,",
+                    "  \"uId\": \"103299\"",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-44p83": {
+      "abstract": [
+        {
+          "text": "Get the set of assets managed by your organization.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-44p83",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Assets"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Assets",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-assets-44p83"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-158kc": {
+      "abstract": [
+        {
+          "text": "Get a list of assignments currently assigned to a user or device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-158kc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Assignments"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Assignments",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-assignments-158kc"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Licenses": {
+      "abstract": [
+        {
+          "text": "Get the set of licenses managed by your organization.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Licenses",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Licenses"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Licenses",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-licenses"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetVppAssetRequest": {
+      "abstract": [
+        {
+          "text": "The request for an asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetVppAssetRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetVppAssetRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GetVppAssetRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "GetVppAssetRequest",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/getvppassetrequest"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetVppAssetResponse": {
+      "abstract": [
+        {
+          "text": "The response with the asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetVppAssetResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetVppAssetResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GetVppAssetResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "GetVppAssetResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/getvppassetresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Manage-Licenses": {
+      "abstract": [
+        {
+          "text": "Associate and disassociate licenses with users and devices.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Manage-Licenses",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Manage Licenses"
+        }
+      ],
+      "role": "symbol",
+      "title": "Manage Licenses",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/manage-licenses"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/handling-error-responses": {
+      "abstract": [
+        {
+          "text": "Investigate service request errors and troubleshoot solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/handling-error-responses",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Error Responses",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/handling-error-responses"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/upgrading-to-apple-school-manager-asm-and-apple-business-manager-abm": {
+      "abstract": [
+        {
+          "text": "Manage devices and content across an organization user base with a single destination.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/upgrading-to-apple-school-manager-asm-and-apple-business-manager-abm",
+      "kind": "article",
+      "role": "article",
+      "title": "Upgrading to Apple School Manager (ASM) and Apple Business Manager (ABM)",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/upgrading-to-apple-school-manager-asm-and-apple-business-manager-abm"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Asset-and-License-Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-158kc",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Licenses",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Manage-Licenses"
+      ],
+      "title": "Asset and License Management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Request-and-Response",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetVppAssetRequest",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetVppAssetResponse"
+      ],
+      "title": "Request and Response"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/get-assets-44p83"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

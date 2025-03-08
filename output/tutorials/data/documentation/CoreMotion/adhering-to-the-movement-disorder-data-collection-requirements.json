@@ -1,0 +1,616 @@
+{
+  "abstract": [
+    {
+      "text": "Ensure that your users understand and have control over the data your app collects.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremotion/documentation/CoreMotion"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremotion/documentation/CoreMotion/adhering-to-the-movement-disorder-data-collection-requirements"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Motion"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adhering to the movement disorder data collection requirements"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using the movement disorder APIs, it’s critical that your app provides a transparent data collection experience. Your app must display an introductory screen that describes its data use policy. Additionally, some data types require specific disclosures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Apps that offer movement disorders monitoring must adhere to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/contact/request/movement-disorder-api-entitlement/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". Note that only Apple Developer Program account holders can access the addendum. In addition, all health-related apps must follow best practices for handling the user’s health data, as defined by the HealthKit guidelines (see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/HealthKit/protecting-user-privacy",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ").",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Explain-your-apps-data-use-policy",
+          "level": 3,
+          "text": "Explain your app’s data use policy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps that perform movement disorder monitoring must display an introduction screen when the user first launches the app. This screen must describe the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app’s purpose and target audience.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The data that your app collects during movement disorder monitoring.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "How you plan to use the data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Whether your app collects data while running in the background.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Instructions on how to opt out of data collection in the future.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Include-required-disclosures",
+          "level": 3,
+          "text": "Include required disclosures",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For some types of data, your app must include additional text in the introduction screen. For each of the following situations, add the specified text:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "“This app is monitoring and collecting your Parkinsonian resting tremor data, only if you self-report or have been clinically diagnosed with resting tremor, and indicate within the app that this is true.”",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Resting tremor data",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "“This app is monitoring and collecting your choreiform dyskinesia data, only if you self-report or have been clinically diagnosed with choreiform dyskinesias, and indicate within the app that this is true.”",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Choreiform dyskinesia data",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "“This app is able to collect your movement disorder data even when the app is not active, on screen, or responding to your user input.”",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Movement disorder data in the background",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremotion/documentation/CoreMotion": {
+      "abstract": [
+        {
+          "text": "Process accelerometer, gyroscope, pedometer, and environment-related events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Motion",
+      "type": "topic",
+      "url": "/documentation/coremotion"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMDyskineticSymptomResult": {
+      "abstract": [
+        {
+          "text": "A result object that contains data about the likely presence of dyskinetic symptoms during a one-minute interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMDyskineticSymptomResult"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMDyskineticSymptomResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMDyskineticSymptomResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMDyskineticSymptomResult",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmdyskineticsymptomresult"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager": {
+      "abstract": [
+        {
+          "text": "A manager for recording and querying movement disorder data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMMovementDisorderManager"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMMovementDisorderManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMMovementDisorderManager",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmovementdisordermanager"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMTremorResult": {
+      "abstract": [
+        {
+          "text": "A result object that contains data about the presence and strength of tremors during a one-minute interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTremorResult"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMTremorResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTremorResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTremorResult",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmtremorresult"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/getting-movement-disorder-symptom-data": {
+      "abstract": [
+        {
+          "text": "Retrieve data from the Apple Watch’s movement disorder manager.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/getting-movement-disorder-symptom-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting movement disorder symptom data",
+      "type": "topic",
+      "url": "/documentation/coremotion/getting-movement-disorder-symptom-data"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/movement-disorder-algorithm-changelog": {
+      "abstract": [
+        {
+          "text": "A chronological log of notable changes to the movement disorder algorithm.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/movement-disorder-algorithm-changelog",
+      "kind": "article",
+      "role": "article",
+      "title": "Movement disorder algorithm changelog",
+      "type": "topic",
+      "url": "/documentation/coremotion/movement-disorder-algorithm-changelog"
+    },
+    "doc://com.apple.documentation/documentation/HealthKit/protecting-user-privacy": {
+      "abstract": [
+        {
+          "text": "Respect and safeguard your user’s privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HealthKit/protecting-user-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "Protecting user privacy",
+      "type": "topic",
+      "url": "/documentation/HealthKit/protecting-user-privacy"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/contact/request/movement-disorder-api-entitlement/": {
+      "identifier": "https://developer.apple.com/contact/request/movement-disorder-api-entitlement/",
+      "title": "Movement Disorder API Addendum",
+      "titleInlineContent": [
+        {
+          "text": "Movement Disorder API Addendum",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/contact/request/movement-disorder-api-entitlement/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Movement-disorder",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/getting-movement-disorder-symptom-data",
+        "doc://com.apple.coremotion/documentation/CoreMotion/movement-disorder-algorithm-changelog",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMTremorResult",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMDyskineticSymptomResult"
+      ],
+      "title": "Movement disorder"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Movement-disorder",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/getting-movement-disorder-symptom-data",
+                "doc://com.apple.coremotion/documentation/CoreMotion/movement-disorder-algorithm-changelog",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMTremorResult",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMDyskineticSymptomResult"
+              ],
+              "title": "Movement disorder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMovementDisorderManager/title",
+          "value": "CMMovementDisorderManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMovementDisorderManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMovementDisorderManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMovementDisorderManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMovementDisorderManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMTremorResult/title",
+          "value": "CMTremorResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMTremorResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTremorResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMTremorResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTremorResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMDyskineticSymptomResult/title",
+          "value": "CMDyskineticSymptomResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMDyskineticSymptomResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMDyskineticSymptomResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMDyskineticSymptomResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMDyskineticSymptomResult"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremotion/adhering-to-the-movement-disorder-data-collection-requirements"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremotion/adhering-to-the-movement-disorder-data-collection-requirements"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

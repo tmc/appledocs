@@ -1,0 +1,2034 @@
+{
+  "abstract": [
+    {
+      "text": "Send payments between users or pay bills.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/SiriKit",
+        "doc://com.apple.sirikit/documentation/Intents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/SiriKit/payments"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Payments"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the payments domain, users can pay bills or initiate monetary transfers between themselves and other individuals using Siri. Your Intents app extension facilitates bill payment from the user to any vendors (such as public utilities) that you previously configured in your app. For all payments, your Intents app extension works with your back-end services to initiate the transfers. The user then follows up on the progress of those transactions in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3743232",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SiriKit automatically asks the user to unlock their device when processing any payment-related intents. You can provide a custom interface for payment-related intents using an Intents UI app extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INAccountType": {
+      "abstract": [
+        {
+          "text": "Constants indicating the type of account involved in a financial transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INAccountType"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INAccountType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INAccountType"
+        }
+      ],
+      "role": "symbol",
+      "title": "INAccountType",
+      "type": "topic",
+      "url": "/documentation/intents/inaccounttype"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INAccountTypeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for account types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INAccountTypeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INAccountTypeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INAccountTypeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INAccountTypeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inaccounttyperesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INBalanceTypeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for balance types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INBalanceTypeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INBalanceTypeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INBalanceTypeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INBalanceTypeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inbalancetyperesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCurrencyAmount": {
+      "abstract": [
+        {
+          "text": "An amount of money to transfer during a financial transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCurrencyAmount"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCurrencyAmount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCurrencyAmount"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCurrencyAmount",
+      "type": "topic",
+      "url": "/documentation/intents/incurrencyamount"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCurrencyAmountResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a currency amount associated with an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCurrencyAmountResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCurrencyAmountResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCurrencyAmountResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCurrencyAmountResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/incurrencyamountresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPaymentAccount": {
+      "abstract": [
+        {
+          "text": "A user account that provides the funds when making a payment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPaymentAccount"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPaymentAccount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPaymentAccount"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPaymentAccount",
+      "type": "topic",
+      "url": "/documentation/intents/inpaymentaccount"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPaymentAccountResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the user account that provides the funds to pay a bill.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPaymentAccountResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPaymentAccountResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPaymentAccountResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPaymentAccountResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inpaymentaccountresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPaymentAmount": {
+      "abstract": [
+        {
+          "text": "The amount of money to apply to a bill payment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPaymentAmount"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPaymentAmount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPaymentAmount"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPaymentAmount",
+      "type": "topic",
+      "url": "/documentation/intents/inpaymentamount"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPaymentAmountResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the amount to pay for a bill.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPaymentAmountResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPaymentAmountResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPaymentAmountResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPaymentAmountResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inpaymentamountresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod": {
+      "abstract": [
+        {
+          "text": "Information about a form of payment supported by your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPaymentMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPaymentMethod"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPaymentMethod",
+      "type": "topic",
+      "url": "/documentation/intents/inpaymentmethod"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPaymentMethodResolutionResult": {
+      "abstract": [
+        {
+          "text": "Describes the result of resolving a payment method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPaymentMethodResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPaymentMethodResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPaymentMethodResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPaymentMethodResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inpaymentmethodresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPaymentRecord": {
+      "abstract": [
+        {
+          "text": "Detailed information about a financial transaction made between two users.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPaymentRecord"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPaymentRecord",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPaymentRecord"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPaymentRecord",
+      "type": "topic",
+      "url": "/documentation/intents/inpaymentrecord"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPaymentStatus": {
+      "abstract": [
+        {
+          "text": "Constants indicating the state of the financial transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPaymentStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPaymentStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPaymentStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPaymentStatus",
+      "type": "topic",
+      "url": "/documentation/intents/inpaymentstatus"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPaymentStatusResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the payment status of a bill during a search.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPaymentStatusResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPaymentStatusResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPaymentStatusResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPaymentStatusResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inpaymentstatusresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPerson": {
+      "abstract": [
+        {
+          "text": "Information about a person participating in a SiriKit interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPerson"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPerson",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPerson"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPerson",
+      "type": "topic",
+      "url": "/documentation/intents/inperson"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRequestPaymentCurrencyAmountResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the currency amount associated with a payment request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INRequestPaymentCurrencyAmountResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRequestPaymentCurrencyAmountResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INRequestPaymentCurrencyAmountResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INRequestPaymentCurrencyAmountResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inrequestpaymentcurrencyamountresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRequestPaymentIntent": {
+      "abstract": [
+        {
+          "text": "An intent for requesting money from another user’s account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INRequestPaymentIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRequestPaymentIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INRequestPaymentIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INRequestPaymentIntent",
+      "type": "topic",
+      "url": "/documentation/intents/inrequestpaymentintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRequestPaymentIntentHandling": {
+      "abstract": [
+        {
+          "text": "The handler interface for delivering a request for payment from another user of your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INRequestPaymentIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRequestPaymentIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INRequestPaymentIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INRequestPaymentIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/inrequestpaymentintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRequestPaymentIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to a request payment intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INRequestPaymentIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRequestPaymentIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INRequestPaymentIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INRequestPaymentIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/inrequestpaymentintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRequestPaymentPayerResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the person making the payment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INRequestPaymentPayerResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRequestPaymentPayerResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INRequestPaymentPayerResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INRequestPaymentPayerResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inrequestpaymentpayerresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSearchForAccountsIntent": {
+      "abstract": [
+        {
+          "text": "A user request for information about their accounts in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSearchForAccountsIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSearchForAccountsIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSearchForAccountsIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSearchForAccountsIntent",
+      "type": "topic",
+      "url": "/documentation/intents/insearchforaccountsintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSearchForAccountsIntentHandling": {
+      "abstract": [
+        {
+          "text": "The handler interface for searching for account information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSearchForAccountsIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSearchForAccountsIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSearchForAccountsIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSearchForAccountsIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/insearchforaccountsintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSearchForAccountsIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to a request to search for account information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSearchForAccountsIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSearchForAccountsIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSearchForAccountsIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSearchForAccountsIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/insearchforaccountsintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendPaymentCurrencyAmountResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the currency amount to send to another user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSendPaymentCurrencyAmountResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendPaymentCurrencyAmountResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSendPaymentCurrencyAmountResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSendPaymentCurrencyAmountResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/insendpaymentcurrencyamountresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendPaymentIntent": {
+      "abstract": [
+        {
+          "text": "A request to transfer money from the current user’s account to a different user’s account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSendPaymentIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendPaymentIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSendPaymentIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSendPaymentIntent",
+      "type": "topic",
+      "url": "/documentation/intents/insendpaymentintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendPaymentIntentHandling": {
+      "abstract": [
+        {
+          "text": "The handler interface for transferring money from the current user’s account to a different user’s account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSendPaymentIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendPaymentIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSendPaymentIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSendPaymentIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/insendpaymentintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendPaymentIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to a send payment intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSendPaymentIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendPaymentIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSendPaymentIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSendPaymentIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/insendpaymentintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendPaymentPayeeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the recipient of a payment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSendPaymentPayeeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendPaymentPayeeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSendPaymentPayeeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSendPaymentPayeeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/insendpaymentpayeeresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit": {
+      "abstract": [
+        {
+          "text": "Empower users to interact with their devices through voice, intelligent suggestions, and personalized workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/car-commands": {
+      "abstract": [
+        {
+          "text": "Manage vehicle door locks and get the vehicle’s status.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/car-commands",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Car Commands",
+      "type": "topic",
+      "url": "/documentation/sirikit/car-commands"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/handling-payment-requests-with-sirikit": {
+      "abstract": [
+        {
+          "text": "Add an Intent Extension to your app to handle money transfer requests with Siri.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/handling-payment-requests-with-sirikit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Handling Payment Requests with SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit/handling-payment-requests-with-sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/intent-class-identifiers": {
+      "abstract": [
+        {
+          "text": "Identify intents that user notifications specify.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/intent-class-identifiers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Intent Class Identifiers",
+      "type": "topic",
+      "url": "/documentation/sirikit/intent-class-identifiers"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/lists-and-notes": {
+      "abstract": [
+        {
+          "text": "Create and manage notes and to-do list items.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/lists-and-notes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Lists and Notes",
+      "type": "topic",
+      "url": "/documentation/sirikit/lists-and-notes"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/media": {
+      "abstract": [
+        {
+          "text": "Listen and control audio through Siri Intents, or listen and watch media content from your app with shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media",
+      "type": "topic",
+      "url": "/documentation/sirikit/media"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/messaging": {
+      "abstract": [
+        {
+          "text": "Send messages and search the user’s received messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/messaging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Messaging",
+      "type": "topic",
+      "url": "/documentation/sirikit/messaging"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/restaurant-reservations": {
+      "abstract": [
+        {
+          "text": "Create and manage restaurant reservations with help from the Maps app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/restaurant-reservations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Restaurant Reservations",
+      "type": "topic",
+      "url": "/documentation/sirikit/restaurant-reservations"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/ride-booking": {
+      "abstract": [
+        {
+          "text": "Book rides and report their status.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/ride-booking",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Ride Booking",
+      "type": "topic",
+      "url": "/documentation/sirikit/ride-booking"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/voip-calling": {
+      "abstract": [
+        {
+          "text": "Initiate calls and search the user’s call history.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/voip-calling",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "VoIP Calling",
+      "type": "topic",
+      "url": "/documentation/sirikit/voip-calling"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/workouts": {
+      "abstract": [
+        {
+          "text": "Start, end, and manage fitness routines.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/workouts",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workouts",
+      "type": "topic",
+      "url": "/documentation/sirikit/workouts"
+    },
+    "media-3743232": {
+      "alt": "An image of a phone with Siri active, reporting progress at two different stages of a transaction. The image on the left shows Siri requesting confirmation to send an amount of money. The image on the right displays Siri’s confirmation that the money has been sent.",
+      "identifier": "media-3743232",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7f82f3c69d97de39ef3636f743c88410/media-3743232@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Standard-Intents",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/car-commands",
+        "doc://com.apple.sirikit/documentation/SiriKit/lists-and-notes",
+        "doc://com.apple.sirikit/documentation/SiriKit/media",
+        "doc://com.apple.sirikit/documentation/SiriKit/messaging",
+        "doc://com.apple.sirikit/documentation/SiriKit/restaurant-reservations",
+        "doc://com.apple.sirikit/documentation/SiriKit/ride-booking",
+        "doc://com.apple.sirikit/documentation/SiriKit/voip-calling",
+        "doc://com.apple.sirikit/documentation/SiriKit/workouts",
+        "doc://com.apple.sirikit/documentation/SiriKit/intent-class-identifiers"
+      ],
+      "title": "Standard Intents"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/handling-payment-requests-with-sirikit"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Send-a-Payment",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INSendPaymentIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INSendPaymentIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INSendPaymentIntentResponse"
+      ],
+      "title": "Send a Payment"
+    },
+    {
+      "anchor": "Request-a-Payment",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INRequestPaymentIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INRequestPaymentIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INRequestPaymentIntentResponse"
+      ],
+      "title": "Request a Payment"
+    },
+    {
+      "anchor": "Search-for-Accounts",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INSearchForAccountsIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INSearchForAccountsIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INSearchForAccountsIntentResponse"
+      ],
+      "title": "Search for Accounts"
+    },
+    {
+      "anchor": "Data-Objects",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INAccountType",
+        "doc://com.apple.sirikit/documentation/Intents/INCurrencyAmount",
+        "doc://com.apple.sirikit/documentation/Intents/INPaymentAccount",
+        "doc://com.apple.sirikit/documentation/Intents/INPaymentAmount",
+        "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod",
+        "doc://com.apple.sirikit/documentation/Intents/INPaymentRecord",
+        "doc://com.apple.sirikit/documentation/Intents/INPaymentStatus",
+        "doc://com.apple.sirikit/documentation/Intents/INPerson"
+      ],
+      "title": "Data Objects"
+    },
+    {
+      "anchor": "Resolution-Results",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INAccountTypeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INBalanceTypeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INCurrencyAmountResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INPaymentAccountResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INPaymentAmountResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INPaymentMethodResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INPaymentStatusResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INRequestPaymentCurrencyAmountResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INRequestPaymentPayerResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INSendPaymentCurrencyAmountResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INSendPaymentPayeeResolutionResult"
+      ],
+      "title": "Resolution Results"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForAccountsIntentHandling/title",
+          "value": "INSearchForAccountsIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForAccountsIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSearchForAccountsIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForAccountsIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSearchForAccountsIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCurrencyAmount/title",
+          "value": "INCurrencyAmount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCurrencyAmount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCurrencyAmount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCurrencyAmount/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCurrencyAmount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentStatus/title",
+          "value": "INPaymentStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendPaymentIntentResponse/title",
+          "value": "INSendPaymentIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendPaymentIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendPaymentIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendPaymentIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendPaymentIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendPaymentPayeeResolutionResult/title",
+          "value": "INSendPaymentPayeeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendPaymentPayeeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendPaymentPayeeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendPaymentPayeeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendPaymentPayeeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INBalanceTypeResolutionResult/title",
+          "value": "INBalanceTypeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INBalanceTypeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INBalanceTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INBalanceTypeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INBalanceTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendPaymentIntent/title",
+          "value": "INSendPaymentIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendPaymentIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendPaymentIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendPaymentIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendPaymentIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestPaymentPayerResolutionResult/title",
+          "value": "INRequestPaymentPayerResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestPaymentPayerResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRequestPaymentPayerResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestPaymentPayerResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRequestPaymentPayerResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethod/title",
+          "value": "INPaymentMethod"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethod/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethod/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPerson/title",
+          "value": "INPerson"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPerson/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPerson"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPerson/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPerson"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAccountTypeResolutionResult/title",
+          "value": "INAccountTypeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAccountTypeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAccountTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAccountTypeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAccountTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestPaymentIntent/title",
+          "value": "INRequestPaymentIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestPaymentIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRequestPaymentIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestPaymentIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRequestPaymentIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestPaymentIntentHandling/title",
+          "value": "INRequestPaymentIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestPaymentIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRequestPaymentIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestPaymentIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRequestPaymentIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForAccountsIntentResponse/title",
+          "value": "INSearchForAccountsIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForAccountsIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSearchForAccountsIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForAccountsIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSearchForAccountsIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentRecord/title",
+          "value": "INPaymentRecord"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentRecord/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentRecord/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendPaymentCurrencyAmountResolutionResult/title",
+          "value": "INSendPaymentCurrencyAmountResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendPaymentCurrencyAmountResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendPaymentCurrencyAmountResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendPaymentCurrencyAmountResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendPaymentCurrencyAmountResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentAccount/title",
+          "value": "INPaymentAccount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentAccount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentAccount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentAccount/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentAccount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendPaymentIntentHandling/title",
+          "value": "INSendPaymentIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendPaymentIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendPaymentIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendPaymentIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendPaymentIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethodResolutionResult/title",
+          "value": "INPaymentMethodResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethodResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentMethodResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethodResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentMethodResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestPaymentCurrencyAmountResolutionResult/title",
+          "value": "INRequestPaymentCurrencyAmountResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestPaymentCurrencyAmountResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRequestPaymentCurrencyAmountResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestPaymentCurrencyAmountResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRequestPaymentCurrencyAmountResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentAmountResolutionResult/title",
+          "value": "INPaymentAmountResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentAmountResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentAmountResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentAmountResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentAmountResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCurrencyAmountResolutionResult/title",
+          "value": "INCurrencyAmountResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCurrencyAmountResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCurrencyAmountResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCurrencyAmountResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCurrencyAmountResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestPaymentIntentResponse/title",
+          "value": "INRequestPaymentIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestPaymentIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRequestPaymentIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestPaymentIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRequestPaymentIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAccountType/title",
+          "value": "INAccountType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAccountType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAccountType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAccountType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAccountType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentAccountResolutionResult/title",
+          "value": "INPaymentAccountResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentAccountResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentAccountResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentAccountResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentAccountResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentStatusResolutionResult/title",
+          "value": "INPaymentStatusResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentStatusResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentStatusResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentStatusResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentStatusResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentAmount/title",
+          "value": "INPaymentAmount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentAmount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentAmount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentAmount/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentAmount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForAccountsIntent/title",
+          "value": "INSearchForAccountsIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForAccountsIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSearchForAccountsIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForAccountsIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSearchForAccountsIntent"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

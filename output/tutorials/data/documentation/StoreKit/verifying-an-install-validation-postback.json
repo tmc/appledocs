@@ -1,0 +1,1489 @@
+{
+  "abstract": [
+    {
+      "text": "Ensure the validity of a postback you receive after an ad conversion by verifying its cryptographic signature.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/ad-network-attribution",
+        "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/verifying-an-install-validation-postback"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Verifying an install-validation postback"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Install-validation postbacks contain data that validate an ad conversion. You need to verify the postback signature to make sure it’s signed by Apple before you count the conversion. Follow these steps to validate the postback:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Receive the postback at a URL you configure.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Respond to the postback when you receive it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check the postback version.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Recreate the byte array from the postback parameters in the version-specific order.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify Apple’s signature.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Count only unique postbacks with signatures you verify. For version 3 and later, check the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "did-win",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter to learn whether the postback represents a winning attribution.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Receive-the-postback",
+          "level": 3,
+          "text": "Receive the postback",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Devices send install-validation postbacks to ad networks and developers within a defined timeframe after a user installs and launches an advertised app. Ad networks receive postbacks at the URL they provide when they register to use SKAdNetwork. Developers who opt in receive copies of winning postbacks at the URL they configure in the app’s property list key, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAdvertisingAttributionReportEndpoint",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information about setting up your postback URL, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/registering-an-ad-network",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/configuring-an-advertised-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the timeframe for receiving attribution, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/receiving-ad-attributions-and-postbacks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " Starting with version 4, you may receive postbacks in three conversion windows. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/receiving-postbacks-in-multiple-conversion-windows",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Respond-to-the-postback",
+          "level": 3,
+          "text": "Respond to the postback",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you receive a postback, respond with an HTTP status code ",
+              "type": "text"
+            },
+            {
+              "code": "200",
+              "type": "codeVoice"
+            },
+            {
+              "text": " OK. If the device doesn’t receive the ",
+              "type": "text"
+            },
+            {
+              "code": "200",
+              "type": "codeVoice"
+            },
+            {
+              "text": " status code, it attempts to send the postback up to nine times over a maximum of 9 days.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-the-postback-version-number",
+          "level": 3,
+          "text": "Check the postback version number",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Postbacks contain a ",
+              "type": "text"
+            },
+            {
+              "code": "version",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, starting with SKAdNetwork 2. Use the version number to follow the version-specific instructions for verifying a postback signature. For a description of all the parameters in a postback, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/identifying-the-parameters-in-install-validation-postbacks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The postback version you receive depends on the version number the ad network uses to sign the ad, the iOS version on the device, and the SDK version that the source app uses. Expect to receive the same version number in the postback as the ad network uses to sign the ad if the device runs the latest iOS version, and the source app uses the latest SDK. For more information about version dependencies, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/skadnetwork-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information about signing, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/signing-and-providing-ads",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Recreate-the-byte-array-from-the-postback-parameters",
+          "level": 3,
+          "text": "Recreate the byte array from the postback parameters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To confirm that Apple sent the postback request, you need to verify Apple’s signature in the postback’s ",
+              "type": "text"
+            },
+            {
+              "code": "attribution-signature",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter. First, decode the signature with Apple’s public key. Next, compare the decoded signature to a byte array that you recreate using the postback parameters. To create the byte array, build a UTF-8 string by combining the parameter values with invisible separators, ",
+              "type": "text"
+            },
+            {
+              "code": "‘\\u2063’",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", in an exact version-specific order.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the version-specific instructions that correspond to the postback’s version:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For version 3-specific instructions and postback examples, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/combining-parameters-for-skadnetwork-3-postbacks",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For earlier versions, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/combining-parameters-for-previous-skadnetwork-postback-versions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a version 4 postback, combine the postback parameter values in this order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "version",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ad-network-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "source-identifier`` ",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "app-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "transaction-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "redownload",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (Use the strings ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "“true”",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "“false”",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to represent the Boolean value of the redownload parameter).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "source-app-id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "source-domain",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for web ads)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "fidelity-type",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "did-win",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "postback-sequence-index",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For web ads, the postback may include a ",
+              "type": "text"
+            },
+            {
+              "code": "source-domain",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instead of a ",
+              "type": "text"
+            },
+            {
+              "code": "source-app-id",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The combined string doesn’t include all of the postback parameters. Include ",
+              "type": "text"
+            },
+            {
+              "code": "source-app-id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " only if you receive it in the postback. The signature doesn’t include ",
+              "type": "text"
+            },
+            {
+              "code": "conversion-value",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "coarse-conversion-value",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", even if either is present in the postback. Postbacks that win the attribution have a ",
+              "type": "text"
+            },
+            {
+              "code": "did-win",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value of ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Postbacks that don’t win the attribution have a ",
+              "type": "text"
+            },
+            {
+              "code": "did-win",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value of ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and don’t include ",
+              "type": "text"
+            },
+            {
+              "code": "source-app-id",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example of the UTF-8 string includes ",
+              "type": "text"
+            },
+            {
+              "code": "source-app-id:",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "version + '\\u2063' + ad-network-id + '\\u2063' + source-identifier + '\\u2063' + app-id + '\\u2063' + transaction-id + '\\u2063' + redownload + '\\u2063' + source-app-id + '\\u2063' + fidelity-type + '\\u2063' + did-win + '\\u2063' + postback-sequence-index"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example of the UTF-8 string for a web ad includes ",
+              "type": "text"
+            },
+            {
+              "code": "source-domain:",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "version + '\\u2063' + ad-network-id + '\\u2063' + source-identifier + '\\u2063' + app-id + '\\u2063' + transaction-id + '\\u2063' + redownload + '\\u2063' + source-domain + '\\u2063' + fidelity-type + '\\u2063' + did-win + '\\u2063' + postback-sequence-index"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example is a first postback from a web ad, in a high postback data tier. Notice that the ",
+              "type": "text"
+            },
+            {
+              "code": "source-identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains four digits, and the postback contains the fine-grained ",
+              "type": "text"
+            },
+            {
+              "code": "conversion-value",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"version\": \"4.0\",",
+            "  \"ad-network-id\": \"com.example\",",
+            "  \"source-identifier\": \"5239\",",
+            "  \"app-id\": 525463029,",
+            "  \"transaction-id\": \"6aafb7a5-0170-41b5-bbe4-fe71dedf1e30\",",
+            "  \"redownload\": false,",
+            "  \"source-domain\": \"example.com\", ",
+            "  \"fidelity-type\": 1, ",
+            "  \"did-win\": true,",
+            "  \"conversion-value\": 63,",
+            "  \"postback-sequence-index\": 0,",
+            "  \"attribution-signature\": \"MEUCIGRmSMrqedNu6uaHyhVcifs118R5z/AB6cvRaKrRRHWRAiEAv96ne3dKQ5kJpbsfk4eYiePmrZUU6sQmo+7zfP/1Bxo=\"",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example is a first postback that results from a web ad, in a low postback data tier.  Notice that the ",
+              "type": "text"
+            },
+            {
+              "code": "source-identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains two digits, and the postback includes a ",
+              "type": "text"
+            },
+            {
+              "code": "coarse-conversion-value",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"version\": \"4.0\",",
+            "  \"ad-network-id\": \"com.example\",",
+            "  \"source-identifier\": \"39\",",
+            "  \"app-id\": 525463029,",
+            "  \"transaction-id\": \"6aafb7a5-0170-41b5-bbe4-fe71dedf1e31\",",
+            "  \"redownload\": false,",
+            "  \"source-domain\": \"example.com\", ",
+            "  \"fidelity-type\": 1, ",
+            "  \"did-win\": true,",
+            "  \"coarse-conversion-value\": \"high\",",
+            "  \"postback-sequence-index\": 0,",
+            "  \"attribution-signature\": \"MEUCIQD4rX6eh38qEhuUKHdap345UbmlzA7KEZ1bhWZuYM8MJwIgMnyiiZe6heabDkGwOaKBYrUXQhKtF3P/ERHqkR/XpuA=\"",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "attribution-signature",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value in both examples is a verified signature. Use the parameter values and signature in the examples to test your code. For more information about the postback data tiers and the parameters available in each tier, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/receiving-postbacks-in-multiple-conversion-windows",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Verify-Apples-signature",
+          "level": 3,
+          "text": "Verify Apple’s signature",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Copy Apple’s public key, below, which you need for the remaining steps. Apple’s NIST P-256 public key that you use to verify signatures for versions 2.1 and later is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEWdp8GPcGqmhgzEFj9Z2nSpQVddayaPe4FMzqM9wib1+aHaaIzoHoLN9zW4K8y4SPykE3YVK3sVqW6Af0lfx3gg=="
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To verify a signature for version 1 or 2, get the version-appropriate public key from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/skadnetwork-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, complete these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Decode Apple’s public key, which appears as a Base64-encoded string above. The result is a byte array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an X.509 standard public key from the byte array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Decode Apple’s signature string value from its Base64 format.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify Apple’s signed value from the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "attribution-signature",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter in the postback against the UTF-8 string you create by combining the postback parameters. Use Apple’s public key and a SHA-256 hash using the Elliptic Curve Digital Signature Algorithm (ECDSA).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your verification passes, the postback is valid.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If the ",
+                  "type": "text"
+                },
+                {
+                  "code": "attribution-signature",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " fails your verification, consider the postback message invalid. Don’t use it to count a conversion.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For version 3 and later, valid postbacks with a ",
+              "type": "text"
+            },
+            {
+              "code": "did-win",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value of ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represent an ad attribution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Count-unique-messages-only",
+          "level": 3,
+          "text": "Count unique messages only",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "transaction-id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value to ensure you’re counting unique ad conversions. If you receive more than one ad-conversion message with the same ",
+              "type": "text"
+            },
+            {
+              "code": "transaction-id",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", discard the duplicate message.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Receive-a-postback-during-testing",
+          "level": 3,
+          "text": "Receive a postback during testing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In test scenarios, the postback always contains the ",
+              "type": "text"
+            },
+            {
+              "code": "source-app-id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "conversion-value",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameters with values of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". To trigger test scenarios, use a development-signed source app with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkSourceAppStoreIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value equal to ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAdvertisingAttributionReportEndpoint": {
+      "abstract": [
+        {
+          "text": "The URL where Private Click Measurement and SKAdNetwork send attribution information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAdvertisingAttributionReportEndpoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAdvertisingAttributionReportEndpoint",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSAdvertisingAttributionReportEndpoint"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork": {
+      "abstract": [
+        {
+          "text": "A class that validates advertisement-driven app installations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKAdNetwork"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKAdNetwork"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKAdNetwork",
+      "type": "topic",
+      "url": "/documentation/storekit/skadnetwork"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkSourceAppStoreIdentifier": {
+      "abstract": [
+        {
+          "text": "The key that represents the App Store ID of the app that displays the ad.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterAdNetworkSourceAppStoreIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkSourceAppStoreIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterAdNetworkSourceAppStoreIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKStoreProductParameterAdNetworkSourceAppStoreIdentifier",
+      "type": "topic",
+      "url": "/documentation/storekit/skstoreproductparameteradnetworksourceappstoreidentifier"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ad-network-attribution": {
+      "abstract": [
+        {
+          "text": "Validate advertisement-driven app installations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ad-network-attribution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Ad network attribution",
+      "type": "topic",
+      "url": "/documentation/storekit/ad-network-attribution"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/combining-parameters-for-previous-skadnetwork-postback-versions": {
+      "abstract": [
+        {
+          "text": "Recreate the byte array for versions 2.2 or earlier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/combining-parameters-for-previous-skadnetwork-postback-versions",
+      "kind": "article",
+      "role": "article",
+      "title": "Combining parameters for previous SKAdNetwork postback versions",
+      "type": "topic",
+      "url": "/documentation/storekit/combining-parameters-for-previous-skadnetwork-postback-versions"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/combining-parameters-for-skadnetwork-3-postbacks": {
+      "abstract": [
+        {
+          "text": "Recreate the byte array for version 3 postbacks that win and don’t win attribution.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/combining-parameters-for-skadnetwork-3-postbacks",
+      "kind": "article",
+      "role": "article",
+      "title": "Combining parameters for SKAdNetwork 3 postbacks",
+      "type": "topic",
+      "url": "/documentation/storekit/combining-parameters-for-skadnetwork-3-postbacks"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/configuring-an-advertised-app": {
+      "abstract": [
+        {
+          "text": "Prepare an advertised app to participate in ad campaigns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/configuring-an-advertised-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring an advertised app",
+      "type": "topic",
+      "url": "/documentation/storekit/configuring-an-advertised-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/identifying-the-parameters-in-install-validation-postbacks": {
+      "abstract": [
+        {
+          "text": "Learn about the postback parameters in all SKAdNetwork versions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/identifying-the-parameters-in-install-validation-postbacks",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying the parameters in install-validation postbacks",
+      "type": "topic",
+      "url": "/documentation/storekit/identifying-the-parameters-in-install-validation-postbacks"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/receiving-ad-attributions-and-postbacks": {
+      "abstract": [
+        {
+          "text": "Learn about timeframes and priorities for ad impressions that result in ad attributions, and how additional impressions qualify for postbacks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/receiving-ad-attributions-and-postbacks",
+      "kind": "article",
+      "role": "article",
+      "title": "Receiving ad attributions and postbacks",
+      "type": "topic",
+      "url": "/documentation/storekit/receiving-ad-attributions-and-postbacks"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/receiving-postbacks-in-multiple-conversion-windows": {
+      "abstract": [
+        {
+          "text": "Learn about the data that postbacks may contain in each conversion window.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/receiving-postbacks-in-multiple-conversion-windows",
+      "kind": "article",
+      "role": "article",
+      "title": "Receiving postbacks in multiple conversion windows",
+      "type": "topic",
+      "url": "/documentation/storekit/receiving-postbacks-in-multiple-conversion-windows"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/registering-an-ad-network": {
+      "abstract": [
+        {
+          "text": "Use the install-validation APIs for your ad campaigns after registering your ad network with Apple.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/registering-an-ad-network",
+      "kind": "article",
+      "role": "article",
+      "title": "Registering an ad network",
+      "type": "topic",
+      "url": "/documentation/storekit/registering-an-ad-network"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/signing-and-providing-ads": {
+      "abstract": [
+        {
+          "text": "Advertise apps by signing and providing StoreKit-rendered ads, view-through ads, or attributable web ads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/signing-and-providing-ads",
+      "kind": "article",
+      "role": "article",
+      "title": "Signing and providing ads",
+      "type": "topic",
+      "url": "/documentation/storekit/signing-and-providing-ads"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/skadnetwork-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about the features in each SKAdNetwork version.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/skadnetwork-release-notes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SKAdNetwork release notes",
+      "type": "topic",
+      "url": "/documentation/storekit/skadnetwork-release-notes"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Verifying-postbacks",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/identifying-the-parameters-in-install-validation-postbacks"
+      ],
+      "title": "Verifying postbacks"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "SKAdNetworks-3-and-earlier-postbacks",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/combining-parameters-for-skadnetwork-3-postbacks",
+        "doc://com.apple.storekit/documentation/StoreKit/combining-parameters-for-previous-skadnetwork-postback-versions"
+      ],
+      "title": "SKAdNetworks 3 and earlier postbacks"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "SKAdNetworks-3-and-earlier-postbacks",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/combining-parameters-for-skadnetwork-3-postbacks",
+                "doc://com.apple.storekit/documentation/StoreKit/combining-parameters-for-previous-skadnetwork-postback-versions"
+              ],
+              "title": "SKAdNetworks 3 and earlier postbacks"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Verifying-postbacks",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/identifying-the-parameters-in-install-validation-postbacks"
+              ],
+              "title": "Verifying postbacks"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork/title",
+          "value": "SKAdNetwork"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdNetwork"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdNetwork"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterAdNetworkSourceAppStoreIdentifier/title",
+          "value": "SKStoreProductParameterAdNetworkSourceAppStoreIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterAdNetworkSourceAppStoreIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKStoreProductParameterAdNetworkSourceAppStoreIdentifier"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/verifying-an-install-validation-postback"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/verifying-an-install-validation-postback"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

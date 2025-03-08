@@ -1,0 +1,4402 @@
+{
+  "abstract": [
+    {
+      "text": "Build sophisticated animations that you control using phase and keyframe",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "animators.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animations"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Controlling-the-timing-and-movements-of-your-animations"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Controlling the timing and movements of your animations"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftUI provides a collection of useful animations that you can use in your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "These animations help enhance the user experience of your app by providing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "visual transitions of views and user interface elements. While these standard",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "animations provide a great way to enhancement the user interaction of your app,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "there are times when you need to have more control over the timing and movement",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of a visual element. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PhaseAnimator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/KeyframeAnimator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " help give you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that control.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A phase animator allows you to define an animation as a collection of discrete",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "steps called phases. The animator cycles through these phases to create a visual",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "transition. With keyframe animator, you create keyframes that define animation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "values at specific times during the visual transition.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-simple-bounce-animation",
+          "level": 2,
+          "text": "Create a simple bounce animation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To better understand how to create animations using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PhaseAnimator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/KeyframeAnimator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", start with a simple example that uses standard SwiftUI",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "animations. The following code moves an emoji upwards by setting its offset to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "-40.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". To provide a smooth transition of the movement, the code uses the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/withAnimation(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to apply a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/bouncy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " animation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "after someone taps the emoji.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct SimpleAnimationView: View {",
+            "    var emoji: String",
+            "    @State private var offset = 0.0",
+            "",
+            "    var body: some View {",
+            "        EmojiView(emoji: emoji)",
+            "            .offset(y: offset)",
+            "            .onTapGesture {",
+            "                withAnimation(.bouncy) {",
+            "                    offset = -40.0",
+            "                }",
+            "            }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This animation has a single, discrete step: move the emoji upward. However, an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "animation can have multiple steps, such as moving an emoji upwards then",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "back to its original position. For example, the following code sets the offset",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to ",
+              "type": "text"
+            },
+            {
+              "code": "-40.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to move the emoji upward, and then sets the offset (",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") to return",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the emoji back to its original position:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct SimpleAnimationView: View {",
+            "    var emoji: String",
+            "    @State private var offset = 0.0",
+            "",
+            "    var body: some View {",
+            "        EmojiView(emoji: emoji)",
+            "            .offset(y: offset)",
+            "            .onTapGesture {",
+            "                withAnimation(.bouncy) {",
+            "                    offset = -40.0",
+            "                } completion: {",
+            "                    withAnimation {",
+            "                        offset = 0.0",
+            "                    }",
+            "                }",
+            "            }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This code uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/withAnimation(_:completionCriteria:_:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "function to animate the two steps of the visual transition. The first step",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "occurs in the ",
+              "type": "text"
+            },
+            {
+              "code": "body",
+              "type": "codeVoice"
+            },
+            {
+              "text": " closure of the function, setting the offset to ",
+              "type": "text"
+            },
+            {
+              "code": "-40.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The second step occurs in the ",
+              "type": "text"
+            },
+            {
+              "code": "completion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " closure, setting the offset to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "phase-keyframe-animation-01.mp4",
+          "type": "video"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, ",
+              "type": "text"
+            },
+            {
+              "code": "EmojiView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " actually goes through three steps. The first step",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "happens when the view appears for the first time. The offset of the ",
+              "type": "text"
+            },
+            {
+              "code": "EmojiView",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view is ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". When someone taps the view, the offset changes to ",
+              "type": "text"
+            },
+            {
+              "code": "-40.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is the second step. When that animation completes, the third step changes the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "offset back to ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". However, there are only two discrete steps, based on the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "offset values (",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "-40.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While this implementation certainly works as expected, using a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PhaseAnimator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a more convenient way to define discrete steps as phases",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of an animation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Bounce-with-a-phase-animator",
+          "level": 2,
+          "text": "Bounce with a phase animator",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PhaseAnimator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " automatically advances through a set of given phases to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "create an animated transition. Use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/phaseAnimator(_:content:animation:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to provide the animator",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the phases for changing the animation value. For example, the emoji bounce",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "animation shown earlier has two phases: move up and move back. You can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "represent these phases using the Boolean values, ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". When the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "phase is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the emoji moves up to ",
+              "type": "text"
+            },
+            {
+              "code": "-40.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". When the phase is ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "emoji moves back to the original position by setting the offset to ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct TwoPhaseAnimationView: View {",
+            "    var emoji: String",
+            "    ",
+            "    var body: some View {",
+            "        EmojiView(emoji: emoji)",
+            "            .phaseAnimator([false, true]) { content, phase in",
+            "                content.offset(y: phase ? -40.0 : 0.0)",
+            "            }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The phase animator cycles through the list of phases in the order that you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provide to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/phaseAnimator(_:content:animation:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier. When the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view first appears, the phase animator invokes the ",
+              "type": "text"
+            },
+            {
+              "code": "content",
+              "type": "codeVoice"
+            },
+            {
+              "text": " closure passing in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the first phase. Then the animator calls the closure with the value of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "second phase. The animator continues to call the ",
+              "type": "text"
+            },
+            {
+              "code": "content",
+              "type": "codeVoice"
+            },
+            {
+              "text": " closure for each",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "additional phase. After reaching the last phase, the animator calls ",
+              "type": "text"
+            },
+            {
+              "code": "content",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "one more time with the value of the first phase.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This means that in the previous code, the phase animator calls ",
+              "type": "text"
+            },
+            {
+              "code": "content",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the phase value of ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when the view first appears. This sets the emoji’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "offset to ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The phase animator then calls ",
+              "type": "text"
+            },
+            {
+              "code": "content",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " phase.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This phase sets the offset to ",
+              "type": "text"
+            },
+            {
+              "code": "-40.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", causing the emoji to move upwards. After",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "reaching that offset position, the animator calls ",
+              "type": "text"
+            },
+            {
+              "code": "content",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the phase",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This causes the emoji to move back to its original position by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "setting its offset to ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This animation starts when the view appears. To start the animation based on an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "event, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/phaseAnimator(_:trigger:content:animation:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and provide a ",
+              "type": "text"
+            },
+            {
+              "code": "trigger",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value that animator observes for changes. The animator",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "starts the animation when the value changes. For example, the following code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "increments the state variable ",
+              "type": "text"
+            },
+            {
+              "code": "likeCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " each time a person taps the emoji.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The code uses ",
+              "type": "text"
+            },
+            {
+              "code": "likeCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the value that the phase animator observes for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "changes. Now whenever someone taps the emoji, it moves up and returns to its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "original position.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct TwoPhaseAnimationView: View {",
+            "    var emoji: String",
+            "    @State private var likeCount = 1",
+            "    ",
+            "    var body: some View {",
+            "        EmojiView(emoji: emoji)",
+            "            .phaseAnimator([false, true], trigger: likeCount) { content, phase in",
+            "                content.offset(y: phase ? -40.0 : 0.0)",
+            "            }",
+            "            .onTapGesture {",
+            "                likeCount += 1",
+            "            }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "identifier": "phase-keyframe-animation-02.mp4",
+          "type": "video"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "So far, the phase animator uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/default",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " animation to move the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "emoji. You can change that behavior by providing the ",
+              "type": "text"
+            },
+            {
+              "code": "phaseAnimator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an animation closure. In this closure, specify the type of animation to apply",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for each phase. For instance, the following code applies a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/bouncy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " animation when the phase is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; otherwise, it applies the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/default",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " animation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct TwoPhaseAnimationView: View {",
+            "    var emoji: String",
+            "    @State private var likeCount = 1",
+            "    ",
+            "    var body: some View {",
+            "        EmojiView(emoji: emoji)",
+            "            .phaseAnimator([false, true], trigger: likeCount) { content, phase in",
+            "                content.offset(y: phase ? -40.0 : 0.0)",
+            "            } animation: { phase in",
+            "                phase ? .bouncy : .default",
+            "            }",
+            "            .onTapGesture {",
+            "                likeCount += 1",
+            "            }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "identifier": "phase-keyframe-animation-03.mp4",
+          "type": "video"
+        },
+        {
+          "anchor": "Add-more-phases-to-the-animation",
+          "level": 2,
+          "text": "Add more phases to the animation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While this bounce effect is nice, you can add more pizzazz to it. For instance,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you could make the emoji increase in size as it moves upward, and then shrink",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "back to normal size. To do this, you’ll add a third phase to the animation:",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scale.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To define the phases, create a custom type that lists the possible phases; for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private enum AnimationPhase: CaseIterable {",
+            "    case initial",
+            "    case move",
+            "    case scale",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, to help simplify logic and reduce complexity, define computed properties",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that return the values to animate. For instance, to set the vertical offset to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "move the emoji, create a computed property that returns the offset based on the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "current phase:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private enum AnimationPhase: CaseIterable {",
+            "    case initial",
+            "    case move",
+            "    case scale",
+            "    ",
+            "    var verticalOffset: Double {",
+            "        switch self {",
+            "        case .initial: 0",
+            "        case .move, .scale: -64",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When at the initial phase, the offset is ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the original screen location for the emoji. But when the phase is ",
+              "type": "text"
+            },
+            {
+              "code": "move",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "scale",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the offset is ",
+              "type": "text"
+            },
+            {
+              "code": "-64",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the same approach (creating a computed property) for the scale",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "effect to change the size of the emoji. Initially, the emoji appears",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "at its original size, but increases in size during the move and scale phase,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as shown here:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private enum AnimationPhase: CaseIterable {",
+            "    case initial",
+            "    case move",
+            "    case scale",
+            "    ",
+            "    var verticalOffset: Double {",
+            "        switch self {",
+            "        case .initial: 0",
+            "        case .move, .scale: -64",
+            "        }",
+            "    }",
+            "    ",
+            "    var scaleEffect: Double {",
+            "        switch self {",
+            "        case .initial: 1",
+            "        case .move, .scale: 1.5",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To animate an emoji, apply the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/phaseAnimator(_:trigger:content:animation:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier to the ",
+              "type": "text"
+            },
+            {
+              "code": "EmojiView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Provide the animator all cases from the custom",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "AnimationPhase",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type. Then change the content based on the phase by applying",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scaleEffect(_:anchor:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/offset(x:y:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifiers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The values passed into these modifiers come from the computed properties, which",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "helps keep the view code more readable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ThreePhaseAnimationView: View {",
+            "    var emoji: String",
+            "    @State private var likeCount = 1",
+            "    ",
+            "    var body: some View {",
+            "        EmojiView(emoji: emoji)",
+            "            .phaseAnimator(AnimationPhase.allCases, trigger: likeCount) { content, phase in",
+            "                content",
+            "                    .scaleEffect(phase.scaleEffect)",
+            "                    .offset(y: phase.verticalOffset)",
+            "            } animation: { phase in",
+            "                switch phase {",
+            "                case .initial: .smooth",
+            "                case .move: .easeInOut(duration: 0.3)",
+            "                case .scale: .spring(duration: 0.3, bounce: 0.7)",
+            "                }",
+            "            }",
+            "            .onTapGesture {",
+            "                likeCount += 1",
+            "            }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code also applies different animation types based on the phase in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "animation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " closure to give the full animation that pizzazz you were looking",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "phase-keyframe-animation-04.mp4",
+          "type": "video"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use the canvas preview in Xcode to help determine the animation types",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "and values to apply for the phase animations. Make changes to the code and see",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "those changes reflected in the canvas preview.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PhaseAnimator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " gives you control of an animation based on discrete phases,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which helps you add extra polish to an animation. But if you find that you need",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "even more control over the timing and movement of an animation, use a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/KeyframeAnimator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Gain-more-control-with-a-keyframe-animator",
+          "level": 2,
+          "text": "Gain more control with a keyframe animator",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can define complex, coordinated animations with complete control over",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "timing and movement using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/KeyframeAnimator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This animator allows you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to create keyframes that define values at specific times during an animation.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The animator use these values to generate interpolated values in between each",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "frame of the animation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike a phase animator, in which you model separate, discrete states,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a keyframe animator generates interpolated values of the type that you specify.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "While an animation is in progress, the animator provides you with a value of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this type on every frame so you can update the animating view by applying",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifiers to it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You define the type as a structure that contains the properties that you want",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to independently animate. For example, the following code defines four",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "properties that determine the scale, stretch, position, and angle of an emoji:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private struct AnimationValues {",
+            "    var scale = 1.0",
+            "    var verticalStretch = 1.0",
+            "    var verticalOffset = 0.0",
+            "    var angle = Angle.zero",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/KeyframeAnimator",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " can animate any value that conforms to the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animatable",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " protocol.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a animation using a keyframe animator, apply either the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/keyframeAnimator(initialValue:repeating:content:keyframes:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/keyframeAnimator(initialValue:trigger:content:keyframes:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the view that you want to animate. For instance, the following code applies the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "second modifier to ",
+              "type": "text"
+            },
+            {
+              "code": "EmojiView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The initial value for the animation is a new",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance of ",
+              "type": "text"
+            },
+            {
+              "code": "AnimationValues",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the state variable ",
+              "type": "text"
+            },
+            {
+              "code": "likeCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the value",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that the animator observes for changes as it did in the previous phase",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "animation example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct KeyframeAnimationView: View {",
+            "    var emoji: String",
+            "    @State private var likeCount = 1",
+            "    ",
+            "    var body: some View {",
+            "        EmojiView(emoji: emoji)",
+            "            .keyframeAnimator(",
+            "                initialValue: AnimationValues(),",
+            "                trigger: likeCount",
+            "            ) { content, value in",
+            "                // ...",
+            "            } keyframes: { _ in",
+            "                // ...",
+            "            }",
+            "            .onTapGesture {",
+            "                likeCount += 1",
+            "            }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To apply modifiers to a view during the animation, provide a ",
+              "type": "text"
+            },
+            {
+              "code": "content",
+              "type": "codeVoice"
+            },
+            {
+              "text": " closure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the keyframe animator. This closure includes two parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The view that’s animating.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "content",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The current interpolated values.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "value",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use these parameters to apply modifiers to the view that SwiftUI is animating.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, the following code uses these parameters to rotate, scale,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "stretch, and move an emoji:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct KeyframeAnimationView: View {",
+            "    var emoji: String",
+            "    @State private var likeCount = 1",
+            "    ",
+            "    var body: some View {",
+            "        EmojiView(emoji: emoji)",
+            "            .keyframeAnimator(",
+            "                initialValue: AnimationValues(),",
+            "                trigger: likeCount",
+            "            ) { content, value in",
+            "                content",
+            "                    .rotationEffect(value.angle)",
+            "                    .scaleEffect(value.scale)",
+            "                    .scaleEffect(y: value.verticalStretch)",
+            "                    .offset(y: value.verticalOffset)",
+            "            } keyframes: { _ in",
+            "                // ...",
+            "            }",
+            "            .onTapGesture {",
+            "                likeCount += 1",
+            "            }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "SwiftUI calls the keyframe animator’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "content",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " closure on every",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "frame of the animation, so avoid performing any expensive operations directly",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "within it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, define the keyframes. Keyframes let you build sophisticated animations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with different keyframe for different properties. To make this possible, you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "organize the keyframes into tracks. Each track controls a different property of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the type that you are animating. You associate a property to a track by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "providing the key path to the property when creating the track. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the following code adds a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/KeyframeTrack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the ",
+              "type": "text"
+            },
+            {
+              "code": "scale",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct KeyframeAnimationView: View {",
+            "    var emoji: String",
+            "    @State private var likeCount = 1",
+            "    ",
+            "    var body: some View {",
+            "        EmojiView(emoji: emoji)",
+            "            .keyframeAnimator(",
+            "                initialValue: AnimationValues(),",
+            "                trigger: likeCount",
+            "            ) { content, value in",
+            "                content",
+            "                    .rotationEffect(value.angle)",
+            "                    .scaleEffect(value.scale)",
+            "                    .scaleEffect(y: value.verticalStretch)",
+            "                    .offset(y: value.verticalOffset)",
+            "            } keyframes: { _ in",
+            "                KeyframeTrack(\\.scale) {",
+            "                    // ...",
+            "                }",
+            "            }",
+            "            .onTapGesture {",
+            "                likeCount += 1",
+            "            }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating a track, you use the declarative syntax in SwiftUI to add keyframes to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the track. There are different kinds of keyframes, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CubicKeyframe",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LinearKeyframe",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SpringKeyframe",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can mix and match the different",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "kinds of keyframes within a track. For example, the following code adds a track",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the ",
+              "type": "text"
+            },
+            {
+              "code": "scale",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property that performs a combination of linear and spring",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "animations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct KeyframeAnimationView: View {",
+            "    var emoji: String",
+            "    @State private var likeCount = 1",
+            "    ",
+            "    var body: some View {",
+            "        EmojiView(emoji: emoji)",
+            "            .keyframeAnimator(",
+            "                initialValue: AnimationValues(),",
+            "                trigger: likeCount",
+            "            ) { content, value in",
+            "                content",
+            "                    .rotationEffect(value.angle)",
+            "                    .scaleEffect(value.scale)",
+            "                    .scaleEffect(y: value.verticalStretch)",
+            "                    .offset(y: value.verticalOffset)",
+            "            } keyframes: { _ in",
+            "                KeyframeTrack(\\.scale) {",
+            "                    LinearKeyframe(1.0, duration: 0.36)",
+            "                    SpringKeyframe(1.5, duration: 0.8,",
+            "                        spring: .bouncy)",
+            "                    SpringKeyframe(1.0, spring: .bouncy)",
+            "                }",
+            "            }",
+            "            .onTapGesture {",
+            "                likeCount += 1",
+            "            }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each keyframe type receives a value. The animator uses this value to generate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interpolated values between frames and sets the property specified in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "track’s key path before calling the animator’s content closure. For instance,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the previous code listing, the scale value is ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " during the linear",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "keyframes, which keeps the emoji at its original size. Then the scale changes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to ",
+              "type": "text"
+            },
+            {
+              "code": "1.5",
+              "type": "codeVoice"
+            },
+            {
+              "text": " during the first spring keyframe. This causes the emoji to grow in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "size. The final spring keyframe sets the scale to ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which returns the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "emoji back to its original size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "SwiftUI preserves the velocity (that is, the speed of the animation)",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "across multiple keyframes for continuous motion within a track.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When implementing a keyframe animation, include a track for each property that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you want to animate. For instance, ",
+              "type": "text"
+            },
+            {
+              "code": "AnimationValues",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has four properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "scale",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "verticalStretch",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "verticalOffset",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "angle",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To animate all four, the animator needs four keyframe tracks as shown in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "following code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct KeyframeAnimationView: View {",
+            "    var emoji: String",
+            "    @State private var likeCount = 1",
+            "    ",
+            "    var body: some View {",
+            "        EmojiView(emoji: emoji)",
+            "            .keyframeAnimator(",
+            "                initialValue: AnimationValues(),",
+            "                trigger: likeCount",
+            "            ) { content, value in",
+            "                content",
+            "                    .rotationEffect(value.angle)",
+            "                    .scaleEffect(value.scale)",
+            "                    .scaleEffect(y: value.verticalStretch)",
+            "                    .offset(y: value.verticalOffset)",
+            "            } keyframes: { _ in",
+            "                KeyframeTrack(\\.scale) {",
+            "                    LinearKeyframe(1.0, duration: 0.36)",
+            "                    SpringKeyframe(1.5, duration: 0.8, spring: .bouncy)",
+            "                    SpringKeyframe(1.0, spring: .bouncy)",
+            "                }",
+            "                ",
+            "                KeyframeTrack(\\.verticalOffset) {",
+            "                    LinearKeyframe(0.0, duration: 0.1)",
+            "                    SpringKeyframe(20.0, duration: 0.15, spring: .bouncy)",
+            "                    SpringKeyframe(-60.0, duration: 1.0, spring: .bouncy)",
+            "                    SpringKeyframe(0.0, spring: .bouncy)",
+            "                }",
+            "",
+            "                KeyframeTrack(\\.verticalStretch) {",
+            "                    CubicKeyframe(1.0, duration: 0.1)",
+            "                    CubicKeyframe(0.6, duration: 0.15)",
+            "                    CubicKeyframe(1.5, duration: 0.1)",
+            "                    CubicKeyframe(1.05, duration: 0.15)",
+            "                    CubicKeyframe(1.0, duration: 0.88)",
+            "                    CubicKeyframe(0.8, duration: 0.1)",
+            "                    CubicKeyframe(1.04, duration: 0.4)",
+            "                    CubicKeyframe(1.0, duration: 0.22)",
+            "                }",
+            "",
+            "                KeyframeTrack(\\.angle) {",
+            "                    CubicKeyframe(.zero, duration: 0.58)",
+            "                    CubicKeyframe(.degrees(16), duration: 0.125)",
+            "                    CubicKeyframe(.degrees(-16), duration: 0.125)",
+            "                    CubicKeyframe(.degrees(16), duration: 0.125)",
+            "                    CubicKeyframe(.zero, duration: 0.125)",
+            "                }",
+            "            }",
+            "            .onTapGesture {",
+            "                likeCount += 1",
+            "            }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The combination of these keyframe tracks creates an animation that squishes and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "stretches the emoji, before bouncing it upwards. As the emoji moves",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "towards its peak, it grows larger. When the emoji reaches its peak, it gives a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "little wiggle. Then the emoji returns to its original location with a slight",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "bounce as it settles back into its original position.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "phase-keyframe-animation-05.mp4",
+          "type": "video"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "As with phase animations, use the canvas preview in Xcode to help",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "determine the animation types and values to apply for the keyframe animations.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Make changes to the code and see those changes reflected in the canvas preview.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "354a9f65c3b5/PhaseAndKeyframeAnimationSample.zip": {
+      "checksum": "354a9f65c3b57b9a1b85086cfa38467d03bd18ebb9087f0810a8eaa4c3de0205af1c08017e2577fe3c19734255142cf366f77afaac66effb19b1291b06b350e0",
+      "identifier": "354a9f65c3b5/PhaseAndKeyframeAnimationSample.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/354a9f65c3b5/PhaseAndKeyframeAnimationSample.zip"
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animatable": {
+      "abstract": [
+        {
+          "text": "A type that describes how to animate a property of a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Animatable"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animatable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Animatable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Animatable",
+      "type": "topic",
+      "url": "/documentation/swiftui/animatable"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/bouncy": {
+      "abstract": [
+        {
+          "text": "A spring animation with a predefined duration and higher amount of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "bounce.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bouncy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/bouncy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bouncy",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/bouncy"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/default": {
+      "abstract": [
+        {
+          "text": "A default animation instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "`default`"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/default",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "default",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/default"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animations": {
+      "abstract": [
+        {
+          "text": "Create smooth visual updates in response to state changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Animations",
+      "type": "topic",
+      "url": "/documentation/swiftui/animations"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CubicKeyframe": {
+      "abstract": [
+        {
+          "text": "A keyframe that uses a cubic curve to smoothly interpolate between values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CubicKeyframe"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CubicKeyframe",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CubicKeyframe"
+        }
+      ],
+      "role": "symbol",
+      "title": "CubicKeyframe",
+      "type": "topic",
+      "url": "/documentation/swiftui/cubickeyframe"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/KeyframeAnimator": {
+      "abstract": [
+        {
+          "text": "A container that animates its content with keyframes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "KeyframeAnimator"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/KeyframeAnimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "KeyframeAnimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "KeyframeAnimator",
+      "type": "topic",
+      "url": "/documentation/swiftui/keyframeanimator"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/KeyframeTrack": {
+      "abstract": [
+        {
+          "text": "A sequence of keyframes animating a single property of a root type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "KeyframeTrack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/KeyframeTrack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "KeyframeTrack"
+        }
+      ],
+      "role": "symbol",
+      "title": "KeyframeTrack",
+      "type": "topic",
+      "url": "/documentation/swiftui/keyframetrack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LinearKeyframe": {
+      "abstract": [
+        {
+          "text": "A keyframe that uses simple linear interpolation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LinearKeyframe"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LinearKeyframe",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LinearKeyframe"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinearKeyframe",
+      "type": "topic",
+      "url": "/documentation/swiftui/linearkeyframe"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PhaseAnimator": {
+      "abstract": [
+        {
+          "text": "A container that animates its content by automatically cycling through",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a collection of phases that you provide, each defining a discrete step",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "within an animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhaseAnimator"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PhaseAnimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PhaseAnimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhaseAnimator",
+      "type": "topic",
+      "url": "/documentation/swiftui/phaseanimator"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SpringKeyframe": {
+      "abstract": [
+        {
+          "text": "A keyframe that uses a spring function to interpolate to the given value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpringKeyframe"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SpringKeyframe",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpringKeyframe"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpringKeyframe",
+      "type": "topic",
+      "url": "/documentation/swiftui/springkeyframe"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/keyframeAnimator(initialValue:repeating:content:keyframes:)": {
+      "abstract": [
+        {
+          "text": "Loops the given keyframes continuously, updating",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the view using the modifiers you apply in ",
+          "type": "text"
+        },
+        {
+          "code": "body",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyframeAnimator"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "initialValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "repeating"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI22PlaceholderContentViewV",
+          "text": "PlaceholderContentView"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "keyframes"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9KeyframesP",
+          "text": "Keyframes"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/keyframeAnimator(initialValue:repeating:content:keyframes:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keyframeAnimator(initialValue:repeating:content:keyframes:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/keyframeanimator(initialvalue:repeating:content:keyframes:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/keyframeAnimator(initialValue:trigger:content:keyframes:)": {
+      "abstract": [
+        {
+          "text": "Plays the given keyframes when the given trigger value changes, updating",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the view using the modifiers you apply in ",
+          "type": "text"
+        },
+        {
+          "code": "body",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyframeAnimator"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "initialValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trigger"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI22PlaceholderContentViewV",
+          "text": "PlaceholderContentView"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "keyframes"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9KeyframesP",
+          "text": "Keyframes"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/keyframeAnimator(initialValue:trigger:content:keyframes:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keyframeAnimator(initialValue:trigger:content:keyframes:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/keyframeanimator(initialvalue:trigger:content:keyframes:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/offset(x:y:)": {
+      "abstract": [
+        {
+          "text": "Offset this view by the specified horizontal and vertical distances.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/offset(x:y:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offset(x:y:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/offset(x:y:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/phaseAnimator(_:content:animation:)": {
+      "abstract": [
+        {
+          "text": "Animates effects that you apply to a view over a sequence of phases",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that change continuously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "phaseAnimator"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Phase"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST",
+          "text": "Sequence"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI22PlaceholderContentViewV",
+          "text": "PlaceholderContentView"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Phase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animation"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Phase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/phaseAnimator(_:content:animation:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "phaseAnimator(_:content:animation:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/phaseanimator(_:content:animation:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/phaseAnimator(_:trigger:content:animation:)": {
+      "abstract": [
+        {
+          "text": "Animates effects that you apply to a view over a sequence of phases",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that change based on a trigger.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "phaseAnimator"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Phase"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST",
+          "text": "Sequence"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trigger"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI22PlaceholderContentViewV",
+          "text": "PlaceholderContentView"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Phase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animation"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Phase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/phaseAnimator(_:trigger:content:animation:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "phaseAnimator(_:trigger:content:animation:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/phaseanimator(_:trigger:content:animation:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scaleEffect(_:anchor:)": {
+      "abstract": [
+        {
+          "text": "Scales this view’s rendered output by the given amount in both the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "horizontal and vertical directions, relative to an anchor point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scaleEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "anchor"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scaleEffect(_:anchor:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scaleEffect(_:anchor:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/scaleeffect(_:anchor:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/withAnimation(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the result of recomputing the view’s body with the provided",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withAnimation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        },
+        {
+          "kind": "text",
+          "text": "?, () "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/withAnimation(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withAnimation(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/withanimation(_:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/withAnimation(_:completionCriteria:_:completion:)": {
+      "abstract": [
+        {
+          "text": "Returns the result of recomputing the view’s body with the provided",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "animation, and runs the completion when all animations are complete.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withAnimation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionCriteria"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI27AnimationCompletionCriteriaV",
+          "text": "AnimationCompletionCriteria"
+        },
+        {
+          "kind": "text",
+          "text": ", () "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/withAnimation(_:completionCriteria:_:completion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withAnimation(_:completionCriteria:_:completion:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/withanimation(_:completioncriteria:_:completion:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "phase-keyframe-animation-01.mp4": {
+      "alt": "A video that shows a heart-shaped emoji that moves up to its peak position, then returns to its original position.",
+      "identifier": "phase-keyframe-animation-01.mp4",
+      "poster": "phase-keyframe-animation-01.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/40a40ab47d93a0979b7449ba0a77f7ff/phase-keyframe-animation-01.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4939439d07025a5572a54a4c30f72d47/phase-keyframe-animation-01~dark.mp4"
+        }
+      ]
+    },
+    "phase-keyframe-animation-01.png": {
+      "alt": null,
+      "identifier": "phase-keyframe-animation-01.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/85ac5b5b22e53bc785a8bd024aa7fe4b/phase-keyframe-animation-01@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5b9b60b8fc4ec92f8cb1e342daa77d08/phase-keyframe-animation-01~dark@2x.png"
+        }
+      ]
+    },
+    "phase-keyframe-animation-02.mp4": {
+      "alt": "A video that shows a heart-shaped emoji that moves up to its peak position, then returns to its original position.",
+      "identifier": "phase-keyframe-animation-02.mp4",
+      "poster": "phase-keyframe-animation-02.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ec64eab4da04dab0c3a7e2c28eede60b/phase-keyframe-animation-02.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4edcc0ec99e52005ff9964417a8abfa3/phase-keyframe-animation-02~dark.mp4"
+        }
+      ]
+    },
+    "phase-keyframe-animation-02.png": {
+      "alt": null,
+      "identifier": "phase-keyframe-animation-02.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/12f04230e1796b9ecb7c881e770b3060/phase-keyframe-animation-02@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/93eab9f831ec329185a952591f33f759/phase-keyframe-animation-02~dark@2x.png"
+        }
+      ]
+    },
+    "phase-keyframe-animation-03.mp4": {
+      "alt": "A video that shows a heart-shaped emoji that bounces slightly downward before moving up. After the emoji reaches its peak position, it moves downward, returning to its original position.",
+      "identifier": "phase-keyframe-animation-03.mp4",
+      "poster": "phase-keyframe-animation-03.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/43854501d3908c17cd163953078cd131/phase-keyframe-animation-03.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a67488527852e501258ccc1be0dd2e54/phase-keyframe-animation-03~dark.mp4"
+        }
+      ]
+    },
+    "phase-keyframe-animation-03.png": {
+      "alt": null,
+      "identifier": "phase-keyframe-animation-03.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8ef3eb1fa917c496e83f9febf6e00ca3/phase-keyframe-animation-03@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6a80577c31d95c91c9eb40ab8ab1ff4a/phase-keyframe-animation-03~dark@2x.png"
+        }
+      ]
+    },
+    "phase-keyframe-animation-04.mp4": {
+      "alt": "A video that shows a heart-shaped emoji that moves up. As the emoji moves upwards, it grows larger in size. When the emoji reaches its peak position, it moves back down to its original position while returning to its original size.",
+      "identifier": "phase-keyframe-animation-04.mp4",
+      "poster": "phase-keyframe-animation-04.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/54cd3f809790fd456c2b985c56821d66/phase-keyframe-animation-04.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fe97f08a00b420c373477ae72041dd6a/phase-keyframe-animation-04~dark.mp4"
+        }
+      ]
+    },
+    "phase-keyframe-animation-04.png": {
+      "alt": null,
+      "identifier": "phase-keyframe-animation-04.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/196bc59174b948cb8d01e3b36c872fe4/phase-keyframe-animation-04@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0e2c07d60ed98d689b0df83bc188aa71/phase-keyframe-animation-04~dark@2x.png"
+        }
+      ]
+    },
+    "phase-keyframe-animation-05.mp4": {
+      "alt": "A video that shows a heart-shaped emoji that squishes and stretches, then bounces upwards. As the emoji moves towards its peak position, it grows larger. When the emoji reaches its peak, it wiggles with a slight clockwise to counter clockwise rotation. The emoji then moves down towards its original position while shrinking back to its original size. Then the emoji bounces slightly as it settles back into its original position.",
+      "identifier": "phase-keyframe-animation-05.mp4",
+      "poster": "phase-keyframe-animation-05.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/049c64d56826ecf9f384dfbfd0bdbce7/phase-keyframe-animation-05.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3ac96f6ba17b9d7370d646914a9289b3/phase-keyframe-animation-05~dark.mp4"
+        }
+      ]
+    },
+    "phase-keyframe-animation-05.png": {
+      "alt": null,
+      "identifier": "phase-keyframe-animation-05.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e217c188c9c8952213ec41289d6dcefe/phase-keyframe-animation-05@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/092cba3bca8c151f1c072a450c588dc6/phase-keyframe-animation-05~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "354a9f65c3b5/PhaseAndKeyframeAnimationSample.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-phase-based-animation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/phaseAnimator(_:content:animation:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/phaseAnimator(_:trigger:content:animation:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PhaseAnimator"
+      ],
+      "title": "Creating phase-based animation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/controlling-the-timing-and-movements-of-your-animations"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

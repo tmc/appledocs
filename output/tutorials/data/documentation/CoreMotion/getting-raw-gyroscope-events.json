@@ -1,0 +1,1210 @@
+{
+  "abstract": [
+    {
+      "text": "Retrieve data from the onboard gyroscopes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremotion/documentation/CoreMotion"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremotion/documentation/CoreMotion/getting-raw-gyroscope-events"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Motion"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Getting raw gyroscope events"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A gyroscope measures the rate at which a device rotates around a spatial axis. Many iOS devices have a three-axis gyroscope, which delivers rotation values in each of the three axes shown in the next illustration. Rotation values are measured in radians per second around the given axis. Rotation values may be positive or negative depending on the direction of rotation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2904021",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You access the raw gyroscope data using the classes of the Core Motion framework. Specifically, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class provides the interfaces for enabling the gyroscope hardware. When enabling the hardware, choose the interfaces that are best suited for your app. You can pull the gyroscope data only when you need it, or you can ask the framework to push updates to your app at regular intervals. Each technique involves different configuration steps and has a different use case.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your app relies on the presence of gyroscope hardware, configure the ",
+                  "type": "text"
+                },
+                {
+                  "code": "UIRequiredDeviceCapabilities",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key of its ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file with the ",
+                  "type": "text"
+                },
+                {
+                  "code": "gyroscope",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " value. For more information about the meaning of this key, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The raw rotation rate data delivered by the gyroscope interfaces may be biased by other factors such as temperature. If your app requires unbiased rotation values, use the device-motion interfaces instead. The device-motion interfaces use special algorithms to remove any bias and deliver more precise rotation values. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/getting-processed-device-motion-data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about the coordinate axes of different device types, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-for-the-availability-of-gyroscope-data",
+          "level": 3,
+          "text": "Check for the availability of gyroscope data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Gyroscope data might be unavailable for a variety of reasons, so verify that the data is available before you try to obtain it. Check the value of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/isGyroAvailable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of ",
+              "type": "text"
+            },
+            {
+              "code": "CMMotionManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and make sure it’s ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If it’s ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", starting updates doesn’t deliver any data to your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In visionOS, gyroscope data is available only when your app has an open immersive space. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersiveSpace",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Get-gyroscope-data-only-when-you-need-it",
+          "level": 3,
+          "text": "Get gyroscope data only when you need it",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For apps that process gyroscope data on their own schedule, such as games, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startGyroUpdates()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to start the delivery of rotation data. When you call this method, the system enables the gyroscope hardware and begins updating the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/gyroData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. However, the system does not notify you when it updates that property. You must explicitly check the value of the property when you need the rotation data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you start the delivery of gyroscope updates, specify an update frequency by assigning a value to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/gyroUpdateInterval",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. The maximum frequency at which you can request updates is hardware-dependent but is usually at least 100 Hz. If you request a frequency that is greater than what the hardware supports, Core Motion uses the supported maximum instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The next example shows a method that configures gyroscope updates to occur 50 times per second. The method then configures a timer to fetch those updates at the same frequency and do something with the data. You could configure the timer to fire at a lower frequency, but doing so would waste power by causing the hardware to generate more updates than were actually used.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func startGyros() {",
+            "   if motion.isGyroAvailable {",
+            "      self.motion.gyroUpdateInterval = 1.0 / 50.0",
+            "      self.motion.startGyroUpdates()",
+            "",
+            "      // Configure a timer to fetch the accelerometer data.",
+            "      self.timer = Timer(fire: Date(), interval: (1.0/50.0), ",
+            "             repeats: true, block: { (timer) in",
+            "         // Get the gyro data.",
+            "         if let data = self.motion.gyroData {",
+            "            let x = data.rotationRate.x",
+            "            let y = data.rotationRate.y",
+            "            let z = data.rotationRate.z",
+            "",
+            "            // Use the gyroscope data in your app. ",
+            "         }",
+            "      })",
+            "",
+            "      // Add the timer to the current run loop.",
+            "      RunLoop.current.add(self.timer!, forMode: .defaultRunLoopMode)",
+            "   }",
+            "}",
+            "",
+            "func stopGyros() {",
+            "   if self.timer != nil {",
+            "      self.timer?.invalidate()",
+            "      self.timer = nil",
+            "",
+            "      self.motion.stopGyroUpdates()",
+            "   }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Process-a-steady-stream-of-gyroscope-updates",
+          "level": 3,
+          "text": "Process a steady stream of gyroscope updates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you want to capture all of the gyroscope data, perhaps so you can analyze it for movement patterns, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startGyroUpdates(to:withHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This method pushes each new set of rotation values to your app by executing your handler block on the specified queue. The queueing of these blocks ensures that your app receives all of the gyroscope data, even if your app becomes busy and is unable to process updates for a brief period of time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you start the delivery of gyroscope updates, specify an update frequency by assigning a value to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/gyroUpdateInterval",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. The maximum frequency at which you can request updates is hardware-dependent but is usually at least 100 Hz. If you request a frequency that is greater than what the hardware supports, Core Motion uses the supported maximum instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The next example shows a method from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/samplecode/MotionGraphs/Introduction/Intro.html#//apple_ref/doc/uid/DTS40012333",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample code project, which you can examine for more context. The app displays a real-time graph of rotation data from the onboard gyroscopes. The user configures the update frequency for the gyroscopes using a slider, the changing of which results in a call to the ",
+              "type": "text"
+            },
+            {
+              "code": "startUpdatesWithSliderValue:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method shown in the example. This method restarts the gyroscope updates with the new frequency. Each time a new sample is received, the specified block is queued on the main thread. That block updates the app’s graph view and labels with the new rotation values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static const NSTimeInterval gyroMin = 0.01;",
+            "- (void)startUpdatesWithSliderValue:(int)sliderValue {",
+            "   // Determine the update interval",
+            "   NSTimeInterval delta = 0.005;",
+            "   NSTimeInterval updateInterval = gyroMin + delta * sliderValue;",
+            "",
+            "   // Create a CMMotionManager",
+            "   CMMotionManager *mManager = [(APLAppDelegate *)",
+            "            [[UIApplication sharedApplication] delegate] sharedManager];",
+            "   APLGyroGraphViewController * __weak weakSelf = self;",
+            "",
+            "   // Check whether the gyroscope is available",
+            "   if ([mManager isGyroAvailable] == YES) {",
+            "      // Assign the update interval to the motion manager",
+            "      [mManager setGyroUpdateInterval:updateInterval];",
+            "      [mManager startGyroUpdatesToQueue:[NSOperationQueue mainQueue] ",
+            "               withHandler:^(CMGyroData *gyroData, NSError *error) {",
+            "         [weakSelf.graphView addX:gyroData.rotationRate.x ",
+            "                  y:gyroData.rotationRate.y ",
+            "                  z:gyroData.rotationRate.z];",
+            "         [weakSelf setLabelValueX:gyroData.rotationRate.x ",
+            "                  y:gyroData.rotationRate.y ",
+            "                  z:gyroData.rotationRate.z];",
+            "      }];",
+            "   }",
+            "   self.updateIntervalLabel.text = [NSString stringWithFormat:@\"%f\", updateInterval];",
+            "}",
+            "- (void)stopUpdates{",
+            "   CMMotionManager *mManager = [(APLAppDelegate *)",
+            "            [[UIApplication sharedApplication] delegate] sharedManager];",
+            "   if ([mManager isGyroActive] == YES) {",
+            "      [mManager stopGyroUpdates];",
+            "   }",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremotion/documentation/CoreMotion": {
+      "abstract": [
+        {
+          "text": "Process accelerometer, gyroscope, pedometer, and environment-related events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Motion",
+      "type": "topic",
+      "url": "/documentation/coremotion"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMGyroData": {
+      "abstract": [
+        {
+          "text": "A single measurement of the device’s rotation rate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMGyroData"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMGyroData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMGyroData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMGyroData",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmgyrodata"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager": {
+      "abstract": [
+        {
+          "text": "The object for starting and managing motion services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMMotionManager"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMMotionManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMMotionManager",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/gyroData": {
+      "abstract": [
+        {
+          "text": "The latest sample of gyroscope data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gyroData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CMGyroData",
+          "text": "CMGyroData"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/gyroData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gyroData"
+        }
+      ],
+      "role": "symbol",
+      "title": "gyroData",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager/gyrodata"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/gyroUpdateInterval": {
+      "abstract": [
+        {
+          "text": "The interval, in seconds, for providing gyroscope updates to the block handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gyroUpdateInterval"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/gyroUpdateInterval",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gyroUpdateInterval"
+        }
+      ],
+      "role": "symbol",
+      "title": "gyroUpdateInterval",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager/gyroupdateinterval"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/isGyroAvailable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether a gyroscope is available on the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isGyroAvailable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/isGyroAvailable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gyroAvailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "isGyroAvailable",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager/isgyroavailable"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startGyroUpdates()": {
+      "abstract": [
+        {
+          "text": "Starts gyroscope updates without a handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startGyroUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startGyroUpdates()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startGyroUpdates"
+        }
+      ],
+      "role": "symbol",
+      "title": "startGyroUpdates()",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager/startgyroupdates()"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startGyroUpdates(to:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Starts gyroscope updates on an operation queue and with a specified handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startGyroUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOperationQueue",
+          "text": "OperationQueue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMGyroHandler",
+          "text": "CMGyroHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startGyroUpdates(to:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startGyroUpdatesToQueue:withHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startGyroUpdates(to:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager/startgyroupdates(to:withhandler:)"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/getting-processed-device-motion-data": {
+      "abstract": [
+        {
+          "text": "Retrieve motion data that the system processed to remove environmental bias, such as the effects of gravity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/getting-processed-device-motion-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting processed device-motion data",
+      "type": "topic",
+      "url": "/documentation/coremotion/getting-processed-device-motion-data"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ImmersiveSpace": {
+      "abstract": [
+        {
+          "text": "A scene that presents its content in an unbounded space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImmersiveSpace"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21ImmersiveSpaceContentP",
+          "text": "ImmersiveSpaceContent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Se",
+          "text": "Decodable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SE",
+          "text": "Encodable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersiveSpace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ImmersiveSpace",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ImmersiveSpace"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/",
+      "title": "Information Property List Key Reference",
+      "titleInlineContent": [
+        {
+          "text": "Information Property List Key Reference",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/"
+    },
+    "https://developer.apple.com/library/archive/samplecode/MotionGraphs/Introduction/Intro.html#//apple_ref/doc/uid/DTS40012333": {
+      "identifier": "https://developer.apple.com/library/archive/samplecode/MotionGraphs/Introduction/Intro.html#//apple_ref/doc/uid/DTS40012333",
+      "title": "MotionGraphs",
+      "titleInlineContent": [
+        {
+          "text": "MotionGraphs",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/samplecode/MotionGraphs/Introduction/Intro.html#//apple_ref/doc/uid/DTS40012333"
+    },
+    "media-2904021": {
+      "alt": "Gyroscopes measure the rotation rate around the x, y, and z axes",
+      "identifier": "media-2904021",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cd1feafe8399d86e120bf5f723a12459/media-2904021@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Gyroscopes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMGyroData"
+      ],
+      "title": "Gyroscopes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Gyroscopes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMGyroData"
+              ],
+              "title": "Gyroscopes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMGyroData/title",
+          "value": "CMGyroData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMGyroData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMGyroData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMGyroData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMGyroData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1startGyroUpdates()/title",
+          "value": "startGyroUpdates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1startGyroUpdates()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startGyroUpdates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1gyroData/title",
+          "value": "gyroData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1gyroData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gyroData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager/title",
+          "value": "CMMotionManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMotionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMotionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1isGyroAvailable/title",
+          "value": "gyroAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1isGyroAvailable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gyroAvailable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1startGyroUpdates(to:withHandler:)/title",
+          "value": "startGyroUpdatesToQueue:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1startGyroUpdates(to:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startGyroUpdatesToQueue:withHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1gyroUpdateInterval/title",
+          "value": "gyroUpdateInterval"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1gyroUpdateInterval/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gyroUpdateInterval"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremotion/getting-raw-gyroscope-events"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremotion/getting-raw-gyroscope-events"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

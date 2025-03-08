@@ -1,0 +1,2366 @@
+{
+  "abstract": [
+    {
+      "text": "Improve navigation behavior in your app by replacing navigation views",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "with navigation stacks and navigation split views.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Navigation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Migrating-to-New-Navigation-Types"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Migrating to new navigation types"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app has a minimum deployment target of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "iOS 16, iPadOS 16, macOS 13, tvOS 16, watchOS 9, or visionOS 1, or later,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "transition away from using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In its place, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "How you use these depends",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on whether you perform navigation in one column",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or across multiple columns.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "With these newer containers,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you get better control over",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view presentation, container configuration, and programmatic navigation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-single-column-navigation",
+          "level": 3,
+          "text": "Update single column navigation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that you style using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationViewStyle/stack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " navigation view style,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "where people navigate by pushing a new view onto a stack,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "switch to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In particular, stop doing this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NavigationView { // This is deprecated.",
+            "    /* content */",
+            "}",
+            ".navigationViewStyle(.stack)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead, create a navigation stack:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NavigationStack {",
+            "    /* content */",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Update-multicolumn-navigation",
+          "level": 3,
+          "text": "Update multicolumn navigation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app uses a two- or three-column ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "apps that have multiple columns in some cases and a single column in others",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "— which is typical for apps that run on iPhone and iPad —",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "switch to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead of using a two-column navigation view:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NavigationView { // This is deprecated.",
+            "    /* column 1 */",
+            "    /* column 2 */",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a navigation split view",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that has explicit sidebar and detail content",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitView/init(sidebar:detail:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NavigationSplitView {",
+            "    /* column 1 */",
+            "} detail: {",
+            "    /* column 2 */",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, instead of using a three-column navigation view:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NavigationView { // This is deprecated.",
+            "    /* column 1 */",
+            "    /* column 2 */",
+            "    /* column 3 */",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a navigation split view",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that has explicit sidebar, content, and detail components",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitView/init(sidebar:content:detail:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NavigationSplitView {",
+            "    /* column 1 */",
+            "} content: {",
+            "    /* column 2 */",
+            "} detail: {",
+            "    /* column 3 */",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need navigation within a column,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "embed a navigation stack in that column.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This arrangement provides finer control",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "over what each column displays.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " also enables you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to customize column visibility and width.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-programmatic-navigation",
+          "level": 3,
+          "text": "Update programmatic navigation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you perform programmatic navigation using one of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationLink",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializers that has",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an ",
+              "type": "text"
+            },
+            {
+              "code": "isActive",
+              "type": "codeVoice"
+            },
+            {
+              "text": " input parameter,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "move the automation to the enclosing stack.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Do this by changing your navigation links to use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationLink/init(value:label:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "then use one of the navigation stack initializers",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that takes a path input,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationStack/init(path:root:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if you have a navigation view with links",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that activate in response to individual state variables:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@State private var isShowingPurple = false",
+            "@State private var isShowingPink = false",
+            "@State private var isShowingOrange = false",
+            "",
+            "var body: some View {",
+            "    NavigationView { // This is deprecated.",
+            "        List {",
+            "            NavigationLink(\"Purple\", isActive: $isShowingPurple) {",
+            "                ColorDetail(color: .purple)",
+            "            }",
+            "            NavigationLink(\"Pink\", isActive: $isShowingPink) {",
+            "                ColorDetail(color: .pink)",
+            "            }",
+            "            NavigationLink(\"Orange\", isActive: $isShowingOrange) {",
+            "                ColorDetail(color: .orange)",
+            "            }",
+            "        }",
+            "    }",
+            "    .navigationViewStyle(.stack) ",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When some other part of your code sets one of the state variables",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to true, the navigation link that has the matching tag activates in response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Rewrite this as a navigation stack that takes a path input:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@State private var path: [Color] = [] // Nothing on the stack by default.",
+            "",
+            "var body: some View {",
+            "    NavigationStack(path: $path) {",
+            "        List {",
+            "            NavigationLink(\"Purple\", value: .purple)",
+            "            NavigationLink(\"Pink\", value: .pink)",
+            "            NavigationLink(\"Orange\", value: .orange)",
+            "        }",
+            "        .navigationDestination(for: Color.self) { color in",
+            "            ColorDetail(color: color)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This version uses the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDestination(for:destination:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to detach the presented data from the corresponding view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "That makes it possible for the ",
+              "type": "text"
+            },
+            {
+              "code": "path",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to represent every view on the stack.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Changes that you make to the array",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "affect what the container displays right now,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as well as what people encounter as they navigate through the stack.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can support even more sophisticated programmatic navigation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "if you use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationPath",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to store the path information,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "rather than a plain collection of data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-selection-based-navigation",
+          "level": 3,
+          "text": "Update selection-based navigation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you perform programmatic navigation on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/List",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " elements",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that use one of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationLink",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializers with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a ",
+              "type": "text"
+            },
+            {
+              "code": "selection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " input parameter,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you can move the selection to the list.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, suppose you have a navigation view with links",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that activate in response to a ",
+              "type": "text"
+            },
+            {
+              "code": "selection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " state variable:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let colors: [Color] = [.purple, .pink, .orange]",
+            "@State private var selection: Color? = nil // Nothing selected by default.",
+            "",
+            "var body: some View {",
+            "    NavigationView { // This is deprecated.",
+            "        List {",
+            "            ForEach(colors, id: \\.self) { color in",
+            "                NavigationLink(color.description, tag: color, selection: $selection) {",
+            "                    ColorDetail(color: color)",
+            "                }",
+            "            }",
+            "        }",
+            "        Text(\"Pick a color\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the same properties, you can rewrite the body as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var body: some View {",
+            "    NavigationSplitView {",
+            "        List(colors, id: \\.self, selection: $selection) { color in",
+            "            NavigationLink(color.description, value: color)",
+            "        }",
+            "    } detail: {",
+            "        if let color = selection {",
+            "            ColorDetail(color: color)",
+            "        } else {",
+            "            Text(\"Pick a color\")",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The list coordinates with the navigation logic",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so that changing the selection state variable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in another part of your code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "activates the navigation link with the corresponding color.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Similarly, if someone chooses the navigation link",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "associated with a particular color,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the list updates the selection value",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that other parts of your code can read.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-backward-compatibility-with-an-availability-check",
+          "level": 3,
+          "text": "Provide backward compatibility with an availability check",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app needs to run on platform versions earlier than",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "iOS 16, iPadOS 16, macOS 13, tvOS 16, watchOS 9, or visionOS 1,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you can start migration while continuing to support older clients",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by using an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/statements/#Availability-Condition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you can create a custom wrapper view that conditionally uses",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct NavigationSplitViewWrapper<Sidebar, Content, Detail>: View",
+            "    where Sidebar: View, Content: View, Detail: View",
+            "{",
+            "    private var sidebar: Sidebar",
+            "    private var content: Content",
+            "    private var detail: Detail",
+            "    ",
+            "    init(",
+            "        @ViewBuilder sidebar: () -> Sidebar,",
+            "        @ViewBuilder content: () -> Content,",
+            "        @ViewBuilder detail:  () -> Detail",
+            "    ) {",
+            "        self.sidebar = sidebar()",
+            "        self.content = content()",
+            "        self.detail = detail()",
+            "    }",
+            "    ",
+            "    var body: some View {",
+            "        if #available(iOS 16, macOS 13, tvOS 16, watchOS 9, visionOS 1, *) {",
+            "            // Use the latest API.",
+            "            NavigationSplitView {",
+            "                sidebar",
+            "            } content: {",
+            "                content",
+            "            } detail: {",
+            "                detail",
+            "            }",
+            "        } else {",
+            "            // Support previous platform versions.",
+            "            NavigationView {",
+            "                sidebar",
+            "                content",
+            "                detail",
+            "            }",
+            "            .navigationViewStyle(.columns)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Customize the wrapper to meet your app’s needs.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, you can add a navigation split view style modifier",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewStyle(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the appropriate branch",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the availability check.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Bringing-robust-navigation-structure-to-your-swiftui-app": {
+      "abstract": [
+        {
+          "text": "Use navigation links, stacks, destinations, and paths to provide a streamlined experience for all platforms, as well as behaviors such as deep linking and state restoration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Bringing-robust-navigation-structure-to-your-swiftui-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Bringing robust navigation structure to your SwiftUI app",
+      "type": "topic",
+      "url": "/documentation/swiftui/bringing-robust-navigation-structure-to-your-swiftui-app"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/List": {
+      "abstract": [
+        {
+          "text": "A container that presents rows of data arranged in a single column,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "optionally providing the ability to select one or more members.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "List"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/List",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "List"
+        }
+      ],
+      "role": "symbol",
+      "title": "List",
+      "type": "topic",
+      "url": "/documentation/swiftui/list"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Navigation": {
+      "abstract": [
+        {
+          "text": "Enable people to move between different parts of your app’s view hierarchy",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "within a scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Navigation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Navigation",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigation"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationLink": {
+      "abstract": [
+        {
+          "text": "A view that controls a navigation presentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NavigationLink"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationLink",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NavigationLink"
+        }
+      ],
+      "role": "symbol",
+      "title": "NavigationLink",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigationlink"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationLink/init(value:label:)": {
+      "abstract": [
+        {
+          "text": "Creates a navigation link that presents the view corresponding to a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "codable value.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Label",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "View",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Destination",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Never",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "label"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationLink/init(value:label:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "label"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(value:label:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigationlink/init(value:label:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationPath": {
+      "abstract": [
+        {
+          "text": "A type-erased list of data representing the content of a navigation stack.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NavigationPath"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationPath",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NavigationPath"
+        }
+      ],
+      "role": "symbol",
+      "title": "NavigationPath",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigationpath"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitView": {
+      "abstract": [
+        {
+          "text": "A view that presents views in two or three columns, where selections in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "leading columns control presentations in subsequent columns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NavigationSplitView"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NavigationSplitView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NavigationSplitView",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigationsplitview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitView/init(sidebar:content:detail:)": {
+      "abstract": [
+        {
+          "text": "Creates a three-column navigation split view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "sidebar"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Sidebar"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "detail"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Detail"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitView/init(sidebar:content:detail:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(sidebar:content:detail:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigationsplitview/init(sidebar:content:detail:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitView/init(sidebar:detail:)": {
+      "abstract": [
+        {
+          "text": "Creates a two-column navigation split view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "sidebar"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Sidebar"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "detail"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Detail"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitView/init(sidebar:detail:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(sidebar:detail:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigationsplitview/init(sidebar:detail:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitViewVisibility": {
+      "abstract": [
+        {
+          "text": "The visibility of the leading columns in a navigation split view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NavigationSplitViewVisibility"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitViewVisibility",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NavigationSplitViewVisibility"
+        }
+      ],
+      "role": "symbol",
+      "title": "NavigationSplitViewVisibility",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigationsplitviewvisibility"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationStack": {
+      "abstract": [
+        {
+          "text": "A view that displays a root view and enables you to present additional",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "views over the root view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NavigationStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NavigationStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "NavigationStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigationstack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationStack/init(path:root:)": {
+      "abstract": [
+        {
+          "text": "Creates a navigation stack with homogeneous navigation state that you",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "can control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "root"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationStack/init(path:root:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "root"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(path:root:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigationstack/init(path:root:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationView": {
+      "abstract": [
+        {
+          "text": "A view for presenting a stack of views that represents a visible path in a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "navigation hierarchy.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NavigationView"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NavigationView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NavigationView",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigationview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationViewStyle/stack": {
+      "abstract": [
+        {
+          "text": "A navigation view style represented by a view stack that only shows a single",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "top view at a time.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "StackNavigationViewStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stack"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI24StackNavigationViewStyleV",
+          "text": "StackNavigationViewStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationViewStyle/stack",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stack",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigationviewstyle/stack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDestination(for:destination:)": {
+      "abstract": [
+        {
+          "text": "Associates a destination view with a presented data type for use within",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a navigation stack.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationDestination"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDestination(for:destination:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationDestination(for:destination:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationdestination(for:destination:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewColumnWidth(_:)": {
+      "abstract": [
+        {
+          "text": "Sets a fixed, preferred width for the column containing this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationSplitViewColumnWidth"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewColumnWidth(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationSplitViewColumnWidth(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationsplitviewcolumnwidth(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewColumnWidth(min:ideal:max:)": {
+      "abstract": [
+        {
+          "text": "Sets a flexible, preferred width for the column containing this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationSplitViewColumnWidth"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "min"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ideal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "max"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewColumnWidth(min:ideal:max:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationSplitViewColumnWidth(min:ideal:max:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationsplitviewcolumnwidth(min:ideal:max:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for navigation split views within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationSplitViewStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationSplitViewStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationsplitviewstyle(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/statements/#Availability-Condition": {
+      "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/statements/#Availability-Condition",
+      "title": "availability condition",
+      "titleInlineContent": [
+        {
+          "text": "availability condition",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/statements/#Availability-Condition"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Presenting-views-in-columns",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Bringing-robust-navigation-structure-to-your-swiftui-app",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitView",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewColumnWidth(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewColumnWidth(min:ideal:max:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitViewVisibility",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationLink"
+      ],
+      "title": "Presenting views in columns"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/migrating-to-new-navigation-types"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

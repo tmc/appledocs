@@ -1,0 +1,1422 @@
+{
+  "abstract": [
+    {
+      "text": "A framework that contain wrappers to a PDF to allow creation",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "of an assessment and student work on that assessment.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Assignables/documentation/Assignables"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "Assignables",
+    "modules": [
+      {
+        "name": "Assignables"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.4",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.4",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.4",
+        "name": "Mac Catalyst"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Assignables"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a document that contains a base PDF and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "stores added markup, annotations, questions, and scoring options",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for that PDF.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This framework focuses on the student and teacher experience.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Teachers can assign the document to a student by creating",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignedWorkDocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In addition to those data types, Assignables also provides SwiftUI",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view classes to enable editing of those documents in your own views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once a student completes their work, they can return it to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "teacher to be scored and to receive comments on their work.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Authorship is important at each of these steps, so Assignables",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "supports attribution of changes to any document using types",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that conform to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Assignables/documentation/Assignables/UserIdentity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Since teachers may collaborate on making an assignable or scoring",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "student works, or students might collaborate on a document,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "both document types support merging copies of the document with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "any other copy of the same document.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Assignables/documentation/Assignables": {
+      "abstract": [
+        {
+          "text": "A framework that contain wrappers to a PDF to allow creation",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of an assessment and student work on that assessment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Assignables",
+      "type": "topic",
+      "url": "/documentation/assignables"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AnonymousUserIdentity": {
+      "abstract": [
+        {
+          "text": "A user identity for unknown editors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnonymousUserIdentity"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AnonymousUserIdentity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnonymousUserIdentity"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnonymousUserIdentity",
+      "type": "topic",
+      "url": "/documentation/assignables/anonymoususeridentity"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AnyUserIdentity": {
+      "abstract": [
+        {
+          "text": "A user identity that performs type erasure by wrapping another user identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnyUserIdentity"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AnyUserIdentity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnyUserIdentity"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnyUserIdentity",
+      "type": "topic",
+      "url": "/documentation/assignables/anyuseridentity"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/Assignable": {
+      "abstract": [
+        {
+          "text": "Documents conforming to this protocol can be assigned to a user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Assignable"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/Assignable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Assignable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Assignable",
+      "type": "topic",
+      "url": "/documentation/assignables/assignable"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument": {
+      "abstract": [
+        {
+          "text": "An assignable document is an augmented PDF that allows teachers to mark up",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the PDF with the intention of students taking the assessment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AssignableDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AssignableDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssignableDocument",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocumentConfiguration": {
+      "abstract": [
+        {
+          "text": "A type that specifies the options for an assignable document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AssignableDocumentConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocumentConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AssignableDocumentConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssignableDocumentConfiguration",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocumentconfiguration"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocumentElement": {
+      "abstract": [
+        {
+          "text": "An element of an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AssignableDocumentElement"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocumentElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AssignableDocumentElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssignableDocumentElement",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocumentelement"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocumentView": {
+      "abstract": [
+        {
+          "text": "SwiftUI View to display an ",
+          "type": "text"
+        },
+        {
+          "code": "AssignableDocument",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AssignableDocumentView"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocumentView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AssignableDocumentView"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssignableDocumentView",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocumentview"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignedWorkDocument": {
+      "abstract": [
+        {
+          "text": "An assigned work document is a document that contains taker and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "scorer markup specific to a taker. It also contains a copy of the assignable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "document upon which it is based.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AssignedWorkDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignedWorkDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AssignedWorkDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssignedWorkDocument",
+      "type": "topic",
+      "url": "/documentation/assignables/assignedworkdocument"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignedWorkDocumentConfiguration": {
+      "abstract": [
+        {
+          "text": "A type that specifies the score of a document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AssignedWorkDocumentConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignedWorkDocumentConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AssignedWorkDocumentConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssignedWorkDocumentConfiguration",
+      "type": "topic",
+      "url": "/documentation/assignables/assignedworkdocumentconfiguration"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignedWorkDocumentElement": {
+      "abstract": [
+        {
+          "text": "An element of an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignedWorkDocument",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AssignedWorkDocumentElement"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignedWorkDocumentElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AssignedWorkDocumentElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssignedWorkDocumentElement",
+      "type": "topic",
+      "url": "/documentation/assignables/assignedworkdocumentelement"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignedWorkDocumentView": {
+      "abstract": [
+        {
+          "text": "SwiftUI View to display an ",
+          "type": "text"
+        },
+        {
+          "code": "AssignedWorkDocument",
+          "type": "codeVoice"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AssignedWorkDocumentView"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignedWorkDocumentView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AssignedWorkDocumentView"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssignedWorkDocumentView",
+      "type": "topic",
+      "url": "/documentation/assignables/assignedworkdocumentview"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/BasicDocumentElementID": {
+      "abstract": [
+        {
+          "text": "A default implementation for a document element identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BasicDocumentElementID"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/BasicDocumentElementID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BasicDocumentElementID"
+        }
+      ],
+      "role": "symbol",
+      "title": "BasicDocumentElementID",
+      "type": "topic",
+      "url": "/documentation/assignables/basicdocumentelementid"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/DocumentElement": {
+      "abstract": [
+        {
+          "text": "Represents an element that is contained within a document.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Such elements can have identifiers that uniquely identify",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "them within a document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DocumentElement"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/DocumentElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DocumentElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "DocumentElement",
+      "type": "topic",
+      "url": "/documentation/assignables/documentelement"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/DocumentElementID": {
+      "abstract": [
+        {
+          "text": "An identifier for an element in a document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DocumentElementID"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/DocumentElementID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DocumentElementID"
+        }
+      ],
+      "role": "symbol",
+      "title": "DocumentElementID",
+      "type": "topic",
+      "url": "/documentation/assignables/documentelementid"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/DocumentThumbnail": {
+      "abstract": [
+        {
+          "text": "A structure that contains an image of an entire",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "page or a portion of a page and the ID of the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "page the image is from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DocumentThumbnail"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/DocumentThumbnail",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DocumentThumbnail"
+        }
+      ],
+      "role": "symbol",
+      "title": "DocumentThumbnail",
+      "type": "topic",
+      "url": "/documentation/assignables/documentthumbnail"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/MergeableDocument": {
+      "abstract": [
+        {
+          "text": "Documents conforming to this protocol can merge several",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "copies of the document into a single document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MergeableDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/MergeableDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MergeableDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "MergeableDocument",
+      "type": "topic",
+      "url": "/documentation/assignables/mergeabledocument"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/MergeableDocumentPage": {
+      "abstract": [
+        {
+          "text": "Types conforming to this protocol indicate that they are",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a page in a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.Assignables/documentation/Assignables/MergeableDocument",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " conforming object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MergeableDocumentPage"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/MergeableDocumentPage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MergeableDocumentPage"
+        }
+      ],
+      "role": "symbol",
+      "title": "MergeableDocumentPage",
+      "type": "topic",
+      "url": "/documentation/assignables/mergeabledocumentpage"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/MergeablePartData": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MergeablePartData"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/MergeablePartData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MergeablePartData"
+        }
+      ],
+      "role": "symbol",
+      "title": "MergeablePartData",
+      "type": "topic",
+      "url": "/documentation/assignables/mergeablepartdata"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/MergeablePartsContainer": {
+      "abstract": [
+        {
+          "text": "Objects conforming to this protocol allow",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "merging in other replicas of themselves or",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "merging in individual parts of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MergeablePartsContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/MergeablePartsContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MergeablePartsContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MergeablePartsContainer",
+      "type": "topic",
+      "url": "/documentation/assignables/mergeablepartscontainer"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/MergeablePartsContainerPartID": {
+      "abstract": [
+        {
+          "text": "The ID of a part in a ",
+          "type": "text"
+        },
+        {
+          "code": "MergeablePartsContainer",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MergeablePartsContainerPartID"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/MergeablePartsContainerPartID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MergeablePartsContainerPartID"
+        }
+      ],
+      "role": "symbol",
+      "title": "MergeablePartsContainerPartID",
+      "type": "topic",
+      "url": "/documentation/assignables/mergeablepartscontainerpartid"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/StringUserIdentity": {
+      "abstract": [
+        {
+          "text": "A user identity defined by a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StringUserIdentity"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/StringUserIdentity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StringUserIdentity"
+        }
+      ],
+      "role": "symbol",
+      "title": "StringUserIdentity",
+      "type": "topic",
+      "url": "/documentation/assignables/stringuseridentity"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/UserIdentity": {
+      "abstract": [
+        {
+          "text": "Types conforming to this protocol can act as",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "user identities for editors of a document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserIdentity"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/UserIdentity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UserIdentity"
+        }
+      ],
+      "role": "symbol",
+      "title": "UserIdentity",
+      "type": "topic",
+      "url": "/documentation/assignables/useridentity"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/UserIdentityFactory": {
+      "abstract": [
+        {
+          "text": "A type that contains helpers for creating user identity objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserIdentityFactory"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/UserIdentityFactory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UserIdentityFactory"
+        }
+      ],
+      "role": "symbol",
+      "title": "UserIdentityFactory",
+      "type": "topic",
+      "url": "/documentation/assignables/useridentityfactory"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/UserIdentityTypeRegistry": {
+      "abstract": [
+        {
+          "text": "A registry for user identity types.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Assignable documents and document elements store user",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identity data as ",
+          "type": "text"
+        },
+        {
+          "code": "Data",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects. In order for that data to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "be deserialized, the type to deserialize it as needs to be",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "known to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.Assignables/documentation/Assignables/UserIdentityTypeRegistry",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Without registration of the user identity, custom types",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "won’t be deserializable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserIdentityTypeRegistry"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/UserIdentityTypeRegistry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UserIdentityTypeRegistry"
+        }
+      ],
+      "role": "symbol",
+      "title": "UserIdentityTypeRegistry",
+      "type": "topic",
+      "url": "/documentation/assignables/useridentitytyperegistry"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Assignable-document",
+      "identifiers": [
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignedWorkDocument",
+        "doc://com.apple.Assignables/documentation/Assignables/Assignable"
+      ],
+      "title": "Assignable document"
+    },
+    {
+      "anchor": "Configuration",
+      "identifiers": [
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocumentConfiguration",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignedWorkDocumentConfiguration"
+      ],
+      "title": "Configuration"
+    },
+    {
+      "anchor": "Presentation",
+      "identifiers": [
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocumentView",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignedWorkDocumentView"
+      ],
+      "title": "Presentation"
+    },
+    {
+      "anchor": "Document-elements",
+      "identifiers": [
+        "doc://com.apple.Assignables/documentation/Assignables/DocumentElement",
+        "doc://com.apple.Assignables/documentation/Assignables/BasicDocumentElementID",
+        "doc://com.apple.Assignables/documentation/Assignables/DocumentElementID",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocumentElement",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignedWorkDocumentElement"
+      ],
+      "title": "Document elements"
+    },
+    {
+      "anchor": "Mergeable-document",
+      "identifiers": [
+        "doc://com.apple.Assignables/documentation/Assignables/MergeableDocument",
+        "doc://com.apple.Assignables/documentation/Assignables/MergeablePartsContainerPartID",
+        "doc://com.apple.Assignables/documentation/Assignables/MergeableDocumentPage",
+        "doc://com.apple.Assignables/documentation/Assignables/MergeablePartsContainer",
+        "doc://com.apple.Assignables/documentation/Assignables/DocumentThumbnail"
+      ],
+      "title": "Mergeable document"
+    },
+    {
+      "anchor": "Identity",
+      "identifiers": [
+        "doc://com.apple.Assignables/documentation/Assignables/UserIdentity",
+        "doc://com.apple.Assignables/documentation/Assignables/AnonymousUserIdentity",
+        "doc://com.apple.Assignables/documentation/Assignables/AnyUserIdentity",
+        "doc://com.apple.Assignables/documentation/Assignables/StringUserIdentity",
+        "doc://com.apple.Assignables/documentation/Assignables/UserIdentityTypeRegistry",
+        "doc://com.apple.Assignables/documentation/Assignables/UserIdentityFactory"
+      ],
+      "title": "Identity"
+    },
+    {
+      "anchor": "Enumerations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Assignables/documentation/Assignables/MergeablePartData"
+      ],
+      "title": "Enumerations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/assignables"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

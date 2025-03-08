@@ -1,0 +1,2022 @@
+{
+  "abstract": [
+    {
+      "text": "A layer that draws a cubic Bezier spline in its coordinate space.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.quartzcore/documentation/QuartzCore"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CAShapeLayer",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CAShapeLayer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Animation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CAShapeLayer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.6",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CAShapeLayer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CAShapeLayer"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The shape is composited between the layer’s contents and its first sublayer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The shape will be drawn antialiased, and whenever possible it will be mapped into screen space before being rasterized to preserve resolution independence. However, certain kinds of image processing operations, such as CoreImage filters, applied to the layer or its ancestors may force rasterization in a local coordinate space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows how you can build complex, composite paths and display them using a shape layer. In this example, a series of progressively transformed ellipses form a simple flower shape. The shape layer that displays the path has its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/fillRule",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " set to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayerFillRule/evenOdd",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " which stops the overlapping “petals” from filling with the yellow ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/fillColor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let width: CGFloat = 640",
+            "let height: CGFloat = 640",
+            "     ",
+            "let shapeLayer = CAShapeLayer()",
+            "shapeLayer.frame = CGRect(x: 0, y: 0,",
+            "                          width: width, height: height)",
+            "     ",
+            "let path = CGMutablePath()",
+            "     ",
+            "stride(from: 0, to: CGFloat.pi * 2, by: CGFloat.pi / 6).forEach {",
+            "    angle in ",
+            "    var transform  = CGAffineTransform(rotationAngle: angle)",
+            "        .concatenating(CGAffineTransform(translationX: width / 2, y: height / 2))",
+            "    ",
+            "    let petal = CGPath(ellipseIn: CGRect(x: -20, y: 0, width: 40, height: 100),",
+            "                       transform: &transform)",
+            "    ",
+            "    path.addPath(petal)",
+            "}",
+            "    ",
+            "shapeLayer.path = path",
+            "shapeLayer.strokeColor = UIColor.red.cgColor",
+            "shapeLayer.fillColor = UIColor.yellow.cgColor",
+            "shapeLayer.fillRule = kCAFillRuleEvenOdd"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows the resulting shape layer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2825196",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Shape rasterization may favor speed over accuracy. For example, pixels with multiple intersecting path segments may not give exact results.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore": {
+      "abstract": [
+        {
+          "text": "Render, compose, and animate visual elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Animation",
+      "type": "topic",
+      "url": "/documentation/quartzcore"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAGradientLayer": {
+      "abstract": [
+        {
+          "text": "A layer that draws a color gradient over its background color, filling the shape of the layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAGradientLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAGradientLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAGradientLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAGradientLayer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cagradientlayer"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer": {
+      "abstract": [
+        {
+          "text": "An object that manages image-based content and allows you to perform animations on that content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CALayer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CALayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CALayer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/calayer"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming": {
+      "abstract": [
+        {
+          "text": "Methods that model a hierarchical timing system, allowing objects to map time between their parent and local time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAMediaTiming"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAMediaTiming"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAMediaTiming",
+      "type": "topic",
+      "url": "/documentation/quartzcore/camediatiming"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer": {
+      "abstract": [
+        {
+          "text": "A layer that draws a cubic Bezier spline in its coordinate space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAShapeLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAShapeLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAShapeLayer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cashapelayer"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/fillColor": {
+      "abstract": [
+        {
+          "text": "The color used to fill the shape’s path. Animatable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fillColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGColorRef",
+          "text": "CGColor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/fillColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fillColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "fillColor",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cashapelayer/fillcolor"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/fillRule": {
+      "abstract": [
+        {
+          "text": "The fill rule used when filling the shape’s path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fillRule"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CAShapeLayerFillRule",
+          "text": "CAShapeLayerFillRule"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/fillRule",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fillRule"
+        }
+      ],
+      "role": "symbol",
+      "title": "fillRule",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cashapelayer/fillrule"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/lineCap": {
+      "abstract": [
+        {
+          "text": "Specifies the line cap style for the shape’s path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lineCap"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CAShapeLayerLineCap",
+          "text": "CAShapeLayerLineCap"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/lineCap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lineCap"
+        }
+      ],
+      "role": "symbol",
+      "title": "lineCap",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cashapelayer/linecap"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/lineDashPattern": {
+      "abstract": [
+        {
+          "text": "The dash pattern applied to the shape’s path when stroked.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lineDashPattern"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/lineDashPattern",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lineDashPattern"
+        }
+      ],
+      "role": "symbol",
+      "title": "lineDashPattern",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cashapelayer/linedashpattern"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/lineDashPhase": {
+      "abstract": [
+        {
+          "text": "The dash phase applied to the shape’s path when stroked. Animatable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lineDashPhase"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/lineDashPhase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lineDashPhase"
+        }
+      ],
+      "role": "symbol",
+      "title": "lineDashPhase",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cashapelayer/linedashphase"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/lineJoin": {
+      "abstract": [
+        {
+          "text": "Specifies the line join style for the shape’s path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lineJoin"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CAShapeLayerLineJoin",
+          "text": "CAShapeLayerLineJoin"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/lineJoin",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lineJoin"
+        }
+      ],
+      "role": "symbol",
+      "title": "lineJoin",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cashapelayer/linejoin"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/lineWidth": {
+      "abstract": [
+        {
+          "text": "Specifies the line width of the shape’s path. Animatable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lineWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/lineWidth",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lineWidth"
+        }
+      ],
+      "role": "symbol",
+      "title": "lineWidth",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cashapelayer/linewidth"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/miterLimit": {
+      "abstract": [
+        {
+          "text": "The miter limit used when stroking the shape’s path. Animatable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "miterLimit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/miterLimit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "miterLimit"
+        }
+      ],
+      "role": "symbol",
+      "title": "miterLimit",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cashapelayer/miterlimit"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/path": {
+      "abstract": [
+        {
+          "text": "The path defining the shape to be rendered. Animatable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGPathRef",
+          "text": "CGPath"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/path",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "path"
+        }
+      ],
+      "role": "symbol",
+      "title": "path",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cashapelayer/path"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/strokeColor": {
+      "abstract": [
+        {
+          "text": "The color used to stroke the shape’s path. Animatable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "strokeColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGColorRef",
+          "text": "CGColor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/strokeColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "strokeColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "strokeColor",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cashapelayer/strokecolor"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/strokeEnd": {
+      "abstract": [
+        {
+          "text": "The relative location at which to stop stroking the path. Animatable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "strokeEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/strokeEnd",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "strokeEnd"
+        }
+      ],
+      "role": "symbol",
+      "title": "strokeEnd",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cashapelayer/strokeend"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/strokeStart": {
+      "abstract": [
+        {
+          "text": "The relative location at which to begin stroking the path. Animatable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "strokeStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/strokeStart",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "strokeStart"
+        }
+      ],
+      "role": "symbol",
+      "title": "strokeStart",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cashapelayer/strokestart"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayerFillRule/evenOdd": {
+      "abstract": [
+        {
+          "text": "Specifies the even-odd winding rule. Count the total number of path crossings. If the number of crossings is even, the point is outside the path. If the number of crossings is odd, the point is inside the path and the region containing it should be filled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "evenOdd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CAShapeLayerFillRule",
+          "text": "CAShapeLayerFillRule"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayerFillRule/evenOdd",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCAFillRuleEvenOdd"
+        }
+      ],
+      "role": "symbol",
+      "title": "evenOdd",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cashapelayerfillrule/evenodd"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATextLayer": {
+      "abstract": [
+        {
+          "text": "A layer that provides simple text layout and rendering of plain or attributed strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CATextLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATextLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CATextLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CATextLayer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catextlayer"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/line-cap-values": {
+      "abstract": [
+        {
+          "text": "These constants specify the shape of endpoints for an open path when stroked.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/line-cap-values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Line Cap Values",
+      "type": "topic",
+      "url": "/documentation/quartzcore/line-cap-values"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/line-join-values": {
+      "abstract": [
+        {
+          "text": "These constants specify the shape of the joints between connected segments of a stroked path.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/line-join-values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Line Join Values",
+      "type": "topic",
+      "url": "/documentation/quartzcore/line-join-values"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/shape-fill-mode-values": {
+      "abstract": [
+        {
+          "text": "These constants specify the possible fill modes for ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/fillRule",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/shape-fill-mode-values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Shape Fill Mode Values",
+      "type": "topic",
+      "url": "/documentation/quartzcore/shape-fill-mode-values"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "media-2825196": {
+      "alt": "Composite path displayed in a shape layer",
+      "identifier": "media-2825196",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67723bba6f48e3e15851ddfb2c5a2a8c/media-2825196@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming",
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Text-Shapes-and-Gradients",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CATextLayer",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAGradientLayer"
+      ],
+      "title": "Text, Shapes, and Gradients"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Specifying-the-Shape-Path",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/path"
+      ],
+      "title": "Specifying the Shape Path"
+    },
+    {
+      "anchor": "Accessing-Shape-Style-Properties",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/fillColor",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/fillRule",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/lineCap",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/lineDashPattern",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/lineDashPhase",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/lineJoin",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/lineWidth",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/miterLimit",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/strokeColor",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/strokeStart",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/strokeEnd"
+      ],
+      "title": "Accessing Shape Style Properties"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/shape-fill-mode-values",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/line-join-values",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/line-cap-values"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.6",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CAShapeLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAShapeLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAShapeLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.quartzcore/documentation/QuartzCore"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Specifying-the-Shape-Path",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/path"
+              ],
+              "title": "Specifying the Shape Path"
+            },
+            {
+              "anchor": "Accessing-Shape-Style-Properties",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/fillColor",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/fillRule",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/lineCap",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/lineDashPattern",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/lineDashPhase",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/lineJoin",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/lineWidth",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/miterLimit",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/strokeColor",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/strokeStart",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer/strokeEnd"
+              ],
+              "title": "Accessing Shape Style Properties"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/shape-fill-mode-values",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/line-join-values",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/line-cap-values"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Text-Shapes-and-Gradients",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CATextLayer",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAGradientLayer"
+              ],
+              "title": "Text, Shapes, and Gradients"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CAShapeLayer"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)CALayer",
+                    "text": "CALayer"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer~1strokeStart/title",
+          "value": "strokeStart"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer~1strokeStart/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "strokeStart"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer~1strokeEnd/title",
+          "value": "strokeEnd"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer~1strokeEnd/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "strokeEnd"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming/title",
+          "value": "CAMediaTiming"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMediaTiming"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMediaTiming"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer~1lineCap/title",
+          "value": "lineCap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer~1lineCap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lineCap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer~1lineJoin/title",
+          "value": "lineJoin"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer~1lineJoin/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lineJoin"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayerFillRule~1evenOdd/title",
+          "value": "kCAFillRuleEvenOdd"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayerFillRule~1evenOdd/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCAFillRuleEvenOdd"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer~1lineDashPhase/title",
+          "value": "lineDashPhase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer~1lineDashPhase/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lineDashPhase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer~1lineWidth/title",
+          "value": "lineWidth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer~1lineWidth/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lineWidth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer~1fillColor/title",
+          "value": "fillColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer~1fillColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fillColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer~1fillRule/title",
+          "value": "fillRule"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer~1fillRule/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fillRule"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CALayer/title",
+          "value": "CALayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CALayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CALayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CALayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CALayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer~1lineDashPattern/title",
+          "value": "lineDashPattern"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer~1lineDashPattern/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lineDashPattern"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer~1path/title",
+          "value": "path"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer~1path/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "path"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer~1miterLimit/title",
+          "value": "miterLimit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer~1miterLimit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "miterLimit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATextLayer/title",
+          "value": "CATextLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATextLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CATextLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATextLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CATextLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer~1strokeColor/title",
+          "value": "strokeColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer~1strokeColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "strokeColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer/title",
+          "value": "CAShapeLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAShapeLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAShapeLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAGradientLayer/title",
+          "value": "CAGradientLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAGradientLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAGradientLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAGradientLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAGradientLayer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quartzcore/cashapelayer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/quartzcore/cashapelayer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

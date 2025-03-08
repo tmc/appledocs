@@ -1,0 +1,543 @@
+{
+  "abstract": [
+    {
+      "text": "A proxy that facilitates message passing between the always-on live view and its corresponding playground page.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/playgroundsupport"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxy"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3029564,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17PlaygroundSupport0A19RemoteLiveViewProxyC",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "PlaygroundRemoteLiveViewProxy"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Playground Support"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "13.2",
+        "introducedAt": "10.2",
+        "name": "Xcode"
+      },
+      {
+        "current": "4.0",
+        "introducedAt": "2.0",
+        "name": "Swift Playgrounds"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "PlaygroundRemoteLiveViewProxy"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Swift Playgrounds"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PlaygroundRemoteLiveViewProxy"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because playground pages and the always-on live view run in separate processes, you use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxy",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " as a wrapper for communicating with the always-on live view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxy",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is automatically created when you've configured the always-on live view in a playground page's ",
+              "type": "text"
+            },
+            {
+              "code": "LiveView.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. It's assigned as the value of ",
+              "type": "text"
+            },
+            {
+              "code": "PlaygroundPage.current.liveView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " only when using always-on live view. Otherwise, that property is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or a local view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let remoteView = PlaygroundPage.current.liveView as? PlaygroundRemoteLiveViewProxy else {",
+            "    fatalError(\"The always-on live view wasn't configured in this page's LiveView.swift.\")",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3036822",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/playgroundsupport": {
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Playground Support",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/messaging_between_a_playground_page_and_the_always-on_live_view": {
+      "abstract": [
+        {
+          "text": "Display the results of running a playground page's code in a persistent live view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/messaging_between_a_playground_page_and_the_always-on_live_view",
+      "kind": "article",
+      "role": "article",
+      "title": "Messaging Between a Playground Page and the Always-On Live View",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/messaging_between_a_playground_page_and_the_always-on_live_view"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundliveviewable": {
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundliveviewable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PlaygroundLiveViewable",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundliveviewable"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundliveviewmessagehandler": {
+      "abstract": [
+        {
+          "text": "A handler you use to send and receive messages between the always-on live view and its corresponding playground page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaygroundLiveViewMessageHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundliveviewmessagehandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PlaygroundLiveViewMessageHandler",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundliveviewmessagehandler"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxy": {
+      "abstract": [
+        {
+          "text": "A proxy that facilitates message passing between the always-on live view and its corresponding playground page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaygroundRemoteLiveViewProxy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PlaygroundRemoteLiveViewProxy",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundremoteliveviewproxy"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxy#3036822": {
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxy#3036822",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/playgroundsupport/playgroundremoteliveviewproxy#3036822"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxy/3029565-delegate": {
+      "abstract": [
+        {
+          "text": "A delegate you use to handle messages from the live view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": PlaygroundRemoteLiveViewProxyDelegate?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxy/3029565-delegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundremoteliveviewproxy/3029565-delegate"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxy/3029566-liveviewmessageconnectionclosed": {
+      "abstract": [
+        {
+          "text": "Informs the proxy that the connection between the proxy and the remote object was closed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "liveViewMessageConnectionClosed"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxy/3029566-liveviewmessageconnectionclosed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "liveViewMessageConnectionClosed()",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundremoteliveviewproxy/3029566-liveviewmessageconnectionclosed"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxy/3029567-liveviewmessageconnectionopened": {
+      "abstract": [
+        {
+          "text": "Informs the proxy that it has connected to a remote object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "liveViewMessageConnectionOpened"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxy/3029567-liveviewmessageconnectionopened",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "liveViewMessageConnectionOpened()",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundremoteliveviewproxy/3029567-liveviewmessageconnectionopened"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxy/3029568-playgroundliveviewrepresentation": {
+      "abstract": [
+        {
+          "text": "A representation of the live view that this object is a proxy for.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "playgroundLiveViewRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": PlaygroundLiveViewRepresentation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxy/3029568-playgroundliveviewrepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "playgroundLiveViewRepresentation",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundremoteliveviewproxy/3029568-playgroundliveviewrepresentation"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxy/3029569-receive": {
+      "abstract": [
+        {
+          "text": "Allows the proxy to receive a live view message from a remote object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "receive"
+        },
+        {
+          "kind": "text",
+          "text": "(PlaygroundValue)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxy/3029569-receive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "receive(_:)",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundremoteliveviewproxy/3029569-receive"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxy/3029570-send": {
+      "abstract": [
+        {
+          "text": "Sends a message to the always-on live view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "send"
+        },
+        {
+          "kind": "text",
+          "text": "(PlaygroundValue)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxy/3029570-send",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "send(_:)",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundremoteliveviewproxy/3029570-send"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxydelegate": {
+      "abstract": [
+        {
+          "text": "A delegate you use to receive messages from the always-on live view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaygroundRemoteLiveViewProxyDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxydelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PlaygroundRemoteLiveViewProxyDelegate",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundremoteliveviewproxydelegate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundliveviewmessagehandler",
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundliveviewable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/playgroundsupport/messaging_between_a_playground_page_and_the_always-on_live_view",
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxydelegate",
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundliveviewmessagehandler"
+      ],
+      "title": "Page-View Communication"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3034502",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxy/3029570-send"
+      ],
+      "kind": "taskGroup",
+      "title": "Sending Messages"
+    },
+    {
+      "anchor": "3034504",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxy/3029565-delegate",
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxy/3029569-receive"
+      ],
+      "kind": "taskGroup",
+      "title": "Receiving Messages"
+    },
+    {
+      "anchor": "3034501",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxy/3029567-liveviewmessageconnectionopened",
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxy/3029566-liveviewmessageconnectionclosed"
+      ],
+      "kind": "taskGroup",
+      "title": "Handling Connection Changes"
+    },
+    {
+      "anchor": "3034503",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundremoteliveviewproxy/3029568-playgroundliveviewrepresentation"
+      ],
+      "kind": "taskGroup",
+      "title": "Inspecting Live View Proxies"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/playgroundsupport/playgroundremoteliveviewproxy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2474 @@
+{
+  "abstract": [
+    {
+      "text": "A set of methods that an outline view calls to retrieve data and information about it from the data source delegate, and—optionally—to update data values.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)NSOutlineViewDataSource",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSOutlineViewDataSource"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSOutlineViewDataSource"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "NSOutlineViewDataSource"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSOutlineViewDataSource"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects support a data source delegate in addition to the regular delegate object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All the methods in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol are marked as ",
+              "type": "text"
+            },
+            {
+              "code": "@optional",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". While this is true, there are cases were you must implement some methods to achieve required functionality, specifically when working with conventional data sources rather than data that is provided by Cocoa bindings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Required-and-Optional-Methods-Using-Programmatic-Conventions-and-Cocoa-Bindings",
+          "level": 3,
+          "text": "Required and Optional Methods Using Programmatic Conventions and Cocoa Bindings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you are using conventional data sources for content you must implement the basic methods that provide the outline view with data: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:child:ofItem:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:isItemExpandable:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:numberOfChildrenOfItem:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:objectValueFor:byItem:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Applications that acquire their data using Cocoa bindings do not need to implement these methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, when using conventional data sources , if you want to allow the user to edit values, you must implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:setObjectValue:for:byItem:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When these methods are invoked by the outline view, ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the ",
+              "type": "text"
+            },
+            {
+              "code": "item",
+              "type": "codeVoice"
+            },
+            {
+              "text": " refers to the “root” item. ",
+              "type": "text"
+            },
+            {
+              "code": "NSOutlineView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " requires that each item in the outline view be unique. In order for the collapsed state of an outline view to remain consistent between reloads you must always return the same object for an item. When using Cocoa bindings to provide outline view content, there is no requirement to implement this method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Some of the methods in this ",
+                  "type": "text"
+                },
+                {
+                  "code": "protocol",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", such as ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:child:ofItem:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:numberOfChildrenOfItem:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " along with other methods that return data, are called very frequently, so they must be efficient.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOutlineView": {
+      "abstract": [
+        {
+          "text": "A view that uses a row-and-column format to display hierarchical data like directories and files that can be expanded and collapsed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSOutlineView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSOutlineView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSOutlineView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsoutlineview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource": {
+      "abstract": [
+        {
+          "text": "A set of methods that an outline view calls to retrieve data and information about it from the data source delegate, and—optionally—to update data values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSOutlineViewDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSOutlineViewDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSOutlineViewDataSource",
+      "type": "topic",
+      "url": "/documentation/appkit/nsoutlineviewdatasource"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:acceptDrop:item:childIndex:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a drop operation was successful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outlineView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOutlineView",
+          "text": "NSOutlineView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "acceptDrop"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSDraggingInfo",
+          "text": "NSDraggingInfo"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "item"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "childIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:acceptDrop:item:childIndex:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outlineView:acceptDrop:item:childIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "outlineView(_:acceptDrop:item:childIndex:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsoutlineviewdatasource/outlineview(_:acceptdrop:item:childindex:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:child:ofItem:)": {
+      "abstract": [
+        {
+          "text": "Returns the child item at the specified index of a given item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outlineView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOutlineView",
+          "text": "NSOutlineView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "child"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:child:ofItem:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outlineView:child:ofItem:"
+        }
+      ],
+      "role": "symbol",
+      "title": "outlineView(_:child:ofItem:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsoutlineviewdatasource/outlineview(_:child:ofitem:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:draggingSession:endedAt:operation:)": {
+      "abstract": [
+        {
+          "text": "Implement this method to know when the given dragging session has ended.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outlineView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOutlineView",
+          "text": "NSOutlineView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "draggingSession"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSDraggingSession",
+          "text": "NSDraggingSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "endedAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "operation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSDragOperation",
+          "text": "NSDragOperation"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:draggingSession:endedAt:operation:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outlineView:draggingSession:endedAtPoint:operation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "outlineView(_:draggingSession:endedAt:operation:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsoutlineviewdatasource/outlineview(_:draggingsession:endedat:operation:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:draggingSession:willBeginAt:forItems:)": {
+      "abstract": [
+        {
+          "text": "Implement this method know when the given dragging session is about to begin and potentially modify the dragging session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outlineView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOutlineView",
+          "text": "NSOutlineView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "draggingSession"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSDraggingSession",
+          "text": "NSDraggingSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "willBeginAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:draggingSession:willBeginAt:forItems:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outlineView:draggingSession:willBeginAtPoint:forItems:"
+        }
+      ],
+      "role": "symbol",
+      "title": "outlineView(_:draggingSession:willBeginAt:forItems:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsoutlineviewdatasource/outlineview(_:draggingsession:willbeginat:foritems:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:isItemExpandable:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the a given item is expandable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outlineView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOutlineView",
+          "text": "NSOutlineView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isItemExpandable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:isItemExpandable:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outlineView:isItemExpandable:"
+        }
+      ],
+      "role": "symbol",
+      "title": "outlineView(_:isItemExpandable:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsoutlineviewdatasource/outlineview(_:isitemexpandable:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:itemForPersistentObject:)": {
+      "abstract": [
+        {
+          "text": "Invoked by ",
+          "type": "text"
+        },
+        {
+          "code": "outlineView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to return the item for the archived ",
+          "type": "text"
+        },
+        {
+          "code": "object",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outlineView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOutlineView",
+          "text": "NSOutlineView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "itemForPersistentObject"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:itemForPersistentObject:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outlineView:itemForPersistentObject:"
+        }
+      ],
+      "role": "symbol",
+      "title": "outlineView(_:itemForPersistentObject:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsoutlineviewdatasource/outlineview(_:itemforpersistentobject:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:namesOfPromisedFilesDroppedAtDestination:forDraggedItems:)": {
+      "abstract": [
+        {
+          "text": "Returns an array of filenames for the created files that the receiver promises to create.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outlineView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOutlineView",
+          "text": "NSOutlineView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "namesOfPromisedFilesDroppedAtDestination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forDraggedItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:namesOfPromisedFilesDroppedAtDestination:forDraggedItems:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outlineView:namesOfPromisedFilesDroppedAtDestination:forDraggedItems:"
+        }
+      ],
+      "role": "symbol",
+      "title": "outlineView(_:namesOfPromisedFilesDroppedAtDestination:forDraggedItems:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsoutlineviewdatasource/outlineview(_:namesofpromisedfilesdroppedatdestination:fordraggeditems:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:numberOfChildrenOfItem:)": {
+      "abstract": [
+        {
+          "text": "Returns the number of child items encompassed by a given item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outlineView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOutlineView",
+          "text": "NSOutlineView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "numberOfChildrenOfItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:numberOfChildrenOfItem:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outlineView:numberOfChildrenOfItem:"
+        }
+      ],
+      "role": "symbol",
+      "title": "outlineView(_:numberOfChildrenOfItem:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsoutlineviewdatasource/outlineview(_:numberofchildrenofitem:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:objectValueFor:byItem:)": {
+      "abstract": [
+        {
+          "text": "Invoked by ",
+          "type": "text"
+        },
+        {
+          "code": "outlineView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to return the data object associated with the specified ",
+          "type": "text"
+        },
+        {
+          "code": "item",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outlineView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOutlineView",
+          "text": "NSOutlineView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "objectValueFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTableColumn",
+          "text": "NSTableColumn"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "byItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:objectValueFor:byItem:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outlineView:objectValueForTableColumn:byItem:"
+        }
+      ],
+      "role": "symbol",
+      "title": "outlineView(_:objectValueFor:byItem:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsoutlineviewdatasource/outlineview(_:objectvaluefor:byitem:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:pasteboardWriterForItem:)": {
+      "abstract": [
+        {
+          "text": "Implement this method to enable the table to be an ",
+          "type": "text"
+        },
+        {
+          "code": "NSDraggingSource",
+          "type": "codeVoice"
+        },
+        {
+          "text": " that supports dragging multiple items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outlineView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOutlineView",
+          "text": "NSOutlineView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pasteboardWriterForItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSPasteboardWriting",
+          "text": "NSPasteboardWriting"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:pasteboardWriterForItem:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outlineView:pasteboardWriterForItem:"
+        }
+      ],
+      "role": "symbol",
+      "title": "outlineView(_:pasteboardWriterForItem:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsoutlineviewdatasource/outlineview(_:pasteboardwriterforitem:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:persistentObjectForItem:)": {
+      "abstract": [
+        {
+          "text": "Invoked by ",
+          "type": "text"
+        },
+        {
+          "code": "outlineView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to return an archived object for ",
+          "type": "text"
+        },
+        {
+          "code": "item",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outlineView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOutlineView",
+          "text": "NSOutlineView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "persistentObjectForItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:persistentObjectForItem:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outlineView:persistentObjectForItem:"
+        }
+      ],
+      "role": "symbol",
+      "title": "outlineView(_:persistentObjectForItem:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsoutlineviewdatasource/outlineview(_:persistentobjectforitem:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:setObjectValue:for:byItem:)": {
+      "abstract": [
+        {
+          "text": "Set the data object for a given item in a given column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outlineView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOutlineView",
+          "text": "NSOutlineView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "setObjectValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTableColumn",
+          "text": "NSTableColumn"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "byItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:setObjectValue:for:byItem:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outlineView:setObjectValue:forTableColumn:byItem:"
+        }
+      ],
+      "role": "symbol",
+      "title": "outlineView(_:setObjectValue:for:byItem:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsoutlineviewdatasource/outlineview(_:setobjectvalue:for:byitem:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:sortDescriptorsDidChange:)": {
+      "abstract": [
+        {
+          "text": "Invoked by an outline view to notify the data source that the descriptors changed and the data may need to be resorted.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outlineView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOutlineView",
+          "text": "NSOutlineView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sortDescriptorsDidChange"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSortDescriptor",
+          "text": "NSSortDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:sortDescriptorsDidChange:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outlineView:sortDescriptorsDidChange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "outlineView(_:sortDescriptorsDidChange:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsoutlineviewdatasource/outlineview(_:sortdescriptorsdidchange:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:updateDraggingItemsForDrag:)": {
+      "abstract": [
+        {
+          "text": "Implement this method to enable the table to update dragging items as they are dragged over the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outlineView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOutlineView",
+          "text": "NSOutlineView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "updateDraggingItemsForDrag"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSDraggingInfo",
+          "text": "NSDraggingInfo"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:updateDraggingItemsForDrag:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outlineView:updateDraggingItemsForDrag:"
+        }
+      ],
+      "role": "symbol",
+      "title": "outlineView(_:updateDraggingItemsForDrag:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsoutlineviewdatasource/outlineview(_:updatedraggingitemsfordrag:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:validateDrop:proposedItem:proposedChildIndex:)": {
+      "abstract": [
+        {
+          "text": "Used by an outline view to determine a valid drop target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outlineView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOutlineView",
+          "text": "NSOutlineView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "validateDrop"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSDraggingInfo",
+          "text": "NSDraggingInfo"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "proposedItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "proposedChildIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSDragOperation",
+          "text": "NSDragOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:validateDrop:proposedItem:proposedChildIndex:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outlineView:validateDrop:proposedItem:proposedChildIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "outlineView(_:validateDrop:proposedItem:proposedChildIndex:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsoutlineviewdatasource/outlineview(_:validatedrop:proposeditem:proposedchildindex:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:writeItems:to:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a drag operation is allowed.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outlineView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOutlineView",
+          "text": "NSOutlineView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "writeItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:writeItems:to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outlineView:writeItems:toPasteboard:"
+        }
+      ],
+      "role": "symbol",
+      "title": "outlineView(_:writeItems:to:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsoutlineviewdatasource/outlineview(_:writeitems:to:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDelegate": {
+      "abstract": [
+        {
+          "text": "A set of optional methods implemented by delegates of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineView",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSOutlineViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSOutlineViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSOutlineViewDelegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nsoutlineviewdelegate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDelegate"
+      ],
+      "title": "Management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Instance-Methods",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:acceptDrop:item:childIndex:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:child:ofItem:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:draggingSession:endedAt:operation:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:draggingSession:willBeginAt:forItems:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:isItemExpandable:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:itemForPersistentObject:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:namesOfPromisedFilesDroppedAtDestination:forDraggedItems:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:numberOfChildrenOfItem:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:objectValueFor:byItem:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:pasteboardWriterForItem:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:persistentObjectForItem:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:setObjectValue:for:byItem:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:sortDescriptorsDidChange:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:updateDraggingItemsForDrag:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:validateDrop:proposedItem:proposedChildIndex:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:writeItems:to:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSOutlineViewDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSOutlineViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSOutlineViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Instance-Methods",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:acceptDrop:item:childIndex:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:child:ofItem:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:draggingSession:endedAt:operation:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:draggingSession:willBeginAt:forItems:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:isItemExpandable:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:itemForPersistentObject:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:namesOfPromisedFilesDroppedAtDestination:forDraggedItems:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:numberOfChildrenOfItem:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:objectValueFor:byItem:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:pasteboardWriterForItem:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:persistentObjectForItem:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:setObjectValue:for:byItem:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:sortDescriptorsDidChange:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:updateDraggingItemsForDrag:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:validateDrop:proposedItem:proposedChildIndex:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:writeItems:to:)"
+              ],
+              "title": "Instance Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Management",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDelegate"
+              ],
+              "title": "Management"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSOutlineViewDataSource"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:objectValueFor:byItem:)/title",
+          "value": "outlineView:objectValueForTableColumn:byItem:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:objectValueFor:byItem:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "outlineView:objectValueForTableColumn:byItem:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:updateDraggingItemsForDrag:)/title",
+          "value": "outlineView:updateDraggingItemsForDrag:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:updateDraggingItemsForDrag:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "outlineView:updateDraggingItemsForDrag:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:persistentObjectForItem:)/title",
+          "value": "outlineView:persistentObjectForItem:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:persistentObjectForItem:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "outlineView:persistentObjectForItem:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDelegate/title",
+          "value": "NSOutlineViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSOutlineViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSOutlineViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:draggingSession:willBeginAt:forItems:)/title",
+          "value": "outlineView:draggingSession:willBeginAtPoint:forItems:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:draggingSession:willBeginAt:forItems:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "outlineView:draggingSession:willBeginAtPoint:forItems:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:acceptDrop:item:childIndex:)/title",
+          "value": "outlineView:acceptDrop:item:childIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:acceptDrop:item:childIndex:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "outlineView:acceptDrop:item:childIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:numberOfChildrenOfItem:)/title",
+          "value": "outlineView:numberOfChildrenOfItem:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:numberOfChildrenOfItem:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "outlineView:numberOfChildrenOfItem:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource/title",
+          "value": "NSOutlineViewDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSOutlineViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSOutlineViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:writeItems:to:)/title",
+          "value": "outlineView:writeItems:toPasteboard:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:writeItems:to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "outlineView:writeItems:toPasteboard:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:validateDrop:proposedItem:proposedChildIndex:)/title",
+          "value": "outlineView:validateDrop:proposedItem:proposedChildIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:validateDrop:proposedItem:proposedChildIndex:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "outlineView:validateDrop:proposedItem:proposedChildIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:itemForPersistentObject:)/title",
+          "value": "outlineView:itemForPersistentObject:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:itemForPersistentObject:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "outlineView:itemForPersistentObject:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:sortDescriptorsDidChange:)/title",
+          "value": "outlineView:sortDescriptorsDidChange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:sortDescriptorsDidChange:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "outlineView:sortDescriptorsDidChange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:setObjectValue:for:byItem:)/title",
+          "value": "outlineView:setObjectValue:forTableColumn:byItem:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:setObjectValue:for:byItem:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "outlineView:setObjectValue:forTableColumn:byItem:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:draggingSession:endedAt:operation:)/title",
+          "value": "outlineView:draggingSession:endedAtPoint:operation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:draggingSession:endedAt:operation:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "outlineView:draggingSession:endedAtPoint:operation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:child:ofItem:)/title",
+          "value": "outlineView:child:ofItem:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:child:ofItem:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "outlineView:child:ofItem:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:isItemExpandable:)/title",
+          "value": "outlineView:isItemExpandable:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:isItemExpandable:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "outlineView:isItemExpandable:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:pasteboardWriterForItem:)/title",
+          "value": "outlineView:pasteboardWriterForItem:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:pasteboardWriterForItem:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "outlineView:pasteboardWriterForItem:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineView/title",
+          "value": "NSOutlineView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSOutlineView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSOutlineView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:namesOfPromisedFilesDroppedAtDestination:forDraggedItems:)/title",
+          "value": "outlineView:namesOfPromisedFilesDroppedAtDestination:forDraggedItems:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:namesOfPromisedFilesDroppedAtDestination:forDraggedItems:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "outlineView:namesOfPromisedFilesDroppedAtDestination:forDraggedItems:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsoutlineviewdatasource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsoutlineviewdatasource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,483 @@
+{
+  "abstract": [
+    {
+      "text": "Stream texture and buffer data directly from disk into Metal resources using fast resource loading.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/metal-sample-code-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/loading-textures-and-models-using-metal-fast-resource-loading"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Loading textures and models using Metal fast resource loading"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC22 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc22/10104/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project requires the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS 13 or later, and a Mac with Apple silicon",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode 14 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "6015a250e92b/LoadingTexturesAndModelsUsingMetalFastResourceLoading.zip": {
+      "checksum": "6015a250e92ba47d6e48748151e14fd69625056bc12e7f270c0d81d6b15852f362c4f02407c382854d33c9447117bcb134d09e5952f54777e73ff92708d430c1",
+      "identifier": "6015a250e92b/LoadingTexturesAndModelsUsingMetalFastResourceLoading.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/6015a250e92b/LoadingTexturesAndModelsUsingMetalFastResourceLoading.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/achieving-smooth-frame-rates-with-metal-s-display-link": {
+      "abstract": [
+        {
+          "text": "Pace rendering with minimal input latency while providing essential information to the operating system for power-efficient rendering, thermal mitigation, and the scheduling of sustainable workloads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/achieving-smooth-frame-rates-with-metal-s-display-link",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Achieving smooth frame rates with Metal’s display link",
+      "type": "topic",
+      "url": "/documentation/metal/achieving-smooth-frame-rates-with-metal-s-display-link"
+    },
+    "doc://com.apple.metal/documentation/Metal/adjusting-the-level-of-detail-using-metal-mesh-shaders": {
+      "abstract": [
+        {
+          "text": "Choose and render meshes with several levels of detail using object and mesh shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/adjusting-the-level-of-detail-using-metal-mesh-shaders",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adjusting the level of detail using Metal mesh shaders",
+      "type": "topic",
+      "url": "/documentation/metal/adjusting-the-level-of-detail-using-metal-mesh-shaders"
+    },
+    "doc://com.apple.metal/documentation/Metal/calculating-primitive-visibility-using-depth-testing": {
+      "abstract": [
+        {
+          "text": "Determine which pixels are visible in a scene by using a depth texture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/calculating-primitive-visibility-using-depth-testing",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Calculating Primitive Visibility Using Depth Testing",
+      "type": "topic",
+      "url": "/documentation/metal/calculating-primitive-visibility-using-depth-testing"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-a-3d-application-with-hydra-rendering": {
+      "abstract": [
+        {
+          "text": "Build a 3D application that integrates with Hydra and USD.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-a-3d-application-with-hydra-rendering",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a 3D application with Hydra rendering",
+      "type": "topic",
+      "url": "/documentation/metal/creating-a-3d-application-with-hydra-rendering"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-a-custom-metal-view": {
+      "abstract": [
+        {
+          "text": "Implement a lightweight view for Metal rendering that’s customized to your app’s needs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-a-custom-metal-view",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a Custom Metal View",
+      "type": "topic",
+      "url": "/documentation/metal/creating-a-custom-metal-view"
+    },
+    "doc://com.apple.metal/documentation/Metal/culling-occluded-geometry-using-the-visibility-result-buffer": {
+      "abstract": [
+        {
+          "text": "Draw a scene without rendering hidden geometry by checking whether each object in the scene is visible.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/culling-occluded-geometry-using-the-visibility-result-buffer",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Culling occluded geometry using the visibility result buffer",
+      "type": "topic",
+      "url": "/documentation/metal/culling-occluded-geometry-using-the-visibility-result-buffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup": {
+      "abstract": [
+        {
+          "text": "Render into an offscreen texture by creating a custom render pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Customizing Render Pass Setup",
+      "type": "topic",
+      "url": "/documentation/metal/customizing-render-pass-setup"
+    },
+    "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu": {
+      "abstract": [
+        {
+          "text": "Reduce CPU overhead and simplify your command execution by reusing commands.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encoding Indirect Command Buffers on the CPU",
+      "type": "topic",
+      "url": "/documentation/metal/encoding-indirect-command-buffers-on-the-cpu"
+    },
+    "doc://com.apple.metal/documentation/Metal/implementing-order-independent-transparency-with-image-blocks": {
+      "abstract": [
+        {
+          "text": "Draw overlapping, transparent surfaces in any order by using tile shaders and image blocks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/implementing-order-independent-transparency-with-image-blocks",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing Order-Independent Transparency with Image Blocks",
+      "type": "topic",
+      "url": "/documentation/metal/implementing-order-independent-transparency-with-image-blocks"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-edge-rendering-quality-with-multisample-antialiasing-msaa": {
+      "abstract": [
+        {
+          "text": "Use Metal’s MSAA to enhance the rendering of edges with custom resolve options and immediate and tile-based resolve paths.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-edge-rendering-quality-with-multisample-antialiasing-msaa",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Improving edge-rendering quality with multisample antialiasing (MSAA)",
+      "type": "topic",
+      "url": "/documentation/metal/improving-edge-rendering-quality-with-multisample-antialiasing-msaa"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-sample-code-library": {
+      "abstract": [
+        {
+          "text": "Explore the complete set of Metal samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-sample-code-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Sample Code Library",
+      "type": "topic",
+      "url": "/documentation/metal/metal-sample-code-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering": {
+      "abstract": [
+        {
+          "text": "Switch dynamically between multiple GPUs to efficiently render to a display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Selecting Device Objects for Graphics Rendering",
+      "type": "topic",
+      "url": "/documentation/metal/selecting-device-objects-for-graphics-rendering"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives": {
+      "abstract": [
+        {
+          "text": "Render a simple 2D triangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using a Render Pipeline to Render Primitives",
+      "type": "topic",
+      "url": "/documentation/metal/using-a-render-pipeline-to-render-primitives"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents": {
+      "abstract": [
+        {
+          "text": "Create a MetalKit view and a render pass to draw the view’s contents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using Metal to Draw a View’s Contents",
+      "type": "topic",
+      "url": "/documentation/metal/using-metal-to-draw-a-view's-contents"
+    },
+    "https://developer.apple.com/wwdc22/10104/": {
+      "identifier": "https://developer.apple.com/wwdc22/10104/",
+      "title": "10104: Load resources faster with Metal 3",
+      "titleInlineContent": [
+        {
+          "text": "10104: Load resources faster with Metal 3",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc22/10104/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "6015a250e92b/LoadingTexturesAndModelsUsingMetalFastResourceLoading.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Render-Workflows",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents",
+        "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+        "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering",
+        "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup",
+        "doc://com.apple.metal/documentation/Metal/creating-a-custom-metal-view",
+        "doc://com.apple.metal/documentation/Metal/calculating-primitive-visibility-using-depth-testing",
+        "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu",
+        "doc://com.apple.metal/documentation/Metal/implementing-order-independent-transparency-with-image-blocks",
+        "doc://com.apple.metal/documentation/Metal/adjusting-the-level-of-detail-using-metal-mesh-shaders",
+        "doc://com.apple.metal/documentation/Metal/creating-a-3d-application-with-hydra-rendering",
+        "doc://com.apple.metal/documentation/Metal/culling-occluded-geometry-using-the-visibility-result-buffer",
+        "doc://com.apple.metal/documentation/Metal/improving-edge-rendering-quality-with-multisample-antialiasing-msaa",
+        "doc://com.apple.metal/documentation/Metal/achieving-smooth-frame-rates-with-metal-s-display-link"
+      ],
+      "title": "Render Workflows"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Render-Workflows",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents",
+                "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+                "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering",
+                "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup",
+                "doc://com.apple.metal/documentation/Metal/creating-a-custom-metal-view",
+                "doc://com.apple.metal/documentation/Metal/calculating-primitive-visibility-using-depth-testing",
+                "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu",
+                "doc://com.apple.metal/documentation/Metal/implementing-order-independent-transparency-with-image-blocks",
+                "doc://com.apple.metal/documentation/Metal/adjusting-the-level-of-detail-using-metal-mesh-shaders",
+                "doc://com.apple.metal/documentation/Metal/creating-a-3d-application-with-hydra-rendering",
+                "doc://com.apple.metal/documentation/Metal/culling-occluded-geometry-using-the-visibility-result-buffer",
+                "doc://com.apple.metal/documentation/Metal/improving-edge-rendering-quality-with-multisample-antialiasing-msaa",
+                "doc://com.apple.metal/documentation/Metal/achieving-smooth-frame-rates-with-metal-s-display-link"
+              ],
+              "title": "Render Workflows"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/loading-textures-and-models-using-metal-fast-resource-loading"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/loading-textures-and-models-using-metal-fast-resource-loading"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,895 @@
+{
+  "abstract": [
+    {
+      "text": "These constants specify rounding behaviors.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+        "doc://com.apple.documentation/documentation/foundation/nsdecimal"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+        "doc://com.apple.documentation/documentation/foundation/nsdecimalnumber",
+        "doc://com.apple.documentation/documentation/foundation/nsdecimalnumberbehaviors"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+        "doc://com.apple.documentation/documentation/foundation/nsdecimal",
+        "doc://com.apple.documentation/documentation/foundation/nsdecimalnumber",
+        "doc://com.apple.documentation/documentation/foundation/nsdecimalnumberbehaviors"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsroundingmode"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1408350,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@NSRoundingMode",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration",
+    "symbolKind": "enum",
+    "title": "NSRoundingMode"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " NSRoundingMode : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsuinteger",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": " {"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "    ..."
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "} "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSRoundingMode"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The rounding mode matters only if the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdecimalnumberbehaviors/1411642-scale",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method sets a limit on the precision of ",
+              "type": "text"
+            },
+            {
+              "code": "NSDecimalNumber",
+              "type": "codeVoice"
+            },
+            {
+              "text": " return values. It has no effect if ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdecimalnumberbehaviors/1411642-scale",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " returns ",
+              "type": "text"
+            },
+            {
+              "code": "NSDecimalNoScale",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Assuming that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdecimalnumberbehaviors/1411642-scale",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns 1, the rounding mode has the following effects on various original values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "metadata": {
+            "anchor": "2555929",
+            "title": "Table 1"
+          },
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Original Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "NSRoundPlain",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "NSRoundDown & NS RoundUp",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "NSRoundBankers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1.24",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1.2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1.2 & 1.3",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1.2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1.26",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1.3",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1.2 & 1.3",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1.3",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1.25",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1.3",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1.2 & 1.3",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1.2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1.35",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1.4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1.3  & 1.4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1.4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "–1.35",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "–1.4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "–1.4  & -1.3",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "–1.4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1408473-nsdecimaladd": {
+      "abstract": [
+        {
+          "text": "Adds two decimal values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1408473-nsdecimaladd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDecimalAdd",
+      "type": "topic",
+      "url": "/documentation/foundation/1408473-nsdecimaladd"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1408675-nsdecimalsubtract": {
+      "abstract": [
+        {
+          "text": "Subtracts one decimal value from another.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1408675-nsdecimalsubtract",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDecimalSubtract",
+      "type": "topic",
+      "url": "/documentation/foundation/1408675-nsdecimalsubtract"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1408890-nsdecimalmultiply": {
+      "abstract": [
+        {
+          "text": "Multiplies two decimal numbers together.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1408890-nsdecimalmultiply",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDecimalMultiply",
+      "type": "topic",
+      "url": "/documentation/foundation/1408890-nsdecimalmultiply"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1409398-nsdecimaldivide": {
+      "abstract": [
+        {
+          "text": "Divides one decimal value by another.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1409398-nsdecimaldivide",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDecimalDivide",
+      "type": "topic",
+      "url": "/documentation/foundation/1409398-nsdecimaldivide"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1410221-nsdecimalnormalize": {
+      "abstract": [
+        {
+          "text": "Normalizes the internal format of two decimal numbers to simplify later operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1410221-nsdecimalnormalize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDecimalNormalize",
+      "type": "topic",
+      "url": "/documentation/foundation/1410221-nsdecimalnormalize"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1411470-nsdecimalcompact": {
+      "abstract": [
+        {
+          "text": "Compacts the decimal structure for efficiency.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1411470-nsdecimalcompact",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDecimalCompact",
+      "type": "topic",
+      "url": "/documentation/foundation/1411470-nsdecimalcompact"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1412204-nsdecimalround": {
+      "abstract": [
+        {
+          "text": "Rounds off the decimal value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1412204-nsdecimalround",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDecimalRound",
+      "type": "topic",
+      "url": "/documentation/foundation/1412204-nsdecimalround"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1412419-nsdecimalpower": {
+      "abstract": [
+        {
+          "text": "Raises the decimal value to the specified power.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1412419-nsdecimalpower",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDecimalPower",
+      "type": "topic",
+      "url": "/documentation/foundation/1412419-nsdecimalpower"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1414888-nsdecimalmultiplybypowerof10": {
+      "abstract": [
+        {
+          "text": "Multiplies a decimal by the specified power of 10.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1414888-nsdecimalmultiplybypowerof10",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDecimalMultiplyByPowerOf10",
+      "type": "topic",
+      "url": "/documentation/foundation/1414888-nsdecimalmultiplybypowerof10"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalculationerror": {
+      "abstract": [
+        {
+          "text": "Calculation error constants used to describe an error in ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsdecimalnumberbehaviors/1411766-exceptionduringoperation",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalculationerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCalculationError",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalculationerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdecimal": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdecimal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDecimal",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdecimal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdecimalnumber": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdecimalnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDecimalNumber",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdecimalnumber"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdecimalnumberbehaviors": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdecimalnumberbehaviors",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDecimalNumberBehaviors",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdecimalnumberbehaviors"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdecimalnumberbehaviors/1411642-scale": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scale"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdecimalnumberbehaviors/1411642-scale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scale",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdecimalnumberbehaviors/1411642-scale"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdecimalnumberbehaviors/1411766-exceptionduringoperation": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "exceptionDuringOperation:error:leftOperand:rightOperand:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdecimalnumberbehaviors/1411766-exceptionduringoperation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exceptionDuringOperation:error:leftOperand:rightOperand:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdecimalnumberbehaviors/1411766-exceptionduringoperation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsroundingmode": {
+      "abstract": [
+        {
+          "text": "These constants specify rounding behaviors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsroundingmode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRoundingMode",
+      "type": "topic",
+      "url": "/documentation/foundation/nsroundingmode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsroundingmode#2555929": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsroundingmode#2555929",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 1",
+      "type": "section",
+      "url": "/documentation/foundation/nsroundingmode#2555929"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsroundingmode/nsroundbankers": {
+      "abstract": [
+        {
+          "text": "Round to the closest possible return value; when halfway between two possibilities, return the possibility whose last digit is even.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsroundingmode/nsroundbankers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRoundBankers",
+      "type": "topic",
+      "url": "/documentation/foundation/nsroundingmode/nsroundbankers"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsroundingmode/nsrounddown": {
+      "abstract": [
+        {
+          "text": "Round return values down.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsroundingmode/nsrounddown",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRoundDown",
+      "type": "topic",
+      "url": "/documentation/foundation/nsroundingmode/nsrounddown"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsroundingmode/nsroundplain": {
+      "abstract": [
+        {
+          "text": "Round to the closest possible return value; when caught halfway between two positive numbers, round up; when caught between two negative numbers, round down.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsroundingmode/nsroundplain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRoundPlain",
+      "type": "topic",
+      "url": "/documentation/foundation/nsroundingmode/nsroundplain"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsroundingmode/nsroundup": {
+      "abstract": [
+        {
+          "text": "Round return values up.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsroundingmode/nsroundup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRoundUp",
+      "type": "topic",
+      "url": "/documentation/foundation/nsroundingmode/nsroundup"
+    },
+    "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Numbers, Data, and Basic Values",
+      "type": "topic",
+      "url": "/documentation/foundation/numbers_data_and_basic_values"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsuinteger": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsuinteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUInteger",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsuinteger"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/1411470-nsdecimalcompact",
+        "doc://com.apple.documentation/documentation/foundation/1408473-nsdecimaladd",
+        "doc://com.apple.documentation/documentation/foundation/1408675-nsdecimalsubtract",
+        "doc://com.apple.documentation/documentation/foundation/1409398-nsdecimaldivide",
+        "doc://com.apple.documentation/documentation/foundation/1408890-nsdecimalmultiply",
+        "doc://com.apple.documentation/documentation/foundation/1414888-nsdecimalmultiplybypowerof10",
+        "doc://com.apple.documentation/documentation/foundation/1412204-nsdecimalround",
+        "doc://com.apple.documentation/documentation/foundation/1412419-nsdecimalpower",
+        "doc://com.apple.documentation/documentation/foundation/1410221-nsdecimalnormalize",
+        "doc://com.apple.documentation/documentation/foundation/nscalculationerror"
+      ],
+      "title": "Performing arithmetic using references"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1602709",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsroundingmode/nsroundplain",
+        "doc://com.apple.documentation/documentation/foundation/nsroundingmode/nsrounddown",
+        "doc://com.apple.documentation/documentation/foundation/nsroundingmode/nsroundup",
+        "doc://com.apple.documentation/documentation/foundation/nsroundingmode/nsroundbankers"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsroundingmode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsdecimalnumber/roundingmode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

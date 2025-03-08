@@ -1,0 +1,3504 @@
+{
+  "abstract": [
+    {
+      "text": "Provide a compact, ergonomic tab bar for quick access to key parts of your app, and a sidebar for in-depth navigation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/app-and-environment"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/elevating-your-ipad-app-with-a-tab-bar-and-sidebar"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Elevating your iPad app with a tab bar and sidebar"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iPadOS 18 and later, the position of the tab bar moves from the bottom of the screen to float over your content at the top. This compact appearance gives you more space for your app’s content. Additionally, because it shares space with the navigation bar, it places your tabs closer to your app’s other controls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4445108",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iPadOS apps automatically receive the new tab bar appearance when you compile them for iPadOS 18 and later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For information about adopting the new tab bar appearance in SwiftUI, read ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Enhancing-your-app-content-with-tab-navigation",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "SwiftUI equivalent",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-a-tab-bar",
+          "level": 3,
+          "text": "Create a tab bar",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iPadOS 18 also introduces new API for creating tab bars. Create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and assign an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITab",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects to its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController/tabs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. To create a tab, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITab/init(title:image:identifier:viewControllerProvider:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In the closure, return the view controller your app presents when someone selects the tab. If you use SF Symbols for your tab’s image, be sure to select the outline variant. The system automatically selects the correct variant (outline or filled) based on the context. Additionally, you can change a tab’s properties, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITab/title",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITab/image",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", at runtime, and the system automatically updates its appearance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create the tab bar controller.",
+            "let tabBarController = UITabBarController()",
+            "",
+            "// Assign an array of tabs.",
+            "tabBarController.tabs = [",
+            "",
+            "   UITab(title: \"First\",",
+            "         image: UIImage(systemName: \"1.circle\"),",
+            "         identifier: \"First Tab\") { _ in",
+            "             // Return the view controller that the tab displays.",
+            "             MyFirstViewController()",
+            "         },",
+            "   ",
+            "   UITab(title: \"Second\",",
+            "         image: UIImage(systemName: \"2.circle\"),",
+            "         identifier: \"Second Tab\") { _ in",
+            "             // Return the view controller that the tab displays.",
+            "             MySecondViewController()",
+            "         },",
+            "   ",
+            "   UITab(title: \"Third\",",
+            "         image: UIImage(systemName: \"3.circle\"),",
+            "         identifier: \"Third Tab\") { _ in",
+            "             // Return the view controller that the tab displays.",
+            "             MyThirdViewController()",
+            "         }",
+            "]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a search tab, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchTab",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance and add it to the tabs array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a search tab.",
+            "UISearchTab { _ in ",
+            "    // Return the view controller that the tab displays.",
+            "    UINavigationController(",
+            "        rootViewController: MySearchViewController()",
+            "    )",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4445106",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The new iPad tab bar supports an unlimited number of items. If there isn’t enough room to display all the tabs, the system collapses any tabs that can’t fit onscreen, and lets people scroll through them. However, consider limiting your tabs to just those that fit in the tab bar. This ensures that people can access key parts of your app with one tap.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Integrate-the-tab-bar-and-sidebar",
+          "level": 3,
+          "text": "Integrate the tab bar and sidebar",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although both tab bars and sidebars play a similar navigation role in iPadOS apps, they have different strengths. A tab bar is always available and represents the key parts of your app. A sidebar provides a richer collection of possible destinations; however, people typically need to navigate back to the sidebar to select a different option.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app contains a rich hierarchy of views, you can create an array of tab items that the system displays as either a tab bar or a sidebar. This combination provides the best features of both navigation styles. When displaying as a tab bar, people have quick access to the most critical sections of your app. When displaying as a sidebar, they can see the full range and depth of your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4445103",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITab",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " classes to create a hierarchy of tabs. If the tabs array contains at least one tab group, the system automatically displays the tabs as both a tab bar and a sidebar. Otherwise, it only displays the array as a tab bar. You can also explicitly define how the system displays your tabs by setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController/mode-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Enable the sidebar.",
+            "tabBarController.mode = .tabSidebar",
+            "",
+            "// Get the sidebar.",
+            "let sidebar = tabBarController.sidebar",
+            "",
+            "// Show the sidebar.",
+            "sidebar.isHidden = false"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the system presents the sidebar in landscape orientation and hides it in portrait orientation; however, people can toggle between the tab bar and sidebar in either orientation. You can also programmatically show and hide the sidebar by setting its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController/Sidebar-swift.class/isHidden",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-a-hierarchy-of-items-for-the-sidebar",
+          "level": 3,
+          "text": "Build a hierarchy of items for the sidebar",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to define a section of items in the sidebar. Provide an array of tabs for the section’s content and a view controller to display when someone selects the section from the tab bar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let sectionOne = UITabGroup(",
+            "    title: \"Section 1\",",
+            "    image: UIImage(systemName: \"1.square.fill\"),",
+            "    identifier: \"Section one\",",
+            "    children:",
+            "        [",
+            "            UITab(",
+            "                title: \"Subitem A\",",
+            "                image: UIImage(systemName: \"a.circle\"),",
+            "                identifier: \"Section 1, item A\"",
+            "            ) { _ in",
+            "                MyFirstSubitemTabViewController()",
+            "            },",
+            "            ",
+            "            UITab(",
+            "                title: \"Subitem B\",",
+            "                image: UIImage(systemName: \"b.circle\"),",
+            "                identifier: \"Section 1, item b\"",
+            "            ) { _ in",
+            "                MySecondSubitemTabViewController()",
+            "            },",
+            "            ",
+            "            UITab(",
+            "                title: \"Subitem C\",",
+            "                image: UIImage(systemName: \"c.circle\"),",
+            "                identifier: \"Section 1, item C\"",
+            "            ) { _ in",
+            "                MyThirdSubitemTabViewController()",
+            "            },",
+            "        ]) { _ in",
+            "            // Return a view controller that the system displays when someone selects the section in the tab bar.",
+            "            MySectionViewController()",
+            "        }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The tab bar displays a tab group as a single tab item, and the sidebar displays it as a section that contains subitems. The sidebar displays top-level tab items first, followed by the sections.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4445107",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can nest a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " inside another ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create a deeper hierarchy in the sidebar; however, consider limiting your app to two, or at most three, layers. Also, you can dynamically change a tab group’s content at runtime by modifying its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabGroup/children",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-actions-to-the-sidebar",
+          "level": 3,
+          "text": "Add actions to the sidebar",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can add actions to the sidebar by setting a tab group’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabGroup/sidebarActions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. These actions function like buttons that you place inside the tab group.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create the action.",
+            "let refreshAction = UIAction(title: \"Refresh\", image: UIImage(systemName: \"arrow.clockwise\")) { _ in",
+            "    myAction()",
+            "}",
+            "",
+            "// Assign the action.",
+            "sectionOne.sidebarActions = [refreshAction]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support swipe actions or context menus, assign a delegate to your sidebar that adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController/Sidebar-swift.class/Delegate-swift.protocol",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, and implement the following optional methods:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController/Sidebar-swift.class/Delegate-swift.protocol/tabBarController(_:sidebar:leadingSwipeActionsConfigurationFor:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController/Sidebar-swift.class/Delegate-swift.protocol/tabBarController(_:sidebar:trailingSwipeActionsConfigurationFor:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController/Sidebar-swift.class/Delegate-swift.protocol/tabBarController(_:sidebar:contextMenuConfigurationFor:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support drag-and-drop operations, assign a delegate to your tab bar that adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarControllerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, and implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarControllerDelegate/tabBarController(_:tab:operationForAcceptingItemsFrom:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarControllerDelegate/tabBarController(_:tab:acceptItemsFrom:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-customization",
+          "level": 3,
+          "text": "Enable customization",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the new tab bar and sidebar, people can customize the content in both. The system provides a button to put the bars into edit mode. While editing, people can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag items from the sidebar to the tab bar to add them to the tab bar.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag items from the tab bar to remove them from the tab bar.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag items to reorder them in the tab bar.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag items to reorder them inside their tab group.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Uncheck items in the sidebar to hide them. This also removes them from the tab bar.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system automatically persists any customizations that someone makes to the bars. You can implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarControllerDelegate/tabBarController(_:displayOrderDidChangeFor:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarControllerDelegate/tabBarController(_:visibilityDidChangeFor:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate methods to receive notifications about the changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4445104",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, only the top-level tabs appear in the tab bar. People can add or remove any tab in the sidebar, but can’t hide or reorder the items in it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To control which items appear in the tab bar, and how people can customize them, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITab",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITab/preferredPlacement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Conceptually, you can think of the tab bar as having three different regions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed tabs appear on the leading edge of the tab bar.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Default, optional, and movable tabs appear after the fixed tabs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pinned tabs are always visible on the trailing edge, and only show the tab’s image.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When possible, make tabs customizable so that people can choose which ones to place in the tab bar. If you have any tabs that are central to your app, consider making them fixed tabs, so that people can’t remove or move them. Use pinned tabs for prominent items, like search. Also, because pinned tabs only display the tab icon, be sure to select an image that people recognize and can easily understand.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4445105",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an item that appears in the sidebar, but that people can’t add to the tab bar, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITab/preferredPlacement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITab/Placement/sidebarOnly",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To create an item that people can add to or remove from the sidebar, set its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITab/allowsHiding",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If someone removes an item from the sidebar, the system also removes it from the tab bar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create the tab.",
+            "var customizeableItem = UITab(",
+            "        title: \"Optional\",",
+            "        image: UIImage(systemName: \"questionmark.app\"),",
+            "        identifier: \"Optional Item\"",
+            ") { _ in",
+            "    MyOptionalViewController()",
+            "}",
+            "",
+            "// Let people add and remove this item in the sidebar.",
+            "customizeableItem.allowsHiding = true",
+            "",
+            "// Set the item as hidden in the sidebar by default.",
+            "customizeableItem.isHiddenByDefault = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To let people reorganize items within a tab group, set the group’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabGroup/allowsReordering",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "sectionOne.allowsReordering = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also programmatically set the order of items in a tab group using its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabGroup/displayOrderIdentifiers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. By default, the system sets the tab group’s order based on its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabGroup/children",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When someone customizes the tab bar or sidebar, the system persists those changes. The next time your app launches, it sets each tab’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UITab/isHidden",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabGroup/displayOrderIdentifiers",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " properties to the customized values. The system assigns these values when it adds the tab to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". If your app programmatically sets the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UITab/isHidden",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabGroup/displayOrderIdentifiers",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " properties before adding the tabs, the customized values override the values your app assigns. If, however, you change the values after adding the tabs, your values override the customizations.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Use-the-tab-bar-and-sidebar-on-other-platforms",
+          "level": 3,
+          "text": "Use the tab bar and sidebar on other platforms",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITab",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API is also available in iOS 18, Mac Catalyst 18, tvOS 18, and visionOS 2, and later. Consider using this API to create tab bars on all UIKit-based projects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The new tab bar and sidebar only appear on iPad. On iPhone and Apple TV, the system displays the platform’s regular tab bar. For Mac Catalyst, it displays a tab bar if the tab bar controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController/mode-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController/Mode-swift.enum/tabBar",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and a sidebar if it’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController/Mode-swift.enum/tabSidebar",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In visionOS, the system displays the platform’s regular tabs, but a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " can display a sidebar when it displays the group’s view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Enhancing-your-app-content-with-tab-navigation-PageImage-card.png": {
+      "alt": null,
+      "identifier": "Enhancing-your-app-content-with-tab-navigation-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2b5b06d3a9b048573a534e28a585160e/Enhancing-your-app-content-with-tab-navigation-PageImage-card~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ae58e7f18887cfb2b1f8384de4a18017/Enhancing-your-app-content-with-tab-navigation-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Enhancing-your-app-content-with-tab-navigation": {
+      "abstract": [
+        {
+          "text": "Keep your app content front and center while providing quick access to navigation using the tab bar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Enhancing-your-app-content-with-tab-navigation",
+      "images": [
+        {
+          "identifier": "Enhancing-your-app-content-with-tab-navigation-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Enhancing your app’s content with tab navigation",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Enhancing-your-app-content-with-tab-navigation"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchTab": {
+      "abstract": [
+        {
+          "text": "A tab subclass that represents the system’s search tab.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchTab"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchTab",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchTab"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchTab",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchtab"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITab": {
+      "abstract": [
+        {
+          "text": "An object that manages a tab in a tab bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITab"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITab",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITab"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITab",
+      "type": "topic",
+      "url": "/documentation/uikit/uitab"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITab/Placement/sidebarOnly": {
+      "abstract": [
+        {
+          "text": "The item only appears in the sidebar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sidebarOnly"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITab/Placement/sidebarOnly",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITabPlacementSidebarOnly"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITab.Placement.sidebarOnly",
+      "type": "topic",
+      "url": "/documentation/uikit/uitab/placement/sidebaronly"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITab/allowsHiding": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether people can hide a tab in a sidebar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsHiding"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITab/allowsHiding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsHiding"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsHiding",
+      "type": "topic",
+      "url": "/documentation/uikit/uitab/allowshiding"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITab/image": {
+      "abstract": [
+        {
+          "text": "A tab’s image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITab/image",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "image"
+        }
+      ],
+      "role": "symbol",
+      "title": "image",
+      "type": "topic",
+      "url": "/documentation/uikit/uitab/image"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITab/init(title:image:identifier:viewControllerProvider:)": {
+      "abstract": [
+        {
+          "text": "Creates a tab object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "viewControllerProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITab",
+          "text": "UITab"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITab/init(title:image:identifier:viewControllerProvider:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithTitle:image:identifier:viewControllerProvider:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(title:image:identifier:viewControllerProvider:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitab/init(title:image:identifier:viewcontrollerprovider:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITab/isHidden": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an item is hidden in a sidebar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isHidden"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITab/isHidden",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hidden"
+        }
+      ],
+      "role": "symbol",
+      "title": "isHidden",
+      "type": "topic",
+      "url": "/documentation/uikit/uitab/ishidden"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITab/preferredPlacement": {
+      "abstract": [
+        {
+          "text": "The preferred placement for a tab when displayed in contexts that allow different placement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredPlacement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITab",
+          "text": "UITab"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UITabPlacement",
+          "text": "Placement"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITab/preferredPlacement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredPlacement"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredPlacement",
+      "type": "topic",
+      "url": "/documentation/uikit/uitab/preferredplacement"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITab/title": {
+      "abstract": [
+        {
+          "text": "A tab’s title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITab/title",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "title"
+        }
+      ],
+      "role": "symbol",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/uikit/uitab/title"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarController": {
+      "abstract": [
+        {
+          "text": "A container view controller that manages a multiselection interface, where the selection determines which child view controller to display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITabBarController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITabBarController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITabBarController",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbarcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarController/Mode-swift.enum/tabBar": {
+      "abstract": [
+        {
+          "text": "The system displays the content only as a tab bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabBar"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController/Mode-swift.enum/tabBar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITabBarControllerModeTabBar"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITabBarController.Mode.tabBar",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbarcontroller/mode-swift.enum/tabbar"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarController/Mode-swift.enum/tabSidebar": {
+      "abstract": [
+        {
+          "text": "The system displays the content as either a tab bar or a sidebar, depending on the context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabSidebar"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController/Mode-swift.enum/tabSidebar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITabBarControllerModeTabSidebar"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITabBarController.Mode.tabSidebar",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbarcontroller/mode-swift.enum/tabsidebar"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarController/Sidebar-swift.class/Delegate-swift.protocol": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Delegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController/Sidebar-swift.class/Delegate-swift.protocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITabBarController.Sidebar.Delegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbarcontroller/sidebar-swift.class/delegate-swift.protocol"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarController/Sidebar-swift.class/Delegate-swift.protocol/tabBarController(_:sidebar:contextMenuConfigurationFor:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabBarController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITabBarController",
+          "text": "UITabBarController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sidebar"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITabBarController",
+          "text": "UITabBarController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITabBarControllerSidebar",
+          "text": "Sidebar"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "contextMenuConfigurationFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITab",
+          "text": "UITab"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIContextMenuConfiguration",
+          "text": "UIContextMenuConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController/Sidebar-swift.class/Delegate-swift.protocol/tabBarController(_:sidebar:contextMenuConfigurationFor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tabBarController:sidebar:contextMenuConfigurationForTab:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tabBarController(_:sidebar:contextMenuConfigurationFor:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbarcontroller/sidebar-swift.class/delegate-swift.protocol/tabbarcontroller(_:sidebar:contextmenuconfigurationfor:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarController/Sidebar-swift.class/Delegate-swift.protocol/tabBarController(_:sidebar:leadingSwipeActionsConfigurationFor:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabBarController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITabBarController",
+          "text": "UITabBarController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sidebar"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITabBarController",
+          "text": "UITabBarController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITabBarControllerSidebar",
+          "text": "Sidebar"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "leadingSwipeActionsConfigurationFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITab",
+          "text": "UITab"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISwipeActionsConfiguration",
+          "text": "UISwipeActionsConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController/Sidebar-swift.class/Delegate-swift.protocol/tabBarController(_:sidebar:leadingSwipeActionsConfigurationFor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tabBarController:sidebar:leadingSwipeActionsConfigurationForTab:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tabBarController(_:sidebar:leadingSwipeActionsConfigurationFor:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbarcontroller/sidebar-swift.class/delegate-swift.protocol/tabbarcontroller(_:sidebar:leadingswipeactionsconfigurationfor:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarController/Sidebar-swift.class/Delegate-swift.protocol/tabBarController(_:sidebar:trailingSwipeActionsConfigurationFor:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabBarController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITabBarController",
+          "text": "UITabBarController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sidebar"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITabBarController",
+          "text": "UITabBarController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITabBarControllerSidebar",
+          "text": "Sidebar"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trailingSwipeActionsConfigurationFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITab",
+          "text": "UITab"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISwipeActionsConfiguration",
+          "text": "UISwipeActionsConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController/Sidebar-swift.class/Delegate-swift.protocol/tabBarController(_:sidebar:trailingSwipeActionsConfigurationFor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tabBarController:sidebar:trailingSwipeActionsConfigurationForTab:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tabBarController(_:sidebar:trailingSwipeActionsConfigurationFor:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbarcontroller/sidebar-swift.class/delegate-swift.protocol/tabbarcontroller(_:sidebar:trailingswipeactionsconfigurationfor:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarController/Sidebar-swift.class/isHidden": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isHidden"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController/Sidebar-swift.class/isHidden",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hidden"
+        }
+      ],
+      "role": "symbol",
+      "title": "isHidden",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbarcontroller/sidebar-swift.class/ishidden"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarController/mode-swift.property": {
+      "abstract": [
+        {
+          "text": "The display mode for a tab bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITabBarController",
+          "text": "UITabBarController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UITabBarControllerMode",
+          "text": "Mode"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController/mode-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mode"
+        }
+      ],
+      "role": "symbol",
+      "title": "mode",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbarcontroller/mode-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarController/tabs": {
+      "abstract": [
+        {
+          "text": "An array of tabs that the tab bar displays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabs"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITab",
+          "text": "UITab"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController/tabs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tabs"
+        }
+      ],
+      "role": "symbol",
+      "title": "tabs",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbarcontroller/tabs"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarControllerDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods you implement to customize the behavior of a tab bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITabBarControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITabBarControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITabBarControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbarcontrollerdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarControllerDelegate/tabBarController(_:displayOrderDidChangeFor:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabBarController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITabBarController",
+          "text": "UITabBarController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "displayOrderDidChangeFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITabGroup",
+          "text": "UITabGroup"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarControllerDelegate/tabBarController(_:displayOrderDidChangeFor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tabBarController:displayOrderDidChangeForGroup:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tabBarController(_:displayOrderDidChangeFor:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbarcontrollerdelegate/tabbarcontroller(_:displayorderdidchangefor:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarControllerDelegate/tabBarController(_:tab:acceptItemsFrom:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabBarController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITabBarController",
+          "text": "UITabBarController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "tab"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITab",
+          "text": "UITab"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "acceptItemsFrom"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDropSession",
+          "text": "UIDropSession"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarControllerDelegate/tabBarController(_:tab:acceptItemsFrom:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tabBarController:tab:acceptItemsFromDropSession:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tabBarController(_:tab:acceptItemsFrom:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbarcontrollerdelegate/tabbarcontroller(_:tab:acceptitemsfrom:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarControllerDelegate/tabBarController(_:tab:operationForAcceptingItemsFrom:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabBarController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITabBarController",
+          "text": "UITabBarController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "tab"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITab",
+          "text": "UITab"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "operationForAcceptingItemsFrom"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDropSession",
+          "text": "UIDropSession"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIDropOperation",
+          "text": "UIDropOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarControllerDelegate/tabBarController(_:tab:operationForAcceptingItemsFrom:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tabBarController:tab:operationForAcceptingItemsFromDropSession:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tabBarController(_:tab:operationForAcceptingItemsFrom:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbarcontrollerdelegate/tabbarcontroller(_:tab:operationforacceptingitemsfrom:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarControllerDelegate/tabBarController(_:visibilityDidChangeFor:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabBarController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITabBarController",
+          "text": "UITabBarController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "visibilityDidChangeFor"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITab",
+          "text": "UITab"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarControllerDelegate/tabBarController(_:visibilityDidChangeFor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tabBarController:visibilityDidChangeForTabs:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tabBarController(_:visibilityDidChangeFor:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbarcontrollerdelegate/tabbarcontroller(_:visibilitydidchangefor:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabGroup": {
+      "abstract": [
+        {
+          "text": "An object that manages a collection of tab objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITabGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITabGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITabGroup",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabgroup"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabGroup/allowsReordering": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates people can reorder subitems in the sidebar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsReordering"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabGroup/allowsReordering",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsReordering"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsReordering",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabgroup/allowsreordering"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabGroup/children": {
+      "abstract": [
+        {
+          "text": "The tabs within a tab group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "children"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITab",
+          "text": "UITab"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabGroup/children",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "children"
+        }
+      ],
+      "role": "symbol",
+      "title": "children",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabgroup/children"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabGroup/displayOrderIdentifiers": {
+      "abstract": [
+        {
+          "text": "An array that contains the identifiers of subitems in their display order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayOrderIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabGroup/displayOrderIdentifiers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "displayOrderIdentifiers"
+        }
+      ],
+      "role": "symbol",
+      "title": "displayOrderIdentifiers",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabgroup/displayorderidentifiers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabGroup/sidebarActions": {
+      "abstract": [
+        {
+          "text": "An array of actions that appear in a section in a sidebar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sidebarActions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIAction",
+          "text": "UIAction"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabGroup/sidebarActions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sidebarActions"
+        }
+      ],
+      "role": "symbol",
+      "title": "sidebarActions",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabgroup/sidebaractions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/app-and-environment": {
+      "abstract": [
+        {
+          "text": "Manage life-cycle events and your app’s UI scenes, and get information about traits and the environment in which your app runs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and environment",
+      "type": "topic",
+      "url": "/documentation/uikit/app-and-environment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/building-a-desktop-class-ipad-app": {
+      "abstract": [
+        {
+          "text": "Optimize your iPad app’s user experience by adopting desktop-class enhancements for multitasking with Stage Manager, document interactions, text editing, search, and more in iPadOS 16.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/building-a-desktop-class-ipad-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a desktop-class iPad app",
+      "type": "topic",
+      "url": "/documentation/uikit/building-a-desktop-class-ipad-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/multitasking-on-ipad": {
+      "abstract": [
+        {
+          "text": "Implement multitasking APIs to seamlessly integrate your app with iPadOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/multitasking-on-ipad",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Multitasking on iPad",
+      "type": "topic",
+      "url": "/documentation/uikit/multitasking-on-ipad"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/supporting-desktop-class-features-in-your-ipad-app": {
+      "abstract": [
+        {
+          "text": "Enhance your iPad app by adding desktop-class features and document support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/supporting-desktop-class-features-in-your-ipad-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting desktop-class features in your iPad app",
+      "type": "topic",
+      "url": "/documentation/uikit/supporting-desktop-class-features-in-your-ipad-app"
+    },
+    "media-4445103": {
+      "alt": "An illustration of two iPads side by side. The first iPad shows the sidebar on the left of the screen in landscape orientation. The second iPad shows the tab bar at the top of the screen in portrait orientation.",
+      "identifier": "media-4445103",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bb61d76b1c0cea3251da84d1bc2f1cdf/media-4445103@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/781c2bd564d2ab6a3eee62f6a2c6d9df/media-4445103~dark@2x.png"
+        }
+      ]
+    },
+    "media-4445104": {
+      "alt": "An illustration of an iPad in landscape orientation that shows the sidebar and tab bar in edit mode.",
+      "identifier": "media-4445104",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c4c8ad7d5cfdc2808cded2caea9e3160/media-4445104@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/33dc43bb39ff4976b1222d16d511cb51/media-4445104~dark@2x.png"
+        }
+      ]
+    },
+    "media-4445105": {
+      "alt": "An illustration of an iPad in landscape orientation that shows the fixed, optional, pinned, and movable tabs in the tab bar and sidebar.",
+      "identifier": "media-4445105",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81e6a1c64b1dbe14dab3c85e36c98a24/media-4445105@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9c7df60767a605821779cf8f51d37424/media-4445105~dark@2x.png"
+        }
+      ]
+    },
+    "media-4445106": {
+      "alt": "An illustration of an iPad that shows the position of the first, second, and third tabs at the top of the screen.",
+      "identifier": "media-4445106",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/66fb92382026cbc7d6e7fb097e06cbef/media-4445106@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/eb0fc0e22fa4000e3f9de231913b70f7/media-4445106~dark@2x.png"
+        }
+      ]
+    },
+    "media-4445107": {
+      "alt": "An illustration of an iPad in landscape orientation that shows the sidebar displaying a hierarchy of tabs. The top-level tabs appear first, followed by the tab groups.",
+      "identifier": "media-4445107",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3067e4834387868745dde6e7df887d63/media-4445107@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4f92b45751f7c06e4d4b7622824be933/media-4445107~dark@2x.png"
+        }
+      ]
+    },
+    "media-4445108": {
+      "alt": "An illustration of an iPad that shows the placement of the floating tab bar at the top of the screen.",
+      "identifier": "media-4445108",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fc0acda64bf43bcf4db9770a65b6dfe3/media-4445108@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b393e3d14d240cef5a84b84481e7d0a0/media-4445108~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "iPad",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/building-a-desktop-class-ipad-app",
+        "doc://com.apple.uikit/documentation/UIKit/supporting-desktop-class-features-in-your-ipad-app",
+        "doc://com.apple.uikit/documentation/UIKit/multitasking-on-ipad"
+      ],
+      "title": "iPad"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "iPad",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/building-a-desktop-class-ipad-app",
+                "doc://com.apple.uikit/documentation/UIKit/supporting-desktop-class-features-in-your-ipad-app",
+                "doc://com.apple.uikit/documentation/UIKit/multitasking-on-ipad"
+              ],
+              "title": "iPad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabGroup/title",
+          "value": "UITabGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabGroup~1allowsReordering/title",
+          "value": "allowsReordering"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabGroup~1allowsReordering/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsReordering"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController~1Sidebar-swift.class~1Delegate-swift.protocol~1tabBarController(_:sidebar:leadingSwipeActionsConfigurationFor:)/title",
+          "value": "tabBarController:sidebar:leadingSwipeActionsConfigurationForTab:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController~1Sidebar-swift.class~1Delegate-swift.protocol~1tabBarController(_:sidebar:leadingSwipeActionsConfigurationFor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tabBarController:sidebar:leadingSwipeActionsConfigurationForTab:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarControllerDelegate~1tabBarController(_:tab:acceptItemsFrom:)/title",
+          "value": "tabBarController:tab:acceptItemsFromDropSession:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarControllerDelegate~1tabBarController(_:tab:acceptItemsFrom:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tabBarController:tab:acceptItemsFromDropSession:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarControllerDelegate~1tabBarController(_:visibilityDidChangeFor:)/title",
+          "value": "tabBarController:visibilityDidChangeForTabs:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarControllerDelegate~1tabBarController(_:visibilityDidChangeFor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tabBarController:visibilityDidChangeForTabs:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController~1mode-swift.property/title",
+          "value": "mode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController~1mode-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController~1Sidebar-swift.class~1Delegate-swift.protocol/title",
+          "value": "UITabBarControllerSidebarDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController~1Sidebar-swift.class~1Delegate-swift.protocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarControllerSidebarDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController~1Sidebar-swift.class~1Delegate-swift.protocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarControllerSidebarDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITab~1init(title:image:identifier:viewControllerProvider:)/title",
+          "value": "initWithTitle:image:identifier:viewControllerProvider:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITab~1init(title:image:identifier:viewControllerProvider:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithTitle:image:identifier:viewControllerProvider:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarControllerDelegate/title",
+          "value": "UITabBarControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabGroup~1children/title",
+          "value": "children"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabGroup~1children/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "children"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITab~1image/title",
+          "value": "image"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITab~1image/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "image"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITab~1Placement~1sidebarOnly/title",
+          "value": "UITabPlacementSidebarOnly"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITab~1Placement~1sidebarOnly/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabPlacementSidebarOnly"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITab~1title/title",
+          "value": "title"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITab~1title/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "title"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController/title",
+          "value": "UITabBarController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarControllerDelegate~1tabBarController(_:displayOrderDidChangeFor:)/title",
+          "value": "tabBarController:displayOrderDidChangeForGroup:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarControllerDelegate~1tabBarController(_:displayOrderDidChangeFor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tabBarController:displayOrderDidChangeForGroup:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarControllerDelegate~1tabBarController(_:tab:operationForAcceptingItemsFrom:)/title",
+          "value": "tabBarController:tab:operationForAcceptingItemsFromDropSession:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarControllerDelegate~1tabBarController(_:tab:operationForAcceptingItemsFrom:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tabBarController:tab:operationForAcceptingItemsFromDropSession:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController~1Mode-swift.enum~1tabSidebar/title",
+          "value": "UITabBarControllerModeTabSidebar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController~1Mode-swift.enum~1tabSidebar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarControllerModeTabSidebar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTab/title",
+          "value": "UISearchTab"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTab/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchTab"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTab/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchTab"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITab/title",
+          "value": "UITab"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITab/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITab"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITab/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITab"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController~1Sidebar-swift.class~1Delegate-swift.protocol~1tabBarController(_:sidebar:trailingSwipeActionsConfigurationFor:)/title",
+          "value": "tabBarController:sidebar:trailingSwipeActionsConfigurationForTab:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController~1Sidebar-swift.class~1Delegate-swift.protocol~1tabBarController(_:sidebar:trailingSwipeActionsConfigurationFor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tabBarController:sidebar:trailingSwipeActionsConfigurationForTab:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController~1Sidebar-swift.class~1isHidden/title",
+          "value": "hidden"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController~1Sidebar-swift.class~1isHidden/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hidden"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController~1tabs/title",
+          "value": "tabs"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController~1tabs/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tabs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITab~1allowsHiding/title",
+          "value": "allowsHiding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITab~1allowsHiding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsHiding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabGroup~1sidebarActions/title",
+          "value": "sidebarActions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabGroup~1sidebarActions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sidebarActions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabGroup~1displayOrderIdentifiers/title",
+          "value": "displayOrderIdentifiers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabGroup~1displayOrderIdentifiers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "displayOrderIdentifiers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController~1Mode-swift.enum~1tabBar/title",
+          "value": "UITabBarControllerModeTabBar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController~1Mode-swift.enum~1tabBar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarControllerModeTabBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController~1Sidebar-swift.class~1Delegate-swift.protocol~1tabBarController(_:sidebar:contextMenuConfigurationFor:)/title",
+          "value": "tabBarController:sidebar:contextMenuConfigurationForTab:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController~1Sidebar-swift.class~1Delegate-swift.protocol~1tabBarController(_:sidebar:contextMenuConfigurationFor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tabBarController:sidebar:contextMenuConfigurationForTab:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITab~1preferredPlacement/title",
+          "value": "preferredPlacement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITab~1preferredPlacement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preferredPlacement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITab~1isHidden/title",
+          "value": "hidden"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITab~1isHidden/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hidden"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/elevating-your-ipad-app-with-a-tab-bar-and-sidebar"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/elevating-your-ipad-app-with-a-tab-bar-and-sidebar"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

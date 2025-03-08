@@ -1,0 +1,981 @@
+{
+  "abstract": [
+    {
+      "text": "Position views so that they aren’t crowded by other content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/view-layout"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+        "doc://com.apple.uikit/documentation/UIKit/UIView"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/positioning-content-within-layout-margins"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Positioning content within layout margins"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Layout margins provide a visual buffer between a view’s content and any content outside of the view’s bounds. The layout margins consist of inset values for each edge (top, bottom, leading, and trailing) of the view. These inset values create a space between the edges of the view’s bounds rectangle and the content inside the view. The following image shows two views with different sets of layout margins. Apart from the empty space they add around your content, margins have no visible representation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2927043",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set up constraints that respect the layout margins, enable the ",
+              "type": "text"
+            },
+            {
+              "code": "Constrain to margins",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option in Xcode, as shown in the following image. (If you don’t enable that option, Xcode creates your constraints relative to the view’s bounds rectangle.) If the superview’s margins change later, the positions of elements tied to those margins are updated accordingly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2927987",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Even if you aren’t using constraints to position your content, you can still manually position content relative to a view’s layout margins. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/directionalLayoutMargins",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of each view contains the edge inset values to use for the view’s margins. Take those margin values into account when computing the position of items in your view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Change-the-default-layout-margins",
+          "level": 3,
+          "text": "Change the default layout margins",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UIKit provides default layout margins for each view, but you can change the default values to values that are more appropriate for your view. To change a view’s margin values, update the view’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/directionalLayoutMargins",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. (You can also use the Size inspector to set the value of that property at design time. In the Layout Margins section, choose the Language Directional option and enter the margin values for each of the view’s edges, as shown in the following image.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2927045",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the root view of a view controller, UIKit enforces a set of minimum layout margins to ensure that content is displayed correctly. When the values in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/directionalLayoutMargins",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property are less than the minimum values, UIKit uses the minimum values instead. You can get the minimum margin values from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/systemMinimumLayoutMargins",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the view controller. To prevent UIKit from applying the minimum margins altogether, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewRespectsSystemMinimumLayoutMargins",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of your view controller to false.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The view’s actual margins are computed using the view’s configuration and the value of its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/directionalLayoutMargins",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. A view’s margins are affected by the settings of its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/insetsLayoutMarginsFromSafeArea",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/preservesSuperviewLayoutMargins",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties, which can increase the default margin values to ensure appropriate spacing of your content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDictionaryOfVariableBindings": {
+      "abstract": [
+        {
+          "text": "Creates a dictionary wherein the keys are string representations of the corresponding values’ variable names.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSDictionaryOfVariableBindings"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDictionaryOfVariableBindings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDictionaryOfVariableBindings",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdictionaryofvariablebindings"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint": {
+      "abstract": [
+        {
+          "text": "The relationship between two user interface objects that must be satisfied by the constraint-based layout system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLayoutConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLayoutConstraint"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLayoutConstraint",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutconstraint"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILayoutSupport": {
+      "abstract": [
+        {
+          "text": "A set of methods that provide layout support and access to layout anchors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILayoutSupport"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILayoutSupport",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UILayoutSupport"
+        }
+      ],
+      "role": "symbol",
+      "title": "UILayoutSupport",
+      "type": "topic",
+      "url": "/documentation/uikit/uilayoutsupport"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView": {
+      "abstract": [
+        {
+          "text": "An object that manages the content for a rectangular area on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/directionalLayoutMargins": {
+      "abstract": [
+        {
+          "text": "The default spacing to use when laying out content in a view, taking into account the current language direction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "directionalLayoutMargins"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@NSDirectionalEdgeInsets",
+          "text": "NSDirectionalEdgeInsets"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/directionalLayoutMargins",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "directionalLayoutMargins"
+        }
+      ],
+      "role": "symbol",
+      "title": "directionalLayoutMargins",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/directionallayoutmargins"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/insetsLayoutMarginsFromSafeArea": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the view’s layout margins are updated automatically to reflect the safe area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insetsLayoutMarginsFromSafeArea"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/insetsLayoutMarginsFromSafeArea",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insetsLayoutMarginsFromSafeArea"
+        }
+      ],
+      "role": "symbol",
+      "title": "insetsLayoutMarginsFromSafeArea",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/insetslayoutmarginsfromsafearea"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/preservesSuperviewLayoutMargins": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the current view also respects the margins of its superview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preservesSuperviewLayoutMargins"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/preservesSuperviewLayoutMargins",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preservesSuperviewLayoutMargins"
+        }
+      ],
+      "role": "symbol",
+      "title": "preservesSuperviewLayoutMargins",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/preservessuperviewlayoutmargins"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController": {
+      "abstract": [
+        {
+          "text": "An object that manages a view hierarchy for your UIKit app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/systemMinimumLayoutMargins": {
+      "abstract": [
+        {
+          "text": "The minimum layout margins for the view controller’s root view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemMinimumLayoutMargins"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@NSDirectionalEdgeInsets",
+          "text": "NSDirectionalEdgeInsets"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/systemMinimumLayoutMargins",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "systemMinimumLayoutMargins"
+        }
+      ],
+      "role": "symbol",
+      "title": "systemMinimumLayoutMargins",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/systemminimumlayoutmargins"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewRespectsSystemMinimumLayoutMargins": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the view controller’s view uses the system-defined minimum layout margins.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewRespectsSystemMinimumLayoutMargins"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewRespectsSystemMinimumLayoutMargins",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewRespectsSystemMinimumLayoutMargins"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewRespectsSystemMinimumLayoutMargins",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/viewrespectssystemminimumlayoutmargins"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/positioning-content-relative-to-the-safe-area": {
+      "abstract": [
+        {
+          "text": "Position views so that they aren’t obstructed by other content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/positioning-content-relative-to-the-safe-area",
+      "kind": "article",
+      "role": "article",
+      "title": "Positioning content relative to the safe area",
+      "type": "topic",
+      "url": "/documentation/uikit/positioning-content-relative-to-the-safe-area"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/view-controllers": {
+      "abstract": [
+        {
+          "text": "Manage your interface using view controllers and facilitate navigation around your app’s content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View controllers",
+      "type": "topic",
+      "url": "/documentation/uikit/view-controllers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/view-layout": {
+      "abstract": [
+        {
+          "text": "Use stack views to lay out the views of your interface automatically. Use Auto Layout when you require precise placement of your views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/view-layout",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View layout",
+      "type": "topic",
+      "url": "/documentation/uikit/view-layout"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/views-and-controls": {
+      "abstract": [
+        {
+          "text": "Present your content onscreen and define the interactions allowed with that content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Views and controls",
+      "type": "topic",
+      "url": "/documentation/uikit/views-and-controls"
+    },
+    "media-2927043": {
+      "alt": "A view’s margins",
+      "identifier": "media-2927043",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8c4cf9ba8dc6a1bc9952e15279e51e90/media-2927043@2x.png"
+        }
+      ]
+    },
+    "media-2927045": {
+      "alt": "Setting margins using the Size inspector",
+      "identifier": "media-2927045",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3d709116c9d80a702ab053478948f61e/media-2927045@2x.png"
+        }
+      ]
+    },
+    "media-2927987": {
+      "alt": "Constraining embedded content to a view’s margins",
+      "identifier": "media-2927987",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2315385ed83c6a1027d0a25afe01dc3c/media-2927987@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Constraints",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/positioning-content-relative-to-the-safe-area",
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint",
+        "doc://com.apple.uikit/documentation/UIKit/UILayoutSupport"
+      ],
+      "title": "Constraints"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Constraints",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/positioning-content-relative-to-the-safe-area",
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint",
+                "doc://com.apple.uikit/documentation/UIKit/UILayoutSupport",
+                "doc://com.apple.uikit/documentation/UIKit/NSDictionaryOfVariableBindings"
+              ],
+              "title": "Constraints"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILayoutSupport/title",
+          "value": "UILayoutSupport"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILayoutSupport/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILayoutSupport"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILayoutSupport/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILayoutSupport"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1systemMinimumLayoutMargins/title",
+          "value": "systemMinimumLayoutMargins"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1systemMinimumLayoutMargins/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "systemMinimumLayoutMargins"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1directionalLayoutMargins/title",
+          "value": "directionalLayoutMargins"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1directionalLayoutMargins/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "directionalLayoutMargins"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/title",
+          "value": "UIViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1insetsLayoutMarginsFromSafeArea/title",
+          "value": "insetsLayoutMarginsFromSafeArea"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1insetsLayoutMarginsFromSafeArea/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "insetsLayoutMarginsFromSafeArea"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1viewRespectsSystemMinimumLayoutMargins/title",
+          "value": "viewRespectsSystemMinimumLayoutMargins"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1viewRespectsSystemMinimumLayoutMargins/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "viewRespectsSystemMinimumLayoutMargins"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint/title",
+          "value": "NSLayoutConstraint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/title",
+          "value": "UIView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1preservesSuperviewLayoutMargins/title",
+          "value": "preservesSuperviewLayoutMargins"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1preservesSuperviewLayoutMargins/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preservesSuperviewLayoutMargins"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/positioning-content-within-layout-margins"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/positioning-content-within-layout-margins"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

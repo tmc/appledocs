@@ -1,0 +1,3842 @@
+{
+  "abstract": [
+    {
+      "text": "The Cocoa interface to speech synthesis in macOS.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use AVSpeechSynthesizer in AVFoundation instead",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSSpeechSynthesizer",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSSpeechSynthesizer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSSpeechSynthesizer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "14.0",
+        "introducedAt": "10.3",
+        "message": "Use AVSpeechSynthesizer in AVFoundation instead",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSSpeechSynthesizer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSSpeechSynthesizer"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Speech synthesis, also called text-to-speech (TTS), parses text and converts it into audible speech. It offers a concurrent feedback mode that can be used in concert with or in place of traditional visual and aural notifications. For example, your application can use a speech synthesizer object to “pronounce” the text of important alert dialogs. Synthesized speech has several advantages. It can provide urgent information to users without forcing them to shift attention from their current task. And because speech doesn’t rely on visual elements for meaning, it is a crucial technology for users with vision or attention disabilities.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition, synthesized speech can help save system resources. Because sound samples can take up large amounts of room on disk, using text in place of sampled sound is extremely efficient, and so a multimedia application might use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to provide a narration of a QuickTime movie instead of including sampled-sound data on a movie track.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance using the default initializer (",
+              "type": "text"
+            },
+            {
+              "code": "init",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), the class uses the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "default voice",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " selected in System Preferences > Speech. Alternatively, you can select a specific voice for an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance by initializing it with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/init(voice:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To begin synthesis, send either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/startSpeaking(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/startSpeaking(_:to:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the instance. The former generates speech through the system’s default sound output device; the latter saves the generated speech to a file. If you wish to be notified when the current speech concludes, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/delegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property and implement the delegate method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizerDelegate/speechSynthesizer(_:didFinishSpeaking:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Speech synthesis is just one of the macOS speech technologies. The speech recognizer technology allows applications to “listen to” text spoken in U.S. English; the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class is the Cocoa interface to this technology. Both technologies provide benefits for all users, and are particularly useful to those users who have difficulties seeing the screen or using the mouse and keyboard.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Speech-Feedback-Window",
+          "level": 3,
+          "text": "Speech Feedback Window",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The speech feedback window (",
+              "type": "text"
+            },
+            {
+              "identifier": "/documentation/appkit/nsspeechsynthesizer#1965715",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") displays the text recognized from the user’s speech and the text from which an ",
+              "type": "text"
+            },
+            {
+              "code": "NSSpeechSynthesizer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object synthesizes speech. Using the feedback window makes spoken exchange more natural and helps the user understand the synthesized speech.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-1965715",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, your application may use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to listen for the command “Play some music.” When it recognizes this command, your application might then respond by speaking “Which artist?” using a speech synthesizer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When ",
+              "type": "text"
+            },
+            {
+              "code": "UsesFeedbackWindow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the speech synthesizer uses the feedback window if its visible, which the user specifies in System Preferences > Speech.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "/documentation/appkit/nsspeechsynthesizer#1965715": {
+      "identifier": "/documentation/appkit/nsspeechsynthesizer#1965715",
+      "title": "Figure 1",
+      "titleInlineContent": [
+        {
+          "text": "Figure 1",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "/documentation/appkit/nsspeechsynthesizer#1965715"
+    },
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer": {
+      "abstract": [
+        {
+          "text": "The Cocoa interface to speech recognition in macOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSpeechRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSpeechRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSpeechRecognizer",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechrecognizer"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer": {
+      "abstract": [
+        {
+          "text": "The Cocoa interface to speech synthesis in macOS.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSpeechSynthesizer"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSpeechSynthesizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSpeechSynthesizer",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/Boundary": {
+      "abstract": [
+        {
+          "text": "These constants are used to indicate where speech should be stopped and paused. See ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/pauseSpeaking(at:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/stopSpeaking(at:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Boundary"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/Boundary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Boundary"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSpeechSynthesizer.Boundary",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/boundary"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/DictionaryKey": {
+      "abstract": [
+        {
+          "text": "These constants identify key-value pairs used to add vocabulary to the dictionary using ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/addSpeechDictionary(_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DictionaryKey"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/DictionaryKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DictionaryKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSpeechSynthesizer.DictionaryKey",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/dictionarykey"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey": {
+      "abstract": [
+        {
+          "text": "These constants are used with ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/setObject(_:forProperty:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/object(forProperty:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " to get or set the characteristics of a synthesizer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechPropertyKey"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpeechPropertyKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSpeechSynthesizer.SpeechPropertyKey",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/speechpropertykey"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/CommandDelimiterKey": {
+      "abstract": [
+        {
+          "text": "Keys for the command delimiters.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CommandDelimiterKey"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/CommandDelimiterKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CommandDelimiterKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSpeechSynthesizer.SpeechPropertyKey.CommandDelimiterKey",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/speechpropertykey/commanddelimiterkey"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/ErrorKey": {
+      "abstract": [
+        {
+          "text": "Keys that identify errors that may occur during speech synthesis.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorKey"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/ErrorKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSpeechSynthesizer.SpeechPropertyKey.ErrorKey",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/speechpropertykey/errorkey"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/Mode": {
+      "abstract": [
+        {
+          "text": "Keys for the speaking mode.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Mode"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/Mode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Mode"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSpeechSynthesizer.SpeechPropertyKey.Mode",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/speechpropertykey/mode"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/PhonemeInfoKey": {
+      "abstract": [
+        {
+          "text": "Keys for the speech phoneme information.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhonemeInfoKey"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/PhonemeInfoKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PhonemeInfoKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSpeechSynthesizer.SpeechPropertyKey.PhonemeInfoKey",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/speechpropertykey/phonemeinfokey"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/StatusKey": {
+      "abstract": [
+        {
+          "text": "Keys for the speech synthesizier status.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StatusKey"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/StatusKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StatusKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSpeechSynthesizer.SpeechPropertyKey.StatusKey",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/speechpropertykey/statuskey"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/SynthesizerInfoKey": {
+      "abstract": [
+        {
+          "text": "Keys for the speech synthesizier information.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SynthesizerInfoKey"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/SynthesizerInfoKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SynthesizerInfoKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSpeechSynthesizer.SpeechPropertyKey.SynthesizerInfoKey",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/speechpropertykey/synthesizerinfokey"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/VoiceAttributeKey": {
+      "abstract": [
+        {
+          "text": "The following constants are keys for the dictionary returned by ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/attributes(forVoice:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VoiceAttributeKey"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/VoiceAttributeKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VoiceAttributeKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSpeechSynthesizer.VoiceAttributeKey",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/voiceattributekey"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/VoiceAttributeKey/gender": {
+      "abstract": [
+        {
+          "text": "The perceived gender of the voice. The supported values are listed in ",
+          "type": "text"
+        },
+        {
+          "code": "Voice Gender Keys",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".  An ",
+          "type": "text"
+        },
+        {
+          "code": "NSString",
+          "type": "codeVoice"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gender"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSpeechSynthesizer",
+          "text": "NSSpeechSynthesizer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSVoiceAttributeKey",
+          "text": "VoiceAttributeKey"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/VoiceAttributeKey/gender",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSVoiceGender"
+        }
+      ],
+      "role": "symbol",
+      "title": "gender",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/voiceattributekey/gender"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/VoiceGender": {
+      "abstract": [
+        {
+          "text": "The following constants define voice gender attributes, which are the allowable values of the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/VoiceAttributeKey/gender",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " key returned by ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/attributes(forVoice:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VoiceGender"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/VoiceGender",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VoiceGender"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSpeechSynthesizer.VoiceGender",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/voicegender"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/VoiceName": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VoiceName"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/VoiceName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VoiceName"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSpeechSynthesizer.VoiceName",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/voicename"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/addSpeechDictionary(_:)": {
+      "abstract": [
+        {
+          "text": "Registers the given speech dictionary with the receiver.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addSpeechDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSpeechSynthesizer",
+          "text": "NSSpeechSynthesizer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSpeechDictionaryKey",
+          "text": "DictionaryKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/addSpeechDictionary(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addSpeechDictionary:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addSpeechDictionary(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/addspeechdictionary(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/attributes(forVoice:)": {
+      "abstract": [
+        {
+          "text": "Provides the attribute dictionary of a voice.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forVoice"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSpeechSynthesizer",
+          "text": "NSSpeechSynthesizer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSpeechSynthesizerVoiceName",
+          "text": "VoiceName"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSpeechSynthesizer",
+          "text": "NSSpeechSynthesizer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSVoiceAttributeKey",
+          "text": "VoiceAttributeKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/attributes(forVoice:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attributesForVoice:"
+        }
+      ],
+      "role": "symbol",
+      "title": "attributes(forVoice:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/attributes(forvoice:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/availableVoices": {
+      "abstract": [
+        {
+          "text": "Provides the identifiers of the voices available on the system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableVoices"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSpeechSynthesizer",
+          "text": "NSSpeechSynthesizer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSpeechSynthesizerVoiceName",
+          "text": "VoiceName"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/availableVoices",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "availableVoices"
+        }
+      ],
+      "role": "symbol",
+      "title": "availableVoices",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/availablevoices"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/continueSpeaking()": {
+      "abstract": [
+        {
+          "text": "Resumes synthesis.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "continueSpeaking"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/continueSpeaking()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "continueSpeaking"
+        }
+      ],
+      "role": "symbol",
+      "title": "continueSpeaking()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/continuespeaking()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/defaultVoice": {
+      "abstract": [
+        {
+          "text": "Provides the identifier of the default voice.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultVoice"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSpeechSynthesizer",
+          "text": "NSSpeechSynthesizer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSpeechSynthesizerVoiceName",
+          "text": "VoiceName"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/defaultVoice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "defaultVoice"
+        }
+      ],
+      "role": "symbol",
+      "title": "defaultVoice",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/defaultvoice"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/delegate": {
+      "abstract": [
+        {
+          "text": "The synthesizer’s delegate.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSSpeechSynthesizerDelegate",
+          "text": "NSSpeechSynthesizerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/delegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/init(voice:)": {
+      "abstract": [
+        {
+          "text": "Initializes the receiver with a voice.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "voice"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSpeechSynthesizer",
+          "text": "NSSpeechSynthesizer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSpeechSynthesizerVoiceName",
+          "text": "VoiceName"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/init(voice:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithVoice:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(voice:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/init(voice:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/isAnyApplicationSpeaking": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether any application is currently speaking through the sound output device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAnyApplicationSpeaking"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/isAnyApplicationSpeaking",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "anyApplicationSpeaking"
+        }
+      ],
+      "role": "symbol",
+      "title": "isAnyApplicationSpeaking",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/isanyapplicationspeaking"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/isSpeaking": {
+      "abstract": [
+        {
+          "text": "Indicates whether the receiver is currently generating synthesized speech.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSpeaking"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/isSpeaking",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "speaking"
+        }
+      ],
+      "role": "symbol",
+      "title": "isSpeaking",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/isspeaking"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/object(forProperty:)": {
+      "abstract": [
+        {
+          "text": "Provides the value of a receiver’s property.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forProperty"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSpeechSynthesizer",
+          "text": "NSSpeechSynthesizer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSpeechPropertyKey",
+          "text": "SpeechPropertyKey"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/object(forProperty:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "objectForProperty:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "object(forProperty:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/object(forproperty:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/pauseSpeaking(at:)": {
+      "abstract": [
+        {
+          "text": "Pauses synthesis in progress at a given boundary.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pauseSpeaking"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSpeechSynthesizer",
+          "text": "NSSpeechSynthesizer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSSpeechBoundary",
+          "text": "Boundary"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/pauseSpeaking(at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pauseSpeakingAtBoundary:"
+        }
+      ],
+      "role": "symbol",
+      "title": "pauseSpeaking(at:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/pausespeaking(at:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/phonemes(from:)": {
+      "abstract": [
+        {
+          "text": "Provides the phoneme symbols generated by the given text.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "phonemes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/phonemes(from:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "phonemesFromText:"
+        }
+      ],
+      "role": "symbol",
+      "title": "phonemes(from:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/phonemes(from:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/rate": {
+      "abstract": [
+        {
+          "text": "The synthesizer’s speaking rate (words per minute).",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/rate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rate"
+        }
+      ],
+      "role": "symbol",
+      "title": "rate",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/rate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/setObject(_:forProperty:)": {
+      "abstract": [
+        {
+          "text": "Specifies the value of a receiver’s property.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forProperty"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSpeechSynthesizer",
+          "text": "NSSpeechSynthesizer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSpeechPropertyKey",
+          "text": "SpeechPropertyKey"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/setObject(_:forProperty:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setObject:forProperty:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setObject(_:forProperty:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/setobject(_:forproperty:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/setVoice(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the receiver’s current voice.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVoice"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSpeechSynthesizer",
+          "text": "NSSpeechSynthesizer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSpeechSynthesizerVoiceName",
+          "text": "VoiceName"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/setVoice(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVoice:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setVoice(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/setvoice(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/startSpeaking(_:)": {
+      "abstract": [
+        {
+          "text": "Begins speaking synthesized text through the system’s default sound output device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startSpeaking"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/startSpeaking(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startSpeakingString:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startSpeaking(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/startspeaking(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/startSpeaking(_:to:)": {
+      "abstract": [
+        {
+          "text": "Begins synthesizing text into a sound (AIFF) file.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startSpeaking"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/startSpeaking(_:to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startSpeakingString:toURL:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startSpeaking(_:to:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/startspeaking(_:to:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/stopSpeaking()": {
+      "abstract": [
+        {
+          "text": "Stops synthesis in progress.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopSpeaking"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/stopSpeaking()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopSpeaking"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopSpeaking()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/stopspeaking()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/stopSpeaking(at:)": {
+      "abstract": [
+        {
+          "text": "Stops synthesis in progress at a given boundary.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopSpeaking"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSpeechSynthesizer",
+          "text": "NSSpeechSynthesizer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSSpeechBoundary",
+          "text": "Boundary"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/stopSpeaking(at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopSpeakingAtBoundary:"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopSpeaking(at:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/stopspeaking(at:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/usesFeedbackWindow": {
+      "abstract": [
+        {
+          "text": "Indicates whether the receiver uses the speech feedback window.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "usesFeedbackWindow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/usesFeedbackWindow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "usesFeedbackWindow"
+        }
+      ],
+      "role": "symbol",
+      "title": "usesFeedbackWindow",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/usesfeedbackwindow"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/voice()": {
+      "abstract": [
+        {
+          "text": "Returns the identifier of the receiver’s current voice.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "voice"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSpeechSynthesizer",
+          "text": "NSSpeechSynthesizer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSpeechSynthesizerVoiceName",
+          "text": "VoiceName"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/voice()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "voice"
+        }
+      ],
+      "role": "symbol",
+      "title": "voice()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/voice()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/volume": {
+      "abstract": [
+        {
+          "text": "The synthesizer’s speaking volume.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "volume"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/volume",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "volume"
+        }
+      ],
+      "role": "symbol",
+      "title": "volume",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer/volume"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizerDelegate": {
+      "abstract": [
+        {
+          "text": "A set of optional methods implemented by delegates of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " objects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSpeechSynthesizerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSpeechSynthesizerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSpeechSynthesizerDelegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizerdelegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizerDelegate/speechSynthesizer(_:didFinishSpeaking:)": {
+      "abstract": [
+        {
+          "text": "Sent when an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object finishes speaking through the sound output device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "speechSynthesizer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSpeechSynthesizer",
+          "text": "NSSpeechSynthesizer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFinishSpeaking"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizerDelegate/speechSynthesizer(_:didFinishSpeaking:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "speechSynthesizer:didFinishSpeaking:"
+        }
+      ],
+      "role": "symbol",
+      "title": "speechSynthesizer(_:didFinishSpeaking:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizerdelegate/speechsynthesizer(_:didfinishspeaking:)"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "media-1965715": {
+      "alt": null,
+      "identifier": "media-1965715",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/41fd24182e5b44a0e32aad125d250bef/media-1965715.jpg"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Speech",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer"
+      ],
+      "title": "Speech"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Speech-Synthesizer",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/init(voice:)"
+      ],
+      "title": "Creating a Speech Synthesizer"
+    },
+    {
+      "anchor": "Customizing-the-Speech-Synthesizer-Behavior",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/delegate",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizerDelegate"
+      ],
+      "title": "Customizing the Speech Synthesizer Behavior"
+    },
+    {
+      "anchor": "Configuring-Speech-Synthesizers",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/usesFeedbackWindow",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/voice()",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/setVoice(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/rate",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/volume"
+      ],
+      "title": "Configuring Speech Synthesizers"
+    },
+    {
+      "anchor": "Configuring-Speech-Attributes",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/addSpeechDictionary(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/DictionaryKey",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/object(forProperty:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/setObject(_:forProperty:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/CommandDelimiterKey",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/ErrorKey",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/Mode",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/PhonemeInfoKey",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/StatusKey",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/SynthesizerInfoKey",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/VoiceGender"
+      ],
+      "title": "Configuring Speech Attributes"
+    },
+    {
+      "anchor": "Getting-Speech-Synthesizer-Information",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/availableVoices",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/attributes(forVoice:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/defaultVoice",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/VoiceName",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/VoiceAttributeKey"
+      ],
+      "title": "Getting Speech Synthesizer Information"
+    },
+    {
+      "anchor": "Getting-Speech-State",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/isAnyApplicationSpeaking"
+      ],
+      "title": "Getting Speech State"
+    },
+    {
+      "anchor": "Synthesizing-Speech",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/isSpeaking",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/startSpeaking(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/startSpeaking(_:to:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/pauseSpeaking(at:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/continueSpeaking()",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/stopSpeaking()",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/stopSpeaking(at:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/Boundary"
+      ],
+      "title": "Synthesizing Speech"
+    },
+    {
+      "anchor": "Getting-Phonemes",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/phonemes(from:)"
+      ],
+      "title": "Getting Phonemes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "14.0",
+              "introducedAt": "10.3",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSSpeechSynthesizer"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechSynthesizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechSynthesizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Speech-Synthesizer",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/init(voice:)"
+              ],
+              "title": "Creating a Speech Synthesizer"
+            },
+            {
+              "anchor": "Customizing-the-Speech-Synthesizer-Behavior",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/delegate",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizerDelegate"
+              ],
+              "title": "Customizing the Speech Synthesizer Behavior"
+            },
+            {
+              "anchor": "Configuring-Speech-Synthesizers",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/usesFeedbackWindow",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/voice()",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/setVoice(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/rate",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/volume"
+              ],
+              "title": "Configuring Speech Synthesizers"
+            },
+            {
+              "anchor": "Configuring-Speech-Attributes",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/addSpeechDictionary(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/DictionaryKey",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/object(forProperty:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/setObject(_:forProperty:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/CommandDelimiterKey",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/ErrorKey",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/Mode",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/PhonemeInfoKey",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/StatusKey",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/SpeechPropertyKey/SynthesizerInfoKey",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/VoiceGender"
+              ],
+              "title": "Configuring Speech Attributes"
+            },
+            {
+              "anchor": "Getting-Speech-Synthesizer-Information",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/availableVoices",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/attributes(forVoice:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/defaultVoice",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/VoiceName",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/VoiceAttributeKey"
+              ],
+              "title": "Getting Speech Synthesizer Information"
+            },
+            {
+              "anchor": "Getting-Speech-State",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/isAnyApplicationSpeaking"
+              ],
+              "title": "Getting Speech State"
+            },
+            {
+              "anchor": "Synthesizing-Speech",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/isSpeaking",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/startSpeaking(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/startSpeaking(_:to:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/pauseSpeaking(at:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/continueSpeaking()",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/stopSpeaking()",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/stopSpeaking(at:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/Boundary"
+              ],
+              "title": "Synthesizing Speech"
+            },
+            {
+              "anchor": "Getting-Phonemes",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer/phonemes(from:)"
+              ],
+              "title": "Getting Phonemes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Speech",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer"
+              ],
+              "title": "Speech"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSSpeechSynthesizer"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use AVSpeechSynthesizer in AVFoundation instead",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1stopSpeaking()/title",
+          "value": "stopSpeaking"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1stopSpeaking()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopSpeaking"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1stopSpeaking(at:)/title",
+          "value": "stopSpeakingAtBoundary:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1stopSpeaking(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopSpeakingAtBoundary:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1VoiceName/title",
+          "value": "NSSpeechSynthesizerVoiceName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1VoiceName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechSynthesizerVoiceName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1VoiceName/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechSynthesizerVoiceName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1DictionaryKey/title",
+          "value": "NSSpeechDictionaryKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1DictionaryKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechDictionaryKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1DictionaryKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechDictionaryKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1SpeechPropertyKey~1ErrorKey/title",
+          "value": "NSSpeechErrorKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1SpeechPropertyKey~1ErrorKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechErrorKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1SpeechPropertyKey~1ErrorKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechErrorKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1SpeechPropertyKey/title",
+          "value": "NSSpeechPropertyKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1SpeechPropertyKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechPropertyKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1SpeechPropertyKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechPropertyKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1SpeechPropertyKey~1CommandDelimiterKey/title",
+          "value": "NSSpeechCommandDelimiterKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1SpeechPropertyKey~1CommandDelimiterKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechCommandDelimiterKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1SpeechPropertyKey~1CommandDelimiterKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechCommandDelimiterKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1SpeechPropertyKey~1SynthesizerInfoKey/title",
+          "value": "NSSpeechSynthesizerInfoKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1SpeechPropertyKey~1SynthesizerInfoKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechSynthesizerInfoKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1SpeechPropertyKey~1SynthesizerInfoKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechSynthesizerInfoKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer/title",
+          "value": "NSSpeechSynthesizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechSynthesizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechSynthesizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1startSpeaking(_:)/title",
+          "value": "startSpeakingString:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1startSpeaking(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startSpeakingString:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1startSpeaking(_:to:)/title",
+          "value": "startSpeakingString:toURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1startSpeaking(_:to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startSpeakingString:toURL:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1continueSpeaking()/title",
+          "value": "continueSpeaking"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1continueSpeaking()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "continueSpeaking"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1SpeechPropertyKey~1PhonemeInfoKey/title",
+          "value": "NSSpeechPhonemeInfoKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1SpeechPropertyKey~1PhonemeInfoKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechPhonemeInfoKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1SpeechPropertyKey~1PhonemeInfoKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechPhonemeInfoKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1object(forProperty:)/title",
+          "value": "objectForProperty:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1object(forProperty:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "objectForProperty:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1VoiceGender/title",
+          "value": "NSVoiceGenderName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1VoiceGender/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSVoiceGenderName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1VoiceGender/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSVoiceGenderName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1volume/title",
+          "value": "volume"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1volume/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "volume"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1isSpeaking/title",
+          "value": "speaking"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1isSpeaking/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "speaking"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1addSpeechDictionary(_:)/title",
+          "value": "addSpeechDictionary:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1addSpeechDictionary(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addSpeechDictionary:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1pauseSpeaking(at:)/title",
+          "value": "pauseSpeakingAtBoundary:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1pauseSpeaking(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pauseSpeakingAtBoundary:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizerDelegate/title",
+          "value": "NSSpeechSynthesizerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechSynthesizerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechSynthesizerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1usesFeedbackWindow/title",
+          "value": "usesFeedbackWindow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1usesFeedbackWindow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "usesFeedbackWindow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1SpeechPropertyKey~1StatusKey/title",
+          "value": "NSSpeechStatusKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1SpeechPropertyKey~1StatusKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechStatusKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1SpeechPropertyKey~1StatusKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechStatusKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1isAnyApplicationSpeaking/title",
+          "value": "anyApplicationSpeaking"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1isAnyApplicationSpeaking/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "anyApplicationSpeaking"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1availableVoices/title",
+          "value": "availableVoices"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1availableVoices/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "availableVoices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizer/title",
+          "value": "NSSpeechRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1VoiceAttributeKey/title",
+          "value": "NSVoiceAttributeKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1VoiceAttributeKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSVoiceAttributeKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1VoiceAttributeKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSVoiceAttributeKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1voice()/title",
+          "value": "voice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1voice()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "voice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1phonemes(from:)/title",
+          "value": "phonemesFromText:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1phonemes(from:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "phonemesFromText:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1setObject(_:forProperty:)/title",
+          "value": "setObject:forProperty:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1setObject(_:forProperty:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setObject:forProperty:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1VoiceAttributeKey~1gender/title",
+          "value": "NSVoiceGender"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1VoiceAttributeKey~1gender/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSVoiceGender"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1attributes(forVoice:)/title",
+          "value": "attributesForVoice:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1attributes(forVoice:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "attributesForVoice:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1Boundary/title",
+          "value": "NSSpeechBoundary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1Boundary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechBoundary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1Boundary/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechBoundary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1rate/title",
+          "value": "rate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1rate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1defaultVoice/title",
+          "value": "defaultVoice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1defaultVoice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "defaultVoice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1SpeechPropertyKey~1Mode/title",
+          "value": "NSSpeechMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1SpeechPropertyKey~1Mode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1SpeechPropertyKey~1Mode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1init(voice:)/title",
+          "value": "initWithVoice:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1init(voice:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithVoice:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizerDelegate~1speechSynthesizer(_:didFinishSpeaking:)/title",
+          "value": "speechSynthesizer:didFinishSpeaking:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizerDelegate~1speechSynthesizer(_:didFinishSpeaking:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "speechSynthesizer:didFinishSpeaking:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1setVoice(_:)/title",
+          "value": "setVoice:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer~1setVoice(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setVoice:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsspeechsynthesizer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsspeechsynthesizer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,771 @@
+{
+  "abstract": [
+    {
+      "text": "Assign resource indices within an argument buffer.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/buffers"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/indexing-argument-buffers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Indexing Argument Buffers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can index an argument buffer similarly to buffers, textures, and samplers. However, you index individual argument buffer resources with a generic ",
+              "type": "text"
+            },
+            {
+              "code": "[[id(n)]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute instead of the specific type ",
+              "type": "text"
+            },
+            {
+              "code": "[[buffer(n)]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "[[texture(n)]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "[[sampler(n)]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attributes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Because argument buffers are represented by ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " objects, they can be explicitly distinguished from regular buffers in the Metal shading language if they contain any resources indexed with the ",
+                  "type": "text"
+                },
+                {
+                  "code": "[[id(n)]]",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " attribute. If any member of a Metal shading language structure has an ",
+                  "type": "text"
+                },
+                {
+                  "code": "[[id(n)]]",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " attribute, the whole structure is treated as an argument buffer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Manually assigned argument buffer resource indices don’t need to be contiguous, but they must be unique and arranged in an increasing order. The following example shows manual and automatic index assignment:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct My_Indexed_AB {",
+            "    texture2d<float> texA [[id(1)]];",
+            "    texture2d<float> texB [[id(3)]];",
+            "};",
+            "struct My_Aggregate_AB {",
+            "    My_Indexed_AB abX; // abX = id(0); texA = id(1); texB = id(3)",
+            "    My_Indexed_AB abY; // abY = id(4); texA = id(5); texB = id(7)",
+            "};"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Automatically-Assigned-Index-IDs",
+          "level": 3,
+          "text": "Automatically Assigned Index IDs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the ",
+              "type": "text"
+            },
+            {
+              "code": "[[id(n)]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute is omitted for any argument buffer resource, an index ID is automatically assigned according to preset rules:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Structure Members",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "IDs are assigned to structure members in order, starting at 0, by adding 1 to the highest ID used by the previous structure member. The following example shows automatically assigned index IDs for structure members:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MaterialTexture {",
+            "    texture2d<float> tex; // Assigned to index 0",
+            "    float4 uvScaleOffset; // Assigned to index 1",
+            "};"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Array Elements",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "IDs are assigned to array elements in order, starting at 0, by adding 1 to the highest ID used by the previous array elements. The following example shows automatically assigned index IDs for array elements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Material {",
+            "    float4 diffuse;                     // Assigned to index 0",
+            "    array<texture2d<float>, 3> texSet1; // Assigned to indices 1-3",
+            "    texture2d<float> texSet2[3];        // Assigned to indices 4-6",
+            "    MaterialTexture materials[3];       // Assigned to indices 7-12",
+            "    int constants[4] [[id(20)]];        // Assigned to indices 20-23",
+            "};"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Nested Structs and Arrays",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a structure member or array element is itself a structure or array, its own structure members or array elements are assigned indices according to the previous rules. If an ID is provided for a top-level structure or array, this ID becomes the starting index for nested structure members or array elements. The following example shows automatically assigned index IDs for nested structures and arrays:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Material {",
+            "    MaterialTexture diffuse;          // Assigned to indices 0-1",
+            "    MaterialTexture normal [[id(4)]]; // Assigned to indices 4-5",
+            "    MaterialTexture specular;         // Assigned to indices 6-7",
+            "}"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Combined Argument Buffer Resources and Regular Resources",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Argument buffer resources are assigned generic indices according to the previous rules. Regular resources are assigned type indices in their respective resource argument tables. The following example shows automatically assigned index IDs for combined argument buffer resources and regular resources:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "fragment float4 my_fragment(",
+            "    constant texture2d<float> & texturesAB1 [[buffer(0)]],     // Assigned to generic index 0 and buffer index 0",
+            "    constant texture2d<float> & texturesAB2[10] [[buffer(1)]], // Assigned to generic indices 0-9 and buffer index 1",
+            "    array<texture2d<float>, 10> texturesArray [[texture(0)]]    // Assigned to texture indices 0-9",
+            ")",
+            "{...}"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentDescriptor": {
+      "abstract": [
+        {
+          "text": "A representation of an argument within an argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLArgumentDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLArgumentDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLArgumentDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder": {
+      "abstract": [
+        {
+          "text": "An object used to encode data into an argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLArgumentEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLArgumentEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLArgumentEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeStrideStatic": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeStrideStatic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeStrideStatic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeStrideStatic"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeStrideStatic",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributestridestatic"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer": {
+      "abstract": [
+        {
+          "text": "A resource that stores data in a format defined by your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/buffers": {
+      "abstract": [
+        {
+          "text": "Create and manage untyped data your app uses to exchange information with its shader functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/buffers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/encoding-argument-buffers-on-the-gpu": {
+      "abstract": [
+        {
+          "text": "Use a compute pass to encode an argument buffer and access its arguments in a subsequent render pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/encoding-argument-buffers-on-the-gpu",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encoding Argument Buffers on the GPU",
+      "type": "topic",
+      "url": "/documentation/metal/encoding-argument-buffers-on-the-gpu"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Optimize your app’s performance by grouping your resources into argument buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving CPU Performance by Using Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/improving-cpu-performance-by-using-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/managing-groups-of-resources-with-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Create argument buffers to organize related resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/managing-groups-of-resources-with-argument-buffers",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Managing groups of resources with argument buffers",
+      "type": "topic",
+      "url": "/documentation/metal/managing-groups-of-resources-with-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-terrain-dynamically-with-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Use argument buffers to render terrain in real time with a GPU-driven pipeline.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-terrain-dynamically-with-argument-buffers",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rendering Terrain Dynamically with Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-terrain-dynamically-with-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/tracking-the-resource-residency-of-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Optimize resource performance within an argument buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/tracking-the-resource-residency-of-argument-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Tracking the Resource Residency of Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/tracking-the-resource-residency-of-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-argument-buffers-with-resource-heaps": {
+      "abstract": [
+        {
+          "text": "Reduce CPU overhead by using arrays inside argument buffers and combining them with resource heaps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-argument-buffers-with-resource-heaps",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using Argument Buffers with Resource Heaps",
+      "type": "topic",
+      "url": "/documentation/metal/using-argument-buffers-with-resource-heaps"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Argument-Buffers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/managing-groups-of-resources-with-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/tracking-the-resource-residency-of-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/rendering-terrain-dynamically-with-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/encoding-argument-buffers-on-the-gpu",
+        "doc://com.apple.metal/documentation/Metal/using-argument-buffers-with-resource-heaps",
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeStrideStatic"
+      ],
+      "title": "Argument Buffers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Argument-Buffers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+                "doc://com.apple.metal/documentation/Metal/managing-groups-of-resources-with-argument-buffers",
+                "doc://com.apple.metal/documentation/Metal/tracking-the-resource-residency-of-argument-buffers",
+                "doc://com.apple.metal/documentation/Metal/rendering-terrain-dynamically-with-argument-buffers",
+                "doc://com.apple.metal/documentation/Metal/encoding-argument-buffers-on-the-gpu",
+                "doc://com.apple.metal/documentation/Metal/using-argument-buffers-with-resource-heaps",
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeStrideStatic"
+              ],
+              "title": "Argument Buffers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder/title",
+          "value": "MTLArgumentEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLArgumentEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLArgumentEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/title",
+          "value": "MTLBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentDescriptor/title",
+          "value": "MTLArgumentDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLArgumentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLArgumentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeStrideStatic/title",
+          "value": "MTLAttributeStrideStatic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeStrideStatic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeStrideStatic"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/indexing-argument-buffers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/indexing-argument-buffers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

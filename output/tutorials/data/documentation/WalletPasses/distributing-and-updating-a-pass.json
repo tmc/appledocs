@@ -1,0 +1,605 @@
+{
+  "abstract": [
+    {
+      "text": "Distribute a pass to your users or update an existing pass.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.walletpasses/documentation/WalletPasses"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.walletpasses/documentation/WalletPasses/distributing-and-updating-a-pass"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Wallet Passes"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Distributing and updating a pass"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are three ways you can distribute a pass:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a pass from an app or App Clip.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide a download on a web page for one pass or a bundle containing multiple passes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Send a pass as an attachment in an email.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your app or App Clip, add a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PassKit/PKAddPassButton",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to show that a pass is available. When the user taps the button, show a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PassKit/PKAddPassesViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the pass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On your website, show an Add to Apple Wallet button. Download the pass when the user clicks the button. For more information on displaying the button, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/wallet/add-to-apple-wallet-guidelines",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Update a pass by distributing a new version of the pass with the same pass identifier and serial number. For more information on the pass identifier and serial number, see the ",
+              "type": "text"
+            },
+            {
+              "code": "passTypeIdentifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "serialNumber",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keys of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/Pass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can optionally provide a web service to update the contents of a user’s pass, such as changing the time for an event. For more information about implementing a pass update web service, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/adding-a-web-service-to-update-passes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-bundle-of-passes",
+          "level": 3,
+          "text": "Create a bundle of passes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provide a bundle of passes to enable your user to download multiple passes at once. To create the pass bundle:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".zip",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file containing the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".pkpass",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " files for the passes that are part of the bundle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change the extension of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".zip",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".pkpasses",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can distribute a bundle of passes the same way you distribute a single pass. The MIME type for a bundle of passes is “",
+              "type": "text"
+            },
+            {
+              "code": "application/vnd.apple.pkpasses\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can have up to 10 passes or 150 MB for a bundle of passes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/PassKit/PKAddPassButton": {
+      "abstract": [
+        {
+          "text": "Provides a button that enables users to add passes to Wallet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKAddPassButton"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PassKit/PKAddPassButton",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PKAddPassButton",
+      "type": "topic",
+      "url": "/documentation/PassKit/PKAddPassButton"
+    },
+    "doc://com.apple.documentation/documentation/PassKit/PKAddPassesViewController": {
+      "abstract": [
+        {
+          "text": "Lets your app show a pass and prompt the user to add that pass to the pass library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKAddPassesViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PassKit/PKAddPassesViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PKAddPassesViewController",
+      "type": "topic",
+      "url": "/documentation/PassKit/PKAddPassesViewController"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses": {
+      "abstract": [
+        {
+          "text": "Create, distribute, and update passes for the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Wallet Passes",
+      "type": "topic",
+      "url": "/documentation/walletpasses"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/Pass": {
+      "abstract": [
+        {
+          "text": "An object that represents a pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Pass"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/Pass",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Pass"
+        }
+      ],
+      "role": "symbol",
+      "title": "Pass",
+      "type": "topic",
+      "url": "/documentation/walletpasses/pass"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/adding-a-web-service-to-update-passes": {
+      "abstract": [
+        {
+          "text": "Implement a web server to register, update, and unregister a pass on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/adding-a-web-service-to-update-passes",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Web Service to Update Passes",
+      "type": "topic",
+      "url": "/documentation/walletpasses/adding-a-web-service-to-update-passes"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/building-a-pass": {
+      "abstract": [
+        {
+          "text": "Build a distributable pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/building-a-pass",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a Pass",
+      "type": "topic",
+      "url": "/documentation/walletpasses/building-a-pass"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/creating-the-source-for-a-pass": {
+      "abstract": [
+        {
+          "text": "Create the directory structure and add source files and images to define a pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/creating-the-source-for-a-pass",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating the Source for a Pass",
+      "type": "topic",
+      "url": "/documentation/walletpasses/creating-the-source-for-a-pass"
+    },
+    "https://developer.apple.com/wallet/add-to-apple-wallet-guidelines": {
+      "identifier": "https://developer.apple.com/wallet/add-to-apple-wallet-guidelines",
+      "title": "Add to Apple Wallet Guidelines.",
+      "titleInlineContent": [
+        {
+          "text": "Add to Apple Wallet Guidelines.",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wallet/add-to-apple-wallet-guidelines"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.walletpasses/documentation/WalletPasses/creating-the-source-for-a-pass",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/building-a-pass",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/Pass"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1PassKit~1PKAddPassButton/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PKAddPassButton"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIButton",
+              "text": "UIButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1PassKit~1PKAddPassesViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PKAddPassesViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/walletpasses/distributing-and-updating-a-pass"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

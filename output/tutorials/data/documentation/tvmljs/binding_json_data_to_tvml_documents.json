@@ -1,0 +1,842 @@
+{
+  "abstract": [
+    {
+      "text": "Create full-fledged TVML documents by using data binding and queries on simplified TVML files.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/tvmljs"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/tvmljs/binding_json_data_to_tvml_documents"
+  },
+  "kind": "article",
+  "legacy_identifier": 3087736,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "TVMLKit JS"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "12.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "14.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Binding JSON data to TVML documents"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows how to combine JavaScript, JSON data, and TVML elements to create compact TVML documents. You start by creating a local server on your computer to store all of the JSON data and TVML documents. The app reads the JSON data and applies it to the TVML document, and then displays movie posters onscreen. The titles display with different colors based on the amount of rental time remaining.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4164065",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before running the app, you need to set up a local server:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Finder, choose DataBindings > DataBindings in the sample project directory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Terminal, type ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "cd",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " followed by a space.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag the DataBindings folder from the Finder window into the Terminal window, and press Return. This changes the directory to that folder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Terminal, type ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ruby -run -ehttpd . -p9001",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and press Return to run the server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build and run the app in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After testing the sample app in Apple TV simulator, you can close the local server by pressing Control-C in Terminal. Closing the Terminal window also stops the server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4164066",
+          "level": 3,
+          "text": "Set up the TVML document",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The TVML document uses the ",
+              "type": "text"
+            },
+            {
+              "code": "prototypes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element to create a reusable collection of elements. Use the ",
+              "type": "text"
+            },
+            {
+              "code": "prototype",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute to uniquely identify the elements. The app creates two ",
+              "type": "text"
+            },
+            {
+              "code": "lockup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements that contain movie poster information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Rather than creating a separate ",
+              "type": "text"
+            },
+            {
+              "code": "lockup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the TVML document for each JSON object, the sample uses a separate JSON file that contains the data that the ",
+              "type": "text"
+            },
+            {
+              "code": "lockup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements use. This creates smaller TVML files that are easier to read and understand. Reusing ",
+              "type": "text"
+            },
+            {
+              "code": "lockup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements also improves the loading speed when using large data sets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<prototypes>",
+            "    <lockup prototype=\"beach\">",
+            "        <img binding=\"@src:{url};\" width=\"200\" height=\"300\"/>",
+            "        <placeholder tag=\"title2\" />"
+          ],
+          "metadata": {
+            "anchor": "4164055",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each ",
+              "type": "text"
+            },
+            {
+              "code": "lockup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains a set of rules, or queries, that change the color of the movie poster’s title based on the JSON data. ",
+              "type": "text"
+            },
+            {
+              "code": "specialize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements contain queries that interact with JSON data and act as ",
+              "type": "text"
+            },
+            {
+              "code": "if-then",
+              "type": "codeVoice"
+            },
+            {
+              "text": " statements. When the JSON data matches the query, the elements inside the ",
+              "type": "text"
+            },
+            {
+              "code": "specialize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element replace the ",
+              "type": "text"
+            },
+            {
+              "code": "placeholder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element with the matching ",
+              "type": "text"
+            },
+            {
+              "code": "tag",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". In the app, a movie poster’s title appears in one of two colors, depending on the amount of time remaining for that object’s availability. For example, movie titles appear in a default color when a user rents them; and then the titles change to an alternate color when the user has fewer than 24 hours remaining in the rental period.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<rules>",
+            "    <specialize state=\"({hoursRemaining}-less-than:24)\">",
+            "        <title tag=\"title2\" class=\"expiresSoon\" binding=\"textContent:{title};\" />\"",
+            "    </specialize>",
+            "    <specialize state=\"({hoursRemaining}-greater-than-equal:24)\">",
+            "        <title tag=\"title2\" class=\"expiresLater\" binding=\"textContent:{title};\" />\"",
+            "    </specialize>",
+            "</rules>"
+          ],
+          "metadata": {
+            "anchor": "4164056",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "4164067",
+          "level": 3,
+          "text": "Retrieve the JSON data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/tvmljs/xmlhttprequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to retrieve the JSON information from your server. This creates two arrays that hold JSON objects. Each object has the following properties: ",
+              "type": "text"
+            },
+            {
+              "code": "type",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "ID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "url",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "title",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "hoursRemaining",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "code": "hoursRemaining",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property contains the data that the queries in the previous section use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"beaches\": [",
+            "        {\"type\": \"beach\", \"ID\": \"00\", \"url\": \"Images/Beach_Movie_HiRes/Beach_Movie_250x375_A.png\", \"title\": \"Surf's Up!\", \"hoursRemaining\": 48},",
+            "        {\"type\": \"beach\", \"ID\": \"02\", \"url\": \"Images/Beach_Movie_HiRes/Beach_Movie_250x375_C.png\", \"title\": \"Relaxing\", \"hoursRemaining\": 48},",
+            "        {\"type\": \"beach\", \"ID\": \"01\", \"url\": \"Images/Beach_Movie_HiRes/Beach_Movie_250x375.png\", \"title\": \"Sunset\", \"hoursRemaining\": 12}",
+            "    ],",
+            "    \"cars\": [",
+            "        {\"type\": \"cars\", \"ID\": \"03\", \"url\": \"Images/Car_Movie_HiRes/Car_Movie_250x375_A.png\", \"title\": \"Drifting\", \"hoursRemaining\": 48},",
+            "        {\"type\": \"cars\", \"ID\": \"04\", \"url\": \"Images/Car_Movie_HiRes/Car_Movie_250x375_B.png\", \"title\": \"Escape!\", \"hoursRemaining\": 10}",
+            "    ]",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4164058",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "4164068",
+          "level": 3,
+          "text": "Bind the JSON data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You need to add a type and an identifier to each JSON object because creating new ",
+              "type": "text"
+            },
+            {
+              "code": "DataItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects requires both a type and a unique identifier for each object. The ",
+              "type": "text"
+            },
+            {
+              "code": "type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " groups like items together and identifies the correct element to populate the ",
+              "type": "text"
+            },
+            {
+              "code": "section",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element. The ",
+              "type": "text"
+            },
+            {
+              "code": "ID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " identifies each object and needs to be unique within each type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Parse the JSON data into a separate variable. Retrieve the desired ",
+              "type": "text"
+            },
+            {
+              "code": "section",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element and create a new data item for the section. This sample uses the ",
+              "type": "text"
+            },
+            {
+              "code": "lockup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element to populate two ",
+              "type": "text"
+            },
+            {
+              "code": "shelf",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements. Inside each shelf is a ",
+              "type": "text"
+            },
+            {
+              "code": "section",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element that contains the binding variable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Parse the JSON information.",
+            "var results = JSON.parse(information);",
+            "",
+            "// Find the shelf elements.",
+            "let shelves = template.getElementsByTagName('shelf');",
+            "",
+            "if (shelves.length > 0) {",
+            "    for (var i = 0; i < shelves.length; i++) {",
+            "        let shelf = shelves.item(i);",
+            "        let section = shelf.getElementsByTagName(\"section\").item(0);"
+          ],
+          "metadata": {
+            "anchor": "4164060",
+            "title": "Listing 4"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a new item to contain the JSON information. A mapping function creates a new ",
+              "type": "text"
+            },
+            {
+              "code": "DataItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object with the ",
+              "type": "text"
+            },
+            {
+              "code": "type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "ID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from a JSON object. Populate the object with the remaining JSON data. Return the object to map the information to your array of new items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let newItems = results.cars.map((result) => {",
+            "    let objectItem = new DataItem(result.type, result.ID);",
+            "    objectItem.url = baseURL + result.url;",
+            "    objectItem.title = result.title;",
+            "    objectItem.hoursRemaining = result.hoursRemaining;",
+            "    return objectItem;",
+            "});",
+            "section.dataItem.setPropertyPath(\"images\", newItems);"
+          ],
+          "metadata": {
+            "anchor": "4164061",
+            "title": "Listing 5"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "setPropertyPath",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to bind the new data items with the ",
+              "type": "text"
+            },
+            {
+              "code": "section",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "section.dataItem.setPropertyPath(\"images\", newItems);"
+          ],
+          "metadata": {
+            "anchor": "4164062",
+            "title": "Listing 6"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs": {
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TVMLKit JS",
+      "type": "topic",
+      "url": "/documentation/tvmljs"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/binding_json_data_to_tvml_documents": {
+      "abstract": [
+        {
+          "text": "Create full-fledged TVML documents by using data binding and queries on simplified TVML files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/binding_json_data_to_tvml_documents",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Binding JSON data to TVML documents",
+      "type": "topic",
+      "url": "/documentation/tvmljs/binding_json_data_to_tvml_documents"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/binding_json_data_to_tvml_documents#4164055": {
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/binding_json_data_to_tvml_documents#4164055",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/tvmljs/binding_json_data_to_tvml_documents#4164055"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/binding_json_data_to_tvml_documents#4164056": {
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/binding_json_data_to_tvml_documents#4164056",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/tvmljs/binding_json_data_to_tvml_documents#4164056"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/binding_json_data_to_tvml_documents#4164058": {
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/binding_json_data_to_tvml_documents#4164058",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/tvmljs/binding_json_data_to_tvml_documents#4164058"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/binding_json_data_to_tvml_documents#4164060": {
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/binding_json_data_to_tvml_documents#4164060",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/tvmljs/binding_json_data_to_tvml_documents#4164060"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/binding_json_data_to_tvml_documents#4164061": {
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/binding_json_data_to_tvml_documents#4164061",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/tvmljs/binding_json_data_to_tvml_documents#4164061"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/binding_json_data_to_tvml_documents#4164062": {
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/binding_json_data_to_tvml_documents#4164062",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 6",
+      "type": "section",
+      "url": "/documentation/tvmljs/binding_json_data_to_tvml_documents#4164062"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/dataitem": {
+      "abstract": [
+        {
+          "text": "An object used to create observable objects from JSON objects for data binding.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/dataitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DataItem",
+      "type": "topic",
+      "url": "/documentation/tvmljs/dataitem"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/datasource": {
+      "abstract": [
+        {
+          "text": "An interface that allows the system to detect and respond to changes in your data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/datasource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DataSource",
+      "type": "topic",
+      "url": "/documentation/tvmljs/datasource"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/datasource/datasource/3192119-loadindexes": {
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/datasource/datasource/3192119-loadindexes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadindexes",
+      "type": "topic",
+      "url": "/documentation/tvmljs/datasource/datasource/3192119-loadindexes"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/loadindexesrequest": {
+      "abstract": [
+        {
+          "text": "A request created when the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/tvmljs/datasource/datasource/3192119-loadindexes",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " event is triggered.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/loadindexesrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LoadIndexesRequest",
+      "type": "topic",
+      "url": "/documentation/tvmljs/loadindexesrequest"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/storage": {
+      "abstract": [
+        {
+          "text": "An object used to store key-value-pair information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/storage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Storage",
+      "type": "topic",
+      "url": "/documentation/tvmljs/storage"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/xmlhttprequest": {
+      "abstract": [
+        {
+          "text": "An object used to retrieve data from a URL.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/xmlhttprequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XMLHttpRequest",
+      "type": "topic",
+      "url": "/documentation/tvmljs/xmlhttprequest"
+    },
+    "https://docs-assets.developer.apple.com/published/dab03d00ca/BindingJSONDataToTVMLDocuments.zip": {
+      "checksum": "c6e1aa420e5655371a4e39f84bae5dcfcdf146c127da6177215b09842e8c88e12f0ea98b14e999bc00ac0aa8a3aeae41f052c8bebe129eda977354861c59a2cd",
+      "identifier": "https://docs-assets.developer.apple.com/published/dab03d00ca/BindingJSONDataToTVMLDocuments.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/dab03d00ca/BindingJSONDataToTVMLDocuments.zip"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/dab03d00ca/BindingJSONDataToTVMLDocuments.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/tvmljs/xmlhttprequest",
+        "doc://com.apple.documentation/documentation/tvmljs/dataitem",
+        "doc://com.apple.documentation/documentation/tvmljs/storage",
+        "doc://com.apple.documentation/documentation/tvmljs/datasource",
+        "doc://com.apple.documentation/documentation/tvmljs/loadindexesrequest"
+      ],
+      "title": "Data Storage and Retrieval"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/tvmljs/binding_json_data_to_tvml_documents"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

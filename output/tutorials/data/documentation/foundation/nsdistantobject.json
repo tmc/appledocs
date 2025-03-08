@@ -1,0 +1,866 @@
+{
+  "abstract": [
+    {
+      "text": "A proxy for objects in other applications or threads.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime/distributed_objects_support"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsdistantobject"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1442596,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSDistantObject",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "13.1",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "10.13",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSDistantObject"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSDistantObject"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsproxy",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSProxy",
+              "text": "NSProxy"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a distant object receives a message, in most cases it forwards the message through its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsconnection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to the real object in another application, supplying the return value to the sender of the message if one is received, and propagating any exception back to the invoker of the method that raised it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistantobject",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is a concrete subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsproxy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", adding two useful instance methods of its own: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistantobject/1806839-connectionforproxy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsconnection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that handles the receiver; ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistantobject/1442593-setprotocolforproxy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " establishes the set of methods the real object is known to respond to, saving the network traffic required to determine the argument and return types the first time a particular selector is forwarded to the remote proxy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two kinds of distant object: local proxies and remote proxies. A local proxy is created by an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsconnection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object the first time an object is sent to another application. It is used by the connection for bookkeeping purposes and should be considered private. The local proxy is transmitted over the network using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol to create the remote proxy, which is the object that the other application uses. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistantobject",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " defines methods for an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsconnection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to create instances, but they’re intended only for subclasses to override—you should never invoke them directly. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsconnection/1478061-rootproxyforconnectionwithregist",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsconnection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which sets up all the required state for an object-proxy pair.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistantobject",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " conforms to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " protocol, but only supports coding by an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsportcoder",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistantobject",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " and its subclasses do not support archiving.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsconnection": {
+      "abstract": [
+        {
+          "text": "An object that manages the communication between objects in different threads or between a thread and a process running on a local or remote system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsconnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSConnection",
+      "type": "topic",
+      "url": "/documentation/foundation/nsconnection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsconnection/1478061-rootproxyforconnectionwithregist": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "rootProxyForConnectionWithRegisteredName:host:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsconnection/1478061-rootproxyforconnectionwithregist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rootProxyForConnectionWithRegisteredName:host:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsconnection/1478061-rootproxyforconnectionwithregist"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsconnectiondelegate": {
+      "abstract": [
+        {
+          "text": "An interface for interacting with low-level, interprocess connections.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsconnectiondelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSConnectionDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsconnectiondelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdistantobject": {
+      "abstract": [
+        {
+          "text": "A proxy for objects in other applications or threads.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistantobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDistantObject",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdistantobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdistantobject/1442593-setprotocolforproxy": {
+      "abstract": [
+        {
+          "text": "Sets the methods known to be handled by the receiver to those in a given protocol.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setProtocolForProxy:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistantobject/1442593-setprotocolforproxy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setProtocolForProxy:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdistantobject/1442593-setprotocolforproxy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdistantobject/1442597-initwithtarget": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated NSDistantObject as a remote proxy for ",
+          "type": "text"
+        },
+        {
+          "code": "remoteObject",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", which is an id in another thread or another application’s address space.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithTarget:connection:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistantobject/1442597-initwithtarget",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithTarget:connection:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdistantobject/1442597-initwithtarget"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdistantobject/1442598-connectionforproxy": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistantobject/1442598-connectionforproxy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "connectionForProxy",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdistantobject/1442598-connectionforproxy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdistantobject/1442599-proxywithtarget": {
+      "abstract": [
+        {
+          "text": "Returns a remote proxy for a given object and connection, creating the proxy if necessary.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "proxyWithTarget:connection:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistantobject/1442599-proxywithtarget",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "proxyWithTarget:connection:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdistantobject/1442599-proxywithtarget"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdistantobject/1442601-proxywithlocal": {
+      "abstract": [
+        {
+          "text": "Returns a local proxy for a given object and connection, creating the proxy if necessary.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "proxyWithLocal:connection:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistantobject/1442601-proxywithlocal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "proxyWithLocal:connection:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdistantobject/1442601-proxywithlocal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdistantobject/1442603-initwithlocal": {
+      "abstract": [
+        {
+          "text": "Initializes an ",
+          "type": "text"
+        },
+        {
+          "code": "NSDistantObject",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object as a local proxy for a given object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithLocal:connection:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistantobject/1442603-initwithlocal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithLocal:connection:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdistantobject/1442603-initwithlocal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdistantobject/1442605-initwithcoder": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithCoder:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistantobject/1442605-initwithcoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithCoder:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdistantobject/1442605-initwithcoder"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdistantobject/1806839-connectionforproxy": {
+      "abstract": [
+        {
+          "text": "Returns the connection used by the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistantobject/1806839-connectionforproxy",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "connectionForProxy",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdistantobject/1806839-connectionforproxy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdistantobjectrequest": {
+      "abstract": [
+        {
+          "text": "An object used by the distributed objects system to help handle invocations between different processes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistantobjectrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDistantObjectRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdistantobjectrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmachbootstrapserver": {
+      "abstract": [
+        {
+          "text": "A port name server that takes and returns Mach port objects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachbootstrapserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMachBootstrapServer",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmachbootstrapserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmachport": {
+      "abstract": [
+        {
+          "text": "A port that can be used as an endpoint for distributed object connections (or raw messaging).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMachPort",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmachport"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmachportdelegate": {
+      "abstract": [
+        {
+          "text": "An interface for handling incoming Mach messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachportdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMachPortDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmachportdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmessageport": {
+      "abstract": [
+        {
+          "text": "A port that can be used as an endpoint for distributed object connections (or raw messaging).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmessageport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMessagePort",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmessageport"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmessageportnameserver": {
+      "abstract": [
+        {
+          "text": "A server takes and returns message ports.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmessageportnameserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMessagePortNameServer",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmessageportnameserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsportcoder": {
+      "abstract": [
+        {
+          "text": "A coder used to transmit object proxies (and sometimes objects themselves) between connections.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsportcoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPortCoder",
+      "type": "topic",
+      "url": "/documentation/foundation/nsportcoder"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsportdelegate": {
+      "abstract": [
+        {
+          "text": "An interface for handling incoming messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsportdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPortDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsportdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsportmessage": {
+      "abstract": [
+        {
+          "text": "A low-level, operating system-independent type for inter-application (and inter-thread) messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsportmessage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPortMessage",
+      "type": "topic",
+      "url": "/documentation/foundation/nsportmessage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsportnameserver": {
+      "abstract": [
+        {
+          "text": "An object-oriented interface to the port registration service used by the distributed objects system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsportnameserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPortNameServer",
+      "type": "topic",
+      "url": "/documentation/foundation/nsportnameserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsprotocolchecker": {
+      "abstract": [
+        {
+          "text": "An object that restricts the messages that can be sent to another object (referred to as the checker’s delegate).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsprotocolchecker",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSProtocolChecker",
+      "type": "topic",
+      "url": "/documentation/foundation/nsprotocolchecker"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsproxy": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsproxy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSProxy",
+      "type": "topic",
+      "url": "/documentation/foundation/nsproxy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver": {
+      "abstract": [
+        {
+          "text": "A port name server that takes and returns socket ports.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSocketPortNameServer",
+      "type": "topic",
+      "url": "/documentation/foundation/nssocketportnameserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime/distributed_objects_support": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime/distributed_objects_support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Distributed Objects Support",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime/distributed_objects_support"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsproxy"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmachportdelegate",
+        "doc://com.apple.documentation/documentation/foundation/nsconnectiondelegate",
+        "doc://com.apple.documentation/documentation/foundation/nsconnection",
+        "doc://com.apple.documentation/documentation/foundation/nsdistantobjectrequest",
+        "doc://com.apple.documentation/documentation/foundation/nsmachbootstrapserver",
+        "doc://com.apple.documentation/documentation/foundation/nsmachport",
+        "doc://com.apple.documentation/documentation/foundation/nsmessageport",
+        "doc://com.apple.documentation/documentation/foundation/nsmessageportnameserver",
+        "doc://com.apple.documentation/documentation/foundation/nsportcoder",
+        "doc://com.apple.documentation/documentation/foundation/nsportdelegate",
+        "doc://com.apple.documentation/documentation/foundation/nsportmessage",
+        "doc://com.apple.documentation/documentation/foundation/nsportnameserver",
+        "doc://com.apple.documentation/documentation/foundation/nsprotocolchecker",
+        "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver"
+      ],
+      "title": "Legacy"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1679568",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdistantobject/1442601-proxywithlocal",
+        "doc://com.apple.documentation/documentation/foundation/nsdistantobject/1442603-initwithlocal"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Local Proxy"
+    },
+    {
+      "anchor": "1679591",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdistantobject/1442599-proxywithtarget",
+        "doc://com.apple.documentation/documentation/foundation/nsdistantobject/1442597-initwithtarget"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Remote Proxy"
+    },
+    {
+      "anchor": "1679603",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdistantobject/1806839-connectionforproxy"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting a Proxy’s NSConnection"
+    },
+    {
+      "anchor": "1679607",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdistantobject/1442593-setprotocolforproxy"
+      ],
+      "kind": "taskGroup",
+      "title": "Setting a Proxy’s Protocol"
+    },
+    {
+      "anchor": "2861578",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdistantobject/1442598-connectionforproxy"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "2861579",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdistantobject/1442605-initwithcoder"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsdistantobject"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

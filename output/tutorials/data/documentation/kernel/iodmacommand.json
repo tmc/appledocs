@@ -1,0 +1,1834 @@
+{
+  "abstract": [
+    {
+      "text": "An object that converts memory references to I/O bus addresses.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iodmacommand"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1441987,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IODMACommand",
+    "modules": [
+      {
+        "name": "DriverKit"
+      },
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "24.4",
+        "introducedAt": "20.0",
+        "name": "DriverKit"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IODMACommand"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "DriverKit"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IODMACommand"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/osobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSObject",
+              "text": "OSObject"
+            }
+          ]
+        },
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IODMACommand"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iocommand",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOCommand",
+              "text": "IOCommand"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class supersedes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorycursor",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " and greatly enhances the functionality and power of it. The command can be specified to output 64 bit physical addresses and also allows driver writers to bypass mapping hardware or get addresses suitable for non-snooped DMA.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The command is designed to be very easily subclassable. Most driver writers need to associate some DMA operations with their memory descriptor, and usually use a C structure for that purpose. This structure is often kept in a linked list. This ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " has built-in ",
+              "type": "text"
+            },
+            {
+              "code": "<kern/queue.h>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " linkage and can be derived and 'public:' variables added, giving the developer a structure that can associate a memory descriptor with a particular DMA command but will also allow the developer to generate that command and keep the state necessary for tracking it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a pool of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects at driver initialization, and keep each command in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandpool",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when not in use. You may also maintain your own free list of objects if preferred. See the ",
+              "type": "text"
+            },
+            {
+              "code": "<kern/queue.h>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "<xnu/iokit/Kernel/IOCommandPool>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for sample code on manipulating the command's doubly linked list entries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object in a 'weak-linked' manner. To do this you must avoid using any static member functions. Use the much slower, but safe, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/1547721-weakwithspecification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. On success, the function returns a DMA command object, which you can use to clone as many commands as needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/driverkit/iodmacommand/3645796-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iodmacommand/3645796-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/driverkit/iodmacommand/3645796-init"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osobject": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/driverkit/osobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1547721-weakwithspecification": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "weakWithSpecification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1547721-weakwithspecification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "weakWithSpecification",
+      "type": "topic",
+      "url": "/documentation/kernel/1547721-weakwithspecification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommand": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandpool": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandpool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOCommandPool",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandpool"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand": {
+      "abstract": [
+        {
+          "text": "An object that converts memory references to I/O bus addresses.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODMACommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547715-clearmemorydescriptor": {
+      "abstract": [
+        {
+          "text": "Clears the DMACommand's current memory descriptor",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "clearMemoryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547715-clearmemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clearMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547715-clearmemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547717-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547717-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547717-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547719-synchronize": {
+      "abstract": [
+        {
+          "text": "Bring IOMemoryDescriptor and IODMACommand buffers into sync.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "synchronize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547719-synchronize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "synchronize",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547719-synchronize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547720-geniovmsegments": {
+      "abstract": [
+        {
+          "text": "Generates a physical scatter/gather for the current DMA command",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "genIOVMSegments"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547720-geniovmsegments",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "genIOVMSegments",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547720-geniovmsegments"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547722-gen64iovmsegments": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "gen64IOVMSegments"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547722-gen64iovmsegments",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gen64IOVMSegments",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547722-gen64iovmsegments"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547724-readbytes": {
+      "abstract": [
+        {
+          "text": "Copy data from the IODMACommand's buffer to the specified buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "readBytes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547724-readbytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readBytes",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547724-readbytes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547725-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547725-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547725-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547726-outputhost32": {
+      "abstract": [
+        {
+          "text": "Output host natural Segment32 output segment function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "OutputHost32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547726-outputhost32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OutputHost32",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547726-outputhost32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547727-setmemorydescriptor": {
+      "abstract": [
+        {
+          "text": "Sets and resets the DMACommand's current memory descriptor",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMemoryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547727-setmemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547727-setmemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547728-prepare": {
+      "abstract": [
+        {
+          "text": "Prepare the memory for an I/O transfer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepare"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547728-prepare",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepare",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547728-prepare"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547729-createcopybuffer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "createCopyBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547729-createcopybuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createCopyBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547729-createcopybuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547730-complete": {
+      "abstract": [
+        {
+          "text": "Complete processing of DMA mappings after an I/O transfer is finished.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "complete"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547730-complete",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "complete",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547730-complete"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547731-getalignmentlength": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getAlignmentLength"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547731-getalignmentlength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getAlignmentLength",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547731-getalignmentlength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547732-clonecommand": {
+      "abstract": [
+        {
+          "text": "Creates a new command based on the specification of the current one.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "cloneCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547732-clonecommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cloneCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547732-clonecommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547733-preparewithspecification": {
+      "abstract": [
+        {
+          "text": "Prepare the memory for an I/O transfer with a new specification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareWithSpecification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547733-preparewithspecification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepareWithSpecification",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547733-preparewithspecification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547735-getnumaddressbits": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNumAddressBits"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547735-getnumaddressbits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getNumAddressBits",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547735-getnumaddressbits"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547736-getiomemorydescriptor": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getIOMemoryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547736-getiomemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getIOMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547736-getiomemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547737-getalignmentinternalsegments": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getAlignmentInternalSegments"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547737-getalignmentinternalsegments",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getAlignmentInternalSegments",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547737-getalignmentinternalsegments"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547742-writebytes": {
+      "abstract": [
+        {
+          "text": "Copy data to the IODMACommand's buffer from the specified buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeBytes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547742-writebytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "writeBytes",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547742-writebytes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547743-outputbig32": {
+      "abstract": [
+        {
+          "text": "Output big-endian Segment32 output segment function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "OutputBig32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547743-outputbig32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OutputBig32",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547743-outputbig32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547744-outputlittle32": {
+      "abstract": [
+        {
+          "text": "Output little-endian Segment32 output segment function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "OutputLittle32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547744-outputlittle32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OutputLittle32",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547744-outputlittle32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547747-withrefcon": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withRefCon"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547747-withrefcon",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withRefCon",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547747-withrefcon"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547748-initwithspecification": {
+      "abstract": [
+        {
+          "text": "Primary initializer for the DMA command object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithSpecification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547748-initwithspecification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithSpecification",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547748-initwithspecification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547749-gen32iovmsegments": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "gen32IOVMSegments"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547749-gen32iovmsegments",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gen32IOVMSegments",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547749-gen32iovmsegments"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547750-outputhost64": {
+      "abstract": [
+        {
+          "text": "Output host natural Segment64 output segment function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "OutputHost64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547750-outputhost64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OutputHost64",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547750-outputhost64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547753-getmemorydescriptor": {
+      "abstract": [
+        {
+          "text": "Get the current memory descriptor",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMemoryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547753-getmemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547753-getmemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547754-initwithrefcon": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithRefCon"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547754-initwithrefcon",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithRefCon",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547754-initwithrefcon"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547755-getalignment": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getAlignment"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547755-getalignment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getAlignment",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547755-getalignment"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547757-outputbig64": {
+      "abstract": [
+        {
+          "text": "Output big-endian Segment64 output segment function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "OutputBig64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547757-outputbig64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OutputBig64",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547757-outputbig64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547758-withspecification": {
+      "abstract": [
+        {
+          "text": "Creates and initializes an DMA command in one operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withSpecification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547758-withspecification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withSpecification",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547758-withspecification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547759-setspecification": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSpecification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547759-setspecification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setSpecification",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547759-setspecification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547764-outputlittle64": {
+      "abstract": [
+        {
+          "text": "Output little-endian Segment64 output segment function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "OutputLittle64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547764-outputlittle64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OutputLittle64",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547764-outputlittle64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547765-getpreparedoffsetandlength": {
+      "abstract": [
+        {
+          "text": "Returns the offset and length into the target IOMemoryDescriptor of a prepared IODDMACommand.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getPreparedOffsetAndLength"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547765-getpreparedoffsetandlength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getPreparedOffsetAndLength",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547765-getpreparedoffsetandlength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811032-clearmemorydescriptor": {
+      "abstract": [
+        {
+          "text": "Clears the DMACommand's current memory descriptor",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811032-clearmemorydescriptor",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "clearMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811032-clearmemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811059-clonecommand": {
+      "abstract": [
+        {
+          "text": "Creates a new command based on the specification of the current one.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811059-clonecommand",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "cloneCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811059-clonecommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811081-complete": {
+      "abstract": [
+        {
+          "text": "Complete processing of DMA mappings after an I/O transfer is finished.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811081-complete",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "complete",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811081-complete"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811104-gen32iovmsegments": {
+      "abstract": [
+        {
+          "text": "Helper function for a type checked call to genIOVMSegments(qv), for use with an IODMACommand set up with the output function kIODMACommandOutputHost32, kIODMACommandOutputBig32, or kIODMACommandOutputLittle32. If the output function of the IODMACommand is not a 32 bit function, results will be incorrect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811104-gen32iovmsegments",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "gen32IOVMSegments",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811104-gen32iovmsegments"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811126-gen64iovmsegments": {
+      "abstract": [
+        {
+          "text": "Helper function for a type checked call to genIOVMSegments(qv), for use with an IODMACommand set up with the output function kIODMACommandOutputHost64, kIODMACommandOutputBig64, or kIODMACommandOutputLittle64. If the output function of the IODMACommand is not a 64 bit function, results will be incorrect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811126-gen64iovmsegments",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "gen64IOVMSegments",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811126-gen64iovmsegments"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811150-geniovmsegments": {
+      "abstract": [
+        {
+          "text": "Generates a physical scatter/gather for the current DMA command",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811150-geniovmsegments",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "genIOVMSegments",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811150-geniovmsegments"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811175-getmemorydescriptor": {
+      "abstract": [
+        {
+          "text": "Get the current memory descriptor",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811175-getmemorydescriptor",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811175-getmemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811194-getpreparedoffsetandlength": {
+      "abstract": [
+        {
+          "text": "Returns the offset and length into the target IOMemoryDescriptor of a prepared IODDMACommand.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811194-getpreparedoffsetandlength",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPreparedOffsetAndLength",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811194-getpreparedoffsetandlength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811207-initwithspecification": {
+      "abstract": [
+        {
+          "text": "Primary initializer for the DMA command object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811207-initwithspecification",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithSpecification",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811207-initwithspecification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811221-outputbig32": {
+      "abstract": [
+        {
+          "text": "Output big-endian Segment32 output segment function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811221-outputbig32",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "OutputBig32",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811221-outputbig32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811234-outputbig64": {
+      "abstract": [
+        {
+          "text": "Output big-endian Segment64 output segment function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811234-outputbig64",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "OutputBig64",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811234-outputbig64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811245-outputhost32": {
+      "abstract": [
+        {
+          "text": "Output host natural Segment32 output segment function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811245-outputhost32",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "OutputHost32",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811245-outputhost32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811257-outputhost64": {
+      "abstract": [
+        {
+          "text": "Output host natural Segment64 output segment function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811257-outputhost64",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "OutputHost64",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811257-outputhost64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811267-outputlittle32": {
+      "abstract": [
+        {
+          "text": "Output little-endian Segment32 output segment function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811267-outputlittle32",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "OutputLittle32",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811267-outputlittle32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811275-outputlittle64": {
+      "abstract": [
+        {
+          "text": "Output little-endian Segment64 output segment function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811275-outputlittle64",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "OutputLittle64",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811275-outputlittle64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811284-prepare": {
+      "abstract": [
+        {
+          "text": "Prepare the memory for an I/O transfer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811284-prepare",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "prepare",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811284-prepare"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811291-preparewithspecification": {
+      "abstract": [
+        {
+          "text": "Prepare the memory for an I/O transfer with a new specification.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811291-preparewithspecification",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "prepareWithSpecification",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811291-preparewithspecification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811301-readbytes": {
+      "abstract": [
+        {
+          "text": "Copy data from the IODMACommand's buffer to the specified buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811301-readbytes",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "readBytes",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811301-readbytes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811308-setmemorydescriptor": {
+      "abstract": [
+        {
+          "text": "Sets and resets the DMACommand's current memory descriptor",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811308-setmemorydescriptor",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811308-setmemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811316-synchronize": {
+      "abstract": [
+        {
+          "text": "Bring IOMemoryDescriptor and IODMACommand buffers into sync.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811316-synchronize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "synchronize",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811316-synchronize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811323-weakwithspecification": {
+      "abstract": [
+        {
+          "text": "Creates and initializes an DMA command object in one operation if this version of the operating system supports it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811323-weakwithspecification",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "weakWithSpecification",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811323-weakwithspecification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811330-withspecification": {
+      "abstract": [
+        {
+          "text": "Creates and initializes a DMA command in one operation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811330-withspecification",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withSpecification",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811330-withspecification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811341-writebytes": {
+      "abstract": [
+        {
+          "text": "Copy data to the IODMACommand's buffer from the specified buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811341-writebytes",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "writeBytes",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811341-writebytes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/3516450-initwithspecification": {
+      "abstract": [
+        {
+          "text": "Primary initializer for the DMA command object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithSpecification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/3516450-initwithspecification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithSpecification",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/3516450-initwithspecification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/3516451-preparewithspecification": {
+      "abstract": [
+        {
+          "text": "Prepare the memory for an I/O transfer with a new specification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareWithSpecification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/3516451-preparewithspecification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepareWithSpecification",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/3516451-preparewithspecification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/3516452-withspecification": {
+      "abstract": [
+        {
+          "text": "Creates and initializes an DMA command in one operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withSpecification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/3516452-withspecification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withSpecification",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/3516452-withspecification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/mappingoptions": {
+      "abstract": [
+        {
+          "text": "Mapping types to indicate the desired mapper type for translating memory descriptors into I/O DMA Bus addresses.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/mappingoptions",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "MappingOptions",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/mappingoptions"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/private_accessors": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/private_accessors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Private Accessors",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/private_accessors"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/segment32": {
+      "abstract": [
+        {
+          "text": "A 32 bit I/O bus address/length pair.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/segment32",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "Segment32",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/segment32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/segment64": {
+      "abstract": [
+        {
+          "text": "A 64 bit I/O bus address/length pair.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/segment64",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "Segment64",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/segment64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/segmentfunction": {
+      "abstract": [
+        {
+          "text": "A C function that translates a 64-bit segment and outputs a single desired segment to the specified array. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/segmentfunction",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "SegmentFunction",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/segmentfunction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/synchronizeoptions": {
+      "abstract": [
+        {
+          "text": "Options for the synchronize method.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/synchronizeoptions",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "SynchronizeOptions",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/synchronizeoptions"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacontroller": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacontroller",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODMAController",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacontroller"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmaeventsource": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmaeventsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODMAEventSource",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmaeventsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/memory"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorycursor": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorycursor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMemoryCursor",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorycursor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kiodmacommandoutputbig32": {
+      "abstract": [
+        {
+          "text": "Output big-endian Segment32 output segment function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kiodmacommandoutputbig32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIODMACommandOutputBig32",
+      "type": "topic",
+      "url": "/documentation/kernel/kiodmacommandoutputbig32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kiodmacommandoutputbig64": {
+      "abstract": [
+        {
+          "text": "Output big-endian Segment64 output segment function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kiodmacommandoutputbig64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIODMACommandOutputBig64",
+      "type": "topic",
+      "url": "/documentation/kernel/kiodmacommandoutputbig64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kiodmacommandoutputhost32": {
+      "abstract": [
+        {
+          "text": "Output host natural Segment32 output segment function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kiodmacommandoutputhost32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIODMACommandOutputHost32",
+      "type": "topic",
+      "url": "/documentation/kernel/kiodmacommandoutputhost32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kiodmacommandoutputhost64": {
+      "abstract": [
+        {
+          "text": "Output host natural Segment64 output segment function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kiodmacommandoutputhost64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIODMACommandOutputHost64",
+      "type": "topic",
+      "url": "/documentation/kernel/kiodmacommandoutputhost64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kiodmacommandoutputlittle32": {
+      "abstract": [
+        {
+          "text": "Output little-endian Segment32 output segment function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kiodmacommandoutputlittle32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIODMACommandOutputLittle32",
+      "type": "topic",
+      "url": "/documentation/kernel/kiodmacommandoutputlittle32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kiodmacommandoutputlittle64": {
+      "abstract": [
+        {
+          "text": "Output little-endian Segment64 output segment function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kiodmacommandoutputlittle64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIODMACommandOutputLittle64",
+      "type": "topic",
+      "url": "/documentation/kernel/kiodmacommandoutputlittle64"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iocommand",
+        "doc://com.apple.documentation/documentation/driverkit/osobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iodmacontroller",
+        "doc://com.apple.documentation/documentation/kernel/iodmaeventsource"
+      ],
+      "title": "Direct Memory Access (DMA)"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3683149",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811330-withspecification",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547758-withspecification",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/3516452-withspecification",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811207-initwithspecification",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547748-initwithspecification",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/3516450-initwithspecification",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811323-weakwithspecification",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547747-withrefcon",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547754-initwithrefcon",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811059-clonecommand",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547732-clonecommand",
+        "doc://com.apple.documentation/documentation/driverkit/iodmacommand/3645796-init",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547725-free",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/mappingoptions",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/synchronizeoptions"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a DMA Command"
+    },
+    {
+      "anchor": "3683150",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811308-setmemorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547727-setmemorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811032-clearmemorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547715-clearmemorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811175-getmemorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547753-getmemorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547736-getiomemorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811194-getpreparedoffsetandlength",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547765-getpreparedoffsetandlength",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811150-geniovmsegments",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547720-geniovmsegments",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811104-gen32iovmsegments",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547749-gen32iovmsegments",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811126-gen64iovmsegments",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547722-gen64iovmsegments",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547729-createcopybuffer"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring the Memory Descriptor"
+    },
+    {
+      "anchor": "3683148",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811284-prepare",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547728-prepare",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811291-preparewithspecification",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547733-preparewithspecification",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/3516451-preparewithspecification",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811081-complete",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547730-complete",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811316-synchronize",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547719-synchronize"
+      ],
+      "kind": "taskGroup",
+      "title": "Preparing the Transfer Operation"
+    },
+    {
+      "anchor": "3683151",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811301-readbytes",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547724-readbytes",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811341-writebytes",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547742-writebytes"
+      ],
+      "kind": "taskGroup",
+      "title": "Transferring Data"
+    },
+    {
+      "anchor": "3683147",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/segment32",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/segment64",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/segmentfunction",
+        "doc://com.apple.documentation/documentation/kernel/kiodmacommandoutputbig32",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811221-outputbig32",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547743-outputbig32",
+        "doc://com.apple.documentation/documentation/kernel/kiodmacommandoutputbig64",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811234-outputbig64",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547757-outputbig64",
+        "doc://com.apple.documentation/documentation/kernel/kiodmacommandoutputhost32",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811245-outputhost32",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547726-outputhost32",
+        "doc://com.apple.documentation/documentation/kernel/kiodmacommandoutputhost64",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811257-outputhost64",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547750-outputhost64",
+        "doc://com.apple.documentation/documentation/kernel/kiodmacommandoutputlittle32",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811267-outputlittle32",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547744-outputlittle32",
+        "doc://com.apple.documentation/documentation/kernel/kiodmacommandoutputlittle64",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811275-outputlittle64",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547764-outputlittle64"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing Memory Segments"
+    },
+    {
+      "anchor": "3683143",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547755-getalignment",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547737-getalignmentinternalsegments",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547731-getalignmentlength",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547717-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547735-getnumaddressbits",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547759-setspecification"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Configuration Details"
+    },
+    {
+      "anchor": "1844785",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/private_accessors"
+      ],
+      "kind": "taskGroup",
+      "title": "Performing Internal Operations"
+    },
+    {
+      "anchor": "3699262",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1547721-weakwithspecification"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iodmacommand",
+        "documentation/driverkit/iodmacommand"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

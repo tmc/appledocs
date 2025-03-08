@@ -1,0 +1,1919 @@
+{
+  "abstract": [
+    {
+      "text": "Add a rule to find players in a range of skill levels to balance competitive gameplay.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamekit/documentation/GameKit",
+        "doc://com.apple.gamekit/documentation/GameKit/matchmaking-rules"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamekit/documentation/GameKit/finding-players-with-similar-skill-levels"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "GameKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Finding players with similar skill levels"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When finding players using matchmaking rules, consider adding a rule that finds players in a range of skill levels to make gameplay more enjoyable and fair for all players. To reduce wait times for players, make the rule widen the skill range as the wait time, or age of the match request, increases.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This article shows one way to find players by skill level that you can combine with your other matchmaking rules. For other types of matchmaking rules, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/letting-players-join-matches-using-party-codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/assigning-players-to-teams-using-rules",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-skill-level-rule-set-and-queue",
+          "level": 3,
+          "text": "Create a skill-level rule set and queue",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First create a rule set to contain the skill-level rule. Pass a reference name, the minimum players, and the maximum players properties that are game-specific to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/POST-v1-gameCenterMatchmakingRuleSets",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "POST /v1/gameCenterMatchmakingRuleSets",
+            "{",
+            "    \"data\": {",
+            "        \"type\": \"gameCenterMatchmakingRuleSets\",",
+            "        \"attributes\": {",
+            "            \"referenceName\": \"com.example.mygame.SkillBasedRules\",",
+            "            \"ruleLanguageVersion\": 1,",
+            "            \"minPlayers\": 2,",
+            "            \"maxPlayers\": 4",
+            "        },",
+            "        \"relationships\": {}",
+            "    }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Retain the ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GameCenterMatchmakingRuleSet",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that this endpoint returns to use later when you create the skill-level rule.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"data\": {",
+            "        \"type\": \"gameCenterMatchmakingRuleSets\",",
+            "        \"id\": \"36c540f2-031a-4e35-8260-d0804e40376b\",",
+            "        \"attributes\": {",
+            "            \"referenceName\": \"com.example.mygame.SkillBasedRules\",",
+            "            \"ruleLanguageVersion\": 1,",
+            "            \"minPlayers\": 2,",
+            "            \"maxPlayers\": 4",
+            "        },",
+            "...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then create and add the rule set to a skill-level queue. Pass a reference name and the rule set that you create to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/POST-v1-gameCenterMatchmakingQueues",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint. Pass the ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the rule set in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GameCenterMatchmakingQueueCreateRequest/Data-data.dictionary/Relationships-data.dictionary/RuleSet-data.dictionary/Data-data.dictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "POST /v1/gameCenterMatchmakingQueues",
+            "{",
+            "    \"data\": {",
+            "        \"type\": \"gameCenterMatchmakingQueues\",",
+            "        \"attributes\": {",
+            "            \"referenceName\": \"com.example.mygame.SkillBasedRules\"",
+            "        },",
+            "        \"relationships\": {",
+            "            \"ruleSet\": {",
+            "                \"data\": {",
+            "                    \"type\": \"gameCenterMatchmakingRuleSets\",",
+            "                    \"id\": \"36c540f2-031a-4e35-8260-d0804e40376b\"",
+            "                }",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Choose-parameters-that-work-best-for-your-game",
+          "level": 3,
+          "text": "Choose parameters that work best for your game",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create a matchmaking rule that initially attempts to match players with similar skill values, then after a few seconds, increases the skill range for another period of seconds. The rule repeats the increments at specified intervals until it reaches a maximum difference in skill levels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if the skill of players ranges from ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "100",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in your game, create a rule that:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For the first ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "10",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " seconds, tries to find players with an ideal ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "20",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " points or less difference in skill level.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For the next ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "10",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " seconds, compromises to find players within ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "40",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " points or less difference in skill level.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "After ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "20",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " seconds, finds players with no more than the maximum ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "100",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " points difference.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You choose the number of increments and the ranges of wait times and skill levels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Write-an-expression-that-matches-players-by-skill-level",
+          "level": 3,
+          "text": "Write an expression that matches players by skill level",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Write an expression for a match rule where the expression returns a Boolean value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for an acceptable range of skill values that expands at specified time increments. An expression is a JMESPath formatted string with some Game Center matchmaking function additions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First use the ",
+              "type": "text"
+            },
+            {
+              "code": "diff()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/computing-numeric-differences",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") to compute the difference between the maximum and minimum skill values of players, where ",
+              "type": "text"
+            },
+            {
+              "code": "skill",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a game-specific property name that you set in your code when you submit a match request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "diff(players[].properties.skill)"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a match rule, the requests array contains only compatible matches because Game Center applies compatible and distance rules before match rules.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then use the ",
+              "type": "text"
+            },
+            {
+              "code": "agedValues()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to return a range of desired skill values depending on the average wait time or age of the requests. Compute the average age of the requests using the ",
+              "type": "text"
+            },
+            {
+              "code": "avg()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "avg(requests[].secondsInQueue)"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pass the average age as the first parameter to the ",
+              "type": "text"
+            },
+            {
+              "code": "agedValues()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function and other parameters depending on your game (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/getting-value-based-on-age-using-an-array",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if the ideal difference in skill is ",
+              "type": "text"
+            },
+            {
+              "code": "20",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", pass ",
+              "type": "text"
+            },
+            {
+              "code": "20",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the ",
+              "type": "text"
+            },
+            {
+              "code": "initialValue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter. Then pass an array of age increments as the ",
+              "type": "text"
+            },
+            {
+              "code": "ages",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter (",
+              "type": "text"
+            },
+            {
+              "code": "[ ",
+              "type": "codeVoice"
+            },
+            {
+              "text": "10",
+              "type": "text"
+            },
+            {
+              "code": ", ",
+              "type": "codeVoice"
+            },
+            {
+              "text": "20",
+              "type": "text"
+            },
+            {
+              "code": " ]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") and corresponding skill differences as the ",
+              "type": "text"
+            },
+            {
+              "code": "values",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter (",
+              "type": "text"
+            },
+            {
+              "code": "[ ",
+              "type": "codeVoice"
+            },
+            {
+              "text": "40",
+              "type": "text"
+            },
+            {
+              "code": ", ",
+              "type": "codeVoice"
+            },
+            {
+              "text": "100",
+              "type": "text"
+            },
+            {
+              "code": " ]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") to the ",
+              "type": "text"
+            },
+            {
+              "code": "agedValues()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "agedValues(avg(requests[].secondsInQueue), `20`, [ `40`, `100` ], [ `10`, `20` ])"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now compose a Boolean expression that compares the maximum difference in skill between compatible requests with the desired difference in skill as a function of wait time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "diff(players[].properties.skill) <= agedValues(avg(requests[].secondsInQueue), `20`, [ `40`, `100` ], [ `10`, `20` ])"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on the Game Center functions you can use in expressions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/expressions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in App Store Connect API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you have previous versions of your game that don’t provide player properties used in your rules, you can write expressions that provide default value for those properties. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.gamekit/documentation/GameKit/creating-matchmaking-rules-for-backward-compatibility",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-a-match-rule-containing-the-expression",
+          "level": 3,
+          "text": "Create a match rule containing the expression",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a skill-level rule and add it to the rule set. Pass ",
+              "type": "text"
+            },
+            {
+              "code": "MATCH",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the rule ",
+              "type": "text"
+            },
+            {
+              "code": "type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field, the skill-level expression, and the rule set, along with other settings, to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/POST-v1-gameCenterMatchmakingRules",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ``endpoint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "POST /v1/gameCenterMatchmakingRules",
+            "{",
+            "    \"data\": {",
+            "        \"type\": \"gameCenterMatchmakingRules\",",
+            "        \"attributes\": {",
+            "            \"type\": \"MATCH\",",
+            "            \"description\": \"Players must have skill in given range\",",
+            "            \"referenceName\": \"SkillDifference\",",
+            "            \"expression\": \"diff(players[].properties.skill) <= agedValues(avg(requests[].secondsInQueue), `20`, [ `40`, `100` ], [ `10`, `20` ])\"",
+            "        },",
+            "        \"relationships\": {",
+            "            \"ruleSet\": {",
+            "                \"data\": {",
+            "                    \"type\": \"gameCenterMatchmakingRuleSets\",",
+            "                    \"id\": \"36c540f2-031a-4e35-8260-d0804e40376b\"",
+            "                }",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "description",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "referenceName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fields are specific to your game. In the ",
+              "type": "text"
+            },
+            {
+              "code": "relationships",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field, pass the ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the rule set in the ",
+              "type": "text"
+            },
+            {
+              "code": "GameCenterMatchmakingQueueCreateRequest.Data.Relationships.RuleSet.Data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Typically, you add more than one rule to a rule set. For example, add a ",
+                  "type": "text"
+                },
+                {
+                  "code": "COMPATIBLE",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " rule to check whether the player’s app versions are the same and a ",
+                  "type": "text"
+                },
+                {
+                  "code": "DISTANCE",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " rule to find players nearby that Game Center applies before ",
+                  "type": "text"
+                },
+                {
+                  "code": "MATCH",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " rules.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Submit-a-skill-level-match-request",
+          "level": 3,
+          "text": "Submit a skill-level match request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your code, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that uses the skill-level queue and its set of rules to find players. Set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest/properties",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest/queueName",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties of the match request, so that Game Center uses the matchmaking rules to find players.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a match request.",
+            "let request = GKMatchRequest()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest/queueName",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to the reference name of the queue that you previously created using the ",
+              "type": "text"
+            },
+            {
+              "code": "Create a queue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " endpoint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set the matchmaking rules queue name.",
+            "request.queueName = \"com.example.mygame.SkillBasedRules\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest/properties",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to a dictionary of key-value pairs that provide values you can use in expressions. Add a ",
+              "type": "text"
+            },
+            {
+              "code": "skill",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key with a value that represents the local player’s skill level.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set properties to the game-specific keys you use in the rules.",
+            "let skill = localPlayerData.skill",
+            "request.properties = [ \"skill\": skill]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest/recipients",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property, you can also set skill levels for each recipient using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest/recipientProperties",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then submit the match request using the same APIs regardless of whether you configure matchmaking rules. For example, present the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmakerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " interface or use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class that finds players using automatch without presenting an interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When all the players accept their invitations and GameKit invokes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmakerViewControllerDelegate/matchmakerViewController(_:didFind:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method in the app instances for all players in the game, you can access the skill levels of all the players using the ",
+              "type": "text"
+            },
+            {
+              "code": "GKMatch.playerProperties",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/finding-multiple-players-for-a-game",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GameCenterMatchmakingQueueCreateRequest/Data-data.dictionary/Relationships-data.dictionary/RuleSet-data.dictionary/Data-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The data structure of the request body for the rule set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GameCenterMatchmakingQueueCreateRequest.Data.Relationships.RuleSet.Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GameCenterMatchmakingQueueCreateRequest/Data-data.dictionary/Relationships-data.dictionary/RuleSet-data.dictionary/Data-data.dictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GameCenterMatchmakingQueueCreateRequest.Data.Relationships.RuleSet.Data",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/GameCenterMatchmakingQueueCreateRequest/Data-data.dictionary/Relationships-data.dictionary/RuleSet-data.dictionary/Data-data.dictionary"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GameCenterMatchmakingRuleSet": {
+      "abstract": [
+        {
+          "text": "The data structure that represents a rule set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GameCenterMatchmakingRuleSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GameCenterMatchmakingRuleSet",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GameCenterMatchmakingRuleSet",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/GameCenterMatchmakingRuleSet"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/POST-v1-gameCenterMatchmakingQueues": {
+      "abstract": [
+        {
+          "text": "Create a queue and add it to a rule set.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/POST-v1-gameCenterMatchmakingQueues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Create a queue",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/POST-v1-gameCenterMatchmakingQueues"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/POST-v1-gameCenterMatchmakingRuleSets": {
+      "abstract": [
+        {
+          "text": "Create a rule set to contain matchmaking rules and teams.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/POST-v1-gameCenterMatchmakingRuleSets",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Create a rule set",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/POST-v1-gameCenterMatchmakingRuleSets"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/POST-v1-gameCenterMatchmakingRules": {
+      "abstract": [
+        {
+          "text": "Add a matchmaking rule to a rule set.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/POST-v1-gameCenterMatchmakingRules",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Create a rule",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/POST-v1-gameCenterMatchmakingRules"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/computing-numeric-differences": {
+      "abstract": [
+        {
+          "text": "Return the absolute difference between the maximum and minimum numerical values in an array.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/computing-numeric-differences",
+      "kind": "article",
+      "role": "article",
+      "title": "Computing numeric differences",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/computing-numeric-differences"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/expressions": {
+      "abstract": [
+        {
+          "text": "Write expressions that query the match requests in a queue to find the best players for a match.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/expressions",
+      "kind": "article",
+      "role": "article",
+      "title": "Expressions",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/expressions"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/getting-value-based-on-age-using-an-array": {
+      "abstract": [
+        {
+          "text": "Return a value that changes according to an array of values as a function of the age of the requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/getting-value-based-on-age-using-an-array",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting value based on age using an array",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/getting-value-based-on-age-using-an-array"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit": {
+      "abstract": [
+        {
+          "text": "Enable players to interact with friends, compare leaderboard ranks, earn achievements, and participate in multiplayer games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GameKit",
+      "type": "topic",
+      "url": "/documentation/gamekit"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest": {
+      "abstract": [
+        {
+          "text": "An object that encapsulates the parameters to create a real-time or turn-based match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKMatchRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKMatchRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKMatchRequest",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchrequest"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest/properties": {
+      "abstract": [
+        {
+          "text": "The criteria for the local player that Game Center uses to find other players when using matchmaking rules.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "properties"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest/properties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "properties"
+        }
+      ],
+      "role": "symbol",
+      "title": "properties",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchrequest/properties"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest/queueName": {
+      "abstract": [
+        {
+          "text": "The name of the queue that Game Center places the match request in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "queueName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest/queueName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "queueName"
+        }
+      ],
+      "role": "symbol",
+      "title": "queueName",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchrequest/queuename"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest/recipientProperties": {
+      "abstract": [
+        {
+          "text": "The criteria for recipients of the match request that Game Center uses to find other players when using matchmaking rules.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recipientProperties"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKPlayer",
+          "text": "GKPlayer"
+        },
+        {
+          "kind": "text",
+          "text": " : ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]]?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest/recipientProperties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "recipientProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "recipientProperties",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchrequest/recipientproperties"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest/recipients": {
+      "abstract": [
+        {
+          "text": "The players to invite to the match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recipients"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKPlayer",
+          "text": "GKPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest/recipients",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "recipients"
+        }
+      ],
+      "role": "symbol",
+      "title": "recipients",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchrequest/recipients"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker": {
+      "abstract": [
+        {
+          "text": "An object that creates matches with other players without presenting an interface to the players.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKMatchmaker"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKMatchmaker"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKMatchmaker",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmaker"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmakerViewController": {
+      "abstract": [
+        {
+          "text": "An interface that allows a player to invite other players to a real-time game and automatch to fill any empty slots.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKMatchmakerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmakerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKMatchmakerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKMatchmakerViewController",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmakerviewcontroller"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmakerViewControllerDelegate/matchmakerViewController(_:didFind:)": {
+      "abstract": [
+        {
+          "text": "Handles when the view controller finds players for a peer-to-peer match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "matchmakerViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKMatchmakerViewController",
+          "text": "GKMatchmakerViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFind"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKMatch",
+          "text": "GKMatch"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmakerViewControllerDelegate/matchmakerViewController(_:didFind:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "matchmakerViewController:didFindMatch:"
+        }
+      ],
+      "role": "symbol",
+      "title": "matchmakerViewController(_:didFind:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmakerviewcontrollerdelegate/matchmakerviewcontroller(_:didfind:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/assigning-players-to-teams-using-rules": {
+      "abstract": [
+        {
+          "text": "Set criteria for assigning players to teams in your game using matchmaking rules.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/assigning-players-to-teams-using-rules",
+      "kind": "article",
+      "role": "article",
+      "title": "Assigning players to teams using rules",
+      "type": "topic",
+      "url": "/documentation/gamekit/assigning-players-to-teams-using-rules"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/creating-matchmaking-rules-for-backward-compatibility": {
+      "abstract": [
+        {
+          "text": "Add matchmaking rules that support previous classic matchmaking versions of your game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/creating-matchmaking-rules-for-backward-compatibility",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating matchmaking rules for backward compatibility",
+      "type": "topic",
+      "url": "/documentation/gamekit/creating-matchmaking-rules-for-backward-compatibility"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/finding-multiple-players-for-a-game": {
+      "abstract": [
+        {
+          "text": "Discover and invite other players to participate in a real-time game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/finding-multiple-players-for-a-game",
+      "kind": "article",
+      "role": "article",
+      "title": "Finding multiple players for a game",
+      "type": "topic",
+      "url": "/documentation/gamekit/finding-multiple-players-for-a-game"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/letting-players-join-matches-using-party-codes": {
+      "abstract": [
+        {
+          "text": "Add a rule that lets players invite players and join matches using a shared party code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/letting-players-join-matches-using-party-codes",
+      "kind": "article",
+      "role": "article",
+      "title": "Letting players join matches using party codes",
+      "type": "topic",
+      "url": "/documentation/gamekit/letting-players-join-matches-using-party-codes"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/matchmaking-rules": {
+      "abstract": [
+        {
+          "text": "Game Center applies different type of rules you create in a particular order to find the best matches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/matchmaking-rules",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Matchmaking rules",
+      "type": "topic",
+      "url": "/documentation/gamekit/matchmaking-rules"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Rules",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/letting-players-join-matches-using-party-codes",
+        "doc://com.apple.gamekit/documentation/GameKit/assigning-players-to-teams-using-rules",
+        "doc://com.apple.gamekit/documentation/GameKit/creating-matchmaking-rules-for-backward-compatibility"
+      ],
+      "title": "Rules"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Rules",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/letting-players-join-matches-using-party-codes",
+                "doc://com.apple.gamekit/documentation/GameKit/assigning-players-to-teams-using-rules",
+                "doc://com.apple.gamekit/documentation/GameKit/creating-matchmaking-rules-for-backward-compatibility"
+              ],
+              "title": "Rules"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchRequest~1queueName/title",
+          "value": "queueName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchRequest~1queueName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "queueName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker/title",
+          "value": "GKMatchmaker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchmaker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchmaker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmakerViewControllerDelegate~1matchmakerViewController(_:didFind:)/title",
+          "value": "matchmakerViewController:didFindMatch:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmakerViewControllerDelegate~1matchmakerViewController(_:didFind:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "matchmakerViewController:didFindMatch:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchRequest~1properties/title",
+          "value": "properties"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchRequest~1properties/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchRequest/title",
+          "value": "GKMatchRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchRequest~1recipientProperties/title",
+          "value": "recipientProperties"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchRequest~1recipientProperties/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "recipientProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmakerViewController/title",
+          "value": "GKMatchmakerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmakerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchmakerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmakerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchmakerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchRequest~1recipients/title",
+          "value": "recipients"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchRequest~1recipients/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "recipients"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamekit/finding-players-with-similar-skill-levels"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gamekit/finding-players-with-similar-skill-levels"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

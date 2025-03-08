@@ -1,0 +1,628 @@
+{
+  "abstract": [
+    {
+      "text": "Make your CarPlay-enabled apps compatible with older system versions, such as iOS 13 and earlier.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.carplay/documentation/CarPlay"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.carplay/documentation/CarPlay/supporting-previous-versions-of-ios"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "CarPlay"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Supporting Previous Versions of iOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 14 and later, CarPlay adds more app categories and further entitlements to support them. The framework also provides new templates that you can use to build your app’s user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some of the new app categories supersede existing ones, such as audio and communication. Using the proper combination of frameworks and entitlements, you can ensure that your app is compatible with iOS 13 and earlier, and iOS 14 and later. To learn about requesting entitlements for your CarPlay-enabled app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.carplay/documentation/CarPlay/requesting-carplay-entitlements",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-Backward-Compatibility-to-Audio-Apps",
+          "level": 3,
+          "text": "Add Backward Compatibility to Audio Apps",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 14 and later, the CarPlay framework includes templates that you can use to build your audio app’s user interface. To use these templates, include the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.developer.carplay-audio",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before iOS 14, you built CarPlay-enabled audio apps using the Media Player framework, and included the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.developer.playable-content",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement. To support iOS 13 and earlier, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MediaPlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework and this entitlement. Your app will also work in iOS 14 and later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Audio apps can use the CarPlay framework, the Media Player framework, or both. Include the applicable entitlements that match the frameworks you’re using. To be compatible with iOS 13 and earlier, as well as iOS 14 and later, specify keys for both entitlements in the entitlements file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>com.apple.developer.playable-content</key>",
+            "<true/>",
+            "<key>com.apple.developer.carplay-audio</key>",
+            "<true/>"
+          ],
+          "syntax": "plist",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-Backward-Compatibility-to-Communication-Apps",
+          "level": 3,
+          "text": "Add Backward Compatibility to Communication Apps",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 14 and later, the CarPlay framework includes templates that you can use to build your communication app’s user interface. To use these templates, include the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.developer.carplay-communication",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your communication app can use the CarPlay, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SiriKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CallKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework, or a combination of the three. Include the entitlements that match the frameworks you’re using. If you use the CarPlay framework, your app can’t present a custom user interface in iOS 13 or earlier. However, users can still interact with your app as they have in previous versions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows what you might add to a messaging app’s entitlements file, providing compatibility with iOS 13 and earlier, as well as iOS 14 and later:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>com.apple.developer.carplay-communication</key>",
+            "<true/>",
+            "<key>com.apple.developer.carplay-messaging</key>",
+            "<true/>"
+          ],
+          "syntax": "plist",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your CarPlay-enabled communication app includes VoIP features, provide support for ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/sirikit/instartcallintent",
+              "type": "text"
+            },
+            {
+              "text": ". If the VoIP app targets iOS 14 or earlier, provide support for ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/sirikit/instartaudiocallintent",
+              "type": "text"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/sirikit/insearchcallhistoryintent",
+              "type": "text"
+            },
+            {
+              "text": " in addition to ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/sirikit/instartcallintent",
+              "type": "text"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.carplay/documentation/CarPlay": {
+      "abstract": [
+        {
+          "text": "Integrate CarPlay in apps related to audio, communication, navigation, parking, EV charging, food ordering, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CarPlay",
+      "type": "topic",
+      "url": "/documentation/carplay"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPSessionConfiguration": {
+      "abstract": [
+        {
+          "text": "An object that provides vehicle properties and configuration for the CarPlay environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPSessionConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPSessionConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPSessionConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPSessionConfiguration",
+      "type": "topic",
+      "url": "/documentation/carplay/cpsessionconfiguration"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene": {
+      "abstract": [
+        {
+          "text": "A CarPlay scene that controls your app’s user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPTemplateApplicationScene"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPTemplateApplicationScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPTemplateApplicationScene",
+      "type": "topic",
+      "url": "/documentation/carplay/cptemplateapplicationscene"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationSceneDelegate": {
+      "abstract": [
+        {
+          "text": "The methods for responding to the life cycle events of your app’s scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPTemplateApplicationSceneDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationSceneDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPTemplateApplicationSceneDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPTemplateApplicationSceneDelegate",
+      "type": "topic",
+      "url": "/documentation/carplay/cptemplateapplicationscenedelegate"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/displaying-content-in-carplay": {
+      "abstract": [
+        {
+          "text": "Use scenes to present your app’s content on the vehicle’s built-in screen.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/displaying-content-in-carplay",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying Content in CarPlay",
+      "type": "topic",
+      "url": "/documentation/carplay/displaying-content-in-carplay"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/requesting-carplay-entitlements": {
+      "abstract": [
+        {
+          "text": "Configure your CarPlay-enabled app with the entitlements it requires.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/requesting-carplay-entitlements",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting CarPlay Entitlements",
+      "type": "topic",
+      "url": "/documentation/carplay/requesting-carplay-entitlements"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/using-the-carplay-simulator": {
+      "abstract": [
+        {
+          "text": "Configure Simulator to run and debug your CarPlay-enabled app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/using-the-carplay-simulator",
+      "kind": "article",
+      "role": "article",
+      "title": "Using the CarPlay Simulator",
+      "type": "topic",
+      "url": "/documentation/carplay/using-the-carplay-simulator"
+    },
+    "doc://com.apple.documentation/documentation/CallKit": {
+      "abstract": [
+        {
+          "text": "Display the system-calling UI for your app’s VoIP services, and coordinate your calling services with other apps and the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CallKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CallKit",
+      "type": "topic",
+      "url": "/documentation/CallKit"
+    },
+    "doc://com.apple.documentation/documentation/MediaPlayer": {
+      "abstract": [
+        {
+          "text": "Find and play songs, audio podcasts, audio books, and more from within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MediaPlayer",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Media Player",
+      "type": "topic",
+      "url": "/documentation/MediaPlayer"
+    },
+    "doc://com.apple.documentation/documentation/SiriKit": {
+      "abstract": [
+        {
+          "text": "Empower users to interact with their devices through voice, intelligent suggestions, and personalized workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SiriKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "SiriKit",
+      "type": "topic",
+      "url": "/documentation/SiriKit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "CarPlay-Integration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.carplay/documentation/CarPlay/requesting-carplay-entitlements",
+        "doc://com.apple.carplay/documentation/CarPlay/displaying-content-in-carplay",
+        "doc://com.apple.carplay/documentation/CarPlay/using-the-carplay-simulator",
+        "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene",
+        "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationSceneDelegate",
+        "doc://com.apple.carplay/documentation/CarPlay/CPSessionConfiguration"
+      ],
+      "title": "CarPlay Integration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "CarPlay-Integration",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.carplay/documentation/CarPlay/requesting-carplay-entitlements",
+                "doc://com.apple.carplay/documentation/CarPlay/displaying-content-in-carplay",
+                "doc://com.apple.carplay/documentation/CarPlay/using-the-carplay-simulator",
+                "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene",
+                "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationSceneDelegate",
+                "doc://com.apple.carplay/documentation/CarPlay/CPSessionConfiguration"
+              ],
+              "title": "CarPlay Integration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationSceneDelegate/title",
+          "value": "CPTemplateApplicationSceneDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationSceneDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationSceneDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPSessionConfiguration/title",
+          "value": "CPSessionConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPSessionConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPSessionConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPSessionConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPSessionConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationScene/title",
+          "value": "CPTemplateApplicationScene"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationScene/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationScene/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationScene"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/carplay/supporting-previous-versions-of-ios"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/carplay/supporting-previous-versions-of-ios"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

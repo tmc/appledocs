@@ -1,0 +1,992 @@
+{
+  "abstract": [
+    {
+      "text": "Requests the authorization engine to interrupt the currently active authorization mechanism.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/AuthorizationCallbacks"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/RequestInterrupt"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@AuthorizationCallbacks@FI@RequestInterrupt",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "RequestInterrupt"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "RequestInterrupt"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "10.4",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "RequestInterrupt"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:*FI(#*$@S@__OpaqueAuthorizationEngine)",
+              "text": "int (*)(struct __OpaqueAuthorizationEngine *)"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "RequestInterrupt"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An opaque handle that is passed to your plug-in when the authorization engine calls your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismCreate",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "inEngine"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. Possible results are ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/errAuthorizationSuccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (no error) and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/errAuthorizationInternal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (Security Server internal error).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you call this function, the security engine calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismDeactivate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function for your plug-in’s currently-active mechanism; that is, the mechanism that was last invoked and that has not yet called the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to report its result. Your mechanism should then stop any active processing and call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/DidDeactivate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. When all mechanisms are inactive (that is, they have called either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/DidDeactivate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), the authorization engine calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismInvoke",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function for the mechanism that called ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/RequestInterrupt",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " so that it can resume the authorization process from that point. After all mechanisms have called ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the authorization engine calls each mechanism’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismDestroy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your mechanism spins off a separate process or UI thread, that thread can call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/RequestInterrupt",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to re-invoke the mechanism, even if that mechanism has already called the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. For example, if your plug-in implements a smart card authentication method, reading and evaluating the card might take several minutes to perform. Therefore, in order to avoid blocking other processing while the card is being evaluated, you might spin off a UI thread to interact with the user and then return from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismInvoke",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When the card has been read, the UI thread calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function with a value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationResult/kAuthorizationResultAllow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and changes the UI to request the user’s PIN. The authorization engine calls the next mechanism, which verifies the PIN. If the user pulls out the card before the verification is complete, the UI thread can call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/RequestInterrupt",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The authorization engine then calls the active mechanism’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismDeactivate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function, causing it to terminate the PIN verification and call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/DidDeactivate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Then the authorization engine calls your UI mechanism’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismInvoke",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function again. Your UI can then prompt the user to reinsert the card.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To understand this sequence better, suppose your plug-in contains three mechanisms: A, B, and C. Mechanism A has called ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and has no active processes. Mechanism B has called ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", but still has a UI thread running. Mechanism C is running and has not yet called ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The user clicks Cancel or otherwise interrupts the UI thread, causing the UI thread to call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/RequestInterrupt",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. The following sequence of events occurs:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The authorization engine calls mechanism C’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismDeactivate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " function.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Mechanism C stops active processing and calls the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/DidDeactivate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " function.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The authorization engine calls mechanism B’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismInvoke",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " function (because mechanism B is the one that called ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/RequestInterrupt",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Mechanism B updates the UI and calls the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetResult",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " function with the value ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationResult/kAuthorizationResultAllow",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The authorization engine calls mechanism C’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismInvoke",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " function.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Mechanism C completes processing and calls ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetResult",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationResult/kAuthorizationResultAllow",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The authorization engine calls the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismDestroy",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " function of each mechanism in turn (A, B, then C).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The authorization engine sends you the entry point to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/RequestInterrupt",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure when you call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginCreate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCallbacks": {
+      "abstract": [
+        {
+          "text": "The interface implemented by the Security Server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCallbacks"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationCallbacks",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/DidDeactivate": {
+      "abstract": [
+        {
+          "text": "Reports the successful deactivation of an authorization mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DidDeactivate"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/DidDeactivate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DidDeactivate",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks/diddeactivate"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/RequestInterrupt": {
+      "abstract": [
+        {
+          "text": "Requests the authorization engine to interrupt the currently active authorization mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "RequestInterrupt"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/RequestInterrupt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RequestInterrupt",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks/requestinterrupt"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetResult": {
+      "abstract": [
+        {
+          "text": "Returns the result of an authorization operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetResult"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetResult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetResult",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks/setresult"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationPluginCreate": {
+      "abstract": [
+        {
+          "text": "Initializes the plug-in and exchanges interfaces with the authorization engine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationPluginCreate"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginCreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationPluginCreate",
+      "type": "topic",
+      "url": "/documentation/security/authorizationplugincreate"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismCreate": {
+      "abstract": [
+        {
+          "text": "Creates an authorization mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MechanismCreate"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismCreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MechanismCreate",
+      "type": "topic",
+      "url": "/documentation/security/authorizationplugininterface/mechanismcreate"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismDeactivate": {
+      "abstract": [
+        {
+          "text": "Deactivates an authorization mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MechanismDeactivate"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismDeactivate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MechanismDeactivate",
+      "type": "topic",
+      "url": "/documentation/security/authorizationplugininterface/mechanismdeactivate"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismDestroy": {
+      "abstract": [
+        {
+          "text": "Destroys an authorization mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MechanismDestroy"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismDestroy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MechanismDestroy",
+      "type": "topic",
+      "url": "/documentation/security/authorizationplugininterface/mechanismdestroy"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismInvoke": {
+      "abstract": [
+        {
+          "text": "Invokes an authorization mechanism to perform an authorization operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MechanismInvoke"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismInvoke",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MechanismInvoke",
+      "type": "topic",
+      "url": "/documentation/security/authorizationplugininterface/mechanisminvoke"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationResult/kAuthorizationResultAllow": {
+      "abstract": [
+        {
+          "text": "The authorization operation succeeded and authorization should be granted.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "kAuthorizationResultAllow"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationResult/kAuthorizationResultAllow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAuthorizationResultAllow",
+      "type": "topic",
+      "url": "/documentation/security/authorizationresult/kauthorizationresultallow"
+    },
+    "doc://com.apple.security/documentation/Security/errAuthorizationInternal": {
+      "abstract": [
+        {
+          "text": "An unrecognized internal error occurred.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errAuthorizationInternal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/errAuthorizationInternal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "errAuthorizationInternal"
+        }
+      ],
+      "role": "symbol",
+      "title": "errAuthorizationInternal",
+      "type": "topic",
+      "url": "/documentation/security/errauthorizationinternal"
+    },
+    "doc://com.apple.security/documentation/Security/errAuthorizationSuccess": {
+      "abstract": [
+        {
+          "text": "The operation completed successfully.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errAuthorizationSuccess"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/errAuthorizationSuccess",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "errAuthorizationSuccess"
+        }
+      ],
+      "role": "symbol",
+      "title": "errAuthorizationSuccess",
+      "type": "topic",
+      "url": "/documentation/security/errauthorizationsuccess"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errAuthorizationSuccess/title",
+          "value": "errAuthorizationSuccess"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errAuthorizationSuccess/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "errAuthorizationSuccess"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errAuthorizationInternal/title",
+          "value": "errAuthorizationInternal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errAuthorizationInternal/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "errAuthorizationInternal"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/authorizationcallbacks/requestinterrupt"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

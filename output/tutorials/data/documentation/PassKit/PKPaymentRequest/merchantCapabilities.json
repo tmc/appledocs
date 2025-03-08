@@ -1,0 +1,1128 @@
+{
+  "abstract": [
+    {
+      "text": "A bit field of the payment-processing protocols and card types that you support.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.passkit/documentation/PassKit",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/merchantCapabilities"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)PKPaymentRequest(py)merchantCapabilities",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "merchantCapabilities"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@E@PKMerchantCapability",
+        "text": "PKMerchantCapability"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PassKit (Apple Pay and Wallet)"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "merchantCapabilities"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "merchantCapabilities"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "merchantCapabilities"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKMerchantCapability",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@PKMerchantCapability",
+              "text": "PKMerchantCapability"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKMerchantCapability/threeDSecure",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKMerchantCapability/emv",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " values of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKMerchantCapability",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " specify the supported cryptographic payment protocols. At least one of these two values is required.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Check with your payment processors about the cryptographic payment protocols they support. As a general rule, if you want to support China UnionPay cards, you use ",
+              "type": "text"
+            },
+            {
+              "code": "capabilityEMV",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". To support cards from other networks—like American Express, Visa, or Mastercard—use ",
+              "type": "text"
+            },
+            {
+              "code": "capability3DS",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To filter the types of cards to make available for the transaction, pass the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKMerchantCapability/credit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKMerchantCapability/debit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " values. If neither is passed, all card types will be available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.passkit/documentation/PassKit": {
+      "abstract": [
+        {
+          "text": "Process Apple Pay payments in your app, and create and distribute passes for the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PassKit (Apple Pay and Wallet)",
+      "type": "topic",
+      "url": "/documentation/passkit"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKMerchantCapability": {
+      "abstract": [
+        {
+          "text": "Capabilities for processing payment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKMerchantCapability"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKMerchantCapability",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKMerchantCapability"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKMerchantCapability",
+      "type": "topic",
+      "url": "/documentation/passkit/pkmerchantcapability"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKMerchantCapability/credit": {
+      "abstract": [
+        {
+          "text": "Support for credit cards.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "credit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PKMerchantCapability",
+          "text": "PKMerchantCapability"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKMerchantCapability/credit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKMerchantCapabilityCredit"
+        }
+      ],
+      "role": "symbol",
+      "title": "credit",
+      "type": "topic",
+      "url": "/documentation/passkit/pkmerchantcapability/credit"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKMerchantCapability/debit": {
+      "abstract": [
+        {
+          "text": "Support for debit cards.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "debit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PKMerchantCapability",
+          "text": "PKMerchantCapability"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKMerchantCapability/debit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKMerchantCapabilityDebit"
+        }
+      ],
+      "role": "symbol",
+      "title": "debit",
+      "type": "topic",
+      "url": "/documentation/passkit/pkmerchantcapability/debit"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKMerchantCapability/emv": {
+      "abstract": [
+        {
+          "text": "Support for the EMV protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "emv"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PKMerchantCapability",
+          "text": "PKMerchantCapability"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKMerchantCapability/emv",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKMerchantCapabilityEMV"
+        }
+      ],
+      "role": "symbol",
+      "title": "emv",
+      "type": "topic",
+      "url": "/documentation/passkit/pkmerchantcapability/emv"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKMerchantCapability/threeDSecure": {
+      "abstract": [
+        {
+          "text": "Support for the 3-D Secure protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "threeDSecure"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PKMerchantCapability",
+          "text": "PKMerchantCapability"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKMerchantCapability/threeDSecure",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKMerchantCapability3DS"
+        }
+      ],
+      "role": "symbol",
+      "title": "threeDSecure",
+      "type": "topic",
+      "url": "/documentation/passkit/pkmerchantcapability/threedsecure"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKMerchantCategoryCode": {
+      "abstract": [
+        {
+          "text": "The optional four-digit type, in ISO 18245 format, that represents the type of goods or service the merchant provides for the transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "PKMerchantCategoryCode"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKMerchantCategoryCode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PKMerchantCategoryCode",
+      "type": "topic",
+      "url": "/documentation/passkit/pkmerchantcategorycode"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKMerchantCategoryCodeNone": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "PKMerchantCategoryCodeNone"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKMerchantCategoryCodeNone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PKMerchantCategoryCodeNone",
+      "type": "topic",
+      "url": "/documentation/passkit/pkmerchantcategorycodenone"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest": {
+      "abstract": [
+        {
+          "text": "An object that represents a request for payment, including details about payment-processing capabilities, the payment amount, and shipping information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/MerchantCategoryCode-swift.struct": {
+      "abstract": [
+        {
+          "text": "An optional four-digit struct, in ISO 18245 format, that represents the type of goods or service the merchant provides for the transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MerchantCategoryCode"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/MerchantCategoryCode-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MerchantCategoryCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentRequest.MerchantCategoryCode",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest/merchantcategorycode-swift.struct"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/merchantCapabilities": {
+      "abstract": [
+        {
+          "text": "A bit field of the payment-processing protocols and card types that you support.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "merchantCapabilities"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PKMerchantCapability",
+          "text": "PKMerchantCapability"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/merchantCapabilities",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "merchantCapabilities"
+        }
+      ],
+      "role": "symbol",
+      "title": "merchantCapabilities",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest/merchantcapabilities"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/merchantCategoryCode-7vg6z": {
+      "abstract": [
+        {
+          "text": "An optional four-digit property, in ISO 18245 format, that represents the type of goods or service the merchant provides for the transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "merchantCategoryCode"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/merchantCategoryCode-7vg6z",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "merchantCategoryCode",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest/merchantcategorycode-7vg6z"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/merchantIdentifier": {
+      "abstract": [
+        {
+          "text": "Your merchant identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "merchantIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/merchantIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "merchantIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "merchantIdentifier",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest/merchantidentifier"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Setting-merchant-information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/MerchantCategoryCode-swift.struct",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/merchantIdentifier",
+        "doc://com.apple.passkit/documentation/PassKit/PKMerchantCapability"
+      ],
+      "title": "Setting merchant information"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "merchantCapabilities"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "merchantCapabilities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.passkit/documentation/PassKit",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Setting-merchant-information",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKMerchantCategoryCode",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/merchantCategoryCode-7vg6z",
+                "doc://com.apple.passkit/documentation/PassKit/PKMerchantCategoryCodeNone",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/merchantIdentifier",
+                "doc://com.apple.passkit/documentation/PassKit/PKMerchantCapability"
+              ],
+              "title": "Setting merchant information"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "nonatomic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "assign"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "identifier": "doc://com.apple.passkit/documentation/PassKit/PKMerchantCapability",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@E@PKMerchantCapability",
+                    "text": "PKMerchantCapability"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "merchantCapabilities"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKMerchantCapability/title",
+          "value": "PKMerchantCapability"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKMerchantCapability/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKMerchantCapability"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKMerchantCapability/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKMerchantCapability"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKMerchantCapability~1emv/title",
+          "value": "PKMerchantCapabilityEMV"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKMerchantCapability~1emv/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKMerchantCapabilityEMV"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKMerchantCapability~1credit/title",
+          "value": "PKMerchantCapabilityCredit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKMerchantCapability~1credit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKMerchantCapabilityCredit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/title",
+          "value": "PKPaymentRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKMerchantCapability~1debit/title",
+          "value": "PKMerchantCapabilityDebit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKMerchantCapability~1debit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKMerchantCapabilityDebit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKMerchantCapability~1threeDSecure/title",
+          "value": "PKMerchantCapability3DS"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKMerchantCapability~1threeDSecure/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKMerchantCapability3DS"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1merchantCapabilities/title",
+          "value": "merchantCapabilities"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1merchantCapabilities/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "merchantCapabilities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1merchantIdentifier/title",
+          "value": "merchantIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1merchantIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "merchantIdentifier"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/passkit/pkpaymentrequest/merchantcapabilities"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/passkit/pkpaymentrequest/merchantcapabilities"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

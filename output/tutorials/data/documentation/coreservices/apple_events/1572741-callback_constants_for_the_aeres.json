@@ -1,0 +1,426 @@
+{
+  "abstract": [
+    {
+      "text": "Specify supported callback features to the ",
+      "type": "text"
+    },
+    {
+      "code": "AEResolve",
+      "type": "codeVoice"
+    },
+    {
+      "text": " function.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreservices/apple_events/1572741-callback_constants_for_the_aeres"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1572741,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Callback Constants for the AEResolve Function"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use these constants to supply a value for the ",
+              "type": "text"
+            },
+            {
+              "code": "callbackFlags",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1449720-aeresolve",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. This value specifies whether your application supports whose descriptors or provides marking callback functions. To obtain a value for this parameter, you can add together constants to set the appropriate bits, as shown in the following example (for an application that supports both whose tests and marking):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    AEDesc objectSpecifier; // Previously obtained object specifier.     AEDesc  resultToken;",
+            "    OSErr myErr;",
+            " ",
+            "    myErr = AEResolve (&objectSpecifier,",
+            "                        kAEIDoWhose + kAEIDoMarking, &resultToken)"
+          ],
+          "metadata": {
+            "anchor": "2556034",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AppleScript generates whose clauses from script statements such as the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "tell application \"Finder\"",
+            "    every file in control panels folder whose file type is \"APPL\"",
+            "end tell"
+          ],
+          "metadata": {
+            "anchor": "2556037",
+            "title": "Listing 2"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Event Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/apple_event_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1449720-aeresolve": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1449720-aeresolve",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEResolve(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1449720-aeresolve"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Events",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1572741-callback_constants_for_the_aeres#2556034": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1572741-callback_constants_for_the_aeres#2556034",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/coreservices/apple_events/1572741-callback_constants_for_the_aeres#2556034"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1572741-callback_constants_for_the_aeres#2556037": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1572741-callback_constants_for_the_aeres#2556037",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/coreservices/apple_events/1572741-callback_constants_for_the_aeres#2556037"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kaehandlesimpleranges": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAEHandleSimpleRanges"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kaehandlesimpleranges",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAEHandleSimpleRanges",
+      "type": "topic",
+      "url": "/documentation/coreservices/kaehandlesimpleranges"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kaeidomarking": {
+      "abstract": [
+        {
+          "text": "The application provides marking callback functions. Marking callback functions are described in ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAEIDoMarking"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kaeidomarking",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAEIDoMarking",
+      "type": "topic",
+      "url": "/documentation/coreservices/kaeidomarking"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kaeidominimum": {
+      "abstract": [
+        {
+          "text": "The application does not handle whose tests or provide marking callbacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAEIDoMinimum"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kaeidominimum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAEIDoMinimum",
+      "type": "topic",
+      "url": "/documentation/coreservices/kaeidominimum"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kaeidowhose": {
+      "abstract": [
+        {
+          "text": "The application supports whose tests (supports key form ",
+          "type": "text"
+        },
+        {
+          "code": "formWhose",
+          "type": "codeVoice"
+        },
+        {
+          "text": ").",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAEIDoWhose"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kaeidowhose",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAEIDoWhose",
+      "type": "topic",
+      "url": "/documentation/coreservices/kaeidowhose"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kaepasssubdescs": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAEPassSubDescs"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kaepasssubdescs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAEPassSubDescs",
+      "type": "topic",
+      "url": "/documentation/coreservices/kaepasssubdescs"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kaeresolvenestedlists": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAEResolveNestedLists"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kaeresolvenestedlists",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAEResolveNestedLists",
+      "type": "topic",
+      "url": "/documentation/coreservices/kaeresolvenestedlists"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kaeuserelativeiterators": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAEUseRelativeIterators"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kaeuserelativeiterators",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAEUseRelativeIterators",
+      "type": "topic",
+      "url": "/documentation/coreservices/kaeuserelativeiterators"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1610681",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/kaeidominimum",
+        "doc://com.apple.documentation/documentation/coreservices/kaeidowhose",
+        "doc://com.apple.documentation/documentation/coreservices/kaeidomarking",
+        "doc://com.apple.documentation/documentation/coreservices/kaehandlesimpleranges",
+        "doc://com.apple.documentation/documentation/coreservices/kaepasssubdescs",
+        "doc://com.apple.documentation/documentation/coreservices/kaeresolvenestedlists",
+        "doc://com.apple.documentation/documentation/coreservices/kaeuserelativeiterators"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/1572741-callback_constants_for_the_aeres"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreservices/apple_events/1572741-callback_constants_for_the_aeres",
+        "documentation/applicationservices/apple_event_manager/1572741-callback_constants_for_the_aeres"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

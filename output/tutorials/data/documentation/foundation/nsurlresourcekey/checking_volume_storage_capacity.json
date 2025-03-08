@@ -1,0 +1,309 @@
+{
+  "abstract": [
+    {
+      "text": "Confirm that you have enough local storage space for a large amount of data.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+        "doc://com.apple.documentation/documentation/foundation/nsurl",
+        "doc://com.apple.documentation/documentation/foundation/nsurlresourcekey"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsurlresourcekey/checking_volume_storage_capacity"
+  },
+  "kind": "article",
+  "legacy_identifier": 2924194,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Checking Volume Storage Capacity"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you try to store a large amount of data locally, first verify that you have sufficient storage capacity. To get the storage capacity of a volume, you construct a URL (using an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ")  that references an object on the volume to be queried, and then query that volume.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2926890",
+          "level": 3,
+          "text": "Decide Which Query Type to Use",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The query type to use depends on what's being stored. If you’re storing data based on a user request or resources the app requires to function properly (for example, a video the user is about to watch or resources that are needed for the next level in a game), query against ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlvolumeavailablecapacityforimportantusagekey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". However, if you’re downloading data in a more predictive manner (for example, downloading a newly available episode of a TV series that the user has been watching recently), query against ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlvolumeavailablecapacityforopportunisticusagekey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2926891",
+          "level": 3,
+          "text": "Construct a Query",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this example as a guide to construct your own query:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSURL *fileURL = [[NSURL alloc] initFileURLWithPath:@\"/\"];",
+            "NSError *error = nil;",
+            "NSDictionary *results = [fileURL resourceValuesForKeys:@[NSURLVolumeAvailableCapacityForImportantUsageKey] error:&error];",
+            "if (!results) {",
+            "    NSLog(@\"Error retrieving resource keys: %@\\n%@\", [error localizedDescription], [error userInfo]);",
+            "    abort();",
+            "}",
+            "NSLog(@\"Available capacity for important usage: %@\", results[NSURLVolumeAvailableCapacityForImportantUsageKey]);"
+          ],
+          "metadata": {
+            "anchor": "2926892",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlresourcekey": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlresourcekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLResourceKey",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlresourcekey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlresourcekey/checking_volume_storage_capacity": {
+      "abstract": [
+        {
+          "text": "Confirm that you have enough local storage space for a large amount of data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlresourcekey/checking_volume_storage_capacity",
+      "kind": "article",
+      "role": "article",
+      "title": "Checking Volume Storage Capacity",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlresourcekey/checking_volume_storage_capacity"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlresourcekey/checking_volume_storage_capacity#2926892": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlresourcekey/checking_volume_storage_capacity#2926892",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/nsurlresourcekey/checking_volume_storage_capacity#2926892"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlvolumeavailablecapacityforimportantusagekey": {
+      "abstract": [
+        {
+          "text": "Key for the volume’s available capacity in bytes for storing important resources (read-only).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlvolumeavailablecapacityforimportantusagekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLVolumeAvailableCapacityForImportantUsageKey",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlvolumeavailablecapacityforimportantusagekey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlvolumeavailablecapacityforopportunisticusagekey": {
+      "abstract": [
+        {
+          "text": "Key for the volume’s available capacity in bytes for storing nonessential resources (read-only).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlvolumeavailablecapacityforopportunisticusagekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLVolumeAvailableCapacityForOpportunisticUsageKey",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlvolumeavailablecapacityforopportunisticusagekey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlvolumeavailablecapacitykey": {
+      "abstract": [
+        {
+          "text": "Key for the volume’s available capacity in bytes (read-only).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlvolumeavailablecapacitykey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLVolumeAvailableCapacityKey",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlvolumeavailablecapacitykey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlvolumetotalcapacitykey": {
+      "abstract": [
+        {
+          "text": "Key for the volume’s total capacity in bytes (read-only).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlvolumetotalcapacitykey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLVolumeTotalCapacityKey",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlvolumetotalcapacitykey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Numbers, Data, and Basic Values",
+      "type": "topic",
+      "url": "/documentation/foundation/numbers_data_and_basic_values"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL",
+      "type": "topic",
+      "url": "/documentation/foundation/url"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlvolumeavailablecapacitykey",
+        "doc://com.apple.documentation/documentation/foundation/nsurlvolumeavailablecapacityforimportantusagekey",
+        "doc://com.apple.documentation/documentation/foundation/nsurlvolumeavailablecapacityforopportunisticusagekey",
+        "doc://com.apple.documentation/documentation/foundation/nsurlvolumetotalcapacitykey"
+      ],
+      "title": "Volume capacity keys"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsurlresourcekey/checking_volume_storage_capacity"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/urlresourcekey/checking_volume_storage_capacity"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

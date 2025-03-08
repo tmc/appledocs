@@ -1,0 +1,832 @@
+{
+  "abstract": [
+    {
+      "text": "Specify required permissions and provide handlers for the intents your app supports, and configure app extensions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/SiriKit",
+        "doc://com.apple.sirikit/documentation/Intents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/SiriKit/intent-handling-infrastructure"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Intent Handling Infrastructure"
+  },
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.siri": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app handles Siri requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.siri",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Siri Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.siri"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/INIntentsRestrictedWhileLocked": {
+      "abstract": [
+        {
+          "text": "The names of the intent classes your app can’t handle when the user locks the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/INIntentsRestrictedWhileLocked",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "INIntentsRestrictedWhileLocked",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/INIntentsRestrictedWhileLocked"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/INIntentsRestrictedWhileProtectedDataUnavailable": {
+      "abstract": [
+        {
+          "text": "The names of the intent classes your app can’t handle when the user locks the device or the system blocks access to protected data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/INIntentsRestrictedWhileProtectedDataUnavailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "INIntentsRestrictedWhileProtectedDataUnavailable",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/INIntentsRestrictedWhileProtectedDataUnavailable"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/INIntentsSupported": {
+      "abstract": [
+        {
+          "text": "The names of the intent classes your app handles directly.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/INIntentsSupported",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "INIntentsSupported",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/INIntentsSupported"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INExtension": {
+      "abstract": [
+        {
+          "text": "The entry point for an Intents extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "INExtension",
+      "type": "topic",
+      "url": "/documentation/intents/inextension"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntent": {
+      "abstract": [
+        {
+          "text": "A request to fulfill in your app or Intents extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INIntent",
+      "type": "topic",
+      "url": "/documentation/intents/inintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntentError": {
+      "abstract": [
+        {
+          "text": "Errors returned by SiriKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INIntentError"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntentError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INIntentError"
+        }
+      ],
+      "role": "symbol",
+      "title": "INIntentError",
+      "type": "topic",
+      "url": "/documentation/intents/inintenterror"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntentError/Code": {
+      "abstract": [
+        {
+          "text": "Constants for error codes returned by the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntentError/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "INIntentError.Code",
+      "type": "topic",
+      "url": "/documentation/intents/inintenterror/code"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntentErrorDomain": {
+      "abstract": [
+        {
+          "text": "The error domain for the Intents framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INIntentErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntentErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INIntentErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "INIntentErrorDomain",
+      "type": "topic",
+      "url": "/documentation/intents/inintenterrordomain"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntentHandlerProviding": {
+      "abstract": [
+        {
+          "text": "The interface for dispatching intents to the custom objects that handle those intents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INIntentHandlerProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntentHandlerProviding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INIntentHandlerProviding"
+        }
+      ],
+      "role": "symbol",
+      "title": "INIntentHandlerProviding",
+      "type": "topic",
+      "url": "/documentation/intents/inintenthandlerproviding"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your response to an intent object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/inintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPreferences": {
+      "abstract": [
+        {
+          "text": "The preferences and authorization related to using SiriKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPreferences"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPreferences",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPreferences"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPreferences",
+      "type": "topic",
+      "url": "/documentation/intents/inpreferences"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSiriAuthorizationStatus": {
+      "abstract": [
+        {
+          "text": "Constants indicating the authorization status of your Intents extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSiriAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSiriAuthorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSiriAuthorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSiriAuthorizationStatus",
+      "type": "topic",
+      "url": "/documentation/intents/insiriauthorizationstatus"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit": {
+      "abstract": [
+        {
+          "text": "Empower users to interact with their devices through voice, intelligent suggestions, and personalized workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/common-data-types": {
+      "abstract": [
+        {
+          "text": "Manage common data types such as strings, dates, currencies, images, and contacts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/common-data-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Common Data Types",
+      "type": "topic",
+      "url": "/documentation/sirikit/common-data-types"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/creating-an-intents-app-extension": {
+      "abstract": [
+        {
+          "text": "Add and configure an Intents app extension in your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/creating-an-intents-app-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Intents App Extension",
+      "type": "topic",
+      "url": "/documentation/sirikit/creating-an-intents-app-extension"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/dispatching-intents-to-handlers": {
+      "abstract": [
+        {
+          "text": "Provide SiriKit with an intent handler capable of handling a specific intent.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/dispatching-intents-to-handlers",
+      "kind": "article",
+      "role": "article",
+      "title": "Dispatching intents to handlers",
+      "type": "topic",
+      "url": "/documentation/sirikit/dispatching-intents-to-handlers"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/providing-hands-free-app-control-with-intents": {
+      "abstract": [
+        {
+          "text": "Resolve, confirm, and handle intents without an extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/providing-hands-free-app-control-with-intents",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Providing Hands-Free App Control with Intents",
+      "type": "topic",
+      "url": "/documentation/sirikit/providing-hands-free-app-control-with-intents"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/requesting-authorization-to-use-siri": {
+      "abstract": [
+        {
+          "text": "Request permission from the user for Siri and Maps to communicate with your app or Intents app extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/requesting-authorization-to-use-siri",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting Authorization to Use Siri",
+      "type": "topic",
+      "url": "/documentation/sirikit/requesting-authorization-to-use-siri"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/resolution-results": {
+      "abstract": [
+        {
+          "text": "Resolve common types of data like strings and dates into specific values that your app recognizes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/resolution-results",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resolution Results",
+      "type": "topic",
+      "url": "/documentation/sirikit/resolution-results"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/resolving-and-handling-intents": {
+      "abstract": [
+        {
+          "text": "Resolve, confirm, and handle user requests for your app’s services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/resolving-and-handling-intents",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resolving and Handling Intents",
+      "type": "topic",
+      "url": "/documentation/sirikit/resolving-and-handling-intents"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/structuring-your-code-to-support-app-extensions": {
+      "abstract": [
+        {
+          "text": "Move your back-end services to a private framework so your app and app extensions can use them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/structuring-your-code-to-support-app-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Structuring Your Code to Support App Extensions",
+      "type": "topic",
+      "url": "/documentation/sirikit/structuring-your-code-to-support-app-extensions"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Intents",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/dispatching-intents-to-handlers",
+        "doc://com.apple.sirikit/documentation/SiriKit/resolving-and-handling-intents",
+        "doc://com.apple.sirikit/documentation/Intents/INIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INIntentResponse",
+        "doc://com.apple.sirikit/documentation/SiriKit/providing-hands-free-app-control-with-intents",
+        "doc://com.apple.sirikit/documentation/SiriKit/resolution-results",
+        "doc://com.apple.sirikit/documentation/SiriKit/common-data-types"
+      ],
+      "title": "Intents"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Authorization",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/requesting-authorization-to-use-siri",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.siri",
+        "doc://com.apple.sirikit/documentation/Intents/INSiriAuthorizationStatus",
+        "doc://com.apple.sirikit/documentation/Intents/INPreferences"
+      ],
+      "title": "Authorization"
+    },
+    {
+      "anchor": "Intents-App-Extension",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/creating-an-intents-app-extension",
+        "doc://com.apple.sirikit/documentation/SiriKit/structuring-your-code-to-support-app-extensions",
+        "doc://com.apple.sirikit/documentation/Intents/INExtension",
+        "doc://com.apple.sirikit/documentation/Intents/INIntentHandlerProviding"
+      ],
+      "title": "Intents App Extension"
+    },
+    {
+      "anchor": "Information-Property-List-Keys",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/INIntentsSupported",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/INIntentsRestrictedWhileLocked",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/INIntentsRestrictedWhileProtectedDataUnavailable"
+      ],
+      "title": "Information Property List Keys"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INIntentError",
+        "doc://com.apple.sirikit/documentation/Intents/INIntentError/Code",
+        "doc://com.apple.sirikit/documentation/Intents/INIntentErrorDomain"
+      ],
+      "title": "Errors"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INExtension/title",
+          "value": "INExtension"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INExtension/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INExtension/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSiriAuthorizationStatus/title",
+          "value": "INSiriAuthorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSiriAuthorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSiriAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSiriAuthorizationStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSiriAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentError~1Code/title",
+          "value": "INIntentErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentError~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntentErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentError~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntentErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentResponse/title",
+          "value": "INIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntent/title",
+          "value": "INIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPreferences/title",
+          "value": "INPreferences"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPreferences/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPreferences"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPreferences/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPreferences"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentHandlerProviding/title",
+          "value": "INIntentHandlerProviding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentHandlerProviding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntentHandlerProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentHandlerProviding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntentHandlerProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentErrorDomain/title",
+          "value": "INIntentErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntentErrorDomain"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

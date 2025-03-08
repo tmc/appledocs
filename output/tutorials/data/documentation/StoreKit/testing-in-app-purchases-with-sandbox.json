@@ -1,0 +1,1826 @@
+{
+  "abstract": [
+    {
+      "text": "Test your implementation of In-App Purchases using real product information and server-to-server transactions in the sandbox environment.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Testing In-App Purchases with sandbox"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the Apple sandbox environment to test your implementation of In-App Purchases that use the StoreKit framework on devices with real product information from App Store Connect. Your development-signed app uses the sandbox environment when you sign in to the App Store using a Sandbox Apple Account. You build and run your app from Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Changes that you make to product metadata in App Store Connect can take up to one hour to appear in the sandbox environment.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a Sandbox Apple Account in App Store Connect, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/test-in-app-purchases/create-sandbox-apple-ids",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable App Store Server Notifications for the sandbox environment, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". As you test your app, your server receives notifications for In-App Purchase transactions. The notification payload identifies the sandbox environment in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/environment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. For a list of possible notifications, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prepare-for-sandbox-testing",
+          "level": 3,
+          "text": "Prepare for sandbox testing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you start testing In-App Purchases in the sandbox environment, make sure that:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your Apple Developer Program account is active. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/programs/enroll/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your membership Account Holder has signed the Paid Applications Agreement, as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/help/app-store-connect/manage-agreements/sign-and-update-agreements",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You set up the product information in App Store Connect for the app you’re testing. At minimum, set up a product reference name, product ID, a localized name, and a price.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You’re running a development-signed build of your app. Production-signed builds use the production environment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you’re testing on iOS, watchOS, or visionOS devices, grant permission for locally installed apps to run on the device. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Xcode/enabling-developer-mode-on-a-device",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/get-started/app-store-connect-workflow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/overview-for-configuring-in-app-purchases",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Testing In-App Purchases in the sandbox environment doesn’t require uploading your app binary to App Store Connect. You build and run your app from Xcode.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Sign-in-to-the-App-Store-with-your-Sandbox-Apple-Account",
+          "level": 3,
+          "text": "Sign in to the App Store with your Sandbox Apple Account",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run your app using your Sandbox Apple Account, build and run your app from Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS and iPadOS, the sandbox account appears in Settings > Developer after the first time you use the device to attempt a purchase in a development-signed app. There’s no need to sign out of the non-Sandbox Apple Account. Sign in using a Sandbox Apple Account.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS, the sandbox account appears in App Store Settings after the first time you use the device to make an In-App Purchase. Open App Store > Settings and click the Sign In button to sign in using a Sandbox Apple Account. When you’re done testing, sign out of the Sandbox Apple Account from the App Store Settings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your test device has macOS 11.1 or earlier installed, sign out of the Mac App Store, then build your app in Xcode and launch it from Finder.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Make-an-In-App-Purchase",
+          "level": 3,
+          "text": "Make an In-App Purchase",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first time you make a purchase in a development-signed app, sign in to the App Store using your Sandbox Apple Account to begin testing. When you sign in, the text ",
+              "type": "text"
+            },
+            {
+              "code": "[Environment: Sandbox]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " appears, indicating that you’ve connected to the test environment. If ",
+              "type": "text"
+            },
+            {
+              "code": "[Environment: Sandbox]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " doesn’t appear, you’re using the production environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-In-App-Purchases-for-all-regions",
+          "level": 3,
+          "text": "Test In-App Purchases for all regions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In-app products that you create through App Store Connect are available for sale in every App Store region. You may also maintain a list of product identifiers that you make available in specific regions. To test In-App Purchases in multiple regions using the same Sandbox Apple Account, open App Store Connect, click the Sandbox Apple Account, and change the App Store Country or Region setting. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/test-in-app-purchases/manage-sandbox-apple-id-settings",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To activate a storefront after you change the region in App Store Connect, sign out of the Sandbox Apple Account account on the device and sign back in. The tester should see the In-App Purchases appropriate to the region assigned to their Sandbox Apple Account. Changing the App Store Country or Region setting affects the storefront value in your app. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Storefront",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStorefront",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Clear-the-purchase-history-for-a-Sandbox-Apple-Account",
+          "level": 3,
+          "text": "Clear the purchase history for a Sandbox Apple Account",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make it easier to manage repeated testing using the same Sandbox Apple Account, you can clear its purchase history in App Store Connect or from Account Settings in iOS. On your iOS device, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open Settings and select Developer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Sandbox Apple Account.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the popup sheet, select Manage.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the Account Settings page, select Clear Purchase History.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about clearing the purchase history from App Store Connect, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/test-in-app-purchases/manage-sandbox-apple-id-settings",
+              "isActive": true,
+              "overridingTitle": "Manage Sandbox Apple Account settings",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Manage Sandbox Apple Account settings",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Clearing the purchase history for Sandbox Apple Accounts with a high number of purchases may take longer. When the process completes, the transaction history is empty and the Sandbox Apple Account is eligible for introductory offers. The tester logged in with the Sandbox Apple Account can purchase subscriptions they were previously subscribed to without causing duplicate purchases.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Clearing the purchase history doesn’t affect In-App Purchases that customers make on the App Store.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Manage-sandbox-settings-from-App-Store-Connect-or-iOS-Account-Settings",
+          "level": 3,
+          "text": "Manage sandbox settings from App Store Connect or iOS Account Settings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sandbox settings enable you to control the testing environment to set up your tests. You can manage the settings in App Store Connect or in iOS Account Settings, whichever you prefer. The settings affect the sandbox the same way, regardless of which method you choose. However, some settings are available only in App Store Connect. The following table compares the settings on both platforms:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sandbox setting or feature",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Available in App Store Connect",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Available in iOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create or delete a Sandbox Apple Account",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create or delete a Sandbox Test Family",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Remove a member from a Sandbox Test Family",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change the storefront country or region",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change the subscription renewal rate",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable interrupted purchases",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Clear purchase history for a Sandbox Apple Account",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change sharing status for a Sandbox Test Family member",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select whether to display win-back offer sheets in the app",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To access the Account Settings in iOS, follow these steps on an iOS device:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open Settings and select Developer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Sandbox Apple Account.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the popup sheet, select Manage. The Account Settings page appears.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on all aspects of managing sandbox settings in App Store Connect, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/test-in-app-purchases/overview-of-testing-in-sandbox",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/data": {
+      "abstract": [
+        {
+          "text": "The payload data that contains app metadata and the signed renewal and transaction information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "data",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/data"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications": {
+      "abstract": [
+        {
+          "text": "Configure your server and provide an HTTPS URL to receive notifications about in-app purchase events and unreported external purchase tokens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/environment": {
+      "abstract": [
+        {
+          "text": "The server environment, either sandbox or production.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "string "
+        },
+        {
+          "kind": "identifier",
+          "text": "environment"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/environment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "environment",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/environment"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType": {
+      "abstract": [
+        {
+          "text": "The type that describes the in-app purchase or external purchase event for which the App Store sends the version 2 notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "string "
+        },
+        {
+          "kind": "identifier",
+          "text": "notificationType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "notificationType",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/notificationType"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/enabling-developer-mode-on-a-device": {
+      "abstract": [
+        {
+          "text": "Grant or deny permission for locally installed apps to run on iOS, iPadOS, visionOS, and watchOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/enabling-developer-mode-on-a-device",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling Developer Mode on a device",
+      "type": "topic",
+      "url": "/documentation/Xcode/enabling-developer-mode-on-a-device"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKStorefront": {
+      "abstract": [
+        {
+          "text": "An object containing the location and unique identifier of an Apple App Store storefront.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKStorefront"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStorefront",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKStorefront"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKStorefront",
+      "type": "topic",
+      "url": "/documentation/storekit/skstorefront"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Storefront": {
+      "abstract": [
+        {
+          "text": "The region and unique identifier of the App Store storefront for the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Storefront"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Storefront",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Storefront"
+        }
+      ],
+      "role": "symbol",
+      "title": "Storefront",
+      "type": "topic",
+      "url": "/documentation/storekit/storefront"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer additional content and services in your app using the Original In-App Purchase API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original API for In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/original-api-for-in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-a-payment-request": {
+      "abstract": [
+        {
+          "text": "Verify that requests for payment function properly in the sandbox environment by inspecting the calls to the payment transaction observer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-a-payment-request",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing a payment request",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-a-payment-request"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-a-product-request": {
+      "abstract": [
+        {
+          "text": "Verify that requests for products function properly in the sandbox environment by inspecting the App Store response.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-a-product-request",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing a product request",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-a-product-request"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-a-successful-transaction": {
+      "abstract": [
+        {
+          "text": "Confirm that your app can make a successful transaction in the sandbox environment by inspecting the transaction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-a-successful-transaction",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing a successful transaction",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-a-successful-transaction"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-an-auto-renewable-subscription": {
+      "abstract": [
+        {
+          "text": "Verify that your app handles a subscription lapse properly using the accelerated time rates within the sandbox environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-an-auto-renewable-subscription",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing an auto-renewable subscription",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-an-auto-renewable-subscription"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-an-interrupted-purchase": {
+      "abstract": [
+        {
+          "text": "Verify that your app handles an interrupted purchase by inspecting and invoking payment transactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-an-interrupted-purchase",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing an interrupted purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-an-interrupted-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-app-store-server-notifications": {
+      "abstract": [
+        {
+          "text": "Confirm that App Store Server Notifications service responds properly in the sandbox environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-app-store-server-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing App Store server notifications",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-app-store-server-notifications"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-at-all-stages-of-development-with-xcode-and-the-sandbox": {
+      "abstract": [
+        {
+          "text": "Verify your implementation of In-App Purchases by testing your code throughout its development.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-at-all-stages-of-development-with-xcode-and-the-sandbox",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing at all stages of development with Xcode and the sandbox",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-at-all-stages-of-development-with-xcode-and-the-sandbox"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-complete-transactions": {
+      "abstract": [
+        {
+          "text": "Verify that your app completes transactions properly by confirming that any downloadable purchases are present on your test device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-complete-transactions",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing complete transactions",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-complete-transactions"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-disabling-auto-renew": {
+      "abstract": [
+        {
+          "text": "Verify that your app receives subscription updates when a user cancels a subscription by verifying the receipt or receiving a notification.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-disabling-auto-renew",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing disabling auto-renew",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-disabling-auto-renew"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases": {
+      "abstract": [
+        {
+          "text": "Verify that your app handles failed subscription renewals that are in the billing retry or billing grace period states, as well as failed In-App Purchases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing failing subscription renewals and In-App Purchases",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-failing-subscription-renewals-and-in-app-purchases"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-family-sharing": {
+      "abstract": [
+        {
+          "text": "Verify that your app handles auto-renewable subscriptions and non-consumable in-app purchases that family members share with Family Sharing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-family-sharing",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing Family Sharing",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-family-sharing"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-fetching-product-identifiers": {
+      "abstract": [
+        {
+          "text": "Verify that your app receives the correct product identifiers by inspecting or replicating your app’s process for retrieving the identifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-fetching-product-identifiers",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing fetching product identifiers",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-fetching-product-identifiers"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-invalid-product-identifier-handling": {
+      "abstract": [
+        {
+          "text": "Verify that your app correctly handles invalid product identifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-invalid-product-identifier-handling",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing invalid product identifier handling",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-invalid-product-identifier-handling"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-purchases-made-outside-your-app": {
+      "abstract": [
+        {
+          "text": "Verify that your app receives and handles transactions that occur outside your app, such as subscription purchases, renewals, and offer and promo code redemptions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-purchases-made-outside-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing purchases made outside your app",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-purchases-made-outside-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-refund-requests": {
+      "abstract": [
+        {
+          "text": "Test your app’s implementation of refund requests, and your app’s and server’s handling of approved and declined refunds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-refund-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing refund requests",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-refund-requests"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-resubscribing-from-the-subscriptions-page": {
+      "abstract": [
+        {
+          "text": "Verify that your app can reactivate an expired subscription by receiving a transaction callback or inspecting an updated receipt.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-resubscribing-from-the-subscriptions-page",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing resubscribing from the subscriptions page",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-resubscribing-from-the-subscriptions-page"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-transaction-observer-code": {
+      "abstract": [
+        {
+          "text": "Verify that your app activates its payment transaction observer by using breakpoints.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-transaction-observer-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing transaction observer code",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-transaction-observer-code"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-the-sandbox-environment": {
+      "abstract": [
+        {
+          "text": "Verify that your app receives and handles win-back offer transactions, including those made outside your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-the-sandbox-environment",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing win-back offers in the sandbox environment",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-win-back-offers-in-the-sandbox-environment"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-xcode": {
+      "abstract": [
+        {
+          "text": "Validate your app’s handling of win-back offers that you configure for the testing environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing win-back offers in Xcode",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-win-back-offers-in-xcode"
+    },
+    "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/overview-for-configuring-in-app-purchases": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/overview-for-configuring-in-app-purchases",
+      "title": "Overview for configuring in-app purchases",
+      "titleInlineContent": [
+        {
+          "text": "Overview for configuring in-app purchases",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/overview-for-configuring-in-app-purchases"
+    },
+    "https://developer.apple.com/help/app-store-connect/get-started/app-store-connect-workflow": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/get-started/app-store-connect-workflow",
+      "title": "App Store Connect workflow",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect workflow",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/get-started/app-store-connect-workflow"
+    },
+    "https://developer.apple.com/help/app-store-connect/manage-agreements/sign-and-update-agreements": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/manage-agreements/sign-and-update-agreements",
+      "title": "Sign and update agreements",
+      "titleInlineContent": [
+        {
+          "text": "Sign and update agreements",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/manage-agreements/sign-and-update-agreements"
+    },
+    "https://developer.apple.com/help/app-store-connect/test-in-app-purchases/create-sandbox-apple-ids": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/test-in-app-purchases/create-sandbox-apple-ids",
+      "title": "Create a Sandbox Apple Account",
+      "titleInlineContent": [
+        {
+          "text": "Create a Sandbox Apple Account",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/test-in-app-purchases/create-sandbox-apple-ids"
+    },
+    "https://developer.apple.com/help/app-store-connect/test-in-app-purchases/manage-sandbox-apple-id-settings": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/test-in-app-purchases/manage-sandbox-apple-id-settings",
+      "title": "Manage Sandbox Apple Account settings",
+      "titleInlineContent": [
+        {
+          "text": "Manage Sandbox Apple Account settings",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/test-in-app-purchases/manage-sandbox-apple-id-settings"
+    },
+    "https://developer.apple.com/help/app-store-connect/test-in-app-purchases/overview-of-testing-in-sandbox": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/test-in-app-purchases/overview-of-testing-in-sandbox",
+      "title": "Overview of testing in sandbox",
+      "titleInlineContent": [
+        {
+          "text": "Overview of testing in sandbox",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/test-in-app-purchases/overview-of-testing-in-sandbox"
+    },
+    "https://developer.apple.com/programs/enroll/": {
+      "identifier": "https://developer.apple.com/programs/enroll/",
+      "title": "What you need to enroll",
+      "titleInlineContent": [
+        {
+          "text": "What you need to enroll",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/programs/enroll/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "In-App-Purchase-Testing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/testing-at-all-stages-of-development-with-xcode-and-the-sandbox",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-refund-requests",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-xcode"
+      ],
+      "title": "In-App Purchase Testing"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Product-identifiers-and-requests",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/testing-fetching-product-identifiers",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-invalid-product-identifier-handling",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-a-product-request"
+      ],
+      "title": "Product identifiers and requests"
+    },
+    {
+      "anchor": "Payment-transactions",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/testing-purchases-made-outside-your-app",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-the-sandbox-environment",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-an-interrupted-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-a-payment-request"
+      ],
+      "title": "Payment transactions"
+    },
+    {
+      "anchor": "Subscriptions",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/testing-an-auto-renewable-subscription",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-resubscribing-from-the-subscriptions-page",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-disabling-auto-renew"
+      ],
+      "title": "Subscriptions"
+    },
+    {
+      "anchor": "Family-Sharing",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/testing-family-sharing"
+      ],
+      "title": "Family Sharing"
+    },
+    {
+      "anchor": "Refunds",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/testing-refund-requests"
+      ],
+      "title": "Refunds"
+    },
+    {
+      "anchor": "Server-notifications",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/testing-app-store-server-notifications"
+      ],
+      "title": "Server notifications"
+    },
+    {
+      "anchor": "Transaction-observer",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/testing-transaction-observer-code",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-a-successful-transaction",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-complete-transactions"
+      ],
+      "title": "Transaction observer"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Product-identifiers-and-requests",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/testing-fetching-product-identifiers",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-invalid-product-identifier-handling",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-a-product-request"
+              ],
+              "title": "Product identifiers and requests"
+            },
+            {
+              "anchor": "Payment-transactions",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/testing-purchases-made-outside-your-app",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-the-sandbox-environment",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-an-interrupted-purchase",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-a-payment-request"
+              ],
+              "title": "Payment transactions"
+            },
+            {
+              "anchor": "Subscriptions",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/testing-an-auto-renewable-subscription",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-resubscribing-from-the-subscriptions-page",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-disabling-auto-renew"
+              ],
+              "title": "Subscriptions"
+            },
+            {
+              "anchor": "Family-Sharing",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/testing-family-sharing"
+              ],
+              "title": "Family Sharing"
+            },
+            {
+              "anchor": "Refunds",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/testing-refund-requests"
+              ],
+              "title": "Refunds"
+            },
+            {
+              "anchor": "Server-notifications",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/testing-app-store-server-notifications"
+              ],
+              "title": "Server notifications"
+            },
+            {
+              "anchor": "Transaction-observer",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/testing-transaction-observer-code",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-a-successful-transaction",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-complete-transactions"
+              ],
+              "title": "Transaction observer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "In-App-Purchase-Testing",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/testing-at-all-stages-of-development-with-xcode-and-the-sandbox",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-refund-requests",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-xcode"
+              ],
+              "title": "In-App Purchase Testing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStorefront/title",
+          "value": "SKStorefront"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStorefront/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKStorefront"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStorefront/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKStorefront"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/testing-in-app-purchases-with-sandbox"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/testing-in-app-purchases-with-sandbox"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

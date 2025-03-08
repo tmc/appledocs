@@ -1,0 +1,1500 @@
+{
+  "abstract": [
+    {
+      "text": "Extend the standard drag and drop support for text views to include custom types of content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/text-display-and-fonts"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/views-and-controls"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/drag-and-drop-customization"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Drag and drop customization"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextField",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " classes provide built-in support for dragging and dropping text and images. You can extend this support to your own custom data types by adding a text drag delegate or text drop delegate to your views. Your text drag delegate adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDragDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol and is responsible for providing the items to be dragged. Your text drop delegate adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDropDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol and handles drops containing items with your custom data types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILabel": {
+      "abstract": [
+        {
+          "text": "A view that displays one or more lines of informational text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILabel"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILabel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UILabel"
+        }
+      ],
+      "role": "symbol",
+      "title": "UILabel",
+      "type": "topic",
+      "url": "/documentation/uikit/uilabel"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchTextFieldPasteItem": {
+      "abstract": [
+        {
+          "text": "A protocol that supports pasting tokens.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchTextFieldPasteItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchTextFieldPasteItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchTextFieldPasteItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchTextFieldPasteItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchtextfieldpasteitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextDragDelegate": {
+      "abstract": [
+        {
+          "text": "The interface for customizing the behavior of a drag activity for a text view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextDragDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDragDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextDragDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextDragDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextdragdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextDragOptions": {
+      "abstract": [
+        {
+          "text": "A set of options that determine the behavior of a draggable text view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextDragOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDragOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextDragOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextDragOptions",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextdragoptions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextDragPreviewRenderer": {
+      "abstract": [
+        {
+          "text": "Renders previews of text dragged by the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextDragPreviewRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDragPreviewRenderer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextDragPreviewRenderer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextDragPreviewRenderer",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextdragpreviewrenderer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextDragRequest": {
+      "abstract": [
+        {
+          "text": "The interface for describing the attributes of a drag activity originating in a text view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextDragRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDragRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextDragRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextDragRequest",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextdragrequest"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextDraggable": {
+      "abstract": [
+        {
+          "text": "The interface that determines if a text view is a drag source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextDraggable"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDraggable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextDraggable"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextDraggable",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextdraggable"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextDropDelegate": {
+      "abstract": [
+        {
+          "text": "The interface for configuring a text view’s drop behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextDropDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDropDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextDropDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextDropDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextdropdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextDropEditability": {
+      "abstract": [
+        {
+          "text": "The text-drop editability styles for noneditable text views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextDropEditability"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDropEditability",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextDropEditability"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextDropEditability",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextdropeditability"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextDropProposal": {
+      "abstract": [
+        {
+          "text": "A proposed configuration for the behavior of a text drop interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextDropProposal"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDropProposal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextDropProposal"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextDropProposal",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextdropproposal"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextDropProposal/Action": {
+      "abstract": [
+        {
+          "text": "The text drop action styles for text views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Action"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDropProposal/Action",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Action"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextDropProposal.Action",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextdropproposal/action"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextDropProposal/Performer": {
+      "abstract": [
+        {
+          "text": "The performers that are responsible for handling the drop operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Performer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDropProposal/Performer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Performer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextDropProposal.Performer",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextdropproposal/performer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextDropProposal/ProgressMode": {
+      "abstract": [
+        {
+          "text": "The text drop progress styles for user-visible progress indication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProgressMode"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDropProposal/ProgressMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProgressMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextDropProposal.ProgressMode",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextdropproposal/progressmode"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextDropRequest": {
+      "abstract": [
+        {
+          "text": "The interface for specifying the attributes of a drop request for a text view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextDropRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDropRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextDropRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextDropRequest",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextdroprequest"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextDroppable": {
+      "abstract": [
+        {
+          "text": "The interface that determines if a text view is a drop destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextDroppable"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDroppable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextDroppable"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextDroppable",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextdroppable"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextField": {
+      "abstract": [
+        {
+          "text": "An object that displays an editable text area in your interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextField"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextField",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextField"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextField",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfield"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextPasteConfigurationSupporting": {
+      "abstract": [
+        {
+          "text": "The interface for text-oriented responder objects to participate in the unified paste and drop system in iOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextPasteConfigurationSupporting"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextPasteConfigurationSupporting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextPasteConfigurationSupporting"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextPasteConfigurationSupporting",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextpasteconfigurationsupporting"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextPasteDelegate": {
+      "abstract": [
+        {
+          "text": "The interface for handling pasting and dropping of text, using item providers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextPasteDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextPasteDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextPasteDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextPasteDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextpastedelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextPasteItem": {
+      "abstract": [
+        {
+          "text": "The interface for obtaining information about, and interacting with, a text item for pasting or dropping.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextPasteItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextPasteItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextPasteItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextPasteItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextpasteitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextView": {
+      "abstract": [
+        {
+          "text": "A scrollable, multiline text region.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/text-display-and-fonts": {
+      "abstract": [
+        {
+          "text": "Display text, manage fonts, and check spelling.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/text-display-and-fonts",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Text display and fonts",
+      "type": "topic",
+      "url": "/documentation/uikit/text-display-and-fonts"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/views-and-controls": {
+      "abstract": [
+        {
+          "text": "Present your content onscreen and define the interactions allowed with that content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Views and controls",
+      "type": "topic",
+      "url": "/documentation/uikit/views-and-controls"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Text-views",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UILabel",
+        "doc://com.apple.uikit/documentation/UIKit/UITextField",
+        "doc://com.apple.uikit/documentation/UIKit/UITextView"
+      ],
+      "title": "Text views"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Text-view-additions",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITextDragDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UITextDropDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UITextDraggable",
+        "doc://com.apple.uikit/documentation/UIKit/UITextDragOptions",
+        "doc://com.apple.uikit/documentation/UIKit/UITextDroppable",
+        "doc://com.apple.uikit/documentation/UIKit/UITextDropEditability"
+      ],
+      "title": "Text view additions"
+    },
+    {
+      "anchor": "Drag-content",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITextDragRequest",
+        "doc://com.apple.uikit/documentation/UIKit/UITextDragPreviewRenderer"
+      ],
+      "title": "Drag content"
+    },
+    {
+      "anchor": "Drop-management",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITextDropRequest",
+        "doc://com.apple.uikit/documentation/UIKit/UITextDropProposal",
+        "doc://com.apple.uikit/documentation/UIKit/UITextDropProposal/Action",
+        "doc://com.apple.uikit/documentation/UIKit/UITextDropProposal/Performer",
+        "doc://com.apple.uikit/documentation/UIKit/UITextDropProposal/ProgressMode"
+      ],
+      "title": "Drop management"
+    },
+    {
+      "anchor": "Pasteboard-support",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITextPasteItem",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchTextFieldPasteItem",
+        "doc://com.apple.uikit/documentation/UIKit/UITextPasteDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UITextPasteConfigurationSupporting"
+      ],
+      "title": "Pasteboard support"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Text-view-additions",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITextDragDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UITextDropDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UITextDraggable",
+                "doc://com.apple.uikit/documentation/UIKit/UITextDragOptions",
+                "doc://com.apple.uikit/documentation/UIKit/UITextDroppable",
+                "doc://com.apple.uikit/documentation/UIKit/UITextDropEditability"
+              ],
+              "title": "Text view additions"
+            },
+            {
+              "anchor": "Drag-content",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITextDragRequest",
+                "doc://com.apple.uikit/documentation/UIKit/UITextDragPreviewRenderer"
+              ],
+              "title": "Drag content"
+            },
+            {
+              "anchor": "Drop-management",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITextDropRequest",
+                "doc://com.apple.uikit/documentation/UIKit/UITextDropProposal",
+                "doc://com.apple.uikit/documentation/UIKit/UITextDropProposal/Action",
+                "doc://com.apple.uikit/documentation/UIKit/UITextDropProposal/Performer",
+                "doc://com.apple.uikit/documentation/UIKit/UITextDropProposal/ProgressMode"
+              ],
+              "title": "Drop management"
+            },
+            {
+              "anchor": "Pasteboard-support",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITextPasteItem",
+                "doc://com.apple.uikit/documentation/UIKit/UISearchTextFieldPasteItem",
+                "doc://com.apple.uikit/documentation/UIKit/UITextPasteDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UITextPasteConfigurationSupporting"
+              ],
+              "title": "Pasteboard support"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Text-views",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UILabel",
+                "doc://com.apple.uikit/documentation/UIKit/UITextField",
+                "doc://com.apple.uikit/documentation/UIKit/UITextView"
+              ],
+              "title": "Text views"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextPasteConfigurationSupporting/title",
+          "value": "UITextPasteConfigurationSupporting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextPasteConfigurationSupporting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextPasteConfigurationSupporting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextPasteConfigurationSupporting/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextPasteConfigurationSupporting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDropProposal/title",
+          "value": "UITextDropProposal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDropProposal/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDropProposal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDropProposal/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDropProposal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDropDelegate/title",
+          "value": "UITextDropDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDropDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDropDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDropDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDropDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILabel/title",
+          "value": "UILabel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILabel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILabel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILabel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILabel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDragOptions/title",
+          "value": "UITextDragOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDragOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDragOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDragOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDragOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDropEditability/title",
+          "value": "UITextDropEditability"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDropEditability/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDropEditability"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDropEditability/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDropEditability"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDropProposal~1ProgressMode/title",
+          "value": "UITextDropProgressMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDropProposal~1ProgressMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDropProgressMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDropProposal~1ProgressMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDropProgressMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDropRequest/title",
+          "value": "UITextDropRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDropRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDropRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDropRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDropRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDragRequest/title",
+          "value": "UITextDragRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDragRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDragRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDragRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDragRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDragPreviewRenderer/title",
+          "value": "UITextDragPreviewRenderer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDragPreviewRenderer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDragPreviewRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDragPreviewRenderer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDragPreviewRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDropProposal~1Action/title",
+          "value": "UITextDropAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDropProposal~1Action/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDropAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDropProposal~1Action/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDropAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextView/title",
+          "value": "UITextView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextPasteItem/title",
+          "value": "UITextPasteItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextPasteItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextPasteItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextPasteItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextPasteItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDropProposal~1Performer/title",
+          "value": "UITextDropPerformer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDropProposal~1Performer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDropPerformer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDropProposal~1Performer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDropPerformer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDragDelegate/title",
+          "value": "UITextDragDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDragDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDragDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDragDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDragDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDroppable/title",
+          "value": "UITextDroppable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDroppable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDroppable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDroppable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDroppable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDraggable/title",
+          "value": "UITextDraggable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDraggable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDraggable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDraggable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDraggable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField/title",
+          "value": "UITextField"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextFieldPasteItem/title",
+          "value": "UISearchTextFieldPasteItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextFieldPasteItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchTextFieldPasteItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextFieldPasteItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchTextFieldPasteItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextPasteDelegate/title",
+          "value": "UITextPasteDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextPasteDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextPasteDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextPasteDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextPasteDelegate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/drag-and-drop-customization"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/drag-and-drop-customization"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

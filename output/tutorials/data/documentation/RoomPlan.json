@@ -1,0 +1,955 @@
+{
+  "abstract": [
+    {
+      "text": "Create a 3D model of a room by interactively guiding people to scan their physical environment using a device’s camera.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RoomPlan/documentation/RoomPlan"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "RoomPlan",
+    "modules": [
+      {
+        "name": "RoomPlan"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "RoomPlan"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use RoomPlan to create a 3D model of an interior room. The framework uses a device’s sensors, trained ML models, and RealityKit’s rendering capabilities to capture the physical surroundings of an interior room. For example, the framework inspects a device’s camera feed and LiDAR readings to identify walls, windows, openings, and doors. RoomPlan also recognizes room features,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "furniture, and appliances, such as a fireplace, bed, or refrigerator, and provides that information to the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To begin a capture, the app presents a view (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") that the user looks through to see their room in AR. The view displays virtual cues as they move around the room:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Real-time graphic overlays display on top of physical structures in the room to convey scanning progress.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the framework requires a specific kind of device movement or perspective to complete the capture, the UI displays instructions that explain how to position the device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "roomplan-hero-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app determines that the current scan is complete, the view displays a small-scale version of the scanned room for the user to approve.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, your app can display custom graphics during the scanning process by creating and using a scan session object (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") directly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Access-the-captured-results",
+          "level": 3,
+          "text": "Access the captured results",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The framework outputs a scan as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "parametric",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " data, which makes it easy for your app to modify the scanned room’s individual components. RoomPlan also provides the results in various Universal Scene Description (USD) formats. With these assets, your app can implement custom features, such as the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Estimate the size of particular areas of a room.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Preview virtual furniture from a catalog in a variety of styles and positions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Integrate a version of a scanned room or structure in a 3D game.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "roomplan-hero-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Process-scan-results-on-macOS-with-Mac-Catalyst",
+          "level": 3,
+          "text": "Process scan results on macOS with Mac Catalyst",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Mac apps built with Mac Catalyst can access ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedStructure",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and can perform encoding, decoding, and exporting. Environment scanning relies on a camera, LiDAR, and other sensors that support augmented reality on iOS and iPad OS devices. However, macOS apps built with Mac Catalyst can process the results of room-capture sessions performed on those devices. RoomPlan ignores all capture-session-related calls on macOS apps built with Mac Catalyst.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RoomPlan/documentation/RoomPlan": {
+      "abstract": [
+        {
+          "text": "Create a 3D model of a room by interactively guiding people to scan their physical environment using a device’s camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RoomPlan",
+      "type": "topic",
+      "url": "/documentation/roomplan"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom": {
+      "abstract": [
+        {
+          "text": "A structure that provides the key details of a scanned room.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CapturedRoom"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CapturedRoom"
+        }
+      ],
+      "role": "symbol",
+      "title": "CapturedRoom",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/USDExportOptions": {
+      "abstract": [
+        {
+          "text": "Options that determine the underlying data format of a scan export.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "USDExportOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/USDExportOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "USDExportOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "CapturedRoom.USDExportOptions",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/usdexportoptions"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoomData": {
+      "abstract": [
+        {
+          "text": "An opaque object that holds the raw results of a scan.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CapturedRoomData"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoomData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CapturedRoomData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CapturedRoomData",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroomdata"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedStructure": {
+      "abstract": [
+        {
+          "text": "An object that holds the results of the merger of multiple capture sessions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CapturedStructure"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedStructure",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CapturedStructure"
+        }
+      ],
+      "role": "symbol",
+      "title": "CapturedStructure",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedstructure"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomBuilder": {
+      "abstract": [
+        {
+          "text": "An object that generates a 3D asset from room-capture data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RoomBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RoomBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "RoomBuilder",
+      "type": "topic",
+      "url": "/documentation/roomplan/roombuilder"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession": {
+      "abstract": [
+        {
+          "text": "An object that manages the room-scanning process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RoomCaptureSession"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RoomCaptureSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "RoomCaptureSession",
+      "type": "topic",
+      "url": "/documentation/roomplan/roomcapturesession"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSessionDelegate": {
+      "abstract": [
+        {
+          "text": "A specification of important events in the room-scanning process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RoomCaptureSessionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSessionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RoomCaptureSessionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "RoomCaptureSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/roomplan/roomcapturesessiondelegate"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureView": {
+      "abstract": [
+        {
+          "text": "A view that enables the user to scan their room with the device’s camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RoomCaptureView"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RoomCaptureView"
+        }
+      ],
+      "role": "symbol",
+      "title": "RoomCaptureView",
+      "type": "topic",
+      "url": "/documentation/roomplan/roomcaptureview"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureViewDelegate": {
+      "abstract": [
+        {
+          "text": "A specification to post-process the results of a scan.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RoomCaptureViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RoomCaptureViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "RoomCaptureViewDelegate",
+      "type": "topic",
+      "url": "/documentation/roomplan/roomcaptureviewdelegate"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomPlanVersionNumber": {
+      "abstract": [
+        {
+          "text": "Project version number for RoomPlan.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "RoomPlanVersionNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomPlanVersionNumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RoomPlanVersionNumber",
+      "type": "topic",
+      "url": "/documentation/roomplan/roomplanversionnumber"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomPlanVersionString": {
+      "abstract": [
+        {
+          "text": "Project version string for RoomPlan.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "RoomPlanVersionString"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomPlanVersionString",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RoomPlanVersionString",
+      "type": "topic",
+      "url": "/documentation/roomplan/roomplanversionstring"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/StructureBuilder": {
+      "abstract": [
+        {
+          "text": "An object that combines multiple scan sessions into a single captured result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StructureBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/StructureBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StructureBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "StructureBuilder",
+      "type": "topic",
+      "url": "/documentation/roomplan/structurebuilder"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/captured-object-attributes": {
+      "abstract": [
+        {
+          "text": "Determine details about the objects and surfaces that the framework identifies in a scan.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/captured-object-attributes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Captured Object Attributes",
+      "type": "topic",
+      "url": "/documentation/roomplan/captured-object-attributes"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/create-a-3d-model-of-an-interior-room-by-guiding-the-user-through-an-ar-experience": {
+      "abstract": [
+        {
+          "text": "Highlight physical structures and display text that guides a user to scan the shape of their physical environment using a framework-provided view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/create-a-3d-model-of-an-interior-room-by-guiding-the-user-through-an-ar-experience",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Create a 3D model of an interior room by guiding the user through an AR experience",
+      "type": "topic",
+      "url": "/documentation/roomplan/create-a-3d-model-of-an-interior-room-by-guiding-the-user-through-an-ar-experience"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/merging-multiple-scans-into-a-single-structure": {
+      "abstract": [
+        {
+          "text": "Export a 3D model that consists of multiple rooms captured in the same physical vicinity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/merging-multiple-scans-into-a-single-structure",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Merging multiple scans into a single structure",
+      "type": "topic",
+      "url": "/documentation/roomplan/merging-multiple-scans-into-a-single-structure"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/providing-custom-models-for-captured-rooms-and-structure-exports": {
+      "abstract": [
+        {
+          "text": "Enhance the look of an exported 3D model by substituting object bounding boxes with detailed 3D renditions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/providing-custom-models-for-captured-rooms-and-structure-exports",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Providing custom models for captured rooms and structure exports",
+      "type": "topic",
+      "url": "/documentation/roomplan/providing-custom-models-for-captured-rooms-and-structure-exports"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/scanning-the-rooms-of-a-single-structure": {
+      "abstract": [
+        {
+          "text": "Create an AR experience that enables people to scan a building that contains multiple rooms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/scanning-the-rooms-of-a-single-structure",
+      "kind": "article",
+      "role": "article",
+      "title": "Scanning the rooms of a single structure",
+      "type": "topic",
+      "url": "/documentation/roomplan/scanning-the-rooms-of-a-single-structure"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "roomplan-hero-1": {
+      "alt": "An illustration of a hand holding an iPhone in portrait mode in a kitchen. The device’s screen displays a camera feed of the kitchen with highlights around physical structures, such as the window and the sink. At the top of the screen is a banner that reads Move device to start. To the right of that banner is a callout that reads Instructional text. Another callout to the right of the device’s screen reads Structural highlights and points to the highlight around the window.",
+      "identifier": "roomplan-hero-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/78ae1d75bc69bde0b0dee238d672cf6a/roomplan-hero-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c7f097bd66ecea197a6043cce21b6eb0/roomplan-hero-1~dark@2x.png"
+        }
+      ]
+    },
+    "roomplan-hero-2": {
+      "alt": "An illustration of a scanned room showing its data representations. From the left, the illustration shows a small scale 3D version of a scanned room. Three arrows flow to the right. The top arrow points to a house icon and four 2D images of floor plans with rulers that measure objects in the floor plans. The middle arrow points to an icon of a shopping cart and an iPhone in portrait mode that displays a furniture catalog with tables, a lamp, and chairs. Next to the phone is a copy of the small scale 3D version of a scanned room that includes a highlighted virtual table from the catalog. The bottom arrow points to an icon of a game controller and an iPhone in landscape mode that displays a 3D game version of the scanned room.",
+      "identifier": "roomplan-hero-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8909a2da99ac2c9fbb690113e0b340ed/roomplan-hero-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/72452459698987f18d35614983103985/roomplan-hero-2~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/create-a-3d-model-of-an-interior-room-by-guiding-the-user-through-an-ar-experience"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "User-Interface",
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureView",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureViewDelegate"
+      ],
+      "title": "User Interface"
+    },
+    {
+      "anchor": "Scanning-Protocol",
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSessionDelegate"
+      ],
+      "title": "Scanning Protocol"
+    },
+    {
+      "anchor": "Captured-Data",
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/merging-multiple-scans-into-a-single-structure",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/scanning-the-rooms-of-a-single-structure",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedStructure",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoomData",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/captured-object-attributes"
+      ],
+      "title": "Captured Data"
+    },
+    {
+      "anchor": "3D-Asset-Output",
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/providing-custom-models-for-captured-rooms-and-structure-exports",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomBuilder",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/StructureBuilder",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/USDExportOptions"
+      ],
+      "title": "3D Asset Output"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.RoomPlan/documentation/RoomPlan/create-a-3d-model-of-an-interior-room-by-guiding-the-user-through-an-ar-experience"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Captured-Data",
+              "identifiers": [
+                "doc://com.apple.RoomPlan/documentation/RoomPlan/merging-multiple-scans-into-a-single-structure",
+                "doc://com.apple.RoomPlan/documentation/RoomPlan/scanning-the-rooms-of-a-single-structure",
+                "doc://com.apple.RoomPlan/documentation/RoomPlan/captured-object-attributes"
+              ],
+              "title": "Captured Data"
+            },
+            {
+              "anchor": "3D-Asset-Output",
+              "identifiers": [
+                "doc://com.apple.RoomPlan/documentation/RoomPlan/providing-custom-models-for-captured-rooms-and-structure-exports"
+              ],
+              "title": "3D Asset Output"
+            },
+            {
+              "anchor": "Variables",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomPlanVersionNumber",
+                "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomPlanVersionString"
+              ],
+              "title": "Variables"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/roomplan"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/roomplan"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

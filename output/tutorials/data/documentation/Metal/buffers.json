@@ -1,0 +1,1849 @@
+{
+  "abstract": [
+    {
+      "text": "Create and manage untyped data your app uses to exchange information with its shader functions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/buffers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Buffers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance represents a general purpose,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "typeless memory allocation that your app uses to send and retrieve data from a shader.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Your app decides how to use and interpret the buffer’s underlying bytes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create buffers from either an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLHeap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let deviceBuffer = device.makeBuffer(length: bufferSize,",
+                    "                                     options: .storageModeShared)",
+                    "",
+                    "let heapBuffer = heap.makeBuffer(length: bufferSize,",
+                    "                                 options: .storageModePrivate)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "id <MTLBuffer> deviceBuffer = [device newBufferWithLength: bufferSize",
+                    "                                                  options: MTLResourceStorageModeShared];",
+                    "",
+                    "id <MTLBuffer> heapBuffer = [heap newBufferWithLength:bufferSize",
+                    "                                              options:MTLResourceStorageModePrivate];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Metal-CPP",
+                    "MTL::Buffer* pDeviceBuffer = pDevice->newBuffer(bufferSize,",
+                    "                                                MTL::ResourceStorageModeShared);",
+                    "",
+                    "MTL::Buffer* pHeapBuffer = pHeap->newBuffer(bufferSize,",
+                    "                                            MTL::ResourceStorageModePrivate);"
+                  ],
+                  "syntax": "cpp",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "C++"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Buffers inherently support the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol’s properties and methods,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "including ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource/storageMode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which controls how the GPU handles its memory (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/resource-fundamentals",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/MetalKit/MTKMesh": {
+      "abstract": [
+        {
+          "text": "A container for the vertex data of a Model I/O mesh, suitable for use in a Metal app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTKMesh"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKMesh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTKMesh",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKMesh"
+    },
+    "doc://com.apple.documentation/documentation/MetalKit/MTKMeshBuffer": {
+      "abstract": [
+        {
+          "text": "A buffer that backs the vertex data of a Model I/O mesh, suitable for use in a Metal app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTKMeshBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKMeshBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTKMeshBuffer",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKMeshBuffer"
+    },
+    "doc://com.apple.documentation/documentation/MetalKit/MTKMeshBufferAllocator": {
+      "abstract": [
+        {
+          "text": "An interface for allocating a MetalKit buffer that backs the vertex data of a Model I/O mesh, suitable for use in a Metal app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTKMeshBufferAllocator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKMeshBufferAllocator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTKMeshBufferAllocator",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKMeshBufferAllocator"
+    },
+    "doc://com.apple.documentation/documentation/MetalKit/MTKMetalVertexDescriptorFromModelIO(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a partially converted Metal vertex descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTKMetalVertexDescriptorFromModelIO"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "modelIODescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLVertexDescriptor",
+          "text": "MDLVertexDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLVertexDescriptor",
+          "text": "MTLVertexDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKMetalVertexDescriptorFromModelIO(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTKMetalVertexDescriptorFromModelIO(_:)",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKMetalVertexDescriptorFromModelIO(_:)"
+    },
+    "doc://com.apple.documentation/documentation/MetalKit/MTKMetalVertexFormatFromModelIO(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a converted Metal vertex format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTKMetalVertexFormatFromModelIO"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "vertexFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MDLVertexFormat",
+          "text": "MDLVertexFormat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLVertexFormat",
+          "text": "MTLVertexFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKMetalVertexFormatFromModelIO(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTKMetalVertexFormatFromModelIO(_:)",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKMetalVertexFormatFromModelIO(_:)"
+    },
+    "doc://com.apple.documentation/documentation/MetalKit/MTKModelError": {
+      "abstract": [
+        {
+          "text": "Constants used to declare Model Errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTKModelError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKModelError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTKModelError",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKModelError"
+    },
+    "doc://com.apple.documentation/documentation/MetalKit/MTKModelIOVertexDescriptorFromMetal(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a partially converted Model I/O vertex descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTKModelIOVertexDescriptorFromMetal"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "metalDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLVertexDescriptor",
+          "text": "MTLVertexDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLVertexDescriptor",
+          "text": "MDLVertexDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKModelIOVertexDescriptorFromMetal(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTKModelIOVertexDescriptorFromMetal(_:)",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKModelIOVertexDescriptorFromMetal(_:)"
+    },
+    "doc://com.apple.documentation/documentation/MetalKit/MTKModelIOVertexFormatFromMetal(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a converted Model I/O vertex format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTKModelIOVertexFormatFromMetal"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "vertexFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLVertexFormat",
+          "text": "MTLVertexFormat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MDLVertexFormat",
+          "text": "MDLVertexFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKModelIOVertexFormatFromMetal(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTKModelIOVertexFormatFromMetal(_:)",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKModelIOVertexFormatFromMetal(_:)"
+    },
+    "doc://com.apple.documentation/documentation/MetalKit/MTKSubmesh": {
+      "abstract": [
+        {
+          "text": "A container for the index data of a Model I/O submesh, suitable for use in a Metal app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTKSubmesh"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKSubmesh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTKSubmesh",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKSubmesh"
+    },
+    "doc://com.apple.documentation/documentation/metalkit/1642762-mtkmodeliovertexdescriptorfromme": {
+      "abstract": [
+        {
+          "text": "Returns a partially converted Model I/O vertex descriptor, reporting any error that occurs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalkit/1642762-mtkmodeliovertexdescriptorfromme",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTKModelIOVertexDescriptorFromMetalWithError",
+      "type": "topic",
+      "url": "/documentation/metalkit/1642762-mtkmodeliovertexdescriptorfromme"
+    },
+    "doc://com.apple.documentation/documentation/metalkit/1642764-mtkmetalvertexdescriptorfrommode": {
+      "abstract": [
+        {
+          "text": "Returns a partially converted Metal vertex descriptor, reporting any error that occurs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalkit/1642764-mtkmetalvertexdescriptorfrommode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTKMetalVertexDescriptorFromModelIOWithError",
+      "type": "topic",
+      "url": "/documentation/metalkit/1642764-mtkmetalvertexdescriptorfrommode"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentDescriptor": {
+      "abstract": [
+        {
+          "text": "A representation of an argument within an argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLArgumentDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLArgumentDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLArgumentDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder": {
+      "abstract": [
+        {
+          "text": "An object used to encode data into an argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLArgumentEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLArgumentEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLArgumentEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeStrideStatic": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeStrideStatic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeStrideStatic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeStrideStatic"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeStrideStatic",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributestridestatic"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer": {
+      "abstract": [
+        {
+          "text": "A resource that stores data in a format defined by your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice": {
+      "abstract": [
+        {
+          "text": "The main Metal interface to a GPU that apps use to draw graphics and run computations in parallel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDevice",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLHeap": {
+      "abstract": [
+        {
+          "text": "A memory pool from which you can suballocate resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLHeap"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLHeap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLHeap"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLHeap",
+      "type": "topic",
+      "url": "/documentation/metal/mtlheap"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResource": {
+      "abstract": [
+        {
+          "text": "An allocation of memory accessible to a GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLResource"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLResource",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresource"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResource/storageMode": {
+      "abstract": [
+        {
+          "text": "The location and access permissions of the resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storageMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLStorageMode",
+          "text": "MTLStorageMode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource/storageMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "storageMode"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "storageMode",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresource/storagemode"
+    },
+    "doc://com.apple.metal/documentation/Metal/encoding-argument-buffers-on-the-gpu": {
+      "abstract": [
+        {
+          "text": "Use a compute pass to encode an argument buffer and access its arguments in a subsequent render pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/encoding-argument-buffers-on-the-gpu",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encoding Argument Buffers on the GPU",
+      "type": "topic",
+      "url": "/documentation/metal/encoding-argument-buffers-on-the-gpu"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Optimize your app’s performance by grouping your resources into argument buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving CPU Performance by Using Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/improving-cpu-performance-by-using-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/indexing-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Assign resource indices within an argument buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/indexing-argument-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Indexing Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/indexing-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/managing-groups-of-resources-with-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Create argument buffers to organize related resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/managing-groups-of-resources-with-argument-buffers",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Managing groups of resources with argument buffers",
+      "type": "topic",
+      "url": "/documentation/metal/managing-groups-of-resources-with-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/memory-heaps": {
+      "abstract": [
+        {
+          "text": "Take control of your app’s GPU memory management by creating a large memory allocation for various buffers, textures, and other resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/memory-heaps",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory Heaps",
+      "type": "topic",
+      "url": "/documentation/metal/memory-heaps"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-terrain-dynamically-with-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Use argument buffers to render terrain in real time with a GPU-driven pipeline.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-terrain-dynamically-with-argument-buffers",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rendering Terrain Dynamically with Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-terrain-dynamically-with-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/resource-fundamentals": {
+      "abstract": [
+        {
+          "text": "Learn the common attributes of all Metal memory resources, including buffers and textures, and how to manage the underlying memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/resource-fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resource Fundamentals",
+      "type": "topic",
+      "url": "/documentation/metal/resource-fundamentals"
+    },
+    "doc://com.apple.metal/documentation/Metal/resource-loading": {
+      "abstract": [
+        {
+          "text": "Load assets in your games and apps quickly by running a dedicated input/output queue alongside your GPU tasks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/resource-loading",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resource Loading",
+      "type": "topic",
+      "url": "/documentation/metal/resource-loading"
+    },
+    "doc://com.apple.metal/documentation/Metal/resource-synchronization": {
+      "abstract": [
+        {
+          "text": "Coordinate the contents of data buffers, textures, and other resources that CPUs and GPUs share access to.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/resource-synchronization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resource Synchronization",
+      "type": "topic",
+      "url": "/documentation/metal/resource-synchronization"
+    },
+    "doc://com.apple.metal/documentation/Metal/textures": {
+      "abstract": [
+        {
+          "text": "Create and manage typed data your app uses to exchange information with its shader functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/textures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Textures",
+      "type": "topic",
+      "url": "/documentation/metal/textures"
+    },
+    "doc://com.apple.metal/documentation/Metal/tracking-the-resource-residency-of-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Optimize resource performance within an argument buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/tracking-the-resource-residency-of-argument-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Tracking the Resource Residency of Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/tracking-the-resource-residency-of-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-argument-buffers-with-resource-heaps": {
+      "abstract": [
+        {
+          "text": "Reduce CPU overhead by using arrays inside argument buffers and combining them with resource heaps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-argument-buffers-with-resource-heaps",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using Argument Buffers with Resource Heaps",
+      "type": "topic",
+      "url": "/documentation/metal/using-argument-buffers-with-resource-heaps"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Resources",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/resource-fundamentals",
+        "doc://com.apple.metal/documentation/Metal/textures",
+        "doc://com.apple.metal/documentation/Metal/memory-heaps",
+        "doc://com.apple.metal/documentation/Metal/resource-loading",
+        "doc://com.apple.metal/documentation/Metal/resource-synchronization"
+      ],
+      "title": "Resources"
+    }
+  ],
+  "topicSections": [
+    {
+      "abstract": [
+        {
+          "text": "Store arbitrary data in a buffer, such as vertex locations or your own custom data structure.",
+          "type": "text"
+        }
+      ],
+      "anchor": "General-Purpose-Buffers",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLBuffer"
+      ],
+      "title": "General Purpose Buffers"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Group resources together into an argument buffer.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Argument-Buffers",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/managing-groups-of-resources-with-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/tracking-the-resource-residency-of-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/indexing-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/rendering-terrain-dynamically-with-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/encoding-argument-buffers-on-the-gpu",
+        "doc://com.apple.metal/documentation/Metal/using-argument-buffers-with-resource-heaps",
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeStrideStatic"
+      ],
+      "title": "Argument Buffers"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Load complex 3D meshes and textures from Model I/O assets, and prepare to draw them in your Metal render pipelines.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Model-IO-Interoperability",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/MetalKit/MTKMesh",
+        "doc://com.apple.documentation/documentation/MetalKit/MTKMeshBuffer",
+        "doc://com.apple.documentation/documentation/MetalKit/MTKMeshBufferAllocator",
+        "doc://com.apple.documentation/documentation/MetalKit/MTKSubmesh",
+        "doc://com.apple.documentation/documentation/MetalKit/MTKModelError",
+        "doc://com.apple.documentation/documentation/MetalKit/MTKMetalVertexFormatFromModelIO(_:)",
+        "doc://com.apple.documentation/documentation/MetalKit/MTKModelIOVertexFormatFromMetal(_:)",
+        "doc://com.apple.documentation/documentation/MetalKit/MTKMetalVertexDescriptorFromModelIO(_:)",
+        "doc://com.apple.documentation/documentation/MetalKit/MTKModelIOVertexDescriptorFromMetal(_:)"
+      ],
+      "title": "Model I/O Interoperability"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "abstract": [
+                {
+                  "text": "Store arbitrary data in a buffer, such as vertex locations or your own custom data structure.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "General-Purpose-Buffers",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLBuffer"
+              ],
+              "title": "General Purpose Buffers"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Group resources together into an argument buffer.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Argument-Buffers",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+                "doc://com.apple.metal/documentation/Metal/managing-groups-of-resources-with-argument-buffers",
+                "doc://com.apple.metal/documentation/Metal/tracking-the-resource-residency-of-argument-buffers",
+                "doc://com.apple.metal/documentation/Metal/indexing-argument-buffers",
+                "doc://com.apple.metal/documentation/Metal/rendering-terrain-dynamically-with-argument-buffers",
+                "doc://com.apple.metal/documentation/Metal/encoding-argument-buffers-on-the-gpu",
+                "doc://com.apple.metal/documentation/Metal/using-argument-buffers-with-resource-heaps",
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeStrideStatic"
+              ],
+              "title": "Argument Buffers"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Load complex 3D meshes and textures from Model I/O assets, and prepare to draw them in your Metal render pipelines.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Model-IO-Interoperability",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/MetalKit/MTKMesh",
+                "doc://com.apple.documentation/documentation/MetalKit/MTKMeshBuffer",
+                "doc://com.apple.documentation/documentation/MetalKit/MTKMeshBufferAllocator",
+                "doc://com.apple.documentation/documentation/MetalKit/MTKSubmesh",
+                "doc://com.apple.documentation/documentation/MetalKit/MTKModelError",
+                "doc://com.apple.documentation/documentation/MetalKit/MTKMetalVertexFormatFromModelIO(_:)",
+                "doc://com.apple.documentation/documentation/MetalKit/MTKModelIOVertexFormatFromMetal(_:)",
+                "doc://com.apple.documentation/documentation/MetalKit/MTKMetalVertexDescriptorFromModelIO(_:)",
+                "doc://com.apple.documentation/documentation/metalkit/1642764-mtkmetalvertexdescriptorfrommode",
+                "doc://com.apple.documentation/documentation/MetalKit/MTKModelIOVertexDescriptorFromMetal(_:)",
+                "doc://com.apple.documentation/documentation/metalkit/1642762-mtkmodeliovertexdescriptorfromme"
+              ],
+              "title": "Model I/O Interoperability"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Resources",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/resource-fundamentals",
+                "doc://com.apple.metal/documentation/Metal/textures",
+                "doc://com.apple.metal/documentation/Metal/memory-heaps",
+                "doc://com.apple.metal/documentation/Metal/resource-loading",
+                "doc://com.apple.metal/documentation/Metal/resource-synchronization"
+              ],
+              "title": "Resources"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKModelError/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTKModelError"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKMesh/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTKMesh"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder/title",
+          "value": "MTLArgumentEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLArgumentEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLArgumentEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKModelIOVertexDescriptorFromMetal(_:)/title",
+          "value": "MTKModelIOVertexDescriptorFromMetal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKModelIOVertexDescriptorFromMetal(_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MDLVertexDescriptor",
+              "text": "MDLVertexDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTKModelIOVertexDescriptorFromMetal"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MTLVertexDescriptor",
+              "text": "MTLVertexDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "metalDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKMeshBuffer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTKMeshBuffer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKMetalVertexFormatFromModelIO(_:)/title",
+          "value": "MTKMetalVertexFormatFromModelIO"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKMetalVertexFormatFromModelIO(_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@MTLVertexFormat",
+              "text": "MTLVertexFormat"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTKMetalVertexFormatFromModelIO"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@MDLVertexFormat",
+              "text": "MDLVertexFormat"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "vertexFormat"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/title",
+          "value": "MTLDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentDescriptor/title",
+          "value": "MTLArgumentDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLArgumentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLArgumentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/title",
+          "value": "MTLBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKMetalVertexDescriptorFromModelIO(_:)/title",
+          "value": "MTKMetalVertexDescriptorFromModelIO"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKMetalVertexDescriptorFromModelIO(_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MTLVertexDescriptor",
+              "text": "MTLVertexDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTKMetalVertexDescriptorFromModelIO"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MDLVertexDescriptor",
+              "text": "MDLVertexDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "modelIODescriptor"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeap/title",
+          "value": "MTLHeap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHeap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeap/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHeap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource/title",
+          "value": "MTLResource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeStrideStatic/title",
+          "value": "MTLAttributeStrideStatic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeStrideStatic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeStrideStatic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKModelIOVertexFormatFromMetal(_:)/title",
+          "value": "MTKModelIOVertexFormatFromMetal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKModelIOVertexFormatFromMetal(_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@MDLVertexFormat",
+              "text": "MDLVertexFormat"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTKModelIOVertexFormatFromMetal"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@MTLVertexFormat",
+              "text": "MTLVertexFormat"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "vertexFormat"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource~1storageMode/title",
+          "value": "storageMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource~1storageMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "storageMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKMeshBufferAllocator/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTKMeshBufferAllocator"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKSubmesh/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTKSubmesh"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/buffers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/buffers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

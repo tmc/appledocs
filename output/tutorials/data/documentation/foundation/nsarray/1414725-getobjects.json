@@ -1,0 +1,688 @@
+{
+  "abstract": [
+    {
+      "text": "Copies references to objects contained in the array that fall within the specified range to ",
+      "type": "text"
+    },
+    {
+      "code": "aBuffer",
+      "type": "codeVoice"
+    },
+    {
+      "text": ".",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/collections",
+        "doc://com.apple.documentation/documentation/foundation/nsarray"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsarray/1414725-getobjects"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1414725,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSArray(im)getObjects:range:",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSArray"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "getObjects:range:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "identifier",
+              "text": "getObjects:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "ObjectType"
+            },
+            {
+              "kind": "text",
+              "text": "  "
+            },
+            {
+              "kind": "keyword",
+              "text": "_Nonnull"
+            },
+            {
+              "kind": "text",
+              "text": " *"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "objects"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "range:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsrange",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSRange",
+              "text": "NSRange"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "range"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A C array of objects of size at least the length of the range specified by ",
+                  "type": "text"
+                },
+                {
+                  "code": "aRange",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "aBuffer"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A range within the bounds of the array.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If the location plus the length of the range is greater than the count of the array, this method raises an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsrangeexception",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "aRange"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method copies into ",
+              "type": "text"
+            },
+            {
+              "code": "aBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " references to objects in the array in the range specified by ",
+              "type": "text"
+            },
+            {
+              "code": "aRange",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; the size of the buffer must therefore be at least the length of the range multiplied by the size of an object reference, as shown in the following example (this is solely for illustration—you should typically not create a buffer simply to iterate over the contents of an array):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSArray *mArray = // an array with at least six elements...;",
+            "id *objects;",
+            " ",
+            "NSRange range = NSMakeRange(2, 4);",
+            "objects = malloc(sizeof(id) * range.length);",
+            " ",
+            "[mArray getObjects:objects range:range];",
+            " ",
+            "for (i = 0; i < range.length; i++) {",
+            "    NSLog(@\"objects: %@\", objects[i]);",
+            "}",
+            "free(objects);"
+          ],
+          "metadata": {
+            "anchor": "2555538",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/collections": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/collections",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collections",
+      "type": "topic",
+      "url": "/documentation/foundation/collections"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray": {
+      "abstract": [
+        {
+          "text": "A static ordered collection of objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1407477-containsobject": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a given object is present in the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "containsObject:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1407477-containsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "containsObject:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1407477-containsobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1408316-lastobject": {
+      "abstract": [
+        {
+          "text": "The last object in the array.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1408316-lastobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lastObject",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1408316-lastobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1409982-count": {
+      "abstract": [
+        {
+          "text": "The number of objects in the array.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1409982-count",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "count",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1409982-count"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1410317-getobjects": {
+      "abstract": [
+        {
+          "text": "Copies all the objects contained in the array to ",
+          "type": "text"
+        },
+        {
+          "code": "aBuffer",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getObjects:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1410317-getobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getObjects:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1410317-getobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1411296-objectsatindexes": {
+      "abstract": [
+        {
+          "text": "Returns an array containing the objects in the array at the indexes specified by a given index set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectsAtIndexes:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1411296-objectsatindexes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objectsAtIndexes:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1411296-objectsatindexes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1412852-firstobject": {
+      "abstract": [
+        {
+          "text": "The first object in the array.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1412852-firstobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "firstObject",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1412852-firstobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1414084-objectatindexedsubscript": {
+      "abstract": [
+        {
+          "text": "Returns the object at the specified index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectAtIndexedSubscript:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1414084-objectatindexedsubscript",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objectAtIndexedSubscript:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1414084-objectatindexedsubscript"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1414725-getobjects": {
+      "abstract": [
+        {
+          "text": "Copies references to objects contained in the array that fall within the specified range to ",
+          "type": "text"
+        },
+        {
+          "code": "aBuffer",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getObjects:range:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1414725-getobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getObjects:range:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1414725-getobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1414725-getobjects#2555538": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1414725-getobjects#2555538",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/nsarray/1414725-getobjects#2555538"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1415734-reverseobjectenumerator": {
+      "abstract": [
+        {
+          "text": "Returns an enumerator object that lets you access each object in the array, in reverse order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "reverseObjectEnumerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1415734-reverseobjectenumerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reverseObjectEnumerator",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1415734-reverseobjectenumerator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1416048-objectenumerator": {
+      "abstract": [
+        {
+          "text": "Returns an enumerator object that lets you access each object in the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectEnumerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1416048-objectenumerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objectEnumerator",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1416048-objectenumerator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1417555-objectatindex": {
+      "abstract": [
+        {
+          "text": "Returns the object located at the specified index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectAtIndex:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1417555-objectatindex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objectAtIndex:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1417555-objectatindex"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1460096-arraywithobjects": {
+      "abstract": [
+        {
+          "text": "Creates and returns an array that includes a given number of objects from a given C array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "arrayWithObjects:count:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1460096-arraywithobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "arrayWithObjects:count:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1460096-arraywithobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsrange": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsrange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRange",
+      "type": "topic",
+      "url": "/documentation/foundation/nsrange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsrangeexception": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsrangeexception",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRangeException",
+      "type": "topic",
+      "url": "/documentation/foundation/nsrangeexception"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1407477-containsobject",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1409982-count",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1410317-getobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1412852-firstobject",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1408316-lastobject",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1417555-objectatindex",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1414084-objectatindexedsubscript",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1411296-objectsatindexes",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1416048-objectenumerator",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1415734-reverseobjectenumerator"
+      ],
+      "title": "Querying an Array"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1460096-arraywithobjects"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsarray/1414725-getobjects"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

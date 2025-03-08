@@ -1,0 +1,976 @@
+{
+  "abstract": [
+    {
+      "text": "Make your iPad app more like a Mac app by taking advantage of system features in macOS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/mac-catalyst"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/optimizing-your-ipad-app-for-mac"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Optimizing your iPad app for Mac"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Mac version of your iPad app supports many system features found in macOS without requiring any effort from you, including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A default menu bar for your app",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Support for trackpad, mouse, and keyboard input",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Support for window resizing and full-screen display",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Mac-style scroll bars",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy-and-paste support",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag-and-drop support",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Support for system Touch Bar controls",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can, however, extend your app to take advantage of even more system features.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Mac apps built with Mac Catalyst can only use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppKit",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " APIs marked as available in Mac Catalyst, such as ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppKit/NSToolbar",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTouchBar",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". Mac Catalyst doesn’t support accessing unavailable AppKit APIs.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-menu-bar-items",
+          "level": 3,
+          "text": "Add menu bar items",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Mac version of your app comes with a standard menu bar. Customize it by adding and removing menu items using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuBuilder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To learn more, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/adding-menus-and-shortcuts-to-the-menu-bar-and-user-interface",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Show-a-Preferences-window",
+          "level": 3,
+          "text": "Show a Preferences window",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Mac apps typically let users manage app-specific settings by displaying a Preferences window. Users see this window by selecting the app menu followed by the Preferences menu item in the menu bar. If your app has a Settings bundle, the system automatically provides your app with a preferences window. To learn more, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/displaying-a-preferences-window",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-a-translucent-background-to-your-primary-view-controller",
+          "level": 3,
+          "text": "Apply a translucent background to your primary view controller",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iPad apps using a split view controller get a Mac-style vertical split view when running in macOS. But to make your iPad app look more at home on Mac, apply a translucent effect that blurs the desktop into the primary view controller’s background. To do this, set your split view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/primaryBackgroundStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/BackgroundStyle/sidebar",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", as shown in the following code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {",
+            "",
+            "    let splitViewController = window!.rootViewController as! UISplitViewController",
+            "    let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController",
+            "    navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem",
+            "    ",
+            "    // Add a translucent background to the primary view controller.",
+            "    splitViewController.primaryBackgroundStyle = .sidebar",
+            "    ",
+            "    splitViewController.delegate = self",
+            "    ",
+            "    return true",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Detect-the-pointer-in-a-view",
+          "level": 3,
+          "text": "Detect the pointer in a view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Mac users rely on a pointer to interact with apps, whether selecting a text field or moving a window. As the user moves the pointer over UI elements, some elements should change their appearance. For example, a web browser highlights a link as the pointer moves over it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To detect when the user moves the pointer over a view in your app, add a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIHoverGestureRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to that view. This tells your app when the pointer enters or leaves the view, or moves while over it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class ViewController: UIViewController {",
+            "",
+            "    @IBOutlet var button: UIButton!",
+            "",
+            "    override func viewDidLoad() {",
+            "        super.viewDidLoad()",
+            "",
+            "        let hover = UIHoverGestureRecognizer(target: self, action: #selector(hovering(_:)))",
+            "        button.addGestureRecognizer(hover)",
+            "    }",
+            "",
+            "    @objc",
+            "    func hovering(_ recognizer: UIHoverGestureRecognizer) {",
+            "        switch recognizer.state {",
+            "        case .began, .changed:",
+            "            button.titleLabel?.textColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)",
+            "        case .ended:",
+            "            button.titleLabel?.textColor = UIColor.link",
+            "        default:",
+            "            break",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/AppKit"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSToolbar": {
+      "abstract": [
+        {
+          "text": "An object that manages the space above your app’s custom content and either below or integrated with the window’s title bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSToolbar"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSToolbar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSToolbar",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSToolbar"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSTouchBar": {
+      "abstract": [
+        {
+          "text": "An object that provides dynamic contextual controls in the Touch Bar of supported models of MacBook Pro.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBar"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTouchBar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTouchBar",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTouchBar"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/LSMinimumSystemVersion": {
+      "abstract": [
+        {
+          "text": "The minimum version of the operating system required for the app to run in macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/LSMinimumSystemVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSMinimumSystemVersion",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/LSMinimumSystemVersion"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UIApplicationSupportsTabbedSceneCollection": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether an app built with Mac Catalyst supports automatic tabbing mode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UIApplicationSupportsTabbedSceneCollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIApplicationSupportsTabbedSceneCollection",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UIApplicationSupportsTabbedSceneCollection"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/tutorials/Mac-Catalyst": {
+      "abstract": [
+        {
+          "text": "Build a native Mac app from the same codebase as your iPad app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/tutorials/Mac-Catalyst",
+      "kind": "overview",
+      "role": "overview",
+      "title": "Bring an iPad App to the Mac with Mac Catalyst",
+      "type": "topic",
+      "url": "/tutorials/Mac-Catalyst"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIHoverGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets pointer movement over a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIHoverGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIHoverGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIHoverGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIHoverGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uihovergesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenuBuilder": {
+      "abstract": [
+        {
+          "text": "An interface for adding and removing menus from a menu system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIMenuBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIMenuBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIMenuBuilder",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenubuilder"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/BackgroundStyle/sidebar": {
+      "abstract": [
+        {
+          "text": "A style that applies a blurred effect to the background of the primary view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sidebar"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/BackgroundStyle/sidebar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISplitViewControllerBackgroundStyleSidebar"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISplitViewController.BackgroundStyle.sidebar",
+      "type": "topic",
+      "url": "/documentation/uikit/uisplitviewcontroller/backgroundstyle/sidebar"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/primaryBackgroundStyle": {
+      "abstract": [
+        {
+          "text": "The background style of the primary view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "primaryBackgroundStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISplitViewController",
+          "text": "UISplitViewController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UISplitViewControllerBackgroundStyle",
+          "text": "BackgroundStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/primaryBackgroundStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "primaryBackgroundStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "primaryBackgroundStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uisplitviewcontroller/primarybackgroundstyle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/adding-menus-and-shortcuts-to-the-menu-bar-and-user-interface": {
+      "abstract": [
+        {
+          "text": "Provide quick access to useful actions by adding menus and keyboard shortcuts to your Mac app built with Mac Catalyst.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/adding-menus-and-shortcuts-to-the-menu-bar-and-user-interface",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adding menus and shortcuts to the menu bar and user interface",
+      "type": "topic",
+      "url": "/documentation/uikit/adding-menus-and-shortcuts-to-the-menu-bar-and-user-interface"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/choosing-a-user-interface-idiom-for-your-mac-app": {
+      "abstract": [
+        {
+          "text": "Select the iPad or the Mac user interface idiom in your Mac app built with Mac Catalyst.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/choosing-a-user-interface-idiom-for-your-mac-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing a user interface idiom for your Mac app",
+      "type": "topic",
+      "url": "/documentation/uikit/choosing-a-user-interface-idiom-for-your-mac-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/displaying-a-preferences-window": {
+      "abstract": [
+        {
+          "text": "Provide a Preferences window in your Mac app built with Mac Catalyst so users can manage app preferences defined in a Settings bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/displaying-a-preferences-window",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying a Preferences window",
+      "type": "topic",
+      "url": "/documentation/uikit/displaying-a-preferences-window"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/mac-catalyst": {
+      "abstract": [
+        {
+          "text": "Create a version of your iPad app that users can run on a Mac device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/mac-catalyst",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Mac Catalyst",
+      "type": "topic",
+      "url": "/documentation/uikit/mac-catalyst"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-support",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/tutorials/Mac-Catalyst",
+        "doc://com.apple.uikit/documentation/UIKit/choosing-a-user-interface-idiom-for-your-mac-app",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/LSMinimumSystemVersion",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UIApplicationSupportsTabbedSceneCollection"
+      ],
+      "title": "App support"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "App-support",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/choosing-a-user-interface-idiom-for-your-mac-app",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/LSMinimumSystemVersion",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UIApplicationSupportsTabbedSceneCollection"
+              ],
+              "title": "App support"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISplitViewController~1BackgroundStyle~1sidebar/title",
+          "value": "UISplitViewControllerBackgroundStyleSidebar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISplitViewController~1BackgroundStyle~1sidebar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISplitViewControllerBackgroundStyleSidebar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSToolbar/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSToolbar"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIHoverGestureRecognizer/title",
+          "value": "UIHoverGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIHoverGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIHoverGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIHoverGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIHoverGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSTouchBar/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTouchBar"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISplitViewController~1primaryBackgroundStyle/title",
+          "value": "primaryBackgroundStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISplitViewController~1primaryBackgroundStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "primaryBackgroundStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuBuilder/title",
+          "value": "UIMenuBuilder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuBuilder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuBuilder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuBuilder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuBuilder"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/optimizing-your-ipad-app-for-mac"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/optimizing-your-ipad-app-for-mac"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

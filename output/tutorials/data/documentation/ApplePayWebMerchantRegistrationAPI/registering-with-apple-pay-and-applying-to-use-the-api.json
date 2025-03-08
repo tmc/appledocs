@@ -1,0 +1,449 @@
+{
+  "abstract": [
+    {
+      "text": "Register a commerce partner with Apple Pay and apply to use the web service.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/registering-with-apple-pay-and-applying-to-use-the-api"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Pay Web Merchant Registration API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Registering with Apple Pay and Applying to Use the API"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An e-commerce platform that’s enrolled in the Apple Developer program as an organization can apply to use the Apple Pay Web Merchant Registration API by completing the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create your unique Apple Pay merchant ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sign in the Apple Developer and fill out the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/contact/request/apple-pay-web-merchant-registration-api",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "to request access to the API.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set up your Payment Processing Certificate and Merchant Identity Certificate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once Apple grants you access to the API, you receive one or more domain-verification files. You must host a domain-verification file on a merchant’s domain before registering the merchant. For more information about domain verification, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/preparing-merchant-domains-for-verification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-Your-Apple-Pay-Merchant-ID",
+          "level": 3,
+          "text": "Create Your Apple Pay Merchant ID",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To apply to use the Apple Pay Web Merchant Registration API, you’ll need an Apple Pay merchant ID. This unique ID identifies you to Apple Pay as an entity that’s able to accept payments. Create your merchant ID and register it with Apple in your developer account. Merchant IDs never expire.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create your merchant ID, log in to your Apple developer account with the Account Holder or Admin role. Then:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/account/resources/certificates/list",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", select Identifiers from the sidebar.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select App IDs in the upper-right corner, and then select Merchant IDs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Add button (+).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter the merchant description and identifier name, then click Continue.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Review the settings, then click Register.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The identifier name you entered is your merchant ID. If you have multiple environments, such as production and sandbox, you may choose to create additional merchant IDs for other environments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you have at least one merchant ID, you’re ready to log in to your Apple developer account and fill out the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/contact/request/apple-pay-web-merchant-registration-api",
+              "isActive": true,
+              "overridingTitle": "submission form",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "submission form",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to request access to the API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-Payment-Processing-and-Merchant-Identity-Certificates",
+          "level": 3,
+          "text": "Create Payment Processing and Merchant Identity Certificates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To complete your Apple Pay set up, create the two certificates associated with your merchant ID:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A payment processing certificate that Apple Pay servers use to encrypt payment data",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A merchant identity certificate that you use to authenticate communication with Apple Pay servers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create the certificates, log in to your Apple developer account using the Account Holder or Admin roles. For the payment processing certificate, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/developer-account/#/devb2e62b839?sub=devf31990e3f",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For the merchant identity certificate, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/developer-account/#/dev1731126fb",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI": {
+      "abstract": [
+        {
+          "text": "Manage merchant registration through your web platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Pay Web Merchant Registration API",
+      "type": "topic",
+      "url": "/documentation/applepaywebmerchantregistrationapi"
+    },
+    "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/preparing-merchant-domains-for-verification": {
+      "abstract": [
+        {
+          "text": "Host a domain verification file on each domain before requesting registration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/preparing-merchant-domains-for-verification",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing Merchant Domains for Verification",
+      "type": "topic",
+      "url": "/documentation/applepaywebmerchantregistrationapi/preparing-merchant-domains-for-verification"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/account/resources/certificates/list": {
+      "identifier": "https://developer.apple.com/account/resources/certificates/list",
+      "title": "Certificates, Identifiers & Profiles",
+      "titleInlineContent": [
+        {
+          "text": "Certificates, Identifiers & Profiles",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/account/resources/certificates/list"
+    },
+    "https://developer.apple.com/contact/request/apple-pay-web-merchant-registration-api": {
+      "identifier": "https://developer.apple.com/contact/request/apple-pay-web-merchant-registration-api",
+      "title": "submission form ",
+      "titleInlineContent": [
+        {
+          "text": "submission form ",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/contact/request/apple-pay-web-merchant-registration-api"
+    },
+    "https://help.apple.com/developer-account/#/dev1731126fb": {
+      "identifier": "https://help.apple.com/developer-account/#/dev1731126fb",
+      "title": "Create a merchant identity certificate",
+      "titleInlineContent": [
+        {
+          "text": "Create a merchant identity certificate",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/developer-account/#/dev1731126fb"
+    },
+    "https://help.apple.com/developer-account/#/devb2e62b839?sub=devf31990e3f": {
+      "identifier": "https://help.apple.com/developer-account/#/devb2e62b839?sub=devf31990e3f",
+      "title": "Create a payment processing certificate",
+      "titleInlineContent": [
+        {
+          "text": "Create a payment processing certificate",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/developer-account/#/devb2e62b839?sub=devf31990e3f"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applepaywebmerchantregistrationapi/registering-with-apple-pay-and-applying-to-use-the-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,426 @@
+{
+  "abstract": [
+    {
+      "text": "Find and connect to a modem attached to a serial port using IOKit.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/iokit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/iokit/communicating_with_a_modem_on_a_serial_port"
+  },
+  "kind": "article",
+  "legacy_identifier": 3401589,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "IOKit"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.6",
+        "name": "macOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "11.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Communicating with a Modem on a Serial Port"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample project creates a command-line program that uses IOKit to discover a modem on a serial port and to send and receive data. Run the program within Xcode and use the console to monitor the progress of the communication.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3527926",
+          "level": 3,
+          "text": "Discover Attached Modems",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "IOKit provides a matching service for various types of I/O devices, including serial ports and modems. The sample code’s ",
+              "type": "text"
+            },
+            {
+              "code": "findModems()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function uses ",
+              "type": "text"
+            },
+            {
+              "code": "kIOSerialBSDServiceValue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to locate a serial device. Once located, the code identifies the type of serial device as a modem with ",
+              "type": "text"
+            },
+            {
+              "code": "kIOSerialBSDModemType",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "classesToMatch = IOServiceMatching(kIOSerialBSDServiceValue);",
+            "if (classesToMatch == NULL) {",
+            "    printf(\"IOServiceMatching returned a NULL dictionary.\\n\");",
+            "}",
+            "else {",
+            "    // Look for devices that claim to be modems.",
+            "    CFDictionarySetValue(classesToMatch,",
+            "                         CFSTR(kIOSerialBSDTypeKey),",
+            "                         CFSTR(kIOSerialBSDModemType));",
+            "}",
+            "",
+            "// Get an iterator across all matching devices.",
+            "kernResult = IOServiceGetMatchingServices(kIOMasterPortDefault, classesToMatch, matchingServices);"
+          ],
+          "metadata": {
+            "anchor": "3527919",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "findModems()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function returns an IOKit iterator that ",
+              "type": "text"
+            },
+            {
+              "code": "getModemPath()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses to locate the first available modem and obtain its formal BSD device path.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the function fails to find a modem or can’t obtain the device, the program prematurely quits.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3527927",
+          "level": 3,
+          "text": "Open the Serial Port and Initialize the Modem",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the ",
+              "type": "text"
+            },
+            {
+              "code": "findModems",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function finds the modem, ",
+              "type": "text"
+            },
+            {
+              "code": "openSerialPort()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses the low-level ",
+              "type": "text"
+            },
+            {
+              "code": "open()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " call to connect to the BSD file path discovered earlier. This function also captures the state of the serial port and saves it for later restoration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "fileDescriptor = open(bsdPath, O_RDWR | O_NOCTTY | O_NONBLOCK);",
+            "if (fileDescriptor == -1) {",
+            "    printf(\"Error opening serial port %s - %s(%d).\\n\",",
+            "           bsdPath, strerror(errno), errno);",
+            "    goto error;",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3527921",
+            "title": "Listing 2"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This code allows the function to set up communication parameters such as baud rate, blocking characteristics, and handshaking lines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the call succeeds, it returns a BSD file descriptor. The ",
+              "type": "text"
+            },
+            {
+              "code": "initalizeModem()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function then takes the file descriptor and sends the attention (",
+              "type": "text"
+            },
+            {
+              "code": "AT",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") command to the modem using the low-level ",
+              "type": "text"
+            },
+            {
+              "code": "write()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function. It then calls the ",
+              "type": "text"
+            },
+            {
+              "code": "read()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to obtain a response that confirms the modem is present.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3527928",
+          "level": 3,
+          "text": "Close the Serial Port",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "closeSerialPort()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function takes the passed file descriptor and waits for all output to flush, then restores the serial port to its original state and closes the file descriptor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if (tcdrain(fileDescriptor) == -1) {",
+            "    printf(\"Error waiting for drain - %s(%d).\\n\",",
+            "           strerror(errno), errno);",
+            "}",
+            "",
+            "// Traditionally it is good practice to reset a serial port back to",
+            "// the state in which you found it. This is why the original termios struct",
+            "// was saved.",
+            "if (tcsetattr(fileDescriptor, TCSANOW, &gOriginalTTYAttrs) == -1) {",
+            "    printf(\"Error resetting tty attributes - %s(%d).\\n\",",
+            "           strerror(errno), errno);",
+            "}",
+            "",
+            "close(fileDescriptor);"
+          ],
+          "metadata": {
+            "anchor": "3527923",
+            "title": "Listing 3"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This action terminates communication to the modem and concludes the use of the serial port.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/iokit": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "IOKit",
+      "type": "topic",
+      "url": "/documentation/iokit"
+    },
+    "doc://com.apple.documentation/documentation/iokit/communicating_with_a_modem_on_a_serial_port": {
+      "abstract": [
+        {
+          "text": "Find and connect to a modem attached to a serial port using IOKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/communicating_with_a_modem_on_a_serial_port",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Communicating with a Modem on a Serial Port",
+      "type": "topic",
+      "url": "/documentation/iokit/communicating_with_a_modem_on_a_serial_port"
+    },
+    "doc://com.apple.documentation/documentation/iokit/communicating_with_a_modem_on_a_serial_port#3527919": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/communicating_with_a_modem_on_a_serial_port#3527919",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/iokit/communicating_with_a_modem_on_a_serial_port#3527919"
+    },
+    "doc://com.apple.documentation/documentation/iokit/communicating_with_a_modem_on_a_serial_port#3527921": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/communicating_with_a_modem_on_a_serial_port#3527921",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/iokit/communicating_with_a_modem_on_a_serial_port#3527921"
+    },
+    "doc://com.apple.documentation/documentation/iokit/communicating_with_a_modem_on_a_serial_port#3527923": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/communicating_with_a_modem_on_a_serial_port#3527923",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/iokit/communicating_with_a_modem_on_a_serial_port#3527923"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs-assets.developer.apple.com/published/e3fdf67f42/CommunicatingWithAModemOnASerialPort.zip": {
+      "checksum": "220cd44e1195549b171225f717274f282c3d07a547f87cfe70f53f080b247bbcf9c8226b76389330eefbf1e4d346b85f91fa6e566a7b786dd8f3c7f5c0e1b5d6",
+      "identifier": "https://docs-assets.developer.apple.com/published/e3fdf67f42/CommunicatingWithAModemOnASerialPort.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/e3fdf67f42/CommunicatingWithAModemOnASerialPort.zip"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/e3fdf67f42/CommunicatingWithAModemOnASerialPort.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/iokit/communicating_with_a_modem_on_a_serial_port"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/iokit/communicating_with_a_modem_on_a_serial_port"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

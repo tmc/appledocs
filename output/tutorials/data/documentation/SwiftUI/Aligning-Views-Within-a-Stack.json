@@ -1,0 +1,1344 @@
+{
+  "abstract": [
+    {
+      "text": "Position views inside a stack using alignment guides.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-adjustments"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Aligning-Views-Within-a-Stack"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Aligning views within a stack"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Stacks place their child views to match their alignment, which defaults to center alignment.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you initialize the stack, you can specify an alignment for the stack to use that also applies to a stack’s child views.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you want to modify the placement of individual child views, use the alignment guide modifier to make adjustments that offset the view from the alignment the stack provides.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To align views across multiple stacks, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Aligning-Views-Across-Stacks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-defaults-for-basic-alignment",
+          "level": 3,
+          "text": "Use defaults for basic alignment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an example of how SwiftUI applies default alignment to the views in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", examine the following code used to provide a status view for a recording app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "HStack",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains an image view for the icon and two text views with labels that use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/font(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to adjust the font size of the text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "HStack {",
+            "    Image(\"microphone\")",
+            "    Text(\"Connecting\")",
+            "        .font(.caption)",
+            "    Text(\"Bryan\")",
+            "        .font(.title)",
+            "}",
+            ".padding()",
+            ".border(Color.blue, width: 1)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The orange reference line in the following figure shows the default alignment position of the views within the stack.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The line functions as a visual reference for the purposes of this article.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Aligning-Views-Within-a-Stack-1.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Customize-stack-alignment",
+          "level": 3,
+          "text": "Customize stack alignment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can align content within a stack based on guides provided by the alignments that the stack supports.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The various kinds of stacks support the following alignments:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " uses the guides defined in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VerticalAlignment",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VStack",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " uses the guides defined in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HorizontalAlignment",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ZStack",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " uses the guides defined in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Alignment",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and a combination of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "HorizontalAlignment",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "VerticalAlignment",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "alignment",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter when initializing a stack to define the alignment guide for the stack.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following example sets the alignment of the ",
+              "type": "text"
+            },
+            {
+              "code": "HStack",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VerticalAlignment/firstTextBaseline",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which aligns its child views to the baseline of the first text view (which contains the string “Connecting”):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "HStack(alignment: .firstTextBaseline) {",
+            "    Image(\"microphone\")",
+            "    Text(\"Connecting\")",
+            "        .font(.caption)",
+            "    Text(\"Bryan\")",
+            "        .font(.title)",
+            "}",
+            ".padding()",
+            ".border(Color.blue, width: 1)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Aligning-Views-Within-a-Stack-2.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Adjust-the-alignment-of-individual-views-within-a-stack",
+          "level": 3,
+          "text": "Adjust the alignment of individual views within a stack",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Custom images don’t provide a text baseline guide, so the bottom of the image aligns to the text view’s baseline.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Adjust the alignment of the image using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/alignmentGuide(_:computeValue:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to get the visual alignment you desire.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The alignment guide’s closure provides an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ViewDimensions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the parameter ",
+              "type": "text"
+            },
+            {
+              "code": "context",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in this example — which you can use to return an offset value.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The value looked up from ",
+              "type": "text"
+            },
+            {
+              "code": "context",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VerticalAlignment/bottom",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", provides an offset that aligns the bottom of the image adjusted by an offset to the baseline guide defined on the stack:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "HStack(alignment: .firstTextBaseline) {",
+            "    Image(\"microphone\")",
+            "        .alignmentGuide(.firstTextBaseline) { context in",
+            "            context[.bottom] - 0.12 * context.height",
+            "        }",
+            "    Text(\"Connecting\")",
+            "        .font(.caption)",
+            "    Text(\"Bryan\")",
+            "        .font(.title)",
+            "}",
+            ".padding()",
+            ".border(Color.blue, width: 1)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you use an alignment guide modifier, make sure to specify an active alignment of the stack.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Otherwise, SwiftUI doesn’t invoke the closure to offset the view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the example above, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VerticalAlignment/firstTextBaseline",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " input to the alignment guide",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "matches the stack’s alignment, so the adjustment affects the placement of the image:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Aligning-Views-Within-a-Stack-3.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-SF-Symbols-to-simplify-views-when-aligning-with-text",
+          "level": 3,
+          "text": "Use SF Symbols to simplify views when aligning with text",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can replace the microphone image with a similar icon from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/sf-symbols",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to simplify the view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The icons from SF Symbols use text baseline guides, which means they support whatever font styling you apply to the view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "HStack(alignment: .firstTextBaseline) {",
+            "    Image(systemName: \"mic.circle\")",
+            "        .font(.title)",
+            "    Text(\"Connecting\")",
+            "        .font(.caption)",
+            "    Text(\"Bryan\")",
+            "        .font(.title)",
+            "}",
+            ".padding()",
+            ".border(Color.blue, width: 1)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Aligning-Views-Within-a-Stack-4.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Aligning-Views-Within-a-Stack-1.png": {
+      "alt": "A blue rectangle defines the padded boundary of an HStack, in which a microphone image against the left side, followed the word Connecting styled as a caption, then the name Bryan styled as a title. The child views are spaced evenly across the stack and centered vertically. An orange line runs underneath the view, displaying the location of the default center alignment guide.",
+      "identifier": "Aligning-Views-Within-a-Stack-1.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e786deee8ebd48ac2caf3af21850ba96/Aligning-Views-Within-a-Stack-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f62725a72d37da85c58daccdb403fe7e/Aligning-Views-Within-a-Stack-1~dark@2x.png"
+        }
+      ]
+    },
+    "Aligning-Views-Within-a-Stack-2.png": {
+      "alt": "A blue rectangle defines the padded boundary of an HStack, in which a microphone image against the left side, followed the word Connecting styled as a caption, then the name Bryan styled as a title. The child views are spaced evenly across the stack and aligned with the text baselines matching the bottom of the microphone image. An orange line runs underneath the view, displaying the location of the baseline alignment guide.",
+      "identifier": "Aligning-Views-Within-a-Stack-2.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/82076de6ecf9276279d7c9cb905024f2/Aligning-Views-Within-a-Stack-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ff36bee1655d690b1130f834f2efad83/Aligning-Views-Within-a-Stack-2~dark@2x.png"
+        }
+      ]
+    },
+    "Aligning-Views-Within-a-Stack-3.png": {
+      "alt": "A blue rectangle defines the padded boundary of an HStack, in which a microphone image against the left side, followed the word Connecting styled as a caption, then the name Bryan styled as a title. The child views are spaced evenly across the stack and aligned with the text baselines. The microphone image is slightly offset to that the bottom of the microphone aligns with the baseline. An orange line runs underneath the view, displaying the location of the baseline alignment guide.",
+      "identifier": "Aligning-Views-Within-a-Stack-3.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f51a0a520176a8502cc8628c0fa3f3f9/Aligning-Views-Within-a-Stack-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/193db637dc46779494207c5853d606cc/Aligning-Views-Within-a-Stack-3~dark@2x.png"
+        }
+      ]
+    },
+    "Aligning-Views-Within-a-Stack-4.png": {
+      "alt": "A blue rectangle defines the padded boundary of an HStack, in which a microphone symbol in a circle aligns against the left side, followed the word Connecting styled as a caption, then the name Bryan styled as a title. The child views are spaced evenly across the stack and aligned with the baseline of the name matching the bottom of the microphone within the circle. An orange line runs underneath the view, displaying the location of the baseline alignment guide.",
+      "identifier": "Aligning-Views-Within-a-Stack-4.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2d597d3b57da46c1172946ac2d5a3c46/Aligning-Views-Within-a-Stack-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4add2f7352f5b10af003d9a4cae3cd72/Aligning-Views-Within-a-Stack-4~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Aligning-Views-Across-Stacks": {
+      "abstract": [
+        {
+          "text": "Create a custom alignment and use it to align views across multiple stacks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Aligning-Views-Across-Stacks",
+      "kind": "article",
+      "role": "article",
+      "title": "Aligning views across stacks",
+      "type": "topic",
+      "url": "/documentation/swiftui/aligning-views-across-stacks"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Alignment": {
+      "abstract": [
+        {
+          "text": "An alignment in both axes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Alignment"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Alignment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Alignment"
+        }
+      ],
+      "role": "symbol",
+      "title": "Alignment",
+      "type": "topic",
+      "url": "/documentation/swiftui/alignment"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AlignmentID": {
+      "abstract": [
+        {
+          "text": "A type that you use to create custom alignment guides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AlignmentID"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AlignmentID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AlignmentID"
+        }
+      ],
+      "role": "symbol",
+      "title": "AlignmentID",
+      "type": "topic",
+      "url": "/documentation/swiftui/alignmentid"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DepthAlignment": {
+      "abstract": [
+        {
+          "text": "An alignment position along the depth axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DepthAlignment"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DepthAlignment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DepthAlignment"
+        }
+      ],
+      "role": "symbol",
+      "title": "DepthAlignment",
+      "type": "topic",
+      "url": "/documentation/swiftui/depthalignment"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack": {
+      "abstract": [
+        {
+          "text": "A view that arranges its subviews in a horizontal line.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "HStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/hstack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/HorizontalAlignment": {
+      "abstract": [
+        {
+          "text": "An alignment position along the horizontal axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HorizontalAlignment"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HorizontalAlignment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HorizontalAlignment"
+        }
+      ],
+      "role": "symbol",
+      "title": "HorizontalAlignment",
+      "type": "topic",
+      "url": "/documentation/swiftui/horizontalalignment"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-adjustments": {
+      "abstract": [
+        {
+          "text": "Make fine adjustments to alignment, spacing, padding, and other layout parameters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-adjustments",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Layout adjustments",
+      "type": "topic",
+      "url": "/documentation/swiftui/layout-adjustments"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VStack": {
+      "abstract": [
+        {
+          "text": "A view that arranges its subviews in a vertical line.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "VStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/vstack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VerticalAlignment": {
+      "abstract": [
+        {
+          "text": "An alignment position along the vertical axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VerticalAlignment"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VerticalAlignment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VerticalAlignment"
+        }
+      ],
+      "role": "symbol",
+      "title": "VerticalAlignment",
+      "type": "topic",
+      "url": "/documentation/swiftui/verticalalignment"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VerticalAlignment/bottom": {
+      "abstract": [
+        {
+          "text": "A guide that marks the bottom edge of the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bottom"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17VerticalAlignmentV",
+          "text": "VerticalAlignment"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VerticalAlignment/bottom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bottom",
+      "type": "topic",
+      "url": "/documentation/swiftui/verticalalignment/bottom"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VerticalAlignment/firstTextBaseline": {
+      "abstract": [
+        {
+          "text": "A guide that marks the top-most text baseline in a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "firstTextBaseline"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17VerticalAlignmentV",
+          "text": "VerticalAlignment"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VerticalAlignment/firstTextBaseline",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "firstTextBaseline",
+      "type": "topic",
+      "url": "/documentation/swiftui/verticalalignment/firsttextbaseline"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/alignmentGuide(_:computeValue:)": {
+      "abstract": [
+        {
+          "text": "Sets the view’s horizontal alignment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alignmentGuide"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "computeValue"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/alignmentGuide(_:computeValue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alignmentGuide(_:computeValue:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/alignmentguide(_:computevalue:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/font(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the default font for text in this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "font"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/font(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "font(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/font(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ViewDimensions": {
+      "abstract": [
+        {
+          "text": "A view’s size and alignment guides in its own coordinate space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ViewDimensions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ViewDimensions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ViewDimensions"
+        }
+      ],
+      "role": "symbol",
+      "title": "ViewDimensions",
+      "type": "topic",
+      "url": "/documentation/swiftui/viewdimensions"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ZStack": {
+      "abstract": [
+        {
+          "text": "A view that overlays its subviews, aligning them in both axes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ZStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ZStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ZStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "ZStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/zstack"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/sf-symbols": {
+      "abstract": [
+        {
+          "text": "SF Symbols provides thousands of consistent, highly configurable symbols that integrate seamlessly with the San Francisco system font, automatically aligning with text in all weights and sizes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/sf-symbols",
+      "images": [
+        {
+          "identifier": "sf-symbols.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "foundations-sf-symbols-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "SF Symbols",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/sf-symbols"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "foundations-sf-symbols-thumbnail.png": {
+      "alt": null,
+      "identifier": "foundations-sf-symbols-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5cbaab2340c91ec558c8f0dc15966a82/foundations-sf-symbols-thumbnail@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5e41d1c836c410f756940ced72ff5ec3/foundations-sf-symbols-thumbnail~dark@2x.png"
+        }
+      ]
+    },
+    "sf-symbols.svg": {
+      "alt": null,
+      "identifier": "sf-symbols.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "sf-symbols",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/889c48d0b4f0916dabff9890e12cff79/sf-symbols.svg"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Aligning-views",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Aligning-Views-Across-Stacks",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/alignmentGuide(_:computeValue:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Alignment",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/HorizontalAlignment",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VerticalAlignment",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DepthAlignment",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AlignmentID",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ViewDimensions"
+      ],
+      "title": "Aligning views"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/aligning-views-within-a-stack"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

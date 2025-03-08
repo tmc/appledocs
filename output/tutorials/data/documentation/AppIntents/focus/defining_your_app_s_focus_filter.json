@@ -1,0 +1,763 @@
+{
+  "abstract": [
+    {
+      "text": "Customize your app’s behavior to reflect the device’s current Focus.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/appintents",
+        "doc://com.apple.documentation/documentation/appintents/focus"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/appintents/focus/defining_your_app_s_focus_filter"
+  },
+  "kind": "article",
+  "legacy_identifier": 4054819,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Intents"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Defining your app’s Focus filter"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use App Intents to define your app’s Focus filters, act on changes from the system, and filter notifications based on its parameters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC22 session 10121: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-4098390",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "4103175",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure the iOS and App Intents extension targets to include your development team and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-3928956",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The bundle identifier needs to support the App Groups capability.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re using a suite name other than ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "group.exampleChatApp",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", modify it in the following files: ",
+              "type": "text"
+            },
+            {
+              "code": "Repository.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "ExampleAppIntentsExtension.entitlements",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "ExampleChatApp.entitlements",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4103176",
+          "level": 3,
+          "text": "Create a Focus filter",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After launching the sample app, create a Focus filter for it by choosing Settings > Focus > Do Not Disturb (or another Focus) > Add Filter > Example Chat App. Modify the filter parameters, and then tap the Add button. Turn on the modified Focus to receive those parameters in the sample app’s App Intents extension. The system calls the perform function of the object conforming to ",
+              "type": "text"
+            },
+            {
+              "code": "SetFocusFilterIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and all @Parameters are available in the Focus filter. When you turn off the modified Focus, the system provides the sample app’s ",
+              "type": "text"
+            },
+            {
+              "code": "SetFocusFilterIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conforming object with the following default parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "alwaysUseDarkMode: false",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "status: nil",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "account: nil",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "4103177",
+          "level": 3,
+          "text": "Define Focus filter parameters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To define Focus filter parameters for an object that conforms to the ",
+              "type": "text"
+            },
+            {
+              "code": "SetFocusFilterIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, the sample project annotates the relevant variables with the ",
+              "type": "text"
+            },
+            {
+              "code": "@Parameter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property wrapper. It provides a default value for nonoptional parameters unless the filter requires the system to prompt for this value each time it enables it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ExampleFocusFilter: SetFocusFilterIntent {",
+            "    /// Providing a default value ensures setting this required Boolean value.",
+            "    @Parameter(title: \"Use Dark Mode\", default: false)",
+            "    var alwaysUseDarkMode: Bool",
+            "",
+            "    @Parameter(title: \"Status Message\")",
+            "    var status: String?",
+            "",
+            "    /// A representation of a chat account this app uses for notification filtering and suppression.",
+            "    /// The user receives suggestions from the suggestedEntities() function that AccountEntityQuery declares.",
+            "    @Parameter(title: \"Selected Account\")",
+            "    var account: AccountEntity?",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4103165",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4103178",
+          "level": 3,
+          "text": "Use custom parameters by adding app entity conformance",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use a custom object as a ",
+              "type": "text"
+            },
+            {
+              "code": "SetFocusFilterIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, the sample project adds ",
+              "type": "text"
+            },
+            {
+              "code": "AppEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conformance to the object. In the example below, ",
+              "type": "text"
+            },
+            {
+              "code": "AppEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conformance allows the system to use the ",
+              "type": "text"
+            },
+            {
+              "code": "AccountEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object as a ",
+              "type": "text"
+            },
+            {
+              "code": "SetFocusFilterIntent @Parameter",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct AccountEntity: AppEntity {",
+            "    static var typeDisplayRepresentation: TypeDisplayRepresentation {",
+            "        TypeDisplayRepresentation(name: \"A chat account\")",
+            "    }",
+            "",
+            "    static var defaultQuery = AccountEntityQuery()",
+            "",
+            "    let id: String",
+            "    let displayName: String",
+            "    let displaySubtitle: String",
+            "    let image: DisplayRepresentation.Image",
+            "",
+            "    var displayRepresentation: DisplayRepresentation {",
+            "        DisplayRepresentation(title: \"\\(displayName) account\",",
+            "                              subtitle: \"\\(displaySubtitle)\",",
+            "                              image: image)",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4103167",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4103179",
+          "level": 3,
+          "text": "Suggest app entities using entity queries",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample project adds a default entity query to suggest values when configuring the Focus filter in Settings. In the example below, the ",
+              "type": "text"
+            },
+            {
+              "code": "AccountEntityQuery",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that ",
+              "type": "text"
+            },
+            {
+              "code": "AccountEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses suggests chat accounts that are currently logged in:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct AccountEntityQuery: EntityQuery {",
+            "    func entities(for identifiers: [AccountEntity.ID]) async throws -> [AccountEntity] {",
+            "        Repository.shared.accountsLoggedIn.filter {",
+            "            identifiers.contains($0.id)",
+            "        }",
+            "    }",
+            "",
+            "    func suggestedEntities() async throws -> [AccountEntity] {",
+            "        Repository.shared.accountsLoggedIn",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4103169",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4103180",
+          "level": 3,
+          "text": "Filter notifications using the app context",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To filter notifications with Focus filters, the sample project sets the ",
+              "type": "text"
+            },
+            {
+              "code": "filterCriteria",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter for the notifications, and then lets the system know whether to suppress them by providing a predicate that evaluates against ",
+              "type": "text"
+            },
+            {
+              "code": "filterCriteria",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". In the example below, the ",
+              "type": "text"
+            },
+            {
+              "code": "FocusFilterAppContext appContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable returns a predicate that states: If there’s an account ",
+              "type": "text"
+            },
+            {
+              "code": "@Parameter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for this filter, suppress the notification unless the ",
+              "type": "text"
+            },
+            {
+              "code": "filterCriteria",
+              "type": "codeVoice"
+            },
+            {
+              "text": " matches the ",
+              "type": "text"
+            },
+            {
+              "code": "account.id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ExampleFocusFilter: SetFocusFilterIntent {",
+            "    var appContext: FocusFilterAppContext {",
+            "        logger.debug(\"App Context Called\")",
+            "        let predicate: NSPredicate",
+            "        if let account = account {",
+            "            predicate = NSPredicate(format: \"SELF IN %@\", [account.id])",
+            "        } else {",
+            "            predicate = NSPredicate(value: true)",
+            "        }",
+            "        return FocusFilterAppContext(notificationFilterPredicate: predicate)",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4103171",
+            "title": "Listing 4"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4103181",
+          "level": 3,
+          "text": "Use an App Intents extension for background execution",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample project adds an App Intents extension to handle Focus filters while the app is in the background. It sets the target membership of the object conforming to ",
+              "type": "text"
+            },
+            {
+              "code": "SetFocusFilterIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the App Intents extension only, and uses App Groups, or custom services, to share filter data between the extension and the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/appintents": {
+      "identifier": "doc://com.apple.documentation/documentation/appintents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Intents",
+      "type": "topic",
+      "url": "/documentation/appintents"
+    },
+    "doc://com.apple.documentation/documentation/appintents/focus": {
+      "identifier": "doc://com.apple.documentation/documentation/appintents/focus",
+      "kind": "article",
+      "role": "article",
+      "title": "Focus",
+      "type": "topic",
+      "url": "/documentation/appintents/focus"
+    },
+    "doc://com.apple.documentation/documentation/appintents/focus/defining_your_app_s_focus_filter": {
+      "abstract": [
+        {
+          "text": "Customize your app’s behavior to reflect the device’s current Focus.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appintents/focus/defining_your_app_s_focus_filter",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Defining your app’s Focus filter",
+      "type": "topic",
+      "url": "/documentation/appintents/focus/defining_your_app_s_focus_filter"
+    },
+    "doc://com.apple.documentation/documentation/appintents/focus/defining_your_app_s_focus_filter#4103165": {
+      "identifier": "doc://com.apple.documentation/documentation/appintents/focus/defining_your_app_s_focus_filter#4103165",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/appintents/focus/defining_your_app_s_focus_filter#4103165"
+    },
+    "doc://com.apple.documentation/documentation/appintents/focus/defining_your_app_s_focus_filter#4103167": {
+      "identifier": "doc://com.apple.documentation/documentation/appintents/focus/defining_your_app_s_focus_filter#4103167",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/appintents/focus/defining_your_app_s_focus_filter#4103167"
+    },
+    "doc://com.apple.documentation/documentation/appintents/focus/defining_your_app_s_focus_filter#4103169": {
+      "identifier": "doc://com.apple.documentation/documentation/appintents/focus/defining_your_app_s_focus_filter#4103169",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/appintents/focus/defining_your_app_s_focus_filter#4103169"
+    },
+    "doc://com.apple.documentation/documentation/appintents/focus/defining_your_app_s_focus_filter#4103171": {
+      "identifier": "doc://com.apple.documentation/documentation/appintents/focus/defining_your_app_s_focus_filter#4103171",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/appintents/focus/defining_your_app_s_focus_filter#4103171"
+    },
+    "doc://com.apple.documentation/documentation/appintents/focusfilterappcontext": {
+      "abstract": [
+        {
+          "text": "A type that contains app-specific contextual information for a particular Focus, such as the notification filter criteria to apply.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "FocusFilterAppContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appintents/focusfilterappcontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FocusFilterAppContext",
+      "type": "topic",
+      "url": "/documentation/appintents/focusfilterappcontext"
+    },
+    "doc://com.apple.documentation/documentation/appintents/focusfiltersuggestioncontext": {
+      "abstract": [
+        {
+          "text": "A type you use to suggest app configurations for a given Focus.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "FocusFilterSuggestionContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appintents/focusfiltersuggestioncontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FocusFilterSuggestionContext",
+      "type": "topic",
+      "url": "/documentation/appintents/focusfiltersuggestioncontext"
+    },
+    "doc://com.apple.documentation/documentation/appintents/setfocusfilterintent": {
+      "abstract": [
+        {
+          "text": "An interface for providing an app intent that you use to adapt your app’s behavior when Focus changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetFocusFilterIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appintents/setfocusfilterintent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetFocusFilterIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/setfocusfilterintent"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs-assets.developer.apple.com/published/f7a811901d/DefiningYourAppsFocusFilter.zip": {
+      "checksum": "750f1ffaae543eef0431dc124c9189a2be4b10dbe0badab33ae70dc3b28f0b3a09aa9a6fedda6461d3835cbaf251039f413571f1856eeb74e07c4de96b597b4a",
+      "identifier": "https://docs-assets.developer.apple.com/published/f7a811901d/DefiningYourAppsFocusFilter.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/f7a811901d/DefiningYourAppsFocusFilter.zip"
+    },
+    "link-3928956": {
+      "identifier": "link-3928956",
+      "kind": "article",
+      "role": "link",
+      "title": "bundle identifier",
+      "type": "topic",
+      "url": "https://developer.apple.com/account/resources/identifiers/bundleId/"
+    },
+    "link-4098390": {
+      "identifier": "link-4098390",
+      "kind": "article",
+      "role": "link",
+      "title": "Meet Focus filters",
+      "type": "topic",
+      "url": "https://developer.apple.com/wwdc22/10121"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/f7a811901d/DefiningYourAppsFocusFilter.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/appintents/setfocusfilterintent",
+        "doc://com.apple.documentation/documentation/appintents/focusfilterappcontext",
+        "doc://com.apple.documentation/documentation/appintents/focusfiltersuggestioncontext"
+      ],
+      "title": "Focus filters"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/appintents/focus/defining_your_app_s_focus_filter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

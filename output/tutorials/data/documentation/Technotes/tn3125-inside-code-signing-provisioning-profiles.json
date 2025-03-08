@@ -1,0 +1,2349 @@
+{
+  "abstract": [
+    {
+      "text": "Learn how provisioning profiles enable third-party code to run on Apple platforms.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.technotes/documentation/Technotes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.technotes/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "TN3125: Inside Code Signing: Provisioning Profiles"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Code signing is a foundational technology on all Apple platforms.  Many documents that discuss code signing focus on solving a specific problem.  The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Inside Code Signing",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " technote series is different: It peeks behind the code signing curtain, to give you a better understanding of how this technology works.  Read these technotes to make better code signing choices up front, to understand why Apple’s code signing tools work the way they do, to inform your investigation of any code signing issues you encounter, and because learning stuff is fun!",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The other technotes in the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Inside Code Signing",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " series are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3126-inside-code-signing-hashes",
+                      "isActive": true,
+                      "overridingTitle": "TN3126: Inside Code Signing: Hashes",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "TN3126: Inside Code Signing: Hashes",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3127-inside-code-signing-requirements",
+                      "isActive": true,
+                      "overridingTitle": "TN3127: Inside Code Signing: Requirements",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "TN3127: Inside Code Signing: Requirements",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3161-inside-code-signing-certificates",
+                      "isActive": true,
+                      "overridingTitle": "TN3161: Inside Code Signing: Certificates",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "TN3161: Inside Code Signing: Certificates",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Inside Code Signing",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " technotes discuss code signing details that aren’t considered API.  The structure of a code signature has changed numerous times in the past and may well change again in the future.  Don’t encode this information in your product.  When signing code, use Xcode (all platforms) or the ",
+                  "type": "text"
+                },
+                {
+                  "code": "codesign",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " tool (macOS only).  To get information or validate a code signature, use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "codesign",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " tool or the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Security/code-signing-services",
+                  "isActive": true,
+                  "overridingTitle": "Code Signing Services",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Code Signing Services",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": " API.  Apple updates these facilities to accommodate any changes to the code signature structure as they roll out.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Provisioning-profile-fundamentals",
+          "level": 2,
+          "text": "Provisioning profile fundamentals",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple platforms, except macOS, won’t run arbitrary third-party code.  All execution of third-party code must be authorized by Apple.  This authorization comes in the form of a provisioning profile, which ties together five criteria:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Who is allowed to sign code?",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "What apps are they allowed to sign?",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Where can those apps run?",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When can those apps run?",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "How can those apps be entitled?",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In this document the term ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "app",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " refers to a main executable packaged in a bundle structure.  This encompasses apps, app extensions, App Clips, system extensions, and XPC Services.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create provisioning profiles using the Apple Developer website, either directly using the website or indirectly using Xcode or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI",
+              "isActive": true,
+              "overridingTitle": "App Store Connect API",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "App Store Connect API",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the Apple Developer website creates a profile for you, it cryptographically signs it.  When you run an app on a device, the device checks this signature to determine if the profile is valid and, if so, checks that the app meets the criteria in the profile.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Unlike Apple’s other platforms, macOS doesn’t require a provisioning profile to run third-party code.  However, provisioning profiles are still relevant on macOS, as explained in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles#Entitlements-on-macOS",
+                  "isActive": true,
+                  "overridingTitle": "Entitlements on macOS",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Entitlements on macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There is one interesting edge case with provisioning profiles: When you submit your app to the App Store, the App Store re-signs the app as part of the distribution process.  Before doing that, it checks that the app is signed and provisioned correctly.  That check means that each individual device doesn’t need to perform further security checks, so the final app doesn’t have a provisioning profile.  However, this third-party code was still authorized by a profile, albeit during the App Store distribution process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Unpack-a-profile",
+          "level": 2,
+          "text": "Unpack a profile",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A provisioning profile is a property list wrapped within a Cryptographic Message Syntax (CMS) signature.  To view the original property list, remove the CMS wrapper using the ",
+              "type": "text"
+            },
+            {
+              "code": "security",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% security cms -D -i Profile_Explainer_iOS_Dev.mobileprovision -o Profile_Explainer_iOS_Dev-payload.plist",
+            "% cat Profile_Explainer_iOS_Dev-payload.plist ",
+            "…",
+            "<dict>",
+            "  … lots of properties …",
+            "</dict>",
+            "</plist>"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more details on CMS, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/rfc5652",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The exact format of provisioning profiles isn’t documented and could change at any time.  Use the techniques shown here for understanding and debugging purposes.  Avoid building a product based on these details; if you do build such a product, be prepared to update it as the Apple development story evolves.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To illustrate this point, the traditional property list view of a profile is no longer the source of truth on modern systems.  Rather, each profile contains a ",
+              "type": "text"
+            },
+            {
+              "code": "DER-Encoded-Profile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property which holds a binary form of the profile that’s the new source of truth.  For more on this switch, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles#The-future-is-DER",
+              "isActive": true,
+              "overridingTitle": "The Future is DER",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "The Future is DER",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Still, the property list is easier to read and so the bulk of this technote focuses on that.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the tools used in these examples, read their man pages.  If you’re unfamiliar with that process, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+              "isActive": true,
+              "overridingTitle": "Reading UNIX Manual Pages",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Reading UNIX Manual Pages",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "The-who",
+          "level": 2,
+          "text": "The who",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every profile has a ",
+              "type": "text"
+            },
+            {
+              "code": "DeveloperCertificates",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property holding the certificates of each developer who can sign code covered by the profile.  For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% plutil -extract DeveloperCertificates xml1 -o - Profile_Explainer_iOS_Dev-payload.plist",
+            "…",
+            "<array>",
+            "  <data>",
+            "  MIIFxDCCBKygAwIBAgIQfv+ckbvr2KtCgVI1ZPkPcjANBgkqhkiG9w0BAQsFADB1MUQw",
+            "  …",
+            "  PX0ovWucPvYp/HUcOnlbchPf/H63K8Jm5siTJlKsgGYEMX5wCJkh/+mlX1oAOH6CtOLy",
+            "  kA==",
+            "  </data>",
+            "  … perhaps more …",
+            "</array>",
+            "</plist>"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To extract a specific certificate, add its index to the key path:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% plutil -extract DeveloperCertificates.0 raw -o - Profile_Explainer_iOS_Dev-payload.plist | base64 -D > cert0.cer",
+            "% certtool d cert0.cer ",
+            "Serial Number      : 7E FF 9C 91 BB EB D8 AB 42 81 52 35 64 F9 0F 72 ",
+            "Issuer Name        :",
+            "   Common Name     : Apple Worldwide Developer Relations Certification Authority",
+            "   …",
+            "Subject Name       :",
+            "   …",
+            "   Common Name     : Apple Development: …",
+            "   …",
+            "Not Before         : 09:15:23 Apr 21, 2021",
+            "Not After          : 09:15:22 Apr 21, 2022",
+            "…"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about code-signing certificates, read ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3161-inside-code-signing-certificates",
+              "isActive": true,
+              "overridingTitle": "TN3161: Inside Code Signing: Certificates",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "TN3161: Inside Code Signing: Certificates",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "The-what",
+          "level": 2,
+          "text": "The what",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most profiles apply to a single App ID, encoded in the ",
+              "type": "text"
+            },
+            {
+              "code": "Entitlements",
+              "type": "codeVoice"
+            },
+            {
+              "text": " > ",
+              "type": "text"
+            },
+            {
+              "code": "application-identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% plutil -extract Entitlements.application-identifier raw -o - Profile_Explainer_iOS_Dev-payload.plist",
+            "SKMME9E2Y8.com.example.apple-samplecode.ProfileExplainer"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On macOS the standard App ID entitlement is ",
+                  "type": "text"
+                },
+                {
+                  "code": "com.apple.application-identifier",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".  A Mac Catalyst app uses both ",
+                  "type": "text"
+                },
+                {
+                  "code": "com.apple.application-identifier",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "application-identifier",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This property holds an App ID, composed of an App ID prefix and a bundle ID.  In this example ",
+              "type": "text"
+            },
+            {
+              "code": "SKMME9E2Y8",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the App ID prefix and ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.apple-samplecode.ProfileExplainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the bundle ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A profile might refer to a wildcard App ID:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% security cms -D -i Profile_Explainer_Wild_iOS_Dev.mobileprovision -o Profile_Explainer_Wild_iOS_Dev-payload.plist          ",
+            "% plutil -extract Entitlements.application-identifier raw -o - Profile_Explainer_Wild_iOS_Dev-payload.plist",
+            "SKMME9E2Y8.com.example.apple-samplecode.*"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This profile applies to any app whose App ID starts with ",
+              "type": "text"
+            },
+            {
+              "code": "SKMME9E2Y8.com.example.apple-samplecode.",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "The-where",
+          "level": 2,
+          "text": "The where",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most profiles apply to a specific list of devices.  This is encoded in the ",
+              "type": "text"
+            },
+            {
+              "code": "ProvisionedDevices",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% plutil -extract ProvisionedDevices xml1 -o - Profile_Explainer_iOS_Dev-payload.plist ",
+            "…",
+            "<array>",
+            "    <string>00008030-001544522E60802E</string>",
+            "    … perhaps more …",
+            "</array>",
+            "</plist>"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "App Store distribution profiles have no ",
+              "type": "text"
+            },
+            {
+              "code": "ProvisionedDevices",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property because you can’t run an App Store distribution signed app locally.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Developer ID and In-House (Enterprise) distribution profiles have the ",
+              "type": "text"
+            },
+            {
+              "code": "ProvisionsAllDevices",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property, indicating that they apply to all devices.  For more details about Developer ID provisioning profiles on the Mac, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles#Entitlements-on-macOS",
+              "isActive": true,
+              "overridingTitle": "Entitlements on macOS",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Entitlements on macOS",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "The-when",
+          "level": 2,
+          "text": "The when",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every profile has an ",
+              "type": "text"
+            },
+            {
+              "code": "ExpirationDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property which limits how long the profile remains valid.  For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% plutil -extract ExpirationDate raw -o - Profile_Explainer_iOS_Dev-payload.plist    ",
+            "2022-07-23T14:30:34Z"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This validity period varies by profile type, but it’s typically not more than a year.  The exception here is Developer ID profiles, which have an expiration date far in the future.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "The-how",
+          "level": 2,
+          "text": "The how",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every profile has an ",
+              "type": "text"
+            },
+            {
+              "code": "Entitlements",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property which authorizes the app to use specific entitlements.  For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% plutil -extract Entitlements xml1 -o - Profile_Explainer_iOS_Dev-payload.plist",
+            "…",
+            "<dict>",
+            "  <key>application-identifier</key>",
+            "  <string>SKMME9E2Y8.com.example.apple-samplecode.ProfileExplainer</string>",
+            "  <key>com.apple.developer.team-identifier</key>",
+            "  <string>SKMME9E2Y8</string>",
+            "  <key>get-task-allow</key>",
+            "  <true/>",
+            "  <key>keychain-access-groups</key>",
+            "  <array>",
+            "    <string>SKMME9E2Y8.*</string>",
+            "    <string>com.apple.token</string>",
+            "  </array>",
+            "</dict>",
+            "</plist>"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The entitlements in the profile act as an allowlist.  This isn’t the same as the entitlements claimed by the app.  To actually claim an entitlement, include the entitlement in the app’s code signature.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every entitlement claimed by the app must be in the profile’s allowlist but the reverse isn’t true.  It’s fine for the allowlist to include entitlements that the app doesn’t claim.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A macOS app can claim certain entitlements without them being authorized by a provisioning profile.  For more on this, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles#Entitlements-on-macOS",
+                  "isActive": true,
+                  "overridingTitle": "Entitlements on macOS",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Entitlements on macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some entitlements in the allowlist use wildcard syntax.  In the above example, ",
+              "type": "text"
+            },
+            {
+              "code": "SKMME9E2Y8.*",
+              "type": "codeVoice"
+            },
+            {
+              "text": " means that the app can claim any keychain access group with the ",
+              "type": "text"
+            },
+            {
+              "code": "SKMME9E2Y8.",
+              "type": "codeVoice"
+            },
+            {
+              "text": " prefix.  Wildcards don’t make sense in the app’s code signature.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To dump the entitlements claimed by the app, use ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "code": "--entitlements",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --display --entitlements - --xml ProfileExplainer.app | plutil -convert xml1 -o - -",
+            "…",
+            "<dict>",
+            "  <key>application-identifier</key>",
+            "  <string>SKMME9E2Y8.com.example.apple-samplecode.ProfileExplainer</string>",
+            "  <key>com.apple.developer.team-identifier</key>",
+            "  <string>SKMME9E2Y8</string>",
+            "  <key>get-task-allow</key>",
+            "  <true/>",
+            "  <key>keychain-access-groups</key>",
+            "  <array>",
+            "    <string>SKMME9E2Y8.com.example.apple-samplecode.ProfileExplainer</string>",
+            "    <string>SKMME9E2Y8.com.example.apple-samplecode.shared</string>",
+            "  </array>",
+            "</dict>",
+            "</plist>"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "By default ",
+                  "type": "text"
+                },
+                {
+                  "code": "--entitlements",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " dumps a human-readable representation of the DER-encoded entitlements.  The above example uses ",
+                  "type": "text"
+                },
+                {
+                  "code": "--xml",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to force it to output XML.  It runs the output through ",
+                  "type": "text"
+                },
+                {
+                  "code": "plutil",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to pretty print that XML.  To learn more about DER in provisioning profiles, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles#The-future-is-DER",
+                  "isActive": true,
+                  "overridingTitle": "The Future is DER",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "The Future is DER",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every entitlement claimed by this app is authorized by its profile, and thus iOS allows the app to run.  Note that the ",
+              "type": "text"
+            },
+            {
+              "code": "keychain-access-groups",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value, ",
+              "type": "text"
+            },
+            {
+              "code": "SKMME9E2Y8.com.example.apple-samplecode.ProfileExplainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", starts with ",
+              "type": "text"
+            },
+            {
+              "code": "SKMME9E2Y8.",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and thus is allowed by the wildcard.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Entitlements-on-macOS",
+          "level": 2,
+          "text": "Entitlements on macOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A macOS app can claim certain entitlements without them being authorized by a provisioning profile.  These ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "unrestricted entitlements",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.security.get-task-allow",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.security.application-groups",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Those used to enable and configure the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Security/app-sandbox",
+                      "isActive": true,
+                      "overridingTitle": "App Sandbox",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "App Sandbox",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Those used to configure the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Security/hardened-runtime",
+                      "isActive": true,
+                      "overridingTitle": "Hardened Runtime",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Hardened Runtime",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On other Apple platforms the equivalent to ",
+                  "type": "text"
+                },
+                {
+                  "code": "com.apple.security.get-task-allow",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "get-task-allow",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and, as with all entitlements on those platforms, must be authorized by a profile.  Also, App Groups work differently on macOS and other platforms.  For details, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.application-groups",
+                  "isActive": true,
+                  "overridingTitle": "App Groups Entitlement",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "App Groups Entitlement",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In contrast, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "restricted entitlements",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " must be authorized by a provisioning profile.  This is an important security feature on macOS.  For example, the fact that the ",
+              "type": "text"
+            },
+            {
+              "code": "keychain-access-groups",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement must be authorized by a profile means that other developers can’t impersonate your app in order to steal its keychain items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A Mac app that uses no restricted entitlements doesn’t need a provisioning profile.  This is true even if the app is distributed on the App Store.  The only exception to this rule is TestFlight, which always requires a profile.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "macOS supports provisioning profiles for both App Store and Developer ID distribution.  Some entitlements are not supported by Developer ID profiles.  For the details, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/developer-account/#/devadf555df9",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/developer-account/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".  For general information about Developer ID signing, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/developer-id/",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Profile-location",
+          "level": 2,
+          "text": "Profile location",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the early days of iOS development it was common to install a provisioning profile on the device as a whole (in the Settings app).  That’s still possible, but current best practice is to embed the profile within the app itself:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS expects to find the profile at ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyApp.app/Contents/embedded.provisionprofile",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Other Apple platforms expect to find the profile at ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyApp.app/embedded.mobileprovision",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that macOS also uses a different file name extension for provisioning profiles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps that you download from the App Store don’t contain an embedded provisioning profile because the App Store checks that the app is signed and provisioned correctly as part of its distribution process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some macOS products, like daemons and command-line tools, ship as a standalone executable.  A standalone executable can’t claim a restricted entitlement because there’s no place to embed the provisioning profile that authorizes that claim.  If your standalone executable needs to do this, wrap it in an app-like structure.  For an example of this, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/signing-a-daemon-with-a-restricted-entitlement",
+              "isActive": true,
+              "overridingTitle": "Signing a Daemon with a Restricted Entitlement",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Signing a Daemon with a Restricted Entitlement",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "The-future-is-DER",
+          "level": 2,
+          "text": "The future is DER",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Modern systems no longer treat the profile’s property list as the source of truth.  Rather, they use the binary form of the profile stored in the profile’s ",
+              "type": "text"
+            },
+            {
+              "code": "DER-Encoded-Profile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% plutil -extract DER-Encoded-Profile raw -o - Profile_Explainer_iOS_Dev-payload.plist",
+            "MIINQQYJKoZIhvcNAQcCoIINMjCCDS4CAQExDzANBglghkgBZQMEAgEFADCCAvwGCSqG…"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This form of the profile is encoded as DER, a binary encoding of ASN.1 that’s common in cryptographic file formats.  To extract it, first extract the property to a file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% plutil -extract DER-Encoded-Profile raw Profile_Explainer_iOS_Dev-payload.plist | base64 -D > Profile_Explainer_iOS_Dev.der "
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This is a whole new copy of the profile, so undo the CMS wrapper again:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% security cms -D -i Profile_Explainer_iOS_Dev.der -o Profile_Explainer_iOS_Dev-payload.der "
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, dump the DER-encoded payload itself:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% openssl asn1parse -in Profile_Explainer_iOS_Dev-payload.der -inform der -i | cut -c 30- ",
+            "SET               ",
+            " …",
+            " SEQUENCE          ",
+            "  UTF8STRING        :ExpirationDate",
+            "  UTCTIME           :220723143034Z",
+            " …",
+            " SEQUENCE          ",
+            "  UTF8STRING        :ProvisionedDevices",
+            "  SEQUENCE          ",
+            "   UTF8STRING        :00008030-001544522E60802E",
+            " SEQUENCE          ",
+            "  UTF8STRING        :DeveloperCertificates",
+            "  SEQUENCE          ",
+            "   OCTET STRING      [HEX DUMP]:1A6836292903FEFEB3A1303507436AD808BEDE7100E360F8F632579AC7EACA96",
+            " SEQUENCE          ",
+            "  UTF8STRING        :Entitlements",
+            "  appl [ 16 ]       ",
+            "   INTEGER           :01",
+            "   cont [ 16 ]       ",
+            "    SEQUENCE          ",
+            "     UTF8STRING        :application-identifier",
+            "     UTF8STRING        :SKMME9E2Y8.com.example.apple-samplecode.ProfileExplainer",
+            "    SEQUENCE          ",
+            "     UTF8STRING        :com.apple.developer.team-identifier",
+            "     UTF8STRING        :SKMME9E2Y8",
+            "    SEQUENCE          ",
+            "     UTF8STRING        :get-task-allow",
+            "     BOOLEAN           :255",
+            "    SEQUENCE          ",
+            "     UTF8STRING        :keychain-access-groups",
+            "     SEQUENCE          ",
+            "      UTF8STRING        :SKMME9E2Y8.*",
+            "      UTF8STRING        :com.apple.token"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This output contains mostly the same information as the property list, just encoded in DER form.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The one exception is the ",
+              "type": "text"
+            },
+            {
+              "code": "DeveloperCertificates",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property.  This doesn’t contain a full copy of each certificate, but rather a SHA-256 checksum of the certificate.  Assuming the certificate extracted from the property list earlier as ",
+              "type": "text"
+            },
+            {
+              "code": "cert0.cer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", run ",
+              "type": "text"
+            },
+            {
+              "code": "shasum",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to confirm that checksum:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% shasum -a 256 cert0.cer",
+            "1a6836292903fefeb3a1303507436ad808bede7100e360f8f632579ac7eaca96 …"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This DER-encoded profile is required starting with iOS 15, iPadOS 15, tvOS 15, and watchOS 8.  For more on that change, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/using-the-latest-code-signature-format",
+              "isActive": true,
+              "overridingTitle": "Using the Latest Code Signature Format",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Using the Latest Code Signature Format",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Revision-History",
+          "level": 2,
+          "text": "Revision History",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2024-02-06",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Added a link to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3126-inside-code-signing-hashes",
+                      "isActive": true,
+                      "overridingTitle": "TN3126: Inside Code Signing: Hashes",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "TN3126: Inside Code Signing: Hashes",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".  Made other minor editorial changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2022-05-24",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Made minor editorial changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2022-05-03",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Republished as TN3125.  Added ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles#The-future-is-DER",
+                      "isActive": true,
+                      "overridingTitle": "The Future is DER",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "The Future is DER",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " section.  Updated the examples to use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "plutil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".  Also made significant editorial changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2021-07-26",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " First published as ”What exactly is a provisioning profile?” on Apple Developer Forums.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.application-groups": {
+      "abstract": [
+        {
+          "text": "A list of identifiers specifying the groups your app belongs to.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.application-groups",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App Groups Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.application-groups"
+    },
+    "doc://com.apple.documentation/documentation/Security/app-sandbox": {
+      "abstract": [
+        {
+          "text": "Restrict access to system resources and user data in macOS apps to contain damage if an app becomes compromised.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/app-sandbox",
+      "kind": "article",
+      "role": "article",
+      "title": "App Sandbox",
+      "type": "topic",
+      "url": "/documentation/Security/app-sandbox"
+    },
+    "doc://com.apple.documentation/documentation/Security/code-signing-services": {
+      "abstract": [
+        {
+          "text": "Examine and validate signed code running on the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/code-signing-services",
+      "kind": "article",
+      "role": "article",
+      "title": "Code Signing Services",
+      "type": "topic",
+      "url": "/documentation/Security/code-signing-services"
+    },
+    "doc://com.apple.documentation/documentation/Security/hardened-runtime": {
+      "abstract": [
+        {
+          "text": "Manage security protections and resource access for your macOS apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/hardened-runtime",
+      "kind": "article",
+      "role": "article",
+      "title": "Hardened Runtime",
+      "type": "topic",
+      "url": "/documentation/Security/hardened-runtime"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/signing-a-daemon-with-a-restricted-entitlement": {
+      "abstract": [
+        {
+          "text": "Wrap a daemon in an app-like structure to use an entitlement thatʼs authorized by a provisioning profile.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/signing-a-daemon-with-a-restricted-entitlement",
+      "kind": "article",
+      "role": "article",
+      "title": "Signing a daemon with a restricted entitlement",
+      "type": "topic",
+      "url": "/documentation/Xcode/signing-a-daemon-with-a-restricted-entitlement"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/using-the-latest-code-signature-format": {
+      "abstract": [
+        {
+          "text": "Update legacy app code signatures so your app runs on current OS releases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/using-the-latest-code-signature-format",
+      "kind": "article",
+      "role": "article",
+      "title": "Using the latest code signature format",
+      "type": "topic",
+      "url": "/documentation/Xcode/using-the-latest-code-signature-format"
+    },
+    "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages": {
+      "abstract": [
+        {
+          "text": "Use the Terminal app to read the documentation for low-level UNIX tools and APIs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+      "kind": "article",
+      "role": "article",
+      "title": "Reading UNIX Manual Pages",
+      "type": "topic",
+      "url": "/documentation/os/reading-unix-manual-pages"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.technotes/documentation/Technotes": {
+      "abstract": [
+        {
+          "text": "Learn about specific development topics through these in-depth technical articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Technotes",
+      "type": "topic",
+      "url": "/documentation/technotes"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview": {
+      "abstract": [
+        {
+          "text": "Explore the various Wi-Fi APIs available on iOS and their expected use cases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3111: iOS Wi-Fi API overview",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3111-ios-wifi-api-overview"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations": {
+      "abstract": [
+        {
+          "text": "Learn techniques to help debug any coordinate space issue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3124: Debugging coordinate space issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3124-debugging-coordinate-transformations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles#Entitlements-on-macOS": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles#Entitlements-on-macOS",
+      "kind": "section",
+      "title": "Entitlements on macOS",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3125-inside-code-signing-provisioning-profiles#Entitlements-on-macOS"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles#The-future-is-DER": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles#The-future-is-DER",
+      "kind": "section",
+      "title": "The future is DER",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3125-inside-code-signing-provisioning-profiles#The-future-is-DER"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3126-inside-code-signing-hashes": {
+      "abstract": [
+        {
+          "text": "Look inside a code signature to see how it uses hashes to protect the code’s executable pages, resources, and metadata from tampering.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3126-inside-code-signing-hashes",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3126: Inside Code Signing: Hashes",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3126-inside-code-signing-hashes"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3127-inside-code-signing-requirements": {
+      "abstract": [
+        {
+          "text": "Explore how macOS uses code signing requirements to reason about code identity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3127-inside-code-signing-requirements",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3127: Inside Code Signing: Requirements",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3127-inside-code-signing-requirements"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3161-inside-code-signing-certificates": {
+      "abstract": [
+        {
+          "text": "Learn how code signing uses certificates to identify code authors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3161-inside-code-signing-certificates",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3161: Inside Code Signing: Certificates",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3161-inside-code-signing-certificates"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store": {
+      "abstract": [
+        {
+          "text": "Learn how to configure your App Clip to prevent it from being unavailable in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3168: Making your App Clip available in the App Store",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3168-making-your-app-clip-available-app-store"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration": {
+      "abstract": [
+        {
+          "text": "Diagnose errors due to invalid Apple Pay merchant identifier configurations by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifying the underlying causes of common errors and explore their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3173: Troubleshooting issues with your Apple Pay merchant identifier configuration",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose errors received while presenting the Apple Pay payment sheet on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your website by identifying the underlying causes of common errors and explore",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "their potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3174: Diagnosing issues with the Apple Pay payment sheet on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose common errors received while displaying the Apple Pay button on your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "website by identifying the underlying causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3175: Diagnosing issues with displaying the Apple Pay button on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues": {
+      "abstract": [
+        {
+          "text": "Diagnose errors that occur when processing Apple Pay payments,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identify common causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3176: Troubleshooting Apple Pay payment processing issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files": {
+      "abstract": [
+        {
+          "text": "Learn how alternate groups collect audio tracks, and how to choose which audio track to use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3177: Understanding alternate audio track groups in movie files",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems": {
+      "abstract": [
+        {
+          "text": "Ensure that every Mach-O image has a UUID, and that every distinct Mach-O image has its own unique UUID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3178: Checking for and resolving build UUID problems",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3178-checking-for-and-resolving-build-uuid-problems"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy": {
+      "abstract": [
+        {
+          "text": "Learn how local network privacy affects your software.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3179: Understanding local network privacy",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1": {
+      "abstract": [
+        {
+          "text": "Migrate from version 2 to version 1 of App Store Server Notifications using the Modify an App endpoint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3180: Reverting to App Store Server Notifications V1",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3180-reverting-app-store-server-notifications-v1"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Identify common configurations that cause unsuccessful privacy manifest validation with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3181: Debugging an invalid privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3181-debugging-invalid-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the tracking domains you use in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3182: Adding privacy tracking keys to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the APIs that can potentially fingerprint devices in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3183: Adding required reason API entries to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the data your app or third-party SDK collects in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3184: Adding data collection details to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest"
+    },
+    "https://developer.apple.com/developer-id/": {
+      "identifier": "https://developer.apple.com/developer-id/",
+      "title": "Signing Mac Software with Developer ID",
+      "titleInlineContent": [
+        {
+          "text": "Signing Mac Software with Developer ID",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/developer-id/"
+    },
+    "https://help.apple.com/developer-account/": {
+      "identifier": "https://help.apple.com/developer-account/",
+      "title": "Developer Account Help",
+      "titleInlineContent": [
+        {
+          "text": "Developer Account Help",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/developer-account/"
+    },
+    "https://help.apple.com/developer-account/#/devadf555df9": {
+      "identifier": "https://help.apple.com/developer-account/#/devadf555df9",
+      "title": "Supported capabilities (macOS)",
+      "titleInlineContent": [
+        {
+          "text": "Supported capabilities (macOS)",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/developer-account/#/devadf555df9"
+    },
+    "https://tools.ietf.org/html/rfc5652": {
+      "identifier": "https://tools.ietf.org/html/rfc5652",
+      "title": "RFC 5652",
+      "titleInlineContent": [
+        {
+          "text": "RFC 5652",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/rfc5652"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Latest",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+        "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+        "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+        "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+        "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+        "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+        "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+        "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+        "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations"
+      ],
+      "title": "Latest"
+    }
+  ]
+}

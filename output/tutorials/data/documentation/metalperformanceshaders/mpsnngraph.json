@@ -1,0 +1,1437 @@
+{
+  "abstract": [
+    {
+      "text": "An optimized representation of a graph of neural network image and filter nodes.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2867121,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MPSNNGraph",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "MPSNNGraph"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal Performance Shaders"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "MPSNNGraph"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MPSNNGraph"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MPSKernel",
+              "text": "MPSKernel"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you have prepared a graph of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnimagenode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnfilternode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and, if needed, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnstatenode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects, you may initialize a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " using the image node that you wish to appear as the result. The graph object will introspect the graph representation and determine which nodes are needed for inputs, and which nodes are produced as output state (if any). Nodes which are not needed to calculate the result image node are ignored. Some nodes may be internally concatenated with other nodes for better performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnimagenode",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " that you choose as the result node may be interior to a graph. This feature is provided as a means to examine intermediate computations in the full graph for debugging purposes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " construction, the graph attached to the result node will be parsed and reduced to an optimized representation. This representation may be saved using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol for later recall.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When decoding a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", it will be created against the system default ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If you would like to set the device, your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " should conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsdeviceprovider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2890842",
+          "level": 3,
+          "text": "Debugging Tips",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In typical usage, some refinement, especially of padding policies, may be required to get the expected answer from Metal Performance Shaders. If the result image is the wrong size, padding is typically the problem. When the answers are incorrect, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel/1648835-offset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or other property may be incorrectly configured at some stage. As the graph is generated starting from an output image node, you may create other graphs starting at any image node within the graph. This will give you a view into the result produced from each intermediate layer with a minimum of fuss. In addition, the usual ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418711-debugdescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method is available to inspect objects to make sure they conform to expectation. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that certain operations such as neuron filters that follow convolution filters and image concatenation may be optimized away by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " when it is constructed. The convolution can do neuron operations as part of its operation. Concatenation is best done by writing the result of earlier filter passes in the right place using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel/2097550-destinationfeaturechanneloffset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " rather than by adding an extra copy. Other optimizations may be added as framework capabilities improve. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nscoder": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoder",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel/1648835-offset": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel/1648835-offset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offset",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnkernel/1648835-offset"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel/2097550-destinationfeaturechanneloffset": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel/2097550-destinationfeaturechanneloffset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "destinationFeatureChannelOffset",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnkernel/2097550-destinationfeaturechanneloffset"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsdeviceprovider": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsdeviceprovider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSDeviceProvider",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsdeviceprovider"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpshandle": {
+      "abstract": [
+        {
+          "text": "The protocol that provides resource identification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSHandle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpshandle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSHandle",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpshandle"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageallocator": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageAllocator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageallocator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageAllocator",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimageallocator"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSKernel",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpskernel"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnbinarygradientstate": {
+      "abstract": [
+        {
+          "text": "A class representing the state of a gradient binary kernel when it was encoded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNBinaryGradientState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnbinarygradientstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNBinaryGradientState",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnbinarygradientstate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnfilternode": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnfilternode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNFilterNode",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnfilternode"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngradientstate": {
+      "abstract": [
+        {
+          "text": "A class representing the state of a gradient kernel when it was encoded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNGradientState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngradientstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNGradientState",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngradientstate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph": {
+      "abstract": [
+        {
+          "text": "An optimized representation of a graph of neural network image and filter nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNGraph"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNGraph",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngraph"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2866998-destinationimageallocator": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "destinationImageAllocator"
+        },
+        {
+          "kind": "text",
+          "text": ": any MPSImageAllocator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2866998-destinationimageallocator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "destinationImageAllocator",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngraph/2866998-destinationimageallocator"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867000-intermediateimagehandles": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "intermediateImageHandles"
+        },
+        {
+          "kind": "text",
+          "text": ": [any MPSHandle]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867000-intermediateimagehandles",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "intermediateImageHandles",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngraph/2867000-intermediateimagehandles"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867011-encode": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLCommandBuffer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceImages"
+        },
+        {
+          "kind": "text",
+          "text": ": [MPSImage], "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceStates"
+        },
+        {
+          "kind": "text",
+          "text": ": [MPSState]?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "intermediateImages"
+        },
+        {
+          "kind": "text",
+          "text": ": NSMutableArray?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "destinationStates"
+        },
+        {
+          "kind": "text",
+          "text": ": NSMutableArray?) -> MPSImage?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867011-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(to:sourceImages:sourceStates:intermediateImages:destinationStates:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngraph/2867011-encode"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867012-sourceimagehandles": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceImageHandles"
+        },
+        {
+          "kind": "text",
+          "text": ": [any MPSHandle]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867012-sourceimagehandles",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sourceImageHandles",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngraph/2867012-sourceimagehandles"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867036-encode": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLCommandBuffer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceImages"
+        },
+        {
+          "kind": "text",
+          "text": ": [MPSImage]) -> MPSImage?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867036-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(to:sourceImages:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngraph/2867036-encode"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867043-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder, "
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867043-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coder:device:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngraph/2867043-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867056-sourcestatehandles": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceStateHandles"
+        },
+        {
+          "kind": "text",
+          "text": ": [any MPSHandle]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867056-sourcestatehandles",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sourceStateHandles",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngraph/2867056-sourcestatehandles"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867077-init": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice, "
+        },
+        {
+          "kind": "identifier",
+          "text": "resultImage"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSNNImageNode)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867077-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(device:resultImage:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngraph/2867077-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867094-outputstateistemporary": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputStateIsTemporary"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867094-outputstateistemporary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "outputStateIsTemporary",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngraph/2867094-outputstateistemporary"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867123-resulthandle": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "resultHandle"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MPSHandle)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867123-resulthandle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resultHandle",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngraph/2867123-resulthandle"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867149-resultstatehandles": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "resultStateHandles"
+        },
+        {
+          "kind": "text",
+          "text": ": [any MPSHandle]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867149-resultstatehandles",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resultStateHandles",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngraph/2867149-resultstatehandles"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2890826-executeasync": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeAsync"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withSourceImages"
+        },
+        {
+          "kind": "text",
+          "text": ": [MPSImage], "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSNNGraphCompletionHandler) -> MPSImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2890826-executeasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeAsync(withSourceImages:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngraph/2890826-executeasync"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2942459-encodebatch": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeBatch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLCommandBuffer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceImages"
+        },
+        {
+          "kind": "text",
+          "text": ": [[MPSImage]], "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceStates"
+        },
+        {
+          "kind": "text",
+          "text": ": [[MPSState]]?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "intermediateImages"
+        },
+        {
+          "kind": "text",
+          "text": ": NSMutableArray?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "destinationStates"
+        },
+        {
+          "kind": "text",
+          "text": ": NSMutableArray?) -> [MPSImage]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2942459-encodebatch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encodeBatch(to:sourceImages:sourceStates:intermediateImages:destinationStates:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngraph/2942459-encodebatch"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2953133-format": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSImageFeatureChannelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2953133-format",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "format",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngraph/2953133-format"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2953952-encodebatch": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeBatch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLCommandBuffer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceImages"
+        },
+        {
+          "kind": "text",
+          "text": ": [[MPSImage]], "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceStates"
+        },
+        {
+          "kind": "text",
+          "text": ": [[MPSState]]?) -> [MPSImage]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2953952-encodebatch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encodeBatch(to:sourceImages:sourceStates:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngraph/2953952-encodebatch"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2953954-resultimageisneeded": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "resultImageIsNeeded"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2953954-resultimageisneeded",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resultImageIsNeeded",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngraph/2953954-resultimageisneeded"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2953955-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice, "
+        },
+        {
+          "kind": "identifier",
+          "text": "resultImage"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSNNImageNode, "
+        },
+        {
+          "kind": "identifier",
+          "text": "resultImageIsNeeded"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2953955-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(device:resultImage:resultImageIsNeeded:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngraph/2953955-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2976512-reloadfromdatasources": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "reloadFromDataSources"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2976512-reloadfromdatasources",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reloadFromDataSources()",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngraph/2976512-reloadfromdatasources"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/3037385-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice, "
+        },
+        {
+          "kind": "identifier",
+          "text": "resultImages"
+        },
+        {
+          "kind": "text",
+          "text": ": [MPSNNImageNode], "
+        },
+        {
+          "kind": "identifier",
+          "text": "resultsAreNeeded"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutablePointer<ObjCBool>?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/3037385-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(device:resultImages:resultsAreNeeded:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngraph/3037385-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/3037386-readcountforsourceimage": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "readCountForSourceImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int) -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/3037386-readcountforsourceimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readCountForSourceImage(at:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngraph/3037386-readcountforsourceimage"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/3037387-readcountforsourcestate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "readCountForSourceState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int) -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/3037387-readcountforsourcestate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readCountForSourceState(at:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngraph/3037387-readcountforsourcestate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraphcompletionhandler": {
+      "abstract": [
+        {
+          "text": "A notification when an asynchronous graph execution has finished.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNGraphCompletionHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraphcompletionhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNGraphCompletionHandler",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngraphcompletionhandler"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnimagenode": {
+      "abstract": [
+        {
+          "text": "A placeholder node denoting the position of a neural network image in a graph.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNImageNode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnimagenode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNImageNode",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnimagenode"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnstatenode": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnstatenode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNStateNode",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnstatenode"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate": {
+      "abstract": [
+        {
+          "text": "An opaque data container for large storage in MPS CNN filters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSState",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsstate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Objects that Simplify the Creation of Neural Networks",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1418711-debugdescription": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418711-debugdescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "debugDescription()",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1418711-debugdescription"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLDevice",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnimagenode",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpshandle"
+      ],
+      "title": "Neural Network Graphs"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2868817",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867043-init",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867077-init",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2953955-init",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/3037385-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "2868818",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2866998-destinationimageallocator",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageallocator",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867000-intermediateimagehandles",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867094-outputstateistemporary",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867123-resulthandle",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867149-resultstatehandles",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867012-sourceimagehandles",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867056-sourcestatehandles",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2953133-format",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2953954-resultimageisneeded"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "2868819",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867036-encode",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2867011-encode",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnbinarygradientstate",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngradientstate",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2890826-executeasync",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraphcompletionhandler",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2953952-encodebatch",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2942459-encodebatch",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/3037386-readcountforsourceimage",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/3037387-readcountforsourcestate",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph/2976512-reloadfromdatasources"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpsnngraph"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpsnngraph"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

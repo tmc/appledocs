@@ -1,0 +1,2140 @@
+{
+  "abstract": [
+    {
+      "text": "Filter an image by convolving it with custom and high-speed kernels.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/blurring-an-image"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.3",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Blurring an image"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project uses a variety of convolution techniques to blur an image with custom kernels and built-in high-speed kernels. ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Convolution",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a common image-processing technique that changes the value of a pixel according to the values of its surrounding pixels. Many common image filters, such as blurring, detecting edges, sharpening, and embossing, derive from convolution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Kernels",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " form the basis of convolution operations. Kernels are 1D or 2D grids of numbers that indicate the influence of a pixel’s neighbors on its final value. To calculate the value of each transformed pixel, add the products of each surrounding pixel value with the corresponding kernel value. During a convolution operation, the kernel passes over every pixel in the image, repeating this procedure, and then applies the effect to the entire image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "convolution_diagram_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Kernels don’t need to have the same height and width, and can be 1D (that is, either the height or the width is 1) or 2D (that is, both the height and the width are greater than 1). When a convolution operation transforms a pixel, both dimensions must be odd numbers to center the kernel over the pixel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The simplest kernel, known as an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "identity kernel",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", contains a single value: 1. The following formula shows the result when applying the kernel to the central value in a grid of nine values. It multiplies the pixel by the central value in the convolution kernel, and then multiplies the surrounding pixel values by 9. The sum of these values is 0.5.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "identity_formula_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An image remains unchanged when convolving it with an identity kernel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Run-the-sample",
+          "level": 3,
+          "text": "Run the sample",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To convolve an image, select a blur filter from the SwiftUI ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Picker",
+              "isActive": true,
+              "overridingTitle": "Picker",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Picker",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " control.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Blur-an-image-with-a-2D-kernel",
+          "level": 3,
+          "text": "Blur an image with a 2D kernel",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "box blur kernel",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " returns the average value of the neighboring pixels. In the following example, the kernel contains nine values and the result is the sum of 1 divided by 9 multiplied by each of the pixel values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "box_blur_formula_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that the sum of the values in the convolution kernel above is 1 — that is, the kernel is ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "normalized",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". If the sum of the values is greater than 1, the resulting image is brighter than the source. If the sum is less than 1, the resulting image is darker than the source.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A more complex blurring kernel varies the influence of pixels according to their distance from the center of the kernel, and yields a smoother blurring effect. The following kernel (based on a Hann window) is suitable for use with an integer format (for example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved8x4",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") convolution:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let kernel2D: [Int16] = [",
+            "    0,    0,    0,      0,      0,      0,      0,",
+            "    0,    2025, 6120,   8145,   6120,   2025,   0,",
+            "    0,    6120, 18496,  24616,  18496,  6120,   0,",
+            "    0,    8145, 24616,  32761,  24616,  8145,   0,",
+            "    0,    6120, 18496,  24616,  18496,  6120,   0,",
+            "    0,    2025, 6120,   8145,   6120,   2025,   0,",
+            "    0,    0,    0,      0,      0,      0,      0",
+            "]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below shows the result of blurring an image using ",
+              "type": "text"
+            },
+            {
+              "code": "kernel2D",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "hann_kernel_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample passes kernels as arrays of integers to the integer format convolution filters. To normalize an integer kernel, the sample passes a divisor to the function that is the sum of the elements of the kernel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let divisor = weights.map { Int32($0) }.reduce(0, +)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows how to use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/convolve(with:divisor:bias:edgeMode:destination:)-1oul9",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to perform a convolution and populate a destination buffer with the result:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "sourceBuffer.convolve(with: kernel,",
+            "                      divisor: divisor,",
+            "                      edgeMode: .extend,",
+            "                      destination: destinationBuffer)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Blur-an-image-with-a-separable-kernel",
+          "level": 3,
+          "text": "Blur an image with a separable kernel",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "kernel2D",
+              "type": "codeVoice"
+            },
+            {
+              "text": " kernel described in the previous section is ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "separable",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "; that is, it’s the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "outer product",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " of a 1D horizontal kernel and a 1D vertical kernel. A separable kernel allows splitting of the 2D convolution into two 1D passes, resulting in faster processing times. The following formula shows the two vectors that form ",
+              "type": "text"
+            },
+            {
+              "code": "kernel2D",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "separable_formula_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The separable convolution functions in vImage work on planar buffers. The sample uses the following code to create planar source and destination buffers, and to convert the interleaved source image to planar:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let planarSourceBuffers = vImage.PixelBuffer<vImage.Planar8x4>(size: sourceBuffer.size)",
+            "let planarDestinationBuffers = vImage.PixelBuffer<vImage.Planar8x4>(size: sourceBuffer.size)",
+            "",
+            "sourceBuffer.deinterleave(destination: planarSourceBuffers)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about working with planar buffers, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample declares this 1D kernel with the following code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let kernel1D: [Float] = [0, 45, 136, 181, 136, 45, 0]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that the kernel for the separable convolution uses single-precision values. This allows for increased precision compared to the 2D integer convolution functions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To apply a blur using a pair of 1D kernels, the sample calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/separableConvolve(horizontalKernel:verticalKernel:bias:edgeMode:destination:)-2iyq6",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "planarSourceBuffers.separableConvolve(horizontalKernel: kernel,",
+            "                                      verticalKernel: kernel,",
+            "                                      edgeMode: .extend,",
+            "                                      destination: planarDestinationBuffers)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The increase in speed from using two 1D kernels instead of a single 2D kernel is significant. For each pixel, the 2D pass requires ",
+              "type": "text"
+            },
+            {
+              "code": "M * N",
+              "type": "codeVoice"
+            },
+            {
+              "text": " multiplications and additions (where ",
+              "type": "text"
+            },
+            {
+              "code": "M",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the number of rows and ",
+              "type": "text"
+            },
+            {
+              "code": "N",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the number of columns), but each 1D pass only requires ",
+              "type": "text"
+            },
+            {
+              "code": "M + N",
+              "type": "codeVoice"
+            },
+            {
+              "text": " multiplications and additions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Blur-an-image-with-high-speed-kernels",
+          "level": 3,
+          "text": "Blur an image with high-speed kernels",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "vImage provides two high-speed blurring convolutions for 8-bit images: a box filter and a tent filter. These blurs are equivalent to convolving with standard kernels, but the developer doesn’t need to supply the kernel. These functions are typically faster than performing an equivalent convolution with custom kernels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The box filter returns the average pixel value in a rectangular region that surrounds the transformed pixel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "box_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/boxConvolve(kernelSize:edgeMode:destination:)-2h7fy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to apply a box filter to an image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "sourceBuffer.boxConvolve(kernelSize: .init(width: kernelLength,",
+            "                                           height: kernelLength),",
+            "                         edgeMode: .extend,",
+            "                         destination: destinationBuffer)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although the box filter is the fastest blur, the following example shows how it suffers from rectangular artifacts:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "box_filter_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The tent filter returns the weighted average of pixel values in a circular region that surrounds the pixel that vImage is transforming. ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Weighted average",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " means that the influence of pixels on the result decreases the further they are away from the transformed pixel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "tent_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/tentConvolve(kernelSize:edgeMode:destination:)-150xp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to apply a tent filter to an image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "sourceBuffer.tentConvolve(kernelSize: .init(width: kernelLength,",
+            "                                            height: kernelLength),",
+            "                          edgeMode: .extend,",
+            "                          destination: destinationBuffer)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows the result of a tent filter. The result is a smoother blur, at the expense of being slightly slower to execute than the box filter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "tent_filter_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that passing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/EdgeMode/truncateKernel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " flag to the high-speed kernels can significantly impact their performance. This flag is only necessary when vImage needs to restrict calculations to the portion of the kernel overlapping the image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Blur-an-image-with-multiple-kernels",
+          "level": 3,
+          "text": "Blur an image with multiple kernels",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "vImage can apply multiple kernels in a single convolution. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/convolve(with:divisor:bias:edgeMode:destination:)-1oul9",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function makes it possible to specify four separate kernels — one for each channel in the image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using multiple kernels to apply image filters, vImage can operate on the red, green, blue, and alpha channels individually. For example, it can use multiple-kernel convolutions to resample the color channels of an image differently to compensate for the positioning of RGB phosphors on the screen. Because each of the four kernels can operate on a single channel, the vImage multiple-kernel convolution functions are available only to the interleaved image formats, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/Planar8x4",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PlanarFx4",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The four kernels for the convolution filters need to be the same size, but can accept padding with zeros to simulate smaller kernels. vImage is able to optimize individual passes, effectively cropping the zero padding.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code creates an array of four kernels, each containing a central circle of 1s of decreasing size:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let radius = kernelLength / 2",
+            "let diameter = (radius * 2) + 1",
+            "",
+            "let kernels: [vImage.ConvolutionKernel2D<Int16>] = (1 ... 4).map { index in",
+            "    let weights = [Int16](unsafeUninitializedCapacity: diameter * diameter) {",
+            "        buffer, initializedCount in",
+            "        for x in 0 ..< diameter {",
+            "            for y in 0 ..< diameter {",
+            "                if hypot(Float(radius - x), Float(radius - y)) < Float(radius / index) {",
+            "                    buffer[y * diameter + x] = 1",
+            "                } else {",
+            "                    buffer[y * diameter + x] = 0",
+            "                }",
+            "            }",
+            "        }",
+            "        ",
+            "        initializedCount = diameter * diameter",
+            "    }",
+            "    ",
+            "    return vImage.ConvolutionKernel2D(values: weights,",
+            "                                      size: .init(width: kernelLength,",
+            "                                                  height: kernelLength))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, with a kernel length of 17, the first three kernels from the code above contain the following values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "multiple_kernels_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/convolve(with:divisor:bias:edgeMode:destination:)-1oul9",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " performs the convolution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let divisors = kernels.map { return Int32($0.values.reduce(0, +)) }",
+            "",
+            "sourceBuffer.convolve(with: (kernels[0], kernels[1], kernels[2], kernels[3]),",
+            "                      divisors: (divisors[0], divisors[1], divisors[2], divisors[3]),",
+            "                      edgeMode: .extend,",
+            "                      destination: destinationBuffer)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below shows the result of the multiple-kernel convolution. Note the color-fringing effect from applying different kernels to the different color channels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "multi_kernel_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "a8a4b9753f10/BlurringAnImage.zip": {
+      "checksum": "a8a4b9753f10702452b10ecb81b58d2e6b29d0192ef49bd1f8911e31131820e1a85d04a5d519f3320fcb15c4b0779d1f85cd0d5643618c3f9e0d6f639ec17353",
+      "identifier": "a8a4b9753f10/BlurringAnImage.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/a8a4b9753f10/BlurringAnImage.zip"
+    },
+    "box_2x.png": {
+      "alt": "A 9-by-9 rectangle of pixels with a red border surrounding the center 7-by-7 rectangle of pixels.",
+      "identifier": "box_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c5c3c3b745d93fa853a25b266503dede/box_2x.png"
+        }
+      ]
+    },
+    "box_blur_formula_2x.png": {
+      "alt": "A mathematical formula showing a 3-by-3 matrix multiplied by a 3-by-3 matrix with a result on the right.",
+      "identifier": "box_blur_formula_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4e42447ed7760464ee6e57eb2884db9a/box_blur_formula_2x.png"
+        }
+      ]
+    },
+    "box_filter_2x.png": {
+      "alt": "A very blurred photograph of a waterwheel with a partly cloudy sky in the background.",
+      "identifier": "box_filter_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7b38cc0715cc613a2a2011b54d024253/box_filter_2x.png"
+        }
+      ]
+    },
+    "convolution_diagram_2x.png": {
+      "alt": "A diagram that shows a 3 by 3 convolution kernel centered over a source pixel, highlighting the new pixel value.",
+      "identifier": "convolution_diagram_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6dcd6b1843aa1d3fd0cd5229cd14ee86/convolution_diagram_2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/adding-a-bokeh-effect-to-images": {
+      "abstract": [
+        {
+          "text": "Simulate a bokeh effect by applying dilation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/adding-a-bokeh-effect-to-images",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adding a bokeh effect to images",
+      "type": "topic",
+      "url": "/documentation/accelerate/adding-a-bokeh-effect-to-images"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/convolution": {
+      "abstract": [
+        {
+          "text": "Apply a convolution kernel to an image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/convolution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Convolution",
+      "type": "topic",
+      "url": "/documentation/accelerate/convolution"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/morphology": {
+      "abstract": [
+        {
+          "text": "Dilate and erode images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/morphology",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Morphology",
+      "type": "topic",
+      "url": "/documentation/accelerate/morphology"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance": {
+      "abstract": [
+        {
+          "text": "Improve your app’s performance by converting image buffer formats from interleaved to planar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing image-processing performance",
+      "type": "topic",
+      "url": "/documentation/accelerate/optimizing-image-processing-performance"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/EdgeMode/truncateKernel": {
+      "abstract": [
+        {
+          "text": "An edge mode that uses only the part of the kernel that overlaps the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "truncateKernel"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/EdgeMode/truncateKernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vImage.EdgeMode.truncateKernel",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/edgemode/truncatekernel"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved8x4": {
+      "abstract": [
+        {
+          "text": "A four-channel, 8-bit-per-channel interleaved buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Interleaved8x4"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved8x4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Interleaved8x4"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.Interleaved8x4",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/interleaved8x4"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/boxConvolve(kernelSize:edgeMode:destination:)-2h7fy": {
+      "abstract": [
+        {
+          "text": "Convolves an 8-bit planar pixel buffer with a box filter.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Planar8",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "boxConvolve"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "kernelSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO4SizeV",
+          "text": "Size"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "edgeMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO8EdgeModeO",
+          "text": "EdgeMode"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@Pixel_8",
+          "text": "Pixel_8"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/boxConvolve(kernelSize:edgeMode:destination:)-2h7fy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "boxConvolve(kernelSize:edgeMode:destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/boxconvolve(kernelsize:edgemode:destination:)-2h7fy"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/convolve(with:divisor:bias:edgeMode:destination:)-1oul9": {
+      "abstract": [
+        {
+          "text": "Convolves an 8-bit-per-channel, 4-channel interleaved pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Interleaved8x4",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolve"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO19ConvolutionKernel2DV",
+          "text": "ConvolutionKernel2D"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int16V",
+          "text": "Int16"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "divisor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bias"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "edgeMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO8EdgeModeO",
+          "text": "EdgeMode"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@Pixel_8888",
+          "text": "Pixel_8888"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/convolve(with:divisor:bias:edgeMode:destination:)-1oul9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convolve(with:divisor:bias:edgeMode:destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/convolve(with:divisor:bias:edgemode:destination:)-1oul9"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/separableConvolve(horizontalKernel:verticalKernel:bias:edgeMode:destination:)-2iyq6": {
+      "abstract": [
+        {
+          "text": "Performs separable convolution on an 8-bit planar pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Planar8",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "separableConvolve"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "horizontalKernel"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "verticalKernel"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bias"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "edgeMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO8EdgeModeO",
+          "text": "EdgeMode"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@Pixel_16U",
+          "text": "Pixel_16U"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/separableConvolve(horizontalKernel:verticalKernel:bias:edgeMode:destination:)-2iyq6",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "separableConvolve(horizontalKernel:verticalKernel:bias:edgeMode:destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/separableconvolve(horizontalkernel:verticalkernel:bias:edgemode:destination:)-2iyq6"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/tentConvolve(kernelSize:edgeMode:destination:)-150xp": {
+      "abstract": [
+        {
+          "text": "Convolves an 8-bit-per-channel, 4-channel interleaved pixel buffer with a tent filter.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Interleaved8x4",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tentConvolve"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "kernelSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO4SizeV",
+          "text": "Size"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "edgeMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO8EdgeModeO",
+          "text": "EdgeMode"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@Pixel_8888",
+          "text": "Pixel_8888"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/tentConvolve(kernelSize:edgeMode:destination:)-150xp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tentConvolve(kernelSize:edgeMode:destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/tentconvolve(kernelsize:edgemode:destination:)-150xp"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/Planar8x4": {
+      "abstract": [
+        {
+          "text": "A pixel buffer that contains four homogeneous 8-bit planes, for example, RGBA or CMYK.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Planar8x4"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/Planar8x4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Planar8x4"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.Planar8x4",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/planar8x4"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PlanarFx4": {
+      "abstract": [
+        {
+          "text": "A pixel buffer that contains four homogeneous 32-bit, floating-point planes, for example, RGBA or CMYK.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlanarFx4"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PlanarFx4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlanarFx4"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.PlanarFx4",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/planarfx4"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-library": {
+      "abstract": [
+        {
+          "text": "Manipulate large images using the CPU’s vector processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-library"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Picker": {
+      "abstract": [
+        {
+          "text": "A control for selecting from a set of mutually exclusive values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Picker"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "SelectionValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SelectionValue"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Picker",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Picker",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Picker"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "hann_kernel_2x.png": {
+      "alt": "A blurred photograph of a waterwheel with a partly cloudy sky in the background.",
+      "identifier": "hann_kernel_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/825295c48bab3c68b5cd5f8bdbd05da1/hann_kernel_2x.png"
+        }
+      ]
+    },
+    "identity_formula_2x.png": {
+      "alt": "A mathematical formula showing a 3-by-3 matrix multiplied by a 3-by-3 matrix with a result on the right.",
+      "identifier": "identity_formula_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/eb0878f443657a7c1c14fb4d58b3ba45/identity_formula_2x.png"
+        }
+      ]
+    },
+    "multi_kernel_2x.png": {
+      "alt": "A blurred photograph of a waterwheel with a partly cloudy sky in the background.",
+      "identifier": "multi_kernel_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/525296fa99f5a1619ca943291982d0e6/multi_kernel_2x.png"
+        }
+      ]
+    },
+    "multiple_kernels_2x.png": {
+      "alt": "A diagram of three boxes that each contain a 17-by-17 grid filled with 1s and 0s. The central circle in each box contains 1s and decreases in size from left to right. The area surrounding each circle contains 0s.",
+      "identifier": "multiple_kernels_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3b94e99f01b935d0dce186263120de1e/multiple_kernels_2x.png"
+        }
+      ]
+    },
+    "separable_formula_2x.png": {
+      "alt": "A mathematical formula showing that the outer product of a 7-by-1 vector and a 1-by-7 vector is the 7-by-7 matrix.",
+      "identifier": "separable_formula_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3ebcc136a8da5946e27dc638c043b19b/separable_formula_2x.png"
+        }
+      ]
+    },
+    "tent_2x.png": {
+      "alt": "A 9-by-9 rectangle of pixels with a red border surrounding the center circular region of pixels.",
+      "identifier": "tent_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/29874f8091d96805749cc35be812910c/tent_2x.png"
+        }
+      ]
+    },
+    "tent_filter_2x.png": {
+      "alt": "A blurred photograph of a waterwheel with a partly cloudy sky in the background.",
+      "identifier": "tent_filter_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c3bba999da13ce0c49860fce7dd92d8f/tent_filter_2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "a8a4b9753f10/BlurringAnImage.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Convolution-and-Morphology",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/adding-a-bokeh-effect-to-images",
+        "doc://com.apple.accelerate/documentation/Accelerate/convolution",
+        "doc://com.apple.accelerate/documentation/Accelerate/morphology"
+      ],
+      "title": "Convolution and Morphology"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

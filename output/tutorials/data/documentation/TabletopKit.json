@@ -1,0 +1,1905 @@
+{
+  "abstract": [
+    {
+      "text": "Create multiplayer spatial games on a virtual table surface and use FaceTime to invite players.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.tabletopkit/documentation/TabletopKit"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "TabletopKit",
+    "modules": [
+      {
+        "name": "TabletopKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "TabletopKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "TabletopKit helps you create a spatial multiplayer game on a table surface for visionOS, where players join your game using SharePlay. TabletopKit provides support for designing your game, implementing rules, rendering effects, and syncing multiplayer game state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "tabletopkit-framework-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Follow these steps to implement your TabletopKit game:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configure your game on the tabletop and create the game pieces or equipment that players interact with. You provide the renderer that draws your game and its pieces.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement the game rules and player interactions with the equipment. TabletopKit processes and represents player gestures as interactions. You observe the interactions and append your game-specific actions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add effects to the RealityKit entities of renderable equipment and trigger them during interactions. For example, play a sound effect when a player throws a piece or an animation when a player achieves a goal.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set up multiplayer using SharePlay. Start a Group Activities session and provide it to TabletopKit. Then customize the spatial experience of your game. For example,  place the players in their seats and spectators around the room.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get started, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that represents your game instance and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that represents your game layout and equipment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "creating-tabletop-games-PageImage-card.png": {
+      "alt": "An illustration that depicts a tabletop game showing chess pieces on a grid.",
+      "identifier": "creating-tabletop-games-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f5f59743df3d9b99dcf78117bc482672/creating-tabletop-games-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/216dff3d0207d0d68fd8841437084f04/creating-tabletop-games-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit": {
+      "abstract": [
+        {
+          "text": "Create multiplayer spatial games on a virtual table surface and use FaceTime to invite players.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TabletopKit",
+      "type": "topic",
+      "url": "/documentation/tabletopkit"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/BaseEquipmentState": {
+      "abstract": [
+        {
+          "text": "A state for equipment that contains no equipment-specific data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BaseEquipmentState"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/BaseEquipmentState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BaseEquipmentState"
+        }
+      ],
+      "role": "symbol",
+      "title": "BaseEquipmentState",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/baseequipmentstate"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/CardState": {
+      "abstract": [
+        {
+          "text": "A state for cards that contains face up and down information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CardState"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/CardState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CardState"
+        }
+      ],
+      "role": "symbol",
+      "title": "CardState",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/cardstate"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/ControllingSeats": {
+      "abstract": [
+        {
+          "text": "The seats that can manipulate or interact with the equipment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControllingSeats"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/ControllingSeats",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ControllingSeats"
+        }
+      ],
+      "role": "symbol",
+      "title": "ControllingSeats",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/controllingseats"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/CreateBookmarkAction": {
+      "abstract": [
+        {
+          "text": "An action that takes a snapshot of the game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CreateBookmarkAction"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/CreateBookmarkAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CreateBookmarkAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "CreateBookmarkAction",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/createbookmarkaction"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/DebugDrawOptions": {
+      "abstract": [
+        {
+          "text": "Types of items in a rendering that you want to debug.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DebugDrawOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/DebugDrawOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DebugDrawOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "DebugDrawOptions",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/debugdrawoptions"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/DefaultEquipmentLayout": {
+      "abstract": [
+        {
+          "text": "An object that provides a standard configuration for equipment layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DefaultEquipmentLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/DefaultEquipmentLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DefaultEquipmentLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "DefaultEquipmentLayout",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/defaultequipmentlayout"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/DieState": {
+      "abstract": [
+        {
+          "text": "A state for dice that contains the current value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DieState"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/DieState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DieState"
+        }
+      ],
+      "role": "symbol",
+      "title": "DieState",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/diestate"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityEquipment": {
+      "abstract": [
+        {
+          "text": "A protocol for equipment in a game that you render using RealityKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityEquipment"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityEquipment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityEquipment"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityEquipment",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/entityequipment"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityTableSeat": {
+      "abstract": [
+        {
+          "text": "A protocol for seats at the table that you render using RealityKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityTableSeat"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityTableSeat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityTableSeat"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityTableSeat",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/entitytableseat"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityTabletop": {
+      "abstract": [
+        {
+          "text": "A protocol for the table surface in your game when you render it using RealityKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityTabletop"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityTabletop",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityTabletop"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityTabletop",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/entitytabletop"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/Equipment": {
+      "abstract": [
+        {
+          "text": "A protocol for equipment that players directly interact with in a game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equipment"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/Equipment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Equipment"
+        }
+      ],
+      "role": "symbol",
+      "title": "Equipment",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/equipment"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/EquipmentIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for equipment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EquipmentIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/EquipmentIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EquipmentIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "EquipmentIdentifier",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/equipmentidentifier"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/EquipmentLayout": {
+      "abstract": [
+        {
+          "text": "A protocol for objects that describe the layout of equipment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EquipmentLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/EquipmentLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EquipmentLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "EquipmentLayout",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/equipmentlayout"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/EquipmentPose2D": {
+      "abstract": [
+        {
+          "text": "An object that represents the position and rotation of equipment on the XZ plane.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EquipmentPose2D"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/EquipmentPose2D",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EquipmentPose2D"
+        }
+      ],
+      "role": "symbol",
+      "title": "EquipmentPose2D",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/equipmentpose2d"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/EquipmentPose3D": {
+      "abstract": [
+        {
+          "text": "An object that represents the 3D position and orientation of equipment on the table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EquipmentPose3D"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/EquipmentPose3D",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EquipmentPose3D"
+        }
+      ],
+      "role": "symbol",
+      "title": "EquipmentPose3D",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/equipmentpose3d"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/EquipmentState": {
+      "abstract": [
+        {
+          "text": "A protocol for the equipment data that TabletopKit syncs between players.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EquipmentState"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/EquipmentState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EquipmentState"
+        }
+      ],
+      "role": "symbol",
+      "title": "EquipmentState",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/equipmentstate"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/MoveEquipmentAction": {
+      "abstract": [
+        {
+          "text": "An action that moves a piece of equipment on the table or changes the grouping.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MoveEquipmentAction"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/MoveEquipmentAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MoveEquipmentAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "MoveEquipmentAction",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/moveequipmentaction"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/Player": {
+      "abstract": [
+        {
+          "text": "A player in a tabletop game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Player"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/Player",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Player"
+        }
+      ],
+      "role": "symbol",
+      "title": "Player",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/player"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/PlayerIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for players.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayerIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/PlayerIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayerIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayerIdentifier",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/playeridentifier"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/RawValueState": {
+      "abstract": [
+        {
+          "text": "A state for equipment that contains a game-specific value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RawValueState"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/RawValueState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RawValueState"
+        }
+      ],
+      "role": "symbol",
+      "title": "RawValueState",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/rawvaluestate"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/ScoreCounter": {
+      "abstract": [
+        {
+          "text": "An object that keeps a score in a tabletop game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScoreCounter"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/ScoreCounter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScoreCounter"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScoreCounter",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/scorecounter"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/SeatState": {
+      "abstract": [
+        {
+          "text": "A protocol for seat data that TabletopKit syncs between players.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SeatState"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/SeatState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SeatState"
+        }
+      ],
+      "role": "symbol",
+      "title": "SeatState",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/seatstate"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/SetTurnAction": {
+      "abstract": [
+        {
+          "text": "An action that sets the current seats participating in the current turn.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetTurnAction"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/SetTurnAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SetTurnAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SetTurnAction",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/setturnaction"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/StateBookmark": {
+      "abstract": [
+        {
+          "text": "A snapshot of the game state at a point in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StateBookmark"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/StateBookmark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StateBookmark"
+        }
+      ],
+      "role": "symbol",
+      "title": "StateBookmark",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/statebookmark"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/StateBookmarkIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for bookmarks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StateBookmarkIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/StateBookmarkIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StateBookmarkIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "StateBookmarkIdentifier",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/statebookmarkidentifier"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableCursor": {
+      "abstract": [
+        {
+          "text": "A visual indicator that represents the destination of player interactions with equipment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableCursor"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableCursor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableCursor"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableCursor",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tablecursor"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableCursorIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for cursors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableCursorIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableCursorIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableCursorIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableCursorIdentifier",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tablecursoridentifier"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSeat": {
+      "abstract": [
+        {
+          "text": "A protocol for seats at the table that players occupy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableSeat"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSeat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableSeat"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableSeat",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tableseat"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSeatIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for seats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableSeatIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSeatIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableSeatIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableSeatIdentifier",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tableseatidentifier"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSeatState": {
+      "abstract": [
+        {
+          "text": "The data associated with a seat that a player occupies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableSeatState"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSeatState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableSeatState"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableSeatState",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tableseatstate"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup": {
+      "abstract": [
+        {
+          "text": "An object that represents the arrangement of seats, equipment, and counters around the game table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableSetup"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableSetup"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableSetup",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tablesetup"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSnapshot": {
+      "abstract": [
+        {
+          "text": "A snapshot of the current state of the table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableSnapshot"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSnapshot",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableSnapshot"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableSnapshot",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tablesnapshot"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableVisualState": {
+      "abstract": [
+        {
+          "text": "A structure that represents the appearance of an object on the table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableVisualState"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableVisualState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableVisualState"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableVisualState",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tablevisualstate"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/Tabletop": {
+      "abstract": [
+        {
+          "text": "A protocol for the table surface in your game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Tabletop"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/Tabletop",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Tabletop"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tabletop",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletop"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopAction": {
+      "abstract": [
+        {
+          "text": "A protocol for objects that describe an action in a tabletop game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabletopAction"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabletopAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopAction",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopaction"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame": {
+      "abstract": [
+        {
+          "text": "An object that manages the setup and gameplay of a tabletop game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabletopGame"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabletopGame"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopGame",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction": {
+      "abstract": [
+        {
+          "text": "A protocol for objects that manage the entire flow of players interacting with equipment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabletopInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabletopInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopInteraction",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopinteraction"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopKitSample": {
+      "abstract": [
+        {
+          "text": "Develop a spatial board game where multiple players interact with pieces on a table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopKitSample",
+      "images": [
+        {
+          "identifier": "creating-tabletop-games-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating tabletop games",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopkitsample"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates network-related tasks in multiplayer games.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabletopNetworkSession"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabletopNetworkSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopNetworkSession",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopnetworksession"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSessionCoordinator": {
+      "abstract": [
+        {
+          "text": "A protocol for objects that manage network sessions between peers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabletopNetworkSessionCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSessionCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabletopNetworkSessionCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopNetworkSessionCoordinator",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopnetworksessioncoordinator"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopSendMessageResult": {
+      "abstract": [
+        {
+          "text": "The possible results of sending messages in a network session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabletopSendMessageResult"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopSendMessageResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabletopSendMessageResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopSendMessageResult",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopsendmessageresult"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopShape": {
+      "abstract": [
+        {
+          "text": "An object that represents the physical properties of the table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabletopShape"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopShape",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabletopShape"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopShape",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopshape"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TossableRepresentation": {
+      "abstract": [
+        {
+          "text": "An object that represents geometric shapes that the player can throw",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "during gameplay, such as dice.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TossableRepresentation"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TossableRepresentation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TossableRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "TossableRepresentation",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tossablerepresentation"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/UpdateCounterAction": {
+      "abstract": [
+        {
+          "text": "An action that updates the game counter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdateCounterAction"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/UpdateCounterAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UpdateCounterAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UpdateCounterAction",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/updatecounteraction"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/UpdateEquipmentAction": {
+      "abstract": [
+        {
+          "text": "An action that updates properties of equipment on the table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdateEquipmentAction"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/UpdateEquipmentAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UpdateEquipmentAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UpdateEquipmentAction",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/updateequipmentaction"
+    },
+    "tabletopkit-framework-hero": {
+      "alt": "A representation of a tabletop game in spatial mode in visionOS.",
+      "identifier": "tabletopkit-framework-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/57db470ae11aa75bdce3aba0477c2520/tabletopkit-framework-hero@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cff24177d8f437c9667ce687a5e0d54a/tabletopkit-framework-hero~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopKitSample",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/Tabletop",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityTabletop",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopShape"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Seats",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSeat",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityTableSeat",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSeatIdentifier",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSeatState",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/SeatState"
+      ],
+      "title": "Seats"
+    },
+    {
+      "anchor": "Equipment",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/Equipment",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityEquipment",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/EquipmentIdentifier",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/EquipmentState",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/BaseEquipmentState",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/CardState",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/DieState",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/RawValueState",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/ControllingSeats"
+      ],
+      "title": "Equipment"
+    },
+    {
+      "anchor": "Equipment-layout",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/EquipmentLayout",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/DefaultEquipmentLayout",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/EquipmentPose2D",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/EquipmentPose3D"
+      ],
+      "title": "Equipment layout"
+    },
+    {
+      "anchor": "Score-counters",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/ScoreCounter"
+      ],
+      "title": "Score counters"
+    },
+    {
+      "anchor": "Players",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/Player",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/PlayerIdentifier"
+      ],
+      "title": "Players"
+    },
+    {
+      "anchor": "Actions",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopAction",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/MoveEquipmentAction",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/UpdateEquipmentAction",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/SetTurnAction",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/UpdateCounterAction",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/CreateBookmarkAction"
+      ],
+      "title": "Actions"
+    },
+    {
+      "anchor": "Interactions",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TossableRepresentation",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSnapshot",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TableVisualState",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TableCursor",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TableCursorIdentifier"
+      ],
+      "title": "Interactions"
+    },
+    {
+      "anchor": "Bookmarks",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/StateBookmark",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/StateBookmarkIdentifier"
+      ],
+      "title": "Bookmarks"
+    },
+    {
+      "anchor": "Multiplayer-network-session",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSessionCoordinator",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopSendMessageResult"
+      ],
+      "title": "Multiplayer network session"
+    },
+    {
+      "anchor": "Debugging",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/DebugDrawOptions"
+      ],
+      "title": "Debugging"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/tabletopkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

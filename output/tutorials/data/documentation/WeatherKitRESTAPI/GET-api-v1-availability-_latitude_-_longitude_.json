@@ -1,0 +1,518 @@
+{
+  "abstract": [
+    {
+      "text": "Determine the data sets available for the specified location.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI/GET-api-v1-availability-_latitude_-_longitude_"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:weather_api:get:api-v1-availability-{}-{}",
+    "modules": [
+      {
+        "name": "WeatherKit REST API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GET /api/v1/availability/{latitude}/{longitude}"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0.0",
+        "name": "Weather API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "GET /api/v1/availability/{latitude}/{longitude}"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://weatherkit.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "api/v1/availability/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{latitude}"
+        },
+        {
+          "kind": "path",
+          "text": "/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{longitude}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "minimum",
+              "value": "-90"
+            },
+            {
+              "kind": "maximum",
+              "value": "90"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The latitude of the desired location.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "latitude",
+          "required": true,
+          "type": [
+            {
+              "identifier": "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI/Latitude",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:weather_api:Latitude",
+              "text": "Latitude"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "minimum",
+              "value": "-180"
+            },
+            {
+              "kind": "maximum",
+              "value": "180"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The longitude of the desired location.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "longitude",
+          "required": true,
+          "type": [
+            {
+              "identifier": "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI/Longitude",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:weather_api:Longitude",
+              "text": "Longitude"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ISO Alpha-2 country code for the requested location. This parameter is necessary for air quality and weather alerts.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "country",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request is successful. The data sets are in the response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI/DataSet",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:weather_api:DataSet",
+              "text": "DataSet"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The server is unable to process the request due to an invalid parameter value.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Bad Request",
+          "status": 400,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request isn’t authorized or doesn’t include the correct authentication information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": []
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI": {
+      "abstract": [
+        {
+          "text": "Obtain historical, current, and predictive weather for your app or service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WeatherKit REST API",
+      "type": "topic",
+      "url": "/documentation/weatherkitrestapi"
+    },
+    "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI/DataSet": {
+      "abstract": [
+        {
+          "text": "The collection of weather information for a location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataSet"
+        }
+      ],
+      "identifier": "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI/DataSet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataSet"
+        }
+      ],
+      "role": "symbol",
+      "title": "DataSet",
+      "type": "topic",
+      "url": "/documentation/weatherkitrestapi/dataset"
+    },
+    "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI/GET-api-v1-availability-_latitude_-_longitude_": {
+      "abstract": [
+        {
+          "text": "Determine the data sets available for the specified location.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI/GET-api-v1-availability-_latitude_-_longitude_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /api/v1/availability/{latitude}/{longitude}"
+        }
+      ],
+      "role": "symbol",
+      "title": "GET /api/v1/availability/{latitude}/{longitude}",
+      "type": "topic",
+      "url": "/documentation/weatherkitrestapi/get-api-v1-availability-_latitude_-_longitude_"
+    },
+    "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI/GET-api-v1-weather-_language_-_latitude_-_longitude_": {
+      "abstract": [
+        {
+          "text": "Obtain weather data for the specified location.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI/GET-api-v1-weather-_language_-_latitude_-_longitude_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /api/v1/weather/{language}/{latitude}/{longitude}"
+        }
+      ],
+      "role": "symbol",
+      "title": "GET /api/v1/weather/{language}/{latitude}/{longitude}",
+      "type": "topic",
+      "url": "/documentation/weatherkitrestapi/get-api-v1-weather-_language_-_latitude_-_longitude_"
+    },
+    "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI/Latitude": {
+      "abstract": [
+        {
+          "text": "A numeric value indicating the latitude of the coordinate between ",
+          "type": "text"
+        },
+        {
+          "code": "-90",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "code": "90",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "Latitude"
+        }
+      ],
+      "identifier": "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI/Latitude",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Latitude"
+        }
+      ],
+      "role": "symbol",
+      "title": "Latitude",
+      "type": "topic",
+      "url": "/documentation/weatherkitrestapi/latitude"
+    },
+    "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI/Longitude": {
+      "abstract": [
+        {
+          "text": "A numeric value indicating the longitude of the coordinate between ",
+          "type": "text"
+        },
+        {
+          "code": "-180",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "code": "180",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "Longitude"
+        }
+      ],
+      "identifier": "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI/Longitude",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Longitude"
+        }
+      ],
+      "role": "symbol",
+      "title": "Longitude",
+      "type": "topic",
+      "url": "/documentation/weatherkitrestapi/longitude"
+    },
+    "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI/Weather": {
+      "abstract": [
+        {
+          "text": "The collection of all requested weather data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Weather"
+        }
+      ],
+      "identifier": "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI/Weather",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Weather"
+        }
+      ],
+      "role": "symbol",
+      "title": "Weather",
+      "type": "topic",
+      "url": "/documentation/weatherkitrestapi/weather"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Obtaining-weather-information-for-a-location",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI/GET-api-v1-weather-_language_-_latitude_-_longitude_",
+        "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI/Weather",
+        "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI/Latitude",
+        "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI/Longitude",
+        "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI/DataSet"
+      ],
+      "title": "Obtaining weather information for a location"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/weatherkitrestapi/get-api-v1-availability-_latitude_-_longitude_"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

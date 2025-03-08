@@ -1,0 +1,489 @@
+{
+  "abstract": [
+    {
+      "text": "Unregisters a device from receiving update notifications for an order.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.walletorders/documentation/WalletOrders"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.walletorders/documentation/WalletOrders/Unregister-a-Device-from-Update-Notifications"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:WalletOrders:delete:v1-devices-{}-registrations-{}-{}",
+    "modules": [
+      {
+        "name": "Wallet Orders"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Unregister a Device from Update Notifications"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Unregister a device from update notifications"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "DELETE"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://your-web-service.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/devices/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{deviceIdentifier}"
+        },
+        {
+          "kind": "path",
+          "text": "/registrations/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{orderTypeIdentifier}"
+        },
+        {
+          "kind": "path",
+          "text": "/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{orderIdentifier}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The order identifier. This value corresponds to the value of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "orderIdentifier",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key of the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Order",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "orderIdentifier",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The order type identifier of the order. This value corresponds to the value of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "orderTypeIdentifier",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key of the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Order",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "orderTypeIdentifier",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A unique identifier for the device.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "deviceIdentifier",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "AppleOrder {authenticationToken}"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The authentication for an order. The scheme is ",
+                  "type": "text"
+                },
+                {
+                  "code": "AppleOrder",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " with the order’s value for the ",
+                  "type": "text"
+                },
+                {
+                  "code": "authenticationToken",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key as parameter. For example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "AppleOrder {authenticationToken}",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Authorization",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "header",
+      "title": "Header Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The device successfully unregistered.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Device Unregistered",
+          "status": 200,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request isn’t authorized.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Request Not Authorized",
+          "status": 401,
+          "type": []
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders": {
+      "abstract": [
+        {
+          "text": "Create, distribute, and update orders in Wallet.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Wallet Orders",
+      "type": "topic",
+      "url": "/documentation/walletorders"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Order": {
+      "abstract": [
+        {
+          "text": "The order’s details, including information about the products or services rendered, customer service, and fulfillment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Order"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Order",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Order"
+        }
+      ],
+      "role": "symbol",
+      "title": "Order",
+      "type": "topic",
+      "url": "/documentation/walletorders/order"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/PushToken": {
+      "abstract": [
+        {
+          "text": "The push token APNS uses to send update notifications to the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PushToken"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/PushToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PushToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "PushToken",
+      "type": "topic",
+      "url": "/documentation/walletorders/pushtoken"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Register-a-Device-for-Update-Notifications": {
+      "abstract": [
+        {
+          "text": "Registers a device to receive update notifications for an order.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Register-a-Device-for-Update-Notifications",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Register a Device for Update Notifications"
+        }
+      ],
+      "role": "symbol",
+      "title": "Register a device for update notifications",
+      "type": "topic",
+      "url": "/documentation/walletorders/register-a-device-for-update-notifications"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Unregister-a-Device-from-Update-Notifications": {
+      "abstract": [
+        {
+          "text": "Unregisters a device from receiving update notifications for an order.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Unregister-a-Device-from-Update-Notifications",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Unregister a Device from Update Notifications"
+        }
+      ],
+      "role": "symbol",
+      "title": "Unregister a device from update notifications",
+      "type": "topic",
+      "url": "/documentation/walletorders/unregister-a-device-from-update-notifications"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Notifications",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.walletorders/documentation/WalletOrders/Register-a-Device-for-Update-Notifications",
+        "doc://com.apple.walletorders/documentation/WalletOrders/PushToken"
+      ],
+      "title": "Notifications"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/walletorders/unregister-a-device-from-update-notifications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

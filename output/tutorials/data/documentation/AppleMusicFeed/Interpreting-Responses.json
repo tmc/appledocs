@@ -1,0 +1,639 @@
+{
+  "abstract": [
+    {
+      "text": "Learn about responses from Apple Media Feed API to your Apple Music Feed requests.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Interpreting-Responses"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Music Feed"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Interpreting responses"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Learn how Apple Media Feed API responds to requests for Apple Music Feed data and how to interpret responses.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Media Feed API has two kinds of responses: resource collections and errors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-a-response",
+          "level": 2,
+          "text": "Understand a response",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Resource collection responses contain a ",
+              "type": "text"
+            },
+            {
+              "code": "data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array and a ",
+              "type": "text"
+            },
+            {
+              "code": "resources",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Error responses contain an array of one or more error objects that indicate any issues while handling the request. The status code of the response reflects the primary error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Default responses for common requests include the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Request description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Status code",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Response description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The request is for an existing single resource object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "200 (OK)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "data",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array contains the requested resource object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The request is for a single resource object that doesn’t exist.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "404 (NotFound)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The response doesn’t contain a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "data",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The request is for multiple resource objects by ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "200 (OK)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "data",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array includes the existing resource objects.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The request is for multiple resource objects by ID and none of the resources exist.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "200 (OK)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "data",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array is empty.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The request isn’t accepted because its authorization is missing or invalid due to an issue with the developer token.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "401 (Unauthorized)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The response doesn’t contain a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "data",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The request isn’t accepted because the request is using incorrect authentication.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "403 (Forbidden)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The response doesn’t contain a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "data",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The request isn’t supported as specified.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "400 (Bad Request)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "errors",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array contains an error object for any identified problem.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The request encounters errors on the server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Any status code in the 500 range",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "errors",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array contains error objects for the errors for any identified problems.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/applemusicapi/error",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/applemusicapi/common_objects/http_status_codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed": {
+      "abstract": [
+        {
+          "text": "Access the content of the Apple Music Catalog in bulk.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Music Feed",
+      "type": "topic",
+      "url": "/documentation/applemusicfeed"
+    },
+    "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Generating-Developer-Tokens": {
+      "abstract": [
+        {
+          "text": "Create a JSON Web Token to authorize your requests to Apple Media Feed API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Generating-Developer-Tokens",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating developer tokens",
+      "type": "topic",
+      "url": "/documentation/applemusicfeed/generating-developer-tokens"
+    },
+    "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Requesting-A-Feed-Export": {
+      "abstract": [
+        {
+          "text": "Create requests for Apple Music Catalog metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Requesting-A-Feed-Export",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting a feed export",
+      "type": "topic",
+      "url": "/documentation/applemusicfeed/requesting-a-feed-export"
+    },
+    "https://developer.apple.com/documentation/applemusicapi/common_objects/http_status_codes": {
+      "identifier": "https://developer.apple.com/documentation/applemusicapi/common_objects/http_status_codes",
+      "title": "HTTP status codes",
+      "titleInlineContent": [
+        {
+          "text": "HTTP status codes",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/applemusicapi/common_objects/http_status_codes"
+    },
+    "https://developer.apple.com/documentation/applemusicapi/error": {
+      "identifier": "https://developer.apple.com/documentation/applemusicapi/error",
+      "title": "Error object",
+      "titleInlineContent": [
+        {
+          "text": "Error object",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/applemusicapi/error"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Generating-Developer-Tokens",
+        "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Requesting-A-Feed-Export"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemusicfeed/interpreting-responses"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

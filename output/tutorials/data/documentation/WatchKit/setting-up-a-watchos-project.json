@@ -1,0 +1,1390 @@
+{
+  "abstract": [
+    {
+      "text": "Create a new watchOS project or add a watch target to an existing iOS project.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchkit/documentation/WatchKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchkit/documentation/WatchKit/setting-up-a-watchos-project"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WatchKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Setting up a watchOS project"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you start a new watchOS project, you need to decide how you’re going to distribute that project: as a watch-only app, or as a watchOS app with an iOS app. If your app is only available on Apple Watch, create a new watch-only project. If you want a watchOS and iOS app that deliver a related experience, either create a new project that bundles the two apps, or add a watchOS target to an existing iOS project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-new-project",
+          "level": 3,
+          "text": "Create a new project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a new watchOS project:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, choose File > New > Project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the watchOS tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To create a watch-only app, select “App” and click Next. To create a watchOS app bundled with an iOS app, select “iOS App with Watch App” and click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the project options sheet (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "/documentation/watchkit/setting_up_a_watchos_project#3312778",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "), enter a product name for the project. If you plan to implement a custom notification, complication, or unit tests, select the appropriate checkboxes, and click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select a location for the project, and click Create.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3312778",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode includes the Notification Scene by default. Leave this checkbox selected even if you don’t plan on implementing notifications right away. Selecting the checkbox adds the ",
+              "type": "text"
+            },
+            {
+              "code": "PushNotificationPayload.apns",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to your project, which helps you debug your notification interfaces. If you add a Notification Scene later, you must also add the ",
+              "type": "text"
+            },
+            {
+              "code": "PushNotificationPayload.apns",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-watchOS-app-target-to-an-existing-iOS-project",
+          "level": 3,
+          "text": "Add a watchOS app target to an existing iOS project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can add a watchOS target to an existing iOS project by following these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open your iOS app’s project in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose File > New > Target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the watchOS tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select “Watch App for iOS App” and click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the target options sheet (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "/documentation/watchkit/setting_up_a_watchos_project#3312779",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "), enter a Product Name for the project. If you plan to implement notifications or complications, select the appropriate checkboxes, and click Finish.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode then asks you to activate the new scheme for your watch target. Click Activate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3312779",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As when creating a new project, Xcode includes the Notification Scene by default. Leave this checkbox selected even if you don’t plan to implement notifications right away; selecting the checkbox adds the ",
+              "type": "text"
+            },
+            {
+              "code": "PushNotificationPayload.apns",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to your project, which helps you debug your notification interfaces. If you add a Notification Scene later, you must also add the ",
+              "type": "text"
+            },
+            {
+              "code": "PushNotificationPayload.apns",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-the-WatchKit-app-and-WatchKit-extension",
+          "level": 3,
+          "text": "Understand the WatchKit app and WatchKit extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Regardless of whether you add a watchOS app to an existing project or create a new project that contains both an iOS and watchOS app, Xcode automatically configures the targets for your watchOS app and adds the needed files, as in ",
+              "type": "text"
+            },
+            {
+              "identifier": "/documentation/watchkit/setting_up_a_watchos_project#3295999",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode divides the watchOS app into two sections:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An app bundle that contains your watchOS app’s storyboard and any assets used by the storyboard.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "WatchKit App",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An extension that contains your watchOS app’s code.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "WatchKit Extension",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3295999",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode sets the bundle IDs for both of the watch targets based on the container’s ID. For a watch-only app, this ID is the bundle ID for the root target. For a watchOS app with an iOS app, this ID is the iOS app’s bundle ID. The root of the WatchKit app and WatchKit extension’s bundle IDs must match the container’s bundle ID. If you change your iOS app’s bundle ID, you must update the other bundle IDs accordingly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When developing your watchOS app, edit your app’s storyboard in the WatchKit app, and write your app’s code in the WatchKit extension. Your WatchKit extension connects to controls and views in the storyboard using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclasses such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceButton",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceLabel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". These interface objects act as proxies for your storyboard elements. Use the interface elements to configure the elements in code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "/documentation/watchkit/setting_up_a_watchos_project#3295999": {
+      "identifier": "/documentation/watchkit/setting_up_a_watchos_project#3295999",
+      "title": "Figure 3",
+      "titleInlineContent": [
+        {
+          "text": "Figure 3",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "/documentation/watchkit/setting_up_a_watchos_project#3295999"
+    },
+    "/documentation/watchkit/setting_up_a_watchos_project#3312778": {
+      "identifier": "/documentation/watchkit/setting_up_a_watchos_project#3312778",
+      "title": "Figure 1",
+      "titleInlineContent": [
+        {
+          "text": "Figure 1",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "/documentation/watchkit/setting_up_a_watchos_project#3312778"
+    },
+    "/documentation/watchkit/setting_up_a_watchos_project#3312779": {
+      "identifier": "/documentation/watchkit/setting_up_a_watchos_project#3312779",
+      "title": "Figure 2",
+      "titleInlineContent": [
+        {
+          "text": "Figure 2",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "/documentation/watchkit/setting_up_a_watchos_project#3312779"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKAppBundleIdentifier": {
+      "abstract": [
+        {
+          "text": "The bundle ID of the watchOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKAppBundleIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKAppBundleIdentifier",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/WKAppBundleIdentifier"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKCompanionAppBundleIdentifier": {
+      "abstract": [
+        {
+          "text": "The bundle ID of the watchOS app’s companion iOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKCompanionAppBundleIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKCompanionAppBundleIdentifier",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/WKCompanionAppBundleIdentifier"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKExtensionDelegateClassName": {
+      "abstract": [
+        {
+          "text": "The name of your watchOS app’s extension delegate.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKExtensionDelegateClassName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKExtensionDelegateClassName",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/WKExtensionDelegateClassName"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKPrefersNetworkUponForeground": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an app requires network access on launch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKPrefersNetworkUponForeground",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKPrefersNetworkUponForeground",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/WKPrefersNetworkUponForeground"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKRunsIndependentlyOfCompanionApp": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the user can install and run the watchOS app independently of its iOS companion app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKRunsIndependentlyOfCompanionApp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKRunsIndependentlyOfCompanionApp",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/WKRunsIndependentlyOfCompanionApp"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKWatchKitApp": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the bundle is a watchOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKWatchKitApp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKWatchKitApp",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/WKWatchKitApp"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKWatchOnly": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the app is a watch-only app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKWatchOnly",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKWatchOnly",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/WKWatchOnly"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that use features the app delegate monitors or controls, such as background tasks and extended runtime sessions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WatchKit",
+      "type": "topic",
+      "url": "/documentation/watchkit"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKApplication": {
+      "abstract": [
+        {
+          "text": "The centralized point of control and coordination for apps with a single watchOS app target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKApplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKApplication",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkapplication"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationDelegate": {
+      "abstract": [
+        {
+          "text": "A collection of methods that manages the app-level behavior for a single-target watchOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKApplicationDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKApplicationDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKApplicationDelegate",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkapplicationdelegate"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationMain(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates the application object and the application delegate, and sets up the app’s event cycle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKApplicationMain"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">?>, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationMain(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKApplicationMain"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKApplicationMain(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkapplicationmain(_:_:_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtension": {
+      "abstract": [
+        {
+          "text": "The centralized point of control and coordination for extension-based apps running in watchOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKExtension",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextension"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate": {
+      "abstract": [
+        {
+          "text": "A collection of methods that manages the app-level behavior of a WatchKit extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKExtensionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKExtensionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKExtensionDelegate",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceButton": {
+      "abstract": [
+        {
+          "text": "A button in the user interface of your watchOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceButton"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceButton",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacebutton"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceDevice": {
+      "abstract": [
+        {
+          "text": "An object that provides information about the user’s Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceDevice",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacedevice"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceLabel": {
+      "abstract": [
+        {
+          "text": "An interface element that displays static text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceLabel"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceLabel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceLabel"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceLabel",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacelabel"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject": {
+      "abstract": [
+        {
+          "text": "An object that provides information that is common to all interface objects in your watchOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceObject"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceObject",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobject"
+    },
+    "media-3295999": {
+      "alt": "A screenshot of Xcode’s Project navigator, containing an iOS app, both the WatchKit App and WatchKit Extension, and unit tests.",
+      "identifier": "media-3295999",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1876fae4eda375f4f78836150db365f0/media-3295999@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/47f2686ed5d484d61bb3ff04a81d6abb/media-3295999~dark@2x.png"
+        }
+      ]
+    },
+    "media-3312778": {
+      "alt": "A screenshot showing the new project sheet with the project name set, and notifications, complications, and unit tests included.",
+      "identifier": "media-3312778",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3258c40fc41c7068fee0320a99171976/media-3312778@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dc2ef47d9c4072eea9f546a043056d1e/media-3312778~dark@2x.png"
+        }
+      ]
+    },
+    "media-3312779": {
+      "alt": "A screenshot showing the new target sheet with the Project Name set and the Include Notification Scene and Include Complication check boxes selected.",
+      "identifier": "media-3312779",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8af030fa46042a0e081898aac55a4343/media-3312779@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3535f0ed2c696e5d1b0267fb4343b04f/media-3312779~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-structure",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKApplication",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationDelegate",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtension",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationMain(_:_:_:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceDevice",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKPrefersNetworkUponForeground"
+      ],
+      "title": "App structure"
+    }
+  ],
+  "topicSections": [
+    {
+      "abstract": [
+        {
+          "text": "The keys that Xcode automatically sets in the information property list file when you create a watchOS target.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Information-Property-List-Keys",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKWatchKitApp",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKAppBundleIdentifier",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKCompanionAppBundleIdentifier",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKExtensionDelegateClassName",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKRunsIndependentlyOfCompanionApp",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKWatchOnly"
+      ],
+      "title": "Information Property List Keys"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "abstract": [
+                {
+                  "text": "The keys that Xcode automatically sets in the information property list file when you create a watchOS target.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Information-Property-List-Keys",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKWatchKitApp",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKAppBundleIdentifier",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKCompanionAppBundleIdentifier",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKExtensionDelegateClassName",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKRunsIndependentlyOfCompanionApp",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKWatchOnly"
+              ],
+              "title": "Information Property List Keys"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "App-structure",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKApplication",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationDelegate",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtension",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationMain(_:_:_:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceDevice",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKPrefersNetworkUponForeground"
+              ],
+              "title": "App structure"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate/title",
+          "value": "WKExtensionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKExtensionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKExtensionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtension/title",
+          "value": "WKExtension"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtension/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtension/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceLabel/title",
+          "value": "WKInterfaceLabel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceLabel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceLabel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceLabel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceLabel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject/title",
+          "value": "WKInterfaceObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceButton/title",
+          "value": "WKInterfaceButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplicationDelegate/title",
+          "value": "WKApplicationDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplicationDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKApplicationDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplicationDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKApplicationDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceDevice/title",
+          "value": "WKInterfaceDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplication/title",
+          "value": "WKApplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplicationMain(_:_:_:)/title",
+          "value": "WKApplicationMain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplicationMain(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKApplicationMain"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/watchkit/setting-up-a-watchos-project"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/watchkit/setting-up-a-watchos-project"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,462 @@
+{
+  "abstract": [
+    {
+      "text": "Manage devices and content across an organization user base with a single destination.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management-legacy"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/upgrading-to-apple-school-manager-asm-and-apple-business-manager-abm"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Upgrading to Apple School Manager (ASM) and Apple Business Manager (ABM)"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "https://www.apple.com/education/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (ASM) and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.apple.com/business/it/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (ABM) enable content managers to purchase content in the same place that they manage Apple IDs and devices. You can automate device deployment, purchase and distribute content, and manage roles in your organization. Working seamlessly with your mobile device management (MDM) solution, ASM and ABM make it easy to enroll devices, deploy content, and delegate administrative privileges.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Upgrading-to-support-location-based-tokens",
+          "level": 3,
+          "text": "Upgrading to support location-based tokens",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The purchases made in VPP in ASM and ABM are location-based, making it easy for content managers to move licenses between locations as needed. Upgrading to location-based tokens in ASM or ABM is strongly recommended, but optional. Update your MDM to support location-based tokens as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Update API calls to handle the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "location",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field being returned. Licenses assigned with a legacy token will not have a location. All assets purchased with VPP in ASM or ABM will have an additional ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "location",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field in their API responses.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Update the MDM UI to show location names for tokens and assets. Location names are not unique (many schools may have the same name) but location UIDs are unique to a specific location. Displaying the location name to the user is particularly important when the location token is about to expire.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Refresh license status at appropriate times (each page load) to maintain an accurate UI. Since licenses can be reallocated in ASM and ABM, license counts will change outside of the MDM.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-44p83",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " not ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Licenses",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to get license counts. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-44p83",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is more efficient and will return an aggregation of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "adamId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " values and counts, instead of all the individual licenses.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Handle the case when duplicate tokens are uploaded by different content managers. There is just one location token that needs to be stored, instead of a token per VPP account.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "uId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field is a unique library identifier which is included in all API responses. When querying assets using multiple tokens that may share libraries, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "uId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field to filter duplicates.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Handle any new errors related to location-based tokens. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/interpreting-error-codes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for more information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Licenses which have been assigned using a legacy token must continue to be managed by the legacy token until they are transferred to a location. MDMs will need to support both models of licensing simultaneously. Failure to support both the legacy and location based models of tokens will create discrepancies between user experiences in ASM/ABM and their MDM.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Warning",
+          "style": "warning",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-44p83": {
+      "abstract": [
+        {
+          "text": "Get the set of assets managed by your organization.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-44p83",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Assets"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Assets",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-assets-44p83"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Licenses": {
+      "abstract": [
+        {
+          "text": "Get the set of licenses managed by your organization.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Licenses",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Licenses"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Licenses",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-licenses"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management": {
+      "abstract": [
+        {
+          "text": "Manage apps and books for your students and employees.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and Book Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/app-and-book-management"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management-legacy": {
+      "abstract": [
+        {
+          "text": "Manage apps and books for your students and employees.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management-legacy",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and Book Management (Legacy)",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/app-and-book-management-legacy"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/interpreting-error-codes": {
+      "abstract": [
+        {
+          "text": "Investigate service request errors and troubleshoot solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/interpreting-error-codes",
+      "kind": "article",
+      "role": "article",
+      "title": "Interpreting Error Codes",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/interpreting-error-codes"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services-legacy": {
+      "abstract": [
+        {
+          "text": "Associate volume purchases with users or devices using endpoints for Mobile Device Management (MDM), provided by the Volume Purchase Program (VPP).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services-legacy",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Managing Apps and Books Through Web Services",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managing-apps-and-books-through-web-services-legacy"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://www.apple.com/business/it/": {
+      "identifier": "https://www.apple.com/business/it/",
+      "title": "Apple Business Manager",
+      "titleInlineContent": [
+        {
+          "text": "Apple Business Manager",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.apple.com/business/it/"
+    },
+    "https://www.apple.com/education/": {
+      "identifier": "https://www.apple.com/education/",
+      "title": "Apple School Manager",
+      "titleInlineContent": [
+        {
+          "text": "Apple School Manager",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.apple.com/education/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-Started",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services-legacy",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/interpreting-error-codes"
+      ],
+      "title": "Getting Started"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/upgrading-to-apple-school-manager-asm-and-apple-business-manager-abm"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

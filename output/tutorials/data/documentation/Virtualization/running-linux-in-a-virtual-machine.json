@@ -1,0 +1,1215 @@
+{
+  "abstract": [
+    {
+      "text": "Run a Linux operating system on your Mac using the Virtualization framework.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.virtualization/documentation/Virtualization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.virtualization/documentation/Virtualization/running-linux-in-a-virtual-machine"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Virtualization"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.4",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Running Linux in a Virtual Machine"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample configures a virtual machine for a Linux-based operating system. You run the sample from the command line, and you specify the locations of the Linux kernel to run and initial RAM disk to load as command-line parameters. The sample configures the boot loader that the virtual machine requires to run the guest operating system, and it configures a console device to handle standard input and output. It then starts the virtual machine and exits when the Linux kernel shuts down.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you run the sample program:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Download a Linux kernel image.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Download an initial RAM disk image to load into memory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The kernel and RAM disk image must support the CPU architecture of your Mac.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may obtain a kernel image and the corresponding initial RAM disk image for a given release of the Fedora Linux distribution from ",
+              "type": "text"
+            },
+            {
+              "code": "https://download.fedoraproject.org/pub/fedora/linux/releases/<release>/Everything/<architecture>/os/images/pxeboot",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", where ",
+              "type": "text"
+            },
+            {
+              "code": "<release>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the Fedora release number and ",
+              "type": "text"
+            },
+            {
+              "code": "<architecture>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "x86_64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for Intel Macs and ",
+              "type": "text"
+            },
+            {
+              "code": "aarch64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for Apple silicon Macs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To launch the virtual machine, run the sample’s executable from Xcode or in Terminal. You’ll need to specify the path to the kernel image and initial RAM disk image as parameters. The parameters are position-dependent, so use the following the order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% LinuxVirtualMachine <pathToKernelImage> <pathToRAMDiskImage>"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Configure-the-Boot-Parameters-for-the-Virtual-Machine",
+          "level": 3,
+          "text": "Configure the Boot Parameters for the Virtual Machine",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The executable uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and adds some basic information. The sample configures the virtual machine to use two CPUs and 2 GB of RAM. It also configures a serial port using the custom ",
+              "type": "text"
+            },
+            {
+              "code": "createConsoleConfiguration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let configuration = VZVirtualMachineConfiguration()",
+            "configuration.cpuCount = 2",
+            "configuration.memorySize = 2 * 1024 * 1024 * 1024 // 2 GiB",
+            "configuration.serialPorts = [ createConsoleConfiguration() ]",
+            "configuration.bootLoader = createBootLoader(kernelURL: kernelURL, initialRamdiskURL: initialRamdiskURL)",
+            "",
+            "do {",
+            "    try configuration.validate()",
+            "} catch {",
+            "    print(\"Failed to validate the virtual machine configuration. \\(error)\")",
+            "    exit(EXIT_FAILURE)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the resource allocations, the sample configures a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZLinuxBootLoader",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object with details about the Linux kernel to run in the virtual machine. The sample’s ",
+              "type": "text"
+            },
+            {
+              "code": "createBootLoader",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function configures the object using the kernel path and RAM-disk path you specified as command-line parameters. It also sets the object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZLinuxBootLoader/commandLine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property with additional information about how to use the RAM disk and console information. Finally, the sample validates the configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func createBootLoader(kernelURL: URL, initialRamdiskURL: URL) -> VZBootLoader {",
+            "    let bootLoader = VZLinuxBootLoader(kernelURL: kernelURL)",
+            "    bootLoader.initialRamdiskURL = initialRamdiskURL",
+            "",
+            "    let kernelCommandLineArguments = [",
+            "        // Use the first virtio console device as system console.",
+            "        \"console=hvc0\",",
+            "        // Stop in the initial ramdisk before attempting to transition to the root file system.",
+            "        \"rd.break=initqueue\"",
+            "    ]",
+            "",
+            "    bootLoader.commandLine = kernelCommandLineArguments.joined(separator: \" \")",
+            "",
+            "    return bootLoader",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Configure-the-Serial-Port-Device-for-Standard-In-and-Out",
+          "level": 3,
+          "text": "Configure the Serial Port Device for Standard In and Out",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During the configuration process, the sample specifies the devices that the virtual machine makes available to the guest operating system. Device types can include network devices, virtual storage devices, sockets, and others.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample’s ",
+              "type": "text"
+            },
+            {
+              "code": "createConsoleConfiguration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function configures a serial port device that the guest operating system uses for standard input and output. The function creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsoleDeviceSerialPortConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, which the virtual machine uses to create a Virtio console device for the guest operating system. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZFileHandleSerialPortAttachment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object specifies information that the host operating system uses to configure the device. In this case, the attachment contains file handles for the host’s standard input and standard output. The sample configures the standard input in raw mode, which passes user input unmodified to the virtual machine.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func createConsoleConfiguration() -> VZSerialPortConfiguration {",
+            "    let consoleConfiguration = VZVirtioConsoleDeviceSerialPortConfiguration()",
+            "",
+            "    let inputFileHandle = FileHandle.standardInput",
+            "    let outputFileHandle = FileHandle.standardOutput",
+            "",
+            "    // Put stdin into raw mode, disabling local echo, input canonicalization,",
+            "    // and CR-NL mapping.",
+            "    var attributes = termios()",
+            "    tcgetattr(inputFileHandle.fileDescriptor, &attributes)",
+            "    attributes.c_iflag &= ~tcflag_t(ICRNL)",
+            "    attributes.c_lflag &= ~tcflag_t(ICANON | ECHO)",
+            "    tcsetattr(inputFileHandle.fileDescriptor, TCSANOW, &attributes)",
+            "",
+            "    let stdioAttachment = VZFileHandleSerialPortAttachment(fileHandleForReading: inputFileHandle,",
+            "                                                           fileHandleForWriting: outputFileHandle)",
+            "",
+            "    consoleConfiguration.attachment = stdioAttachment",
+            "",
+            "    return consoleConfiguration",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Instantiate-and-Start-the-Virtual-Machine",
+          "level": 3,
+          "text": "Instantiate and Start the Virtual Machine",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After building the configuration data for the virtual machine, the sample uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to start the execution of the guest operating system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before calling the virtual machine’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/start(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, the sample configures a delegate object to receive messages about the state of the virtual machine. When the Linux operating system shuts down, the virtual machine calls the delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineDelegate/guestDidStop(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. In response, the delegate method prints a message and exits the sample.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let virtualMachine = VZVirtualMachine(configuration: configuration)",
+            "",
+            "let delegate = Delegate()",
+            "virtualMachine.delegate = delegate",
+            "",
+            "virtualMachine.start { (result) in",
+            "    if case let .failure(error) = result {",
+            "        print(\"Failed to start the virtual machine. \\(error)\")",
+            "        exit(EXIT_FAILURE)",
+            "    }",
+            "}",
+            "",
+            "RunLoop.main.run(until: Date.distantFuture)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/start(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method starts the virtual machine asynchronously in the background. The virtual machine loads the initial RAM disk and executes the Linux kernel. After the kernel loads, the user interacts with the Linux system using the sample program’s controlling terminal, because the ",
+              "type": "text"
+            },
+            {
+              "code": "createConsoleConfiguration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attaches the virtual console to standard input and standard output.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization": {
+      "abstract": [
+        {
+          "text": "Create virtual machines and run macOS and Linux-based operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Virtualization",
+      "type": "topic",
+      "url": "/documentation/virtualization"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZFileHandleSerialPortAttachment": {
+      "abstract": [
+        {
+          "text": "An attachment point that allows bidirectional communication using file handles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZFileHandleSerialPortAttachment"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZFileHandleSerialPortAttachment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZFileHandleSerialPortAttachment"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZFileHandleSerialPortAttachment",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzfilehandleserialportattachment"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZLinuxBootLoader": {
+      "abstract": [
+        {
+          "text": "An object that loads and configures a Linux kernel as the guest system of your VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZLinuxBootLoader"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZLinuxBootLoader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZLinuxBootLoader"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZLinuxBootLoader",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzlinuxbootloader"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZLinuxBootLoader/commandLine": {
+      "abstract": [
+        {
+          "text": "The command-line parameters to pass to the Linux kernel at boot time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commandLine"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZLinuxBootLoader/commandLine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "commandLine"
+        }
+      ],
+      "role": "symbol",
+      "title": "commandLine",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzlinuxbootloader/commandline"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsoleDeviceSerialPortConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration object that requests the creation of a console device to communicate with the guest system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtioConsoleDeviceSerialPortConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsoleDeviceSerialPortConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtioConsoleDeviceSerialPortConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtioConsoleDeviceSerialPortConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtioconsoledeviceserialportconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine": {
+      "abstract": [
+        {
+          "text": "An object that manages the overall state and configuration of your VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachine"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachine"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtualMachine",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachine"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/start(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Starts the VM and notifies the specified completion handler if startup is successful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/start(completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "start(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachine/start(completionhandler:)"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineConfiguration": {
+      "abstract": [
+        {
+          "text": "The environment attributes and list of devices to use during the configuration of macOS or Linux VMs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachineConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachineConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtualMachineConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachineconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineDelegate/guestDidStop(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the guest operating system stopped the VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "guestDidStop"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)VZVirtualMachine",
+          "text": "VZVirtualMachine"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineDelegate/guestDidStop(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "guestDidStopVirtualMachine:"
+        }
+      ],
+      "role": "symbol",
+      "title": "guestDidStop(_:)",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachinedelegate/guestdidstop(_:)"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/accelerating-the-performance-of-rosetta": {
+      "abstract": [
+        {
+          "text": "Improve Rosetta performance by adding support for the total store ordering (TSO) memory model to your Linux kernel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/accelerating-the-performance-of-rosetta",
+      "kind": "article",
+      "role": "article",
+      "title": "Accelerating the performance of Rosetta",
+      "type": "topic",
+      "url": "/documentation/virtualization/accelerating-the-performance-of-rosetta"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/creating-and-running-a-linux-virtual-machine": {
+      "abstract": [
+        {
+          "text": "Design and run custom Linux guests on Apple silicon or Intel-based Mac Computers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/creating-and-running-a-linux-virtual-machine",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating and Running a Linux Virtual Machine",
+      "type": "topic",
+      "url": "/documentation/virtualization/creating-and-running-a-linux-virtual-machine"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/installing-macos-on-a-virtual-machine": {
+      "abstract": [
+        {
+          "text": "Download a macOS restore image and install it in a new VM.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/installing-macos-on-a-virtual-machine",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing macOS on a Virtual Machine",
+      "type": "topic",
+      "url": "/documentation/virtualization/installing-macos-on-a-virtual-machine"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac": {
+      "abstract": [
+        {
+          "text": "Install and run GUI Linux in a virtual machine using the Virtualization framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Running GUI Linux in a virtual machine on a Mac",
+      "type": "topic",
+      "url": "/documentation/virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta": {
+      "abstract": [
+        {
+          "text": "Run x86_64 Linux binaries under ARM Linux on Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta",
+      "kind": "article",
+      "role": "article",
+      "title": "Running Intel Binaries in Linux VMs with Rosetta",
+      "type": "topic",
+      "url": "/documentation/virtualization/running-intel-binaries-in-linux-vms-with-rosetta"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/running-macos-in-a-virtual-machine-on-apple-silicon": {
+      "abstract": [
+        {
+          "text": "Install and run macOS in a virtual machine using the Virtualization framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/running-macos-in-a-virtual-machine-on-apple-silicon",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Running macOS in a virtual machine on Apple silicon",
+      "type": "topic",
+      "url": "/documentation/virtualization/running-macos-in-a-virtual-machine-on-apple-silicon"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/virtualize-linux-on-a-mac": {
+      "abstract": [
+        {
+          "text": "Configure and run Linux guests on Apple silicon and Intel-based Mac computers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/virtualize-linux-on-a-mac",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Virtualize Linux on a Mac",
+      "type": "topic",
+      "url": "/documentation/virtualization/virtualize-linux-on-a-mac"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/virtualize-macos-on-a-mac": {
+      "abstract": [
+        {
+          "text": "Configure and run macOS guests on Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/virtualize-macos-on-a-mac",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Virtualize macOS on a Mac",
+      "type": "topic",
+      "url": "/documentation/virtualization/virtualize-macos-on-a-mac"
+    },
+    "f9c7c7bf5ef1/RunningLinuxInAVirtualMachine.zip": {
+      "checksum": "f9c7c7bf5ef19d338d974a135d1890779a3add19267a4592ccc872cefc0ca3658711905ba66568f769eb68b8e37a6a3b8f12396e78e652ffce1ac35dfb10af2b",
+      "identifier": "f9c7c7bf5ef1/RunningLinuxInAVirtualMachine.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/f9c7c7bf5ef1/RunningLinuxInAVirtualMachine.zip"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "f9c7c7bf5ef1/RunningLinuxInAVirtualMachine.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Virtual-machine-setup",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/running-macos-in-a-virtual-machine-on-apple-silicon",
+        "doc://com.apple.virtualization/documentation/Virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac",
+        "doc://com.apple.virtualization/documentation/Virtualization/installing-macos-on-a-virtual-machine",
+        "doc://com.apple.virtualization/documentation/Virtualization/creating-and-running-a-linux-virtual-machine",
+        "doc://com.apple.virtualization/documentation/Virtualization/virtualize-macos-on-a-mac",
+        "doc://com.apple.virtualization/documentation/Virtualization/virtualize-linux-on-a-mac",
+        "doc://com.apple.virtualization/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta",
+        "doc://com.apple.virtualization/documentation/Virtualization/accelerating-the-performance-of-rosetta"
+      ],
+      "title": "Virtual machine setup"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Virtual-machine-setup",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/running-macos-in-a-virtual-machine-on-apple-silicon",
+                "doc://com.apple.virtualization/documentation/Virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac",
+                "doc://com.apple.virtualization/documentation/Virtualization/installing-macos-on-a-virtual-machine",
+                "doc://com.apple.virtualization/documentation/Virtualization/creating-and-running-a-linux-virtual-machine",
+                "doc://com.apple.virtualization/documentation/Virtualization/virtualize-macos-on-a-mac",
+                "doc://com.apple.virtualization/documentation/Virtualization/virtualize-linux-on-a-mac",
+                "doc://com.apple.virtualization/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta",
+                "doc://com.apple.virtualization/documentation/Virtualization/accelerating-the-performance-of-rosetta"
+              ],
+              "title": "Virtual machine setup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZFileHandleSerialPortAttachment/title",
+          "value": "VZFileHandleSerialPortAttachment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZFileHandleSerialPortAttachment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZFileHandleSerialPortAttachment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZFileHandleSerialPortAttachment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZFileHandleSerialPortAttachment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZLinuxBootLoader/title",
+          "value": "VZLinuxBootLoader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZLinuxBootLoader/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZLinuxBootLoader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZLinuxBootLoader/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZLinuxBootLoader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineDelegate~1guestDidStop(_:)/title",
+          "value": "guestDidStopVirtualMachine:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineDelegate~1guestDidStop(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "guestDidStopVirtualMachine:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZLinuxBootLoader~1commandLine/title",
+          "value": "commandLine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZLinuxBootLoader~1commandLine/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "commandLine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine/title",
+          "value": "VZVirtualMachine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioConsoleDeviceSerialPortConfiguration/title",
+          "value": "VZVirtioConsoleDeviceSerialPortConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioConsoleDeviceSerialPortConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioConsoleDeviceSerialPortConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioConsoleDeviceSerialPortConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioConsoleDeviceSerialPortConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineConfiguration/title",
+          "value": "VZVirtualMachineConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachineConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachineConfiguration"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/virtualization/running-linux-in-a-virtual-machine"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/virtualization/running-linux-in-a-virtual-machine"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1212 @@
+{
+  "abstract": [
+    {
+      "text": "Set up the necessary components so your app can begin using Tap to Pay on iPhone to read and issue loyalty passes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ProximityReader/documentation/ProximityReader/accepting-loyalty-passes-from-wallet"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ProximityReader"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Accepting loyalty passes from Wallet"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ProximityReader to support Tap to Pay on iPhone so your app can read NFC passes in a customer’s Wallet as part of a merchant’s loyalty program. After configuration, ProximityReader can begin a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " so you can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Read passes independently of payment, at the same time as payment, or instead of payment if the pass is available.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Prompt a customer to join a merchant’s loyalty program after a successful transaction, with a push notification.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To read loyalty passes from Wallet, the passes must be NFC-enabled. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wallet/get-started/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about how to configure the card reader, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/adding-support-for-tap-to-pay-on-iphone-to-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-which-loyalty-passes-to-read",
+          "level": 3,
+          "text": "Configure which loyalty passes to read",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To read loyalty passes in Wallet with Tap to Pay on iPhone, you must have an existing Pass Type Identifier corresponding to a pass. To learn more, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/walletpasses/building_a_pass/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also optionally specify a URL based on the web service you use to update passes. If no pass is found in the customer’s Wallet that corresponds to the specified Pass Type Identifier, the provided URL will be pushed to the customer’s device and can be used to trigger a push notification to add the loyalty pass in their Wallet. To learn more, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/walletpasses/adding_a_web_service_to_update_passes/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you support multiple passes, you can create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/VASRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with multiple ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/VASRequest/Merchant",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structures, each corresponding to a single Pass Type Identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let loyaltyPass1 = VASRequest.Merchant(id: \"pass.com.example-company.loyaltypass1\",",
+            "                                       url: URL(string: \"https://example-company.com/foo/v1/passes/pass.com.example-company.loyaltypass1/\"),",
+            "                                       localizedName: \"Example Company Loyalty Pass 1\")",
+            "",
+            "let loyaltyPass2 = VASRequest.Merchant(id: \"pass.com.example-company.loyaltypass2\",",
+            "                                       url: URL(string: \"https://example-company.com/foo/v1/passes/pass.com.example-company.loyaltypass2/\"),",
+            "                                       localizedName: \"Example Company Loyalty Pass 2\")",
+            "",
+            "let request = VASRequest(vasMerchants: [loyaltyPass1, loyaltyPass2],",
+            "                         localizedVASType: \"Example Company Loyalty Program\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Read-loyalty-passes",
+          "level": 3,
+          "text": "Read loyalty passes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession/readVAS(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to bring up a sheet that prompts the merchant’s customers to hold their device near the reader. After a successful read of a loyalty pass, the sheet closes and the session returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/VASReadResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If a read isn’t successful, the sheet closes and the session returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession/ReadError",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which may require you or your user to take an action; make sure your app can handle all the different types of errors a read session can return.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you get a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/VASReadResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " you must send the pass content, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/VASReadResult/ReadEntry/customerVASData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to your loyalty-program provider. It’s up to your app to process the returned data and to show the final result to the merchant.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To receive specific details about the encryption and decryption of the NFC payload, you need an NFC Certificate for your pass. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/contact/passkit/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "code": [
+            "public class WrapperClass {",
+            "    ",
+            "    var reader: PaymentCardReader?",
+            "    var session: PaymentCardReaderSession?",
+            "",
+            "    public func readLoyaltyPass(for passTypeIdentifier: String,",
+            "                                merchantLoyaltyProgramName: String,",
+            "                                merchantLoyaltyPassName: String,",
+            "                                provisioningURL: URL?) async throws {",
+            "        let merchant = VASRequest.Merchant(id: passTypeIdentifier,",
+            "                                           url: provisioningURL,",
+            "                                           localizedName: merchantLoyaltyPassName)",
+            "        let request = VASRequest(vasMerchants: [merchant],",
+            "                                 localizedVASType: merchantLoyaltyProgramName)",
+            "        guard let reader = self.reader else {",
+            "            return",
+            "        }",
+            "        let events = reader.events",
+            "        do {",
+            "            Task {",
+            "                for await event in events {",
+            "                    // Handle events that happen while the sheet is up.",
+            "                }",
+            "            }",
+            "            let result = try await session?.readVAS(request)",
+            "            // Send result.entries[0].customerVASData to your loyalty program provider.",
+            "        } catch {",
+            "            // Handle any errors that occur during read",
+            "            // (see PaymentCardReaderSession.ReadError).",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Combine-the-read-of-loyalty-passes-with-payment",
+          "level": 3,
+          "text": "Combine the read of loyalty passes with payment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can read both a payment card and multiple loyalty passes in one tap, the flow is the same as simply reading a payment card. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession/readPaymentCard(_:vasRequest:stopOnVASResult:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to bring up the sheet prompting the merchant’s customers to hold their device near the reader. After a successful read, the sheet closes and the session returns a tuple containing both ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReadResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/VASReadResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as a result. If a read isn’t successful, the sheet closes and the session returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession/ReadError",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which may require you or your user to take an action; make sure that your app can handle all the different types of errors that a read session can return.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you get a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/VASReadResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " you must send the pass content, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/VASReadResult/ReadEntry/customerVASData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to your loyalty-program provider. It’s up to your app to process the returned data and to show the final result to the merchant.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For a list of all possible combinations, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession/readPaymentCard(_:vasRequest:stopOnVASResult:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "code": [
+            "public class WrapperClass {",
+            "    ",
+            "    var reader: PaymentCardReader?",
+            "    var session: PaymentCardReaderSession?",
+            "",
+            "    public func readPaymentAndLoyaltyPass(for amount: Decimal,",
+            "                                          passTypeIdentifier: String,",
+            "                                          merchantLoyaltyProgramName: String,",
+            "                                          merchantLoyaltyPassName: String,",
+            "                                          provisioningURL: URL?) async throws {",
+            "        let merchant = VASRequest.Merchant(id: passTypeIdentifier,",
+            "                                           url: provisioningURL,",
+            "                                           localizedName: merchantLoyaltyPassName)",
+            "        let vasRequest = VASRequest(vasMerchants: [merchant],",
+            "                                    localizedVASType: merchantLoyaltyProgramName)",
+            "        ",
+            "        let paymentRequest = PaymentCardTransactionRequest(amount: amount,",
+            "                                                           currencyCode: \"USD\",",
+            "                                                           for: .purchase)",
+            "        guard let reader = self.reader else {",
+            "            return",
+            "        }",
+            "        let events = reader.events",
+            "        do {",
+            "            Task {",
+            "                for await event in events {",
+            "                    // Handle events that happen while the sheet is up.",
+            "                }",
+            "            }",
+            "            let result = try await session?.readPaymentCard(paymentRequest,",
+            "                                                            vasRequest: vasRequest,",
+            "                                                            stopOnVASResult: false)",
+            "            // Send result.0?.paymentCardData to your payment service provider.",
+            "            // Send result.1?.entries[0].customerVASData to your loyalty program provider.",
+            "        } catch {",
+            "            // Handle any errors that occur during read",
+            "            // (see PaymentCardReaderSession.ReadError).",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Prompt-a-customer-to-join-a-merchants-loyalty-program",
+          "level": 3,
+          "text": "Prompt a customer to join a merchant’s loyalty program",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession/readPaymentCard(_:vasRequest:stopOnVASResult:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to prompt a customer to join a merchant’s loyalty program, after a successful transaction, with a push notification. To do so, you only need to specify a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/VASRequest/Merchant/url",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when trying to read a loyalty pass. If no pass corresponding to the specified Pass Type Identifier is found in the customer’s Wallet, the reader session pushes the provided URL, through NFC, to the customer’s device where the loyalty-program provider may trigger a push notification to add the loyalty pass in their Wallet.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "adding-support-for-tap-to-pay-PageImage-card.png": {
+      "alt": null,
+      "identifier": "adding-support-for-tap-to-pay-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e00a45db446b415a6f963fde477927bb/adding-support-for-tap-to-pay-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d72a97caaff209593b35adaa4b804377/adding-support-for-tap-to-pay-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader": {
+      "abstract": [
+        {
+          "text": "Read contactless physical and digital wallet cards using your iPhone.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ProximityReader",
+      "type": "topic",
+      "url": "/documentation/proximityreader"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReadResult": {
+      "abstract": [
+        {
+          "text": "The result of a payment card read operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReadResult"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReadResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReadResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentCardReadResult",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreadresult"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession": {
+      "abstract": [
+        {
+          "text": "The object you use to start reading a contactless payment or loyalty card.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReaderSession"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReaderSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentCardReaderSession",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreadersession"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession/ReadError": {
+      "abstract": [
+        {
+          "text": "Errors that can occur during a card read.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReadError"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession/ReadError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ReadError"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentCardReaderSession.ReadError",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreadersession/readerror"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession/readPaymentCard(_:vasRequest:stopOnVASResult:)": {
+      "abstract": [
+        {
+          "text": "Presents a sheet to read both contactless payments and loyalty cards",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for a purchase or refund, and returns the relevant card data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readPaymentCard"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ProximityReader29PaymentCardTransactionRequestV",
+          "text": "PaymentCardTransactionRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "vasRequest"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ProximityReader10VASRequestC",
+          "text": "VASRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stopOnVASResult"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ProximityReader21PaymentCardReadResultV",
+          "text": "PaymentCardReadResult"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ProximityReader13VASReadResultV",
+          "text": "VASReadResult"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession/readPaymentCard(_:vasRequest:stopOnVASResult:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readPaymentCard(_:vasRequest:stopOnVASResult:)",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreadersession/readpaymentcard(_:vasrequest:stoponvasresult:)"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession/readVAS(_:)": {
+      "abstract": [
+        {
+          "text": "Presents a sheet to read a loyalty card for Value Added Services (VAS), and returns the loyalty card data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readVAS"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ProximityReader10VASRequestC",
+          "text": "VASRequest"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ProximityReader13VASReadResultV",
+          "text": "VASReadResult"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession/readVAS(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readVAS(_:)",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreadersession/readvas(_:)"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/VASReadResult": {
+      "abstract": [
+        {
+          "text": "The result of a request to read loyalty card information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VASReadResult"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/VASReadResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VASReadResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "VASReadResult",
+      "type": "topic",
+      "url": "/documentation/proximityreader/vasreadresult"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/VASReadResult/ReadEntry/customerVASData": {
+      "abstract": [
+        {
+          "text": "The encrypted content of the pass stored in Wallet, which contains",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the loyalty or reward pass identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "customerVASData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/VASReadResult/ReadEntry/customerVASData",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "customerVASData",
+      "type": "topic",
+      "url": "/documentation/proximityreader/vasreadresult/readentry/customervasdata"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/VASRequest": {
+      "abstract": [
+        {
+          "text": "A request to read a contactless loyalty card and retrieve loyalty program",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifiers for the person.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VASRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/VASRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VASRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VASRequest",
+      "type": "topic",
+      "url": "/documentation/proximityreader/vasrequest"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/VASRequest/Merchant": {
+      "abstract": [
+        {
+          "text": "The identity of a merchant that offers a loyalty program.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Merchant"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/VASRequest/Merchant",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Merchant"
+        }
+      ],
+      "role": "symbol",
+      "title": "VASRequest.Merchant",
+      "type": "topic",
+      "url": "/documentation/proximityreader/vasrequest/merchant"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/VASRequest/Merchant/url": {
+      "abstract": [
+        {
+          "text": "The URL to display to the customer if the matching loyalty or reward ID isn’t found.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/VASRequest/Merchant/url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url",
+      "type": "topic",
+      "url": "/documentation/proximityreader/vasrequest/merchant/url"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/adding-support-for-tap-to-pay-on-iphone-to-your-app": {
+      "abstract": [
+        {
+          "text": "Configure your app to use Tap to Pay on iPhone to read contactless payment cards.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/adding-support-for-tap-to-pay-on-iphone-to-your-app",
+      "images": [
+        {
+          "identifier": "adding-support-for-tap-to-pay-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Adding support for Tap to Pay on iPhone to your app",
+      "type": "topic",
+      "url": "/documentation/proximityreader/adding-support-for-tap-to-pay-on-iphone-to-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/contact/passkit/": {
+      "identifier": "https://developer.apple.com/contact/passkit/",
+      "title": "NFC Certificate Request",
+      "titleInlineContent": [
+        {
+          "text": "NFC Certificate Request",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/contact/passkit/"
+    },
+    "https://developer.apple.com/documentation/walletpasses/adding_a_web_service_to_update_passes/": {
+      "identifier": "https://developer.apple.com/documentation/walletpasses/adding_a_web_service_to_update_passes/",
+      "title": "Adding a Web Service to Update Passes",
+      "titleInlineContent": [
+        {
+          "text": "Adding a Web Service to Update Passes",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/walletpasses/adding_a_web_service_to_update_passes/"
+    },
+    "https://developer.apple.com/documentation/walletpasses/building_a_pass/": {
+      "identifier": "https://developer.apple.com/documentation/walletpasses/building_a_pass/",
+      "title": "Building a Pass",
+      "titleInlineContent": [
+        {
+          "text": "Building a Pass",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/walletpasses/building_a_pass/"
+    },
+    "https://developer.apple.com/wallet/get-started/": {
+      "identifier": "https://developer.apple.com/wallet/get-started/",
+      "title": "Getting Started with Apple Wallet",
+      "titleInlineContent": [
+        {
+          "text": "Getting Started with Apple Wallet",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wallet/get-started/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Loyalty-card-requests",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/VASRequest",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/VASReadResult"
+      ],
+      "title": "Loyalty card requests"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Loyalty-card-requests",
+              "generated": true,
+              "identifiers": [],
+              "title": "Loyalty card requests"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/proximityreader/accepting-loyalty-passes-from-wallet"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/proximityreader/accepting-loyalty-passes-from-wallet"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

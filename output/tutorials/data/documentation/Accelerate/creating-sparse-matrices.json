@@ -1,0 +1,1461 @@
+{
+  "abstract": [
+    {
+      "text": "Create sparse matrices for factorization and solving systems.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/sparse-solvers-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/creating-sparse-matrices"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating sparse matrices"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Accelerate framework, the Sparse Solvers library stores sparse matrices using the compressed sparse column (CSC) format. CSC stores a matrix as a series of column vectors that specify the nonzero entries as ",
+              "type": "text"
+            },
+            {
+              "code": "(row-index, value)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " pairs and omit the zero entries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Sparse Solvers library provides routines to convert matrices from other formats to CSC. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accelerate/conversion-from-other-formats",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Sparse Solvers library supports unsymmetric and symmetric sparse matrices, each of which can also be block matrices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "unsymmetric matrix",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " contains either ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/Double",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/Float",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " values with no symmetry between its lower-left and upper-right triangles.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "symmetric matrix",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " is symmetrical along the diagonal from its upper-left to lower-right corners. In other words, a symmetric matrix is equal to its transpose (",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "A=Aᵀ",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "block matrix",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " can be either unsymmetric or symmetric, and consists of sections called blocks. The blocks along the diagonal of a symmetric block matrix must, themselves, be symmetrical.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Create-an-unsymmetric-matrix",
+          "level": 3,
+          "text": "Create an unsymmetric matrix",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example of an unsymmetric sparse matrix, empty cells represent zeros:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2904623",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first step to create a matrix is to define two arrays that store the row indices and corresponding values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "var rowIndices: [Int32] = [0, 1, 3,     // Column 0",
+                    "                           0, 1, 2, 3,  // Column 1",
+                    "                           1, 2]        // Column 2",
+                    " ",
+                    "var values = [2.0, -0.2, 2.5,           // Column 0",
+                    "              1.0, 3.2, -0.1, 1.1,      // Column 1",
+                    "              1.4, 0.5]                 // Column 2"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "int rowIndices[]    = {  0,    1,   3,   0,   1,    2,   3,   1,   2};",
+                    "double values[]     = {2.0, -0.2, 2.5, 1.0, 3.2, -0.1, 1.1, 1.4, 0.5};"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the ",
+              "type": "text"
+            },
+            {
+              "code": "(row-index, value)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " pairs, create a third array that specifies where each column starts. This array requires an additional, final entry that defines the final column’s length.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following example, the zeroth item in the ",
+              "type": "text"
+            },
+            {
+              "code": "values",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array starts column 0, the third starts column 1, and the seventh starts column 2:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "var columnStarts = [0,    // Column 0",
+                    "                    3,    // Column 1",
+                    "                    7,    // Column 2",
+                    "                    9]"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "long columnStarts[] = { 0, 3, 7, 9};"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The two structural arrays, ",
+              "type": "text"
+            },
+            {
+              "code": "rowIndices",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "columnStarts",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrixStructure",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance that describes the matrix’s structure. The initializer requires an attributes object, and the default parameters of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseAttributes_t",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance specify an unsymmetric matrix.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let structure = SparseMatrixStructure(rowCount: 4,",
+                    "                                      columnCount: 3,",
+                    "                                      columnStarts: &columnStarts,",
+                    "                                      rowIndices: &rowIndices,",
+                    "                                      attributes: SparseAttributes_t(),",
+                    "                                      blockSize: 1)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "SparseMatrixStructure structure = {",
+                    "    .rowCount     = 4,",
+                    "    .columnCount  = 3,",
+                    "    .columnStarts = columnStarts,",
+                    "    .rowIndices   = rowIndices,",
+                    "    .attributes = {",
+                    "        .kind = SparseOrdinary,",
+                    "    },",
+                    "    .blockSize = 1",
+                    "};"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code uses the ",
+              "type": "text"
+            },
+            {
+              "code": "structure",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "values",
+              "type": "codeVoice"
+            },
+            {
+              "text": " items to create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Double",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "values.withUnsafeMutableBufferPointer { valuesPtr in",
+                    "    let A = SparseMatrix_Double(",
+                    "        structure: structure,",
+                    "        data: valuesPtr.baseAddress!",
+                    "    )",
+                    "    ",
+                    "    // Perform operations using `A`.",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "SparseMatrix_Double A = {",
+                    "    .structure = structure,",
+                    "    .data = values",
+                    "};"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Create-a-symmetric-matrix",
+          "level": 3,
+          "text": "Create a symmetric matrix",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example of a symmetric sparse matrix, empty cells represent zeros:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2904624",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because it’s symmetric, the values in the upper triangle of the matrix are redundant, so exclude them from the data that you pass to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Double",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer.  The example below shows the excluded values in gray:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2904626",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As with the unsymmetric example, the ",
+              "type": "text"
+            },
+            {
+              "code": "rowIndices",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array specifies the row in the matrix that contains the corresponding item in ",
+              "type": "text"
+            },
+            {
+              "code": "values",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the ",
+              "type": "text"
+            },
+            {
+              "code": "columnStarts",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array specifies where each column starts in the ",
+              "type": "text"
+            },
+            {
+              "code": "rowIndices",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following example, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrixStructure/attributes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " parameter specifies that the matrix is symmetric and the items in the values array derive from the lower triangle:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "var columnStarts = [0,                  // Column 0    ",
+                    "                    3,                  // Column 1      ",
+                    "                    6,                  // Column 2",
+                    "                    7,                  // Column 3",
+                    "                    8]",
+                    " ",
+                    "var rowIndices: [Int32] = [0, 1, 3,     // Column 0",
+                    "                           1, 2, 3,     // Column 1",
+                    "                           2,           // Column 2",
+                    "                           3]           // Column 3",
+                    "  ",
+                    "var attributes = SparseAttributes_t()",
+                    "attributes.triangle = SparseLowerTriangle",
+                    "attributes.kind = SparseSymmetric",
+                    " ",
+                    "let structure = SparseMatrixStructure(rowCount: 4,",
+                    "                                      columnCount: 4,",
+                    "                                      columnStarts: &columnStarts,",
+                    "                                      rowIndices: &rowIndices,",
+                    "                                      attributes: attributes,",
+                    "                                      blockSize: 1)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "long columnStarts[] = { 0, 3, 6, 7, 8}; ",
+                    "int rowIndices[]    = {0, 1, 3, 1, 2, 3, 2, 3}; ",
+                    " ",
+                    "SparseMatrixStructure structure = {",
+                    "    .rowCount     = 4,",
+                    "    .columnCount  = 4,",
+                    "    .columnStarts = columnStarts,",
+                    "    .rowIndices   = rowIndices,",
+                    "    .attributes = {",
+                    "        .kind = SparseSymmetric,",
+                    "        .triangle = SparseLowerTriangle",
+                    "    },",
+                    "    .blockSize = 1",
+                    "};"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Double",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance using the structure from the code example above and the values from the lower triangle of the matrix.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "var values = [10.0,  1.0, 2.5,  // Column 0",
+                    "              12.0, -0.3, 1.1,  // Column 1",
+                    "              9.5,              // Column 2",
+                    "              6.0]              // Column 3",
+                    "  ",
+                    "values.withUnsafeMutableBufferPointer { valuesPtr in",
+                    "    let A = SparseMatrix_Double(",
+                    "        structure: structure,",
+                    "        data: valuesPtr.baseAddress!",
+                    "    )",
+                    "    ",
+                    "    // Perform operations using `A`.",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "double values[] = {10.0, 1.0, 2.5, 12.0, -0.3, 1.1, 9.5, 6.0};",
+                    "  ",
+                    "SparseMatrix_Double A = {",
+                    "    .structure = structure,",
+                    "    .data = values",
+                    "};"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Create-a-block-matrix",
+          "level": 3,
+          "text": "Create a block matrix",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create block sparse matrices ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "—",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " that is, a matrix that consists of blocks that contain multiple values — by defining a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrixStructure/blockSize",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " greater than 1. The block size is the length of the side of the square block.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Block matrices can be symmetric or unsymmetric. This example shows an unsymmetric sparse matrix with a block size of 3:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2904625",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows the code to create a sparse matrix with the structure and values above. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrixStructure",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " specifies a block size of 3. The values for each block concatenate in column-major order.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "var columnStarts = [ 0, 2, 4, 5 ]",
+                    "var rowIndices: [Int32] = [ 0, 2, 0, 1, 2 ]",
+                    " ",
+                    "var values = [",
+                    "    1.0, 0.1, 9.2, 0.3, 0.5, 1.3, 0.2, 1.3, 4.5,    // Block 0",
+                    "    0.2, 0.7, 0.9, 1.8, 1.6, 1.7, 0.8, 0.7, 0.9,    // Block 1",
+                    "    1.5, 2.5, 7.2, 0.2, 0.8, 0.8, 0.3, 0.4, 0.2,    // Block 2",
+                    "    0.2, 0.4, 1.8, 1.6, 1.8, 0.6, 0.5, 4.2, 3.3,    // Block 3",
+                    "    0.2, 0.8, 1.2, 0.4, 0.6, 0.8, 1.8, 1.2, 0.9     // Block 4",
+                    "]  ",
+                    "var attributes = SparseAttributes_t()",
+                    "attributes.kind = SparseOrdinary",
+                    " ",
+                    "let structure = SparseMatrixStructure(rowCount: 3,",
+                    "                                      columnCount: 3,",
+                    "                                      columnStarts: &columnStarts,",
+                    "                                      rowIndices: &rowIndices,",
+                    "                                      attributes: attributes,",
+                    "                                      blockSize: 3)",
+                    " ",
+                    "values.withUnsafeMutableBufferPointer { valuesPtr in",
+                    "    let A = SparseMatrix_Double(",
+                    "        structure: structure,",
+                    "        data: valuesPtr.baseAddress!",
+                    "    )",
+                    "    ",
+                    "    // Perform operations using `A`.",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "long columnStarts[] = {0, 2, 4, 5}; ",
+                    "int rowIndices[]    = {0, 2, 0, 1, 2}; ",
+                    "  ",
+                    "double values[] = {",
+                    "    1.0, 0.1, 9.2, 0.3, 0.5, 1.3, 0.2, 1.3, 4.5,    // Block 0",
+                    "    0.2, 0.7, 0.9, 1.8, 1.6, 1.7, 0.8, 0.7, 0.9,    // Block 1",
+                    "    1.5, 2.5, 7.2, 0.2, 0.8, 0.8, 0.3, 0.4, 0.2,    // Block 2",
+                    "    0.2, 0.4, 1.8, 1.6, 1.8, 0.6, 0.5, 4.2, 3.3,    // Block 3",
+                    "    0.2, 0.8, 1.2, 0.4, 0.6, 0.8, 1.8, 1.2, 0.9     // Block 4",
+                    "}; ",
+                    " ",
+                    "SparseMatrixStructure structure = {",
+                    "    .rowCount     = 3,",
+                    "    .columnCount  = 3,",
+                    "    .columnStarts = columnStarts,",
+                    "    .rowIndices   = rowIndices,",
+                    "    .attributes = {",
+                    "        .kind = SparseOrdinary,",
+                    "    },",
+                    "    .blockSize = 3",
+                    "};",
+                    " ",
+                    "SparseMatrix_Double A = {",
+                    "    .structure = structure,",
+                    "    .data = values",
+                    "};"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a symmetric matrix with a block size greater than 1, the blocks along the matrix’s diagonal must also be symmetric.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseAttributes_t": {
+      "abstract": [
+        {
+          "text": "A structure that represents the attributes of a matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseAttributes_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseAttributes_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseAttributes_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseAttributes_t",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseattributes_t"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrixStructure": {
+      "abstract": [
+        {
+          "text": "A description of the sparsity structure of a sparse matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseMatrixStructure"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrixStructure",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseMatrixStructure"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseMatrixStructure",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsematrixstructure"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrixStructure/attributes": {
+      "abstract": [
+        {
+          "text": "The attributes of the matrix, such as whether it’s symmetrical or triangular.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseAttributes_t",
+          "text": "SparseAttributes_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrixStructure/attributes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "attributes",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsematrixstructure/attributes"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrixStructure/blockSize": {
+      "abstract": [
+        {
+          "text": "The block size of the matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blockSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrixStructure/blockSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "blockSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "blockSize",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsematrixstructure/blocksize"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Double": {
+      "abstract": [
+        {
+          "text": "A structure that contains a sparse matrix of double-precision, floating-point values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseMatrix_Double"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Double",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseMatrix_Double"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseMatrix_Double",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsematrix_double"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/creating-a-sparse-matrix-from-coordinate-format-arrays": {
+      "abstract": [
+        {
+          "text": "Use separate coordinate format arrays to create sparse matrices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/creating-a-sparse-matrix-from-coordinate-format-arrays",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a sparse matrix from coordinate format arrays",
+      "type": "topic",
+      "url": "/documentation/accelerate/creating-a-sparse-matrix-from-coordinate-format-arrays"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-using-direct-methods": {
+      "abstract": [
+        {
+          "text": "Use direct methods to solve systems of equations where the coefficient matrix is sparse.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-using-direct-methods",
+      "kind": "article",
+      "role": "article",
+      "title": "Solving systems using direct methods",
+      "type": "topic",
+      "url": "/documentation/accelerate/solving-systems-using-direct-methods"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-using-iterative-methods": {
+      "abstract": [
+        {
+          "text": "Use iterative methods to solve systems of equations where the coefficient matrix is sparse.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-using-iterative-methods",
+      "kind": "article",
+      "role": "article",
+      "title": "Solving systems using iterative methods",
+      "type": "topic",
+      "url": "/documentation/accelerate/solving-systems-using-iterative-methods"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/sparse-solvers-library": {
+      "abstract": [
+        {
+          "text": "Solve systems of equations where the coefficient matrix is sparse.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/sparse-solvers-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sparse Solvers",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse-solvers-library"
+    },
+    "doc://com.apple.documentation/documentation/Accelerate/conversion-from-other-formats": {
+      "abstract": [
+        {
+          "text": "Create sparse matrices from coordinate format arrays and BLAS opaque matrices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accelerate/conversion-from-other-formats",
+      "kind": "article",
+      "role": "article",
+      "title": "Conversion from Other Formats",
+      "type": "topic",
+      "url": "/documentation/Accelerate/conversion-from-other-formats"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Double": {
+      "abstract": [
+        {
+          "text": "A double-precision, floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Double",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Double",
+      "type": "topic",
+      "url": "/documentation/Swift/Double"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Float": {
+      "abstract": [
+        {
+          "text": "A single-precision, floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Float",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Float",
+      "type": "topic",
+      "url": "/documentation/Swift/Float"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-2904623": {
+      "alt": "A four-by-three unsymmetric sparse matrix that has three empty cells.",
+      "identifier": "media-2904623",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6c926d4c19dd7fa9f223bc45a7f92bf9/media-2904623@2x.png"
+        }
+      ]
+    },
+    "media-2904624": {
+      "alt": "A four-by-four symmetric sparse matrix that has four empty cells.",
+      "identifier": "media-2904624",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1f91a6441c387c4dea8abe1dcb9b98c6/media-2904624@2x.png"
+        }
+      ]
+    },
+    "media-2904625": {
+      "alt": "A nine-by-nine unsymmetric sparse matrix that has three rows of three blocks each.",
+      "identifier": "media-2904625",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/86cb9416846dc85258d052af8904517a/media-2904625@2x.png"
+        }
+      ]
+    },
+    "media-2904626": {
+      "alt": "A four-by-four symmetric sparse matrix that has four empty cells and four values that appear in a lighter color",
+      "identifier": "media-2904626",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/45b572fb419aff0d83548d95df749ffb/media-2904626@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sparse-Matrices",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-using-direct-methods",
+        "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-using-iterative-methods",
+        "doc://com.apple.accelerate/documentation/Accelerate/creating-a-sparse-matrix-from-coordinate-format-arrays",
+        "doc://com.apple.accelerate/documentation/Accelerate/sparse-solvers-library"
+      ],
+      "title": "Sparse Matrices"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrixStructure~1blockSize/title",
+          "value": "blockSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrixStructure~1blockSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "blockSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrixStructure/title",
+          "value": "SparseMatrixStructure"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrixStructure/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseMatrixStructure"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrixStructure/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseMatrixStructure"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrix_Double/title",
+          "value": "SparseMatrix_Double"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrix_Double/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseMatrix_Double"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrix_Double/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseMatrix_Double"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrixStructure~1attributes/title",
+          "value": "attributes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrixStructure~1attributes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "attributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseAttributes_t/title",
+          "value": "SparseAttributes_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseAttributes_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseAttributes_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseAttributes_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseAttributes_t"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

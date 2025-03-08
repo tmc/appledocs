@@ -1,0 +1,566 @@
+{
+  "abstract": [
+    {
+      "text": "Matches a picture’s colors to a destination device’s color gamut, as the picture is drawn, using the specified destination profile.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805223-ncmdrawmatchedpicture"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1805223,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "role": "pseudoSymbol",
+    "symbolKind": "func",
+    "title": "NCMDrawMatchedPicture"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "void NCMDrawMatchedPicture ("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   PicHandle myPicture,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   CMProfileRef dst,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   Rect *myRect"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The QuickDraw picture whose colors are to be matched. See the QuickDraw Reference for a description of the PixMap data type.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "myPicture"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A profile reference of type ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmprofileref",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to the profile of the destination device. Starting with ColorSync version 2.5, if you know the destination display device, you can call ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804955-cmgetprofilebyavid",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to get the specific profile for the display, or you can call ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804940-cmgetdefaultprofilebyspace",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to get the default profile for the RGB color space,.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "With any version of ColorSync, you can specify a ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " value to indicate the ColorSync system profile. Note, however, that starting with version 2.5, use of the system profile has changed.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "See the QuickDraw Reference for a description of the PixMap data type.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "dst"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a destination rectangle for rendering the picture specified by ",
+                  "type": "text"
+                },
+                {
+                  "code": "myPicture",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "myRect"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function does not return an error value. Instead, after calling ",
+              "type": "text"
+            },
+            {
+              "code": "NCMDrawMatchedPicture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " you call the ",
+              "type": "text"
+            },
+            {
+              "code": "QDError",
+              "type": "codeVoice"
+            },
+            {
+              "text": " routine to determine if an error has occurred. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NCMDrawMatchedPicture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function operates in the context of the current color graphics port. This function sets up and takes down a color-matching session. It automatically matches all colors in a picture to the destination profile for a destination device as the picture is drawn. It uses the ColorSync system profile as the initial source profile and any embedded profiles as they are encountered thereafter. (Because color-matching picture comments embedded in the picture to be matched are recognized, embedded profiles are used.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ColorSync Manager defines five picture comment kinds, as described in ",
+              "type": "text"
+            },
+            {
+              "code": "Picture Comment Kinds",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For embedding to work correctly, each embedded profile that is used for matching must be terminated by a picture comment of kind ",
+              "type": "text"
+            },
+            {
+              "code": "cmEndProfile",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If a picture comment is not specified to end the profile after drawing operations using that profile are performed, the profile will remain in effect until another embedded profile is introduced that has a picture comment kind of ",
+              "type": "text"
+            },
+            {
+              "code": "cmBeginProfile",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". To avoid unexpected matching effects, always pair use of the ",
+              "type": "text"
+            },
+            {
+              "code": "cmBeginProfile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "cmEndProfile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " picture comments. When the ColorSync Manager encounters a ",
+              "type": "text"
+            },
+            {
+              "code": "cmEndProfile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " picture comment, it restores use of the system profile for matching until it encounters another ",
+              "type": "text"
+            },
+            {
+              "code": "cmBeginProfile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " picture comment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The picture is drawn with matched colors to all screen graphics devices. If the current graphics device is not a screen device, matching occurs for that graphics device only. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the current port is not a color graphics port, then calling this function is equivalent to calling ",
+              "type": "text"
+            },
+            {
+              "code": "DrawPicture",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", in which case no color matching occurs. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1819438",
+          "level": 3,
+          "text": "Version-Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The parameter description for ",
+              "type": "text"
+            },
+            {
+              "code": "dst",
+              "type": "codeVoice"
+            },
+            {
+              "text": " describes changes in how this function is used starting with ColorSync version 2.5.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmprofileref": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmprofileref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMProfileRef",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmprofileref"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ColorSync Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804940-cmgetdefaultprofilebyspace": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804940-cmgetdefaultprofilebyspace",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetDefaultProfileBySpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804940-cmgetdefaultprofilebyspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804955-cmgetprofilebyavid": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804955-cmgetprofilebyavid",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetProfileByAVID",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804955-cmgetprofilebyavid"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805211-cwmatchpixmap": {
+      "abstract": [
+        {
+          "text": "Matches a pixel map in place based on a specified color world. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805211-cwmatchpixmap",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CWMatchPixMap",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805211-cwmatchpixmap"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805214-cwcheckpixmap": {
+      "abstract": [
+        {
+          "text": "Checks the colors of a pixel map using the profiles of a specified color world to determine whether the colors are in the gamut of the destination device. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805214-cwcheckpixmap",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CWCheckPixMap",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805214-cwcheckpixmap"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805216-ncmbeginmatching": {
+      "abstract": [
+        {
+          "text": "Sets up a QuickDraw-specific ColorSync matching session, using the specified source and destination profiles. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805216-ncmbeginmatching",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "NCMBeginMatching",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805216-ncmbeginmatching"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805220-cmendmatching": {
+      "abstract": [
+        {
+          "text": "Concludes a QuickDraw-specific ColorSync matching session initiated by a previous call to the ",
+          "type": "text"
+        },
+        {
+          "code": "NCMBeginMatching",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805220-cmendmatching",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMEndMatching",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805220-cmendmatching"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805223-ncmdrawmatchedpicture": {
+      "abstract": [
+        {
+          "text": "Matches a picture’s colors to a destination device’s color gamut, as the picture is drawn, using the specified destination profile.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805223-ncmdrawmatchedpicture",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "NCMDrawMatchedPicture",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805223-ncmdrawmatchedpicture"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805227-cmenablematchingcomment": {
+      "abstract": [
+        {
+          "text": "Inserts a comment into the currently open picture to turn matching on or off. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805227-cmenablematchingcomment",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMEnableMatchingComment",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805227-cmenablematchingcomment"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805229-ncmuseprofilecomment": {
+      "abstract": [
+        {
+          "text": "Automatically embeds a profile or a profile identifier into an open picture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805229-ncmuseprofilecomment",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "NCMUseProfileComment",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805229-ncmuseprofilecomment"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805211-cwmatchpixmap",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805214-cwcheckpixmap",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805216-ncmbeginmatching",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805220-cmendmatching",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805227-cmenablematchingcomment",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805229-ncmuseprofilecomment"
+      ],
+      "title": "Working With QuickDraw"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/colorsync_manager/1805223-ncmdrawmatchedpicture"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

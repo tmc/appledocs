@@ -1,0 +1,738 @@
+{
+  "abstract": [
+    {
+      "text": "Find problems in your app’s vertex, object, or mesh function by examining the current geometry.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-geometry-of-a-draw-command"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Inspecting the geometry of a draw command"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After opening a geometry, you can view the wireframe using the Geometry viewer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "First, click the Camera Properties button and configure the perspective matrix.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then, using mouse and trackpad gestures, you can view the geometry at different angles to check for issues.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can also Control-click in the scene view to enable visualization of different vertex attributes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you click an individual primitive to select it, Xcode displays the values of its corresponding vertices in the data view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In addition, you can inspect a selected primitive in the shader debugger, make changes to your shader, and see the updated results live.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Change-the-projection-matrix",
+          "level": 3,
+          "text": "Change the projection matrix",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Geometry viewer shows you the output geometry from your vertex or mesh shader stage.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To restore your geometry from clip-space to view-space, by default, the Geometry viewer applies an inverse-projection using a perspective matrix with a near value of ",
+              "type": "text"
+            },
+            {
+              "code": "0.1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", a far value of ",
+              "type": "text"
+            },
+            {
+              "code": "100",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and an FOV of ",
+              "type": "text"
+            },
+            {
+              "code": "65º",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, if you’re using a different projection matrix, your geometry may look squished or stretched.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To solve this, you can click the Options button on the bottom left in the control bar and customize the projection matrix to match the one you use in the vertex shader.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-gv-camera-options.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "View-your-geometry-from-different-angles",
+          "level": 3,
+          "text": "View your geometry from different angles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can navigate around your geometry in the scene view using mouse and trackpad gestures.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This enables you to zoom in at a specific area to check for erroneous geometry, or find extraneous geometry that may initially be out of sight.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-gv-rotate.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Visualize-your-vertex-attributes",
+          "level": 3,
+          "text": "Visualize your vertex attributes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Occasionally, you might have an issue in an attribute of your geometry. In that case, the Geometry viewer can color your geometry using the attribute to make it easier to find any incorrect values. To do this, Control-click in the scene view, choose Visualize Vertex Attribute, and then select the attribute you want to display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-gv-visualize-attribute.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can also Control-click to disable Show Wireframe and Show Vertices to make the attribute visualization easier to see.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Inspect-vertex-values",
+          "level": 3,
+          "text": "Inspect vertex values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you discover a misplaced or misshaped primitive, it’s possible that the issue lies in the data you’re passing into the vertex, object, or mesh shader.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Check the data view at the bottom to ensure the input and output of your shader is correct.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To see all of the attributes for a specific primitive, click the primitive in the scene view to select it, and then Xcode highlights the primitive’s vertices in the data view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your shader has multiple outputs, refer to the additional columns to the right of the output position.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can rearrange or hide columns to make it easier to compare values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-gv-vertex-selection.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Debug-your-geometry",
+          "level": 3,
+          "text": "Debug your geometry",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some of the geometry may be misplaced or have values that are incorrect.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To determine whether the issue comes from the shader code, you can debug your vertex, object, or mesh shader using the shader debugger.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the scene view, select a misplaced or misshaped primitive and click Debug.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-gv-shader-debugger.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The shader displays in Xcode’s main editor.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To discover the cause of the problem, step through each line of code and inspect each variable’s values in the right pane until you spot any anomaly.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information on debugging shaders, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-GPU-counters": {
+      "abstract": [
+        {
+          "text": "Identify issues within your frame capture by examining performance counters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-GPU-counters",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing draw command and compute dispatch performance with GPU counters",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-draw-command-and-compute-dispatch-performance-with-gpu-counters"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-pipeline-statistics": {
+      "abstract": [
+        {
+          "text": "Identify issues within your frame capture by examining pipeline statistics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-pipeline-statistics",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing draw command and compute dispatch performance with pipeline statistics",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-draw-command-and-compute-dispatch-performance-with-pipeline-statistics"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch": {
+      "abstract": [
+        {
+          "text": "Identify and fix problematic shaders in your app using the shader debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging the shaders within a draw command or compute dispatch",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging-the-shaders-within-a-draw-command-or-compute-dispatch"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-attachments-of-a-draw-command": {
+      "abstract": [
+        {
+          "text": "Discover attachment issues by inspecting individual pixels and samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-attachments-of-a-draw-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting the attachments of a draw command",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-the-attachments-of-a-draw-command"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command": {
+      "abstract": [
+        {
+          "text": "Discover issues by examining the bound resources at any point in an encoder.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting the bound resources for a command",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-the-bound-resources-for-a-command"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger": {
+      "abstract": [
+        {
+          "text": "Debug and profile your Metal workload with a GPU trace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal debugger",
+      "type": "topic",
+      "url": "/documentation/xcode/metal-debugger"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "gputools-metal-debugger-gv-camera-options.png": {
+      "alt": "A screenshot of the Camera Properties popover in the Geometry viewer with the projection matrix controls highlighted.",
+      "identifier": "gputools-metal-debugger-gv-camera-options.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/275cf10dafa6b4f7e00d6704c25efe13/gputools-metal-debugger-gv-camera-options.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6d83629a9e812f94549acd110faa6c2a/gputools-metal-debugger-gv-camera-options@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d1ac2d9f12baca0846927e4c3d4ea850/gputools-metal-debugger-gv-camera-options~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fcf310d6af1df1a93f29b950f5638677/gputools-metal-debugger-gv-camera-options~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-gv-rotate.png": {
+      "alt": "A screenshot of the Geometry viewer displaying the geometry in the scene view and listing the vertices in the table. The selected vertex and its siblings are highlighted in the scene view and in the table.",
+      "identifier": "gputools-metal-debugger-gv-rotate.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1b49981ea62398826741e3ec7a18ab94/gputools-metal-debugger-gv-rotate.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4ab409a6e4f7ae9a32a02ff47e064f02/gputools-metal-debugger-gv-rotate@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/824899f749f0048c9dbb233ee17a55f5/gputools-metal-debugger-gv-rotate~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fd8924b55de2534aab65f5f74267a0d9/gputools-metal-debugger-gv-rotate~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-gv-shader-debugger.png": {
+      "alt": "A screenshot of the Metal debugger showing the Shader editor and the Geometry viewer side by side. A vertex is highlighted in the Geometry viewer, and the Debug button in the control bar is highlighted.",
+      "identifier": "gputools-metal-debugger-gv-shader-debugger.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/39b41787af493e05a637fbe1d2f7ffd4/gputools-metal-debugger-gv-shader-debugger.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/16ea05dc5f61c0925153da5d7004f0a3/gputools-metal-debugger-gv-shader-debugger@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/85ab9fdfa61827efd6bb016f3e0aad95/gputools-metal-debugger-gv-shader-debugger~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/397c7b49fae36392037db4ad94143841/gputools-metal-debugger-gv-shader-debugger~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-gv-vertex-selection.png": {
+      "alt": "A screenshot of the Geometry viewer displaying the geometry in the scene view and listing the vertices in the table. The selected vertex and its siblings are highlighted in the scene view and in the table.",
+      "identifier": "gputools-metal-debugger-gv-vertex-selection.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8f0493d6cdcdfc9703f6dec56f275c84/gputools-metal-debugger-gv-vertex-selection.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/98df51b27a8397ac32b1fe5acff60acf/gputools-metal-debugger-gv-vertex-selection@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a94bda7589c5241353c7eaf5b25e1ed2/gputools-metal-debugger-gv-vertex-selection~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7d348d7353ffd521d07c17bab8dfea6f/gputools-metal-debugger-gv-vertex-selection~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-gv-visualize-attribute.png": {
+      "alt": "A screenshot of the context menu for the scene view with the Visualize Vertex Attribute menu item highlighted and the Normal Values submenu selected.",
+      "identifier": "gputools-metal-debugger-gv-visualize-attribute.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6019dca6281956fde76a8cbfed4ca221/gputools-metal-debugger-gv-visualize-attribute.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/661a547446ebf21b7dc02a66f5264da0/gputools-metal-debugger-gv-visualize-attribute@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e272a4d68d07955d2b4cdd937f4c003c/gputools-metal-debugger-gv-visualize-attribute~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a9e757d065a8eccc5081f36d722d912f/gputools-metal-debugger-gv-visualize-attribute~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Metal-command-analysis",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-attachments-of-a-draw-command",
+        "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-GPU-counters",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-pipeline-statistics"
+      ],
+      "title": "Metal command analysis"
+    }
+  ]
+}

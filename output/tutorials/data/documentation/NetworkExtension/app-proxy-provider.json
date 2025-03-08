@@ -1,0 +1,1659 @@
+{
+  "abstract": [
+    {
+      "text": "Implement a VPN client for a flow-oriented, custom VPN protocol.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkextension/documentation/NetworkExtension"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.networkextension/documentation/NetworkExtension/app-proxy-provider"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Network Extension"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "App proxy provider"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A virtual private network (VPN) is a form of network tunnel where a VPN client uses the public internet to create a connection to a VPN server and then passes private network traffic over that connection.  If you want to build a VPN client that implements a flow-oriented, custom VPN protocol—one that works with the data passing through a transmission control protocol (TCP) connection rather than the packets used to transport that data—create an app proxy provider app extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system starts a VPN configuration that uses your app proxy provider, it performs the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Launches your app extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Instantiates your proxy provider subclass within that app extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Starts forwarding flows to your provider.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each flow represents either a TCP connection or a conversation over user datagram protocol (UDP). Your provider should to open a tunnel to a VPN server and forward each flow over that tunnel. Similarly, if your provider receives flow data from the tunnel, it should pass that back to the system through the appropriate flow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "App proxy providers are one form of per-app VPN, the other being a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/packet-tunnel-provider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in source application mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For detailed information about app proxy provider deployment options, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3134-network-extension-provider-deployment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When a VPN configuration is active, connections use the VPN instead of iCloud Private Relay. Network Extension providers also don’t use iCloud Private Relay.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.networkextension": {
+      "abstract": [
+        {
+          "text": "The APIs an app can use to customize networking features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.networkextension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Network Extensions Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.networking.networkextension"
+    },
+    "doc://com.apple.documentation/documentation/Technotes/tn3134-network-extension-provider-deployment": {
+      "abstract": [
+        {
+          "text": "Explore the platforms, packaging, OS versions, and device configurations for Network Extension provider deployment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3134-network-extension-provider-deployment",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3134: Network Extension provider deployment",
+      "type": "topic",
+      "url": "/documentation/Technotes/tn3134-network-extension-provider-deployment"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension": {
+      "abstract": [
+        {
+          "text": "Customize and extend core networking features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network Extension",
+      "type": "topic",
+      "url": "/documentation/networkextension"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow": {
+      "abstract": [
+        {
+          "text": "An abstract base class shared by NEAppProxyTCPFlow and NEAppProxyUDPFlow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyFlow"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyFlow"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppProxyFlow",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyflow"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider": {
+      "abstract": [
+        {
+          "text": "The principal class for an app proxy provider app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppProxyProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProviderManager": {
+      "abstract": [
+        {
+          "text": "An object to create and manage the app proxy provider’s VPN configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyProviderManager"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProviderManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyProviderManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppProxyProviderManager",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyprovidermanager"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyTCPFlow": {
+      "abstract": [
+        {
+          "text": "An object for reading and writing data to and from a TCP connection being proxied by the provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyTCPFlow"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyTCPFlow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyTCPFlow"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppProxyTCPFlow",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxytcpflow"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyUDPFlow": {
+      "abstract": [
+        {
+          "text": "An object for reading and writing data to and from a UDP conversation being proxied by the provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyUDPFlow"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyUDPFlow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyUDPFlow"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppProxyUDPFlow",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyudpflow"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppRule": {
+      "abstract": [
+        {
+          "text": "The identity of an app whose traffic is to be routed through the tunnel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppRule"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppRule",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppRule"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppRule",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapprule"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFlowMetaData": {
+      "abstract": [
+        {
+          "text": "Additional information about data flowing through a per-app VPN provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFlowMetaData"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFlowMetaData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFlowMetaData"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFlowMetaData",
+      "type": "topic",
+      "url": "/documentation/networkextension/neflowmetadata"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule": {
+      "abstract": [
+        {
+          "text": "A rule to match attributes of network traffic.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NENetworkRule"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NENetworkRule"
+        }
+      ],
+      "role": "symbol",
+      "title": "NENetworkRule",
+      "type": "topic",
+      "url": "/documentation/networkextension/nenetworkrule"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider": {
+      "abstract": [
+        {
+          "text": "An abstract base class for all NetworkExtension providers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/neprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyManager": {
+      "abstract": [
+        {
+          "text": "An object that configures and controls transparent proxies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NETransparentProxyManager"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NETransparentProxyManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NETransparentProxyManager",
+      "type": "topic",
+      "url": "/documentation/networkextension/netransparentproxymanager"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyNetworkSettings": {
+      "abstract": [
+        {
+          "text": "A specification of what traffic to route through a transparent proxy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NETransparentProxyNetworkSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyNetworkSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NETransparentProxyNetworkSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "NETransparentProxyNetworkSettings",
+      "type": "topic",
+      "url": "/documentation/networkextension/netransparentproxynetworksettings"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyProvider": {
+      "abstract": [
+        {
+          "text": "An object that implements the client side of a custom transparent network proxy solution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NETransparentProxyProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NETransparentProxyProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NETransparentProxyProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/netransparentproxyprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelNetworkSettings": {
+      "abstract": [
+        {
+          "text": "The configuration for a tunnel provider’s virtual interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NETunnelNetworkSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelNetworkSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NETunnelNetworkSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "NETunnelNetworkSettings",
+      "type": "topic",
+      "url": "/documentation/networkextension/netunnelnetworksettings"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider": {
+      "abstract": [
+        {
+          "text": "An abstract base class shared by NEPacketTunnelProvider and NEAppProxyProvider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NETunnelProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NETunnelProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NETunnelProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/netunnelprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderManager": {
+      "abstract": [
+        {
+          "text": "An object to create and manage the tunnel provider’s VPN configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NETunnelProviderManager"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NETunnelProviderManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NETunnelProviderManager",
+      "type": "topic",
+      "url": "/documentation/networkextension/netunnelprovidermanager"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderProtocol": {
+      "abstract": [
+        {
+          "text": "Configuration parameters for a VPN tunnel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NETunnelProviderProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NETunnelProviderProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "NETunnelProviderProtocol",
+      "type": "topic",
+      "url": "/documentation/networkextension/netunnelproviderprotocol"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderSession": {
+      "abstract": [
+        {
+          "text": "An object to start and stop a tunnel connection and get its status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NETunnelProviderSession"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NETunnelProviderSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "NETunnelProviderSession",
+      "type": "topic",
+      "url": "/documentation/networkextension/netunnelprovidersession"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNConnection": {
+      "abstract": [
+        {
+          "text": "An object to start and stop a Personal VPN connection and get its status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEVPNConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNConnection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEVPNConnection"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEVPNConnection",
+      "type": "topic",
+      "url": "/documentation/networkextension/nevpnconnection"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNManager": {
+      "abstract": [
+        {
+          "text": "An object to create and manage a Personal VPN configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEVPNManager"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEVPNManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEVPNManager",
+      "type": "topic",
+      "url": "/documentation/networkextension/nevpnmanager"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/handling-flow-copying": {
+      "abstract": [
+        {
+          "text": "Exchange data streams by using proxy-provider classes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/handling-flow-copying",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Flow Copying",
+      "type": "topic",
+      "url": "/documentation/networkextension/handling-flow-copying"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/in-provider-networking": {
+      "abstract": [
+        {
+          "text": "Network APIs for use by all types of NetworkExtension providers and by hotspot helpers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/in-provider-networking",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-Provider Networking",
+      "type": "topic",
+      "url": "/documentation/networkextension/in-provider-networking"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/packet-tunnel-provider": {
+      "abstract": [
+        {
+          "text": "Implement a VPN client for a packet-oriented, custom VPN protocol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/packet-tunnel-provider",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Packet tunnel provider",
+      "type": "topic",
+      "url": "/documentation/networkextension/packet-tunnel-provider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/personal-vpn": {
+      "abstract": [
+        {
+          "text": "Create and manage a VPN configuration that uses one of the built-in VPN protocols (IPsec or IKEv2).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/personal-vpn",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Personal VPN",
+      "type": "topic",
+      "url": "/documentation/networkextension/personal-vpn"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/routing-your-vpn-network-traffic": {
+      "abstract": [
+        {
+          "text": "Configure your VPN to include and exclude some network traffic.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/routing-your-vpn-network-traffic",
+      "kind": "article",
+      "role": "article",
+      "title": "Routing your VPN network traffic",
+      "type": "topic",
+      "url": "/documentation/networkextension/routing-your-vpn-network-traffic"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/vpn-on-demand-rules": {
+      "abstract": [
+        {
+          "text": "Set up VPN On Demand.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/vpn-on-demand-rules",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "VPN On Demand Rules",
+      "type": "topic",
+      "url": "/documentation/networkextension/vpn-on-demand-rules"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Virtual-private-networks",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/routing-your-vpn-network-traffic",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/personal-vpn",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/packet-tunnel-provider"
+      ],
+      "title": "Virtual private networks"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.networkextension"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "App-proxy-provider",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelNetworkSettings"
+      ],
+      "title": "App proxy provider"
+    },
+    {
+      "anchor": "Flow-handling",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyTCPFlow",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyUDPFlow",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFlowMetaData",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/in-provider-networking",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/handling-flow-copying"
+      ],
+      "title": "Flow handling"
+    },
+    {
+      "anchor": "VPN-configuration",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProviderManager",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderManager",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNManager",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderProtocol",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppRule",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/vpn-on-demand-rules"
+      ],
+      "title": "VPN configuration"
+    },
+    {
+      "anchor": "VPN-control",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderSession",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNConnection"
+      ],
+      "title": "VPN control"
+    },
+    {
+      "anchor": "Transparent-proxy-configuration",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyManager",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyProvider",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyNetworkSettings",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule"
+      ],
+      "title": "Transparent proxy configuration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.networkextension"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "App-proxy-provider",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelNetworkSettings"
+              ],
+              "title": "App proxy provider"
+            },
+            {
+              "anchor": "Flow-handling",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyTCPFlow",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyUDPFlow",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFlowMetaData",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/in-provider-networking",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/handling-flow-copying"
+              ],
+              "title": "Flow handling"
+            },
+            {
+              "anchor": "VPN-configuration",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProviderManager",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderManager",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNManager",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderProtocol",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppRule",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/vpn-on-demand-rules"
+              ],
+              "title": "VPN configuration"
+            },
+            {
+              "anchor": "VPN-control",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderSession",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNConnection"
+              ],
+              "title": "VPN control"
+            },
+            {
+              "anchor": "Transparent-proxy-configuration",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyManager",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyProvider",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyNetworkSettings",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule"
+              ],
+              "title": "Transparent proxy configuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Virtual-private-networks",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/routing-your-vpn-network-traffic",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/personal-vpn",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/packet-tunnel-provider"
+              ],
+              "title": "Virtual private networks"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETransparentProxyNetworkSettings/title",
+          "value": "NETransparentProxyNetworkSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETransparentProxyNetworkSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETransparentProxyNetworkSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETransparentProxyNetworkSettings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETransparentProxyNetworkSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETransparentProxyProvider/title",
+          "value": "NETransparentProxyProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETransparentProxyProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETransparentProxyProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETransparentProxyProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETransparentProxyProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProvider/title",
+          "value": "NETunnelProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETunnelProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETunnelProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProviderManager/title",
+          "value": "NETunnelProviderManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProviderManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETunnelProviderManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProviderManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETunnelProviderManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppRule/title",
+          "value": "NEAppRule"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppRule/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppRule"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppRule/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppRule"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProvider/title",
+          "value": "NEAppProxyProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETransparentProxyManager/title",
+          "value": "NETransparentProxyManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETransparentProxyManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETransparentProxyManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETransparentProxyManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETransparentProxyManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyFlow/title",
+          "value": "NEAppProxyFlow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyFlow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyFlow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProviderProtocol/title",
+          "value": "NETunnelProviderProtocol"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProviderProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETunnelProviderProtocol"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProviderProtocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETunnelProviderProtocol"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelNetworkSettings/title",
+          "value": "NETunnelNetworkSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelNetworkSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETunnelNetworkSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelNetworkSettings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETunnelNetworkSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProviderSession/title",
+          "value": "NETunnelProviderSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProviderSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETunnelProviderSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProviderSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETunnelProviderSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NENetworkRule/title",
+          "value": "NENetworkRule"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NENetworkRule/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NENetworkRule"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NENetworkRule/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NENetworkRule"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNConnection/title",
+          "value": "NEVPNConnection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNConnection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEVPNConnection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNConnection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEVPNConnection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEProvider/title",
+          "value": "NEProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNManager/title",
+          "value": "NEVPNManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEVPNManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEVPNManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyTCPFlow/title",
+          "value": "NEAppProxyTCPFlow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyTCPFlow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyTCPFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyTCPFlow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyTCPFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProviderManager/title",
+          "value": "NEAppProxyProviderManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProviderManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyProviderManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProviderManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyProviderManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyUDPFlow/title",
+          "value": "NEAppProxyUDPFlow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyUDPFlow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyUDPFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyUDPFlow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyUDPFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFlowMetaData/title",
+          "value": "NEFlowMetaData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFlowMetaData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFlowMetaData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFlowMetaData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFlowMetaData"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/networkextension/app-proxy-provider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/networkextension/app-proxy-provider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

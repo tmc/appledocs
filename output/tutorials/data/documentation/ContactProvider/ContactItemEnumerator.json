@@ -1,0 +1,925 @@
+{
+  "abstract": [
+    {
+      "text": "A protocol to provide enumerations of all contact items and changed contact items.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ContactProvider/documentation/ContactProvider"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerator"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:15ContactProvider0A14ItemEnumeratorP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ContactItemEnumerator"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ContactProvider"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ContactItemEnumerator"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "ContactItemEnumerator"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ContactItemEnumerator"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement this protocol to fetch contact items from your data store in a consistent, predictable order when the system requests contact item enumeration. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerating",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, typically implemented by the app extension, returns an instance of this type when the system requests contacts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The enumerator has two main methods to implement:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerator/enumerateContent(in:for:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " – Enumerates all of your contacts that you want to provide to the system-wide Contacts ecosystem, sending arrays of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItem",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instances to a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemContentObserver",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerator/enumerateChanges(startingAt:for:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " – Enumerates changed contacts, sending updates and deletions to a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemChangeObserver",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", as arrays of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItem",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItem/Identifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instances, respectively.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following ",
+              "type": "text"
+            },
+            {
+              "code": "RootContainerEnumerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " outlines how to implement a ",
+              "type": "text"
+            },
+            {
+              "code": "ContactItemEnumerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The listing shows ",
+              "type": "text"
+            },
+            {
+              "code": "TODO",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in places where the implementation depends on the specifics of your app’s data store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import ContactProvider",
+            "",
+            "class RootContainerEnumerator: ContactItemEnumerator {",
+            "",
+            "    func configure(for domain: ContactProviderDomain) {",
+            "        // Configure your enumerator here.",
+            "    }",
+            "    ",
+            "    func enumerateContent(in page: ContactItemPage, ",
+            "                          for observer: any ContactItemContentObserver) {",
+            "",
+            "        // TODO: Get the database generation for the content enumeration, which is used for the first call to `enumerateChanges`.",
+            "        let generationMarker = (page == .initialPage) ? currentGenerationMarker() : page.generationMarker",
+            "",
+            "        do {",
+            "            // TODO: Get your batch of items to enumerate.",
+            "            let content = try fetchContent(startingAt: generationMarker,",
+            "                                           offset: page.offset,",
+            "                                           count: observer.suggestedPageSize)",
+            "            ",
+            "            // Send the items to the observer.",
+            "            observer.didEnumerate(content.items)",
+            "",
+            "            if content.moreComing {",
+            "                // Need to enumerate more items.",
+            "            ",
+            "                // TODO: Create your next `ItemPage` that starts the next batch of items.",
+            "                //",
+            "                // Note: If `page.generationMarker` is empty, you must provide a non-empty `nextPage.generationMarker`.",
+            "                //       If `page.generationMarker` is non-empty, `nextPage.generationMarker` must be the same value.",
+            "                let nextPage = ContactItemPage(generationMarker: generationMarker,",
+            "                                               offset: page.offset + content.items.count)",
+            "",
+            "                // Send the observer to the next page.",
+            "                observer.didFinishEnumeratingPage(upTo: nextPage)",
+            "            } else {",
+            "                // All items have been enumerated.",
+            "                ",
+            "                // Tell the observer the next sync should be a change enumeration.",
+            "                observer.didFinishEnumeratingContent(upTo: generationMarker)",
+            "            }",
+            "",
+            "        } catch {",
+            "            // Tell the observer an error occurred.",
+            "            //",
+            "            // Note: The system resumes the enumeration from the last `ContactItemPage` that was enumerated successfully, if the error is resumable.",
+            "            observer.didFinishEnumeratingContentWithError(error)",
+            "        }",
+            "        ",
+            "        func currentGenerationMarker() -> Data {",
+            "            // TODO: Get the value specific to your data source identifying the current database generation.",
+            "            //",
+            "            // Note: Don't call `didFinishEnumeratingPage(upTo:)` with an empty `ContactItemPage.generationMarker`; this results in an error.",
+            "            let generationMarker: Data = \"<currentDatabaseGenerationMarker>\".data(using: .utf8)!",
+            "            return generationMarker",
+            "        }",
+            "",
+            "        func fetchContent(startingAt generationMarker: Data, offset: Int, count: Int) throws -> ContentFetchResult {",
+            "            // TODO: Fetch up to `count` items from the database, starting at `offset` items for the database generation specified by `generationMarker`.",
+            "            let items: [ContactItem] = []",
+            "            let moreComing: Bool = false",
+            "",
+            "            return ContentFetchResult(items: items, moreComing: moreComing)",
+            "        }",
+            "",
+            "        struct ContentFetchResult {",
+            "            let items: [ContactItem]",
+            "            let moreComing: Bool",
+            "        }",
+            "",
+            "    }",
+            "    ",
+            "    func enumerateChanges(startingAt syncAnchor: ContactItemSyncAnchor, ",
+            "                          for observer: any ContactItemChangeObserver) {",
+            "        do {",
+            "            // TODO: Get your batch of changed items to enumerate.",
+            "            let changes = try fetchChanges(startingAt: syncAnchor.generationMarker,",
+            "                                           offset: syncAnchor.offset,",
+            "                                           count: observer.suggestedBatchSize)",
+            "",
+            "            // Send the changes to the observer.",
+            "            observer.didUpdate(changes.updatedItems)",
+            "            observer.didDelete(changes.deletedItemIdentifiers)",
+            "            observer.didFinishEnumeratingChanges(upTo: changes.nextSyncAnchor,",
+            "                                                 moreComing: changes.moreComing)",
+            "        } catch {",
+            "            // Tell the observer an error occurred.",
+            "            //",
+            "            // Note: The system resumes the enumeration from the last `ItemChangeAnchor` that was enumerated successfully, if the error is resumable.",
+            "            observer.didFinishEnumeratingChangesWithError(error)",
+            "        }",
+            "",
+            "        func fetchChanges(startingAt generationMarker: Data, offset: Int, count: Int) throws -> ChangeFetchResult {",
+            "            // TODO: Fetch up to `count` changes from the database, starting at `offset` changes after the database generation specified by `generationMarker`.",
+            "            let updatedItems: [ContactItem] = []",
+            "            let deletedItemIdentifiers: [ContactItem.Identifier] = []",
+            "            let moreComing: Bool = false",
+            "",
+            "            // TODO: Generate the next `ContactItemSyncAnchor`, using the `generationMarker` and offset of the last change that was fetched.",
+            "            let lastChangeGenerationMarker: Data = \"<lastChangeGenerationMarker>\".data(using: .utf8)!",
+            "            let lastChangeOffset: Int = 0",
+            "            let nextSyncAnchor = ContactItemSyncAnchor(generationMarker: lastChangeGenerationMarker, offset: lastChangeOffset)",
+            "",
+            "            return ChangeFetchResult(updatedItems: updatedItems,",
+            "                                     deletedItemIdentifiers: deletedItemIdentifiers,",
+            "                                     moreComing: moreComing,",
+            "                                     nextSyncAnchor: nextSyncAnchor)",
+            "        }",
+            "",
+            "        struct ChangeFetchResult {",
+            "            let updatedItems: [ContactItem]",
+            "            let deletedItemIdentifiers: [ContactItem.Identifier]",
+            "            let moreComing: Bool",
+            "            let nextSyncAnchor: ContactItemSyncAnchor",
+            "        }",
+            "    }",
+            "    ",
+            "    func invalidate() async {",
+            "        // Invalidate here.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.ContactProvider/documentation/ContactProvider": {
+      "abstract": [
+        {
+          "text": "Provide contacts managed by your app to the system-wide Contacts ecosystem.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ContactProvider",
+      "type": "topic",
+      "url": "/documentation/contactprovider"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItem": {
+      "abstract": [
+        {
+          "text": "An item in the contact database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContactItem"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContactItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContactItem",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactitem"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItem/Identifier": {
+      "abstract": [
+        {
+          "text": "The app’s identifier for an item in the contact database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifier"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItem/Identifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Identifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContactItem.Identifier",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactitem/identifier"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemChangeObserver": {
+      "abstract": [
+        {
+          "text": "A protocol that defines a system observer that receives a resumable enumeration of changed contact items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContactItemChangeObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemChangeObserver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContactItemChangeObserver"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContactItemChangeObserver",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactitemchangeobserver"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemContentObserver": {
+      "abstract": [
+        {
+          "text": "A protocol that defines a system observer that receives a resumable enumeration of all items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContactItemContentObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemContentObserver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContactItemContentObserver"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContactItemContentObserver",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactitemcontentobserver"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerating": {
+      "abstract": [
+        {
+          "text": "A protocol to provide enumerators for collections of contact items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContactItemEnumerating"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerating",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContactItemEnumerating"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContactItemEnumerating",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactitemenumerating"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerator": {
+      "abstract": [
+        {
+          "text": "A protocol to provide enumerations of all contact items and changed contact items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContactItemEnumerator"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContactItemEnumerator"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContactItemEnumerator",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactitemenumerator"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerator/enumerateChanges(startingAt:for:)": {
+      "abstract": [
+        {
+          "text": "Enumerates items changed since the last sync.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateChanges"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "startingAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ContactProvider0A14ItemSyncAnchorV",
+          "text": "ContactItemSyncAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ContactProvider0A18ItemChangeObserverP",
+          "text": "ContactItemChangeObserver"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerator/enumerateChanges(startingAt:for:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "enumerateChanges(startingAt:for:)",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactitemenumerator/enumeratechanges(startingat:for:)"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerator/enumerateContent(in:for:)": {
+      "abstract": [
+        {
+          "text": "Enumerates all items, batched in pages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateContent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ContactProvider0A8ItemPageV",
+          "text": "ContactItemPage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ContactProvider0A19ItemContentObserverP",
+          "text": "ContactItemContentObserver"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerator/enumerateContent(in:for:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "enumerateContent(in:for:)",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactitemenumerator/enumeratecontent(in:for:)"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerator/invalidate()": {
+      "abstract": [
+        {
+          "text": "Invalidates the enumerator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidate"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerator/invalidate()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "invalidate()",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactitemenumerator/invalidate()"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemPage": {
+      "abstract": [
+        {
+          "text": "A fixed offset into enumerating all contact items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContactItemPage"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemPage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContactItemPage"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContactItemPage",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactitempage"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemSyncAnchor": {
+      "abstract": [
+        {
+          "text": "A snapshot point into enumerating changed contact items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContactItemSyncAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemSyncAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContactItemSyncAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContactItemSyncAnchor",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactitemsyncanchor"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Providing-contacts",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItem",
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerating"
+      ],
+      "title": "Providing contacts"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Enumerating-contact-items",
+      "identifiers": [
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerator/enumerateContent(in:for:)",
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemPage",
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemContentObserver"
+      ],
+      "title": "Enumerating contact items"
+    },
+    {
+      "anchor": "Enumerating-item-changes",
+      "identifiers": [
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerator/enumerateChanges(startingAt:for:)",
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemSyncAnchor",
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemChangeObserver"
+      ],
+      "title": "Enumerating item changes"
+    },
+    {
+      "anchor": "Managing-enumerator-life-cycle",
+      "identifiers": [
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerator/invalidate()"
+      ],
+      "title": "Managing enumerator life cycle"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/contactprovider/contactitemenumerator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

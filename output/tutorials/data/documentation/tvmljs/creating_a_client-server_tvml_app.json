@@ -1,0 +1,569 @@
+{
+  "abstract": [
+    {
+      "text": "Display and navigate between TVML documents on Apple TV by retrieving and parsing information from a remote server.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/tvmljs"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/tvmljs/creating_a_client-server_tvml_app"
+  },
+  "kind": "article",
+  "legacy_identifier": 3080648,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "TVMLKit JS"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "12.1",
+        "name": "tvOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "11.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating a Client-Server TVML App"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A TVML app creates a client-server connection to retrieve information stored on a server. The retrieved information is parsed into a document and displayed on a TV screen. Use this sample code project to create your first client-server app. The app uses JavaScript to load an initial TVML document from a local server. The user navigates between two images and the app loads a new document after the user selects one of the images. For detailed information about the TVML framework, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.TVML/documentation/TVML",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3562974",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before running the app, you need to set up a local server on your machine:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Finder, navigate to the CreateTVMLApp directory inside of the CreateTVMLApp project directory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Terminal, enter at the prompt, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "cd",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " followed by a space.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag the CreateTVMLApp folder from the Finder window into the Terminal window, and press Return. This changes the directory to that folder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Terminal, enter ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ruby -run -ehttpd . -p9001",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to run the server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build and run the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After testing the sample app in Apple TV Simulator, you can close the local server by pressing Control-C in Terminal. Closing the Terminal window also kills the server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3562975",
+          "level": 3,
+          "text": "Display the Initial Document",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "application.js",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file controls the app. The app creates two global variables that contain URL information. When the app launches, the app populates the variables with information contained in the ",
+              "type": "text"
+            },
+            {
+              "code": "AppDelegate.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file and retrieves the first document from the server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var baseURL;",
+            "var serverURL;",
+            "",
+            "App.onLaunch = function(options) {",
+            "    baseURL = options.BASEURL;",
+            "    serverURL = options.BASEURL + \"/Server\";",
+            "    var extension = \"/Templates/InitialPage.xml\";",
+            "    getDocument(extension);",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3562965",
+            "title": "Listing 1"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "3562976",
+          "level": 3,
+          "text": "Retrieve a TVML Document From the Server",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While you can’t control a user’s internet access, you can control what they see on the screen. To avoid showing a blank screen, create and display a loading document to provide users with a visual cue that your app is working, despite not having a connection to the server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create and display the loading document from inside your main JavaScript file. This ensures that you can always display the loading document, even if access to the server is down. The following code creates a loading document and pushes it onto the navigation stack for display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "function loadingTemplate() {",
+            "    var template = '<document><loadingTemplate><activityIndicator><text>Loading</text></activityIndicator></loadingTemplate></document>';",
+            "    var templateParser = new DOMParser();",
+            "    var parsedTemplate = templateParser.parseFromString(template, \"application/xml\");",
+            "    navigationDocument.pushDocument(parsedTemplate);",
+            "    return parsedTemplate;",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3562967",
+            "title": "Listing 2"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/tvmljs/xmlhttprequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to retrieve information from the server. After successfully loading a new document, push the document onto the navigation stack to display it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "function getDocument(extension) {",
+            "    var templateXHR = new XMLHttpRequest();",
+            "    var url = serverURL + extension;",
+            "    var loadingScreen = loadingTemplate();",
+            "    ",
+            "    templateXHR.responseType = \"document\";",
+            "    templateXHR.addEventListener(\"load\", function() {pushPage(templateXHR.responseXML, loadingScreen);}, false);",
+            "    templateXHR.open(\"GET\", url, true);",
+            "    templateXHR.send();",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3562968",
+            "title": "Listing 3"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "3562977",
+          "level": 3,
+          "text": "Replace the Previous Document",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the user selects a new document, push that document onto the navigation stack. This places the new document at the top of the current document stack and displays it. When the user presses the Menu button on the Siri Remote, the system removes the current document from the stack and displays the previous document. Doing this causes the previous loading document to display when you want the user to see the selection document.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To fix this, replace the loading document with the new document using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/tvmljs/navigationdocument/1627430-replacedocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. The following function takes the new document and the loading document as parameters and replaces the loading document with the new document.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "function pushPage(page, loading) {",
+            "    var currentDoc = getActiveDocument();",
+            "    navigationDocument.replaceDocument(page, loading);",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3562970",
+            "title": "Listing 4"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "3562978",
+          "level": 3,
+          "text": "Select a New TVML Document",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each file on your server contains the information to display a single document onscreen. In this app, the initial document contains information that displays two images, each with their own title. Each image is a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.TVML/documentation/TVML/lockup-elements",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " element. When the user selects a lockup, the app uses the ",
+              "type": "text"
+            },
+            {
+              "code": "onselect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute to call the ",
+              "type": "text"
+            },
+            {
+              "code": "getDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method. The lockup passes the URL for the next document to the ",
+              "type": "text"
+            },
+            {
+              "code": "getDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "<lockup onselect=\"getDocument('/Templates/PageOne.xml')\">",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The image element contains the URL and size specifications for the displayed image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "<img width=\"182\" height=\"274\" src=\"http://localhost:9001/Server/Images/Car_Movie_250x375_A.png\"/>",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.TVML/documentation/TVML": {
+      "identifier": "doc://com.apple.TVML/documentation/TVML",
+      "kind": "article",
+      "role": "collection",
+      "title": "TVML",
+      "type": "topic",
+      "url": "/documentation/tvml"
+    },
+    "doc://com.apple.TVML/documentation/TVML/lockup-elements": {
+      "identifier": "doc://com.apple.TVML/documentation/TVML/lockup-elements",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Lockup Elements",
+      "type": "topic",
+      "url": "/documentation/tvml/lockup-elements"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs": {
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TVMLKit JS",
+      "type": "topic",
+      "url": "/documentation/tvmljs"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/creating_a_client-server_tvml_app": {
+      "abstract": [
+        {
+          "text": "Display and navigate between TVML documents on Apple TV by retrieving and parsing information from a remote server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/creating_a_client-server_tvml_app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a Client-Server TVML App",
+      "type": "topic",
+      "url": "/documentation/tvmljs/creating_a_client-server_tvml_app"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/creating_a_client-server_tvml_app#3562965": {
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/creating_a_client-server_tvml_app#3562965",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/tvmljs/creating_a_client-server_tvml_app#3562965"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/creating_a_client-server_tvml_app#3562967": {
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/creating_a_client-server_tvml_app#3562967",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/tvmljs/creating_a_client-server_tvml_app#3562967"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/creating_a_client-server_tvml_app#3562968": {
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/creating_a_client-server_tvml_app#3562968",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/tvmljs/creating_a_client-server_tvml_app#3562968"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/creating_a_client-server_tvml_app#3562970": {
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/creating_a_client-server_tvml_app#3562970",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/tvmljs/creating_a_client-server_tvml_app#3562970"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/navigationdocument/1627430-replacedocument": {
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/navigationdocument/1627430-replacedocument",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replaceDocument",
+      "type": "topic",
+      "url": "/documentation/tvmljs/navigationdocument/1627430-replacedocument"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/xmlhttprequest": {
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/xmlhttprequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XMLHttpRequest",
+      "type": "topic",
+      "url": "/documentation/tvmljs/xmlhttprequest"
+    },
+    "https://docs-assets.developer.apple.com/published/fda592b920/CreatingAClientServerTVMLApp.zip": {
+      "checksum": "711aeba292abff003ed1abd34608ee690e17ce2d900d1059730448b994d43cc68515557fa5a8ed64f68e5a8697fc67b6a819841b4edaceb6059a22d10b5e515a",
+      "identifier": "https://docs-assets.developer.apple.com/published/fda592b920/CreatingAClientServerTVMLApp.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/fda592b920/CreatingAClientServerTVMLApp.zip"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/fda592b920/CreatingAClientServerTVMLApp.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/tvmljs/creating_a_client-server_tvml_app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

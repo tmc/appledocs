@@ -1,0 +1,946 @@
+{
+  "abstract": [
+    {
+      "text": "Displays menu items along the top of the screen.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.TVML/documentation/TVML",
+        "doc://com.apple.TVML/documentation/TVML/layout-elements"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.TVML/documentation/TVML/menubar"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "collectionGroup",
+    "title": "menuBar"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users can navigate left and right to move between ",
+              "type": "text"
+            },
+            {
+              "code": "menuBar",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements. Here’s an example",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of a menu bar with two items inside of a ",
+              "type": "text"
+            },
+            {
+              "code": "menuBarTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<menuBarTemplate>",
+            "    <menuBar>",
+            "        <menuItem id=\"navigation_top_movies\" data-identifier=\"list\">",
+            "            <title>Top Movies</title>",
+            "        </menuItem>",
+            "        <menuItem id=\"navigation_genres\" data-identifier=\"index\">",
+            "            <title>Genres</title>",
+            "        </menuItem>",
+            "    </menuBar>",
+            "</menuBarTemplate>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also add view elements to the left and right sides of the menu bar. The left",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "leadingAccessoryView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and right ",
+              "type": "text"
+            },
+            {
+              "code": "trailingAccessoryView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " can be any simple element,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "including ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.TVML/documentation/TVML/display-elements",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.TVML/documentation/TVML/multimedia-elements",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.TVML/documentation/TVML/text-elements",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Accessory views can also be row elements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add the equivalent of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UITabBar/leadingAccessoryView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "add any supported element before the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.TVML/documentation/TVML/menubar",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " opening tag, as shown here:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<menuBarTemplate>",
+            "    <img src=\"path to images on your server/leading_icon.png\"/>",
+            "    <menuBar>",
+            "        <menuItem id=\"navigation_top_movies\" data-identifier=\"list\">",
+            "            <title>Top Movies</title>",
+            "        </menuItem>",
+            "    </menuBar>",
+            "</menuBarTemplate>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add the equivalent of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UITabBar/trailingAccessoryView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "add any supported element after the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.TVML/documentation/TVML/menubar",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " closing tag, as shown here:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<menuBarTemplate>",
+            "    <menuBar>",
+            "        <menuItem id=\"navigation_top_movies\" data-identifier=\"list\">",
+            "            <title>Top Movies</title>",
+            "        </menuItem>",
+            "    </menuBar>",
+            "    <img src=\"path to images on your server/trailing_icon.png\"/>",
+            "</menuBarTemplate>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Subelements-of-menuBar",
+          "level": 3,
+          "text": "Subelements of menuBar",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.TVML/documentation/TVML/menuitem",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.TVML/documentation/TVML/section",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Elements-that-Use-menuBar",
+          "level": 3,
+          "text": "Elements that Use menuBar",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.TVML/documentation/TVML/maintemplate",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.TVML/documentation/TVML/menubartemplate",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.TVML/documentation/TVML": {
+      "abstract": [
+        {
+          "text": "Use Apple TV Markup Language to create individual pages inside of a client-server",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML",
+      "kind": "article",
+      "role": "collection",
+      "title": "TVML",
+      "type": "topic",
+      "url": "/documentation/tvml"
+    },
+    "doc://com.apple.TVML/documentation/TVML/binding": {
+      "abstract": [
+        {
+          "text": "Associates information in a data item with an element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/binding",
+      "kind": "article",
+      "role": "article",
+      "title": "binding",
+      "type": "topic",
+      "url": "/documentation/tvml/binding"
+    },
+    "doc://com.apple.TVML/documentation/TVML/display-elements": {
+      "abstract": [
+        {
+          "text": "Display a visual element, such as an image, badge, or progress overlay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/display-elements",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Display Elements",
+      "type": "topic",
+      "url": "/documentation/tvml/display-elements"
+    },
+    "doc://com.apple.TVML/documentation/TVML/layout-elements": {
+      "abstract": [
+        {
+          "text": "Organize and display multiple elements in a structured layout.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/layout-elements",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Layout Elements",
+      "type": "topic",
+      "url": "/documentation/tvml/layout-elements"
+    },
+    "doc://com.apple.TVML/documentation/TVML/maintemplate": {
+      "abstract": [
+        {
+          "text": "Displays user options for a media item.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/maintemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "mainTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/maintemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/menubar": {
+      "abstract": [
+        {
+          "text": "Displays menu items along the top of the screen.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/menubar",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "menuBar",
+      "type": "topic",
+      "url": "/documentation/tvml/menubar"
+    },
+    "doc://com.apple.TVML/documentation/TVML/menubartemplate": {
+      "abstract": [
+        {
+          "text": "Creates a page with items along the top and related information below.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/menubartemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "menuBarTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/menubartemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/menuitem": {
+      "abstract": [
+        {
+          "text": "Displays a label for an item.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/menuitem",
+      "kind": "article",
+      "role": "article",
+      "title": "menuItem",
+      "type": "topic",
+      "url": "/documentation/tvml/menuitem"
+    },
+    "doc://com.apple.TVML/documentation/TVML/multimedia-elements": {
+      "abstract": [
+        {
+          "text": "Provide the user the ability to stream audio and search for information stored",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "on a server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/multimedia-elements",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Multimedia Elements",
+      "type": "topic",
+      "url": "/documentation/tvml/multimedia-elements"
+    },
+    "doc://com.apple.TVML/documentation/TVML/nowplayingmenuitem": {
+      "abstract": [
+        {
+          "text": "Displays information about currently playing audio.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/nowplayingmenuitem",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "nowPlayingMenuItem",
+      "type": "topic",
+      "url": "/documentation/tvml/nowplayingmenuitem"
+    },
+    "doc://com.apple.TVML/documentation/TVML/prototype": {
+      "abstract": [
+        {
+          "text": "Associates a data item type with an element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/prototype",
+      "kind": "article",
+      "role": "article",
+      "title": "prototype",
+      "type": "topic",
+      "url": "/documentation/tvml/prototype"
+    },
+    "doc://com.apple.TVML/documentation/TVML/section": {
+      "abstract": [
+        {
+          "text": "Combines elements and acts as a single element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/section",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "section",
+      "type": "topic",
+      "url": "/documentation/tvml/section"
+    },
+    "doc://com.apple.TVML/documentation/TVML/segmentbar": {
+      "abstract": [
+        {
+          "text": "Displays a list of segment bar items.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/segmentbar",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "segmentBar",
+      "type": "topic",
+      "url": "/documentation/tvml/segmentbar"
+    },
+    "doc://com.apple.TVML/documentation/TVML/segmentbarheader": {
+      "abstract": [
+        {
+          "text": "Displays information above a segment bar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/segmentbarheader",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "segmentBarHeader",
+      "type": "topic",
+      "url": "/documentation/tvml/segmentbarheader"
+    },
+    "doc://com.apple.TVML/documentation/TVML/segmentbaritem": {
+      "abstract": [
+        {
+          "text": "Provides titles inside of a segment bar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/segmentbaritem",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "segmentBarItem",
+      "type": "topic",
+      "url": "/documentation/tvml/segmentbaritem"
+    },
+    "doc://com.apple.TVML/documentation/TVML/text-elements": {
+      "abstract": [
+        {
+          "text": "Display text onscreen.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/text-elements",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Text Elements",
+      "type": "topic",
+      "url": "/documentation/tvml/text-elements"
+    },
+    "doc://com.apple.TVML/documentation/TVML/theme": {
+      "abstract": [
+        {
+          "text": "Sets the color scheme for an element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/theme",
+      "kind": "article",
+      "role": "article",
+      "title": "theme",
+      "type": "topic",
+      "url": "/documentation/tvml/theme"
+    },
+    "doc://com.apple.TVML/documentation/TVML/tumblerbar": {
+      "abstract": [
+        {
+          "text": "Displays a list of ",
+          "type": "text"
+        },
+        {
+          "code": "tumblerItem",
+          "type": "codeVoice"
+        },
+        {
+          "text": " elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/tumblerbar",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "tumblerBar",
+      "type": "topic",
+      "url": "/documentation/tvml/tumblerbar"
+    },
+    "doc://com.apple.TVML/documentation/TVML/tumbleritem": {
+      "abstract": [
+        {
+          "text": "Contains title information for a tumbler header.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/tumbleritem",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "tumblerItem",
+      "type": "topic",
+      "url": "/documentation/tvml/tumbleritem"
+    },
+    "doc://com.apple.TVML/documentation/TVML/tv-tint-color": {
+      "abstract": [
+        {
+          "text": "Sets the tint color for an element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/tv-tint-color",
+      "kind": "article",
+      "role": "article",
+      "title": "tv-tint-color",
+      "type": "topic",
+      "url": "/documentation/tvml/tv-tint-color"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UITabBar/leadingAccessoryView": {
+      "abstract": [
+        {
+          "text": "The view at the leading edge of a tab bar on tvOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "leadingAccessoryView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UITabBar/leadingAccessoryView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "leadingAccessoryView",
+      "type": "topic",
+      "url": "/documentation/UIKit/UITabBar/leadingAccessoryView"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UITabBar/trailingAccessoryView": {
+      "abstract": [
+        {
+          "text": "The view at the trailing edge of a tab bar on tvOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trailingAccessoryView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UITabBar/trailingAccessoryView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trailingAccessoryView",
+      "type": "topic",
+      "url": "/documentation/UIKit/UITabBar/trailingAccessoryView"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Bar-Elements",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.TVML/documentation/TVML/menuitem",
+        "doc://com.apple.TVML/documentation/TVML/nowplayingmenuitem",
+        "doc://com.apple.TVML/documentation/TVML/segmentbar",
+        "doc://com.apple.TVML/documentation/TVML/segmentbarheader",
+        "doc://com.apple.TVML/documentation/TVML/segmentbaritem",
+        "doc://com.apple.TVML/documentation/TVML/tumblerbar",
+        "doc://com.apple.TVML/documentation/TVML/tumbleritem"
+      ],
+      "title": "Bar Elements"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Valid-TVML-Style",
+      "identifiers": [
+        "doc://com.apple.TVML/documentation/TVML/tv-tint-color"
+      ],
+      "title": "Valid TVML Style"
+    },
+    {
+      "anchor": "Valid-TVML-Attributes",
+      "identifiers": [
+        "doc://com.apple.TVML/documentation/TVML/binding",
+        "doc://com.apple.TVML/documentation/TVML/prototype",
+        "doc://com.apple.TVML/documentation/TVML/theme"
+      ],
+      "title": "Valid TVML Attributes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UITabBar~1leadingAccessoryView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "strong"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "leadingAccessoryView"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UITabBar~1trailingAccessoryView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "strong"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "trailingAccessoryView"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

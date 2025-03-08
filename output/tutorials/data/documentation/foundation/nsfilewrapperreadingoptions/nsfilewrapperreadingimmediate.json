@@ -1,0 +1,392 @@
+{
+  "abstract": [
+    {
+      "text": "The option to read files immediately after creating a file wrapper.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/file_system",
+        "doc://com.apple.documentation/documentation/foundation/nsfilewrapper",
+        "doc://com.apple.documentation/documentation/foundation/nsfilewrapperreadingoptions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsfilewrapperreadingoptions/nsfilewrapperreadingimmediate"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1416989,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@E@NSFileWrapperReadingOptions@NSFileWrapperReadingImmediate",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSFileWrapperReadingOptions"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.6",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration Case",
+    "symbolKind": "econst",
+    "title": "NSFileWrapperReadingImmediate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "identifier",
+              "text": "NSFileWrapperReadingImmediate"
+            },
+            {
+              "kind": "text",
+              "text": " = 1 << 0"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a file wrapper and pass the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilewrapperreadingoptions/nsfilewrapperreadingimmediate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " reading option, the content of the file is read immediately. Otherwise, file content is read only when requested, such as by accessing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilewrapper/1410178-regularfilecontents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilewrapper/1409437-filewrappers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilewrapper/1412119-serializedrepresentation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilewrapper/1408364-symboliclinkdestinationurl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reading a file immediately rather than lazily can help mitigate against reading errors caused by the user moving or deleting the file after a file wrapper is created. However, passing this option can result in unnecessary disk or network access—particularly when opening a document file package, which causes all of its directory contents to be enumerated and read preemptively. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Even when ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilewrapperreadingoptions/nsfilewrapperreadingimmediate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is specified, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilewrapper",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " may not read the contents of some file packages immediately. For example, because the contents of bundles are immutable to the user, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilewrapper",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " may read the children of such a directory lazily as a performance optimization. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use this option to take a snapshot of a file or folder for writing later. For example, an application like TextEdit can use this option when creating new file wrappers to represent attachments that the user creates by copying and pasting or dragging and dropping from the Finder to a TextEdit document.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File System",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilewrapper": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilewrapper",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileWrapper",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilewrapper"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilewrapper/1408364-symboliclinkdestinationurl": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilewrapper/1408364-symboliclinkdestinationurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "symbolicLinkDestinationURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilewrapper/1408364-symboliclinkdestinationurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilewrapper/1409437-filewrappers": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilewrapper/1409437-filewrappers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileWrappers",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilewrapper/1409437-filewrappers"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilewrapper/1410178-regularfilecontents": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilewrapper/1410178-regularfilecontents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "regularFileContents",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilewrapper/1410178-regularfilecontents"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilewrapper/1411645-readfromurl": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "readFromURL:options:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilewrapper/1411645-readfromurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readFromURL:options:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilewrapper/1411645-readfromurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilewrapper/1412119-serializedrepresentation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilewrapper/1412119-serializedrepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "serializedRepresentation",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilewrapper/1412119-serializedrepresentation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilewrapper/1415658-initwithurl": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithURL:options:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilewrapper/1415658-initwithurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithURL:options:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilewrapper/1415658-initwithurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilewrapperreadingoptions": {
+      "abstract": [
+        {
+          "text": "Reading options that can be set by the ",
+          "type": "text"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "text": " methods.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilewrapperreadingoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileWrapperReadingOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilewrapperreadingoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilewrapperreadingoptions/nsfilewrapperreadingimmediate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilewrapperreadingoptions/nsfilewrapperreadingimmediate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileWrapperReadingImmediate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilewrapperreadingoptions/nsfilewrapperreadingimmediate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsfilewrapperreadingoptions/nsfilewrapperreadingimmediate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/filewrapper/readingoptions/1416989-immediate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

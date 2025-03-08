@@ -1,0 +1,654 @@
+{
+  "abstract": [
+    {
+      "text": "Determine the position and extent of a view using Xcode previews or",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "by adding temporary borders.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-adjustments"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Inspecting-View-Layout"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Inspecting view layout"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn how SwiftUI sizes and positions views, take advantage of Xcode previews to inspect a single view’s boundaries.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can also add temporary borders to see how SwiftUI positions and sizes multiple views together.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Highlight-views-with-Xcode-previews",
+          "level": 3,
+          "text": "Highlight views with Xcode previews",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using Xcode previews, you can quickly see the size of a specific view element",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by selecting the view or child view in the editor.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To illustrate this, the following example uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to vertically group an image,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provided by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/sf-symbols",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", above a name:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct StatusRow: View {",
+            "    let name: String",
+            "",
+            "    var body: some View {",
+            "        VStack {",
+            "            Image(systemName: \"person.circle\")",
+            "            Text(name)",
+            "        }            ",
+            "    }",
+            "}",
+            "",
+            "struct StatusRow_Previews: PreviewProvider {",
+            "    static var previews: some View {",
+            "        StatusRow(name: \"Maria\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " selected, you’ll see a blue border around the view in the Xcode preview:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Inspecting-View-Layout-1.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-temporary-borders-to-explore-complex-layouts",
+          "level": 3,
+          "text": "Use temporary borders to explore complex layouts",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To see the border of more than one view, or to see a border when the view isn’t selected, temporarily add a border with the view modifier ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/border(_:width:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Set the border’s color to something other than ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ShapeStyle/blue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to easily distinguish it from a border added by Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct StatusRow: View {",
+            "    let name: String",
+            "",
+            "    var body: some View {",
+            "        VStack {",
+            "            Image(systemName: \"person.circle\")",
+            "            Text(name)",
+            "                .border(Color.red)",
+            "        }",
+            "        .padding()",
+            "        .border(Color.gray)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Inspecting-View-Layout-2.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Inspecting-View-Layout-1.png": {
+      "alt": "Xcode displaying a split view, with a code editor on the left and a corresponding Xcode preview showing a watchOS simulator face on the right. Within the code editor is the example code, with the editing cursor on the line with VStack, selecting it. Within the face of the watchOS simulator is a rectangle illustrating the bounds of the VStack, inside which is a person symbol inside a circle from SF Symbols above the text Maria, both centered horizontally.",
+      "identifier": "Inspecting-View-Layout-1.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6d48ae3adadfcd3da628590bd10b8f56/Inspecting-View-Layout-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7d00d9b0ff4927c3fa891db80528244a/Inspecting-View-Layout-1~dark@2x.png"
+        }
+      ]
+    },
+    "Inspecting-View-Layout-2.png": {
+      "alt": "Xcode displaying a split view, with a code editor on the left and a corresponding Xcode preview showing a watchOS simulator face on the right. Within the code editor is the example code with multiple, different colored borders applied to views. The cursor within the editor is at the bottom of the code, with no code selected. Within the face of the watchOS simulator is a rectangle illustrating the bounds of the VStack. Enclosed within the VStack is a person symbol inside a circle from SF Symbols above the text Christina, with a different colored border illustrating that view’s bounds within the VStack. The image and text in the view are centered horizontally.",
+      "identifier": "Inspecting-View-Layout-2.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/179f30f638d41b3c7eff4f2c67b88b8f/Inspecting-View-Layout-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/19d59bc79cbce48f972a9da2e7c2d20e/Inspecting-View-Layout-2~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Laying-Out-a-Simple-View": {
+      "abstract": [
+        {
+          "text": "Create a view layout by adjusting the size of views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Laying-Out-a-Simple-View",
+      "kind": "article",
+      "role": "article",
+      "title": "Laying out a simple view",
+      "type": "topic",
+      "url": "/documentation/swiftui/laying-out-a-simple-view"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-adjustments": {
+      "abstract": [
+        {
+          "text": "Make fine adjustments to alignment, spacing, padding, and other layout parameters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-adjustments",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Layout adjustments",
+      "type": "topic",
+      "url": "/documentation/swiftui/layout-adjustments"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ShapeStyle/blue": {
+      "abstract": [
+        {
+          "text": "A context-dependent blue color suitable for use in UI elements.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Color",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ColorV",
+          "text": "Color"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ShapeStyle/blue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "blue",
+      "type": "topic",
+      "url": "/documentation/swiftui/shapestyle/blue"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VStack": {
+      "abstract": [
+        {
+          "text": "A view that arranges its subviews in a vertical line.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "VStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/vstack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/border(_:width:)": {
+      "abstract": [
+        {
+          "text": "Adds a border to this view with the specified style and width.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "border"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/border(_:width:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "border(_:width:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/border(_:width:)"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/sf-symbols": {
+      "abstract": [
+        {
+          "text": "SF Symbols provides thousands of consistent, highly configurable symbols that integrate seamlessly with the San Francisco system font, automatically aligning with text in all weights and sizes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/sf-symbols",
+      "images": [
+        {
+          "identifier": "sf-symbols.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "foundations-sf-symbols-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "SF Symbols",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/sf-symbols"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "foundations-sf-symbols-thumbnail.png": {
+      "alt": null,
+      "identifier": "foundations-sf-symbols-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5cbaab2340c91ec558c8f0dc15966a82/foundations-sf-symbols-thumbnail@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5e41d1c836c410f756940ced72ff5ec3/foundations-sf-symbols-thumbnail~dark@2x.png"
+        }
+      ]
+    },
+    "sf-symbols.svg": {
+      "alt": null,
+      "identifier": "sf-symbols.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "sf-symbols",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/889c48d0b4f0916dabff9890e12cff79/sf-symbols.svg"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Finetuning-a-layout",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Laying-Out-a-Simple-View"
+      ],
+      "title": "Finetuning a layout"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/inspecting-view-layout"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

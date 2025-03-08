@@ -1,0 +1,661 @@
+{
+  "abstract": [
+    {
+      "text": "A port that can be used as an endpoint for distributed object connections (or raw messaging).",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime/distributed_objects_support"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsmessageport"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1399563,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSMessagePort",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSMessagePort"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSMessagePort"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsport",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSPort",
+              "text": "NSPort"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmessageport",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsport",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that allows for local (on the same machine) communication only. A companion class, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nssocketport",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", allows for both local and remote communication, but may be more expensive than ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmessageport",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " for the local case.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmessageport",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " defines no additional methods over those already defined by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsport",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsmessageport",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " conforms to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " protocol, but only supports coding by an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsportcoder",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object. ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsport",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and its subclasses do not support archiving.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Avoid ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsmessageport",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": ". There's little reason to use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsmessageport",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " rather than ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachport",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nssocketport",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". There's no particular performance or functionality advantage. It is recommended avoiding its use.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsmessageport",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " may be deprecated in the macOS 10.6 or later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1695985": {
+      "identifier": "devLink-1695985",
+      "title": "Distributed Objects Programming Topics",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DistrObjects/DistrObjects.html#//apple_ref/doc/uid/10000102i"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsconnection": {
+      "abstract": [
+        {
+          "text": "An object that manages the communication between objects in different threads or between a thread and a process running on a local or remote system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsconnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSConnection",
+      "type": "topic",
+      "url": "/documentation/foundation/nsconnection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsconnectiondelegate": {
+      "abstract": [
+        {
+          "text": "An interface for interacting with low-level, interprocess connections.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsconnectiondelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSConnectionDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsconnectiondelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdistantobject": {
+      "abstract": [
+        {
+          "text": "A proxy for objects in other applications or threads.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistantobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDistantObject",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdistantobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdistantobjectrequest": {
+      "abstract": [
+        {
+          "text": "An object used by the distributed objects system to help handle invocations between different processes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistantobjectrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDistantObjectRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdistantobjectrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmachbootstrapserver": {
+      "abstract": [
+        {
+          "text": "A port name server that takes and returns Mach port objects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachbootstrapserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMachBootstrapServer",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmachbootstrapserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmachport": {
+      "abstract": [
+        {
+          "text": "A port that can be used as an endpoint for distributed object connections (or raw messaging).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMachPort",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmachport"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmachportdelegate": {
+      "abstract": [
+        {
+          "text": "An interface for handling incoming Mach messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachportdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMachPortDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmachportdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmessageport": {
+      "abstract": [
+        {
+          "text": "A port that can be used as an endpoint for distributed object connections (or raw messaging).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmessageport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMessagePort",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmessageport"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmessageportnameserver": {
+      "abstract": [
+        {
+          "text": "A server takes and returns message ports.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmessageportnameserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMessagePortNameServer",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmessageportnameserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsport": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPort",
+      "type": "topic",
+      "url": "/documentation/foundation/nsport"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsportcoder": {
+      "abstract": [
+        {
+          "text": "A coder used to transmit object proxies (and sometimes objects themselves) between connections.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsportcoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPortCoder",
+      "type": "topic",
+      "url": "/documentation/foundation/nsportcoder"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsportdelegate": {
+      "abstract": [
+        {
+          "text": "An interface for handling incoming messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsportdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPortDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsportdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsportmessage": {
+      "abstract": [
+        {
+          "text": "A low-level, operating system-independent type for inter-application (and inter-thread) messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsportmessage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPortMessage",
+      "type": "topic",
+      "url": "/documentation/foundation/nsportmessage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsportnameserver": {
+      "abstract": [
+        {
+          "text": "An object-oriented interface to the port registration service used by the distributed objects system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsportnameserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPortNameServer",
+      "type": "topic",
+      "url": "/documentation/foundation/nsportnameserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsprotocolchecker": {
+      "abstract": [
+        {
+          "text": "An object that restricts the messages that can be sent to another object (referred to as the checker’s delegate).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsprotocolchecker",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSProtocolChecker",
+      "type": "topic",
+      "url": "/documentation/foundation/nsprotocolchecker"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssocketport": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssocketport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSocketPort",
+      "type": "topic",
+      "url": "/documentation/foundation/nssocketport"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver": {
+      "abstract": [
+        {
+          "text": "A port name server that takes and returns socket ports.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSocketPortNameServer",
+      "type": "topic",
+      "url": "/documentation/foundation/nssocketportnameserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime/distributed_objects_support": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime/distributed_objects_support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Distributed Objects Support",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime/distributed_objects_support"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsport"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmachportdelegate",
+        "doc://com.apple.documentation/documentation/foundation/nsconnectiondelegate",
+        "doc://com.apple.documentation/documentation/foundation/nsconnection",
+        "doc://com.apple.documentation/documentation/foundation/nsdistantobject",
+        "doc://com.apple.documentation/documentation/foundation/nsdistantobjectrequest",
+        "doc://com.apple.documentation/documentation/foundation/nsmachbootstrapserver",
+        "doc://com.apple.documentation/documentation/foundation/nsmachport",
+        "doc://com.apple.documentation/documentation/foundation/nsmessageportnameserver",
+        "doc://com.apple.documentation/documentation/foundation/nsportcoder",
+        "doc://com.apple.documentation/documentation/foundation/nsportdelegate",
+        "doc://com.apple.documentation/documentation/foundation/nsportmessage",
+        "doc://com.apple.documentation/documentation/foundation/nsportnameserver",
+        "doc://com.apple.documentation/documentation/foundation/nsprotocolchecker",
+        "doc://com.apple.documentation/documentation/foundation/nssocketportnameserver"
+      ],
+      "title": "Legacy"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "devLink-1695985"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsmessageport"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/messageport"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

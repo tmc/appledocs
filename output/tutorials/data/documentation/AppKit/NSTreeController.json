@@ -1,0 +1,3829 @@
+{
+  "abstract": [
+    {
+      "text": "A bindings-compatible controller that manages a tree of objects.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSTreeController"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSTreeController",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSTreeController"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSTreeController"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSTreeController"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTreeController"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class provides selection and sort management. Its primary purpose is to act as the controller when binding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBrowser",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances to a hierarchical collection of objects. The root content object of the tree can be a single object, or an array of objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object requires that you describe how the tree of objects is traversed by specifying the key-path for child objects specified by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/childrenKeyPath",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". All child objects for the tree must be key-value coding compliant for the same child key path. If necessary, you should add properties to your model classes that map the child key name to the appropriate class-specific property name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Child objects can implement a count method (specified to the tree controller using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/countKeyPath",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") that, if provided, returns the number of child objects available. Your model objects are expected to update the value of the count key path in a key-value observing compliant method. Optionally, you can also provide a leaf key path using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/leafKeyPath",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that specifies a key in your model object that returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if the object is a leaf node, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if it is not. Changes to the leaf node value of the child object should be made in a key-value observing compliant manner. Providing the leaf node key path can improve performance, because it prevents the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from having to examine the child object to determine if it is a leaf node.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about using NSTreeController in your app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/navigating-hierarchical-data-using-outline-and-split-views",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBrowser": {
+      "abstract": [
+        {
+          "text": "An interface that displays a hierarchically organized list of data items that can be navigated and selected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSBrowser"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBrowser",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSBrowser"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSBrowser",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbrowser"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSEditor": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSEditor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSEditor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSEditor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSEditor",
+      "type": "topic",
+      "url": "/documentation/appkit/nseditor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSEditorRegistration": {
+      "abstract": [
+        {
+          "text": "A set of methods that controllers can implement to enable an editor view to inform the controller when it has uncommitted changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSEditorRegistration"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSEditorRegistration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSEditorRegistration"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSEditorRegistration",
+      "type": "topic",
+      "url": "/documentation/appkit/nseditorregistration"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSObjectController": {
+      "abstract": [
+        {
+          "text": "A controller that can manage an object’s properties referenced by key-value paths.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSObjectController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSObjectController",
+      "type": "topic",
+      "url": "/documentation/appkit/nsobjectcontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOutlineView": {
+      "abstract": [
+        {
+          "text": "A view that uses a row-and-column format to display hierarchical data like directories and files that can be expanded and collapsed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSOutlineView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSOutlineView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSOutlineView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsoutlineview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController": {
+      "abstract": [
+        {
+          "text": "A bindings-compatible controller that manages a tree of objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTreeController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTreeController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTreeController",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/add(_:)": {
+      "abstract": [
+        {
+          "text": "Adds an object to the tree controller’s content after the current selection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/add(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "add:"
+        }
+      ],
+      "role": "symbol",
+      "title": "add(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/add(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/addChild(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a child object to the currently selected item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addChild"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/addChild(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addChild:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addChild(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/addchild(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/addSelectionIndexPaths(_:)": {
+      "abstract": [
+        {
+          "text": "Adds the objects at the specified ",
+          "type": "text"
+        },
+        {
+          "code": "indexPaths",
+          "type": "codeVoice"
+        },
+        {
+          "text": " in the tree controller’s content to the current selection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addSelectionIndexPaths"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/addSelectionIndexPaths(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addSelectionIndexPaths:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addSelectionIndexPaths(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/addselectionindexpaths(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/alwaysUsesMultipleValuesMarker": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the tree controller always returns the multiple values marker when multiple objects are selected, even if the selected items have the same value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alwaysUsesMultipleValuesMarker"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/alwaysUsesMultipleValuesMarker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "alwaysUsesMultipleValuesMarker"
+        }
+      ],
+      "role": "symbol",
+      "title": "alwaysUsesMultipleValuesMarker",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/alwaysusesmultiplevaluesmarker"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/arrangedObjects": {
+      "abstract": [
+        {
+          "text": "The tree controller’s sorted content objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "arrangedObjects"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTreeNode",
+          "text": "NSTreeNode"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/arrangedObjects",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "arrangedObjects"
+        }
+      ],
+      "role": "symbol",
+      "title": "arrangedObjects",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/arrangedobjects"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/avoidsEmptySelection": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the tree controller requires the content array to attempt to maintain a selection at all times, avoiding an empty selection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "avoidsEmptySelection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/avoidsEmptySelection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "avoidsEmptySelection"
+        }
+      ],
+      "role": "symbol",
+      "title": "avoidsEmptySelection",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/avoidsemptyselection"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/canAddChild": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates if a child object can be added to the tree controller’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canAddChild"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/canAddChild",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canAddChild"
+        }
+      ],
+      "role": "symbol",
+      "title": "canAddChild",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/canaddchild"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/canInsert": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates if an object can be inserted into the tree controller’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canInsert"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/canInsert",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canInsert"
+        }
+      ],
+      "role": "symbol",
+      "title": "canInsert",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/caninsert"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/canInsertChild": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates if a child object can be inserted into the tree controller’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canInsertChild"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/canInsertChild",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canInsertChild"
+        }
+      ],
+      "role": "symbol",
+      "title": "canInsertChild",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/caninsertchild"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/childrenKeyPath": {
+      "abstract": [
+        {
+          "text": "The key path used to find the children in the tree controller’s objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "childrenKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/childrenKeyPath",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "childrenKeyPath"
+        }
+      ],
+      "role": "symbol",
+      "title": "childrenKeyPath",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/childrenkeypath"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/childrenKeyPath(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the key path used to find the children in the specified tree node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "childrenKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTreeNode",
+          "text": "NSTreeNode"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/childrenKeyPath(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "childrenKeyPathForNode:"
+        }
+      ],
+      "role": "symbol",
+      "title": "childrenKeyPath(for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/childrenkeypath(for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/content": {
+      "abstract": [
+        {
+          "text": "The tree controller’s content object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/content",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "content"
+        }
+      ],
+      "role": "symbol",
+      "title": "content",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/content"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/countKeyPath": {
+      "abstract": [
+        {
+          "text": "The key path used to find the number of children for a node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "countKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/countKeyPath",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "countKeyPath"
+        }
+      ],
+      "role": "symbol",
+      "title": "countKeyPath",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/countkeypath"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/countKeyPath(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the key path that provides the number of children for a specified node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "countKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTreeNode",
+          "text": "NSTreeNode"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/countKeyPath(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "countKeyPathForNode:"
+        }
+      ],
+      "role": "symbol",
+      "title": "countKeyPath(for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/countkeypath(for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/insert(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new object of the class specified by ",
+          "type": "text"
+        },
+        {
+          "code": "objectClass",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and inserts it into the tree controller’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/insert(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insert:"
+        }
+      ],
+      "role": "symbol",
+      "title": "insert(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/insert(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/insert(_:atArrangedObjectIndexPath:)": {
+      "abstract": [
+        {
+          "text": "Inserts ",
+          "type": "text"
+        },
+        {
+          "code": "object",
+          "type": "codeVoice"
+        },
+        {
+          "text": " into the tree controller’s arranged objects array at the location specified by ",
+          "type": "text"
+        },
+        {
+          "code": "indexPath",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", and adds it to the tree controller’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "atArrangedObjectIndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/insert(_:atArrangedObjectIndexPath:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insertObject:atArrangedObjectIndexPath:"
+        }
+      ],
+      "role": "symbol",
+      "title": "insert(_:atArrangedObjectIndexPath:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/insert(_:atarrangedobjectindexpath:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/insert(_:atArrangedObjectIndexPaths:)": {
+      "abstract": [
+        {
+          "text": "Inserts ",
+          "type": "text"
+        },
+        {
+          "code": "objects",
+          "type": "codeVoice"
+        },
+        {
+          "text": " into the tree controller’s arranged objects array at the locations specified in ",
+          "type": "text"
+        },
+        {
+          "code": "indexPaths",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", and adds them to the tree controller’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insert"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "atArrangedObjectIndexPaths"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/insert(_:atArrangedObjectIndexPaths:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insertObjects:atArrangedObjectIndexPaths:"
+        }
+      ],
+      "role": "symbol",
+      "title": "insert(_:atArrangedObjectIndexPaths:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/insert(_:atarrangedobjectindexpaths:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/insertChild(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new object of the class specified by ",
+          "type": "text"
+        },
+        {
+          "code": "objectClass",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and inserts it into the tree controller’s content as a child of the current selection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertChild"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/insertChild(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insertChild:"
+        }
+      ],
+      "role": "symbol",
+      "title": "insertChild(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/insertchild(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/leafKeyPath": {
+      "abstract": [
+        {
+          "text": "The key path used by the tree controller to determine if a node is a leaf key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "leafKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/leafKeyPath",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "leafKeyPath"
+        }
+      ],
+      "role": "symbol",
+      "title": "leafKeyPath",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/leafkeypath"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/leafKeyPath(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the key path that specifies whether the node is a leaf node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "leafKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTreeNode",
+          "text": "NSTreeNode"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/leafKeyPath(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "leafKeyPathForNode:"
+        }
+      ],
+      "role": "symbol",
+      "title": "leafKeyPath(for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/leafkeypath(for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/move(_:to:)-moi9": {
+      "abstract": [
+        {
+          "text": "Moves the specified tree nodes to the new index path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "move"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTreeNode",
+          "text": "NSTreeNode"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/move(_:to:)-moi9",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "moveNodes:toIndexPath:"
+        }
+      ],
+      "role": "symbol",
+      "title": "move(_:to:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/move(_:to:)-moi9"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/move(_:to:)-s5xp": {
+      "abstract": [
+        {
+          "text": "Moves the specified tree node to the new index path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "move"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTreeNode",
+          "text": "NSTreeNode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/move(_:to:)-s5xp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "moveNode:toIndexPath:"
+        }
+      ],
+      "role": "symbol",
+      "title": "move(_:to:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/move(_:to:)-s5xp"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/preservesSelection": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the tree controller will attempt to preserve the current selection when the content changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preservesSelection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/preservesSelection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preservesSelection"
+        }
+      ],
+      "role": "symbol",
+      "title": "preservesSelection",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/preservesselection"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/rearrangeObjects()": {
+      "abstract": [
+        {
+          "text": "Use this method to trigger reordering of the tree controller’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rearrangeObjects"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/rearrangeObjects()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rearrangeObjects"
+        }
+      ],
+      "role": "symbol",
+      "title": "rearrangeObjects()",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/rearrangeobjects()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/remove(_:)": {
+      "abstract": [
+        {
+          "text": "Removes the tree controller’s selected objects from the content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/remove(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "remove:"
+        }
+      ],
+      "role": "symbol",
+      "title": "remove(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/remove(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/removeObject(atArrangedObjectIndexPath:)": {
+      "abstract": [
+        {
+          "text": "Removes the object at the specified ",
+          "type": "text"
+        },
+        {
+          "code": "indexPath",
+          "type": "codeVoice"
+        },
+        {
+          "text": " in the tree controller’s arranged objects from the tree controller’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atArrangedObjectIndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/removeObject(atArrangedObjectIndexPath:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeObjectAtArrangedObjectIndexPath:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeObject(atArrangedObjectIndexPath:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/removeobject(atarrangedobjectindexpath:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/removeObjects(atArrangedObjectIndexPaths:)": {
+      "abstract": [
+        {
+          "text": "Removes the objects at the specified ",
+          "type": "text"
+        },
+        {
+          "code": "indexPaths",
+          "type": "codeVoice"
+        },
+        {
+          "text": " in the tree controller’s arranged objects from the tree controller’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atArrangedObjectIndexPaths"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/removeObjects(atArrangedObjectIndexPaths:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeObjectsAtArrangedObjectIndexPaths:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeObjects(atArrangedObjectIndexPaths:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/removeobjects(atarrangedobjectindexpaths:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/removeSelectionIndexPaths(_:)": {
+      "abstract": [
+        {
+          "text": "Removes the objects at the specified ",
+          "type": "text"
+        },
+        {
+          "code": "indexPaths",
+          "type": "codeVoice"
+        },
+        {
+          "text": " from the tree controller’s current selection, returning ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/swift/true",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " if the selection was changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeSelectionIndexPaths"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/removeSelectionIndexPaths(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeSelectionIndexPaths:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeSelectionIndexPaths(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/removeselectionindexpaths(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/selectedNodes": {
+      "abstract": [
+        {
+          "text": "An array containing the tree controller’s selected tree nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedNodes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTreeNode",
+          "text": "NSTreeNode"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/selectedNodes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectedNodes"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectedNodes",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/selectednodes"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/selectedObjects": {
+      "abstract": [
+        {
+          "text": "An array containing the currently selected objects in the tree controller’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedObjects"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/selectedObjects",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectedObjects"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectedObjects",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/selectedobjects"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/selectionIndexPath": {
+      "abstract": [
+        {
+          "text": "The index path of the first selected object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectionIndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/selectionIndexPath",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectionIndexPath"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectionIndexPath",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/selectionindexpath"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/selectionIndexPaths": {
+      "abstract": [
+        {
+          "text": "An array containing the index paths of the currently selected objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectionIndexPaths"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/selectionIndexPaths",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectionIndexPaths"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectionIndexPaths",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/selectionindexpaths"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/selectsInsertedObjects": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the tree controller automatically selects objects as they are inserted.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectsInsertedObjects"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/selectsInsertedObjects",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectsInsertedObjects"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectsInsertedObjects",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/selectsinsertedobjects"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/setSelectionIndexPath(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the tree controller’s current selection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSelectionIndexPath"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/setSelectionIndexPath(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setSelectionIndexPath:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setSelectionIndexPath(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/setselectionindexpath(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/setSelectionIndexPaths(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the tree controller’s current selection to the specified index paths.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSelectionIndexPaths"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/setSelectionIndexPaths(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setSelectionIndexPaths:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setSelectionIndexPaths(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/setselectionindexpaths(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController/sortDescriptors": {
+      "abstract": [
+        {
+          "text": "An array containing the sort descriptors used to arrange the tree controller’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sortDescriptors"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSortDescriptor",
+          "text": "NSSortDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController/sortDescriptors",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sortDescriptors"
+        }
+      ],
+      "role": "symbol",
+      "title": "sortDescriptors",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller/sortdescriptors"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeNode": {
+      "abstract": [
+        {
+          "text": "A node in a tree of nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTreeNode"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTreeNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTreeNode",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreenode"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/navigating-hierarchical-data-using-outline-and-split-views": {
+      "abstract": [
+        {
+          "text": "Build a structured user interface that simplifies navigation in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/navigating-hierarchical-data-using-outline-and-split-views",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Navigating Hierarchical Data Using Outline and Split Views",
+      "type": "topic",
+      "url": "/documentation/appkit/navigating-hierarchical-data-using-outline-and-split-views"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSObjectController"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.apple.appkit/documentation/AppKit/NSEditor",
+        "doc://com.apple.appkit/documentation/AppKit/NSEditorRegistration",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Tree-Based-Data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/navigating-hierarchical-data-using-outline-and-split-views",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeNode"
+      ],
+      "title": "Tree-Based Data"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Managing-Sort-Descriptors",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/sortDescriptors"
+      ],
+      "title": "Managing Sort Descriptors"
+    },
+    {
+      "anchor": "Setting-the-content",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/content"
+      ],
+      "title": "Setting the content"
+    },
+    {
+      "anchor": "Arranging-Objects",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/arrangedObjects",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/rearrangeObjects()"
+      ],
+      "title": "Arranging Objects"
+    },
+    {
+      "anchor": "Getting-the-current-selection",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/setSelectionIndexPath(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/selectionIndexPath",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/setSelectionIndexPaths(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/selectionIndexPaths",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/selectedObjects",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/selectedNodes"
+      ],
+      "title": "Getting the current selection"
+    },
+    {
+      "anchor": "Managing-Selections",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/selectsInsertedObjects",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/addSelectionIndexPaths(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/removeSelectionIndexPaths(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/avoidsEmptySelection",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/preservesSelection",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/alwaysUsesMultipleValuesMarker"
+      ],
+      "title": "Managing Selections"
+    },
+    {
+      "anchor": "Adding-inserting-and-removing-objects",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/add(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/addChild(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/canAddChild",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/canInsert",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/canInsertChild",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/insert(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/insertChild(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/insert(_:atArrangedObjectIndexPath:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/insert(_:atArrangedObjectIndexPaths:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/remove(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/removeObject(atArrangedObjectIndexPath:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/removeObjects(atArrangedObjectIndexPaths:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/move(_:to:)-s5xp",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/move(_:to:)-moi9"
+      ],
+      "title": "Adding, inserting and removing objects"
+    },
+    {
+      "anchor": "Specifying-model-attributes",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/childrenKeyPath",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/childrenKeyPath(for:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/countKeyPath",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/countKeyPath(for:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/leafKeyPath",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController/leafKeyPath(for:)"
+      ],
+      "title": "Specifying model attributes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSTreeController"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTreeController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTreeController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Managing-Sort-Descriptors",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/sortDescriptors"
+              ],
+              "title": "Managing Sort Descriptors"
+            },
+            {
+              "anchor": "Setting-the-content",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/content"
+              ],
+              "title": "Setting the content"
+            },
+            {
+              "anchor": "Arranging-Objects",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/arrangedObjects",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/rearrangeObjects()"
+              ],
+              "title": "Arranging Objects"
+            },
+            {
+              "anchor": "Getting-the-current-selection",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/setSelectionIndexPath(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/selectionIndexPath",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/setSelectionIndexPaths(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/selectionIndexPaths",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/selectedObjects",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/selectedNodes"
+              ],
+              "title": "Getting the current selection"
+            },
+            {
+              "anchor": "Managing-Selections",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/selectsInsertedObjects",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/addSelectionIndexPaths(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/removeSelectionIndexPaths(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/avoidsEmptySelection",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/preservesSelection",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/alwaysUsesMultipleValuesMarker"
+              ],
+              "title": "Managing Selections"
+            },
+            {
+              "anchor": "Adding-inserting-and-removing-objects",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/add(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/addChild(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/canAddChild",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/canInsert",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/canInsertChild",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/insert(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/insertChild(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/insert(_:atArrangedObjectIndexPath:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/insert(_:atArrangedObjectIndexPaths:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/remove(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/removeObject(atArrangedObjectIndexPath:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/removeObjects(atArrangedObjectIndexPaths:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/move(_:to:)-s5xp",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/move(_:to:)-moi9"
+              ],
+              "title": "Adding, inserting and removing objects"
+            },
+            {
+              "anchor": "Specifying-model-attributes",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/childrenKeyPath",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/childrenKeyPath(for:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/countKeyPath",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/countKeyPath(for:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/leafKeyPath",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController/leafKeyPath(for:)"
+              ],
+              "title": "Specifying model attributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSObjectController"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Tree-Based-Data",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/navigating-hierarchical-data-using-outline-and-split-views",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeNode"
+              ],
+              "title": "Tree-Based Data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSTreeController"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObjectController",
+                    "text": "NSObjectController"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1selectsInsertedObjects/title",
+          "value": "selectsInsertedObjects"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1selectsInsertedObjects/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selectsInsertedObjects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1countKeyPath(for:)/title",
+          "value": "countKeyPathForNode:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1countKeyPath(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "countKeyPathForNode:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1move(_:to:)-moi9/title",
+          "value": "moveNodes:toIndexPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1move(_:to:)-moi9/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "moveNodes:toIndexPath:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1remove(_:)/title",
+          "value": "remove:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1remove(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "remove:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1insert(_:atArrangedObjectIndexPath:)/title",
+          "value": "insertObject:atArrangedObjectIndexPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1insert(_:atArrangedObjectIndexPath:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insertObject:atArrangedObjectIndexPath:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1countKeyPath/title",
+          "value": "countKeyPath"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1countKeyPath/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "countKeyPath"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1selectedNodes/title",
+          "value": "selectedNodes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1selectedNodes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selectedNodes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1addSelectionIndexPaths(_:)/title",
+          "value": "addSelectionIndexPaths:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1addSelectionIndexPaths(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addSelectionIndexPaths:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1selectedObjects/title",
+          "value": "selectedObjects"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1selectedObjects/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selectedObjects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1add(_:)/title",
+          "value": "add:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1add(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "add:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1insert(_:atArrangedObjectIndexPaths:)/title",
+          "value": "insertObjects:atArrangedObjectIndexPaths:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1insert(_:atArrangedObjectIndexPaths:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insertObjects:atArrangedObjectIndexPaths:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEditor/title",
+          "value": "NSEditor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEditor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEditor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEditor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEditor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController/title",
+          "value": "NSTreeController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTreeController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTreeController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1canInsert/title",
+          "value": "canInsert"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1canInsert/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "canInsert"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1rearrangeObjects()/title",
+          "value": "rearrangeObjects"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1rearrangeObjects()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "rearrangeObjects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineView/title",
+          "value": "NSOutlineView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSOutlineView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSOutlineView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1removeSelectionIndexPaths(_:)/title",
+          "value": "removeSelectionIndexPaths:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1removeSelectionIndexPaths(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeSelectionIndexPaths:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEditorRegistration/title",
+          "value": "NSEditorRegistration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEditorRegistration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEditorRegistration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEditorRegistration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEditorRegistration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1insertChild(_:)/title",
+          "value": "insertChild:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1insertChild(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insertChild:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1leafKeyPath(for:)/title",
+          "value": "leafKeyPathForNode:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1leafKeyPath(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "leafKeyPathForNode:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1addChild(_:)/title",
+          "value": "addChild:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1addChild(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addChild:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1leafKeyPath/title",
+          "value": "leafKeyPath"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1leafKeyPath/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "leafKeyPath"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeNode/title",
+          "value": "NSTreeNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTreeNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTreeNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1setSelectionIndexPath(_:)/title",
+          "value": "setSelectionIndexPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1setSelectionIndexPath(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setSelectionIndexPath:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1childrenKeyPath(for:)/title",
+          "value": "childrenKeyPathForNode:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1childrenKeyPath(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "childrenKeyPathForNode:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1setSelectionIndexPaths(_:)/title",
+          "value": "setSelectionIndexPaths:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1setSelectionIndexPaths(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setSelectionIndexPaths:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1removeObject(atArrangedObjectIndexPath:)/title",
+          "value": "removeObjectAtArrangedObjectIndexPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1removeObject(atArrangedObjectIndexPath:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeObjectAtArrangedObjectIndexPath:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1sortDescriptors/title",
+          "value": "sortDescriptors"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1sortDescriptors/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sortDescriptors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBrowser/title",
+          "value": "NSBrowser"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBrowser/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSBrowser"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBrowser/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSBrowser"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1arrangedObjects/title",
+          "value": "arrangedObjects"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1arrangedObjects/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "arrangedObjects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1alwaysUsesMultipleValuesMarker/title",
+          "value": "alwaysUsesMultipleValuesMarker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1alwaysUsesMultipleValuesMarker/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "alwaysUsesMultipleValuesMarker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1content/title",
+          "value": "content"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1content/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "content"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1canInsertChild/title",
+          "value": "canInsertChild"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1canInsertChild/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "canInsertChild"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1canAddChild/title",
+          "value": "canAddChild"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1canAddChild/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "canAddChild"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1removeObjects(atArrangedObjectIndexPaths:)/title",
+          "value": "removeObjectsAtArrangedObjectIndexPaths:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1removeObjects(atArrangedObjectIndexPaths:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeObjectsAtArrangedObjectIndexPaths:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1move(_:to:)-s5xp/title",
+          "value": "moveNode:toIndexPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1move(_:to:)-s5xp/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "moveNode:toIndexPath:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1selectionIndexPaths/title",
+          "value": "selectionIndexPaths"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1selectionIndexPaths/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selectionIndexPaths"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController/title",
+          "value": "NSObjectController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSObjectController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSObjectController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1avoidsEmptySelection/title",
+          "value": "avoidsEmptySelection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1avoidsEmptySelection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "avoidsEmptySelection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1selectionIndexPath/title",
+          "value": "selectionIndexPath"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1selectionIndexPath/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selectionIndexPath"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1childrenKeyPath/title",
+          "value": "childrenKeyPath"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1childrenKeyPath/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "childrenKeyPath"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1insert(_:)/title",
+          "value": "insert:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1insert(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insert:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1preservesSelection/title",
+          "value": "preservesSelection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController~1preservesSelection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preservesSelection"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nstreecontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nstreecontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

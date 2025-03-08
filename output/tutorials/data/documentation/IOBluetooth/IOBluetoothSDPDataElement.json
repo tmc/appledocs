@@ -1,0 +1,3075 @@
+{
+  "abstract": [
+    {
+      "text": "An instance of this class represents a single SDP data element as defined by the Bluetooth SDP spec.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)IOBluetoothSDPDataElement",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "IOBluetoothSDPDataElement"
+      }
+    ],
+    "modules": [
+      {
+        "name": "IOBluetooth"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "IOBluetoothSDPDataElement"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "IOBluetoothSDPDataElement"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothSDPDataElement"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The data types described by the spec have been mapped onto the base Foundation classes NSNumber, NSArray, NSData as well as IOBluetoothSDPUUID. The number and boolean types (type descriptor 1, 2 and 5) are represented as NSNumber objects with the exception of 128-bit numbers which are represented as NSData objects in their raw format. The UUID type (type descriptor 3) is represented by IOBluetoothSDPUUID. The string and URL types (type descriptor 4 and 8) are represented by NSString. The sequence types (type descriptor 6 and 7) are represented by NSArray.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Typically, you will not need to create an IOBluetoothSDPDataElement directly, the system will do that automatically for both client and server operations. However, the current API for adding SDP services to the system does allow the use of an NSDictionary based format for creating new services. The purpose for that is to allow a service to be built up completely in a text file (a plist for example) and then easily imported into an app and added to the system without a lot of tedious code to build up the entire SDP service record.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The basis for that NSDictionary structure comes from the IOBluetoothSDPDataElement. At its simplest, a data element is made up of three parts: the type descriptor, the size (from which the size descriptor is generated) and the actual value. To provide a complete representation of a data element, an NSDictionary with three entries can be used. Each of the three entries has a key/value pair representing one of the three attributes of a data element. The first key/value pair has a key ‘DataElementType’ that contains a number value with the actual type descriptor for the data element. The second pair has a key ‘DataElementSize’ that contains the actual size of the element in bytes. The size descriptor will be calculated based on the size and type of the element. The third pair is the value itself whose key is ‘DataElementValue’ and whose type corresponds to the type mapping above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to this complete description of a data element, their are some shortcuts that can be used for some of the common types and sizes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the ‘DataElementType’ value is one of the numeric types (1, 2), the ‘DataElementValue’ can be an NSData instead of an NSNumber. In that case, the numeric data is taken in network byte order (MSB first). Additionally, the ‘DataElementSize’ parameter may be omitted and the size will be taken from the length of the data object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the ‘DataElementType’ value is the nil type (0), no ‘DataElementSize’ or ‘DataElementValue’ entries are needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the ‘DataElementType’ value is any of the other types, the ‘DataElementSize’ entry is not needed since the size will be taken directly from the value (data, array, string).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the case where the element is an unsigned, 32-bit integer (type descriptor 1, size descriptor 4), the value itself may simply be a number (instead of a dictionary as in the previous examples). In the case where the element is a UUID (type descriptor 3), the value itself may be a data object. The UUID type will be inferred and the size taken from the length of the data object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the case where the element is a text string (type descriptor 4), the value may be a string object. The text string type will be inferred and the size taken from the length of the string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the case where the element is a data element sequence, the value may be an array object. The type will be inferred and the size taken from the length of the array. Additionally, the array must contain sub-elements that will be parsed out individually.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth": {
+      "abstract": [
+        {
+          "text": "Gain user-space access to Bluetooth devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "IOBluetooth",
+      "type": "topic",
+      "url": "/documentation/iobluetooth"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothDevice": {
+      "abstract": [
+        {
+          "text": "An instance of IOBluetoothDevice represents a single remote Bluetooth device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothDevice",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothdevice"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothDeviceInquiry": {
+      "abstract": [
+        {
+          "text": "Object representing a device inquiry that finds Bluetooth devices in-range of the computer, and (optionally) retrieves name information for them.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothDeviceInquiry"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothDeviceInquiry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothDeviceInquiry"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothDeviceInquiry",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothdeviceinquiry"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothDevicePair": {
+      "abstract": [
+        {
+          "text": "An instance of IOBluetoothDevicePair represents a pairing attempt to a remote Bluetooth device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothDevicePair"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothDevicePair",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothDevicePair"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothDevicePair",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothdevicepair"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothDeviceRef": {
+      "abstract": [
+        {
+          "text": "An object that represents a Bluetooth I/O device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothDeviceRef"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothDeviceRef",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothDeviceRef"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothDeviceRef",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothdeviceref"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothHandsFree": {
+      "abstract": [
+        {
+          "text": "Hands free profile class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothHandsFree"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothHandsFree",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothHandsFree"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothHandsFree",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothhandsfree"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothHandsFreeAudioGateway": {
+      "abstract": [
+        {
+          "text": "An object that sends data to a connected Bluetooth hands-free phone or headset and processes commands from it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothHandsFreeAudioGateway"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothHandsFreeAudioGateway",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothHandsFreeAudioGateway"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothHandsFreeAudioGateway",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothhandsfreeaudiogateway"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothHandsFreeDevice": {
+      "abstract": [
+        {
+          "text": "An object you use to manage phone calls on a connected Bluetooth hands-free phone or headset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothHandsFreeDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothHandsFreeDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothHandsFreeDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothHandsFreeDevice",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothhandsfreedevice"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothHostController": {
+      "abstract": [
+        {
+          "text": "This class is a representation of a Bluetooth Host Controller Interface that is present on the local computer (either plugged in externally or available internally).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothHostController"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothHostController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothHostController"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothHostController",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothhostcontroller"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothL2CAPChannel": {
+      "abstract": [
+        {
+          "text": "An instance of IOBluetoothL2CAPChannel represents a single open L2CAP channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothL2CAPChannel"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothL2CAPChannel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothL2CAPChannel"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothL2CAPChannel",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothl2capchannel"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothL2CAPChannelRef": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothL2CAPChannelRef"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothL2CAPChannelRef",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothL2CAPChannelRef"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothL2CAPChannelRef",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothl2capchannelref"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothOBEXSession": {
+      "abstract": [
+        {
+          "text": "An OBEX Session with a Bluetooth RFCOMM channel as the transport.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothOBEXSession"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothOBEXSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothOBEXSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothOBEXSession",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothobexsession"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothObject": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothObject"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothObject",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothobject"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothObjectRef": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothObjectRef"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothObjectRef",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothObjectRef"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothObjectRef",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothobjectref"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothRFCOMMChannel": {
+      "abstract": [
+        {
+          "text": "An instance of this class represents an RFCOMM channel as defined by the Bluetooth SDP spec..",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothRFCOMMChannel"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothRFCOMMChannel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothRFCOMMChannel"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothRFCOMMChannel",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothrfcommchannel"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothRFCOMMChannelRef": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothRFCOMMChannelRef"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothRFCOMMChannelRef",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothRFCOMMChannelRef"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothRFCOMMChannelRef",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothrfcommchannelref"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement": {
+      "abstract": [
+        {
+          "text": "An instance of this class represents a single SDP data element as defined by the Bluetooth SDP spec.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothSDPDataElement"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothSDPDataElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothSDPDataElement",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpdataelement"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/contains(_:)": {
+      "abstract": [
+        {
+          "text": "Checks to see if the target data element is the same as the dataElement parameter or if it contains the dataElement parameter (if its a sequence type).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contains"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)IOBluetoothSDPDataElement",
+          "text": "IOBluetoothSDPDataElement"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/contains(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "containsDataElement:"
+        }
+      ],
+      "role": "symbol",
+      "title": "contains(_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpdataelement/contains(_:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/containsValue(_:)": {
+      "abstract": [
+        {
+          "text": "Checks to see if the target data element’s value is the same as the value parameter or if it contains the value parameter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "containsValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSObject",
+          "text": "NSObject"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/containsValue(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "containsValue:"
+        }
+      ],
+      "role": "symbol",
+      "title": "containsValue(_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpdataelement/containsvalue(_:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getArrayValue()": {
+      "abstract": [
+        {
+          "text": "If the data element is represented by an array object, it returns the value as an NSArray.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getArrayValue"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]!"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getArrayValue()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getArrayValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "getArrayValue()",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpdataelement/getarrayvalue()"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getDataValue()": {
+      "abstract": [
+        {
+          "text": "If the data element is represented by a data object, it returns the value as an NSData.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getDataValue"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getDataValue()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getDataValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "getDataValue()",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpdataelement/getdatavalue()"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getNumberValue()": {
+      "abstract": [
+        {
+          "text": "If the data element is represented by a number, it returns the value as an NSNumber.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNumberValue"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getNumberValue()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getNumberValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "getNumberValue()",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpdataelement/getnumbervalue()"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getRef()": {
+      "abstract": [
+        {
+          "text": "Returns an IOBluetoothSDPDataElementRef representation of the target IOBluetoothSDPDataElement object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getRef"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@IOBluetoothSDPDataElementRef",
+          "text": "IOBluetoothSDPDataElementRef"
+        },
+        {
+          "kind": "text",
+          "text": ">!"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getRef()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getSDPDataElementRef"
+        }
+      ],
+      "role": "symbol",
+      "title": "getRef()",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpdataelement/getref()"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getSize()": {
+      "abstract": [
+        {
+          "text": "Returns the size in bytes of the target data element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getSize"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getSize()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "getSize()",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpdataelement/getsize()"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getSizeDescriptor()": {
+      "abstract": [
+        {
+          "text": "Returns the SDP spec defined data element size descriptor for the target data element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getSizeDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@BluetoothSDPDataElementSizeDescriptor",
+          "text": "BluetoothSDPDataElementSizeDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getSizeDescriptor()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getSizeDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "getSizeDescriptor()",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpdataelement/getsizedescriptor()"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getStringValue()": {
+      "abstract": [
+        {
+          "text": "If the data element is represented by a string object, it returns the value as an NSString.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getStringValue"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getStringValue()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getStringValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "getStringValue()",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpdataelement/getstringvalue()"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getTypeDescriptor()": {
+      "abstract": [
+        {
+          "text": "Returns the SDP spec defined data element type descriptor for the target data element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getTypeDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@BluetoothSDPDataElementTypeDescriptor",
+          "text": "BluetoothSDPDataElementTypeDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getTypeDescriptor()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getTypeDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "getTypeDescriptor()",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpdataelement/gettypedescriptor()"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getUUIDValue()": {
+      "abstract": [
+        {
+          "text": "If the data element is a UUID (type 3), it returns the value as an IOBluetoothSDPUUID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getUUIDValue"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)IOBluetoothSDPUUID",
+          "text": "IOBluetoothSDPUUID"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getUUIDValue()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getUUIDValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "getUUIDValue()",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpdataelement/getuuidvalue()"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getValue()": {
+      "abstract": [
+        {
+          "text": "Returns the object value of the data element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getValue"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSObject",
+          "text": "NSObject"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getValue()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "getValue()",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpdataelement/getvalue()"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/init(elementValue:)": {
+      "abstract": [
+        {
+          "text": "Initializes a new IOBluetoothSDPDataElement with the given value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "!("
+        },
+        {
+          "kind": "externalParam",
+          "text": "elementValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSObject",
+          "text": "NSObject"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/init(elementValue:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithElementValue:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(elementValue:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpdataelement/init(elementvalue:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/init(type:sizeDescriptor:size:value:)": {
+      "abstract": [
+        {
+          "text": "Initializes a new IOBluetoothSDPDataElement with the given attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "!("
+        },
+        {
+          "kind": "externalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@BluetoothSDPDataElementTypeDescriptor",
+          "text": "BluetoothSDPDataElementTypeDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sizeDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@BluetoothSDPDataElementSizeDescriptor",
+          "text": "BluetoothSDPDataElementSizeDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSObject",
+          "text": "NSObject"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/init(type:sizeDescriptor:size:value:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithType:sizeDescriptor:size:value:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(type:sizeDescriptor:size:value:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpdataelement/init(type:sizedescriptor:size:value:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/mSize": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "mSize"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/mSize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mSize",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpdataelement/msize"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/mSizeDescriptor": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "mSizeDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/mSizeDescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mSizeDescriptor",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpdataelement/msizedescriptor"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/mTypeDescriptor": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "mTypeDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/mTypeDescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mTypeDescriptor",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpdataelement/mtypedescriptor"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/mValue": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "mValue"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/mValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mValue",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpdataelement/mvalue"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/withElementValue(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new IOBluetoothSDPDataElement with the given value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withElementValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSObject",
+          "text": "NSObject"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/withElementValue(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "withElementValue:"
+        }
+      ],
+      "role": "symbol",
+      "title": "withElementValue(_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpdataelement/withelementvalue(_:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/withSDPDataElementRef(_:)": {
+      "abstract": [
+        {
+          "text": "Method call to convert an IOBluetoothSDPDataElementRef into an IOBluetoothSDPDataElement *.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withSDPDataElementRef"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@IOBluetoothSDPDataElementRef",
+          "text": "IOBluetoothSDPDataElementRef"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/withSDPDataElementRef(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "withSDPDataElementRef:"
+        }
+      ],
+      "role": "symbol",
+      "title": "withSDPDataElementRef(_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpdataelement/withsdpdataelementref(_:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/withType(_:sizeDescriptor:size:value:)": {
+      "abstract": [
+        {
+          "text": "Creates a new IOBluetoothSDPDataElement with the given attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withType"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@BluetoothSDPDataElementTypeDescriptor",
+          "text": "BluetoothSDPDataElementTypeDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sizeDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@BluetoothSDPDataElementSizeDescriptor",
+          "text": "BluetoothSDPDataElementSizeDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSObject",
+          "text": "NSObject"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/withType(_:sizeDescriptor:size:value:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "withType:sizeDescriptor:size:value:"
+        }
+      ],
+      "role": "symbol",
+      "title": "withType(_:sizeDescriptor:size:value:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpdataelement/withtype(_:sizedescriptor:size:value:)"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Classes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothDevice",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothDeviceInquiry",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothDevicePair",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothDeviceRef",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothHandsFree",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothHandsFreeAudioGateway",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothHandsFreeDevice",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothHostController",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothL2CAPChannel",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothL2CAPChannelRef",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothOBEXSession",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothObject",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothObjectRef",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothRFCOMMChannel",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothRFCOMMChannelRef"
+      ],
+      "title": "Classes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "identifiers": [
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/init(elementValue:)",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/init(type:sizeDescriptor:size:value:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/contains(_:)",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/containsValue(_:)",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getArrayValue()",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getDataValue()",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getNumberValue()",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getRef()",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getSize()",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getSizeDescriptor()",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getStringValue()",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getTypeDescriptor()",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getUUIDValue()",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getValue()"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Type-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/withElementValue(_:)",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/withSDPDataElementRef(_:)",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/withType(_:sizeDescriptor:size:value:)"
+      ],
+      "title": "Type Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "IOBluetoothSDPDataElement"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothSDPDataElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothSDPDataElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Initializers",
+              "identifiers": [
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/init(elementValue:)",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/init(type:sizeDescriptor:size:value:)"
+              ],
+              "title": "Initializers"
+            },
+            {
+              "anchor": "Instance-Variables",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/mSize",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/mSizeDescriptor",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/mTypeDescriptor",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/mValue"
+              ],
+              "title": "Instance Variables"
+            },
+            {
+              "anchor": "Instance-Methods",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/contains(_:)",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/containsValue(_:)",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getArrayValue()",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getDataValue()",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getNumberValue()",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getRef()",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getSize()",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getSizeDescriptor()",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getStringValue()",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getTypeDescriptor()",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getUUIDValue()",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/getValue()"
+              ],
+              "title": "Instance Methods"
+            },
+            {
+              "anchor": "Type-Methods",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/withElementValue(_:)",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/withSDPDataElementRef(_:)",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement/withType(_:sizeDescriptor:size:value:)"
+              ],
+              "title": "Type Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Classes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothDevice",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothDeviceInquiry",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothDevicePair",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothDeviceRef",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothHandsFree",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothHandsFreeAudioGateway",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothHandsFreeDevice",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothHostController",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothL2CAPChannel",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothL2CAPChannelRef",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothOBEXSession",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothObject",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothObjectRef",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothRFCOMMChannel",
+                "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothRFCOMMChannelRef"
+              ],
+              "title": "Classes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "IOBluetoothSDPDataElement"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1getSizeDescriptor()/title",
+          "value": "getSizeDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1getSizeDescriptor()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getSizeDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1getStringValue()/title",
+          "value": "getStringValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1getStringValue()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getStringValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothDevice/title",
+          "value": "IOBluetoothDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothOBEXSession/title",
+          "value": "IOBluetoothOBEXSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothOBEXSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothOBEXSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothOBEXSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothOBEXSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothL2CAPChannel/title",
+          "value": "IOBluetoothL2CAPChannel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothL2CAPChannel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothL2CAPChannel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothL2CAPChannel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothL2CAPChannel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1withElementValue(_:)/title",
+          "value": "withElementValue:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1withElementValue(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "withElementValue:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothObjectRef/title",
+          "value": "IOBluetoothObjectRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothObjectRef/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothObjectRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothObjectRef/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothObjectRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothRFCOMMChannelRef/title",
+          "value": "IOBluetoothRFCOMMChannelRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothRFCOMMChannelRef/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothRFCOMMChannelRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothRFCOMMChannelRef/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothRFCOMMChannelRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothHandsFreeAudioGateway/title",
+          "value": "IOBluetoothHandsFreeAudioGateway"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothHandsFreeAudioGateway/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothHandsFreeAudioGateway"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothHandsFreeAudioGateway/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothHandsFreeAudioGateway"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothObject/title",
+          "value": "IOBluetoothObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothObject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement/title",
+          "value": "IOBluetoothSDPDataElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothSDPDataElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothSDPDataElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1getSize()/title",
+          "value": "getSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1getSize()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1containsValue(_:)/title",
+          "value": "containsValue:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1containsValue(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "containsValue:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothDeviceRef/title",
+          "value": "IOBluetoothDeviceRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothDeviceRef/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothDeviceRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothDeviceRef/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothDeviceRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1getTypeDescriptor()/title",
+          "value": "getTypeDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1getTypeDescriptor()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getTypeDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1getArrayValue()/title",
+          "value": "getArrayValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1getArrayValue()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getArrayValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1withSDPDataElementRef(_:)/title",
+          "value": "withSDPDataElementRef:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1withSDPDataElementRef(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "withSDPDataElementRef:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1getUUIDValue()/title",
+          "value": "getUUIDValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1getUUIDValue()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getUUIDValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1getValue()/title",
+          "value": "getValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1getValue()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1withType(_:sizeDescriptor:size:value:)/title",
+          "value": "withType:sizeDescriptor:size:value:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1withType(_:sizeDescriptor:size:value:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "withType:sizeDescriptor:size:value:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothHandsFree/title",
+          "value": "IOBluetoothHandsFree"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothHandsFree/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothHandsFree"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothHandsFree/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothHandsFree"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothL2CAPChannelRef/title",
+          "value": "IOBluetoothL2CAPChannelRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothL2CAPChannelRef/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothL2CAPChannelRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothL2CAPChannelRef/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothL2CAPChannelRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1getRef()/title",
+          "value": "getSDPDataElementRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1getRef()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getSDPDataElementRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothDevicePair/title",
+          "value": "IOBluetoothDevicePair"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothDevicePair/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothDevicePair"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothDevicePair/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothDevicePair"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1contains(_:)/title",
+          "value": "containsDataElement:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1contains(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "containsDataElement:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothHostController/title",
+          "value": "IOBluetoothHostController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothHostController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothHostController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothHostController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothHostController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothRFCOMMChannel/title",
+          "value": "IOBluetoothRFCOMMChannel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothRFCOMMChannel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothRFCOMMChannel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothRFCOMMChannel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothRFCOMMChannel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1getNumberValue()/title",
+          "value": "getNumberValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1getNumberValue()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getNumberValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1getDataValue()/title",
+          "value": "getDataValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1getDataValue()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getDataValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1init(elementValue:)/title",
+          "value": "initWithElementValue:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1init(elementValue:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithElementValue:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothDeviceInquiry/title",
+          "value": "IOBluetoothDeviceInquiry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothDeviceInquiry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothDeviceInquiry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothDeviceInquiry/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothDeviceInquiry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothHandsFreeDevice/title",
+          "value": "IOBluetoothHandsFreeDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothHandsFreeDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothHandsFreeDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothHandsFreeDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothHandsFreeDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1init(type:sizeDescriptor:size:value:)/title",
+          "value": "initWithType:sizeDescriptor:size:value:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothSDPDataElement~1init(type:sizeDescriptor:size:value:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithType:sizeDescriptor:size:value:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/iobluetooth/iobluetoothsdpdataelement"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/iobluetooth/iobluetoothsdpdataelement"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

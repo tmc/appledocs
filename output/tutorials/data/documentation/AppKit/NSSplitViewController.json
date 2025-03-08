@@ -1,0 +1,2463 @@
+{
+  "abstract": [
+    {
+      "text": "An object that manages an array of adjacent child views, and has a split view object for managing dividers between those views.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSSplitViewController",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSSplitViewController"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSSplitViewController"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSSplitViewController"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSSplitViewController"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A split view controller manages a set of child views that it displays next to each other in a side-by-side or top-to-bottom arrangement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A split view controller owns an array of split view items (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitViewItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), each of which has a view controller (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") and corresponding view. The split view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/splitView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object manages those child views and the dividers between them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, a split view arranges its child views vertically from top to bottom. To specify a horizontal (side-by-side) arrangement, implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitView/isVertical",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/splitView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to return ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The split view controller serves as the delegate of its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/splitView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. If you override a split view delegate method, your override must call ",
+              "type": "text"
+            },
+            {
+              "code": "super",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use a split view controller, you must use Auto Layout for the child views and to support animations that collapse and reveal child views. For example, if you design a layout that contains two views, a content area and an optional sidebar, you employ Auto Layout constraints to specify whether the content area shrinks or remains the same size when the sidebar becomes visible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A split view controller employs lazy loading of its views. For example, adding a collapsed split view item as a new child doesn’t load the associated view until it shows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in your app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/navigating-hierarchical-data-using-outline-and-split-views",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSEditor": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSEditor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSEditor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSEditor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSEditor",
+      "type": "topic",
+      "url": "/documentation/appkit/nseditor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSeguePerforming": {
+      "abstract": [
+        {
+          "text": "A set of methods that support the mediation of a custom segue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSeguePerforming"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSeguePerforming",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSeguePerforming"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSeguePerforming",
+      "type": "topic",
+      "url": "/documentation/appkit/nssegueperforming"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSplitView": {
+      "abstract": [
+        {
+          "text": "A view that arranges two or more views in a linear stack running horizontally or vertically.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSplitView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSplitView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSplitView",
+      "type": "topic",
+      "url": "/documentation/appkit/nssplitview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSplitView/isVertical": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines the geometric orientation of the split view’s dividers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isVertical"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitView/isVertical",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vertical"
+        }
+      ],
+      "role": "symbol",
+      "title": "isVertical",
+      "type": "topic",
+      "url": "/documentation/appkit/nssplitview/isvertical"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController": {
+      "abstract": [
+        {
+          "text": "An object that manages an array of adjacent child views, and has a split view object for managing dividers between those views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSplitViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSplitViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSplitViewController",
+      "type": "topic",
+      "url": "/documentation/appkit/nssplitviewcontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/addSplitViewItem(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a split view item to the end of the array of split view items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addSplitViewItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSplitViewItem",
+          "text": "NSSplitViewItem"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/addSplitViewItem(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addSplitViewItem:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addSplitViewItem(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nssplitviewcontroller/addsplitviewitem(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/automaticDimension": {
+      "abstract": [
+        {
+          "text": "The default value to apply to a dimension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automaticDimension"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/automaticDimension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSplitViewControllerAutomaticDimension"
+        }
+      ],
+      "role": "symbol",
+      "title": "automaticDimension",
+      "type": "topic",
+      "url": "/documentation/appkit/nssplitviewcontroller/automaticdimension"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/insertSplitViewItem(_:at:)": {
+      "abstract": [
+        {
+          "text": "Adds a split view item to the array of split view items at the specified index position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertSplitViewItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSplitViewItem",
+          "text": "NSSplitViewItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/insertSplitViewItem(_:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insertSplitViewItem:atIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "insertSplitViewItem(_:at:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nssplitviewcontroller/insertsplitviewitem(_:at:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/minimumThicknessForInlineSidebars": {
+      "abstract": [
+        {
+          "text": "The minimum thickness for a sidebar before it automatically collapses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minimumThicknessForInlineSidebars"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/minimumThicknessForInlineSidebars",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "minimumThicknessForInlineSidebars"
+        }
+      ],
+      "role": "symbol",
+      "title": "minimumThicknessForInlineSidebars",
+      "type": "topic",
+      "url": "/documentation/appkit/nssplitviewcontroller/minimumthicknessforinlinesidebars"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/removeSplitViewItem(_:)": {
+      "abstract": [
+        {
+          "text": "Removes a specified split view item from the split view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeSplitViewItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSplitViewItem",
+          "text": "NSSplitViewItem"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/removeSplitViewItem(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeSplitViewItem:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeSplitViewItem(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nssplitviewcontroller/removesplitviewitem(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/splitView": {
+      "abstract": [
+        {
+          "text": "The split view that the split view controller manages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "splitView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSplitView",
+          "text": "NSSplitView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/splitView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "splitView"
+        }
+      ],
+      "role": "symbol",
+      "title": "splitView",
+      "type": "topic",
+      "url": "/documentation/appkit/nssplitviewcontroller/splitview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/splitViewItem(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the corresponding split view item for the specified child view controller of the split view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "splitViewItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSplitViewItem",
+          "text": "NSSplitViewItem"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/splitViewItem(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "splitViewItemForViewController:"
+        }
+      ],
+      "role": "symbol",
+      "title": "splitViewItem(for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nssplitviewcontroller/splitviewitem(for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/splitViewItems": {
+      "abstract": [
+        {
+          "text": "The array of split view items that correspond to the split view controller’s child view controllers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "splitViewItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSplitViewItem",
+          "text": "NSSplitViewItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/splitViewItems",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "splitViewItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "splitViewItems",
+      "type": "topic",
+      "url": "/documentation/appkit/nssplitviewcontroller/splitviewitems"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/toggleInspector(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toggleInspector"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/toggleInspector(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "toggleInspector:"
+        }
+      ],
+      "role": "symbol",
+      "title": "toggleInspector(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nssplitviewcontroller/toggleinspector(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/toggleSidebar(_:)": {
+      "abstract": [
+        {
+          "text": "Collapses or expands the first sidebar in the split view controller using an animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toggleSidebar"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/toggleSidebar(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "toggleSidebar:"
+        }
+      ],
+      "role": "symbol",
+      "title": "toggleSidebar(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nssplitviewcontroller/togglesidebar(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/viewDidLoad()": {
+      "abstract": [
+        {
+          "text": "Configures the split view controller after its view loads into memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewDidLoad"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/viewDidLoad()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewDidLoad"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewDidLoad()",
+      "type": "topic",
+      "url": "/documentation/appkit/nssplitviewcontroller/viewdidload()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSplitViewDelegate": {
+      "abstract": [
+        {
+          "text": "A set of optional methods that a delegate of a split view implements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSplitViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSplitViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSplitViewDelegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nssplitviewdelegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSplitViewItem": {
+      "abstract": [
+        {
+          "text": "An item in a split view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSplitViewItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitViewItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSplitViewItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSplitViewItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nssplitviewitem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStandardKeyBindingResponding": {
+      "abstract": [
+        {
+          "text": "Methods that responder subclasses implement to support key binding commands, such as inserting tabs and newlines, or moving the insertion point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStandardKeyBindingResponding"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStandardKeyBindingResponding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSStandardKeyBindingResponding"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSStandardKeyBindingResponding",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstandardkeybindingresponding"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/appkit/nstouchbarprovider"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "A protocol that marks classes to restore the state of your app to continue a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityRestoring"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserActivityRestoring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityRestoring"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuseractivityrestoring"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceItemIdentification": {
+      "abstract": [
+        {
+          "text": "A set of methods used to associate a unique identifier with objects in your user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceItemIdentification"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceItemIdentification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceItemIdentification"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserInterfaceItemIdentification",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuserinterfaceitemidentification"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations": {
+      "abstract": [
+        {
+          "text": "A protocol that a custom class can adopt to manage the enabled state of a UI element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceValidations"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceValidations"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserInterfaceValidations",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuserinterfacevalidations"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController": {
+      "abstract": [
+        {
+          "text": "A controller that manages a view, typically loaded from a nib file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSViewController",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/navigating-hierarchical-data-using-outline-and-split-views": {
+      "abstract": [
+        {
+          "text": "Build a structured user interface that simplifies navigation in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/navigating-hierarchical-data-using-outline-and-split-views",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Navigating Hierarchical Data Using Outline and Split Views",
+      "type": "topic",
+      "url": "/documentation/appkit/navigating-hierarchical-data-using-outline-and-split-views"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/nssplitviewcontroller-protocol-implementations": {
+      "abstract": [
+        {
+          "text": "Access the split view controller’s implementations of protocol methods.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/nssplitviewcontroller-protocol-implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Protocol Implementations",
+      "type": "topic",
+      "url": "/documentation/appkit/nssplitviewcontroller-protocol-implementations"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling": {
+      "abstract": [
+        {
+          "text": "The interface an app extension uses to respond to a request from a host app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExtensionRequestHandling"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionRequestHandling",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensionrequesthandling"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.apple.appkit/documentation/AppKit/NSEditor",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.apple.appkit/documentation/AppKit/NSSeguePerforming",
+        "doc://com.apple.appkit/documentation/AppKit/NSSplitViewDelegate",
+        "doc://com.apple.appkit/documentation/AppKit/NSStandardKeyBindingResponding",
+        "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider",
+        "doc://com.apple.appkit/documentation/AppKit/NSUserActivityRestoring",
+        "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceItemIdentification",
+        "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Split-View-Interface",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSplitView",
+        "doc://com.apple.appkit/documentation/AppKit/NSSplitViewItem"
+      ],
+      "title": "Split View Interface"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Configuring-and-Managing-a-Split-View-Controller",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/splitView",
+        "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/splitViewItem(for:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/splitViewItems",
+        "doc://com.apple.appkit/documentation/AppKit/NSSplitViewItem"
+      ],
+      "title": "Configuring and Managing a Split View Controller"
+    },
+    {
+      "anchor": "Modifying-a-Split-View-Controller",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/addSplitViewItem(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/insertSplitViewItem(_:at:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/removeSplitViewItem(_:)"
+      ],
+      "title": "Modifying a Split View Controller"
+    },
+    {
+      "anchor": "Managing-Sidebars",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/toggleSidebar(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/minimumThicknessForInlineSidebars",
+        "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/automaticDimension"
+      ],
+      "title": "Managing Sidebars"
+    },
+    {
+      "anchor": "Managing-Inspectors",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/toggleInspector(_:)"
+      ],
+      "title": "Managing Inspectors"
+    },
+    {
+      "anchor": "Responding-to-View-Events",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/viewDidLoad()"
+      ],
+      "title": "Responding to View Events"
+    },
+    {
+      "anchor": "Supporting-Protocol-Requirements",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/nssplitviewcontroller-protocol-implementations"
+      ],
+      "title": "Supporting Protocol Requirements"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.10",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSSplitViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSplitViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSplitViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Configuring-and-Managing-a-Split-View-Controller",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/splitView",
+                "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/splitViewItem(for:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/splitViewItems",
+                "doc://com.apple.appkit/documentation/AppKit/NSSplitViewItem"
+              ],
+              "title": "Configuring and Managing a Split View Controller"
+            },
+            {
+              "anchor": "Modifying-a-Split-View-Controller",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/addSplitViewItem(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/insertSplitViewItem(_:at:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/removeSplitViewItem(_:)"
+              ],
+              "title": "Modifying a Split View Controller"
+            },
+            {
+              "anchor": "Managing-Sidebars",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/toggleSidebar(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/minimumThicknessForInlineSidebars",
+                "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/automaticDimension"
+              ],
+              "title": "Managing Sidebars"
+            },
+            {
+              "anchor": "Managing-Inspectors",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/toggleInspector(_:)"
+              ],
+              "title": "Managing Inspectors"
+            },
+            {
+              "anchor": "Responding-to-View-Events",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController/viewDidLoad()"
+              ],
+              "title": "Responding to View Events"
+            },
+            {
+              "anchor": "Supporting-Protocol-Requirements",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/nssplitviewcontroller-protocol-implementations"
+              ],
+              "title": "Supporting Protocol Requirements"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSplitViewDelegate",
+                "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Split-View-Interface",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSplitView",
+                "doc://com.apple.appkit/documentation/AppKit/NSSplitViewItem"
+              ],
+              "title": "Split View Interface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSSplitViewController"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSViewController",
+                    "text": "NSViewController"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController~1splitViewItems/title",
+          "value": "splitViewItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController~1splitViewItems/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "splitViewItems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStandardKeyBindingResponding/title",
+          "value": "NSStandardKeyBindingResponding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStandardKeyBindingResponding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStandardKeyBindingResponding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStandardKeyBindingResponding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStandardKeyBindingResponding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController~1toggleSidebar(_:)/title",
+          "value": "toggleSidebar:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController~1toggleSidebar(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "toggleSidebar:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController~1removeSplitViewItem(_:)/title",
+          "value": "removeSplitViewItem:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController~1removeSplitViewItem(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeSplitViewItem:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserActivityRestoring/title",
+          "value": "NSUserActivityRestoring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserActivityRestoring/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitView/title",
+          "value": "NSSplitView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSplitView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSplitView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceItemIdentification/title",
+          "value": "NSUserInterfaceItemIdentification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceItemIdentification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceItemIdentification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceItemIdentification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceItemIdentification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController~1automaticDimension/title",
+          "value": "NSSplitViewControllerAutomaticDimension"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController~1automaticDimension/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSplitViewControllerAutomaticDimension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSeguePerforming/title",
+          "value": "NSSeguePerforming"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSeguePerforming/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSeguePerforming"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSeguePerforming/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSeguePerforming"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController~1splitView/title",
+          "value": "splitView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController~1splitView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "splitView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController/title",
+          "value": "NSViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController~1insertSplitViewItem(_:at:)/title",
+          "value": "insertSplitViewItem:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController~1insertSplitViewItem(_:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insertSplitViewItem:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewItem/title",
+          "value": "NSSplitViewItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSplitViewItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSplitViewItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEditor/title",
+          "value": "NSEditor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEditor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEditor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEditor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEditor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController~1minimumThicknessForInlineSidebars/title",
+          "value": "minimumThicknessForInlineSidebars"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController~1minimumThicknessForInlineSidebars/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "minimumThicknessForInlineSidebars"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewDelegate/title",
+          "value": "NSSplitViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSplitViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSplitViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitView~1isVertical/title",
+          "value": "vertical"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitView~1isVertical/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vertical"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController~1splitViewItem(for:)/title",
+          "value": "splitViewItemForViewController:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController~1splitViewItem(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "splitViewItemForViewController:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController/title",
+          "value": "NSSplitViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSplitViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSplitViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/title",
+          "value": "NSTouchBarProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController~1toggleInspector(_:)/title",
+          "value": "toggleInspector:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController~1toggleInspector(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "toggleInspector:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController~1addSplitViewItem(_:)/title",
+          "value": "addSplitViewItem:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController~1addSplitViewItem(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addSplitViewItem:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceValidations/title",
+          "value": "NSUserInterfaceValidations"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceValidations/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceValidations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceValidations/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceValidations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController~1viewDidLoad()/title",
+          "value": "viewDidLoad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController~1viewDidLoad()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewDidLoad"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nssplitviewcontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nssplitviewcontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,995 @@
+{
+  "abstract": [
+    {
+      "text": "Configure the appearance of Sign in with Apple buttons with CSS styles.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.signinwithapple/documentation/SigninwithApple"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/displaying-sign-in-with-apple-buttons-on-the-web"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Displaying Sign in with Apple buttons on the web"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can specify the display of your Sign in with Apple button, and edit its appearance and size to fit your webpage. For a description of the button types and usage information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/sign-in-with-apple/overview/#sign-in-with-apple-buttons",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the Human Interface Guidelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3703091",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-wrapper-tag-and-configure-localization",
+          "level": 3,
+          "text": "Create a wrapper tag and configure localization",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start by creating a wrapper tag for your button. Set the ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to “",
+              "type": "text"
+            },
+            {
+              "code": "appleid-signin",
+              "type": "codeVoice"
+            },
+            {
+              "text": "”.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<div id=\"appleid-signin\"></div>"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the localization of the Sign in with Apple button, embed your desired localization code within the URI below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<script type=\"text/javascript\" src=\"https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js\"></script>"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Replace ",
+              "type": "text"
+            },
+            {
+              "code": "en_US",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the code above with your localization code. For a list of available locales, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/incorporating-sign-in-with-apple-into-other-platforms",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-property-values",
+          "level": 3,
+          "text": "Specify property values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The folowing example creates a black Sign in with Apple button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<html>",
+            "    <head>",
+            "        <meta name=\"appleid-signin-client-id\" content=\"[CLIENT_ID]\">",
+            "        <meta name=\"appleid-signin-scope\" content=\"[SCOPES]\">",
+            "        <meta name=\"appleid-signin-redirect-uri\" content=\"[REDIRECT_URI]\">",
+            "        <meta name=\"appleid-signin-state\" content=\"[STATE]\">",
+            "    </head>",
+            "    <style>",
+            "        .signin-button {",
+            "            width: 210px;",
+            "            height: 40px;",
+            "        }",
+            "    </style>",
+            "    <body>",
+            "        <div id=\"appleid-signin\" class=\"signin-button\" data-color=\"black\" data-border=\"true\" data-type=\"sign-in\"></div>",
+            "        <script type=\"text/javascript\" src=\"https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js\"></script>",
+            "    </body>",
+            "</html>"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Control the size of the button by adding a class that contains the desired CSS ",
+              "type": "text"
+            },
+            {
+              "code": "width",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "height",
+              "type": "codeVoice"
+            },
+            {
+              "text": " styles. The above example creates a button that’s 210 pixels wide and 40 pixels high, and sets the properties of the Sign in with Apple button as described in the following sections.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-the-mode",
+          "level": 4,
+          "text": "Set the mode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the appearance of the Sign in with Apple button, set the ",
+              "type": "text"
+            },
+            {
+              "code": "data-mode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to one of the following values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A center-aligned button. Both the logo and text are centered in the button. This is the default.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "center-align",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A left-aligned button with an adjustable logo size, logo position, and label position.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "left-align",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A square button with a centered Apple logo and no text.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "logo-only",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Set-the-type",
+          "level": 4,
+          "text": "Set the type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can request a specific button type by setting the ",
+              "type": "text"
+            },
+            {
+              "code": "data-type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property of the Sign in with Apple button to one of the following values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The Sign in with Apple button. This is the default.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "sign-in",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The Continue with Apple button.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "continue",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The Sign up with Apple button.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "sign-up",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Set-the-color",
+          "level": 4,
+          "text": "Set the color",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the background color of the Sign in with Apple button, set the ",
+              "type": "text"
+            },
+            {
+              "code": "data-color",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to one of the following values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The button’s background color is black. This is the default.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "black",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The button’s background color is white.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "white",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Set-the-border-and-radius",
+          "level": 4,
+          "text": "Set the border and radius",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the border of the Sign in with Apple button, set the ",
+              "type": "text"
+            },
+            {
+              "code": "data-border",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to one of the following values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The button has a border. This is the default.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "true",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The button doesn’t have a border.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "false",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the border radius of the button, set the ",
+              "type": "text"
+            },
+            {
+              "code": "data-border-radius",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to a number between ",
+              "type": "text"
+            },
+            {
+              "code": "0—50",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The default is ",
+              "type": "text"
+            },
+            {
+              "code": "15",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-the-width-and-height",
+          "level": 4,
+          "text": "Set the width and height",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the width of the Sign in with Apple button, set the ",
+              "type": "text"
+            },
+            {
+              "code": "data-width",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to a value in points between ",
+              "type": "text"
+            },
+            {
+              "code": "130—375",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "100%",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to fit the container size. The default is ",
+              "type": "text"
+            },
+            {
+              "code": "100%",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the height of the button, set the ",
+              "type": "text"
+            },
+            {
+              "code": "data-height",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to a value in points between ",
+              "type": "text"
+            },
+            {
+              "code": "30—64",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "100%",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to fit the container size. The default is ",
+              "type": "text"
+            },
+            {
+              "code": "100%",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-the-logo-size-and-position",
+          "level": 4,
+          "text": "Set the logo size and position",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can control the size and position of the Apple logo on the Sign in with Apple button. These settings only work if you set ",
+              "type": "text"
+            },
+            {
+              "code": "data-mode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "left-align",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the logo size on the button, set the ",
+              "type": "text"
+            },
+            {
+              "code": "data-logo-size",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to one of the following values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A small logo.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "small",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A medium logo.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "medium",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A large logo.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "large",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the logo position on the button, set the ",
+              "type": "text"
+            },
+            {
+              "code": "data-logo-position",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to a number in points. The minimum value is ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the maximum is the label position. The logo remains positioned to the left of the label. The system may override the value to maintain proper margins for the logo and font size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-the-label-position",
+          "level": 4,
+          "text": "Set the label position",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can configure the position of the text in the Sign in with Apple button if you set ",
+              "type": "text"
+            },
+            {
+              "code": "data-mode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "left-align",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Set the ",
+              "type": "text"
+            },
+            {
+              "code": "data-label-position",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to a value in points between ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and half the width of the button. The default is ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithApple": {
+      "abstract": [
+        {
+          "text": "Provide users the ability to sign in to your apps and websites using their Apple ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithApple",
+      "kind": "article",
+      "role": "collection",
+      "title": "Sign in with Apple",
+      "type": "topic",
+      "url": "/documentation/signinwithapple"
+    },
+    "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/configuring-your-environment-for-sign-in-with-apple": {
+      "abstract": [
+        {
+          "text": "Authenticate users with your web service by associating an existing app with a Services ID and private key.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/configuring-your-environment-for-sign-in-with-apple",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring your environment for Sign in with Apple",
+      "type": "topic",
+      "url": "/documentation/sign_in_with_apple/configuring-your-environment-for-sign-in-with-apple"
+    },
+    "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/incorporating-sign-in-with-apple-into-other-platforms": {
+      "abstract": [
+        {
+          "text": "Add Sign in with Apple capabilities to apps that can’t directly access Sign in with Apple JS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/incorporating-sign-in-with-apple-into-other-platforms",
+      "kind": "article",
+      "role": "article",
+      "title": "Incorporating Sign in with Apple into other platforms",
+      "type": "topic",
+      "url": "/documentation/sign_in_with_apple/incorporating-sign-in-with-apple-into-other-platforms"
+    },
+    "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/processing-changes-for-sign-in-with-apple-accounts": {
+      "abstract": [
+        {
+          "text": "Manage user-initiated modifications to maintain privacy with server-to-server notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/processing-changes-for-sign-in-with-apple-accounts",
+      "kind": "article",
+      "role": "article",
+      "title": "Processing changes for Sign in with Apple accounts",
+      "type": "topic",
+      "url": "/documentation/sign_in_with_apple/processing-changes-for-sign-in-with-apple-accounts"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/sign-in-with-apple/overview/#sign-in-with-apple-buttons": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/sign-in-with-apple/overview/#sign-in-with-apple-buttons",
+      "title": "Sign in with Apple Buttons",
+      "titleInlineContent": [
+        {
+          "text": "Sign in with Apple Buttons",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/sign-in-with-apple/overview/#sign-in-with-apple-buttons"
+    },
+    "media-3703091": {
+      "alt": "An image that shows a Sign in with Apple Button 140 points wide with white text on a black background, a Sign in with Apple button 30 points high with black text on a white background, and a Sign in with Apple logo-only button with a 1:1 aspect ratio.",
+      "identifier": "media-3703091",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/28d981b3f2c813fc757f128425d8d698/media-3703091@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Web-support",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/configuring-your-environment-for-sign-in-with-apple",
+        "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/processing-changes-for-sign-in-with-apple-accounts"
+      ],
+      "title": "Web support"
+    }
+  ]
+}

@@ -1,0 +1,633 @@
+{
+  "abstract": [
+    {
+      "text": "Configure your app in App Store Connect, set up your server, and prepare your SKUs.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/setting-up-your-project-for-advanced-commerce"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Advanced Commerce API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Setting up your project for Advanced Commerce API"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This framework enables you to offer a large catalog of one-time purchases, subscriptions, and bundled content while using the App Store commerce system. To request access to the API, see the Advanced Commerce API Access form on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/in-app-purchase/advanced-commerce-api/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " page. After your app receives access, complete the setup to start using the API in your app and on your server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-up-generic-product-identifiers",
+          "level": 3,
+          "text": "Set up generic product identifiers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Advanced Commerce API relies on two generic product identifiers that you configure in App Store Connect:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A consumable In-App Purchase to represent all one-time purchases",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An auto-renewable subscription in a new subscription group to represent all auto-renewable subscriptions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create the consumable In-App Purchase, follow the instructions in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/create-consumable-or-non-consumable-in-app-purchases/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To create the subscription group and an auto-renewable subscription, follow the instructions in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/manage-subscriptions/offer-auto-renewable-subscriptions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use the Reference name “Enabled for Advanced Commerce” when you create the In-App Purchases, to differentiate them from other products you define.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Send the generic product identifiers that you create for Advanced Commerce to Apple using the Advanced Commerce API Access form on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/in-app-purchase/advanced-commerce-api/",
+              "isActive": true,
+              "overridingTitle": "Advanced Commerce API",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Advanced Commerce API",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Be sure to set the generic products’ availability for each storefront that you support. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/set-availability-for-in-app-purchases",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/manage-subscriptions/set-availability-for-an-auto-renewable-subscription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Review-tax-codes-for-your-SKUs",
+          "level": 3,
+          "text": "Review tax codes for your SKUs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Review the tax codes you’ll use for your SKUs from the list in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/taxcodes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If you need to request additional tax codes, send your request using the Advanced Commerce API Access form on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/in-app-purchase/advanced-commerce-api/",
+              "isActive": true,
+              "overridingTitle": "Advanced Commerce API",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Advanced Commerce API",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-up-your-server",
+          "level": 3,
+          "text": "Set up your server",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set up your server to do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Support Transport Layer Security (TLS) protocol 1.2 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Receive ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to get up-to-date transaction data. For setup information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Create-a-deep-link-to-manage-subscriptions-in-your-app",
+          "level": 3,
+          "text": "Create a deep link to manage subscriptions in your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a deep link into your app that opens a page for customers to manage their subscriptions. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/setupmanagesubscriptions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Send the deep link to Apple using the Advanced Commerce API Access form on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/in-app-purchase/advanced-commerce-api/",
+              "isActive": true,
+              "overridingTitle": "Advanced Commerce API",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Advanced Commerce API",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-and-manage-your-SKUs",
+          "level": 3,
+          "text": "Define and manage your SKUs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Define your SKUs using the best practices for naming and design. For more information, and to learn where the system displays the SKU data you provide, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/creating-your-purchases",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more design guidance, see Human Interface Guidelines > ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/in-app-purchase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you implement the Advanced Commerce API in your app and on your server, you can test in the sandbox environment before sending it to App Review. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/testing-in-app-purchases-with-sandbox",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases through the App Store for exceptionally large catalogs of custom one-time purchases, subscriptions, and subscriptions with optional add-ons.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Advanced Commerce API",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/changelog": {
+      "abstract": [
+        {
+          "text": "Learn about new features and updates in the Advanced Commerce API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/changelog",
+      "kind": "article",
+      "role": "article",
+      "title": "Advanced Commerce API changelog",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/changelog"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/creating-your-purchases": {
+      "abstract": [
+        {
+          "text": "Define and manage one-time charges, subscriptions, and bundled subscriptions within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/creating-your-purchases",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating SKUs for your In-App Purchases",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/creating-your-purchases"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/setupmanagesubscriptions": {
+      "abstract": [
+        {
+          "text": "Create a deep link to a subscription-management page for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/setupmanagesubscriptions",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up a link to manage subscriptions",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/setupmanagesubscriptions"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/taxcodes": {
+      "abstract": [
+        {
+          "text": "Select a tax code for each SKU that represents a product your app offers as an in-app purchase.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/taxcodes",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing tax codes for your SKUs",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/taxcodes"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2": {
+      "abstract": [
+        {
+          "text": "Specify your secure server’s URL in App Store Connect to receive version 2 notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App Store Server Notifications V2",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications": {
+      "abstract": [
+        {
+          "text": "Configure your server and provide an HTTPS URL to receive notifications about in-app purchase events and unreported external purchase tokens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/testing-in-app-purchases-with-sandbox": {
+      "abstract": [
+        {
+          "text": "Test your implementation of In-App Purchases using real product information and server-to-server transactions in the sandbox environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/testing-in-app-purchases-with-sandbox",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing In-App Purchases with sandbox",
+      "type": "topic",
+      "url": "/documentation/StoreKit/testing-in-app-purchases-with-sandbox"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/in-app-purchase": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/in-app-purchase",
+      "title": "In-app purchase",
+      "titleInlineContent": [
+        {
+          "text": "In-app purchase",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/in-app-purchase"
+    },
+    "https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/create-consumable-or-non-consumable-in-app-purchases/": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/create-consumable-or-non-consumable-in-app-purchases/",
+      "title": "Create consumable or non-consumable In-App Purchases",
+      "titleInlineContent": [
+        {
+          "text": "Create consumable or non-consumable In-App Purchases",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/create-consumable-or-non-consumable-in-app-purchases/"
+    },
+    "https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/set-availability-for-in-app-purchases": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/set-availability-for-in-app-purchases",
+      "title": "Set availability for In-App Purchases",
+      "titleInlineContent": [
+        {
+          "text": "Set availability for In-App Purchases",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/set-availability-for-in-app-purchases"
+    },
+    "https://developer.apple.com/help/app-store-connect/manage-subscriptions/offer-auto-renewable-subscriptions": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/manage-subscriptions/offer-auto-renewable-subscriptions",
+      "title": "Offer auto-renewable subscriptions",
+      "titleInlineContent": [
+        {
+          "text": "Offer auto-renewable subscriptions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/manage-subscriptions/offer-auto-renewable-subscriptions"
+    },
+    "https://developer.apple.com/help/app-store-connect/manage-subscriptions/set-availability-for-an-auto-renewable-subscription": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/manage-subscriptions/set-availability-for-an-auto-renewable-subscription",
+      "title": "Set availability for an auto-renewable subscription",
+      "titleInlineContent": [
+        {
+          "text": "Set availability for an auto-renewable subscription",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/manage-subscriptions/set-availability-for-an-auto-renewable-subscription"
+    },
+    "https://developer.apple.com/in-app-purchase/advanced-commerce-api/": {
+      "identifier": "https://developer.apple.com/in-app-purchase/advanced-commerce-api/",
+      "title": "Advanced Commerce API",
+      "titleInlineContent": [
+        {
+          "text": "Advanced Commerce API",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/in-app-purchase/advanced-commerce-api/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/creating-your-purchases",
+        "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/setupmanagesubscriptions",
+        "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/changelog"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/advancedcommerceapi/setting-up-your-project-for-advanced-commerce"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2039 @@
+{
+  "abstract": [
+    {
+      "text": "Inspect and use the data within a GPU’s counter sample buffer by resolving it into a standard format.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/gpu-counters-and-counter-sample-buffers"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/converting-a-gpus-counter-data-into-a-readable-format"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Converting a GPU’s Counter Data into a Readable Format"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use the data a GPU driver stores in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCounterSampleBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/sampling-gpu-data-into-counter-sample-buffers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), your app must ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "resolve",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " it. Resolving the data converts the counter data from the GPU’s internal data structure into a common format that Metal defines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can resolve the data in a counter sample buffer by creating a blit pass that converts the data as it copies it to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If the CPU can access a counter sample buffer, you can also resolve the data after the GPU finishes running a command buffer. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/creating-a-counter-sample-buffer-to-store-a-gpus-counter-data-during-a-pass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for information about making a CPU-accessible counter sample buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Resolve-the-Counter-Sample-Buffer-with-the-CPU",
+          "level": 3,
+          "text": "Resolve the Counter Sample Buffer with the CPU",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCounterSampleBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance that you create with shared memory (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCounterSampleBufferDescriptor/storageMode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/shared",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), you can resolve the data by calling its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCounterSampleBuffer/resolveCounterRange(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "/// Converts the contents of the counter sample buffer into an array of result timestamps.",
+                    "func resolveSampleBuffer() {",
+                    "    /// Represents the size of the counter sample buffer.",
+                    "    let range = 0..<sampleCount",
+                    "",
+                    "    // Convert the contents of the counter sample buffer into the standard data format.",
+                    "    guard let data = try? counterSampleBuffer.resolveCounterRange(range) else {",
+                    "        return",
+                    "    }",
+                    "    ...",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "/// Converts the contents of the counter sample buffer into an array of result timestamps.- (void) resolveSampleBuffer",
+                    "{",
+                    "    /// Represents the size of the counter sample buffer.",
+                    "    NSRange range = NSMakeRange(0, self.sampleCount);",
+                    "",
+                    "    // Convert the contents of the counter sample buffer into the standard data format.",
+                    "    NSData* data = [self.counterSampleBuffer resolveCounterRange:range];",
+                    "    if (nil == data) {",
+                    "        return;",
+                    "    }",
+                    "    ...",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can resolve a sample counter buffer with the CPU at any time after the GPU finishes running the pass that retrieves the counter’s data. To access the data as soon as possible (with the CPU), add a completion handler to the pass’s command buffer by calling its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/addCompletedHandler(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "commandBuffer.addCompletedHandler { commandBuffer in",
+                    "    let timestamps = func resolveSampleBuffer() {",
+                    "    ...",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "[commandBuffer addCompletedHandler:^(id<MTLCommandBuffer> _Nonnull commandBuffer) {",
+                    "    [self resolveSampleBuffer];",
+                    "    ...",
+                    "}];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Resolve-the-Counter-Sample-Buffer-with-a-Blit-Pass-on-the-GPU",
+          "level": 3,
+          "text": "Resolve the Counter Sample Buffer with a Blit Pass on the GPU",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also resolve an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCounterSampleBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance’s data into an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by running a blit pass on the GPU. For some GPUs, this technique is the only way to resolve a counter sample buffer that uses private storage (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCounterSampleBufferDescriptor/storageMode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/private",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To resolve a sample counter buffer in a blit pass, create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance and call its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/resolveCounters(_:range:destinationBuffer:destinationOffset:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func resolveSampleBuffer(_ sampleBuffer: MTLCounterSampleBuffer,",
+                    "                         with blitEncoder: MTLBlitCommandEncoder,",
+                    "                         toBufferWith resourceOptions: MTLResourceOptions) -> MTLBuffer? {",
+                    "",
+                    "    let counterBufferLength = MemoryLayout<MTLCounterResultTimestamp>.size * sampleCount",
+                    "    let counterDataBuffer = sampleBuffer.device.makeBuffer(length: counterBufferLength,",
+                    "                                                           options: resourceOptions)",
+                    "",
+                    "    guard let counterDataBuffer = counterDataBuffer else {",
+                    "        return nil",
+                    "    }",
+                    "",
+                    "    let range = 0..<sampleCount",
+                    "    blitEncoder.resolveCounters(sampleBuffer,",
+                    "                                range: range,",
+                    "                                destinationBuffer: counterDataBuffer,",
+                    "                                destinationOffset: 0)",
+                    "",
+                    "    if resourceOptions.contains(.storageModeManaged) {",
+                    "        blitEncoder.synchronize(resource: counterDataBuffer)",
+                    "    }",
+                    "",
+                    "    return counterDataBuffer",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "(id<MTLBuffer>) resolveSampleBuffer:(id<MTLCounterSampleBuffer>)sampleBuffer",
+                    "                      withBlitEncoder:(id<MTLBlitCommandEncoder>)blitEncoder",
+                    "              toBufferWithStorageMode:(MTLResourceOptions)storageMode",
+                    "{",
+                    "    NSUInteger counterBufferLength = self.sampleCount * sizeof(MTLCounterResultTimestamp);",
+                    "    id<MTLBuffer> counterDataBuffer = [sampleBuffer.device newBufferWithLength: counterBufferLength",
+                    "                                                                       options: storageMode];",
+                    "",
+                    "    if (nil == counterDataBuffer) {",
+                    "        return nil;",
+                    "    }",
+                    "",
+                    "    NSRange range = NSMakeRange(0, self.sampleCount);",
+                    "",
+                    "    [blitEncoder resolveCounters:sampleBuffer",
+                    "                         inRange:range",
+                    "               destinationBuffer:counterDataBuffer",
+                    "               destinationOffset:0];",
+                    "",
+                    "",
+                    "    if (storageMode & MTLStorageModeManaged) {",
+                    "        [blitEncoder synchronizeResource:counterDataBuffer];",
+                    "    }",
+                    "",
+                    "    return counterDataBuffer;",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Cast-the-Counter-Samples-Data-to-a-Result-Type",
+          "level": 3,
+          "text": "Cast the Counter Sample’s Data to a Result Type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can inspect and use the resolved data by casting it to the result type that corresponds to the counter set.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Counter set names",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Counter result types",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommonCounterSet/timestamp",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCounterResultTimestamp",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommonCounterSet/stageUtilization",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCounterResultStageUtilization",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommonCounterSet/statistic",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCounterResultStatistic",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, your app can cast the data it resolves from a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommonCounterSet/timestamp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " counter set as an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCounterResultTimestamp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "/// Converts the contents of the counter sample buffer into an array of result timestamps.",
+                    "func resolveSampleBuffer() {",
+                    "    ...",
+                    " ",
+                    "    // Convert the contents of the counter sample buffer into the standard data format.",
+                    "    guard let data = try? counterSampleBuffer.resolveCounterRange(range) else {",
+                    "        return",
+                    "    }",
+                    "",
+                    "    // Declare the destination type for the `Data` instance's contents.",
+                    "    let timestampSamples: [MTLCounterResultTimestamp]",
+                    "",
+                    "    // Cast the resolved data into an array of the counter's result type.",
+                    "    timestampSamples = Array(unsafeUninitializedCapacity: sampleCount) { buffer, initializedCount in",
+                    "        // Save the size for each counter result timestamp instance.",
+                    "        let elementSize = MemoryLayout<MTLCounterResultTimestamp>.size",
+                    "",
+                    "        // Copy the data's bytes into the array's unsafe mutable buffer pointer.",
+                    "        let bytesCopied = data.copyBytes(to: buffer)",
+                    "",
+                    "        // Calculate how many complete counter result timestamp elements the method copies.",
+                    "        initializedCount = bytesCopied / elementSize",
+                    "    }",
+                    "",
+                    "    // Check whether the number of samples is correct.",
+                    "    guard timestampSamples.count == sampleCount else {",
+                    "        print(\"Only \\(timestampSamples.count) out of \\(sampleCount) timestamps resolved.\");",
+                    "        return",
+                    "    }",
+                    "",
+                    "    ...",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "/// Converts the contents of the counter sample buffer into an array of result timestamps.",
+                    "- (void) resolveSampleBuffer",
+                    "    ...",
+                    " ",
+                    "    // Convert the contents of the counter sample buffer into the standard data format.",
+                    "    NSData* data = [self.counterSampleBuffer resolveCounterRange:range];",
+                    "    ...",
+                    "",
+                    "    NSUInteger resolvedSampleCount = data.length / sizeof(MTLCounterResultTimestamp);",
+                    "    if (resolvedSampleCount < sampleCount) {",
+                    "        printf(\"Only %lui out of %ui timestamps resolved.\", resolvedSampleCount, sampleCount);",
+                    "        return;",
+                    "    }",
+                    "",
+                    "    // Cast the data's bytes property to the counter's result type.",
+                    "    MTLCounterResultTimestamp* timestamps = (MTLCounterResultTimestamp *)(data.bytes);",
+                    "    ...",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code example above also checks whether the result type array has the correct number of elements of the counter set for the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inspect-the-Information-and-Check-for-Error-Values",
+          "level": 3,
+          "text": "Inspect the Information and Check for Error Values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also use the result type instances to check whether the GPU stores any error values. The following code example determines whether any of the timestamp samples are equal to ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or a sentinel error value:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "/// Converts the contents of the counter sample buffer into an array of result timestamps.",
+                    "func resolveSampleBuffer() {",
+                    "    ...",
+                    "",
+                    "    for (index, sample) in timestampSamples.enumerated() {",
+                    "        if sample.timestamp == MTLCounterErrorValue {",
+                    "            print(\"Timestamp sample \\(index + 1) (of \\(sampleCount)) has an error value.\")",
+                    "            return",
+                    "        }",
+                    "",
+                    "        if sample.timestamp == 0 {",
+                    "            print(\"Timestamp sample \\(index + 1) (of \\(sampleCount)) has a value of zero.\")",
+                    "            return",
+                    "        }",
+                    "    }",
+                    "",
+                    "    ...",
+                    "}",
+                    ""
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "/// Converts the contents of the counter sample buffer into an array of result timestamps.",
+                    "- (void) resolveSampleBuffer",
+                    "    ...",
+                    " ",
+                    "    // Cast the data's bytes property to the counter's result type.",
+                    "    MTLCounterResultTimestamp* timestamps = (MTLCounterResultTimestamp *)(data.bytes);",
+                    "",
+                    "    // Check for invalid values within the (resolved) data from the counter sample buffer.",
+                    "    for (int index = 0; index < resolvedSampleCount; index++) {",
+                    "        MTLTimestamp timestamp = timestamps[index].timestamp;",
+                    "",
+                    "        if (timestamp == MTLCounterErrorValue) {",
+                    "            printf(\"Timestamp sample #%di (of %ui) has an error value.\", index + 1, sampleCount);",
+                    "            return;",
+                    "        }",
+                    "",
+                    "        if (timestamp == 0) {",
+                    "            printf(\"Timestamp sample #%di (of %ui) has a value of zero.\", index + 1, sampleCount);",
+                    "            return;",
+                    "        }",
+                    "    }",
+                    "",
+                    "    ...",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Any time the GPU encounters a runtime error while sampling a counter, it sets the counter datum to the sentinel value ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCounterErrorValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "A GPU typically stores timestamp values from its internal clock. You can convert those timestamps into more meaningful time values, in nanoseconds, with ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/sampleTimestamps()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " — see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/converting-gpu-timestamps-into-cpu-time",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An interface you can use to encode GPU commands that copy and modify the underlying memory of various Metal resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLBlitCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLBlitCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLBlitCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/resolveCounters(_:range:destinationBuffer:destinationOffset:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that resolves the data from the samples in a sample counter buffer and stores the results into a buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolveCounters"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCounterSampleBuffer",
+          "text": "MTLCounterSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/resolveCounters(_:range:destinationBuffer:destinationOffset:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resolveCounters(_:range:destinationBuffer:destinationOffset:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/resolvecounters(_:range:destinationbuffer:destinationoffset:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer": {
+      "abstract": [
+        {
+          "text": "A resource that stores data in a format defined by your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/addCompletedHandler(_:)": {
+      "abstract": [
+        {
+          "text": "Registers a completion handler the GPU device calls immediately after the GPU finishes running the commands in the command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addCompletedHandler"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLCommandBufferHandler",
+          "text": "MTLCommandBufferHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/addCompletedHandler(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addCompletedHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "addCompletedHandler(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/addcompletedhandler(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommonCounterSet/stageUtilization": {
+      "abstract": [
+        {
+          "text": "The common name for the counter set that contains hardware utilization measurements from various render stages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stageUtilization"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLCommonCounterSet",
+          "text": "MTLCommonCounterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommonCounterSet/stageUtilization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommonCounterSetStageUtilization"
+        }
+      ],
+      "role": "symbol",
+      "title": "stageUtilization",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommoncounterset/stageutilization"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommonCounterSet/statistic": {
+      "abstract": [
+        {
+          "text": "The common name for the counter set that contains GPU workload statistics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "statistic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLCommonCounterSet",
+          "text": "MTLCommonCounterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommonCounterSet/statistic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommonCounterSetStatistic"
+        }
+      ],
+      "role": "symbol",
+      "title": "statistic",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommoncounterset/statistic"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommonCounterSet/timestamp": {
+      "abstract": [
+        {
+          "text": "The common name for the counter set that contains the timestamp counter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timestamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLCommonCounterSet",
+          "text": "MTLCommonCounterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommonCounterSet/timestamp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommonCounterSetTimestamp"
+        }
+      ],
+      "role": "symbol",
+      "title": "timestamp",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommoncounterset/timestamp"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCounterErrorValue": {
+      "abstract": [
+        {
+          "text": "A sentinel value for an entry in a counter sample buffer that indicates the entry’s data is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCounterErrorValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCounterErrorValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCounterErrorValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCounterErrorValue",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcountererrorvalue"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCounterResultStageUtilization": {
+      "abstract": [
+        {
+          "text": "The data structure for storing the data you resolve from a stage-utilization counter set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCounterResultStageUtilization"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCounterResultStageUtilization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCounterResultStageUtilization"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCounterResultStageUtilization",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcounterresultstageutilization"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCounterResultStatistic": {
+      "abstract": [
+        {
+          "text": "The data structure for storing the data you resolve from a statistic counter set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCounterResultStatistic"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCounterResultStatistic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCounterResultStatistic"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCounterResultStatistic",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcounterresultstatistic"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCounterResultTimestamp": {
+      "abstract": [
+        {
+          "text": "The data structure for storing the data you resolve from a timestamp counter set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCounterResultTimestamp"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCounterResultTimestamp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCounterResultTimestamp"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCounterResultTimestamp",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcounterresulttimestamp"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCounterSampleBuffer": {
+      "abstract": [
+        {
+          "text": "A specialized memory buffer that stores a GPU’s counter set data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCounterSampleBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCounterSampleBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCounterSampleBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCounterSampleBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcountersamplebuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCounterSampleBuffer/resolveCounterRange(_:)": {
+      "abstract": [
+        {
+          "text": "Transforms samples of a GPU’s counter set from the driver’s internal format to a standard Metal data structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolveCounterRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCounterSampleBuffer/resolveCounterRange(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resolveCounterRange(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcountersamplebuffer/resolvecounterrange(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCounterSampleBufferDescriptor/storageMode": {
+      "abstract": [
+        {
+          "text": "The memory storage mode for the counter sample buffers you create with the descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storageMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLStorageMode",
+          "text": "MTLStorageMode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCounterSampleBufferDescriptor/storageMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "storageMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "storageMode",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcountersamplebufferdescriptor/storagemode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/sampleTimestamps()": {
+      "abstract": [
+        {
+          "text": "Captures and returns a CPU timestamp and a GPU timestamp from the same moment in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sampleTimestamps"
+        },
+        {
+          "kind": "text",
+          "text": "() -> (cpu"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLTimestamp",
+          "text": "MTLTimestamp"
+        },
+        {
+          "kind": "text",
+          "text": ", gpu"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLTimestamp",
+          "text": "MTLTimestamp"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/sampleTimestamps()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sampleTimestamps()",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/sampletimestamps()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStorageMode/private": {
+      "abstract": [
+        {
+          "text": "The resource is only available to the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "`private`"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/private",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStorageModePrivate"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLStorageMode.private",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstoragemode/private"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStorageMode/shared": {
+      "abstract": [
+        {
+          "text": "The CPU and GPU share access to the resource, allocated in system memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/shared",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStorageModeShared"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLStorageMode.shared",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstoragemode/shared"
+    },
+    "doc://com.apple.metal/documentation/Metal/converting-gpu-timestamps-into-cpu-time": {
+      "abstract": [
+        {
+          "text": "Correlate GPU events with CPU timelines by calculating the CPU time equivalents for GPU timestamps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/converting-gpu-timestamps-into-cpu-time",
+      "kind": "article",
+      "role": "article",
+      "title": "Converting GPU Timestamps into CPU Time",
+      "type": "topic",
+      "url": "/documentation/metal/converting-gpu-timestamps-into-cpu-time"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-a-counter-sample-buffer-to-store-a-gpus-counter-data-during-a-pass": {
+      "abstract": [
+        {
+          "text": "Make a buffer that provides a place for a GPU to save its runtime performance metrics as it runs a pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-a-counter-sample-buffer-to-store-a-gpus-counter-data-during-a-pass",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Counter Sample Buffer to Store a GPU’s Counter Data During a Pass",
+      "type": "topic",
+      "url": "/documentation/metal/creating-a-counter-sample-buffer-to-store-a-gpus-counter-data-during-a-pass"
+    },
+    "doc://com.apple.metal/documentation/Metal/gpu-counters-and-counter-sample-buffers": {
+      "abstract": [
+        {
+          "text": "Retrieve runtime data from a GPU device by sampling one or more of its counters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/gpu-counters-and-counter-sample-buffers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GPU Counters and Counter Sample Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/gpu-counters-and-counter-sample-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/sampling-gpu-data-into-counter-sample-buffers": {
+      "abstract": [
+        {
+          "text": "Retrieve a GPU’s counter data at a time the GPU supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/sampling-gpu-data-into-counter-sample-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Sampling GPU Data into Counter Sample Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/sampling-gpu-data-into-counter-sample-buffers"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Counter-Sample-Data-Output",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLCounterResultTimestamp",
+        "doc://com.apple.metal/documentation/Metal/MTLCounterResultStatistic",
+        "doc://com.apple.metal/documentation/Metal/MTLCounterResultStageUtilization",
+        "doc://com.apple.metal/documentation/Metal/MTLCounterErrorValue"
+      ],
+      "title": "Counter Sample Data Output"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Counter-Sample-Data-Output",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLCounterResultTimestamp",
+                "doc://com.apple.metal/documentation/Metal/MTLCounterResultStatistic",
+                "doc://com.apple.metal/documentation/Metal/MTLCounterResultStageUtilization",
+                "doc://com.apple.metal/documentation/Metal/MTLCounterErrorValue"
+              ],
+              "title": "Counter Sample Data Output"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1addCompletedHandler(_:)/title",
+          "value": "addCompletedHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1addCompletedHandler(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addCompletedHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/title",
+          "value": "MTLBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommonCounterSet~1timestamp/title",
+          "value": "MTLCommonCounterSetTimestamp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommonCounterSet~1timestamp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommonCounterSetTimestamp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterSampleBufferDescriptor~1storageMode/title",
+          "value": "storageMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterSampleBufferDescriptor~1storageMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "storageMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterResultTimestamp/title",
+          "value": "MTLCounterResultTimestamp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterResultTimestamp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCounterResultTimestamp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterResultTimestamp/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCounterResultTimestamp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterErrorValue/title",
+          "value": "MTLCounterErrorValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterErrorValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCounterErrorValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1private/title",
+          "value": "MTLStorageModePrivate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1private/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStorageModePrivate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder/title",
+          "value": "MTLBlitCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBlitCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBlitCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommonCounterSet~1statistic/title",
+          "value": "MTLCommonCounterSetStatistic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommonCounterSet~1statistic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommonCounterSetStatistic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterResultStageUtilization/title",
+          "value": "MTLCounterResultStageUtilization"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterResultStageUtilization/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCounterResultStageUtilization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterResultStageUtilization/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCounterResultStageUtilization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1shared/title",
+          "value": "MTLStorageModeShared"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1shared/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStorageModeShared"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterResultStatistic/title",
+          "value": "MTLCounterResultStatistic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterResultStatistic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCounterResultStatistic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterResultStatistic/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCounterResultStatistic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommonCounterSet~1stageUtilization/title",
+          "value": "MTLCommonCounterSetStageUtilization"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommonCounterSet~1stageUtilization/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommonCounterSetStageUtilization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterSampleBuffer/title",
+          "value": "MTLCounterSampleBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterSampleBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCounterSampleBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterSampleBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCounterSampleBuffer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/converting-a-gpus-counter-data-into-a-readable-format"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/converting-a-gpus-counter-data-into-a-readable-format"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1293 @@
+{
+  "abstract": [
+    {
+      "text": "Associate volume purchases with users or devices using endpoints for Mobile Device Management (MDM), provided by the Volume Purchase Program (VPP).",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management-legacy"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services-legacy"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Managing Apps and Books Through Web Services"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Volume Purchase Program (VPP) allows an organization to manage and assign apps to users. If a user no longer needs an app, you can reclaim the app license and assign it to a different user. VPP can also assign a license to a device’s serial number, so an Apple ID is not required to download the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Authentication",
+          "level": 3,
+          "text": "Authentication",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All endpoints (except for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Service-Configuration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") require an ",
+              "type": "text"
+            },
+            {
+              "code": "sToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to authenticate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Content managers can download a location-based ",
+              "type": "text"
+            },
+            {
+              "code": "sToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from the settings page in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/upgrading-to-apple-school-manager-asm-and-apple-business-manager-abm",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and upload it into their MDM. This grants the MDM access to the licenses available at that location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3230503",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The MDM server should store the location-based token along with its other private, protected properties and pass this token in the ",
+              "type": "text"
+            },
+            {
+              "code": "sToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field of all VPP API requests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "sToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": " itself is a JSON object in Base64 encoding. When decoded, the resulting JSON object contains three fields: ",
+              "type": "text"
+            },
+            {
+              "code": "token",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "expDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "orgName",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example, the following is an ",
+              "type": "text"
+            },
+            {
+              "code": "sToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "eyJ0b2tlbiI6InQxWG9VenBMRXRwZGxhK25zeENkd3JjdDBSandkaWNOaGRreW5STW05VVAyc2hSYTBMUnVGcVpQM0pLQmJUTWxDSE42ajNta1R6WVlQbVVkVXJXV2x3PT0iLCJleHBEYXRlIjoiMjAxNC0wOC0xNVQxODoxMzo1Mi0wNzAwIiwib3JnTmFtZSI6Ik9SRy4yMDA5MDcxNjAwIn0="
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After Base64 decoding, this is the JSON:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"token\": \"t1XoUzpLEtpdla+nsxCdwrct0RjwdicNhdkynRMm9UP2shRa0LRuFqZP3JKBbTMlCHN6j3mkTzYYPmUdUrWWlw==\",",
+            "  \"expDate\": \"2014-08-15T18:13:52-0700\",",
+            "  \"orgName\": \"ORG2009071600\"",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "expDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field contains the expiration date of the token in ISO 8601 format. The ",
+              "type": "text"
+            },
+            {
+              "code": "orgName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field contains the name of the organization for which the token is issued.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the provided token is within the expiration warning period (currently 15 days before the expiration date), then the response contains an additional field, ",
+              "type": "text"
+            },
+            {
+              "code": "tokenExpDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The value of this field is the expiration date in ISO 8601 format. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"tokenExpDate\":\"2013-07-26T18􏰁12􏰁09-0700\" "
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If this field is present in the response, it should serve as a reminder that it is time to get a new sToken in order to avoid any service disruption.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Read-Only-Access",
+          "level": 3,
+          "text": "Read-Only Access",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can tailor different sets of privileges for individual content managers using Managed Apple IDs. This allows a fine range of control over what these users can do. For example, a content manager that only has the “Read Only” privileges can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-a-User",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Users-5boi1",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-44p83",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoints, but can’t use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Retire-a-User",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Manage-Licenses",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoints. You can also assign content managers “Can Purchase” and/or “Can Manage” privileges, so that an individual content manager can manage licenses but not buy them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Purchasing users and managing users automatically have read privileges.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Responses",
+          "level": 3,
+          "text": "Responses",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a convention, fields with null values are not included in responses. For example, the user object has an optional ",
+              "type": "text"
+            },
+            {
+              "code": "email",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field. The following example doesn’t have the ",
+              "type": "text"
+            },
+            {
+              "code": "email",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field in the user object, so the ",
+              "type": "text"
+            },
+            {
+              "code": "email",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field value is null.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"user\":{",
+            "  \"userId\": 1,",
+            "  \"clientUserIdStr\": \"810C9B91-DF83-41DA-80A1-408AD7F081A8\",",
+            "  \"itsIdHash\": \"C2Wwd8LcIaE2v6f2/mvu82Gs/Lc=\",",
+            "  \"status\": \"Associated\",",
+            "  \"licenses\": [",
+            "    {",
+            "      \"licenseId\": 2,",
+            "      \"adamId\": 408709785,",
+            "      \"productTypeId\": 7,",
+            "      \"pricingParam\": \"STDQ\",",
+            "      \"productTypeName\": \"Software\",",
+            "      \"isIrrevocable\": false",
+            "    },",
+            "    {",
+            "      \"licenseId\": 4,",
+            "      \"adamId\": 497799835,",
+            "      \"productTypeId\": 7,",
+            "      \"pricingParam\": \"STDQ\",",
+            "      \"productTypeName\": \"Software\",",
+            "      \"isIrrevocable\": false",
+            "    }",
+            "  ]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user doesn’t have any licenses, the ",
+              "type": "text"
+            },
+            {
+              "code": "licenses",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field will not be included in the response. The license object in this context is a subfield of the user object. To avoid a cyclic reference, the user object is not included in the license object. But if the license is the top object returned, it includes a user object with ",
+              "type": "text"
+            },
+            {
+              "code": "userId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "clientUserIdStr",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fields and, if the user is already associated with an iTunes account, an ",
+              "type": "text"
+            },
+            {
+              "code": "itsIdHash",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Initial-Import-of-Assigned-Licenses",
+          "level": 3,
+          "text": "Initial Import of Assigned Licenses",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t need to sync every license for a specific VPP account. You only need to track the asset counts and assignments. There is also no need to record the Apple license IDs; in fact, this isn’t recommended because it creates an unnecessary dependence on an internal data model, which can change. The recommended procedure to import licenses is to import license counts and then import the current assignments for each asset. Accomplish this in the following way:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Send a request to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-44p83",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "includeLicenseCounts=true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This returns the current license count by ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "adamID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the requested location.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For each ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "adamId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetVppAssetResponse",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " from step 1, send a request to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-158kc",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Record the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "adamIdStr",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pricingParam",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clientUserIdStr",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "serialNumber",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for each assignment in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppAssignmentsResponse",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Also record the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "currentPageIndex",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "totalPages",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Send another request to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-158kc",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " that includes the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nextPageIndex",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value from step 2 as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pageIndex",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and record the values as described in step 2.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Repeat step 3 until ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "currentPageIndex",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is equal to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "totalPages",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppAssignmentsResponse",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/retrieving-a-large-record-set",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information about using the ",
+              "type": "text"
+            },
+            {
+              "code": "batchToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "sinceModifiedToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Retry-After-Header",
+          "level": 3,
+          "text": "Retry-After Header",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The VPP service may return a ",
+              "type": "text"
+            },
+            {
+              "code": "503 Service Unavailable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " status to clients whose requests result in an unusually high load on the VPP service, or when the VPP service is experiencing loads beyond its current request response capacity. A ",
+              "type": "text"
+            },
+            {
+              "code": "Retry-After",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header may be included in this response, indicating how long the client must wait before making additional requests. Clients who make requests before this time may be rejected for even longer periods of time, or (in extreme cases) may have their VPP account suspended.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Avoid triggering the ",
+              "type": "text"
+            },
+            {
+              "code": "Retry-After",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header by setting the ",
+              "type": "text"
+            },
+            {
+              "code": "assignedOnly",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in calls to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Licenses",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Retry-After",
+              "type": "codeVoice"
+            },
+            {
+              "text": " response-header field may also be used with any 3xx (Redirection) response to indicate the minimum time the user-agent is asked to wait before issuing the redirected request (see RFC 2616: HTTP/1.1, Section 14.37). The value of this field can be either an HTTP-date or an integer number of seconds (in decimal) after the time of the response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Retry-After = \"Retry-After\" \":\" ( HTTP-date | delta-seconds ) "
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Two examples of usage are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Retry-After: Fri, 31 Dec 1999 23:59:59 GMT"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "code": [
+            "Retry-After: 120"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the latter example, the delay is 2 minutes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-44p83": {
+      "abstract": [
+        {
+          "text": "Get the set of assets managed by your organization.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-44p83",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Assets"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Assets",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-assets-44p83"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-158kc": {
+      "abstract": [
+        {
+          "text": "Get a list of assignments currently assigned to a user or device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-158kc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Assignments"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Assignments",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-assignments-158kc"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Licenses": {
+      "abstract": [
+        {
+          "text": "Get the set of licenses managed by your organization.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Licenses",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Licenses"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Licenses",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-licenses"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Users-5boi1": {
+      "abstract": [
+        {
+          "text": "Get information about a set of users.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Users-5boi1",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Users"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Users",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-users-5boi1"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-a-User": {
+      "abstract": [
+        {
+          "text": "Get information about a particular user.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-a-User",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a User"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a User",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-a-user"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetVppAssetResponse": {
+      "abstract": [
+        {
+          "text": "The response with the asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetVppAssetResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetVppAssetResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GetVppAssetResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "GetVppAssetResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/getvppassetresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Manage-Licenses": {
+      "abstract": [
+        {
+          "text": "Associate and disassociate licenses with users and devices.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Manage-Licenses",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Manage Licenses"
+        }
+      ],
+      "role": "symbol",
+      "title": "Manage Licenses",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/manage-licenses"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Retire-a-User": {
+      "abstract": [
+        {
+          "text": "Retire a user account.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Retire-a-User",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Retire a User"
+        }
+      ],
+      "role": "symbol",
+      "title": "Retire a User",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/retire-a-user"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Service-Configuration": {
+      "abstract": [
+        {
+          "text": "Provides the full list of web service URLs and a list of possible error numbers.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Service-Configuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Service Configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "Service Configuration",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/service-configuration"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppAssignmentsResponse": {
+      "abstract": [
+        {
+          "text": "The response that contains a list of assignments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VppAssignmentsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppAssignmentsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VppAssignmentsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "VppAssignmentsResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vppassignmentsresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management": {
+      "abstract": [
+        {
+          "text": "Manage apps and books for your students and employees.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and Book Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/app-and-book-management"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management-legacy": {
+      "abstract": [
+        {
+          "text": "Manage apps and books for your students and employees.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management-legacy",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and Book Management (Legacy)",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/app-and-book-management-legacy"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/associating-an-apple-id-with-a-volume-purchase-program-vpp-user": {
+      "abstract": [
+        {
+          "text": "Manage Apple IDs within your organization effectively.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/associating-an-apple-id-with-a-volume-purchase-program-vpp-user",
+      "kind": "article",
+      "role": "article",
+      "title": "Associating an Apple ID with a Volume Purchase Program (VPP) User",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/associating-an-apple-id-with-a-volume-purchase-program-vpp-user"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/interpreting-error-codes": {
+      "abstract": [
+        {
+          "text": "Investigate service request errors and troubleshoot solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/interpreting-error-codes",
+      "kind": "article",
+      "role": "article",
+      "title": "Interpreting Error Codes",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/interpreting-error-codes"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/protecting-your-vpp-account": {
+      "abstract": [
+        {
+          "text": "Ensure a Volume Purchase Program (VPP) account is not managed or reset by another product.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/protecting-your-vpp-account",
+      "kind": "article",
+      "role": "article",
+      "title": "Protecting Your VPP Account",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/protecting-your-vpp-account"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/retrieving-a-large-record-set": {
+      "abstract": [
+        {
+          "text": "Efficiently work with large record sets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/retrieving-a-large-record-set",
+      "kind": "article",
+      "role": "article",
+      "title": "Retrieving a Large Record Set",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/retrieving-a-large-record-set"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/upgrading-to-apple-school-manager-asm-and-apple-business-manager-abm": {
+      "abstract": [
+        {
+          "text": "Manage devices and content across an organization user base with a single destination.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/upgrading-to-apple-school-manager-asm-and-apple-business-manager-abm",
+      "kind": "article",
+      "role": "article",
+      "title": "Upgrading to Apple School Manager (ASM) and Apple Business Manager (ABM)",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/upgrading-to-apple-school-manager-asm-and-apple-business-manager-abm"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3230503": {
+      "alt": "Download a location-based token from the settings page and upload it to your MDM",
+      "identifier": "media-3230503",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/64f7ab887e7d38afa4d27e12423d914d/media-3230503@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7a9daac25f4cb973d5200efe6e066b77/media-3230503~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-Started",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/upgrading-to-apple-school-manager-asm-and-apple-business-manager-abm",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/interpreting-error-codes"
+      ],
+      "title": "Getting Started"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Large-Record-Sets",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/retrieving-a-large-record-set"
+      ],
+      "title": "Large Record Sets"
+    },
+    {
+      "anchor": "Managed-Apple-IDs",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/associating-an-apple-id-with-a-volume-purchase-program-vpp-user"
+      ],
+      "title": "Managed Apple IDs"
+    },
+    {
+      "anchor": "VPP-Account-Protection",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/protecting-your-vpp-account"
+      ],
+      "title": "VPP Account Protection"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/managing-apps-and-books-through-web-services-legacy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

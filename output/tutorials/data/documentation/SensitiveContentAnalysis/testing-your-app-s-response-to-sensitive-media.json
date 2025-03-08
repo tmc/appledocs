@@ -1,0 +1,948 @@
+{
+  "abstract": [
+    {
+      "text": "Trigger your app’s intervention flow by using a special QR code and profile that",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "Apple provides for testing.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/testing-your-app-s-response-to-sensitive-media"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SensitiveContentAnalysis"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Testing your app’s response to sensitive media"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can test your app’s response to nudity in media by analyzing a special QR code.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When SensitiveContentAnalysis encounters media that contains the code, the framework",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "flags the media as sensitive. Testing with the QR code enables you to experience",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app’s intervention workflow without storing or displaying content that contains",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "nudity. You can use this testing process in an open development environment, or while",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "demonstrating the app to an audience. To enable the framework to recognize the test",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "QR code as sensitive, download and install a special profile on the development device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Download-the-QR-code",
+          "level": 3,
+          "text": "Download the QR code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although the following image contains no nudity, the framework recognizes it as sensitive",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content. By returning ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalysis/isSensitive",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "= ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the analyzer (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") returns",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a false positive for this QR code for the special purpose of testing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "testing_your_app_s_response_to_sensitive_media-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Click or tap to download ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/sample-code/web/qr-sca.jpg",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/sample-code/web/qr-sca.mov",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to generate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a false positive with video.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Install-the-test-profile",
+          "level": 3,
+          "text": "Install the test profile",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The framework considers the test QR code sensitive only if the development device",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contains a special profile. Apple provides a special profile specifically for this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "purpose:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Download and install the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/services-account/download?path=/iOS/iOS_Logs/SensitiveContentAnalysis.mobileconfig",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reboot the device for the test profile to take effect.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Embed-the-test-QR-code-in-another-image-or-video",
+          "level": 3,
+          "text": "Embed the test QR code in another image or video",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can include the QR code in other images or videos, and SensitiveContentAnalysis",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "recognizes the host media as sensitive. For example, you might incorporate the QR",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code in a larger media file that:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Indicates the test content with a visual alert such as a yellow triangle",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Brings attention to the test content with an alert in text, such as, “A sensitive",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "image”",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the QR code varies in size or position within the host media, the framework can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "still recognize it if its details remain crisp and unobstructed. In a video file,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "position the QR code in the first frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-the-media-and-generate-a-false-positive",
+          "level": 3,
+          "text": "Test the media and generate a false positive",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your app, check the test media by calling one of the ",
+              "type": "text"
+            },
+            {
+              "code": "analyze",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functions. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer/analyzeImage(_:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and pass in the image as an argument. Or, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer/analyzeVideoFile:completionHandler:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and pass in the test video as an argument. If you have installed the test profile",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and made it active on your device, the functions return an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalysis",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalysis/isSensitive",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " set to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis": {
+      "abstract": [
+        {
+          "text": "Provide a safer experience in your app by detecting and alerting users to nudity",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in images and videos before displaying them onscreen.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SensitiveContentAnalysis",
+      "type": "topic",
+      "url": "/documentation/sensitivecontentanalysis"
+    },
+    "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalysis": {
+      "abstract": [
+        {
+          "text": "An object that determines if checked content contains nudity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCSensitivityAnalysis"
+        }
+      ],
+      "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalysis",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCSensitivityAnalysis"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCSensitivityAnalysis",
+      "type": "topic",
+      "url": "/documentation/sensitivecontentanalysis/scsensitivityanalysis"
+    },
+    "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalysis/isSensitive": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates if checked content contains nudity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSensitive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalysis/isSensitive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sensitive"
+        }
+      ],
+      "role": "symbol",
+      "title": "isSensitive",
+      "type": "topic",
+      "url": "/documentation/sensitivecontentanalysis/scsensitivityanalysis/issensitive"
+    },
+    "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer": {
+      "abstract": [
+        {
+          "text": "An object that analyzes media for sensitive content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCSensitivityAnalyzer"
+        }
+      ],
+      "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCSensitivityAnalyzer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCSensitivityAnalyzer",
+      "type": "topic",
+      "url": "/documentation/sensitivecontentanalysis/scsensitivityanalyzer"
+    },
+    "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer/analyzeImage(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Analyzes an image for sensitive content and runs code on completion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "analyzeImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCSensitivityAnalysis",
+          "text": "SCSensitivityAnalysis"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer/analyzeImage(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "analyzeCGImage:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "analyzeImage(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/sensitivecontentanalysis/scsensitivityanalyzer/analyzeimage(_:completionhandler:)"
+    },
+    "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer/analyzeVideoFile:completionHandler:": {
+      "abstract": [
+        {
+          "text": "Analyzes a video file on disk at the given URL and runs the given code on completion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "analyzeVideoFile:completionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer/analyzeVideoFile:completionHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "analyzeVideoFile:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "analyzeVideoFile:completionHandler:",
+      "type": "topic",
+      "url": "/documentation/sensitivecontentanalysis/scsensitivityanalyzer/analyzevideofile:completionhandler:"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/sample-code/web/qr-sca.jpg": {
+      "identifier": "https://developer.apple.com/sample-code/web/qr-sca.jpg",
+      "title": "the test image",
+      "titleInlineContent": [
+        {
+          "text": "the test image",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/sample-code/web/qr-sca.jpg"
+    },
+    "https://developer.apple.com/sample-code/web/qr-sca.mov": {
+      "identifier": "https://developer.apple.com/sample-code/web/qr-sca.mov",
+      "title": "the test video",
+      "titleInlineContent": [
+        {
+          "text": "the test video",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/sample-code/web/qr-sca.mov"
+    },
+    "https://developer.apple.com/services-account/download?path=/iOS/iOS_Logs/SensitiveContentAnalysis.mobileconfig": {
+      "identifier": "https://developer.apple.com/services-account/download?path=/iOS/iOS_Logs/SensitiveContentAnalysis.mobileconfig",
+      "title": "SensitiveContentAnalysis profile",
+      "titleInlineContent": [
+        {
+          "text": "SensitiveContentAnalysis profile",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/services-account/download?path=/iOS/iOS_Logs/SensitiveContentAnalysis.mobileconfig"
+    },
+    "testing_your_app_s_response_to_sensitive_media-1": {
+      "alt": "A QR code.",
+      "identifier": "testing_your_app_s_response_to_sensitive_media-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2ff73e1db185e49d99bb15c77f69e677/testing_your_app_s_response_to_sensitive_media-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/22f7633f9b14285c53707ebfb375e081/testing_your_app_s_response_to_sensitive_media-1~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.SensitiveContentAnalysis~1documentation~1SensitiveContentAnalysis~1SCSensitivityAnalysis~1isSensitive/title",
+          "value": "sensitive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.SensitiveContentAnalysis~1documentation~1SensitiveContentAnalysis~1SCSensitivityAnalysis~1isSensitive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sensitive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.SensitiveContentAnalysis~1documentation~1SensitiveContentAnalysis~1SCSensitivityAnalysis/title",
+          "value": "SCSensitivityAnalysis"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.SensitiveContentAnalysis~1documentation~1SensitiveContentAnalysis~1SCSensitivityAnalysis/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCSensitivityAnalysis"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.SensitiveContentAnalysis~1documentation~1SensitiveContentAnalysis~1SCSensitivityAnalysis/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCSensitivityAnalysis"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.SensitiveContentAnalysis~1documentation~1SensitiveContentAnalysis~1SCSensitivityAnalyzer/title",
+          "value": "SCSensitivityAnalyzer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.SensitiveContentAnalysis~1documentation~1SensitiveContentAnalysis~1SCSensitivityAnalyzer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCSensitivityAnalyzer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.SensitiveContentAnalysis~1documentation~1SensitiveContentAnalysis~1SCSensitivityAnalyzer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCSensitivityAnalyzer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.SensitiveContentAnalysis~1documentation~1SensitiveContentAnalysis~1SCSensitivityAnalyzer~1analyzeImage(_:completionHandler:)/title",
+          "value": "analyzeCGImage:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.SensitiveContentAnalysis~1documentation~1SensitiveContentAnalysis~1SCSensitivityAnalyzer~1analyzeImage(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "analyzeCGImage:completionHandler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/sensitivecontentanalysis/testing-your-app-s-response-to-sensitive-media"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/sensitivecontentanalysis/testing-your-app-s-response-to-sensitive-media"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

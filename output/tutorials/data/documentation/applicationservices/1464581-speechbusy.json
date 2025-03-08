@@ -1,0 +1,437 @@
+{
+  "abstract": [
+    {
+      "text": "Determines whether any channels of speech are currentlysynthesizing speech.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/1464581-speechbusy"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1464581,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@SpeechBusy",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "SpeechBusy"
+      },
+      {
+        "kind": "text",
+        "text": "() -> Int16"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "13.0",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "SpeechBusy()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SpeechBusy"
+            },
+            {
+              "kind": "text",
+              "text": "() -> "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Int16",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s5Int16V",
+              "text": "Int16"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The number of speechchannels that are currently synthesizing speech in the application.This is useful when you want to ensure that an earlier speech requesthas been completed before having the system speak again. Pausedspeech channels are counted among those that are synthesizing speech.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "   The speech channel that the Speech Synthesis Manager allocatesinternally in response to calls to the ",
+              "type": "text"
+            },
+            {
+              "code": "SpeakString",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functionis counted in the number returned by ",
+              "type": "text"
+            },
+            {
+              "code": "SpeechBusy",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Thus,if you use just ",
+              "type": "text"
+            },
+            {
+              "code": "SpeakString",
+              "type": "codeVoice"
+            },
+            {
+              "text": " toinitiate speech, ",
+              "type": "text"
+            },
+            {
+              "code": "SpeechBusy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " alwaysreturns ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as long as speech is being produced. When ",
+              "type": "text"
+            },
+            {
+              "code": "SpeechBusy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " returns",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", all speech has finished.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Int16": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int16",
+      "type": "topic",
+      "url": "/documentation/swift/int16"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459075-copyspeechproperty": {
+      "abstract": [
+        {
+          "text": "Gets the value associated with the specified property of a speech channel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CopySpeechProperty"
+        },
+        {
+          "kind": "text",
+          "text": "(SpeechChannel, CFString, UnsafeMutablePointer<CFTypeRef?>) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459075-copyspeechproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CopySpeechProperty(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459075-copyspeechproperty"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460113-speechbusysystemwide": {
+      "abstract": [
+        {
+          "text": "Determines if any speech is currently being synthesizedin your application or elsewhere on the computer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechBusySystemWide"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Int16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460113-speechbusysystemwide",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechBusySystemWide()",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460113-speechbusysystemwide"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460797-getspeechrate": {
+      "abstract": [
+        {
+          "text": "Gets a speech channel’s current speech rate.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetSpeechRate"
+        },
+        {
+          "kind": "text",
+          "text": "(SpeechChannel, UnsafeMutablePointer<Fixed>) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460797-getspeechrate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetSpeechRate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460797-getspeechrate"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462334-speechmanagerversion": {
+      "abstract": [
+        {
+          "text": "Determines the current version of the Speech SynthesisManager installed in the system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechManagerVersion"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NumVersion"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462334-speechmanagerversion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechManagerVersion()",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462334-speechmanagerversion"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1464581-speechbusy": {
+      "abstract": [
+        {
+          "text": "Determines whether any channels of speech are currentlysynthesizing speech.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechBusy"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Int16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1464581-speechbusy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechBusy()",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1464581-speechbusy"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1464774-getspeechpitch": {
+      "abstract": [
+        {
+          "text": "Gets a speech channel’s current speech pitch.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetSpeechPitch"
+        },
+        {
+          "kind": "text",
+          "text": "(SpeechChannel, UnsafeMutablePointer<Fixed>) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1464774-getspeechpitch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetSpeechPitch(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1464774-getspeechpitch"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Speech Synthesis Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1459075-copyspeechproperty",
+        "doc://com.apple.documentation/documentation/applicationservices/1464774-getspeechpitch",
+        "doc://com.apple.documentation/documentation/applicationservices/1460797-getspeechrate",
+        "doc://com.apple.documentation/documentation/applicationservices/1460113-speechbusysystemwide",
+        "doc://com.apple.documentation/documentation/applicationservices/1462334-speechmanagerversion"
+      ],
+      "title": "Obtaining Information About Speech and Speech Channels"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/1464581-speechbusy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/applicationservices/1464581-speechbusy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

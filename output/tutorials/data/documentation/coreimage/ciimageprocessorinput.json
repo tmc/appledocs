@@ -1,0 +1,648 @@
+{
+  "abstract": [
+    {
+      "text": "A container of image data and information for use in a custom image processor. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1639653,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)CIImageProcessorInput",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "protocol "
+      },
+      {
+        "kind": "identifier",
+        "text": "CIImageProcessorInput"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Image"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.12",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "intf",
+    "title": "CIImageProcessorInput"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CIImageProcessorInput"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app does not define classes that adopt this protocol; Core Image provides an object of this type when applying a custom image processor you create with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your image processor class' ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel/2138290-process",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, use the provided ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object to access the image data and supporting information to perform your custom image processing routine. For example, if you process the image using a Metal shader, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/1639651-metaltexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to bind the image as an input texture. Or, if you process the image using a CPU-based routine, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/1639645-baseaddress",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to access pixel data in memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To finish setting up or performing your image processing routine, use the provided ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessoroutput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to return processed pixel data to Core Image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Image",
+      "type": "topic",
+      "url": "/documentation/coreimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput": {
+      "abstract": [
+        {
+          "text": "A container of image data and information for use in a custom image processor. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIImageProcessorInput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIImageProcessorInput",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimageprocessorinput"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/1639633-region": {
+      "abstract": [
+        {
+          "text": "The area within the input image to be processed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "region"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/1639633-region",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "region",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimageprocessorinput/1639633-region"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/1639639-format": {
+      "abstract": [
+        {
+          "text": "The per-pixel data format of the image to be processed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": CIFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/1639639-format",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "format",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimageprocessorinput/1639639-format"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/1639645-baseaddress": {
+      "abstract": [
+        {
+          "text": "A pointer to the image data in CPU memory to be processed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "baseAddress"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeRawPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/1639645-baseaddress",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "baseAddress",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimageprocessorinput/1639645-baseaddress"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/1639649-pixelbuffer": {
+      "abstract": [
+        {
+          "text": "A CoreVideo pixel buffer containing the image data to be processed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "pixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": CVPixelBuffer?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/1639649-pixelbuffer",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "pixelBuffer",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimageprocessorinput/1639649-pixelbuffer"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/1639651-metaltexture": {
+      "abstract": [
+        {
+          "text": "A Metal texture containing the image data to be processed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "metalTexture"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MTLTexture)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/1639651-metaltexture",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "metalTexture",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimageprocessorinput/1639651-metaltexture"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/1639655-bytesperrow": {
+      "abstract": [
+        {
+          "text": "The number of bytes per row of pixels in the input image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "bytesPerRow"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/1639655-bytesperrow",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "bytesPerRow",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimageprocessorinput/1639655-bytesperrow"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/1639657-surface": {
+      "abstract": [
+        {
+          "text": "An IOSurface object containing the image data to be processed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "surface"
+        },
+        {
+          "kind": "text",
+          "text": ": IOSurfaceRef"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/1639657-surface",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "surface",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimageprocessorinput/1639657-surface"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/4048310-digest": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "digest"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/4048310-digest",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "digest",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimageprocessorinput/4048310-digest"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/4172814-roitilecount": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "roiTileCount"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/4172814-roitilecount",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "roiTileCount",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimageprocessorinput/4172814-roitilecount"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/4172815-roitileindex": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "roiTileIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/4172815-roitileindex",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "roiTileIndex",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimageprocessorinput/4172815-roitileindex"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel": {
+      "abstract": [
+        {
+          "text": "The abstract class you extend to create custom image processors that can integrate with Core Image workflows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIImageProcessorKernel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIImageProcessorKernel",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimageprocessorkernel"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel/2138290-process": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel/2138290-process",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "process(with:arguments:output:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimageprocessorkernel/2138290-process"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimageprocessoroutput": {
+      "abstract": [
+        {
+          "text": "A container for writing image data and information produced by a custom image processor. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIImageProcessorOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessoroutput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIImageProcessorOutput",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimageprocessoroutput"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel",
+        "doc://com.apple.documentation/documentation/coreimage/ciimageprocessoroutput"
+      ],
+      "title": "Custom Image Processors"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1844834",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/1639645-baseaddress",
+        "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/1639651-metaltexture",
+        "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/1639649-pixelbuffer",
+        "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/1639657-surface"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Input Image Data"
+    },
+    {
+      "anchor": "1844838",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/1639633-region",
+        "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/1639655-bytesperrow",
+        "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/1639639-format"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Supplemental Information for Image Processing"
+    },
+    {
+      "anchor": "4052167",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/4048310-digest",
+        "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/4172814-roitilecount",
+        "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorinput/4172815-roitileindex"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreimage/ciimageprocessorinput"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreimage/ciimageprocessorinput"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

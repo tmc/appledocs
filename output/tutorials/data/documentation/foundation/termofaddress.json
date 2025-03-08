@@ -1,0 +1,1095 @@
+{
+  "abstract": [
+    {
+      "text": "The type for representing grammatical gender in localized text.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/termofaddress"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 4123209,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation13TermOfAddressV",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "TermOfAddress"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "17.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "17.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "14.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "17.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "10.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "TermOfAddress"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "TermOfAddress"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many languages rely on gender for their grammar. Without knowing the subject’s gender or pronoun preferences, some localized strings may have grammatical errors, resulting in a poor user experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "TermOfAddress",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a type that enables the system to make pronoun substitutions in localized text based on gender. You don’t create instances of this type directly. Instead, use the predefined types to specify the gender to use when referring to people in translated text. Or define your own pronoun terms for a specific language when the predefined types are insufficient.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Not all terms of address exist in all languages.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to substitute the masculine pronoun ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "He",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", for the neutral pronoun ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "They",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Define the resource you want to apply grammatical agreement to.",
+            "let resource = LocalizedStringResource(\"^[They](referentConcept: 1) liked your post.\")",
+            "",
+            "// Set the inflection concept to use a term of address.",
+            "var options = AttributedString.LocalizationOptions()",
+            "options.concepts = [.termsOfAddress([.masculine])]",
+            "",
+            "// Make a new string imposing grammatical agreement on the resource from the term of address.",
+            "let result = AttributedString(localized: resource, options: options)",
+            "// result == \"He liked your post.\""
+          ],
+          "metadata": {
+            "anchor": "4182414",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/termofaddress/4123219-masculine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/termofaddress/4123213-feminine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/termofaddress/4123220-neutral",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " terms of address are insufficient, create your own term of address specifying the pronouns and language.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Define the various morphologies.",
+            "var nominativeMorphology = Morphology()",
+            "var accusativeMorphology = Morphology()",
+            "var genitiveMorphology = Morphology()",
+            "var genetiveIndependent = Morphology()",
+            "var reflexive = Morphology()",
+            "",
+            "nominativeMorphology.grammaticalCase = .nominative",
+            "accusativeMorphology.grammaticalCase = .accusative",
+            "genitiveMorphology.grammaticalCase = .genitive",
+            "genitiveMorphology.determination = .dependent",
+            "genetiveIndependent.grammaticalCase = .genitive",
+            "genetiveIndependent.determination = .independent",
+            "reflexive.pronounType = .reflexive",
+            "",
+            "// Define the pronouns.",
+            "let xey  = Morphology.Pronoun(pronoun:\"xey\", morphology: nominativeMorphology)",
+            "let xem  = Morphology.Pronoun(pronoun:\"xem\", morphology: accusativeMorphology)",
+            "let xeir = Morphology.Pronoun(pronoun:\"xeir\", morphology: genitiveMorphology)",
+            "let xeirs = Morphology.Pronoun(pronoun: \"xeirs\", morphology: genetiveIndependent)",
+            "let xemself = Morphology.Pronoun(pronoun: \"xemself\", morphology: reflexive)",
+            "        ",
+            "// Create the localized term of address.",
+            "let xemTermOfAddress = TermOfAddress.localized(language: .init(identifier: \"en\"), pronouns: [xey, xem, xeir, xeirs, xemself])",
+            "",
+            "// Define the resources you want to apply gender agreement to.",
+            "let resources = [",
+            "    LocalizedStringResource(\"^[They](referentConcept: 1) liked your post.\"),",
+            "    LocalizedStringResource(\"Anne read the post to ^[them](referentConcept: 1).\"),",
+            "    LocalizedStringResource(\"You liked ^[their](referentConcept: 1) post.\"),",
+            "    LocalizedStringResource(\"The post was ^[theirs](referentConcept: 1).\"),",
+            "    LocalizedStringResource(\"^[They](referentConcept: 1) posted it ^[themselves](referentConcept: 1).\"),",
+            "]",
+            "var options = AttributedString.LocalizationOptions()",
+            "",
+            "// Set the inflection concept to use the new term of address.",
+            "options.concepts = [.termsOfAddress([xemTermOfAddress])]",
+            "",
+            "let results = [",
+            "    AttributedString(localized: resources[0], options: options), // \"Xey liked your post.\"",
+            "    AttributedString(localized: resources[1], options: options), // \"Anne read the post to xem.\"",
+            "    AttributedString(localized: resources[2], options: options), // \"You liked xeir post.\"",
+            "    AttributedString(localized: resources[3], options: options), // \"The post was xeirs.\"",
+            "    AttributedString(localized: resources[4], options: options), // \"Xey posted it xemself.\"",
+            "]"
+          ],
+          "metadata": {
+            "anchor": "4182415",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For examples of how to use terms of address, see:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/referentconceptattribute",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/agreementconceptattribute",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Decodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Decodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/swift/decodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Encodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Encodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/swift/encodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Hashable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/swift/hashable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/agreementconceptattribute": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/agreementconceptattribute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributeScopes.FoundationAttributes.AgreementConceptAttribute",
+      "type": "topic",
+      "url": "/documentation/foundation/attributescopes/foundationattributes/agreementconceptattribute"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/referentconceptattribute": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/referentconceptattribute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributeScopes.FoundationAttributes.ReferentConceptAttribute",
+      "type": "topic",
+      "url": "/documentation/foundation/attributescopes/foundationattributes/referentconceptattribute"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Formatting",
+      "type": "topic",
+      "url": "/documentation/foundation/data_formatting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inflectionconcept": {
+      "abstract": [
+        {
+          "text": "An inflection method to use when localizing text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "InflectionConcept"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inflectionconcept",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "InflectionConcept",
+      "type": "topic",
+      "url": "/documentation/foundation/inflectionconcept"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inflectionrule": {
+      "abstract": [
+        {
+          "text": "A rule that affects how an attributed string performs automatic grammatical agreement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "InflectionRule"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inflectionrule",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "InflectionRule",
+      "type": "topic",
+      "url": "/documentation/foundation/inflectionrule"
+    },
+    "doc://com.apple.documentation/documentation/foundation/morphology": {
+      "abstract": [
+        {
+          "text": "A description of the grammatical properties of a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Morphology"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/morphology",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Morphology",
+      "type": "topic",
+      "url": "/documentation/foundation/morphology"
+    },
+    "doc://com.apple.documentation/documentation/foundation/morphology/pronoun": {
+      "abstract": [
+        {
+          "text": "A custom pronoun for referring to a third person.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Morphology.Pronoun"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/morphology/pronoun",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Morphology.Pronoun",
+      "type": "topic",
+      "url": "/documentation/foundation/morphology/pronoun"
+    },
+    "doc://com.apple.documentation/documentation/foundation/termofaddress": {
+      "abstract": [
+        {
+          "text": "The type for representing grammatical gender in localized text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "TermOfAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/termofaddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TermOfAddress",
+      "type": "topic",
+      "url": "/documentation/foundation/termofaddress"
+    },
+    "doc://com.apple.documentation/documentation/foundation/termofaddress#4182414": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/termofaddress#4182414",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/termofaddress#4182414"
+    },
+    "doc://com.apple.documentation/documentation/foundation/termofaddress#4182415": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/termofaddress#4182415",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/termofaddress#4182415"
+    },
+    "doc://com.apple.documentation/documentation/foundation/termofaddress/4123210": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are not equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "!= "
+        },
+        {
+          "kind": "text",
+          "text": "(TermOfAddress, TermOfAddress) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/termofaddress/4123210",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "!=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/termofaddress/4123210"
+    },
+    "doc://com.apple.documentation/documentation/foundation/termofaddress/4123211": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether two terms of address are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "== "
+        },
+        {
+          "kind": "text",
+          "text": "(TermOfAddress, TermOfAddress) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/termofaddress/4123211",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/termofaddress/4123211"
+    },
+    "doc://com.apple.documentation/documentation/foundation/termofaddress/4123212-encode": {
+      "abstract": [
+        {
+          "text": "Encodes the value into the given encoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any Encoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/termofaddress/4123212-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/termofaddress/4123212-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/termofaddress/4123213-feminine": {
+      "abstract": [
+        {
+          "text": "The term of address for representing feminine pronouns and grammatical gender.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "feminine"
+        },
+        {
+          "kind": "text",
+          "text": ": TermOfAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/termofaddress/4123213-feminine",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "feminine",
+      "type": "topic",
+      "url": "/documentation/foundation/termofaddress/4123213-feminine"
+    },
+    "doc://com.apple.documentation/documentation/foundation/termofaddress/4123214-hash": {
+      "abstract": [
+        {
+          "text": "Hashes the essential components of the term of address by passing them into the given hash function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hash"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": inout Hasher)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/termofaddress/4123214-hash",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hash(into:)",
+      "type": "topic",
+      "url": "/documentation/foundation/termofaddress/4123214-hash"
+    },
+    "doc://com.apple.documentation/documentation/foundation/termofaddress/4123215-hashvalue": {
+      "abstract": [
+        {
+          "text": "The hashed value of the term of address.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "hashValue"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/termofaddress/4123215-hashvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hashValue",
+      "type": "topic",
+      "url": "/documentation/foundation/termofaddress/4123215-hashvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/termofaddress/4123216-init": {
+      "abstract": [
+        {
+          "text": "Creates a new instance by decoding from the given decoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any Decoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/termofaddress/4123216-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/termofaddress/4123216-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/termofaddress/4123217-language": {
+      "abstract": [
+        {
+          "text": "The specific language associated with a term of address.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "language"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale.Language?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/termofaddress/4123217-language",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "language",
+      "type": "topic",
+      "url": "/documentation/foundation/termofaddress/4123217-language"
+    },
+    "doc://com.apple.documentation/documentation/foundation/termofaddress/4123218-localized": {
+      "abstract": [
+        {
+          "text": "Returns a term of address restricted to a specific language for a group of pronouns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "localized"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "language"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale.Language, "
+        },
+        {
+          "kind": "identifier",
+          "text": "pronouns"
+        },
+        {
+          "kind": "text",
+          "text": ": [Morphology.Pronoun]) -> TermOfAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/termofaddress/4123218-localized",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localized(language:pronouns:)",
+      "type": "topic",
+      "url": "/documentation/foundation/termofaddress/4123218-localized"
+    },
+    "doc://com.apple.documentation/documentation/foundation/termofaddress/4123219-masculine": {
+      "abstract": [
+        {
+          "text": "The term of address for representing masculine pronouns and grammatical gender.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "masculine"
+        },
+        {
+          "kind": "text",
+          "text": ": TermOfAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/termofaddress/4123219-masculine",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "masculine",
+      "type": "topic",
+      "url": "/documentation/foundation/termofaddress/4123219-masculine"
+    },
+    "doc://com.apple.documentation/documentation/foundation/termofaddress/4123220-neutral": {
+      "abstract": [
+        {
+          "text": "The term of address for representing gender-neutral pronouns and grammatical gender.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "neutral"
+        },
+        {
+          "kind": "text",
+          "text": ": TermOfAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/termofaddress/4123220-neutral",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "neutral",
+      "type": "topic",
+      "url": "/documentation/foundation/termofaddress/4123220-neutral"
+    },
+    "doc://com.apple.documentation/documentation/foundation/termofaddress/4123221-pronouns": {
+      "abstract": [
+        {
+          "text": "The pronouns associated with a term of address.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "pronouns"
+        },
+        {
+          "kind": "text",
+          "text": ": [Morphology.Pronoun]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/termofaddress/4123221-pronouns",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pronouns",
+      "type": "topic",
+      "url": "/documentation/foundation/termofaddress/4123221-pronouns"
+    },
+    "doc://com.apple.documentation/documentation/foundation/termofaddress/4462807-currentuser": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentUser"
+        },
+        {
+          "kind": "text",
+          "text": ": TermOfAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/termofaddress/4462807-currentuser",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentUser",
+      "type": "topic",
+      "url": "/documentation/foundation/termofaddress/4462807-currentuser"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Decodable",
+        "doc://com.apple.Swift/documentation/Swift/Encodable",
+        "doc://com.apple.Swift/documentation/Swift/Hashable",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/inflectionrule",
+        "doc://com.apple.documentation/documentation/foundation/morphology",
+        "doc://com.apple.documentation/documentation/foundation/inflectionconcept",
+        "doc://com.apple.documentation/documentation/foundation/morphology/pronoun"
+      ],
+      "title": "Automatic grammar agreement"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "4181930",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/termofaddress/4123213-feminine",
+        "doc://com.apple.documentation/documentation/foundation/termofaddress/4123219-masculine",
+        "doc://com.apple.documentation/documentation/foundation/termofaddress/4123220-neutral"
+      ],
+      "kind": "taskGroup",
+      "title": "Using predefined terms of address"
+    },
+    {
+      "anchor": "4181933",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/termofaddress/4123218-localized",
+        "doc://com.apple.documentation/documentation/foundation/termofaddress/4123217-language",
+        "doc://com.apple.documentation/documentation/foundation/termofaddress/4123221-pronouns"
+      ],
+      "kind": "taskGroup",
+      "title": "Defining your own terms of address"
+    },
+    {
+      "anchor": "4181932",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/termofaddress/4123211",
+        "doc://com.apple.documentation/documentation/foundation/termofaddress/4123210",
+        "doc://com.apple.documentation/documentation/foundation/termofaddress/4123215-hashvalue",
+        "doc://com.apple.documentation/documentation/foundation/termofaddress/4123214-hash"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing terms of address"
+    },
+    {
+      "anchor": "4181931",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/termofaddress/4123212-encode",
+        "doc://com.apple.documentation/documentation/foundation/termofaddress/4123216-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Encoding and decoding terms of address"
+    },
+    {
+      "anchor": "4464919",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/termofaddress/4462807-currentuser"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nstermofaddress"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/termofaddress"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

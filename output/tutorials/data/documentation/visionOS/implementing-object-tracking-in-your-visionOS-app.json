@@ -1,0 +1,1617 @@
+{
+  "abstract": [
+    {
+      "text": "Create engaging interactions by training models to recognize and track real-world objects in your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/implementing-object-tracking-in-your-visionOS-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "implementing-object-tracking-in-your-visionOS-app.png",
+        "type": "card"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Implementing object tracking in your visionOS app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you implement object tracking in your visionOS app, you can seamlessly integrate real-world objects in people’s surroundings to enhance their immersive experiences.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "By tracking the 3D position and orientation of an object, or several objects, your app can augment them with virtual content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use object tracking to provide virtual interactions with objects in a person’s surroundings, such as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Guiding someone through using an item’s features, reading about its history, or learning about its behaviors when they look at it in their surroundings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Helping people troubleshoot issues with household items and appliances with a virtual manual.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Creating an immersive storytelling experience to make collectables and toys come to life.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To integrate object tracking into your app, you start with a 3D model of a physical object, train a machine learning model in Create ML with that 3D model asset to obtain a reference object file, and then use the resulting reference object file to track the physical object in your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The reference object file is a file format with a ",
+              "type": "text"
+            },
+            {
+              "code": ".referenceobject",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension, specifically for object tracking in visionOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "workflow-objects-PageImage-card",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implementing object tracking requires an Apple Vision Pro with visionOS 2 or later, and a Mac with Apple silicon and macOS 15 or later for the machine learning training in Create ML.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Ensure-your-objects-are-suitable-for-object-tracking",
+          "level": 3,
+          "text": "Ensure your objects are suitable for object tracking",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Object tracking performs optimally for a specific set of object characteristics.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For object tracking to work best in your app, make sure your object is rigid, nonsymmetrical, and stationary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Select an object that maintains its shape and appearance during tracking. For example, a pair of scissors is challenging to track because it changes shape while a person uses it.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Rigid",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Select an object with a nonsymmetrical shape or texture, so that when you rotate the object, it doesn’t have the same appearance from different angles. For instance, a globe has a symmetrical shape, but has a nonsymmetrical texture on all sides, making it a suitable object. In contrast, a styrofoam cup has the same appearance on all sides when you rotate it, making it challenging to track.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Nonsymmetrical",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Select an object that’s mostly stationary in a person’s surroundings. If you’re tracking a moving object, there can be a delay in following its position. For example, a pickleball racket constantly moves in different directions while a person plays with it, making it challenging to track.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Stationary",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Obtain-a-3D-model-of-your-object",
+          "level": 3,
+          "text": "Obtain a 3D model of your object",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/machine-learning/create-ml/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to begin the machine learning training to obtain your reference object file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Create ML requires a 3D model asset in the USDZ file format that represents your real-world object.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can obtain your 3D model using computer-aided design (CAD) software to accurately model an object’s geometry and apply physically based rendering (PBR) materials to it, and save it in the USDZ file format.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Using this method, the 3D model can realistically represent objects that consist of multiple parts made from different materials, like glass, metal, plastic, wood, and other common materials.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This method is helpful for capturing objects that are entirely or partly transparent, shiny, or reflective.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The better the 3D model represents the appearance of the physical object, the better the quality of tracking is in visionOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Another way to create your 3D model is by using the Object Capture feature in the Reality Composer app in iOS or iPadOS.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can use your iPhone or iPad to capture images of an object, and then save the USDZ file to import into your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about using the Object Capture feature to create a 3D model, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2023/10191/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/realitykit/scanning-objects-using-object-capture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before beginning the training process in Create ML with the 3D model asset, keep the following guidelines in mind to ensure it works well for object tracking in visionOS:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure the 3D model is as photorealistic as possible — essentially a digital twin of your real-world object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure the scale of the 3D model is as precise as possible and matches its specified units. If the scale doesn’t match the real-world object, the augmentation appears offset in the viewing direction, and may appear either in front of or behind the object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "While training the machine learning model with the 3D model asset, Create ML ignores any animations, virtual cameras, and lights within the asset, treating them as static.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Train-a-machine-learning-model-with-the-3D-model-asset-in-Create-ML",
+          "level": 3,
+          "text": "Train a machine learning model with the 3D model asset in Create ML",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Object tracking requires a reference object file to track the spatial location and orientation of the corresponding real-world object. You use Create ML to train a machine learning model to create a reference object file unique to your object.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The training of machine learning models with your 3D asset and the creation of the reference object file both run locally on your Mac.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set up the training:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open Xcode and choose Xcode > Open Developer Tool > Create ML.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the dialog that appears, click New Document.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Choose a Template dialog, select the Spatial category in the left pane, select the Object Tracking template, and click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter your project name and other information, and click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select a location for your project, and click Create.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create ML opens a training configuration view with an empty 3D viewport. Drag the USDZ file of your 3D model asset into the 3D viewport.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The 3D viewport is an interactive space where you can view your 3D model asset from different angles. After it appears in the viewport, check the appearance of the 3D model asset and confirm that it matches the absolute dimensions of your real-world object.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Also make sure that the dimensions of the 3D model asset at the bottom right of the viewport match the actual dimensions of your object.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the scale doesn’t match, one option is to use Reality Composer Pro to rescale the 3D model and then add the adjusted USDZ file to Create ML.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "importing",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The next step is to select the best viewing angle for your real-world object.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Consider how people view and interact with the object in your app, and decide which angle you need for tracking it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The “Viewing angles” setting appears below the 3D viewport, and has three viewing angles you can use: All Angles, Upright, or Front.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It’s important to choose the best option for your object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "viewing-angles",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The All Angles option includes views from every angle. It works best for tracking objects that have a distinct and unique appearance from all sides, such as a patterned Christmas ornament that people see from all sides as it hangs on a tree.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Upright option works only for tracking objects that stand upright on a surface, such as a microscope that sits on a counter and stays in the same position as people interact with it. This option disables tracking from the bottom viewing angle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Front option works only for tracking objects that stand upright on a surface where the back of the object isn’t visible, such as a coffee machine that sits on a counter while people operate it from the front. This option disables tracking from both the bottom and rear viewing angles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Only choose the All Angles option if you want to track your object from all sides. The more restricted the viewing angle is, the more accurate the object tracking is in visionOS.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If there’s an object in a person’s surroundings that’s similar to the object you want to track, the object-tracking feature might recognize it and track it instead of your object.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To prevent this from happening, add the similar object as a negative example when training the machine learning model with your reference object.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Below the 3D viewport, choose More Options > Objects to avoid.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use this section to add USDZ samples of similar items to ensure the machine learning model doesn’t identify them as the object you want to track.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "objects-to-avoid",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create ML supports training multiple machine learning models in the same object-tracking project.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the Model Sources section in the left pane, you can click the Add button (+) to add more 3D model assets to your Create ML project.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use this feature to track multiple objects in your app at the same time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "adding-objects",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can track up to 10 different reference objects simultaneously without an impact to performance.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After inspecting your 3D model asset and configuring the training settings, click Train to begin the training process.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A progress bar indicates the amount of time until the machine learning training is complete.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The machine learning training can take a few hours, depending on the configuration of your Mac.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A more advanced processor and additional RAM significantly improve the training time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Export-the-reference-object-file",
+          "level": 3,
+          "text": "Export the reference object file",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When training is complete, Create ML provides the reference object file for you to use in your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Click the Output tab and save the resulting reference object file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The reference object file contains the machine learning model you trained, packaged with the 3D model asset, in the USDZ file format. You can use the USDZ file for visualizing the tracking quality by rendering it as an overlay on the real-world object, and as a guide for adding immersive effects.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The USDZ file may take up a lot of space in your app if your 3D model asset is large, so you can remove it from the reference object file if you need to optimize space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use the Reference Object Compiler in Xcode to remove the USDZ data from the reference object file during the build process.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Select your project in Xcode, click the Build Settings tab, and enable the Strip USDZ Files from Reference Object option.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This setting contains the ",
+              "type": "text"
+            },
+            {
+              "code": "REFERENCEOBJECT_STRIP_USDZ",
+              "type": "codeVoice"
+            },
+            {
+              "text": " build flag.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The default setting of the flag is ",
+              "type": "text"
+            },
+            {
+              "code": "No",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", so Xcode copies any reference object files you add to the project as-is unless you change the setting.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "stripping-usd",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Integrate-the-reference-object-file-into-your-app",
+          "level": 3,
+          "text": "Integrate the reference object file into your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you generate the reference object file, you can set up object tracking in your app using Reality Composer Pro, RealityKit, or ARKit.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about each of these methods, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.visionOS/documentation/visionOS/using-a-reference-object-with-reality-composer-pro",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.visionOS/documentation/visionOS/using-a-reference-object-with-realitykit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.visionOS/documentation/visionOS/using-a-reference-object-with-arkit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Object tracking works only in an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/documentation/swiftui/immersivespace",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " within Xcode. Attempting to use object tracking in a window or volume results in a silent failure.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about object tracking, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2024/10101/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For an example of using ARKit for object tracking, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/visionos/exploring_object_tracking_with_arkit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "BOT-anist-PageImage-card.png": {
+      "alt": "A screenshot from the Apple Vision Pro simulator with a single floating window. The window contains a robot on the right side, and controls to customize the robots appearance on the left.",
+      "identifier": "BOT-anist-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d9f7d85cd82f76e6fd53df7302f0424a/BOT-anist-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "Diorama-intro.png": {
+      "alt": "A screenshot showing a virtual trail map diorama in a living room setting.",
+      "identifier": "Diorama-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/80d69390976dca0e5d70a493312d475a/Diorama-intro@2x.png"
+        }
+      ]
+    },
+    "Swift-Splash-intro.png": {
+      "alt": "",
+      "identifier": "Swift-Splash-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b5da9880ce266b0858346d694e3a7018/Swift-Splash-intro@2x.png"
+        }
+      ]
+    },
+    "adding-objects": {
+      "alt": "A Create ML screenshot of the Model Sources section in the left pane.",
+      "identifier": "adding-objects",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "3x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1d2865d8a7c83978f5bac7dd6ff8a1b1/adding-objects@3x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b679525cf15d6c4a29b689b5cdae99cf/adding-objects~dark@2x.png"
+        }
+      ]
+    },
+    "building-an-immersive-media-viewing-experience-PageImage-card.png": {
+      "alt": "A screenshot of destination video's custom studio environment.",
+      "identifier": "building-an-immersive-media-viewing-experience-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bbc286b58cd06b23756a1cb51a493360/building-an-immersive-media-viewing-experience-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b110534afd700b8b77992bd7f4184ae6/building-an-immersive-media-viewing-experience-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app": {
+      "abstract": [
+        {
+          "text": "Use attachments to place 2D content relative to 3D content in your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Combining 2D and 3D views in an immersive app",
+      "type": "topic",
+      "url": "/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/BOT-anist": {
+      "abstract": [
+        {
+          "text": "Build a multiplatform app that uses windows, volumes, and animations to create a robot botanist’s greenhouse.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/BOT-anist",
+      "images": [
+        {
+          "identifier": "BOT-anist-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "BOT-anist",
+      "type": "topic",
+      "url": "/documentation/visionos/bot-anist"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/building-an-immersive-media-viewing-experience": {
+      "abstract": [
+        {
+          "text": "Add a deeper level of immersion to media playback in your app with RealityKit and Reality Composer Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/building-an-immersive-media-viewing-experience",
+      "images": [
+        {
+          "identifier": "building-an-immersive-media-viewing-experience-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building an immersive media viewing experience",
+      "type": "topic",
+      "url": "/documentation/visionos/building-an-immersive-media-viewing-experience"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/capturing-screenshots-and-video-from-your-apple-vision-pro-for-2d-viewing": {
+      "abstract": [
+        {
+          "text": "Create screenshots and record high-quality video of your visionOS app and its surroundings for app previews.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/capturing-screenshots-and-video-from-your-apple-vision-pro-for-2d-viewing",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing screenshots and video from Apple Vision Pro for 2D viewing",
+      "type": "topic",
+      "url": "/documentation/visionos/capturing-screenshots-and-video-from-your-apple-vision-pro-for-2d-viewing"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro": {
+      "abstract": [
+        {
+          "text": "Design RealityKit scenes for your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro",
+      "kind": "article",
+      "role": "article",
+      "title": "Designing RealityKit content with Reality Composer Pro",
+      "type": "topic",
+      "url": "/documentation/visionos/designing-realitykit-content-with-reality-composer-pro"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/diorama": {
+      "abstract": [
+        {
+          "text": "Design scenes for your visionOS app using Reality Composer Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/diorama",
+      "images": [
+        {
+          "identifier": "Diorama-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Diorama",
+      "type": "topic",
+      "url": "/documentation/visionos/diorama"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment": {
+      "abstract": [
+        {
+          "text": "Create a more immersive experience by adding video reflections in a custom environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment",
+      "images": [
+        {
+          "identifier": "lightspill-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Enabling video reflections in an immersive environment",
+      "type": "topic",
+      "url": "/documentation/visionos/enabling-video-reflections-in-an-immersive-environment"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/placing-entities-using-head-and-device-transform": {
+      "abstract": [
+        {
+          "text": "Query and react to changes in the position and rotation of Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/placing-entities-using-head-and-device-transform",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Placing entities using head and device transform",
+      "type": "topic",
+      "url": "/documentation/visionos/placing-entities-using-head-and-device-transform"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/swift-splash": {
+      "abstract": [
+        {
+          "text": "Use RealityKit to create an interactive ride in visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/swift-splash",
+      "images": [
+        {
+          "identifier": "Swift-Splash-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Swift Splash",
+      "type": "topic",
+      "url": "/documentation/visionos/swift-splash"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/understanding-the-realitykit-modular-architecture": {
+      "abstract": [
+        {
+          "text": "Learn how everything fits together in RealityKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/understanding-the-realitykit-modular-architecture",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding the modular architecture of RealityKit",
+      "type": "topic",
+      "url": "/documentation/visionos/understanding-the-realitykit-modular-architecture"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/understanding-transforms": {
+      "abstract": [
+        {
+          "text": "Learn how to use Transforms to move, scale, and rotate entities in RealityKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/understanding-transforms",
+      "kind": "article",
+      "role": "article",
+      "title": "Using transforms to move, scale, and rotate entities",
+      "type": "topic",
+      "url": "/documentation/visionos/understanding-transforms"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/using-a-reference-object-with-arkit": {
+      "abstract": [
+        {
+          "text": "Import a reference object file and track a real-world object in your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/using-a-reference-object-with-arkit",
+      "kind": "article",
+      "role": "article",
+      "title": "Using a reference object with ARKit",
+      "type": "topic",
+      "url": "/documentation/visionos/using-a-reference-object-with-arkit"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/using-a-reference-object-with-reality-composer-pro": {
+      "abstract": [
+        {
+          "text": "Import a reference object file to track a real-world object in your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/using-a-reference-object-with-reality-composer-pro",
+      "kind": "article",
+      "role": "article",
+      "title": "Using a reference object with Reality Composer Pro",
+      "type": "topic",
+      "url": "/documentation/visionos/using-a-reference-object-with-reality-composer-pro"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/using-a-reference-object-with-realitykit": {
+      "abstract": [
+        {
+          "text": "Import a reference object file to track a real-world object in your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/using-a-reference-object-with-realitykit",
+      "kind": "article",
+      "role": "article",
+      "title": "Using a reference object with RealityKit",
+      "type": "topic",
+      "url": "/documentation/visionos/using-a-reference-object-with-realitykit"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "https://developer.apple.com/documentation/realitykit/scanning-objects-using-object-capture": {
+      "identifier": "https://developer.apple.com/documentation/realitykit/scanning-objects-using-object-capture",
+      "title": "Scanning objects using Object Capture",
+      "titleInlineContent": [
+        {
+          "text": "Scanning objects using Object Capture",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/realitykit/scanning-objects-using-object-capture"
+    },
+    "https://developer.apple.com/documentation/swiftui/immersivespace": {
+      "identifier": "https://developer.apple.com/documentation/swiftui/immersivespace",
+      "title": "ImmersiveSpace",
+      "titleInlineContent": [
+        {
+          "code": "ImmersiveSpace",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/swiftui/immersivespace"
+    },
+    "https://developer.apple.com/documentation/visionos/exploring_object_tracking_with_arkit": {
+      "identifier": "https://developer.apple.com/documentation/visionos/exploring_object_tracking_with_arkit",
+      "title": "Exploring object tracking with ARKit",
+      "titleInlineContent": [
+        {
+          "text": "Exploring object tracking with ARKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/visionos/exploring_object_tracking_with_arkit"
+    },
+    "https://developer.apple.com/machine-learning/create-ml/": {
+      "identifier": "https://developer.apple.com/machine-learning/create-ml/",
+      "title": "Create ML",
+      "titleInlineContent": [
+        {
+          "text": "Create ML",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/machine-learning/create-ml/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10191/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10191/",
+      "title": "Meet Object Capture for iOS",
+      "titleInlineContent": [
+        {
+          "text": "Meet Object Capture for iOS",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10191/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2024/10101/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2024/10101/",
+      "title": "Explore object tracking for visionOS",
+      "titleInlineContent": [
+        {
+          "text": "Explore object tracking for visionOS",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2024/10101/"
+    },
+    "implementing-object-tracking-in-your-visionOS-app.png": {
+      "alt": null,
+      "identifier": "implementing-object-tracking-in-your-visionOS-app.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/49a7917ef036b2daf610527590ce056d/implementing-object-tracking-in-your-visionOS-app@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3e16e39548ccdcc1d5a21b2f18755c7b/implementing-object-tracking-in-your-visionOS-app~dark@2x.png"
+        }
+      ]
+    },
+    "importing": {
+      "alt": "A Create ML screenshot of a gramophone in the 3D viewport with the Object dimensions displaying at the bottom right.",
+      "identifier": "importing",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bfa621939020275a8247a497be68d089/importing@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dae9648483134080006a5e5733ee32a1/importing~dark@2x.png"
+        }
+      ]
+    },
+    "lightspill-PageImage-card.png": {
+      "alt": "A screenshot that shows the app's video player in the Studio environment in visionOS. The screenshot shows the contents of the video player reflecting onto the surrounding environment.",
+      "identifier": "lightspill-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/87e397de07459c756d21eb0c441569f7/lightspill-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "objects-to-avoid": {
+      "alt": "A Create ML screenshot of the Objects to avoid settings.",
+      "identifier": "objects-to-avoid",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62838b26be7ec80c5b25afecfd418ed9/objects-to-avoid@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4b49e4a6e7fec23b2c0732c13d90e712/objects-to-avoid~dark@2x.png"
+        }
+      ]
+    },
+    "stripping-usd": {
+      "alt": "An Xcode screenshot of the Build Settings pane showing the Remove USDZ files from Reference Object option enabled.",
+      "identifier": "stripping-usd",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0d75053c5b7292d5a5af7e7d9e926235/stripping-usd@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/403f1fc08f30a6fd5e28231cabfce049/stripping-usd~dark@2x.png"
+        }
+      ]
+    },
+    "viewing-angles": {
+      "alt": "A Create ML screenshot of the 3D viewport showing the Viewing angles options. The Upright option is highlighted.",
+      "identifier": "viewing-angles",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b6654e7973970fc2be9f1eb10b7bba60/viewing-angles@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77e332dcb17440b11641645bec73508c/viewing-angles~dark@2x.png"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "workflow-objects-PageImage-card": {
+      "alt": "A flow diagram of four items with arrows between them. From left to right, the images are an illustration of a globe; the Create ML app icon; a grouping of the RealityKit icon, the ARKit icon, and the Reality Composer Pro icon; and an illustration of a globe within a bounding box.",
+      "identifier": "workflow-objects-PageImage-card",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a4b7b3b4369717a62951659789519c9a/workflow-objects-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/db156753680a3e7fdc4d745d69dc8887/workflow-objects-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "RealityKit-and-Reality-Composer-Pro",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/BOT-anist",
+        "doc://com.apple.visionOS/documentation/visionOS/swift-splash",
+        "doc://com.apple.visionOS/documentation/visionOS/diorama",
+        "doc://com.apple.visionOS/documentation/visionOS/building-an-immersive-media-viewing-experience",
+        "doc://com.apple.visionOS/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment",
+        "doc://com.apple.documentation/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app",
+        "doc://com.apple.visionOS/documentation/visionOS/understanding-the-realitykit-modular-architecture",
+        "doc://com.apple.visionOS/documentation/visionOS/understanding-transforms",
+        "doc://com.apple.visionOS/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro",
+        "doc://com.apple.visionOS/documentation/visionOS/capturing-screenshots-and-video-from-your-apple-vision-pro-for-2d-viewing",
+        "doc://com.apple.visionOS/documentation/visionOS/placing-entities-using-head-and-device-transform"
+      ],
+      "title": "RealityKit and Reality Composer Pro"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Object-tracking-within-an-app",
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/using-a-reference-object-with-reality-composer-pro",
+        "doc://com.apple.visionOS/documentation/visionOS/using-a-reference-object-with-realitykit",
+        "doc://com.apple.visionOS/documentation/visionOS/using-a-reference-object-with-arkit"
+      ],
+      "title": "Object tracking within an app"
+    }
+  ]
+}

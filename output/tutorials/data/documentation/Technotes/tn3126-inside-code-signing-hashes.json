@@ -1,0 +1,2293 @@
+{
+  "abstract": [
+    {
+      "text": "Look inside a code signature to see how it uses hashes to protect the code’s executable pages, resources, and metadata from tampering.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.technotes/documentation/Technotes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.technotes/documentation/Technotes/tn3126-inside-code-signing-hashes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "TN3126: Inside Code Signing: Hashes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vast majority of developers don’t need to know how code signing works.  They use Xcode, or the ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool, and those take care of all the fiddly details.  If they run into problems, those problems usually relate to high-level concepts—signing identities, entitlements, provisioning profiles—not the core code signing implementation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, that’s not always the case.  Every now and again an issue crops up where you actually need to understand how code signing works.  For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Xcode/using-the-latest-code-signature-format",
+                      "isActive": true,
+                      "overridingTitle": "Using the Latest Code Signature Format",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Using the Latest Code Signature Format",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " has a diagnostic process that involves code signing hash slots.  While that process is actionable in and of itself, it makes more sense if you know what those hash slots hold.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The issue covered by ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Security/updating-mac-software",
+                      "isActive": true,
+                      "overridingTitle": "Updating Mac Software",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Updating Mac Software",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " makes more sense once you understand code signing’s lazy per-page signature checking.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This technote explains how code signing uses hashes to protect the code’s executable pages, resources, and metadata from tampering.  This technology is absolutely central to code signing’s core function: protecting code from malicious modification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This description isn’t comprehensive.  It skips over some details, sometimes because they’re only of historical interest but mostly because they’re not necessary to explain the core concepts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The examples in this technote are taken from macOS, but these concepts apply to all Apple platforms.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "About-this-technote-series",
+          "level": 3,
+          "text": "About this technote series",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Code signing is a foundational technology on all Apple platforms.  Many documents that discuss code signing focus on solving a specific problem.  The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Inside Code Signing",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " technotes peek behind the code signing curtain, to give you a better understanding of how it works.  For a list of all the technotes in this series, see the introduction in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles",
+              "isActive": true,
+              "overridingTitle": "TN3125: Inside Code Signing: Provisioning Profiles",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "TN3125: Inside Code Signing: Provisioning Profiles",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Inside Code Signing",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " technotes discuss code signing details that aren’t considered API.  The structure of a code signature has changed numerous times in the past and may well change again in the future.  Don’t encode this information in your product.  When signing code, use Xcode (all platforms) or the ",
+                  "type": "text"
+                },
+                {
+                  "code": "codesign",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " tool (macOS only).  To get information or validate a code signature, use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "codesign",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " tool or the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Security/code-signing-services",
+                  "isActive": true,
+                  "overridingTitle": "Code Signing Services",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Code Signing Services",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": " API.  Apple updates these facilities to accommodate any changes to the code signature structure as they roll out.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Code-signature-storage",
+          "level": 2,
+          "text": "Code signature storage",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code signature for an item is stored in one of four ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the item is a Mach-O image, or is a bundle wrapped around a Mach-O image, the code signature is stored within the image using the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "LC_CODE_SIGNATURE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " load command:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "% otool -l \"AppWithTool.app/Contents/MacOS/AppWithTool\" | grep LC_CODE_SIGNATURE -B 1 -A 3 ",
+                    "Load command 35",
+                    "      cmd LC_CODE_SIGNATURE",
+                    "  cmdsize 16",
+                    "  dataoff 55120",
+                    " datasize 19536"
+                  ],
+                  "syntax": "shell",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To build the AppWithTool app used in this example, follow the instructions in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Xcode/embedding-a-helper-tool-in-a-sandboxed-app",
+                      "isActive": true,
+                      "overridingTitle": "Embedding a Command-Line Tool in a Sandboxed App",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Embedding a Command-Line Tool in a Sandboxed App",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In a universal binary, each architecture is signed independently.  For details on the signature of a specific architecture, pass the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-arch",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " option to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "otool",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the item is a bundle without a Mach-O image, the code signature is stored in the bundle’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "_CodeSignature",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " directory:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "% codesign --display -vvv Codeless.bundle  ",
+                    "…",
+                    "Format=bundle",
+                    "…",
+                    "Authority=Apple Development: …",
+                    "…",
+                    "% find Codeless.bundle ",
+                    "Codeless.bundle",
+                    "Codeless.bundle/Contents",
+                    "Codeless.bundle/Contents/_CodeSignature",
+                    "Codeless.bundle/Contents/_CodeSignature/CodeResources",
+                    "Codeless.bundle/Contents/_CodeSignature/CodeDirectory",
+                    "Codeless.bundle/Contents/_CodeSignature/CodeRequirements-1",
+                    "Codeless.bundle/Contents/_CodeSignature/CodeSignature",
+                    "Codeless.bundle/Contents/_CodeSignature/CodeRequirements",
+                    "Codeless.bundle/Contents/Resources",
+                    "Codeless.bundle/Contents/Resources/config.txt",
+                    "Codeless.bundle/Contents/Info.plist"
+                  ],
+                  "syntax": "shell",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To build the Codeless bundle used in this example, use Xcode to create a new project from the macOS > Bundle template, then add an empty ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "config.txt",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file to it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the item exists within a bundle, it’s covered by the bundle’s code signature.  For details on how that works, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3126-inside-code-signing-hashes#Resources",
+                      "isActive": true,
+                      "overridingTitle": "Resources",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Resources",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Otherwise, the code signature is stored in extended attributes (EAs) on the item:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "% cat hello.txt ",
+                    "Hello Cruel World!",
+                    "% codesign --sign \"Apple Development: …\" hello.txt",
+                    "% codesign --display -vvv hello.txt",
+                    "…",
+                    "Format=generic",
+                    "…",
+                    "Authority=Apple Development: …",
+                    "…",
+                    "% ls -l@ hello.txt ",
+                    "-rw-r--r--@ 1 quinn  staff  19  8 Apr 12:46 hello.txt",
+                    "    com.apple.cs.CodeDirectory      129 ",
+                    "    com.apple.cs.CodeRequirements   168 ",
+                    "    com.apple.cs.CodeRequirements-1 165 ",
+                    "    com.apple.cs.CodeSignature      4860 "
+                  ],
+                  "syntax": "shell",
+                  "type": "codeListing"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Storing a code signature in EAs is brittle because many file transfer mechanisms drop these.  To avoid this potential pitfall, follow the rules in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/placing-content-in-a-bundle",
+                  "isActive": true,
+                  "overridingTitle": "Placing Content in a Bundle",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Placing Content in a Bundle",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the tools used in these examples, read their man pages.  If you’re unfamiliar with that process, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+              "isActive": true,
+              "overridingTitle": "Reading UNIX Manual Pages",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Reading UNIX Manual Pages",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".  Specifically, the ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " man page is the key reference if you’re working at this level.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Code-directory",
+          "level": 2,
+          "text": "Code directory",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The central concept in a code signature is the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "code directory",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".  This is a data structure that holds all of the info about the code that was signed.  It’s this data structure that’s signed as part of the signing process.  Hashes within this data structure seal the executable pages, resources, and metadata of the code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The final code signature uses Cryptographic Message Syntax.  To learn more about this implementation detail, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3161-inside-code-signing-certificates",
+                  "isActive": true,
+                  "overridingTitle": "TN3161: Inside Code Signing: Certificates",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "TN3161: Inside Code Signing: Certificates",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a universal binary, each architecture is signed independently, each with its own code directory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Hashing a code directory results in a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "code directory hash",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "cdhash",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".  This value uniquely identifies the code being signed.  It crops up in a variety of places, most notably ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2019/703/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".  A notarized ticket is a set of cdhash values, signed by the notary service to confirm that it has checked that code for malicious components.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code may have multiple code directories, each associated with a different hash algorithm.  This hash algorithm is used both to seal the code directory itself and to seal the executable pages, resources, and metadata of the code.  This approach allows the code to run more securely on modern systems while maintaining compatibility with legacy systems that only support legacy hashing.  The detailed mechanics of that are beyond the scope of this technote.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Code that targets macOS 10.12 or later has a single code directory that uses SHA-256 hashing:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --display -vvv \"AppWithTool.app\"",
+            "…",
+            "Hash type=sha256 size=32",
+            "CandidateCDHash sha256=ff19a91b272a49d1a0f16ee54c672da60f0e116f",
+            "CandidateCDHashFull sha256=ff19a91b272a49d1a0f16ee54c672da60f0e116fae890512a3609913a01b488c",
+            "Hash choices=sha256",
+            "…",
+            "CDHash=ff19a91b272a49d1a0f16ee54c672da60f0e116f",
+            "…"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you change the code’s deploying target to include macOS 10.11, the signature includes both a SHA-256 and a legacy SHA-1 code directory:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --display -vvv --arch x86_64 \"AppWithTool for macOS 10.11.app\" ",
+            "…",
+            "Hash type=sha256 size=32",
+            "CandidateCDHash sha1=4dbc916a07fb02653ceecef8bef09f43e55cf436",
+            "CandidateCDHashFull sha1=4dbc916a07fb02653ceecef8bef09f43e55cf436",
+            "CandidateCDHash sha256=dec2275a0e3800fefd1c84c76cd01756984a74c1",
+            "CandidateCDHashFull sha256=dec2275a0e3800fefd1c84c76cd01756984a74c1d4cbfb2e97b5ebe7a06e3ce3",
+            "Hash choices=sha1,sha256",
+            "…",
+            "CDHash=dec2275a0e3800fefd1c84c76cd01756984a74c1",
+            "…"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The command above includes the ",
+                  "type": "text"
+                },
+                {
+                  "code": "--arch x86_64",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " option to show the Intel code signature.  Without that ",
+                  "type": "text"
+                },
+                {
+                  "code": "codesign",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " shows the code signature for the architecture on which you run the command.  So, if you’re on Apple silicon, you’ll see the Apple silicon code signature.  Apple silicon debuted with macOS 11, and thus Apple silicon code never includes a legacy SHA-1 code directory.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "CDHash",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property is the cdhash value used by this Mac; it’s the strongest ",
+              "type": "text"
+            },
+            {
+              "code": "CandidateCDHash",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value understood by this version of macOS.  The ",
+              "type": "text"
+            },
+            {
+              "code": "CandidateCDHash",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "CandidateCDHashFull",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties are alternative cdhash values, each specifying a hash algorithm.  The ",
+              "type": "text"
+            },
+            {
+              "code": "Full",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variant includes the full hash, while the other variant is truncated to 20 bytes to match SHA-1.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each architecture in a universal binary is signed independently and so has different hash values.  To get the hashes for a specific architecture, supply the ",
+              "type": "text"
+            },
+            {
+              "code": "--arch",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --display -vvv --arch arm64 \"AppWithTool.app\"",
+            "…",
+            "CDHash=118bb46834dd39dad5bc1bc30d991b6467c1be2e",
+            "…",
+            "% codesign --display -vvv --arch x86_64 \"AppWithTool.app\"",
+            "…",
+            "CDHash=ff19a91b272a49d1a0f16ee54c672da60f0e116f",
+            "…"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Per-page-hashes",
+          "level": 2,
+          "text": "Per-page hashes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Within a code directory there are a set of ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "hash slots",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".  For a summary, look at the ",
+              "type": "text"
+            },
+            {
+              "code": "CodeDirectory",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --display -vvv \"AppWithTool.app\"             ",
+            "…",
+            "CodeDirectory v=20500 size=820 flags=0x10000(runtime) hashes=14+7 location=embedded",
+            "…"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This means there are 14 per-page hash slots and 7 special hash slots.  For a dump of these hashes, increase the verbosity to the maximum level by adding three more ",
+              "type": "text"
+            },
+            {
+              "code": "-v",
+              "type": "codeVoice"
+            },
+            {
+              "text": " options:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --display -vvvvvv \"AppWithTool.app\"        ",
+            "…",
+            "Page size=4096",
+            "    -7=662d7e12de97b1d9bf3a9e4574652bc4d1927f4b989a6b7a1d1380e542f2b4f9",
+            "    -6=0000000000000000000000000000000000000000000000000000000000000000",
+            "    -5=2198747bee96847909af4417876f446cea964f842bd1fbbdea39f53ff947e0d8",
+            "    -4=0000000000000000000000000000000000000000000000000000000000000000",
+            "    -3=0244f72a51483d010cda907fb8cb22983d372ca57812abe8c3635cedd42ad8bd",
+            "    -2=ef927ca54639a460b9519bd5493c1fb192f521a16e0115060b7cb7bf15ff0217",
+            "    -1=e3fc08cfb2a658bc588ac603f8bfc04a54a62f5893d586f710f3005a5a763ad2",
+            "     0=7bfc0c37d35be00553e99db6c99ce5670cdb53ce7d9314f0019efd8d73f6c1d3",
+            "     1=5fd93dda8b09dd27db333a6743c7da8418b637780fd70ee58c725fe00b7d0e76",
+            "     2=5b542d3e7e43ec8328307ae7006fadb6ada0ed4d494e1b8a6ef63d899ef458fe",
+            "     3=6671e862ed46786ea31773c13605ebd5cef22d01fb7fbb01cfafd188aef4da99",
+            "     4=bb31c395959971aa64e9f04770282377b0e9901de85fbf17ac181990caa99848",
+            "     5=ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7",
+            "     6=ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7",
+            "     7=ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7",
+            "     8=36932b34d11fe626253a65b73dd11e9269f4e976ef7df8d56b24098cbb14d462",
+            "     9=ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7",
+            "    10=ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7",
+            "    11=ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7",
+            "    12=98257719ba902d349f1644c2e856df9ff887f70f5c2da9387369ddc41a5964f8",
+            "    13=1fa1c2d0d552c0e016ca088a31892411bb206e9926e399b6a64ebc4408a296c5",
+            "…"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The negative slots are special.  For the details, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3126-inside-code-signing-hashes#Special-slots",
+              "isActive": true,
+              "overridingTitle": "Special Slots",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Special Slots",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The non-negative slots are for per-page hashes: 0 is the hash for the first page of code, 1 for the second, and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This per-page architecture allows the kernel to check each page as it’s loaded into memory.  If a process takes a page fault on a memory mapped file that’s code signed then, as part of satisfying that fault, the kernel may choose to verify the hash of the page’s contents.  This allows the system to run a code-signed executable and check its code signature lazily (in the computer science sense of that word).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "macOS doesn’t ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "always",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " check code as it’s paged in.  One key feature of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/hardened-runtime",
+              "isActive": true,
+              "overridingTitle": "hardened runtime",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "hardened runtime",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " is that it opts the process into this checking by default.  The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.cs.disable-executable-page-protection",
+              "isActive": true,
+              "overridingTitle": "Disable Executable Memory Protection Entitlement",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Disable Executable Memory Protection Entitlement",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " opts you out of this and other security features.  Don’t do that!",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.cs.disable-executable-page-protection",
+                  "isActive": true,
+                  "overridingTitle": "Disable Executable Memory Protection Entitlement",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Disable Executable Memory Protection Entitlement",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": " only has this effect on Intel code. For Apple silicon code, this entitlement leaves page protection enabled, making it equivalent to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.cs.allow-unsigned-executable-memory",
+                  "isActive": true,
+                  "overridingTitle": "Allow Unsigned Executable Memory Entitlement",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Allow Unsigned Executable Memory Entitlement",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Special-slots",
+          "level": 2,
+          "text": "Special slots",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Within the code directory the negative hash slots are special.  They don’t correspond to code but rather to other data structures.  Each slot number corresponds to a specific type of data.  Here are some highlights:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Slot -1 holds a hash of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Slot -3 holds a hash of the resources.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Slot -5 holds a hash of the entitlements.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --display -vvvvvv \"AppWithTool.app\"        ",
+            "…",
+            "Page size=4096",
+            "    …",
+            "    -1=e3fc08cfb2a658bc588ac603f8bfc04a54a62f5893d586f710f3005a5a763ad2",
+            "    …",
+            "% shasum -a 256 \"AppWithTool.app/Contents/Info.plist\"",
+            "e3fc08cfb2a658bc588ac603f8bfc04a54a62f5893d586f710f3005a5a763ad2 …"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " hash matches the value in its hash slot.  Neat-o!",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now consider this advice from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/using-the-latest-code-signature-format",
+              "isActive": true,
+              "overridingTitle": "Using the Latest Code Signature Format",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Using the Latest Code Signature Format",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If -5 contains a value and -7 contains a zero value, or is not present, you need to re-sign your app to include the new DER entitlements.",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You should now have a better handle on this diagnostic.  Slot -5 holds the hash for the legacy property list entitlements, while slot -7 holds the hash for the new-style DER-encoded entitlements.  If you have an iOS app whose signature has an entry in -5 but no entry in -7, then it has entitlements but it’s missing the new-style DER-encoded entitlements and you must re-sign it to be compatible with iOS 15.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Resources",
+          "level": 2,
+          "text": "Resources",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your code exist in a bundle then the code signature protects not just your code but the resources in your bundle.  Central to this is the ",
+              "type": "text"
+            },
+            {
+              "code": "CodeResources",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.  Slot -3 in the code directory holds the hash of that file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --display -vvvvvv \"AppWithTool.app\"        ",
+            "…",
+            "Page size=4096",
+            "    …",
+            "    -3=0244f72a51483d010cda907fb8cb22983d372ca57812abe8c3635cedd42ad8bd",
+            "    …",
+            "…",
+            "% shasum -a 256 \"AppWithTool.app/Contents/_CodeSignature/CodeResources\" ",
+            "0244f72a51483d010cda907fb8cb22983d372ca57812abe8c3635cedd42ad8bd …"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "So, if that file changes, the code directory hash changes and you break the seal on the code signature.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now let’s look at that file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% plutil -convert xml1 -o - \"AppWithTool.app/Contents/_CodeSignature/CodeResources\"",
+            "…",
+            "<dict>",
+            "  <key>files</key>",
+            "  <dict>",
+            "    …",
+            "  </dict>",
+            "  <key>files2</key>",
+            "  <dict>",
+            "    …",
+            "  </dict>",
+            "  <key>rules</key>",
+            "  <dict>",
+            "    …",
+            "  </dict>",
+            "  <key>rules2</key>",
+            "  <dict>",
+            "    …",
+            "  </dict>",
+            "</dict>",
+            "</plist>"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s a property list with four top-level dictionaries: ",
+              "type": "text"
+            },
+            {
+              "code": "files",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "files2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "rules",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "rules2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  Amusingly, three out of four of these items are vestigial.  The one that matters is ",
+              "type": "text"
+            },
+            {
+              "code": "files2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "files",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " dictionary contains SHA-1 hashes and is present for compatibility purposes.  The ",
+                  "type": "text"
+                },
+                {
+                  "code": "rules",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "rules2",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " dictionaries contain resource rules, a concept that’s now obsolete.  For more on the move away from resource rules, see Technote 2206 ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/library/archive/technotes/tn2206/_index.html",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "files2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary contains two kinds of items.  The first kind of item is a reference to a resource file.  For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% plutil -convert xml1 -o - \"AppWithTool.app/Contents/_CodeSignature/CodeResources\"",
+            "…",
+            "<dict>",
+            "  …",
+            "  <key>files2</key>",
+            "  <dict>",
+            "    …",
+            "    <key>Resources/Base.lproj/Main.storyboardc/MainMenu.nib</key>",
+            "    <dict>",
+            "      <key>hash2</key>",
+            "      <data>",
+            "      5kxOZMmHqiN+QhVFpWQ8xdn5gPGYk+Yanxi+bYAMWFU=",
+            "      </data>",
+            "    </dict>",
+            "    …",
+            "  </dict>",
+            "  …",
+            "</dict>",
+            "</plist>",
+            "% base64 -D | xxd -p ",
+            "5kxOZMmHqiN+QhVFpWQ8xdn5gPGYk+Yanxi+bYAMWFU=",
+            "^D",
+            "e64c4e64c987aa237e421545a5643cc5d9f980f19893e61a9f18be6d800c",
+            "5855",
+            "% shasum -a 256 \"AppWithTool.app/Contents/Resources/Base.lproj/Main.storyboardc/MainMenu.nib\" ",
+            "e64c4e64c987aa237e421545a5643cc5d9f980f19893e61a9f18be6d800c5855 …"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each resource file reference, the key is the path of the file, relative to the bundle contents, and the value is a dictionary with a ",
+              "type": "text"
+            },
+            {
+              "code": "hash2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property holding the SHA-256 checksum of the file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The other kind of item in the ",
+              "type": "text"
+            },
+            {
+              "code": "files2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary is a macOS nested code reference.  For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% plutil -convert xml1 -o - \"AppWithTool.app/Contents/_CodeSignature/CodeResources\"",
+            "…",
+            "<dict>",
+            "  …",
+            "  <key>files2</key>",
+            "  <dict>",
+            "    …",
+            "    <key>MacOS/ToolX</key>",
+            "    <dict>",
+            "      <key>cdhash</key>",
+            "      <data>",
+            "      j2kgMbA32V6O/SEDnwa+SlnpJ/s=",
+            "      </data>",
+            "      <key>requirement</key>",
+            "      <string>anchor apple generic and identifier \"com.example.apple-samplecode.AppWithTool.ToolX\" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = SKMME9E2Y8)</string>",
+            "    </dict>",
+            "    …",
+            "  </dict>",
+            "  …",
+            "</dict>",
+            "</plist>"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Again, the key is the path of the file, relative to the bundle contents, but now the value is a dictionary with two properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "cdhash",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property holds the code directory hash of the nested code:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "% base64 -D | xxd -p",
+                    "j2kgMbA32V6O/SEDnwa+SlnpJ/s=",
+                    "^D",
+                    "8f692031b037d95e8efd21039f06be4a59e927fb",
+                    "% codesign --display -vvv \"AppWithTool.app/Contents/MacOS/ToolX\" ",
+                    "…",
+                    "CDHash=8f692031b037d95e8efd21039f06be4a59e927fb",
+                    "…"
+                  ],
+                  "syntax": "shell",
+                  "type": "codeListing"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "requirement",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property holds the designated requirement (DR) of that nested code:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "% codesign --display -r - \"AppWithTool.app/Contents/MacOS/ToolX\"  ",
+                    "…",
+                    "designated => anchor apple generic and identifier \"com.example.apple-samplecode.AppWithTool.ToolX\" … SKMME9E2Y8"
+                  ],
+                  "syntax": "shell",
+                  "type": "codeListing"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In theory this lets you update the nested code with a new version, as long as it has the same DR.  In practice, this facility is not used in standard deployment workflows and is now deprecated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "iOS, watchOS, and tvOS have a different model for nested code.  They put strict limits on where you can place nested code.  For details on those limits, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/placing-content-in-a-bundle",
+                  "isActive": true,
+                  "overridingTitle": "Placing Content in a Bundle",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Placing Content in a Bundle",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".  Also, when you nest code in an app, the app references that nested code as a collection of resource files rather than using a single nested code reference.  Nested code references are only used on macOS.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about code signing requirements, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3127-inside-code-signing-requirements",
+              "isActive": true,
+              "overridingTitle": "TN3127: Inside Code Signing: Requirements",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "TN3127: Inside Code Signing: Requirements",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Revision-History",
+          "level": 2,
+          "text": "Revision History",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2024-02-06",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Made minor editorial changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2022-05-24",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Made minor editorial changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2022-05-03",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Republished as TN3126.  Reworked the examples to fix bugs and make them easier to reproduce at your desk.  Also made significant editorial changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2022-03-14",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " First published as “A Peek Behind the Code Signing Curtain” on Apple Developer Forums.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.cs.allow-unsigned-executable-memory": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may create writable and executable memory without the restrictions imposed by using the `MAP_JIT` flag.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.cs.allow-unsigned-executable-memory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Allow Unsigned Executable Memory Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.cs.allow-unsigned-executable-memory"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.cs.disable-executable-page-protection": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to disable all code signing protections while launching an app, and during its execution.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.cs.disable-executable-page-protection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Disable Executable Memory Protection Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.cs.disable-executable-page-protection"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/placing-content-in-a-bundle": {
+      "abstract": [
+        {
+          "text": "Place bundle content in the correct location based on its type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/placing-content-in-a-bundle",
+      "kind": "article",
+      "role": "article",
+      "title": "Placing content in a bundle",
+      "type": "topic",
+      "url": "/documentation/BundleResources/placing-content-in-a-bundle"
+    },
+    "doc://com.apple.documentation/documentation/Security/code-signing-services": {
+      "abstract": [
+        {
+          "text": "Examine and validate signed code running on the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/code-signing-services",
+      "kind": "article",
+      "role": "article",
+      "title": "Code Signing Services",
+      "type": "topic",
+      "url": "/documentation/Security/code-signing-services"
+    },
+    "doc://com.apple.documentation/documentation/Security/hardened-runtime": {
+      "abstract": [
+        {
+          "text": "Manage security protections and resource access for your macOS apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/hardened-runtime",
+      "kind": "article",
+      "role": "article",
+      "title": "Hardened Runtime",
+      "type": "topic",
+      "url": "/documentation/Security/hardened-runtime"
+    },
+    "doc://com.apple.documentation/documentation/Security/updating-mac-software": {
+      "abstract": [
+        {
+          "text": "Implement Mac software updates without causing code-signing crashes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/updating-mac-software",
+      "kind": "article",
+      "role": "article",
+      "title": "Updating Mac Software",
+      "type": "topic",
+      "url": "/documentation/Security/updating-mac-software"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/embedding-a-helper-tool-in-a-sandboxed-app": {
+      "abstract": [
+        {
+          "text": "Add a command-line tool to a sandboxed app’s Xcode project so the resulting app can run it as a helper tool.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/embedding-a-helper-tool-in-a-sandboxed-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Embedding a command-line tool in a sandboxed app",
+      "type": "topic",
+      "url": "/documentation/Xcode/embedding-a-helper-tool-in-a-sandboxed-app"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/using-the-latest-code-signature-format": {
+      "abstract": [
+        {
+          "text": "Update legacy app code signatures so your app runs on current OS releases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/using-the-latest-code-signature-format",
+      "kind": "article",
+      "role": "article",
+      "title": "Using the latest code signature format",
+      "type": "topic",
+      "url": "/documentation/Xcode/using-the-latest-code-signature-format"
+    },
+    "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages": {
+      "abstract": [
+        {
+          "text": "Use the Terminal app to read the documentation for low-level UNIX tools and APIs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+      "kind": "article",
+      "role": "article",
+      "title": "Reading UNIX Manual Pages",
+      "type": "topic",
+      "url": "/documentation/os/reading-unix-manual-pages"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.technotes/documentation/Technotes": {
+      "abstract": [
+        {
+          "text": "Learn about specific development topics through these in-depth technical articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Technotes",
+      "type": "topic",
+      "url": "/documentation/technotes"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview": {
+      "abstract": [
+        {
+          "text": "Explore the various Wi-Fi APIs available on iOS and their expected use cases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3111: iOS Wi-Fi API overview",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3111-ios-wifi-api-overview"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations": {
+      "abstract": [
+        {
+          "text": "Learn techniques to help debug any coordinate space issue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3124: Debugging coordinate space issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3124-debugging-coordinate-transformations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles": {
+      "abstract": [
+        {
+          "text": "Learn how provisioning profiles enable third-party code to run on Apple platforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3125: Inside Code Signing: Provisioning Profiles",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3125-inside-code-signing-provisioning-profiles"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3126-inside-code-signing-hashes#Resources": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3126-inside-code-signing-hashes#Resources",
+      "kind": "section",
+      "title": "Resources",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3126-inside-code-signing-hashes#Resources"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3126-inside-code-signing-hashes#Special-slots": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3126-inside-code-signing-hashes#Special-slots",
+      "kind": "section",
+      "title": "Special slots",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3126-inside-code-signing-hashes#Special-slots"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3127-inside-code-signing-requirements": {
+      "abstract": [
+        {
+          "text": "Explore how macOS uses code signing requirements to reason about code identity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3127-inside-code-signing-requirements",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3127: Inside Code Signing: Requirements",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3127-inside-code-signing-requirements"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3161-inside-code-signing-certificates": {
+      "abstract": [
+        {
+          "text": "Learn how code signing uses certificates to identify code authors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3161-inside-code-signing-certificates",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3161: Inside Code Signing: Certificates",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3161-inside-code-signing-certificates"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store": {
+      "abstract": [
+        {
+          "text": "Learn how to configure your App Clip to prevent it from being unavailable in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3168: Making your App Clip available in the App Store",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3168-making-your-app-clip-available-app-store"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration": {
+      "abstract": [
+        {
+          "text": "Diagnose errors due to invalid Apple Pay merchant identifier configurations by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifying the underlying causes of common errors and explore their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3173: Troubleshooting issues with your Apple Pay merchant identifier configuration",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose errors received while presenting the Apple Pay payment sheet on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your website by identifying the underlying causes of common errors and explore",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "their potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3174: Diagnosing issues with the Apple Pay payment sheet on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose common errors received while displaying the Apple Pay button on your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "website by identifying the underlying causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3175: Diagnosing issues with displaying the Apple Pay button on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues": {
+      "abstract": [
+        {
+          "text": "Diagnose errors that occur when processing Apple Pay payments,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identify common causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3176: Troubleshooting Apple Pay payment processing issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files": {
+      "abstract": [
+        {
+          "text": "Learn how alternate groups collect audio tracks, and how to choose which audio track to use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3177: Understanding alternate audio track groups in movie files",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems": {
+      "abstract": [
+        {
+          "text": "Ensure that every Mach-O image has a UUID, and that every distinct Mach-O image has its own unique UUID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3178: Checking for and resolving build UUID problems",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3178-checking-for-and-resolving-build-uuid-problems"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy": {
+      "abstract": [
+        {
+          "text": "Learn how local network privacy affects your software.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3179: Understanding local network privacy",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1": {
+      "abstract": [
+        {
+          "text": "Migrate from version 2 to version 1 of App Store Server Notifications using the Modify an App endpoint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3180: Reverting to App Store Server Notifications V1",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3180-reverting-app-store-server-notifications-v1"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Identify common configurations that cause unsuccessful privacy manifest validation with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3181: Debugging an invalid privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3181-debugging-invalid-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the tracking domains you use in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3182: Adding privacy tracking keys to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the APIs that can potentially fingerprint devices in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3183: Adding required reason API entries to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the data your app or third-party SDK collects in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3184: Adding data collection details to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest"
+    },
+    "https://developer.apple.com/library/archive/technotes/tn2206/_index.html": {
+      "identifier": "https://developer.apple.com/library/archive/technotes/tn2206/_index.html",
+      "title": "macOS Code Signing In Depth",
+      "titleInlineContent": [
+        {
+          "text": "macOS Code Signing In Depth",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/technotes/tn2206/_index.html"
+    },
+    "https://developer.apple.com/videos/play/wwdc2019/703/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2019/703/",
+      "title": "notarization",
+      "titleInlineContent": [
+        {
+          "text": "notarization",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2019/703/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Latest",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+        "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+        "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+        "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+        "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+        "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+        "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+        "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+        "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations"
+      ],
+      "title": "Latest"
+    }
+  ]
+}

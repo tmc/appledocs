@@ -1,0 +1,418 @@
+{
+  "abstract": [
+    {
+      "text": "A session configuration that uses no persistent storage for caches, cookies, or credentials.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1410529-ephemeralsessionconfiguration"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1410529,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSURLSessionConfiguration(cpy)ephemeralSessionConfiguration",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSURLSessionConfiguration"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.9",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "cldata",
+    "title": "ephemeralSessionConfiguration"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": "(class, readonly, strong) "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURLSessionConfiguration",
+              "text": "NSURLSessionConfiguration"
+            },
+            {
+              "kind": "text",
+              "text": " *"
+            },
+            {
+              "kind": "identifier",
+              "text": "ephemeralSessionConfiguration"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ephemeral session configuration object is similar to a default session configuration (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411560-defaultsessionconfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), except that the corresponding session object doesn’t store caches, credential stores, or any session-related data to disk. Instead, session-related data is stored in RAM. The only time an ephemeral session writes data to disk is when you tell it to write the contents of a URL to a file. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "It is possible to customize a default session configuration object to obtain the same behavior (or any portion thereof) provided by an ephemeral session configuration object, but the use of this method is more convenient.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "2934374",
+          "level": 3,
+          "text": "Privacy and performance considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The main advantage to using ephemeral sessions is privacy. By not writing potentially sensitive data to disk, you make it less likely that the data will be intercepted and used later. For this reason, ephemeral sessions are ideal for private browsing modes in web browsers and other similar situations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because an ephemeral session doesn’t write cached data to disk, the size of the cache is limited by available RAM. This limitation means that previously fetched resources are less likely to be in the cache (and are guaranteed to not be there if the user quits and relaunches your app). This behavior may reduce perceived performance, depending on your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app invalidates the session, all ephemeral session data is purged automatically. Additionally, in iOS, the in-memory cache isn’t purged automatically when your app is suspended but may be purged when your app is terminated or when the system experiences memory pressure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSessionConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1407496-backgroundsessionconfigurationwi": {
+      "abstract": [
+        {
+          "text": "Creates a session configuration object that allows HTTP and HTTPS uploads or downloads to be performed in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "backgroundSessionConfigurationWithIdentifier:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1407496-backgroundsessionconfigurationwi",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "backgroundSessionConfigurationWithIdentifier:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1407496-backgroundsessionconfigurationwi"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1410529-ephemeralsessionconfiguration": {
+      "abstract": [
+        {
+          "text": "A session configuration that uses no persistent storage for caches, cookies, or credentials.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1410529-ephemeralsessionconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ephemeralSessionConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1410529-ephemeralsessionconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411552-discretionary": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether background tasks can be scheduled at the discretion of the system for optimal performance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411552-discretionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "discretionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1411552-discretionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411560-defaultsessionconfiguration": {
+      "abstract": [
+        {
+          "text": "A default session configuration object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411560-defaultsessionconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultSessionConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1411560-defaultsessionconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/3240616-init": {
+      "abstract": [
+        {
+          "text": "Creates an empty session configuration.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/3240616-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/3240616-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/3240617-new": {
+      "abstract": [
+        {
+          "text": "Creates an empty session configuration.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "new"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/3240617-new",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "new",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/3240617-new"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411560-defaultsessionconfiguration",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1407496-backgroundsessionconfigurationwi",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/3240616-init",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/3240617-new"
+      ],
+      "title": "Creating a session configuration object"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411552-discretionary"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsurlsessionconfiguration/1410529-ephemeralsessionconfiguration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/urlsessionconfiguration/1410529-ephemeral"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2494 @@
+{
+  "abstract": [
+    {
+      "text": "A type that asynchronously supplies the values of a sequence one at a",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "time.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/AsyncIteratorProtocol"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:ScI",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AsyncIteratorProtocol"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AsyncIteratorProtocol"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "AsyncIteratorProtocol"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AsyncIteratorProtocol"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/AsyncIteratorProtocol/Element",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:ScI7ElementQa",
+              "text": "Element"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/AsyncIteratorProtocol/Failure",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:ScI7FailureQa",
+              "text": "Failure"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "AsyncIteratorProtocol",
+              "type": "codeVoice"
+            },
+            {
+              "text": " defines the type returned by the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "makeAsyncIterator()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method of the ",
+              "type": "text"
+            },
+            {
+              "code": "AsyncSequence",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol. In short,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the iterator is what produces the asynchronous sequence’s values. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol defines a single asynchronous method, ",
+              "type": "text"
+            },
+            {
+              "code": "next()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which either",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "produces the next element of the sequence, or returns ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to signal",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the end of the sequence.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To implement your own ",
+              "type": "text"
+            },
+            {
+              "code": "AsyncSequence",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", implement a wrapped type that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "conforms to ",
+              "type": "text"
+            },
+            {
+              "code": "AsyncIteratorProtocol",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The following example shows a ",
+              "type": "text"
+            },
+            {
+              "code": "Counter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type that uses an inner iterator to monotonically generate ",
+              "type": "text"
+            },
+            {
+              "code": "Int",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "until reaching a ",
+              "type": "text"
+            },
+            {
+              "code": "howHigh",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value. While this example isn’t itself",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "asynchronous, it shows the shape of a custom sequence and iterator, and how",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to use it as if it were asynchronous:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Counter: AsyncSequence {",
+            "    typealias Element = Int",
+            "    let howHigh: Int",
+            "",
+            "    struct AsyncIterator: AsyncIteratorProtocol {",
+            "        let howHigh: Int",
+            "        var current = 1",
+            "",
+            "        mutating func next() async -> Int? {",
+            "            // A genuinely asynchronous implementation uses the `Task`",
+            "            // API to check for cancellation here and return early.",
+            "            guard current <= howHigh else {",
+            "                return nil",
+            "            }",
+            "",
+            "            let result = current",
+            "            current += 1",
+            "            return result",
+            "        }",
+            "    }",
+            "",
+            "    func makeAsyncIterator() -> AsyncIterator {",
+            "        return AsyncIterator(howHigh: howHigh)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At the call site, this looks like:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for await number in Counter(howHigh: 10) {",
+            "  print(number, terminator: \" \")",
+            "}",
+            "// Prints \"1 2 3 4 5 6 7 8 9 10 \""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "End-of-Iteration",
+          "level": 3,
+          "text": "End of Iteration",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The iterator returns ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to indicate the end of the sequence. After",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "returning ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (or throwing an error) from ",
+              "type": "text"
+            },
+            {
+              "code": "next()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the iterator enters",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a terminal state, and all future calls to ",
+              "type": "text"
+            },
+            {
+              "code": "next()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " must return ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Cancellation",
+          "level": 3,
+          "text": "Cancellation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Types conforming to ",
+              "type": "text"
+            },
+            {
+              "code": "AsyncIteratorProtocol",
+              "type": "codeVoice"
+            },
+            {
+              "text": " should use the cancellation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "primitives provided by Swift’s ",
+              "type": "text"
+            },
+            {
+              "code": "Task",
+              "type": "codeVoice"
+            },
+            {
+              "text": " API. The iterator can choose how to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "handle and respond to cancellation, including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Checking the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "isCancelled",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value of the current ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Task",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " inside ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "next()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and returning ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to terminate the sequence.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Calling ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "checkCancellation()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " on the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Task",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which throws a",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CancellationError",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implementing ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "next()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with a",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "withTaskCancellationHandler(handler:operation:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " invocation to",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "immediately react to cancellation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the iterator needs to clean up on cancellation, it can do so after",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "checking for cancellation as described above, or in ",
+              "type": "text"
+            },
+            {
+              "code": "deinit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if it’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a reference type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AsyncCompactMapSequence/Iterator": {
+      "abstract": [
+        {
+          "text": "The iterator that produces elements of the compact map sequence.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "AsyncSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AsyncCompactMapSequence/Iterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AsyncCompactMapSequence.Iterator",
+      "type": "topic",
+      "url": "/documentation/swift/asynccompactmapsequence/iterator"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AsyncDropFirstSequence/Iterator": {
+      "abstract": [
+        {
+          "text": "The iterator that produces elements of the drop-first sequence.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "AsyncSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AsyncDropFirstSequence/Iterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AsyncDropFirstSequence.Iterator",
+      "type": "topic",
+      "url": "/documentation/swift/asyncdropfirstsequence/iterator"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AsyncDropWhileSequence/Iterator": {
+      "abstract": [
+        {
+          "text": "The iterator that produces elements of the drop-while sequence.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "AsyncSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AsyncDropWhileSequence/Iterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AsyncDropWhileSequence.Iterator",
+      "type": "topic",
+      "url": "/documentation/swift/asyncdropwhilesequence/iterator"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AsyncFilterSequence/Iterator": {
+      "abstract": [
+        {
+          "text": "The iterator that produces elements of the filter sequence.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "AsyncSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AsyncFilterSequence/Iterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AsyncFilterSequence.Iterator",
+      "type": "topic",
+      "url": "/documentation/swift/asyncfiltersequence/iterator"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AsyncFlatMapSequence/Iterator": {
+      "abstract": [
+        {
+          "text": "The iterator that produces elements of the flat map sequence.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "AsyncSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "SegmentOfResult",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "AsyncSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AsyncFlatMapSequence/Iterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AsyncFlatMapSequence.Iterator",
+      "type": "topic",
+      "url": "/documentation/swift/asyncflatmapsequence/iterator"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AsyncIteratorProtocol": {
+      "abstract": [
+        {
+          "text": "A type that asynchronously supplies the values of a sequence one at a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AsyncIteratorProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AsyncIteratorProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AsyncIteratorProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "AsyncIteratorProtocol",
+      "type": "topic",
+      "url": "/documentation/swift/asynciteratorprotocol"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AsyncIteratorProtocol/Element": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Element"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AsyncIteratorProtocol/Element",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Element",
+      "type": "topic",
+      "url": "/documentation/swift/asynciteratorprotocol/element"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AsyncIteratorProtocol/Failure": {
+      "abstract": [
+        {
+          "text": "The type of failure produced by iteration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": " = any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AsyncIteratorProtocol/Failure",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Failure",
+      "type": "topic",
+      "url": "/documentation/swift/asynciteratorprotocol/failure"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AsyncIteratorProtocol/next()": {
+      "abstract": [
+        {
+          "text": "Asynchronously advances to the next element and returns it, or ends the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "sequence if there is no next element.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "next"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScI7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AsyncIteratorProtocol/next()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "next()",
+      "type": "topic",
+      "url": "/documentation/swift/asynciteratorprotocol/next()"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AsyncIteratorProtocol/next(isolation:)": {
+      "abstract": [
+        {
+          "text": "Asynchronously advances to the next element and returns it, or ends the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "sequence if there is no next element.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "next"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "isolation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "isolated"
+        },
+        {
+          "kind": "text",
+          "text": " (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScA",
+          "text": "Actor"
+        },
+        {
+          "kind": "text",
+          "text": ")?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScI7FailureQa",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScI7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AsyncIteratorProtocol/next(isolation:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "next(isolation:)",
+      "type": "topic",
+      "url": "/documentation/swift/asynciteratorprotocol/next(isolation:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AsyncMapSequence/Iterator": {
+      "abstract": [
+        {
+          "text": "The iterator that produces elements of the map sequence.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "AsyncSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AsyncMapSequence/Iterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AsyncMapSequence.Iterator",
+      "type": "topic",
+      "url": "/documentation/swift/asyncmapsequence/iterator"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AsyncPrefixSequence/Iterator": {
+      "abstract": [
+        {
+          "text": "The iterator that produces elements of the prefix sequence.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "AsyncSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AsyncPrefixSequence/Iterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AsyncPrefixSequence.Iterator",
+      "type": "topic",
+      "url": "/documentation/swift/asyncprefixsequence/iterator"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AsyncPrefixWhileSequence/Iterator": {
+      "abstract": [
+        {
+          "text": "The iterator that produces elements of the prefix-while sequence.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "AsyncSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AsyncPrefixWhileSequence/Iterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AsyncPrefixWhileSequence.Iterator",
+      "type": "topic",
+      "url": "/documentation/swift/asyncprefixwhilesequence/iterator"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AsyncSequence/AsyncIterator": {
+      "abstract": [
+        {
+          "text": "The type of asynchronous iterator that produces elements of this",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "asynchronous sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AsyncIterator"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScI",
+          "text": "AsyncIteratorProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AsyncSequence/AsyncIterator",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "AsyncIterator",
+      "type": "topic",
+      "url": "/documentation/swift/asyncsequence/asynciterator"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AsyncSequence/Element": {
+      "abstract": [
+        {
+          "text": "The type of element produced by this asynchronous sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Element"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AsyncSequence/Element",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Element",
+      "type": "topic",
+      "url": "/documentation/swift/asyncsequence/element"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AsyncSequence/makeAsyncIterator()": {
+      "abstract": [
+        {
+          "text": "Creates the asynchronous iterator that produces elements of this",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "asynchronous sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeAsyncIterator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sci13AsyncIteratorQa",
+          "text": "AsyncIterator"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AsyncSequence/makeAsyncIterator()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "makeAsyncIterator()",
+      "type": "topic",
+      "url": "/documentation/swift/asyncsequence/makeasynciterator()"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AsyncStream/Iterator": {
+      "abstract": [
+        {
+          "text": "The asynchronous iterator for iterating an asynchronous stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AsyncStream/Iterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AsyncStream.Iterator",
+      "type": "topic",
+      "url": "/documentation/swift/asyncstream/iterator"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AsyncThrowingCompactMapSequence/Iterator": {
+      "abstract": [
+        {
+          "text": "The iterator that produces elements of the compact map sequence.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "AsyncSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AsyncThrowingCompactMapSequence/Iterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AsyncThrowingCompactMapSequence.Iterator",
+      "type": "topic",
+      "url": "/documentation/swift/asyncthrowingcompactmapsequence/iterator"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AsyncThrowingDropWhileSequence/Iterator": {
+      "abstract": [
+        {
+          "text": "The iterator that produces elements of the drop-while sequence.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "AsyncSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AsyncThrowingDropWhileSequence/Iterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AsyncThrowingDropWhileSequence.Iterator",
+      "type": "topic",
+      "url": "/documentation/swift/asyncthrowingdropwhilesequence/iterator"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AsyncThrowingFilterSequence/Iterator": {
+      "abstract": [
+        {
+          "text": "The iterator that produces elements of the filter sequence.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "AsyncSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AsyncThrowingFilterSequence/Iterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AsyncThrowingFilterSequence.Iterator",
+      "type": "topic",
+      "url": "/documentation/swift/asyncthrowingfiltersequence/iterator"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AsyncThrowingFlatMapSequence/Iterator": {
+      "abstract": [
+        {
+          "text": "The iterator that produces elements of the flat map sequence.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "AsyncSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "SegmentOfResult",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "AsyncSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AsyncThrowingFlatMapSequence/Iterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AsyncThrowingFlatMapSequence.Iterator",
+      "type": "topic",
+      "url": "/documentation/swift/asyncthrowingflatmapsequence/iterator"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AsyncThrowingMapSequence/Iterator": {
+      "abstract": [
+        {
+          "text": "The iterator that produces elements of the map sequence.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "AsyncSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AsyncThrowingMapSequence/Iterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AsyncThrowingMapSequence.Iterator",
+      "type": "topic",
+      "url": "/documentation/swift/asyncthrowingmapsequence/iterator"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AsyncThrowingPrefixWhileSequence/Iterator": {
+      "abstract": [
+        {
+          "text": "The iterator that produces elements of the prefix-while sequence.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "AsyncSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AsyncThrowingPrefixWhileSequence/Iterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AsyncThrowingPrefixWhileSequence.Iterator",
+      "type": "topic",
+      "url": "/documentation/swift/asyncthrowingprefixwhilesequence/iterator"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AsyncThrowingStream/Iterator": {
+      "abstract": [
+        {
+          "text": "The asynchronous iterator for iterating an asynchronous stream.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Failure",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Error",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AsyncThrowingStream/Iterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AsyncThrowingStream.Iterator",
+      "type": "topic",
+      "url": "/documentation/swift/asyncthrowingstream/iterator"
+    },
+    "doc://com.apple.Swift/documentation/Swift/TaskGroup/Iterator": {
+      "abstract": [
+        {
+          "text": "A type that provides an iteration interface",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "over the results of tasks added to the group.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "ChildTaskResult",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Sendable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/TaskGroup/Iterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "TaskGroup.Iterator",
+      "type": "topic",
+      "url": "/documentation/swift/taskgroup/iterator"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ThrowingTaskGroup/Iterator": {
+      "abstract": [
+        {
+          "text": "A type that provides an iteration interface",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "over the results of tasks added to the group.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "ChildTaskResult",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Sendable",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Failure",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Error",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ThrowingTaskGroup/Iterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "ThrowingTaskGroup.Iterator",
+      "type": "topic",
+      "url": "/documentation/swift/throwingtaskgroup/iterator"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/AsyncCompactMapSequence/Iterator",
+        "doc://com.apple.Swift/documentation/Swift/AsyncDropFirstSequence/Iterator",
+        "doc://com.apple.Swift/documentation/Swift/AsyncDropWhileSequence/Iterator",
+        "doc://com.apple.Swift/documentation/Swift/AsyncFilterSequence/Iterator",
+        "doc://com.apple.Swift/documentation/Swift/AsyncFlatMapSequence/Iterator",
+        "doc://com.apple.Swift/documentation/Swift/AsyncMapSequence/Iterator",
+        "doc://com.apple.Swift/documentation/Swift/AsyncPrefixSequence/Iterator",
+        "doc://com.apple.Swift/documentation/Swift/AsyncPrefixWhileSequence/Iterator",
+        "doc://com.apple.Swift/documentation/Swift/AsyncStream/Iterator",
+        "doc://com.apple.Swift/documentation/Swift/AsyncThrowingCompactMapSequence/Iterator",
+        "doc://com.apple.Swift/documentation/Swift/AsyncThrowingDropWhileSequence/Iterator",
+        "doc://com.apple.Swift/documentation/Swift/AsyncThrowingFilterSequence/Iterator",
+        "doc://com.apple.Swift/documentation/Swift/AsyncThrowingFlatMapSequence/Iterator",
+        "doc://com.apple.Swift/documentation/Swift/AsyncThrowingMapSequence/Iterator",
+        "doc://com.apple.Swift/documentation/Swift/AsyncThrowingPrefixWhileSequence/Iterator",
+        "doc://com.apple.Swift/documentation/Swift/AsyncThrowingStream/Iterator",
+        "doc://com.apple.Swift/documentation/Swift/TaskGroup/Iterator",
+        "doc://com.apple.Swift/documentation/Swift/ThrowingTaskGroup/Iterator"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-an-Iterator",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/AsyncSequence/makeAsyncIterator()",
+        "doc://com.apple.Swift/documentation/Swift/AsyncSequence/AsyncIterator",
+        "doc://com.apple.Swift/documentation/Swift/AsyncSequence/Element"
+      ],
+      "title": "Creating an Iterator"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Declaring-Iterator-Topography",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/AsyncIteratorProtocol/Element"
+      ],
+      "title": "Declaring Iterator Topography"
+    },
+    {
+      "anchor": "Producing-Iterator-Values",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/AsyncIteratorProtocol/next()"
+      ],
+      "title": "Producing Iterator Values"
+    },
+    {
+      "anchor": "Associated-Types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/AsyncIteratorProtocol/Failure"
+      ],
+      "title": "Associated Types"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/AsyncIteratorProtocol/next(isolation:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/asynciteratorprotocol"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

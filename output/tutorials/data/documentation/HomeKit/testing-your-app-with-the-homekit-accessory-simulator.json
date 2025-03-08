@@ -1,0 +1,844 @@
+{
+  "abstract": [
+    {
+      "text": "Install the HomeKit Accessory Simulator to help you debug your HomeKit-enabled app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.homekit/documentation/HomeKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.homekit/documentation/HomeKit/testing-your-app-with-the-homekit-accessory-simulator"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "HomeKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Testing your app with the HomeKit Accessory Simulator"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While developing your HomeKit-enabled app, you might not have physical access to all the kinds of accessories that you want your app to control. To test your app, install the HomeKit Accessory Simulator (HAS) to simulate any accessories you don’t have, or to help automate your testing process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "HAS runs on your Mac, simulating accessories that you define as a supplement to any physical accessories in your network. You can create accessories with both standard and custom services and characteristics. You can use your Mac’s camera to simulate network cameras and video doorbells. You can also create bridges and bridged accessories to represent more complex network architectures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Download-the-HomeKit-Accessory-Simulator",
+          "level": 3,
+          "text": "Download the HomeKit Accessory Simulator",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You download the HAS as part of the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Additional Tools for Xcode",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " package found on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/download/more/?=for%20Xcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " page, which is part of the Apple developer portal. Choose the version of the package that matches your version of Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a convenience, Xcode provides a link to the download page from the Capabilities pane. Xcode displays a button embedded in the HomeKit capability that takes you directly to the download page in Safari.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3150785",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After downloading the disk image file, open it and navigate to the ",
+              "type": "text"
+            },
+            {
+              "code": "Hardware",
+              "type": "codeVoice"
+            },
+            {
+              "text": " folder. Drag the ",
+              "type": "text"
+            },
+            {
+              "code": "HomeKitAccessorySimulator.app",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from there to your ",
+              "type": "text"
+            },
+            {
+              "code": "Applications",
+              "type": "codeVoice"
+            },
+            {
+              "text": " folder. Double-click to launch the simulator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-accessories-services-and-characteristics",
+          "level": 3,
+          "text": "Add accessories, services, and characteristics",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Accessories in a home automation network are physical devices like light bulbs or garage door openers. Accessories provide control points called services. For example, a garage door opener might offer a door opener and a light. Each service, in turn, has characteristics—the values that describe and control the service. The light has a power state (on or off), a brightness level, and so on. Accessories also have hidden services, like the accessory information service that provides manufacturing information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3150784",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the HomeKit Accessory Simulator, define accessories that you can use with your app. For details, see the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "HomeKit Accessory Simulation Help",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", accessible through the simulator’s ",
+              "type": "text"
+            },
+            {
+              "code": "Help",
+              "type": "codeVoice"
+            },
+            {
+              "text": " menu.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Add an accessory.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Assign a name and provide other identifying details. An accessory isn’t typically the user’s main focus, but does serve as a logical container for the services that the user cares about. When you create an accessory, HAS adds the accessory information service by default based on the information you provide.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Add one or more services to the accessory.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Add as many additional services as you need, potentially including hidden services. For each, specify a service type using one of the standard values in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/accessory-service-types",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or using a custom service with a new, unique identifier. Give each service a unique name. For user-visible services, the user might later change the name using the Home app, or using your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Add or modify service characteristics.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " HAS populates standard services with a set of standard characteristics for that service, but you can adjust these to match the specific devices you want to model. For example, if a light bulb offers a fade-to-off feature with configurable timing, you might add a custom characteristic indicating the fade rate. The Home app doesn’t expose custom characteristics to the user, but you can control them from your own app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Associate-the-accessory-with-the-network",
+          "level": 3,
+          "text": "Associate the accessory with the network",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To be able to access simulated accessories from a HomeKit enabled app, you associate them with a home network. You can do this from any device on your local area network running the Home app, which is installed on all iOS devices by default. The accessory becomes part of the logged-in user’s home network. From the Home or Rooms tab, tap the plus button and choose Add Accessory. Then follow the instructions in the dialog that appears.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3150786",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/addAndSetupAccessories(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method from your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "home?.addAndSetupAccessories(completionHandler: { error in",
+            "    if let error = error {",
+            "        // Handle error",
+            "    } else {",
+            "        self.tableView.reloadData()",
+            "    }",
+            "})"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This generates the same accessory association flow as the one presented in the Home app, and produces the same result. Doing it from within your app offers the advantage of being able to work on the iOS Simulator, where the Home app isn’t available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you add an accessory on a device, including an iOS Simulator, without a logged-in iCloud account, the accessory is isolated to that device. This means that if you add an accessory to an iPhone simulator and then switch over to using an iPad simulator, you have to reassociate the accessory for it to appear in the new environment.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Observe-and-change-characteristic-values",
+          "level": 3,
+          "text": "Observe and change characteristic values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the simulated accessory is part of the home automation network, you can find it and control it from your app just as you would a real accessory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Changes that you make to characteristics in your app show up immediately in HAS. For example, if you let the user switch a light bulb off in your app with a toggle switch, the state of the light bulb changes right away in the HAS interface to match. When you implement accessory delegate methods like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryDelegate/accessory(_:service:didUpdateValueFor:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", changes made with HAS show up in your app right away as well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit": {
+      "abstract": [
+        {
+          "text": "Configure, control, and communicate with home automation accessories.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HomeKit",
+      "type": "topic",
+      "url": "/documentation/homekit"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryDelegate/accessory(_:service:didUpdateValueFor:)": {
+      "abstract": [
+        {
+          "text": "Informs the delegate of a change in value of a characteristic.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMAccessory",
+          "text": "HMAccessory"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "service"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMService",
+          "text": "HMService"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdateValueFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMCharacteristic",
+          "text": "HMCharacteristic"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryDelegate/accessory(_:service:didUpdateValueFor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accessory:service:didUpdateValueForCharacteristic:"
+        }
+      ],
+      "role": "symbol",
+      "title": "accessory(_:service:didUpdateValueFor:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessorydelegate/accessory(_:service:didupdatevaluefor:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/addAndSetupAccessories(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Finds and adds nearby accessories to the home.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAndSetupAccessories"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/addAndSetupAccessories(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addAndSetupAccessoriesWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addAndSetupAccessories(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/addandsetupaccessories(completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager": {
+      "abstract": [
+        {
+          "text": "The manager for a collection of one or more of a user’s homes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMHomeManager"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMHomeManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMHomeManager",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomemanager"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/accessory-service-types": {
+      "abstract": [
+        {
+          "text": "The service types supported by HomeKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/accessory-service-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessory Service Types",
+      "type": "topic",
+      "url": "/documentation/homekit/accessory-service-types"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/configuring-a-home-automation-device": {
+      "abstract": [
+        {
+          "text": "Give users a familiar experience when they manage HomeKit accessories.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/configuring-a-home-automation-device",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Configuring a home automation device",
+      "type": "topic",
+      "url": "/documentation/homekit/configuring-a-home-automation-device"
+    },
+    "https://developer.apple.com/download/more/?=for%20Xcode": {
+      "identifier": "https://developer.apple.com/download/more/?=for%20Xcode",
+      "title": "More Downloads for Apple Developers",
+      "titleInlineContent": [
+        {
+          "text": "More Downloads for Apple Developers",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/download/more/?=for%20Xcode"
+    },
+    "media-3150784": {
+      "alt": "Block diagram of an example garage door accessory with several user interactive services and one hidden service.",
+      "identifier": "media-3150784",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f59dbb43abd61d5f338c9cd8eb5268a4/media-3150784@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f59dbb43abd61d5f338c9cd8eb5268a4/media-3150784~dark@2x.png"
+        }
+      ]
+    },
+    "media-3150785": {
+      "alt": "Screenshot showing the location of the HomeKit Accessory Simulator button in Xcode’s Capabilities pane.",
+      "identifier": "media-3150785",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ea8605b4e7c5de134ea2f66e8514aa5a/media-3150785@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5e4fac3fcf084538c31d71c8dfac6e30/media-3150785~dark@2x.png"
+        }
+      ]
+    },
+    "media-3150786": {
+      "alt": "Screenshot showing the location of the Add Accessory button in Apple’s Home app.",
+      "identifier": "media-3150786",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/11f756cd175d892f9656efb1d2bb15f0/media-3150786@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/51944d34a065112aac23df5f134dd587/media-3150786~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Home-Manager",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/configuring-a-home-automation-device",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager"
+      ],
+      "title": "Home Manager"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Home-Manager",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/configuring-a-home-automation-device",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager"
+              ],
+              "title": "Home Manager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManager/title",
+          "value": "HMHomeManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1addAndSetupAccessories(completionHandler:)/title",
+          "value": "addAndSetupAccessoriesWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1addAndSetupAccessories(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addAndSetupAccessoriesWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryDelegate~1accessory(_:service:didUpdateValueFor:)/title",
+          "value": "accessory:service:didUpdateValueForCharacteristic:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryDelegate~1accessory(_:service:didUpdateValueFor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "accessory:service:didUpdateValueForCharacteristic:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/homekit/testing-your-app-with-the-homekit-accessory-simulator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/homekit/testing-your-app-with-the-homekit-accessory-simulator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

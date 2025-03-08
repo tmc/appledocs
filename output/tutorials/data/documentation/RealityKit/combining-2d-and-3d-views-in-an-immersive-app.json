@@ -1,0 +1,2004 @@
+{
+  "abstract": [
+    {
+      "text": "Use attachments to place 2D content relative to 3D content in your visionOS app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Combining 2D and 3D views in an immersive app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To demonstrate how you can integrate any 2D content into your 3D app, this sample code project uses a variety of frameworks to create both 2D and 3D views, and places them relative to each other in an immersive space. It also illustrates how to position an attachment at the location of a tap gesture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The rainbow that appears in the sample app contains two USDZ models and four ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewAttachments",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The green arch is a USDZ file from Reality Composer Pro with a custom shader graph material.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The yellow arch is a USDZ file from Reality Composer Pro with a programmatically created simple material.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The orange arch is a reality view attachment containing a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/UIViewRepresentable",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " with a custom 2D arc shape.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The red arch is a reality view attachment containing a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UIView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UIViewRepresentable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with a custom 2D arc shape.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The pink arch is a reality view attachment containing a SwiftUI ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " with a custom 2D arc shape.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The blue arch is a reality view attachment containing a SwiftUI ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "View",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with a custom 2D arc shape.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app loads the 3D assets from Reality Composer Pro as a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and creates a reality view attachment for each of the 2D arches to attach them to the view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The cloud attachments at the locations of tap gestures are ",
+              "type": "text"
+            },
+            {
+              "code": "RealityViewAttachments",
+              "type": "codeVoice"
+            },
+            {
+              "text": " containing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with an SF Symbols image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "combining-2d-3d-views-main.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Load-and-configure-entities-from-Reality-Composer-Pro",
+          "level": 3,
+          "text": "Load and configure entities from Reality Composer Pro",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample creates 3D assets in an asset creator and imports them into Reality Composer Pro as ",
+              "type": "text"
+            },
+            {
+              "code": ".usdc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app then configures the appearance of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by setting the material of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which is the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Component",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that affects appearance.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following code example demonstrates loading a model and configuring the material:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Creates an entity from the data model for each Reality Composer Pro asset.",
+            "func createEntity(for item: EntityData) async -> Entity {",
+            "    ",
+            "    // Load the entity from Reality Composer Pro.",
+            "    let realityComposerEntity = try! await Entity(named: item.title, in: realityKitContentBundle)",
+            "    ",
+            "    // Find the model component entity and model component.",
+            "    guard",
+            "        let modelEntity = realityComposerEntity.findEntity(named: item.title),",
+            "        var modelComponent = modelEntity.components[ModelComponent.self]",
+            "    else {",
+            "        return Entity()",
+            "    }",
+            "    ",
+            "    // Set the material if it has a simple material.",
+            "    if let material = item.simpleMaterial {",
+            "        modelComponent.materials = [material]",
+            "    }",
+            "    ",
+            "    // Set the model component.",
+            "    modelEntity.components.set(modelComponent)",
+            "    ",
+            "    return modelEntity",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-attachments-that-contain-SwiftUI-views",
+          "level": 3,
+          "text": "Create attachments that contain SwiftUI views",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample includes the remaining four arches as reality view attachments by creating attachments of various types in the ",
+              "type": "text"
+            },
+            {
+              "code": "attachments",
+              "type": "codeVoice"
+            },
+            {
+              "text": " closure of a reality view instance. These types include both SwiftUI and UIKit to exemplify how to use any framework in your visionOS app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Iterate over the attachments array and create the various arches.",
+            "ForEach(rainbowModel.archAttachments) { entity in",
+            "    // Create an attachment with an ID that the `update` closure references.",
+            "    Attachment(id: \"\\(entity.title.rawValue)ArchAttachmentEntity\") {",
+            "        createArchAttachment(for: entity.title)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "code": [
+            "/// Creates the arch view for each attachment based on the color.",
+            "@ViewBuilder func createArchAttachment(for arch: ArchAttachmentColor) -> some View {",
+            "        switch arch {",
+            "        case .blue:",
+            "            SwiftUIArcView(color: .blue)",
+            "        case .orange:",
+            "            UIViewArcViewRep(color: .orange)",
+            "        case .pink:",
+            "            SwiftUIArcView(color: .pink)",
+            "        case .red:",
+            "            CALayerArcViewRep(color: .red)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Attachments can contain views from other frameworks that adopt the ",
+              "type": "text"
+            },
+            {
+              "code": "UIViewRepresentable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-and-position-entity-attachments",
+          "level": 3,
+          "text": "Add and position entity attachments",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample loads the attachments as reality view attachments in the ",
+              "type": "text"
+            },
+            {
+              "code": "update",
+              "type": "codeVoice"
+            },
+            {
+              "text": " closure of the reality view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If there’s an existing attachment for an ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the sample adds the attachment entity as a subentity of the plane entity to display it in the scene, and then configures the scale and position.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Add and configure attachments.",
+            "for viewAttachmentEntity in rainbowModel.archAttachments {",
+            "    ",
+            "    // Check whether there's an attachment.",
+            "    if let attachment = attachments.entity(for: \"\\(viewAttachmentEntity.title)ArchAttachmentEntity\") {",
+            "        ",
+            "        attachment.name = viewAttachmentEntity.title.rawValue",
+            "        ",
+            "        // Add it as a subentity of the plane.",
+            "        plane?.addChild(attachment)",
+            "        ",
+            "        // Set the scale and position.",
+            "        attachment.scale = viewAttachmentEntity.scale",
+            "        attachment.setPosition(viewAttachmentEntity.position, relativeTo: yellowArch)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method sets the scales and positions for each attachment by using the yellow arch’s bounding box. This ensures each arch is smaller and further back than the previous. The app applies these scale and position values to each entity in the ",
+              "type": "text"
+            },
+            {
+              "code": "update",
+              "type": "codeVoice"
+            },
+            {
+              "text": " closure as the code example below shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Updates the array containing the scale and position for each attachment entity.",
+            "func scaleAndPositionArches(yellowArchSize: BoundingBox) {",
+            "    // MARK: - Scaling properties",
+            "    ",
+            "    // Set the x scale to be the same as the yellow arch.",
+            "    // Set the y scale to be double the yellow arch to account for the larger frame due to the SwiftUI view.",
+            "    var archScale = SIMD3(x: yellowArchSize.extents.x, y: yellowArchSize.max.y * 2, z: 1)",
+            "    ",
+            "    // MARK: - Positioning properties",
+            "    ",
+            "    // Set the y position to be the same as the yellow arch.",
+            "    let yPosition = yellowArchSize.min.y",
+            "    ",
+            "    // Set the z position to be 0.1 meters back.",
+            "    var zPosition: Float = -0.1",
+            "    var position = SIMD3(x: 0, y: yPosition, z: zPosition)",
+            "    ",
+            "    for (index, attachment) in rainbowModel.archAttachments.enumerated() {",
+            "        ",
+            "        // Push the arch back by 0.1 meters.",
+            "        zPosition -= 0.1",
+            "        position.z = zPosition",
+            "        ",
+            "        // Update the attachments in the view attachment array to include position and scale.",
+            "        rainbowModel.archAttachments[index] = ArchAttachment(title: attachment.title, position: position, scale: archScale)",
+            "        ",
+            "        // Scale the next attachment to be 75% of the size of the previous arch.",
+            "        archScale *= 3 / 4",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Position-attachments-at-the-tapped-location",
+          "level": 3,
+          "text": "Position attachments at the tapped location",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Follow these steps to add attachments to RealityKit entities and position them at the tapped location.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Ensure that your entities have both an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/InputTargetComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Sets the components necessary for hover and tap gestures.",
+            "func configureForTapGesture(entity: Entity) async {",
+            "    // Set the hover effect component.",
+            "    entity.components.set(HoverEffectComponent())",
+            "    ",
+            "    // Find the `ModelComponent` to get the mesh and create a static mesh in the shape of the entity.",
+            "    guard let modelComponent = entity.components[ModelComponent.self] else { return }",
+            "    let entityMesh = modelComponent.mesh",
+            "    let shapeResource = try! await ShapeResource.generateStaticMesh(from: entityMesh)",
+            "    entity.components.set(CollisionComponent(shapes: [shapeResource]))",
+            "    ",
+            "    // Set the input target component.",
+            "    entity.components.set(InputTargetComponent())",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/SpatialTapGesture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "code": "RealityView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and make sure it uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Gesture/targetedToAnyEntity()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or specify which entities to target with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Gesture/targetedToEntity(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Then use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/RealityCoordinateSpaceConverting/convert(_:from:to:)-6uv65",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to convert the location of the tap gesture from the local coordinate space of the entity to the scene’s coordinate space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".simultaneousGesture(",
+            "    SpatialTapGesture()",
+            "        .targetedToAnyEntity()",
+            "        .onEnded { value in",
+            "            // Convert the tap location to the scene's coordinate space.",
+            "            var location3D = value.convert(value.location3D, from: .local, to: .scene)",
+            "            // Move the z index forward to ensure it doesn't overlap with the entity.",
+            "            location3D.z += 0.02",
+            "            ",
+            "            // You don't need to set the position of attachments on entities relative to the root entity, so pass `nil` here.",
+            "            // The system handles this with the location conversion.",
+            "            rainbowModel.tapAttachments.append(CloudTapAttachment(position: location3D, parent: nil))",
+            "        }",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create the attachment in the ",
+              "type": "text"
+            },
+            {
+              "code": "attachments",
+              "type": "codeVoice"
+            },
+            {
+              "text": " closure by iterating over the array of attachments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Iterate over the tap attachments and provide content for each.",
+            "ForEach(rainbowModel.tapAttachments) { cloud in",
+            "    Attachment(id: cloud.position) {",
+            "        Image(systemName: \"cloud.fill\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, add each attachment in the ",
+              "type": "text"
+            },
+            {
+              "code": "update",
+              "type": "codeVoice"
+            },
+            {
+              "text": " closure by iterating over the array of attachments and setting their stored position and root entity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for cloud in rainbowModel.tapAttachments {",
+            "    if let cloudEntity = attachments.entity(for: cloud.position) {",
+            "        // Scale the attachment larger and add it.",
+            "        cloudEntity.scale = [5, 5, 5]",
+            "        cloudEntity.name = \"\\(cloud.position)tapEntity\"",
+            "        root.addChild(cloudEntity)",
+            "        ",
+            "        // Set the position of the attachment.",
+            "        cloudEntity.setPosition(cloud.position, relativeTo: cloud.parent)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "5416127e3d80/Combining2DAnd3DViewsInAnImmersiveApp.zip": {
+      "checksum": "5416127e3d8057dbc2b669a2a6f15eb616b179466fb10f1598d7103d1266b00d3ce8c2ca94acf45ae42e8051123af69a1d7403fa6384d8c3fffc66180e2a8194",
+      "identifier": "5416127e3d80/Combining2DAnd3DViewsInAnImmersiveApp.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/5416127e3d80/Combining2DAnd3DViewsInAnImmersiveApp.zip"
+    },
+    "Hello-World-intro.png": {
+      "alt": null,
+      "identifier": "Hello-World-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/770e1d0451ba3b86de3b05eb0ce728b7/Hello-World-intro@2x.png"
+        }
+      ]
+    },
+    "combining-2d-3d-views-main.png": {
+      "alt": "A screenshot of a simulated Apple Vision Pro environment showing a rainbow that consists of six arches of various colors and cloud attachments within a room.",
+      "identifier": "combining-2d-3d-views-main.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/53573759062f3fbda0f3931702fc7cae/combining-2d-3d-views-main@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2b9dd321d77a761ff38cd5c53b5ce83f/combining-2d-3d-views-main~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent": {
+      "abstract": [
+        {
+          "text": "A component that gives an entity the ability to collide with other entities",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that also have collision components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CollisionComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CollisionComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CollisionComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisioncomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Component": {
+      "abstract": [
+        {
+          "text": "A representation of a geometry or a behavior that you apply to an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Component",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "role": "symbol",
+      "title": "Component",
+      "type": "topic",
+      "url": "/documentation/realitykit/component"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/InputTargetComponent": {
+      "abstract": [
+        {
+          "text": "A component that gives an entity the ability to receive system input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "InputTargetComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/InputTargetComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InputTargetComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "InputTargetComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/inputtargetcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent": {
+      "abstract": [
+        {
+          "text": "A component that contains a mesh and materials for the visual appearance of an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity": {
+      "abstract": [
+        {
+          "text": "A representation of a physical object that RealityKit renders and optionally",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "simulates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelEntity",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelentity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/RealityView": {
+      "abstract": [
+        {
+          "text": "A view that contains RealityKit content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RealityView"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RealityView"
+        }
+      ],
+      "role": "symbol",
+      "title": "RealityView",
+      "type": "topic",
+      "url": "/documentation/realitykit/realityview"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewAttachments": {
+      "abstract": [
+        {
+          "text": "The attachments that belong to a RealityView.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RealityViewAttachments"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewAttachments",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RealityViewAttachments"
+        }
+      ],
+      "role": "symbol",
+      "title": "RealityViewAttachments",
+      "type": "topic",
+      "url": "/documentation/realitykit/realityviewattachments"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spatial-drawing-app-with-realitykit": {
+      "abstract": [
+        {
+          "text": "Use low-level mesh and texture APIs to achieve fast updates to a person’s brush",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "strokes by integrating RealityKit with ARKit and SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spatial-drawing-app-with-realitykit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a spatial drawing app with RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-a-spatial-drawing-app-with-realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/generating-interactive-geometry-with-realitykit": {
+      "abstract": [
+        {
+          "text": "Create an interactive mesh with low-level mesh and low-level texture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/generating-interactive-geometry-with-realitykit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Generating interactive geometry with RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit/generating-interactive-geometry-with-realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-anchors": {
+      "abstract": [
+        {
+          "text": "Lock virtual content to the real world.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-anchors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Anchors",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-anchors"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-audio": {
+      "abstract": [
+        {
+          "text": "Create personalized and realistic spatial audio experiences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-audio",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-audio"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-content-synchronization": {
+      "abstract": [
+        {
+          "text": "Synchronize the contents of entities locally or across the network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-content-synchronization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Content synchronization",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-content-synchronization"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-lights-and-cameras": {
+      "abstract": [
+        {
+          "text": "Control the lighting and point of view for a scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-lights-and-cameras",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Lights and cameras",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-lights-and-cameras"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-materials-and-shaders": {
+      "abstract": [
+        {
+          "text": "Apply textures to the surface of your scene’s 3D objects to give each object a unique appearance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-materials-and-shaders",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Materials, textures, and shaders",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-materials-and-shaders"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-models-and-meshes": {
+      "abstract": [
+        {
+          "text": "Display virtual objects in your scene with mesh-based models.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-models-and-meshes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Models and meshes",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-models-and-meshes"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-videos": {
+      "abstract": [
+        {
+          "text": "Present videos in your RealityKit experiences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-videos",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Videos",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-videos"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/transforming-realitykit-entities-with-gestures": {
+      "abstract": [
+        {
+          "text": "Build a RealityKit component to support standard visionOS gestures on any entity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/transforming-realitykit-entities-with-gestures",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Transforming RealityKit entities using gestures",
+      "type": "topic",
+      "url": "/documentation/realitykit/transforming-realitykit-entities-with-gestures"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/RealityCoordinateSpaceConverting/convert(_:from:to:)-6uv65": {
+      "abstract": [
+        {
+          "text": "Converts a `Point3D` from a defined SwiftUI coordinate space to a 3D point in a RealityKit coordinate space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "point"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@UA@SPPoint3D",
+          "text": "Point3D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "space"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI23CoordinateSpaceProtocolP",
+          "text": "CoordinateSpaceProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "realitySpace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation0A15CoordinateSpaceP",
+          "text": "RealityCoordinateSpace"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD3V",
+          "text": "SIMD3"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/RealityCoordinateSpaceConverting/convert(_:from:to:)-6uv65",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convert(_:from:to:)",
+      "type": "topic",
+      "url": "/documentation/RealityKit/RealityCoordinateSpaceConverting/convert(_:from:to:)-6uv65"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Gesture/targetedToAnyEntity()": {
+      "abstract": [
+        {
+          "text": "Requires this gesture to target an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "targetedToAnyEntity"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7GestureP",
+          "text": "Gesture"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:19_RealityKit_SwiftUI17EntityTargetValueV",
+          "text": "EntityTargetValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7GestureP5ValueQa",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">>\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Gesture/targetedToAnyEntity()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "targetedToAnyEntity()",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Gesture/targetedToAnyEntity()"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Gesture/targetedToEntity(_:)": {
+      "abstract": [
+        {
+          "text": "Requires this gesture to target an entity or a descendant of entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "targetedToEntity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "entity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7GestureP",
+          "text": "Gesture"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:19_RealityKit_SwiftUI17EntityTargetValueV",
+          "text": "EntityTargetValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7GestureP5ValueQa",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">>\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Gesture/targetedToEntity(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "targetedToEntity(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Gesture/targetedToEntity(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/SpatialTapGesture": {
+      "abstract": [
+        {
+          "text": "A gesture that recognizes one or more taps and reports their location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpatialTapGesture"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/SpatialTapGesture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpatialTapGesture",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/SpatialTapGesture"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Text": {
+      "abstract": [
+        {
+          "text": "A view that displays one or more lines of read-only text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Text",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Text"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/UIViewRepresentable": {
+      "abstract": [
+        {
+          "text": "A wrapper for a UIKit view that you use to integrate that view into your SwiftUI view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP4BodyQa",
+          "text": "Body"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5NeverO",
+          "text": "Never"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/UIViewRepresentable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIViewRepresentable",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/UIViewRepresentable"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIView": {
+      "abstract": [
+        {
+          "text": "An object that manages the content for a rectangular area on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIView",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIView"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/World": {
+      "abstract": [
+        {
+          "text": "Use windows, volumes, and immersive spaces to teach people about the Earth.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/World",
+      "images": [
+        {
+          "identifier": "Hello-World-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Hello World",
+      "type": "topic",
+      "url": "/documentation/visionOS/World"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro": {
+      "abstract": [
+        {
+          "text": "Design RealityKit scenes for your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro",
+      "kind": "article",
+      "role": "article",
+      "title": "Designing RealityKit content with Reality Composer Pro",
+      "type": "topic",
+      "url": "/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment": {
+      "abstract": [
+        {
+          "text": "Create a more immersive experience by adding video reflections in a custom environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment",
+      "images": [
+        {
+          "identifier": "lightspill-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Enabling video reflections in an immersive environment",
+      "type": "topic",
+      "url": "/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment"
+    },
+    "lightspill-PageImage-card.png": {
+      "alt": null,
+      "identifier": "lightspill-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/87e397de07459c756d21eb0c441569f7/lightspill-PageImage-card@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "5416127e3d80/Combining2DAnd3DViewsInAnImmersiveApp.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Scene-content",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/visionOS/World",
+        "doc://com.apple.documentation/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment",
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spatial-drawing-app-with-realitykit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/generating-interactive-geometry-with-realitykit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/transforming-realitykit-entities-with-gestures",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-models-and-meshes",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-materials-and-shaders",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-anchors",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-lights-and-cameras",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-content-synchronization",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-audio",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-videos"
+      ],
+      "title": "Scene content"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIResponder",
+              "text": "UIResponder"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/combining-2d-and-3d-views-in-an-immersive-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

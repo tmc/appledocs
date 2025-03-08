@@ -1,0 +1,658 @@
+{
+  "abstract": [
+    {
+      "text": "Restrict access to or remove restrictions from a user’s data at their request.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cloudkit/documentation/CloudKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.cloudkit/documentation/CloudKit/changing-access-controls-on-user-data"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "CloudKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Changing Access Controls on User Data"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users can ask you to prevent any further changes to their data that your app stores in CloudKit. Use the ",
+              "type": "text"
+            },
+            {
+              "code": "restrict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " API that CloudKit Web Services provides to honor those requests. You can remove restrictions at the user’s request by calling the ",
+              "type": "text"
+            },
+            {
+              "code": "unrestrict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-Containers",
+          "level": 3,
+          "text": "Identify Containers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To be sure that you restrict changes and access to all of a user’s data that your app stores, cross-reference the list of containers your app has access to in Xcode and assemble a list of those containers’ identifiers. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/identifying-an-app-s-containers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " describes this process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below stores containers in constants to use later:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let defaultContainer = CKContainer.default()",
+            "let documents = CKContainer(identifier: \"iCloud.com.example.myexampleapp.documents\")",
+            "let settings = CKContainer(identifier: \"iCloud.com.example.myexampleapp.settings\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-Reusable-API-Tokens",
+          "level": 3,
+          "text": "Create Reusable API Tokens",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "restrict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " API call requires a token each time you call the API. You create an API token once for each container in your app using the CloudKit Dashboard, and reuse it in each API call to a specific container.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Generate a token in the CloudKit Dashboard by visiting the page for each container, then selecting API Access > New Token > Create Token. Tokens are specific to a deployment environment, so you need separate tokens for the production and development environments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below stores tokens in a dictionary for each container to use later:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let containerAPITokens: [CKContainer: String] = [",
+            "    defaultContainer: \"<# Token for the default container #>\",",
+            "    documents: \"<# Token for a custom container #>\",",
+            "    settings: \"<# Token for another custom container #>\"",
+            "]",
+            "",
+            "let containers = Array(containerAPITokens.keys)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-Web-Authentication-Tokens",
+          "level": 3,
+          "text": "Create Web Authentication Tokens",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "restrict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " API call requires a new authentication token each time you call the API, in addition to the reusable API token. The example below shows how to create that token using an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchWebAuthTokenOperation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for container in containers {",
+            "    guard let apiToken = containerAPITokens[container] else {",
+            "        continue",
+            "    }",
+            "    ",
+            "    let fetchAuthorization = CKFetchWebAuthTokenOperation(apiToken: apiToken)",
+            "    ",
+            "    fetchAuthorization.fetchWebAuthTokenCompletionBlock = { webToken, error in",
+            "        guard let webToken = webToken, error == nil else { return }",
+            "        ",
+            "        restrict(container: container, apiToken: apiToken, webToken: webToken) { error in",
+            "            guard error == nil else {",
+            "                 print(\"Restriction failed. Reason: \", error!)",
+            "                 return",
+            "            }",
+            "            print(\"Restriction succeeded.\")",
+            "        }",
+            "    }",
+            "    ",
+            "    container.privateCloudDatabase.add(fetchAuthorization)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you receive the authentication token, you can immediately call the ",
+              "type": "text"
+            },
+            {
+              "code": "restrict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " API once for each container.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Restrict-Data-Access-in-Each-Container",
+          "level": 3,
+          "text": "Restrict Data Access in Each Container",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below defines the ",
+              "type": "text"
+            },
+            {
+              "code": "restrict(container:apiToken:webToken:completionHandler:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "requestRestriction(url:completionHandler:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods for the example above to build the network request for the ",
+              "type": "text"
+            },
+            {
+              "code": "restrict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " API:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func requestRestriction(url: URL, completionHandler: @escaping (Error?) -> Void) {",
+            "    let task = URLSession.shared.dataTask(with: url) { data, response, error in",
+            "        if let error = error {",
+            "            completionHandler(error)",
+            "            return",
+            "        }",
+            "        guard let httpResponse = response as? HTTPURLResponse,",
+            "            (200...299).contains(httpResponse.statusCode) else {",
+            "                completionHandler(RestrictError.failure)",
+            "                return",
+            "        }",
+            "        ",
+            "        print(\"Restrict result\", httpResponse)",
+            "        ",
+            "        // Other than indicating success or failure, the `restrict` API doesn't return actionable data in its response.",
+            "        if data != nil {",
+            "            completionHandler(nil)",
+            "        } else {",
+            "            completionHandler(RestrictError.failure)",
+            "        }",
+            "    }",
+            "    task.resume()",
+            "}",
+            "",
+            "/// A utility function that percent encodes a token for URL requests.",
+            "func encodeToken(_ token: String) -> String {",
+            "    return token.addingPercentEncoding(",
+            "        withAllowedCharacters: CharacterSet(charactersIn: \"+/=\").inverted",
+            "    ) ?? token",
+            "}",
+            "",
+            "/// An error type that represents a failure in the `restrict` API call.",
+            "enum RestrictError: Error {",
+            "    case failure",
+            "}",
+            "",
+            "func restrict(container: CKContainer, apiToken: String, webToken: String, completionHandler: @escaping (Error?) -> Void) {",
+            "    let webToken = encodeToken(webToken)",
+            "    ",
+            "    let identifier = container.containerIdentifier!",
+            "    let env = \"production\" // Use \"development\" during development.",
+            "    let baseURL = \"https://api.apple-cloudkit.com/database/1/\"",
+            "    let apiPath = \"\\(identifier)/\\(env)/private/users/restrict\"",
+            "    let query = \"?ckAPIToken=\\(apiToken)&ckWebAuthToken=\\(webToken)\"",
+            "    ",
+            "    let url = URL(string: \"\\(baseURL)\\(apiPath)\\(query)\")!",
+            "    ",
+            "    requestRestriction(url: url, completionHandler: completionHandler)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Remove-Restrictions",
+          "level": 3,
+          "text": "Remove Restrictions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a user requests that you remove restrictions, you use the ",
+              "type": "text"
+            },
+            {
+              "code": "unrestrict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " API, which performs the opposite operation that the ",
+              "type": "text"
+            },
+            {
+              "code": "restrict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " API performs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below shows a modified version of the ",
+              "type": "text"
+            },
+            {
+              "code": "restrict(container:apiToken:webToken:completionHandler:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method from the previous example that removes restrictions instead of enabling them:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func unrestrict(container: CKContainer, apiToken: String, webToken: String, completionHandler: @escaping (Error?) -> Void) {",
+            "    let webToken = encodeToken(webToken)",
+            "    ",
+            "    let identifier = container.containerIdentifier!",
+            "    let env = \"production\" // Use \"development\" during development.",
+            "    let baseURL = \"https://api.apple-cloudkit.com/database/1/\"",
+            "    let apiPath = \"\\(identifier)/\\(env)/private/users/unrestrict\"",
+            "    let query = \"?ckAPIToken=\\(apiToken)&ckWebAuthToken=\\(webToken)\"",
+            "    ",
+            "    let url = URL(string: \"\\(baseURL)\\(apiPath)\\(query)\")!",
+            "    ",
+            "    requestRestriction(url: url, completionHandler: completionHandler)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A successful call to the ",
+              "type": "text"
+            },
+            {
+              "code": "unrestrict(container:apiToken:webToken: completionHandler:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function (a ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " error parameter in the completion handler indicates success) means that your app can access and modify user data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cloudkit/documentation/CloudKit": {
+      "abstract": [
+        {
+          "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit",
+      "type": "topic",
+      "url": "/documentation/cloudkit"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchWebAuthTokenOperation": {
+      "abstract": [
+        {
+          "text": "An operation that creates an authentication token for use with CloudKit web services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKFetchWebAuthTokenOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchWebAuthTokenOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKFetchWebAuthTokenOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKFetchWebAuthTokenOperation",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckfetchwebauthtokenoperation"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/encrypting-user-data": {
+      "abstract": [
+        {
+          "text": "Deploy industry-standard security technologies using CloudKit encryption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/encrypting-user-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Encrypting User Data",
+      "type": "topic",
+      "url": "/documentation/cloudkit/encrypting-user-data"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/identifying-an-app-s-containers": {
+      "abstract": [
+        {
+          "text": "Use Xcode’s Project navigator to find the identifiers of active CloudKit containers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/identifying-an-app-s-containers",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying an App’s Containers",
+      "type": "topic",
+      "url": "/documentation/cloudkit/identifying-an-app-s-containers"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/providing-user-access-to-cloudkit-data": {
+      "abstract": [
+        {
+          "text": "Provide users access to the data your app stores on their behalf.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/providing-user-access-to-cloudkit-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing User Access to CloudKit Data",
+      "type": "topic",
+      "url": "/documentation/cloudkit/providing-user-access-to-cloudkit-data"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/responding-to-requests-to-delete-data": {
+      "abstract": [
+        {
+          "text": "Provide options for users to delete their CloudKit data from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/responding-to-requests-to-delete-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to Requests to Delete Data",
+      "type": "topic",
+      "url": "/documentation/cloudkit/responding-to-requests-to-delete-data"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Privacy",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/encrypting-user-data",
+        "doc://com.apple.cloudkit/documentation/CloudKit/providing-user-access-to-cloudkit-data",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchWebAuthTokenOperation",
+        "doc://com.apple.cloudkit/documentation/CloudKit/responding-to-requests-to-delete-data",
+        "doc://com.apple.cloudkit/documentation/CloudKit/identifying-an-app-s-containers"
+      ],
+      "title": "Privacy"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Privacy",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/encrypting-user-data",
+                "doc://com.apple.cloudkit/documentation/CloudKit/providing-user-access-to-cloudkit-data",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchWebAuthTokenOperation",
+                "doc://com.apple.cloudkit/documentation/CloudKit/responding-to-requests-to-delete-data",
+                "doc://com.apple.cloudkit/documentation/CloudKit/identifying-an-app-s-containers"
+              ],
+              "title": "Privacy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchWebAuthTokenOperation/title",
+          "value": "CKFetchWebAuthTokenOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchWebAuthTokenOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKFetchWebAuthTokenOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchWebAuthTokenOperation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKFetchWebAuthTokenOperation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cloudkit/changing-access-controls-on-user-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/cloudkit/changing-access-controls-on-user-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3134 @@
+{
+  "abstract": [
+    {
+      "text": "A component that moves a game entity according to a set of goals and realistic constraints.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)GKAgent",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "GKAgent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "GameplayKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GKAgent"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "GKAgent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GKAgent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class is abstract, defining only the general functionality of an agent—its movement constraints and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/behavior",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property containing its goals (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKGoal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects). To implement agent-based gameplay, choose a concrete subclass that fits your game.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent2D",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class for 2D game worlds, or for 3D games where all gameplay-relevant movement is constrained to two dimensions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent3D",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class for game worlds that allow movement in three dimensions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about the agent simulation, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Agent.html#//apple_ref/doc/uid/TP40015172-CH8",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "An-Agent-is-a-Component",
+          "level": 3,
+          "text": "An Agent is a Component",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can use Entity-Component architecture to add agent-based behaviors to your game. (For details on this architecture, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/EntityComponent.html#//apple_ref/doc/uid/TP40015172-CH6",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172",
+              "isActive": true,
+              "overridingTitle": "GameplayKit Programming Guide",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "GameplayKit Programming Guide",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To integrate agents with gameplay, call each agent’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKComponent/update(deltaTime:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method each time you want to update the simulation that governs the agent’s behavior. Typically, you call this method once for each frame processed by your game’s graphics engine—for example, in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SpriteKit/SKScene/update(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of a SpriteKit scene or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:updateAtTime:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of a SceneKit renderer delegate. If your game uses Entity-Component architecture, you can use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKComponentSystem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to update all the agents in the game scene for each frame. If not, you must call each agent’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKComponent/update(deltaTime:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method directly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "An-Agent-Simulates-Movement-Based-on-Goals",
+          "level": 3,
+          "text": "An Agent Simulates Movement Based on Goals",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each time an agent’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKComponent/update(deltaTime:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method runs, the agent evaluates each ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKGoal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object listed in its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/behavior",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to find the change in direction and speed necessary to move toward fulfilling that goal (within the limits of the time delta and the agent’s maximum speed and turn rate). It then combines the effects from all the goals in its behavior, using the weights specified in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKBehavior",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to modulate the influence of each goal, resulting in a total change in its direction and speed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two options for using the output of this simulation to move game entities:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In a per-frame update that executes after the agent’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKComponent/update(deltaTime:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method—such as the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKComponent/update(deltaTime:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method of another ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKComponent",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " subclass in your game or a game engine method such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SpriteKit/SKScene/didEvaluateActions()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " (SpriteKit) or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:willRenderScene:atTime:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " (SceneKit)—examine the position and rotation of each agent and use that information to update the properties of any visual objects representing the agents.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/delegate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property of each agent to an object responsible for that agent’s visual representation. That object can implement the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgentDelegate/agentDidUpdate(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method, which the agent calls every time it updates its position and direction. In that method, you can examine the agent’s properties and make corresponding changes to a visual representation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition, an agent delegate can implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgentDelegate/agentWillUpdate(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to feed information into the agent simulation. This option can be useful for combining agent-based movement with an external physics engine (such as those found in SceneKit and SpriteKit), or with other APIs that might apply motion to an agent’s visual representation (such as SpriteKit actions). However, the agent simulation cannot account for momentum introduced by such influences, so the accuracy of the agent’s planning will be reduced in these scenarios.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKSKNodeComponent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " class to manage the relationship between an entity and a SpriteKit node,  set your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKSKNodeComponent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instance as the delegate for that entity’s agent, and GameplayKit will automatically synchronize the agent and its SpriteKit representation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The simulation responsible for agent movement is based on realistic physical behaviors; however, this simulation is ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "not",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " connected to the physics subsystems in SpriteKit, SceneKit, or any other graphics engine. For example, setting the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/mass",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property of an agent does not affect the collision behavior of any SpriteKit physics bodies.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:updateAtTime:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate to perform any updates that need to occur before actions, animations, and physics are evaluated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "renderer"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SCNSceneRenderer",
+          "text": "SCNSceneRenderer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "updateAtTime"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "time"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:updateAtTime:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "renderer(_:updateAtTime:)",
+      "type": "topic",
+      "url": "/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:updateAtTime:)"
+    },
+    "doc://com.apple.documentation/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:willRenderScene:atTime:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the renderer has cleared the viewport and is about to render the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "renderer"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SCNSceneRenderer",
+          "text": "SCNSceneRenderer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "willRenderScene"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNScene",
+          "text": "SCNScene"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "atTime"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "time"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:willRenderScene:atTime:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "renderer(_:willRenderScene:atTime:)",
+      "type": "topic",
+      "url": "/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:willRenderScene:atTime:)"
+    },
+    "doc://com.apple.documentation/documentation/SpriteKit/SKScene/didEvaluateActions()": {
+      "abstract": [
+        {
+          "text": "Tells your app to peform any necessary logic after scene actions are evaluated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didEvaluateActions"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SpriteKit/SKScene/didEvaluateActions()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didEvaluateActions()",
+      "type": "topic",
+      "url": "/documentation/SpriteKit/SKScene/didEvaluateActions()"
+    },
+    "doc://com.apple.documentation/documentation/SpriteKit/SKScene/update(_:)": {
+      "abstract": [
+        {
+          "text": "Tells your app to perform any app-specific logic to update your scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "currentTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SpriteKit/SKScene/update(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "update(_:)",
+      "type": "topic",
+      "url": "/documentation/SpriteKit/SKScene/update(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit": {
+      "abstract": [
+        {
+          "text": "Architect and organize your game logic. Incorporate common gameplay behaviors such as random number generation, artificial intelligence, pathfinding, and agent behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GameplayKit",
+      "type": "topic",
+      "url": "/documentation/gameplaykit"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent": {
+      "abstract": [
+        {
+          "text": "A component that moves a game entity according to a set of goals and realistic constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKAgent"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKAgent"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKAgent",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkagent"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/behavior": {
+      "abstract": [
+        {
+          "text": "A weighted collection of goals that influence the agent’s movement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "behavior"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKBehavior",
+          "text": "GKBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/behavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "behavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "behavior",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkagent/behavior"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/delegate": {
+      "abstract": [
+        {
+          "text": "An object that prepares for or responds to updates in the agent simulation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)GKAgentDelegate",
+          "text": "GKAgentDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkagent/delegate"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/mass": {
+      "abstract": [
+        {
+          "text": "The resistance of the agent to changes in speed or direction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mass"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/mass",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mass"
+        }
+      ],
+      "role": "symbol",
+      "title": "mass",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkagent/mass"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/maxAcceleration": {
+      "abstract": [
+        {
+          "text": "The upper limit to changes in the agent’s speed or direction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maxAcceleration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/maxAcceleration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maxAcceleration"
+        }
+      ],
+      "role": "symbol",
+      "title": "maxAcceleration",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkagent/maxacceleration"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/maxSpeed": {
+      "abstract": [
+        {
+          "text": "The agent’s maximum forward speed, in units per second.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maxSpeed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/maxSpeed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maxSpeed"
+        }
+      ],
+      "role": "symbol",
+      "title": "maxSpeed",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkagent/maxspeed"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/radius": {
+      "abstract": [
+        {
+          "text": "The agent’s radius.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "radius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/radius",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "radius"
+        }
+      ],
+      "role": "symbol",
+      "title": "radius",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkagent/radius"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/speed": {
+      "abstract": [
+        {
+          "text": "The agent’s current forward speed, in units per second.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "speed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/speed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "speed"
+        }
+      ],
+      "role": "symbol",
+      "title": "speed",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkagent/speed"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent2D": {
+      "abstract": [
+        {
+          "text": "An agent that operates in a two-dimensional space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKAgent2D"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent2D",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKAgent2D"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKAgent2D",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkagent2d"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent3D": {
+      "abstract": [
+        {
+          "text": "An agent that operates in a three-dimensional space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKAgent3D"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent3D",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKAgent3D"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKAgent3D",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkagent3d"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgentDelegate": {
+      "abstract": [
+        {
+          "text": "Implement this protocol to synchronize the state of an agent with its visual representation in your game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKAgentDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgentDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKAgentDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKAgentDelegate",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkagentdelegate"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgentDelegate/agentDidUpdate(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that an agent has just performed a simulation step.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "agentDidUpdate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKAgent",
+          "text": "GKAgent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgentDelegate/agentDidUpdate(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "agentDidUpdate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "agentDidUpdate(_:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkagentdelegate/agentdidupdate(_:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgentDelegate/agentWillUpdate(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that an agent is about to perform its next simulation step.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "agentWillUpdate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKAgent",
+          "text": "GKAgent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgentDelegate/agentWillUpdate(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "agentWillUpdate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "agentWillUpdate(_:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkagentdelegate/agentwillupdate(_:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKBehavior": {
+      "abstract": [
+        {
+          "text": "A set of goals that together influence the movement of an agent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKBehavior",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkbehavior"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKComponent": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for creating objects that add specific gameplay functionality to an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKComponent",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkcomponent"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKComponent/update(deltaTime:)": {
+      "abstract": [
+        {
+          "text": "Performs any custom periodic actions defined by the component subclass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "deltaTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKComponent/update(deltaTime:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateWithDeltaTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "update(deltaTime:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkcomponent/update(deltatime:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKComponentSystem": {
+      "abstract": [
+        {
+          "text": "Manages periodic update messages for all component objects of a specified class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKComponentSystem"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKComponentSystem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKComponentSystem"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKComponentSystem",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkcomponentsystem"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKCompositeBehavior": {
+      "abstract": [
+        {
+          "text": "A set of behaviors, each of which is a set of goals, that together influence the movement of an agent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKCompositeBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKCompositeBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKCompositeBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKCompositeBehavior",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkcompositebehavior"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKGoal": {
+      "abstract": [
+        {
+          "text": "An influence that motivates the movement of one or more agents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKGoal"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKGoal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKGoal"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKGoal",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkgoal"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKPath": {
+      "abstract": [
+        {
+          "text": "A polygonal path that can be followed by an agent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKPath"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKPath",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKPath"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKPath",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkpath"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKSKNodeComponent": {
+      "abstract": [
+        {
+          "text": "A component that manages a SpriteKit node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKSKNodeComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKSKNodeComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKSKNodeComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKSKNodeComponent",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gksknodecomponent"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Agent.html#//apple_ref/doc/uid/TP40015172-CH8": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Agent.html#//apple_ref/doc/uid/TP40015172-CH8",
+      "title": "Agents, Goals, and Behaviors",
+      "titleInlineContent": [
+        {
+          "text": "Agents, Goals, and Behaviors",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Agent.html#//apple_ref/doc/uid/TP40015172-CH8"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/EntityComponent.html#//apple_ref/doc/uid/TP40015172-CH6": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/EntityComponent.html#//apple_ref/doc/uid/TP40015172-CH6",
+      "title": "Entities and Components",
+      "titleInlineContent": [
+        {
+          "text": "Entities and Components",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/EntityComponent.html#//apple_ref/doc/uid/TP40015172-CH6"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172",
+      "title": "GameplayKit Programming Guide",
+      "titleInlineContent": [
+        {
+          "text": "GameplayKit Programming Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKComponent"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent2D",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent3D"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Agents-Goals-and-Behaviors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent2D",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent3D",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKGoal",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKBehavior",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKCompositeBehavior",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKPath",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgentDelegate"
+      ],
+      "title": "Agents, Goals, and Behaviors"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Defining-an-Agents-Behavior",
+      "identifiers": [
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/behavior"
+      ],
+      "title": "Defining an Agent’s Behavior"
+    },
+    {
+      "anchor": "Constraining-an-Agents-Movement",
+      "identifiers": [
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/mass",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/maxAcceleration",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/maxSpeed",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/radius"
+      ],
+      "title": "Constraining an Agent’s Movement"
+    },
+    {
+      "anchor": "Synchronizing-an-Agents-Visual-Representation",
+      "identifiers": [
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/delegate"
+      ],
+      "title": "Synchronizing an Agent’s Visual Representation"
+    },
+    {
+      "anchor": "Managing-an-Agents-Attributes",
+      "identifiers": [
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/speed"
+      ],
+      "title": "Managing an Agent’s Attributes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "GKAgent"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKAgent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKAgent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Defining-an-Agents-Behavior",
+              "identifiers": [
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/behavior"
+              ],
+              "title": "Defining an Agent’s Behavior"
+            },
+            {
+              "anchor": "Constraining-an-Agents-Movement",
+              "identifiers": [
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/mass",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/maxAcceleration",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/maxSpeed",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/radius"
+              ],
+              "title": "Constraining an Agent’s Movement"
+            },
+            {
+              "anchor": "Synchronizing-an-Agents-Visual-Representation",
+              "identifiers": [
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/delegate"
+              ],
+              "title": "Synchronizing an Agent’s Visual Representation"
+            },
+            {
+              "anchor": "Managing-an-Agents-Attributes",
+              "identifiers": [
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent/speed"
+              ],
+              "title": "Managing an Agent’s Attributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKComponent"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent2D",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent3D"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Agents-Goals-and-Behaviors",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent2D",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgent3D",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKGoal",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKBehavior",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKCompositeBehavior",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKPath",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKAgentDelegate"
+              ],
+              "title": "Agents, Goals, and Behaviors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "GKAgent"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKComponent",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)GKComponent",
+                    "text": "GKComponent"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKCompositeBehavior/title",
+          "value": "GKCompositeBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKCompositeBehavior/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKCompositeBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKCompositeBehavior/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKCompositeBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgentDelegate~1agentWillUpdate(_:)/title",
+          "value": "agentWillUpdate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgentDelegate~1agentWillUpdate(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "agentWillUpdate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SpriteKit~1SKScene~1update(_:)/title",
+          "value": "update:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SpriteKit~1SKScene~1update(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "update:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSTimeInterval",
+              "text": "NSTimeInterval"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "currentTime"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKPath/title",
+          "value": "GKPath"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKPath/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKPath"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKPath/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKPath"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgent3D/title",
+          "value": "GKAgent3D"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgent3D/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKAgent3D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgent3D/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKAgent3D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgentDelegate/title",
+          "value": "GKAgentDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgentDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKAgentDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgentDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKAgentDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgent2D/title",
+          "value": "GKAgent2D"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgent2D/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKAgent2D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgent2D/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKAgent2D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgentDelegate~1agentDidUpdate(_:)/title",
+          "value": "agentDidUpdate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgentDelegate~1agentDidUpdate(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "agentDidUpdate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKComponent~1update(deltaTime:)/title",
+          "value": "updateWithDeltaTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKComponent~1update(deltaTime:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateWithDeltaTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgent~1maxSpeed/title",
+          "value": "maxSpeed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgent~1maxSpeed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maxSpeed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKSKNodeComponent/title",
+          "value": "GKSKNodeComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKSKNodeComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKSKNodeComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKSKNodeComponent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKSKNodeComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKBehavior/title",
+          "value": "GKBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKBehavior/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKBehavior/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SpriteKit~1SKScene~1didEvaluateActions()/title",
+          "value": "didEvaluateActions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SpriteKit~1SKScene~1didEvaluateActions()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "didEvaluateActions"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgent~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgent~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgent~1maxAcceleration/title",
+          "value": "maxAcceleration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgent~1maxAcceleration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maxAcceleration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgent~1mass/title",
+          "value": "mass"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgent~1mass/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKComponentSystem/title",
+          "value": "GKComponentSystem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKComponentSystem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKComponentSystem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKComponentSystem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKComponentSystem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKGoal/title",
+          "value": "GKGoal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKGoal/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKGoal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKGoal/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKGoal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgent~1behavior/title",
+          "value": "behavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgent~1behavior/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "behavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKComponent/title",
+          "value": "GKComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKComponent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgent/title",
+          "value": "GKAgent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKAgent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKAgent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgent~1speed/title",
+          "value": "speed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgent~1speed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "speed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SceneKit~1SCNSceneRendererDelegate~1renderer(_:updateAtTime:)/title",
+          "value": "renderer:updateAtTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SceneKit~1SCNSceneRendererDelegate~1renderer(_:updateAtTime:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "renderer:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)SCNSceneRenderer",
+              "text": "id<SCNSceneRenderer>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "renderer"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateAtTime:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSTimeInterval",
+              "text": "NSTimeInterval"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "time"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgent~1radius/title",
+          "value": "radius"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKAgent~1radius/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "radius"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SceneKit~1SCNSceneRendererDelegate~1renderer(_:willRenderScene:atTime:)/title",
+          "value": "renderer:willRenderScene:atTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SceneKit~1SCNSceneRendererDelegate~1renderer(_:willRenderScene:atTime:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "renderer:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)SCNSceneRenderer",
+              "text": "id<SCNSceneRenderer>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "renderer"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "willRenderScene:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)SCNScene",
+              "text": "SCNScene"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "scene"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "atTime:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSTimeInterval",
+              "text": "NSTimeInterval"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "time"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gameplaykit/gkagent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gameplaykit/gkagent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,383 @@
+{
+  "abstract": [
+    {
+      "text": "Copy data to the memory descriptor's buffer from the specified buffer.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442038-writebytes"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1442038,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOMemoryDescriptor@F@writeBytes#i#*1v#i#",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "parent": {
+      "title": "IOMemoryDescriptor"
+    },
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.11.4",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "writeBytes"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "text": "virtual"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iobytecount",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@IOByteCount",
+              "text": "IOByteCount"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "writeBytes"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iobytecount",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@IOByteCount",
+              "text": "IOByteCount"
+            },
+            {
+              "kind": "text",
+              "text": " offset, "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " *bytes, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iobytecount",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@IOByteCount",
+              "text": "IOByteCount"
+            },
+            {
+              "kind": "text",
+              "text": " withLength);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A byte offset into the memory descriptor's memory.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "offset"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The caller supplied buffer to copy the data from.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "bytes"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The length of the data to copy.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "withLength"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The number of bytes copied, zero will be returned if the specified offset is beyond the length of the descriptor. Development/debug kernel builds will assert if the offset is beyond the length of the descriptor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method copies data to the memory descriptor's memory at the given offset, from the caller's buffer. The memory descriptor MUST have the kIODirectionIn direcction bit set and be prepared. kIODirectionIn means that this memory descriptor will be input from an external device, so writeBytes is used to write memory into the descriptor for PIO drivers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobytecount": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobytecount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOByteCount",
+      "type": "topic",
+      "url": "/documentation/kernel/iobytecount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/memory"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor": {
+      "abstract": [
+        {
+          "text": "An abstract base class that defines common methods for describing physical or virtual memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441823-readbytes": {
+      "abstract": [
+        {
+          "text": "Copy data from the memory descriptor's buffer to the specified buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "readBytes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441823-readbytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readBytes",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441823-readbytes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442038-writebytes": {
+      "abstract": [
+        {
+          "text": "Copy data to the memory descriptor's buffer from the specified buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeBytes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442038-writebytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "writeBytes",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1442038-writebytes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812854-readbytes": {
+      "abstract": [
+        {
+          "text": "Copy data from the memory descriptor's buffer to the specified buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812854-readbytes",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "readBytes",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812854-readbytes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812910-writebytes": {
+      "abstract": [
+        {
+          "text": "Copy data to the memory descriptor's buffer from the specified buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812910-writebytes",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "writeBytes",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812910-writebytes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812854-readbytes",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441823-readbytes",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812910-writebytes"
+      ],
+      "title": "Reading and Writing Buffer Data"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iomemorydescriptor/1442038-writebytes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

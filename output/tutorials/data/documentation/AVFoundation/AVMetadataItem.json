@@ -1,0 +1,4518 @@
+{
+  "abstract": [
+    {
+      "text": "A metadata item for an audiovisual asset or one of its tracks.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AVMetadataItem",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AVMetadataItem"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AVMetadataItem"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.7",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AVMetadataItem"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVMetadataItem"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/loading-media-data-asynchronously",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/retrieving-media-metadata",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/presenting-chapter-markers"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To effectively use ",
+              "type": "text"
+            },
+            {
+              "code": "AVMetadataItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you need to understand how ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " organizes metadata. To simplify finding and filtering metadata items, the framework groups related metadata into key spaces:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Format-specific key spaces.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " The framework defines several format-specific key spaces. They roughly correlate to a particular container or file format, such as QuickTime (QuickTime metadata and user data) or MP3 (ID3). However, a single asset may contain metadata values across multiple key spaces. To retrieve an asset’s complete collection of format-specific metadata, you use its ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset/metadata",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Common key space.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " There are several common metadata values, such as a movie’s creation date or description, that can exist across multiple key spaces. To help normalize access to this common metadata, the framework provides a common key space that gives access to a limited set of metadata values common to several key spaces. This makes it easy to retrieve commonly used metadata without concern for the specific format. To retrieve an asset’s collection of common metadata, you use its ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset/commonMetadata",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metadata items have keys that accord with the specification of the container format from which they’re drawn. Full details of the metadata formats, metadata keys, and metadata key spaces supported by AVFoundation are available in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataKeySpace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To load values of a metadata item when you access them for the first time, use the methods from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousKeyValueLoading",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class and other classes in turn provide their metadata as needed so that you can obtain objects from those arrays without incurring overhead for items you don’t inspect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To filter arrays of metadata items, you use the methods of this class. For example, you can filter by key and key space, by locale, and by preferred language.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset": {
+      "abstract": [
+        {
+          "text": "An object that models timed audiovisual media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAsset",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avasset"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset/commonMetadata": {
+      "abstract": [
+        {
+          "text": "The metadata items an asset contains for common metadata identifiers that provide a value.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commonMetadata"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMetadataItem",
+          "text": "AVMetadataItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset/commonMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "commonMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "commonMetadata",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avasset/commonmetadata"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset/metadata": {
+      "abstract": [
+        {
+          "text": "An array of metadata items for all metadata identifiers for which a value is available.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "metadata"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMetadataItem",
+          "text": "AVMetadataItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset/metadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "metadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "metadata",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avasset/metadata"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousKeyValueLoading": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the interface to load media data asynchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAsynchronousKeyValueLoading"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousKeyValueLoading",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAsynchronousKeyValueLoading"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAsynchronousKeyValueLoading",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avasynchronouskeyvalueloading"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataExtraAttributeKey": {
+      "abstract": [
+        {
+          "text": "A structure that defines keys for extra metadata attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMetadataExtraAttributeKey"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataExtraAttributeKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMetadataExtraAttributeKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMetadataExtraAttributeKey",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataextraattributekey"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataFormat": {
+      "abstract": [
+        {
+          "text": "A structure that defines metadata formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMetadataFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMetadataFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMetadataFormat",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataformat"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataIdentifier": {
+      "abstract": [
+        {
+          "text": "A structure that defines identifiers for metadata formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMetadataIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMetadataIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMetadataIdentifier",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataidentifier"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem": {
+      "abstract": [
+        {
+          "text": "A metadata item for an audiovisual asset or one of its tracks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMetadataItem"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMetadataItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMetadataItem",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/commonKey": {
+      "abstract": [
+        {
+          "text": "The common key of the metadata item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commonKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMetadataKey",
+          "text": "AVMetadataKey"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/commonKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "commonKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "commonKey",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/commonkey"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/dataType": {
+      "abstract": [
+        {
+          "text": "The data type of the metadata item’s value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/dataType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dataType"
+        }
+      ],
+      "role": "symbol",
+      "title": "dataType",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/datatype"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/dataValue": {
+      "abstract": [
+        {
+          "text": "The value of the metadata item as a data value.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/dataValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dataValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "dataValue",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/datavalue"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/dateValue": {
+      "abstract": [
+        {
+          "text": "The value of the metadata item as a date.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dateValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/dateValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dateValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "dateValue",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/datevalue"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/duration": {
+      "abstract": [
+        {
+          "text": "The duration of the metadata item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/duration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "duration"
+        }
+      ],
+      "role": "symbol",
+      "title": "duration",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/duration"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/extendedLanguageTag": {
+      "abstract": [
+        {
+          "text": "The IETF BCP 47 (RFC 4646) language identifier of the metadata item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "extendedLanguageTag"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/extendedLanguageTag",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "extendedLanguageTag"
+        }
+      ],
+      "role": "symbol",
+      "title": "extendedLanguageTag",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/extendedlanguagetag"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/extraAttributes": {
+      "abstract": [
+        {
+          "text": "A dictionary of additional attributes for a metadata item.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "extraAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMetadataExtraAttributeKey",
+          "text": "AVMetadataExtraAttributeKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/extraAttributes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "extraAttributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "extraAttributes",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/extraattributes"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/identifier": {
+      "abstract": [
+        {
+          "text": "An identifier for a metadata item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMetadataIdentifier",
+          "text": "AVMetadataIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/identifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/identifier"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/identifier(forKey:keySpace:)": {
+      "abstract": [
+        {
+          "text": "Returns a metadata identifier for the specified key and key space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "keySpace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMetadataKeySpace",
+          "text": "AVMetadataKeySpace"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMetadataIdentifier",
+          "text": "AVMetadataIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/identifier(forKey:keySpace:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identifierForKey:keySpace:"
+        }
+      ],
+      "role": "symbol",
+      "title": "identifier(forKey:keySpace:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/identifier(forkey:keyspace:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/init(propertiesOfMetadataItem:valueLoadingHandler:)": {
+      "abstract": [
+        {
+          "text": "Creates a metadata item whose value loads on an on-demand basis only.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "propertiesOfMetadataItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMetadataItem",
+          "text": "AVMetadataItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "valueLoadingHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMetadataItemValueRequest",
+          "text": "AVMetadataItemValueRequest"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/init(propertiesOfMetadataItem:valueLoadingHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "metadataItemWithPropertiesOfMetadataItem:valueLoadingHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(propertiesOfMetadataItem:valueLoadingHandler:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/init(propertiesofmetadataitem:valueloadinghandler:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/key": {
+      "abstract": [
+        {
+          "text": "The key of the metadata item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSCopying",
+          "text": "NSCopying"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/key",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "key"
+        }
+      ],
+      "role": "symbol",
+      "title": "key",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/key"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/key(forIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Returns a metadata key for the specified identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMetadataIdentifier",
+          "text": "AVMetadataIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/key(forIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "keyForIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "key(forIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/key(foridentifier:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/keySpace": {
+      "abstract": [
+        {
+          "text": "The key space for the metadata item’s key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keySpace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMetadataKeySpace",
+          "text": "AVMetadataKeySpace"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/keySpace",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "keySpace"
+        }
+      ],
+      "role": "symbol",
+      "title": "keySpace",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/keyspace"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/keySpace(forIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Returns a metadata key space for the specified identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keySpace"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMetadataIdentifier",
+          "text": "AVMetadataIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMetadataKeySpace",
+          "text": "AVMetadataKeySpace"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/keySpace(forIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "keySpaceForIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "keySpace(forIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/keyspace(foridentifier:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/loadValuesAsynchronouslyForKeys:completionHandler:": {
+      "abstract": [
+        {
+          "text": "Tells the object to load the values of any of the specified keys that aren’t already loaded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadValuesAsynchronouslyForKeys:completionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/loadValuesAsynchronouslyForKeys:completionHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadValuesAsynchronouslyForKeys:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadValuesAsynchronouslyForKeys:completionHandler:",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/loadvaluesasynchronouslyforkeys:completionhandler:"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/locale": {
+      "abstract": [
+        {
+          "text": "The locale of the metadata item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV",
+          "text": "Locale"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/locale",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locale"
+        }
+      ],
+      "role": "symbol",
+      "title": "locale",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/locale"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/metadataItems(from:filteredAndSortedAccordingToPreferredLanguages:)": {
+      "abstract": [
+        {
+          "text": "Returns metadata items whose locales match one of the specified language identifiers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "metadataItems"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMetadataItem",
+          "text": "AVMetadataItem"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "filteredAndSortedAccordingToPreferredLanguages"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMetadataItem",
+          "text": "AVMetadataItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/metadataItems(from:filteredAndSortedAccordingToPreferredLanguages:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "metadataItemsFromArray:filteredAndSortedAccordingToPreferredLanguages:"
+        }
+      ],
+      "role": "symbol",
+      "title": "metadataItems(from:filteredAndSortedAccordingToPreferredLanguages:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/metadataitems(from:filteredandsortedaccordingtopreferredlanguages:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/metadataItems(from:filteredBy:)": {
+      "abstract": [
+        {
+          "text": "Returns filtered metadata items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "metadataItems"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMetadataItem",
+          "text": "AVMetadataItem"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "filteredBy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMetadataItemFilter",
+          "text": "AVMetadataItemFilter"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMetadataItem",
+          "text": "AVMetadataItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/metadataItems(from:filteredBy:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "metadataItemsFromArray:filteredByMetadataItemFilter:"
+        }
+      ],
+      "role": "symbol",
+      "title": "metadataItems(from:filteredBy:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/metadataitems(from:filteredby:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/metadataItems(from:filteredByIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Returns metadata items for the specified identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "metadataItems"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMetadataItem",
+          "text": "AVMetadataItem"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "filteredByIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMetadataIdentifier",
+          "text": "AVMetadataIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMetadataItem",
+          "text": "AVMetadataItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/metadataItems(from:filteredByIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "metadataItemsFromArray:filteredByIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "metadataItems(from:filteredByIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/metadataitems(from:filteredbyidentifier:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/metadataItems(from:with:)": {
+      "abstract": [
+        {
+          "text": "Returns metadata items that match a specified locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "metadataItems"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMetadataItem",
+          "text": "AVMetadataItem"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV",
+          "text": "Locale"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMetadataItem",
+          "text": "AVMetadataItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/metadataItems(from:with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "metadataItemsFromArray:withLocale:"
+        }
+      ],
+      "role": "symbol",
+      "title": "metadataItems(from:with:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/metadataitems(from:with:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/metadataItems(from:withKey:keySpace:)": {
+      "abstract": [
+        {
+          "text": "Returns metadata items that match a specified key or key space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "metadataItems"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMetadataItem",
+          "text": "AVMetadataItem"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "keySpace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMetadataKeySpace",
+          "text": "AVMetadataKeySpace"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMetadataItem",
+          "text": "AVMetadataItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/metadataItems(from:withKey:keySpace:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "metadataItemsFromArray:withKey:keySpace:"
+        }
+      ],
+      "role": "symbol",
+      "title": "metadataItems(from:withKey:keySpace:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/metadataitems(from:withkey:keyspace:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/numberValue": {
+      "abstract": [
+        {
+          "text": "The value of the metadata item as a number.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/numberValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "numberValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "numberValue",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/numbervalue"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/startDate": {
+      "abstract": [
+        {
+          "text": "The start date of the timed metadata.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/startDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "startDate",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/startdate"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/statusOfValueForKey:error:": {
+      "abstract": [
+        {
+          "text": "Reports whether the value for a given key is immediately available without blocking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "statusOfValueForKey:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/statusOfValueForKey:error:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "statusOfValueForKey:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "statusOfValueForKey:error:",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/statusofvalueforkey:error:"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/stringValue": {
+      "abstract": [
+        {
+          "text": "The value of the metadata item as a string.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stringValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/stringValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stringValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "stringValue",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/stringvalue"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/time": {
+      "abstract": [
+        {
+          "text": "The timestamp of the metadata item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "time"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/time",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "time"
+        }
+      ],
+      "role": "symbol",
+      "title": "time",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/time"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/value": {
+      "abstract": [
+        {
+          "text": "The value of the metadata item.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSCopying",
+          "text": "NSCopying"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/value",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "value"
+        }
+      ],
+      "role": "symbol",
+      "title": "value",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem/value"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItemFilter": {
+      "abstract": [
+        {
+          "text": "An object that filters selected information from a metadata item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMetadataItemFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItemFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMetadataItemFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMetadataItemFilter",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitemfilter"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItemValueRequest": {
+      "abstract": [
+        {
+          "text": "An object that responds to a request to load the value of a metadata item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMetadataItemValueRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItemValueRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMetadataItemValueRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMetadataItemValueRequest",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitemvaluerequest"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataKey": {
+      "abstract": [
+        {
+          "text": "A structure that defines a metadata key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMetadataKey"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMetadataKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMetadataKey",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadatakey"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataKeySpace": {
+      "abstract": [
+        {
+          "text": "A structure that defines a metadata key space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMetadataKeySpace"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataKeySpace",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMetadataKeySpace"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMetadataKeySpace",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadatakeyspace"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMetadataItem": {
+      "abstract": [
+        {
+          "text": "A mutable metadata item for an audiovisual asset or for one of its tracks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMutableMetadataItem"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMetadataItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMutableMetadataItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMutableMetadataItem",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemetadataitem"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPartialAsyncProperty/dataValue": {
+      "abstract": [
+        {
+          "text": "The value of the metadata item as a data value.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Root",
+            "type": "codeVoice"
+          },
+          {
+            "text": " inherits ",
+            "type": "text"
+          },
+          {
+            "code": "AVMetadataItem",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12AVFoundation15AVAsyncPropertyC",
+          "text": "AVAsyncProperty"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Root"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?>"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPartialAsyncProperty/dataValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dataValue",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avpartialasyncproperty/datavalue"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPartialAsyncProperty/dateValue": {
+      "abstract": [
+        {
+          "text": "The value of the metadata item as a date.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Root",
+            "type": "codeVoice"
+          },
+          {
+            "text": " inherits ",
+            "type": "text"
+          },
+          {
+            "code": "AVMetadataItem",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dateValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12AVFoundation15AVAsyncPropertyC",
+          "text": "AVAsyncProperty"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Root"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?>"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPartialAsyncProperty/dateValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dateValue",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avpartialasyncproperty/datevalue"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPartialAsyncProperty/extraAttributes": {
+      "abstract": [
+        {
+          "text": "A dictionary of additional attributes for the item.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Root",
+            "type": "codeVoice"
+          },
+          {
+            "text": " inherits ",
+            "type": "text"
+          },
+          {
+            "code": "AVMetadataItem",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "extraAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12AVFoundation15AVAsyncPropertyC",
+          "text": "AVAsyncProperty"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Root"
+        },
+        {
+          "kind": "text",
+          "text": ", ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMetadataExtraAttributeKey",
+          "text": "AVMetadataExtraAttributeKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?>"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPartialAsyncProperty/extraAttributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "extraAttributes",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avpartialasyncproperty/extraattributes"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPartialAsyncProperty/numberValue": {
+      "abstract": [
+        {
+          "text": "The value of the metadata item as a number.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Root",
+            "type": "codeVoice"
+          },
+          {
+            "text": " inherits ",
+            "type": "text"
+          },
+          {
+            "code": "AVMetadataItem",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12AVFoundation15AVAsyncPropertyC",
+          "text": "AVAsyncProperty"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Root"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "?>"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPartialAsyncProperty/numberValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "numberValue",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avpartialasyncproperty/numbervalue"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPartialAsyncProperty/stringValue": {
+      "abstract": [
+        {
+          "text": "The value of the metadata item as a string.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Root",
+            "type": "codeVoice"
+          },
+          {
+            "text": " inherits ",
+            "type": "text"
+          },
+          {
+            "code": "AVMetadataItem",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stringValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12AVFoundation15AVAsyncPropertyC",
+          "text": "AVAsyncProperty"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Root"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?>"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPartialAsyncProperty/stringValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stringValue",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avpartialasyncproperty/stringvalue"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPartialAsyncProperty/value": {
+      "abstract": [
+        {
+          "text": "The value of the metadata item.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Root",
+            "type": "codeVoice"
+          },
+          {
+            "text": " inherits ",
+            "type": "text"
+          },
+          {
+            "code": "AVMetadataItem",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12AVFoundation15AVAsyncPropertyC",
+          "text": "AVAsyncProperty"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Root"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSCopying",
+          "text": "NSCopying"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ")?>"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPartialAsyncProperty/value",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "value",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avpartialasyncproperty/value"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/loading-media-data-asynchronously": {
+      "abstract": [
+        {
+          "text": "Build responsive apps by using language-level concurrency features to efficiently load media data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/loading-media-data-asynchronously",
+      "kind": "article",
+      "role": "article",
+      "title": "Loading media data asynchronously",
+      "type": "topic",
+      "url": "/documentation/avfoundation/loading-media-data-asynchronously"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/presenting-chapter-markers": {
+      "abstract": [
+        {
+          "text": "Add chapter markers to enable users to quickly navigate your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/presenting-chapter-markers",
+      "kind": "article",
+      "role": "article",
+      "title": "Presenting Chapter Markers",
+      "type": "topic",
+      "url": "/documentation/avfoundation/presenting-chapter-markers"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/retrieving-media-metadata": {
+      "abstract": [
+        {
+          "text": "Load descriptive metadata for media assets and their tracks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/retrieving-media-metadata",
+      "kind": "article",
+      "role": "article",
+      "title": "Retrieving media metadata",
+      "type": "topic",
+      "url": "/documentation/avfoundation/retrieving-media-metadata"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSMutableCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that mutable objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSMutableCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMetadataItem"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousKeyValueLoading",
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSMutableCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Metadata",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/retrieving-media-metadata",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMetadataItem",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataIdentifier",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataKey",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataKeySpace",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataExtraAttributeKey",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataFormat",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItemFilter"
+      ],
+      "title": "Metadata"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Metadata-Item",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/init(propertiesOfMetadataItem:valueLoadingHandler:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItemValueRequest"
+      ],
+      "title": "Creating a Metadata Item"
+    },
+    {
+      "anchor": "Identifying-Metadata-Items",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/identifier"
+      ],
+      "title": "Identifying Metadata Items"
+    },
+    {
+      "anchor": "Loading-Values",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/dataType",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPartialAsyncProperty/value",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPartialAsyncProperty/stringValue",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPartialAsyncProperty/numberValue",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPartialAsyncProperty/dateValue",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPartialAsyncProperty/dataValue",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPartialAsyncProperty/extraAttributes"
+      ],
+      "title": "Loading Values"
+    },
+    {
+      "anchor": "Accessing-Keys-and-Key-Spaces",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/key",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/commonKey",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/keySpace"
+      ],
+      "title": "Accessing Keys and Key Spaces"
+    },
+    {
+      "anchor": "Accessing-Timing",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/time",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/startDate",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/duration"
+      ],
+      "title": "Accessing Timing"
+    },
+    {
+      "anchor": "Accessing-Language-Support",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/locale",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/extendedLanguageTag"
+      ],
+      "title": "Accessing Language Support"
+    },
+    {
+      "anchor": "Filtering-Arrays-of-Metadata-Items",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/metadataItems(from:filteredByIdentifier:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/metadataItems(from:withKey:keySpace:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/metadataItems(from:with:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/metadataItems(from:filteredAndSortedAccordingToPreferredLanguages:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/metadataItems(from:filteredBy:)"
+      ],
+      "title": "Filtering Arrays of Metadata Items"
+    },
+    {
+      "anchor": "Translating-Metadata-Items",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/identifier(forKey:keySpace:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/key(forIdentifier:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/keySpace(forIdentifier:)"
+      ],
+      "title": "Translating Metadata Items"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Prefer loading values asynchronously using the symbols in Loading Values.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Accessing-Values",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/value",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/extraAttributes",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/stringValue",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/numberValue",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/dateValue",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/dataValue"
+      ],
+      "title": "Accessing Values"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.7",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AVMetadataItem"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetadataItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetadataItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfoundation/documentation/AVFoundation"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Metadata-Item",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/init(propertiesOfMetadataItem:valueLoadingHandler:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItemValueRequest"
+              ],
+              "title": "Creating a Metadata Item"
+            },
+            {
+              "anchor": "Identifying-Metadata-Items",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/identifier"
+              ],
+              "title": "Identifying Metadata Items"
+            },
+            {
+              "anchor": "Loading-Values",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/dataType"
+              ],
+              "title": "Loading Values"
+            },
+            {
+              "anchor": "Accessing-Keys-and-Key-Spaces",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/key",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/commonKey",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/keySpace"
+              ],
+              "title": "Accessing Keys and Key Spaces"
+            },
+            {
+              "anchor": "Accessing-Timing",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/time",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/startDate",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/duration"
+              ],
+              "title": "Accessing Timing"
+            },
+            {
+              "anchor": "Accessing-Language-Support",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/locale",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/extendedLanguageTag"
+              ],
+              "title": "Accessing Language Support"
+            },
+            {
+              "anchor": "Filtering-Arrays-of-Metadata-Items",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/metadataItems(from:filteredByIdentifier:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/metadataItems(from:withKey:keySpace:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/metadataItems(from:with:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/metadataItems(from:filteredAndSortedAccordingToPreferredLanguages:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/metadataItems(from:filteredBy:)"
+              ],
+              "title": "Filtering Arrays of Metadata Items"
+            },
+            {
+              "anchor": "Translating-Metadata-Items",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/identifier(forKey:keySpace:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/key(forIdentifier:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/keySpace(forIdentifier:)"
+              ],
+              "title": "Translating Metadata Items"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Prefer loading values asynchronously using the symbols in Loading Values.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Accessing-Values",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/value",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/extraAttributes",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/stringValue",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/numberValue",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/dateValue",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/dataValue",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/loadValuesAsynchronouslyForKeys:completionHandler:",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem/statusOfValueForKey:error:"
+              ],
+              "title": "Accessing Values"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMetadataItem"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousKeyValueLoading",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSMutableCopying"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Metadata",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/retrieving-media-metadata",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMetadataItem",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataIdentifier",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataKey",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataKeySpace",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataExtraAttributeKey",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataFormat",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItemFilter"
+              ],
+              "title": "Metadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AVMetadataItem"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1numberValue/title",
+          "value": "numberValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1numberValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "numberValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1metadataItems(from:withKey:keySpace:)/title",
+          "value": "metadataItemsFromArray:withKey:keySpace:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1metadataItems(from:withKey:keySpace:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "metadataItemsFromArray:withKey:keySpace:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1dataType/title",
+          "value": "dataType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1dataType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dataType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1metadataItems(from:with:)/title",
+          "value": "metadataItemsFromArray:withLocale:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1metadataItems(from:with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "metadataItemsFromArray:withLocale:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1keySpace(forIdentifier:)/title",
+          "value": "keySpaceForIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1keySpace(forIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "keySpaceForIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataFormat/title",
+          "value": "AVMetadataFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetadataFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataFormat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetadataFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1key(forIdentifier:)/title",
+          "value": "keyForIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1key(forIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "keyForIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsset~1commonMetadata/title",
+          "value": "commonMetadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsset~1commonMetadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "commonMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1value/title",
+          "value": "value"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1value/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "value"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem/title",
+          "value": "AVMetadataItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetadataItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetadataItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1time/title",
+          "value": "time"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1time/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "time"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsynchronousKeyValueLoading/title",
+          "value": "AVAsynchronousKeyValueLoading"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsynchronousKeyValueLoading/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAsynchronousKeyValueLoading"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsynchronousKeyValueLoading/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAsynchronousKeyValueLoading"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1stringValue/title",
+          "value": "stringValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1stringValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "stringValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1startDate/title",
+          "value": "startDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1startDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "startDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataKeySpace/title",
+          "value": "AVMetadataKeySpace"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataKeySpace/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetadataKeySpace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataKeySpace/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetadataKeySpace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1keySpace/title",
+          "value": "keySpace"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1keySpace/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "keySpace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsset~1metadata/title",
+          "value": "metadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsset~1metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "metadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1identifier/title",
+          "value": "identifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1identifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "identifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1extraAttributes/title",
+          "value": "extraAttributes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1extraAttributes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "extraAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1identifier(forKey:keySpace:)/title",
+          "value": "identifierForKey:keySpace:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1identifier(forKey:keySpace:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "identifierForKey:keySpace:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsset/title",
+          "value": "AVAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataKey/title",
+          "value": "AVMetadataKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetadataKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetadataKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMetadataItem/title",
+          "value": "AVMutableMetadataItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMetadataItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableMetadataItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMetadataItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableMetadataItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataExtraAttributeKey/title",
+          "value": "AVMetadataExtraAttributeKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataExtraAttributeKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetadataExtraAttributeKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataExtraAttributeKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetadataExtraAttributeKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItemValueRequest/title",
+          "value": "AVMetadataItemValueRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItemValueRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetadataItemValueRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItemValueRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetadataItemValueRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1key/title",
+          "value": "key"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1key/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "key"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItemFilter/title",
+          "value": "AVMetadataItemFilter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItemFilter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetadataItemFilter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItemFilter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetadataItemFilter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1metadataItems(from:filteredByIdentifier:)/title",
+          "value": "metadataItemsFromArray:filteredByIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1metadataItems(from:filteredByIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "metadataItemsFromArray:filteredByIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1duration/title",
+          "value": "duration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1duration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "duration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1dataValue/title",
+          "value": "dataValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1dataValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dataValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1metadataItems(from:filteredBy:)/title",
+          "value": "metadataItemsFromArray:filteredByMetadataItemFilter:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1metadataItems(from:filteredBy:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "metadataItemsFromArray:filteredByMetadataItemFilter:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1metadataItems(from:filteredAndSortedAccordingToPreferredLanguages:)/title",
+          "value": "metadataItemsFromArray:filteredAndSortedAccordingToPreferredLanguages:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1metadataItems(from:filteredAndSortedAccordingToPreferredLanguages:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "metadataItemsFromArray:filteredAndSortedAccordingToPreferredLanguages:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1locale/title",
+          "value": "locale"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1locale/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "locale"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1extendedLanguageTag/title",
+          "value": "extendedLanguageTag"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1extendedLanguageTag/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "extendedLanguageTag"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1dateValue/title",
+          "value": "dateValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1dateValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dateValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1commonKey/title",
+          "value": "commonKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1commonKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "commonKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1init(propertiesOfMetadataItem:valueLoadingHandler:)/title",
+          "value": "metadataItemWithPropertiesOfMetadataItem:valueLoadingHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem~1init(propertiesOfMetadataItem:valueLoadingHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "metadataItemWithPropertiesOfMetadataItem:valueLoadingHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataIdentifier/title",
+          "value": "AVMetadataIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetadataIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetadataIdentifier"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/avmetadataitem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/avmetadataitem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

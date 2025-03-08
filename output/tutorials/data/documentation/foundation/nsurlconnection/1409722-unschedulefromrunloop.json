@@ -1,0 +1,491 @@
+{
+  "abstract": [
+    {
+      "text": "Causes the connection to stop calling delegate methods in the specified run loop and mode.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/legacy_url_loading_systems",
+        "doc://com.apple.documentation/documentation/foundation/nsurlconnection"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1409722-unschedulefromrunloop"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1409722,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSURLConnection(im)unscheduleFromRunLoop:forMode:",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSURLConnection"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.5",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "unscheduleFromRunLoop:forMode:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "identifier",
+              "text": "unscheduleFromRunLoop:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsrunloop",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSRunLoop",
+              "text": "NSRunLoop"
+            },
+            {
+              "kind": "text",
+              "text": " *"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "aRunLoop"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "forMode:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsrunloopmode",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSRunLoopMode",
+              "text": "NSRunLoopMode"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "mode"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The run loop instance to unschedule.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "aRunLoop"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The mode to unschedule.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "mode"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, a connection is scheduled on the current thread in the default mode when it is created. If you create a connection with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1418425-initwithrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and provide ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " for the ",
+              "type": "text"
+            },
+            {
+              "code": "startImmediately",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, you can instead schedule connection on a different run loop or mode before starting it with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1417345-start",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. You can schedule a connection on multiple run loops and modes, or on the same run loop in multiple modes. Use this method to unschedule the connection from an undesired run loop and mode before starting the connection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You cannot reschedule a connection after it has started. It is not necessary to unschedule a connection after it has finished.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsrunloop": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsrunloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRunLoop",
+      "type": "topic",
+      "url": "/documentation/foundation/nsrunloop"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsrunloopmode": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsrunloopmode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRunLoopMode",
+      "type": "topic",
+      "url": "/documentation/foundation/nsrunloopmode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection": {
+      "abstract": [
+        {
+          "text": "An object that enables you to start and stop URL requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLConnection",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1409722-unschedulefromrunloop": {
+      "abstract": [
+        {
+          "text": "Causes the connection to stop calling delegate methods in the specified run loop and mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "unscheduleFromRunLoop:forMode:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1409722-unschedulefromrunloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unscheduleFromRunLoop:forMode:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection/1409722-unschedulefromrunloop"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1411849-setdelegatequeue": {
+      "abstract": [
+        {
+          "text": "Determines the operation queue that is used to call methods on the connection’s delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDelegateQueue:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1411849-setdelegatequeue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDelegateQueue:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection/1411849-setdelegatequeue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1417345-start": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1417345-start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "start",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection/1417345-start"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1417485-scheduleinrunloop": {
+      "abstract": [
+        {
+          "text": "Determines the run loop and mode that the connection uses to call methods on its delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheduleInRunLoop:forMode:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1417485-scheduleinrunloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scheduleInRunLoop:forMode:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection/1417485-scheduleinrunloop"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1418425-initwithrequest": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithRequest:delegate:startImmediately:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1418425-initwithrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithRequest:delegate:startImmediately:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection/1418425-initwithrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/legacy_url_loading_systems": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/legacy_url_loading_systems",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Legacy URL Loading Systems",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/legacy_url_loading_systems"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/no": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NO",
+      "type": "topic",
+      "url": "/documentation/objectivec/no"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1417485-scheduleinrunloop",
+        "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1411849-setdelegatequeue"
+      ],
+      "title": "Scheduling Delegate Method Calls"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsurlconnection/1409722-unschedulefromrunloop"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsurlconnection/1409722-unschedule"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

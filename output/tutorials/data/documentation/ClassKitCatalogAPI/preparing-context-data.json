@@ -1,0 +1,1176 @@
+{
+  "abstract": [
+    {
+      "text": "Adjust how you manage context data when working with the web API.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/preparing-context-data"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ClassKit Catalog API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Preparing Context Data"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects that you send to the ClassKit Catalog API resemble the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ClassKit/CLSContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances that you construct when declaring a context hierarchy in your app. For example, you provide information in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context/Data-data.dictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object like a title, a type, and a summary, corresponding to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ClassKit/CLSContext/title",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ClassKit/CLSContext/type",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ClassKit/CLSContext/summary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ClassKit/CLSContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", respectively. However, there are some differences in the way you describe contexts to the ClassKit Catalog API, like how you refer to the main app context and how you manage localization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For general information about building a context hierarchy, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ClassKit/advertising-your-app-s-assignable-content",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Access-the-Main-App-Context",
+          "level": 3,
+          "text": "Access the Main App Context",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every app has a single main app context at the root of its context hierarchy. You access the main app context from inside your app using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ClassKit/CLSDataStore/mainAppContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the ClassKit data store, and can neither create nor destroy the context. ClassKit manages the main app context for you.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When building a context hierarchy in the ClassKit Catalog API, you explicitly create a main app context. Be sure to set the ",
+              "type": "text"
+            },
+            {
+              "code": "type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field to ",
+              "type": "text"
+            },
+            {
+              "code": "app",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and set the context’s ",
+              "type": "text"
+            },
+            {
+              "code": "title",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to match the name of the app in the context’s locale. To avoid confusion, it’s a good idea to make these match exactly. The Schoolwork app refers to your app by its name after the teacher installs your app, but by the main context’s title otherwise.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To refer to your main app context in an API call, use a string that contains the bundle identifier for the app as its identifier path. For example, the identifier path of the main app context of the GreatPlays sample app — which you can download from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ClassKit/incorporating-classkit-into-an-educational-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " — is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[\"com.example.apple-samplecode.GreatPlays\"]"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Provide-Localization-Data-for-Contexts",
+          "level": 3,
+          "text": "Provide Localization Data for Contexts",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your app, you describe exactly one version of a given context identified by an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ClassKit/CLSContext/identifierPath",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You localize user-facing elements, like the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ClassKit/CLSContext/title",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ClassKit/CLSContext/summary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", by providing localized strings at runtime based on the locale set by the user for the device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the ClassKit Catalog API, on the other hand, you enumerate all of the localized versions of a given context. Use the ",
+              "type": "text"
+            },
+            {
+              "code": "locale",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context/Metadata-data.dictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to indicate the locale to which a context applies. Provide different versions of the same context — uniquely identified by the identifier path — for each of the locales that you support.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI": {
+      "abstract": [
+        {
+          "text": "Declare the activities supported by your educational app through a web interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClassKit Catalog API",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context": {
+      "abstract": [
+        {
+          "text": "An area of your app that represents an assignable task, like a quiz or a chapter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Context"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Context"
+        }
+      ],
+      "role": "symbol",
+      "title": "Context",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/context"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context/Data-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The data that makes up a context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Context.Data"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context/Data-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Context.Data"
+        }
+      ],
+      "role": "symbol",
+      "title": "Context.Data",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/context/data-data.dictionary"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context/Metadata-data.dictionary": {
+      "abstract": [
+        {
+          "text": "Information that helps the system categorize a context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Context.Metadata"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context/Metadata-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Context.Metadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "Context.Metadata",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/context/metadata-data.dictionary"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/ContextsRequest": {
+      "abstract": [
+        {
+          "text": "A request that you make when modifying context information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContextsRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/ContextsRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContextsRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContextsRequest",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/contextsrequest"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/ContextsResponse": {
+      "abstract": [
+        {
+          "text": "The response you receive after modifying context information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContextsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/ContextsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContextsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContextsResponse",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/contextsresponse"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Create-or-Replace-Contexts": {
+      "abstract": [
+        {
+          "text": "Store information about the assignable content that your educational app provides.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Create-or-Replace-Contexts",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Create or Replace Contexts"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create or Replace Contexts",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/create-or-replace-contexts"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Delete-a-Context": {
+      "abstract": [
+        {
+          "text": "Remove information that you previously stored about your app’s assignable activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Delete-a-Context",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Delete a Context"
+        }
+      ],
+      "role": "symbol",
+      "title": "Delete a Context",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/delete-a-context"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Get-a-Context": {
+      "abstract": [
+        {
+          "text": "Fetch information that you previously stored about your app’s assignable activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Get-a-Context",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a Context"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Context",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/get-a-context"
+    },
+    "doc://com.apple.documentation/documentation/ClassKit/CLSContext": {
+      "abstract": [
+        {
+          "text": "An area of your app that represents an assignable task, like a quiz or a chapter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLSContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClassKit/CLSContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLSContext",
+      "type": "topic",
+      "url": "/documentation/ClassKit/CLSContext"
+    },
+    "doc://com.apple.documentation/documentation/ClassKit/CLSContext/identifierPath": {
+      "abstract": [
+        {
+          "text": "The identifier path that locates the context within the data store’s context hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifierPath"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "] { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClassKit/CLSContext/identifierPath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "identifierPath",
+      "type": "topic",
+      "url": "/documentation/ClassKit/CLSContext/identifierPath"
+    },
+    "doc://com.apple.documentation/documentation/ClassKit/CLSContext/summary": {
+      "abstract": [
+        {
+          "text": "An optional, user-visible description of the context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "summary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClassKit/CLSContext/summary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "summary",
+      "type": "topic",
+      "url": "/documentation/ClassKit/CLSContext/summary"
+    },
+    "doc://com.apple.documentation/documentation/ClassKit/CLSContext/title": {
+      "abstract": [
+        {
+          "text": "The name of the context as it appears to users.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClassKit/CLSContext/title",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/ClassKit/CLSContext/title"
+    },
+    "doc://com.apple.documentation/documentation/ClassKit/CLSContext/type": {
+      "abstract": [
+        {
+          "text": "The kind of content a context represents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CLSContextType",
+          "text": "CLSContextType"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClassKit/CLSContext/type",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "type",
+      "type": "topic",
+      "url": "/documentation/ClassKit/CLSContext/type"
+    },
+    "doc://com.apple.documentation/documentation/ClassKit/CLSDataStore/mainAppContext": {
+      "abstract": [
+        {
+          "text": "The app’s top-level context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mainAppContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLSContext",
+          "text": "CLSContext"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClassKit/CLSDataStore/mainAppContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mainAppContext",
+      "type": "topic",
+      "url": "/documentation/ClassKit/CLSDataStore/mainAppContext"
+    },
+    "doc://com.apple.documentation/documentation/ClassKit/advertising-your-app-s-assignable-content": {
+      "abstract": [
+        {
+          "text": "Assemble a hierarchy of contexts and declare your app’s assignable content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClassKit/advertising-your-app-s-assignable-content",
+      "kind": "article",
+      "role": "article",
+      "title": "Advertising your app’s assignable content",
+      "type": "topic",
+      "url": "/documentation/ClassKit/advertising-your-app-s-assignable-content"
+    },
+    "doc://com.apple.documentation/documentation/ClassKit/incorporating-classkit-into-an-educational-app": {
+      "abstract": [
+        {
+          "text": "Walk through the process of setting up assignments and recording student progress.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClassKit/incorporating-classkit-into-an-educational-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Incorporating ClassKit into an Educational App",
+      "type": "topic",
+      "url": "/documentation/ClassKit/incorporating-classkit-into-an-educational-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Declaring-Contexts",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Create-or-Replace-Contexts",
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Get-a-Context",
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Delete-a-Context",
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context",
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/ContextsRequest",
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/ContextsResponse"
+      ],
+      "title": "Declaring Contexts"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClassKit~1CLSContext/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CLSContext"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CLSObject",
+              "text": "CLSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClassKit~1CLSContext~1identifierPath/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<NSString *>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "identifierPath"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClassKit~1CLSDataStore~1mainAppContext/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "strong"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CLSContext",
+              "text": "CLSContext"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "mainAppContext"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClassKit~1CLSContext~1type/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "assign"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@CLSContextType",
+              "text": "CLSContextType"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "type"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClassKit~1CLSContext~1title/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "title"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClassKit~1CLSContext~1summary/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "summary"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/classkitcatalogapi/preparing-context-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

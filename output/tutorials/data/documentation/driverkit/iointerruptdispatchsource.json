@@ -1,0 +1,588 @@
+{
+  "abstract": [
+    {
+      "text": "A dispatch source that reports hardware-related interrupt events to your driver.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/driverkit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3180587,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOInterruptDispatchSource",
+    "modules": [
+      {
+        "name": "DriverKit"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "24.4",
+        "introducedAt": "19.0",
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOInterruptDispatchSource"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "DriverKit"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOInterruptDispatchSource"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/iodispatchsource",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IODispatchSource",
+              "text": "IODispatchSource"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object executes an associated action in response to hardware-related interrupts. If your driver handles hardware interrupts, configure this dispatch source and use your action object to provide an appropriat response. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Interrupt-related actions execute at the normal thread level. The system records the time at which the interrupt fired using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/1462446-mach_absolute_time",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function, and passes that time value to your action's callback method. For PCI devices, DriverKit supports only MSI interrupt sources. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/driverkit": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DriverKit",
+      "type": "topic",
+      "url": "/documentation/driverkit"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource": {
+      "abstract": [
+        {
+          "text": "A dispatch source that manages a shared-memory data queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODataQueueDispatchSource",
+      "type": "topic",
+      "url": "/documentation/driverkit/iodataqueuedispatchsource"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iodispatchqueue": {
+      "abstract": [
+        {
+          "text": "An object that manages the serial execution of blocks. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iodispatchqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODispatchQueue",
+      "type": "topic",
+      "url": "/documentation/driverkit/iodispatchqueue"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iodispatchsource": {
+      "abstract": [
+        {
+          "text": "The common base class for dispatch sources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iodispatchsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODispatchSource",
+      "type": "topic",
+      "url": "/documentation/driverkit/iodispatchsource"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iodispatchsourcecancelhandler": {
+      "abstract": [
+        {
+          "text": "A block to execute when a canceled dispatch source stops executing tasks. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iodispatchsourcecancelhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODispatchSourceCancelHandler",
+      "type": "topic",
+      "url": "/documentation/driverkit/iodispatchsourcecancelhandler"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource": {
+      "abstract": [
+        {
+          "text": "A dispatch source that reports hardware-related interrupt events to your driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOInterruptDispatchSource",
+      "type": "topic",
+      "url": "/documentation/driverkit/iointerruptdispatchsource"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource/3180594-interruptoccurred": {
+      "abstract": [
+        {
+          "text": "Executes custom code when an interrupt occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "InterruptOccurred"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource/3180594-interruptoccurred",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "InterruptOccurred",
+      "type": "topic",
+      "url": "/documentation/driverkit/iointerruptdispatchsource/3180594-interruptoccurred"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource/3180598-sethandler": {
+      "abstract": [
+        {
+          "text": "Set the handler block to run when the interrupt fires.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource/3180598-sethandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetHandler",
+      "type": "topic",
+      "url": "/documentation/driverkit/iointerruptdispatchsource/3180598-sethandler"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource/3433730-cancel": {
+      "abstract": [
+        {
+          "text": "Cancels all callbacks from the event source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "Cancel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource/3433730-cancel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Cancel",
+      "type": "topic",
+      "url": "/documentation/driverkit/iointerruptdispatchsource/3433730-cancel"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource/3433731-checkforwork": {
+      "abstract": [
+        {
+          "text": "Checks for events to handle. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "CheckForWork"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource/3433731-checkforwork",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CheckForWork",
+      "type": "topic",
+      "url": "/documentation/driverkit/iointerruptdispatchsource/3433731-checkforwork"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource/3433732-setenablewithcompletion": {
+      "abstract": [
+        {
+          "text": "Enables or disables the delivery of interrupts. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetEnableWithCompletion"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource/3433732-setenablewithcompletion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetEnableWithCompletion",
+      "type": "topic",
+      "url": "/documentation/driverkit/iointerruptdispatchsource/3433732-setenablewithcompletion"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource/3946143-getlastinterrupt": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetLastInterrupt"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource/3946143-getlastinterrupt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetLastInterrupt",
+      "type": "topic",
+      "url": "/documentation/driverkit/iointerruptdispatchsource/3946143-getlastinterrupt"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsourcepayload": {
+      "abstract": [
+        {
+          "text": "A private structure for an interrupt dispatch source.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsourcepayload",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOInterruptDispatchSourcePayload",
+      "type": "topic",
+      "url": "/documentation/driverkit/iointerruptdispatchsourcepayload"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iotimerdispatchsource": {
+      "abstract": [
+        {
+          "text": "A dispatch source that notifies your driver at a specific time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iotimerdispatchsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOTimerDispatchSource",
+      "type": "topic",
+      "url": "/documentation/driverkit/iotimerdispatchsource"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osaction": {
+      "abstract": [
+        {
+          "text": "An object that executes your driver's custom behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSAction",
+      "type": "topic",
+      "url": "/documentation/driverkit/osaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1462446-mach_absolute_time": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1462446-mach_absolute_time",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mach_absolute_time",
+      "type": "topic",
+      "url": "/documentation/kernel/1462446-mach_absolute_time"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iointerruptdispatchsource/3438201-create": {
+      "abstract": [
+        {
+          "text": "Create a dispatch source that reports hardware-related interrupts generated by the specified service provider. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "Create"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iointerruptdispatchsource/3438201-create",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Create",
+      "type": "topic",
+      "url": "/documentation/kernel/iointerruptdispatchsource/3438201-create"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iointerruptdispatchsource/3438202-free": {
+      "abstract": [
+        {
+          "text": "Performs any final cleanup for the dispatch source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iointerruptdispatchsource/3438202-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iointerruptdispatchsource/3438202-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iointerruptdispatchsource/3438203-init": {
+      "abstract": [
+        {
+          "text": "Handles the basic initialization of the dispatch source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iointerruptdispatchsource/3438203-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/iointerruptdispatchsource/3438203-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iointerruptdispatchsource/3645740-getinterrupttype": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetInterruptType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iointerruptdispatchsource/3645740-getinterrupttype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetInterruptType",
+      "type": "topic",
+      "url": "/documentation/kernel/iointerruptdispatchsource/3645740-getinterrupttype"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/iodispatchsource"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/iodispatchqueue",
+        "doc://com.apple.documentation/documentation/driverkit/iotimerdispatchsource",
+        "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource",
+        "doc://com.apple.documentation/documentation/driverkit/iodispatchsource",
+        "doc://com.apple.documentation/documentation/driverkit/osaction"
+      ],
+      "title": "Event management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3458187",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iointerruptdispatchsource/3438201-create",
+        "doc://com.apple.documentation/documentation/kernel/iointerruptdispatchsource/3438203-init",
+        "doc://com.apple.documentation/documentation/kernel/iointerruptdispatchsource/3438202-free",
+        "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource/3180598-sethandler"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring the Interrupt Source"
+    },
+    {
+      "anchor": "3458188",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource/3433732-setenablewithcompletion",
+        "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource/3433730-cancel",
+        "doc://com.apple.documentation/documentation/driverkit/iodispatchsourcecancelhandler"
+      ],
+      "kind": "taskGroup",
+      "title": "Starting and Stopping the Interrupt Source"
+    },
+    {
+      "anchor": "3458192",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource/3180594-interruptoccurred",
+        "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource/3433731-checkforwork",
+        "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsourcepayload"
+      ],
+      "kind": "taskGroup",
+      "title": "Declaring Actions"
+    },
+    {
+      "anchor": "3947721",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource/3946143-getlastinterrupt"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "3645961",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iointerruptdispatchsource/3645740-getinterrupttype"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/driverkit/iointerruptdispatchsource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

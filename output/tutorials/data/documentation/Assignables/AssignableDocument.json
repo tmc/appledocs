@@ -1,0 +1,3439 @@
+{
+  "abstract": [
+    {
+      "text": "An assignable document is an augmented PDF that allows teachers to mark up",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "the PDF with the intention of students taking the assessment.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Assignables/documentation/Assignables"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:11Assignables18AssignableDocumentV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AssignableDocument"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Assignables"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AssignableDocument"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "AssignableDocument"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AssignableDocument"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The document has several parts, which includes the ability to modify the PDF,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "annotate the PDF, and define question regions in the PDF.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a question to this assignable, you can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/appendQuestion(pageID:rect:maxScore:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which will take care of associating a box to a page and adding a question connected",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to that box to the document.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This document is fully mergeable, which means that any copies of this document",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that are independently mutated can be merged into a determinisitic resulting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "document. You can merge copies of this document into this one using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/merge(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can also merge individual parts of copies of this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "document into this one with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/merge(partData:into:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, if deviceA has documentA and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "deviceB has documentB, which is a copy of documentA. When a user changes a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "question in documentB on deviceB, deviceB can export that part’s data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and send it to deviceA to be merged back into documentA.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create as many of these objects as you have memory for.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This type assumes single-threaded access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Assignables/documentation/Assignables": {
+      "abstract": [
+        {
+          "text": "A framework that contain wrappers to a PDF to allow creation",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of an assessment and student work on that assessment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Assignables",
+      "type": "topic",
+      "url": "/documentation/assignables"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/Assignable": {
+      "abstract": [
+        {
+          "text": "Documents conforming to this protocol can be assigned to a user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Assignable"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/Assignable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Assignable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Assignable",
+      "type": "topic",
+      "url": "/documentation/assignables/assignable"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument": {
+      "abstract": [
+        {
+          "text": "An assignable document is an augmented PDF that allows teachers to mark up",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the PDF with the intention of students taking the assessment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AssignableDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AssignableDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssignableDocument",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/==(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "=="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/==(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/==(_:_:)"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/Assignable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/Assignable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Assignable Implementations",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/assignable-implementations"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/Configuration-swift.typealias": {
+      "abstract": [
+        {
+          "text": "The configuration for an assessment which contains options",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for display of marks and their point values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/Configuration-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssignableDocument.Configuration",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/configuration-swift.typealias"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/CorrectMarkType": {
+      "abstract": [
+        {
+          "text": "The glyph to use that represents a correct mark.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CorrectMarkType"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/CorrectMarkType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CorrectMarkType"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssignableDocument.CorrectMarkType",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/correctmarktype"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/Element": {
+      "abstract": [
+        {
+          "text": "The type for elements of this document. An element is a component",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of the document such as a page or question.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Element"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/Element",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Element"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssignableDocument.Element",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/element"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/Equatable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/Equatable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equatable Implementations",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/equatable-implementations"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/Error": {
+      "abstract": [
+        {
+          "text": "Errors for this document type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/Error",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssignableDocument.Error",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/error"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/ID-swift.typealias": {
+      "abstract": [
+        {
+          "text": "A type representing the stable identity of this document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ID"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/ID-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ID"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssignableDocument.ID",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/id-swift.typealias"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/MergeableDocument-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/MergeableDocument-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MergeableDocument Implementations",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/mergeabledocument-implementations"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/PartIDs-swift.enum": {
+      "abstract": [
+        {
+          "text": "An enumeration containing the identities of parts managed by this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PartIDs"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/PartIDs-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PartIDs"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssignableDocument.PartIDs",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/partids-swift.enum"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/Question": {
+      "abstract": [
+        {
+          "text": "A question in the assignable document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Question"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/Question",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Question"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssignableDocument.Question",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/question"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/QuestionBox": {
+      "abstract": [
+        {
+          "text": "A box on a page for a question.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QuestionBox"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/QuestionBox",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QuestionBox"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssignableDocument.QuestionBox",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/questionbox"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/appendQuestion(pageID:rect:maxScore:)": {
+      "abstract": [
+        {
+          "text": "Creates a new question and appends it to the document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendQuestion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "pageID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV4PageV",
+          "text": "Page"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV4PageV2IDV",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "rect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxScore"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV8QuestionV",
+          "text": "Question"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV8QuestionV2IDa",
+          "text": "ID"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/appendQuestion(pageID:rect:maxScore:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendQuestion(pageID:rect:maxScore:)",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/appendquestion(pageid:rect:maxscore:)"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/authors": {
+      "abstract": [
+        {
+          "text": "The set of identities of users that created or modified this assignable.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Treated as a set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authors"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables15AnyUserIdentityV",
+          "text": "AnyUserIdentity"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/authors",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "authors",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/authors"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/computeMaxScore(defaultQuestionMaxScore:)": {
+      "abstract": [
+        {
+          "text": "Computes the maximum possible score for this ",
+          "type": "text"
+        },
+        {
+          "code": "AssignableDocument",
+          "type": "codeVoice"
+        },
+        {
+          "text": " as defined",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "by each individual question’s ",
+          "type": "text"
+        },
+        {
+          "code": "maxScore",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "computeMaxScore"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "defaultQuestionMaxScore"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/computeMaxScore(defaultQuestionMaxScore:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "computeMaxScore(defaultQuestionMaxScore:)",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/computemaxscore(defaultquestionmaxscore:)"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/configuration-swift.property": {
+      "abstract": [
+        {
+          "text": "The configuration of this assessment which contains options",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for display of marks and their point values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables31AssignableDocumentConfigurationP",
+          "text": "AssignableDocumentConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/configuration-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configuration",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/configuration-swift.property"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/export(partIDs:)": {
+      "abstract": [
+        {
+          "text": "Given a set of part identifiers, return a dictionary",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of part ID to data objects for the requested layers.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "export"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "partIDs"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables23MergeablePartsContainerP6PartIDa",
+          "text": "PartID"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables23MergeablePartsContainerP6PartIDa",
+          "text": "PartID"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/export(partIDs:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "export(partIDs:)",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/export(partids:)"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/exportBaseAsPDF()": {
+      "abstract": [
+        {
+          "text": "Exports the base part of this document to a ",
+          "type": "text"
+        },
+        {
+          "code": "PDFDocument",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "exportBaseAsPDF"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PDFDocument",
+          "text": "PDFDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/exportBaseAsPDF()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exportBaseAsPDF()",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/exportbaseaspdf()"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/exportParts(identifiedBy:)": {
+      "abstract": [
+        {
+          "text": "Given a set of part identifiers, return a dictionary",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of part ID to part data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "exportParts"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifiedBy"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables23MergeablePartsContainerP6PartIDa",
+          "text": "PartID"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables23MergeablePartsContainerP6PartIDa",
+          "text": "PartID"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables17MergeablePartDataO",
+          "text": "MergeablePartData"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/exportParts(identifiedBy:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exportParts(identifiedBy:)",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/exportparts(identifiedby:)"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/hash(into:)": {
+      "abstract": [
+        {
+          "text": "Hashes the essential components of this value by feeding them into the given hasher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hash"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6HasherV",
+          "text": "Hasher"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/hash(into:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hash(into:)",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/hash(into:)"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/hashValue": {
+      "abstract": [
+        {
+          "text": "The hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hashValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/hashValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hashValue",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/hashvalue"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/id-swift.property": {
+      "abstract": [
+        {
+          "text": "The stable identity of this document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV2IDa",
+          "text": "ID"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/id-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "id",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/id-swift.property"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/init(id:partData:)-4am19": {
+      "abstract": [
+        {
+          "text": "Construct an instance of this object with the parts data passed in.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV2IDa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "partData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables23MergeablePartsContainerP6PartIDa",
+          "text": "PartID"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/init(id:partData:)-4am19",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(id:partData:)",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/init(id:partdata:)-4am19"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/init(id:partData:)-8gf6g": {
+      "abstract": [
+        {
+          "text": "Construct an instance of this object with the parts data passed in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV2IDa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "partData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables23MergeablePartsContainerP6PartIDa",
+          "text": "PartID"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables17MergeablePartDataO",
+          "text": "MergeablePartData"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/init(id:partData:)-8gf6g",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(id:partData:)",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/init(id:partdata:)-8gf6g"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/init(pdfURL:authors:id:)": {
+      "abstract": [
+        {
+          "text": "Initializes a new assessment document that is based on the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "PDF located at the provided URL.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "If the file located at the URL provided cannot be accessed, this initializer throws.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "pdfURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "authors"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables12UserIdentityP",
+          "text": "UserIdentity"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/init(pdfURL:authors:id:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(pdfURL:authors:id:)",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/init(pdfurl:authors:id:)"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/init(pdfURL:id:)": {
+      "abstract": [
+        {
+          "text": "Initializes a new assessment document that is based on the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "PDF located at the provided URL.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "If the file located at the URL provided cannot be accessed, this initializer throws.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "pdfURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/init(pdfURL:id:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(pdfURL:id:)",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/init(pdfurl:id:)"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/isMultiPageDocument": {
+      "abstract": [
+        {
+          "code": "true",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", if this document has more than one page; ",
+          "type": "text"
+        },
+        {
+          "code": "false",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", otherwise.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isMultiPageDocument"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/isMultiPageDocument",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isMultiPageDocument",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/ismultipagedocument"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/isPartial": {
+      "abstract": [
+        {
+          "text": "Denotes whether or not this document is a partial one.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPartial"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/isPartial",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isPartial",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/ispartial"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/makePart(for:)": {
+      "abstract": [
+        {
+          "text": "Creates data for the part with the given identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makePart"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables23MergeablePartsContainerP6PartIDa",
+          "text": "PartID"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables17MergeablePartDataO",
+          "text": "MergeablePartData"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/makePart(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makePart(for:)",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/makepart(for:)"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/merge(_:)": {
+      "abstract": [
+        {
+          "text": "Merge another object of this type into this object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "merge"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/merge(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "merge(_:)",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/merge(_:)"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/merge(other:)": {
+      "abstract": [
+        {
+          "text": "Merge another object of this type into this object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "merge"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "other"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/merge(other:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "merge(other:)",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/merge(other:)"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/merge(partData:into:)": {
+      "abstract": [
+        {
+          "text": "Merges an individual part into the specified part of this object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "merge"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "partData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables17MergeablePartDataO",
+          "text": "MergeablePartData"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables23MergeablePartsContainerP6PartIDa",
+          "text": "PartID"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/merge(partData:into:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "merge(partData:into:)",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/merge(partdata:into:)"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/merge(partID:partDataURL:)": {
+      "abstract": [
+        {
+          "text": "Merges an individual part’s data into the specified part of this object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "merge"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "partID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables23MergeablePartsContainerP6PartIDa",
+          "text": "PartID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "partDataURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/merge(partID:partDataURL:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "merge(partID:partDataURL:)",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/merge(partid:partdataurl:)"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/pagesDebugDescription": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pagesDebugDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/pagesDebugDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pagesDebugDescription",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/pagesdebugdescription"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/partIDs-swift.property": {
+      "abstract": [
+        {
+          "text": "Returns a collection of identifiers reflecting the manifest of parts available in the document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "partIDs"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables23MergeablePartsContainerP6PartIDa",
+          "text": "PartID"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/partIDs-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "partIDs",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/partids-swift.property"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/questionThumbnails(visibleParts:)": {
+      "abstract": [
+        {
+          "text": "Produces thumbnails of question regions within the document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "questionThumbnails"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "visibleParts"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables23MergeablePartsContainerP6PartIDa",
+          "text": "PartID"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV8QuestionV",
+          "text": "Question"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV8QuestionV2IDa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": " : ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV8QuestionV",
+          "text": "Question"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV8QuestionV9ThumbnailV",
+          "text": "Thumbnail"
+        },
+        {
+          "kind": "text",
+          "text": "]]"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/questionThumbnails(visibleParts:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "questionThumbnails(visibleParts:)",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/questionthumbnails(visibleparts:)"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/questions": {
+      "abstract": [
+        {
+          "text": "A collection of questions defined for this assignable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "questions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV8QuestionV",
+          "text": "Question"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/questions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "questions",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/questions"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/questions(on:)": {
+      "abstract": [
+        {
+          "text": "Find questions that exist on the specified page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "questions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV4PageV",
+          "text": "Page"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV4PageV2IDV",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV8QuestionV",
+          "text": "Question"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/questions(on:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "questions(on:)",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/questions(on:)"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/removeQuestion(_:)": {
+      "abstract": [
+        {
+          "text": "Removes a question and its boxes from the document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeQuestion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV8QuestionV",
+          "text": "Question"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV8QuestionV2IDa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV8QuestionV",
+          "text": "Question"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/removeQuestion(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeQuestion(_:)",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/removequestion(_:)"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/subscript(_:)-68enn": {
+      "abstract": [
+        {
+          "text": "Access the question box that the identifier denotes, if any.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV11QuestionBoxV",
+          "text": "QuestionBox"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV11QuestionBoxV2IDa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV11QuestionBoxV",
+          "text": "QuestionBox"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/subscript(_:)-68enn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/subscript(_:)-68enn"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/subscript(_:)-7fijz": {
+      "abstract": [
+        {
+          "text": "Access the question that the identifier denotes, if any.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV8QuestionV",
+          "text": "Question"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV8QuestionV2IDa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV8QuestionV",
+          "text": "Question"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/subscript(_:)-7fijz",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/subscript(_:)-7fijz"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/subscript(_:)-8ou91": {
+      "abstract": [
+        {
+          "text": "Access the page that the identifier denotes, if any.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV4PageV",
+          "text": "Page"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV4PageV2IDV",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV",
+          "text": "AssignableDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Assignables18AssignableDocumentV4PageV",
+          "text": "Page"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/subscript(_:)-8ou91",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/assignables/assignabledocument/subscript(_:)-8ou91"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/AssignedWorkDocument": {
+      "abstract": [
+        {
+          "text": "An assigned work document is a document that contains taker and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "scorer markup specific to a taker. It also contains a copy of the assignable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "document upon which it is based.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AssignedWorkDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/AssignedWorkDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AssignedWorkDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssignedWorkDocument",
+      "type": "topic",
+      "url": "/documentation/assignables/assignedworkdocument"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/MergeableDocument": {
+      "abstract": [
+        {
+          "text": "Documents conforming to this protocol can merge several",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "copies of the document into a single document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MergeableDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/MergeableDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MergeableDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "MergeableDocument",
+      "type": "topic",
+      "url": "/documentation/assignables/mergeabledocument"
+    },
+    "doc://com.apple.Assignables/documentation/Assignables/MergeablePartsContainer": {
+      "abstract": [
+        {
+          "text": "Objects conforming to this protocol allow",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "merging in other replicas of themselves or",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "merging in individual parts of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MergeablePartsContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.Assignables/documentation/Assignables/MergeablePartsContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MergeablePartsContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MergeablePartsContainer",
+      "type": "topic",
+      "url": "/documentation/assignables/mergeablepartscontainer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s12IdentifiableP": {
+      "abstract": [
+        {
+          "text": "A class of types whose instances hold the value of an entity with stable identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s12IdentifiableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Identifiable",
+      "type": "topic",
+      "url": "/documentation/Swift/Identifiable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Assignables/documentation/Assignables/Assignable",
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:s12IdentifiableP",
+        "doc://com.apple.Assignables/documentation/Assignables/MergeableDocument",
+        "doc://com.apple.Assignables/documentation/Assignables/MergeablePartsContainer"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Assignable-document",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Assignables/documentation/Assignables/AssignedWorkDocument",
+        "doc://com.apple.Assignables/documentation/Assignables/Assignable"
+      ],
+      "title": "Assignable document"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-assignable-document",
+      "identifiers": [
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/init(pdfURL:authors:id:)",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/init(pdfURL:id:)"
+      ],
+      "title": "Creating an assignable document"
+    },
+    {
+      "anchor": "Inspecting-an-assignable-document",
+      "identifiers": [
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/ID-swift.typealias",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/id-swift.property",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/isMultiPageDocument",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/isPartial",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/PartIDs-swift.enum",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/partIDs-swift.property",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/Question",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/QuestionBox",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/questions",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/Element",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/Error"
+      ],
+      "title": "Inspecting an assignable document"
+    },
+    {
+      "anchor": "Getting-and-setting-the-questions",
+      "identifiers": [
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/appendQuestion(pageID:rect:maxScore:)",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/questions(on:)",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/removeQuestion(_:)"
+      ],
+      "title": "Getting and setting the questions"
+    },
+    {
+      "anchor": "Computing-the-max-score",
+      "identifiers": [
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/computeMaxScore(defaultQuestionMaxScore:)"
+      ],
+      "title": "Computing the max score"
+    },
+    {
+      "anchor": "Getting-the-authors",
+      "identifiers": [
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/authors"
+      ],
+      "title": "Getting the authors"
+    },
+    {
+      "anchor": "Getting-the-configuration",
+      "identifiers": [
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/Configuration-swift.typealias",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/configuration-swift.property",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/CorrectMarkType"
+      ],
+      "title": "Getting the configuration"
+    },
+    {
+      "anchor": "Merging-the-parts",
+      "identifiers": [
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/merge(other:)"
+      ],
+      "title": "Merging the parts"
+    },
+    {
+      "anchor": "Producing-thumbnails",
+      "identifiers": [
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/questionThumbnails(visibleParts:)"
+      ],
+      "title": "Producing thumbnails"
+    },
+    {
+      "anchor": "Exporting-the-parts",
+      "identifiers": [
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/export(partIDs:)",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/exportBaseAsPDF()"
+      ],
+      "title": "Exporting the parts"
+    },
+    {
+      "anchor": "Comparing-assignable-documents",
+      "identifiers": [
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/==(_:_:)"
+      ],
+      "title": "Comparing assignable documents"
+    },
+    {
+      "anchor": "Hashing-the-assignable-document",
+      "identifiers": [
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/hash(into:)"
+      ],
+      "title": "Hashing the assignable document"
+    },
+    {
+      "anchor": "Accessing-documents",
+      "identifiers": [
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/subscript(_:)-68enn",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/subscript(_:)-7fijz",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/subscript(_:)-8ou91"
+      ],
+      "title": "Accessing documents"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/init(id:partData:)-4am19",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/init(id:partData:)-8gf6g"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/hashValue",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/pagesDebugDescription"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/exportParts(identifiedBy:)",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/makePart(for:)",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/merge(_:)",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/merge(partData:into:)",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/merge(partID:partDataURL:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/Assignable-Implementations",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/Equatable-Implementations",
+        "doc://com.apple.Assignables/documentation/Assignables/AssignableDocument/MergeableDocument-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/assignables/assignabledocument"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

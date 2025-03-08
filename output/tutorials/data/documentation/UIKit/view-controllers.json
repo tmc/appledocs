@@ -1,0 +1,3495 @@
+{
+  "abstract": [
+    {
+      "text": "Manage your interface using view controllers and facilitate navigation around your app’s content.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/view-controllers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "View controllers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use view controllers to manage your UIKit app’s interface. A view controller manages a single root view, which may itself contain any number of subviews. User interactions with that view hierarchy are handled by your view controller, which coordinates with other objects of your app as needed. Every app has at least one view controller whose content fills the main window. If your app has more content than can fit onscreen at once, use multiple view controllers to manage different parts of that content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "container view controller",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " embeds the content of other view controllers into its own root view. A container view controller may mix custom views with the contents of its child view controllers to facilitate navigation or to create unique interfaces. For example, a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object manages a navigation bar and a stack of child view controllers (only one of which is visible at a time), and provides an API to add and remove child view controllers from the stack.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UIKit provides several standard view controllers for navigation and managing specific types of content. You define the view controllers containing your app’s custom content. You may also define custom container view controllers to implement new navigation schemes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/swiftui/restoring_your_app_s_state_with_swiftui": {
+      "abstract": [
+        {
+          "text": "Provide app continuity for users by preserving their current activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swiftui/restoring_your_app_s_state_with_swiftui",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Restoring Your App’s State with SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui/restoring_your_app_s_state_with_swiftui"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivity": {
+      "abstract": [
+        {
+          "text": "An abstract class that you subclass to implement app-specific services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActivity",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivity"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityItemProvider": {
+      "abstract": [
+        {
+          "text": "A proxy for data that passes to an activity view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActivityItemProvider",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityitemprovider"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource": {
+      "abstract": [
+        {
+          "text": "A set of methods that an activity view controller uses to retrieve the data items to act on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemSource"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActivityItemSource",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityitemsource"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfigurationProviding": {
+      "abstract": [
+        {
+          "text": "An interface that provides a source for shareable content to fulfill user requests to share current content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemsConfigurationProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfigurationProviding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemsConfigurationProviding"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActivityItemsConfigurationProviding",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityitemsconfigurationproviding"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that you use to offer standard services from your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIActivityViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActivityViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController": {
+      "abstract": [
+        {
+          "text": "A view controller that presents standard screens for adding and removing people from a CloudKit share record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICloudSharingController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICloudSharingController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICloudSharingController",
+      "type": "topic",
+      "url": "/documentation/uikit/uicloudsharingcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that specializes in managing a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIColorPickerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that manages the interface for selecting a color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIColorPickerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIColorPickerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIColorPickerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIColorPickerViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uicolorpickerviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIColorPickerViewControllerDelegate": {
+      "abstract": [
+        {
+          "text": "The delegate protocol to inform about changes in color selection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIColorPickerViewControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIColorPickerViewControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIColorPickerViewControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIColorPickerViewControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uicolorpickerviewcontrollerdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIContentContainer": {
+      "abstract": [
+        {
+          "text": "A set of methods for adapting the contents of your view controllers to size and trait changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIContentContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContentContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIContentContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIContentContainer",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontentcontainer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController": {
+      "abstract": [
+        {
+          "text": "A view controller for browsing and performing actions on documents that you store locally and in the cloud.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocumentBrowserViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocumentBrowserViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentBrowserViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentInteractionController": {
+      "abstract": [
+        {
+          "text": "A view controller that previews, opens, or prints files with a file format that your app can’t handle directly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocumentInteractionController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentInteractionController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocumentInteractionController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentInteractionController",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentinteractioncontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentPickerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that provides access to documents or destinations outside your app’s sandbox.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocumentPickerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentPickerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocumentPickerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentPickerViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentpickerviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that manages and presents a document stored locally or in the cloud.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocumentViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocumentViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontPickerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that manages the interface for selecting a font that the system provides or the user installs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFontPickerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontPickerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFontPickerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFontPickerViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontpickerviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontPickerViewController/Configuration-swift.class": {
+      "abstract": [
+        {
+          "text": "The filters and display settings a font picker view controller uses to set up a font picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontPickerViewController/Configuration-swift.class",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFontPickerViewController.Configuration",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontpickerviewcontroller/configuration-swift.class"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontPickerViewControllerDelegate": {
+      "abstract": [
+        {
+          "text": "A set of optional methods for receiving messages about the user’s interaction with the font picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFontPickerViewControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontPickerViewControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFontPickerViewControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFontPickerViewControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontpickerviewcontrollerdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController": {
+      "abstract": [
+        {
+          "text": "A view controller that manages the system interfaces for taking pictures, recording movies, and choosing items from the user’s media library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImagePickerController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIImagePickerController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImagePickerController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIInterfaceOrientation/isLandscape": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the user interface is currently presented in a landscape orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isLandscape"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIInterfaceOrientation/isLandscape",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIInterfaceOrientationIsLandscape"
+        }
+      ],
+      "role": "symbol",
+      "title": "isLandscape",
+      "type": "topic",
+      "url": "/documentation/uikit/uiinterfaceorientation/islandscape"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIInterfaceOrientation/isPortrait": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the user interface is currently presented in a portrait orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPortrait"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIInterfaceOrientation/isPortrait",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIInterfaceOrientationIsPortrait"
+        }
+      ],
+      "role": "symbol",
+      "title": "isPortrait",
+      "type": "topic",
+      "url": "/documentation/uikit/uiinterfaceorientation/isportrait"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationBar": {
+      "abstract": [
+        {
+          "text": "Navigational controls that display in a bar along the top of the screen, usually in conjunction with a navigation controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UINavigationBar"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationBar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UINavigationBar"
+        }
+      ],
+      "role": "symbol",
+      "title": "UINavigationBar",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationbar"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationController": {
+      "abstract": [
+        {
+          "text": "A container view controller that defines a stack-based scheme for navigating hierarchical content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UINavigationController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UINavigationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UINavigationController",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem": {
+      "abstract": [
+        {
+          "text": "The items that a navigation bar displays when the associated view controller is visible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UINavigationItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UINavigationItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UINavigationItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIObjectRestoration": {
+      "abstract": [
+        {
+          "text": "The interface that restoration classes use to restore preserved objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIObjectRestoration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIObjectRestoration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIObjectRestoration"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIObjectRestoration",
+      "type": "topic",
+      "url": "/documentation/uikit/uiobjectrestoration"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPageViewController": {
+      "abstract": [
+        {
+          "text": "A container view controller that manages navigation between pages of content, where a subview controller manages each page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPageViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPageViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPageViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPageViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uipageviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPresentationController": {
+      "abstract": [
+        {
+          "text": "An object that manages the transition animations and the presentation of view controllers onscreen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPresentationController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPresentationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPresentationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPresentationController",
+      "type": "topic",
+      "url": "/documentation/uikit/uipresentationcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrinterPickerController": {
+      "abstract": [
+        {
+          "text": "A view controller that displays the standard interface for selecting a printer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPrinterPickerController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrinterPickerController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPrinterPickerController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPrinterPickerController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprinterpickercontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIReferenceLibraryViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that displays a standard interface for looking up the definition of a word or term.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIReferenceLibraryViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIReferenceLibraryViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIReferenceLibraryViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIReferenceLibraryViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uireferencelibraryviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchBar": {
+      "abstract": [
+        {
+          "text": "A specialized view for receiving search-related information from the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchBar"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchBar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchBar"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchBar",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchbar"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchContainerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that manages the presentation of search results in your interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchContainerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchContainerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchContainerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchContainerViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchcontainerviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchController": {
+      "abstract": [
+        {
+          "text": "A view controller that manages the display of search results based on interactions with a search bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchController",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchResultsUpdating": {
+      "abstract": [
+        {
+          "text": "A set of methods that let you update search results based on information the user enters into the search bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchResultsUpdating"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchResultsUpdating",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchResultsUpdating"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchResultsUpdating",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchresultsupdating"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchTab": {
+      "abstract": [
+        {
+          "text": "A tab subclass that represents the system’s search tab.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchTab"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchTab",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchTab"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchTab",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchtab"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISheetPresentationController": {
+      "abstract": [
+        {
+          "text": "A presentation controller that manages the appearance and behavior of a sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISheetPresentationController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISheetPresentationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISheetPresentationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISheetPresentationController",
+      "type": "topic",
+      "url": "/documentation/uikit/uisheetpresentationcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISplitViewController": {
+      "abstract": [
+        {
+          "text": "A container view controller that implements a hierarchical interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISplitViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISplitViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISplitViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISplitViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uisplitviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring": {
+      "abstract": [
+        {
+          "text": "Methods for adding objects to your state restoration archives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIStateRestoring"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIStateRestoring"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIStateRestoring",
+      "type": "topic",
+      "url": "/documentation/uikit/uistaterestoring"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITab": {
+      "abstract": [
+        {
+          "text": "An object that manages a tab in a tab bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITab"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITab",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITab"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITab",
+      "type": "topic",
+      "url": "/documentation/uikit/uitab"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBar": {
+      "abstract": [
+        {
+          "text": "A control that displays one or more buttons in a tab bar for selecting between different subtasks, views, or modes in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITabBar"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITabBar"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITabBar",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbar"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarController": {
+      "abstract": [
+        {
+          "text": "A container view controller that manages a multiselection interface, where the selection determines which child view controller to display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITabBarController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITabBarController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITabBarController",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbarcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarItem": {
+      "abstract": [
+        {
+          "text": "An object that describes an item in a tab bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITabBarItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITabBarItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITabBarItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbaritem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabGroup": {
+      "abstract": [
+        {
+          "text": "An object that manages a collection of tab objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITabGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITabGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITabGroup",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabgroup"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that specializes in managing a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIVideoEditorController": {
+      "abstract": [
+        {
+          "text": "A view controller that manages the system interface for trimming video frames and encoding a previously recorded movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIVideoEditorController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIVideoEditorController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIVideoEditorController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIVideoEditorController",
+      "type": "topic",
+      "url": "/documentation/uikit/uivideoeditorcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController": {
+      "abstract": [
+        {
+          "text": "An object that manages a view hierarchy for your UIKit app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerRestoration": {
+      "abstract": [
+        {
+          "text": "The methods that objects adopt so that they can act as a restoration class for view controllers during state restoration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerRestoration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerRestoration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerRestoration"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewControllerRestoration",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollerrestoration"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/adding-a-document-browser-to-your-app": {
+      "abstract": [
+        {
+          "text": "Give users access to their local or remote documents from within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/adding-a-document-browser-to-your-app",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Adding a document browser to your app",
+      "type": "topic",
+      "url": "/documentation/uikit/adding-a-document-browser-to-your-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/animation-and-haptics": {
+      "abstract": [
+        {
+          "text": "Provide feedback to users using view-based animations and haptics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/animation-and-haptics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Animation and haptics",
+      "type": "topic",
+      "url": "/documentation/uikit/animation-and-haptics"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/appearance-customization": {
+      "abstract": [
+        {
+          "text": "Add Dark Mode support to your app, customize the appearance of bars, and use appearance proxies to modify your UI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/appearance-customization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Appearance customization",
+      "type": "topic",
+      "url": "/documentation/uikit/appearance-customization"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/building-a-document-browser-app-for-custom-file-formats": {
+      "abstract": [
+        {
+          "text": "Implement a custom document file format to manage user interactions with files on different cloud storage providers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/building-a-document-browser-app-for-custom-file-formats",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a document browser app for custom file formats",
+      "type": "topic",
+      "url": "/documentation/uikit/building-a-document-browser-app-for-custom-file-formats"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/building-a-document-browser-based-app": {
+      "abstract": [
+        {
+          "text": "Use a document browser to provide access to the user’s text files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/building-a-document-browser-based-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a document browser-based app",
+      "type": "topic",
+      "url": "/documentation/uikit/building-a-document-browser-based-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/collaborating-and-sharing-copies-of-your-data": {
+      "abstract": [
+        {
+          "text": "Share data and collaborate with people from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/collaborating-and-sharing-copies-of-your-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Collaborating and sharing copies of your data",
+      "type": "topic",
+      "url": "/documentation/uikit/collaborating-and-sharing-copies-of-your-data"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/creating-a-custom-container-view-controller": {
+      "abstract": [
+        {
+          "text": "Create a composite interface by combining content from one or more view controllers with other custom views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/creating-a-custom-container-view-controller",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a custom container view controller",
+      "type": "topic",
+      "url": "/documentation/uikit/creating-a-custom-container-view-controller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/customizing-a-document-based-app-s-launch-experience": {
+      "abstract": [
+        {
+          "text": "Add unique elements to your app’s document launch scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/customizing-a-document-based-app-s-launch-experience",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing a document-based app’s launch experience",
+      "type": "topic",
+      "url": "/documentation/uikit/customizing-a-document-based-app-s-launch-experience"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/disabling-the-pull-down-gesture-for-a-sheet": {
+      "abstract": [
+        {
+          "text": "Ensure a positive user experience when presenting a view controller as a sheet.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/disabling-the-pull-down-gesture-for-a-sheet",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Disabling the pull-down gesture for a sheet",
+      "type": "topic",
+      "url": "/documentation/uikit/disabling-the-pull-down-gesture-for-a-sheet"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/displaying-and-managing-views-with-a-view-controller": {
+      "abstract": [
+        {
+          "text": "Build a view controller in storyboards, configure it with custom views, and fill those views with your app’s data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/displaying-and-managing-views-with-a-view-controller",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying and managing views with a view controller",
+      "type": "topic",
+      "url": "/documentation/uikit/displaying-and-managing-views-with-a-view-controller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/displaying-searchable-content-by-using-a-search-controller": {
+      "abstract": [
+        {
+          "text": "Create a user interface with searchable content in a table view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/displaying-searchable-content-by-using-a-search-controller",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Displaying searchable content by using a search controller",
+      "type": "topic",
+      "url": "/documentation/uikit/displaying-searchable-content-by-using-a-search-controller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/managing-content-in-your-app-s-windows": {
+      "abstract": [
+        {
+          "text": "Build your app’s user interface from view controllers, and change the currently visible view controller when you want to display new content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/managing-content-in-your-app-s-windows",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing content in your app’s windows",
+      "type": "topic",
+      "url": "/documentation/uikit/managing-content-in-your-app-s-windows"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/preserving-your-app-s-ui-across-launches": {
+      "abstract": [
+        {
+          "text": "Return your app to its previous state after the system terminates it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/preserving-your-app-s-ui-across-launches",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preserving your app’s UI across launches",
+      "type": "topic",
+      "url": "/documentation/uikit/preserving-your-app-s-ui-across-launches"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/providing-access-to-directories": {
+      "abstract": [
+        {
+          "text": "Use a document picker to access the content of a directory outside your app’s container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/providing-access-to-directories",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing access to directories",
+      "type": "topic",
+      "url": "/documentation/uikit/providing-access-to-directories"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/restoring-your-app-s-state": {
+      "abstract": [
+        {
+          "text": "Provide continuity for the user by preserving current activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/restoring-your-app-s-state",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Restoring your app’s state",
+      "type": "topic",
+      "url": "/documentation/uikit/restoring-your-app-s-state"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/showing-and-hiding-view-controllers": {
+      "abstract": [
+        {
+          "text": "Display view controllers using different techniques, and pass data between them during transitions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/showing-and-hiding-view-controllers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Showing and hiding view controllers",
+      "type": "topic",
+      "url": "/documentation/uikit/showing-and-hiding-view-controllers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/uikit-catalog-creating-and-customizing-views-and-controls": {
+      "abstract": [
+        {
+          "text": "Customize your app’s user interface with views and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/uikit-catalog-creating-and-customizing-views-and-controls",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "UIKit Catalog: Creating and customizing views and controls",
+      "type": "topic",
+      "url": "/documentation/uikit/uikit-catalog-creating-and-customizing-views-and-controls"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/using-suggested-searches-with-a-search-controller": {
+      "abstract": [
+        {
+          "text": "Create a search interface with a table view of suggested searches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/using-suggested-searches-with-a-search-controller",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using suggested searches with a search controller",
+      "type": "topic",
+      "url": "/documentation/uikit/using-suggested-searches-with-a-search-controller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/view-layout": {
+      "abstract": [
+        {
+          "text": "Use stack views to lay out the views of your interface automatically. Use Auto Layout when you require precise placement of your views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/view-layout",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View layout",
+      "type": "topic",
+      "url": "/documentation/uikit/view-layout"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/views-and-controls": {
+      "abstract": [
+        {
+          "text": "Present your content onscreen and define the interactions allowed with that content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Views and controls",
+      "type": "topic",
+      "url": "/documentation/uikit/views-and-controls"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/windows-and-screens": {
+      "abstract": [
+        {
+          "text": "Provide a container for your view hierarchies and other content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/windows-and-screens",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Windows and screens",
+      "type": "topic",
+      "url": "/documentation/uikit/windows-and-screens"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-interface",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+        "doc://com.apple.uikit/documentation/UIKit/view-layout",
+        "doc://com.apple.uikit/documentation/UIKit/appearance-customization",
+        "doc://com.apple.uikit/documentation/UIKit/animation-and-haptics",
+        "doc://com.apple.uikit/documentation/UIKit/windows-and-screens"
+      ],
+      "title": "User interface"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/managing-content-in-your-app-s-windows",
+        "doc://com.apple.uikit/documentation/UIKit/uikit-catalog-creating-and-customizing-views-and-controls"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Content-view-controllers",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/displaying-and-managing-views-with-a-view-controller",
+        "doc://com.apple.uikit/documentation/UIKit/showing-and-hiding-view-controllers",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UIContentContainer"
+      ],
+      "title": "Content view controllers"
+    },
+    {
+      "anchor": "Container-view-controllers",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/creating-a-custom-container-view-controller",
+        "doc://com.apple.uikit/documentation/UIKit/UISplitViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationController",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationBar",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem",
+        "doc://com.apple.uikit/documentation/UIKit/UITabBarController",
+        "doc://com.apple.uikit/documentation/UIKit/UITabBar",
+        "doc://com.apple.uikit/documentation/UIKit/UITabBarItem",
+        "doc://com.apple.uikit/documentation/UIKit/UITab",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchTab",
+        "doc://com.apple.uikit/documentation/UIKit/UITabGroup",
+        "doc://com.apple.uikit/documentation/UIKit/UIPageViewController"
+      ],
+      "title": "Container view controllers"
+    },
+    {
+      "anchor": "Presentation-management",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/disabling-the-pull-down-gesture-for-a-sheet",
+        "doc://com.apple.uikit/documentation/UIKit/UIPresentationController",
+        "doc://com.apple.uikit/documentation/UIKit/UISheetPresentationController"
+      ],
+      "title": "Presentation management"
+    },
+    {
+      "anchor": "Search-interface",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UISearchContainerViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchController",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchBar",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchResultsUpdating",
+        "doc://com.apple.uikit/documentation/UIKit/displaying-searchable-content-by-using-a-search-controller",
+        "doc://com.apple.uikit/documentation/UIKit/using-suggested-searches-with-a-search-controller"
+      ],
+      "title": "Search interface"
+    },
+    {
+      "anchor": "Images-and-video",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController",
+        "doc://com.apple.uikit/documentation/UIKit/UIVideoEditorController"
+      ],
+      "title": "Images and video"
+    },
+    {
+      "anchor": "Documents-and-directories",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/customizing-a-document-based-app-s-launch-experience",
+        "doc://com.apple.uikit/documentation/UIKit/adding-a-document-browser-to-your-app",
+        "doc://com.apple.uikit/documentation/UIKit/providing-access-to-directories",
+        "doc://com.apple.uikit/documentation/UIKit/building-a-document-browser-based-app",
+        "doc://com.apple.uikit/documentation/UIKit/building-a-document-browser-app-for-custom-file-formats",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentPickerViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentInteractionController"
+      ],
+      "title": "Documents and directories"
+    },
+    {
+      "anchor": "iCloud-Sharing",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController"
+      ],
+      "title": "iCloud Sharing"
+    },
+    {
+      "anchor": "Activities-interface",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/collaborating-and-sharing-copies-of-your-data",
+        "doc://com.apple.uikit/documentation/UIKit/UIActivityViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UIActivityItemProvider",
+        "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource",
+        "doc://com.apple.uikit/documentation/UIKit/UIActivity",
+        "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfigurationProviding"
+      ],
+      "title": "Activities interface"
+    },
+    {
+      "anchor": "Font-picker",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIFontPickerViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontPickerViewControllerDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontPickerViewController/Configuration-swift.class"
+      ],
+      "title": "Font picker"
+    },
+    {
+      "anchor": "Color-picker",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIColorPickerViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UIColorPickerViewControllerDelegate"
+      ],
+      "title": "Color picker"
+    },
+    {
+      "anchor": "Word-lookup",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIReferenceLibraryViewController"
+      ],
+      "title": "Word lookup"
+    },
+    {
+      "anchor": "Printer-picker",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIPrinterPickerController"
+      ],
+      "title": "Printer picker"
+    },
+    {
+      "anchor": "Interface-orientation",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIInterfaceOrientation/isPortrait",
+        "doc://com.apple.uikit/documentation/UIKit/UIInterfaceOrientation/isLandscape"
+      ],
+      "title": "Interface orientation"
+    },
+    {
+      "anchor": "Interface-restoration",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/restoring-your-app-s-state",
+        "doc://com.apple.documentation/documentation/swiftui/restoring_your_app_s_state_with_swiftui",
+        "doc://com.apple.uikit/documentation/UIKit/preserving-your-app-s-ui-across-launches",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewControllerRestoration",
+        "doc://com.apple.uikit/documentation/UIKit/UIObjectRestoration",
+        "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring"
+      ],
+      "title": "Interface restoration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/managing-content-in-your-app-s-windows",
+                "doc://com.apple.uikit/documentation/UIKit/uikit-catalog-creating-and-customizing-views-and-controls"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Content-view-controllers",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/displaying-and-managing-views-with-a-view-controller",
+                "doc://com.apple.uikit/documentation/UIKit/showing-and-hiding-view-controllers",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UIContentContainer"
+              ],
+              "title": "Content view controllers"
+            },
+            {
+              "anchor": "Container-view-controllers",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/creating-a-custom-container-view-controller",
+                "doc://com.apple.uikit/documentation/UIKit/UISplitViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationController",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationBar",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem",
+                "doc://com.apple.uikit/documentation/UIKit/UITabBarController",
+                "doc://com.apple.uikit/documentation/UIKit/UITabBar",
+                "doc://com.apple.uikit/documentation/UIKit/UITabBarItem",
+                "doc://com.apple.uikit/documentation/UIKit/UITab",
+                "doc://com.apple.uikit/documentation/UIKit/UISearchTab",
+                "doc://com.apple.uikit/documentation/UIKit/UITabGroup",
+                "doc://com.apple.uikit/documentation/UIKit/UIPageViewController"
+              ],
+              "title": "Container view controllers"
+            },
+            {
+              "anchor": "Presentation-management",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/disabling-the-pull-down-gesture-for-a-sheet",
+                "doc://com.apple.uikit/documentation/UIKit/UIPresentationController",
+                "doc://com.apple.uikit/documentation/UIKit/UISheetPresentationController"
+              ],
+              "title": "Presentation management"
+            },
+            {
+              "anchor": "Search-interface",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UISearchContainerViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UISearchController",
+                "doc://com.apple.uikit/documentation/UIKit/UISearchBar",
+                "doc://com.apple.uikit/documentation/UIKit/UISearchResultsUpdating",
+                "doc://com.apple.uikit/documentation/UIKit/displaying-searchable-content-by-using-a-search-controller",
+                "doc://com.apple.uikit/documentation/UIKit/using-suggested-searches-with-a-search-controller"
+              ],
+              "title": "Search interface"
+            },
+            {
+              "anchor": "Images-and-video",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController",
+                "doc://com.apple.uikit/documentation/UIKit/UIVideoEditorController"
+              ],
+              "title": "Images and video"
+            },
+            {
+              "anchor": "Documents-and-directories",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/customizing-a-document-based-app-s-launch-experience",
+                "doc://com.apple.uikit/documentation/UIKit/adding-a-document-browser-to-your-app",
+                "doc://com.apple.uikit/documentation/UIKit/providing-access-to-directories",
+                "doc://com.apple.uikit/documentation/UIKit/building-a-document-browser-based-app",
+                "doc://com.apple.uikit/documentation/UIKit/building-a-document-browser-app-for-custom-file-formats",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentPickerViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentInteractionController"
+              ],
+              "title": "Documents and directories"
+            },
+            {
+              "anchor": "iCloud-Sharing",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICloudSharingController"
+              ],
+              "title": "iCloud Sharing"
+            },
+            {
+              "anchor": "Activities-interface",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/collaborating-and-sharing-copies-of-your-data",
+                "doc://com.apple.uikit/documentation/UIKit/UIActivityViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UIActivityItemProvider",
+                "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource",
+                "doc://com.apple.uikit/documentation/UIKit/UIActivity",
+                "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfigurationProviding"
+              ],
+              "title": "Activities interface"
+            },
+            {
+              "anchor": "Font-picker",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIFontPickerViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontPickerViewControllerDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontPickerViewController/Configuration-swift.class"
+              ],
+              "title": "Font picker"
+            },
+            {
+              "anchor": "Color-picker",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIColorPickerViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UIColorPickerViewControllerDelegate"
+              ],
+              "title": "Color picker"
+            },
+            {
+              "anchor": "Word-lookup",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIReferenceLibraryViewController"
+              ],
+              "title": "Word lookup"
+            },
+            {
+              "anchor": "Printer-picker",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIPrinterPickerController"
+              ],
+              "title": "Printer picker"
+            },
+            {
+              "anchor": "Interface-orientation",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIInterfaceOrientation/isPortrait",
+                "doc://com.apple.uikit/documentation/UIKit/UIInterfaceOrientation/isLandscape"
+              ],
+              "title": "Interface orientation"
+            },
+            {
+              "anchor": "Interface-restoration",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/restoring-your-app-s-state",
+                "doc://com.apple.documentation/documentation/swiftui/restoring_your_app_s_state_with_swiftui",
+                "doc://com.apple.uikit/documentation/UIKit/preserving-your-app-s-ui-across-launches",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewControllerRestoration",
+                "doc://com.apple.uikit/documentation/UIKit/UIObjectRestoration",
+                "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring"
+              ],
+              "title": "Interface restoration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "User-interface",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+                "doc://com.apple.uikit/documentation/UIKit/view-layout",
+                "doc://com.apple.uikit/documentation/UIKit/appearance-customization",
+                "doc://com.apple.uikit/documentation/UIKit/animation-and-haptics",
+                "doc://com.apple.uikit/documentation/UIKit/windows-and-screens"
+              ],
+              "title": "User interface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchResultsUpdating/title",
+          "value": "UISearchResultsUpdating"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchResultsUpdating/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchResultsUpdating"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchResultsUpdating/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchResultsUpdating"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController/title",
+          "value": "UIDocumentBrowserViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentBrowserViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentBrowserViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchController/title",
+          "value": "UISearchController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontPickerViewController/title",
+          "value": "UIFontPickerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontPickerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontPickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontPickerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontPickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem/title",
+          "value": "UINavigationItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColorPickerViewControllerDelegate/title",
+          "value": "UIColorPickerViewControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColorPickerViewControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIColorPickerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColorPickerViewControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIColorPickerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontPickerViewControllerDelegate/title",
+          "value": "UIFontPickerViewControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontPickerViewControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontPickerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontPickerViewControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontPickerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController/title",
+          "value": "UINavigationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIInterfaceOrientation~1isLandscape/title",
+          "value": "UIInterfaceOrientationIsLandscape"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIInterfaceOrientation~1isLandscape/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIInterfaceOrientationIsLandscape"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/title",
+          "value": "UIViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivity/title",
+          "value": "UIActivity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController/title",
+          "value": "UICloudSharingController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICloudSharingController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICloudSharingController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICloudSharingController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentContainer/title",
+          "value": "UIContentContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContentContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContentContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColorPickerViewController/title",
+          "value": "UIColorPickerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColorPickerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIColorPickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColorPickerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIColorPickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentPickerViewController/title",
+          "value": "UIDocumentPickerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentPickerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentPickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentPickerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentPickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerRestoration/title",
+          "value": "UIViewControllerRestoration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerRestoration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerRestoration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerRestoration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerRestoration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPresentationController/title",
+          "value": "UIPresentationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPresentationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPresentationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPresentationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPresentationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontPickerViewController~1Configuration-swift.class/title",
+          "value": "UIFontPickerViewControllerConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontPickerViewController~1Configuration-swift.class/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontPickerViewControllerConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontPickerViewController~1Configuration-swift.class/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontPickerViewControllerConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController/title",
+          "value": "UITabBarController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController/title",
+          "value": "UIImagePickerController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemSource/title",
+          "value": "UIActivityItemSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentInteractionController/title",
+          "value": "UIDocumentInteractionController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentInteractionController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentInteractionController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentInteractionController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentInteractionController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarItem/title",
+          "value": "UITabBarItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabGroup/title",
+          "value": "UITabGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchBar/title",
+          "value": "UISearchBar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchBar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchBar/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTab/title",
+          "value": "UISearchTab"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTab/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchTab"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTab/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchTab"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController/title",
+          "value": "UICollectionViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPageViewController/title",
+          "value": "UIPageViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPageViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPageViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPageViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPageViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIReferenceLibraryViewController/title",
+          "value": "UIReferenceLibraryViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIReferenceLibraryViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIReferenceLibraryViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIReferenceLibraryViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIReferenceLibraryViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemProvider/title",
+          "value": "UIActivityItemProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewController/title",
+          "value": "UITableViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIInterfaceOrientation~1isPortrait/title",
+          "value": "UIInterfaceOrientationIsPortrait"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIInterfaceOrientation~1isPortrait/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIInterfaceOrientationIsPortrait"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIObjectRestoration/title",
+          "value": "UIObjectRestoration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIObjectRestoration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIObjectRestoration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIObjectRestoration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIObjectRestoration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrinterPickerController/title",
+          "value": "UIPrinterPickerController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrinterPickerController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrinterPickerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrinterPickerController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrinterPickerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITab/title",
+          "value": "UITab"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITab/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITab"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITab/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITab"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController/title",
+          "value": "UIDocumentViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISplitViewController/title",
+          "value": "UISplitViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISplitViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISplitViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISplitViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISplitViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring/title",
+          "value": "UIStateRestoring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStateRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStateRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIVideoEditorController/title",
+          "value": "UIVideoEditorController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIVideoEditorController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIVideoEditorController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIVideoEditorController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIVideoEditorController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBar/title",
+          "value": "UITabBar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBar/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationBar/title",
+          "value": "UINavigationBar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationBar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationBar/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISheetPresentationController/title",
+          "value": "UISheetPresentationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISheetPresentationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISheetPresentationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISheetPresentationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISheetPresentationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchContainerViewController/title",
+          "value": "UISearchContainerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchContainerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchContainerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchContainerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchContainerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityViewController/title",
+          "value": "UIActivityViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfigurationProviding/title",
+          "value": "UIActivityItemsConfigurationProviding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfigurationProviding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemsConfigurationProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfigurationProviding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemsConfigurationProviding"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/view-controllers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/view-controllers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

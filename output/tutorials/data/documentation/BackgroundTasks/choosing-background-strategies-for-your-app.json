@@ -1,0 +1,1947 @@
+{
+  "abstract": [
+    {
+      "text": "Select the best method of scheduling background runtime for your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.backgroundtasks/documentation/BackgroundTasks"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/choosing-background-strategies-for-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Background Tasks"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Choosing Background Strategies for Your App"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app needs computing resources to complete tasks when it’s not running in the foreground, you can select from many strategies to obtain background runtime. Selecting the right strategies for your app depends on how it functions in the background.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some apps perform work for a short time while in the foreground and must continue uninterrupted if they go to the background. Other apps defer that work to perform in the background at a later time or even at night while the device charges. Some apps need background processing time at varied and unpredictable times, such as when an external event or message arrives.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps involved in health research studies can obtain background runtime to process data essential for the study. Apps can also request to launch in the background for studies in which the user participates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select one or more methods for your app based on how you schedule activity in the background.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Continue-Foreground-Work-in-the-Background",
+          "level": 3,
+          "text": "Continue Foreground Work in the Background",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system may place apps in the background at any time. If your app performs critical work that must continue while it runs in the background, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/beginBackgroundTask(withName:expirationHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to alert the system. Consider this approach if your app needs to finish sending a message or complete saving a file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system grants your app a limited amount of time to perform its work once it enters the background. Don’t exceed this time, and use the expiration handler to cover the case where the time has depleted to cancel or defer the work.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once your work completes, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/endBackgroundTask(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before the time limit expires so that your app suspends properly. The system terminates your app if you fail to call this method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the task is one that takes some time, such as downloading or uploading files, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (Swift) or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (Objective-C) . See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Defer-Intensive-Work",
+          "level": 3,
+          "text": "Defer Intensive Work",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To preserve battery life and performance, you can schedule backgrounds tasks for periods of low activity, such as overnight when the device charges. Use this approach when your app manages heavy workloads, such as training machine learning models or performing database maintenance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Schedule these types of background tasks using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGProcessingTask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and the system decides the best time to launch your background task.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps involved in health research studies can have time-consuming tasks essential for the study and might need to complete processing the background. Schedule these types of background tasks using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGHealthResearchTask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-Your-Apps-Content",
+          "level": 3,
+          "text": "Update Your App’s Content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app may require short bursts of background time to perform content refresh or other work; for example, your app may fetch content from the server periodically, or regularly update its internal state. In this situation, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGAppRefreshTask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by requesting ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGAppRefreshTaskRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGHealthResearchTaskRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to launch in the background and process data for a health research study in which the user participates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system decides the best time to launch your background task, and provides your app up to 30 seconds of background runtime. Complete your work within this time period and call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGTask/setTaskCompleted(success:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or the system terminates your app. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BackgroundTasks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Wake-Your-App-with-a-Background-Push",
+          "level": 3,
+          "text": "Wake Your App with a Background Push",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Background pushes silently wake your app in the background. They don’t display an alert, play a sound, or badge your app’s icon. If your app obtains content from a server infrequently or at irregular intervals, use background pushes to notify your app when new content becomes available. A messaging app with a muted conversation might use a background push solution, and so might an email app that processes incoming mail without alerting the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When sending a background push, set ",
+              "type": "text"
+            },
+            {
+              "code": "content-available",
+              "type": "codeVoice"
+            },
+            {
+              "text": ": to ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " without ",
+              "type": "text"
+            },
+            {
+              "code": "alert",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "sound",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "badge",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The system decides when to launch the app to download the content. To ensure your app launches, set ",
+              "type": "text"
+            },
+            {
+              "code": "apns-priority ",
+              "type": "codeVoice"
+            },
+            {
+              "text": "to ",
+              "type": "text"
+            },
+            {
+              "code": "5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "apns-push-type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "background",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once the system delivers the remote notification with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didReceiveRemoteNotification:fetchCompletionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", your app has up to 30 seconds to complete its work. One your app performs the work, call the passed completion handler as soon as possible to conserve power. If you send background pushes more frequently than three times per hour, the system imposes rate limitations. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications/pushing-background-updates-to-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Request-Background-Time-and-Notify-the-User",
+          "level": 3,
+          "text": "Request Background Time and Notify the User",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app needs to perform a task in the background and show a notification to the user, use a Notification Service Extension. For example, an email app might need to notify a user after downloading a new email. Subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications/UNNotificationServiceExtension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and bundle the system extension with your app. Upon receiving a push notification, your service extension wakes up and obtains background runtime through ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications/UNNotificationServiceExtension/didReceive(_:withContentHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your extension completes its work, it must call the content handler with the content you want to deliver to the user. Your extension has a limited amount of time to modify the content and execute the ",
+              "type": "text"
+            },
+            {
+              "code": "contentHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": " block.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.backgroundtasks/documentation/BackgroundTasks": {
+      "abstract": [
+        {
+          "text": "Request the system to launch your app in the background to run tasks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Background Tasks",
+      "type": "topic",
+      "url": "/documentation/backgroundtasks"
+    },
+    "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGAppRefreshTask": {
+      "abstract": [
+        {
+          "text": "An object representing a short task typically used to refresh content that’s run while the app is in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BGAppRefreshTask"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGAppRefreshTask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BGAppRefreshTask"
+        }
+      ],
+      "role": "symbol",
+      "title": "BGAppRefreshTask",
+      "type": "topic",
+      "url": "/documentation/backgroundtasks/bgapprefreshtask"
+    },
+    "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGAppRefreshTaskRequest": {
+      "abstract": [
+        {
+          "text": "A request to launch your app in the background to execute a short refresh task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BGAppRefreshTaskRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGAppRefreshTaskRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BGAppRefreshTaskRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "BGAppRefreshTaskRequest",
+      "type": "topic",
+      "url": "/documentation/backgroundtasks/bgapprefreshtaskrequest"
+    },
+    "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGHealthResearchTask": {
+      "abstract": [
+        {
+          "text": "A time-consuming, necessary processing task that runs while the app is in the background to prepare data essential to a health research study.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BGHealthResearchTask"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGHealthResearchTask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BGHealthResearchTask"
+        }
+      ],
+      "role": "symbol",
+      "title": "BGHealthResearchTask",
+      "type": "topic",
+      "url": "/documentation/backgroundtasks/bghealthresearchtask"
+    },
+    "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGHealthResearchTaskRequest": {
+      "abstract": [
+        {
+          "text": "A request to launch your app in the background to execute processing for a health research study in which a user participates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BGHealthResearchTaskRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGHealthResearchTaskRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BGHealthResearchTaskRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "BGHealthResearchTaskRequest",
+      "type": "topic",
+      "url": "/documentation/backgroundtasks/bghealthresearchtaskrequest"
+    },
+    "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGProcessingTask": {
+      "abstract": [
+        {
+          "text": "A time-consuming processing task that runs while the app is in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BGProcessingTask"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGProcessingTask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BGProcessingTask"
+        }
+      ],
+      "role": "symbol",
+      "title": "BGProcessingTask",
+      "type": "topic",
+      "url": "/documentation/backgroundtasks/bgprocessingtask"
+    },
+    "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGTask/setTaskCompleted(success:)": {
+      "abstract": [
+        {
+          "text": "Informs the background task scheduler that the task is complete.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTaskCompleted"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "success"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGTask/setTaskCompleted(success:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setTaskCompletedWithSuccess:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setTaskCompleted(success:)",
+      "type": "topic",
+      "url": "/documentation/backgroundtasks/bgtask/settaskcompleted(success:)"
+    },
+    "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGTaskScheduler": {
+      "abstract": [
+        {
+          "text": "A class for scheduling task requests that launch your app in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BGTaskScheduler"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGTaskScheduler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BGTaskScheduler"
+        }
+      ],
+      "role": "symbol",
+      "title": "BGTaskScheduler",
+      "type": "topic",
+      "url": "/documentation/backgroundtasks/bgtaskscheduler"
+    },
+    "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/refreshing-and-maintaining-your-app-using-background-tasks": {
+      "abstract": [
+        {
+          "text": "Use scheduled background tasks for refreshing your app content and for performing maintenance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/refreshing-and-maintaining-your-app-using-background-tasks",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Refreshing and Maintaining Your App Using Background Tasks",
+      "type": "topic",
+      "url": "/documentation/backgroundtasks/refreshing-and-maintaining-your-app-using-background-tasks"
+    },
+    "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/starting-and-terminating-tasks-during-development": {
+      "abstract": [
+        {
+          "text": "Use the debugger during development to start tasks and to terminate them before completion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/starting-and-terminating-tasks-during-development",
+      "kind": "article",
+      "role": "article",
+      "title": "Starting and Terminating Tasks During Development",
+      "type": "topic",
+      "url": "/documentation/backgroundtasks/starting-and-terminating-tasks-during-development"
+    },
+    "doc://com.apple.documentation/documentation/BackgroundTasks": {
+      "abstract": [
+        {
+          "text": "Request the system to launch your app in the background to run tasks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BackgroundTasks",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Background Tasks",
+      "type": "topic",
+      "url": "/documentation/BackgroundTasks"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplication/beginBackgroundTask(withName:expirationHandler:)": {
+      "abstract": [
+        {
+          "text": "Marks the start of a task with a custom name that should continue if the app enters the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginBackgroundTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "taskName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "expirationHandler"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIBackgroundTaskIdentifier",
+          "text": "UIBackgroundTaskIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/beginBackgroundTask(withName:expirationHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginBackgroundTask(withName:expirationHandler:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplication/beginBackgroundTask(withName:expirationHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplication/endBackgroundTask(_:)": {
+      "abstract": [
+        {
+          "text": "Marks the end of a specific long-running background task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endBackgroundTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIBackgroundTaskIdentifier",
+          "text": "UIBackgroundTaskIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/endBackgroundTask(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "endBackgroundTask(_:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplication/endBackgroundTask(_:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didReceiveRemoteNotification:fetchCompletionHandler:)": {
+      "abstract": [
+        {
+          "text": "Tells the app that a remote notification arrived that indicates there is data to be fetched.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didReceiveRemoteNotification"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fetchCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIBackgroundFetchResult",
+          "text": "UIBackgroundFetchResult"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didReceiveRemoteNotification:fetchCompletionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:didReceiveRemoteNotification:fetchCompletionHandler:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/application(_:didReceiveRemoteNotification:fetchCompletionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/UNNotificationServiceExtension": {
+      "abstract": [
+        {
+          "text": "An object that modifies the content of a remote notification before it’s delivered to the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationServiceExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/UNNotificationServiceExtension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UNNotificationServiceExtension",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/UNNotificationServiceExtension"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/UNNotificationServiceExtension/didReceive(_:withContentHandler:)": {
+      "abstract": [
+        {
+          "text": "Asks you to make any needed changes to the notification and notify the system when you’re done.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didReceive"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "request"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UNNotificationRequest",
+          "text": "UNNotificationRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withContentHandler"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "contentHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UNNotificationContent",
+          "text": "UNNotificationContent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/UNNotificationServiceExtension/didReceive(_:withContentHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didReceive(_:withContentHandler:)",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/UNNotificationServiceExtension/didReceive(_:withContentHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/pushing-background-updates-to-your-app": {
+      "abstract": [
+        {
+          "text": "Deliver notifications that wake your app and update it in the background.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/pushing-background-updates-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Pushing background updates to your App",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/pushing-background-updates-to-your-app"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background": {
+      "abstract": [
+        {
+          "text": "Create tasks that download files while your app is inactive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background",
+      "kind": "article",
+      "role": "article",
+      "title": "Downloading files in the background",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/downloading_files_in_the_background"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGTaskScheduler",
+        "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/starting-and-terminating-tasks-during-development",
+        "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/refreshing-and-maintaining-your-app-using-background-tasks"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGTaskScheduler",
+                "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/starting-and-terminating-tasks-during-development",
+                "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/refreshing-and-maintaining-your-app-using-background-tasks"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGProcessingTask/title",
+          "value": "BGProcessingTask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGProcessingTask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BGProcessingTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGProcessingTask/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BGProcessingTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGAppRefreshTask/title",
+          "value": "BGAppRefreshTask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGAppRefreshTask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BGAppRefreshTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGAppRefreshTask/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BGAppRefreshTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGAppRefreshTaskRequest/title",
+          "value": "BGAppRefreshTaskRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGAppRefreshTaskRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BGAppRefreshTaskRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGAppRefreshTaskRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BGAppRefreshTaskRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:didReceiveRemoteNotification:fetchCompletionHandler:)/title",
+          "value": "application:didReceiveRemoteNotification:fetchCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:didReceiveRemoteNotification:fetchCompletionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didReceiveRemoteNotification:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSDictionary",
+              "text": "NSDictionary"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "userInfo"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchCompletionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@UIBackgroundFetchResult",
+              "text": "UIBackgroundFetchResult"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "result"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGHealthResearchTaskRequest/title",
+          "value": "BGHealthResearchTaskRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGHealthResearchTaskRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BGHealthResearchTaskRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGHealthResearchTaskRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BGHealthResearchTaskRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGTaskScheduler/title",
+          "value": "BGTaskScheduler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGTaskScheduler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BGTaskScheduler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGTaskScheduler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BGTaskScheduler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGHealthResearchTask/title",
+          "value": "BGHealthResearchTask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGHealthResearchTask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BGHealthResearchTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGHealthResearchTask/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BGHealthResearchTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsession/title",
+          "value": "NSURLSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGTask~1setTaskCompleted(success:)/title",
+          "value": "setTaskCompletedWithSuccess:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGTask~1setTaskCompleted(success:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setTaskCompletedWithSuccess:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UserNotifications~1UNNotificationServiceExtension/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UNNotificationServiceExtension"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UserNotifications~1UNNotificationServiceExtension~1didReceive(_:withContentHandler:)/title",
+          "value": "didReceiveNotificationRequest:withContentHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UserNotifications~1UNNotificationServiceExtension~1didReceive(_:withContentHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "didReceiveNotificationRequest:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UNNotificationRequest",
+              "text": "UNNotificationRequest"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "request"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "withContentHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UNNotificationContent",
+              "text": "UNNotificationContent"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "contentToDeliver"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "contentHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplication~1beginBackgroundTask(withName:expirationHandler:)/title",
+          "value": "beginBackgroundTaskWithName:expirationHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplication~1beginBackgroundTask(withName:expirationHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@UIBackgroundTaskIdentifier",
+              "text": "UIBackgroundTaskIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "beginBackgroundTaskWithName:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "taskName"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "expirationHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:BFv()",
+              "text": "void (^)(void)"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "handler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplication~1endBackgroundTask(_:)/title",
+          "value": "endBackgroundTask:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplication~1endBackgroundTask(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "endBackgroundTask:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@UIBackgroundTaskIdentifier",
+              "text": "UIBackgroundTaskIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "identifier"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsurlsession/title",
+          "value": "URLSession"
+        },
+        {
+          "op": "add",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsurlsession/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "class "
+            },
+            {
+              "kind": "identifier",
+              "text": "URLSession"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/backgroundtasks/choosing-background-strategies-for-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/backgroundtasks/choosing-background-strategies-for-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

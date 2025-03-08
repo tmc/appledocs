@@ -1,0 +1,499 @@
+{
+  "abstract": [
+    {
+      "text": "Detect reference displays and keep your content within the capabilities of the display hardware.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/hdr-content"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/implementing-tone-mapping-on-reference-displays"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Implementing Tone Mapping on Reference Displays"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reference displays are calibrated to produce accurate brightness and color values within a specified range, which you use in a controlled environment to create optimized video content. Always establish if you’re using a reference display before you process any data so you can avoid system tone mapping and clamp pixel values to the range the display can accurately produce.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine if you’re using a reference display, read the screen’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen/maximumReferenceExtendedDynamicRangeColorComponentValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. If the display is a reference display, the value of this property is a nonzero value that represents the largest possible pixel value the display can reproduce without clamping or tone mapping. This value may be less than ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen/maximumExtendedDynamicRangeColorComponentValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To guarantee the reference display presents your content accurately, perform your own tone mapping in a linear color space and keep pixel values between ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the reference maximum. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/performing-your-own-tone-mapping",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSScreen/maximumExtendedDynamicRangeColorComponentValue": {
+      "abstract": [
+        {
+          "text": "The current maximum color component value for the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumExtendedDynamicRangeColorComponentValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen/maximumExtendedDynamicRangeColorComponentValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "maximumExtendedDynamicRangeColorComponentValue",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSScreen/maximumExtendedDynamicRangeColorComponentValue"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSScreen/maximumReferenceExtendedDynamicRangeColorComponentValue": {
+      "abstract": [
+        {
+          "text": "The current maximum color component value for reference rendering to the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumReferenceExtendedDynamicRangeColorComponentValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen/maximumReferenceExtendedDynamicRangeColorComponentValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "maximumReferenceExtendedDynamicRangeColorComponentValue",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSScreen/maximumReferenceExtendedDynamicRangeColorComponentValue"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/determining-support-for-edr-values": {
+      "abstract": [
+        {
+          "text": "Check whether a display supports EDR.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/determining-support-for-edr-values",
+      "kind": "article",
+      "role": "article",
+      "title": "Determining Support for EDR Values",
+      "type": "topic",
+      "url": "/documentation/metal/determining-support-for-edr-values"
+    },
+    "doc://com.apple.metal/documentation/Metal/displaying-hdr-content-in-a-metal-layer": {
+      "abstract": [
+        {
+          "text": "Bring your high dynamic range (HDR) content to compatible Mac displays.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/displaying-hdr-content-in-a-metal-layer",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying HDR Content in a Metal Layer",
+      "type": "topic",
+      "url": "/documentation/metal/displaying-hdr-content-in-a-metal-layer"
+    },
+    "doc://com.apple.metal/documentation/Metal/hdr-content": {
+      "abstract": [
+        {
+          "text": "Take advantage of high dynamic range to present more vibrant colors in your apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/hdr-content",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "HDR Content",
+      "type": "topic",
+      "url": "/documentation/metal/hdr-content"
+    },
+    "doc://com.apple.metal/documentation/Metal/performing-your-own-tone-mapping": {
+      "abstract": [
+        {
+          "text": "Apply your own tone mapping to get the exact behavior you want.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/performing-your-own-tone-mapping",
+      "kind": "article",
+      "role": "article",
+      "title": "Performing Your Own Tone Mapping",
+      "type": "topic",
+      "url": "/documentation/metal/performing-your-own-tone-mapping"
+    },
+    "doc://com.apple.metal/documentation/Metal/processing-hdr-images-with-metal": {
+      "abstract": [
+        {
+          "text": "Implement a post-processing pipeline using the latest features on Apple GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/processing-hdr-images-with-metal",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Processing HDR Images with Metal",
+      "type": "topic",
+      "url": "/documentation/metal/processing-hdr-images-with-metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-color-spaces-to-display-hdr-content": {
+      "abstract": [
+        {
+          "text": "Use a color space when you don’t need to edit or process the pixel data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-color-spaces-to-display-hdr-content",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Color Spaces to Display HDR Content",
+      "type": "topic",
+      "url": "/documentation/metal/using-color-spaces-to-display-hdr-content"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-system-tone-mapping-on-video-content": {
+      "abstract": [
+        {
+          "text": "Use EDR metadata to apply the default system tone mapping to a layer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-system-tone-mapping-on-video-content",
+      "kind": "article",
+      "role": "article",
+      "title": "Using System Tone Mapping on Video Content",
+      "type": "topic",
+      "url": "/documentation/metal/using-system-tone-mapping-on-video-content"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "High-Dynamic-Range-Content",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/processing-hdr-images-with-metal",
+        "doc://com.apple.metal/documentation/Metal/displaying-hdr-content-in-a-metal-layer",
+        "doc://com.apple.metal/documentation/Metal/determining-support-for-edr-values",
+        "doc://com.apple.metal/documentation/Metal/using-color-spaces-to-display-hdr-content",
+        "doc://com.apple.metal/documentation/Metal/using-system-tone-mapping-on-video-content",
+        "doc://com.apple.metal/documentation/Metal/performing-your-own-tone-mapping"
+      ],
+      "title": "High Dynamic Range Content"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "High-Dynamic-Range-Content",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/processing-hdr-images-with-metal",
+                "doc://com.apple.metal/documentation/Metal/displaying-hdr-content-in-a-metal-layer",
+                "doc://com.apple.metal/documentation/Metal/determining-support-for-edr-values",
+                "doc://com.apple.metal/documentation/Metal/using-color-spaces-to-display-hdr-content",
+                "doc://com.apple.metal/documentation/Metal/using-system-tone-mapping-on-video-content",
+                "doc://com.apple.metal/documentation/Metal/performing-your-own-tone-mapping"
+              ],
+              "title": "High Dynamic Range Content"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSScreen~1maximumReferenceExtendedDynamicRangeColorComponentValue/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGFloat",
+              "text": "CGFloat"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "maximumReferenceExtendedDynamicRangeColorComponentValue"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSScreen~1maximumExtendedDynamicRangeColorComponentValue/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGFloat",
+              "text": "CGFloat"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "maximumExtendedDynamicRangeColorComponentValue"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/implementing-tone-mapping-on-reference-displays"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/implementing-tone-mapping-on-reference-displays"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

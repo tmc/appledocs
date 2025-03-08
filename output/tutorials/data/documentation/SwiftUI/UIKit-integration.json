@@ -1,0 +1,1116 @@
+{
+  "abstract": [
+    {
+      "text": "Add UIKit views to your SwiftUI app, or use SwiftUI views in your UIKit app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIKit-integration"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "UIKit integration"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Integrate SwiftUI with your app’s existing content using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "hosting controllers to add SwiftUI views into UIKit interfaces. A hosting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "controller wraps a set of SwiftUI views in a form",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that you can then add to your storyboard-based app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "uikit-integration-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also add UIKit views and view controllers to your SwiftUI interfaces.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A representable object wraps the designated view or view controller, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "facilitates communication between the wrapped object and your SwiftUI",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance, see the following sections in the Human Interface Guidelines:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/designing-for-ios",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/designing-for-ipados",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/designing-for-tvos",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "Unifying-your-app-s-animations-PageImage-card.png": {
+      "alt": "A conceptual illustration of a disclosure indicator, shown animating frame by frame from its collapsed position to its expanded position.",
+      "identifier": "Unifying-your-app-s-animations-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/db26bd6bfe171a450c126a68c3bd92d4/Unifying-your-app-s-animations-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3559438f813d2163ecacac3918dbff5f/Unifying-your-app-s-animations-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AppKit-integration": {
+      "abstract": [
+        {
+          "text": "Add AppKit views to your SwiftUI app, or use SwiftUI views in your AppKit app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AppKit-integration",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AppKit integration",
+      "type": "topic",
+      "url": "/documentation/swiftui/appkit-integration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Technology-specific-views": {
+      "abstract": [
+        {
+          "text": "Use SwiftUI views that other Apple frameworks provide.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Technology-specific-views",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Technology-specific views",
+      "type": "topic",
+      "url": "/documentation/swiftui/technology-specific-views"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIGestureRecognizerRepresentable": {
+      "abstract": [
+        {
+          "text": "A wrapper for a ",
+          "type": "text"
+        },
+        {
+          "code": "UIGestureRecognizer",
+          "type": "codeVoice"
+        },
+        {
+          "text": " that you use to integrate that gesture",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "recognizer into your SwiftUI hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizerRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIGestureRecognizerRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizerRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIGestureRecognizerRepresentable",
+      "type": "topic",
+      "url": "/documentation/swiftui/uigesturerecognizerrepresentable"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIGestureRecognizerRepresentableContext": {
+      "abstract": [
+        {
+          "text": "Contextual information about the state of the system that you use to create",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and update a represented gesture recognizer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizerRepresentableContext"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIGestureRecognizerRepresentableContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizerRepresentableContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIGestureRecognizerRepresentableContext",
+      "type": "topic",
+      "url": "/documentation/swiftui/uigesturerecognizerrepresentablecontext"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIGestureRecognizerRepresentableCoordinateSpaceConverter": {
+      "abstract": [
+        {
+          "text": "A proxy structure used to convert locations to/from coordinate spaces in the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "hierarchy of the SwiftUI view associated with a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIGestureRecognizerRepresentable",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizerRepresentableCoordinateSpaceConverter"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIGestureRecognizerRepresentableCoordinateSpaceConverter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizerRepresentableCoordinateSpaceConverter"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIGestureRecognizerRepresentableCoordinateSpaceConverter",
+      "type": "topic",
+      "url": "/documentation/swiftui/uigesturerecognizerrepresentablecoordinatespaceconverter"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIHostingConfiguration": {
+      "abstract": [
+        {
+          "text": "A content configuration suitable for hosting a hierarchy of SwiftUI views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIHostingConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIHostingConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIHostingConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIHostingConfiguration",
+      "type": "topic",
+      "url": "/documentation/swiftui/uihostingconfiguration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIHostingController": {
+      "abstract": [
+        {
+          "text": "A UIKit view controller that manages a SwiftUI view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIHostingController"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIHostingController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIHostingController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIHostingController",
+      "type": "topic",
+      "url": "/documentation/swiftui/uihostingcontroller"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIHostingControllerSizingOptions": {
+      "abstract": [
+        {
+          "text": "Options for how a hosting controller tracks its content’s size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIHostingControllerSizingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIHostingControllerSizingOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIHostingControllerSizingOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIHostingControllerSizingOptions",
+      "type": "topic",
+      "url": "/documentation/swiftui/uihostingcontrollersizingoptions"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIHostingOrnament": {
+      "abstract": [
+        {
+          "text": "A model that represents an ornament suitable for being hosted in UIKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIHostingOrnament"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIHostingOrnament",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIHostingOrnament"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIHostingOrnament",
+      "type": "topic",
+      "url": "/documentation/swiftui/uihostingornament"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIOrnament": {
+      "abstract": [
+        {
+          "text": "The abstract base class that represents an ornament.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIOrnament"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIOrnament",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIOrnament"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIOrnament",
+      "type": "topic",
+      "url": "/documentation/swiftui/uiornament"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UITraitBridgedEnvironmentKey": {
+      "abstract": [
+        {
+          "text": "An environment key that is bridged to a UIKit trait.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitBridgedEnvironmentKey"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UITraitBridgedEnvironmentKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitBridgedEnvironmentKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitBridgedEnvironmentKey",
+      "type": "topic",
+      "url": "/documentation/swiftui/uitraitbridgedenvironmentkey"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable": {
+      "abstract": [
+        {
+          "text": "A view that represents a UIKit view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewControllerRepresentable",
+      "type": "topic",
+      "url": "/documentation/swiftui/uiviewcontrollerrepresentable"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentableContext": {
+      "abstract": [
+        {
+          "text": "Contextual information about the state of the system that you use to create",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and update your UIKit view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerRepresentableContext"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentableContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerRepresentableContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewControllerRepresentableContext",
+      "type": "topic",
+      "url": "/documentation/swiftui/uiviewcontrollerrepresentablecontext"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewRepresentable": {
+      "abstract": [
+        {
+          "text": "A wrapper for a UIKit view that you use to integrate that view into your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "SwiftUI view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewRepresentable",
+      "type": "topic",
+      "url": "/documentation/swiftui/uiviewrepresentable"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewRepresentableContext": {
+      "abstract": [
+        {
+          "text": "Contextual information about the state of the system that you use to create",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and update your UIKit view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewRepresentableContext"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewRepresentableContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewRepresentableContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewRepresentableContext",
+      "type": "topic",
+      "url": "/documentation/swiftui/uiviewrepresentablecontext"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Unifying-your-app-s-animations": {
+      "abstract": [
+        {
+          "text": "Create a consistent UI animation experience across SwiftUI, UIKit, and AppKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Unifying-your-app-s-animations",
+      "images": [
+        {
+          "identifier": "Unifying-your-app-s-animations-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Unifying your app’s animations",
+      "type": "topic",
+      "url": "/documentation/swiftui/unifying-your-app-s-animations"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WatchKit-integration": {
+      "abstract": [
+        {
+          "text": "Add WatchKit views to your SwiftUI app, or use SwiftUI views in your WatchKit app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WatchKit-integration",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "WatchKit integration",
+      "type": "topic",
+      "url": "/documentation/swiftui/watchkit-integration"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/designing-for-ios": {
+      "abstract": [
+        {
+          "text": "People depend on their iPhone to help them stay connected, play games, view media, accomplish tasks, and track personal data in any location and while on the go.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/designing-for-ios",
+      "images": [
+        {
+          "identifier": "ios.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "platforms-designing-for-ios-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Designing for iOS",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/designing-for-ios"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/designing-for-ipados": {
+      "abstract": [
+        {
+          "text": "People value the power, mobility, and flexibility of iPad as they enjoy media, play games, perform detailed productivity tasks, and bring their creations to life.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/designing-for-ipados",
+      "images": [
+        {
+          "identifier": "ipados.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "platforms-designing-for-ipados-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Designing for iPadOS",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/designing-for-ipados"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/designing-for-tvos": {
+      "abstract": [
+        {
+          "text": "People enjoy the vibrant content, immersive experiences, and streamlined interactions that tvOS delivers in media and games, as well as in fitness, education, and home utility apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/designing-for-tvos",
+      "images": [
+        {
+          "identifier": "tvos.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "platforms-designing-for-tvos-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Designing for tvOS",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/designing-for-tvos"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/using-swiftui-with-uikit": {
+      "abstract": [
+        {
+          "text": "Learn how to incorporate SwiftUI views into a UIKit app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/using-swiftui-with-uikit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using SwiftUI with UIKit",
+      "type": "topic",
+      "url": "/documentation/UIKit/using-swiftui-with-uikit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "ios.svg": {
+      "alt": null,
+      "identifier": "ios.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "ios",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f2bc8c574fdc3a6998bb161b50510825/ios.svg"
+        }
+      ]
+    },
+    "ipados.svg": {
+      "alt": null,
+      "identifier": "ipados.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "ipados",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/68041371bd3b88d3ace4704e7090bcef/ipados.svg"
+        }
+      ]
+    },
+    "platforms-designing-for-ios-thumbnail.png": {
+      "alt": null,
+      "identifier": "platforms-designing-for-ios-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/405d663ed12983bd567e994c19ef9a66/platforms-designing-for-ios-thumbnail~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ac38957475654c7811bb0e2001242c6b/platforms-designing-for-ios-thumbnail@2x.png"
+        }
+      ]
+    },
+    "platforms-designing-for-ipados-thumbnail.png": {
+      "alt": null,
+      "identifier": "platforms-designing-for-ipados-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2d73dfa7931a035fd311f6f2495f75e8/platforms-designing-for-ipados-thumbnail@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a59a534cbd80dc967f5bdaf47a0e27c9/platforms-designing-for-ipados-thumbnail~dark@2x.png"
+        }
+      ]
+    },
+    "platforms-designing-for-tvos-thumbnail.png": {
+      "alt": null,
+      "identifier": "platforms-designing-for-tvos-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3b1e563fb4abdc714ded7ac4ae8ddbe5/platforms-designing-for-tvos-thumbnail~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6afc96467783d4a828969e346841ff38/platforms-designing-for-tvos-thumbnail@2x.png"
+        }
+      ]
+    },
+    "tvos.svg": {
+      "alt": null,
+      "identifier": "tvos.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "tvos",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2c8728ccf7583e19a0f8d6061023283b/tvos.svg"
+        }
+      ]
+    },
+    "uikit-integration-hero": {
+      "alt": null,
+      "identifier": "uikit-integration-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/74ee52cce15bcc5332715296b5d568d9/uikit-integration-hero@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Framework-integration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AppKit-integration",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WatchKit-integration",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Technology-specific-views"
+      ],
+      "title": "Framework integration"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Displaying-SwiftUI-views-in-UIKit",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/UIKit/using-swiftui-with-uikit",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Unifying-your-app-s-animations",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIHostingController",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIHostingControllerSizingOptions",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIHostingConfiguration"
+      ],
+      "title": "Displaying SwiftUI views in UIKit"
+    },
+    {
+      "anchor": "Adding-UIKit-views-to-SwiftUI-view-hierarchies",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewRepresentable",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewRepresentableContext",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentableContext"
+      ],
+      "title": "Adding UIKit views to SwiftUI view hierarchies"
+    },
+    {
+      "anchor": "Integrate-gesture-recognizer-into-SwiftUI-view-hierarchies",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIGestureRecognizerRepresentable",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIGestureRecognizerRepresentableContext",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIGestureRecognizerRepresentableCoordinateSpaceConverter"
+      ],
+      "title": "Integrate gesture recognizer into SwiftUI view hierarchies"
+    },
+    {
+      "anchor": "Sharing-configuration-information",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UITraitBridgedEnvironmentKey"
+      ],
+      "title": "Sharing configuration information"
+    },
+    {
+      "anchor": "Hosting-an-ornament-in-UIKit",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIHostingOrnament",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIOrnament"
+      ],
+      "title": "Hosting an ornament in UIKit"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/uikit-integration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

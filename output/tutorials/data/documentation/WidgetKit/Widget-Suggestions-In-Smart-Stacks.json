@@ -1,0 +1,1636 @@
+{
+  "abstract": [
+    {
+      "text": "Donate intents and indicate relevance to automatically show your widget in Smart Stacks when it has useful information to display.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.WidgetKit/documentation/WidgetKit/Widget-Suggestions-In-Smart-Stacks"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WidgetKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Increasing the visibility of widgets in Smart Stacks"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Smart Stacks efficiently organize multiple widgets on the Home Screen to show useful content at just the right time. For example, if a person checks the daily weather forecast every morning, or if they frequently check the charges a family member makes on a joint credit card, then with input from your app, on-device intelligence can identify these patterns, enabling Smart Stacks to show and suggest the corresponding widgets at the right moments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When people configure Smart Stacks, they have two options for surfacing widgets:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Smart Rotate automatically rotates widgets to the top of the stack when they have timely, relevant information to show.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Widget Suggestions automatically propose widgets that a person doesn’t already have in their stack, perhaps exposing them to widgets they don’t even know exist.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Smart Stacks use information from your app and widget extension to detect patterns of usage, and to promote or suggest widgets in a Smart Stack. Your app donates intents and identifies relevant shortcuts to provide a signal about how people use your app, when they use it, and what is most relevant to them. Your widget extension’s timeline entry provider generates timeline entries that contain hints about the relative importance of the widget’s content over time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-app-intents-to-tell-the-system-how-people-use-your-app",
+          "level": 3,
+          "text": "Use app intents to tell the system how people use your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you donate app intents, the system learns how and when people interact with your app. These donations inform much more than Smart Stacks. The system uses this information to display Spotlight search results, offer shortcuts on the Lock Screen and Siri watch face, and more. For more information about donating app intents, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/intent-discovery",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For widgets based on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", your app uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/IntentDonationManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppIntent/donate()-1e60c",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to inform Smart Rotate and Widget Suggestions in Smart Stacks. When your app donates an ",
+              "type": "text"
+            },
+            {
+              "code": "AppIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", Smart Stacks consider rotating matching widgets to the top, or inserting an automatically configured widget as a suggestion.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider a tour guide app that displays information for cities around the world, such as popular tourist attractions, restaurants, and upcoming festivals throughout the year. The app contains several widgets that display these details. The widget configurations define custom intents such as ",
+              "type": "text"
+            },
+            {
+              "code": "CityInfoAppIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "AttractionAppIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "RestaurantAppIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "FestivalAppIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". As people interact with the app, the app donates these app intents using ",
+              "type": "text"
+            },
+            {
+              "code": "donate()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The system uses the details of the app intents when determining user intention.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, a person frequently uses a travel app on the weekend to plan a trip to France. As they use the app, they look for festivals in various cities they may visit. Each time they search for or view the details of a festival, the app donates a ",
+              "type": "text"
+            },
+            {
+              "code": "FestivalAppIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If the ",
+              "type": "text"
+            },
+            {
+              "code": "FestivalAppIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains ",
+              "type": "text"
+            },
+            {
+              "code": "location",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameters, the system can learn that the person frequently searches for art events in Paris. Your app’s donations give the system insight into the person’s behavior and what information is important to them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make relevant suggestions, Smart Stacks compare app intents the app donates with app intents that configurable widgets use. If a person configures a widget that uses a ",
+              "type": "text"
+            },
+            {
+              "code": "FestivalAppIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to show art festivals in Paris, Smart Stacks can automatically rotate to that widget when the person typically looks for that information. If the person hasn’t configured a matching widget in a stack, the system can automatically suggest a widget with that configuration. This raises the visibility of the app’s widgets, which they may not know about.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To enable Smart Stacks to suggest your app intent-based widgets, have your custom app intents conform to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppIntents/PredictableIntent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and contain a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppIntents/PredictableIntent/predictionConfiguration",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " that describes the parameters to match.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Suggest-shortcuts-a-person-may-find-useful",
+          "level": 3,
+          "text": "Suggest shortcuts a person may find useful",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While app intent donations using ",
+              "type": "text"
+            },
+            {
+              "code": "IntentDonationManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "donate()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " give Smart Stacks insight into past user behavior, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/RelevantIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " informs future suggestions. These app intents may not even be based on a person’s behavior. When your app has timely information you believe is relevant to a person, and the app has a widget to display that information, suggest relevant app intents to influence Widget Suggestions. This helps people perform common or important tasks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Continuing the previous example, when the app receives details about a new outdoor art lantern festival in Paris, it can convey this new, likely relevant information to the system. Because the on-device intelligence has learned the person is interested in art festivals in Paris, it may suggest an app intent-based widget from the app that displays art festivals in a Smart Stack. The Smart Stack uses the app intent from the app to automatically configure the widget to show the details of the outdoor art lantern festival.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app uses a ",
+              "type": "text"
+            },
+            {
+              "code": "RelevantIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that contains the festival details. Because the new festival is in the future, Smart Stacks need to know when the app intent is relevant. The app conveys this information by specifying a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "relevant context",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " as part of the ",
+              "type": "text"
+            },
+            {
+              "code": "RelevantIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The relevant context determines when an app intent is relevant, such as at a specific time of day or location. To specify when it’s appropriate to suggest a widget in a Smart Stack, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/RelevantIntentManager/updateRelevantIntents(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and pass one or more ",
+              "type": "text"
+            },
+            {
+              "code": "RelevantIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects. On-device intelligence uses the combination of the relevant app intent and the date details from the relevant context to make a widget suggestion at the right time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide a relevant app intent with a ",
+              "type": "text"
+            },
+            {
+              "code": "FestivalAppIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the Paris art lantern festival, the app does the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Creates a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "FestivalAppIntent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for the lantern festival with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "location",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " set to Paris and the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "type",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " set to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Art",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Creates a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "RelevantIntent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "FestivalAppIntent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the widget’s kind string, and a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppIntents/RelevantContext",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " that specifies the start and end dates of the festival",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Calls ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "updateRelevantIntents()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "RelevantIntent",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With this information, Smart Stacks can suggest the preconfigured lantern festival widget with no user action.  The person may not be aware that the app contains widgets, providing a great way for people to discover new features and interactions with your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your widget uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/StaticConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you still use ",
+              "type": "text"
+            },
+            {
+              "code": "RelevantIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for future suggestions. To provide a relevant intent for a static widget, create a custom intent type that conforms to ",
+              "type": "text"
+            },
+            {
+              "code": "WidgetConfigurationIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and has no parameters, then follow the steps above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Smart Stacks don’t suggest widgets that rely on a person’s location information unless that person has already authorized the use of location for widgets in a widget extension. For more information about using a person’s location in widgets, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Accessing-Location-Information-in-Widgets",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Indicate-when-a-widget-is-relevant-from-your-widget-extension",
+          "level": 3,
+          "text": "Indicate when a widget is relevant from your widget extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similar to how a ",
+              "type": "text"
+            },
+            {
+              "code": "RelevantIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " gives Smart Stacks insight into future relevant information, the widget timeline providers you implement in your widget extension specify relevance for future widget updates. After a person adds a widget to the Home Screen, the widget’s timeline provider generates timelines to populate the widget. As it generates timelines, the provider indicates the relative importance of entries over time by setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntry/relevance",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property on the timeline entries. Timeline providers can specify relevance to both static and app intent-based widget configurations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if a person adds the festival tracker widget to the Home Screen, the provider might indicate a relevance score of ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for an upcoming festival in Paris because the person browsed festivals in Paris. If the person adds the lantern festival widget from the previous example and marks it as a favorite, the timeline provider might change the relevance score for those timeline entries from ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "10",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to indicate a significantly more relevant entry. Smart Stacks consider the changes in relevance across all of a widget’s timeline entries when deciding to automatically rotate to that widget in a Smart Stack.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about using relevance in timeline entries and providing relevance scores, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntryRelevance",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-widgets-in-stacks",
+          "level": 3,
+          "text": "Test widgets in stacks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a widget is in a stack, WidgetKit normally limits the number of times it considers rotating the widget to the top of the stack or inserting the widget as a suggestion. To bypass this limit during development, enable the WidgetKit Developer Mode switch in Settings > Developer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional tips about debugging widgets, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Debugging-Widgets",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-backward-compatibility",
+          "level": 3,
+          "text": "Provide backward compatibility",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Prior to iOS 17, macOS 14, and watchOS 10, widgets used SiriKit Intents to make donations and to indicate relevance. For details about supporting older operating system versions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Migrating-from-SiriKit-Intents-to-App-Intents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Donating SiriKit Intents is very similar to donating app intents. Instead of using ",
+              "type": "text"
+            },
+            {
+              "code": "IntentDonationManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INInteraction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to donate an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information about donating SiriKit Intents, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SiriKit/donating-shortcuts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SiriKit/watch-and-widget-support",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.WidgetKit/documentation/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Extend the reach of your app by creating widgets, watch complications, Live Activities, and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WidgetKit",
+      "type": "topic",
+      "url": "/documentation/widgetkit"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Accessing-Location-Information-in-Widgets": {
+      "abstract": [
+        {
+          "text": "Incorporate location information into your widget presentation to make it",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "more relevant and contextual.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Accessing-Location-Information-in-Widgets",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing location information in widgets",
+      "type": "topic",
+      "url": "/documentation/widgetkit/accessing-location-information-in-widgets"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentConfiguration": {
+      "abstract": [
+        {
+          "text": "An object describing the content of a widget that uses a custom intent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to provide user-configurable options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntentConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppIntentConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntentConfiguration",
+      "type": "topic",
+      "url": "/documentation/widgetkit/appintentconfiguration"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Debugging-Widgets": {
+      "abstract": [
+        {
+          "text": "Set environment variables in Xcode to control your widget’s configuration in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Debugging-Widgets",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging Widgets",
+      "type": "topic",
+      "url": "/documentation/widgetkit/debugging-widgets"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Migrating-from-SiriKit-Intents-to-App-Intents": {
+      "abstract": [
+        {
+          "text": "Configure your widgets for backward compatibility.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Migrating-from-SiriKit-Intents-to-App-Intents",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating widgets from SiriKit Intents to App Intents",
+      "type": "topic",
+      "url": "/documentation/widgetkit/migrating-from-sirikit-intents-to-app-intents"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/StaticConfiguration": {
+      "abstract": [
+        {
+          "text": "An object describing the content of a widget that has no user-configurable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StaticConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/StaticConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StaticConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "StaticConfiguration",
+      "type": "topic",
+      "url": "/documentation/widgetkit/staticconfiguration"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntry/relevance": {
+      "abstract": [
+        {
+          "text": "The relevance of a widget’s content to the user.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "relevance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit22TimelineEntryRelevanceV",
+          "text": "TimelineEntryRelevance"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntry/relevance",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "relevance",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineentry/relevance"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntryRelevance": {
+      "abstract": [
+        {
+          "text": "An object that describes the relative importance of a timeline entry",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "compared to other entries in the current and past timelines.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimelineEntryRelevance"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntryRelevance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimelineEntryRelevance"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimelineEntryRelevance",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineentryrelevance"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/AppIntent/donate()-1e60c": {
+      "abstract": [
+        {
+          "text": "Donates the intent to the transcript.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@discardableResult"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "donate"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents24IntentDonationIdentifierV",
+          "text": "IntentDonationIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppIntent/donate()-1e60c",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "donate()",
+      "type": "topic",
+      "url": "/documentation/AppIntents/AppIntent/donate()-1e60c"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/IntentDonationManager": {
+      "abstract": [
+        {
+          "text": "A type you use to donate intents to the system, or delete intents when they become irrelevant.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntentDonationManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/IntentDonationManager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IntentDonationManager",
+      "type": "topic",
+      "url": "/documentation/AppIntents/IntentDonationManager"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/PredictableIntent": {
+      "abstract": [
+        {
+          "text": "An interface that allows the system to suggest the app intent to someone in the future using predictions you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredictableIntent"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP",
+          "text": "AppIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/PredictableIntent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredictableIntent",
+      "type": "topic",
+      "url": "/documentation/AppIntents/PredictableIntent"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/PredictableIntent/predictionConfiguration": {
+      "abstract": [
+        {
+          "text": "A collection of predictions the system can use when it suggests the app intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:10AppIntents24IntentPredictionsBuilderO",
+          "text": "IntentPredictionsBuilder"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predictionConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents17PredictableIntentP10PredictionQa",
+          "text": "Prediction"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/PredictableIntent/predictionConfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "predictionConfiguration",
+      "type": "topic",
+      "url": "/documentation/AppIntents/PredictableIntent/predictionConfiguration"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/RelevantContext": {
+      "abstract": [
+        {
+          "text": "A type that specifies conditions for relevance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RelevantContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/RelevantContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RelevantContext",
+      "type": "topic",
+      "url": "/documentation/AppIntents/RelevantContext"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/RelevantIntent": {
+      "abstract": [
+        {
+          "text": "A type that specifies an intent and its relevance to the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RelevantIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/RelevantIntent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RelevantIntent",
+      "type": "topic",
+      "url": "/documentation/AppIntents/RelevantIntent"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/RelevantIntentManager/updateRelevantIntents(_:)": {
+      "abstract": [
+        {
+          "text": "Give the system the list of relevant intents for your app. To replace the list, call this method again, passing in a new list of relevant intents.  To remove all relevant intents associated with your app, call this method with an empty array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateRelevantIntents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "relevantIntents"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents14RelevantIntentV",
+          "text": "RelevantIntent"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/RelevantIntentManager/updateRelevantIntents(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updateRelevantIntents(_:)",
+      "type": "topic",
+      "url": "/documentation/AppIntents/RelevantIntentManager/updateRelevantIntents(_:)"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/intent-discovery": {
+      "abstract": [
+        {
+          "text": "Donate your app’s intents to the system to help it identify trends and predict future behaviors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/intent-discovery",
+      "kind": "article",
+      "role": "article",
+      "title": "Intent discovery",
+      "type": "topic",
+      "url": "/documentation/AppIntents/intent-discovery"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INIntent": {
+      "abstract": [
+        {
+          "text": "A request to fulfill in your app or Intents extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INIntent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "INIntent",
+      "type": "topic",
+      "url": "/documentation/Intents/INIntent"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INInteraction": {
+      "abstract": [
+        {
+          "text": "An interaction between the user and your app involving an intent object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INInteraction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "INInteraction",
+      "type": "topic",
+      "url": "/documentation/Intents/INInteraction"
+    },
+    "doc://com.apple.documentation/documentation/SiriKit/donating-shortcuts": {
+      "abstract": [
+        {
+          "text": "Tell Siri about shortcuts to actions that the user performed in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SiriKit/donating-shortcuts",
+      "kind": "article",
+      "role": "article",
+      "title": "Donating Shortcuts",
+      "type": "topic",
+      "url": "/documentation/SiriKit/donating-shortcuts"
+    },
+    "doc://com.apple.documentation/documentation/SiriKit/watch-and-widget-support": {
+      "abstract": [
+        {
+          "text": "Display relevant shortcuts on the Siri watch face and suggest widgets in Smart Stacks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SiriKit/watch-and-widget-support",
+      "kind": "article",
+      "role": "article",
+      "title": "Watch and Widget Support",
+      "type": "topic",
+      "url": "/documentation/SiriKit/watch-and-widget-support"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Smart-Stacks",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntryRelevance"
+      ],
+      "title": "Smart Stacks"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Smart-Stacks",
+              "generated": true,
+              "identifiers": [],
+              "title": "Smart Stacks"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INInteraction/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INInteraction"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INIntent/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INIntent"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/widgetkit/widget-suggestions-in-smart-stacks"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/widgetkit/widget-suggestions-in-smart-stacks"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

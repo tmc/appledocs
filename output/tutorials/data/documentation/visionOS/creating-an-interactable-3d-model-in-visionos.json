@@ -1,0 +1,1278 @@
+{
+  "abstract": [
+    {
+      "text": "Display an interactive car model using gestures in a reality view.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS",
+        "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/creating-an-interactable-3d-model-in-visionos"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "sample-car-example-1-main-view-card.png",
+        "type": "card"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating an interactive 3D model in visionOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample demonstrates how to create and display a 3D car model that responds to gestures within visionOS. It uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ModelEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer to asynchronously load a model by its filename, and it implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/DragGesture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol on the ",
+              "type": "text"
+            },
+            {
+              "code": "ModelEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", to interact with the model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At launch, the app’s main view generates the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A window that contains text",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A 3D model of a car that reacts to drag and magnify gestures",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "identifier": "sample-car-example-1-main-view.mov",
+          "type": "video"
+        },
+        {
+          "anchor": "Set-up-the-gestures-for-the-entity",
+          "level": 3,
+          "text": "Set up the gestures for the entity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make sure the car locks on the ground, the sample creates an ",
+              "type": "text"
+            },
+            {
+              "code": "SIMD3",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension with the ",
+              "type": "text"
+            },
+            {
+              "code": "grounded",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable to lock the y-axis to 0 during a drag gesture movement:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "",
+            "extension SIMD3 where Scalar == Float {",
+            "    /// The variable to lock the y-axis value to 0.",
+            "    var grounded: SIMD3<Scalar> {",
+            "        return .init(x: x, y: 0, z: z)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The main view creates two state variables to track the initial position and scale of the entity:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// The initial position of the entity.",
+            "@State var initialPosition: SIMD3<Float>? = nil",
+            "",
+            "/// The initial scale of the entity.",
+            "@State var initialScale: SIMD3<Float>? = nil"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app creates a ",
+              "type": "text"
+            },
+            {
+              "code": "translationGesture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to update the entity’s positions with a person’s gesture movements, allowing the person to select and move an entity around the immersive space:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var translationGesture: some Gesture {",
+            "    DragGesture()",
+            "        .targetedToAnyEntity()",
+            "        .onChanged({ value in",
+            "            /// The entity that the drag gesture targets.",
+            "            let rootEntity = value.entity",
+            "",
+            "            // Set `initialPosition` to the initial position of the entity if it is `nil`.",
+            "            if initialPosition == nil {",
+            "                initialPosition = rootEntity.position",
+            "            }",
+            "",
+            "            /// The movement that converts a global world space to the scene world space of the entity.",
+            "            let movement = value.convert(value.translation3D, from: .global, to: .scene)",
+            "",
+            "            // Apply the entity position to match the drag gesture,",
+            "            // and set the movement to stay at the ground level.",
+            "            rootEntity.position = (initialPosition ?? .zero) + movement.grounded",
+            "        })",
+            "        .onEnded({ _ in",
+            "            // Reset the `initialPosition` to `nil` when the gesture ends.",
+            "            initialPosition = nil",
+            "        })",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "initialPosition",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable resets back to ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when the gesture ends.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You must use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Gesture/targetedToAnyEntity()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or related methods to enable a gesture to target an entity.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "scaleGesture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " applies the scale rate by the magnification on the gesture, to smoothly scale the entity during a gesture movement:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var scaleGesture: some Gesture {",
+            "    MagnifyGesture()",
+            "        .targetedToAnyEntity()",
+            "        .onChanged { gesture in",
+            "            /// The entity that the magnify gesture targets.",
+            "            let rootEntity = value.entity",
+            "",
+            "            // Set the `initialScale` to the initial scale of the entity if it is `nil`.",
+            "            if initialScale == nil {",
+            "                initialScale = rootEntity.scale",
+            "            }",
+            "",
+            "            /// The rate that the model will scale by.",
+            "            let scaleRate: Float = 1.0",
+            "",
+            "            // Scale the entity up smoothly by the relative magnification on the gesture.",
+            "            rootEntity.scale = (initialScale ?? .init(repeating: scaleRate)) * Float(gesture.gestureValue.magnification)",
+            "        }",
+            "        .onEnded { _ in",
+            "            // Reset the `initialScale` back to `nil` when the gesture ends.",
+            "            initialScale = nil",
+            "        }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "initialScale",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable resets back to ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " once the gesture ends.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Load-the-3D-car-model",
+          "level": 3,
+          "text": "Load the 3D car model",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "CarView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " loads in a USDZ file as a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ModelEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance and creates a ",
+              "type": "text"
+            },
+            {
+              "code": "bounds",
+              "type": "codeVoice"
+            },
+            {
+              "text": " containing a bounding box of the outer dimensional size of the ",
+              "type": "text"
+            },
+            {
+              "code": "car",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entity:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "import RealityKit",
+            "",
+            "struct CarView: View {",
+            "    // ...",
+            "",
+            "    var body: some View {",
+            "        RealityView { content in",
+            "            /// The name of the model.",
+            "            let fileName: String = \"Huracan-EVO-RWD-Spyder-opt-22\"",
+            "",
+            "            /// The model that loads from the filename asynchronously.",
+            "            guard let car = try? await ModelEntity(named: fileName) else {",
+            "                assertionFailure(\"Failed to load model: \\(fileName)\")",
+            "                return",
+            "            }",
+            "",
+            "            /// The visual bounds of the car.",
+            "            let bounds = car.visualBounds(relativeTo: nil)",
+            "",
+            "            // ...",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-the-collision-component",
+          "level": 3,
+          "text": "Set the collision component",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app uses the ",
+              "type": "text"
+            },
+            {
+              "code": "bounds",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to generate a bounding box with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ShapeResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which serves as a collision bound for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/CollisionComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This enables the collision component to interact with the environment:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "import RealityKit",
+            "",
+            "struct CarView: View {",
+            "    // ...",
+            "",
+            "    var body: some View {",
+            "        RealityView { content in",
+            "            // ...",
+            "            ",
+            "            /// The visual bounds of the car to show at all times.",
+            "            let bounds = car.visualBounds(relativeTo: nil)",
+            "",
+            "            /// The width of the collision box by the size of the model.",
+            "            let carWidth: Float = (car.model?.mesh.bounds.max.x)!",
+            "",
+            "            /// The height of the collision box by the size of the model.",
+            "            let carHeight: Float = (car.model?.mesh.bounds.max.y)!",
+            "",
+            "            /// The depth of the collision box by the size of the model.",
+            "            let carDepth: Float = (car.model?.mesh.bounds.max.z)!",
+            "",
+            "            /// The box around the model of the car for collisions.",
+            "            let boxShape = ShapeResource.generateBox(",
+            "                width: carWidth,",
+            "                height: carHeight,",
+            "                depth: carDepth)",
+            "",
+            "            // Add the box shape as a collision component.",
+            "            car.components.set(CollisionComponent(shapes: [boxShape]))",
+            "",
+            "            // ...",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app also uses the ",
+              "type": "text"
+            },
+            {
+              "code": "bounds",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to set the ",
+              "type": "text"
+            },
+            {
+              "code": "car",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entity’s spawn position. It sets this position on the ground, along the z-axis, by the radius of ",
+              "type": "text"
+            },
+            {
+              "code": "bounds",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "import RealityKit",
+            "",
+            "struct CarView: View {",
+            "    // ...",
+            "",
+            "    var body: some View {",
+            "        RealityView { content in",
+            "            // ...",
+            "            ",
+            "            // Set the spawn position of the entity on the ground.",
+            "            car.position.y -= bounds.min.y",
+            "",
+            "            // Set the spawn position along the z-axis, by the radius of the visual bounds.",
+            "            car.position.z -= bounds.boundingRadius",
+            "",
+            "            // Add the car model to the `RealityView`.",
+            "            content.add(car)",
+            "        }",
+            "        .gesture(translationGesture)",
+            "        .gesture(scaleGesture)",
+            "    }",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, the app adds the ",
+              "type": "text"
+            },
+            {
+              "code": "car",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entity to the ",
+              "type": "text"
+            },
+            {
+              "code": "RealityView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Run-the-immersive-scene",
+          "level": 3,
+          "text": "Run the immersive scene",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample structure includes an ",
+              "type": "text"
+            },
+            {
+              "code": "ImmersiveSpace",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entry to the scene to include in the app’s environment:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "",
+            "@main",
+            "struct EntryPoint: App {",
+            "    var body: some Scene {",
+            "        WindowGroup {",
+            "            MainView()",
+            "        }",
+            "        ImmersiveSpace(id: \"CarView\") {",
+            "            CarView()",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample’s main view uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/openImmersiveSpace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance property to call the ",
+              "type": "text"
+            },
+            {
+              "code": "ImmersiveSpace",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that the app’s ",
+              "type": "text"
+            },
+            {
+              "code": "EntryPoint",
+              "type": "codeVoice"
+            },
+            {
+              "text": " defines:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "",
+            "struct MainView: View {",
+            "    /// The environment value to get the instance of the `OpenImmersiveSpaceAction` instance.",
+            "    @Environment(\\.openImmersiveSpace) var openImmersiveSpace",
+            "",
+            "    var body: some View {",
+            "        // Display a line of text and",
+            "        // open a new immersive space environment.",
+            "        Text(\"Use gestures to move the car\")",
+            "        .onAppear {",
+            "            Task {",
+            "                await openImmersiveSpace(id: \"CarView\")",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Related-samples",
+          "level": 4,
+          "text": "Related samples",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.visionOS/documentation/visionOS/creating-immersive-spaces-in-visionos-with-swiftui",
+            "doc://com.apple.documentation/documentation/RealityKit/transforming-realitykit-entities-with-gestures"
+          ],
+          "style": "list",
+          "type": "links"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "7b5bc90de8c3/CreatingA3DModelWithGesturesInVisionOS.zip": {
+      "checksum": "7b5bc90de8c373f55627cae6bc215cfcc2e0cc8f26a9bc46d04bd637007beaefe81437d46414ba1ca799d9e556bf4463bb259d6602c447f6fd9be21e992254e0",
+      "identifier": "7b5bc90de8c3/CreatingA3DModelWithGesturesInVisionOS.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/7b5bc90de8c3/CreatingA3DModelWithGesturesInVisionOS.zip"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/CollisionComponent": {
+      "abstract": [
+        {
+          "text": "A component that gives an entity the ability to collide with other entities that also have collision components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CollisionComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/CollisionComponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CollisionComponent",
+      "type": "topic",
+      "url": "/documentation/RealityKit/CollisionComponent"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ModelEntity": {
+      "abstract": [
+        {
+          "text": "A representation of a physical object that RealityKit renders and optionally simulates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ModelEntity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ModelEntity",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ModelEntity"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ShapeResource": {
+      "abstract": [
+        {
+          "text": "A representation of a shape.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShapeResource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ShapeResource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ShapeResource",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ShapeResource"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/transforming-realitykit-entities-with-gestures": {
+      "abstract": [
+        {
+          "text": "Build a RealityKit component to support standard visionOS gestures on any entity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/transforming-realitykit-entities-with-gestures",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Transforming RealityKit entities using gestures",
+      "type": "topic",
+      "url": "/documentation/RealityKit/transforming-realitykit-entities-with-gestures"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/DragGesture": {
+      "abstract": [
+        {
+          "text": "A dragging motion that invokes an action as the drag-event sequence changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DragGesture"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/DragGesture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DragGesture",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/DragGesture"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/openImmersiveSpace": {
+      "abstract": [
+        {
+          "text": "An action that presents an immersive space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openImmersiveSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI24OpenImmersiveSpaceActionV",
+          "text": "OpenImmersiveSpaceAction"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/openImmersiveSpace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "openImmersiveSpace",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/openImmersiveSpace"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Gesture/targetedToAnyEntity()": {
+      "abstract": [
+        {
+          "text": "Requires this gesture to target an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "targetedToAnyEntity"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7GestureP",
+          "text": "Gesture"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:19_RealityKit_SwiftUI17EntityTargetValueV",
+          "text": "EntityTargetValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7GestureP5ValueQa",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">>\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Gesture/targetedToAnyEntity()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "targetedToAnyEntity()",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Gesture/targetedToAnyEntity()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/creating-immersive-spaces-in-visionos-with-swiftui": {
+      "abstract": [
+        {
+          "text": "Enhance your visionOS app by adding an immersive space using RealityKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/creating-immersive-spaces-in-visionos-with-swiftui",
+      "images": [
+        {
+          "identifier": "sample-immersive-1-main-view.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating an immersive space in visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos/creating-immersive-spaces-in-visionos-with-swiftui"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples": {
+      "abstract": [
+        {
+          "text": "Learn the fundamentals of building apps for visionOS with beginner-friendly sample code projects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples",
+      "images": [
+        {
+          "identifier": "introductory-visionOS-samples.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Introductory visionOS samples",
+      "type": "topic",
+      "url": "/documentation/visionos/introductory-visionos-samples"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "introductory-visionOS-samples.png": {
+      "alt": "A translucent window displaying five white, three-dimensional entities in a horizontal row. From left to right, the shapes are a box, a rounded box, a right sphere, a cone, and a cylinder that all top-align.",
+      "identifier": "introductory-visionOS-samples.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3d386622a70e5f41179e6a4c98a125c7/introductory-visionOS-samples@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/58fa94f103305452c567401d648dedc5/introductory-visionOS-samples~dark@2x.png"
+        }
+      ]
+    },
+    "sample-car-example-1-main-view-card.png": {
+      "alt": null,
+      "identifier": "sample-car-example-1-main-view-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ffa900addb4dda85070a399d6f70a5e0/sample-car-example-1-main-view-card.png"
+        }
+      ]
+    },
+    "sample-car-example-1-main-view.mov": {
+      "alt": "A screenshot of a visionOS app in Simulator, displaying a 3D car entity and a translucent window labeled 'Use gestures to move the car'.",
+      "identifier": "sample-car-example-1-main-view.mov",
+      "poster": null,
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a16df2a28dff42898c73df41aa48569f/sample-car-example-1-main-view.mov"
+        }
+      ]
+    },
+    "sample-immersive-1-main-view.png": {
+      "alt": "",
+      "identifier": "sample-immersive-1-main-view.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81add09bef8d5995e4c347d1fe291b22/sample-immersive-1-main-view.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/10eb3fdbc10f3c47328edba49ccda376/sample-immersive-1-main-view~dark.png"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "7b5bc90de8c3/CreatingA3DModelWithGesturesInVisionOS.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": []
+}

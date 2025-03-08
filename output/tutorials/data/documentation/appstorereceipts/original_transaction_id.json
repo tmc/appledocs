@@ -1,0 +1,528 @@
+{
+  "abstract": [
+    {
+      "text": "The transaction identifier of the original purchase.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "deprecated",
+      "platform": "App Store Receipts",
+      "versions": [
+        "1.0",
+        "1.7"
+      ]
+    },
+    "minor": {
+      "change": "deprecated",
+      "platform": "App Store Receipts",
+      "versions": [
+        "1.6",
+        "1.7"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/appstorereceipts",
+        "doc://com.apple.documentation/documentation/appstorereceipts/app_store_receipt_data_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/appstorereceipts/original_transaction_id"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3193577,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:store_receipts:original_transaction_id",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "type "
+      },
+      {
+        "kind": "identifier",
+        "text": "original_transaction_id"
+      }
+    ],
+    "modules": [
+      {
+        "name": "App Store Receipts"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "1.7",
+        "deprecated": true,
+        "deprecatedAt": "1.7",
+        "introducedAt": "1.0",
+        "name": "App Store Receipts"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type",
+    "symbolKind": "tdef",
+    "title": "original_transaction_id"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "App Store Receipts"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "string original_transaction_id"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This field is returned in the JSON response, in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/pending_renewal_info",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/latest_receipt_info",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/receipt/in_app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " arrays.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This value is identical to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/transaction_id",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " except when the user restores a purchase or renews a subscription. This value has the same format as the transaction’s ",
+              "type": "text"
+            },
+            {
+              "code": "transactionIdentifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property; however, the values may not be the same. For auto-renewable subscription transactions, this value also appears in the ",
+              "type": "text"
+            },
+            {
+              "code": "pending_renewal_info",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key of the JSON response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use this value to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match a transaction found in the receipt to a server-to-server notification event. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/enabling-app-store-server-notifications",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Manage auto-renewable subscriptions. Store this value, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "product_id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "expires_date_ms",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "purchase_date_ms",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for each transaction for each customer, as a best practice. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Identify a subscription with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "product_id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pending_renewal_info",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " section. Do not rely on the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "original_transaction_id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value on its own. Treat this purchase as a new subscription when you see a new ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "original_transaction_id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value for a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "product_id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Differentiate a purchase transaction from a restore or a renewal transaction. In a purchase transaction, the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "transaction_id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " always matches the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "original_transaction_id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". For subscriptions, it indicates the first subscription purchase. For a restore or renewal, the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "transaction_id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " does not match the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "original_transaction_id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Identify one or more renewals for the same subscription.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/appstorereceipts": {
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Receipts",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/app_account_token": {
+      "abstract": [
+        {
+          "text": "The UUID that an app optionally generates to map a customer’s in-app purchase with its resulting App Store transaction.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "app_account_token"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/app_account_token",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "app_account_token",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/app_account_token"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/app_store_receipt_data_types": {
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/app_store_receipt_data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App Store receipt data types",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/app_store_receipt_data_types"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/original_transaction_id": {
+      "abstract": [
+        {
+          "text": "The transaction identifier of the original purchase.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "original_transaction_id"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/original_transaction_id",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "original_transaction_id",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/original_transaction_id"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/latest_receipt_info": {
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/latest_receipt_info",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "responseBody.Latest_receipt_info",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/responsebody/latest_receipt_info"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/pending_renewal_info": {
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/pending_renewal_info",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "responseBody.Pending_renewal_info",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/responsebody/pending_renewal_info"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/receipt/in_app": {
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/receipt/in_app",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "responseBody.Receipt.In_app",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/responsebody/receipt/in_app"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/transaction_id": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a transaction, such as a purchase, restore, or renewal.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "transaction_id"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/transaction_id",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transaction_id",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/transaction_id"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/enabling-app-store-server-notifications": {
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/enabling-app-store-server-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/storekit/enabling-app-store-server-notifications"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/appstorereceipts/transaction_id",
+        "doc://com.apple.documentation/documentation/appstorereceipts/app_account_token"
+      ],
+      "title": "Transaction identifiers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/appstorereceipts/original_transaction_id"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,958 @@
+{
+  "abstract": [
+    {
+      "text": "Schedule background downloads of large assets after app installation, when the app updates, and periodically while the app remains on-device.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.backgroundassets/documentation/BackgroundAssets"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "BackgroundAssets",
+    "modules": [
+      {
+        "name": "Background Assets"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Background Assets"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the Background Assets framework, you can improve the experience of your app or game by reducing or eliminating the time people have to wait while your app downloads any required assets at first launch. For example, a game might use the Background Assets framework to download additional content immediately after installation, such as level packs, 3D character models, and textures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4132858",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Session 110403: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2022/110403/",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related sessions from WWDC22",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a Background Assets extension to your app’s target, and let the system notify that extension about an app installation or subsequent update. Then use the download manager to schedule background downloads of required content from your servers or content delivery network (CDN), and have those downloads finish even when the app isn’t running. Check for updated content when the system periodically launches the extension (dependent on app usage) and, when content is available, schedule it for immediate download. The framework leverages ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ExtensionKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and common types like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Use the framework only to download additional assets for your app; don’t use it for any other purposes. For example, don’t collect or transmit data to identify a user or device or to perform advertising or advertising measurement.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets": {
+      "abstract": [
+        {
+          "text": "Schedule background downloads of large assets after app installation, when the app updates, and periodically while the app remains on-device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Background Assets",
+      "type": "topic",
+      "url": "/documentation/backgroundassets"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownload": {
+      "abstract": [
+        {
+          "text": "An object that represents an in-progress or concluded asset download.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BADownload"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownload",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BADownload"
+        }
+      ],
+      "role": "symbol",
+      "title": "BADownload",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/badownload"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownload/Priority-swift.struct": {
+      "abstract": [
+        {
+          "text": "A type that determines the execution priority of a scheduled asset download.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Priority"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownload/Priority-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Priority"
+        }
+      ],
+      "role": "symbol",
+      "title": "BADownload.Priority",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/badownload/priority-swift.struct"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager": {
+      "abstract": [
+        {
+          "text": "An object that manages the queue of scheduled asset downloads.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BADownloadManager"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BADownloadManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "BADownloadManager",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/badownloadmanager"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloaderExtension-qwaw": {
+      "abstract": [
+        {
+          "text": "An interface for reacting to app life-cycle events and processing concluded asset downloads while your app isn’t running.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BADownloaderExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloaderExtension-qwaw",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BADownloaderExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "BADownloaderExtension",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/badownloaderextension-qwaw"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloaderExtension-zuvm": {
+      "abstract": [
+        {
+          "text": "An interface for reacting to app life-cycle events and processing concluded asset downloads while your app isn’t running.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "BADownloaderExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloaderExtension-zuvm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BADownloaderExtension",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/badownloaderextension-zuvm"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloaderExtensionConfiguration": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BADownloaderExtensionConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloaderExtensionConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BADownloaderExtensionConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "BADownloaderExtensionConfiguration",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/badownloaderextensionconfiguration"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BAErrorCode": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BAErrorCode"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BAErrorCode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BAErrorCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "BAErrorCode",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/baerrorcode"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BAErrorDomain": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BAErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BAErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BAErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "BAErrorDomain",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/baerrordomain"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BAURLDownload": {
+      "abstract": [
+        {
+          "text": "An object that represents a remote asset to download.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BAURLDownload"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BAURLDownload",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BAURLDownload"
+        }
+      ],
+      "role": "symbol",
+      "title": "BAURLDownload",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/baurldownload"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BA_EXPORT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "BA_EXPORT"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BA_EXPORT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BA_EXPORT",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/ba_export"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BA_HIDDEN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "BA_HIDDEN"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BA_HIDDEN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BA_HIDDEN",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/ba_hidden"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BA_HIDDEN_EXTERN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "BA_HIDDEN_EXTERN"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BA_HIDDEN_EXTERN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BA_HIDDEN_EXTERN",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/ba_hidden_extern"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/downloading-essential-assets-in-the-background": {
+      "abstract": [
+        {
+          "text": "Fetch the assets your app requires before its first launch using an app extension and the Background Assets framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/downloading-essential-assets-in-the-background",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Downloading essential assets in the background",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/downloading-essential-assets-in-the-background"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/BAManifestURL": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/BAManifestURL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BAManifestURL",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/BAManifestURL"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/BAMaxInstallSize": {
+      "abstract": [
+        {
+          "text": "The combined size, on disk, of your app bundle and the assets that download immediately after app installation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/BAMaxInstallSize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BAMaxInstallSize",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/BAMaxInstallSize"
+    },
+    "doc://com.apple.documentation/documentation/ExtensionKit": {
+      "abstract": [
+        {
+          "text": "Create executable bundles to extend the functionality of other apps by presenting a user interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ExtensionKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ExtensionKit",
+      "type": "topic",
+      "url": "/documentation/ExtensionKit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest": {
+      "abstract": [
+        {
+          "text": "A URL load request that is independent of protocol or URL scheme.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/videos/play/wwdc2022/110403/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2022/110403/",
+      "title": "Meet Background Assets",
+      "titleInlineContent": [
+        {
+          "text": "Meet Background Assets",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2022/110403/"
+    },
+    "media-4132858": {
+      "alt": "A graphic containing the framework’s logo and several circular progress indicators that show the download status of additional content such as audio, images, and achievements. Each progress indicator displays an icon that represents that specific content type such as a music note for audio.",
+      "identifier": "media-4132858",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7192e3aef1127088ff61bfbac7978294/media-4132858@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/083ccb5d6bcec957883cb128f5d18af3/media-4132858~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Asset-download-management",
+      "identifiers": [
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager",
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloaderExtension-qwaw",
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloaderExtensionConfiguration",
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets/downloading-essential-assets-in-the-background"
+      ],
+      "title": "Asset download management"
+    },
+    {
+      "anchor": "Asset-downloads",
+      "identifiers": [
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BAURLDownload",
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownload",
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownload/Priority-swift.struct"
+      ],
+      "title": "Asset downloads"
+    },
+    {
+      "anchor": "App-Store-configuration",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/BAManifestURL",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/BAMaxInstallSize"
+      ],
+      "title": "App Store configuration"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BAErrorDomain",
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BAErrorCode"
+      ],
+      "title": "Errors"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Asset-download-management",
+              "identifiers": [
+                "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager",
+                "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloaderExtension-zuvm"
+              ],
+              "title": "Asset download management"
+            },
+            {
+              "anchor": "Asset-downloads",
+              "identifiers": [
+                "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BAURLDownload",
+                "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownload",
+                "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownload/Priority-swift.struct"
+              ],
+              "title": "Asset downloads"
+            },
+            {
+              "anchor": "App-Store-configuration",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/BAManifestURL",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/BAMaxInstallSize"
+              ],
+              "title": "App Store configuration"
+            },
+            {
+              "anchor": "Errors",
+              "identifiers": [
+                "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BAErrorDomain",
+                "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BAErrorCode"
+              ],
+              "title": "Errors"
+            },
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BA_EXPORT",
+                "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BA_HIDDEN",
+                "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BA_HIDDEN_EXTERN"
+              ],
+              "title": "Macros"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager/title",
+          "value": "BADownloadManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BADownloadManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BADownloadManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BAURLDownload/title",
+          "value": "BAURLDownload"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BAURLDownload/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BAURLDownload"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BAURLDownload/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BAURLDownload"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BAErrorDomain/title",
+          "value": "BAErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BAErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BAErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownload/title",
+          "value": "BADownload"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownload/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BADownload"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownload/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BADownload"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BAErrorCode/title",
+          "value": "BAErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BAErrorCode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BAErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BAErrorCode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BAErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownload~1Priority-swift.struct/title",
+          "value": "BADownloaderPriority"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownload~1Priority-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BADownloaderPriority"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownload~1Priority-swift.struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BADownloaderPriority"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/backgroundassets"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/backgroundassets"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

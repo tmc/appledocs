@@ -1,0 +1,699 @@
+{
+  "abstract": [
+    {
+      "text": "Create the individual components that Core Data requires manually, to support earlier versions of Apple operating systems.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coredata/documentation/CoreData",
+        "doc://com.apple.coredata/documentation/CoreData/setting-up-a-core-data-stack"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coredata/documentation/CoreData/setting-up-a-core-data-stack-manually"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Data"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Setting up a Core Data stack manually"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app targets iOS 10+, macOS 10.12+, tvOS 10+, watchOS 3+, or visionOS 1+, you can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentContainer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to simplify creation and management of the Core Data stack. Otherwise, you need to manually create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectModel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentStoreCoordinator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and at least one ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-managed-object-model",
+          "level": 3,
+          "text": "Create a managed object model",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To instantiate an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectModel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", pass in a URL that points to the compiled version of the ",
+              "type": "text"
+            },
+            {
+              "code": ".xcdatamodeld",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. This ",
+              "type": "text"
+            },
+            {
+              "code": ".momd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file is typically part of your app bundle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Get a URL to the compiled model in the app bundle.",
+            "guard let modelURL = Bundle.main.url(forResource: \"DataModel\",",
+            "                                     withExtension: \"momd\") else {",
+            "    fatalError(\"Failed to find data model\")",
+            "}",
+            "",
+            "// Use the URL to create a managed object model.",
+            "guard let model = NSManagedObjectModel(contentsOf: modelURL) else {",
+            "    fatalError(\"Failed to create model from file: \\(modelURL)\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-persistent-store-coordinator",
+          "level": 3,
+          "text": "Create a persistent store coordinator",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, pass the managed object model to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentStoreCoordinator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer to create a store coordinator with that model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Use the managed object model to create a persistent store coordinator.",
+            "let coordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-a-persistent-store-to-the-coordinator",
+          "level": 4,
+          "text": "Add a persistent store to the coordinator",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want Core Data to persist your data model to disk, tell the store coordinator where the file exists and what format to use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Get the URL to the Document directory.",
+            "let documentDirectoryURL = FileManager.default.urls(for: .documentDirectory,",
+            "                                                    in: .userDomainMask).last",
+            "// Create a URL to the data store.",
+            "guard let storeURL = URL(string: \"DataModel.sqlite\",",
+            "                         relativeTo: documentDirectoryURL) else {",
+            "    fatalError(\"Failed to create store URL\")",
+            "}",
+            "",
+            "do {",
+            "    // Set the options to enable lightweight data migrations.",
+            "    let options = [NSMigratePersistentStoresAutomaticallyOption: true,",
+            "                         NSInferMappingModelAutomaticallyOption: true]",
+            "    // Add the store to the coordinator.",
+            "    _ = try coordinator.addPersistentStore(type: .sqlite, at: storeURL,",
+            "                                       options: options)",
+            "} catch {",
+            "    fatalError(\"Failed to add persistent store: \\(error.localizedDescription)\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you don’t use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentContainer",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to set up your Core Data stack, you also need to manually set the options to enable lightweight data migrations. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.coredata/documentation/CoreData/migrating-your-data-model-automatically",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are advantages and disadvantages to each of the store types. Refer to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentStoreCoordinator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " documentation for details on each store type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-managed-object-context",
+          "level": 3,
+          "text": "Create a managed object context",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and set its store coordinator property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a context to interact with managed objects.",
+            "let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)",
+            "// Assign the coordinator to the context.",
+            "context.persistentStoreCoordinator = persistentStoreCoordinator"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app uses this context to interact with Core Data. Pass a reference to this context to your user interface. For additional information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/setting-up-a-core-data-stack#Inject-the-managed-object-context",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coredata/documentation/CoreData": {
+      "abstract": [
+        {
+          "text": "Persist or cache data on a single device, or sync data to multiple devices with CloudKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Data",
+      "type": "topic",
+      "url": "/documentation/coredata"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext": {
+      "abstract": [
+        {
+          "text": "An object space to manipulate and track changes to managed objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSManagedObjectContext"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSManagedObjectContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSManagedObjectContext",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobjectcontext"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectModel": {
+      "abstract": [
+        {
+          "text": "A programmatic representation of the ",
+          "type": "text"
+        },
+        {
+          "code": ".xcdatamodeld",
+          "type": "codeVoice"
+        },
+        {
+          "text": " file describing your objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSManagedObjectModel"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectModel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSManagedObjectModel"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSManagedObjectModel",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobjectmodel"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentContainer": {
+      "abstract": [
+        {
+          "text": "A container that encapsulates the Core Data stack in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPersistentContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPersistentContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPersistentContainer",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistentcontainer"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentStoreCoordinator": {
+      "abstract": [
+        {
+          "text": "An object that enables an app’s contexts and the underlying persistent stores to work together.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPersistentStoreCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentStoreCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPersistentStoreCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPersistentStoreCoordinator",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistentstorecoordinator"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/migrating-your-data-model-automatically": {
+      "abstract": [
+        {
+          "text": "Enable lightweight migrations to keep your data model and the underlying data in a consistent state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/migrating-your-data-model-automatically",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating your data model automatically",
+      "type": "topic",
+      "url": "/documentation/coredata/migrating-your-data-model-automatically"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/setting-up-a-core-data-stack": {
+      "abstract": [
+        {
+          "text": "Set up the classes that manage and persist your app’s objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/setting-up-a-core-data-stack",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up a Core Data stack",
+      "type": "topic",
+      "url": "/documentation/coredata/setting-up-a-core-data-stack"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/setting-up-a-core-data-stack#Inject-the-managed-object-context": {
+      "abstract": [],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/setting-up-a-core-data-stack#Inject-the-managed-object-context",
+      "kind": "section",
+      "title": "Inject the managed object context",
+      "type": "topic",
+      "url": "/documentation/coredata/setting-up-a-core-data-stack#Inject-the-managed-object-context"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectModel/title",
+          "value": "NSManagedObjectModel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectModel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSManagedObjectModel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectModel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSManagedObjectModel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext/title",
+          "value": "NSManagedObjectContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSManagedObjectContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSManagedObjectContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentStoreCoordinator/title",
+          "value": "NSPersistentStoreCoordinator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentStoreCoordinator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentStoreCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentStoreCoordinator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentStoreCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentContainer/title",
+          "value": "NSPersistentContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentContainer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coredata/setting-up-a-core-data-stack-manually"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coredata/setting-up-a-core-data-stack-manually"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

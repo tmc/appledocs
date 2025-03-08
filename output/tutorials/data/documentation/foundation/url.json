@@ -1,0 +1,5271 @@
+{
+  "abstract": [
+    {
+      "text": "A value that identifies the location of a resource, such as an item on a remote server or the path to a local file.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/url"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1780012,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation3URLV",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "URL"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.10",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "8.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "URL"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "URL"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can construct URLs and access their parts. For URLs that represent local files, you can also manipulate properties of those files directly, such as changing the file’s last modification date. Finally, you can pass URLs to other APIs to retrieve the contents of those URLs. For example, you can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and its related classes to access the contents of remote resources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "URLs are the preferred way to refer to local files. Most objects that read data from or write data to a file have methods that accept a URL instead of a pathname as the file reference. For example, you can get the contents of a local file URL as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/String",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/String/init(contentsOf:encoding:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or as a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/data/3126626-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a convenience, you can use Swift’s ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": "-",
+              "type": "text"
+            },
+            {
+              "code": "await",
+              "type": "codeVoice"
+            },
+            {
+              "text": " syntax to asynchronously access the contents of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url/3767316-resourcebytes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url/3767315-lines",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties. These properties use the shared ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " instance to load the resource.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.AppIntents/documentation/AppIntents/CustomURLRepresentationParameterConvertible": {
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/CustomURLRepresentationParameterConvertible",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomURLRepresentationParameterConvertible",
+      "type": "topic",
+      "url": "/documentation/appintents/customurlrepresentationparameterconvertible"
+    },
+    "doc://com.apple.CoreTransferable/documentation/CoreTransferable/Transferable": {
+      "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/Transferable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Transferable",
+      "type": "topic",
+      "url": "/documentation/coretransferable/transferable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/swift/customdebugstringconvertible"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/swift/customstringconvertible"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Decodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Decodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/swift/decodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Encodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Encodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/swift/encodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Hashable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/swift/hashable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/String": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/String",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/swift/string"
+    },
+    "doc://com.apple.Swift/documentation/Swift/String/init(contentsOf:encoding:)": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/String/init(contentsOf:encoding:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(contentsOf:encoding:)",
+      "type": "topic",
+      "url": "/documentation/swift/string/init(contentsof:encoding:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Data",
+      "type": "topic",
+      "url": "/documentation/foundation/data"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data/3126626-init": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data/3126626-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(contentsOf:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/data/3126626-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/searchpathdirectory": {
+      "abstract": [
+        {
+          "text": "The location of significant directories.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileManager.SearchPathDirectory"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/searchpathdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManager.SearchPathDirectory",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/searchpathdirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/searchpathdomainmask": {
+      "abstract": [
+        {
+          "text": "Domain constants specifying base locations to use when you search for significant directories.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileManager.SearchPathDomainMask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/searchpathdomainmask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManager.SearchPathDomainMask",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/searchpathdomainmask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl": {
+      "abstract": [
+        {
+          "text": "An object representing the location of a resource that bridges to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": "; use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/bookmarkcreationoptions": {
+      "abstract": [
+        {
+          "text": "Options used when creating bookmark data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURL.BookmarkCreationOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/bookmarkcreationoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURL.BookmarkCreationOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/bookmarkcreationoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/bookmarkresolutionoptions": {
+      "abstract": [
+        {
+          "text": "Options used when resolving bookmark data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURL.BookmarkResolutionOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/bookmarkresolutionoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURL.BookmarkResolutionOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/bookmarkresolutionoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Numbers, Data, and Basic Values",
+      "type": "topic",
+      "url": "/documentation/foundation/numbers_data_and_basic_values"
+    },
+    "doc://com.apple.documentation/documentation/foundation/referenceconvertible": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/referenceconvertible",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ReferenceConvertible",
+      "type": "topic",
+      "url": "/documentation/foundation/referenceconvertible"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url": {
+      "abstract": [
+        {
+          "text": "A value that identifies the location of a resource, such as an item on a remote server or the path to a local file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL",
+      "type": "topic",
+      "url": "/documentation/foundation/url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1779667-checkresourceisreachable": {
+      "abstract": [
+        {
+          "text": "Returns whether the URL’s resource exists and is reachable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "checkResourceIsReachable"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1779667-checkresourceisreachable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "checkResourceIsReachable()",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1779667-checkresourceisreachable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1779698-startaccessingsecurityscopedreso": {
+      "abstract": [
+        {
+          "text": "Given a url created by resolving a bookmark data created with security scope, make the resource referenced by the url accessible to the process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "startAccessingSecurityScopedResource"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1779698-startaccessingsecurityscopedreso",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startAccessingSecurityScopedResource()",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1779698-startaccessingsecurityscopedreso"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1779699-user": {
+      "abstract": [
+        {
+          "text": "The user component of the URL if the URL conforms to RFC 3986; otherwise, nil.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "user"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1779699-user",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "user",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1779699-user"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1779742-writebookmarkdata": {
+      "abstract": [
+        {
+          "text": "Creates an alias file on disk at a specified location with specified bookmark data. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeBookmarkData"
+        },
+        {
+          "kind": "text",
+          "text": "(Data, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1779742-writebookmarkdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "writeBookmarkData(_:to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1779742-writebookmarkdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1779781-checkpromiseditemisreachable": {
+      "abstract": [
+        {
+          "text": "Returns whether the promised item URL’s resource exists and is reachable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "checkPromisedItemIsReachable"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1779781-checkpromiseditemisreachable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "checkPromisedItemIsReachable()",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1779781-checkpromiseditemisreachable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1779782-withunsafefilesystemrepresentati": {
+      "abstract": [
+        {
+          "text": "Passes the URL’s path in the file system representation to a closure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "withUnsafeFileSystemRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "<ResultType>((UnsafePointer<Int8>?) -> ResultType) -> ResultType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1779782-withunsafefilesystemrepresentati",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withUnsafeFileSystemRepresentation(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1779782-withunsafefilesystemrepresentati"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1779804-promiseditemresourcevalues": {
+      "abstract": [
+        {
+          "text": "Gets resource values from URLs of ‘promised’ items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "promisedItemResourceValues"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": Set<URLResourceKey>) -> URLResourceValues"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1779804-promiseditemresourcevalues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "promisedItemResourceValues(forKeys:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1779804-promiseditemresourcevalues"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1779812-path": {
+      "abstract": [
+        {
+          "text": "The path component of the URL if the URL conforms to RFC 3986; otherwise, an empty string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1779812-path",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "path",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1779812-path"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1779822-resolvingsymlinksinpath": {
+      "abstract": [
+        {
+          "text": "Resolves any symlinks in the path of a file URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolvingSymlinksInPath"
+        },
+        {
+          "kind": "text",
+          "text": "() -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1779822-resolvingsymlinksinpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resolvingSymlinksInPath()",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1779822-resolvingsymlinksinpath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1779854-description": {
+      "abstract": [
+        {
+          "text": "A textual description of the URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1779854-description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1779854-description"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1779867-fragment": {
+      "abstract": [
+        {
+          "text": "The fragment component of the URL if the URL conforms to RFC 3986; otherwise, nil.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "fragment"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1779867-fragment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fragment",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1779867-fragment"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1779922-baseurl": {
+      "abstract": [
+        {
+          "text": "The base URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "baseURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1779922-baseurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "baseURL",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1779922-baseurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1779923-appendpathextension": {
+      "abstract": [
+        {
+          "text": "Appends the specified path extension to self.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendPathExtension"
+        },
+        {
+          "kind": "text",
+          "text": "(String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1779923-appendpathextension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendPathExtension(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1779923-appendpathextension"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1779940-setresourcevalues": {
+      "abstract": [
+        {
+          "text": "Sets the resource value identified by a given resource key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setResourceValues"
+        },
+        {
+          "kind": "text",
+          "text": "(URLResourceValues)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1779940-setresourcevalues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setResourceValues(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1779940-setresourcevalues"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1779950-customplaygroundquicklook": {
+      "abstract": [
+        {
+          "text": "A playground quicklook for the URL.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "customPlaygroundQuickLook"
+        },
+        {
+          "kind": "text",
+          "text": ": PlaygroundQuickLook"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1779950-customplaygroundquicklook",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "customPlaygroundQuickLook",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1779950-customplaygroundquicklook"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1779984-absolutestring": {
+      "abstract": [
+        {
+          "text": "The absolute string for the URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "absoluteString"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1779984-absolutestring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "absoluteString",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1779984-absolutestring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1779992-appendingpathcomponent": {
+      "abstract": [
+        {
+          "text": "Returns a URL by appending the specified path component to self, specifying whether the resulting path is a directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendingPathComponent"
+        },
+        {
+          "kind": "text",
+          "text": "(String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool) -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1779992-appendingpathcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendingPathComponent(_:isDirectory:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1779992-appendingpathcomponent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780058-resourcevalues": {
+      "abstract": [
+        {
+          "text": "Returns a collection of resource values identified by the given resource keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "resourceValues"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": Set<URLResourceKey>) -> URLResourceValues"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780058-resourcevalues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resourceValues(forKeys:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780058-resourcevalues"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780061-debugdescription": {
+      "abstract": [
+        {
+          "text": "A textual description of the URL suitable for debugging.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "debugDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780061-debugdescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "debugDescription",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780061-debugdescription"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780065-deletingpathextension": {
+      "abstract": [
+        {
+          "text": "Returns a URL constructed by removing any path extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "deletingPathExtension"
+        },
+        {
+          "kind": "text",
+          "text": "() -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780065-deletingpathextension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deletingPathExtension()",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780065-deletingpathextension"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780077-removeallcachedresourcevalues": {
+      "abstract": [
+        {
+          "text": "Removes all cached resource values and all temporary resource values from the URL object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllCachedResourceValues"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780077-removeallcachedresourcevalues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeAllCachedResourceValues()",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780077-removeallcachedresourcevalues"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780082-port": {
+      "abstract": [
+        {
+          "text": "The port component of the URL if the URL conforms to RFC 3986; otherwise, nil.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "port"
+        },
+        {
+          "kind": "text",
+          "text": ": Int?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780082-port",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "port",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780082-port"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780122-appendingpathextension": {
+      "abstract": [
+        {
+          "text": "Returns a URL by appending the specified path extension to self.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendingPathExtension"
+        },
+        {
+          "kind": "text",
+          "text": "(String) -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780122-appendingpathextension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendingPathExtension(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780122-appendingpathextension"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780153-stopaccessingsecurityscopedresou": {
+      "abstract": [
+        {
+          "text": "Revokes the access granted to the url by a prior successful call to the complementary start function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopAccessingSecurityScopedResource"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780153-stopaccessingsecurityscopedresou",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stopAccessingSecurityScopedResource()",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780153-stopaccessingsecurityscopedresou"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780160-hasdirectorypath": {
+      "abstract": [
+        {
+          "text": "A Boolean that is true if the URL path represents a directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasDirectoryPath"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780160-hasdirectorypath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasDirectoryPath",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780160-hasdirectorypath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780168-host": {
+      "abstract": [
+        {
+          "text": "The host component of a URL if the URL conforms to RFC 3986; otherwise, nil.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "host"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780168-host",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "host",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780168-host"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780171-relativestring": {
+      "abstract": [
+        {
+          "text": "The relative portion of a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "relativeString"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780171-relativestring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "relativeString",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780171-relativestring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780182-datarepresentation": {
+      "abstract": [
+        {
+          "text": "The data representation of the URL’s relativeString.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780182-datarepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dataRepresentation",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780182-datarepresentation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780208-resolvesymlinksinpath": {
+      "abstract": [
+        {
+          "text": "Resolves any symlinks in the path of a file URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolveSymlinksInPath"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780208-resolvesymlinksinpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resolveSymlinksInPath()",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780208-resolvesymlinksinpath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780239-appendingpathcomponent": {
+      "abstract": [
+        {
+          "text": "Returns a URL by appending the specified path component to self.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendingPathComponent"
+        },
+        {
+          "kind": "text",
+          "text": "(String) -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780239-appendingpathcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendingPathComponent(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780239-appendingpathcomponent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780250-removecachedresourcevalue": {
+      "abstract": [
+        {
+          "text": "Removes the cached resource value identified by a given resource value key from the URL object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeCachedResourceValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": URLResourceKey)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780250-removecachedresourcevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeCachedResourceValue(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780250-removecachedresourcevalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780273-query": {
+      "abstract": [
+        {
+          "text": "The query of the URL if the URL conforms to RFC 3986; otherwise, nil.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "query"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780273-query",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "query",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780273-query"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780274-bookmarkdata": {
+      "abstract": [
+        {
+          "text": "Initializes and returns bookmark data derived from an alias file pointed to by a specified URL. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "bookmarkData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withContentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": URL) -> Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780274-bookmarkdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bookmarkData(withContentsOf:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780274-bookmarkdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780285-settemporaryresourcevalue": {
+      "abstract": [
+        {
+          "text": "Sets a temporary resource value on the URL object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTemporaryResourceValue"
+        },
+        {
+          "kind": "text",
+          "text": "(any Sendable, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": URLResourceKey)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780285-settemporaryresourcevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setTemporaryResourceValue(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780285-settemporaryresourcevalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780315-deletelastpathcomponent": {
+      "abstract": [
+        {
+          "text": "Returns a URL constructed by removing the last path component of self.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "deleteLastPathComponent"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780315-deletelastpathcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deleteLastPathComponent()",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780315-deletelastpathcomponent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780317-lastpathcomponent": {
+      "abstract": [
+        {
+          "text": "The last path component of the URL, or an empty string if the path is an empty string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "lastPathComponent"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780317-lastpathcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lastPathComponent",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780317-lastpathcomponent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780323-absoluteurl": {
+      "abstract": [
+        {
+          "text": "The absolute URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "absoluteURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780323-absoluteurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "absoluteURL",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780323-absoluteurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780324-pathcomponents": {
+      "abstract": [
+        {
+          "text": "The path components of the URL, or an empty array if the path is an empty string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "pathComponents"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780324-pathcomponents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pathComponents",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780324-pathcomponents"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780338-hashvalue": {
+      "abstract": [
+        {
+          "text": "The hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "hashValue"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780338-hashvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hashValue",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780338-hashvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780348-password": {
+      "abstract": [
+        {
+          "text": "The password component of the URL if the URL conforms to RFC 3986; otherwise, nil.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "password"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780348-password",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "password",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780348-password"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780352-scheme": {
+      "abstract": [
+        {
+          "text": "The scheme of the URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheme"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780352-scheme",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scheme",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780352-scheme"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780391-resourcevalues": {
+      "abstract": [
+        {
+          "text": "Returns the resource values for properties identified by a specified array of keys contained in specified bookmark data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "resourceValues"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": Set<URLResourceKey>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "fromBookmarkData"
+        },
+        {
+          "kind": "text",
+          "text": ": Data) -> URLResourceValues?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780391-resourcevalues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resourceValues(forKeys:fromBookmarkData:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780391-resourcevalues"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780396-isfileurl": {
+      "abstract": [
+        {
+          "text": "A Boolean that is true if the scheme is ",
+          "type": "text"
+        },
+        {
+          "code": "file:",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isFileURL"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780396-isfileurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isFileURL",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780396-isfileurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780397-appendpathcomponent": {
+      "abstract": [
+        {
+          "text": "Appends a path component to the URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendPathComponent"
+        },
+        {
+          "kind": "text",
+          "text": "(String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780397-appendpathcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendPathComponent(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780397-appendpathcomponent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780400-deletepathextension": {
+      "abstract": [
+        {
+          "text": "Returns a URL constructed by removing any path extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "deletePathExtension"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780400-deletepathextension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deletePathExtension()",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780400-deletepathextension"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780403-appendpathcomponent": {
+      "abstract": [
+        {
+          "text": "Appends a path component to the URL, specifying whether the resulting path is a directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendPathComponent"
+        },
+        {
+          "kind": "text",
+          "text": "(String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780403-appendpathcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendPathComponent(_:isDirectory:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780403-appendpathcomponent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780432-relativepath": {
+      "abstract": [
+        {
+          "text": "The relative path of the URL if the URL conforms to RFC 3986, otherwise nil.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "relativePath"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780432-relativepath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "relativePath",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780432-relativepath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780471-deletinglastpathcomponent": {
+      "abstract": [
+        {
+          "text": "Returns a URL constructed by removing the last path component of self.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "deletingLastPathComponent"
+        },
+        {
+          "kind": "text",
+          "text": "() -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780471-deletinglastpathcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deletingLastPathComponent()",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780471-deletinglastpathcomponent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780487-pathextension": {
+      "abstract": [
+        {
+          "text": "The path extension of the URL, or an empty string if the path is an empty string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "pathExtension"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780487-pathextension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pathExtension",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780487-pathextension"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/2142903-init": {
+      "abstract": [
+        {
+          "text": "Creates a URL from a playground file literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "fileReferenceLiteralResourceName"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/2142903-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(fileReferenceLiteralResourceName:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/2142903-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/2143023-bookmarkdata": {
+      "abstract": [
+        {
+          "text": "Returns bookmark data for the URL, created with specified options and resource values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "bookmarkData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.BookmarkCreationOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "includingResourceValuesForKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": Set<URLResourceKey>?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "relativeTo"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?) -> Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/2143023-bookmarkdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bookmarkData(options:includingResourceValuesForKeys:relativeTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/2143023-bookmarkdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/2293141-standardize": {
+      "abstract": [
+        {
+          "text": "Standardizes the path of a file URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "standardize"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/2293141-standardize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "standardize()",
+      "type": "topic",
+      "url": "/documentation/foundation/url/2293141-standardize"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/2293156": {
+      "abstract": [
+        {
+          "text": "Indicates whether two URLs are the same.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "== "
+        },
+        {
+          "kind": "text",
+          "text": "(URL, URL) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/2293156",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/2293156"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/2293170-standardized": {
+      "abstract": [
+        {
+          "text": "A version of the URL with any instances of “..” or “.” resolved in its path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "standardized"
+        },
+        {
+          "kind": "text",
+          "text": ": URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/2293170-standardized",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "standardized",
+      "type": "topic",
+      "url": "/documentation/foundation/url/2293170-standardized"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/2293229-standardizedfileurl": {
+      "abstract": [
+        {
+          "text": "A standardized version of the path of a file URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "standardizedFileURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/2293229-standardizedfileurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "standardizedFileURL",
+      "type": "topic",
+      "url": "/documentation/foundation/url/2293229-standardizedfileurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/2882982": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are not equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "!= "
+        },
+        {
+          "kind": "text",
+          "text": "(URL, URL) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/2882982",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "!=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/2882982"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/2908793-encode": {
+      "abstract": [
+        {
+          "text": "Encodes the value into the given encoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any Encoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/2908793-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/2908793-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/2908802-init": {
+      "abstract": [
+        {
+          "text": "Creates a new instance by decoding from the given decoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any Decoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/2908802-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/2908802-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3126798-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly created URL using the contents of the given data, relative to a base URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "dataRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": Data, "
+        },
+        {
+          "kind": "identifier",
+          "text": "relativeTo"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAbsolute"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3126798-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(dataRepresentation:relativeTo:isAbsolute:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3126798-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3126799-init": {
+      "abstract": [
+        {
+          "text": "Creates a file URL that references the local file or directory for the file system representation of the path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "fileURLWithFileSystemRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<Int8>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "relativeTo"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3126799-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(fileURLWithFileSystemRepresentation:isDirectory:relativeTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3126799-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3126800-init": {
+      "abstract": [
+        {
+          "text": "Creates a file URL that references the local file or directory at the given path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "fileURLWithPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3126800-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(fileURLWithPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3126800-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3126801-init": {
+      "abstract": [
+        {
+          "text": "Creates a file URL that references the local file or directory at the given path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "fileURLWithPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3126801-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(fileURLWithPath:isDirectory:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3126801-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3126802-init": {
+      "abstract": [
+        {
+          "text": "Creates a file URL that references the local file or directory at the given path, relative to a base URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "fileURLWithPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "relativeTo"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3126802-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(fileURLWithPath:isDirectory:relativeTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3126802-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3126803-init": {
+      "abstract": [
+        {
+          "text": "Creates a file URL that references the local file or directory at the given path, relative to a base URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "fileURLWithPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "relativeTo"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3126803-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(fileURLWithPath:relativeTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3126803-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3126804-init": {
+      "abstract": [
+        {
+          "text": "Creates a URL that refers to the location specified by resolving an alias file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "resolvingAliasFileAt"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.BookmarkResolutionOptions)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3126804-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(resolvingAliasFileAt:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3126804-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3126805-init": {
+      "abstract": [
+        {
+          "text": "Creates a URL that refers to a location specified by resolving bookmark data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "resolvingBookmarkData"
+        },
+        {
+          "kind": "text",
+          "text": ": Data, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.BookmarkResolutionOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "relativeTo"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "bookmarkDataIsStale"
+        },
+        {
+          "kind": "text",
+          "text": ": inout Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3126805-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(resolvingBookmarkData:options:relativeTo:bookmarkDataIsStale:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3126805-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3126806-init": {
+      "abstract": [
+        {
+          "text": "Creates a URL instance from the provided string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3126806-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(string:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3126806-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3126807-init": {
+      "abstract": [
+        {
+          "text": "Creates a URL instance from the provided string, relative to another URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "relativeTo"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3126807-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(string:relativeTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3126807-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3236799-hash": {
+      "abstract": [
+        {
+          "text": "Hashes the essential components of the value by feeding them into the given hasher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hash"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": inout Hasher)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3236799-hash",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hash(into:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3236799-hash"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3566234-appendpathcomponent": {
+      "abstract": [
+        {
+          "text": "Appends a path component to the URL that conforms to a uniform type identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendPathComponent"
+        },
+        {
+          "kind": "text",
+          "text": "(String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "conformingTo"
+        },
+        {
+          "kind": "text",
+          "text": ": UTType)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3566234-appendpathcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendPathComponent(_:conformingTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3566234-appendpathcomponent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3566235-appendingpathcomponent": {
+      "abstract": [
+        {
+          "text": "Returns a URL by appending the specified path component that conforms to a uniform type identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendingPathComponent"
+        },
+        {
+          "kind": "text",
+          "text": "(String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "conformingTo"
+        },
+        {
+          "kind": "text",
+          "text": ": UTType) -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3566235-appendingpathcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendingPathComponent(_:conformingTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3566235-appendingpathcomponent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3580302-init": {
+      "abstract": [
+        {
+          "text": "Creates a file URL that references the local file or directory at the file path you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?(FilePath)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3580302-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3580302-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3580303-init": {
+      "abstract": [
+        {
+          "text": "Creates a file URL that references the local file or directory at the file path you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?(FilePath, "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3580303-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:isDirectory:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3580303-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3585029-appendpathextension": {
+      "abstract": [
+        {
+          "text": "Appends the preferred path extension for the type you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendPathExtension"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": UTType)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3585029-appendpathextension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendPathExtension(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3585029-appendpathextension"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3585030-appendingpathextension": {
+      "abstract": [
+        {
+          "text": "Returns a URL by appending the preferred path extension for the type you specify to the URL’s last path component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendingPathExtension"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": UTType) -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3585030-appendingpathextension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendingPathExtension(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3585030-appendingpathextension"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3767315-lines": {
+      "abstract": [
+        {
+          "text": "The URL’s resource data, as an asynchronous sequence of lines of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "lines"
+        },
+        {
+          "kind": "text",
+          "text": ": AsyncLineSequence<URL.AsyncBytes>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3767315-lines",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lines",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3767315-lines"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3767316-resourcebytes": {
+      "abstract": [
+        {
+          "text": "The URL’s resource data, as an asynchronous sequence of bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "resourceBytes"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.AsyncBytes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3767316-resourcebytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resourceBytes",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3767316-resourcebytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988105-transferrepresentation": {
+      "abstract": [
+        {
+          "text": "The representation for importing and exporting an item using Core Transferable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "transferRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": TransferRepresentation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988105-transferrepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transferRepresentation",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988105-transferrepresentation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988443-append": {
+      "abstract": [
+        {
+          "text": "Appends a path component to the URL, with a hint for handling directory awareness.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "append"
+        },
+        {
+          "kind": "text",
+          "text": "<S>("
+        },
+        {
+          "kind": "identifier",
+          "text": "component"
+        },
+        {
+          "kind": "text",
+          "text": ": S, "
+        },
+        {
+          "kind": "identifier",
+          "text": "directoryHint"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.DirectoryHint)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988443-append",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "append(component:directoryHint:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988443-append"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988444-append": {
+      "abstract": [
+        {
+          "text": "Appends multiple path components to the URL, with a hint for handling directory awareness.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "append"
+        },
+        {
+          "kind": "text",
+          "text": "<S>("
+        },
+        {
+          "kind": "identifier",
+          "text": "components"
+        },
+        {
+          "kind": "text",
+          "text": ": S..., "
+        },
+        {
+          "kind": "identifier",
+          "text": "directoryHint"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.DirectoryHint)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988444-append",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "append(components:directoryHint:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988444-append"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988445-append": {
+      "abstract": [
+        {
+          "text": "Appends a path to the URL, with a hint for handling directory awareness.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "append"
+        },
+        {
+          "kind": "text",
+          "text": "<S>("
+        },
+        {
+          "kind": "identifier",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": ": S, "
+        },
+        {
+          "kind": "identifier",
+          "text": "directoryHint"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.DirectoryHint)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988445-append",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "append(path:directoryHint:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988445-append"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988446-append": {
+      "abstract": [
+        {
+          "text": "Appends a list of query items to the URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "append"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "queryItems"
+        },
+        {
+          "kind": "text",
+          "text": ": [URLQueryItem])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988446-append",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "append(queryItems:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988446-append"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988447-appending": {
+      "abstract": [
+        {
+          "text": "Returns a URL by appending the specified path component to the URL, with a hint for handling directory awareness.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appending"
+        },
+        {
+          "kind": "text",
+          "text": "<S>("
+        },
+        {
+          "kind": "identifier",
+          "text": "component"
+        },
+        {
+          "kind": "text",
+          "text": ": S, "
+        },
+        {
+          "kind": "identifier",
+          "text": "directoryHint"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.DirectoryHint) -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988447-appending",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appending(component:directoryHint:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988447-appending"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988448-appending": {
+      "abstract": [
+        {
+          "text": "Returns a new URL by appending multiple path components to the URL, with a hint for handling directory awareness.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appending"
+        },
+        {
+          "kind": "text",
+          "text": "<S>("
+        },
+        {
+          "kind": "identifier",
+          "text": "components"
+        },
+        {
+          "kind": "text",
+          "text": ": S..., "
+        },
+        {
+          "kind": "identifier",
+          "text": "directoryHint"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.DirectoryHint) -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988448-appending",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appending(components:directoryHint:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988448-appending"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988449-appending": {
+      "abstract": [
+        {
+          "text": "Returns a URL by appending the specified path to the URL, with a hint for handling directory awareness.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appending"
+        },
+        {
+          "kind": "text",
+          "text": "<S>("
+        },
+        {
+          "kind": "identifier",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": ": S, "
+        },
+        {
+          "kind": "identifier",
+          "text": "directoryHint"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.DirectoryHint) -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988449-appending",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appending(path:directoryHint:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988449-appending"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988450-appending": {
+      "abstract": [
+        {
+          "text": "Returns a new URL formed by appending a list of query items to the URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appending"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "queryItems"
+        },
+        {
+          "kind": "text",
+          "text": ": [URLQueryItem]) -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988450-appending",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appending(queryItems:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988450-appending"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988451-applicationdirectory": {
+      "abstract": [
+        {
+          "text": "The standard directory for apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988451-applicationdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applicationDirectory",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988451-applicationdirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988452-applicationsupportdirectory": {
+      "abstract": [
+        {
+          "text": "The standard directory for application support files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationSupportDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988452-applicationsupportdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applicationSupportDirectory",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988452-applicationsupportdirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988453-cachesdirectory": {
+      "abstract": [
+        {
+          "text": "The standard directory for discardable cache files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cachesDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988453-cachesdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cachesDirectory",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988453-cachesdirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988454-currentdirectory": {
+      "abstract": [
+        {
+          "text": "Returns the working directory of the current process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentDirectory"
+        },
+        {
+          "kind": "text",
+          "text": "() -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988454-currentdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentDirectory()",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988454-currentdirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988455-desktopdirectory": {
+      "abstract": [
+        {
+          "text": "The standard directory for files on the desktop.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "desktopDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988455-desktopdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "desktopDirectory",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988455-desktopdirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988456-documentsdirectory": {
+      "abstract": [
+        {
+          "text": "The standard directory for document files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "documentsDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988456-documentsdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "documentsDirectory",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988456-documentsdirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988457-downloadsdirectory": {
+      "abstract": [
+        {
+          "text": "The standard directory for download files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "downloadsDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988457-downloadsdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "downloadsDirectory",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988457-downloadsdirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988458-fragment": {
+      "abstract": [
+        {
+          "text": "Returns the fragment component of the URL, optionally removing any percent-encoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fragment"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "percentEncoded"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988458-fragment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fragment(percentEncoded:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988458-fragment"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988459-homedirectory": {
+      "abstract": [
+        {
+          "text": "The home directory for the current user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "homeDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988459-homedirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "homeDirectory",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988459-homedirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988460-homedirectory": {
+      "abstract": [
+        {
+          "text": "Returns the home directory for the specified user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "homeDirectory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forUser"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988460-homedirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "homeDirectory(forUser:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988460-homedirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988461-host": {
+      "abstract": [
+        {
+          "text": "Returns the host component of the URL, optionally removing any percent-encoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "host"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "percentEncoded"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988461-host",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "host(percentEncoded:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988461-host"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988464-init": {
+      "abstract": [
+        {
+          "text": "Creates a file URL that references a path you specify as a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "filePath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "directoryHint"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.DirectoryHint, "
+        },
+        {
+          "kind": "identifier",
+          "text": "relativeTo"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988464-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(filePath:directoryHint:relativeTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988464-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988465-init": {
+      "abstract": [
+        {
+          "text": "Creates a file URL for a common directory in a domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": FileManager.SearchPathDirectory, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": FileManager.SearchPathDomainMask, "
+        },
+        {
+          "kind": "identifier",
+          "text": "appropriateFor"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "create"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988465-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(for:in:appropriateFor:create:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988465-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988466-init": {
+      "abstract": [
+        {
+          "text": "Creates a URL from a resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "resource"
+        },
+        {
+          "kind": "text",
+          "text": ": URLResource)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988466-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(resource:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988466-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988469-librarydirectory": {
+      "abstract": [
+        {
+          "text": "The standard directory for documentation, support, and configuration files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "libraryDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988469-librarydirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "libraryDirectory",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988469-librarydirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988470-moviesdirectory": {
+      "abstract": [
+        {
+          "text": "The standard directory for movie files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "moviesDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988470-moviesdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "moviesDirectory",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988470-moviesdirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988471-musicdirectory": {
+      "abstract": [
+        {
+          "text": "The standard directory for music files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "musicDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988471-musicdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "musicDirectory",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988471-musicdirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988472-password": {
+      "abstract": [
+        {
+          "text": "Returns the password component of the URL, optionally removing any percent-encoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "password"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "percentEncoded"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988472-password",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "password(percentEncoded:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988472-password"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988473-path": {
+      "abstract": [
+        {
+          "text": "Returns the path component of the URL, optionally removing any percent-encoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "percentEncoded"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988473-path",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "path(percentEncoded:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988473-path"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988474-picturesdirectory": {
+      "abstract": [
+        {
+          "text": "The standard directory for image files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "picturesDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988474-picturesdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "picturesDirectory",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988474-picturesdirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988475-query": {
+      "abstract": [
+        {
+          "text": "Returns the query component of the URL, optionally removing any percent-encoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "query"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "percentEncoded"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988475-query",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "query(percentEncoded:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988475-query"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988476-sharedpublicdirectory": {
+      "abstract": [
+        {
+          "text": "The standard directory for publicly shared files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "sharedPublicDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988476-sharedpublicdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sharedPublicDirectory",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988476-sharedpublicdirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988477-temporarydirectory": {
+      "abstract": [
+        {
+          "text": "The standard directory for temporary files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "temporaryDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988477-temporarydirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "temporaryDirectory",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988477-temporarydirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988478-trashdirectory": {
+      "abstract": [
+        {
+          "text": "The standard trash directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "trashDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988478-trashdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trashDirectory",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988478-trashdirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988479-user": {
+      "abstract": [
+        {
+          "text": "Returns the user component of the URL, optionally removing any percent-encoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "user"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "percentEncoded"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988479-user",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "user(percentEncoded:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988479-user"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988480-userdirectory": {
+      "abstract": [
+        {
+          "text": "The container directory of user home directories.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "userDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988480-userdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "userDirectory",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988480-userdirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/4013497-formatted": {
+      "abstract": [
+        {
+          "text": "Formats the URL using a default format style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatted"
+        },
+        {
+          "kind": "text",
+          "text": "() -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/4013497-formatted",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatted()",
+      "type": "topic",
+      "url": "/documentation/foundation/url/4013497-formatted"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/4013498-formatted": {
+      "abstract": [
+        {
+          "text": "Formats the URL, using the provided format style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatted"
+        },
+        {
+          "kind": "text",
+          "text": "<F>(F) -> F.FormatOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/4013498-formatted",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatted(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/4013498-formatted"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/4013499-init": {
+      "abstract": [
+        {
+          "text": "Creates a URL instance by parsing the provided input in accordance with a parse strategy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<T>(T.ParseInput, "
+        },
+        {
+          "kind": "identifier",
+          "text": "strategy"
+        },
+        {
+          "kind": "text",
+          "text": ": T)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/4013499-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:strategy:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/4013499-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/4019609-defaultresolverspecification": {
+      "abstract": [
+        {
+          "text": "The default resolver specification that the App Intents framework uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultResolverSpecification"
+        },
+        {
+          "kind": "text",
+          "text": ": ResolverSpecification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/4019609-defaultresolverspecification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultResolverSpecification",
+      "type": "topic",
+      "url": "/documentation/foundation/url/4019609-defaultresolverspecification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/4090567-init": {
+      "abstract": [
+        {
+          "text": "Creates a file URL that references a file path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "filePath"
+        },
+        {
+          "kind": "text",
+          "text": ": FilePath, "
+        },
+        {
+          "kind": "identifier",
+          "text": "directoryHint"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.DirectoryHint)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/4090567-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(filePath:directoryHint:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/4090567-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/4191020-init": {
+      "abstract": [
+        {
+          "text": "Creates a URL instance from the provided string, optionally IDNA- and percent-encoding any invalid characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodingInvalidCharacters"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/4191020-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(string:encodingInvalidCharacters:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/4191020-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/4430248-urlrepresentationparameter": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "urlRepresentationParameter"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/4430248-urlrepresentationparameter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlRepresentationParameter",
+      "type": "topic",
+      "url": "/documentation/foundation/url/4430248-urlrepresentationparameter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/asyncbytes": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence of bytes loaded from the URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL.AsyncBytes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/asyncbytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL.AsyncBytes",
+      "type": "topic",
+      "url": "/documentation/foundation/url/asyncbytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/bookmarkcreationoptions": {
+      "abstract": [
+        {
+          "text": "An alias for bookmark creation options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL.BookmarkCreationOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/bookmarkcreationoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL.BookmarkCreationOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/url/bookmarkcreationoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/bookmarkresolutionoptions": {
+      "abstract": [
+        {
+          "text": "An alias for the bookmark resolution options type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL.BookmarkResolutionOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/bookmarkresolutionoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL.BookmarkResolutionOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/url/bookmarkresolutionoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/directoryhint": {
+      "abstract": [
+        {
+          "text": "A hint to URL file APIs for handling paths that may reference directories.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL.DirectoryHint"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/directoryhint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL.DirectoryHint",
+      "type": "topic",
+      "url": "/documentation/foundation/url/directoryhint"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle": {
+      "abstract": [
+        {
+          "text": "A structure that converts between URL instances and their textual representations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL.FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy": {
+      "abstract": [
+        {
+          "text": "A parse strategy for creating URLs from formatted strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL.ParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL.ParseStrategy",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/referencetype": {
+      "abstract": [
+        {
+          "text": "An alias for this value type's equivalent reference type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL.ReferenceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/referencetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL.ReferenceType",
+      "type": "topic",
+      "url": "/documentation/foundation/url/referencetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/representation": {
+      "abstract": [
+        {
+          "text": "The data type for conformance with the Core Transferable framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL.Representation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/representation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL.Representation",
+      "type": "topic",
+      "url": "/documentation/foundation/url/representation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/specification": {
+      "abstract": [
+        {
+          "text": "The specification type for conforming with App Intents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL.Specification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/specification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL.Specification",
+      "type": "topic",
+      "url": "/documentation/foundation/url/specification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/unwrappedtype": {
+      "abstract": [
+        {
+          "text": "The core type for conforming with App Intents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL.UnwrappedType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/unwrappedtype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL.UnwrappedType",
+      "type": "topic",
+      "url": "/documentation/foundation/url/unwrappedtype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/valuetype": {
+      "abstract": [
+        {
+          "text": "The value type for conforming with App Intents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL.ValueType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/valuetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL.ValueType",
+      "type": "topic",
+      "url": "/documentation/foundation/url/valuetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlcomponents": {
+      "abstract": [
+        {
+          "text": "A structure that parses URLs into and constructs URLs from their constituent parts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLComponents"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlcomponents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLComponents",
+      "type": "topic",
+      "url": "/documentation/foundation/urlcomponents"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlqueryitem": {
+      "abstract": [
+        {
+          "text": "A single name-value pair from the query portion of a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLQueryItem"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlqueryitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLQueryItem",
+      "type": "topic",
+      "url": "/documentation/foundation/urlqueryitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcekey": {
+      "abstract": [
+        {
+          "text": "Keys that apply to file system URLs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLResourceKey"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLResourceKey",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcekey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues": {
+      "abstract": [
+        {
+          "text": "The properties that the file system resources support.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLResourceValues"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLResourceValues",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/system/filepath": {
+      "abstract": [
+        {
+          "text": "Represents a location in the file system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "FilePath"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/system/filepath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FilePath",
+      "type": "topic",
+      "url": "/documentation/system/filepath"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible",
+        "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible",
+        "doc://com.apple.AppIntents/documentation/AppIntents/CustomURLRepresentationParameterConvertible",
+        "doc://com.apple.Swift/documentation/Swift/Decodable",
+        "doc://com.apple.Swift/documentation/Swift/Encodable",
+        "doc://com.apple.Swift/documentation/Swift/Hashable",
+        "doc://com.apple.documentation/documentation/foundation/referenceconvertible",
+        "doc://com.apple.Swift/documentation/Swift/Sendable",
+        "doc://com.apple.CoreTransferable/documentation/CoreTransferable/Transferable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlcomponents",
+        "doc://com.apple.documentation/documentation/foundation/urlqueryitem"
+      ],
+      "title": "URLs"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2851030",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/3126806-init",
+        "doc://com.apple.documentation/documentation/foundation/url/4191020-init",
+        "doc://com.apple.documentation/documentation/foundation/url/3126807-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a URL from a string"
+    },
+    {
+      "anchor": "2902599",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/3988464-init",
+        "doc://com.apple.documentation/documentation/foundation/url/directoryhint",
+        "doc://com.apple.documentation/documentation/foundation/url/3126800-init",
+        "doc://com.apple.documentation/documentation/foundation/url/3126801-init",
+        "doc://com.apple.documentation/documentation/foundation/url/3126803-init",
+        "doc://com.apple.documentation/documentation/foundation/url/3126802-init",
+        "doc://com.apple.documentation/documentation/foundation/url/3126799-init",
+        "doc://com.apple.documentation/documentation/foundation/url/2142903-init",
+        "doc://com.apple.documentation/documentation/foundation/url/4090567-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a file URL from a string path"
+    },
+    {
+      "anchor": "4326184",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/3580302-init",
+        "doc://com.apple.documentation/documentation/foundation/url/3580303-init",
+        "doc://com.apple.documentation/documentation/system/filepath"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a file URL from a file path"
+    },
+    {
+      "anchor": "4327022",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/3988465-init",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/searchpathdirectory",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/searchpathdomainmask"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a file URL for a common directory"
+    },
+    {
+      "anchor": "2902608",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/3126805-init",
+        "doc://com.apple.documentation/documentation/foundation/url/3126804-init",
+        "doc://com.apple.documentation/documentation/foundation/url/bookmarkresolutionoptions",
+        "doc://com.apple.documentation/documentation/foundation/nsurl/bookmarkresolutionoptions"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a URL by resolving a bookmark"
+    },
+    {
+      "anchor": "4013799",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/3988466-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a URL from a resource"
+    },
+    {
+      "anchor": "4115895",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/4013499-init",
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a URL by parsing"
+    },
+    {
+      "anchor": "2902598",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/3988458-fragment",
+        "doc://com.apple.documentation/documentation/foundation/url/1779867-fragment",
+        "doc://com.apple.documentation/documentation/foundation/url/3988461-host",
+        "doc://com.apple.documentation/documentation/foundation/url/1780168-host",
+        "doc://com.apple.documentation/documentation/foundation/url/1780317-lastpathcomponent",
+        "doc://com.apple.documentation/documentation/foundation/url/3988473-path",
+        "doc://com.apple.documentation/documentation/foundation/url/1779812-path",
+        "doc://com.apple.documentation/documentation/foundation/url/3988472-password",
+        "doc://com.apple.documentation/documentation/foundation/url/1780348-password",
+        "doc://com.apple.documentation/documentation/foundation/url/1780324-pathcomponents",
+        "doc://com.apple.documentation/documentation/foundation/url/1780487-pathextension",
+        "doc://com.apple.documentation/documentation/foundation/url/1780082-port",
+        "doc://com.apple.documentation/documentation/foundation/url/3988475-query",
+        "doc://com.apple.documentation/documentation/foundation/url/1780273-query",
+        "doc://com.apple.documentation/documentation/foundation/url/1780352-scheme",
+        "doc://com.apple.documentation/documentation/foundation/url/3988479-user",
+        "doc://com.apple.documentation/documentation/foundation/url/1779699-user"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing the parts of a URL"
+    },
+    {
+      "anchor": "4326448",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/1779922-baseurl",
+        "doc://com.apple.documentation/documentation/foundation/url/1779984-absolutestring",
+        "doc://com.apple.documentation/documentation/foundation/url/1780323-absoluteurl",
+        "doc://com.apple.documentation/documentation/foundation/url/1780432-relativepath",
+        "doc://com.apple.documentation/documentation/foundation/url/1780171-relativestring",
+        "doc://com.apple.documentation/documentation/foundation/url/2293170-standardized",
+        "doc://com.apple.documentation/documentation/foundation/url/2293229-standardizedfileurl"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing URL representations"
+    },
+    {
+      "anchor": "2902604",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/1780058-resourcevalues",
+        "doc://com.apple.documentation/documentation/foundation/url/1779940-setresourcevalues",
+        "doc://com.apple.documentation/documentation/foundation/url/1780250-removecachedresourcevalue",
+        "doc://com.apple.documentation/documentation/foundation/url/1780077-removeallcachedresourcevalues",
+        "doc://com.apple.documentation/documentation/foundation/url/1780285-settemporaryresourcevalue",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcekey",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing resource values"
+    },
+    {
+      "anchor": "2851031",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/3126798-init",
+        "doc://com.apple.documentation/documentation/foundation/url/1780182-datarepresentation"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with the data representation of a URL"
+    },
+    {
+      "anchor": "2902596",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/1780396-isfileurl",
+        "doc://com.apple.documentation/documentation/foundation/url/1780160-hasdirectorypath",
+        "doc://com.apple.documentation/documentation/foundation/url/1779782-withunsafefilesystemrepresentati",
+        "doc://com.apple.documentation/documentation/foundation/url/1780208-resolvesymlinksinpath",
+        "doc://com.apple.documentation/documentation/foundation/url/1779822-resolvingsymlinksinpath",
+        "doc://com.apple.documentation/documentation/foundation/url/2293141-standardize"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with file URLs"
+    },
+    {
+      "anchor": "4326187",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/3988451-applicationdirectory",
+        "doc://com.apple.documentation/documentation/foundation/url/3988452-applicationsupportdirectory",
+        "doc://com.apple.documentation/documentation/foundation/url/3988453-cachesdirectory",
+        "doc://com.apple.documentation/documentation/foundation/url/3988455-desktopdirectory",
+        "doc://com.apple.documentation/documentation/foundation/url/3988456-documentsdirectory",
+        "doc://com.apple.documentation/documentation/foundation/url/3988457-downloadsdirectory",
+        "doc://com.apple.documentation/documentation/foundation/url/3988469-librarydirectory",
+        "doc://com.apple.documentation/documentation/foundation/url/3988470-moviesdirectory",
+        "doc://com.apple.documentation/documentation/foundation/url/3988471-musicdirectory",
+        "doc://com.apple.documentation/documentation/foundation/url/3988474-picturesdirectory",
+        "doc://com.apple.documentation/documentation/foundation/url/3988476-sharedpublicdirectory",
+        "doc://com.apple.documentation/documentation/foundation/url/3988477-temporarydirectory",
+        "doc://com.apple.documentation/documentation/foundation/url/3988478-trashdirectory",
+        "doc://com.apple.documentation/documentation/foundation/url/3988480-userdirectory"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing common directories"
+    },
+    {
+      "anchor": "4326186",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/3988454-currentdirectory",
+        "doc://com.apple.documentation/documentation/foundation/url/3988459-homedirectory",
+        "doc://com.apple.documentation/documentation/foundation/url/3988460-homedirectory"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing home and user directories"
+    },
+    {
+      "anchor": "2902600",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/3988445-append",
+        "doc://com.apple.documentation/documentation/foundation/url/3988443-append",
+        "doc://com.apple.documentation/documentation/foundation/url/1780397-appendpathcomponent",
+        "doc://com.apple.documentation/documentation/foundation/url/1780403-appendpathcomponent",
+        "doc://com.apple.documentation/documentation/foundation/url/3988449-appending",
+        "doc://com.apple.documentation/documentation/foundation/url/3988447-appending",
+        "doc://com.apple.documentation/documentation/foundation/url/1780239-appendingpathcomponent",
+        "doc://com.apple.documentation/documentation/foundation/url/1779992-appendingpathcomponent",
+        "doc://com.apple.documentation/documentation/foundation/url/3988444-append",
+        "doc://com.apple.documentation/documentation/foundation/url/3988448-appending",
+        "doc://com.apple.documentation/documentation/foundation/url/3566234-appendpathcomponent",
+        "doc://com.apple.documentation/documentation/foundation/url/3566235-appendingpathcomponent"
+      ],
+      "kind": "taskGroup",
+      "title": "Adding path components"
+    },
+    {
+      "anchor": "2902602",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/1779923-appendpathextension",
+        "doc://com.apple.documentation/documentation/foundation/url/1780122-appendingpathextension",
+        "doc://com.apple.documentation/documentation/foundation/url/3585029-appendpathextension",
+        "doc://com.apple.documentation/documentation/foundation/url/3585030-appendingpathextension"
+      ],
+      "kind": "taskGroup",
+      "title": "Adding a path extension"
+    },
+    {
+      "anchor": "4326188",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/3988446-append",
+        "doc://com.apple.documentation/documentation/foundation/url/3988450-appending",
+        "doc://com.apple.documentation/documentation/foundation/urlqueryitem"
+      ],
+      "kind": "taskGroup",
+      "title": "Adding query items"
+    },
+    {
+      "anchor": "2902601",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/1780315-deletelastpathcomponent",
+        "doc://com.apple.documentation/documentation/foundation/url/1780471-deletinglastpathcomponent"
+      ],
+      "kind": "taskGroup",
+      "title": "Removing path components"
+    },
+    {
+      "anchor": "2902603",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/1780400-deletepathextension",
+        "doc://com.apple.documentation/documentation/foundation/url/1780065-deletingpathextension"
+      ],
+      "kind": "taskGroup",
+      "title": "Removing a path extension"
+    },
+    {
+      "anchor": "2902594",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/2143023-bookmarkdata",
+        "doc://com.apple.documentation/documentation/foundation/url/1780274-bookmarkdata",
+        "doc://com.apple.documentation/documentation/foundation/url/1779742-writebookmarkdata",
+        "doc://com.apple.documentation/documentation/foundation/url/1780391-resourcevalues",
+        "doc://com.apple.documentation/documentation/foundation/url/bookmarkcreationoptions",
+        "doc://com.apple.documentation/documentation/foundation/nsurl/bookmarkcreationoptions"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating bookmarks"
+    },
+    {
+      "anchor": "2902607",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/1779667-checkresourceisreachable"
+      ],
+      "kind": "taskGroup",
+      "title": "Checking reachability"
+    },
+    {
+      "anchor": "3849753",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/3767316-resourcebytes",
+        "doc://com.apple.documentation/documentation/foundation/url/3767315-lines",
+        "doc://com.apple.documentation/documentation/foundation/url/asyncbytes"
+      ],
+      "kind": "taskGroup",
+      "title": "Loading URL contents asynchronously"
+    },
+    {
+      "anchor": "2902597",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/1779781-checkpromiseditemisreachable",
+        "doc://com.apple.documentation/documentation/foundation/url/1779804-promiseditemresourcevalues"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with promised items"
+    },
+    {
+      "anchor": "2851032",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/1779698-startaccessingsecurityscopedreso",
+        "doc://com.apple.documentation/documentation/foundation/url/1780153-stopaccessingsecurityscopedresou"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with security scoped resources"
+    },
+    {
+      "anchor": "2851034",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/2882982",
+        "doc://com.apple.documentation/documentation/foundation/url/2293156"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing URLs"
+    },
+    {
+      "anchor": "2902595",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/1779854-description",
+        "doc://com.apple.documentation/documentation/foundation/url/1780061-debugdescription",
+        "doc://com.apple.documentation/documentation/foundation/url/1779950-customplaygroundquicklook"
+      ],
+      "kind": "taskGroup",
+      "title": "Describing a URL"
+    },
+    {
+      "anchor": "4115894",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/4013497-formatted",
+        "doc://com.apple.documentation/documentation/foundation/url/4013498-formatted",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle"
+      ],
+      "kind": "taskGroup",
+      "title": "Formatting a URL"
+    },
+    {
+      "anchor": "2928578",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/2908802-init",
+        "doc://com.apple.documentation/documentation/foundation/url/2908793-encode"
+      ],
+      "kind": "taskGroup",
+      "title": "Encoding and decoding a URL"
+    },
+    {
+      "anchor": "3528441",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/3236799-hash",
+        "doc://com.apple.documentation/documentation/foundation/url/1780338-hashvalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Hashing"
+    },
+    {
+      "anchor": "2878100",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurl",
+        "doc://com.apple.documentation/documentation/foundation/url/referencetype"
+      ],
+      "kind": "taskGroup",
+      "title": "Using reference types"
+    },
+    {
+      "anchor": "4326451",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/3988105-transferrepresentation",
+        "doc://com.apple.documentation/documentation/foundation/url/representation"
+      ],
+      "kind": "taskGroup",
+      "title": "Core Transferable support"
+    },
+    {
+      "anchor": "4326450",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/4019609-defaultresolverspecification",
+        "doc://com.apple.documentation/documentation/foundation/url/specification",
+        "doc://com.apple.documentation/documentation/foundation/url/unwrappedtype",
+        "doc://com.apple.documentation/documentation/foundation/url/valuetype"
+      ],
+      "kind": "taskGroup",
+      "title": "App Intents support"
+    },
+    {
+      "anchor": "4435595",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/4430248-urlrepresentationparameter"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/url"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

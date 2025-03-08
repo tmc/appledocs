@@ -1,0 +1,1133 @@
+{
+  "abstract": [
+    {
+      "text": "The batch size of the objects specified in the fetch request.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coredata/documentation/CoreData",
+        "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest/fetchBatchSize"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSFetchRequest(py)fetchBatchSize",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "fetchBatchSize"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Si",
+        "text": "Int"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Data"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "fetchBatchSize"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.6",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "fetchBatchSize"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchBatchSize"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Si",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Si",
+              "text": "Int"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default value is ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". A batch size of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is treated as infinite, which disables the batch fetching behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you set a nonzero batch size, the collection of objects returned when an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is executed is broken into batches. When the fetch is executed, the entire request is evaluated and the identities of all matching objects recorded, but only data for objects up to the ",
+              "type": "text"
+            },
+            {
+              "code": "batchSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " will be fetched from the persistent store at a time. The array returned from executing the request is a proxy object that transparently fetches subsequent batches on demand. (In database terms, this is an in-memory cursor.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use this feature to restrict the working set of data in your application. In combination with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest/fetchLimit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can create a subrange of an arbitrary result set.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Special-Considerations",
+          "level": 3,
+          "text": "Special Considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For purposes of thread safety, when the fetch is executed, consider the array proxy returned as being owned by the managed object context the request is executed against. Treat the array proxy as if it were a managed object registered with that context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coredata/documentation/CoreData": {
+      "abstract": [
+        {
+          "text": "Persist or cache data on a single device, or sync data to multiple devices with CloudKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Data",
+      "type": "topic",
+      "url": "/documentation/coredata"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSExpressionDescription": {
+      "abstract": [
+        {
+          "text": "An object that describes an expression to include with a fetch request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExpressionDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSExpressionDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSExpressionDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSExpressionDescription",
+      "type": "topic",
+      "url": "/documentation/coredata/nsexpressiondescription"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest": {
+      "abstract": [
+        {
+          "text": "A description of search criteria used to retrieve data from a persistent store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFetchRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFetchRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFetchRequest",
+      "type": "topic",
+      "url": "/documentation/coredata/nsfetchrequest"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest/affectedStores": {
+      "abstract": [
+        {
+          "text": "An array of persistent stores specified for the fetch request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "affectedStores"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPersistentStore",
+          "text": "NSPersistentStore"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest/affectedStores",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "affectedStores"
+        }
+      ],
+      "role": "symbol",
+      "title": "affectedStores",
+      "type": "topic",
+      "url": "/documentation/coredata/nsfetchrequest/affectedstores"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest/fetchBatchSize": {
+      "abstract": [
+        {
+          "text": "The batch size of the objects specified in the fetch request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchBatchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest/fetchBatchSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchBatchSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchBatchSize",
+      "type": "topic",
+      "url": "/documentation/coredata/nsfetchrequest/fetchbatchsize"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest/fetchLimit": {
+      "abstract": [
+        {
+          "text": "The fetch limit of the fetch request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchLimit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest/fetchLimit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchLimit"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchLimit",
+      "type": "topic",
+      "url": "/documentation/coredata/nsfetchrequest/fetchlimit"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest/fetchOffset": {
+      "abstract": [
+        {
+          "text": "The fetch offset of the fetch request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest/fetchOffset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchOffset"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchOffset",
+      "type": "topic",
+      "url": "/documentation/coredata/nsfetchrequest/fetchoffset"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest/predicate": {
+      "abstract": [
+        {
+          "text": "The predicate of the fetch request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest/predicate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicate"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicate",
+      "type": "topic",
+      "url": "/documentation/coredata/nsfetchrequest/predicate"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSFetchRequestExpression": {
+      "abstract": [
+        {
+          "text": "An expression that evaluates the result of a fetch request on a managed object context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFetchRequestExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSFetchRequestExpression",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFetchRequestExpression"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFetchRequestExpression",
+      "type": "topic",
+      "url": "/documentation/coredata/nsfetchrequestexpression"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSFetchedPropertyDescription": {
+      "abstract": [
+        {
+          "text": "A description object used to define which properties are fetched from Core Data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFetchedPropertyDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSFetchedPropertyDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFetchedPropertyDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFetchedPropertyDescription",
+      "type": "topic",
+      "url": "/documentation/coredata/nsfetchedpropertydescription"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@NSUInteger": {
+      "abstract": [
+        {
+          "text": "Describes an unsigned integer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@NSUInteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUInteger",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsuinteger"
+    },
+    "doc://com.externally.resolved.symbol/s:Si": {
+      "abstract": [
+        {
+          "text": "A signed integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Si",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/Swift/Int"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Specifying-Fetch-Constraints",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest/predicate",
+        "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest/fetchLimit",
+        "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest/fetchOffset",
+        "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest/affectedStores",
+        "doc://com.apple.coredata/documentation/CoreData/NSFetchRequestExpression",
+        "doc://com.apple.coredata/documentation/CoreData/NSExpressionDescription",
+        "doc://com.apple.coredata/documentation/CoreData/NSFetchedPropertyDescription"
+      ],
+      "title": "Specifying Fetch Constraints"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.6",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "fetchBatchSize"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fetchBatchSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.coredata/documentation/CoreData",
+                "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Specifying-Fetch-Constraints",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest/predicate",
+                "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest/fetchLimit",
+                "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest/fetchOffset",
+                "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest/affectedStores",
+                "doc://com.apple.coredata/documentation/CoreData/NSFetchRequestExpression",
+                "doc://com.apple.coredata/documentation/CoreData/NSExpressionDescription",
+                "doc://com.apple.coredata/documentation/CoreData/NSFetchedPropertyDescription"
+              ],
+              "title": "Specifying Fetch Constraints"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "nonatomic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@NSUInteger",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@NSUInteger",
+                    "text": "NSUInteger"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "fetchBatchSize"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSFetchRequest~1predicate/title",
+          "value": "predicate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSFetchRequest~1predicate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "predicate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSFetchRequestExpression/title",
+          "value": "NSFetchRequestExpression"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSFetchRequestExpression/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFetchRequestExpression"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSFetchRequestExpression/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFetchRequestExpression"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSFetchRequest/title",
+          "value": "NSFetchRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSFetchRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFetchRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSFetchRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFetchRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSFetchedPropertyDescription/title",
+          "value": "NSFetchedPropertyDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSFetchedPropertyDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFetchedPropertyDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSFetchedPropertyDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFetchedPropertyDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSFetchRequest~1affectedStores/title",
+          "value": "affectedStores"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSFetchRequest~1affectedStores/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "affectedStores"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSFetchRequest~1fetchLimit/title",
+          "value": "fetchLimit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSFetchRequest~1fetchLimit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fetchLimit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSFetchRequest~1fetchBatchSize/title",
+          "value": "fetchBatchSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSFetchRequest~1fetchBatchSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fetchBatchSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSExpressionDescription/title",
+          "value": "NSExpressionDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSExpressionDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSExpressionDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSExpressionDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSExpressionDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSFetchRequest~1fetchOffset/title",
+          "value": "fetchOffset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSFetchRequest~1fetchOffset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fetchOffset"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coredata/nsfetchrequest/fetchbatchsize"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coredata/nsfetchrequest/fetchbatchsize"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1279 @@
+{
+  "abstract": [
+    {
+      "text": "Prepare your app to respond to an incoming universal link.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/projects-and-workspaces",
+        "doc://com.apple.Xcode/documentation/Xcode/allowing-apps-and-websites-to-link-to-your-content"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/supporting-universal-links-in-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Supporting universal links in your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a user activates a universal link, the system launches your app and sends it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. Query",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this object to find out how your app launched and to decide what action to take.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support universal links in your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a two-way association between your app and your website and specify the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "URLs that your app handles. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/supporting-associated-domains",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Update your app delegate to respond when it receives an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "object with the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity/1409611-activitytype",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "set to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivitytypebrowsingweb",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Universal links offer a potential attack vector into your app, so make",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "sure to validate all URL parameters and discard any malformed URLs. In addition,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "limit the available actions to those that don’t risk the user’s data. For example,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "don’t allow universal links to directly delete content or access sensitive information",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "about the user. When testing your URL-handling code, make sure your test cases include",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "improperly formatted URLs.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Warning",
+          "style": "warning",
+          "type": "aside"
+        },
+        {
+          "anchor": "Update-your-app-delegate-to-respond-to-a-universal-link",
+          "level": 3,
+          "text": "Update your app delegate to respond to a universal link",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system opens your app as the result of a universal link, your app receives",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity/1409611-activitytype",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivitytypebrowsingweb",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The activity object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity/1418086-webpageurl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contains the HTTP or HTTPS URL that the user accesses. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " APIs",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to extract the components of the URL. See the examples that follow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example code shows how to handle a universal link in macOS:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func application(_ application: NSApplication,",
+            "                     continue userActivity: NSUserActivity,",
+            "                     restorationHandler: @escaping ([NSUserActivityRestoring]) -> Void) -> Bool",
+            "{",
+            "    // Get URL components from the incoming user activity.",
+            "    guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,",
+            "        let incomingURL = userActivity.webpageURL,",
+            "        let components = NSURLComponents(url: incomingURL, resolvingAgainstBaseURL: true) else {",
+            "        return false",
+            "    }",
+            "",
+            "    // Check for specific URL components that you need.",
+            "    guard let path = components.path,",
+            "    let params = components.queryItems else {",
+            "        return false",
+            "    }    ",
+            "    print(\"path = \\(path)\")",
+            "",
+            "    if let albumName = params.first(where: { $0.name == \"albumname\" } )?.value,",
+            "        let photoIndex = params.first(where: { $0.name == \"index\" })?.value {            ",
+            "        print(\"album = \\(albumName)\")",
+            "        print(\"photoIndex = \\(photoIndex)\")",
+            "        return true  ",
+            "",
+            "    } else {",
+            "        print(\"Either album name or photo index missing\")",
+            "        return false",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example code shows how to handle a universal link in iOS and tvOS:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func application(_ application: UIApplication,",
+            "                 continue userActivity: NSUserActivity,",
+            "                 restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool",
+            "{",
+            "    // Get URL components from the incoming user activity.",
+            "    guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,",
+            "        let incomingURL = userActivity.webpageURL,",
+            "        let components = NSURLComponents(url: incomingURL, resolvingAgainstBaseURL: true) else {",
+            "        return false",
+            "    }",
+            "",
+            "    // Check for specific URL components that you need.",
+            "    guard let path = components.path,",
+            "    let params = components.queryItems else {",
+            "        return false",
+            "    }    ",
+            "    print(\"path = \\(path)\")",
+            "",
+            "    if let albumName = params.first(where: { $0.name == \"albumname\" } )?.value,",
+            "        let photoIndex = params.first(where: { $0.name == \"index\" })?.value {",
+            "",
+            "        print(\"album = \\(albumName)\")",
+            "        print(\"photoIndex = \\(photoIndex)\")",
+            "        return true",
+            "",
+            "    } else {",
+            "        print(\"Either album name or photo index missing\")",
+            "        return false",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app has opted into ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/scenes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and your app is not running, the system delivers the universal link to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UISceneDelegate/scene(_:willConnectTo:options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "delegate method after launch, and to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UISceneDelegate/scene(_:continue:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when the universal link is tapped while your app is running or suspended in memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func scene(_ scene: UIScene, willConnectTo",
+            "           session: UISceneSession,",
+            "           options connectionOptions: UIScene.ConnectionOptions) {",
+            "    ",
+            "    // Get URL components from the incoming user activity.",
+            "    guard let userActivity = connectionOptions.userActivities.first,",
+            "        userActivity.activityType == NSUserActivityTypeBrowsingWeb,",
+            "        let incomingURL = userActivity.webpageURL,",
+            "        let components = NSURLComponents(url: incomingURL, resolvingAgainstBaseURL: true) else {",
+            "        return",
+            "    }",
+            "",
+            "    // Check for specific URL components that you need.",
+            "    guard let path = components.path,",
+            "        let params = components.queryItems else {",
+            "        return",
+            "    }",
+            "    print(\"path = \\(path)\")",
+            "",
+            "    if let albumName = params.first(where: { $0.name == \"albumname\" })?.value,",
+            "        let photoIndex = params.first(where: { $0.name == \"index\" })?.value {",
+            "        ",
+            "        print(\"album = \\(albumName)\")",
+            "        print(\"photoIndex = \\(photoIndex)\")",
+            "    } else {",
+            "        print(\"Either album name or photo index missing\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example code shows how to handle a universal link in watchOS:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func handle(_ userActivity: NSUserActivity)",
+            "{",
+            "    // Get URL components from the incoming user activity.",
+            "    guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,",
+            "        let incomingURL = userActivity.webpageURL,",
+            "        let components = NSURLComponents(url: incomingURL, resolvingAgainstBaseURL: true) else { return }",
+            "",
+            "    // Check for specific URL components that you need.",
+            "    guard let path = components.path,",
+            "    let params = components.queryItems else { return }    ",
+            "    print(\"path = \\(path)\")",
+            "",
+            "    if let albumName = params.first(where: { $0.name == \"albumname\" } )?.value,",
+            "        let photoIndex = params.first(where: { $0.name == \"index\" })?.value {            ",
+            "        print(\"album = \\(albumName)\")",
+            "        print(\"photoIndex = \\(photoIndex)\")",
+            "    } else {",
+            "        print(\"Either album name or photo index missing\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In watchOS, a Safari-like interface is available for apps such as Messages",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "and Mail. For other apps, when the user clicks a universal link that points to content",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "in a companion app that the user doesn’t have installed, the system notifies the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "user to view the URL on their iPhone.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/allowing-apps-and-websites-to-link-to-your-content": {
+      "abstract": [
+        {
+          "text": "Use universal links to link directly to content within your app and share data securely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/allowing-apps-and-websites-to-link-to-your-content",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Allowing apps and websites to link to your content",
+      "type": "topic",
+      "url": "/documentation/xcode/allowing-apps-and-websites-to-link-to-your-content"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/projects-and-workspaces": {
+      "abstract": [
+        {
+          "text": "Manage the code and resources you use to build apps, libraries, and other",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "software for Apple platforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/projects-and-workspaces",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Projects and workspaces",
+      "type": "topic",
+      "url": "/documentation/xcode/projects-and-workspaces"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/supporting-associated-domains": {
+      "abstract": [
+        {
+          "text": "Connect your app and a website to provide both a native app and a browser experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/supporting-associated-domains",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Supporting associated domains",
+      "type": "topic",
+      "url": "/documentation/xcode/supporting-associated-domains"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UISceneDelegate/scene(_:continue:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate to handle the specified Handoff-related activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIScene",
+          "text": "UIScene"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "continue"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "userActivity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUserActivity",
+          "text": "NSUserActivity"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UISceneDelegate/scene(_:continue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scene(_:continue:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UISceneDelegate/scene(_:continue:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UISceneDelegate/scene(_:willConnectTo:options:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate about the addition of a scene to the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIScene",
+          "text": "UIScene"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "willConnectTo"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISceneSession",
+          "text": "UISceneSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "connectionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIScene",
+          "text": "UIScene"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISceneConnectionOptions",
+          "text": "ConnectionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UISceneDelegate/scene(_:willConnectTo:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scene(_:willConnectTo:options:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UISceneDelegate/scene(_:willConnectTo:options:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/scenes": {
+      "abstract": [
+        {
+          "text": "Manage multiple instances of your app’s UI simultaneously, and direct resources to the appropriate instance of your UI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/scenes",
+      "kind": "article",
+      "role": "article",
+      "title": "Scenes",
+      "type": "topic",
+      "url": "/documentation/UIKit/scenes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents": {
+      "abstract": [
+        {
+          "text": "An object that parses URLs into and constructs URLs from their constituent parts that bridges to ; use  when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURLComponents"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLComponents",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity": {
+      "abstract": [
+        {
+          "text": "A representation of the state of your app at a moment in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivity",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity/1409611-activitytype": {
+      "abstract": [
+        {
+          "text": "The user activity object’s activity type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "activityType"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity/1409611-activitytype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "activityType",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity/1409611-activitytype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity/1418086-webpageurl": {
+      "abstract": [
+        {
+          "text": "The URL of the webpage to load in a browser to continue the activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "webpageURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity/1418086-webpageurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "webpageURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity/1418086-webpageurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivitytypebrowsingweb": {
+      "abstract": [
+        {
+          "text": "An activity that continues from Handoff or a universal link.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityTypeBrowsingWeb"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivitytypebrowsingweb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivityTypeBrowsingWeb",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivitytypebrowsingweb"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UISceneDelegate~1scene(_:willConnectTo:options:)/title",
+          "value": "scene:willConnectToSession:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UISceneDelegate~1scene(_:willConnectTo:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "scene:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIScene",
+              "text": "UIScene"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "scene"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "willConnectToSession:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UISceneSession",
+              "text": "UISceneSession"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "session"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "options:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UISceneConnectionOptions",
+              "text": "UISceneConnectionOptions"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "connectionOptions"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UISceneDelegate~1scene(_:continue:)/title",
+          "value": "scene:continueUserActivity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UISceneDelegate~1scene(_:continue:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "scene:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIScene",
+              "text": "UIScene"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "scene"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "continueUserActivity:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSUserActivity",
+              "text": "NSUserActivity"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "userActivity"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsurlcomponents/abstract",
+          "value": [
+            {
+              "text": "An object that parses URLs into and constructs URLs from their constituent parts. ",
+              "type": "text"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1255 @@
+{
+  "abstract": [
+    {
+      "text": "Trace the movement of fingers around the screen, and apply that movement to your content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/handling-uikit-gestures"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/handling-pan-gestures"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Handling pan gestures"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A pan gesture occurs any time a person moves one or more fingers around the screen. A screen-edge pan gesture is a specialized pan gesture that originates from the edge of the screen. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class for pan gestures and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScreenEdgePanGestureRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class for screen-edge pan gestures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can attach a gesture recognizer in one of these ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Programmatically. Call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/addGestureRecognizer(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method of your view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Interface Builder. Drag the appropriate object from the library and drop it onto your view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3004404",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use pan gesture recognizers for tasks that require you to track the movement of the user’s fingers onscreen. You might use a pan gesture recognizer to drag objects around in your interface or update their appearance based on the position of the user’s finger. Pan gestures are continuous, so your action method is called whenever the touch information changes, giving you a chance to update your content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A pan gesture recognizer enters the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/began",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state as soon as the required amount of initial movement is achieved. After that initial change, subsequent changes cause the gesture recognizer to enter the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/changed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state. When the user’s fingers lift from the screen, the gesture recognizer enters the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/ended",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To simplify tracking, use the pan gesture recognizer’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer/translation(in:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to get the distance that the user’s finger has moved from the original touch location. At the beginning of the gesture, a pan gesture recognizer stores the initial point of contact for the user’s fingers. (If the gesture involves multiple fingers, the gesture recognizer uses the center point of the set of touches.) Each time the fingers move, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer/translation(in:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method reports the distance from the original location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows an action method used to drag a view around the screen. When the gesture begins, this method saves the initial position of the view. It then updates the position of the view based on the movement of a person’s fingers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var initialCenter = CGPoint()  // The initial center point of the view.",
+            "@IBAction func panPiece(_ gestureRecognizer : UIPanGestureRecognizer) {   ",
+            "   guard gestureRecognizer.view != nil else {return}",
+            "   let piece = gestureRecognizer.view!",
+            "   // Get the changes in the X and Y directions relative to",
+            "   // the superview's coordinate space.",
+            "   let translation = gestureRecognizer.translation(in: piece.superview)",
+            "   if gestureRecognizer.state == .began {",
+            "      // Save the view's original position. ",
+            "      self.initialCenter = piece.center",
+            "   }",
+            "      // Update the position for the .began, .changed, and .ended states",
+            "   if gestureRecognizer.state != .cancelled {",
+            "      // Add the X and Y translation to the view's original position.",
+            "      let newCenter = CGPoint(x: initialCenter.x + translation.x, y: initialCenter.y + translation.y)",
+            "      piece.center = newCenter",
+            "   }",
+            "   else {",
+            "      // On cancellation, return the piece to its original location.",
+            "      piece.center = initialCenter",
+            "   }",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the code for your pan gesture recognizer isn’t called, check to see if the following conditions are true, and make corrections as needed:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/isUserInteractionEnabled",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property of the view is set to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Image views and labels set this property to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " by default.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The number of touches is between the values specified in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer/minimumNumberOfTouches",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer/maximumNumberOfTouches",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " properties.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScreenEdgePanGestureRecognizer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object, the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScreenEdgePanGestureRecognizer/edges",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property is configured and touches start at the appropriate edge.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/began": {
+      "abstract": [
+        {
+          "text": "The gesture recognizer has received touch objects recognized as a continuous gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "began"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/began",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizerStateBegan"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIGestureRecognizer.State.began",
+      "type": "topic",
+      "url": "/documentation/uikit/uigesturerecognizer/state-swift.enum/began"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/changed": {
+      "abstract": [
+        {
+          "text": "The gesture recognizer has received touches recognized as a change to a continuous gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "changed"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/changed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizerStateChanged"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIGestureRecognizer.State.changed",
+      "type": "topic",
+      "url": "/documentation/uikit/uigesturerecognizer/state-swift.enum/changed"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/ended": {
+      "abstract": [
+        {
+          "text": "The gesture recognizer has received touches recognized as the end of a continuous gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ended"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/ended",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizerStateEnded"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIGestureRecognizer.State.ended",
+      "type": "topic",
+      "url": "/documentation/uikit/uigesturerecognizer/state-swift.enum/ended"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets panning gestures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPanGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPanGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPanGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uipangesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer/maximumNumberOfTouches": {
+      "abstract": [
+        {
+          "text": "The maximum number of fingers that can touch the view for gesture recognition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumNumberOfTouches"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer/maximumNumberOfTouches",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumNumberOfTouches"
+        }
+      ],
+      "role": "symbol",
+      "title": "maximumNumberOfTouches",
+      "type": "topic",
+      "url": "/documentation/uikit/uipangesturerecognizer/maximumnumberoftouches"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer/minimumNumberOfTouches": {
+      "abstract": [
+        {
+          "text": "The minimum number of fingers that can touch the view for gesture recognition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minimumNumberOfTouches"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer/minimumNumberOfTouches",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "minimumNumberOfTouches"
+        }
+      ],
+      "role": "symbol",
+      "title": "minimumNumberOfTouches",
+      "type": "topic",
+      "url": "/documentation/uikit/uipangesturerecognizer/minimumnumberoftouches"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer/translation(in:)": {
+      "abstract": [
+        {
+          "text": "Interprets the pan gesture in the coordinate system of the specified view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "translation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer/translation(in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "translationInView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "translation(in:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uipangesturerecognizer/translation(in:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIScreenEdgePanGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets panning gestures that start near an edge of the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIScreenEdgePanGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScreenEdgePanGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIScreenEdgePanGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIScreenEdgePanGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscreenedgepangesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIScreenEdgePanGestureRecognizer/edges": {
+      "abstract": [
+        {
+          "text": "The acceptable starting edges for the gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "edges"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIRectEdge",
+          "text": "UIRectEdge"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScreenEdgePanGestureRecognizer/edges",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "edges"
+        }
+      ],
+      "role": "symbol",
+      "title": "edges",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscreenedgepangesturerecognizer/edges"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/addGestureRecognizer(_:)": {
+      "abstract": [
+        {
+          "text": "Attaches a gesture recognizer to the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addGestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIGestureRecognizer",
+          "text": "UIGestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/addGestureRecognizer(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addGestureRecognizer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addGestureRecognizer(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/addgesturerecognizer(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/isUserInteractionEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether user events are ignored and removed from the event queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isUserInteractionEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/isUserInteractionEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userInteractionEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isUserInteractionEnabled",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/isuserinteractionenabled"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-long-press-gestures": {
+      "abstract": [
+        {
+          "text": "Detect extended duration taps on the screen, and use them to reveal contextually relevant content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-long-press-gestures",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling long-press gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-long-press-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-pinch-gestures": {
+      "abstract": [
+        {
+          "text": "Track the distance between two fingers and use that information to scale or zoom your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-pinch-gestures",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling pinch gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-pinch-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-rotation-gestures": {
+      "abstract": [
+        {
+          "text": "Measure the relative rotation of two fingers on the screen, and use that motion to rotate your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-rotation-gestures",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling rotation gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-rotation-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-swipe-gestures": {
+      "abstract": [
+        {
+          "text": "Detect a horizontal or vertical swipe motion on the screen, and use it to trigger navigation through your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-swipe-gestures",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling swipe gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-swipe-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-tap-gestures": {
+      "abstract": [
+        {
+          "text": "Use brief taps on the screen to implement button-like interactions with your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-tap-gestures",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling tap gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-tap-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-uikit-gestures": {
+      "abstract": [
+        {
+          "text": "Use gesture recognizers to simplify touch handling and create a consistent user experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-uikit-gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Handling UIKit gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-uikit-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures": {
+      "abstract": [
+        {
+          "text": "Encapsulate your app’s event-handling logic in gesture recognizers so that you can reuse that code throughout your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Touches, presses, and gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/touches-presses-and-gestures"
+    },
+    "media-3004404": {
+      "alt": "A diagram demonstrating a single-finger pan gesture",
+      "identifier": "media-3004404",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/acae33ffbe085ca3e2e6e886554aeaa7/media-3004404@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Gestures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/handling-tap-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/handling-long-press-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/handling-swipe-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/handling-pinch-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/handling-rotation-gestures"
+      ],
+      "title": "Gestures"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Gestures",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/handling-tap-gestures",
+                "doc://com.apple.uikit/documentation/UIKit/handling-long-press-gestures",
+                "doc://com.apple.uikit/documentation/UIKit/handling-swipe-gestures",
+                "doc://com.apple.uikit/documentation/UIKit/handling-pinch-gestures",
+                "doc://com.apple.uikit/documentation/UIKit/handling-rotation-gestures"
+              ],
+              "title": "Gestures"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1State-swift.enum~1ended/title",
+          "value": "UIGestureRecognizerStateEnded"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1State-swift.enum~1ended/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGestureRecognizerStateEnded"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1State-swift.enum~1began/title",
+          "value": "UIGestureRecognizerStateBegan"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1State-swift.enum~1began/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGestureRecognizerStateBegan"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1addGestureRecognizer(_:)/title",
+          "value": "addGestureRecognizer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1addGestureRecognizer(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addGestureRecognizer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1State-swift.enum~1changed/title",
+          "value": "UIGestureRecognizerStateChanged"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1State-swift.enum~1changed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGestureRecognizerStateChanged"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1isUserInteractionEnabled/title",
+          "value": "userInteractionEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1isUserInteractionEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userInteractionEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPanGestureRecognizer~1maximumNumberOfTouches/title",
+          "value": "maximumNumberOfTouches"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPanGestureRecognizer~1maximumNumberOfTouches/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maximumNumberOfTouches"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreenEdgePanGestureRecognizer~1edges/title",
+          "value": "edges"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreenEdgePanGestureRecognizer~1edges/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "edges"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPanGestureRecognizer/title",
+          "value": "UIPanGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPanGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPanGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPanGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPanGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPanGestureRecognizer~1translation(in:)/title",
+          "value": "translationInView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPanGestureRecognizer~1translation(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "translationInView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPanGestureRecognizer~1minimumNumberOfTouches/title",
+          "value": "minimumNumberOfTouches"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPanGestureRecognizer~1minimumNumberOfTouches/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "minimumNumberOfTouches"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreenEdgePanGestureRecognizer/title",
+          "value": "UIScreenEdgePanGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreenEdgePanGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScreenEdgePanGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreenEdgePanGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScreenEdgePanGestureRecognizer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/handling-pan-gestures"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/handling-pan-gestures"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

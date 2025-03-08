@@ -1,0 +1,1028 @@
+{
+  "abstract": [
+    {
+      "text": "Generate image masks for people automatically by using semantic person-segmentation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.vision/documentation/Vision",
+        "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.vision/documentation/Vision/applying-matte-effects-to-people-in-images-and-video"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Vision"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Applying Matte Effects to People in Images and Video"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use image masks to make selective adjustments to particular areas of an image. For example, the illustration below shows how to use a mask to perform a blend operation to replace the background behind the subject.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "image_mask.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS and tvOS 15 and macOS 12, Vision makes it simple for you to generate image masks for people it finds in images and video by using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class. This new request type brings the semantic person-segmentation capabilities found in frameworks like ARKit and AVFoundation to the Vision framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app uses the front-facing camera to capture video of the user. It runs a person-segmentation request on each video frame to produce an image mask. Then, it uses Core Image to perform a blend operation that replaces the original video frame’s background with an image that the app dynamically generates and colors based on the user’s head movements. Finally, it renders the image on screen using Metal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You must run the sample app on a physical device with iOS 15 or later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Prepare-the-Requests",
+          "level": 3,
+          "text": "Prepare the Requests",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app uses two Vision requests to perform its logic: ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "http://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". It uses ",
+              "type": "text"
+            },
+            {
+              "code": "VNDetectFaceRectanglesRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to detect a bounding rectangle around a person’s face. The observation the request produces also includes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "http://developer.apple.com/documentation/vision/vnfaceobservation/2980939-roll",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "http://developer.apple.com/documentation/vision/vnfaceobservation/2980940-yaw",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and new in iOS and tvOS 15 and macOS 12, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "http://developer.apple.com/documentation/vision/vnfaceobservation/3750998-pitch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " angles of the rectangle. The app uses the angles to dynamically calculate background colors as the user moves their head.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a request to detect face rectangles.",
+            "facePoseRequest = VNDetectFaceRectanglesRequest { [weak self] request, _ in",
+            "    guard let face = request.results?.first as? VNFaceObservation else { return }",
+            "    // Generate RGB color intensity values for the face rectangle angles.",
+            "    self?.colors = AngleColors(roll: face.roll, pitch: face.pitch, yaw: face.yaw)",
+            "}",
+            "facePoseRequest.revision = VNDetectFaceRectanglesRequestRevision3"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "VNGeneratePersonSegmentationRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " generates an image mask for a person it detects in an image. The app can set the value for request’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "http://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest/3750989-qualitylevel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "code": ".fast",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": ".balanced",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": ".accurate",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; this value determines the quality of the generated mask as shown in the illustration below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "quality_levels.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the sample processes live video, it chooses ",
+              "type": "text"
+            },
+            {
+              "code": ".balanced",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which provides a mixture of accuracy and performance. It also sets the format of the mask image that the request generates to an 8-bit, one-component format where ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represents black.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a request to segment a person from an image.",
+            "segmentationRequest = VNGeneratePersonSegmentationRequest()",
+            "segmentationRequest.qualityLevel = .balanced",
+            "segmentationRequest.outputPixelFormat = kCVPixelFormatType_OneComponent8"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Perform-the-Requests-on-a-Video-Frame",
+          "level": 3,
+          "text": "Perform the Requests on a Video Frame",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample captures video from the front-facing camera and performs the requests on each frame. After the requests finish processing, the app retrieves the image mask from result of the segmentation request and passes it and original frame to the the app’s ",
+              "type": "text"
+            },
+            {
+              "code": "blend(original:mask:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method for further processing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func processVideoFrame(_ framePixelBuffer: CVPixelBuffer) {",
+            "    // Perform the requests on the pixel buffer that contains the video frame.",
+            "    try? requestHandler.perform([facePoseRequest, segmentationRequest],",
+            "                                on: framePixelBuffer,",
+            "                                orientation: .right)",
+            "    ",
+            "    // Get the pixel buffer that contains the mask image.",
+            "    guard let maskPixelBuffer =",
+            "            segmentationRequest.results?.first?.pixelBuffer else { return }",
+            "    ",
+            "    // Process the images.",
+            "    blend(original: framePixelBuffer, mask: maskPixelBuffer)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Render-the-Results",
+          "level": 3,
+          "text": "Render the Results",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample processes the results of the requests by taking the original frame, the mask image, and a background image that it dynamically generates based on the roll, pitch, and yaw angles of the user’s face. It creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "http://developer.apple.com/documentation/coreimage/ciimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object for each image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create CIImage objects for the video frame and the segmentation mask.",
+            "let originalImage = CIImage(cvPixelBuffer: framePixelBuffer).oriented(.right)",
+            "var maskImage = CIImage(cvPixelBuffer: maskPixelBuffer)",
+            "",
+            "// Scale the mask image to fit the bounds of the video frame.",
+            "let scaleX = originalImage.extent.width / maskImage.extent.width",
+            "let scaleY = originalImage.extent.height / maskImage.extent.height",
+            "maskImage = maskImage.transformed(by: .init(scaleX: scaleX, y: scaleY))",
+            "",
+            "// Define RGB vectors for CIColorMatrix filter.",
+            "let vectors = [",
+            "    \"inputRVector\": CIVector(x: 0, y: 0, z: 0, w: colors.red),",
+            "    \"inputGVector\": CIVector(x: 0, y: 0, z: 0, w: colors.green),",
+            "    \"inputBVector\": CIVector(x: 0, y: 0, z: 0, w: colors.blue)",
+            "]",
+            "",
+            "// Create a colored background image.",
+            "let backgroundImage = maskImage.applyingFilter(\"CIColorMatrix\",",
+            "                                               parameters: vectors)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app then scales the mask image to fit the bounds of the captured video frame, and dynamically generates a background image using a ",
+              "type": "text"
+            },
+            {
+              "code": "CIColorMatrix",
+              "type": "codeVoice"
+            },
+            {
+              "text": " filter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It blends the images and sets the result as the current image, which causes the view to render it on screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Blend the original, background, and mask images.",
+            "let blendFilter = CIFilter.blendWithRedMask()",
+            "blendFilter.inputImage = originalImage",
+            "blendFilter.backgroundImage = backgroundImage",
+            "blendFilter.maskImage = maskImage",
+            "",
+            "// Set the new, blended image as current.",
+            "currentCIImage = blendFilter.outputImage?.oriented(.left)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "6419e39ee70c/ApplyingMatteEffectsToPeopleInImagesAndVideo.zip": {
+      "checksum": "6419e39ee70c2a54516bbcee0e93c3e2b03f56dc3cfacd53fb689c132035d4f69953a9ca007d9309028116e87fcb2fe71f59fbf3969f87bb06be7994541f1de1",
+      "identifier": "6419e39ee70c/ApplyingMatteEffectsToPeopleInImagesAndVideo.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/6419e39ee70c/ApplyingMatteEffectsToPeopleInImagesAndVideo.zip"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed": {
+      "abstract": [
+        {
+          "text": "Identify body movements by sending a person’s pose data from a series of video frames to an action-classification model.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Detecting Human Actions in a Live Video Feed",
+      "type": "topic",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.vision/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNDetectDocumentSegmentationRequest": {
+      "abstract": [
+        {
+          "text": "An object that detects rectangular regions that contain text in the input image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNDetectDocumentSegmentationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNDetectDocumentSegmentationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNDetectDocumentSegmentationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNDetectDocumentSegmentationRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vndetectdocumentsegmentationrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNGeneratePersonInstanceMaskRequest": {
+      "abstract": [
+        {
+          "text": "An object that produces a mask of individual people it finds in the input image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNGeneratePersonInstanceMaskRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNGeneratePersonInstanceMaskRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNGeneratePersonInstanceMaskRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNGeneratePersonInstanceMaskRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vngeneratepersoninstancemaskrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNGeneratePersonSegmentationRequest": {
+      "abstract": [
+        {
+          "text": "An object that produces a matte image for a person it finds in the input image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNGeneratePersonSegmentationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNGeneratePersonSegmentationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNGeneratePersonSegmentationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNGeneratePersonSegmentationRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vngeneratepersonsegmentationrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNSequenceRequestHandler": {
+      "abstract": [
+        {
+          "text": "An object that processes image-analysis requests for each frame in a sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNSequenceRequestHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNSequenceRequestHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNSequenceRequestHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNSequenceRequestHandler",
+      "type": "topic",
+      "url": "/documentation/vision/vnsequencerequesthandler"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNStatefulRequest": {
+      "abstract": [
+        {
+          "text": "An abstract request type that builds evidence of a condition over time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNStatefulRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNStatefulRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNStatefulRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNStatefulRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vnstatefulrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api": {
+      "abstract": [],
+      "identifier": "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original Objective-C and Swift API",
+      "type": "topic",
+      "url": "/documentation/vision/original-objective-c-and-swift-api"
+    },
+    "doc://com.apple.vision/documentation/Vision/segmenting-and-colorizing-individuals-from-a-surrounding-scene": {
+      "abstract": [
+        {
+          "text": "Use the Vision framework to isolate and apply colors to people in an image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/segmenting-and-colorizing-individuals-from-a-surrounding-scene",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Segmenting and colorizing individuals from a surrounding scene",
+      "type": "topic",
+      "url": "/documentation/vision/segmenting-and-colorizing-individuals-from-a-surrounding-scene"
+    },
+    "http://developer.apple.com/documentation/coreimage/ciimage": {
+      "identifier": "http://developer.apple.com/documentation/coreimage/ciimage",
+      "title": "CIImage",
+      "titleInlineContent": [
+        {
+          "text": "CIImage",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://developer.apple.com/documentation/coreimage/ciimage"
+    },
+    "http://developer.apple.com/documentation/vision/vnfaceobservation/2980939-roll": {
+      "identifier": "http://developer.apple.com/documentation/vision/vnfaceobservation/2980939-roll",
+      "title": "roll",
+      "titleInlineContent": [
+        {
+          "text": "roll",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://developer.apple.com/documentation/vision/vnfaceobservation/2980939-roll"
+    },
+    "http://developer.apple.com/documentation/vision/vnfaceobservation/2980940-yaw": {
+      "identifier": "http://developer.apple.com/documentation/vision/vnfaceobservation/2980940-yaw",
+      "title": "yaw",
+      "titleInlineContent": [
+        {
+          "text": "yaw",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://developer.apple.com/documentation/vision/vnfaceobservation/2980940-yaw"
+    },
+    "http://developer.apple.com/documentation/vision/vnfaceobservation/3750998-pitch": {
+      "identifier": "http://developer.apple.com/documentation/vision/vnfaceobservation/3750998-pitch",
+      "title": "pitch",
+      "titleInlineContent": [
+        {
+          "text": "pitch",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://developer.apple.com/documentation/vision/vnfaceobservation/3750998-pitch"
+    },
+    "http://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest": {
+      "identifier": "http://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest",
+      "title": "VNGeneratePersonSegmentationRequest",
+      "titleInlineContent": [
+        {
+          "text": "VNGeneratePersonSegmentationRequest",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest"
+    },
+    "http://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest/3750989-qualitylevel": {
+      "identifier": "http://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest/3750989-qualitylevel",
+      "title": "qualityLevel",
+      "titleInlineContent": [
+        {
+          "text": "qualityLevel",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest/3750989-qualitylevel"
+    },
+    "https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequest": {
+      "identifier": "https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequest",
+      "title": "VNDetectFaceRectanglesRequest",
+      "titleInlineContent": [
+        {
+          "code": "VNDetectFaceRectanglesRequest",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequest"
+    },
+    "https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest": {
+      "identifier": "https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest",
+      "title": "VNGeneratePersonSegmentationRequest",
+      "titleInlineContent": [
+        {
+          "text": "VNGeneratePersonSegmentationRequest",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest"
+    },
+    "image_mask.png": {
+      "alt": "An illustration of an image-processing operation that blends an original and mask image of a person with a replacement background image. The operation produces a new image that replaces the original background with the background image.",
+      "identifier": "image_mask.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2033bb7dc9b1db750f396ec3fe9cf2a7/image_mask.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/401317e6e001bee1024f9df32df75b7d/image_mask~dark.png"
+        }
+      ]
+    },
+    "quality_levels.png": {
+      "alt": "An image that shows the quality of the image masks that the request generates when it uses its .fast, .balanced, and .accurate quality level settings.",
+      "identifier": "quality_levels.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d492c4699132f6c8aebedddd742fc7ee/quality_levels.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/21be292ffc3078fd85060e005bb90b64/quality_levels~dark.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "6419e39ee70c/ApplyingMatteEffectsToPeopleInImagesAndVideo.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Image-sequence-analysis",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed",
+        "doc://com.apple.vision/documentation/Vision/segmenting-and-colorizing-individuals-from-a-surrounding-scene",
+        "doc://com.apple.vision/documentation/Vision/VNStatefulRequest",
+        "doc://com.apple.vision/documentation/Vision/VNGeneratePersonSegmentationRequest",
+        "doc://com.apple.vision/documentation/Vision/VNGeneratePersonInstanceMaskRequest",
+        "doc://com.apple.vision/documentation/Vision/VNDetectDocumentSegmentationRequest",
+        "doc://com.apple.vision/documentation/Vision/VNSequenceRequestHandler"
+      ],
+      "title": "Image sequence analysis"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Image-sequence-analysis",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.vision/documentation/Vision/segmenting-and-colorizing-individuals-from-a-surrounding-scene",
+                "doc://com.apple.vision/documentation/Vision/VNStatefulRequest",
+                "doc://com.apple.vision/documentation/Vision/VNGeneratePersonSegmentationRequest",
+                "doc://com.apple.vision/documentation/Vision/VNGeneratePersonInstanceMaskRequest",
+                "doc://com.apple.vision/documentation/Vision/VNDetectDocumentSegmentationRequest",
+                "doc://com.apple.vision/documentation/Vision/VNSequenceRequestHandler"
+              ],
+              "title": "Image sequence analysis"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectDocumentSegmentationRequest/title",
+          "value": "VNDetectDocumentSegmentationRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectDocumentSegmentationRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNDetectDocumentSegmentationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectDocumentSegmentationRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNDetectDocumentSegmentationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNStatefulRequest/title",
+          "value": "VNStatefulRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNStatefulRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNStatefulRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNStatefulRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNStatefulRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNGeneratePersonSegmentationRequest/title",
+          "value": "VNGeneratePersonSegmentationRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNGeneratePersonSegmentationRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNGeneratePersonSegmentationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNGeneratePersonSegmentationRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNGeneratePersonSegmentationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNGeneratePersonInstanceMaskRequest/title",
+          "value": "VNGeneratePersonInstanceMaskRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNGeneratePersonInstanceMaskRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNGeneratePersonInstanceMaskRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNGeneratePersonInstanceMaskRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNGeneratePersonInstanceMaskRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNSequenceRequestHandler/title",
+          "value": "VNSequenceRequestHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNSequenceRequestHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNSequenceRequestHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNSequenceRequestHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNSequenceRequestHandler"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/vision/applying-matte-effects-to-people-in-images-and-video"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/vision/applying-matte-effects-to-people-in-images-and-video"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

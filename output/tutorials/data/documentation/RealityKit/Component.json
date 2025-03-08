@@ -1,0 +1,2816 @@
+{
+  "abstract": [
+    {
+      "text": "A representation of a geometry or a behavior that you apply to an entity.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/Component"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation9ComponentP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Component"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Component"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "Component"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Component"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You assemble a particular combination of behavior and appearance for an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entity by adding components to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/components",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " set of an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance. Each component, represented by a type that conforms to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Component",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, defines a single aspect of the entity. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, one might define a position in space, while another provides a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "visual appearance. You can add at most one component of a given type to an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Component-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RealityKit has a variety of predefined component types that you can use to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "add commonly needed characteristics. For example, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specifies visual appearance with a mesh and materials. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " contains a shape and other information used to decide",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "if one entity collides with another.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also define custom component types. When you do, register that type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the system by calling the new component’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Component/registerComponent()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method—a default implementation of which",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is provided by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Component",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. Call this method once before",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using the component type. You don’t need to make this call for component",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "types that RealityKit provides.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can subscribe to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ComponentEvents",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for events that",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the system triggers when you interact with components.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Component-1": {
+      "alt": "Diagram showing the components present in different kinds of",
+      "identifier": "Component-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/96d2fd3bd0efc9b6465eba71a243dbc7/Component-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/96d2fd3bd0efc9b6465eba71a243dbc7/Component-1~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AccessibilityComponent": {
+      "abstract": [
+        {
+          "text": "A component that stores accessibility information for an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessibilityComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AccessibilityComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccessibilityComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccessibilityComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/accessibilitycomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AdaptiveResolutionComponent": {
+      "abstract": [
+        {
+          "text": "A component that provides the suggested pixels per meter necessary to render an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AdaptiveResolutionComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AdaptiveResolutionComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AdaptiveResolutionComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AdaptiveResolutionComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/adaptiveresolutioncomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AmbientAudioComponent": {
+      "abstract": [
+        {
+          "text": "A component that configures the ambient rendering of sounds from an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AmbientAudioComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AmbientAudioComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AmbientAudioComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AmbientAudioComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/ambientaudiocomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent": {
+      "abstract": [
+        {
+          "text": "A component that anchors virtual content to a real world target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnchoringComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnchoringComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnchoringComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/anchoringcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent": {
+      "abstract": [
+        {
+          "text": "A component that represents a collection of animations that an entity can play.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimationLibraryComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimationLibraryComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationLibraryComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationlibrarycomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent": {
+      "abstract": [
+        {
+          "text": "A container for audio resources that you can look up by user-defined names.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioLibraryComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioLibraryComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioLibraryComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/audiolibrarycomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioMixGroupsComponent": {
+      "abstract": [
+        {
+          "text": "A component that provides functionality for controlling the playback of audio you assign to mix groups in a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioMixGroupsComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioMixGroupsComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioMixGroupsComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioMixGroupsComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/audiomixgroupscomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BillboardComponent": {
+      "abstract": [
+        {
+          "text": "A component that orients an entity instance so that it continuously points toward",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the active camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BillboardComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BillboardComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BillboardComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "BillboardComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/billboardcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendShapeWeightsComponent": {
+      "abstract": [
+        {
+          "text": "A component that provides access to the current weights associated with all blend shape meshes on an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BlendShapeWeightsComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendShapeWeightsComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BlendShapeWeightsComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "BlendShapeWeightsComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendshapeweightscomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BodyTrackingComponent": {
+      "abstract": [
+        {
+          "text": "A component for tracking people in an AR session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BodyTrackingComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BodyTrackingComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BodyTrackingComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "BodyTrackingComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/bodytrackingcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent": {
+      "abstract": [
+        {
+          "text": "A component that configures channel-based rendering of sounds from an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChannelAudioComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ChannelAudioComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ChannelAudioComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/channelaudiocomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent": {
+      "abstract": [
+        {
+          "text": "A component that manages character movement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CharacterControllerComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CharacterControllerComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CharacterControllerComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/charactercontrollercomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerStateComponent": {
+      "abstract": [
+        {
+          "text": "A component that represents the state of a character controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CharacterControllerStateComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerStateComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CharacterControllerStateComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CharacterControllerStateComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/charactercontrollerstatecomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent": {
+      "abstract": [
+        {
+          "text": "A component that gives an entity the ability to collide with other entities",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that also have collision components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CollisionComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CollisionComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CollisionComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisioncomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Component": {
+      "abstract": [
+        {
+          "text": "A representation of a geometry or a behavior that you apply to an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Component",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "role": "symbol",
+      "title": "Component",
+      "type": "topic",
+      "url": "/documentation/realitykit/component"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Component/registerComponent()": {
+      "abstract": [
+        {
+          "text": "Registers a new component type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerComponent"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Component/registerComponent()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerComponent()",
+      "type": "topic",
+      "url": "/documentation/realitykit/component/registercomponent()"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ComponentEvents": {
+      "abstract": [
+        {
+          "text": "Provides the events related to components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComponentEvents"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ComponentEvents",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComponentEvents"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentEvents",
+      "type": "topic",
+      "url": "/documentation/realitykit/componentevents"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/DirectionalLightComponent": {
+      "abstract": [
+        {
+          "text": "A component that defines a directional light source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DirectionalLightComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/DirectionalLightComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DirectionalLightComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "DirectionalLightComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/directionallightcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/DirectionalLightComponent/Shadow": {
+      "abstract": [
+        {
+          "text": "A directional light component that adds shadows to entities that it illuminates",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Shadow"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/DirectionalLightComponent/Shadow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Shadow"
+        }
+      ],
+      "role": "symbol",
+      "title": "DirectionalLightComponent.Shadow",
+      "type": "topic",
+      "url": "/documentation/realitykit/directionallightcomponent/shadow"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/DockingRegionComponent": {
+      "abstract": [
+        {
+          "text": "A component that docks a scene within a region of an immersive space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DockingRegionComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/DockingRegionComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DockingRegionComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockingRegionComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/dockingregioncomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/DynamicLightShadowComponent": {
+      "abstract": [
+        {
+          "text": "A component that controls an entity’s shadow from dynamic (virtual) lights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DynamicLightShadowComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/DynamicLightShadowComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DynamicLightShadowComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "DynamicLightShadowComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/dynamiclightshadowcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity": {
+      "abstract": [
+        {
+          "text": "An element of a RealityKit scene to which you attach components that provide",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "appearance and behavior characteristics for the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Entity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Entity"
+        }
+      ],
+      "role": "symbol",
+      "title": "Entity",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/components": {
+      "abstract": [
+        {
+          "text": "All the components that an entity stores.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "components"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC12ComponentSetV",
+          "text": "ComponentSet"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/components",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "components",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/components"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentLightingConfigurationComponent": {
+      "abstract": [
+        {
+          "text": "A component that scales the amount of light that an entity receives from its environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnvironmentLightingConfigurationComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentLightingConfigurationComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EnvironmentLightingConfigurationComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "EnvironmentLightingConfigurationComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/environmentlightingconfigurationcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ForceEffectComponent": {
+      "abstract": [
+        {
+          "text": "A component that defines the forces that affect an entity, including custom forces that you define.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ForceEffectComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ForceEffectComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ForceEffectComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ForceEffectComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/forceeffectcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/GeometricPinsComponent": {
+      "abstract": [
+        {
+          "text": "A component that stores a sequence of geometric pins.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GeometricPinsComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/GeometricPinsComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GeometricPinsComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "GeometricPinsComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/geometricpinscomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent": {
+      "abstract": [
+        {
+          "text": "A component that controls an entity’s grounding shadow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroundingShadowComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GroundingShadowComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroundingShadowComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/groundingshadowcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent": {
+      "abstract": [
+        {
+          "text": "A component that applies a visual effect to a hierarchy of entities when a person looks at or selects an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HoverEffectComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HoverEffectComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "HoverEffectComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/hovereffectcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/IKComponent": {
+      "abstract": [
+        {
+          "text": "A component that allows you to procedurally animate a skeletal model using a full body inverse kinematics solver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IKComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/IKComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IKComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "IKComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/ikcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ImageBasedLightComponent": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageBasedLightComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ImageBasedLightComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageBasedLightComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageBasedLightComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/imagebasedlightcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ImageBasedLightReceiverComponent": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageBasedLightReceiverComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ImageBasedLightReceiverComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageBasedLightReceiverComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageBasedLightReceiverComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/imagebasedlightreceivercomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/InputTargetComponent": {
+      "abstract": [
+        {
+          "text": "A component that gives an entity the ability to receive system input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "InputTargetComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/InputTargetComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InputTargetComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "InputTargetComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/inputtargetcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent": {
+      "abstract": [
+        {
+          "text": "A component that contains a mesh and materials for the visual appearance of an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent": {
+      "abstract": [
+        {
+          "text": "A component that changes how RealityKit renders its entity to help with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "debugging.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelDebugOptionsComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelDebugOptionsComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelDebugOptionsComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/modeldebugoptionscomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent": {
+      "abstract": [
+        {
+          "text": "A component that configures the rendering order for an entity’s model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelSortGroupComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelSortGroupComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelSortGroupComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelsortgroupcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OpacityComponent": {
+      "abstract": [
+        {
+          "text": "A component that controls the opacity of an entity and its descendants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OpacityComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OpacityComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OpacityComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "OpacityComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/opacitycomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OrthographicCameraComponent": {
+      "abstract": [
+        {
+          "text": "A component that defines an orthographic virtual camera and its settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OrthographicCameraComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OrthographicCameraComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OrthographicCameraComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "OrthographicCameraComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/orthographiccameracomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent": {
+      "abstract": [
+        {
+          "text": "A component that emits particles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ParticleEmitterComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ParticleEmitterComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ParticleEmitterComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/particleemittercomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent": {
+      "abstract": [
+        {
+          "text": "A component that defines a virtual camera and its controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PerspectiveCameraComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PerspectiveCameraComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PerspectiveCameraComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/perspectivecameracomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsBodyComponent": {
+      "abstract": [
+        {
+          "text": "A component that defines an entity’s behavior in physics body simulations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhysicsBodyComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsBodyComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PhysicsBodyComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicsBodyComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicsbodycomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsJointsComponent": {
+      "abstract": [
+        {
+          "text": "A component that stores physics joints which RealityKit simulates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhysicsJointsComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsJointsComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PhysicsJointsComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicsJointsComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicsjointscomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsMotionComponent": {
+      "abstract": [
+        {
+          "text": "A component that controls the motion of the body in physics simulations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhysicsMotionComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsMotionComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PhysicsMotionComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicsMotionComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicsmotioncomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsSimulationComponent": {
+      "abstract": [
+        {
+          "text": "A component that controls localized physics simulations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhysicsSimulationComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsSimulationComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PhysicsSimulationComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicsSimulationComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicssimulationcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent": {
+      "abstract": [
+        {
+          "text": "A component that defines a point light source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PointLightComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PointLightComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PointLightComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/pointlightcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PortalComponent": {
+      "abstract": [
+        {
+          "text": "A component that turns mesh surfaces into portals to a different world.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PortalComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PortalComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PortalComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PortalComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/portalcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PortalCrossingComponent": {
+      "abstract": [
+        {
+          "text": "A component that allows entities to cross portal boundaries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PortalCrossingComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PortalCrossingComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PortalCrossingComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PortalCrossingComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/portalcrossingcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ProjectiveTransformCameraComponent": {
+      "abstract": [
+        {
+          "text": "A component that defines a virtual camera with a custom projection matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProjectiveTransformCameraComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ProjectiveTransformCameraComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProjectiveTransformCameraComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProjectiveTransformCameraComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/projectivetransformcameracomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewAttachments/entity(for:)": {
+      "abstract": [
+        {
+          "text": "Gets the identified attachment view as an entity, if the view with that",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifier exists.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "entity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:19_RealityKit_SwiftUI20ViewAttachmentEntityC",
+          "text": "ViewAttachmentEntity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewAttachments/entity(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "entity(for:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/realityviewattachments/entity(for:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ReferenceComponent": {
+      "abstract": [
+        {
+          "text": "A component that can load another entity from a file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReferenceComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ReferenceComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ReferenceComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ReferenceComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/referencecomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ReverbComponent": {
+      "abstract": [
+        {
+          "text": "A component that defines the reverberation of spatial audio sources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReverbComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ReverbComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ReverbComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ReverbComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/reverbcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SceneUnderstandingComponent": {
+      "abstract": [
+        {
+          "text": "A component that specifies an entity is participating in the system’s scene-understanding features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SceneUnderstandingComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SceneUnderstandingComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SceneUnderstandingComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SceneUnderstandingComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/sceneunderstandingcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SkeletalPosesComponent": {
+      "abstract": [
+        {
+          "text": "A component that exposes the collection of named animation skeletal poses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SkeletalPosesComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SkeletalPosesComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SkeletalPosesComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SkeletalPosesComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/skeletalposescomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SpatialAudioComponent": {
+      "abstract": [
+        {
+          "text": "A component that configures how sounds emit from an entity into a person’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpatialAudioComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpatialAudioComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpatialAudioComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialAudioComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/spatialaudiocomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SpotLightComponent": {
+      "abstract": [
+        {
+          "text": "A component that defines a spotlight source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpotLightComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpotLightComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpotLightComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpotLightComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/spotlightcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SpotLightComponent/Shadow": {
+      "abstract": [
+        {
+          "text": "A spotlight component that adds shadows to entities that it illuminates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Shadow"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpotLightComponent/Shadow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Shadow"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpotLightComponent.Shadow",
+      "type": "topic",
+      "url": "/documentation/realitykit/spotlightcomponent/shadow"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SynchronizationComponent": {
+      "abstract": [
+        {
+          "text": "A component that synchronizes an entity between processes and networked",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "applications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SynchronizationComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SynchronizationComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SynchronizationComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SynchronizationComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/synchronizationcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent": {
+      "abstract": [
+        {
+          "text": "A component that draws 2D text at an entity’s location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/textcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Transform": {
+      "abstract": [
+        {
+          "text": "A component that defines the scale, rotation, and translation of an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transform"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Transform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Transform"
+        }
+      ],
+      "role": "symbol",
+      "title": "Transform",
+      "type": "topic",
+      "url": "/documentation/realitykit/transform"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TransientComponent": {
+      "abstract": [
+        {
+          "text": "An interface for components that aren’t saved to file or cloned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TransientComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TransientComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TransientComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "TransientComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/transientcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/VideoPlayerComponent": {
+      "abstract": [
+        {
+          "text": "A component that supports general video-playback experience with an AV player.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VideoPlayerComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/VideoPlayerComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VideoPlayerComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "VideoPlayerComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/videoplayercomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ViewAttachmentComponent": {
+      "abstract": [
+        {
+          "text": "A component containing additional information about a view attachment",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "entity provided  via the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewAttachments/entity(for:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ViewAttachmentComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ViewAttachmentComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ViewAttachmentComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ViewAttachmentComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/viewattachmentcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/VirtualEnvironmentProbeComponent": {
+      "abstract": [
+        {
+          "text": "A component that provides environment lighting for entities you place within the same virtual world.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VirtualEnvironmentProbeComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/VirtualEnvironmentProbeComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VirtualEnvironmentProbeComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "VirtualEnvironmentProbeComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/virtualenvironmentprobecomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/WorldComponent": {
+      "abstract": [
+        {
+          "text": "A component that defines a portal world.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WorldComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/WorldComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WorldComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "WorldComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/worldcomponent"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/building_an_immersive_experience_with_realitykit": {
+      "abstract": [
+        {
+          "text": "Use systems and postprocessing effects to create a realistic underwater scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/building_an_immersive_experience_with_realitykit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building an Immersive Experience with RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit/building_an_immersive_experience_with_realitykit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/understanding-the-realitykit-modular-architecture": {
+      "abstract": [
+        {
+          "text": "Learn how everything fits together in RealityKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/understanding-the-realitykit-modular-architecture",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding the modular architecture of RealityKit",
+      "type": "topic",
+      "url": "/documentation/visionOS/understanding-the-realitykit-modular-architecture"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/TransientComponent"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AccessibilityComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AdaptiveResolutionComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AmbientAudioComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioMixGroupsComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BillboardComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendShapeWeightsComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BodyTrackingComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerStateComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/DirectionalLightComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/DirectionalLightComponent/Shadow",
+        "doc://com.apple.RealityKit/documentation/RealityKit/DockingRegionComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/DynamicLightShadowComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentLightingConfigurationComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ForceEffectComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/GeometricPinsComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/IKComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ImageBasedLightComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ImageBasedLightReceiverComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/InputTargetComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/OpacityComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/OrthographicCameraComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsBodyComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsJointsComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsMotionComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsSimulationComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PortalComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PortalCrossingComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ProjectiveTransformCameraComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ReferenceComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ReverbComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SceneUnderstandingComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SkeletalPosesComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SpatialAudioComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SpotLightComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SpotLightComponent/Shadow",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SynchronizationComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Transform",
+        "doc://com.apple.RealityKit/documentation/RealityKit/VideoPlayerComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ViewAttachmentComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/VirtualEnvironmentProbeComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/WorldComponent"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/visionOS/understanding-the-realitykit-modular-architecture",
+        "doc://com.apple.documentation/documentation/realitykit/building_an_immersive_experience_with_realitykit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Registering-a-component-type",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Component/registerComponent()"
+      ],
+      "title": "Registering a component type"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/component"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

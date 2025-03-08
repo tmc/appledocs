@@ -1,0 +1,1522 @@
+{
+  "abstract": [
+    {
+      "text": "A type that defines the scroll behavior of a scrollable view.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI20ScrollTargetBehaviorP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ScrollTargetBehavior"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ScrollTargetBehavior"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "ScrollTargetBehavior"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ScrollTargetBehavior"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A scrollable view calculates where scroll gestures should end using its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "deceleration rate and the state of its scroll gesture by default. A scroll",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "behavior allows for customizing this logic.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You define a scroll behavior using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior/updateTarget(_:context:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using this method, you can control where someone can scroll in a scrollable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view. For example, you can create a custom scroll behavior",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that aligns to every 10 points by doing the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct BasicScrollTargetBehavior: ScrollTargetBehavior {",
+            "    func updateTarget(_ target: inout Target, context: TargetContext) {",
+            "        // Align to every 1/10 the size of the scroll view.",
+            "        target.rect.x.round(",
+            "            toMultipleOf: round(context.containerSize.width / 10.0))",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Paging-Behavior",
+          "level": 3,
+          "text": "Paging Behavior",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftUI offers built in scroll behaviors. One such behavior",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PagingScrollTargetBehavior",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " which uses the geometry of the scroll",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view to decide where to allow scrolls to end.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following example, every view in the lazy stack is flexible",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in both directions and the scroll view will settle to container aligned",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "boundaries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ScrollView {",
+            "    LazyVStack(spacing: 0.0) {",
+            "        ForEach(items) { item in",
+            "            FullScreenItem(item)",
+            "        }",
+            "    }",
+            "}",
+            ".scrollTargetBehavior(.paging)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "View-Aligned-Behavior",
+          "level": 3,
+          "text": "View Aligned Behavior",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftUI also offers a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ViewAlignedScrollTargetBehavior",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " scroll behavior",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that will always settle on the geometry of individual views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ScrollView(.horizontal) {",
+            "    LazyHStack(spacing: 10.0) {",
+            "        ForEach(items) { item in",
+            "            ItemView(item)",
+            "        }",
+            "    }",
+            "    .scrollTargetLayout()",
+            "}",
+            ".scrollTargetBehavior(.viewAligned)",
+            ".safeAreaPadding(.horizontal, 20.0)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You configure which views should be used for settling using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTargetLayout(isEnabled:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier. Apply this modifier to a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "layout container like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyVStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and each individual",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view in that layout will be considered for alignment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use types conforming to this protocol with the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTargetBehavior(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyScrollTargetBehavior": {
+      "abstract": [
+        {
+          "text": "A type-erased scroll target behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnyScrollTargetBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyScrollTargetBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnyScrollTargetBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnyScrollTargetBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/anyscrolltargetbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack": {
+      "abstract": [
+        {
+          "text": "A view that arranges its subviews in a horizontal line.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "HStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/hstack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyVStack": {
+      "abstract": [
+        {
+          "text": "A view that arranges its children in a line that grows vertically,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "creating items only as needed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazyVStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyVStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazyVStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyVStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/lazyvstack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PagingScrollTargetBehavior": {
+      "abstract": [
+        {
+          "text": "The scroll behavior that aligns scroll targets to container-based geometry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PagingScrollTargetBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PagingScrollTargetBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PagingScrollTargetBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "PagingScrollTargetBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/pagingscrolltargetbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTarget": {
+      "abstract": [
+        {
+          "text": "A type defining the target in which a scroll view should try and scroll to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollTarget"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTarget",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollTarget"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollTarget",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrolltarget"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior": {
+      "abstract": [
+        {
+          "text": "A type that defines the scroll behavior of a scrollable view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollTargetBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollTargetBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollTargetBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrolltargetbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior/Properties": {
+      "abstract": [
+        {
+          "text": "The properties of a scroll behavior",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Properties"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior/Properties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Properties"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollTargetBehavior.Properties",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrolltargetbehavior/properties"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior/PropertiesContext": {
+      "abstract": [
+        {
+          "text": "The properties context of a scroll behavior.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PropertiesContext"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior/PropertiesContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PropertiesContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollTargetBehavior.PropertiesContext",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrolltargetbehavior/propertiescontext"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior/TargetContext": {
+      "abstract": [
+        {
+          "text": "The context in which a scroll behavior updates the scroll target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TargetContext"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior/TargetContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TargetContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollTargetBehavior.TargetContext",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrolltargetbehavior/targetcontext"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior/paging": {
+      "abstract": [
+        {
+          "text": "The scroll behavior that aligns scroll targets to container-based",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "geometry.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "PagingScrollTargetBehavior",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paging"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI26PagingScrollTargetBehaviorV",
+          "text": "PagingScrollTargetBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior/paging",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "paging",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrolltargetbehavior/paging"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior/properties(context:)": {
+      "abstract": [
+        {
+          "text": "Properties of this behavior",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "properties"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ScrollTargetBehaviorP17PropertiesContexta",
+          "text": "PropertiesContext"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ScrollTargetBehaviorP10Propertiesa",
+          "text": "Properties"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior/properties(context:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "properties(context:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrolltargetbehavior/properties(context:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior/updateTarget(_:context:)": {
+      "abstract": [
+        {
+          "text": "Updates the proposed target that a scrollable view should scroll to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateTarget"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12ScrollTargetV",
+          "text": "ScrollTarget"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ScrollTargetBehaviorP0D7Contexta",
+          "text": "TargetContext"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior/updateTarget(_:context:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "updateTarget(_:context:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrolltargetbehavior/updatetarget(_:context:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior/viewAligned": {
+      "abstract": [
+        {
+          "text": "The scroll behavior that aligns scroll targets to view-based geometry.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "ViewAlignedScrollTargetBehavior",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewAligned"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI31ViewAlignedScrollTargetBehaviorV",
+          "text": "ViewAlignedScrollTargetBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior/viewAligned",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "viewAligned",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrolltargetbehavior/viewaligned"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior/viewAligned(limitBehavior:)": {
+      "abstract": [
+        {
+          "text": "The scroll behavior that aligns scroll targets to view-based geometry.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "ViewAlignedScrollTargetBehavior",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewAligned"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "limitBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI31ViewAlignedScrollTargetBehaviorV",
+          "text": "ViewAlignedScrollTargetBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI31ViewAlignedScrollTargetBehaviorV05LimitG0V",
+          "text": "LimitBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior/viewAligned(limitBehavior:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "viewAligned(limitBehavior:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrolltargetbehavior/viewaligned(limitbehavior:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehaviorContext": {
+      "abstract": [
+        {
+          "text": "The context in which a scroll target behavior updates its scroll target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollTargetBehaviorContext"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehaviorContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollTargetBehaviorContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollTargetBehaviorContext",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrolltargetbehaviorcontext"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTargetBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the scroll behavior of views scrollable in the provided axes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scrollTargetBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ScrollTargetBehaviorP",
+          "text": "ScrollTargetBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTargetBehavior(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scrollTargetBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/scrolltargetbehavior(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTargetLayout(isEnabled:)": {
+      "abstract": [
+        {
+          "text": "Configures the outermost layout as a scroll target layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scrollTargetLayout"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTargetLayout(isEnabled:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scrollTargetLayout(isEnabled:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/scrolltargetlayout(isenabled:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ViewAlignedScrollTargetBehavior": {
+      "abstract": [
+        {
+          "text": "The scroll behavior that aligns scroll targets to view-based geometry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ViewAlignedScrollTargetBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ViewAlignedScrollTargetBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ViewAlignedScrollTargetBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "ViewAlignedScrollTargetBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/viewalignedscrolltargetbehavior"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyScrollTargetBehavior",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PagingScrollTargetBehavior",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ViewAlignedScrollTargetBehavior"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Defining-scroll-targets",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTargetBehavior(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTargetLayout(isEnabled:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTarget",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehaviorContext",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PagingScrollTargetBehavior",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ViewAlignedScrollTargetBehavior",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyScrollTargetBehavior"
+      ],
+      "title": "Defining scroll targets"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-the-scroll-target-behavior",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior/paging",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior/viewAligned",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior/viewAligned(limitBehavior:)"
+      ],
+      "title": "Getting the scroll target behavior"
+    },
+    {
+      "anchor": "Updating-the-proposed-target",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior/updateTarget(_:context:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior/TargetContext"
+      ],
+      "title": "Updating the proposed target"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior/properties(context:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior/Properties",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior/PropertiesContext"
+      ],
+      "title": "Type Aliases"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/scrolltargetbehavior"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

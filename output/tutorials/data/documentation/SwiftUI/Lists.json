@@ -1,0 +1,2813 @@
+{
+  "abstract": [
+    {
+      "text": "Display a structured, scrollable column of information.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Lists"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Lists"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a list to display a one-dimensional vertical collection of views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "lists-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The list is a complex container type that automatically provides scrolling when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it grows too large for the current display. You build a list by providing it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with individual views for the rows in the list, or by using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ForEach",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "enumerate a group of rows. You can also mix these strategies, blending any",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "number of individual views and ",
+              "type": "text"
+            },
+            {
+              "code": "ForEach",
+              "type": "codeVoice"
+            },
+            {
+              "text": " constructs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use view modifiers to configure the appearance and behavior of a list and its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "rows, headers, sections, and separators. For example, you can apply a style to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the list, add swipe gestures to individual rows, or make the list",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "refreshable with a pull-down gesture. You can also use the configuration",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "associated with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scroll-views",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to control the list’s implicit scrolling",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/lists-and-tables",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the Human Interface Guidelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "components-lists-and-tables-thumbnail.png": {
+      "alt": null,
+      "identifier": "components-lists-and-tables-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3a40dbc8b5f69bed051b7e8a504d8b51/components-lists-and-tables-thumbnail~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3ffeb44c270bb7e6d92963d73a30148d/components-lists-and-tables-thumbnail@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AlternatingRowBackgroundBehavior": {
+      "abstract": [
+        {
+          "text": "The styling of views with respect to alternating row backgrounds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AlternatingRowBackgroundBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AlternatingRowBackgroundBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AlternatingRowBackgroundBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "AlternatingRowBackgroundBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/alternatingrowbackgroundbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/BackgroundProminence": {
+      "abstract": [
+        {
+          "text": "The prominence of backgrounds underneath other views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BackgroundProminence"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/BackgroundProminence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BackgroundProminence"
+        }
+      ],
+      "role": "symbol",
+      "title": "BackgroundProminence",
+      "type": "topic",
+      "url": "/documentation/swiftui/backgroundprominence"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/BadgeProminence": {
+      "abstract": [
+        {
+          "text": "The visual prominence of a badge.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BadgeProminence"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/BadgeProminence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BadgeProminence"
+        }
+      ],
+      "role": "symbol",
+      "title": "BadgeProminence",
+      "type": "topic",
+      "url": "/documentation/swiftui/badgeprominence"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Custom-layout": {
+      "abstract": [
+        {
+          "text": "Place views in custom arrangements and create animated transitions between layout types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Custom-layout",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Custom layout",
+      "type": "topic",
+      "url": "/documentation/swiftui/custom-layout"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DisclosureGroup": {
+      "abstract": [
+        {
+          "text": "A view that shows or hides another content view, based on the state of a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "disclosure control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DisclosureGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DisclosureGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DisclosureGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "DisclosureGroup",
+      "type": "topic",
+      "url": "/documentation/swiftui/disclosuregroup"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Displaying-Data-in-Lists": {
+      "abstract": [
+        {
+          "text": "Visualize collections of data with platform-appropriate appearance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Displaying-Data-in-Lists",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying data in lists",
+      "type": "topic",
+      "url": "/documentation/swiftui/displaying-data-in-lists"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EditActions": {
+      "abstract": [
+        {
+          "text": "A set of edit actions on a collection of data that a view can offer",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to a user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EditActions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EditActions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EditActions"
+        }
+      ],
+      "role": "symbol",
+      "title": "EditActions",
+      "type": "topic",
+      "url": "/documentation/swiftui/editactions"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EditMode": {
+      "abstract": [
+        {
+          "text": "A mode that indicates whether the user can edit a view’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EditMode"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EditMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EditMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "EditMode",
+      "type": "topic",
+      "url": "/documentation/swiftui/editmode"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EditableCollectionContent": {
+      "abstract": [
+        {
+          "text": "An opaque wrapper view that adds editing capabilities to a row in a list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EditableCollectionContent"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EditableCollectionContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EditableCollectionContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "EditableCollectionContent",
+      "type": "topic",
+      "url": "/documentation/swiftui/editablecollectioncontent"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/backgroundProminence": {
+      "abstract": [
+        {
+          "text": "The prominence of the background underneath views associated with this",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "backgroundProminence"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20BackgroundProminenceV",
+          "text": "BackgroundProminence"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/backgroundProminence",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "backgroundProminence",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/backgroundprominence"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/badgeProminence": {
+      "abstract": [
+        {
+          "text": "The prominence to apply to badges associated with this environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "badgeProminence"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15BadgeProminenceV",
+          "text": "BadgeProminence"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/badgeProminence",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "badgeProminence",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/badgeprominence"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/defaultMinListHeaderHeight": {
+      "abstract": [
+        {
+          "text": "The default minimum height of a header in a list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultMinListHeaderHeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/defaultMinListHeaderHeight",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultMinListHeaderHeight",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/defaultminlistheaderheight"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/defaultMinListRowHeight": {
+      "abstract": [
+        {
+          "text": "The default minimum height of a row in a ",
+          "type": "text"
+        },
+        {
+          "code": "List",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "The default minimum height of a row in a list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultMinListRowHeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/defaultMinListRowHeight",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultMinListRowHeight",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/defaultminlistrowheight"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/editMode": {
+      "abstract": [
+        {
+          "text": "An indication of whether the user can edit the contents of a view",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "associated with this environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "editMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI8EditModeO",
+          "text": "EditMode"
+        },
+        {
+          "kind": "text",
+          "text": ">?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/editMode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "editMode",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/editmode"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/headerProminence": {
+      "abstract": [
+        {
+          "text": "The prominence to apply to section headers within a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "headerProminence"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10ProminenceO",
+          "text": "Prominence"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/headerProminence",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "headerProminence",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/headerprominence"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/refresh": {
+      "abstract": [
+        {
+          "text": "A refresh action stored in a view’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "refresh"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI13RefreshActionV",
+          "text": "RefreshAction"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/refresh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "refresh",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/refresh"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ForEach": {
+      "abstract": [
+        {
+          "text": "A structure that computes views on demand from an underlying collection of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identified data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ForEach"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ForEach",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ForEach"
+        }
+      ],
+      "role": "symbol",
+      "title": "ForEach",
+      "type": "topic",
+      "url": "/documentation/swiftui/foreach"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/IndexedIdentifierCollection": {
+      "abstract": [
+        {
+          "text": "A collection wrapper that iterates over the indices and identifiers of a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "collection together.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IndexedIdentifierCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/IndexedIdentifierCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IndexedIdentifierCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "IndexedIdentifierCollection",
+      "type": "topic",
+      "url": "/documentation/swiftui/indexedidentifiercollection"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-adjustments": {
+      "abstract": [
+        {
+          "text": "Make fine adjustments to alignment, spacing, padding, and other layout parameters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-adjustments",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Layout adjustments",
+      "type": "topic",
+      "url": "/documentation/swiftui/layout-adjustments"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-fundamentals": {
+      "abstract": [
+        {
+          "text": "Arrange views inside built-in layout containers like stacks and grids.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Layout fundamentals",
+      "type": "topic",
+      "url": "/documentation/swiftui/layout-fundamentals"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/List": {
+      "abstract": [
+        {
+          "text": "A container that presents rows of data arranged in a single column,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "optionally providing the ability to select one or more members.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "List"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/List",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "List"
+        }
+      ],
+      "role": "symbol",
+      "title": "List",
+      "type": "topic",
+      "url": "/documentation/swiftui/list"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ListItemTint": {
+      "abstract": [
+        {
+          "text": "A tint effect configuration that you can apply to content in a list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ListItemTint"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ListItemTint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ListItemTint"
+        }
+      ],
+      "role": "symbol",
+      "title": "ListItemTint",
+      "type": "topic",
+      "url": "/documentation/swiftui/listitemtint"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ListSectionSpacing": {
+      "abstract": [
+        {
+          "text": "The spacing options between two adjacent sections in a list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ListSectionSpacing"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ListSectionSpacing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ListSectionSpacing"
+        }
+      ],
+      "role": "symbol",
+      "title": "ListSectionSpacing",
+      "type": "topic",
+      "url": "/documentation/swiftui/listsectionspacing"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/OutlineGroup": {
+      "abstract": [
+        {
+          "text": "A structure that computes views and disclosure groups on demand from an",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "underlying collection of tree-structured, identified data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OutlineGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/OutlineGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OutlineGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "OutlineGroup",
+      "type": "topic",
+      "url": "/documentation/swiftui/outlinegroup"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Prominence": {
+      "abstract": [
+        {
+          "text": "A type indicating the prominence of a view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Prominence"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Prominence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Prominence"
+        }
+      ],
+      "role": "symbol",
+      "title": "Prominence",
+      "type": "topic",
+      "url": "/documentation/swiftui/prominence"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/RefreshAction": {
+      "abstract": [
+        {
+          "text": "An action that initiates a refresh operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RefreshAction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/RefreshAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RefreshAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "RefreshAction",
+      "type": "topic",
+      "url": "/documentation/swiftui/refreshaction"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scroll-views": {
+      "abstract": [
+        {
+          "text": "Enable people to scroll to content that doesn’t fit in the current display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scroll-views",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scroll views",
+      "type": "topic",
+      "url": "/documentation/swiftui/scroll-views"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Tables": {
+      "abstract": [
+        {
+          "text": "Display selectable, sortable data arranged in rows and columns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Tables",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Tables",
+      "type": "topic",
+      "url": "/documentation/swiftui/tables"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View-groupings": {
+      "abstract": [
+        {
+          "text": "Present views in different kinds of purpose-driven containers, like forms or",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "control groups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-groupings",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View groupings",
+      "type": "topic",
+      "url": "/documentation/swiftui/view-groupings"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/alternatingRowBackgrounds(_:)": {
+      "abstract": [
+        {
+          "text": "Overrides whether lists and tables in this view have alternating row",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "backgrounds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alternatingRowBackgrounds"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI32AlternatingRowBackgroundBehaviorV",
+          "text": "AlternatingRowBackgroundBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/alternatingRowBackgrounds(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alternatingRowBackgrounds(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/alternatingrowbackgrounds(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/badge(_:)": {
+      "abstract": [
+        {
+          "text": "Generates a badge for the view from an integer value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "badge"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/badge(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "badge(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/badge(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/badgeProminence(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies the prominence of badges created by this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "badgeProminence"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15BadgeProminenceV",
+          "text": "BadgeProminence"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/badgeProminence(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "badgeProminence(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/badgeprominence(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/deleteDisabled(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a condition for whether the view’s view hierarchy is deletable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deleteDisabled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/deleteDisabled(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deleteDisabled(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/deletedisabled(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/disclosureGroupStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for disclosure groups within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "disclosureGroupStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/disclosureGroupStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "disclosureGroupStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/disclosuregroupstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/headerProminence(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the header prominence for this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "headerProminence"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10ProminenceO",
+          "text": "Prominence"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/headerProminence(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "headerProminence(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/headerprominence(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listItemTint(_:)": {
+      "abstract": [
+        {
+          "text": "Sets a fixed tint color for content in a list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listItemTint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listItemTint(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listItemTint(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/listitemtint(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowBackground(_:)": {
+      "abstract": [
+        {
+          "text": "Places a custom background view behind a list row item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listRowBackground"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowBackground(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listRowBackground(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/listrowbackground(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowHoverEffect(_:)": {
+      "abstract": [
+        {
+          "text": "Requests that the containing list row use the provided hover effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listRowHoverEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11HoverEffectV",
+          "text": "HoverEffect"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowHoverEffect(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listRowHoverEffect(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/listrowhovereffect(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowHoverEffectDisabled(_:)": {
+      "abstract": [
+        {
+          "text": "Requests that the containing list row have its hover effect disabled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listRowHoverEffectDisabled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowHoverEffectDisabled(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listRowHoverEffectDisabled(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/listrowhovereffectdisabled(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowInsets(_:)": {
+      "abstract": [
+        {
+          "text": "Applies an inset to the rows in a list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listRowInsets"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10EdgeInsetsV",
+          "text": "EdgeInsets"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowInsets(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listRowInsets(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/listrowinsets(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowSeparator(_:edges:)": {
+      "abstract": [
+        {
+          "text": "Sets the display mode for the separator associated with this specific row.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listRowSeparator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10VisibilityO",
+          "text": "Visibility"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "edges"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VerticalEdgeO",
+          "text": "VerticalEdge"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VerticalEdgeO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowSeparator(_:edges:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listRowSeparator(_:edges:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/listrowseparator(_:edges:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowSeparatorTint(_:edges:)": {
+      "abstract": [
+        {
+          "text": "Sets the tint color associated with a row.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listRowSeparatorTint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ColorV",
+          "text": "Color"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "edges"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VerticalEdgeO",
+          "text": "VerticalEdge"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VerticalEdgeO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowSeparatorTint(_:edges:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listRowSeparatorTint(_:edges:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/listrowseparatortint(_:edges:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowSpacing(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the vertical spacing between two adjacent rows in a List.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listRowSpacing"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowSpacing(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listRowSpacing(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/listrowspacing(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listSectionSeparator(_:edges:)": {
+      "abstract": [
+        {
+          "text": "Sets whether to hide the separator associated with a list section.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listSectionSeparator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10VisibilityO",
+          "text": "Visibility"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "edges"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VerticalEdgeO",
+          "text": "VerticalEdge"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VerticalEdgeO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listSectionSeparator(_:edges:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listSectionSeparator(_:edges:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/listsectionseparator(_:edges:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listSectionSeparatorTint(_:edges:)": {
+      "abstract": [
+        {
+          "text": "Sets the tint color associated with a section.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listSectionSeparatorTint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ColorV",
+          "text": "Color"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "edges"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VerticalEdgeO",
+          "text": "VerticalEdge"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VerticalEdgeO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listSectionSeparatorTint(_:edges:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listSectionSeparatorTint(_:edges:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/listsectionseparatortint(_:edges:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listSectionSpacing(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the spacing between adjacent sections in a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/List",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " to a custom",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listSectionSpacing"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listSectionSpacing(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listSectionSpacing(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/listsectionspacing(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for lists within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/liststyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/moveDisabled(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a condition for whether the view’s view hierarchy is movable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "moveDisabled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/moveDisabled(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "moveDisabled(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/movedisabled(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/refreshable(action:)": {
+      "abstract": [
+        {
+          "text": "Marks this view as refreshable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "refreshable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": () "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/refreshable(action:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "refreshable(action:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/refreshable(action:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/selectionDisabled(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a condition that controls whether users can select this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectionDisabled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/selectionDisabled(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "selectionDisabled(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/selectiondisabled(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/swipeActions(edge:allowsFullSwipe:content:)": {
+      "abstract": [
+        {
+          "text": "Adds custom swipe actions to a row in a list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "swipeActions"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "edge"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI14HorizontalEdgeO",
+          "text": "HorizontalEdge"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "allowsFullSwipe"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/swipeActions(edge:allowsFullSwipe:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "swipeActions(edge:allowsFullSwipe:content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/swipeactions(edge:allowsfullswipe:content:)"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/lists-and-tables": {
+      "abstract": [
+        {
+          "text": "Lists and tables present data in one or more columns of rows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/lists-and-tables",
+      "images": [
+        {
+          "identifier": "components-lists-and-tables-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Lists and tables",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/lists-and-tables"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "lists-hero": {
+      "alt": null,
+      "identifier": "lists-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/15c88d97bce9de9704854a5490b6aee5/lists-hero@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "View-layout",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-fundamentals",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-adjustments",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Custom-layout",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Tables",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View-groupings",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scroll-views"
+      ],
+      "title": "View layout"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-list",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Displaying-Data-in-Lists",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/List",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listStyle(_:)"
+      ],
+      "title": "Creating a list"
+    },
+    {
+      "anchor": "Disclosing-information-progressively",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/OutlineGroup",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DisclosureGroup",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/disclosureGroupStyle(_:)"
+      ],
+      "title": "Disclosing information progressively"
+    },
+    {
+      "anchor": "Configuring-rows",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowInsets(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowHoverEffect(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowHoverEffectDisabled(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listItemTint(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ListItemTint",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/defaultMinListRowHeight"
+      ],
+      "title": "Configuring rows"
+    },
+    {
+      "anchor": "Configuring-separators",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowSeparatorTint(_:edges:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listSectionSeparatorTint(_:edges:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowSeparator(_:edges:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listSectionSeparator(_:edges:)"
+      ],
+      "title": "Configuring separators"
+    },
+    {
+      "anchor": "Configuring-headers",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/headerProminence(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/headerProminence",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Prominence",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/defaultMinListHeaderHeight"
+      ],
+      "title": "Configuring headers"
+    },
+    {
+      "anchor": "Configuring-spacing",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowSpacing(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listSectionSpacing(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ListSectionSpacing"
+      ],
+      "title": "Configuring spacing"
+    },
+    {
+      "anchor": "Configuring-backgrounds",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowBackground(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/alternatingRowBackgrounds(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AlternatingRowBackgroundBehavior",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/backgroundProminence",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/BackgroundProminence"
+      ],
+      "title": "Configuring backgrounds"
+    },
+    {
+      "anchor": "Displaying-a-badge-on-a-list-item",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/badge(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/badgeProminence(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/badgeProminence",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/BadgeProminence"
+      ],
+      "title": "Displaying a badge on a list item"
+    },
+    {
+      "anchor": "Configuring-interaction",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/swipeActions(edge:allowsFullSwipe:content:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/selectionDisabled(_:)"
+      ],
+      "title": "Configuring interaction"
+    },
+    {
+      "anchor": "Refreshing-a-lists-content",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/refreshable(action:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/refresh",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/RefreshAction"
+      ],
+      "title": "Refreshing a list’s content"
+    },
+    {
+      "anchor": "Editing-a-list",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/moveDisabled(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/deleteDisabled(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/editMode",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EditMode",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EditActions",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EditableCollectionContent",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/IndexedIdentifierCollection"
+      ],
+      "title": "Editing a list"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/lists"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

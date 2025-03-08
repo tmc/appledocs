@@ -1,0 +1,3136 @@
+{
+  "abstract": [
+    {
+      "text": "Evaluate return values that most GSS-API functions use to indicate the outcome of an operation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gss/documentation/GSS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gss/documentation/GSS/function-status"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "GSS"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Function Status"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The functions of the GSS-API return two status codes. The major status code, delivered as the function’s return value, provides a mechanism-independent status output. A value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_COMPLETE",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " typically indicates success, but the code is actually composed of several fields that enable communicating a more nuanced result.  Always check the major status code to determine if an operation succeeds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The minor status code provides additional information, often mechanism-specific, when an operation fails. This result returns using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gss/documentation/GSS/OM_uint32",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " pointer given as the function’s first argument. Examine this value to further debug a problem. For example, many functions allocate memory as a side effect of their main task. If memory allocation fails, the entire operation fails. But while the major status indicates a generic problem, a minor status of ",
+              "type": "text"
+            },
+            {
+              "code": "ENOMEM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicates that failed memory allocation is the exact culprit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Three bitfields bundled together make up major status codes in a single ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gss/documentation/GSS/OM_uint32",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value. These fields are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A generic GSS-API error in the most significant 8 bits.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "The calling error",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An error specific to the routine in the next 8 bits.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "The routine error",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Additional information about the error in the lower 16 bits.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Supplementary Information",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a function successfully runs to completion, it returns zero for all of these fields. As a convenience, you can compare the result directly with the status code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_COMPLETE",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to test for this condition.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3402053",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For any other result, use one of the available extraction macros (such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gss/documentation/GSS/GSS_CALLING_ERROR",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") to obtain a value that you compare against one of the known error codes. For example, you can test for a failure to read one of the function inputs as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "OM_uint32 major = <# Some GSS call #>",
+            "if (GSS_CALLING_ERROR(major) == GSS_S_CALL_INACCESSIBLE_READ) {",
+            "    // Handle the error",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gss/documentation/GSS/gss_display_status(_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to retrieve a human readable string corresponding to a given status result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gss/documentation/GSS": {
+      "abstract": [
+        {
+          "text": "Conduct secure, authenticated network transactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GSS",
+      "type": "topic",
+      "url": "/documentation/gss"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSSCreateError(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns an error object based on GSS-API major and minor status codes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSSCreateError"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_const_OID",
+          "text": "gss_const_OID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSSCreateError(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSSCreateError"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSSCreateError(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/gss/gsscreateerror(_:_:_:)"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_CALLING_ERROR": {
+      "abstract": [
+        {
+          "text": "A macro that masks out all but the calling error field from a major status code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GSS_CALLING_ERROR"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_CALLING_ERROR",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GSS_CALLING_ERROR",
+      "type": "topic",
+      "url": "/documentation/gss/gss_calling_error"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_CALLING_ERROR_MASK": {
+      "abstract": [
+        {
+          "text": "A mask with a width that matches the calling error field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_CALLING_ERROR_MASK"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_CALLING_ERROR_MASK",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_CALLING_ERROR_MASK"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_CALLING_ERROR_MASK",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_calling_error_mask"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_CALLING_ERROR_OFFSET": {
+      "abstract": [
+        {
+          "text": "The offset of the calling error field within the major status code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_CALLING_ERROR_OFFSET"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_CALLING_ERROR_OFFSET",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_CALLING_ERROR_OFFSET"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_CALLING_ERROR_OFFSET",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_calling_error_offset"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_GSS_CODE": {
+      "abstract": [
+        {
+          "text": "A flag that indicates the named status code comes from a GSS-API call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_GSS_CODE"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_GSS_CODE",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_GSS_CODE"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_GSS_CODE",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_gss_code"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_MECH_CODE": {
+      "abstract": [
+        {
+          "text": "A flag that indicates the status code comes from a call to an underlying mechanism, such as Kerberos.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_MECH_CODE"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_MECH_CODE",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_MECH_CODE"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_MECH_CODE",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_mech_code"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_ROUTINE_ERROR_MASK": {
+      "abstract": [
+        {
+          "text": "A mask with a width that matches the routine error field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_ROUTINE_ERROR_MASK"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_ROUTINE_ERROR_MASK",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_ROUTINE_ERROR_MASK"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_ROUTINE_ERROR_MASK",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_routine_error_mask"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_ROUTINE_ERROR_OFFSET": {
+      "abstract": [
+        {
+          "text": "The offset of the routine error field within the major status code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_ROUTINE_ERROR_OFFSET"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_ROUTINE_ERROR_OFFSET",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_ROUTINE_ERROR_OFFSET"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_ROUTINE_ERROR_OFFSET",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_routine_error_offset"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_SUPPLEMENTARY_MASK": {
+      "abstract": [
+        {
+          "text": "A mask with a width that matches the supplementary information field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_SUPPLEMENTARY_MASK"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_SUPPLEMENTARY_MASK",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_SUPPLEMENTARY_MASK"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_SUPPLEMENTARY_MASK",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_supplementary_mask"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_SUPPLEMENTARY_OFFSET": {
+      "abstract": [
+        {
+          "text": "The offset of the supplementary information field within the major status code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_SUPPLEMENTARY_OFFSET"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_SUPPLEMENTARY_OFFSET",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_SUPPLEMENTARY_OFFSET"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_SUPPLEMENTARY_OFFSET",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_supplementary_offset"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_ERROR": {
+      "abstract": [
+        {
+          "text": "A macro that masks the supplementary info out of a major status code, leaving both calling and routine error fields.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GSS_ERROR"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_ERROR",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GSS_ERROR",
+      "type": "topic",
+      "url": "/documentation/gss/gss_error"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_ROUTINE_ERROR": {
+      "abstract": [
+        {
+          "text": "A macro that masks out all but the routine error field from a major status code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GSS_ROUTINE_ERROR"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_ROUTINE_ERROR",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GSS_ROUTINE_ERROR",
+      "type": "topic",
+      "url": "/documentation/gss/gss_routine_error"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_SUPPLEMENTARY_INFO": {
+      "abstract": [
+        {
+          "text": "A macro that masks out all but the supplementary information field from a major status code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GSS_SUPPLEMENTARY_INFO"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_SUPPLEMENTARY_INFO",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GSS_SUPPLEMENTARY_INFO",
+      "type": "topic",
+      "url": "/documentation/gss/gss_supplementary_info"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_BINDINGS": {
+      "abstract": [
+        {
+          "text": "Channel bindings mismatch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_S_BAD_BINDINGS"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_BINDINGS",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_BAD_BINDINGS"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_S_BAD_BINDINGS",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_bad_bindings"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_MECH": {
+      "abstract": [
+        {
+          "text": "Unsupported mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_S_BAD_MECH"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_MECH",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_BAD_MECH"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_S_BAD_MECH",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_bad_mech"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_MECH_ATTR": {
+      "abstract": [
+        {
+          "text": "Unknown mechanism attribute.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_S_BAD_MECH_ATTR"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_MECH_ATTR",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_BAD_MECH_ATTR"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_S_BAD_MECH_ATTR",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_bad_mech_attr"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_MIC": {
+      "abstract": [
+        {
+          "text": "Failed token integrity check.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_S_BAD_MIC"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_MIC",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_BAD_MIC"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_S_BAD_MIC",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_bad_mic"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_NAME": {
+      "abstract": [
+        {
+          "text": "Invalid name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_S_BAD_NAME"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_NAME",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_BAD_NAME"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_S_BAD_NAME",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_bad_name"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_NAMETYPE": {
+      "abstract": [
+        {
+          "text": "Unsupported name type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_S_BAD_NAMETYPE"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_NAMETYPE",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_BAD_NAMETYPE"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_S_BAD_NAMETYPE",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_bad_nametype"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_QOP": {
+      "abstract": [
+        {
+          "text": "Unsupported QOP value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_S_BAD_QOP"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_QOP",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_BAD_QOP"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_S_BAD_QOP",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_bad_qop"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_SIG": {
+      "abstract": [
+        {
+          "text": "Failed token integrity check.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_S_BAD_SIG"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_SIG",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_BAD_SIG"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_S_BAD_SIG",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_bad_sig"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_STATUS": {
+      "abstract": [
+        {
+          "text": "Invalid status selector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_S_BAD_STATUS"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_STATUS",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_BAD_STATUS"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_S_BAD_STATUS",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_bad_status"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_CALL_BAD_STRUCTURE": {
+      "abstract": [
+        {
+          "text": "Improperly formatted parameter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_S_CALL_BAD_STRUCTURE"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_CALL_BAD_STRUCTURE",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_CALL_BAD_STRUCTURE"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_S_CALL_BAD_STRUCTURE",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_call_bad_structure"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_CALL_INACCESSIBLE_READ": {
+      "abstract": [
+        {
+          "text": "A required input parameter could not be read.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_S_CALL_INACCESSIBLE_READ"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_CALL_INACCESSIBLE_READ",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_CALL_INACCESSIBLE_READ"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_S_CALL_INACCESSIBLE_READ",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_call_inaccessible_read"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_CALL_INACCESSIBLE_WRITE": {
+      "abstract": [
+        {
+          "text": "A required output parameter failed to write.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_S_CALL_INACCESSIBLE_WRITE"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_CALL_INACCESSIBLE_WRITE",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_CALL_INACCESSIBLE_WRITE"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_S_CALL_INACCESSIBLE_WRITE",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_call_inaccessible_write"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_COMPLETE": {
+      "abstract": [
+        {
+          "text": "The operation completed without error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_S_COMPLETE"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_COMPLETE",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_COMPLETE"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_S_COMPLETE",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_complete"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_CONTEXT_EXPIRED": {
+      "abstract": [
+        {
+          "text": "Expired context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_S_CONTEXT_EXPIRED"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_CONTEXT_EXPIRED",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_CONTEXT_EXPIRED"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_S_CONTEXT_EXPIRED",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_context_expired"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_CONTINUE_NEEDED": {
+      "abstract": [
+        {
+          "text": "A request for continuation during context establishment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_CONTINUE_NEEDED"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_CONTINUE_NEEDED",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GSS_S_CONTINUE_NEEDED",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_continue_needed"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_CREDENTIALS_EXPIRED": {
+      "abstract": [
+        {
+          "text": "Expired credential.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_S_CREDENTIALS_EXPIRED"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_CREDENTIALS_EXPIRED",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_CREDENTIALS_EXPIRED"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_S_CREDENTIALS_EXPIRED",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_credentials_expired"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_CRED_UNAVAIL": {
+      "abstract": [
+        {
+          "text": "Unavailable credential.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_S_CRED_UNAVAIL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_CRED_UNAVAIL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_CRED_UNAVAIL"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_S_CRED_UNAVAIL",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_cred_unavail"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_DEFECTIVE_CREDENTIAL": {
+      "abstract": [
+        {
+          "text": "Defective credential.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_S_DEFECTIVE_CREDENTIAL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_DEFECTIVE_CREDENTIAL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_DEFECTIVE_CREDENTIAL"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_S_DEFECTIVE_CREDENTIAL",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_defective_credential"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_DEFECTIVE_TOKEN": {
+      "abstract": [
+        {
+          "text": "Defective token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_S_DEFECTIVE_TOKEN"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_DEFECTIVE_TOKEN",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_DEFECTIVE_TOKEN"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_S_DEFECTIVE_TOKEN",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_defective_token"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_DUPLICATE_ELEMENT": {
+      "abstract": [
+        {
+          "text": "A duplicate credential element requested.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_S_DUPLICATE_ELEMENT"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_DUPLICATE_ELEMENT",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_DUPLICATE_ELEMENT"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_S_DUPLICATE_ELEMENT",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_duplicate_element"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_DUPLICATE_TOKEN": {
+      "abstract": [
+        {
+          "text": "The detection of a duplicate per-message token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_DUPLICATE_TOKEN"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_DUPLICATE_TOKEN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GSS_S_DUPLICATE_TOKEN",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_duplicate_token"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_FAILURE": {
+      "abstract": [
+        {
+          "text": "An unspecified error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_S_FAILURE"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_FAILURE",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_FAILURE"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_S_FAILURE",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_failure"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_GAP_TOKEN": {
+      "abstract": [
+        {
+          "text": "The detection of a skipped predecessor token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_GAP_TOKEN"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_GAP_TOKEN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GSS_S_GAP_TOKEN",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_gap_token"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_NAME_NOT_MN": {
+      "abstract": [
+        {
+          "text": "The name contains multimechanism elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_S_NAME_NOT_MN"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_NAME_NOT_MN",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_NAME_NOT_MN"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_S_NAME_NOT_MN",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_name_not_mn"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_NO_CONTEXT": {
+      "abstract": [
+        {
+          "text": "No valid security context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_S_NO_CONTEXT"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_NO_CONTEXT",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_NO_CONTEXT"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_S_NO_CONTEXT",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_no_context"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_NO_CRED": {
+      "abstract": [
+        {
+          "text": "No valid credentials.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_S_NO_CRED"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_NO_CRED",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_NO_CRED"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_S_NO_CRED",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_no_cred"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_OLD_TOKEN": {
+      "abstract": [
+        {
+          "text": "The detection of a timed-out per-message token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_OLD_TOKEN"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_OLD_TOKEN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GSS_S_OLD_TOKEN",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_old_token"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_UNAUTHORIZED": {
+      "abstract": [
+        {
+          "text": "Unauthorized operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_S_UNAUTHORIZED"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_UNAUTHORIZED",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_UNAUTHORIZED"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_S_UNAUTHORIZED",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_unauthorized"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_UNAVAILABLE": {
+      "abstract": [
+        {
+          "text": "Unavailable operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_S_UNAVAILABLE"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_UNAVAILABLE",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_UNAVAILABLE"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_S_UNAVAILABLE",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_unavailable"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_S_UNSEQ_TOKEN": {
+      "abstract": [
+        {
+          "text": "The detection of a reordered (early) per-message token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GSS_S_UNSEQ_TOKEN"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_S_UNSEQ_TOKEN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GSS_S_UNSEQ_TOKEN",
+      "type": "topic",
+      "url": "/documentation/gss/gss_s_unseq_token"
+    },
+    "doc://com.apple.gss/documentation/GSS/OM_uint32": {
+      "abstract": [
+        {
+          "text": "A 32-bit unsigned integer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OM_uint32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/OM_uint32",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OM_uint32"
+        }
+      ],
+      "role": "symbol",
+      "title": "OM_uint32",
+      "type": "topic",
+      "url": "/documentation/gss/om_uint32"
+    },
+    "doc://com.apple.gss/documentation/GSS/OM_uint64": {
+      "abstract": [
+        {
+          "text": "A 64-bit unsigned integer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OM_uint64"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/OM_uint64",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OM_uint64"
+        }
+      ],
+      "role": "symbol",
+      "title": "OM_uint64",
+      "type": "topic",
+      "url": "/documentation/gss/om_uint64"
+    },
+    "doc://com.apple.gss/documentation/GSS/allocating-and-releasing-objects": {
+      "abstract": [
+        {
+          "text": "Manage memory and object lifetimes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/allocating-and-releasing-objects",
+      "kind": "article",
+      "role": "article",
+      "title": "Allocating and Releasing Objects",
+      "type": "topic",
+      "url": "/documentation/gss/allocating-and-releasing-objects"
+    },
+    "doc://com.apple.gss/documentation/GSS/buffer-management": {
+      "abstract": [
+        {
+          "text": "Allocate and deallocate buffers with structures that hold a variety of data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/buffer-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Buffer Management",
+      "type": "topic",
+      "url": "/documentation/gss/buffer-management"
+    },
+    "doc://com.apple.gss/documentation/GSS/context-services": {
+      "abstract": [
+        {
+          "text": "Use context services to manage secure operations between endpoints.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/context-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Context Services",
+      "type": "topic",
+      "url": "/documentation/gss/context-services"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_display_status(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a human readable string for a status code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_display_status"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_OID",
+          "text": "gss_OID"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_buffer_t",
+          "text": "gss_buffer_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_display_status(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_display_status"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_display_status(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/gss/gss_display_status(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_status_id_t": {
+      "abstract": [
+        {
+          "text": "A pointer to a status result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_status_id_t"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_status_id_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_status_id_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_status_id_t",
+      "type": "topic",
+      "url": "/documentation/gss/gss_status_id_t"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_uint32": {
+      "abstract": [
+        {
+          "text": "A 32-bit unsigned integer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_uint32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_uint32",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_uint32"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_uint32",
+      "type": "topic",
+      "url": "/documentation/gss/gss_uint32"
+    },
+    "media-3402053": {
+      "alt": "Diagram of the three bitfields that make up the status codes in a value: the 8 bit calling error, the 8 bit routine error, and the 16 bit supplementary information.",
+      "identifier": "media-3402053",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e80920a4de046d204e8222153b7debcf/media-3402053@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bf10797d55204c854f8c559d47e7483b/media-3402053~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Memory-and-Context",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gss/documentation/GSS/allocating-and-releasing-objects",
+        "doc://com.apple.gss/documentation/GSS/buffer-management",
+        "doc://com.apple.gss/documentation/GSS/context-services"
+      ],
+      "title": "Memory and Context"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Status-and-Error-Creation",
+      "identifiers": [
+        "doc://com.apple.gss/documentation/GSS/OM_uint32",
+        "doc://com.apple.gss/documentation/GSS/OM_uint64",
+        "doc://com.apple.gss/documentation/GSS/gss_uint32",
+        "doc://com.apple.gss/documentation/GSS/gss_status_id_t",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_MECH_CODE",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_GSS_CODE",
+        "doc://com.apple.gss/documentation/GSS/GSS_S_COMPLETE",
+        "doc://com.apple.gss/documentation/GSS/gss_display_status(_:_:_:_:_:_:)",
+        "doc://com.apple.gss/documentation/GSS/GSSCreateError(_:_:_:)"
+      ],
+      "title": "Status and Error Creation"
+    },
+    {
+      "anchor": "Calling-Errors",
+      "identifiers": [
+        "doc://com.apple.gss/documentation/GSS/GSS_S_CALL_BAD_STRUCTURE",
+        "doc://com.apple.gss/documentation/GSS/GSS_S_CALL_INACCESSIBLE_READ",
+        "doc://com.apple.gss/documentation/GSS/GSS_S_CALL_INACCESSIBLE_WRITE"
+      ],
+      "title": "Calling Errors"
+    },
+    {
+      "anchor": "Routine-Errors",
+      "identifiers": [
+        "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_MECH",
+        "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_NAME",
+        "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_NAMETYPE",
+        "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_MIC",
+        "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_SIG",
+        "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_STATUS",
+        "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_BINDINGS",
+        "doc://com.apple.gss/documentation/GSS/GSS_S_NO_CRED",
+        "doc://com.apple.gss/documentation/GSS/GSS_S_NO_CONTEXT",
+        "doc://com.apple.gss/documentation/GSS/GSS_S_DEFECTIVE_TOKEN",
+        "doc://com.apple.gss/documentation/GSS/GSS_S_DEFECTIVE_CREDENTIAL",
+        "doc://com.apple.gss/documentation/GSS/GSS_S_CREDENTIALS_EXPIRED",
+        "doc://com.apple.gss/documentation/GSS/GSS_S_CONTEXT_EXPIRED",
+        "doc://com.apple.gss/documentation/GSS/GSS_S_FAILURE",
+        "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_QOP",
+        "doc://com.apple.gss/documentation/GSS/GSS_S_UNAUTHORIZED",
+        "doc://com.apple.gss/documentation/GSS/GSS_S_UNAVAILABLE",
+        "doc://com.apple.gss/documentation/GSS/GSS_S_DUPLICATE_ELEMENT",
+        "doc://com.apple.gss/documentation/GSS/GSS_S_NAME_NOT_MN",
+        "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_MECH_ATTR",
+        "doc://com.apple.gss/documentation/GSS/GSS_S_CRED_UNAVAIL"
+      ],
+      "title": "Routine Errors"
+    },
+    {
+      "anchor": "Masks-and-Offsets",
+      "identifiers": [
+        "doc://com.apple.gss/documentation/GSS/GSS_C_CALLING_ERROR_MASK",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_CALLING_ERROR_OFFSET",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_ROUTINE_ERROR_MASK",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_ROUTINE_ERROR_OFFSET",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_SUPPLEMENTARY_MASK",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_SUPPLEMENTARY_OFFSET"
+      ],
+      "title": "Masks and Offsets"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Status-and-Error-Creation",
+              "identifiers": [
+                "doc://com.apple.gss/documentation/GSS/OM_uint32",
+                "doc://com.apple.gss/documentation/GSS/OM_uint64",
+                "doc://com.apple.gss/documentation/GSS/gss_uint32",
+                "doc://com.apple.gss/documentation/GSS/gss_status_id_t",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_MECH_CODE",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_GSS_CODE",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_COMPLETE",
+                "doc://com.apple.gss/documentation/GSS/gss_display_status(_:_:_:_:_:_:)",
+                "doc://com.apple.gss/documentation/GSS/GSSCreateError(_:_:_:)"
+              ],
+              "title": "Status and Error Creation"
+            },
+            {
+              "anchor": "Calling-Errors",
+              "identifiers": [
+                "doc://com.apple.gss/documentation/GSS/GSS_S_CALL_BAD_STRUCTURE",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_CALL_INACCESSIBLE_READ",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_CALL_INACCESSIBLE_WRITE"
+              ],
+              "title": "Calling Errors"
+            },
+            {
+              "anchor": "Routine-Errors",
+              "identifiers": [
+                "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_MECH",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_NAME",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_NAMETYPE",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_MIC",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_SIG",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_STATUS",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_BINDINGS",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_NO_CRED",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_NO_CONTEXT",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_DEFECTIVE_TOKEN",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_DEFECTIVE_CREDENTIAL",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_CREDENTIALS_EXPIRED",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_CONTEXT_EXPIRED",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_FAILURE",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_QOP",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_UNAUTHORIZED",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_UNAVAILABLE",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_DUPLICATE_ELEMENT",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_NAME_NOT_MN",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_BAD_MECH_ATTR",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_CRED_UNAVAIL"
+              ],
+              "title": "Routine Errors"
+            },
+            {
+              "anchor": "Token-Macros",
+              "identifiers": [
+                "doc://com.apple.gss/documentation/GSS/GSS_S_CONTINUE_NEEDED",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_DUPLICATE_TOKEN",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_OLD_TOKEN",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_UNSEQ_TOKEN",
+                "doc://com.apple.gss/documentation/GSS/GSS_S_GAP_TOKEN"
+              ],
+              "title": "Token Macros"
+            },
+            {
+              "anchor": "Extraction-Macros",
+              "identifiers": [
+                "doc://com.apple.gss/documentation/GSS/GSS_ERROR",
+                "doc://com.apple.gss/documentation/GSS/GSS_CALLING_ERROR",
+                "doc://com.apple.gss/documentation/GSS/GSS_ROUTINE_ERROR",
+                "doc://com.apple.gss/documentation/GSS/GSS_SUPPLEMENTARY_INFO"
+              ],
+              "title": "Extraction Macros"
+            },
+            {
+              "anchor": "Masks-and-Offsets",
+              "identifiers": [
+                "doc://com.apple.gss/documentation/GSS/GSS_C_CALLING_ERROR_MASK",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_CALLING_ERROR_OFFSET",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_ROUTINE_ERROR_MASK",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_ROUTINE_ERROR_OFFSET",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_SUPPLEMENTARY_MASK",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_SUPPLEMENTARY_OFFSET"
+              ],
+              "title": "Masks and Offsets"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Memory-and-Context",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gss/documentation/GSS/allocating-and-releasing-objects",
+                "doc://com.apple.gss/documentation/GSS/buffer-management",
+                "doc://com.apple.gss/documentation/GSS/context-services"
+              ],
+              "title": "Memory and Context"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_CALL_INACCESSIBLE_WRITE/title",
+          "value": "GSS_S_CALL_INACCESSIBLE_WRITE"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_CALL_INACCESSIBLE_WRITE/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_S_CALL_INACCESSIBLE_WRITE"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_UNAUTHORIZED/title",
+          "value": "GSS_S_UNAUTHORIZED"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_UNAUTHORIZED/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_S_UNAUTHORIZED"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_NO_CRED/title",
+          "value": "GSS_S_NO_CRED"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_NO_CRED/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_S_NO_CRED"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_BAD_STATUS/title",
+          "value": "GSS_S_BAD_STATUS"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_BAD_STATUS/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_S_BAD_STATUS"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_BAD_MECH_ATTR/title",
+          "value": "GSS_S_BAD_MECH_ATTR"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_BAD_MECH_ATTR/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_S_BAD_MECH_ATTR"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_status_id_t/title",
+          "value": "gss_status_id_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_status_id_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_status_id_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_status_id_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_status_id_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1OM_uint64/title",
+          "value": "OM_uint64"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1OM_uint64/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OM_uint64"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1OM_uint64/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OM_uint64"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_uint32/title",
+          "value": "gss_uint32"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_uint32/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_uint32"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_uint32/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_uint32"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_BAD_NAME/title",
+          "value": "GSS_S_BAD_NAME"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_BAD_NAME/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_S_BAD_NAME"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_SUPPLEMENTARY_OFFSET/title",
+          "value": "GSS_C_SUPPLEMENTARY_OFFSET"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_SUPPLEMENTARY_OFFSET/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_SUPPLEMENTARY_OFFSET"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_BAD_BINDINGS/title",
+          "value": "GSS_S_BAD_BINDINGS"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_BAD_BINDINGS/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_S_BAD_BINDINGS"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_BAD_NAMETYPE/title",
+          "value": "GSS_S_BAD_NAMETYPE"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_BAD_NAMETYPE/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_S_BAD_NAMETYPE"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_CREDENTIALS_EXPIRED/title",
+          "value": "GSS_S_CREDENTIALS_EXPIRED"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_CREDENTIALS_EXPIRED/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_S_CREDENTIALS_EXPIRED"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_CALL_INACCESSIBLE_READ/title",
+          "value": "GSS_S_CALL_INACCESSIBLE_READ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_CALL_INACCESSIBLE_READ/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_S_CALL_INACCESSIBLE_READ"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_CALLING_ERROR_OFFSET/title",
+          "value": "GSS_C_CALLING_ERROR_OFFSET"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_CALLING_ERROR_OFFSET/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_CALLING_ERROR_OFFSET"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_DEFECTIVE_CREDENTIAL/title",
+          "value": "GSS_S_DEFECTIVE_CREDENTIAL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_DEFECTIVE_CREDENTIAL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_S_DEFECTIVE_CREDENTIAL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_DUPLICATE_ELEMENT/title",
+          "value": "GSS_S_DUPLICATE_ELEMENT"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_DUPLICATE_ELEMENT/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_S_DUPLICATE_ELEMENT"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_COMPLETE/title",
+          "value": "GSS_S_COMPLETE"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_COMPLETE/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_S_COMPLETE"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_NAME_NOT_MN/title",
+          "value": "GSS_S_NAME_NOT_MN"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_NAME_NOT_MN/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_S_NAME_NOT_MN"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_BAD_MECH/title",
+          "value": "GSS_S_BAD_MECH"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_BAD_MECH/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_S_BAD_MECH"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_CALLING_ERROR_MASK/title",
+          "value": "GSS_C_CALLING_ERROR_MASK"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_CALLING_ERROR_MASK/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_CALLING_ERROR_MASK"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSSCreateError(_:_:_:)/title",
+          "value": "GSSCreateError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSSCreateError(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSSCreateError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_CALL_BAD_STRUCTURE/title",
+          "value": "GSS_S_CALL_BAD_STRUCTURE"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_CALL_BAD_STRUCTURE/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_S_CALL_BAD_STRUCTURE"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_BAD_MIC/title",
+          "value": "GSS_S_BAD_MIC"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_BAD_MIC/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_S_BAD_MIC"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_CONTEXT_EXPIRED/title",
+          "value": "GSS_S_CONTEXT_EXPIRED"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_CONTEXT_EXPIRED/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_S_CONTEXT_EXPIRED"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_ROUTINE_ERROR_OFFSET/title",
+          "value": "GSS_C_ROUTINE_ERROR_OFFSET"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_ROUTINE_ERROR_OFFSET/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_ROUTINE_ERROR_OFFSET"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_BAD_QOP/title",
+          "value": "GSS_S_BAD_QOP"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_BAD_QOP/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_S_BAD_QOP"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_NO_CONTEXT/title",
+          "value": "GSS_S_NO_CONTEXT"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_NO_CONTEXT/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_S_NO_CONTEXT"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_CRED_UNAVAIL/title",
+          "value": "GSS_S_CRED_UNAVAIL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_CRED_UNAVAIL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_S_CRED_UNAVAIL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_SUPPLEMENTARY_MASK/title",
+          "value": "GSS_C_SUPPLEMENTARY_MASK"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_SUPPLEMENTARY_MASK/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_SUPPLEMENTARY_MASK"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_display_status(_:_:_:_:_:_:)/title",
+          "value": "gss_display_status"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_display_status(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_display_status"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_DEFECTIVE_TOKEN/title",
+          "value": "GSS_S_DEFECTIVE_TOKEN"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_DEFECTIVE_TOKEN/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_S_DEFECTIVE_TOKEN"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_ROUTINE_ERROR_MASK/title",
+          "value": "GSS_C_ROUTINE_ERROR_MASK"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_ROUTINE_ERROR_MASK/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_ROUTINE_ERROR_MASK"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_GSS_CODE/title",
+          "value": "GSS_C_GSS_CODE"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_GSS_CODE/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_GSS_CODE"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_UNAVAILABLE/title",
+          "value": "GSS_S_UNAVAILABLE"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_UNAVAILABLE/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_S_UNAVAILABLE"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_FAILURE/title",
+          "value": "GSS_S_FAILURE"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_FAILURE/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_S_FAILURE"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1OM_uint32/title",
+          "value": "OM_uint32"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1OM_uint32/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OM_uint32"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1OM_uint32/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OM_uint32"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_MECH_CODE/title",
+          "value": "GSS_C_MECH_CODE"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_MECH_CODE/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_MECH_CODE"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_BAD_SIG/title",
+          "value": "GSS_S_BAD_SIG"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_S_BAD_SIG/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_S_BAD_SIG"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gss/function-status"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gss/function-status"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

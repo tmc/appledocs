@@ -1,0 +1,765 @@
+{
+  "abstract": [
+    {
+      "text": "Identify memory-use inefficiencies by measuring and profiling your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics",
+        "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-memory-use"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/gathering-information-about-memory-use"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Gathering information about memory use"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode and Instruments provide multiple tools for observing and exploring memory use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in an app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Review-the-memory-report",
+          "level": 3,
+          "text": "Review the memory report",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While your app is running in Xcode, the memory report available from Xcode’s Debug",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "navigator shows the app’s current memory use, along with the highest value seen.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The yellow region of the memory gauge indicates memory use high enough to trigger",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a warning. The app risks termination by iOS if its memory use enters the red region.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gathering-information-about-memory-use-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If iOS repeatedly terminates your app because it’s using too much memory,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "you can investigate its behavior in the simulator, where it can continue to run.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When you run your app in the simulator, the memory gauge always stays in the green",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "(safe) region because macOS doesn’t issue memory warnings or out-of-memory terminations.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This behavior has advantages in diagnosing problems associated with too much memory",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "use. But keep in mind that memory use in the green region of the gauge in the simulator",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "doesn’t necessarily mean that your app’s memory use is within safe limits.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Inspect-the-debug-memory-graph",
+          "level": 3,
+          "text": "Inspect the debug memory graph",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can generate a memory graph of the objects and allocations in your app by clicking",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Debug Memory Graph button in Xcode’s debug area at the bottom of the workspace",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gathering-information-about-memory-use-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The memory graph shows the memory regions your app is using and the size of each",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "region. A node in the graph represents an object, a heap allocation, or a memory-mapped",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file. Connections between nodes, drawn as arrows, show where one memory region refers",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to another.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gathering-information-about-memory-use-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The memory graph shows where your app is using memory and how those uses are related.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can augment the graph with allocation stack traces, so that each region is associated",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with a call stack trace recorded at the point at which the region was allocated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To turn on allocation stack traces, check the Malloc Stack box in the Diagnostics",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "area of your scheme’s Run settings. With allocation stack traces enabled, the inspector",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for a node in the memory graph shows the stack trace recorded when that node was",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "allocated. Use this information to associate memory allocations in the memory graph",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with functions and methods in your app’s source code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To export memory graphs from Xcode, choose File > Export Memory Graph. You can share",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "exported memory graphs with team members or explore using command-line tools, including",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "vmmap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "leaks",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For more information about the command-line tools, see WWDC",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "2018 session 416, ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2018/416/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Profile-your-app-using-the-Allocations-instrument",
+          "level": 3,
+          "text": "Profile your app using the Allocations instrument",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Allocations instrument tracks the size and number of all heap and anonymous virtual",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "memory (VM) allocations and organizes them by category. Use the Allocations instrument’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "timeline to investigate how the total amount of memory that your app has allocated",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "increases and decreases as you use the app’s interface. Use the statistics view to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see what categories of allocations are being made, how many allocations have been",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "made in each category, and the sizes of those allocations. Click the arrow next to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a category name to see the individual allocations made in that category, along with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the time at which the memory was allocated and the code responsible for the allocation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Generations view in the Allocations instrument is useful for investigating memory",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use for a particular feature of your app. Launch your app, and prepare to use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "feature under investigation—for example, by navigating to the view with a particular",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "control. Next, click the Mark Generation button in the Allocations instrument. Activate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the feature in your app, and click Mark Generation again. Instruments organizes memory",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "allocations by generation, separated at the times when you clicked Mark Generation.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can isolate memory allocations that occurred during the time that you were using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the feature. Not all allocations recorded during this time are associated with the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "feature you’re studying, but many unrelated allocations that didn’t occur between",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the generation marks are removed from consideration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/identifying-high-memory-use-with-jetsam-event-reports": {
+      "abstract": [
+        {
+          "text": "Discover why the operating system terminated your app when available memory was low.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-high-memory-use-with-jetsam-event-reports",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying high-memory use with jetsam event reports",
+      "type": "topic",
+      "url": "/documentation/xcode/identifying-high-memory-use-with-jetsam-event-reports"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/making-changes-to-reduce-memory-use": {
+      "abstract": [
+        {
+          "text": "Decrease your app’s use of memory by addressing common causes of excessive use.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/making-changes-to-reduce-memory-use",
+      "kind": "article",
+      "role": "article",
+      "title": "Making changes to reduce memory use",
+      "type": "topic",
+      "url": "/documentation/xcode/making-changes-to-reduce-memory-use"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics": {
+      "abstract": [
+        {
+          "text": "Measure, investigate, and address the use of system resources and issues impacting performance using Instruments and Xcode Organizer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Performance and metrics",
+      "type": "topic",
+      "url": "/documentation/xcode/performance-and-metrics"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/preventing-memory-use-regressions": {
+      "abstract": [
+        {
+          "text": "Measure the memory that your app’s features use, and detect increases by using XCTest",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "performance tests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/preventing-memory-use-regressions",
+      "kind": "article",
+      "role": "article",
+      "title": "Preventing memory-use regressions",
+      "type": "topic",
+      "url": "/documentation/xcode/preventing-memory-use-regressions"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-memory-use": {
+      "abstract": [
+        {
+          "text": "Improve your app’s performance by analyzing memory-use metrics and making changes",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to maximize memory efficiency.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-memory-use",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Reducing your app’s memory use",
+      "type": "topic",
+      "url": "/documentation/xcode/reducing-your-app-s-memory-use"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/responding-to-low-memory-warnings": {
+      "abstract": [
+        {
+          "text": "Detect when your app is using excessive memory, and bring memory use under control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/responding-to-low-memory-warnings",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to low-memory warnings",
+      "type": "topic",
+      "url": "/documentation/xcode/responding-to-low-memory-warnings"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "gathering-information-about-memory-use-1": {
+      "alt": "Illustration showing Xcode’s Memory Report, available while debugging an app. The line graph tracks memory use over time.",
+      "identifier": "gathering-information-about-memory-use-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/aa40d4726bfc19940d796f766fb1aceb/gathering-information-about-memory-use-1.png"
+        }
+      ]
+    },
+    "gathering-information-about-memory-use-2": {
+      "alt": "Illustration showing the Debug Memory Graph button.",
+      "identifier": "gathering-information-about-memory-use-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d156982b0dad1dd581a8d8e0e866539d/gathering-information-about-memory-use-2.png"
+        }
+      ]
+    },
+    "gathering-information-about-memory-use-3": {
+      "alt": "Illustration showing the debug memory graph, and relationships between allocated memory regions in an app. ",
+      "identifier": "gathering-information-about-memory-use-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b02db2b60e5ef7d88a9bd5d237a85d36/gathering-information-about-memory-use-3.png"
+        }
+      ]
+    },
+    "https://developer.apple.com/videos/play/wwdc2018/416/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2018/416/",
+      "title": "iOS Memory Deep Dive",
+      "titleInlineContent": [
+        {
+          "text": "iOS Memory Deep Dive",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2018/416/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/identifying-high-memory-use-with-jetsam-event-reports"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Tasks",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/making-changes-to-reduce-memory-use",
+        "doc://com.apple.Xcode/documentation/Xcode/preventing-memory-use-regressions",
+        "doc://com.apple.Xcode/documentation/Xcode/responding-to-low-memory-warnings"
+      ],
+      "title": "Tasks"
+    }
+  ]
+}

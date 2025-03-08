@@ -1,0 +1,1014 @@
+{
+  "abstract": [
+    {
+      "text": "OSString wraps a C string in a C++ object for use in Libkern collections.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/libkern",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/osstring"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1388006,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@OSString",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "OSString"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "OSString"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSObject",
+              "text": "OSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "OSString is a container class for managing arrays of characters. An OSString normally maintains its own character buffer and allows changes, but you can create an \"immutable\" OSString that references an external C string buffer using the \"NoCopy\" creator functions. Functions called to change the contents of an immutable OSString will fail.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Encodings",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "OSString makes no provisions for different character encodings and assumes that a string is a nul-terminated sequence of single-byte characters. User-space code must either assume an encoding (typically ASCII or UTF-8) or determine it in some other way (such as an IORegistryEntry property).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Altering Strings",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "OSString's intended use is as a reference-counted object container for a C string and little more. While OSString provides full access to the underlying C string, it provides little in the way of string object manipulation; there are no append or insert functions, only a set-character function. If you need to manipulate OSStrings, it's generally best to get the C strings, alter them as necessary, and create a new OSString object from the resulting C string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use Restrictions",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With very few exceptions in the I/O Kit, all Libkern-based C++ classes, functions, and macros are ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "unsafe",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " to use in a primary interrupt context. Consult the I/O Kit documentation related to primary interrupts for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "OSString provides no concurrency protection; it's up to the usage context to provide any protection necessary. Some portions of the I/O Kit, such as IORegistryEntry, handle synchronization via defined member functions for setting properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "libkern",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern/data_types": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern/data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Types",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern/data_types"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osboolean": {
+      "abstract": [
+        {
+          "text": "OSBoolean wraps a boolean value in a C++ object for use in Libkern collections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osboolean",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSBoolean",
+      "type": "topic",
+      "url": "/documentation/kernel/osboolean"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata": {
+      "abstract": [
+        {
+          "text": "OSData wraps an array of bytes in a C++ object for use in Libkern collections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSData",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osnumber": {
+      "abstract": [
+        {
+          "text": "OSNumber wraps an integer value in a C++ object for use in Libkern collections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSNumber",
+      "type": "topic",
+      "url": "/documentation/kernel/osnumber"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring": {
+      "abstract": [
+        {
+          "text": "OSString wraps a C string in a C++ object for use in Libkern collections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSString",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/1490404-initwithcstring": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithCString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/1490404-initwithcstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithCString",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/1490404-initwithcstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/1490409-getchar": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getChar"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/1490409-getchar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getChar",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/1490409-getchar"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/1490414-setchar": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setChar"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/1490414-setchar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setChar",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/1490414-setchar"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/1490425-initwithstring": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/1490425-initwithstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithString",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/1490425-initwithstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/1490429-serialize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "serialize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/1490429-serialize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "serialize",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/1490429-serialize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/1490433-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/1490433-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/1490433-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/1490434-initwithcstringnocopy": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithCStringNoCopy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/1490434-initwithcstringnocopy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithCStringNoCopy",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/1490434-initwithcstringnocopy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/1808271-free": {
+      "abstract": [
+        {
+          "text": "Deallocates or releases any resources used by the OSString instance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/1808271-free",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/1808271-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/1808273-getchar": {
+      "abstract": [
+        {
+          "text": "Returns the character at a given index in the string object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/1808273-getchar",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getChar",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/1808273-getchar"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/1808275-getcstringnocopy": {
+      "abstract": [
+        {
+          "text": "Returns a pointer to the internal C string buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/1808275-getcstringnocopy",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCStringNoCopy",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/1808275-getcstringnocopy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/1808278-getlength": {
+      "abstract": [
+        {
+          "text": "Returns the number of characters in the OSString object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/1808278-getlength",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getLength",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/1808278-getlength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/1808281-initwithcstring": {
+      "abstract": [
+        {
+          "text": "Initializes an OSString from a C string.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/1808281-initwithcstring",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithCString",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/1808281-initwithcstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/1808284-initwithcstringnocopy": {
+      "abstract": [
+        {
+          "text": "Initializes an immutable OSString to share the provided C string buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/1808284-initwithcstringnocopy",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithCStringNoCopy",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/1808284-initwithcstringnocopy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/1808286-initwithstring": {
+      "abstract": [
+        {
+          "text": "Initializes an OSString from another OSString.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/1808286-initwithstring",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithString",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/1808286-initwithstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/1808288-isequalto": {
+      "abstract": [
+        {
+          "text": "Tests the equality of an OSString object with a C string.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/1808288-isequalto",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isEqualTo(const char *)",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/1808288-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/1808292-isequalto": {
+      "abstract": [
+        {
+          "text": "Tests the equality of an OSData object and the OSString instance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/1808292-isequalto",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isEqualTo(const OSData *)",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/1808292-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/1808295-isequalto": {
+      "abstract": [
+        {
+          "text": "Tests the equality of an OSString object to an arbitrary object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/1808295-isequalto",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isEqualTo(const OSMetaClassBase *)",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/1808295-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/1808297-isequalto": {
+      "abstract": [
+        {
+          "text": "Tests the equality of two OSString objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/1808297-isequalto",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isEqualTo(const OSString *)",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/1808297-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/1808298-serialize": {
+      "abstract": [
+        {
+          "text": "Archives the receiver into the provided OSSerialize object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/1808298-serialize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "serialize",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/1808298-serialize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/1808300-setchar": {
+      "abstract": [
+        {
+          "text": "Replaces a character at a given index in the string object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/1808300-setchar",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setChar",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/1808300-setchar"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/1808301-withcstring": {
+      "abstract": [
+        {
+          "text": "Creates and initializes an OSString from a C string.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/1808301-withcstring",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withCString",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/1808301-withcstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/1808304-withcstringnocopy": {
+      "abstract": [
+        {
+          "text": "Creates and initializes an immutable OSString that shares the provided C string buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/1808304-withcstringnocopy",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withCStringNoCopy",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/1808304-withcstringnocopy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/1808306-withstring": {
+      "abstract": [
+        {
+          "text": "Creates and initializes an OSString from another OSString.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/1808306-withstring",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withString",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/1808306-withstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/3180973-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/3180973-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/3180973-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/3180974-getcstringnocopy": {
+      "abstract": [
+        {
+          "text": "Returns a pointer to the OSString object's internal data buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCStringNoCopy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/3180974-getcstringnocopy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCStringNoCopy",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/3180974-getcstringnocopy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/3180975-getlength": {
+      "abstract": [
+        {
+          "text": "Returns length of string not including null terminator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getLength"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/3180975-getlength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getLength",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/3180975-getlength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/3180976-isequalto": {
+      "abstract": [
+        {
+          "text": "Compares the string with an OSString.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqualTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/3180976-isequalto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqualTo",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/3180976-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/3180977-withcstring": {
+      "abstract": [
+        {
+          "text": "Allocates an OSString object with a copy of a c-string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withCString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/3180977-withcstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withCString",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/3180977-withcstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/3180978-withcstringnocopy": {
+      "abstract": [
+        {
+          "text": "Allocates an OSString object with a copy of a c-string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withCStringNoCopy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/3180978-withcstringnocopy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withCStringNoCopy",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/3180978-withcstringnocopy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/3180979-withstring": {
+      "abstract": [
+        {
+          "text": "Allocates an OSString object with a copy of an OString object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/3180979-withstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withString",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/3180979-withstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/3433852-isequalto": {
+      "abstract": [
+        {
+          "text": "Compares the string with an OSData.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqualTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/3433852-isequalto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqualTo",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/3433852-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/3433853-isequalto": {
+      "abstract": [
+        {
+          "text": "Compares the string with a c-string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqualTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/3433853-isequalto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqualTo",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/3433853-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/3433854-withcstring": {
+      "abstract": [
+        {
+          "text": "Allocates an OSString object with a copy of a c-string, up to a given length.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withCString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/3433854-withcstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withCString",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/3433854-withcstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/3434577-isequalto": {
+      "abstract": [
+        {
+          "text": "Compares the string with an OSObject",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqualTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/3434577-isequalto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqualTo",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/3434577-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osboolean",
+        "doc://com.apple.documentation/documentation/kernel/osnumber",
+        "doc://com.apple.documentation/documentation/kernel/osdata"
+      ],
+      "title": "Simple Types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1673549",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osstring/1808271-free",
+        "doc://com.apple.documentation/documentation/kernel/osstring/1808273-getchar",
+        "doc://com.apple.documentation/documentation/kernel/osstring/1808275-getcstringnocopy",
+        "doc://com.apple.documentation/documentation/kernel/osstring/1808278-getlength",
+        "doc://com.apple.documentation/documentation/kernel/osstring/1808281-initwithcstring",
+        "doc://com.apple.documentation/documentation/kernel/osstring/1808284-initwithcstringnocopy",
+        "doc://com.apple.documentation/documentation/kernel/osstring/1808286-initwithstring",
+        "doc://com.apple.documentation/documentation/kernel/osstring/1808288-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osstring/1808292-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osstring/1808295-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osstring/1808297-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osstring/1808298-serialize",
+        "doc://com.apple.documentation/documentation/kernel/osstring/1808300-setchar",
+        "doc://com.apple.documentation/documentation/kernel/osstring/1808301-withcstring",
+        "doc://com.apple.documentation/documentation/kernel/osstring/1808304-withcstringnocopy",
+        "doc://com.apple.documentation/documentation/kernel/osstring/1808306-withstring"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "3516966",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osstring/3180973-free",
+        "doc://com.apple.documentation/documentation/kernel/osstring/3180974-getcstringnocopy",
+        "doc://com.apple.documentation/documentation/kernel/osstring/1490409-getchar",
+        "doc://com.apple.documentation/documentation/kernel/osstring/3180975-getlength",
+        "doc://com.apple.documentation/documentation/kernel/osstring/1490433-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/osstring/1490404-initwithcstring",
+        "doc://com.apple.documentation/documentation/kernel/osstring/1490434-initwithcstringnocopy",
+        "doc://com.apple.documentation/documentation/kernel/osstring/1490425-initwithstring",
+        "doc://com.apple.documentation/documentation/kernel/osstring/3180976-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osstring/3433852-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osstring/3433853-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osstring/3434577-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osstring/1490429-serialize",
+        "doc://com.apple.documentation/documentation/kernel/osstring/1490414-setchar"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "3516967",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osstring/3180977-withcstring",
+        "doc://com.apple.documentation/documentation/kernel/osstring/3433854-withcstring",
+        "doc://com.apple.documentation/documentation/kernel/osstring/3180978-withcstringnocopy",
+        "doc://com.apple.documentation/documentation/kernel/osstring/3180979-withstring"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/osstring"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

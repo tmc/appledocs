@@ -1,0 +1,1129 @@
+{
+  "abstract": [
+    {
+      "text": "Use implicit pointer casting or bridging when calling functions that takes pointers",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "as parameters.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift",
+        "doc://com.apple.Swift/documentation/Swift/swift-standard-library",
+        "doc://com.apple.Swift/documentation/Swift/manual-memory-management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/calling-functions-with-pointer-parameters"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Calling Functions With Pointer Parameters"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When calling a function that takes a pointer as a parameter, you can use implicit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "casting to pass a compatible pointer type or implicit bridging to pass a pointer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to a variable or the contents of an array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Pass-a-Constant-Pointer-as-a-Parameter",
+          "level": 3,
+          "text": "Pass a Constant Pointer as a Parameter",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you call a function that is declared as taking an ",
+              "type": "text"
+            },
+            {
+              "code": "UnsafePointer<Type>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you can pass any of the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UnsafePointer<Type>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UnsafeMutablePointer<Type>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AutoreleasingUnsafeMutablePointer<Type>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "value, which is implicitly cast to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UnsafePointer<Type>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as necessary.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "String",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value, if ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Type",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Int8",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UInt8",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The string is automatically converted",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to UTF8 in a zero-terminated buffer, and a pointer to that buffer is passed to the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "function.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An in-out expression that contains a mutable variable, property, or subscript reference",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of type ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Type",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which is passed as a pointer to the address of the left-hand side",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "[Type]",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value, which is passed as a pointer to the start of the array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The pointer you pass to the function is only guaranteed to be valid for the duration",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the function call. Do not persist the pointer and access it after the function",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "has returned.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example shows the different ways that you can call the a function that takes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a constant pointer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func takesAPointer(_ p: UnsafePointer<Float>) {",
+            "    // ...",
+            "}",
+            "",
+            "var x: Float = 0.0",
+            "takesAPointer(&x)",
+            "takesAPointer([1.0, 2.0, 3.0])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you call a function that takes an ",
+              "type": "text"
+            },
+            {
+              "code": "UnsafeRawPointer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument, you can pass",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the same operands as ",
+              "type": "text"
+            },
+            {
+              "code": "UnsafePointer<Type>",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", but with any type as ",
+              "type": "text"
+            },
+            {
+              "code": "Type",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example shows the different ways that you can call a function that takes a constant",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "raw pointer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func takesARawPointer(_ p: UnsafeRawPointer?)  {",
+            "    // ...",
+            "}",
+            "",
+            "var x: Float = 0.0, y: Int = 0",
+            "takesARawPointer(&x)",
+            "takesARawPointer(&y)",
+            "takesARawPointer([1.0, 2.0, 3.0] as [Float])",
+            "let intArray = [1, 2, 3]",
+            "takesARawPointer(intArray)",
+            "takesARawPointer(\"How are you today?\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Pass-a-Mutable-Pointer-as-a-Parameter",
+          "level": 3,
+          "text": "Pass a Mutable Pointer as a Parameter",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you call a function that is declared as taking an ",
+              "type": "text"
+            },
+            {
+              "code": "UnsafeMutablePointer<Type>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "argument, you can pass any of the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UnsafeMutablePointer<Type>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An in-out expression of type ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Type",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " that contains a mutable variable, property,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "or subscript reference, which is passed as a pointer to the address of the mutable",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An in-out expression of type ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "[Type]",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " that contains a mutable variable, property,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "or subscript reference, which is passed as a pointer to the start of the array, and",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "is lifetime-extended for the duration of the call.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example shows the different ways that you can call a function that takes a mutable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pointer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func takesAMutablePointer(_ p: UnsafeMutablePointer<Float>) {",
+            "    // ...",
+            "}",
+            "",
+            "var x: Float = 0.0",
+            "var a: [Float] = [1.0, 2.0, 3.0]",
+            "takesAMutablePointer(&x)",
+            "takesAMutablePointer(&a)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you call a function that is declared as taking an ",
+              "type": "text"
+            },
+            {
+              "code": "UnsafeMutableRawPointer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "argument, you can pass the same operands as ",
+              "type": "text"
+            },
+            {
+              "code": "UnsafeMutablePointer<Type>",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", but for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "any type as ",
+              "type": "text"
+            },
+            {
+              "code": "Type",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example shows the different ways that you can call a function that takes a mutable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "raw pointer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func takesAMutableRawPointer(_ p: UnsafeMutableRawPointer?)  {",
+            "    // ...",
+            "}",
+            "",
+            "var x: Float = 0.0, y: Int = 0",
+            "var a: [Float] = [1.0, 2.0, 3.0], b: [Int] = [1, 2, 3]",
+            "takesAMutableRawPointer(&x)",
+            "takesAMutableRawPointer(&y)",
+            "takesAMutableRawPointer(&a)",
+            "takesAMutableRawPointer(&b)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Pass-an-Autoreleasing-Pointer-as-a-Parameter",
+          "level": 3,
+          "text": "Pass an Autoreleasing Pointer as a Parameter",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you call a function that is declared as taking an ",
+              "type": "text"
+            },
+            {
+              "code": "AutoreleasingUnsafeMutablePointer<Type>",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you can pass any of the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AutoreleasingUnsafeMutablePointer<Type>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An in-out expression that contains a mutable variable, property, or subscript reference",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of type ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Type",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The value of the operand is copied bitwise into a temporary nonowning",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "buffer. The address of that buffer is passed to the callee, and on return, the value",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in the buffer is loaded, retained, and reassigned into the operand.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike with other pointer types, you can’t use an array as an implicitly bridged",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Pass-a-Function-Pointer-as-a-Parameter",
+          "level": 3,
+          "text": "Pass a Function Pointer as a Parameter",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When calling a function that takes a C function pointer argument, you can pass a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "top-level Swift function, a closure literal, a closure declared with the ",
+              "type": "text"
+            },
+            {
+              "code": "@convention(c)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "attribute, or ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You can also pass a closure property of a generic type or a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "generic method as long as no generic type parameters are referenced in the closure’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "argument list or body.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, consider Core Foundation’s ",
+              "type": "text"
+            },
+            {
+              "code": "CFArrayCreateMutable(_:_:_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "CFArrayCreateMutable(_:_:_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function takes a ",
+              "type": "text"
+            },
+            {
+              "code": "CFArrayCallBacks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which is initialized with function pointer callbacks:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func customCopyDescription(_ p: UnsafeRawPointer?) -> Unmanaged<CFString>? {",
+            "    // return an Unmanaged<CFString>? value",
+            "}",
+            "",
+            "var callbacks = CFArrayCallBacks(",
+            "    version: 0,",
+            "    retain: nil,",
+            "    release: nil,",
+            "    copyDescription: customCopyDescription,",
+            "    equal: { (p1, p2) -> DarwinBoolean in",
+            "        // return Bool value",
+            "    }",
+            ")",
+            "var mutableArray = CFArrayCreateMutable(nil, 0, &callbacks)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the ",
+              "type": "text"
+            },
+            {
+              "code": "CFArrayCallBacks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " initializer uses ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values as arguments",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the ",
+              "type": "text"
+            },
+            {
+              "code": "retain",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "release",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameters, the ",
+              "type": "text"
+            },
+            {
+              "code": "customCopyDescription(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as the argument for the ",
+              "type": "text"
+            },
+            {
+              "code": "customCopyDescription",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, and a closure literal",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as the argument for the ",
+              "type": "text"
+            },
+            {
+              "code": "equal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Only Swift function types with C function reference calling convention may",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "be used for function pointer arguments. Like a C function pointer, a Swift function",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "type with the ",
+                  "type": "text"
+                },
+                {
+                  "code": "@convention(c)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " attribute does not capture the context of its surrounding",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "scope.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/manual-memory-management": {
+      "abstract": [
+        {
+          "text": "Allocate and manage memory manually.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/manual-memory-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Manual Memory Management",
+      "type": "topic",
+      "url": "/documentation/swift/manual-memory-management"
+    },
+    "doc://com.apple.Swift/documentation/Swift/swift-standard-library": {
+      "abstract": [
+        {
+          "text": "Solve complex problems and write high-performance, readable code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/swift-standard-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Swift Standard Library",
+      "type": "topic",
+      "url": "/documentation/swift/swift-standard-library"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": []
+}

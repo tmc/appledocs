@@ -1,0 +1,556 @@
+{
+  "abstract": [
+    {
+      "text": "Invalidate the tokens and associated user authorizations for someone when they are no longer associated with your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://org.swift.docc.AccountOrganizationalDataSharing/documentation/AccountOrganizationalDataSharing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://org.swift.docc.AccountOrganizationalDataSharing/documentation/AccountOrganizationalDataSharing/Revoke-tokens"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:oauth2:post:auth-oauth2-v2-revoke",
+    "modules": [
+      {
+        "name": "Account & Organizational Data Sharing"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Revoke tokens"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "AccountOrganizationalDataSharing"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Revoke tokens"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://appleid.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "auth/oauth2/v2/revoke"
+        }
+      ]
+    },
+    {
+      "bodyContentType": [
+        {
+          "kind": "text",
+          "text": "form-data"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "The list of input parameters required for the server to invalidate the token.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/x-www-form-urlencoded",
+      "parameters": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The identifier (App ID or Services ID) for your app. The identifier must match the value provided during the authorization request for the person’s information. To help mitigate the possibility of exposing sensitive data to the end user, the identifier must not include your Team ID.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "text/plain",
+          "name": "client_id",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A secret JWT that uses the Account and",
+                  "type": "text"
+                },
+                {
+                  "text": " Organizational Data Sharing private key associated with your developer account. For more information about creating client secrets, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://org.swift.docc.AccountOrganizationalDataSharing/documentation/AccountOrganizationalDataSharing/Generate-and-validate-tokens",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "text/plain",
+          "name": "client_secret",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The user refresh token or access token intended to be revoked. If the request is successful, revoke the user session associated with the provided token.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "text/plain",
+          "name": "token",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A hint about the type of the token submitted for revocation. Use ",
+                  "type": "text"
+                },
+                {
+                  "code": "refresh_token",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "access_token",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "text/plain",
+          "name": "token_type_hint",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        }
+      ],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful; the provided token has been revoked successfully or was previously invalid.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The server was unable to process the request. See the error code description for more information about the underlying error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://org.swift.docc.AccountOrganizationalDataSharing/documentation/AccountOrganizationalDataSharing/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:oauth2:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To revoke authorization for a user, you must obtain a valid refresh token or access token. If you don’t have either token for the user, you can generate tokens when validating an authorization code. For more information about user tokens and creating client secrets, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.AccountOrganizationalDataSharing/documentation/AccountOrganizationalDataSharing/Generate-and-validate-tokens",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To invalidate a user’s refresh token, invoke the revoke endpoint with the following ",
+              "type": "text"
+            },
+            {
+              "code": "HTTP POST",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "curl -v POST \"https://appleid.apple.com/auth/oauth2/v2/revoke\" \\",
+            "-H 'content-type: application/x-www-form-urlencoded' \\",
+            "-d 'client_id=CLIENT_ID' \\",
+            "-d 'client_secret=CLIENT_SECRET' \\",
+            "-d 'token=REFRESH_TOKEN' \\",
+            "-d 'token_type_hint=refresh_token'"
+          ],
+          "syntax": "sh",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, to invalidate a user’s access token, use the following ",
+              "type": "text"
+            },
+            {
+              "code": "HTTP POST",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "curl -v POST \"https://appleid.apple.com/auth/oauth2/v2/revoke\" \\",
+            "-H 'content-type: application/x-www-form-urlencoded' \\",
+            "-d 'client_id=CLIENT_ID' \\",
+            "-d 'client_secret=CLIENT_SECRET' \\",
+            "-d 'token=ACCESS_TOKEN' \\",
+            "-d 'token_type_hint=access_token'"
+          ],
+          "syntax": "sh",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For either token revocation request, the revoke endpoint returns a ",
+              "type": "text"
+            },
+            {
+              "code": "200",
+              "type": "codeVoice"
+            },
+            {
+              "text": " response code without a response body after the server invalidates the ",
+              "type": "text"
+            },
+            {
+              "code": "token",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value, or if the token was previously invalidated. If the server encounters an error, it returns an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.AccountOrganizationalDataSharing/documentation/AccountOrganizationalDataSharing/ErrorResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that identifies the problem.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://org.swift.docc.AccountOrganizationalDataSharing/documentation/AccountOrganizationalDataSharing": {
+      "abstract": [
+        {
+          "text": "Provide people with the ability to authorize your apps and websites that access information about them on Apple REST services, like Roster API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AccountOrganizationalDataSharing/documentation/AccountOrganizationalDataSharing",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Account & Organizational Data Sharing",
+      "type": "topic",
+      "url": "/documentation/accountorganizationaldatasharing"
+    },
+    "doc://org.swift.docc.AccountOrganizationalDataSharing/documentation/AccountOrganizationalDataSharing/ErrorResponse": {
+      "abstract": [
+        {
+          "text": "The error object returned after an unsuccessful request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AccountOrganizationalDataSharing/documentation/AccountOrganizationalDataSharing/ErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorResponse",
+      "type": "topic",
+      "url": "/documentation/accountorganizationaldatasharing/errorresponse"
+    },
+    "doc://org.swift.docc.AccountOrganizationalDataSharing/documentation/AccountOrganizationalDataSharing/Generate-and-validate-tokens": {
+      "abstract": [
+        {
+          "text": "Validate an authorization grant code delivered to your app to obtain tokens, or validate an existing refresh token.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AccountOrganizationalDataSharing/documentation/AccountOrganizationalDataSharing/Generate-and-validate-tokens",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Generate and validate tokens"
+        }
+      ],
+      "role": "symbol",
+      "title": "Generate and validate tokens",
+      "type": "topic",
+      "url": "/documentation/accountorganizationaldatasharing/generate-and-validate-tokens"
+    },
+    "doc://org.swift.docc.AccountOrganizationalDataSharing/documentation/AccountOrganizationalDataSharing/Request-an-authorization": {
+      "abstract": [
+        {
+          "text": "Request a user authorization to Account & Organizational Data Sharing apps and web services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AccountOrganizationalDataSharing/documentation/AccountOrganizationalDataSharing/Request-an-authorization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Request an authorization"
+        }
+      ],
+      "role": "symbol",
+      "title": "Request an authorization",
+      "type": "topic",
+      "url": "/documentation/accountorganizationaldatasharing/request-an-authorization"
+    },
+    "doc://org.swift.docc.AccountOrganizationalDataSharing/documentation/AccountOrganizationalDataSharing/Revoke-tokens": {
+      "abstract": [
+        {
+          "text": "Invalidate the tokens and associated user authorizations for someone when they are no longer associated with your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AccountOrganizationalDataSharing/documentation/AccountOrganizationalDataSharing/Revoke-tokens",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Revoke tokens"
+        }
+      ],
+      "role": "symbol",
+      "title": "Revoke tokens",
+      "type": "topic",
+      "url": "/documentation/accountorganizationaldatasharing/revoke-tokens"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Using-and-revoking-tokens",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.docc.AccountOrganizationalDataSharing/documentation/AccountOrganizationalDataSharing/Request-an-authorization"
+      ],
+      "title": "Using and revoking tokens"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accountorganizationaldatasharing/revoke-tokens"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

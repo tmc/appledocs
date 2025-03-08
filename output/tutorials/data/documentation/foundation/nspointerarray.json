@@ -1,0 +1,1015 @@
+{
+  "abstract": [
+    {
+      "text": "A collection similar to an array, but with a broader range of available memory semantics.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/collections"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nspointerarray"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1416925,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSPointerArray",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSPointerArray"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "6.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "6.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.5",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSPointerArray"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSPointerArray"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The pointer array class is modeled after ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", but can also hold ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values. You can insert or remove ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values which contribute to the array's ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerarray/1418453-count",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A pointer array can be initialized to maintain strong or weak references to objects, or according to any of the memory or personality options defined by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/options",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocols are applicable only when a pointer array is initialized to maintain strong or weak references to objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When enumerating a pointer array with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfastenumeration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " using ",
+              "type": "text"
+            },
+            {
+              "code": "for...in",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the loop will yield any ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values present in the array. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1746186",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1746020",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1776534",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSPointerArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is not suitable for subclassing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1746020": {
+      "identifier": "devLink-1746020",
+      "title": "Programming with Objective-C",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011210"
+    },
+    "devLink-1746186": {
+      "identifier": "devLink-1746186",
+      "title": "Fast Enumeration Makes It Easy to Enumerate a Collection",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/FoundationTypesandCollections/FoundationTypesandCollections.html#//apple_ref/doc/uid/TP40011210-CH7-SW30"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/collections": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/collections",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collections",
+      "type": "topic",
+      "url": "/documentation/foundation/collections"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfastenumeration": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfastenumeration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFastEnumeration",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfastenumeration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable": {
+      "abstract": [
+        {
+          "text": "A collection similar to a set, but with broader range of available memory semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHashTable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHashTable",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmaptable": {
+      "abstract": [
+        {
+          "text": "A collection similar to a dictionary, but with a broader range of available memory semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMapTable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMapTable",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmaptable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerarray": {
+      "abstract": [
+        {
+          "text": "A collection similar to an array, but with a broader range of available memory semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPointerArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPointerArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerarray/1407403-removepointer": {
+      "abstract": [
+        {
+          "text": "Removes the pointer at a given index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removePointer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerarray/1407403-removepointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removePointer(at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerarray/1407403-removepointer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerarray/1408081-allobjects": {
+      "abstract": [
+        {
+          "text": "All the objects in the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "allObjects"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerarray/1408081-allobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allObjects",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerarray/1408081-allobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerarray/1408229-init": {
+      "abstract": [
+        {
+          "text": "Initializes the receiver to use the given options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPointerFunctions.Options)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerarray/1408229-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerarray/1408229-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerarray/1408589-insertpointer": {
+      "abstract": [
+        {
+          "text": "Inserts a pointer at a given index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertPointer"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutableRawPointer?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerarray/1408589-insertpointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "insertPointer(_:at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerarray/1408589-insertpointer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerarray/1411636-addpointer": {
+      "abstract": [
+        {
+          "text": "Adds a given pointer to the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addPointer"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutableRawPointer?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerarray/1411636-addpointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addPointer(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerarray/1411636-addpointer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerarray/1412654-replacepointer": {
+      "abstract": [
+        {
+          "text": "Replaces the pointer at a given index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "replacePointer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withPointer"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerarray/1412654-replacepointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replacePointer(at:withPointer:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerarray/1412654-replacepointer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerarray/1412795-weakobjects": {
+      "abstract": [
+        {
+          "text": "Returns a new pointer array that maintains weak references to its elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "weakObjects"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSPointerArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerarray/1412795-weakobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "weakObjects()",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerarray/1412795-weakobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerarray/1413102-strongobjects": {
+      "abstract": [
+        {
+          "text": "Returns a new pointer array that maintains strong references to its elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "strongObjects"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSPointerArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerarray/1413102-strongobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "strongObjects()",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerarray/1413102-strongobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerarray/1413659-compact": {
+      "abstract": [
+        {
+          "text": "Removes ",
+          "type": "text"
+        },
+        {
+          "code": "NULL",
+          "type": "codeVoice"
+        },
+        {
+          "text": " values from the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "compact"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerarray/1413659-compact",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "compact()",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerarray/1413659-compact"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerarray/1413669-pointerfunctions": {
+      "abstract": [
+        {
+          "text": "The functions in use by the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "pointerFunctions"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPointerFunctions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerarray/1413669-pointerfunctions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pointerFunctions",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerarray/1413669-pointerfunctions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerarray/1416727-init": {
+      "abstract": [
+        {
+          "text": "Initializes the receiver to use the given functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "pointerFunctions"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPointerFunctions)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerarray/1416727-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(pointerFunctions:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerarray/1416727-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerarray/1417655-pointer": {
+      "abstract": [
+        {
+          "text": "Returns the pointer at a given index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "pointer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int) -> UnsafeMutableRawPointer?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerarray/1417655-pointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pointer(at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerarray/1417655-pointer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerarray/1418453-count": {
+      "abstract": [
+        {
+          "text": "The number of elements in the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerarray/1418453-count",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "count",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerarray/1418453-count"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerfunctions": {
+      "abstract": [
+        {
+          "text": "An instance of ",
+          "type": "text"
+        },
+        {
+          "code": "NSPointerFunctions",
+          "type": "codeVoice"
+        },
+        {
+          "text": " defines callout functions appropriate for managing a pointer reference held somewhere else.  ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPointerFunctions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerfunctions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPointerFunctions",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerfunctions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/options": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/options",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPointerFunctions.Options",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerfunctions/options"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nsfastenumeration",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmaptable",
+        "doc://com.apple.documentation/documentation/foundation/nshashtable"
+      ],
+      "title": "Pointer Collections"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1653476",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nspointerarray/1408229-init",
+        "doc://com.apple.documentation/documentation/foundation/nspointerarray/1416727-init",
+        "doc://com.apple.documentation/documentation/foundation/nspointerarray/1413102-strongobjects",
+        "doc://com.apple.documentation/documentation/foundation/nspointerarray/1412795-weakobjects"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating and Initializing a New Pointer Array"
+    },
+    {
+      "anchor": "1653561",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nspointerarray/1418453-count",
+        "doc://com.apple.documentation/documentation/foundation/nspointerarray/1408081-allobjects",
+        "doc://com.apple.documentation/documentation/foundation/nspointerarray/1417655-pointer",
+        "doc://com.apple.documentation/documentation/foundation/nspointerarray/1411636-addpointer",
+        "doc://com.apple.documentation/documentation/foundation/nspointerarray/1407403-removepointer",
+        "doc://com.apple.documentation/documentation/foundation/nspointerarray/1408589-insertpointer",
+        "doc://com.apple.documentation/documentation/foundation/nspointerarray/1412654-replacepointer",
+        "doc://com.apple.documentation/documentation/foundation/nspointerarray/1413659-compact"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing the Collection"
+    },
+    {
+      "anchor": "1653639",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nspointerarray/1413669-pointerfunctions",
+        "doc://com.apple.documentation/documentation/foundation/nspointerfunctions"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the Pointer Functions"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nspointerarray"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nspointerarray"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

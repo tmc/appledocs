@@ -1,0 +1,2816 @@
+{
+  "abstract": [
+    {
+      "text": "A sequence on which normally-eager sequence operations are implemented",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "lazily.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:s20LazySequenceProtocolP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "LazySequenceProtocol"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "LazySequenceProtocol"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "LazySequenceProtocol"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "LazySequenceProtocol"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Sequence",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:ST",
+              "text": "Sequence"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Lazy sequences can be used to avoid needless storage allocation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and computation, because they use an underlying sequence for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "storage and compute their elements on demand. For example, ",
+              "type": "text"
+            },
+            {
+              "code": "doubled",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this code sample is a sequence containing the values ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "4",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "6",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let doubled = [1, 2, 3].lazy.map { $0 * 2 }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each time an element of the lazy sequence ",
+              "type": "text"
+            },
+            {
+              "code": "doubled",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is accessed, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "closure accesses and transforms an element of the underlying array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sequence operations that take closure arguments, such as ",
+              "type": "text"
+            },
+            {
+              "code": "map(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "filter(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", are normally eager: They use the closure immediately and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "return a new array. When you use the ",
+              "type": "text"
+            },
+            {
+              "code": "lazy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property, you give the standard",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "library explicit permission to store the closure and the sequence",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the result, and defer computation until it is needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Adding-New-Lazy-Operations",
+          "level": 2,
+          "text": "Adding New Lazy Operations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a new lazy sequence operation, extend this protocol with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a method that returns a lazy wrapper that itself conforms to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "LazySequenceProtocol",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  For example, an eager ",
+              "type": "text"
+            },
+            {
+              "code": "scan(_:_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method is defined as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension Sequence {",
+            "    /// Returns an array containing the results of",
+            "    ///",
+            "    ///   p.reduce(initial, nextPartialResult)",
+            "    ///",
+            "    /// for each prefix `p` of `self`, in order from shortest to",
+            "    /// longest. For example:",
+            "    ///",
+            "    ///     (1..<6).scan(0, +) // [0, 1, 3, 6, 10, 15]",
+            "    ///",
+            "    /// - Complexity: O(n)",
+            "    func scan<Result>(",
+            "        _ initial: Result,",
+            "        _ nextPartialResult: (Result, Element) -> Result",
+            "    ) -> [Result] {",
+            "        var result = [initial]",
+            "        for x in self {",
+            "            result.append(nextPartialResult(result.last!, x))",
+            "        }",
+            "        return result",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can build a sequence type that lazily computes the elements in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "result of a scan:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct LazyScanSequence<Base: Sequence, Result>",
+            "    : LazySequenceProtocol",
+            "{",
+            "    let initial: Result",
+            "    let base: Base",
+            "    let nextPartialResult:",
+            "        (Result, Base.Element) -> Result",
+            "",
+            "    struct Iterator: IteratorProtocol {",
+            "        var base: Base.Iterator",
+            "        var nextElement: Result?",
+            "        let nextPartialResult:",
+            "            (Result, Base.Element) -> Result",
+            "        ",
+            "        mutating func next() -> Result? {",
+            "            return nextElement.map { result in",
+            "                nextElement = base.next().map {",
+            "                    nextPartialResult(result, $0)",
+            "                }",
+            "                return result",
+            "            }",
+            "        }",
+            "    }",
+            "    ",
+            "    func makeIterator() -> Iterator {",
+            "        return Iterator(",
+            "            base: base.makeIterator(),",
+            "            nextElement: initial as Result?,",
+            "            nextPartialResult: nextPartialResult)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, you can give all lazy sequences a lazy ",
+              "type": "text"
+            },
+            {
+              "code": "scan(_:_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension LazySequenceProtocol {",
+            "    func scan<Result>(",
+            "        _ initial: Result,",
+            "        _ nextPartialResult: @escaping (Result, Element) -> Result",
+            "    ) -> LazyScanSequence<Self, Result> {",
+            "        return LazyScanSequence(",
+            "            initial: initial, base: self, nextPartialResult: nextPartialResult)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With this type and extension method, you can call ",
+              "type": "text"
+            },
+            {
+              "code": ".lazy.scan(_:_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on any",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sequence to create a lazily computed scan. The resulting ",
+              "type": "text"
+            },
+            {
+              "code": "LazyScanSequence",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is itself lazy, too, so further sequence operations also defer computation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The explicit permission to implement operations lazily applies",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "only in contexts where the sequence is statically known to conform to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "LazySequenceProtocol",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". In the following example, because the extension",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "applies only to ",
+              "type": "text"
+            },
+            {
+              "code": "Sequence",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", side-effects such as the accumulation of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "result",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are never unexpectedly dropped or deferred:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension Sequence where Element == Int {",
+            "    func sum() -> Int {",
+            "        var result = 0",
+            "        _ = self.map { result += $0 }",
+            "        return result",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t actually use ",
+              "type": "text"
+            },
+            {
+              "code": "map",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for this purpose, however, because it creates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and discards the resulting array. Instead, use ",
+              "type": "text"
+            },
+            {
+              "code": "reduce",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for summing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "operations, or ",
+              "type": "text"
+            },
+            {
+              "code": "forEach",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or a ",
+              "type": "text"
+            },
+            {
+              "code": "for",
+              "type": "codeVoice"
+            },
+            {
+              "text": "-",
+              "type": "text"
+            },
+            {
+              "code": "in",
+              "type": "codeVoice"
+            },
+            {
+              "text": " loop for operations with side",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "effects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazyCollectionProtocol": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazyCollectionProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazyCollectionProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazyCollectionProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyCollectionProtocol",
+      "type": "topic",
+      "url": "/documentation/swift/lazycollectionprotocol"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazyDropWhileSequence": {
+      "abstract": [
+        {
+          "text": "A sequence whose elements consist of the elements that follow the initial",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "consecutive elements of some base sequence that satisfy a given predicate.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Sequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazyDropWhileSequence"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazyDropWhileSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazyDropWhileSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyDropWhileSequence",
+      "type": "topic",
+      "url": "/documentation/swift/lazydropwhilesequence"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence": {
+      "abstract": [
+        {
+          "text": "A sequence whose elements consist of the elements of some base",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "sequence that also satisfy a given predicate.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Sequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazyFilterSequence"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazyFilterSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyFilterSequence",
+      "type": "topic",
+      "url": "/documentation/swift/lazyfiltersequence"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazyMapSequence": {
+      "abstract": [
+        {
+          "text": "A ",
+          "type": "text"
+        },
+        {
+          "code": "Sequence",
+          "type": "codeVoice"
+        },
+        {
+          "text": " whose elements consist of those in a ",
+          "type": "text"
+        },
+        {
+          "code": "Base",
+          "type": "codeVoice"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "Sequence",
+          "type": "codeVoice"
+        },
+        {
+          "text": " passed through a transform function returning ",
+          "type": "text"
+        },
+        {
+          "code": "Element",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "These elements are computed lazily, each time they’re read, by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "calling the transform function on a base element.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Collection",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", ",
+            "type": "text"
+          },
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", and ",
+            "type": "text"
+          },
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazyMapSequence"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazyMapSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazyMapSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyMapSequence",
+      "type": "topic",
+      "url": "/documentation/swift/lazymapsequence"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazyPrefixWhileSequence": {
+      "abstract": [
+        {
+          "text": "A sequence whose elements consist of the initial consecutive elements of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "some base sequence that satisfy a given predicate.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Collection",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazyPrefixWhileSequence"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazyPrefixWhileSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazyPrefixWhileSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyPrefixWhileSequence",
+      "type": "topic",
+      "url": "/documentation/swift/lazyprefixwhilesequence"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazySequence": {
+      "abstract": [
+        {
+          "text": "A sequence containing the same elements as a ",
+          "type": "text"
+        },
+        {
+          "code": "Base",
+          "type": "codeVoice"
+        },
+        {
+          "text": " sequence, but",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "on which some operations such as ",
+          "type": "text"
+        },
+        {
+          "code": "map",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "code": "filter",
+          "type": "codeVoice"
+        },
+        {
+          "text": " are",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "implemented lazily.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Collection",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazySequence"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazySequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazySequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazySequence",
+      "type": "topic",
+      "url": "/documentation/swift/lazysequence"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol": {
+      "abstract": [
+        {
+          "text": "A sequence on which normally-eager sequence operations are implemented",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "lazily.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazySequenceProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazySequenceProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazySequenceProtocol",
+      "type": "topic",
+      "url": "/documentation/swift/lazysequenceprotocol"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/Elements-swift.associatedtype": {
+      "abstract": [
+        {
+          "text": "A ",
+          "type": "text"
+        },
+        {
+          "code": "Sequence",
+          "type": "codeVoice"
+        },
+        {
+          "text": " that can contain the same elements as this one,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "possibly with a simpler type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Elements"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST",
+          "text": "Sequence"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/Elements-swift.associatedtype",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Elements",
+      "type": "topic",
+      "url": "/documentation/swift/lazysequenceprotocol/elements-swift.associatedtype"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/compactMap(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the non-",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " results of mapping the given transformation over",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "this sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compactMap"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "ElementOfResult"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s20LazySequenceProtocolP8ElementsQa",
+          "text": "Elements"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ElementOfResult"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s15LazyMapSequenceV",
+          "text": "LazyMapSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s18LazyFilterSequenceV",
+          "text": "LazyFilterSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s15LazyMapSequenceV",
+          "text": "LazyMapSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s20LazySequenceProtocolP8ElementsQa",
+          "text": "Elements"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ElementOfResult"
+        },
+        {
+          "kind": "text",
+          "text": "?>>, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ElementOfResult"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/compactMap(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "compactMap(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/lazysequenceprotocol/compactmap(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/drop(while:)": {
+      "abstract": [
+        {
+          "text": "Returns a lazy sequence that skips any initial elements that satisfy",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "predicate",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "drop"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "while"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s20LazySequenceProtocolP8ElementsQa",
+          "text": "Elements"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s21LazyDropWhileSequenceV",
+          "text": "LazyDropWhileSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s20LazySequenceProtocolP8ElementsQa",
+          "text": "Elements"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/drop(while:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "drop(while:)",
+      "type": "topic",
+      "url": "/documentation/swift/lazysequenceprotocol/drop(while:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/elements-6570c": {
+      "abstract": [
+        {
+          "text": "A sequence containing the same elements as this one, possibly with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a simpler type.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "elements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s20LazySequenceProtocolP8ElementsQa",
+          "text": "Elements"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/elements-6570c",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "elements",
+      "type": "topic",
+      "url": "/documentation/swift/lazysequenceprotocol/elements-6570c"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/filter(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the elements of ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": " that satisfy ",
+          "type": "text"
+        },
+        {
+          "code": "isIncluded",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "filter"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s20LazySequenceProtocolP8ElementsQa",
+          "text": "Elements"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s18LazyFilterSequenceV",
+          "text": "LazyFilterSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s20LazySequenceProtocolP8ElementsQa",
+          "text": "Elements"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/filter(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "filter(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/lazysequenceprotocol/filter(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/flatMap(_:)-11y2e": {
+      "abstract": [
+        {
+          "text": "Returns the non-",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " results of mapping the given transformation over",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "this sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "flatMap"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "ElementOfResult"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s20LazySequenceProtocolP8ElementsQa",
+          "text": "Elements"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ElementOfResult"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s15LazyMapSequenceV",
+          "text": "LazyMapSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s18LazyFilterSequenceV",
+          "text": "LazyFilterSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s15LazyMapSequenceV",
+          "text": "LazyMapSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s20LazySequenceProtocolP8ElementsQa",
+          "text": "Elements"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ElementOfResult"
+        },
+        {
+          "kind": "text",
+          "text": "?>>, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ElementOfResult"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/flatMap(_:)-11y2e",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "flatMap(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/lazysequenceprotocol/flatmap(_:)-11y2e"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/flatMap(_:)-9blrr": {
+      "abstract": [
+        {
+          "text": "Returns the concatenated results of mapping the given transformation over",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "this sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "flatMap"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "SegmentOfResult"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s20LazySequenceProtocolP8ElementsQa",
+          "text": "Elements"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SegmentOfResult"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12LazySequenceV",
+          "text": "LazySequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s15FlattenSequenceV",
+          "text": "FlattenSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s15LazyMapSequenceV",
+          "text": "LazyMapSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s20LazySequenceProtocolP8ElementsQa",
+          "text": "Elements"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SegmentOfResult"
+        },
+        {
+          "kind": "text",
+          "text": ">>>"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/flatMap(_:)-9blrr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "flatMap(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/lazysequenceprotocol/flatmap(_:)-9blrr"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/joined()": {
+      "abstract": [
+        {
+          "text": "Returns a lazy sequence that concatenates the elements of this sequence of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "sequences.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Sequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "joined"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12LazySequenceV",
+          "text": "LazySequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s15FlattenSequenceV",
+          "text": "FlattenSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s20LazySequenceProtocolP8ElementsQa",
+          "text": "Elements"
+        },
+        {
+          "kind": "text",
+          "text": ">>"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/joined()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "joined()",
+      "type": "topic",
+      "url": "/documentation/swift/lazysequenceprotocol/joined()"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/lazy-2u2ey": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Elements",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "LazySequenceProtocol",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lazy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s20LazySequenceProtocolP8ElementsQa",
+          "text": "Elements"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/lazy-2u2ey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lazy",
+      "type": "topic",
+      "url": "/documentation/swift/lazysequenceprotocol/lazy-2u2ey"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/lazy-4q4ln": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lazy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12LazySequenceV",
+          "text": "LazySequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s20LazySequenceProtocolP8ElementsQa",
+          "text": "Elements"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/lazy-4q4ln",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lazy",
+      "type": "topic",
+      "url": "/documentation/swift/lazysequenceprotocol/lazy-4q4ln"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/map(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a ",
+          "type": "text"
+        },
+        {
+          "code": "LazyMapSequence",
+          "type": "codeVoice"
+        },
+        {
+          "text": " over this ",
+          "type": "text"
+        },
+        {
+          "code": "Sequence",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".  The elements of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the result are computed lazily, each time they are read, by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "calling ",
+          "type": "text"
+        },
+        {
+          "code": "transform",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function on a base element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "map"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s15LazyMapSequenceV",
+          "text": "LazyMapSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s20LazySequenceProtocolP8ElementsQa",
+          "text": "Elements"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/map(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "map(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/lazysequenceprotocol/map(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/prefix(while:)": {
+      "abstract": [
+        {
+          "text": "Returns a lazy sequence of the initial consecutive elements that satisfy",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "predicate",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prefix"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "while"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s20LazySequenceProtocolP8ElementsQa",
+          "text": "Elements"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s23LazyPrefixWhileSequenceV",
+          "text": "LazyPrefixWhileSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s20LazySequenceProtocolP8ElementsQa",
+          "text": "Elements"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/prefix(while:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prefix(while:)",
+      "type": "topic",
+      "url": "/documentation/swift/lazysequenceprotocol/prefix(while:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ReversedCollection": {
+      "abstract": [
+        {
+          "text": "A collection that presents the elements of its base collection",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in reverse order.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "BidirectionalCollection",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "LazySequenceProtocol",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReversedCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ReversedCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ReversedCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "ReversedCollection",
+      "type": "topic",
+      "url": "/documentation/swift/reversedcollection"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sequence": {
+      "abstract": [
+        {
+          "text": "A type that provides sequential, iterated access to its elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sequence"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "Sequence",
+      "type": "topic",
+      "url": "/documentation/swift/sequence"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Slice": {
+      "abstract": [
+        {
+          "text": "A view into a subsequence of elements of another collection.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Collection",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "LazySequenceProtocol",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Slice"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Slice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Slice"
+        }
+      ],
+      "role": "symbol",
+      "title": "Slice",
+      "type": "topic",
+      "url": "/documentation/swift/slice"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Sequence"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/LazyCollectionProtocol"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/LazyDropWhileSequence",
+        "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence",
+        "doc://com.apple.Swift/documentation/Swift/LazyMapSequence",
+        "doc://com.apple.Swift/documentation/Swift/LazyPrefixWhileSequence",
+        "doc://com.apple.Swift/documentation/Swift/LazySequence",
+        "doc://com.apple.Swift/documentation/Swift/ReversedCollection",
+        "doc://com.apple.Swift/documentation/Swift/Slice"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Lazy-Collections",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/LazyCollectionProtocol"
+      ],
+      "title": "Lazy Collections"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Associated-Types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/Elements-swift.associatedtype"
+      ],
+      "title": "Associated Types"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/elements-6570c",
+        "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/lazy-2u2ey",
+        "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/lazy-4q4ln"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/compactMap(_:)",
+        "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/drop(while:)",
+        "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/filter(_:)",
+        "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/flatMap(_:)-11y2e",
+        "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/flatMap(_:)-9blrr",
+        "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/joined()",
+        "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/map(_:)",
+        "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol/prefix(while:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/lazysequenceprotocol"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

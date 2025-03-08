@@ -1,0 +1,422 @@
+{
+  "abstract": [
+    {
+      "text": "Encrypt your app’s built-in model at compile time by adding a compiler flag.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coreml/documentation/CoreML"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coreml/documentation/CoreML/encrypting-a-model-in-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core ML"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Encrypting a Model in Your App"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tell Xcode to encrypt your model as it compiles your app by adding a compiler flag to your build target.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-Compiler-Flag",
+          "level": 3,
+          "text": "Add a Compiler Flag",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Xcode, navigate to your project’s target and open its Build Phases tab. Expand the Compile Sources section and select the model you want Xcode to encrypt at compile time. Open the model’s compiler flags editor by double-clicking the model’s entry.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the editor, add:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The encryption flag “",
+                      "type": "text"
+                    },
+                    {
+                      "code": "--encrypt",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "”",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A space character",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The absolute path to the model’s encryption key file you created (see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.coreml/documentation/CoreML/generating-a-model-encryption-key",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "), between quotation marks",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Press the Return key or click outside the editor to close it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3675192",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Load-the-Model",
+          "level": 3,
+          "text": "Load the Model",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At runtime, you load the encrypted model the same way you load any other built-in model by using its ",
+              "type": "text"
+            },
+            {
+              "code": "load(completionHandler:completionHandler:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type method. This method behaves similarly to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModel/loadContentsOfURL:configuration:completionHandler:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and creates an instance of the model using the convenience class that Xcode generates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coreml/documentation/CoreML": {
+      "abstract": [
+        {
+          "text": "Integrate machine learning models into your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core ML",
+      "type": "topic",
+      "url": "/documentation/coreml"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModel": {
+      "abstract": [
+        {
+          "text": "An encapsulation of all the details of your machine learning model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLModel"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLModel"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLModel",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodel"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModel/loadContentsOfURL:configuration:completionHandler:": {
+      "abstract": [
+        {
+          "text": "Creates a Core ML model instance asynchronously from a compiled model file, a custom configuration, and a completion handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadContentsOfURL:configuration:completionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModel/loadContentsOfURL:configuration:completionHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadContentsOfURL:configuration:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadContentsOfURL:configuration:completionHandler:",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodel/loadcontentsofurl:configuration:completionhandler:"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/generating-a-model-encryption-key": {
+      "abstract": [
+        {
+          "text": "Create a model encryption key to encrypt a compiled model or model archive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/generating-a-model-encryption-key",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating a Model Encryption Key",
+      "type": "topic",
+      "url": "/documentation/coreml/generating-a-model-encryption-key"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3675192": {
+      "alt": "Screenshot of an Xcode project’s Build Phases tab, showing a model’s compiler flags editor. The editor’s text reads: dash-dash-encrypt, space, and then the path to the model beginning with quotation mark dollar-sign S-R-C-root and then the path to the model file, ending in “dot M-L-model key”.",
+      "identifier": "media-3675192",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a61804fee42dfe738a6dde83652ecea8/media-3675192@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Model-encryption",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coreml/documentation/CoreML/generating-a-model-encryption-key"
+      ],
+      "title": "Model encryption"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Model-encryption",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coreml/documentation/CoreML/generating-a-model-encryption-key"
+              ],
+              "title": "Model encryption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModel/title",
+          "value": "MLModel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLModel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLModel"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coreml/encrypting-a-model-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coreml/encrypting-a-model-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

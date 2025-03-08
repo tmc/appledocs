@@ -1,0 +1,308 @@
+{
+  "abstract": [
+    {
+      "text": "Associate someone’s Managed Apple ID with their identity in Apple School Manager.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.rosterapi/documentation/RosterAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.rosterapi/documentation/RosterAPI/integrating-with-roster-api-and-sign-in-with-apple"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Roster API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Integrating with Roster API and Sign in with Apple"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SigninwithApple",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to authenticate someone, Apple checks whether that person’s Managed Apple ID is associated with an Apple School Manager (ASM) organization that’s authorized Roster API for your app. The identity token contains identifiers that you use with Roster API to fetch information about the organization and person.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about decoding an identity token that you receive from Sign in with Apple, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The decoded identity token is a JSON object with the fields shown in the example below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  “iss”: “https://appleid.apple.com”,",
+            "  “aud”: “com.example.testapp”,",
+            "  “exp”: 1676417226,",
+            "  “iat”: 1676330826,",
+            "  “sub”: “000264.UDRoeTAxVUppaHdNQU5HYWN6MEU5VDRUWFVQU1BV.RUtP”,",
+            "  “c_hash”: “ZIglL3bJ-8LuXX9xiAWnXQ”,",
+            "  “email”: “teacher@example.com,",
+            "  “email_verified”: “false”,",
+            "  “org_id”: “8e257987-f221-4171-887d-efead972993b”,",
+            "  “auth_time”: 1676330826,",
+            "  “nonce_supported”: true",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Compare-the-organization-identifiers",
+          "level": 3,
+          "text": "Compare the organization identifiers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If somebody authenticates with Sign in with Apple using a Managed Apple ID, the decoded identity token includes an ",
+              "type": "text"
+            },
+            {
+              "code": "org_id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " claim that identifies their organization. Compare the value in token’s ",
+              "type": "text"
+            },
+            {
+              "code": "org_id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " you receive from a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.rosterapi/documentation/RosterAPI/returns-organization-infrmation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " request. If the two identifiers are equal, then the person who authenticated is a user in an organization that’s authorized Roster API for your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Fetch-the-users-record",
+          "level": 3,
+          "text": "Fetch the user’s record",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the Managed Apple ID is associated with an organization that authorized Roster API for your app, the Sign in with Apple user identifier is the same as their user identifier in Roster API. Get the user identifier from the ",
+              "type": "text"
+            },
+            {
+              "code": "sub",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value in the decoded identity token, and pass it as the ",
+              "type": "text"
+            },
+            {
+              "code": "userId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.rosterapi/documentation/RosterAPI/returns-a-specific-user-in-an-Apple-School-Manager-organization",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/SigninwithApple": {
+      "abstract": [
+        {
+          "text": "Provide users the ability to sign in to your apps and websites using their Apple ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SigninwithApple",
+      "kind": "article",
+      "role": "collection",
+      "title": "Sign in with Apple",
+      "type": "topic",
+      "url": "/documentation/SigninwithApple"
+    },
+    "doc://com.apple.documentation/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple": {
+      "abstract": [
+        {
+          "text": "Securely authenticate users and create accounts for them in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple",
+      "kind": "article",
+      "role": "article",
+      "title": "Authenticating users with Sign in with Apple",
+      "type": "topic",
+      "url": "/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.rosterapi/documentation/RosterAPI": {
+      "abstract": [
+        {
+          "text": "Read information about people and classes from an Apple School Manager organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.rosterapi/documentation/RosterAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Roster API",
+      "type": "topic",
+      "url": "/documentation/rosterapi"
+    },
+    "doc://com.apple.rosterapi/documentation/RosterAPI/returns-a-specific-user-in-an-Apple-School-Manager-organization": {
+      "abstract": [
+        {
+          "text": "Read a user in an Apple School Manager organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.rosterapi/documentation/RosterAPI/returns-a-specific-user-in-an-Apple-School-Manager-organization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "returns a specific user in an Apple School Manager organization"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read a user",
+      "type": "topic",
+      "url": "/documentation/rosterapi/returns-a-specific-user-in-an-apple-school-manager-organization"
+    },
+    "doc://com.apple.rosterapi/documentation/RosterAPI/returns-organization-infrmation": {
+      "abstract": [
+        {
+          "text": "Returns information about the Apple School Manager organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.rosterapi/documentation/RosterAPI/returns-organization-infrmation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "returns organization infrmation"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read the organization",
+      "type": "topic",
+      "url": "/documentation/rosterapi/returns-organization-infrmation"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/rosterapi/integrating-with-roster-api-and-sign-in-with-apple"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

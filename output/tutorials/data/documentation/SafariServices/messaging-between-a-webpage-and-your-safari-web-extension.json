@@ -1,0 +1,571 @@
+{
+  "abstract": [
+    {
+      "text": "Configure your extension to enable messaging from webpages, and then update your extension to handle messages.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safariservices/documentation/SafariServices",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safariservices/documentation/SafariServices/messaging-between-a-webpage-and-your-safari-web-extension"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Messaging between a webpage and your Safari web extension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With messaging, you can allow a webpage to control features in your extension based on events or data, or you can allow a webpage to request and use data from your extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, configure your web extension to receive messages from a list of webpages that you specify. Then, add functionality to handle messages that a webpage sends to your extension, and respond to that webpage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-messaging-from-webpages-in-your-manifest",
+          "level": 3,
+          "text": "Enable messaging from webpages in your manifest",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable messaging from webpages, add ",
+              "type": "text"
+            },
+            {
+              "code": "externally_connectable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to your extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "manifest.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. Include a list of webpages that you want to send messages to your extension in the ",
+              "type": "text"
+            },
+            {
+              "code": "matches",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{ ",
+            "    \"externally_connectable\": {",
+            "        \"matches\": [ \"*://*.apple.com/*\" ]",
+            "    }",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t provide the ",
+              "type": "text"
+            },
+            {
+              "code": "matches",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute or you provide an empty list, no webpages can send messages to your extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Send-messages-from-a-webpage-to-your-extension",
+          "level": 3,
+          "text": "Send messages from a webpage to your extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Send a message from a webpage to your extension using ",
+              "type": "text"
+            },
+            {
+              "code": "browser.runtime.sendMessage",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Provide your extension’s identifier, the message data, and a closure to handle the response from your extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "browser.runtime.sendMessage(\"com.example.connectable-ext.Extension (team_identifier)\", {greeting: \"Hello!\"}, function(response) {",
+            "    console.log(\"Received response from the background page:\");",
+            "    console.log(response.farewell);",
+            "});"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your extension’s identifier is a string that consists of the bundle identifier for your extension, and your team identifier in parentheses. Find your team identifier in your ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/programs/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the Membership tab under Account Settings. Note that extension identifiers can be different across browsers. For more information about finding the right extension identifier for Safari, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2022/10099/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your extension’s background page, listen for incoming messages webpages and send responses.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "browser.runtime.onMessageExternal.addListener(function(message, sender, sendResponse) {",
+            "    console.log(\"Received message from the sender:\");",
+            "    console.log(message.greeting);",
+            "    sendResponse({farewell: \"Goodbye from the background page!\"});",
+            "});"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-up-a-port-for-messages-between-a-webpage-and-your-extension",
+          "level": 3,
+          "text": "Set up a port for messages between a webpage and your extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your extension needs to handle more continuous data from a webpage, establish a port connection between the webpage and your extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let port = browser.runtime.connect(\"extensionID\");"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your extension’s background page, listen for incoming port connection requests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "browser.runtime.onConnectExternal.addListener(function(port) {",
+            "    console.log(\"Connection request received!\");",
+            "});"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, use ",
+              "type": "text"
+            },
+            {
+              "code": "port.postMessage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to send a message through the port, and ",
+              "type": "text"
+            },
+            {
+              "code": "port.onMessage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to receive a message from the port.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices": {
+      "abstract": [
+        {
+          "text": "Enable web views and services in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Services",
+      "type": "topic",
+      "url": "/documentation/safariservices"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionMessageKey": {
+      "abstract": [
+        {
+          "text": "A string the system uses as a key in a user info dictionary to identify a message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFExtensionMessageKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionMessageKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFExtensionMessageKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFExtensionMessageKey",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfextensionmessagekey"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionProfileKey": {
+      "abstract": [
+        {
+          "text": "A string the system uses as a key in a user info dictionary to identify a profile identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFExtensionProfileKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionProfileKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFExtensionProfileKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFExtensionProfileKey",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfextensionprofilekey"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/messaging-a-web-extension-s-native-app": {
+      "abstract": [
+        {
+          "text": "Communicate between your Safari web extension and its containing app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/messaging-a-web-extension-s-native-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Messaging a Web Extension’s Native App",
+      "type": "topic",
+      "url": "/documentation/safariservices/messaging-a-web-extension-s-native-app"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/messaging-between-the-app-and-javascript-in-a-safari-web-extension": {
+      "abstract": [
+        {
+          "text": "Communicate about events and share data between the containing app and JavaScript by using native messaging and app groups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/messaging-between-the-app-and-javascript-in-a-safari-web-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Messaging between the app and JavaScript in a Safari web extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/messaging-between-the-app-and-javascript-in-a-safari-web-extension"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions": {
+      "abstract": [
+        {
+          "text": "Create web extensions that work in Safari and other browsers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari web extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-web-extensions"
+    },
+    "https://developer.apple.com/programs/": {
+      "identifier": "https://developer.apple.com/programs/",
+      "title": "developer account",
+      "titleInlineContent": [
+        {
+          "text": "developer account",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/programs/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2022/10099/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2022/10099/",
+      "title": "What’s new in Safari web extensions",
+      "titleInlineContent": [
+        {
+          "text": "What’s new in Safari web extensions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2022/10099/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Messaging",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/messaging-between-the-app-and-javascript-in-a-safari-web-extension",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionMessageKey",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionProfileKey",
+        "doc://com.apple.safariservices/documentation/SafariServices/messaging-a-web-extension-s-native-app"
+      ],
+      "title": "Messaging"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Messaging",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/messaging-between-the-app-and-javascript-in-a-safari-web-extension",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionMessageKey",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionProfileKey",
+                "doc://com.apple.safariservices/documentation/SafariServices/messaging-a-web-extension-s-native-app"
+              ],
+              "title": "Messaging"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFExtensionProfileKey/title",
+          "value": "SFExtensionProfileKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFExtensionProfileKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFExtensionProfileKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFExtensionMessageKey/title",
+          "value": "SFExtensionMessageKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFExtensionMessageKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFExtensionMessageKey"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safariservices/messaging-between-a-webpage-and-your-safari-web-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safariservices/messaging-between-a-webpage-and-your-safari-web-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

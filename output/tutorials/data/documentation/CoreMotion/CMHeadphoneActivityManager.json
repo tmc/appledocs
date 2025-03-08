@@ -1,0 +1,1792 @@
+{
+  "abstract": [
+    {
+      "text": "An object that starts and manages headphone activity services.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremotion/documentation/CoreMotion"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CMHeadphoneActivityManager",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CMHeadphoneActivityManager"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Motion"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CMHeadphoneActivityManager"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CMHeadphoneActivityManager"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CMHeadphoneActivityManager"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This class delivers headphone activity updates to your app. Use an instance of the manager to determine if the device supports headphone activity updates, and to start and stop updates. Before using this class, check ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/isActivityAvailable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/isStatusAvailable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to make sure the features are available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This class provides similar information to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionActivityManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", except the activity information comes from headphone motion, rather than from device motion.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In iOS and macOS, include the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMotionUsageDescription",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " key in your app’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file. If this key is absent, trying to start headphone activity updates terminates your app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremotion/documentation/CoreMotion": {
+      "abstract": [
+        {
+          "text": "Process accelerometer, gyroscope, pedometer, and environment-related events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Motion",
+      "type": "topic",
+      "url": "/documentation/coremotion"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager": {
+      "abstract": [
+        {
+          "text": "An object that starts and manages headphone activity services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMHeadphoneActivityManager"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMHeadphoneActivityManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMHeadphoneActivityManager",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmheadphoneactivitymanager"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/ActivityHandler": {
+      "abstract": [
+        {
+          "text": "The type for a handler to be invoked when headphone motion activity data is available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActivityHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/ActivityHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActivityHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMHeadphoneActivityManager.ActivityHandler",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmheadphoneactivitymanager/activityhandler"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/Status": {
+      "abstract": [
+        {
+          "text": "Headphone connection status updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Status"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/Status",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Status"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMHeadphoneActivityManager.Status",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmheadphoneactivitymanager/status"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/StatusHandler": {
+      "abstract": [
+        {
+          "text": "The type for a handler to be invoked with status updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StatusHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/StatusHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StatusHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMHeadphoneActivityManager.StatusHandler",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmheadphoneactivitymanager/statushandler"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/authorizationStatus()": {
+      "abstract": [
+        {
+          "text": "Returns the authorization status for monitoring headphone activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CMAuthorizationStatus",
+          "text": "CMAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/authorizationStatus()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationStatus()",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmheadphoneactivitymanager/authorizationstatus()"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/isActivityActive": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether headphone motion activity is active.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isActivityActive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/isActivityActive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activityActive"
+        }
+      ],
+      "role": "symbol",
+      "title": "isActivityActive",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmheadphoneactivitymanager/isactivityactive"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/isActivityAvailable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the current device supports headphone activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isActivityAvailable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/isActivityAvailable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activityAvailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "isActivityAvailable",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmheadphoneactivitymanager/isactivityavailable"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/isStatusActive": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether headphone status is active.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isStatusActive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/isStatusActive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "statusActive"
+        }
+      ],
+      "role": "symbol",
+      "title": "isStatusActive",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmheadphoneactivitymanager/isstatusactive"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/isStatusAvailable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the current device supports headphone status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isStatusAvailable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/isStatusAvailable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "statusAvailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "isStatusAvailable",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmheadphoneactivitymanager/isstatusavailable"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/startActivityUpdates(to:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Starts headphone activity updates, providing data to the given handler through the given queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startActivityUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOperationQueue",
+          "text": "OperationQueue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CMHeadphoneActivityManager",
+          "text": "CMHeadphoneActivityManager"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMHeadphoneActivityHandler",
+          "text": "ActivityHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/startActivityUpdates(to:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startActivityUpdatesToQueue:withHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startActivityUpdates(to:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmheadphoneactivitymanager/startactivityupdates(to:withhandler:)"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/startStatusUpdates(to:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Starts headphone status updates, providing data to the given handler through the given queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startStatusUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOperationQueue",
+          "text": "OperationQueue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CMHeadphoneActivityManager",
+          "text": "CMHeadphoneActivityManager"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMHeadphoneActivityStatusHandler",
+          "text": "StatusHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/startStatusUpdates(to:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startStatusUpdatesToQueue:withHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startStatusUpdates(to:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmheadphoneactivitymanager/startstatusupdates(to:withhandler:)"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/stopActivityUpdates()": {
+      "abstract": [
+        {
+          "text": "Stops headphone activity updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopActivityUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/stopActivityUpdates()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopActivityUpdates"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopActivityUpdates()",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmheadphoneactivitymanager/stopactivityupdates()"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/stopStatusUpdates()": {
+      "abstract": [
+        {
+          "text": "Stops headphone status updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopStatusUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/stopStatusUpdates()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopStatusUpdates"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopStatusUpdates()",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmheadphoneactivitymanager/stopstatusupdates()"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionActivity": {
+      "abstract": [
+        {
+          "text": "The data for a single motion update event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMMotionActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMMotionActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMMotionActivity",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionactivity"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionActivityManager": {
+      "abstract": [
+        {
+          "text": "An object that manages access to the motion data stored by the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMMotionActivityManager"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionActivityManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMMotionActivityManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMMotionActivityManager",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionactivitymanager"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/getting-motion-activity-data-from-headphones": {
+      "abstract": [
+        {
+          "text": "Configure your app to listen for motion-activity changes from headphones.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/getting-motion-activity-data-from-headphones",
+      "images": [
+        {
+          "identifier": "getting-motion-activity-data-from-headphones.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Getting motion-activity data from headphones",
+      "type": "topic",
+      "url": "/documentation/coremotion/getting-motion-activity-data-from-headphones"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMotionUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the device’s motion data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMotionUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMotionUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSMotionUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "getting-motion-activity-data-from-headphones.png": {
+      "alt": "Abstract illustration of a person moving while wearing headphones.",
+      "identifier": "getting-motion-activity-data-from-headphones.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fdf8e8887a3a3cb3c3375e813138c3db/getting-motion-activity-data-from-headphones.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c34157444c1926730c849d10cd7665b3/getting-motion-activity-data-from-headphones~dark.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Activity",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionActivityManager",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionActivity",
+        "doc://com.apple.coremotion/documentation/CoreMotion/getting-motion-activity-data-from-headphones"
+      ],
+      "title": "Activity"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Checking-Availability",
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/isActivityAvailable",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/isActivityActive",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/isStatusAvailable",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/isStatusActive",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/authorizationStatus()"
+      ],
+      "title": "Checking Availability"
+    },
+    {
+      "anchor": "Starting-and-Stopping-Updates",
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/startActivityUpdates(to:withHandler:)",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/stopActivityUpdates()",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/startStatusUpdates(to:withHandler:)",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/stopStatusUpdates()"
+      ],
+      "title": "Starting and Stopping Updates"
+    },
+    {
+      "anchor": "Supporting-Types",
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/Status",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/ActivityHandler",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/StatusHandler"
+      ],
+      "title": "Supporting Types"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "18.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "18.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "18.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CMHeadphoneActivityManager"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMHeadphoneActivityManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMHeadphoneActivityManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.coremotion/documentation/CoreMotion"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Checking-Availability",
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/isActivityAvailable",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/isActivityActive",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/isStatusAvailable",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/isStatusActive",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/authorizationStatus()"
+              ],
+              "title": "Checking Availability"
+            },
+            {
+              "anchor": "Starting-and-Stopping-Updates",
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/startActivityUpdates(to:withHandler:)",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/stopActivityUpdates()",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/startStatusUpdates(to:withHandler:)",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/stopStatusUpdates()"
+              ],
+              "title": "Starting and Stopping Updates"
+            },
+            {
+              "anchor": "Supporting-Types",
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/Status",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/ActivityHandler",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager/StatusHandler"
+              ],
+              "title": "Supporting Types"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Activity",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionActivityManager",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionActivity"
+              ],
+              "title": "Activity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CMHeadphoneActivityManager"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1startStatusUpdates(to:withHandler:)/title",
+          "value": "startStatusUpdatesToQueue:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1startStatusUpdates(to:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startStatusUpdatesToQueue:withHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1isActivityActive/title",
+          "value": "activityActive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1isActivityActive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activityActive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1isStatusActive/title",
+          "value": "statusActive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1isStatusActive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "statusActive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1Status/title",
+          "value": "CMHeadphoneActivityStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1Status/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMHeadphoneActivityStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1Status/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMHeadphoneActivityStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1stopStatusUpdates()/title",
+          "value": "stopStatusUpdates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1stopStatusUpdates()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopStatusUpdates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1ActivityHandler/title",
+          "value": "CMHeadphoneActivityHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1ActivityHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMHeadphoneActivityHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1ActivityHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMHeadphoneActivityHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1isStatusAvailable/title",
+          "value": "statusAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1isStatusAvailable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "statusAvailable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1startActivityUpdates(to:withHandler:)/title",
+          "value": "startActivityUpdatesToQueue:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1startActivityUpdates(to:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startActivityUpdatesToQueue:withHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1StatusHandler/title",
+          "value": "CMHeadphoneActivityStatusHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1StatusHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMHeadphoneActivityStatusHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1StatusHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMHeadphoneActivityStatusHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionActivity/title",
+          "value": "CMMotionActivity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionActivity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMotionActivity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionActivity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMotionActivity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1authorizationStatus()/title",
+          "value": "authorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1authorizationStatus()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "authorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1stopActivityUpdates()/title",
+          "value": "stopActivityUpdates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1stopActivityUpdates()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopActivityUpdates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager/title",
+          "value": "CMHeadphoneActivityManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMHeadphoneActivityManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMHeadphoneActivityManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1isActivityAvailable/title",
+          "value": "activityAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager~1isActivityAvailable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activityAvailable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionActivityManager/title",
+          "value": "CMMotionActivityManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionActivityManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMotionActivityManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionActivityManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMotionActivityManager"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremotion/cmheadphoneactivitymanager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremotion/cmheadphoneactivitymanager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

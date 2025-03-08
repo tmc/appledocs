@@ -1,0 +1,1745 @@
+{
+  "abstract": [
+    {
+      "text": "Create an extended runtime session that continues running your app after the user stops interacting with it.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchkit/documentation/WatchKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchkit/documentation/WatchKit/using-extended-runtime-sessions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WatchKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using extended runtime sessions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app running on Apple Watch normally transitions to the background and becomes suspended when the user lowers their wrist. However, your app can use both background sessions and extended runtime sessions to continue running after the user stops interacting with it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With background sessions, your app continues to run in the background, but the sessions can only monitor workouts, track the user’s location, or play audio files. Extended runtime sessions, on the other hand, expand on this ability and give your app several different session types to choose from. Not all of these sessions run in the background. Some keep your app active and running as the frontmost app instead. Extended runtime sessions support the following session types:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Guide users through relatively brief activities. These activities focus on the user’s emotional well-being or health, such as brushing their teeth.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Self care",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Help users start and end silent meditation sessions. For walking meditation, consider using ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/HealthKit/HKWorkoutSession",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " instead. Similarly, if your app plays audio during the entire meditation session, there’s no reason to use a ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ". The background audio mode provides additional runtime as long as the audio plays. For more information, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.watchkit/documentation/WatchKit/playing-background-audio",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Mindfulness",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Guide users through stretching, strengthening, or range-of-motion exercises. If the physical therapy activity is strenuous—for example, riding an exercise bike—consider using an ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/HealthKit/HKWorkoutSession",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " instead.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Physical therapy",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Schedule a window of time to monitor the user’s heart rate and motion. The app uses this information to determine the optimal time to play an alarm, usually to wake the user from sleep.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Smart alarm",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select a session type based on the app’s intended use—not based on the features that the session provides. Extended runtime sessions let the app continue to communicate with a Bluetooth device, process data, or play sounds or haptics, even after the watch’s screen turns off.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To maintain high performance on Apple Watch, limit the amount of work performed during an extended runtime session. If your app sustains high CPU usage over a period of time, the system may cancel the session (see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSessionErrorCode/exceededResourceLimits",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "). Use Xcode’s CPU report tool or the time profiler in Instruments to test and minimize your app’s CPU usage.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Set-Up-the-Session",
+          "level": 3,
+          "text": "Set Up the Session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before starting an extended runtime session, enable your WatchKit extension’s Background Modes capability and select your app’s session type (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "/documentation/watchkit/using_extended_runtime_sessions#3189143",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). Each app can only support one type of extended runtime session, although it’s possible to support other background modes in combination with extended runtime.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3189143",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A physical therapy app, for example, might use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for range-of-motion exercises and an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/HealthKit/HKWorkoutSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for vigorous cross-training. Using separate sessions keeps the range-of-motion exercise from impacting the user’s Move and Exercise rings, but the user still gets full credit for the cross-training.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set up the session, instantiate a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, and assign your delegate. The system automatically creates a session based on the session type specified in your Background Modes capabilities.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create the session object.",
+            "session = WKExtendedRuntimeSession()",
+            "",
+            "// Assign the delegate.",
+            "session.delegate = self"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSessionDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods to track your session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// MARK:- Extended Runtime Session Delegate Methods",
+            "func extendedRuntimeSessionDidStart(_ extendedRuntimeSession: WKExtendedRuntimeSession) {",
+            "    // Track when your session starts.",
+            "}",
+            "",
+            "func extendedRuntimeSessionWillExpire(_ extendedRuntimeSession: WKExtendedRuntimeSession) {",
+            "    // Finish and clean up any tasks before the session ends. ",
+            "}",
+            "    ",
+            "func extendedRuntimeSession(_ extendedRuntimeSession: WKExtendedRuntimeSession, didInvalidateWith reason: WKExtendedRuntimeSessionInvalidationReason, error: Error?) {",
+            "    // Track when your session ends.",
+            "    // Also handle errors here.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, start your session. For most session types, you start the session immediately by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession/start()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For alarm sessions, you can schedule the session to start any time within the next 36 hours by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession/start(at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "session.start()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must always start or schedule the extended runtime session when your app state is in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationState/active",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The session automatically stops when its allotted time expires. You can track the time remaining using its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession/expirationDate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. You can also stop a session by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession/invalidate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For sessions started with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession/start(at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can only call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession/invalidate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when the app is active. For all other sessions, you can call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession/invalidate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to end a session at any time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@IBAction func stopButton() {",
+            "    session.invalidate()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Understand-Session-Behaviors",
+          "level": 3,
+          "text": "Understand Session Behaviors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Extended runtime sessions gain the following features, based on the session type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Session type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Runtime",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Schedulable",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Time limit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Self care",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Frontmost",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "10 minutes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Mindfulness",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Frontmost",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1 hour",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Physical therapy",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Background",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1 hour",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Smart alarm",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Background",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "30 minutes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Frontmost",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " sessions continue to run in the foreground. The watch screen doesn’t need to remain on to keep your app alive. The session continues until the time limit expires, your app invalidates the session, or the user explicitly leaves your app (for example, by pressing the digital crown or switching to a different app).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Background",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " sessions continue to run in the background, even if the user dismisses the app or launches another app. Background sessions continue to run until the time limit expires, or your app invalidates the session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, s_chedulable_ sessions can start any time within the next 36 hours. You must schedule the session by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession/start(at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " while your app is in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationState/active",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state. The system can then suspend or terminate your app without affecting the session. The system relaunches your app as needed to handle a scheduled session, calling your extension delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:)-4qxgv",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. If you don’t set the session’s delegate in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:)-4qxgv",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, the system ends the session. Additionally, you can only schedule one session at a time; if you need to reschedule a session, invalidate the current session, and schedule a new one.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the session starts, the app continues to run in the background until the time limit expires, or your app invalidates the session. During the session, your app must trigger the alarm by calling the session’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession/notifyUser(hapticType:repeatHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. If your app isn’t active, playing the haptic displays a system alarm alert to the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you fail to play a haptic during the session, the system displays a warning and offers to disable future sessions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "/documentation/watchkit/using_extended_runtime_sessions#3189143": {
+      "identifier": "/documentation/watchkit/using_extended_runtime_sessions#3189143",
+      "title": "Figure 1",
+      "titleInlineContent": [
+        {
+          "text": "Figure 1",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "/documentation/watchkit/using_extended_runtime_sessions#3189143"
+    },
+    "doc://com.apple.documentation/documentation/HealthKit/HKWorkoutSession": {
+      "abstract": [
+        {
+          "text": "A session that tracks the user’s workout on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HealthKit/HKWorkoutSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HKWorkoutSession",
+      "type": "topic",
+      "url": "/documentation/HealthKit/HKWorkoutSession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that use features the app delegate monitors or controls, such as background tasks and extended runtime sessions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WatchKit",
+      "type": "topic",
+      "url": "/documentation/watchkit"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationState/active": {
+      "abstract": [
+        {
+          "text": "The Watch app is running in the foreground and currently receiving events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "active"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationState/active",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKApplicationStateActive"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKApplicationState.active",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkapplicationstate/active"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession": {
+      "abstract": [
+        {
+          "text": "A session that continues to run your app after the user has stopped interacting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKExtendedRuntimeSession"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKExtendedRuntimeSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKExtendedRuntimeSession",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextendedruntimesession"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession/expirationDate": {
+      "abstract": [
+        {
+          "text": "The time and date when the session expires.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "expirationDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession/expirationDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "expirationDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "expirationDate",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextendedruntimesession/expirationdate"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession/invalidate()": {
+      "abstract": [
+        {
+          "text": "Stops the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession/invalidate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "invalidate"
+        }
+      ],
+      "role": "symbol",
+      "title": "invalidate()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextendedruntimesession/invalidate()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession/notifyUser(hapticType:repeatHandler:)": {
+      "abstract": [
+        {
+          "text": "Play a repeating haptic alert.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notifyUser"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "hapticType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@WKHapticType",
+          "text": "WKHapticType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "repeatHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@WKHapticType",
+          "text": "WKHapticType"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession/notifyUser(hapticType:repeatHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "notifyUserWithHaptic:repeatHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "notifyUser(hapticType:repeatHandler:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextendedruntimesession/notifyuser(haptictype:repeathandler:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession/start()": {
+      "abstract": [
+        {
+          "text": "Starts running the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession/start()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "start"
+        }
+      ],
+      "role": "symbol",
+      "title": "start()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextendedruntimesession/start()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession/start(at:)": {
+      "abstract": [
+        {
+          "text": "Schedules a session to start running at a future date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession/start(at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startAtDate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "start(at:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextendedruntimesession/start(at:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSessionDelegate": {
+      "abstract": [
+        {
+          "text": "A set of optional methods for monitoring an extended runtime session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKExtendedRuntimeSessionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSessionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKExtendedRuntimeSessionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKExtendedRuntimeSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextendedruntimesessiondelegate"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSessionErrorCode/exceededResourceLimits": {
+      "abstract": [
+        {
+          "text": "The session exceeded its resource limits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "exceededResourceLimits"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSessionErrorCode/exceededResourceLimits",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKExtendedRuntimeSessionErrorExceededResourceLimits"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKExtendedRuntimeSessionErrorCode.exceededResourceLimits",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextendedruntimesessionerrorcode/exceededresourcelimits"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:)-4qxgv": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the system launched your app to resume an extended runtime session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKExtendedRuntimeSession",
+          "text": "WKExtendedRuntimeSession"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:)-4qxgv",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleExtendedRuntimeSession:"
+        }
+      ],
+      "role": "symbol",
+      "title": "handle(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/handle(_:)-4qxgv"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/background-execution": {
+      "abstract": [
+        {
+          "text": "Manage background sessions and tasks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/background-execution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Background execution",
+      "type": "topic",
+      "url": "/documentation/watchkit/background-execution"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/interacting-with-bluetooth-peripherals-during-background-app-refresh": {
+      "abstract": [
+        {
+          "text": "Keep your complications up-to-date by reading values from a Bluetooth peripheral while your app is running in the background.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/interacting-with-bluetooth-peripherals-during-background-app-refresh",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Interacting with Bluetooth peripherals during background app refresh",
+      "type": "topic",
+      "url": "/documentation/watchkit/interacting-with-bluetooth-peripherals-during-background-app-refresh"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/life-cycles": {
+      "abstract": [
+        {
+          "text": "Receive and respond to life-cycle notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/life-cycles",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Life cycles",
+      "type": "topic",
+      "url": "/documentation/watchkit/life-cycles"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/playing-background-audio": {
+      "abstract": [
+        {
+          "text": "Enable background audio in your app to provide a seamless playback experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/playing-background-audio",
+      "kind": "article",
+      "role": "article",
+      "title": "Playing Background Audio",
+      "type": "topic",
+      "url": "/documentation/watchkit/playing-background-audio"
+    },
+    "media-3189143": {
+      "alt": "A screenshot showing the Session Type setting for the Background Modes capability.",
+      "identifier": "media-3189143",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/451eab875e5b686824dd5c24b4cfe380/media-3189143@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e7b7af5415fe1620bb387c01cfddc4a5/media-3189143~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Runtime-management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/background-execution",
+        "doc://com.apple.watchkit/documentation/WatchKit/life-cycles",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession",
+        "doc://com.apple.watchkit/documentation/WatchKit/interacting-with-bluetooth-peripherals-during-background-app-refresh"
+      ],
+      "title": "Runtime management"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Runtime-management",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/background-execution",
+                "doc://com.apple.watchkit/documentation/WatchKit/life-cycles",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession",
+                "doc://com.apple.watchkit/documentation/WatchKit/interacting-with-bluetooth-peripherals-during-background-app-refresh"
+              ],
+              "title": "Runtime management"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtendedRuntimeSession/title",
+          "value": "WKExtendedRuntimeSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtendedRuntimeSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKExtendedRuntimeSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtendedRuntimeSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKExtendedRuntimeSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handle(_:)-4qxgv/title",
+          "value": "handleExtendedRuntimeSession:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handle(_:)-4qxgv/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleExtendedRuntimeSession:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtendedRuntimeSessionDelegate/title",
+          "value": "WKExtendedRuntimeSessionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtendedRuntimeSessionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKExtendedRuntimeSessionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtendedRuntimeSessionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKExtendedRuntimeSessionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtendedRuntimeSession~1invalidate()/title",
+          "value": "invalidate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtendedRuntimeSession~1invalidate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "invalidate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtendedRuntimeSession~1notifyUser(hapticType:repeatHandler:)/title",
+          "value": "notifyUserWithHaptic:repeatHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtendedRuntimeSession~1notifyUser(hapticType:repeatHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "notifyUserWithHaptic:repeatHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplicationState~1active/title",
+          "value": "WKApplicationStateActive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplicationState~1active/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKApplicationStateActive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtendedRuntimeSession~1start()/title",
+          "value": "start"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtendedRuntimeSession~1start()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "start"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1HealthKit~1HKWorkoutSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtendedRuntimeSessionErrorCode~1exceededResourceLimits/title",
+          "value": "WKExtendedRuntimeSessionErrorExceededResourceLimits"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtendedRuntimeSessionErrorCode~1exceededResourceLimits/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKExtendedRuntimeSessionErrorExceededResourceLimits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtendedRuntimeSession~1expirationDate/title",
+          "value": "expirationDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtendedRuntimeSession~1expirationDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "expirationDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtendedRuntimeSession~1start(at:)/title",
+          "value": "startAtDate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtendedRuntimeSession~1start(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startAtDate:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/watchkit/using-extended-runtime-sessions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/watchkit/using-extended-runtime-sessions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

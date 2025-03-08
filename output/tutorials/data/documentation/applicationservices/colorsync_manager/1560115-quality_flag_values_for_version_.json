@@ -1,0 +1,267 @@
+{
+  "abstract": [
+    {
+      "text": "Define the possible values for the quality bits in the ",
+      "type": "text"
+    },
+    {
+      "code": "flags",
+      "type": "codeVoice"
+    },
+    {
+      "text": " field of the ",
+      "type": "text"
+    },
+    {
+      "code": "CM2Header",
+      "type": "codeVoice"
+    },
+    {
+      "text": " structure. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1560115-quality_flag_values_for_version_"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1560115,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Quality Flag Values for Version 2.x Profiles"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine the value of the quality flag, you mask the ",
+              "type": "text"
+            },
+            {
+              "code": "flags",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field of the profile header with the ",
+              "type": "text"
+            },
+            {
+              "code": "cmQualityMask",
+              "type": "codeVoice"
+            },
+            {
+              "text": " mask, right shift 16 bits, then compare the result to the enumerated constants shown here. For more information on the quality flag, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1560699-flag_mask_definitions_for_versio",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you start a color-matching session, ColorSync sends all involved profiles to the color management module (CMM). The CMM extracts the information it needs from the profiles and stores an internal representation in private memory. ColorSync’s default CMM samples the input space and stores the results in a lookup table, a common technique that speeds up conversion for runtime applications. The size of the table is based on the quality flag setting in the source profile header. The setting of the quality flag can affect the memory requirements, accuracy, and speed of the color-matching session. In general, the higher the quality setting, the larger the lookup table, the more accurate the matching, and the slower the matching process. Note however, that the default CMM currently produces the same results for both normal and draft mode. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmbestmode": {
+      "abstract": [
+        {
+          "text": "Best mode indicates that the CMM should maximize resource usage to ensure the highest possible quality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmBestMode"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmbestmode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmBestMode",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmbestmode"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmdraftmode": {
+      "abstract": [
+        {
+          "text": "Draft mode indicates that the CMM should sacrifice quality, if necessary, to minimize resource requirements. Note that the default CMM currently produces the same results for both normal and draft mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmDraftMode"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmdraftmode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmDraftMode",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmdraftmode"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmnormalmode": {
+      "abstract": [
+        {
+          "text": "This is the default setting. Normal mode indicates that the CMM should use its default method to compromise between performance and resource requirements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmNormalMode"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmnormalmode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmNormalMode",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmnormalmode"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ColorSync Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1560699-flag_mask_definitions_for_versio": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1560699-flag_mask_definitions_for_versio",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Flag Mask Definitions for Version 2.x Profiles",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1560699-flag_mask_definitions_for_versio"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1600468",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/cmnormalmode",
+        "doc://com.apple.documentation/documentation/applicationservices/cmdraftmode",
+        "doc://com.apple.documentation/documentation/applicationservices/cmbestmode"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/1560115-x_profiles"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/applicationservices/colorsync_manager/1560115-quality_flag_values_for_version_"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2508 @@
+{
+  "abstract": [
+    {
+      "text": "Provide subscription service for customers who redeem offer codes through the App Store or within your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/AppStore"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/supporting-subscription-offer-codes-in-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Supporting subscription offer codes in your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To help you acquire, retain, and win back subscribers, you can use offer codes. Offer codes are alphanumeric codes that provide subscriptions at a discount or for free for a specific duration. Configure the offers and create offer codes in App Store Connect, and distribute them to your customers. Customers can redeem offer codes in the App Store, using offer code redemption URLs, or in your app if it implements one of the following APIs:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/offerCodeRedemption(isPresented:onCompletion:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " on iOS, iPadOS, macOS, and visionOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppStore/presentOfferCodeRedeemSheet(in:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " on iOS, iPadOS, and visionOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppStore/presentOfferCodeRedeemSheet(from:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " on macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When customers redeem a valid offer code, your app receives a successful transaction. If customers redeem offer codes in the App Store and don’t have your app installed, they’re prompted to download it as part of the redemption flow. Successfully redeeming an offer code entitles the customer to the auto-renewable subscription, the same as a purchase does. Your app needs to provide service for the product.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-up-offer-codes-in-App-Store-Connect",
+          "level": 3,
+          "text": "Set up offer codes in App Store Connect",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure offers and manage your offer codes in App Store Connect. You can have up to 10 active offers per subscription, and create codes for a maximum of 1,000,000 redemptions per app, per quarter. There are two types of offer codes: one-time use codes, and custom codes. The offer code redemption APIs support both.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To distribute offer codes to your customers, download them from App Store Connect. For more information on creating and distributing offer codes, and to learn which type of offer code may work for your campaign, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/manage-subscriptions/set-up-offer-codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Redeem-offer-codes-in-your-app",
+          "level": 3,
+          "text": "Redeem offer codes in your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display the system sheet for customers to redeem offer codes within your app, call one of the redemption APIs, depending on your app’s UI implementation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/offerCodeRedemption(isPresented:onCompletion:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " if your app uses SwiftUI.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppStore/presentOfferCodeRedeemSheet(in:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " if your app uses UIKit.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppStore/presentOfferCodeRedeemSheet(from:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " if your app uses AppKit for macOS.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The redemption sheet takes care of the redemption flow, including alerting users about invalid entries, as appropriate. Invalid entries may include, for example, expired offer codes, invalid codes, or codes that would result in a subscription downgrade.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When customers redeem an offer code, StoreKit emits the resulting transaction in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/updates",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Set up a transaction listener as soon as your app launches to receive new transactions while the app is running.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Including the redemption sheet in your app is recommended, but optional. For more guidance on supporting offer code redemption within your app, see Human Interface Guidelines > ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/in-app-purchase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Support-offer-codes-redeemed-outside-of-your-app",
+          "level": 3,
+          "text": "Support offer codes redeemed outside of your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Customers may redeem offer codes outside your app, by entering the offer code in the App Store, or by using a redemption URL. To handle offer codes — and other transactions that can occur outside of your app — your app needs to use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/updates",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to receive new transactions while the app is running. Create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Task",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to iterate through the transactions from the listener as soon as your app launches. For more information and sample code, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/updates",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app launches, it needs to check ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/all",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/currentEntitlements",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to get any transactions that may have occurred while the app wasn’t running. Process the transactions to ensure your app provides service for all products it’s entitled to.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-subscriptions-purchased-with-offer-codes",
+          "level": 3,
+          "text": "Identify subscriptions purchased with offer codes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When customers successfully redeem subscription offer codes, the transaction or subscription renewal information contain fields that identify the offer and its offer type. Find the offer code details in the transaction information, in your app and on your server, as follows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your app, use the following StoreKit APIs to locate the offer code information:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "See the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " properties ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/offerID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/offerType-swift.property",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". An offer type value of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/OfferType-swift.struct/code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " indicates the customer redeemed an offer code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Some offer code redemptions may apply to an auto-renewable subscription’s next renewal period, for example, if the customer is already subscribed. In this case, see the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " properties ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo/offerID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/offerType-swift.property",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". An offer type value of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/OfferType-swift.struct/code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " indicates the customer redeemed an offer code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On your server, use the following server-side APIs to locate offer code information:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", when you call endpoints such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/GET-v2-history-_transactionId_",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/GET-v1-subscriptions-_transactionId_",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and others, the response contains the signed transaction, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/JWSTransaction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". In its decoded payload, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/JWSTransactionDecodedPayload",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", look for the fields ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/offerIdentifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/offerType",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". An ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/offerType",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "3",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " indicates the customer redeemed an offer code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " sends a notification with an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "OFFER_REDEEMED",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " when someone redeems an offer code for an active subscription. It sends a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SUBSCRIBED",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " notification type if someone redeems the offer code as an initial purchase or to resubscribe. The decoded payloads ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/JWSTransactionDecodedPayload",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/JWSRenewalInfoDecodedPayload",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " contain the fields ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/offerIdentifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/offerType",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". An ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/offerType",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "3",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " indicates the customer redeemed an offer code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Provide-subscription-service-to-new-and-existing-customers",
+          "level": 3,
+          "text": "Provide subscription service to new and existing customers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you acquire new customers with an offer code, they already have an auto-renewable subscription when they open your app for the first time. In addition to providing subscription service, you may need to update your backend system’s records. Your app follows these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the app launches, check ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/all",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/currentEntitlements",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " on ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to get all transactions or current entitlements, respectively. StoreKit automatically validates the transactions, and returns verified results in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/VerificationResult/verified(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". To perform your own validation, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/VerificationResult/jwsRepresentation-21vgo",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To determine if a subscription results from an offer code redemption, check the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/offerID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/offerType-swift.property",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " properties on the subscription’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide the subscription service based on the offer and call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/finish()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " on ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Guide new customers through your new-user experience, as needed. Update your backend system’s records.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an existing customer redeems an offer code within your app, the transaction comes in through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/updates",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sequence on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Process the transaction as usual, providing service based on the offer, and call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/finish()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Supporting-systems-earlier-than-iOS-16-and-iPadOS-16",
+          "level": 3,
+          "text": "Supporting systems earlier than iOS 16 and iPadOS 16",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app runs on iOS 16 or earlier, and iPadOS 16 or earlier, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/presentCodeRedemptionSheet()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to display the offer code redemption UI. Otherwise, use the APIs referred to in this article. For more information about supporting earlier systems, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/implementing-offer-codes-in-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppStoreServerAPI": {
+      "abstract": [
+        {
+          "text": "Manage your customers’ App Store transactions from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server API",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerAPI"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerAPI/GET-v1-subscriptions-_transactionId_": {
+      "abstract": [
+        {
+          "text": "Get the statuses for all of a customer’s auto-renewable subscriptions in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/GET-v1-subscriptions-_transactionId_",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Get All Subscription Statuses",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerAPI/GET-v1-subscriptions-_transactionId_"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerAPI/GET-v2-history-_transactionId_": {
+      "abstract": [
+        {
+          "text": "Get a customer’s in-app purchase transaction history for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/GET-v2-history-_transactionId_",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Get Transaction History",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerAPI/GET-v2-history-_transactionId_"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerAPI/JWSTransaction": {
+      "abstract": [
+        {
+          "text": "Transaction information signed by the App Store, in JSON Web Signature (JWS) Compact Serialization format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "string "
+        },
+        {
+          "kind": "identifier",
+          "text": "JWSTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/JWSTransaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JWSTransaction",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerAPI/JWSTransaction"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerAPI/JWSTransactionDecodedPayload": {
+      "abstract": [
+        {
+          "text": "A decoded payload that contains transaction information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "JWSTransactionDecodedPayload"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/JWSTransactionDecodedPayload",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JWSTransactionDecodedPayload",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerAPI/JWSTransactionDecodedPayload"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerAPI/offerIdentifier": {
+      "abstract": [
+        {
+          "text": "The string identifier of a subscription offer that you create in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "string "
+        },
+        {
+          "kind": "identifier",
+          "text": "offerIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/offerIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offerIdentifier",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerAPI/offerIdentifier"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerAPI/offerType": {
+      "abstract": [
+        {
+          "text": "The type of subscription offer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "int32 "
+        },
+        {
+          "kind": "identifier",
+          "text": "offerType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/offerType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offerType",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerAPI/offerType"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2": {
+      "abstract": [
+        {
+          "text": "Specify your secure server’s URL in App Store Connect to receive version 2 notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App Store Server Notifications V2",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/JWSRenewalInfoDecodedPayload": {
+      "abstract": [
+        {
+          "text": "A decoded payload containing subscription renewal information for an auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "JWSRenewalInfoDecodedPayload"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/JWSRenewalInfoDecodedPayload",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JWSRenewalInfoDecodedPayload",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/JWSRenewalInfoDecodedPayload"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/JWSTransactionDecodedPayload": {
+      "abstract": [
+        {
+          "text": "A decoded payload that contains transaction information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "JWSTransactionDecodedPayload"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/JWSTransactionDecodedPayload",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JWSTransactionDecodedPayload",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/JWSTransactionDecodedPayload"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType": {
+      "abstract": [
+        {
+          "text": "The type that describes the in-app purchase or external purchase event for which the App Store sends the version 2 notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "string "
+        },
+        {
+          "kind": "identifier",
+          "text": "notificationType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "notificationType",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/notificationType"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/offerIdentifier": {
+      "abstract": [
+        {
+          "text": "The string identifier of a subscription offer that you create in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "string "
+        },
+        {
+          "kind": "identifier",
+          "text": "offerIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/offerIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offerIdentifier",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/offerIdentifier"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/offerType": {
+      "abstract": [
+        {
+          "text": "The type of subscription offer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "int32 "
+        },
+        {
+          "kind": "identifier",
+          "text": "offerType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/offerType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offerType",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/offerType"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Task": {
+      "abstract": [
+        {
+          "text": "A unit of asynchronous work.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Task"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Success"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Success"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Task",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Task",
+      "type": "topic",
+      "url": "/documentation/Swift/Task"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/offerCodeRedemption(isPresented:onCompletion:)": {
+      "abstract": [
+        {
+          "text": "Presents a sheet that enables users to redeem subscription offer codes that you configure in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "offerCodeRedemption"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "isPresented"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "onCompletion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " @"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": " = { _ in }) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/offerCodeRedemption(isPresented:onCompletion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offerCodeRedemption(isPresented:onCompletion:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/offerCodeRedemption(isPresented:onCompletion:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/AppStore": {
+      "abstract": [
+        {
+          "text": "Interactions with the App Store, such as managing subscriptions, verifying devices, authorizing payments, synchronizing transactions, getting the environment, and more.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppStore"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppStore",
+      "type": "topic",
+      "url": "/documentation/storekit/appstore"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/AppStore/presentOfferCodeRedeemSheet(from:)": {
+      "abstract": [
+        {
+          "text": "Displays a sheet in the view that enables users to redeem a subscription offer code that you configure in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentOfferCodeRedeemSheet"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppStore/presentOfferCodeRedeemSheet(from:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presentOfferCodeRedeemSheet(from:)",
+      "type": "topic",
+      "url": "/documentation/storekit/appstore/presentoffercoderedeemsheet(from:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/AppStore/presentOfferCodeRedeemSheet(in:)": {
+      "abstract": [
+        {
+          "text": "Displays a sheet in the window scene that enables users to redeem a subscription offer code that you configure in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentOfferCodeRedeemSheet"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWindowScene",
+          "text": "UIWindowScene"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppStore/presentOfferCodeRedeemSheet(in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presentOfferCodeRedeemSheet(in:)",
+      "type": "topic",
+      "url": "/documentation/storekit/appstore/presentoffercoderedeemsheet(in:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo": {
+      "abstract": [
+        {
+          "text": "The renewal information for an auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RenewalInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RenewalInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.SubscriptionInfo.RenewalInfo",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptioninfo/renewalinfo"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo/offerID": {
+      "abstract": [
+        {
+          "text": "A string that identifies an offer applied to the next subscription period.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "offerID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo/offerID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offerID",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptioninfo/renewalinfo/offerid"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionOffer": {
+      "abstract": [
+        {
+          "text": "Information about a subscription offer that you configure in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionOffer"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionOffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionOffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.SubscriptionOffer",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptionoffer"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionOffer/OfferType": {
+      "abstract": [
+        {
+          "text": "The types of offers for auto-renewable subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OfferType"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionOffer/OfferType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OfferType"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.SubscriptionOffer.OfferType",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptionoffer/offertype"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/presentCodeRedemptionSheet()": {
+      "abstract": [
+        {
+          "text": "Displays a sheet that enables customers to redeem subscription offer codes that you configure in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentCodeRedemptionSheet"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/presentCodeRedemptionSheet()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentCodeRedemptionSheet"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentCodeRedemptionSheet()",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentqueue/presentcoderedemptionsheet()"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction": {
+      "abstract": [
+        {
+          "text": "Information that represents the customer’s purchase of a product in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transaction"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Transaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "Transaction",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/OfferType-swift.struct/code": {
+      "abstract": [
+        {
+          "text": "An offer with a subscription offer code for an auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "code"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV9OfferTypeV",
+          "text": "OfferType"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/OfferType-swift.struct/code",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "code",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/offertype-swift.struct/code"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/all": {
+      "abstract": [
+        {
+          "text": "A sequence that emits all the customer’s transactions for your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "all"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV12TransactionsV",
+          "text": "Transactions"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/all",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "all",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/all"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/currentEntitlements": {
+      "abstract": [
+        {
+          "text": "A sequence of the latest transactions that entitle a customer to In-App Purchases and subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentEntitlements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV12TransactionsV",
+          "text": "Transactions"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/currentEntitlements",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentEntitlements",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/currententitlements"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/finish()": {
+      "abstract": [
+        {
+          "text": "Indicates to the App Store that the app delivered the purchased content or enabled the service to finish the transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "finish"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/finish()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "finish()",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/finish()"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/offerID": {
+      "abstract": [
+        {
+          "text": "A string that identifies an offer applied to the current subscription.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "offerID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/offerID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offerID",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/offerid"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/offerType-swift.property": {
+      "abstract": [
+        {
+          "text": "The subscription offer type for the current subscription period.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "offerType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV9OfferTypeV",
+          "text": "OfferType"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/offerType-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offerType",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/offertype-swift.property"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/updates": {
+      "abstract": [
+        {
+          "text": "The asynchronous sequence that emits a transaction when the system creates or updates transactions that occur outside the app or on other devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV12TransactionsV",
+          "text": "Transactions"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/updates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updates",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/updates"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/VerificationResult/jwsRepresentation-21vgo": {
+      "abstract": [
+        {
+          "text": "The transaction signed by the App Store, in JWS Compact Serialization format.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "SignedType",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Transaction",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "jwsRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/VerificationResult/jwsRepresentation-21vgo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "jwsRepresentation",
+      "type": "topic",
+      "url": "/documentation/storekit/verificationresult/jwsrepresentation-21vgo"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/VerificationResult/verified(_:)": {
+      "abstract": [
+        {
+          "text": "The associated value passed StoreKit automatic verification checks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "verified"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SignedType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/VerificationResult/verified(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VerificationResult.verified(_:)",
+      "type": "topic",
+      "url": "/documentation/storekit/verificationresult/verified(_:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/implementing-offer-codes-in-your-app": {
+      "abstract": [
+        {
+          "text": "Provide subscription service for customers who redeem offer codes through the App Store or within an app that uses receipts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/implementing-offer-codes-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing offer codes in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/implementing-offer-codes-in-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/merchandising-win-back-offers-in-your-app": {
+      "abstract": [
+        {
+          "text": "Present win-back offers to eligible customers in your app with the win-back offer sheet or by implementing custom merchandising.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/merchandising-win-back-offers-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Merchandising win-back offers in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/merchandising-win-back-offers-in-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/supporting-win-back-offers-in-your-app": {
+      "abstract": [
+        {
+          "text": "Re-engage previous subscribers with a free or discounted offer for an auto-renewable subscription, for a specific duration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/supporting-win-back-offers-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting win-back offers in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/supporting-win-back-offers-in-your-app"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/in-app-purchase": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/in-app-purchase",
+      "title": "In-app purchase",
+      "titleInlineContent": [
+        {
+          "text": "In-app purchase",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/in-app-purchase"
+    },
+    "https://developer.apple.com/help/app-store-connect/manage-subscriptions/set-up-offer-codes": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/manage-subscriptions/set-up-offer-codes",
+      "title": "Set up offer codes",
+      "titleInlineContent": [
+        {
+          "text": "Set up offer codes",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/manage-subscriptions/set-up-offer-codes"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Subscription-offers-and-offer-codes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/supporting-win-back-offers-in-your-app",
+        "doc://com.apple.storekit/documentation/StoreKit/merchandising-win-back-offers-in-your-app",
+        "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionOffer",
+        "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionOffer/OfferType"
+      ],
+      "title": "Subscription offers and offer codes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Subscription-offers-and-offer-codes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/supporting-win-back-offers-in-your-app",
+                "doc://com.apple.storekit/documentation/StoreKit/merchandising-win-back-offers-in-your-app"
+              ],
+              "title": "Subscription offers and offer codes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1presentCodeRedemptionSheet()/title",
+          "value": "presentCodeRedemptionSheet"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1presentCodeRedemptionSheet()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentCodeRedemptionSheet"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/supporting-subscription-offer-codes-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/supporting-subscription-offer-codes-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

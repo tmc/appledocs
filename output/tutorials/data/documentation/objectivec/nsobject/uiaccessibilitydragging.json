@@ -1,0 +1,399 @@
+{
+  "abstract": [
+    {
+      "text": "A pair of properties to allow you to fine-tune how drags and drops are exposed to assistive technologies.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/objectivec",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/objectivec/nsobject/uiaccessibilitydragging"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3523115,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Objective-C Runtime"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "UIAccessibilityDragging"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, if an accessible view or its subtree has drag and/or drop interactions, they will be automatically exposed by assistive technologies. However, if there is more than one such interaction, each drag or drop should have a name to disambiguate it and give a good user experience. Also, there may be situations in which you want to expose drags or drops from an element, and those interactions are installed on views that are not part of that element's view hierarchy subtree.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This is trivially the case when the element is not a view at all, but an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "UIAccessibilityElement",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Another example is when a container view maintains interactions that are logically associated with subviews.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For instance, ",
+              "type": "text"
+            },
+            {
+              "code": "UITableView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has associated drag interactions that allow for dragging its rows; to make the rows draggable by assistive technologies, ",
+              "type": "text"
+            },
+            {
+              "code": "UITableViewCell",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has drag descriptors that describe where in the table view to start a drag to activate dragging of the cell.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This implementation detail is noted here for expository purposes only and may change at any time without warning.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Properties defined here allow you to fine-tune how drags and drops are exposed to assistive technologies. Both of their getter methods can be overridden to provide information on-demand.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each location descriptor, the associated view should be the ",
+              "type": "text"
+            },
+            {
+              "code": "UIView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the appropriate ",
+              "type": "text"
+            },
+            {
+              "code": "UIInteraction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object for that drag or drop.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1740862": {
+      "identifier": "devLink-1740862",
+      "title": "Accessibility Programming Guide for iOS",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/iPhoneAccessibility/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008785"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/objectivec": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Objective-C Runtime",
+      "type": "topic",
+      "url": "/documentation/objectivec"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/2891001-accessibilitydragsourcedescripto": {
+      "abstract": [
+        {
+          "text": "An array of location descriptor objects that you use to define what drags are possible from this element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityDragSourceDescriptors"
+        },
+        {
+          "kind": "text",
+          "text": ": [UIAccessibilityLocationDescriptor]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/2891001-accessibilitydragsourcedescripto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityDragSourceDescriptors",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/2891001-accessibilitydragsourcedescripto"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/2891048-accessibilitydroppointdescriptor": {
+      "abstract": [
+        {
+          "text": "An array of location descriptor objects that you use to define where drops are possible on this element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityDropPointDescriptors"
+        },
+        {
+          "kind": "text",
+          "text": ": [UIAccessibilityLocationDescriptor]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/2891048-accessibilitydroppointdescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityDropPointDescriptors",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/2891048-accessibilitydroppointdescriptor"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/uiaccessibilityaction": {
+      "abstract": [
+        {
+          "text": "A set of methods that accessibility elements can use to support specific actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/uiaccessibilityaction",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "UIAccessibilityAction",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/uiaccessibilityaction"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/uiaccessibilitydragging": {
+      "abstract": [
+        {
+          "text": "A pair of properties to allow you to fine-tune how drags and drops are exposed to assistive technologies.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/uiaccessibilitydragging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "UIAccessibilityDragging",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/uiaccessibilitydragging"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/uiaccessibilityfocus": {
+      "abstract": [
+        {
+          "text": "An informal protocol that provides a way to determine whether an assistive app, such as VoiceOver, has focus on an accessible element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/uiaccessibilityfocus",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "UIAccessibilityFocus",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/uiaccessibilityfocus"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/uiaccessibility-protocol": {
+      "abstract": [
+        {
+          "text": "A set of methods that provides accessibility information about views and controls in an app’s user interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/uiaccessibility-protocol",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "UIAccessibility",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility-protocol"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/uiaccessibilitycontainer": {
+      "abstract": [
+        {
+          "text": "Provide a set of methods that view subclasses use to make subcomponents accessible as separate elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/uiaccessibilitycontainer",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "UIAccessibilityContainer",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibilitycontainer"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/uiaccessibility-protocol",
+        "doc://com.apple.uikit/documentation/UIKit/uiaccessibilitycontainer",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/uiaccessibilityaction",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/uiaccessibilityfocus"
+      ],
+      "title": "Improving Accessibility"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "devLink-1740862"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3523114",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/2891001-accessibilitydragsourcedescripto",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/2891048-accessibilitydroppointdescriptor"
+      ],
+      "kind": "taskGroup",
+      "title": "Fine-Tuning Drag and Drop"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/objectivec/nsobject/uiaccessibilitydragging"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/objectivec/nsobject/uiaccessibilitydragging"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

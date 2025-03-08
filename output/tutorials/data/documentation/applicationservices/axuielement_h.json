@@ -1,0 +1,1305 @@
+{
+  "abstract": [],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/axuielement_h"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1668486,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "AXUIElement.h"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See the Overview section above for header-level documentation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1678823",
+          "level": 3,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Assistive applications use the functions defined in this header file to communicate with and control accessible applications running in macOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each accessible user interface element in an application is represented by an AXUIElementRef, which is a CFTypeRef. AXUIElementRefs (like all CFTypeRefs) can be used with all the Core Foundation polymorphic functions, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521269-cfretain",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521287-cfequal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All functions defined in this header file return ",
+              "type": "text"
+            },
+            {
+              "code": "kAXErrorSuccess",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on success. If there is some sort of system memory failure, such as the failure to allocate an object, all functions can return ",
+              "type": "text"
+            },
+            {
+              "code": "kAXErrorFailure",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". In the unlikely event that some process does not fully support the accessibility API, a function can return ",
+              "type": "text"
+            },
+            {
+              "code": "kAXErrorNotImplemented",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition, some functions can return the following error codes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The passed-in AXUIElementRef is invalid. All functions that include an AXUIElementRef parameter can return this error code.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "kAXErrorInvalidUIElement",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "At least one of the arguments is illegal (for example, NIL passed in for a pointer).",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "kAXErrorIllegalArgument",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "There is a problem with messaging (such as when messaging to the server fails or when the accessible application is unresponsive or waiting for user input). All functions that perform messaging can return this error code.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "kAXErrorCannotComplete",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The accessibility API is disabled. All functions that perform messaging can return this error code.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "kAXErrorAPIDisabled",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on the definition and use of accessibility objects and in macOS accessibility support in general, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1724618",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1777679",
+          "level": 4,
+          "text": "Included Headers",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "<AvailabilityMacros.h>",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "<CoreFoundation/CoreFoundation.h>",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "<ApplicationServices/ApplicationServices.h>",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1724618": {
+      "identifier": "devLink-1724618",
+      "title": "Accessibility Programming Guide for OS X",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Accessibility/Conceptual/AccessibilityMacOSX/index.html#//apple_ref/doc/uid/TP40001078"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1458783-axuielementcopyparameterizedattr": {
+      "abstract": [
+        {
+          "text": "Returns a list of all the parameterized attributes supported by the specified accessibility object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXUIElementCopyParameterizedAttributeNames"
+        },
+        {
+          "kind": "text",
+          "text": "(AXUIElement, UnsafeMutablePointer<CFArray?>) -> AXError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1458783-axuielementcopyparameterizedattr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXUIElementCopyParameterizedAttributeNames(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1458783-axuielementcopyparameterizedattr"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459066-axuielementgetattributevaluecoun": {
+      "abstract": [
+        {
+          "text": "Returns the count of the array of an accessibility object's attribute value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXUIElementGetAttributeValueCount"
+        },
+        {
+          "kind": "text",
+          "text": "(AXUIElement, CFString, UnsafeMutablePointer<CFIndex>) -> AXError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459066-axuielementgetattributevaluecoun",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXUIElementGetAttributeValueCount(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459066-axuielementgetattributevaluecoun"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459139-axobservergetrunloopsource": {
+      "abstract": [
+        {
+          "text": "Returns the observer's run loop source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXObserverGetRunLoopSource"
+        },
+        {
+          "kind": "text",
+          "text": "(AXObserver) -> CFRunLoopSource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459139-axobservergetrunloopsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXObserverGetRunLoopSource(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459139-axobservergetrunloopsource"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459186-axisprocesstrustedwithoptions": {
+      "abstract": [
+        {
+          "text": "Returns whether the current process is a trusted accessibility client.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXIsProcessTrustedWithOptions"
+        },
+        {
+          "kind": "text",
+          "text": "(CFDictionary?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459186-axisprocesstrustedwithoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXIsProcessTrustedWithOptions(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459186-axisprocesstrustedwithoptions"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459345-axuielementsetmessagingtimeout": {
+      "abstract": [
+        {
+          "text": "Sets the timeout value used in the accessibility API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXUIElementSetMessagingTimeout"
+        },
+        {
+          "kind": "text",
+          "text": "(AXUIElement, Float) -> AXError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459345-axuielementsetmessagingtimeout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXUIElementSetMessagingTimeout(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459345-axuielementsetmessagingtimeout"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459374-axuielementcreateapplication": {
+      "abstract": [
+        {
+          "text": "Creates and returns the top-level accessibility object for the application with the specified process ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXUIElementCreateApplication"
+        },
+        {
+          "kind": "text",
+          "text": "(pid_t) -> AXUIElement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459374-axuielementcreateapplication",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXUIElementCreateApplication(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459374-axuielementcreateapplication"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459475-axuielementcopyattributenames": {
+      "abstract": [
+        {
+          "text": "Returns a list of all the attributes supported by the specified accessibility object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXUIElementCopyAttributeNames"
+        },
+        {
+          "kind": "text",
+          "text": "(AXUIElement, UnsafeMutablePointer<CFArray?>) -> AXError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459475-axuielementcopyattributenames",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXUIElementCopyAttributeNames(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459475-axuielementcopyattributenames"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459972-axuielementisattributesettable": {
+      "abstract": [
+        {
+          "text": "Returns whether the specified accessibility object's attribute can be modified.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXUIElementIsAttributeSettable"
+        },
+        {
+          "kind": "text",
+          "text": "(AXUIElement, CFString, UnsafeMutablePointer<DarwinBoolean>) -> AXError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459972-axuielementisattributesettable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXUIElementIsAttributeSettable(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459972-axuielementisattributesettable"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460085-axuielementgettypeid": {
+      "abstract": [
+        {
+          "text": "Returns the unique type identifier for the AXUIElementRef type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXUIElementGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460085-axuielementgettypeid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXUIElementGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460085-axuielementgettypeid"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460133-axobservercreate": {
+      "abstract": [
+        {
+          "text": "Creates a new observer that can receive notifications from the specified application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXObserverCreate"
+        },
+        {
+          "kind": "text",
+          "text": "(pid_t, AXObserverCallback, UnsafeMutablePointer<AXObserver?>) -> AXError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460133-axobservercreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXObserverCreate(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460133-axobservercreate"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460337-axuielementgetpid": {
+      "abstract": [
+        {
+          "text": "Returns the process ID associated with the specified accessibility object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXUIElementGetPid"
+        },
+        {
+          "kind": "text",
+          "text": "(AXUIElement, UnsafeMutablePointer<pid_t>) -> AXError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460337-axuielementgetpid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXUIElementGetPid(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460337-axuielementgetpid"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460434-axuielementsetattributevalue": {
+      "abstract": [
+        {
+          "text": "Sets the accessibility object's attribute to the specified value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXUIElementSetAttributeValue"
+        },
+        {
+          "kind": "text",
+          "text": "(AXUIElement, CFString, CFTypeRef) -> AXError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460434-axuielementsetattributevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXUIElementSetAttributeValue(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460434-axuielementsetattributevalue"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460610-axobservercreatewithinfocallback": {
+      "abstract": [
+        {
+          "text": "Creates a new observer that can receive notifications with an information dictionary from the specified application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXObserverCreateWithInfoCallback"
+        },
+        {
+          "kind": "text",
+          "text": "(pid_t, AXObserverCallbackWithInfo, UnsafeMutablePointer<AXObserver?>) -> AXError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460610-axobservercreatewithinfocallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXObserverCreateWithInfoCallback(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460610-axobservercreatewithinfocallback"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460720-axisprocesstrusted": {
+      "abstract": [
+        {
+          "text": "Returns whether the current process is a trusted accessibility client.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXIsProcessTrusted"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460720-axisprocesstrusted",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXIsProcessTrusted()",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460720-axisprocesstrusted"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461203-axuielementcopyparameterizedattr": {
+      "abstract": [
+        {
+          "text": "Returns the value of an accessibility object's parameterized attribute.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXUIElementCopyParameterizedAttributeValue"
+        },
+        {
+          "kind": "text",
+          "text": "(AXUIElement, CFString, CFTypeRef, UnsafeMutablePointer<CFTypeRef?>) -> AXError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461203-axuielementcopyparameterizedattr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXUIElementCopyParameterizedAttributeValue(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461203-axuielementcopyparameterizedattr"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461244-axobservergettypeid": {
+      "abstract": [
+        {
+          "text": "Returns the unique type identifier for the AXObserverRef type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXObserverGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461244-axobservergettypeid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXObserverGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461244-axobservergettypeid"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462051-axuielementcopymultipleattribute": {
+      "abstract": [
+        {
+          "text": "Returns the values of multiple attributes in the accessibility object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXUIElementCopyMultipleAttributeValues"
+        },
+        {
+          "kind": "text",
+          "text": "(AXUIElement, CFArray, AXCopyMultipleAttributeOptions, UnsafeMutablePointer<CFArray?>) -> AXError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462051-axuielementcopymultipleattribute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXUIElementCopyMultipleAttributeValues(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462051-axuielementcopymultipleattribute"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462053-axuielementcopyactionnames": {
+      "abstract": [
+        {
+          "text": "Returns a list of all the actions the specified accessibility object can perform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXUIElementCopyActionNames"
+        },
+        {
+          "kind": "text",
+          "text": "(AXUIElement, UnsafeMutablePointer<CFArray?>) -> AXError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462053-axuielementcopyactionnames",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXUIElementCopyActionNames(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462053-axuielementcopyactionnames"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462060-axuielementcopyattributevalues": {
+      "abstract": [
+        {
+          "text": "Returns an array of attribute values for the accessibility object's attribute, starting at the specified index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXUIElementCopyAttributeValues"
+        },
+        {
+          "kind": "text",
+          "text": "(AXUIElement, CFString, CFIndex, CFIndex, UnsafeMutablePointer<CFArray?>) -> AXError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462060-axuielementcopyattributevalues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXUIElementCopyAttributeValues(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462060-axuielementcopyattributevalues"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462066-axobserverremovenotification": {
+      "abstract": [
+        {
+          "text": "Removes the specified notification from the list of notifications the observer wants to receive from the accessibility object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXObserverRemoveNotification"
+        },
+        {
+          "kind": "text",
+          "text": "(AXObserver, AXUIElement, CFString) -> AXError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462066-axobserverremovenotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXObserverRemoveNotification(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462066-axobserverremovenotification"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462075-axuielementcopyactiondescription": {
+      "abstract": [
+        {
+          "text": "Returns a localized description of the specified accessibility object's action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXUIElementCopyActionDescription"
+        },
+        {
+          "kind": "text",
+          "text": "(AXUIElement, CFString, UnsafeMutablePointer<CFString?>) -> AXError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462075-axuielementcopyactiondescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXUIElementCopyActionDescription(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462075-axuielementcopyactiondescription"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462077-axuielementcopyelementatposition": {
+      "abstract": [
+        {
+          "text": "Returns the accessibility object at the specified position in top-left relative screen coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXUIElementCopyElementAtPosition"
+        },
+        {
+          "kind": "text",
+          "text": "(AXUIElement, Float, Float, UnsafeMutablePointer<AXUIElement?>) -> AXError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462077-axuielementcopyelementatposition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXUIElementCopyElementAtPosition(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462077-axuielementcopyelementatposition"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462085-axuielementcopyattributevalue": {
+      "abstract": [
+        {
+          "text": "Returns the value of an accessibility object's attribute.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXUIElementCopyAttributeValue"
+        },
+        {
+          "kind": "text",
+          "text": "(AXUIElement, CFString, UnsafeMutablePointer<CFTypeRef?>) -> AXError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462085-axuielementcopyattributevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXUIElementCopyAttributeValue(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462085-axuielementcopyattributevalue"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462089-axobserveraddnotification": {
+      "abstract": [
+        {
+          "text": "Registers the specified observer to receive notifications from the specified accessibility object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXObserverAddNotification"
+        },
+        {
+          "kind": "text",
+          "text": "(AXObserver, AXUIElement, CFString, UnsafeMutableRawPointer?) -> AXError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462089-axobserveraddnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXObserverAddNotification(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462089-axobserveraddnotification"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462091-axuielementperformaction": {
+      "abstract": [
+        {
+          "text": "Requests that the specified accessibility object perform the specified action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXUIElementPerformAction"
+        },
+        {
+          "kind": "text",
+          "text": "(AXUIElement, CFString) -> AXError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462091-axuielementperformaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXUIElementPerformAction(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462091-axuielementperformaction"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462095-axuielementcreatesystemwide": {
+      "abstract": [
+        {
+          "text": "Returns an accessibility object that provides access to system attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXUIElementCreateSystemWide"
+        },
+        {
+          "kind": "text",
+          "text": "() -> AXUIElement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462095-axuielementcreatesystemwide",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXUIElementCreateSystemWide()",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462095-axuielementcreatesystemwide"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/axcopymultipleattributeoptions": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXCopyMultipleAttributeOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/axcopymultipleattributeoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXCopyMultipleAttributeOptions",
+      "type": "topic",
+      "url": "/documentation/applicationservices/axcopymultipleattributeoptions"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/axobserver": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/axobserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXObserver",
+      "type": "topic",
+      "url": "/documentation/applicationservices/axobserver"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/axobservercallback": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXObserverCallback"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/axobservercallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXObserverCallback",
+      "type": "topic",
+      "url": "/documentation/applicationservices/axobservercallback"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/axobservercallbackwithinfo": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXObserverCallbackWithInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/axobservercallbackwithinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXObserverCallbackWithInfo",
+      "type": "topic",
+      "url": "/documentation/applicationservices/axobservercallbackwithinfo"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/axuielement": {
+      "abstract": [
+        {
+          "text": "A structure used to refer to an accessibility object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXUIElement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/axuielement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXUIElement",
+      "type": "topic",
+      "url": "/documentation/applicationservices/axuielement"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFRelease",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1521153-cfrelease"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1521269-cfretain": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521269-cfretain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFRetain",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1521269-cfretain"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1521287-cfequal": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521287-cfequal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFEqual(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1521287-cfequal"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1678842",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1462089-axobserveraddnotification",
+        "doc://com.apple.documentation/documentation/applicationservices/1460133-axobservercreate",
+        "doc://com.apple.documentation/documentation/applicationservices/1460610-axobservercreatewithinfocallback",
+        "doc://com.apple.documentation/documentation/applicationservices/1459139-axobservergetrunloopsource",
+        "doc://com.apple.documentation/documentation/applicationservices/1461244-axobservergettypeid",
+        "doc://com.apple.documentation/documentation/applicationservices/1462066-axobserverremovenotification"
+      ],
+      "kind": "taskGroup",
+      "title": "Notification API"
+    },
+    {
+      "anchor": "1678874",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1460720-axisprocesstrusted",
+        "doc://com.apple.documentation/documentation/applicationservices/1459186-axisprocesstrustedwithoptions",
+        "doc://com.apple.documentation/documentation/applicationservices/1462075-axuielementcopyactiondescription",
+        "doc://com.apple.documentation/documentation/applicationservices/1462053-axuielementcopyactionnames",
+        "doc://com.apple.documentation/documentation/applicationservices/1459475-axuielementcopyattributenames",
+        "doc://com.apple.documentation/documentation/applicationservices/1462085-axuielementcopyattributevalue",
+        "doc://com.apple.documentation/documentation/applicationservices/1462060-axuielementcopyattributevalues",
+        "doc://com.apple.documentation/documentation/applicationservices/1462077-axuielementcopyelementatposition",
+        "doc://com.apple.documentation/documentation/applicationservices/1462051-axuielementcopymultipleattribute",
+        "doc://com.apple.documentation/documentation/applicationservices/1458783-axuielementcopyparameterizedattr",
+        "doc://com.apple.documentation/documentation/applicationservices/1461203-axuielementcopyparameterizedattr",
+        "doc://com.apple.documentation/documentation/applicationservices/1459374-axuielementcreateapplication",
+        "doc://com.apple.documentation/documentation/applicationservices/1462095-axuielementcreatesystemwide",
+        "doc://com.apple.documentation/documentation/applicationservices/1459066-axuielementgetattributevaluecoun",
+        "doc://com.apple.documentation/documentation/applicationservices/1460337-axuielementgetpid",
+        "doc://com.apple.documentation/documentation/applicationservices/1460085-axuielementgettypeid",
+        "doc://com.apple.documentation/documentation/applicationservices/1459972-axuielementisattributesettable",
+        "doc://com.apple.documentation/documentation/applicationservices/1462091-axuielementperformaction",
+        "doc://com.apple.documentation/documentation/applicationservices/1460434-axuielementsetattributevalue",
+        "doc://com.apple.documentation/documentation/applicationservices/1459345-axuielementsetmessagingtimeout"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "1679002",
+      "discussion": {
+        "content": [
+          {
+            "inlineContent": [
+              {
+                "text": "See the Overview section above for header-level documentation.",
+                "type": "text"
+              }
+            ],
+            "type": "paragraph"
+          }
+        ],
+        "kind": "content"
+      },
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/axobservercallback",
+        "doc://com.apple.documentation/documentation/applicationservices/axobservercallbackwithinfo"
+      ],
+      "kind": "taskGroup",
+      "title": "Callbacks"
+    },
+    {
+      "anchor": "1679014",
+      "discussion": {
+        "content": [
+          {
+            "inlineContent": [
+              {
+                "text": "See the Overview section above for header-level documentation.",
+                "type": "text"
+              }
+            ],
+            "type": "paragraph"
+          }
+        ],
+        "kind": "content"
+      },
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/axcopymultipleattributeoptions",
+        "doc://com.apple.documentation/documentation/applicationservices/axobserver",
+        "doc://com.apple.documentation/documentation/applicationservices/axuielement"
+      ],
+      "kind": "taskGroup",
+      "title": "Data Types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/axuielement_h"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/applicationservices/axuielement_h"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

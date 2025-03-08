@@ -1,0 +1,2956 @@
+{
+  "abstract": [
+    {
+      "text": "A set of optional methods to manage editing and validating text in a text field object.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)UITextFieldDelegate",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UITextFieldDelegate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UITextFieldDelegate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "UITextFieldDelegate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UITextFieldDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A text field calls the methods of its delegate in response to important changes. You use these methods to validate text that was typed by the user, to respond to specific interactions with the keyboard, and to control the overall editing process. Editing begins shortly before the text field becomes the first responder and displays the keyboard (or its assigned input view). The flow of the editing process is as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Before becoming the first responder, the text field calls its delegate’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldShouldBeginEditing(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method. Use that method to allow or prevent the editing of the text field’s contents.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The text field becomes the first responder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In response, the system displays the keyboard (or the text field’s input view) and posts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardWillShowNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardDidShowNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notifications as needed. If the keyboard or another input view was already visible, the system posts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardWillChangeFrameNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardDidChangeFrameNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notifications instead.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "3. The text field calls its delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldDidBeginEditing(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and posts a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextField/textDidBeginEditingNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notification.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "4. The text field calls various delegate methods during editing:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Whenever the current text changes, it calls the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textField(_:shouldChangeCharactersIn:replacementString:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method and posts the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextField/textDidChangeNotification",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " notification.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It calls the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldShouldClear(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method when the user taps the built-in button to clear the text.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It calls the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldShouldReturn(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method when the user taps the keyboard’s return button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Before resigning as first responder, the text field calls its delegate’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldShouldEndEditing(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method. Use that method to validate the current text.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The text field resigns as first responder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "start": 5,
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In response, the system hides or adjusts the keyboard as needed. When hiding the keyboard, the system posts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardWillHideNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardDidHideNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notifications.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "7. The text field calls its delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldDidEndEditing(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and posts a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextField/textDidEndEditingNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the features of a text field, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextField",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardDidChangeFrameNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts immediately after a change in the keyboard’s frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardDidChangeFrameNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardDidChangeFrameNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyboardDidChangeFrameNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyboardDidChangeFrameNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder/keyboarddidchangeframenotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardDidHideNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts immediately after dismissing the keyboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardDidHideNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardDidHideNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyboardDidHideNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyboardDidHideNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder/keyboarddidhidenotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardDidShowNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts immediately after displaying the keyboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardDidShowNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardDidShowNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyboardDidShowNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyboardDidShowNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder/keyboarddidshownotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardWillChangeFrameNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts immediately prior to a change in the keyboard’s frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardWillChangeFrameNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardWillChangeFrameNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyboardWillChangeFrameNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyboardWillChangeFrameNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder/keyboardwillchangeframenotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardWillHideNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts immediately prior to dismissing the keyboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardWillHideNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardWillHideNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyboardWillHideNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyboardWillHideNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder/keyboardwillhidenotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardWillShowNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts immediately prior to displaying the keyboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardWillShowNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardWillShowNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyboardWillShowNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyboardWillShowNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder/keyboardwillshownotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchTextFieldDelegate": {
+      "abstract": [
+        {
+          "text": "The interface for the delegate of a search field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchTextFieldDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchTextFieldDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchTextFieldDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchTextFieldDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchtextfielddelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextField": {
+      "abstract": [
+        {
+          "text": "An object that displays an editable text area in your interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextField"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextField",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextField"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextField",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfield"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextField/DidEndEditingReason": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the reason for ending editing in a text field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DidEndEditingReason"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextField/DidEndEditingReason",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DidEndEditingReason"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextField.DidEndEditingReason",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfield/didendeditingreason"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextField/delegate": {
+      "abstract": [
+        {
+          "text": "The text field’s delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UITextFieldDelegate",
+          "text": "UITextFieldDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextField/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfield/delegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextField/textDidBeginEditingNotification": {
+      "abstract": [
+        {
+          "text": "A notification that alerts observers when an editing session begins in a text field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textDidBeginEditingNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextField/textDidBeginEditingNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextFieldTextDidBeginEditingNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "textDidBeginEditingNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfield/textdidbegineditingnotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextField/textDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "A notification that alerts observers when the text in a text field changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextField/textDidChangeNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextFieldTextDidChangeNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "textDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfield/textdidchangenotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextField/textDidEndEditingNotification": {
+      "abstract": [
+        {
+          "text": "A notification that alerts observers when the editing session ends for a text field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textDidEndEditingNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextField/textDidEndEditingNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextFieldTextDidEndEditingNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "textDidEndEditingNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfield/textdidendeditingnotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate": {
+      "abstract": [
+        {
+          "text": "A set of optional methods to manage editing and validating text in a text field object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextFieldDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextFieldDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextFieldDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfielddelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textField(_:editMenuForCharactersIn:suggestedActions:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate for the menu to display in the text field, based on the text range and actions the system provides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textField"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextField",
+          "text": "UITextField"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "editMenuForCharactersIn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "suggestedActions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIMenuElement",
+          "text": "UIMenuElement"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIMenu",
+          "text": "UIMenu"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textField(_:editMenuForCharactersIn:suggestedActions:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textField:editMenuForCharactersInRange:suggestedActions:"
+        }
+      ],
+      "role": "symbol",
+      "title": "textField(_:editMenuForCharactersIn:suggestedActions:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfielddelegate/textfield(_:editmenuforcharactersin:suggestedactions:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textField(_:insertInputSuggestion:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the keyboard delivers an input suggestion.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textField"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextField",
+          "text": "UITextField"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "insertInputSuggestion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIInputSuggestion",
+          "text": "UIInputSuggestion"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textField(_:insertInputSuggestion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textField:insertInputSuggestion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "textField(_:insertInputSuggestion:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfielddelegate/textfield(_:insertinputsuggestion:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textField(_:shouldChangeCharactersIn:replacementString:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate whether to change the specified text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textField"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextField",
+          "text": "UITextField"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shouldChangeCharactersIn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "replacementString"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textField(_:shouldChangeCharactersIn:replacementString:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textField:shouldChangeCharactersInRange:replacementString:"
+        }
+      ],
+      "role": "symbol",
+      "title": "textField(_:shouldChangeCharactersIn:replacementString:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfielddelegate/textfield(_:shouldchangecharactersin:replacementstring:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textField(_:willDismissEditMenuWith:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the system is about to dismiss an edit menu with an animator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textField"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextField",
+          "text": "UITextField"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "willDismissEditMenuWith"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIEditMenuInteractionAnimating",
+          "text": "UIEditMenuInteractionAnimating"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textField(_:willDismissEditMenuWith:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textField:willDismissEditMenuWithAnimator:"
+        }
+      ],
+      "role": "symbol",
+      "title": "textField(_:willDismissEditMenuWith:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfielddelegate/textfield(_:willdismisseditmenuwith:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textField(_:willPresentEditMenuWith:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the system is about to present an edit menu with an animator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textField"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextField",
+          "text": "UITextField"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "willPresentEditMenuWith"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIEditMenuInteractionAnimating",
+          "text": "UIEditMenuInteractionAnimating"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textField(_:willPresentEditMenuWith:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textField:willPresentEditMenuWithAnimator:"
+        }
+      ],
+      "role": "symbol",
+      "title": "textField(_:willPresentEditMenuWith:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfielddelegate/textfield(_:willpresenteditmenuwith:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldDidBeginEditing(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when editing begins in the specified text field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textFieldDidBeginEditing"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextField",
+          "text": "UITextField"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldDidBeginEditing(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textFieldDidBeginEditing:"
+        }
+      ],
+      "role": "symbol",
+      "title": "textFieldDidBeginEditing(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfielddelegate/textfielddidbeginediting(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldDidChangeSelection(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the text selection changes in the specified text field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textFieldDidChangeSelection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextField",
+          "text": "UITextField"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldDidChangeSelection(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textFieldDidChangeSelection:"
+        }
+      ],
+      "role": "symbol",
+      "title": "textFieldDidChangeSelection(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfielddelegate/textfielddidchangeselection(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldDidEndEditing(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when editing stops for the specified text field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textFieldDidEndEditing"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextField",
+          "text": "UITextField"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldDidEndEditing(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textFieldDidEndEditing:"
+        }
+      ],
+      "role": "symbol",
+      "title": "textFieldDidEndEditing(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfielddelegate/textfielddidendediting(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldDidEndEditing(_:reason:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when editing stops for the specified text field, and the reason it stopped.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textFieldDidEndEditing"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextField",
+          "text": "UITextField"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "reason"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextField",
+          "text": "UITextField"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UITextFieldDidEndEditingReason",
+          "text": "DidEndEditingReason"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldDidEndEditing(_:reason:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textFieldDidEndEditing:reason:"
+        }
+      ],
+      "role": "symbol",
+      "title": "textFieldDidEndEditing(_:reason:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfielddelegate/textfielddidendediting(_:reason:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldShouldBeginEditing(_:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate whether to begin editing in the specified text field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textFieldShouldBeginEditing"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextField",
+          "text": "UITextField"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldShouldBeginEditing(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textFieldShouldBeginEditing:"
+        }
+      ],
+      "role": "symbol",
+      "title": "textFieldShouldBeginEditing(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfielddelegate/textfieldshouldbeginediting(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldShouldClear(_:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate whether to remove the text field’s current contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textFieldShouldClear"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextField",
+          "text": "UITextField"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldShouldClear(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textFieldShouldClear:"
+        }
+      ],
+      "role": "symbol",
+      "title": "textFieldShouldClear(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfielddelegate/textfieldshouldclear(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldShouldEndEditing(_:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate whether to stop editing in the specified text field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textFieldShouldEndEditing"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextField",
+          "text": "UITextField"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldShouldEndEditing(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textFieldShouldEndEditing:"
+        }
+      ],
+      "role": "symbol",
+      "title": "textFieldShouldEndEditing(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfielddelegate/textfieldshouldendediting(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldShouldReturn(_:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate whether to process the pressing of the Return button for the text field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textFieldShouldReturn"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextField",
+          "text": "UITextField"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldShouldReturn(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textFieldShouldReturn:"
+        }
+      ],
+      "role": "symbol",
+      "title": "textFieldShouldReturn(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfielddelegate/textfieldshouldreturn(_:)"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UISearchTextFieldDelegate"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Validating-and-handling-edits",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITextField/delegate"
+      ],
+      "title": "Validating and handling edits"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Managing-editing",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldShouldBeginEditing(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldDidBeginEditing(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldShouldEndEditing(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldDidEndEditing(_:reason:)",
+        "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldDidEndEditing(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/UITextField/DidEndEditingReason"
+      ],
+      "title": "Managing editing"
+    },
+    {
+      "anchor": "Editing-the-text-fields-text",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textField(_:shouldChangeCharactersIn:replacementString:)",
+        "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldShouldClear(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldShouldReturn(_:)"
+      ],
+      "title": "Editing the text field’s text"
+    },
+    {
+      "anchor": "Managing-text-selection",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldDidChangeSelection(_:)"
+      ],
+      "title": "Managing text selection"
+    },
+    {
+      "anchor": "Providing-a-context-menu",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textField(_:editMenuForCharactersIn:suggestedActions:)"
+      ],
+      "title": "Providing a context menu"
+    },
+    {
+      "anchor": "Customizing-an-edit-menu",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textField(_:willPresentEditMenuWith:)",
+        "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textField(_:willDismissEditMenuWith:)"
+      ],
+      "title": "Customizing an edit menu"
+    },
+    {
+      "anchor": "Inserting-a-Smart-Reply-suggestion",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textField(_:insertInputSuggestion:)"
+      ],
+      "title": "Inserting a Smart Reply suggestion"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UITextFieldDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextFieldDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextFieldDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Managing-editing",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldShouldBeginEditing(_:)",
+                "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldDidBeginEditing(_:)",
+                "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldShouldEndEditing(_:)",
+                "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldDidEndEditing(_:reason:)",
+                "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldDidEndEditing(_:)",
+                "doc://com.apple.uikit/documentation/UIKit/UITextField/DidEndEditingReason"
+              ],
+              "title": "Managing editing"
+            },
+            {
+              "anchor": "Editing-the-text-fields-text",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textField(_:shouldChangeCharactersIn:replacementString:)",
+                "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldShouldClear(_:)",
+                "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldShouldReturn(_:)"
+              ],
+              "title": "Editing the text field’s text"
+            },
+            {
+              "anchor": "Managing-text-selection",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textFieldDidChangeSelection(_:)"
+              ],
+              "title": "Managing text selection"
+            },
+            {
+              "anchor": "Providing-a-context-menu",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textField(_:editMenuForCharactersIn:suggestedActions:)"
+              ],
+              "title": "Providing a context menu"
+            },
+            {
+              "anchor": "Customizing-an-edit-menu",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textField(_:willPresentEditMenuWith:)",
+                "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textField(_:willDismissEditMenuWith:)"
+              ],
+              "title": "Customizing an edit menu"
+            },
+            {
+              "anchor": "Inserting-a-Smart-Reply-suggestion",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textField(_:insertInputSuggestion:)"
+              ],
+              "title": "Inserting a Smart Reply suggestion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UISearchTextFieldDelegate"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Validating-and-handling-edits",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITextField/delegate"
+              ],
+              "title": "Validating and handling edits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UITextFieldDelegate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textFieldDidEndEditing(_:reason:)/title",
+          "value": "textFieldDidEndEditing:reason:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textFieldDidEndEditing(_:reason:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textFieldDidEndEditing:reason:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textFieldDidEndEditing(_:)/title",
+          "value": "textFieldDidEndEditing:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textFieldDidEndEditing(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textFieldDidEndEditing:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField~1textDidChangeNotification/title",
+          "value": "UITextFieldTextDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField~1textDidChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextFieldTextDidChangeNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textField(_:shouldChangeCharactersIn:replacementString:)/title",
+          "value": "textField:shouldChangeCharactersInRange:replacementString:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textField(_:shouldChangeCharactersIn:replacementString:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textField:shouldChangeCharactersInRange:replacementString:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardDidShowNotification/title",
+          "value": "UIKeyboardDidShowNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardDidShowNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyboardDidShowNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardWillChangeFrameNotification/title",
+          "value": "UIKeyboardWillChangeFrameNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardWillChangeFrameNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyboardWillChangeFrameNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField~1textDidEndEditingNotification/title",
+          "value": "UITextFieldTextDidEndEditingNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField~1textDidEndEditingNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextFieldTextDidEndEditingNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textFieldShouldClear(_:)/title",
+          "value": "textFieldShouldClear:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textFieldShouldClear(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textFieldShouldClear:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField~1DidEndEditingReason/title",
+          "value": "UITextFieldDidEndEditingReason"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField~1DidEndEditingReason/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextFieldDidEndEditingReason"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField~1DidEndEditingReason/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextFieldDidEndEditingReason"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardWillShowNotification/title",
+          "value": "UIKeyboardWillShowNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardWillShowNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyboardWillShowNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textField(_:editMenuForCharactersIn:suggestedActions:)/title",
+          "value": "textField:editMenuForCharactersInRange:suggestedActions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textField(_:editMenuForCharactersIn:suggestedActions:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textField:editMenuForCharactersInRange:suggestedActions:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textFieldDidChangeSelection(_:)/title",
+          "value": "textFieldDidChangeSelection:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textFieldDidChangeSelection(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textFieldDidChangeSelection:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textFieldShouldEndEditing(_:)/title",
+          "value": "textFieldShouldEndEditing:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textFieldShouldEndEditing(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textFieldShouldEndEditing:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextFieldDelegate/title",
+          "value": "UISearchTextFieldDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextFieldDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchTextFieldDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextFieldDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchTextFieldDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textFieldShouldReturn(_:)/title",
+          "value": "textFieldShouldReturn:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textFieldShouldReturn(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textFieldShouldReturn:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textField(_:willDismissEditMenuWith:)/title",
+          "value": "textField:willDismissEditMenuWithAnimator:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textField(_:willDismissEditMenuWith:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textField:willDismissEditMenuWithAnimator:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textFieldDidBeginEditing(_:)/title",
+          "value": "textFieldDidBeginEditing:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textFieldDidBeginEditing(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textFieldDidBeginEditing:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField/title",
+          "value": "UITextField"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textField(_:insertInputSuggestion:)/title",
+          "value": "textField:insertInputSuggestion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textField(_:insertInputSuggestion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textField:insertInputSuggestion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardDidChangeFrameNotification/title",
+          "value": "UIKeyboardDidChangeFrameNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardDidChangeFrameNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyboardDidChangeFrameNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField~1textDidBeginEditingNotification/title",
+          "value": "UITextFieldTextDidBeginEditingNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField~1textDidBeginEditingNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextFieldTextDidBeginEditingNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textField(_:willPresentEditMenuWith:)/title",
+          "value": "textField:willPresentEditMenuWithAnimator:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textField(_:willPresentEditMenuWith:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textField:willPresentEditMenuWithAnimator:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textFieldShouldBeginEditing(_:)/title",
+          "value": "textFieldShouldBeginEditing:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textFieldShouldBeginEditing(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textFieldShouldBeginEditing:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardDidHideNotification/title",
+          "value": "UIKeyboardDidHideNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardDidHideNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyboardDidHideNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate/title",
+          "value": "UITextFieldDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextFieldDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextFieldDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardWillHideNotification/title",
+          "value": "UIKeyboardWillHideNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardWillHideNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyboardWillHideNotification"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uitextfielddelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uitextfielddelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

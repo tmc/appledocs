@@ -1,0 +1,1725 @@
+{
+  "abstract": [
+    {
+      "text": "Train a machine learning model to classify natural language text.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateML/documentation/CreateML"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateML/documentation/CreateML/creating-a-classification-model-for-natural-language"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Create ML"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a Text Classifier Model"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A text classifier is a machine learning model that’s been trained to recognize patterns",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in natural language text, like the sentiment expressed by a sentence.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-a-classification-model-for-natural-language-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You train a text classifier by showing it lots of examples of text you’ve already",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "labeled—for example, movie reviews that you’ve already labeled as positive, negative,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or neutral.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-a-classification-model-for-natural-language-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Import-Your-Data",
+          "level": 3,
+          "text": "Import Your Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start by gathering textual data and importing it into an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance. You can create a data table from JSON and CSV formats. Or, if your textual",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data is in a collection of files, you can sort them into folders, using the folder",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "names as labels, similar to the image data source used in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/creating-an-image-classifier-model",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As an example, consider a JSON file containing movie reviews that you’ve categorized",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by sentiment. Each entry contains a pair of keys, the ",
+              "type": "text"
+            },
+            {
+              "code": "text",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the ",
+              "type": "text"
+            },
+            {
+              "code": "label",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "values of those keys are the input samples used to train your model. The JSON snippet",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "below shows three pairs of sentences with their sentiment labels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// JSON file",
+            "[",
+            "    {",
+            "        \"text\": \"The movie was fantastic!\",",
+            "        \"label\": \"positive\"",
+            "    }, {",
+            "        \"text\": \"Very boring. Fell asleep.\",",
+            "        \"label\": \"negative\"",
+            "    }, {",
+            "        \"text\": \"It was just OK.\",",
+            "        \"label\": \"neutral\"",
+            "    } ...",
+            "]"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a macOS playground, create the data table using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/init(contentsOf:options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import CreateML",
+            "",
+            "let data = try MLDataTable(contentsOf: URL(fileURLWithPath: \"<#/path/to/read/data.json#>\"))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The resulting data table has two columns, named ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "text",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "label",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", derived from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the keys in the JSON file. The column names can be anything, as long as they are",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "meaningful to you, because you’ll use them as parameters in other methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prepare-Your-Data-for-Training-and-Evaluation",
+          "level": 3,
+          "text": "Prepare Your Data for Training and Evaluation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The data you use to train the model needs to be different from the data you use to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "evaluate the model. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/randomSplit(by:seed:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to split your data into two tables, one for training",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the other for testing. The training data table contains the majority of your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data, and the testing data contains the remaining 10 to 20 percent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let (trainingData, testingData) = data.randomSplit(by: 0.8, seed: 5)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-and-Train-the-Text-Classifier",
+          "level": 3,
+          "text": "Create and Train the Text Classifier",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLTextClassifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with your training data table",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the names of your columns. Training begins right away.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let sentimentClassifier = try MLTextClassifier(trainingData: trainingData,",
+            "                                               textColumn: \"text\",",
+            "                                               labelColumn: \"label\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During training, Create ML puts aside a small percentage of the training data to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use for validating the model’s progress during the training phase. The validation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data allows the training process to gauge the model’s performance on examples the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "model hasn’t been trained on. Depending on the validation accuracy, the training",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "algorithm could adjust values within the model or even stop the training process,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "if the accuracy is high enough. Because the split is done randomly, you might get",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a different result each time you train the model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To see how accurately the model performed on the training and validation data, use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics/classificationError",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties of the model’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLTextClassifier/trainingMetrics",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLTextClassifier/validationMetrics",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Training accuracy as a percentage",
+            "let trainingAccuracy = (1.0 - sentimentClassifier.trainingMetrics.classificationError) * 100",
+            "",
+            "// Validation accuracy as a percentage",
+            "let validationAccuracy = (1.0 - sentimentClassifier.validationMetrics.classificationError) * 100"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Evaluate-the-Classifiers-Accuracy",
+          "level": 3,
+          "text": "Evaluate the Classifier’s Accuracy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, evaluate your trained model’s performance by testing it against sentences it’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "never seen before. Pass your testing data table to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLTextClassifier/evaluation(on:)-8ch4k",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method, which returns an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let evaluationMetrics = sentimentClassifier.evaluation(on: testingData)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get the evaluation accuracy, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics/classificationError",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property of the returned ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Evaluation accuracy as a percentage",
+            "let evaluationAccuracy = (1.0 - evaluationMetrics.classificationError) * 100"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the evaluation performance isn’t good enough, you may need to retrain with more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data or make other adjustments. For information about improving model performance,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/improving-your-model-s-accuracy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Save-the-Core-ML-Model",
+          "level": 3,
+          "text": "Save the Core ML Model",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your model is performing well enough, you’re ready to save it so you can use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it in your app. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLTextClassifier/write(to:metadata:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to write the Core ML model file (",
+              "type": "text"
+            },
+            {
+              "code": "SentimentClassifier.mlmodel",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") to disk. Provide",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "any information about the model, like its author, version, or description in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLModelMetadata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let metadata = MLModelMetadata(author: \"John Appleseed\",",
+            "                               shortDescription: \"A model trained to classify movie review sentiment\",",
+            "                               version: \"1.0\")",
+            "",
+            "try sentimentClassifier.write(to: URL(fileURLWithPath: \"<#/path/to/save/SentimentClassifier.mlmodel#>\"),",
+            "                              metadata: metadata)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-the-Model-to-Your-App",
+          "level": 3,
+          "text": "Add the Model to Your App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With your app open in Xcode, drag the ",
+              "type": "text"
+            },
+            {
+              "code": "SentimentClassifier.mlmodel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file into the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "navigation pane. Xcode compiles the model and generates a ",
+              "type": "text"
+            },
+            {
+              "code": "SentimentClassifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for use in your app. Select the ",
+              "type": "text"
+            },
+            {
+              "code": "SentimentClassifier.mlmodel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in Xcode to view",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "additional information about the model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/NaturalLanguage/NLModel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Natural Language framework from the ",
+              "type": "text"
+            },
+            {
+              "code": "SentimentClassifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ensure that the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tokenization is consistent between training and deployment. Then use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/NaturalLanguage/NLModel/predictedLabel(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to generate predictions on new text inputs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import NaturalLanguage",
+            "import CoreML",
+            "",
+            "let mlModel = try SentimentClassifier(configuration: MLModelConfiguration()).model",
+            "",
+            "let sentimentPredictor = try NLModel(mlModel: mlModel)",
+            "sentimentPredictor.predictedLabel(for: \"It was the best I've ever seen!\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "creating-a-classification-model-for-natural-language-1": {
+      "alt": "Diagram showing how a text string maps to a label.",
+      "identifier": "creating-a-classification-model-for-natural-language-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8b58fe67739dc2f7f3bb472ed54312b3/creating-a-classification-model-for-natural-language-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/26bce4fdefecd43be4c4ec8ef61fa7f5/creating-a-classification-model-for-natural-language-1~dark@2x.png"
+        }
+      ]
+    },
+    "creating-a-classification-model-for-natural-language-2": {
+      "alt": "Diagram showing how you train a text classifier with Create ML using training data.",
+      "identifier": "creating-a-classification-model-for-natural-language-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/928f87b97f9f6bea77d959ecc545107a/creating-a-classification-model-for-natural-language-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ff4b464c87108741db095ba4e89e9bea/creating-a-classification-model-for-natural-language-2~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.CreateML/documentation/CreateML": {
+      "abstract": [
+        {
+          "text": "Create machine learning models for use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML",
+      "type": "topic",
+      "url": "/documentation/createml"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics": {
+      "abstract": [
+        {
+          "text": "Metrics you use to evaluate a classifier’s performance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLClassifierMetrics"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLClassifierMetrics"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLClassifierMetrics",
+      "type": "topic",
+      "url": "/documentation/createml/mlclassifiermetrics"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics/classificationError": {
+      "abstract": [
+        {
+          "text": "The fraction of incorrectly labeled examples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "classificationError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics/classificationError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "classificationError",
+      "type": "topic",
+      "url": "/documentation/createml/mlclassifiermetrics/classificationerror"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable": {
+      "abstract": [
+        {
+          "text": "A table of data for training or evaluating a machine learning model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLDataTable"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLDataTable",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/init(contentsOf:options:)": {
+      "abstract": [
+        {
+          "text": "Creates a data table from an imported JSON or CSV file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "contentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV14ParsingOptionsV",
+          "text": "ParsingOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/init(contentsOf:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(contentsOf:options:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/init(contentsof:options:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/randomSplit(by:seed:)": {
+      "abstract": [
+        {
+          "text": "Creates two mutually exclusive, randomly divided subsets of the table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "randomSplit"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "seed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/randomSplit(by:seed:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "randomSplit(by:seed:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/randomsplit(by:seed:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLModelMetadata": {
+      "abstract": [
+        {
+          "text": "Information about a model that’s stored in a Core ML model file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLModelMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLModelMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLModelMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLModelMetadata",
+      "type": "topic",
+      "url": "/documentation/createml/mlmodelmetadata"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLTextClassifier": {
+      "abstract": [
+        {
+          "text": "A model you train to classify natural language text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLTextClassifier"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLTextClassifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLTextClassifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLTextClassifier",
+      "type": "topic",
+      "url": "/documentation/createml/mltextclassifier"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLTextClassifier/evaluation(on:)-8ch4k": {
+      "abstract": [
+        {
+          "text": "Computes evaluation metrics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "evaluation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML16MLTextClassifierV",
+          "text": "MLTextClassifier"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML16MLTextClassifierV10DataSourceO",
+          "text": "DataSource"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML19MLClassifierMetricsV",
+          "text": "MLClassifierMetrics"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLTextClassifier/evaluation(on:)-8ch4k",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "evaluation(on:)",
+      "type": "topic",
+      "url": "/documentation/createml/mltextclassifier/evaluation(on:)-8ch4k"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLTextClassifier/trainingMetrics": {
+      "abstract": [
+        {
+          "text": "Measurements of the classifier’s performance on the training data set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trainingMetrics"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML19MLClassifierMetricsV",
+          "text": "MLClassifierMetrics"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLTextClassifier/trainingMetrics",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trainingMetrics",
+      "type": "topic",
+      "url": "/documentation/createml/mltextclassifier/trainingmetrics"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLTextClassifier/validationMetrics": {
+      "abstract": [
+        {
+          "text": "Measurements of the classifier’s performance on the validation data set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "validationMetrics"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML19MLClassifierMetricsV",
+          "text": "MLClassifierMetrics"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLTextClassifier/validationMetrics",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "validationMetrics",
+      "type": "topic",
+      "url": "/documentation/createml/mltextclassifier/validationmetrics"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLTextClassifier/write(to:metadata:)": {
+      "abstract": [
+        {
+          "text": "Exports the text classifier as a Core ML model file at the specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "metadata"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML15MLModelMetadataV",
+          "text": "MLModelMetadata"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLTextClassifier/write(to:metadata:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(to:metadata:)",
+      "type": "topic",
+      "url": "/documentation/createml/mltextclassifier/write(to:metadata:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/creating-an-image-classifier-model": {
+      "abstract": [
+        {
+          "text": "Train a machine learning model to classify images, and add it to your Core ML app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/creating-an-image-classifier-model",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Image Classifier Model",
+      "type": "topic",
+      "url": "/documentation/createml/creating-an-image-classifier-model"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/improving-your-model-s-accuracy": {
+      "abstract": [
+        {
+          "text": "Use metrics to tune the performance of your machine learning model.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/improving-your-model-s-accuracy",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving Your Model’s Accuracy",
+      "type": "topic",
+      "url": "/documentation/createml/improving-your-model-s-accuracy"
+    },
+    "doc://com.apple.documentation/documentation/NaturalLanguage/NLModel": {
+      "abstract": [
+        {
+          "text": "A custom model trained to classify or tag natural language text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NLModel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/NaturalLanguage/NLModel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NLModel",
+      "type": "topic",
+      "url": "/documentation/NaturalLanguage/NLModel"
+    },
+    "doc://com.apple.documentation/documentation/NaturalLanguage/NLModel/predictedLabel(for:)": {
+      "abstract": [
+        {
+          "text": "Predicts a label for the given input string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predictedLabel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/NaturalLanguage/NLModel/predictedLabel(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "predictedLabel(for:)",
+      "type": "topic",
+      "url": "/documentation/NaturalLanguage/NLModel/predictedLabel(for:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1NaturalLanguage~1NLModel~1predictedLabel(for:)/title",
+          "value": "predictedLabelForString:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1NaturalLanguage~1NLModel~1predictedLabel(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "predictedLabelForString:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "string"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1NaturalLanguage~1NLModel/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NLModel"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createml/creating-a-classification-model-for-natural-language"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

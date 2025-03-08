@@ -1,0 +1,820 @@
+{
+  "abstract": [
+    {
+      "text": "Construct a trust object from a certificate and a policy.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+        "doc://com.apple.security/documentation/Security/trust"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/creating-a-trust-object"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a Trust Object"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Evaluating trust is a two-step process. First, the system examines the certificate’s digital signature. The Certificate Authority (CA) that issues the certificate creates the signature using its own identity (private key plus certificate) and embeds this byte stream in the leaf certificate (the one under evaluation). If the signature checks out, and as long as the CA’s own certificate is valid, then the leaf certificate must also be valid. The CA’s certificate is in turn signed by another issuer, whose certificate is signed by another, and so on. This chain of certificates ends with the anchor certificate, which is typically one of the inherently trusted root certificates embedded in the operating system. For example, your app can rely on any of the root certificates embedded in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/en-us/HT204132",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/en-us/HT202858",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Alternatively, you can supply your own.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The second step in trust evaluation is testing the certificate against a trust policy. The policy indicates how particular fields or extensions of a certificate affect whether it should be trusted for a particular use. For example, the policy may state that a certificate must not be expired or must be marked as valid for encryption, code signing, or some other specific purpose.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All of this activity is facilitated by an instance of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecTrust",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that you prepare with one or more certificates and a policy objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prepare-the-Certificate-Chain",
+          "level": 3,
+          "text": "Prepare the Certificate Chain",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you have a certificate that you want to evaluate, obtained using one of the methods described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/getting-a-certificate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you prepare an array containing at least that certificate:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let certificate = <# a certificate #>",
+                    "let certArray = [ certificate ]"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "SecCertificateRef certificate = <# a certificate #>;",
+                    "NSArray* certArray = @[ (__bridge id)certificate ];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also include in this array the root certificate and any intermediates in the chain, but the system automatically looks for these if you don’t include them. It searches the keychain and the operating system’s collection of known root certificates. It may also download intermediate certificates from the network, if appropriate. As a result, explicitly including in the array any intermediate certificates that might otherwise require fetching may speed up the evaluation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prepare-a-Policy",
+          "level": 3,
+          "text": "Prepare a Policy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can construct your own policy from properties defined in the API using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecPolicyCreateWithProperties(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", but the best option is usually to use one of the predefined policies. For example, you can create an SSL policy with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecPolicyCreateSSL(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function or the basic X509 policy with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecPolicyCreateBasicX509()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. For example, for X509:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let policy = SecPolicyCreateBasicX509()"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "SecPolicyRef policy = SecPolicyCreateBasicX509();"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Create-a-Trust-Object",
+          "level": 3,
+          "text": "Create a Trust Object",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you have prepared the certificate chain and policy, you then use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecTrustCreateWithCertificates(_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to create a trust object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "var optionalTrust: SecTrust?",
+                    "let status = SecTrustCreateWithCertificates(certArray as AnyObject,",
+                    "                                            policy,",
+                    "                                            &optionalTrust)",
+                    "guard status == errSecSuccess else { return }",
+                    "let trust = optionalTrust!    // Safe to force unwrap now"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "SecTrustRef trust;",
+                    "OSStatus status = SecTrustCreateWithCertificates((__bridge CFTypeRef)certArray,",
+                    "                                                 policy,",
+                    "                                                 &trust);",
+                    "if (policy) { CFRelease(policy); }   // Done with the policy object",
+                    "if (status != errSecSuccess) { return; }"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecPolicyCreateBasicX509()": {
+      "abstract": [
+        {
+          "text": "Returns a policy object for the default X.509 policy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecPolicyCreateBasicX509"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecPolicyRef",
+          "text": "SecPolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecPolicyCreateBasicX509()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecPolicyCreateBasicX509"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecPolicyCreateBasicX509()",
+      "type": "topic",
+      "url": "/documentation/security/secpolicycreatebasicx509()"
+    },
+    "doc://com.apple.security/documentation/Security/SecPolicyCreateSSL(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a policy object for evaluating SSL certificate chains.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecPolicyCreateSSL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecPolicyRef",
+          "text": "SecPolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecPolicyCreateSSL(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecPolicyCreateSSL"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecPolicyCreateSSL(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secpolicycreatessl(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecPolicyCreateWithProperties(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a policy object based on an object identifier for the policy type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecPolicyCreateWithProperties"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecPolicyRef",
+          "text": "SecPolicy"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecPolicyCreateWithProperties(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecPolicyCreateWithProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecPolicyCreateWithProperties(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secpolicycreatewithproperties(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrust": {
+      "abstract": [
+        {
+          "text": "An object used to evaluate trust.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrust"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrust",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrust"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrust",
+      "type": "topic",
+      "url": "/documentation/security/sectrust"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustCreateWithCertificates(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a trust management object based on certificates and policies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrustCreateWithCertificates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTrustRef",
+          "text": "SecTrust"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustCreateWithCertificates(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustCreateWithCertificates"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustCreateWithCertificates(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectrustcreatewithcertificates(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services": {
+      "abstract": [
+        {
+          "text": "Establish trust using certificates and cryptographic keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Certificate, Key, and Trust Services",
+      "type": "topic",
+      "url": "/documentation/security/certificate-key-and-trust-services"
+    },
+    "doc://com.apple.security/documentation/Security/getting-a-certificate": {
+      "abstract": [
+        {
+          "text": "Obtain a certificate from an identity, from DER-encoded data, or from the keychain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/getting-a-certificate",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting a Certificate",
+      "type": "topic",
+      "url": "/documentation/security/getting-a-certificate"
+    },
+    "doc://com.apple.security/documentation/Security/trust": {
+      "abstract": [
+        {
+          "text": "Evaluate trust based on a given policy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/trust",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Trust",
+      "type": "topic",
+      "url": "/documentation/security/trust"
+    },
+    "https://support.apple.com/en-us/HT202858": {
+      "identifier": "https://support.apple.com/en-us/HT202858",
+      "title": "macOS",
+      "titleInlineContent": [
+        {
+          "text": "macOS",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/HT202858"
+    },
+    "https://support.apple.com/en-us/HT204132": {
+      "identifier": "https://support.apple.com/en-us/HT204132",
+      "title": "iOS",
+      "titleInlineContent": [
+        {
+          "text": "iOS",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/HT204132"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPolicyCreateWithProperties(_:_:)/title",
+          "value": "SecPolicyCreateWithProperties"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPolicyCreateWithProperties(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecPolicyCreateWithProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPolicyCreateSSL(_:_:)/title",
+          "value": "SecPolicyCreateSSL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPolicyCreateSSL(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecPolicyCreateSSL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPolicyCreateBasicX509()/title",
+          "value": "SecPolicyCreateBasicX509"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPolicyCreateBasicX509()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecPolicyCreateBasicX509"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustCreateWithCertificates(_:_:_:)/title",
+          "value": "SecTrustCreateWithCertificates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustCreateWithCertificates(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustCreateWithCertificates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrust/title",
+          "value": "SecTrustRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrust/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrust/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustRef"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/creating-a-trust-object"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/creating-a-trust-object"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1127 @@
+{
+  "abstract": [
+    {
+      "text": "Configure and test ID Verifier support in your app for reading mobile documents.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ProximityReader/documentation/ProximityReader/adopting-the-verifier-api-in-your-iphone-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ProximityReader"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adopting the Verifier API in your iPhone app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " enables support for the Verifier API, which allows your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app to read mobile documents such as driver’s licenses, state IDs, and national",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "IDs without any additional hardware. After configuration, ",
+              "type": "text"
+            },
+            {
+              "code": "ProximityReader",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can begin a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to read a mobile document. A",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "MobileDocumentReaderSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " brings up a sheet that collects and returns",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the document information you need to perform age and identity verification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable the Verifier API, verify that the person’s iPhone supports it, then prepare the device to read mobile documents.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/id-verifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To perform mobile document requests, add the “Verifier API” capability to your app’s target in Xcode. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Verify-device-support",
+          "level": 2,
+          "text": "Verify device support",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support the Verifier API, a person’s iPhone requires iOS 17 and later. The following example demonstrates how to check if the person’s device supports the Verifier API:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "actor MyActor {",
+            "",
+            "    // The mobile document reader you use to prepare the device and create a reader session.",
+            "    private let reader: MobileDocumentReader",
+            "",
+            "    // Returns `nil` if the Verifier API isn't supported on this device. ",
+            "    init?() {",
+            "        guard MobileDocumentReader.isSupported else {",
+            "            // This device doesn't support the Verifier API.",
+            "            return nil",
+            "        }",
+            "",
+            "        self.reader = MobileDocumentReader()",
+            "    }",
+            "",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the device doesn’t support the Verifier API, the framework throws a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderError/notSupported",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prepare-a-device-to-read-mobile-documents",
+          "level": 2,
+          "text": "Prepare a device to read mobile documents",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can perform mobile document requests, your app needs to prepare the device by instantiating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReader",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and calling its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReader/prepare(using:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want to show your brand’s name and logo in the system UI during a document request, pass a reader token generated from your server into the prepare method.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about reader tokens and how to generate on your server, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/generating-reader-tokens-for-the-verifier-api",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the call to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReader/prepare(using:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is successful, the framework returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that you can use to read mobile documents. If the call fails, you — or the person using your app — may need to take action, depending on the reasons for the failure. Review ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderError",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more details of the kinds of errors that you can encounter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows how to prepare device to read mobile documents:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "actor MyActor {",
+            "",
+            "    // The mobile document reader, you use to prepare the device and retrieve a reader session.",
+            "    private let reader: MobileDocumentReader",
+            "",
+            "    // The current reader session. If nil, prepare the device. ",
+            "    private var session: MobileDocumentReaderSession?",
+            "",
+            "    func prepareDevice() async {",
+            "        // Check whether the device is already prepared to read mobile documents.",
+            "        guard self.session == nil else {",
+            "            return",
+            "        }",
+            "",
+            "        // Fetch the reader configuration. This requires network access.",
+            "        let configuration = try await self.reader.configuration",
+            "",
+            "        // Get the current reader instance identifier -- do not cache this value directly.",
+            "        let identifier = configuration.readerInstanceIdentifier",
+            "",
+            "        // Send the identifier to your server in exchange for a reader token.",
+            "        let tokenString = try await MyWebService().fetchToken(for: identifier)",
+            "",
+            "        // Create a reader token from the token string.",
+            "        let readerToken = MobileDocumentReader.Token(tokenString)",
+            "",
+            "        do {",
+            "            self.session = try await self.reader.prepare(using: readerToken)",
+            "        } catch MobileDocumentReader.invalidToken {",
+            "            print(\"The reader token provided to prepare was invalid.\")",
+            "        } catch {",
+            "            print(\"An error occurred while preparing the reader: \\(error.localizedDescription).\")",
+            "        }",
+            "    }",
+            "",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first time you use a reader token to prepare a session, the framework performs a network call to the Verifier API server. The framework can perform subsequent prepare calls with the same reader token offline.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After you use a reader token to successfully prepare the device and create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can reuse it to prepare the device repeatedly for up to 48 hours.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you reuse a reader token after the 48-hour period has elapsed, the framework throws a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderError/sessionExpired",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Read-mobile-documents",
+          "level": 2,
+          "text": "Read mobile documents",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to present a system UI to prompt the person using your app to present their mobile document to the reader and approve the request. After successfully reading the mobile document, the system UI either shows the document information onscreen for review or dismisses it entirely, returning the response to your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Whether the system UI displays the document information onscreen, or returns the data to your app depends on which ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " your app performs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a read isn’t successful, the framework dismisses the system UI and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderSession/requestDocument(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " throws a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderError",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If the person dismissed the system UI, the framework throws ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderError/cancelled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Stop-reading-mobile-documents",
+          "level": 2,
+          "text": "Stop reading mobile documents",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’re finished reading mobile documents, you can invalidate the reader session by deallocating it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "actor MyActor {",
+            "",
+            "    // A currently valid, prepared session.",
+            "    private var session: MobileDocumentReaderSession?",
+            "",
+            "    // Invalidate the reader session by deallocating it.",
+            "    func stopReadingDocuments() {",
+            "        self.session = nil",
+            "    }",
+            "",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Test-your-implementation",
+          "level": 2,
+          "text": "Test your implementation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Even if you don’t live in an area that supports mobile documents, you can test your implementation in the Simulator or by downloading a developer profile on your local device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you perform a document request, the system simulates a successful document read and displays or returns a mock response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable the simulated test mode on your iPhone, download and install the “Mobile Document Reader (Developer)” profile from ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/bug-reporting/profiles-and-logs/?name=mobile%20document%20reader",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.ProximityReader/documentation/ProximityReader": {
+      "abstract": [
+        {
+          "text": "Read contactless physical and digital wallet cards using your iPhone.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ProximityReader",
+      "type": "topic",
+      "url": "/documentation/proximityreader"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReader": {
+      "abstract": [
+        {
+          "text": "An object for configuring mobile document reading on the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MobileDocumentReader"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MobileDocumentReader"
+        }
+      ],
+      "role": "symbol",
+      "title": "MobileDocumentReader",
+      "type": "topic",
+      "url": "/documentation/proximityreader/mobiledocumentreader"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReader/prepare(using:)": {
+      "abstract": [
+        {
+          "text": "Configures the device to read mobile documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepare"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ProximityReader014MobileDocumentB0C",
+          "text": "MobileDocumentReader"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ProximityReader014MobileDocumentB0C5TokenV",
+          "text": "Token"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ProximityReader014MobileDocumentB7SessionC",
+          "text": "MobileDocumentReaderSession"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReader/prepare(using:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepare(using:)",
+      "type": "topic",
+      "url": "/documentation/proximityreader/mobiledocumentreader/prepare(using:)"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderError": {
+      "abstract": [
+        {
+          "text": "An error type that indicates problems when preparing a mobile document reader session and performing document requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MobileDocumentReaderError"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MobileDocumentReaderError"
+        }
+      ],
+      "role": "symbol",
+      "title": "MobileDocumentReaderError",
+      "type": "topic",
+      "url": "/documentation/proximityreader/mobiledocumentreadererror"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderError/cancelled": {
+      "abstract": [
+        {
+          "text": "An error that indicates the mobile document request was canceled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancelled"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderError/cancelled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MobileDocumentReaderError.cancelled",
+      "type": "topic",
+      "url": "/documentation/proximityreader/mobiledocumentreadererror/cancelled"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderError/notSupported": {
+      "abstract": [
+        {
+          "text": "An error that indicates mobile document reading isn’t supported on the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notSupported"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderError/notSupported",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MobileDocumentReaderError.notSupported",
+      "type": "topic",
+      "url": "/documentation/proximityreader/mobiledocumentreadererror/notsupported"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderError/sessionExpired": {
+      "abstract": [
+        {
+          "text": "An error that indicates the current reader session has expired.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sessionExpired"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderError/sessionExpired",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MobileDocumentReaderError.sessionExpired",
+      "type": "topic",
+      "url": "/documentation/proximityreader/mobiledocumentreadererror/sessionexpired"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderSession": {
+      "abstract": [
+        {
+          "text": "The object you use to start reading a mobile document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MobileDocumentReaderSession"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MobileDocumentReaderSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "MobileDocumentReaderSession",
+      "type": "topic",
+      "url": "/documentation/proximityreader/mobiledocumentreadersession"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderSession/requestDocument(_:)": {
+      "abstract": [
+        {
+          "text": "Presents a sheet to read a mobile document and returns the relevant response.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestDocument"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Request"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Request"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Request"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ProximityReader21MobileDocumentRequestP8ResponseQa",
+          "text": "Response"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderSession/requestDocument(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestDocument(_:)",
+      "type": "topic",
+      "url": "/documentation/proximityreader/mobiledocumentreadersession/requestdocument(_:)"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentRequest": {
+      "abstract": [
+        {
+          "text": "A type that represents a mobile document request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MobileDocumentRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MobileDocumentRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MobileDocumentRequest",
+      "type": "topic",
+      "url": "/documentation/proximityreader/mobiledocumentrequest"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/checking-ids-with-the-verifier-api": {
+      "abstract": [
+        {
+          "text": "Read and verify mobile driver’s license information without any additional hardware.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/checking-ids-with-the-verifier-api",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Checking IDs with the Verifier API",
+      "type": "topic",
+      "url": "/documentation/proximityreader/checking-ids-with-the-verifier-api"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/generating-reader-tokens-for-the-verifier-api": {
+      "abstract": [
+        {
+          "text": "Configure your server to generate reader tokens to prepare a device for mobile document reading.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/generating-reader-tokens-for-the-verifier-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating reader tokens for the Verifier API",
+      "type": "topic",
+      "url": "/documentation/proximityreader/generating-reader-tokens-for-the-verifier-api"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app": {
+      "abstract": [
+        {
+          "text": "Configure your target to include and customize capabilities that provide access to Apple’s app services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding capabilities to your app",
+      "type": "topic",
+      "url": "/documentation/Xcode/adding-capabilities-to-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/bug-reporting/profiles-and-logs/?name=mobile%20document%20reader": {
+      "identifier": "https://developer.apple.com/bug-reporting/profiles-and-logs/?name=mobile%20document%20reader",
+      "title": "Profiles and Logs",
+      "titleInlineContent": [
+        {
+          "text": "Profiles and Logs",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/bug-reporting/profiles-and-logs/?name=mobile%20document%20reader"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/id-verifier": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/id-verifier",
+      "title": "Human Interface Guidelines > ID Verifier",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines > ID Verifier",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/id-verifier"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Mobile-document-reader",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/generating-reader-tokens-for-the-verifier-api",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/checking-ids-with-the-verifier-api",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReader",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderSession"
+      ],
+      "title": "Mobile document reader"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Mobile-document-reader",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.ProximityReader/documentation/ProximityReader/generating-reader-tokens-for-the-verifier-api"
+              ],
+              "title": "Mobile document reader"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/proximityreader/adopting-the-verifier-api-in-your-iphone-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/proximityreader/adopting-the-verifier-api-in-your-iphone-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

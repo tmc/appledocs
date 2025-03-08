@@ -1,0 +1,456 @@
+{
+  "abstract": [
+    {
+      "text": "Defer the system’s authorization request dialog until your app is ready.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corelocation/documentation/CoreLocation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corelocation/documentation/CoreLocation/suspending-authorization-requests"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Location"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Suspending authorization requests"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app has an onboarding flow that includes obtaining location updates, you may want to defer the Core Location’s request for authorization from the user. You can inhibit the auto-prompting in your app by creating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSession-pt7n",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " at a convenient time in your app, then iterating over its diagnostics property to determine the level of authorization the person using your app selects. The following code snippet demonstrates how to defer the prompting.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func doPromptingFlow() async {",
+            "    await showHelloPrompt()",
+            "",
+            "    // Obtain a session. This causes Core Location to display the authorization prompt.",
+            "    let session = CLServiceSession.session(authorization: .whenInUse)",
+            "",
+            "    // Wait for interaction with the prompot to complete (successfully or with denial).",
+            "    for try await diagnostic in session.diagnostics {",
+            "        if !diagnostic.authorizationRequestInProgress {",
+            "            // A denial occurred.",
+            "            break",
+            "        }",
+            "    }",
+            "",
+            "    await doFurtherWork()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the ",
+              "type": "text"
+            },
+            {
+              "code": "CLRequireExplicitServiceSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to your app’s Info.plist file to opt into this control behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corelocation/documentation/CoreLocation": {
+      "abstract": [
+        {
+          "text": "Obtain the geographic location and orientation of a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Location",
+      "type": "topic",
+      "url": "/documentation/corelocation"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLAccuracyAuthorization": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the level of location accuracy the app has authorization to use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLAccuracyAuthorization"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLAccuracyAuthorization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLAccuracyAuthorization"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLAccuracyAuthorization",
+      "type": "topic",
+      "url": "/documentation/corelocation/claccuracyauthorization"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLAuthorizationStatus": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the app’s authorization to use location services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLAuthorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLAuthorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLAuthorizationStatus",
+      "type": "topic",
+      "url": "/documentation/corelocation/clauthorizationstatus"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSession-pt7n": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLServiceSession"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSession-pt7n",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLServiceSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLServiceSession",
+      "type": "topic",
+      "url": "/documentation/corelocation/clservicesession-pt7n"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/requesting-authorization-to-use-location-services": {
+      "abstract": [
+        {
+          "text": "Obtain authorization to use location services and manage changes to your app’s authorization status.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/requesting-authorization-to-use-location-services",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting authorization to use location services",
+      "type": "topic",
+      "url": "/documentation/corelocation/requesting-authorization-to-use-location-services"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationAlwaysAndWhenInUseUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s location information at all times.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationAlwaysAndWhenInUseUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLocationAlwaysAndWhenInUseUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSLocationAlwaysAndWhenInUseUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationAlwaysUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s location at all times.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationAlwaysUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLocationAlwaysUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSLocationAlwaysUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationDefaultAccuracyReduced": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app requests reduced location accuracy by default.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationDefaultAccuracyReduced",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLocationDefaultAccuracyReduced",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSLocationDefaultAccuracyReduced"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s location information.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLocationUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSLocationUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationWhenInUseUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s location information while the app is running in the foreground.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationWhenInUseUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLocationWhenInUseUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSLocationWhenInUseUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Authorization",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/requesting-authorization-to-use-location-services",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLAuthorizationStatus",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLAccuracyAuthorization",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationAlwaysAndWhenInUseUsageDescription",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationWhenInUseUsageDescription",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationUsageDescription",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationDefaultAccuracyReduced",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationAlwaysUsageDescription"
+      ],
+      "title": "Authorization"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Authorization",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corelocation/documentation/CoreLocation/requesting-authorization-to-use-location-services",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLAuthorizationStatus",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLAccuracyAuthorization",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationAlwaysAndWhenInUseUsageDescription",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationWhenInUseUsageDescription",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationUsageDescription",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationDefaultAccuracyReduced",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationAlwaysUsageDescription"
+              ],
+              "title": "Authorization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLAuthorizationStatus/title",
+          "value": "CLAuthorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLAuthorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLAuthorizationStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLAccuracyAuthorization/title",
+          "value": "CLAccuracyAuthorization"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLAccuracyAuthorization/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLAccuracyAuthorization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLAccuracyAuthorization/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLAccuracyAuthorization"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corelocation/suspending-authorization-requests"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corelocation/suspending-authorization-requests"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

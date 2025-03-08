@@ -1,0 +1,651 @@
+{
+  "abstract": [
+    {
+      "text": "Enable users to configure HomePod speakers to stream music directly from your media service.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mediasetup/documentation/MediaSetup"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "MediaSetup",
+    "modules": [
+      {
+        "name": "Media Setup"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.4",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Media Setup"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the Media Setup framework in your iOS app to help users transfer account credentials to their HomePod speakers. For example, if you have an iOS app that already supports Siri media intents to stream music, adopt this framework so the user can set up their HomePod to stream music directly from your media service. Provide endpoints the HomePod speaker can access by adopting ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SiriKitCloudMedia",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on your media service.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediasetup/documentation/MediaSetup/MSSetupSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " uses the window you provide in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediasetup/documentation/MediaSetup/MSAuthenticationPresentationContext/presentationAnchor()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to present a configuration view to the user. After the user confirms the configuration, the session assembles a token request from its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediasetup/documentation/MediaSetup/MSSetupSession/account",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and sends it to your OAuth service. When your OAuth service responds with a token, the session verifies the token and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediasetup/documentation/MediaSetup/MSServiceAccount/configurationURL",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Then it sends that token to the HomePod speakers associated with the user’s Apple ID in the Home app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For details about applying for the SiriKit Media Intents on HomePod program, see the HomePod section of ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/siri",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/SiriKitCloudMedia": {
+      "abstract": [
+        {
+          "text": "Stream music directly to HomePod speakers from your media service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SiriKitCloudMedia",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SiriKit Cloud Media",
+      "type": "topic",
+      "url": "/documentation/SiriKitCloudMedia"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mediasetup/documentation/MediaSetup": {
+      "abstract": [
+        {
+          "text": "Enable users to configure HomePod speakers to stream music directly from your media service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediasetup/documentation/MediaSetup",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Media Setup",
+      "type": "topic",
+      "url": "/documentation/mediasetup"
+    },
+    "doc://com.apple.mediasetup/documentation/MediaSetup/MSAuthenticationPresentationContext/presentationAnchor()": {
+      "abstract": [
+        {
+          "text": "A window that presents the system’s HomePod configuration view to the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentationAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MSPresentationAnchor",
+          "text": "MSPresentationAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.mediasetup/documentation/MediaSetup/MSAuthenticationPresentationContext/presentationAnchor()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentationAnchor"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "presentationAnchor()",
+      "type": "topic",
+      "url": "/documentation/mediasetup/msauthenticationpresentationcontext/presentationanchor()"
+    },
+    "doc://com.apple.mediasetup/documentation/MediaSetup/MSServiceAccount": {
+      "abstract": [
+        {
+          "text": "Account details for accessing a streaming media service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSServiceAccount"
+        }
+      ],
+      "identifier": "doc://com.apple.mediasetup/documentation/MediaSetup/MSServiceAccount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSServiceAccount"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSServiceAccount",
+      "type": "topic",
+      "url": "/documentation/mediasetup/msserviceaccount"
+    },
+    "doc://com.apple.mediasetup/documentation/MediaSetup/MSServiceAccount/configurationURL": {
+      "abstract": [
+        {
+          "text": "The path to access the configuration endpoint of your streaming media service for HomePod.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "configurationURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.mediasetup/documentation/MediaSetup/MSServiceAccount/configurationURL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "configurationURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "configurationURL",
+      "type": "topic",
+      "url": "/documentation/mediasetup/msserviceaccount/configurationurl"
+    },
+    "doc://com.apple.mediasetup/documentation/MediaSetup/MSSetupSession": {
+      "abstract": [
+        {
+          "text": "An object that manages the transfer of configuration information between your app, the system, your media service, and HomePod speakers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSSetupSession"
+        }
+      ],
+      "identifier": "doc://com.apple.mediasetup/documentation/MediaSetup/MSSetupSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSSetupSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSSetupSession",
+      "type": "topic",
+      "url": "/documentation/mediasetup/mssetupsession"
+    },
+    "doc://com.apple.mediasetup/documentation/MediaSetup/MSSetupSession/account": {
+      "abstract": [
+        {
+          "text": "The streaming media service account for the session to configure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "account"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MSServiceAccount",
+          "text": "MSServiceAccount"
+        }
+      ],
+      "identifier": "doc://com.apple.mediasetup/documentation/MediaSetup/MSSetupSession/account",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "account"
+        }
+      ],
+      "role": "symbol",
+      "title": "account",
+      "type": "topic",
+      "url": "/documentation/mediasetup/mssetupsession/account"
+    },
+    "doc://com.apple.mediasetup/documentation/MediaSetup/MediaSetupVersionNumber": {
+      "abstract": [
+        {
+          "text": "The version number of the Media Setup framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MediaSetupVersionNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.mediasetup/documentation/MediaSetup/MediaSetupVersionNumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MediaSetupVersionNumber",
+      "type": "topic",
+      "url": "/documentation/mediasetup/mediasetupversionnumber"
+    },
+    "doc://com.apple.mediasetup/documentation/MediaSetup/MediaSetupVersionString": {
+      "abstract": [
+        {
+          "text": "The version of the Media Setup framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MediaSetupVersionString"
+        }
+      ],
+      "identifier": "doc://com.apple.mediasetup/documentation/MediaSetup/MediaSetupVersionString",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MediaSetupVersionString",
+      "type": "topic",
+      "url": "/documentation/mediasetup/mediasetupversionstring"
+    },
+    "https://developer.apple.com/siri": {
+      "identifier": "https://developer.apple.com/siri",
+      "title": "Siri for Developers",
+      "titleInlineContent": [
+        {
+          "text": "Siri for Developers",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/siri"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "HomePod-Configuration",
+      "identifiers": [
+        "doc://com.apple.mediasetup/documentation/MediaSetup/MSSetupSession",
+        "doc://com.apple.mediasetup/documentation/MediaSetup/MSServiceAccount"
+      ],
+      "title": "HomePod Configuration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "HomePod-Configuration",
+              "identifiers": [
+                "doc://com.apple.mediasetup/documentation/MediaSetup/MSSetupSession",
+                "doc://com.apple.mediasetup/documentation/MediaSetup/MSServiceAccount"
+              ],
+              "title": "HomePod Configuration"
+            },
+            {
+              "anchor": "Version",
+              "identifiers": [
+                "doc://com.apple.mediasetup/documentation/MediaSetup/MediaSetupVersionNumber",
+                "doc://com.apple.mediasetup/documentation/MediaSetup/MediaSetupVersionString"
+              ],
+              "title": "Version"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediasetup~1documentation~1MediaSetup~1MSAuthenticationPresentationContext~1presentationAnchor()/title",
+          "value": "presentationAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediasetup~1documentation~1MediaSetup~1MSAuthenticationPresentationContext~1presentationAnchor()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentationAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediasetup~1documentation~1MediaSetup~1MSServiceAccount~1configurationURL/title",
+          "value": "configurationURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediasetup~1documentation~1MediaSetup~1MSServiceAccount~1configurationURL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "configurationURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediasetup~1documentation~1MediaSetup~1MSSetupSession/title",
+          "value": "MSSetupSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediasetup~1documentation~1MediaSetup~1MSSetupSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSSetupSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediasetup~1documentation~1MediaSetup~1MSSetupSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSSetupSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediasetup~1documentation~1MediaSetup~1MSServiceAccount/title",
+          "value": "MSServiceAccount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediasetup~1documentation~1MediaSetup~1MSServiceAccount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSServiceAccount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediasetup~1documentation~1MediaSetup~1MSServiceAccount/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSServiceAccount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediasetup~1documentation~1MediaSetup~1MSSetupSession~1account/title",
+          "value": "account"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediasetup~1documentation~1MediaSetup~1MSSetupSession~1account/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "account"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mediasetup"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mediasetup"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

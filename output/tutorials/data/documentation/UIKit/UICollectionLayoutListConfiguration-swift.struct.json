@@ -1,0 +1,1333 @@
+{
+  "abstract": [
+    {
+      "text": "A configuration for creating a list layout.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:5UIKit35UICollectionLayoutListConfigurationV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UICollectionLayoutListConfiguration"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UICollectionLayoutListConfiguration"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "UICollectionLayoutListConfiguration"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UICollectionLayoutListConfiguration"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this configuration to create a list section for a compositional layout (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCompositionalLayout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), or a layout containing only list sections. The following example shows how to create a compositional layout that contains only list sections by applying the same configuration to each section in the list layout:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let configuration = UICollectionLayoutListConfiguration(appearance: .sidebar)",
+            "let layout = UICollectionViewCompositionalLayout.list(using: configuration)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To implement different list configurations for different sections, use a compositional layout’s section provider to create each section with its own list configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let layout = UICollectionViewCompositionalLayout() { sectionIndex, layoutEnvironment in",
+            "    ",
+            "    var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)",
+            "    configuration.headerMode = sectionIndex == 0 ? .supplementary : .none",
+            "    ",
+            "    let section = NSCollectionLayoutSection.list(using: configuration,",
+            "                                                 layoutEnvironment: layoutEnvironment)",
+            "    ",
+            "    return section",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSCollectionLayoutSection/list(using:layoutEnvironment:)": {
+      "abstract": [
+        {
+          "text": "Creates a list section with the specified list configuration and layout environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "list"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit35UICollectionLayoutListConfigurationV",
+          "text": "UICollectionLayoutListConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "layoutEnvironment"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSCollectionLayoutEnvironment",
+          "text": "NSCollectionLayoutEnvironment"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCollectionLayoutSection",
+          "text": "NSCollectionLayoutSection"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSCollectionLayoutSection/list(using:layoutEnvironment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "list(using:layoutEnvironment:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nscollectionlayoutsection/list(using:layoutenvironment:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct": {
+      "abstract": [
+        {
+          "text": "A configuration for creating a list layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionLayoutListConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionLayoutListConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionLayoutListConfiguration",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/Appearance-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that describe the appearance of the list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Appearance"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/Appearance-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Appearance"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionLayoutListConfiguration.Appearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-swift.struct/appearance-swift.enum"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/ContentHuggingElements-swift.struct": {
+      "abstract": [
+        {
+          "text": "Constants that determine which types of items in a collection view tightly hug their content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentHuggingElements"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/ContentHuggingElements-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentHuggingElements"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionLayoutListConfiguration.ContentHuggingElements",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-swift.struct/contenthuggingelements-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/FooterMode-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that describe the list’s footer mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FooterMode"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/FooterMode-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FooterMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionLayoutListConfiguration.FooterMode",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-swift.struct/footermode-swift.enum"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/HeaderMode-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that describe the list’s header mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HeaderMode"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/HeaderMode-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HeaderMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionLayoutListConfiguration.HeaderMode",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-swift.struct/headermode-swift.enum"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/ItemSeparatorHandler-swift.typealias": {
+      "abstract": [
+        {
+          "text": "A closure that provides granular control over list separator appearance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ItemSeparatorHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/ItemSeparatorHandler-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ItemSeparatorHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionLayoutListConfiguration.ItemSeparatorHandler",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-swift.struct/itemseparatorhandler-swift.typealias"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/SwipeActionsConfigurationProvider": {
+      "abstract": [
+        {
+          "text": "A closure that configures the swipe actions for a cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SwipeActionsConfigurationProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/SwipeActionsConfigurationProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SwipeActionsConfigurationProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionLayoutListConfiguration.SwipeActionsConfigurationProvider",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-swift.struct/swipeactionsconfigurationprovider"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/appearance-swift.property": {
+      "abstract": [
+        {
+          "text": "The overall appearance of the list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appearance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit35UICollectionLayoutListConfigurationV",
+          "text": "UICollectionLayoutListConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit35UICollectionLayoutListConfigurationV10AppearanceO",
+          "text": "Appearance"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/appearance-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-swift.struct/appearance-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/backgroundColor": {
+      "abstract": [
+        {
+          "text": "The background color of the list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "backgroundColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIColor",
+          "text": "UIColor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/backgroundColor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "backgroundColor",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-swift.struct/backgroundcolor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/contentHuggingElements-swift.property": {
+      "abstract": [
+        {
+          "text": "A setting that determines which type of items tightly hug their content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentHuggingElements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit35UICollectionLayoutListConfigurationV",
+          "text": "UICollectionLayoutListConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit35UICollectionLayoutListConfigurationV22ContentHuggingElementsV",
+          "text": "ContentHuggingElements"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/contentHuggingElements-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentHuggingElements",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-swift.struct/contenthuggingelements-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/footerMode-swift.property": {
+      "abstract": [
+        {
+          "text": "The type of footer to use for the list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "footerMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit35UICollectionLayoutListConfigurationV",
+          "text": "UICollectionLayoutListConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit35UICollectionLayoutListConfigurationV10FooterModeO",
+          "text": "FooterMode"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/footerMode-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "footerMode",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-swift.struct/footermode-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/headerMode-swift.property": {
+      "abstract": [
+        {
+          "text": "The type of header to use for the list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "headerMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit35UICollectionLayoutListConfigurationV",
+          "text": "UICollectionLayoutListConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit35UICollectionLayoutListConfigurationV10HeaderModeO",
+          "text": "HeaderMode"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/headerMode-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "headerMode",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-swift.struct/headermode-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/headerTopPadding": {
+      "abstract": [
+        {
+          "text": "The amount of padding above each section header.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "headerTopPadding"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/headerTopPadding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "headerTopPadding",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-swift.struct/headertoppadding"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/init(appearance:)": {
+      "abstract": [
+        {
+          "text": "Creates a list layout configuration with the specified appearance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "appearance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit35UICollectionLayoutListConfigurationV",
+          "text": "UICollectionLayoutListConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit35UICollectionLayoutListConfigurationV10AppearanceO",
+          "text": "Appearance"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/init(appearance:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(appearance:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-swift.struct/init(appearance:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/itemSeparatorHandler-swift.property": {
+      "abstract": [
+        {
+          "text": "The closure that provides granular control over the list separator appearance of each item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "itemSeparatorHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit35UICollectionLayoutListConfigurationV",
+          "text": "UICollectionLayoutListConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit35UICollectionLayoutListConfigurationV20ItemSeparatorHandlera",
+          "text": "ItemSeparatorHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/itemSeparatorHandler-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "itemSeparatorHandler",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-swift.struct/itemseparatorhandler-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/leadingSwipeActionsConfigurationProvider": {
+      "abstract": [
+        {
+          "text": "The closure that provides the set of actions to display when swiping on the leading edge of the cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "leadingSwipeActionsConfigurationProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit35UICollectionLayoutListConfigurationV",
+          "text": "UICollectionLayoutListConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit35UICollectionLayoutListConfigurationV012SwipeActionsE8Providera",
+          "text": "SwipeActionsConfigurationProvider"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/leadingSwipeActionsConfigurationProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "leadingSwipeActionsConfigurationProvider",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-swift.struct/leadingswipeactionsconfigurationprovider"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/separatorConfiguration": {
+      "abstract": [
+        {
+          "text": "The section’s preferred configuration for list separators.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "separatorConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit28UIListSeparatorConfigurationV",
+          "text": "UIListSeparatorConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/separatorConfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "separatorConfiguration",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-swift.struct/separatorconfiguration"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/showsSeparators": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the list shows separators between cells.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showsSeparators"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/showsSeparators",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "showsSeparators",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-swift.struct/showsseparators"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/trailingSwipeActionsConfigurationProvider": {
+      "abstract": [
+        {
+          "text": "The closure that provides the set of actions to display when swiping on the trailing edge of the cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trailingSwipeActionsConfigurationProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit35UICollectionLayoutListConfigurationV",
+          "text": "UICollectionLayoutListConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit35UICollectionLayoutListConfigurationV012SwipeActionsE8Providera",
+          "text": "SwipeActionsConfigurationProvider"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/trailingSwipeActionsConfigurationProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trailingSwipeActionsConfigurationProvider",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-swift.struct/trailingswipeactionsconfigurationprovider"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCompositionalLayout": {
+      "abstract": [
+        {
+          "text": "A layout object that lets you combine items in highly adaptive and flexible visual arrangements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewCompositionalLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCompositionalLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewCompositionalLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewCompositionalLayout",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcompositionallayout"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCompositionalLayout/list(using:)": {
+      "abstract": [
+        {
+          "text": "Creates a compositional layout that contains only list sections of the specified configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "list"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit35UICollectionLayoutListConfigurationV",
+          "text": "UICollectionLayoutListConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UICollectionViewCompositionalLayout",
+          "text": "UICollectionViewCompositionalLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCompositionalLayout/list(using:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "list(using:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcompositionallayout/list(using:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIListSeparatorConfiguration-swift.struct": {
+      "abstract": [
+        {
+          "text": "A configuration that controls the list separator appearance in a list section.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIListSeparatorConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIListSeparatorConfiguration-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIListSeparatorConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIListSeparatorConfiguration",
+      "type": "topic",
+      "url": "/documentation/uikit/uilistseparatorconfiguration-swift.struct"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/NSCollectionLayoutSection/list(using:layoutEnvironment:)"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Creating-a-list-layout",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCompositionalLayout/list(using:)"
+      ],
+      "title": "Creating a list layout"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-list-layout-configuration",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/init(appearance:)"
+      ],
+      "title": "Creating a list layout configuration"
+    },
+    {
+      "anchor": "Configuring-appearance",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/appearance-swift.property",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/backgroundColor",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/Appearance-swift.enum"
+      ],
+      "title": "Configuring appearance"
+    },
+    {
+      "anchor": "Configuring-separators",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/showsSeparators",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/separatorConfiguration",
+        "doc://com.apple.uikit/documentation/UIKit/UIListSeparatorConfiguration-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/itemSeparatorHandler-swift.property",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/ItemSeparatorHandler-swift.typealias"
+      ],
+      "title": "Configuring separators"
+    },
+    {
+      "anchor": "Configuring-headers-and-footers",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/headerMode-swift.property",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/footerMode-swift.property",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/HeaderMode-swift.enum",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/FooterMode-swift.enum",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/headerTopPadding"
+      ],
+      "title": "Configuring headers and footers"
+    },
+    {
+      "anchor": "Customizing-swipe-actions",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/leadingSwipeActionsConfigurationProvider",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/trailingSwipeActionsConfigurationProvider",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/SwipeActionsConfigurationProvider"
+      ],
+      "title": "Customizing swipe actions"
+    },
+    {
+      "anchor": "Managing-content-hugging-behavior",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/contentHuggingElements-swift.property",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-swift.struct/ContentHuggingElements-swift.struct"
+      ],
+      "title": "Managing content-hugging behavior"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewCompositionalLayout/title",
+          "value": "UICollectionViewCompositionalLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewCompositionalLayout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewCompositionalLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewCompositionalLayout/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewCompositionalLayout"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uicollectionlayoutlistconfiguration-swift.struct"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

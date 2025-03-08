@@ -1,0 +1,1225 @@
+{
+  "abstract": [
+    {
+      "text": "Calculate the optimum sizes for threadgroups and grids when dispatching compute-processing workloads.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/compute-passes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/calculating-threadgroup-and-grid-sizes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Calculating Threadgroup and Grid Sizes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can ensure your app doesn’t underuse threads by specifying the size of the grid and the number of threads per threadgroup. In iOS 11 and macOS 10.13 and later on devices that support nonuniform dispatch sizes, Metal calculates the number of threadgroups and provides nonuniform threadgroups if the grid size isn’t a multiple of the threadgroup size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In earlier versions of iOS and macOS, you specify the size and number of the threadgroups. Metal composes grids of uniform threadgroups that may not match the size of your data. You can ensure your kernel code doesn’t execute outside the bounds of the data by adding defensive code to it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Calculate-Threads-per-Threadgroup",
+          "level": 3,
+          "text": "Calculate Threads per Threadgroup",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You calculate the number of threads per threadgroup based on two ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputePipelineState",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The maximum number of threads that can be in a single threadgroup, which depends on the GPU and on the amount of registers and memory your compute kernel needs.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputePipelineState/maxTotalThreadsPerThreadgroup",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The number of threads the GPU schedules to execute in parallel.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputePipelineState/threadExecutionWidth",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "After you create a compute pipeline state, its ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputePipelineState/maxTotalThreadsPerThreadgroup",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " value doesn’t change, but two pipeline states on the same device may return different values.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, consider a compute pipeline state with ",
+              "type": "text"
+            },
+            {
+              "code": "512",
+              "type": "codeVoice"
+            },
+            {
+              "text": " maximum threads per threadgroup and a thread execution width of ",
+              "type": "text"
+            },
+            {
+              "code": "16",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For that compute pipeline state, you can launch the largest possible threadgroup by setting the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The second dimension to the maximum threads per thread group divided by the thread execution width",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The third dimension to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Calculate the maximum threads per threadgroup based on the thread execution width.",
+                    "let w = pipelineState.threadExecutionWidth",
+                    "let h = pipelineState.maxTotalThreadsPerThreadgroup / w",
+                    "let threadsPerThreadgroup = MTLSizeMake(w, h, 1) "
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Calculate the maximum threads per threadgroup based on the thread execution width.",
+                    "NSUInteger w = pipelineState.threadExecutionWidth;",
+                    "NSUInteger h = pipelineState.maxTotalThreadsPerThreadgroup / w;",
+                    "MTLSize threadsPerThreadgroup = MTLSizeMake(w, h, 1);"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On devices that support nonuniform threadgroup sizes, Metal divides a grid into nonuniform, arbitrarily sized threadgroups, such as for an image or texture. The compute command encoder’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/dispatchThreads(_:threadsPerThreadgroup:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method requires the total number of threads because each thread corresponds to a single pixel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let threadsPerGrid = MTLSize(width: texture.width,",
+                    "                             height: texture.height,",
+                    "                             depth: 1)",
+                    "        ",
+                    "computeCommandEncoder.dispatchThreads(threadsPerGrid,",
+                    "                                      threadsPerThreadgroup: threadsPerThreadgroup)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "MTLSize threadsPerGrid = MTLSizeMake(texture.width, texture.height, 1);",
+                    "    ",
+                    "[computeCommandEncoder dispatchThreads: threadsPerGrid",
+                    "                       threadsPerThreadgroup: threadsPerThreadgroup];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When Metal performs this calculation, it can generate smaller threadgroups along the edges of your grid. Compared to uniform threadgroups, this technique simplifies kernel code and improves GPU performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine if a device supports nonuniform threadgroups, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2922064",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Calculate-Threadgroups-per-Grid",
+          "level": 3,
+          "text": "Calculate Threadgroups per Grid",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need fine control over the size and number of threadgroups, you can manually calculate how to divide the grid. In your code, ensure that there are sufficient threadgroups to cover the entire image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let threadgroupsPerGrid = MTLSize(width: (texture.width + w - 1) / w,",
+                    "                                  height: (texture.height + h - 1) / h,",
+                    "                                  depth: 1)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "MTLSize threadgroupsPerGrid = MTLSizeMake((texture.width + w - 1) / w,",
+                    "                                          (texture.height + h - 1) / h,",
+                    "                                          1);"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a texture that’s 1024 by 768 pixels in size, the code above returns an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLSize",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance with a width of ",
+              "type": "text"
+            },
+            {
+              "code": "32",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", a height of ",
+              "type": "text"
+            },
+            {
+              "code": "48",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and a depth of ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". These values divide the texture into 1536 threadgroups, each of which contains 512 threads, for a total of 786,432 threads. In this case, that number of threads matches the number of pixels in the image, and the GPU processes the entire image with no underuse of threads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, the code may round up to ensure there are sufficient threads to process the entire image, such as for an image of 1920 by 1080 pixels in size. This approach can result in the threadgroups generating a grid that’s larger than your data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2922069",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To compensate for the extra threads, you can make your code exit early if the thread position in the grid is outside the bounds of the data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "kernel void",
+            "simpleKernelFunction(texture2d<float, access::write> outputTexture [[texture(0)]],",
+            "                     uint2 position [[thread_position_in_grid]]) {",
+            "    ",
+            "    if (position.x >= outputTexture.get_width() || position.y >= outputTexture.get_height()) {",
+            "        return;",
+            "    }",
+            "    ",
+            "    outputTexture.write(float4(1.0), position);",
+            "}"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You don’t need to check a thread’s position in a grid if you use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/dispatchThreads(_:threadsPerThreadgroup:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " technique.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Encode the command that executes your custom threadgroup size by calling the encoder’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/dispatchThreadgroups(_:threadsPerThreadgroup:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "computeCommandEncoder.dispatchThreadgroups(threadgroupsPerGrid,",
+                    "                                           threadsPerThreadgroup: threadsPerThreadgroup)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "[computeCommandEncoder dispatchThreadgroups: threadgroupsPerGrid",
+                    "                       threadsPerThreadgroup: threadsPerThreadgroup];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An interface for dispatching commands to encode in a compute pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLComputeCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLComputeCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLComputeCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/dispatchThreadgroups(_:threadsPerThreadgroup:)": {
+      "abstract": [
+        {
+          "text": "Encodes a compute dispatch command using a grid aligned to threadgroup boundaries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatchThreadgroups"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLSize",
+          "text": "MTLSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "threadsPerThreadgroup"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLSize",
+          "text": "MTLSize"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/dispatchThreadgroups(_:threadsPerThreadgroup:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatchThreadgroups:threadsPerThreadgroup:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "dispatchThreadgroups(_:threadsPerThreadgroup:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/dispatchthreadgroups(_:threadsperthreadgroup:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/dispatchThreads(_:threadsPerThreadgroup:)": {
+      "abstract": [
+        {
+          "text": "Encodes a compute command using an arbitrarily sized grid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatchThreads"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLSize",
+          "text": "MTLSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "threadsPerThreadgroup"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLSize",
+          "text": "MTLSize"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/dispatchThreads(_:threadsPerThreadgroup:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatchThreads:threadsPerThreadgroup:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "dispatchThreads(_:threadsPerThreadgroup:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/dispatchthreads(_:threadsperthreadgroup:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputePipelineState": {
+      "abstract": [
+        {
+          "text": "An interface that represents a GPU pipeline configuration for running kernels in a compute pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLComputePipelineState"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputePipelineState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLComputePipelineState"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLComputePipelineState",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputepipelinestate"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputePipelineState/maxTotalThreadsPerThreadgroup": {
+      "abstract": [
+        {
+          "text": "The maximum number of threads in a threadgroup that you can dispatch to the pipeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maxTotalThreadsPerThreadgroup"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputePipelineState/maxTotalThreadsPerThreadgroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maxTotalThreadsPerThreadgroup"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "maxTotalThreadsPerThreadgroup",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputepipelinestate/maxtotalthreadsperthreadgroup"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputePipelineState/threadExecutionWidth": {
+      "abstract": [
+        {
+          "text": "The number of threads that the GPU executes simultaneously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "threadExecutionWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputePipelineState/threadExecutionWidth",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "threadExecutionWidth"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "threadExecutionWidth",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputepipelinestate/threadexecutionwidth"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSize": {
+      "abstract": [
+        {
+          "text": "The dimensions of an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLSize"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLSize",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsize"
+    },
+    "doc://com.apple.metal/documentation/Metal/compute-passes": {
+      "abstract": [
+        {
+          "text": "Encode a compute pass that runs computations in parallel on a thread grid, processing and manipulating Metal resource data on multiple cores of a GPU.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/compute-passes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Compute Passes",
+      "type": "topic",
+      "url": "/documentation/metal/compute-passes"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-threads-and-threadgroups": {
+      "abstract": [
+        {
+          "text": "Learn how Metal organizes compute-processing workloads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-threads-and-threadgroups",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating Threads and Threadgroups",
+      "type": "topic",
+      "url": "/documentation/metal/creating-threads-and-threadgroups"
+    },
+    "https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf": {
+      "identifier": "https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf",
+      "title": "Metal Feature Set Tables.",
+      "titleInlineContent": [
+        {
+          "text": "Metal Feature Set Tables.",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf"
+    },
+    "media-2922064": {
+      "alt": "An illustration that shows a grid of squares, which represent threads, divided into 6 threadgroups of varying size that utilize every thread in the grid. The grid is 11 by 7 threads in size. The threadgroups in the grid are 4 by 4, 4 by 3, 3 by 4, and 3 by 3 threads in size.",
+      "identifier": "media-2922064",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1e19b46f584fc9c2db782ea170046b0d/media-2922064@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1a20e21d3ad8b36bf14173ca633a5215/media-2922064~dark@2x.png"
+        }
+      ]
+    },
+    "media-2922069": {
+      "alt": "An illustration thats  shows how a set of 6 threadgroups, each 4 by 4 threads in size, extend past the bounds of a grid thats 11 by 7 threads in size. The threads outside the grid are highlighted to indicate the code allocates these threads but the kernel can’t utilize them.",
+      "identifier": "media-2922069",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a46155bfc0894f2f9ccff0171e903232/media-2922069@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1291f2a60afdea8e748dfe5d682f6c34/media-2922069~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Encoding-a-Compute-Pass",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/creating-threads-and-threadgroups",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder"
+      ],
+      "title": "Encoding a Compute Pass"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Encoding-a-Compute-Pass",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/creating-threads-and-threadgroups",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder"
+              ],
+              "title": "Encoding a Compute Pass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineState~1threadExecutionWidth/title",
+          "value": "threadExecutionWidth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineState~1threadExecutionWidth/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "threadExecutionWidth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineState~1maxTotalThreadsPerThreadgroup/title",
+          "value": "maxTotalThreadsPerThreadgroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineState~1maxTotalThreadsPerThreadgroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maxTotalThreadsPerThreadgroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1dispatchThreads(_:threadsPerThreadgroup:)/title",
+          "value": "dispatchThreads:threadsPerThreadgroup:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1dispatchThreads(_:threadsPerThreadgroup:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "dispatchThreads:threadsPerThreadgroup:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineState/title",
+          "value": "MTLComputePipelineState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputePipelineState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputePipelineState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSize/title",
+          "value": "MTLSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSize/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1dispatchThreadgroups(_:threadsPerThreadgroup:)/title",
+          "value": "dispatchThreadgroups:threadsPerThreadgroup:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1dispatchThreadgroups(_:threadsPerThreadgroup:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "dispatchThreadgroups:threadsPerThreadgroup:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder/title",
+          "value": "MTLComputeCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputeCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputeCommandEncoder"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/calculating-threadgroup-and-grid-sizes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/calculating-threadgroup-and-grid-sizes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

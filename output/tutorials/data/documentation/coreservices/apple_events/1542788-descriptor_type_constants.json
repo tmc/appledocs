@@ -1,0 +1,1148 @@
+{
+  "abstract": [
+    {
+      "text": "Specify types for descriptors.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreservices/apple_events/1542788-descriptor_type_constants"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1542788,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Descriptor Type Constants"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The constants described here specify the data type for a descriptor and show the kind of data stored in a descriptor with that type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Descriptors are the building blocks used by the Apple Event Manager to construct Apple event attributes and parameters. A descriptor is a data structure of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/aedesc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which consists of data storage and a descriptor type that identifies the type of the data. A descriptor type is defined by the data type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/desctype",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". AppleScript defines descriptor type constants for a wide variety of common data types. For additional types, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1542872-numeric_descriptor_type_constant",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1542760-other_descriptor_type_constants",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For a complete listing, including data types such as units of length, weight, and volume, see the Apple Event Manager and Open Scripting Architecture header files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the constant ",
+              "type": "text"
+            },
+            {
+              "code": "typeApplicationURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the data that specifies the application URL takes the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "eppc://[username[:password]@]host/AppName[[?uid=#]&[pid=#]]"
+          ],
+          "metadata": {
+            "anchor": "2556039",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As indicated by this format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "username",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is optional. If present, an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "'@'",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " must appear before the host name. ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "password",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is optional. If present, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "username",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is not optional, and the password must be separated from the username by a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "':'",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and must precede the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "'@'",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AppName",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is not optional; if it contains non-UTF-8 characters or white space, it must be URL-encoded (for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "My%20Application",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "uid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " are optional. If ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is present, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "uid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AppName",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " are ignored and the event is delivered only to applications with the given process id. If ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "uid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is present, events are directed to the application name owned by the given user id.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following are examples of valid URLs:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "eppc://Steve%20Zellers:wombat@grrr.apple.com/Microsoft%20Word",
+            "eppc://Steve%20Zellers:wombat@grrr.apple.com/Microsoft%20Word?pid=1284"
+          ],
+          "metadata": {
+            "anchor": "2556042",
+            "title": "Listing 2"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The availability of user identifiers provides enhanced Apple event support for Fast User Switching. Such identifiers make it possible to send Apple events to applications running in any session, if the uids of the processes match. ",
+              "type": "text"
+            },
+            {
+              "code": "'root'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (or ",
+              "type": "text"
+            },
+            {
+              "code": "uid 0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") processes are allowed to send Apple events to any process in any session. Non-root processes can only target applications that match their uid.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Event Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/apple_event_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aeaddressdesc": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aeaddressdesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEAddressDesc",
+      "type": "topic",
+      "url": "/documentation/coreservices/aeaddressdesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aedesc": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aedesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEDesc",
+      "type": "topic",
+      "url": "/documentation/coreservices/aedesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Events",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1542760-other_descriptor_type_constants": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1542760-other_descriptor_type_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Other Descriptor Type Constants",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1542760-other_descriptor_type_constants"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1542788-descriptor_type_constants#2556039": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1542788-descriptor_type_constants#2556039",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/coreservices/apple_events/1542788-descriptor_type_constants#2556039"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1542788-descriptor_type_constants#2556042": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1542788-descriptor_type_constants#2556042",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/coreservices/apple_events/1542788-descriptor_type_constants#2556042"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1542872-numeric_descriptor_type_constant": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1542872-numeric_descriptor_type_constant",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Numeric Descriptor Type Constants",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1542872-numeric_descriptor_type_constant"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/desctype": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/desctype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DescType",
+      "type": "topic",
+      "url": "/documentation/coreservices/desctype"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/typeaelist": {
+      "abstract": [
+        {
+          "text": "List of descriptors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeAEList"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/typeaelist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typeAEList",
+      "type": "topic",
+      "url": "/documentation/coreservices/typeaelist"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/typeaerecord": {
+      "abstract": [
+        {
+          "text": "List of keyword-specified descriptors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeAERecord"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/typeaerecord",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typeAERecord",
+      "type": "topic",
+      "url": "/documentation/coreservices/typeaerecord"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/typealias": {
+      "abstract": [
+        {
+          "text": "Alias.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeAlias"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/typealias",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typeAlias",
+      "type": "topic",
+      "url": "/documentation/coreservices/typealias"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/typeappleevent": {
+      "abstract": [
+        {
+          "text": "Apple event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeAppleEvent"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/typeappleevent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typeAppleEvent",
+      "type": "topic",
+      "url": "/documentation/coreservices/typeappleevent"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/typeapplicationurl": {
+      "abstract": [
+        {
+          "text": "For specifying an application by URL. See Discussion section below for important information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeApplicationURL"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/typeapplicationurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typeApplicationURL",
+      "type": "topic",
+      "url": "/documentation/coreservices/typeapplicationurl"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/typeapplsignature": {
+      "abstract": [
+        {
+          "text": "Application signature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeApplSignature"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/typeapplsignature",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typeApplSignature",
+      "type": "topic",
+      "url": "/documentation/coreservices/typeapplsignature"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/typeappparameters": {
+      "abstract": [
+        {
+          "text": "Process Manager launch parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeAppParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/typeappparameters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typeAppParameters",
+      "type": "topic",
+      "url": "/documentation/coreservices/typeappparameters"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/typebookmarkdata": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeBookmarkData"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/typebookmarkdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typeBookmarkData",
+      "type": "topic",
+      "url": "/documentation/coreservices/typebookmarkdata"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/typeenumerated": {
+      "abstract": [
+        {
+          "text": "Enumerated data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeEnumerated"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/typeenumerated",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typeEnumerated",
+      "type": "topic",
+      "url": "/documentation/coreservices/typeenumerated"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/typeeventrecord": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeEventRecord"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/typeeventrecord",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typeEventRecord",
+      "type": "topic",
+      "url": "/documentation/coreservices/typeeventrecord"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/typefalse": {
+      "abstract": [
+        {
+          "code": "FALSE",
+          "type": "codeVoice"
+        },
+        {
+          "text": " Boolean value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeFalse"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/typefalse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typeFalse",
+      "type": "topic",
+      "url": "/documentation/coreservices/typefalse"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/typefileurl": {
+      "abstract": [
+        {
+          "text": "A file URL. That is, the associated data consists of the bytes of a UTF-8 encoded URL with a scheme of \"file\". This type is appropriate for describing a file that may not yet exist—see ",
+          "type": "text"
+        },
+        {
+          "identifier": "link-1670436",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " for more information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeFileURL"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/typefileurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typeFileURL",
+      "type": "topic",
+      "url": "/documentation/coreservices/typefileurl"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/typefixed": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeFixed"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/typefixed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typeFixed",
+      "type": "topic",
+      "url": "/documentation/coreservices/typefixed"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/typefsref": {
+      "abstract": [
+        {
+          "text": "File system reference. Use in preference to file system specifications (",
+          "type": "text"
+        },
+        {
+          "code": "typeFSS",
+          "type": "codeVoice"
+        },
+        {
+          "text": ").",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeFSRef"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/typefsref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typeFSRef",
+      "type": "topic",
+      "url": "/documentation/coreservices/typefsref"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/typekeyword": {
+      "abstract": [
+        {
+          "text": "Apple event keyword.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeKeyword"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/typekeyword",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typeKeyword",
+      "type": "topic",
+      "url": "/documentation/coreservices/typekeyword"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/typenull": {
+      "abstract": [
+        {
+          "text": "A null data storage pointer. When resolving an object specifier, an object with a null storage pointer specifies the default container at the top of the container hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeNull"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/typenull",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typeNull",
+      "type": "topic",
+      "url": "/documentation/coreservices/typenull"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/typeprocessserialnumber": {
+      "abstract": [
+        {
+          "text": "A process serial number. See also ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreservices/aeaddressdesc",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeProcessSerialNumber"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/typeprocessserialnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typeProcessSerialNumber",
+      "type": "topic",
+      "url": "/documentation/coreservices/typeprocessserialnumber"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/typeproperty": {
+      "abstract": [
+        {
+          "text": "Apple event object property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeProperty"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/typeproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typeProperty",
+      "type": "topic",
+      "url": "/documentation/coreservices/typeproperty"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/typeqdrectangle": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeQDRectangle"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/typeqdrectangle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typeQDRectangle",
+      "type": "topic",
+      "url": "/documentation/coreservices/typeqdrectangle"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/typesectionh": {
+      "abstract": [
+        {
+          "text": "Handle to a section record. (Deprecated.)",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeSectionH"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/typesectionh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typeSectionH",
+      "type": "topic",
+      "url": "/documentation/coreservices/typesectionh"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/typetrue": {
+      "abstract": [
+        {
+          "code": "TRUE",
+          "type": "codeVoice"
+        },
+        {
+          "text": " Boolean value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeTrue"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/typetrue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typeTrue",
+      "type": "topic",
+      "url": "/documentation/coreservices/typetrue"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/typetype": {
+      "abstract": [
+        {
+          "text": "Four-character code for event class or event ID",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeType"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/typetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typeType",
+      "type": "topic",
+      "url": "/documentation/coreservices/typetype"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/typewildcard": {
+      "abstract": [
+        {
+          "text": "Matches any type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeWildCard"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/typewildcard",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typeWildCard",
+      "type": "topic",
+      "url": "/documentation/coreservices/typewildcard"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-1670436": {
+      "identifier": "link-1670436",
+      "kind": "article",
+      "role": "link",
+      "title": "Technical Note 2022",
+      "type": "topic",
+      "url": "http://developer.apple.com/technotes/tn/tn2022.html"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1601689",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/typeaelist",
+        "doc://com.apple.documentation/documentation/coreservices/typeaerecord",
+        "doc://com.apple.documentation/documentation/coreservices/typeappleevent",
+        "doc://com.apple.documentation/documentation/coreservices/typetrue",
+        "doc://com.apple.documentation/documentation/coreservices/typefalse",
+        "doc://com.apple.documentation/documentation/coreservices/typealias",
+        "doc://com.apple.documentation/documentation/coreservices/typeenumerated",
+        "doc://com.apple.documentation/documentation/coreservices/typetype",
+        "doc://com.apple.documentation/documentation/coreservices/typeappparameters",
+        "doc://com.apple.documentation/documentation/coreservices/typeproperty",
+        "doc://com.apple.documentation/documentation/coreservices/typefsref",
+        "doc://com.apple.documentation/documentation/coreservices/typefileurl",
+        "doc://com.apple.documentation/documentation/coreservices/typekeyword",
+        "doc://com.apple.documentation/documentation/coreservices/typesectionh",
+        "doc://com.apple.documentation/documentation/coreservices/typewildcard",
+        "doc://com.apple.documentation/documentation/coreservices/typeapplsignature",
+        "doc://com.apple.documentation/documentation/coreservices/typeprocessserialnumber",
+        "doc://com.apple.documentation/documentation/coreservices/typeapplicationurl",
+        "doc://com.apple.documentation/documentation/coreservices/typenull",
+        "doc://com.apple.documentation/documentation/coreservices/typebookmarkdata",
+        "doc://com.apple.documentation/documentation/coreservices/typeeventrecord",
+        "doc://com.apple.documentation/documentation/coreservices/typefixed",
+        "doc://com.apple.documentation/documentation/coreservices/typeqdrectangle"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/1542788-descriptor_type_constants"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreservices/apple_events/1542788-descriptor_type_constants",
+        "documentation/applicationservices/apple_event_manager/1542788-descriptor_type_constants"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

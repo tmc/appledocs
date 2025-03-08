@@ -1,0 +1,593 @@
+{
+  "abstract": [
+    {
+      "text": "The ISO 8601 week-numbering year.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/dates_and_times",
+        "doc://com.apple.documentation/documentation/foundation/datecomponents",
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1413809-yearforweekofyear"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1413809,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSDateComponents(py)yearForWeekOfYear",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "var "
+      },
+      {
+        "kind": "identifier",
+        "text": "yearForWeekOfYear"
+      },
+      {
+        "kind": "text",
+        "text": ": Int"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSDateComponents"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.7",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "yearForWeekOfYear"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "yearForWeekOfYear"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Int",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Si",
+              "text": "Int"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Gregorian calendar defines a week to have 7 days, and a year to have 365 days, or 366 in a leap year. However, neither 365 or 366 divide evenly into a 7-day week, so it is often the case that the last week of a year ends on a day in the next year, and the first week of a year begins in the preceding year. To reconcile this, ISO 8601 defines a week-numbering year, consisting of either 52 or 53 full weeks (364 or 371 days), such that the first week of a year is designated to be the week containing the first Thursday of the year. For a given date, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1416908-weekofyear",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property indicates which week the date falls in, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1413809-yearforweekofyear",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " provides the corresponding week-numbering year.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The values of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1416908-weekofyear",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1413809-yearforweekofyear",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " depend on the calendar they are used with. For example, the ISO 8601 calendar starts a week on Monday, and uses the first Thursday to determine the first week of the year. However, the Gregorian calendar as used in North America starts the week on Sunday, and uses the year’s first Saturday to determine the first week.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the week-numbering year when specifying a date with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", usually in combination with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1416908-weekofyear",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1413809-yearforweekofyear#3122927",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " shows this approach. It creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " instance specifying the first Friday (weekday 6) of the first week of 2016, which started on a Friday. Therefore, this date is January 1, 2016 in the Gregorian calendar. However, on the ISO 8601 calendar, the first week of 2016 begins on the following Monday. This means the first Friday in the first week of 2016 is January 8, 2016 on the ISO 8601 calendar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let comps = NSDateComponents()comps.weekday = 6",
+            "comps.weekOfYear = 1",
+            "comps.yearForWeekOfYear = 2016",
+            "let gregorianCalendar = NSCalendar(identifier: .gregorian)!",
+            "let gregorianDate = gregorianCalendar.date(from: comps as DateComponents)!",
+            "let iso8601Calendar = NSCalendar(identifier: .ISO8601)!",
+            "let iso8601Date = iso8601Calendar.date(from: comps as DateComponents)!",
+            "",
+            "let formatter = DateFormatter()",
+            "formatter.dateStyle = .full",
+            "formatter.calendar = gregorianCalendar as Calendar",
+            "print (\"\\(formatter.string(from: gregorianDate))\") // \"Friday, January 1, 2016\"",
+            "formatter.calendar = iso8601Calendar as Calendar",
+            "print (\"\\(formatter.string(from: iso8601Date))\") // \"Friday, January 8, 2016\"",
+            ""
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Specifying and extracting the yearForWeekOfYear date component in different calendars.",
+                "type": "text"
+              }
+            ],
+            "anchor": "3122927",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Int": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/swift/int"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/datecomponents": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/datecomponents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DateComponents",
+      "type": "topic",
+      "url": "/documentation/foundation/datecomponents"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dates_and_times": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dates_and_times",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dates and Times",
+      "type": "topic",
+      "url": "/documentation/foundation/dates_and_times"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDateComponents",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1408724-month": {
+      "abstract": [
+        {
+          "text": "The number of months.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "month"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1408724-month",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "month",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1408724-month"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1408836-isleapmonth": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the month is a leap month.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isLeapMonth"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1408836-isleapmonth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isLeapMonth",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1408836-isleapmonth"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1412462-year": {
+      "abstract": [
+        {
+          "text": "The number of years.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "year"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1412462-year",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "year",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1412462-year"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1413809-yearforweekofyear": {
+      "abstract": [
+        {
+          "text": "The ISO 8601 week-numbering year.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "yearForWeekOfYear"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1413809-yearforweekofyear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "yearForWeekOfYear",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1413809-yearforweekofyear"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1413809-yearforweekofyear#3122927": {
+      "abstract": [
+        {
+          "text": "Specifying and extracting the yearForWeekOfYear date component in different calendars.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1413809-yearforweekofyear#3122927",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/nsdatecomponents/1413809-yearforweekofyear#3122927"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1416364-era": {
+      "abstract": [
+        {
+          "text": "The number of eras.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "era"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1416364-era",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "era",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1416364-era"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1416503-quarter": {
+      "abstract": [
+        {
+          "text": "The number of quarters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "quarter"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1416503-quarter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "quarter",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1416503-quarter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1416908-weekofyear": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1416908-weekofyear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "weekOfYear",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1416908-weekofyear"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1416364-era",
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1412462-year",
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1416503-quarter",
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1408724-month",
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1408836-isleapmonth"
+      ],
+      "title": "Accessing Years and Months"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsdatecomponents/1413809-yearforweekofyear"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsdatecomponents/1413809-yearforweekofyear"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

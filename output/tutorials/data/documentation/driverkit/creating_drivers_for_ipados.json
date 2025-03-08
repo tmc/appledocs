@@ -1,0 +1,617 @@
+{
+  "abstract": [
+    {
+      "text": "Bring your drivers to iPadOS by using the platform’s DriverKit support.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/driverkit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/driverkit/creating_drivers_for_ipados"
+  },
+  "kind": "article",
+  "legacy_identifier": 4034744,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "DriverKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating drivers for iPadOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iPadOS 16 and later, you can develop drivers that run on macOS and iPadOS using DriverKit. The DriverKit frameworks provide a safe and secure approach to creating drivers for external USB and Thunderbolt devices that people can connect to their iPad.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iPadOS 16 supports the core ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework, as well as the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "DriverKit on iPadOS requires an iPad with an M-series chip.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "4034745",
+          "level": 3,
+          "text": "Add a DriverKit target to your Xcode project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re creating a new app in Xcode, use the Multiplatform App template when you create your project in Xcode. The app you create is what people use to install and update your driver on their macOS and iPadOS devices. To add a driver to your project, add a new target to your project by choosing DriverKit from the tab bar, and select the Driver target.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4037570",
+              "metadata": {
+                "anchor": "4037570",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you already have a DriverKit project for macOS, you can support iPadOS by editing your project settings. Select the project from the Navigator, select the app target, and choose General from the tab bar. In the Supported Destinations section, use the Add (+) button to add a new iPad destination.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4034747",
+              "metadata": {
+                "anchor": "4034747",
+                "title": "Figure 2"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4034926",
+          "level": 3,
+          "text": "Install a driver",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On macOS, your host app uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework to install a driver onto the host system. On iPadOS, this framework is absent, so this step is unneccessary. If you’re writing a driver to run on both platforms, conditionalize your app code so you only call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " on macOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#if os(macOS)",
+            "    // Call SystemExtensions framework to install your driver.",
+            "#endif"
+          ],
+          "metadata": {
+            "anchor": "4034924",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because drivers operate with enhanced privileges, a person using the device needs to approve any driver before it can run. On macOS, they grant this permission in System Settings > Privacy & Security.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On iPadOS, there are two locations in the Settings app for managing drivers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the iPad has at least one driver installed, Settings > General > Drivers lists all available drivers on the device. A person using the iPad can toggle each driver on or off individually.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your app contains a Settings bundle, Settings > Your-App-Name > Drivers lists the drivers installed by your app, with toggles to enable them. Your app needs to prompt the person to enable the driver in the Settings app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After receiving permission, the driver runs on-demand. For example, a driver for an audio interface only runs when someone connects that hardware to their device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4034925",
+          "level": 3,
+          "text": "Allow user clients to attach to your driver",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some apps need to communicate with a running driver. The sample code project, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/communicating_between_a_driverkit_extension_and_a_client_app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", provides an example of how to do this.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To allow user clients to connect to your driver, you need specific entitlements, based on the nature of your driver.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On macOS, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.userclient-access",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " entitlement. Provide an array of allowed bundle identifiers as the value of this entitlement. Only apps with these bundle identifiers can connect to the driver at runtime.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On iPadOS, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.communicates-with-drivers",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " entitlement. This entitlement takes a Boolean value; set it to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "YES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to allow your user client to connect to drivers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your iPadOS driver works with many apps, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.allow-third-party-userclients",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " entitlement. Set the Boolean value of this entitlement to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "YES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to allow any app to connect to your driver.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit": {
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "AudioDriverKit",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.allow-third-party-userclients": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.allow-third-party-userclients",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DriverKit Allow Third Party User Clients",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.allow-third-party-userclients"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.communicates-with-drivers": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.communicates-with-drivers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Communicates with Drivers",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.communicates-with-drivers"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.userclient-access": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.userclient-access",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.userclient-access",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.userclient-access"
+    },
+    "doc://com.apple.documentation/documentation/driverkit": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit",
+      "kind": "article",
+      "role": "collection",
+      "title": "DriverKit",
+      "type": "topic",
+      "url": "/documentation/driverkit"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/communicating_between_a_driverkit_extension_and_a_client_app": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/communicating_between_a_driverkit_extension_and_a_client_app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Communicating between a DriverKit extension and a client app",
+      "type": "topic",
+      "url": "/documentation/driverkit/communicating_between_a_driverkit_extension_and_a_client_app"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/creating_drivers_for_ipados": {
+      "abstract": [
+        {
+          "text": "Bring your drivers to iPadOS by using the platform’s DriverKit support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/creating_drivers_for_ipados",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating drivers for iPadOS",
+      "type": "topic",
+      "url": "/documentation/driverkit/creating_drivers_for_ipados"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/creating_drivers_for_ipados#4034924": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/creating_drivers_for_ipados#4034924",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/driverkit/creating_drivers_for_ipados#4034924"
+    },
+    "doc://com.apple.documentation/documentation/kernel/implementing_drivers_system_extensions_and_kexts": {
+      "abstract": [
+        {
+          "text": "Create drivers and system extensions to communicate with hardware and provide low-level services, and only use kernel extensions for a few tasks. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/implementing_drivers_system_extensions_and_kexts",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing drivers, system extensions, and kexts",
+      "type": "topic",
+      "url": "/documentation/kernel/implementing_drivers_system_extensions_and_kexts"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit": {
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "PCIDriverKit",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit"
+    },
+    "doc://com.apple.systemextensions/documentation/SystemExtensions": {
+      "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions",
+      "kind": "article",
+      "role": "collection",
+      "title": "System Extensions",
+      "type": "topic",
+      "url": "/documentation/systemextensions"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit": {
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "USBDriverKit",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit"
+    },
+    "link-media-4034747": {
+      "identifier": "link-media-4034747",
+      "title": "Figure 2",
+      "type": "link",
+      "url": "/documentation/driverkit/creating_drivers_for_ipados#4034747"
+    },
+    "link-media-4037570": {
+      "identifier": "link-media-4037570",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/driverkit/creating_drivers_for_ipados#4037570"
+    },
+    "media-4034747": {
+      "alt": "The Supported Destinations section of an app target’s General tab. The list shows two destinations: iPad (whose associated SDK is iOS) and Mac (whose associated SDK is macOS).",
+      "identifier": "media-4034747",
+      "title": "Figure 2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/deef34f9ea/renderedDark2x-1653593545.png"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7a8ef31fbb/rendered2x-1653593546.png"
+        }
+      ]
+    },
+    "media-4037570": {
+      "alt": "The template selection dialog for a new target in Xcode. The tab bar shows DriverKit selected, and the selected template is the Driver target template.",
+      "identifier": "media-4037570",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3987fd412d/rendered2x-1654197107.png"
+        },
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bc3a9bfbb4/renderedDark2x-1654197108.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/implementing_drivers_system_extensions_and_kexts"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/driverkit/creating_drivers_for_ipados"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

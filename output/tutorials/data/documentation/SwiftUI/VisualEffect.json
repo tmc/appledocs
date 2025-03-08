@@ -1,0 +1,2597 @@
+{
+  "abstract": [
+    {
+      "text": "Visual Effects change the visual appearance of a view without changing its",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "ancestors or descendents.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI12VisualEffectP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "VisualEffect"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "VisualEffect"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "VisualEffect"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "VisualEffect"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s8SendableP",
+              "text": "Sendable"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animatable",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7SwiftUI10AnimatableP",
+              "text": "Animatable"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because effects do not impact layout, they are safe to use in situations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "where layout modification is not allowed. For example, effects may be",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "applied as a function of position, accessed through a geometry proxy:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var body: some View {",
+            "    ContentRow()",
+            "        .visualEffect { content, geometryProxy in",
+            "            content.offset(x: geometryProxy.frame(in: .global).origin.y)",
+            "        }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t conform to this protocol yourself. Instead, visual effects are",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "created by calling modifier functions (such as ",
+              "type": "text"
+            },
+            {
+              "code": ".offset(x:y:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "effects, as seen in the example above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animatable": {
+      "abstract": [
+        {
+          "text": "A type that describes how to animate a property of a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Animatable"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animatable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Animatable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Animatable",
+      "type": "topic",
+      "url": "/documentation/swiftui/animatable"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyVisualEffect": {
+      "abstract": [
+        {
+          "text": "The base visual effect that you apply additional effect to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EmptyVisualEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyVisualEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EmptyVisualEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "EmptyVisualEffect",
+      "type": "topic",
+      "url": "/documentation/swiftui/emptyvisualeffect"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/visualEffect(_:)": {
+      "abstract": [
+        {
+          "text": "Applies effects to this view, while providing access to layout",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "information through a geometry proxy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "visualEffect"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17EmptyVisualEffectV",
+          "text": "EmptyVisualEffect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI13GeometryProxyV",
+          "text": "GeometryProxy"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VisualEffectP",
+          "text": "VisualEffect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/visualEffect(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "visualEffect(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/visualeffect(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/visualEffect3D(_:)": {
+      "abstract": [
+        {
+          "text": "Applies effects to this view, while providing access to layout",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "information through a 3D geometry proxy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "visualEffect3D"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17EmptyVisualEffectV",
+          "text": "EmptyVisualEffect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15GeometryProxy3DV",
+          "text": "GeometryProxy3D"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VisualEffectP",
+          "text": "VisualEffect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/visualEffect3D(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "visualEffect3D(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/visualeffect3d(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect": {
+      "abstract": [
+        {
+          "text": "Visual Effects change the visual appearance of a view without changing its",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "ancestors or descendents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VisualEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VisualEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "VisualEffect",
+      "type": "topic",
+      "url": "/documentation/swiftui/visualeffect"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/blendMode(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the blend mode for compositing this view with overlapping views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blendMode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9BlendModeO",
+          "text": "BlendMode"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VisualEffectP",
+          "text": "VisualEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/blendMode(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "blendMode(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/visualeffect/blendmode(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/blur(radius:opaque:)": {
+      "abstract": [
+        {
+          "text": "Applies a Gaussian blur to the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blur"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "radius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "opaque"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VisualEffectP",
+          "text": "VisualEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/blur(radius:opaque:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "blur(radius:opaque:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/visualeffect/blur(radius:opaque:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/brightness(_:)": {
+      "abstract": [
+        {
+          "text": "Brightens the view by the specified amount.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "brightness"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VisualEffectP",
+          "text": "VisualEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/brightness(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "brightness(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/visualeffect/brightness(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/colorEffect(_:isEnabled:)": {
+      "abstract": [
+        {
+          "text": "Returns a new visual effect that applies ",
+          "type": "text"
+        },
+        {
+          "code": "shader",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": " as",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a filter effect on the color of each pixel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI6ShaderV",
+          "text": "Shader"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VisualEffectP",
+          "text": "VisualEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/colorEffect(_:isEnabled:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "colorEffect(_:isEnabled:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/visualeffect/coloreffect(_:isenabled:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/contrast(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the contrast and separation between similar colors in the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contrast"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VisualEffectP",
+          "text": "VisualEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/contrast(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contrast(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/visualeffect/contrast(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/distortionEffect(_:maxSampleOffset:isEnabled:)": {
+      "abstract": [
+        {
+          "text": "Returns a new visual effect that applies ",
+          "type": "text"
+        },
+        {
+          "code": "shader",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": " as",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a geometric distortion effect on the location of each pixel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "distortionEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI6ShaderV",
+          "text": "Shader"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxSampleOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VisualEffectP",
+          "text": "VisualEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/distortionEffect(_:maxSampleOffset:isEnabled:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "distortionEffect(_:maxSampleOffset:isEnabled:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/visualeffect/distortioneffect(_:maxsampleoffset:isenabled:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/grayscale(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a grayscale effect to the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "grayscale"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VisualEffectP",
+          "text": "VisualEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/grayscale(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "grayscale(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/visualeffect/grayscale(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/hueRotation(_:)": {
+      "abstract": [
+        {
+          "text": "Applies a hue rotation effect to the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hueRotation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5AngleV",
+          "text": "Angle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VisualEffectP",
+          "text": "VisualEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/hueRotation(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hueRotation(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/visualeffect/huerotation(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/layerEffect(_:maxSampleOffset:isEnabled:)": {
+      "abstract": [
+        {
+          "text": "Returns a new visual effect that applies ",
+          "type": "text"
+        },
+        {
+          "code": "shader",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": " as",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a filter on the raster layer created from ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layerEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI6ShaderV",
+          "text": "Shader"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxSampleOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VisualEffectP",
+          "text": "VisualEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/layerEffect(_:maxSampleOffset:isEnabled:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "layerEffect(_:maxSampleOffset:isEnabled:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/visualeffect/layereffect(_:maxsampleoffset:isenabled:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/offset(_:)": {
+      "abstract": [
+        {
+          "text": "Offsets the view by the horizontal and vertical amount specified in the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "offset parameter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VisualEffectP",
+          "text": "VisualEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/offset(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offset(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/visualeffect/offset(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/offset(x:y:)": {
+      "abstract": [
+        {
+          "text": "Offsets the view by the specified horizontal and vertical distances.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VisualEffectP",
+          "text": "VisualEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/offset(x:y:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offset(x:y:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/visualeffect/offset(x:y:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/offset(z:)": {
+      "abstract": [
+        {
+          "text": "Brings a view forward in Z by the provided distance in points.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "z"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VisualEffectP",
+          "text": "VisualEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/offset(z:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offset(z:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/visualeffect/offset(z:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/opacity(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the transparency of the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "opacity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VisualEffectP",
+          "text": "VisualEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/opacity(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "opacity(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/visualeffect/opacity(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/perspectiveRotationEffect(_:axis:anchor:perspective:)": {
+      "abstract": [
+        {
+          "text": "Renders content as if it’s rotated in three dimensions around",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the specified axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "perspectiveRotationEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5AngleV",
+          "text": "Angle"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "axis"
+        },
+        {
+          "kind": "text",
+          "text": ": (x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", z"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "), "
+        },
+        {
+          "kind": "externalParam",
+          "text": "anchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11UnitPoint3DV",
+          "text": "UnitPoint3D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "perspective"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VisualEffectP",
+          "text": "VisualEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/perspectiveRotationEffect(_:axis:anchor:perspective:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "perspectiveRotationEffect(_:axis:anchor:perspective:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/visualeffect/perspectiverotationeffect(_:axis:anchor:perspective:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/rotation3DEffect(_:anchor:)": {
+      "abstract": [
+        {
+          "text": "Rotates content by the specified 3D rotation value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rotation3DEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@UA@SPRotation3D",
+          "text": "Rotation3D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "anchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11UnitPoint3DV",
+          "text": "UnitPoint3D"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VisualEffectP",
+          "text": "VisualEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/rotation3DEffect(_:anchor:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rotation3DEffect(_:anchor:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/visualeffect/rotation3deffect(_:anchor:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/rotation3DEffect(_:axis:anchor:)": {
+      "abstract": [
+        {
+          "text": "Rotates content by an angle about an axis that you specify",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "as a tuple of elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rotation3DEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "axis"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "anchor"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/rotation3DEffect(_:axis:anchor:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rotation3DEffect(_:axis:anchor:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/visualeffect/rotation3deffect(_:axis:anchor:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/rotation3DEffect(_:axis:anchor:anchorZ:perspective:)": {
+      "abstract": [
+        {
+          "text": "Renders content as if it’s rotated in three dimensions around",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the specified axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rotation3DEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5AngleV",
+          "text": "Angle"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "axis"
+        },
+        {
+          "kind": "text",
+          "text": ": (x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", z"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "), "
+        },
+        {
+          "kind": "externalParam",
+          "text": "anchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9UnitPointV",
+          "text": "UnitPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "anchorZ"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "perspective"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VisualEffectP",
+          "text": "VisualEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/rotation3DEffect(_:axis:anchor:anchorZ:perspective:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rotation3DEffect(_:axis:anchor:anchorZ:perspective:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/visualeffect/rotation3deffect(_:axis:anchor:anchorz:perspective:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/rotationEffect(_:anchor:)": {
+      "abstract": [
+        {
+          "text": "Rotates content in two dimensions around the specified point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rotationEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5AngleV",
+          "text": "Angle"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "anchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9UnitPointV",
+          "text": "UnitPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VisualEffectP",
+          "text": "VisualEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/rotationEffect(_:anchor:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rotationEffect(_:anchor:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/visualeffect/rotationeffect(_:anchor:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/saturation(_:)": {
+      "abstract": [
+        {
+          "text": "Adjusts the color saturation of the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "saturation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VisualEffectP",
+          "text": "VisualEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/saturation(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "saturation(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/visualeffect/saturation(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/scaleEffect(_:anchor:)": {
+      "abstract": [
+        {
+          "text": "Scales this view uniformly by the specified factor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scaleEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "anchor"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/scaleEffect(_:anchor:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scaleEffect(_:anchor:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/visualeffect/scaleeffect(_:anchor:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/scaleEffect(x:y:anchor:)": {
+      "abstract": [
+        {
+          "text": "Scales the view’s rendered output by the given horizontal and vertical",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "amounts, relative to an anchor point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scaleEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "anchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9UnitPointV",
+          "text": "UnitPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VisualEffectP",
+          "text": "VisualEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/scaleEffect(x:y:anchor:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scaleEffect(x:y:anchor:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/visualeffect/scaleeffect(x:y:anchor:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/scaleEffect(x:y:z:anchor:)": {
+      "abstract": [
+        {
+          "text": "Scales this view by the specified horizontal, vertical, and depth factors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scaleEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "z"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "anchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11UnitPoint3DV",
+          "text": "UnitPoint3D"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VisualEffectP",
+          "text": "VisualEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/scaleEffect(x:y:z:anchor:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scaleEffect(x:y:z:anchor:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/visualeffect/scaleeffect(x:y:z:anchor:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/transform3DEffect(_:)": {
+      "abstract": [
+        {
+          "text": "Applies a 3D transformation to the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform3DEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SPAffineTransform3D",
+          "text": "AffineTransform3D"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VisualEffectP",
+          "text": "VisualEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/transform3DEffect(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transform3DEffect(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/visualeffect/transform3deffect(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/transformEffect(_:)": {
+      "abstract": [
+        {
+          "text": "Applies an affine transformation to the view’s rendered output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transformEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/transformEffect(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transformEffect(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/visualeffect/transformeffect(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animatable",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyVisualEffect"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Applying-effects-based-on-geometry",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/visualEffect(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/visualEffect3D(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyVisualEffect"
+      ],
+      "title": "Applying effects based on geometry"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Adjusting-Color",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/brightness(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/colorEffect(_:isEnabled:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/contrast(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/grayscale(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/hueRotation(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/saturation(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/opacity(_:)"
+      ],
+      "title": "Adjusting Color"
+    },
+    {
+      "anchor": "Scaling",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/scaleEffect(_:anchor:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/scaleEffect(x:y:anchor:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/scaleEffect(x:y:z:anchor:)"
+      ],
+      "title": "Scaling"
+    },
+    {
+      "anchor": "Rotating",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/rotationEffect(_:anchor:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/rotation3DEffect(_:axis:anchor:anchorZ:perspective:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/perspectiveRotationEffect(_:axis:anchor:perspective:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/rotation3DEffect(_:anchor:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/rotation3DEffect(_:axis:anchor:)"
+      ],
+      "title": "Rotating"
+    },
+    {
+      "anchor": "Translating",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/offset(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/offset(x:y:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/offset(z:)"
+      ],
+      "title": "Translating"
+    },
+    {
+      "anchor": "Applying-a-transform",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/transform3DEffect(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/transformEffect(_:)"
+      ],
+      "title": "Applying a transform"
+    },
+    {
+      "anchor": "Applying-other-effects",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/blur(radius:opaque:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/distortionEffect(_:maxSampleOffset:isEnabled:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/layerEffect(_:maxSampleOffset:isEnabled:)"
+      ],
+      "title": "Applying other effects"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VisualEffect/blendMode(_:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/visualeffect"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

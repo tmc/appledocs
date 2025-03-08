@@ -1,0 +1,501 @@
+{
+  "abstract": [
+    {
+      "text": "Add a filter set to a query before populating a music player queue.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mediaplayer/documentation/MediaPlayer/using-filters-to-create-specialized-queries"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Media Player"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using filters to create specialized queries"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Creating a queue and adding it to a music player is a straightforward task. You populate the music player queue by creating a basic query and searching the user’s music library for items that match the query. However, you can create filters and add them at query creation to refine the player’s music queue. Filter for an album, artist, song, or any of a variety of other options. For a list of keys you can use as filters, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/general-media-item-property-keys",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-one-or-more-filters",
+          "level": 3,
+          "text": "Create one or more filters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You need to create a new filter for each item you want to filter on. For example, if you want to filter for a specific album and all songs that contain a certain word from that album, you need two separate filters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let albumTitleFilter =",
+            "    MPMediaPropertyPredicate(value: \"Album Title\",",
+            "                             forProperty: MPMediaItemPropertyAlbumTitle,",
+            "                             comparisonType: .equalTo)",
+            "",
+            "let songTitleFilter =",
+            "    MPMediaPropertyPredicate(value: \"Song Title\",",
+            "                             forProperty: MPMediaItemPropertyTitle,",
+            "                             comparisonType: .contains)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Combine-the-filters-into-a-filter-set",
+          "level": 3,
+          "text": "Combine the filters into a filter set",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Combine the filters into a filter set before you assign it to a query.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let filterSet = Set([albumTitleFilter, songTitleFilter])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-query-using-the-filter-set",
+          "level": 3,
+          "text": "Create a query using the filter set",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a new query using the newly created filter set, and set the music player’s queue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let query = MPMediaQuery(filterPredicates: filterSet)",
+            "musicPlayer.setQueue(with: query)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer": {
+      "abstract": [
+        {
+          "text": "Find and play songs, audio podcasts, audio books, and more from within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Media Player",
+      "type": "topic",
+      "url": "/documentation/mediaplayer"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPredicate": {
+      "abstract": [
+        {
+          "text": "An abstract class that defines classes for filtering media in a media query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPredicate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaPredicate"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaPredicate",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediapredicate"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPropertyPredicate": {
+      "abstract": [
+        {
+          "text": "A set of predicates for defining a filter in a media query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaPropertyPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPropertyPredicate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaPropertyPredicate"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaPropertyPredicate",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediapropertypredicate"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery": {
+      "abstract": [
+        {
+          "text": "A query that specifies a set of media items from the device’s media library using a filter and a grouping type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaQuery",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaquery"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuerySection": {
+      "abstract": [
+        {
+          "text": "A range of media items or media item collections from within a media query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaQuerySection"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuerySection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaQuerySection"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaQuerySection",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaquerysection"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/general-media-item-property-keys": {
+      "abstract": [
+        {
+          "text": "System-defined properties for obtaining the metadata for a media item.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/general-media-item-property-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "General media item property keys",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/general-media-item-property-keys"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Media-item-queries",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuerySection",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPropertyPredicate",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPredicate"
+      ],
+      "title": "Media item queries"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Media-item-queries",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuerySection",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPropertyPredicate",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPredicate"
+              ],
+              "title": "Media item queries"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuery/title",
+          "value": "MPMediaQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPropertyPredicate/title",
+          "value": "MPMediaPropertyPredicate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPropertyPredicate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaPropertyPredicate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPropertyPredicate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaPropertyPredicate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuerySection/title",
+          "value": "MPMediaQuerySection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuerySection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaQuerySection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuerySection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaQuerySection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPredicate/title",
+          "value": "MPMediaPredicate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPredicate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaPredicate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPredicate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaPredicate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mediaplayer/using-filters-to-create-specialized-queries"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mediaplayer/using-filters-to-create-specialized-queries"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

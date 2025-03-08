@@ -1,0 +1,3021 @@
+{
+  "abstract": [
+    {
+      "text": "Adopt a simplified version of the Writing Tools experience in a custom",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "view using the pasteboard and macOS services.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/writing-tools"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/supporting-writing-tools-via-the-pasteboard"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Supporting Writing Tools via the pasteboard"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Writing Tools works automatically with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in AppKit, but you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can also use it with any custom subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that has text. To",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use Writing Tools with a custom view, you have to write some additional",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code to transfer text between your view and the Writing Tools feature.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You also have to provide a contextual menu for your view, which AppKit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifies to allow people to launch the Writing Tools UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can add Writing Tools support to both read-only and editable views.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When your view is read-only, Writing Tools leaves the updated text on the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pasteboard instead of incorporating it back into your view. For editable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "views, your code replaces the view’s current text selection with the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "rewritten content that Writing Tools provides.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you display text using ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", you don’t need to do",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "additional work to support Writing Tools, but you can customize your app’s",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "behavior when the feature is active. For information about how to customize",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "your app’s behavior, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/customizing-writing-tools-behavior-for-system-views",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-a-contextual-menu-to-your-custom-view",
+          "level": 3,
+          "text": "Add a contextual menu to your custom view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People launch the Writing Tools UI through interactions with your view’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contextual menu. If your view doesn’t currently have a contextual menu,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "add one and populate it with app-specific commands. For example, you might",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "add commands to cut, copy, or paste text. When you display the menu, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system automatically adds Writing Tools–specific commands to it, based on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the level of support your app provides.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Construct a contextual menu for your view and save it in the view’s menu",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property. When this property contains a menu, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " displays it as a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contextual menu automatically when appropriate events occur. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the view displays it in response to a right mouse-down event. The following",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code shows you how to create a menu, add some menu items to it, and save",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it to the view’s menu property:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "self.menu = NSMenu()",
+            "self.menu?.addItem(NSMenuItem(title: \"Cut\", ",
+            "                       action: #selector(cut(_:)), ",
+            "                       keyEquivalent: \"\"))",
+            "self.menu?.addItem(NSMenuItem(title: \"Copy\", ",
+            "                       action: #selector(copy(_:)), ",
+            "                       keyEquivalent: \"\"))",
+            "self.menu?.addItem(NSMenuItem(title: \"Paste\", ",
+            "                       action: #selector(paste(_:)), ",
+            "                       keyEquivalent: “\"))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want to customize your view’s contextual menu before you display it,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/menu(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to return the menu you want for appropriate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "events. You can also display a contextual menu programmatically using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "menu’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenu/popUpContextMenu(_:with:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-a-requester-object-to-coordinate-interactions",
+          "level": 3,
+          "text": "Provide a requester object to coordinate interactions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The AppKit support for Writing Tools in custom views relies on the same",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "infrastructure that apps use to offer services from the Services menu. Before",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "displaying your view’s contextual menu, AppKit calls the view’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/validRequestor(forSendType:returnType:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to determine if your view",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "supports specific types of text data. If you do, you return an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSServicesMenuRequestor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object from that method to enable the Writing Tools feature for your view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "AppKit then automatically adds commands to your view’s contextual menu to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "let someone launch the feature’s UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When determining whether your view supports Writing Tools, AppKit calls your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/validRequestor(forSendType:returnType:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method multiple times with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "different pasteboard types. Writing Tools can work with rich text or plain",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "text content, and AppKit asks for a requestor object for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/PasteboardType/rtf",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pasteboard type first. If you don’t provide an object for that type, AppKit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "asks for a requestor object for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/PasteboardType/string",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " pasteboard",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type. If your view is editable, return a requestor object when both method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parameters contain the supported pasteboard type. For a read-only view, return",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a requestor object when the ",
+              "type": "text"
+            },
+            {
+              "code": "sendType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter contains the supported type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the ",
+              "type": "text"
+            },
+            {
+              "code": "returnType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows an implementation of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/validRequestor(forSendType:returnType:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method in a read-only view that displays a plain text string. Because the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view is read-only, the implementation returns the view object only when the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "returnType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If you don’t perform that check, AppKit assumes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your view is editable and tries to integrate the rewritten text back into your view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func validRequestor(forSendType ",
+            "          sendType: NSPasteboard.PasteboardType?,",
+            "          returnType: NSPasteboard.PasteboardType?) -> Any? {",
+            "    if sendType == .string && returnType == nil {",
+            "        return self",
+            "    }",
+            "    return super.validRequestor(forSendType: sendType, ",
+            "                                returnType: returnType)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AppKit uses your requestor object to fetch your view’s selected text, and to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "deliver the rewritten text back to you. Adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSServicesMenuRequestor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol in the object you use to manage the text selection for your view. You",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can adopt this protocol in your view, or in a separate object you use to manage",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the backing store for that view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Write-your-views-selected-text-to-the-pasteboard",
+          "level": 3,
+          "text": "Write your view’s selected text to the pasteboard",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The requestor object you provide to AppKit is responsible for writing your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "custom view’s text selection to the pasteboard. When someone engages a Writing Tools",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "feature for your view, AppKit calls your requestor object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSServicesMenuRequestor/writeSelection(to:types:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method to get the current text. Write text to the pasteboard in the format that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your view’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/validRequestor(forSendType:returnType:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method indicates you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "support. For example, if you provided a requestor object for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/PasteboardType/rtf",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type, write data to the pasteboard in the RTF format. You don’t need to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "write multiple data formats to the pasteboard to ensure interoperability",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with other apps. For Writing Tools operations, AppKit provides you with a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dedicated pasteboard that’s private to the operation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For plain text, write the text directly to the pasteboard using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/setString(_:forType:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For rich text, make sure your view manages its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content using an attributed string. You can generate a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object in the RTF",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "format directly from the contents of an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. If you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "store your view’s text using a Swift ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type instead, create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from your Swift string first. Set the data on the pasteboard and return true to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pass the data along to the Writing Tools system, as shown in the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func writeSelection(to pboard: NSPasteboard, ",
+            "                    types: [NSPasteboard.PasteboardType]) -> Bool {",
+            "    pboard.setString(text, forType: .string)   ",
+            "    return true",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Read-updated-text-from-the-pasteboard",
+          "level": 3,
+          "text": "Read updated text from the pasteboard",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your view contains editable text, implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSServicesMenuRequestor/readSelection(from:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method in your requestor object to integrate any rewritten content back into",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your view. AppKit calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSServicesMenuRequestor/readSelection(from:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method after the person",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "accepts any Writing Tools changes. In your implementation, read the updated",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "text from the provided pasteboard and replace your view’s current text selection",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the new text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you indicate that your view is read-only in your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/validRequestor(forSendType:returnType:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "method, AppKit doesn’t call your requestor object’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSServicesMenuRequestor/readSelection(from:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "method. Instead, AppKit places the rewritten text on the general pasteboard",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "so that the person can paste it elsewhere.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your view conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, Writing Tools",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "calls your view’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/insertText(_:replacementRange:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "first to handle text insertions and replacments. If you implement that method,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "insert the provided text, replacing any previous text as needed. If you don’t implement that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method in your view, Writing Tools calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSServicesMenuRequestor/readSelection(from:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Customize-the-anchor-placement-for-the-Writing-Tools-popover",
+          "level": 3,
+          "text": "Customize the anchor placement for the Writing Tools popover",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When AppKit displays the Writing Tools UI, it anchors the popover to your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entire view. To change the anchor point, you need to supply a new anchor point",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for your view. For example, you might want to anchor the Writing Tools UI to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the rectangle that contains the current text selection instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To anchor the Writing Tools UI to a custom part of your view’s content, adopt",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewContentSelectionInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol in your view and set the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewContentSelectionInfo/selectionAnchorRect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to a rectangle in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your view’s coordinate space. For example, for an editable view with an active",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "text selection, set it to the rectangle of the selected text. AppKit places the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Writing Tools popover relative to the custom rectangle you provide.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMenu/popUpContextMenu(_:with:for:)": {
+      "abstract": [
+        {
+          "text": "Displays a contextual menu over a view for an event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "popUpContextMenu"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSMenu",
+          "text": "NSMenu"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenu/popUpContextMenu(_:with:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "popUpContextMenu:withEvent:forView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "popUpContextMenu(_:with:for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmenu/popupcontextmenu(_:with:for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard": {
+      "abstract": [
+        {
+          "text": "An object that transfers data to and from the pasteboard server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPasteboard"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPasteboard"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboard",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/PasteboardType/rtf": {
+      "abstract": [
+        {
+          "text": "Rich Text Format (RTF) data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rtf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/PasteboardType/rtf",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardTypeRTF"
+        }
+      ],
+      "role": "symbol",
+      "title": "rtf",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/pasteboardtype/rtf"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/PasteboardType/string": {
+      "abstract": [
+        {
+          "text": "String data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/PasteboardType/string",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardTypeString"
+        }
+      ],
+      "role": "symbol",
+      "title": "string",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/pasteboardtype/string"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/setString(_:forType:)": {
+      "abstract": [
+        {
+          "text": "Sets the given string as the representation for the specified type for the first item on the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/setString(_:forType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setString:forType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setString(_:forType:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/setstring(_:fortype:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSResponder/validRequestor(forSendType:returnType:)": {
+      "abstract": [
+        {
+          "text": "Overridden by subclasses to determine what services are available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "validRequestor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forSendType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "returnType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/validRequestor(forSendType:returnType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "validRequestorForSendType:returnType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "validRequestor(forSendType:returnType:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsresponder/validrequestor(forsendtype:returntype:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSServicesMenuRequestor": {
+      "abstract": [
+        {
+          "text": "A set of methods that support interaction with items users can share through a sharing service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSServicesMenuRequestor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSServicesMenuRequestor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSServicesMenuRequestor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSServicesMenuRequestor",
+      "type": "topic",
+      "url": "/documentation/appkit/nsservicesmenurequestor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSServicesMenuRequestor/readSelection(from:)": {
+      "abstract": [
+        {
+          "text": "Reads data from the pasteboard and uses it to replace the current selection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readSelection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSServicesMenuRequestor/readSelection(from:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "readSelectionFromPasteboard:"
+        }
+      ],
+      "role": "symbol",
+      "title": "readSelection(from:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsservicesmenurequestor/readselection(from:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSServicesMenuRequestor/writeSelection(to:types:)": {
+      "abstract": [
+        {
+          "text": "Writes the current selection to the pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeSelection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "types"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSServicesMenuRequestor/writeSelection(to:types:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writeSelectionToPasteboard:types:"
+        }
+      ],
+      "role": "symbol",
+      "title": "writeSelection(to:types:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsservicesmenurequestor/writeselection(to:types:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient": {
+      "abstract": [
+        {
+          "text": "A set of methods that text views need to implement to interact properly with the text input management system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextInputClient"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextInputClient"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextInputClient",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputclient"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/insertText(_:replacementRange:)": {
+      "abstract": [
+        {
+          "text": "Inserts the given string into the receiver, replacing the specified content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertText"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "replacementRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/insertText(_:replacementRange:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insertText:replacementRange:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "insertText(_:replacementRange:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputclient/inserttext(_:replacementrange:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextView": {
+      "abstract": [
+        {
+          "text": "A view that draws text and handles user interactions with that text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextView",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView": {
+      "abstract": [
+        {
+          "text": "The infrastructure for drawing, printing, and handling events in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/menu(for:)": {
+      "abstract": [
+        {
+          "text": "Overridden by subclasses to return a context-sensitive pop-up menu for a given mouse-down event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "menu"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSMenu",
+          "text": "NSMenu"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/menu(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "menuForEvent:"
+        }
+      ],
+      "role": "symbol",
+      "title": "menu(for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/menu(for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewContentSelectionInfo": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSViewContentSelectionInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewContentSelectionInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSViewContentSelectionInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSViewContentSelectionInfo",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontentselectioninfo"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewContentSelectionInfo/selectionAnchorRect": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectionAnchorRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewContentSelectionInfo/selectionAnchorRect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectionAnchorRect"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectionAnchorRect",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontentselectioninfo/selectionanchorrect"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator": {
+      "abstract": [
+        {
+          "text": "An object that manages interactions between Writing Tools and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your custom text view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSWritingToolsCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSWritingToolsCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWritingToolsCoordinator",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/AnimationParameters": {
+      "abstract": [
+        {
+          "text": "An object you use to configure additional tasks or animations to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "run alongside the Writing Tools animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimationParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/AnimationParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimationParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWritingToolsCoordinator.AnimationParameters",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator/animationparameters"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/Context": {
+      "abstract": [
+        {
+          "text": "A data object that you use to share your custom view’s text with Writing Tools.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Context"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/Context",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Context"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWritingToolsCoordinator.Context",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator/context"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/Delegate-swift.protocol": {
+      "abstract": [
+        {
+          "text": "An interface that you use to manage interactions between Writing Tools",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and your custom text view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Delegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/Delegate-swift.protocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWritingToolsCoordinator.Delegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator/delegate-swift.protocol"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/adding-writing-tools-support-to-a-custom-nsview": {
+      "abstract": [
+        {
+          "text": "Integrate Writing Tools support, including support for inline replacement",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "animations, to your custom text views on macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/adding-writing-tools-support-to-a-custom-nsview",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Writing Tools support to a custom AppKit view",
+      "type": "topic",
+      "url": "/documentation/appkit/adding-writing-tools-support-to-a-custom-nsview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/customizing-writing-tools-behavior-for-system-views": {
+      "abstract": [
+        {
+          "text": "Modify the behavior of Writing Tools in standard macOS text views,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and adjust your app’s behavior while the feature is active.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/customizing-writing-tools-behavior-for-system-views",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing Writing Tools behavior for AppKit views",
+      "type": "topic",
+      "url": "/documentation/appkit/customizing-writing-tools-behavior-for-system-views"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/writing-tools": {
+      "abstract": [
+        {
+          "text": "Add support for Writing Tools to your app’s text views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/writing-tools",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Writing Tools",
+      "type": "topic",
+      "url": "/documentation/appkit/writing-tools"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring": {
+      "abstract": [
+        {
+          "text": "A value type for a string with associated attributes for portions of its text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "AttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data": {
+      "abstract": [
+        {
+          "text": "A byte buffer in memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Data",
+      "type": "topic",
+      "url": "/documentation/foundation/data"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsattributedstring": {
+      "abstract": [
+        {
+          "text": "A string of text that manages data, layout, and stylistic information for ranges of characters to support rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsattributedstring"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Writing-Tools-for-custom-views",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/adding-writing-tools-support-to-a-custom-nsview",
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator",
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/Delegate-swift.protocol",
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/Context",
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/AnimationParameters"
+      ],
+      "title": "Writing Tools for custom views"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Writing-Tools-for-custom-views",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/adding-writing-tools-support-to-a-custom-nsview",
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator",
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/Delegate-swift.protocol",
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/Context",
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/AnimationParameters"
+              ],
+              "title": "Writing Tools for custom views"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView/title",
+          "value": "NSTextView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1PasteboardType~1rtf/title",
+          "value": "NSPasteboardTypeRTF"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1PasteboardType~1rtf/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardTypeRTF"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/title",
+          "value": "NSView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard/title",
+          "value": "NSPasteboard"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1insertText(_:replacementRange:)/title",
+          "value": "insertText:replacementRange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1insertText(_:replacementRange:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insertText:replacementRange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1AnimationParameters/title",
+          "value": "NSWritingToolsCoordinatorAnimationParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1AnimationParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinatorAnimationParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1AnimationParameters/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinatorAnimationParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator/title",
+          "value": "NSWritingToolsCoordinator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1setString(_:forType:)/title",
+          "value": "setString:forType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1setString(_:forType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setString:forType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient/title",
+          "value": "NSTextInputClient"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInputClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInputClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1menu(for:)/title",
+          "value": "menuForEvent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1menu(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "menuForEvent:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1PasteboardType~1string/title",
+          "value": "NSPasteboardTypeString"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1PasteboardType~1string/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardTypeString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSServicesMenuRequestor~1readSelection(from:)/title",
+          "value": "readSelectionFromPasteboard:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSServicesMenuRequestor~1readSelection(from:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "readSelectionFromPasteboard:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewContentSelectionInfo/title",
+          "value": "NSViewContentSelectionInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewContentSelectionInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewContentSelectionInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewContentSelectionInfo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewContentSelectionInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1Delegate-swift.protocol/title",
+          "value": "NSWritingToolsCoordinatorDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1Delegate-swift.protocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinatorDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1Delegate-swift.protocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinatorDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1validRequestor(forSendType:returnType:)/title",
+          "value": "validRequestorForSendType:returnType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1validRequestor(forSendType:returnType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "validRequestorForSendType:returnType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSServicesMenuRequestor~1writeSelection(to:types:)/title",
+          "value": "writeSelectionToPasteboard:types:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSServicesMenuRequestor~1writeSelection(to:types:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "writeSelectionToPasteboard:types:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1Context/title",
+          "value": "NSWritingToolsCoordinatorContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1Context/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinatorContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1Context/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinatorContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenu~1popUpContextMenu(_:with:for:)/title",
+          "value": "popUpContextMenu:withEvent:forView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenu~1popUpContextMenu(_:with:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "popUpContextMenu:withEvent:forView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewContentSelectionInfo~1selectionAnchorRect/title",
+          "value": "selectionAnchorRect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewContentSelectionInfo~1selectionAnchorRect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selectionAnchorRect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSServicesMenuRequestor/title",
+          "value": "NSServicesMenuRequestor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSServicesMenuRequestor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSServicesMenuRequestor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSServicesMenuRequestor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSServicesMenuRequestor"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/supporting-writing-tools-via-the-pasteboard"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/supporting-writing-tools-via-the-pasteboard"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

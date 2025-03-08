@@ -1,0 +1,847 @@
+{
+  "abstract": [
+    {
+      "text": "Create documents that describe the data your app or workflow extension exchanges with Final Cut Pro.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "FCPXML Reference"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use FCPXML to describe the media, metadata, and other items users send and receive between your app and Final Cut Pro.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "FCPXML uses a basic XML document structure and specially defined elements, to describe the media assets, projects, and metadata users send to Final Cut Pro, and the rendered media, timeline sequences, editing decisions, and other data your app receives from Final Cut Pro.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This reference guide provides information about using FCPXML, including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Document structure",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Elements",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resources",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "FCPXML 1.9 requires Final Cut Pro 10.4.9 or later. It describes certain, but not all, aspects of projects and events useful for other applications. But, it’s not a substitute for a native Final Cut Pro project and event data organized in a library bundle.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following resources are helpful as you work with the FCPXML format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://support.apple.com/guide/final-cut-pro/welcome/mac",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://www.apple.com/final-cut-pro/resources/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://www.xml.com/axml/testaxml.htm",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " specification",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/asset": {
+      "abstract": [
+        {
+          "text": "Define file-based media managed in a Final Cut Pro library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/asset",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "asset",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/asset"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media": {
+      "abstract": [
+        {
+          "text": "Organize and annotate the media and projects your users send to and receive from Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media",
+      "kind": "article",
+      "role": "article",
+      "title": "Associating Ratings, Keywords, Markers, and Metadata with Media",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/associating-ratings-keywords-markers-and-metadata-with-media"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/collection-folder": {
+      "abstract": [
+        {
+          "text": "Contain keyword and smart collections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/collection-folder",
+      "kind": "article",
+      "role": "article",
+      "title": "collection-folder",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/collection-folder"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/content-and-metadata-exchanges-with-final-cut-pro": {
+      "abstract": [
+        {
+          "text": "Send media assets and timeline sequences to Final Cut Pro for editing, and receive rendered media and editing decisions in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/content-and-metadata-exchanges-with-final-cut-pro",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Content and Metadata Exchanges with Final Cut Pro",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/content-and-metadata-exchanges-with-final-cut-pro"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/creating-fcpxml-documents": {
+      "abstract": [
+        {
+          "text": "Describe media assets, editing decisions, metadata, and other items in FCPXML so users can send and receive data between your app and Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/creating-fcpxml-documents",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating FCPXML Documents",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/creating-fcpxml-documents"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/describing-final-cut-pro-items-in-fcpxml": {
+      "abstract": [
+        {
+          "text": "Describe clips, projects, and other items in FCPXML to exchange data with Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/describing-final-cut-pro-items-in-fcpxml",
+      "kind": "article",
+      "role": "article",
+      "title": "Describing Final Cut Pro Items in FCPXML",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/describing-final-cut-pro-items-in-fcpxml"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/document-type-definition": {
+      "abstract": [
+        {
+          "text": "Document Type Definition (DTD) for the latest Final Cut Pro XML interchange format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/document-type-definition",
+      "kind": "article",
+      "role": "article",
+      "title": "Document Type Definition",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/document-type-definition"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/effect": {
+      "abstract": [
+        {
+          "text": "Reference visual, audio, or custom effects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/effect",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "effect",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/effect"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/event": {
+      "abstract": [
+        {
+          "text": "Represent a single event in a library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/event",
+      "kind": "article",
+      "role": "article",
+      "title": "event",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/event"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml": {
+      "abstract": [
+        {
+          "text": "Contain top-level elements in a document.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml",
+      "kind": "article",
+      "role": "article",
+      "title": "fcpxml",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fcpxml"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-bundle-reference": {
+      "abstract": [
+        {
+          "text": "Keep an FCPXML document and any files it references together in a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-bundle-reference",
+      "kind": "article",
+      "role": "article",
+      "title": "FCPXML Bundle Reference",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fcpxml-bundle-reference"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/format": {
+      "abstract": [
+        {
+          "text": "Reference a video-format definition.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/format",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "format",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/format"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/import-options": {
+      "abstract": [
+        {
+          "text": "Contain options that describe how to import events and projects into Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/import-options",
+      "kind": "article",
+      "role": "article",
+      "title": "import-options",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/import-options"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/importing-fcpxml-data": {
+      "abstract": [
+        {
+          "text": "Import data from Final Cut Pro to your app by using FCPXML.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/importing-fcpxml-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Importing FCPXML Data",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/importing-fcpxml-data"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/keyword-collection": {
+      "abstract": [
+        {
+          "text": "Group clips and projects based on matching keywords.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/keyword-collection",
+      "kind": "article",
+      "role": "article",
+      "title": "keyword-collection",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/keyword-collection"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/library": {
+      "abstract": [
+        {
+          "text": "Contain events, clips, projects, and smart collections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/library",
+      "kind": "article",
+      "role": "article",
+      "title": "library",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/library"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/locator": {
+      "abstract": [
+        {
+          "text": "Describe a URL-based resource.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/locator",
+      "kind": "article",
+      "role": "article",
+      "title": "locator",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/locator"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/media": {
+      "abstract": [
+        {
+          "text": "Describe a compound clip or a multi-camera media definition.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "media",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/media"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/metadata": {
+      "abstract": [
+        {
+          "text": "Describe metadata about media that is of interest to other applications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/metadata",
+      "kind": "article",
+      "role": "article",
+      "title": "Metadata",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/metadata"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/metadata-keys-and-sources": {
+      "abstract": [
+        {
+          "text": "Define metadata keys that identify each metadata item and its sources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/metadata-keys-and-sources",
+      "kind": "article",
+      "role": "article",
+      "title": "Metadata Keys and Sources",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/metadata-keys-and-sources"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/object-tracker": {
+      "abstract": [
+        {
+          "text": "Describe a tracked object such as a face or other moving object in a video clip.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/object-tracker",
+      "kind": "article",
+      "role": "article",
+      "title": "object-tracker",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/object-tracker"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/project": {
+      "abstract": [
+        {
+          "text": "Represent a project timeline.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/project",
+      "kind": "article",
+      "role": "article",
+      "title": "project",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/project"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/resources": {
+      "abstract": [
+        {
+          "text": "Contain shared resources on which events and projects depend.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/resources",
+      "kind": "article",
+      "role": "article",
+      "title": "resources",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/resources"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/smart-collection": {
+      "abstract": [
+        {
+          "text": "Describe smart collection filters that group clips and projects that match the criteria.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/smart-collection",
+      "kind": "article",
+      "role": "article",
+      "title": "smart-collection",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/smart-collection"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/story-elements": {
+      "abstract": [
+        {
+          "text": "Describe Final Cut Pro events and project data and their associated effects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/story-elements",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Story Elements",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/story-elements"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/tracking-shape": {
+      "abstract": [
+        {
+          "text": "Define a shape that the object-tracker uses to match the movement of an object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/tracking-shape",
+      "kind": "article",
+      "role": "article",
+      "title": "tracking-shape",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/tracking-shape"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/workflow-extensions": {
+      "abstract": [
+        {
+          "text": "Integrate your app’s workflow within the Final Cut Pro interface to streamline data exchange.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/workflow-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workflow Extensions",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/workflow-extensions"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "https://support.apple.com/guide/final-cut-pro/welcome/mac": {
+      "identifier": "https://support.apple.com/guide/final-cut-pro/welcome/mac",
+      "title": "Final Cut Pro User Guide",
+      "titleInlineContent": [
+        {
+          "text": "Final Cut Pro User Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/final-cut-pro/welcome/mac"
+    },
+    "https://www.apple.com/final-cut-pro/resources/": {
+      "identifier": "https://www.apple.com/final-cut-pro/resources/",
+      "title": "Final Cut Pro Resources",
+      "titleInlineContent": [
+        {
+          "text": "Final Cut Pro Resources",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.apple.com/final-cut-pro/resources/"
+    },
+    "https://www.xml.com/axml/testaxml.htm": {
+      "identifier": "https://www.xml.com/axml/testaxml.htm",
+      "title": "Extensible Markup Language (XML) 1.0",
+      "titleInlineContent": [
+        {
+          "text": "Extensible Markup Language (XML) 1.0",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.xml.com/axml/testaxml.htm"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "XML-Data-Exchange",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/content-and-metadata-exchanges-with-final-cut-pro",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/workflow-extensions"
+      ],
+      "title": "XML Data Exchange"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Document-Structure-and-Root-Elements",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/creating-fcpxml-documents",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-bundle-reference",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/importing-fcpxml-data",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/resources",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/library",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/event",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/project",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/import-options"
+      ],
+      "title": "Document Structure and Root Elements"
+    },
+    {
+      "anchor": "Media-Elements-and-Effects",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/story-elements"
+      ],
+      "title": "Media Elements and Effects"
+    },
+    {
+      "anchor": "Shared-Resources-and-Reference-Elements",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/asset",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/media",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/format",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/effect",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/locator",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/object-tracker",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/tracking-shape"
+      ],
+      "title": "Shared Resources and Reference Elements"
+    },
+    {
+      "anchor": "Clips-and-Project-Collections",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/describing-final-cut-pro-items-in-fcpxml",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/keyword-collection",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/smart-collection",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/collection-folder"
+      ],
+      "title": "Clips and Project Collections"
+    },
+    {
+      "anchor": "Media-Metadata",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/metadata",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/metadata-keys-and-sources"
+      ],
+      "title": "Media Metadata"
+    },
+    {
+      "anchor": "Document-Type-Definition",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/document-type-definition"
+      ],
+      "title": "Document Type Definition"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Document-Structure-and-Root-Elements",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/creating-fcpxml-documents",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-bundle-reference",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/importing-fcpxml-data",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/resources",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/library",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/event",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/project",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/import-options"
+              ],
+              "title": "Document Structure and Root Elements"
+            },
+            {
+              "anchor": "Media-Elements-and-Effects",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/story-elements"
+              ],
+              "title": "Media Elements and Effects"
+            },
+            {
+              "anchor": "Shared-Resources-and-Reference-Elements",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/asset",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/media",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/format",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/effect",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/locator",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/object-tracker",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/tracking-shape"
+              ],
+              "title": "Shared Resources and Reference Elements"
+            },
+            {
+              "anchor": "Clips-and-Project-Collections",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/describing-final-cut-pro-items-in-fcpxml",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/keyword-collection",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/smart-collection",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/collection-folder"
+              ],
+              "title": "Clips and Project Collections"
+            },
+            {
+              "anchor": "Media-Metadata",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/metadata",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/metadata-keys-and-sources"
+              ],
+              "title": "Media Metadata"
+            },
+            {
+              "anchor": "Document-Type-Definition",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/document-type-definition"
+              ],
+              "title": "Document Type Definition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "XML-Data-Exchange",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/content-and-metadata-exchanges-with-final-cut-pro",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/workflow-extensions"
+              ],
+              "title": "XML Data Exchange"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/fcpxml-reference"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/fcpxml-reference"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,755 @@
+{
+  "abstract": [
+    {
+      "text": "Return a value that changes according to an array of values as a function of the age of the requests.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/game-center",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/expressions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/getting-value-based-on-age-using-an-array"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Getting value based on age using an array"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "agedValues()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function in the expression of a matchmaking rule to loosen matchmaking criteria over time. This function returns a value that changes based on the given arrays and depending on the age of requests. Use this function instead of ",
+              "type": "text"
+            },
+            {
+              "code": "agedAsSteppedValue()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when you want more control over the values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, pass the following parameters to this function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "agedValues(age, `5`, [ `20`, `30`, `40`, `50`, `60`, `100` ], ",
+            "                     [  `5`, `10`, `15`, `20`, `25`, `30` ])"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the ",
+              "type": "text"
+            },
+            {
+              "code": "ageSeconds",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is ",
+              "type": "text"
+            },
+            {
+              "code": "3",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (less than the first item in the ",
+              "type": "text"
+            },
+            {
+              "code": "ages",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array), the value is ",
+              "type": "text"
+            },
+            {
+              "code": "5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If ",
+              "type": "text"
+            },
+            {
+              "code": "ageSeconds",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "17",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the value is ",
+              "type": "text"
+            },
+            {
+              "code": "40",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If ",
+              "type": "text"
+            },
+            {
+              "code": "ageSeconds",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "32",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (greater than the last item in the ",
+              "type": "text"
+            },
+            {
+              "code": "ages",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array), the value is ",
+              "type": "text"
+            },
+            {
+              "code": "100",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Age range",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Return value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "[0, 4]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "5",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "[5, 9]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "20",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "[10, 14]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "30",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "[15, 19]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "40",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "[20, 24]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "50",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "[25, 29]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "60",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "[30, 30+]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "100",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To loosen constraints over time, use the results of this function in comparisons. For example, compare the sum of all the player counts to a value that decreases with the average age of candidate requests that the matchmaking algorithm selects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "agedValues(avg(requests[].secondsInQueue), 8, [ 6, 4, 2], [ 10, 15, 20 ]) <= sum(requests[].playerCount)"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Declaration",
+          "level": 3,
+          "text": "Declaration",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "number agedValues(number        $ageSeconds, ",
+            "                  number        $initialValue,",
+            "                  array[number] $values, ",
+            "                  array[number] $ages)"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Parameters",
+          "level": 3,
+          "text": "Parameters",
+          "type": "heading"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ageSeconds",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The average, maximum, or minimum age of match requests in the queue.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "initialValue",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ages",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " that are less than the first item in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ages",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "values",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The values to map the age ranges to.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ages",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The age ranges to map to the values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Return-value",
+          "level": 3,
+          "text": "Return value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If ",
+              "type": "text"
+            },
+            {
+              "code": "ageSeconds",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is less than the first item in the ",
+              "type": "text"
+            },
+            {
+              "code": "ages",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array (",
+              "type": "text"
+            },
+            {
+              "code": "ages[0]",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), ",
+              "type": "text"
+            },
+            {
+              "code": "initialValue",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If ",
+              "type": "text"
+            },
+            {
+              "code": "ageSeconds",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is in the range between two items in the ",
+              "type": "text"
+            },
+            {
+              "code": "ages",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array (",
+              "type": "text"
+            },
+            {
+              "code": "ages[n] <= ageSeconds < ages[n+1]",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), the corresponding item in the ",
+              "type": "text"
+            },
+            {
+              "code": "values",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array (",
+              "type": "text"
+            },
+            {
+              "code": "values[n]",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). If ",
+              "type": "text"
+            },
+            {
+              "code": "ageSeconds",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is greater than the last item in the ",
+              "type": "text"
+            },
+            {
+              "code": "ages",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array, ",
+              "type": "text"
+            },
+            {
+              "code": "initialValue",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/expressions": {
+      "abstract": [
+        {
+          "text": "Write expressions that query the match requests in a queue to find the best players for a match.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/expressions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Expressions",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/expressions"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/game-center": {
+      "abstract": [
+        {
+          "text": "Manage Game Center data and configurations for your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/game-center",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Game Center",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/game-center"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/getting-value-based-on-age": {
+      "abstract": [
+        {
+          "text": "Return a value that changes in regular steps as a function of the age of the requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/getting-value-based-on-age",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting value based on age",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/getting-value-based-on-age"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Match-functions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/getting-value-based-on-age"
+      ],
+      "title": "Match functions"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/getting-value-based-on-age-using-an-array"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

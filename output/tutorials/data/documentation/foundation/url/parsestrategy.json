@@ -1,0 +1,1462 @@
+{
+  "abstract": [
+    {
+      "text": "A parse strategy for creating URLs from formatted strings.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+        "doc://com.apple.documentation/documentation/foundation/url"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting",
+        "doc://com.apple.documentation/documentation/foundation/formatstyle",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+        "doc://com.apple.documentation/documentation/foundation/url",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 4013465,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation3URLV13ParseStrategyV",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "URL.ParseStrategy"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "URL"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "9.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "URL.ParseStrategy"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ParseStrategy"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an explicit ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to parse multiple strings according to the same parse strategy. The following example creates a customized strategy, then applies it to multiple URL candidate strings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let strategy = URL.ParseStrategy(",
+            "    scheme: .defaultValue(\"https\"),",
+            "    user: .optional,",
+            "    password: .optional,",
+            "    host: .required,",
+            "    port: .optional,",
+            "    path: .required,",
+            "    query: .required,",
+            "    fragment: .optional)",
+            "let urlStrings = [",
+            "    \"example.com?key1=value1\", // no scheme or path",
+            "    \"https://example.com?key2=value2\", // no path",
+            "    \"https://example.com\", // no query",
+            "    \"https://example.com/path?key4=value4\", // complete",
+            "    \"//example.com/path?key5=value5\" // complete except for default-able scheme",
+            "]",
+            "let urls = urlStrings.map { try? strategy.parse($0) } // [nil, nil, nil, Optional(https://example.com/path?key4=value4), Optional(https://example.com/path?key5=value5)]"
+          ],
+          "metadata": {
+            "anchor": "4113680",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t need to instantiate a parse strategy instance to parse a single string. Instead, use the URL initializer ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url/4013499-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", passing in a string to parse and a customized strategy, typically created with one of the static accessors. The following example parses a URL string, with a custom strategy that provides a default value for the port component if the source string doesn’t specify one.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let urlString = \"https://internal.example.com/path/to/endpoint?key=value\"",
+            "let url = try? URL(urlString, strategy: .url",
+            "    .port(.defaultValue(8080))) // https://internal.example.com:8080/path/to/endpoint?key=value",
+            ""
+          ],
+          "metadata": {
+            "anchor": "4113690",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/CustomConsumingRegexComponent": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomConsumingRegexComponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomConsumingRegexComponent",
+      "type": "topic",
+      "url": "/documentation/swift/customconsumingregexcomponent"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Decodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Decodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/swift/decodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Encodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Encodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/swift/encodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Hashable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/swift/hashable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Formatting",
+      "type": "topic",
+      "url": "/documentation/foundation/data_formatting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Numbers, Data, and Basic Values",
+      "type": "topic",
+      "url": "/documentation/foundation/numbers_data_and_basic_values"
+    },
+    "doc://com.apple.documentation/documentation/foundation/parsestrategy": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/parsestrategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ParseStrategy",
+      "type": "topic",
+      "url": "/documentation/foundation/parsestrategy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url": {
+      "abstract": [
+        {
+          "text": "A value that identifies the location of a resource, such as an item on a remote server or the path to a local file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL",
+      "type": "topic",
+      "url": "/documentation/foundation/url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/4013499-init": {
+      "abstract": [
+        {
+          "text": "Creates a URL instance by parsing the provided input in accordance with a parse strategy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<T>(T.ParseInput, "
+        },
+        {
+          "kind": "identifier",
+          "text": "strategy"
+        },
+        {
+          "kind": "text",
+          "text": ": T)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/4013499-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:strategy:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/4013499-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy": {
+      "abstract": [
+        {
+          "text": "A parse strategy for creating URLs from formatted strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL.ParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL.ParseStrategy",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy#4113680": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy#4113680",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/url/parsestrategy#4113680"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy#4113690": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy#4113690",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/url/parsestrategy#4113690"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013466": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are not equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "!= "
+        },
+        {
+          "kind": "text",
+          "text": "(URL.ParseStrategy, URL.ParseStrategy) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013466",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "!=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy/4013466"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013467": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether two values are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "== "
+        },
+        {
+          "kind": "text",
+          "text": "(URL.ParseStrategy, URL.ParseStrategy) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013467",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy/4013467"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013481-encode": {
+      "abstract": [
+        {
+          "text": "Encodes the value into the given encoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any Encoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013481-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy/4013481-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013482-fixed": {
+      "abstract": [
+        {
+          "text": "Returns a strategy that parses dates from fixed format strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fixed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": Date.FormatString, "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeZone"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeZone, "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale?) -> URL.ParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013482-fixed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fixed(format:timeZone:locale:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy/4013482-fixed"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013483-fragment": {
+      "abstract": [
+        {
+          "text": "Modifies a parse strategy to parse a URL’s fragment component in accordance with the provided behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fragment"
+        },
+        {
+          "kind": "text",
+          "text": "(URL.ParseStrategy.ComponentParseStrategy<String>) -> URL.ParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013483-fragment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fragment(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy/4013483-fragment"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013484-hash": {
+      "abstract": [
+        {
+          "text": "Hashes the essential components of the value by feeding them into the given hasher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hash"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": inout Hasher)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013484-hash",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hash(into:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy/4013484-hash"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013485-hashvalue": {
+      "abstract": [
+        {
+          "text": "The hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "hashValue"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013485-hashvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hashValue",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy/4013485-hashvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013486-host": {
+      "abstract": [
+        {
+          "text": "Modifies a parse strategy to parse a URL’s host component in accordance with the provided behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "host"
+        },
+        {
+          "kind": "text",
+          "text": "(URL.ParseStrategy.ComponentParseStrategy<String>) -> URL.ParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013486-host",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "host(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy/4013486-host"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013487-init": {
+      "abstract": [
+        {
+          "text": "Creates a new instance by decoding from the given decoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any Decoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013487-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy/4013487-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013488-init": {
+      "abstract": [
+        {
+          "text": "Creates a URL parse strategy with the specified component-parsing behaviors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "scheme"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.ParseStrategy.ComponentParseStrategy<String>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "user"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.ParseStrategy.ComponentParseStrategy<String>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "password"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.ParseStrategy.ComponentParseStrategy<String>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "host"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.ParseStrategy.ComponentParseStrategy<String>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "port"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.ParseStrategy.ComponentParseStrategy<Int>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.ParseStrategy.ComponentParseStrategy<String>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "query"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.ParseStrategy.ComponentParseStrategy<String>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "fragment"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.ParseStrategy.ComponentParseStrategy<String>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013488-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(scheme:user:password:host:port:path:query:fragment:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy/4013488-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013489-parse": {
+      "abstract": [
+        {
+          "text": "Parses a URL string in accordance with this strategy and returns the parsed value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "parse"
+        },
+        {
+          "kind": "text",
+          "text": "(String) -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013489-parse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parse(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy/4013489-parse"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013490-password": {
+      "abstract": [
+        {
+          "text": "Modifies a parse strategy to parse a URL’s password component in accordance with the provided behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "password"
+        },
+        {
+          "kind": "text",
+          "text": "(URL.ParseStrategy.ComponentParseStrategy<String>) -> URL.ParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013490-password",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "password(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy/4013490-password"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013491-path": {
+      "abstract": [
+        {
+          "text": "Modifies a parse strategy to parse a URL’s path component in accordance with the provided behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": "(URL.ParseStrategy.ComponentParseStrategy<String>) -> URL.ParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013491-path",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "path(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy/4013491-path"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013492-port": {
+      "abstract": [
+        {
+          "text": "Modifies a parse strategy to parse a URL’s port component in accordance with the provided behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "port"
+        },
+        {
+          "kind": "text",
+          "text": "(URL.ParseStrategy.ComponentParseStrategy<Int>) -> URL.ParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013492-port",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "port(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy/4013492-port"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013493-query": {
+      "abstract": [
+        {
+          "text": "Modifies a parse strategy to parse a URL’s query component in accordance with the provided behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "query"
+        },
+        {
+          "kind": "text",
+          "text": "(URL.ParseStrategy.ComponentParseStrategy<String>) -> URL.ParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013493-query",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "query(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy/4013493-query"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013494-scheme": {
+      "abstract": [
+        {
+          "text": "Modifies a parse strategy to parse a URL’s scheme component in accordance with the provided behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheme"
+        },
+        {
+          "kind": "text",
+          "text": "(URL.ParseStrategy.ComponentParseStrategy<String>) -> URL.ParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013494-scheme",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scheme(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy/4013494-scheme"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013495-url": {
+      "abstract": [
+        {
+          "text": "A default strategy for parsing a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.ParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013495-url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy/4013495-url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013496-user": {
+      "abstract": [
+        {
+          "text": "Modifies a parse strategy to parse a URL’s user component in accordance with the provided behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "user"
+        },
+        {
+          "kind": "text",
+          "text": "(URL.ParseStrategy.ComponentParseStrategy<String>) -> URL.ParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013496-user",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "user(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy/4013496-user"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4020245-consuming": {
+      "abstract": [
+        {
+          "text": "Process the input string within the specified bounds, beginning at the given index, and return the end position (upper bound) of the match and the produced output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "consuming"
+        },
+        {
+          "kind": "text",
+          "text": "(String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "startingAt"
+        },
+        {
+          "kind": "text",
+          "text": ": String.Index, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": Range<String.Index>) -> ("
+        },
+        {
+          "kind": "identifier",
+          "text": "upperBound"
+        },
+        {
+          "kind": "text",
+          "text": ": String.Index, "
+        },
+        {
+          "kind": "identifier",
+          "text": "output"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4020245-consuming",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "consuming(_:startingAt:in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy/4020245-consuming"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4020249-regex": {
+      "abstract": [
+        {
+          "text": "The regular expression represented by this component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "regex"
+        },
+        {
+          "kind": "text",
+          "text": ": Regex<URL>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4020249-regex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "regex",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy/4020249-regex"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4020251-url": {
+      "abstract": [
+        {
+          "text": "Returns a custom strategy for parsing a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "scheme"
+        },
+        {
+          "kind": "text",
+          "text": ": ComponentParseStrategy<String>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "user"
+        },
+        {
+          "kind": "text",
+          "text": ": ComponentParseStrategy<String>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "password"
+        },
+        {
+          "kind": "text",
+          "text": ": ComponentParseStrategy<String>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "host"
+        },
+        {
+          "kind": "text",
+          "text": ": ComponentParseStrategy<String>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "port"
+        },
+        {
+          "kind": "text",
+          "text": ": ComponentParseStrategy<Int>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": ": ComponentParseStrategy<String>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "query"
+        },
+        {
+          "kind": "text",
+          "text": ": ComponentParseStrategy<String>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "fragment"
+        },
+        {
+          "kind": "text",
+          "text": ": ComponentParseStrategy<String>) -> URL.ParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4020251-url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url(scheme:user:password:host:port:path:query:fragment:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy/4020251-url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/componentparsestrategy": {
+      "abstract": [
+        {
+          "text": "The strategy used to parse one component of a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL.ParseStrategy.ComponentParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/componentparsestrategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL.ParseStrategy.ComponentParseStrategy",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy/componentparsestrategy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/parseinput": {
+      "abstract": [
+        {
+          "text": "The type this parse strategy uses as input when parsing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL.ParseStrategy.ParseInput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/parseinput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL.ParseStrategy.ParseInput",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy/parseinput"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/parseoutput": {
+      "abstract": [
+        {
+          "text": "The type this parse strategy produces as output from parsing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL.ParseStrategy.ParseOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/parseoutput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL.ParseStrategy.ParseOutput",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy/parseoutput"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/regexoutput": {
+      "abstract": [
+        {
+          "text": "The type returned when capturing matching substrings with this strategy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL.ParseStrategy.RegexOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/regexoutput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL.ParseStrategy.RegexOutput",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy/regexoutput"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/CustomConsumingRegexComponent",
+        "doc://com.apple.Swift/documentation/Swift/Decodable",
+        "doc://com.apple.Swift/documentation/Swift/Encodable",
+        "doc://com.apple.Swift/documentation/Swift/Hashable",
+        "doc://com.apple.documentation/documentation/foundation/parsestrategy",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/4013499-init"
+      ],
+      "title": "Creating a URL by parsing"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "4113675",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013488-init",
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013495-url",
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4020251-url",
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/componentparsestrategy"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a URL parse strategy"
+    },
+    {
+      "anchor": "4113678",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013494-scheme",
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013496-user",
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013490-password",
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013486-host",
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013492-port",
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013491-path",
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013493-query",
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013483-fragment",
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/componentparsestrategy"
+      ],
+      "kind": "taskGroup",
+      "title": "Customizing strategy behavior"
+    },
+    {
+      "anchor": "4113688",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013489-parse"
+      ],
+      "kind": "taskGroup",
+      "title": "Parsing strings"
+    },
+    {
+      "anchor": "4113679",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4020249-regex",
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4020245-consuming"
+      ],
+      "kind": "taskGroup",
+      "title": "Locating URLs with regular expressions"
+    },
+    {
+      "anchor": "4113677",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013482-fixed"
+      ],
+      "kind": "taskGroup",
+      "title": "Applying date-parsing strategies"
+    },
+    {
+      "anchor": "4113683",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013487-init",
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013481-encode"
+      ],
+      "kind": "taskGroup",
+      "title": "Encoding and decoding"
+    },
+    {
+      "anchor": "4113691",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013484-hash",
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013485-hashvalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Hashing"
+    },
+    {
+      "anchor": "4113685",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013467",
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013466"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing URL parse strategies"
+    },
+    {
+      "anchor": "4113684",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/parseinput",
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/parseoutput",
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/regexoutput"
+      ],
+      "kind": "taskGroup",
+      "title": "Supporting Types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/url/parsestrategy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

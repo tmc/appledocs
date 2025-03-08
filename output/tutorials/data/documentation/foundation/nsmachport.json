@@ -1,0 +1,972 @@
+{
+  "abstract": [
+    {
+      "text": "A port that can be used as an endpoint for distributed object connections (or raw messaging).",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime/distributed_objects_support"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsmachport"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1399519,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSMachPort",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSMachPort"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSMachPort"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSMachPort"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/port",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSPort",
+              "text": "Port"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachport",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/port",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that wraps a Mach port, the fundamental communication port in macOS. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachport",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " allows for local (on the same machine) communication only. A companion class, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/socketport",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", allows for both local and remote distributed object communication, but may be more expensive than ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachport",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " for the local case.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachport",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " effectively, you should be familiar with Mach ports, port access rights, and Mach messages. See the Mach OS documentation for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachport",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " conforms to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " protocol, but only supports coding by an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsportcoder",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/port",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and its subclasses do not support archiving.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/messageport": {
+      "abstract": [
+        {
+          "text": "A port that can be used as an endpoint for distributed object connections (or raw messaging).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MessagePort"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/messageport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MessagePort",
+      "type": "topic",
+      "url": "/documentation/foundation/messageport"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmachport": {
+      "abstract": [
+        {
+          "text": "A port that can be used as an endpoint for distributed object connections (or raw messaging).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMachPort"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMachPort",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmachport"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmachport/1399476-delegate": {
+      "abstract": [
+        {
+          "text": "Returns the receiver’s delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": "() -> (any NSMachPortDelegate)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachport/1399476-delegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "delegate()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmachport/1399476-delegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmachport/1399478-port": {
+      "abstract": [
+        {
+          "text": "Creates and returns a port object configured with the given Mach port.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "port"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withMachPort"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt32) -> Port"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachport/1399478-port",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "port(withMachPort:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmachport/1399478-port"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmachport/1399499-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated ",
+          "type": "text"
+        },
+        {
+          "code": "NSMachPort",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object with a given Mach port.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "machPort"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt32)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachport/1399499-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(machPort:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmachport/1399499-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmachport/1399523-schedule": {
+      "abstract": [
+        {
+          "text": "Schedules the receiver into the run loop mode ",
+          "type": "text"
+        },
+        {
+          "code": "mode",
+          "type": "codeVoice"
+        },
+        {
+          "text": " of ",
+          "type": "text"
+        },
+        {
+          "code": "runLoop",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "schedule"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forMode"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.Mode)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachport/1399523-schedule",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "schedule(in:forMode:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmachport/1399523-schedule"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmachport/1399539-machport": {
+      "abstract": [
+        {
+          "text": "The Mach port used by the receiver, represented as an integer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "machPort"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachport/1399539-machport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "machPort",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmachport/1399539-machport"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmachport/1399547-setdelegate": {
+      "abstract": [
+        {
+          "text": "Sets the receiver’s delegate to a given object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDelegate"
+        },
+        {
+          "kind": "text",
+          "text": "((any NSMachPortDelegate)?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachport/1399547-setdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDelegate(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmachport/1399547-setdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmachport/1399551-port": {
+      "abstract": [
+        {
+          "text": "Creates and returns a port object configured with the specified options and the given Mach port.  ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "port"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withMachPort"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt32, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSMachPort.Options) -> Port"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachport/1399551-port",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "port(withMachPort:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmachport/1399551-port"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmachport/1399555-remove": {
+      "abstract": [
+        {
+          "text": "Removes the receiver from the run loop mode ",
+          "type": "text"
+        },
+        {
+          "code": "mode",
+          "type": "codeVoice"
+        },
+        {
+          "text": " of ",
+          "type": "text"
+        },
+        {
+          "code": "runLoop",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forMode"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.Mode)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachport/1399555-remove",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remove(from:forMode:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmachport/1399555-remove"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmachport/1399559-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated ",
+          "type": "text"
+        },
+        {
+          "code": "NSMachPort",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object with a given Mach port and the specified options. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "machPort"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt32, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSMachPort.Options)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachport/1399559-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(machPort:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmachport/1399559-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmachport/options": {
+      "abstract": [
+        {
+          "text": "Used to remove access rights to a mach port when the ",
+          "type": "text"
+        },
+        {
+          "code": "NSMachPort",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object is invalidated or destroyed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMachPort.Options"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachport/options",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMachPort.Options",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmachport/options"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmachportdelegate": {
+      "abstract": [
+        {
+          "text": "An interface for handling incoming Mach messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMachPortDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachportdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMachPortDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmachportdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsportcoder": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsportcoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPortCoder",
+      "type": "topic",
+      "url": "/documentation/foundation/nsportcoder"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsprotocolchecker": {
+      "abstract": [
+        {
+          "text": "An object that restricts the messages that can be sent to another object (referred to as the checker’s delegate).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSProtocolChecker"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsprotocolchecker",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSProtocolChecker",
+      "type": "topic",
+      "url": "/documentation/foundation/nsprotocolchecker"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime/distributed_objects_support": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime/distributed_objects_support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Distributed Objects Support",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime/distributed_objects_support"
+    },
+    "doc://com.apple.documentation/documentation/foundation/port": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/port",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Port",
+      "type": "topic",
+      "url": "/documentation/foundation/port"
+    },
+    "doc://com.apple.documentation/documentation/foundation/portdelegate": {
+      "abstract": [
+        {
+          "text": "An interface for handling incoming messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "PortDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/portdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PortDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/portdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/portmessage": {
+      "abstract": [
+        {
+          "text": "A low-level, operating system-independent type for inter-application (and inter-thread) messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "PortMessage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/portmessage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PortMessage",
+      "type": "topic",
+      "url": "/documentation/foundation/portmessage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/socketport": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/socketport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SocketPort",
+      "type": "topic",
+      "url": "/documentation/foundation/socketport"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/port"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmachportdelegate",
+        "doc://com.apple.documentation/documentation/foundation/messageport",
+        "doc://com.apple.documentation/documentation/foundation/portdelegate",
+        "doc://com.apple.documentation/documentation/foundation/portmessage",
+        "doc://com.apple.documentation/documentation/foundation/nsprotocolchecker"
+      ],
+      "title": "Legacy"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1653968",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmachport/1399478-port",
+        "doc://com.apple.documentation/documentation/foundation/nsmachport/1399551-port",
+        "doc://com.apple.documentation/documentation/foundation/nsmachport/1399499-init",
+        "doc://com.apple.documentation/documentation/foundation/nsmachport/1399559-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating and Initializing"
+    },
+    {
+      "anchor": "1654057",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmachport/1399539-machport"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the Mach Port"
+    },
+    {
+      "anchor": "1654099",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmachport/1399555-remove",
+        "doc://com.apple.documentation/documentation/foundation/nsmachport/1399523-schedule"
+      ],
+      "kind": "taskGroup",
+      "title": "Scheduling the Port on a Run Loop"
+    },
+    {
+      "anchor": "1654156",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmachport/1399476-delegate",
+        "doc://com.apple.documentation/documentation/foundation/nsmachport/1399547-setdelegate"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting and Setting the Delegate"
+    },
+    {
+      "anchor": "1681205",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmachport/options"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsmachport"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsmachport"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

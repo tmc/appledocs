@@ -1,0 +1,1078 @@
+{
+  "abstract": [
+    {
+      "text": "A query interface that reads activity summaries using Swift concurrency.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:9HealthKit32HKActivitySummaryQueryDescriptorV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "HKActivitySummaryQueryDescriptor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "HKActivitySummaryQueryDescriptor"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.4",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.4",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.5",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "HKActivitySummaryQueryDescriptor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "HKActivitySummaryQueryDescriptor"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.healthkit/documentation/HealthKit/reading-data-from-healthkit",
+        "doc://com.apple.healthkit/documentation/HealthKit/running-queries-with-swift-concurrency"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to run a query that reads activity summary objects from the HealthKit store. To get a snapshot of activity summaries currently in the store, create a descriptor and call its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor/result(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Get the start and end date components.",
+            "let calendar = Calendar(identifier: .gregorian)",
+            "",
+            "var startComponents = calendar.dateComponents([.day, .month, .year], from: Date())",
+            "startComponents.hour = 0",
+            "startComponents.minute = 0",
+            "startComponents.second = 0",
+            "",
+            "var endComponents = startComponents",
+            "endComponents.day = 1 + (endComponents.day ?? 0)",
+            "",
+            "",
+            "// Create a predicate for the query.",
+            "let today = HKQuery.predicate(forActivitySummariesBetweenStart: startComponents, end: endComponents)",
+            "",
+            "// Create the descriptor.",
+            "let activeSummaryDescriptor = HKActivitySummaryQueryDescriptor(predicate:today)",
+            "",
+            "// Run the query.",
+            "let results = try await activeSummaryDescriptor.result(for: store)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set up a long-running query that returns both matching values currently in the HealthKit store, and any updates that arrive while the query is running, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAsyncSequenceQuery/results(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Run a long-running query and monitor for updates.",
+            "let updateQueue = activeSummaryDescriptor.results(for: store)",
+            "",
+            "// Wait for the initial results and updates.",
+            "updateTask = Task {",
+            "    for try await results in updateQueue {",
+            "        // Process results here.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQuery": {
+      "abstract": [
+        {
+          "text": "A query for reading activity summary objects from the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKActivitySummaryQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKActivitySummaryQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKActivitySummaryQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkactivitysummaryquery"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor": {
+      "abstract": [
+        {
+          "text": "A query interface that reads activity summaries using Swift concurrency.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKActivitySummaryQueryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKActivitySummaryQueryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKActivitySummaryQueryDescriptor",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkactivitysummaryquerydescriptor"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor/HKAsyncQuery-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor/HKAsyncQuery-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "HKAsyncQuery Implementations",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkactivitysummaryquerydescriptor/hkasyncquery-implementations"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor/HKAsyncSequenceQuery-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor/HKAsyncSequenceQuery-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "HKAsyncSequenceQuery Implementations",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkactivitysummaryquerydescriptor/hkasyncsequencequery-implementations"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor/Results": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence that emits updates from an activity summary query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Results"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor/Results",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Results"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKActivitySummaryQueryDescriptor.Results",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkactivitysummaryquerydescriptor/results"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor/init(predicate:)": {
+      "abstract": [
+        {
+          "text": "Instantiates an activity summary query descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "predicate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor/init(predicate:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(predicate:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkactivitysummaryquerydescriptor/init(predicate:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor/predicate": {
+      "abstract": [
+        {
+          "text": "A predicate that limits the results that the query returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor/predicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "predicate",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkactivitysummaryquerydescriptor/predicate"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor/result(for:)": {
+      "abstract": [
+        {
+          "text": "Runs a one-shot query and asynchronously returns a snapshot of the current matching results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKHealthStore",
+          "text": "HKHealthStore"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKActivitySummary",
+          "text": "HKActivitySummary"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor/result(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(for:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkactivitysummaryquerydescriptor/result(for:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor/results(for:)": {
+      "abstract": [
+        {
+          "text": "Initiates a long-running query that returns its results using an asynchronous sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "results"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKHealthStore",
+          "text": "HKHealthStore"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9HealthKit32HKActivitySummaryQueryDescriptorV",
+          "text": "HKActivitySummaryQueryDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9HealthKit32HKActivitySummaryQueryDescriptorV7ResultsV",
+          "text": "Results"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor/results(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "results(for:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkactivitysummaryquerydescriptor/results(for:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKAnchoredObjectQuery": {
+      "abstract": [
+        {
+          "text": "A query that returns changes to the HealthKit store, including a snapshot of new changes and continuous monitoring as a long-running query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKAnchoredObjectQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAnchoredObjectQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKAnchoredObjectQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKAnchoredObjectQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkanchoredobjectquery"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKAnchoredObjectQueryDescriptor": {
+      "abstract": [
+        {
+          "text": "A query interface that runs anchored object queries using Swift concurrency.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKAnchoredObjectQueryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAnchoredObjectQueryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKAnchoredObjectQueryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKAnchoredObjectQueryDescriptor",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkanchoredobjectquerydescriptor"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKAsyncQuery": {
+      "abstract": [
+        {
+          "text": "A protocol that defines an asynchronous method for running queries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKAsyncQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAsyncQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKAsyncQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKAsyncQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkasyncquery"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKAsyncSequenceQuery": {
+      "abstract": [
+        {
+          "text": "A protocol that defines a method for running queries that returns results using an asynchronous sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKAsyncSequenceQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAsyncSequenceQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKAsyncSequenceQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKAsyncSequenceQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkasyncsequencequery"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKAsyncSequenceQuery/results(for:)": {
+      "abstract": [
+        {
+          "text": "Initiates a query that returns its results using an asynchronous sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "results"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKHealthStore",
+          "text": "HKHealthStore"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9HealthKit20HKAsyncSequenceQueryP0D0Qa",
+          "text": "Sequence"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAsyncSequenceQuery/results(for:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "results(for:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkasyncsequencequery/results(for:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKObserverQuery": {
+      "abstract": [
+        {
+          "text": "A long-running query that monitors the HealthKit store and updates your app when the HealthKit store saves or deletes a matching sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKObserverQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKObserverQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKObserverQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKObserverQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkobserverquery"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/reading-data-from-healthkit": {
+      "abstract": [
+        {
+          "text": "Use queries to request sample data from HealthKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/reading-data-from-healthkit",
+      "kind": "article",
+      "role": "article",
+      "title": "Reading data from HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit/reading-data-from-healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/running-queries-with-swift-concurrency": {
+      "abstract": [
+        {
+          "text": "Use Swift concurrency to manage one-shot and long-running queries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/running-queries-with-swift-concurrency",
+      "kind": "article",
+      "role": "article",
+      "title": "Running Queries with Swift Concurrency",
+      "type": "topic",
+      "url": "/documentation/healthkit/running-queries-with-swift-concurrency"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKAsyncQuery",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKAsyncSequenceQuery"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Long-running-queries",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQuery",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKAnchoredObjectQueryDescriptor",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKAnchoredObjectQuery",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKObserverQuery"
+      ],
+      "title": "Long-running queries"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-query-descriptors",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor/init(predicate:)"
+      ],
+      "title": "Creating query descriptors"
+    },
+    {
+      "anchor": "Running-queries",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor/result(for:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor/results(for:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor/Results"
+      ],
+      "title": "Running queries"
+    },
+    {
+      "anchor": "Accessing-query-properties",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor/predicate"
+      ],
+      "title": "Accessing query properties"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor/HKAsyncQuery-Implementations",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor/HKAsyncSequenceQuery-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKObserverQuery/title",
+          "value": "HKObserverQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKObserverQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKObserverQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKObserverQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKObserverQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAnchoredObjectQuery/title",
+          "value": "HKAnchoredObjectQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAnchoredObjectQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKAnchoredObjectQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAnchoredObjectQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKAnchoredObjectQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKActivitySummaryQuery/title",
+          "value": "HKActivitySummaryQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKActivitySummaryQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKActivitySummaryQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKActivitySummaryQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKActivitySummaryQuery"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/healthkit/hkactivitysummaryquerydescriptor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

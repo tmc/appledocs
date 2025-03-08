@@ -1,0 +1,1390 @@
+{
+  "abstract": [
+    {
+      "text": "Identify and extract information in the environment using the device’s camera, or in images that your app displays.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.VisionKit/documentation/VisionKit"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "VisionKit",
+    "modules": [
+      {
+        "name": "VisionKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "VisionKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "VisionKit analyzes pixel information and isolates important data such as text of a given language, URLs, street addresses, phone numbers, shipment tracking numbers, flight numbers, dates, times, durations, and barcodes of various formats. The framework provides this analysis to your app through user interfaces your app displays, which enable people to interact with the analyzed data (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalyzer/AnalysisTypes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") and return the data of interest back to your app. In the interfaces, people can highlight, tap to focus, copy and extract data to the clipboard, or invoke a menu option that runs an app-defined action. VisionKit offers the following user interfaces:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " presents a camera pass-through view that enables the user to interact with any of the recognized content types (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/RecognizedDataType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") as seen in the environment, and provides captured information to the app for processing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Image Analysis interface (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on iOS, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisOverlayView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on macOS) displays on top of an image and enables people to interact with content types (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") that the framework recognizes in the image. For example, the Live Text interface enables them to select any text present in the image (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes/textSelection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), or invoke a URL (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes/dataDetectors",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). Also, the text selection UI offers framework-standard buttons for copying selected text, or looking up the subject on the web for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "visionkit-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "VisionKit’s Document Camera view controller (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/VNDocumentCameraViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") is a camera pass-through experience that enables users to scan physical documents. The user scans the document page by page by tapping a camera interface in the view, which provides your app with the resulting images by page number after the scan completes. With the collection of scanned images, your app can create a digital version of the physical document, such as by exporting the scanned images to PDF.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Interact-with-image-subjects",
+          "level": 2,
+          "text": "Interact with image subjects",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 17 and macOS 14 and later, VisionKit identifies subjects within an image (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/Subject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "subject",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " may be the focal point of a picture, such as an object around which a photograph centers. Or, the framework may identify several objects that it recognizes in an image. VisionKit enables your app to extract, or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "lift",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", subjects to a separate image with the background removed (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/Subject/image",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), or present a button that gives more information on the subject (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes/visualLookUp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In macOS 14 and later, macOS apps built with Mac Catalyst support the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalyzer",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " classes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.VisionKit/documentation/VisionKit": {
+      "abstract": [
+        {
+          "text": "Identify and extract information in the environment using the device’s camera, or in images that your app displays.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "VisionKit",
+      "type": "topic",
+      "url": "/documentation/visionkit"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController": {
+      "abstract": [
+        {
+          "text": "An object that scans the camera live video for text, data in text, and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "machine-readable codes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataScannerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataScannerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "DataScannerViewController",
+      "type": "topic",
+      "url": "/documentation/visionkit/datascannerviewcontroller"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/RecognizedDataType": {
+      "abstract": [
+        {
+          "text": "A type of data that the scanner recognizes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RecognizedDataType"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/RecognizedDataType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RecognizedDataType"
+        }
+      ],
+      "role": "symbol",
+      "title": "DataScannerViewController.RecognizedDataType",
+      "type": "topic",
+      "url": "/documentation/visionkit/datascannerviewcontroller/recognizeddatatype"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewControllerDelegate": {
+      "abstract": [
+        {
+          "text": "A delegate object that responds when people interact with items that the data",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "scanner recognizes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataScannerViewControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataScannerViewControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "DataScannerViewControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/visionkit/datascannerviewcontrollerdelegate"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysis": {
+      "abstract": [
+        {
+          "text": "An object that represents the results of analyzing an image, and provides",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the input for the Live Text interface object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageAnalysis"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysis",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageAnalysis"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageAnalysis",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysis"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction": {
+      "abstract": [
+        {
+          "text": "An interface that enables people to interact with recognized text, barcodes, and other objects in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageAnalysisInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageAnalysisInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageAnalysisInteraction",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes": {
+      "abstract": [
+        {
+          "text": "The types of interactions that people can perform with an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "InteractionTypes"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InteractionTypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageAnalysisInteraction.InteractionTypes",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/interactiontypes"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes/dataDetectors": {
+      "abstract": [
+        {
+          "text": "An option that enables interaction with text of certain formats,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "such as URLs, email addresses, and physical addresses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataDetectors"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@VisionKit@objc(cs)ImageAnalysisInteraction",
+          "text": "ImageAnalysisInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit24ImageAnalysisInteractionC0E5TypesV",
+          "text": "InteractionTypes"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes/dataDetectors",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dataDetectors",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/interactiontypes/datadetectors"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes/textSelection": {
+      "abstract": [
+        {
+          "text": "An option that enables text selection, copying, and translating.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textSelection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@VisionKit@objc(cs)ImageAnalysisInteraction",
+          "text": "ImageAnalysisInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit24ImageAnalysisInteractionC0E5TypesV",
+          "text": "InteractionTypes"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes/textSelection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textSelection",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/interactiontypes/textselection"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes/visualLookUp": {
+      "abstract": [
+        {
+          "text": "An option that presents a button for more information on any subjects the framework recognizes in the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "visualLookUp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@VisionKit@objc(cs)ImageAnalysisInteraction",
+          "text": "ImageAnalysisInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit24ImageAnalysisInteractionC0E5TypesV",
+          "text": "InteractionTypes"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes/visualLookUp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "visualLookUp",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/interactiontypes/visuallookup"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/Subject": {
+      "abstract": [
+        {
+          "text": "An area of interest in an image that the framework identifies as a primary focal point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Subject"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/Subject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Subject"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageAnalysisInteraction.Subject",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/subject"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/Subject/image": {
+      "abstract": [
+        {
+          "text": "An image of the subjects with the background removed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/Subject/image",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "image",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/subject/image"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteractionDelegate": {
+      "abstract": [
+        {
+          "text": "A delegate that handles image-analysis and user-interaction callbacks for an interaction object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageAnalysisInteractionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteractionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageAnalysisInteractionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageAnalysisInteractionDelegate",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteractiondelegate"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisOverlayView": {
+      "abstract": [
+        {
+          "text": "A view that enables people to interact with recognized text, barcodes, and other objects in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageAnalysisOverlayView"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisOverlayView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageAnalysisOverlayView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageAnalysisOverlayView",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisoverlayview"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisOverlayViewDelegate": {
+      "abstract": [
+        {
+          "text": "A delegate that handles image-analysis and user-interaction callbacks for an overlay view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageAnalysisOverlayViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisOverlayViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageAnalysisOverlayViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageAnalysisOverlayViewDelegate",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisoverlayviewdelegate"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalyzer": {
+      "abstract": [
+        {
+          "text": "An object that finds items in images that people can interact with, such",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "as subjects, text, and QR codes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageAnalyzer"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalyzer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageAnalyzer"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageAnalyzer",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalyzer"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalyzer/AnalysisTypes": {
+      "abstract": [
+        {
+          "text": "The types of items that an image analyzer looks for in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnalysisTypes"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalyzer/AnalysisTypes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnalysisTypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageAnalyzer.AnalysisTypes",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalyzer/analysistypes"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/RecognizedItem": {
+      "abstract": [
+        {
+          "text": "An item that the data scanner recognizes in the camera’s live video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RecognizedItem"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/RecognizedItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RecognizedItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "RecognizedItem",
+      "type": "topic",
+      "url": "/documentation/visionkit/recognizeditem"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/VNDocumentCameraScan": {
+      "abstract": [
+        {
+          "text": "A single document scanned in the document camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNDocumentCameraScan"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/VNDocumentCameraScan",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNDocumentCameraScan"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNDocumentCameraScan",
+      "type": "topic",
+      "url": "/documentation/visionkit/vndocumentcamerascan"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/VNDocumentCameraViewController": {
+      "abstract": [
+        {
+          "text": "An object that presents UI for a camera pass-through that helps people scan physical documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNDocumentCameraViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/VNDocumentCameraViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNDocumentCameraViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNDocumentCameraViewController",
+      "type": "topic",
+      "url": "/documentation/visionkit/vndocumentcameraviewcontroller"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/VNDocumentCameraViewControllerDelegate": {
+      "abstract": [
+        {
+          "text": "A delegate protocol through which the document camera returns its scanned results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNDocumentCameraViewControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/VNDocumentCameraViewControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNDocumentCameraViewControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNDocumentCameraViewControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/visionkit/vndocumentcameraviewcontrollerdelegate"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/enabling-live-text-interactions-with-images": {
+      "abstract": [
+        {
+          "text": "Add a Live Text interface that enables users to perform actions with text and QR",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "codes that appear in images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/enabling-live-text-interactions-with-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling Live Text interactions with images",
+      "type": "topic",
+      "url": "/documentation/visionkit/enabling-live-text-interactions-with-images"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/scanning-data-with-the-camera": {
+      "abstract": [
+        {
+          "text": "Enable Live Text data scanning of text and codes that appear in the camera’s viewfinder.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/scanning-data-with-the-camera",
+      "kind": "article",
+      "role": "article",
+      "title": "Scanning data with the camera",
+      "type": "topic",
+      "url": "/documentation/visionkit/scanning-data-with-the-camera"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionkit/structuring_recognized_text_on_a_document": {
+      "abstract": [
+        {
+          "text": "Detect, recognize, and structure text on a business card or receipt using Vision and VisionKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionkit/structuring_recognized_text_on_a_document",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Structuring Recognized Text on a Document",
+      "type": "topic",
+      "url": "/documentation/visionkit/structuring_recognized_text_on_a_document"
+    },
+    "visionkit-1": {
+      "alt": "A mockup of an iPhone screen showing the Live Text button and highlighted text with its action menu.",
+      "identifier": "visionkit-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c125f3997a70202dc03466ec491d07c5/visionkit-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/797c6f726302cda1f8027208f59b7d12/visionkit-1~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Content-recognition-and-interaction-in-images",
+      "identifiers": [
+        "doc://com.apple.VisionKit/documentation/VisionKit/enabling-live-text-interactions-with-images",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalyzer",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysis",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteractionDelegate",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisOverlayView",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisOverlayViewDelegate"
+      ],
+      "title": "Content recognition and interaction in images"
+    },
+    {
+      "anchor": "Barcode-and-text-scanning-through-the-camera",
+      "identifiers": [
+        "doc://com.apple.VisionKit/documentation/VisionKit/scanning-data-with-the-camera",
+        "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController",
+        "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewControllerDelegate",
+        "doc://com.apple.VisionKit/documentation/VisionKit/RecognizedItem"
+      ],
+      "title": "Barcode and text scanning through the camera"
+    },
+    {
+      "anchor": "Document-scanning-through-the-camera",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/visionkit/structuring_recognized_text_on_a_document",
+        "doc://com.apple.VisionKit/documentation/VisionKit/VNDocumentCameraViewController",
+        "doc://com.apple.VisionKit/documentation/VisionKit/VNDocumentCameraViewControllerDelegate",
+        "doc://com.apple.VisionKit/documentation/VisionKit/VNDocumentCameraScan"
+      ],
+      "title": "Document scanning through the camera"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Content-recognition-and-interaction-in-images",
+              "identifiers": [
+                "doc://com.apple.VisionKit/documentation/VisionKit/enabling-live-text-interactions-with-images"
+              ],
+              "title": "Content recognition and interaction in images"
+            },
+            {
+              "anchor": "Barcode-and-text-scanning-through-the-camera",
+              "identifiers": [
+                "doc://com.apple.VisionKit/documentation/VisionKit/scanning-data-with-the-camera"
+              ],
+              "title": "Barcode and text scanning through the camera"
+            },
+            {
+              "anchor": "Document-scanning-through-the-camera",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/visionkit/structuring_recognized_text_on_a_document",
+                "doc://com.apple.VisionKit/documentation/VisionKit/VNDocumentCameraViewController",
+                "doc://com.apple.VisionKit/documentation/VisionKit/VNDocumentCameraViewControllerDelegate",
+                "doc://com.apple.VisionKit/documentation/VisionKit/VNDocumentCameraScan"
+              ],
+              "title": "Document scanning through the camera"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.VisionKit~1documentation~1VisionKit~1VNDocumentCameraViewControllerDelegate/title",
+          "value": "VNDocumentCameraViewControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.VisionKit~1documentation~1VisionKit~1VNDocumentCameraViewControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNDocumentCameraViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.VisionKit~1documentation~1VisionKit~1VNDocumentCameraViewControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNDocumentCameraViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.VisionKit~1documentation~1VisionKit~1VNDocumentCameraViewController/title",
+          "value": "VNDocumentCameraViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.VisionKit~1documentation~1VisionKit~1VNDocumentCameraViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNDocumentCameraViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.VisionKit~1documentation~1VisionKit~1VNDocumentCameraViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNDocumentCameraViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.VisionKit~1documentation~1VisionKit~1VNDocumentCameraScan/title",
+          "value": "VNDocumentCameraScan"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.VisionKit~1documentation~1VisionKit~1VNDocumentCameraScan/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNDocumentCameraScan"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.VisionKit~1documentation~1VisionKit~1VNDocumentCameraScan/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNDocumentCameraScan"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/visionkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/visionkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,907 @@
+{
+  "abstract": [
+    {
+      "text": "A mutable collection you use to temporarily store transient key-value pairs that are subject to eviction when resources are low.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/collections"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nscache"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1418212,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSCache",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSCache"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.6",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Generic Class",
+    "symbolKind": "cl",
+    "title": "NSCache"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSCache"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSCache@KeyType",
+              "text": "KeyType"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSCache@ObjectType",
+              "text": "ObjectType"
+            },
+            {
+              "kind": "text",
+              "text": "> : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSCache@KeyType",
+              "text": "KeyType"
+            },
+            {
+              "kind": "text",
+              "text": " : AnyObject"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSCache@ObjectType",
+              "text": "ObjectType"
+            },
+            {
+              "kind": "text",
+              "text": " : AnyObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Cache objects differ from other mutable collections in a few ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nscache",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class incorporates various auto-eviction policies, which ensure that a cache doesn’t use too much of the system’s memory. If memory is needed by other applications, these policies remove some items from the cache, minimizing its memory footprint.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can add, remove, and query items in the cache from different threads without having to lock the cache yourself. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Unlike an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object, a cache does not copy the key objects that are put into it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You typically use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscache",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects to temporarily store objects with transient data that are expensive to create. Reusing these objects can provide performance benefits, because their values do not have to be recalculated. However, the objects are not critical to the application and can be discarded if memory is tight. If discarded, their values will have to be recomputed again when needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Objects that have subcomponents that can be discarded when not being used can adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol to improve cache eviction behavior. By default, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects in a cache are automatically removed if their content is discarded, although this automatic removal policy can be changed. If an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object is put into the cache, the cache calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1408998-discardcontentifpossible",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on it upon its removal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/collections": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/collections",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collections",
+      "type": "topic",
+      "url": "/documentation/foundation/collections"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscache": {
+      "abstract": [
+        {
+          "text": "A mutable collection you use to temporarily store transient key-value pairs that are subject to eviction when resources are low.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCache"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscache",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCache",
+      "type": "topic",
+      "url": "/documentation/foundation/nscache"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscache/1407672-totalcostlimit": {
+      "abstract": [
+        {
+          "text": "The maximum total cost that the cache can hold before it starts evicting objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "totalCostLimit"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscache/1407672-totalcostlimit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "totalCostLimit",
+      "type": "topic",
+      "url": "/documentation/foundation/nscache/1407672-totalcostlimit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscache/1408223-setobject": {
+      "abstract": [
+        {
+          "text": "Sets the value of the specified key in the cache.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObject"
+        },
+        {
+          "kind": "text",
+          "text": "(ObjectType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": KeyType)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscache/1408223-setobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setObject(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscache/1408223-setobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscache/1408469-evictsobjectswithdiscardedconten": {
+      "abstract": [
+        {
+          "text": "Whether the cache will automatically evict discardable-content objects whose content has been discarded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "evictsObjectsWithDiscardedContent"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscache/1408469-evictsobjectswithdiscardedconten",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "evictsObjectsWithDiscardedContent",
+      "type": "topic",
+      "url": "/documentation/foundation/nscache/1408469-evictsobjectswithdiscardedconten"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscache/1409900-removeobject": {
+      "abstract": [
+        {
+          "text": "Removes the value of the specified key in the cache.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": KeyType)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscache/1409900-removeobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObject(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscache/1409900-removeobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscache/1409941-name": {
+      "abstract": [
+        {
+          "text": "The name of the cache.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscache/1409941-name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/foundation/nscache/1409941-name"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscache/1411382-removeallobjects": {
+      "abstract": [
+        {
+          "text": "Empties the cache.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllObjects"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscache/1411382-removeallobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeAllObjects()",
+      "type": "topic",
+      "url": "/documentation/foundation/nscache/1411382-removeallobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscache/1413061-delegate": {
+      "abstract": [
+        {
+          "text": "The cache’s delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any NSCacheDelegate)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscache/1413061-delegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nscache/1413061-delegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscache/1415458-object": {
+      "abstract": [
+        {
+          "text": "Returns the value associated with a given key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": KeyType) -> ObjectType?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscache/1415458-object",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "object(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscache/1415458-object"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscache/1416355-countlimit": {
+      "abstract": [
+        {
+          "text": "The maximum number of objects the cache should hold.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "countLimit"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscache/1416355-countlimit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "countLimit",
+      "type": "topic",
+      "url": "/documentation/foundation/nscache/1416355-countlimit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscache/1416399-setobject": {
+      "abstract": [
+        {
+          "text": "Sets the value of the specified key in the cache, and associates the key-value pair with the specified cost.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObject"
+        },
+        {
+          "kind": "text",
+          "text": "(ObjectType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": KeyType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "cost"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscache/1416399-setobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setObject(_:forKey:cost:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscache/1416399-setobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscachedelegate": {
+      "abstract": [
+        {
+          "text": "The delegate of an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscache",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object implements this protocol to perform specialized actions when an object is about to be evicted or removed from the cache.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCacheDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscachedelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCacheDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nscachedelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent": {
+      "abstract": [
+        {
+          "text": "You implement this protocol when a class’s objects have subcomponents that can be discarded when not being used, thereby giving an application a smaller memory footprint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDiscardableContent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDiscardableContent",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdiscardablecontent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1408998-discardcontentifpossible": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1408998-discardcontentifpossible",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "discardContentIfPossible()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdiscardablecontent/1408998-discardcontentifpossible"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutabledictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspurgeabledata": {
+      "abstract": [
+        {
+          "text": "A mutable data object containing bytes that can be discarded when they're no longer needed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPurgeableData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspurgeabledata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPurgeableData",
+      "type": "topic",
+      "url": "/documentation/foundation/nspurgeabledata"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nspurgeabledata"
+      ],
+      "title": "Purgeable Collections"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1663205",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscache/1409941-name"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing the Name"
+    },
+    {
+      "anchor": "1663234",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscache/1416355-countlimit",
+        "doc://com.apple.documentation/documentation/foundation/nscache/1407672-totalcostlimit"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing Cache Size"
+    },
+    {
+      "anchor": "1663283",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscache/1408469-evictsobjectswithdiscardedconten",
+        "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing Discardable Content"
+    },
+    {
+      "anchor": "1663319",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscache/1413061-delegate",
+        "doc://com.apple.documentation/documentation/foundation/nscachedelegate"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing the Delegate"
+    },
+    {
+      "anchor": "1663342",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscache/1415458-object"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting a Cached Value"
+    },
+    {
+      "anchor": "1663366",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscache/1408223-setobject",
+        "doc://com.apple.documentation/documentation/foundation/nscache/1416399-setobject",
+        "doc://com.apple.documentation/documentation/foundation/nscache/1409900-removeobject",
+        "doc://com.apple.documentation/documentation/foundation/nscache/1411382-removeallobjects"
+      ],
+      "kind": "taskGroup",
+      "title": "Adding and Removing Cached Values"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nscache"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nscache"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

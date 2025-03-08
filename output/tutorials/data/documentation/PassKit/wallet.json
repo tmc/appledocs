@@ -1,0 +1,3901 @@
+{
+  "abstract": [
+    {
+      "text": "Manage tickets, boarding passes, payment cards and other passes in the Wallet app.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.passkit/documentation/PassKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.passkit/documentation/PassKit/wallet"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "PassKit (Apple Pay and Wallet)"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Wallet"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To access your pass using PassKit add the Wallet capability to your app. You can choose to access all of the passes that are signed using your developer team identifier, or to access a subset of pass types. For information on adding capabilities to your app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For information on signing a pass, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WalletPasses",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.pass-type-identifiers": {
+      "abstract": [
+        {
+          "text": "A list of identifiers that specify pass types that your app can access in Wallet.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.pass-type-identifiers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Pass Type IDs Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.pass-type-identifiers"
+    },
+    "doc://com.apple.documentation/documentation/WalletPasses": {
+      "abstract": [
+        {
+          "text": "Create, distribute, and update passes for the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WalletPasses",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Wallet Passes",
+      "type": "topic",
+      "url": "/documentation/WalletPasses"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app": {
+      "abstract": [
+        {
+          "text": "Configure your target to include and customize capabilities that provide access to Apple’s app services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding capabilities to your app",
+      "type": "topic",
+      "url": "/documentation/Xcode/adding-capabilities-to-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.passkit/documentation/PassKit": {
+      "abstract": [
+        {
+          "text": "Process Apple Pay payments in your app, and create and distribute passes for the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PassKit (Apple Pay and Wallet)",
+      "type": "topic",
+      "url": "/documentation/passkit"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/AddPassToWalletButton": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AddPassToWalletButton"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/AddPassToWalletButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AddPassToWalletButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "AddPassToWalletButton",
+      "type": "topic",
+      "url": "/documentation/passkit/addpasstowalletbutton"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/AddPassToWalletButtonFilter": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AddPassToWalletButtonFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/AddPassToWalletButtonFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AddPassToWalletButtonFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "AddPassToWalletButtonFilter",
+      "type": "topic",
+      "url": "/documentation/passkit/addpasstowalletbuttonfilter"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/AddPassToWalletButtonResponse": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AddPassToWalletButtonResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/AddPassToWalletButtonResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AddPassToWalletButtonResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "AddPassToWalletButtonResponse",
+      "type": "topic",
+      "url": "/documentation/passkit/addpasstowalletbuttonresponse"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/AddPassToWalletButtonStyle": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AddPassToWalletButtonStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/AddPassToWalletButtonStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AddPassToWalletButtonStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "AddPassToWalletButtonStyle",
+      "type": "topic",
+      "url": "/documentation/passkit/addpasstowalletbuttonstyle"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/AsyncShareablePassConfiguration": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AsyncShareablePassConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/AsyncShareablePassConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AsyncShareablePassConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "AsyncShareablePassConfiguration",
+      "type": "topic",
+      "url": "/documentation/passkit/asyncshareablepassconfiguration"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/JPKIPassContents": {
+      "abstract": [
+        {
+          "text": "A set of actions for viewing and updating PINs, passwords, and signing abilities associated with digital identities on the JPKI applet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "JPKIPassContents"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/JPKIPassContents",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JPKIPassContents"
+        }
+      ],
+      "role": "symbol",
+      "title": "JPKIPassContents",
+      "type": "topic",
+      "url": "/documentation/passkit/jpkipasscontents"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKAddCarKeyPassConfiguration": {
+      "abstract": [
+        {
+          "text": "A specialized configuration object that PassKit uses when it creates a digital car key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKAddCarKeyPassConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAddCarKeyPassConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKAddCarKeyPassConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKAddCarKeyPassConfiguration",
+      "type": "topic",
+      "url": "/documentation/passkit/pkaddcarkeypassconfiguration"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKAddIdentityDocumentConfiguration": {
+      "abstract": [
+        {
+          "text": "Configuration to define the identity document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKAddIdentityDocumentConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAddIdentityDocumentConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKAddIdentityDocumentConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKAddIdentityDocumentConfiguration",
+      "type": "topic",
+      "url": "/documentation/passkit/pkaddidentitydocumentconfiguration"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKAddPassButton": {
+      "abstract": [
+        {
+          "text": "Provides a button that enables users to add passes to Wallet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKAddPassButton"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAddPassButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKAddPassButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKAddPassButton",
+      "type": "topic",
+      "url": "/documentation/passkit/pkaddpassbutton"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKAddPassMetadataPreview": {
+      "abstract": [
+        {
+          "text": "A preview object that contains information representing the pass you add to Wallet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKAddPassMetadataPreview"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAddPassMetadataPreview",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKAddPassMetadataPreview"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKAddPassMetadataPreview",
+      "type": "topic",
+      "url": "/documentation/passkit/pkaddpassmetadatapreview"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKAddPassesViewController": {
+      "abstract": [
+        {
+          "text": "Lets your app show a pass and prompt the user to add that pass to the pass library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKAddPassesViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAddPassesViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKAddPassesViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKAddPassesViewController",
+      "type": "topic",
+      "url": "/documentation/passkit/pkaddpassesviewcontroller"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKAddPaymentPassError": {
+      "abstract": [
+        {
+          "text": "Error codes for adding payment passes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKAddPaymentPassError"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAddPaymentPassError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKAddPaymentPassError"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKAddPaymentPassError",
+      "type": "topic",
+      "url": "/documentation/passkit/pkaddpaymentpasserror"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKAddPaymentPassViewController": {
+      "abstract": [
+        {
+          "text": "Displays an interface that lets users add cards to Apple Pay from within your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKAddPaymentPassViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAddPaymentPassViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKAddPaymentPassViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKAddPaymentPassViewController",
+      "type": "topic",
+      "url": "/documentation/passkit/pkaddpaymentpassviewcontroller"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKAddSecureElementPassConfiguration": {
+      "abstract": [
+        {
+          "text": "An object that describes the configuration of a secure element payment pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKAddSecureElementPassConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAddSecureElementPassConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKAddSecureElementPassConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKAddSecureElementPassConfiguration",
+      "type": "topic",
+      "url": "/documentation/passkit/pkaddsecureelementpassconfiguration"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKAddSecureElementPassError": {
+      "abstract": [
+        {
+          "text": "An error object that PassKit uses when it adds Secure Element passes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKAddSecureElementPassError"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAddSecureElementPassError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKAddSecureElementPassError"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKAddSecureElementPassError",
+      "type": "topic",
+      "url": "/documentation/passkit/pkaddsecureelementpasserror"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKAddSecureElementPassError/Code": {
+      "abstract": [
+        {
+          "text": "Error codes for problems that occur when you add a secure element passes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAddSecureElementPassError/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKAddSecureElementPassError.Code",
+      "type": "topic",
+      "url": "/documentation/passkit/pkaddsecureelementpasserror/code"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKAddSecureElementPassErrorDomain": {
+      "abstract": [
+        {
+          "text": "The error domain for errors that occur when adding a secure pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKAddSecureElementPassErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAddSecureElementPassErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKAddSecureElementPassErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKAddSecureElementPassErrorDomain",
+      "type": "topic",
+      "url": "/documentation/passkit/pkaddsecureelementpasserrordomain"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKAddSecureElementPassViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that manages the addition of secure element payment passes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKAddSecureElementPassViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAddSecureElementPassViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKAddSecureElementPassViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKAddSecureElementPassViewController",
+      "type": "topic",
+      "url": "/documentation/passkit/pkaddsecureelementpassviewcontroller"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKAddShareablePassConfiguration": {
+      "abstract": [
+        {
+          "text": "An object that represents the data and action for a shared copy of pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKAddShareablePassConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAddShareablePassConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKAddShareablePassConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKAddShareablePassConfiguration",
+      "type": "topic",
+      "url": "/documentation/passkit/pkaddshareablepassconfiguration"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKAddShareablePassConfigurationPrimaryAction": {
+      "abstract": [
+        {
+          "text": "The kind of add action that the system performs with a pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKAddShareablePassConfigurationPrimaryAction"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAddShareablePassConfigurationPrimaryAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKAddShareablePassConfigurationPrimaryAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKAddShareablePassConfigurationPrimaryAction",
+      "type": "topic",
+      "url": "/documentation/passkit/pkaddshareablepassconfigurationprimaryaction"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityAuthorizationController": {
+      "abstract": [
+        {
+          "text": "An object that presents a sheet that prompts the user to allow a request for identity information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKIdentityAuthorizationController"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityAuthorizationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIdentityAuthorizationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIdentityAuthorizationController",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentityauthorizationcontroller"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityButton": {
+      "abstract": [
+        {
+          "text": "An object that displays a button to trigger the identity verification flow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKIdentityButton"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIdentityButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIdentityButton",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentitybutton"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityDocument": {
+      "abstract": [
+        {
+          "text": "An object that represents the response to a request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKIdentityDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIdentityDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIdentityDocument",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentitydocument"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityDocumentMetadata": {
+      "abstract": [
+        {
+          "text": "A set of configured metadata defining the required information to add the corresponding pass to Wallet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKIdentityDocumentMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityDocumentMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIdentityDocumentMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIdentityDocumentMetadata",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentitydocumentmetadata"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityElement": {
+      "abstract": [
+        {
+          "text": "An object that represents the elements an app requests from identity documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKIdentityElement"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIdentityElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIdentityElement",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentityelement"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityError-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure that represents an identity error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKIdentityError"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityError-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIdentityError"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIdentityError",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentityerror-swift.struct"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityError-swift.struct/Code": {
+      "abstract": [
+        {
+          "text": "Error codes for identity operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityError-swift.struct/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIdentityError.Code",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentityerror-swift.struct/code"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityErrorDomain": {
+      "abstract": [
+        {
+          "text": "The error domain for identity errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKIdentityErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIdentityErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIdentityErrorDomain",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentityerrordomain"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityNationalIDCardDescriptor": {
+      "abstract": [
+        {
+          "text": "An object for requesting information from a user’s national ID card.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKIdentityNationalIDCardDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityNationalIDCardDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIdentityNationalIDCardDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIdentityNationalIDCardDescriptor",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentitynationalidcarddescriptor"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityRequest": {
+      "abstract": [
+        {
+          "text": "An object that represents a request for identity information from a Wallet pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKIdentityRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIdentityRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIdentityRequest",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentityrequest"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIssuerProvisioningExtensionAuthorizationProviding": {
+      "abstract": [
+        {
+          "text": "A protocol for a UI app extension to authorize a user to add a payment card to Wallet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKIssuerProvisioningExtensionAuthorizationProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIssuerProvisioningExtensionAuthorizationProviding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIssuerProvisioningExtensionAuthorizationProviding"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIssuerProvisioningExtensionAuthorizationProviding",
+      "type": "topic",
+      "url": "/documentation/passkit/pkissuerprovisioningextensionauthorizationproviding"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIssuerProvisioningExtensionHandler": {
+      "abstract": [
+        {
+          "text": "An abstract superclass for an app extension to add a payment card to Wallet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKIssuerProvisioningExtensionHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIssuerProvisioningExtensionHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIssuerProvisioningExtensionHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIssuerProvisioningExtensionHandler",
+      "type": "topic",
+      "url": "/documentation/passkit/pkissuerprovisioningextensionhandler"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKJapanIndividualNumberCardMetadata": {
+      "abstract": [
+        {
+          "text": "A class that contains metadata indicating the specific product instance to provision.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKJapanIndividualNumberCardMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKJapanIndividualNumberCardMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKJapanIndividualNumberCardMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKJapanIndividualNumberCardMetadata",
+      "type": "topic",
+      "url": "/documentation/passkit/pkjapanindividualnumbercardmetadata"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKLabeledValue": {
+      "abstract": [
+        {
+          "text": "An object that can represent a detail about a payment card or other item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKLabeledValue"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKLabeledValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKLabeledValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKLabeledValue",
+      "type": "topic",
+      "url": "/documentation/passkit/pklabeledvalue"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKObject": {
+      "abstract": [
+        {
+          "text": "An opaque type that acts as the superclass for the pass object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKObject"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKObject",
+      "type": "topic",
+      "url": "/documentation/passkit/pkobject"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPass": {
+      "abstract": [
+        {
+          "text": "An object that represents a single pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPass"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPass",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPass"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPass",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpass"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPassKitError": {
+      "abstract": [
+        {
+          "text": "Errors that the PassKit framework uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPassKitError"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPassKitError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPassKitError"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPassKitError",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpasskiterror"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPassKitError/Code": {
+      "abstract": [
+        {
+          "text": "Errors that the PassKit framework uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPassKitError/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPassKitError.Code",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpasskiterror/code"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPassKitErrorDomain": {
+      "abstract": [
+        {
+          "text": "The error domain for PassKit errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPassKitErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPassKitErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPassKitErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPassKitErrorDomain",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpasskiterrordomain"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPassLibrary": {
+      "abstract": [
+        {
+          "text": "Provides an interface to the user’s library of passes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPassLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPassLibrary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPassLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPassLibrary",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpasslibrary"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPayLaterView": {
+      "abstract": [
+        {
+          "text": "A view that displays the Apple Pay Later visual merchandising widget.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPayLaterView"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPayLaterView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPayLaterView"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPayLaterView",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaylaterview"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentPass": {
+      "abstract": [
+        {
+          "text": "An object that represents a provisioned payment card for in-app payments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentPass"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentPass",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentPass"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentPass",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentpass"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKSecureElementPass": {
+      "abstract": [
+        {
+          "text": "A pass with a credential that the device stores in a certified payment information chip.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKSecureElementPass"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKSecureElementPass",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKSecureElementPass"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKSecureElementPass",
+      "type": "topic",
+      "url": "/documentation/passkit/pksecureelementpass"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKShareSecureElementPassError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKShareSecureElementPassError"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKShareSecureElementPassError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKShareSecureElementPassError"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKShareSecureElementPassError",
+      "type": "topic",
+      "url": "/documentation/passkit/pksharesecureelementpasserror"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKShareSecureElementPassError/Code": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKShareSecureElementPassError/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKShareSecureElementPassError.Code",
+      "type": "topic",
+      "url": "/documentation/passkit/pksharesecureelementpasserror/code"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKShareSecureElementPassErrorDomain": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKShareSecureElementPassErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKShareSecureElementPassErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKShareSecureElementPassErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKShareSecureElementPassErrorDomain",
+      "type": "topic",
+      "url": "/documentation/passkit/pksharesecureelementpasserrordomain"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKShareSecureElementPassResult": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKShareSecureElementPassResult"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKShareSecureElementPassResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKShareSecureElementPassResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKShareSecureElementPassResult",
+      "type": "topic",
+      "url": "/documentation/passkit/pksharesecureelementpassresult"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKShareSecureElementPassViewController": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKShareSecureElementPassViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKShareSecureElementPassViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKShareSecureElementPassViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKShareSecureElementPassViewController",
+      "type": "topic",
+      "url": "/documentation/passkit/pksharesecureelementpassviewcontroller"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKShareSecureElementPassViewControllerDelegate": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKShareSecureElementPassViewControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKShareSecureElementPassViewControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKShareSecureElementPassViewControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKShareSecureElementPassViewControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/passkit/pksharesecureelementpassviewcontrollerdelegate"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKShareablePassMetadata": {
+      "abstract": [
+        {
+          "text": "Information that you use to configure the sharing sheet for a pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKShareablePassMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKShareablePassMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKShareablePassMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKShareablePassMetadata",
+      "type": "topic",
+      "url": "/documentation/passkit/pkshareablepassmetadata"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKShareablePassMetadata/Preview-swift.class": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Preview"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKShareablePassMetadata/Preview-swift.class",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Preview"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKShareablePassMetadata.Preview",
+      "type": "topic",
+      "url": "/documentation/passkit/pkshareablepassmetadata/preview-swift.class"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKStoredValuePassBalance": {
+      "abstract": [
+        {
+          "text": "An object that represents a balance that’s available for transactions, such as points or money.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKStoredValuePassBalance"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKStoredValuePassBalance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKStoredValuePassBalance"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKStoredValuePassBalance",
+      "type": "topic",
+      "url": "/documentation/passkit/pkstoredvaluepassbalance"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKStoredValuePassProperties": {
+      "abstract": [
+        {
+          "text": "An object that represents the properties of a pass that contains a balance used for specific transactions, such as a transit pass or loyalty card.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKStoredValuePassProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKStoredValuePassProperties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKStoredValuePassProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKStoredValuePassProperties",
+      "type": "topic",
+      "url": "/documentation/passkit/pkstoredvaluepassproperties"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKSuicaPassProperties": {
+      "abstract": [
+        {
+          "text": "The properties of a pass used as a ticket for the Suica transportation system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKSuicaPassProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKSuicaPassProperties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKSuicaPassProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKSuicaPassProperties",
+      "type": "topic",
+      "url": "/documentation/passkit/pksuicapassproperties"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKTransitPassProperties": {
+      "abstract": [
+        {
+          "text": "The properties of a transit pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKTransitPassProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKTransitPassProperties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKTransitPassProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKTransitPassProperties",
+      "type": "topic",
+      "url": "/documentation/passkit/pktransitpassproperties"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKVehicleConnectionDelegate": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKVehicleConnectionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKVehicleConnectionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKVehicleConnectionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKVehicleConnectionDelegate",
+      "type": "topic",
+      "url": "/documentation/passkit/pkvehicleconnectiondelegate"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKVehicleConnectionErrorCode": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKVehicleConnectionErrorCode"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKVehicleConnectionErrorCode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKVehicleConnectionErrorCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKVehicleConnectionErrorCode",
+      "type": "topic",
+      "url": "/documentation/passkit/pkvehicleconnectionerrorcode"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKVehicleConnectionSession": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKVehicleConnectionSession"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKVehicleConnectionSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKVehicleConnectionSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKVehicleConnectionSession",
+      "type": "topic",
+      "url": "/documentation/passkit/pkvehicleconnectionsession"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKVehicleConnectionSessionConnectionState": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKVehicleConnectionSessionConnectionState"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKVehicleConnectionSessionConnectionState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKVehicleConnectionSessionConnectionState"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKVehicleConnectionSessionConnectionState",
+      "type": "topic",
+      "url": "/documentation/passkit/pkvehicleconnectionsessionconnectionstate"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PayLaterView": {
+      "abstract": [
+        {
+          "text": "A view that displays the Apple Pay Later visual merchandising widget.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PayLaterView"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PayLaterView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PayLaterView"
+        }
+      ],
+      "role": "symbol",
+      "title": "PayLaterView",
+      "type": "topic",
+      "url": "/documentation/passkit/paylaterview"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PayWithApplePayButtonPaymentAuthorizationPhase": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PayWithApplePayButtonPaymentAuthorizationPhase"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PayWithApplePayButtonPaymentAuthorizationPhase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PayWithApplePayButtonPaymentAuthorizationPhase"
+        }
+      ],
+      "role": "symbol",
+      "title": "PayWithApplePayButtonPaymentAuthorizationPhase",
+      "type": "topic",
+      "url": "/documentation/passkit/paywithapplepaybuttonpaymentauthorizationphase"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButton": {
+      "abstract": [
+        {
+          "text": "A view that displays a button for identity verification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VerifyIdentityWithWalletButton"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VerifyIdentityWithWalletButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "VerifyIdentityWithWalletButton",
+      "type": "topic",
+      "url": "/documentation/passkit/verifyidentitywithwalletbutton"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButtonLabel": {
+      "abstract": [
+        {
+          "text": "A type that represents the label you use with a verify identity button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VerifyIdentityWithWalletButtonLabel"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButtonLabel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VerifyIdentityWithWalletButtonLabel"
+        }
+      ],
+      "role": "symbol",
+      "title": "VerifyIdentityWithWalletButtonLabel",
+      "type": "topic",
+      "url": "/documentation/passkit/verifyidentitywithwalletbuttonlabel"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButtonStyle": {
+      "abstract": [
+        {
+          "text": "A type that represents the style you use with a verify identity button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VerifyIdentityWithWalletButtonStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButtonStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VerifyIdentityWithWalletButtonStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "VerifyIdentityWithWalletButtonStyle",
+      "type": "topic",
+      "url": "/documentation/passkit/verifyidentitywithwalletbuttonstyle"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/implementing-wallet-extensions": {
+      "abstract": [
+        {
+          "text": "Support adding an issued card to Apple Pay from directly within Apple Wallet",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "using Wallet Extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/implementing-wallet-extensions",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing Wallet Extensions",
+      "type": "topic",
+      "url": "/documentation/passkit/implementing-wallet-extensions"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/requesting-identity-data-from-a-wallet-pass": {
+      "abstract": [
+        {
+          "text": "Initiate a request for identity information by prompting a user for permission and decrypting a response payload.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/requesting-identity-data-from-a-wallet-pass",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting identity data from a Wallet pass",
+      "type": "topic",
+      "url": "/documentation/passkit/requesting-identity-data-from-a-wallet-pass"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/verifying-wallet-identity-requests": {
+      "abstract": [
+        {
+          "text": "Decrypt and verify an in-app presentment request on your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/verifying-wallet-identity-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Verifying Wallet identity requests",
+      "type": "topic",
+      "url": "/documentation/passkit/verifying-wallet-identity-requests"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/WalletPasses"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Pass-library",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPassLibrary"
+      ],
+      "title": "Pass library"
+    },
+    {
+      "anchor": "General-purpose-passes",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKSecureElementPass",
+        "doc://com.apple.passkit/documentation/PassKit/PKAddSecureElementPassConfiguration",
+        "doc://com.apple.passkit/documentation/PassKit/PKAddSecureElementPassViewController",
+        "doc://com.apple.passkit/documentation/PassKit/PKPass",
+        "doc://com.apple.passkit/documentation/PassKit/PKAddPassesViewController",
+        "doc://com.apple.passkit/documentation/PassKit/AsyncShareablePassConfiguration",
+        "doc://com.apple.passkit/documentation/PassKit/PKShareSecureElementPassViewController",
+        "doc://com.apple.passkit/documentation/PassKit/PKShareSecureElementPassViewControllerDelegate",
+        "doc://com.apple.passkit/documentation/PassKit/PKShareablePassMetadata/Preview-swift.class",
+        "doc://com.apple.passkit/documentation/PassKit/PKShareSecureElementPassResult"
+      ],
+      "title": "General purpose passes"
+    },
+    {
+      "anchor": "Payment-passes",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentPass",
+        "doc://com.apple.passkit/documentation/PassKit/PKAddPaymentPassViewController"
+      ],
+      "title": "Payment passes"
+    },
+    {
+      "anchor": "Stored-value-passes",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKTransitPassProperties",
+        "doc://com.apple.passkit/documentation/PassKit/PKSuicaPassProperties",
+        "doc://com.apple.passkit/documentation/PassKit/PKStoredValuePassProperties",
+        "doc://com.apple.passkit/documentation/PassKit/PKStoredValuePassBalance"
+      ],
+      "title": "Stored-value passes"
+    },
+    {
+      "anchor": "Shareable-passes",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKAddShareablePassConfiguration",
+        "doc://com.apple.passkit/documentation/PassKit/PKShareablePassMetadata",
+        "doc://com.apple.passkit/documentation/PassKit/PKAddShareablePassConfigurationPrimaryAction"
+      ],
+      "title": "Shareable passes"
+    },
+    {
+      "anchor": "Identity-sheet-interactions-and-authorization",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/requesting-identity-data-from-a-wallet-pass",
+        "doc://com.apple.passkit/documentation/PassKit/verifying-wallet-identity-requests",
+        "doc://com.apple.passkit/documentation/PassKit/PKIdentityAuthorizationController",
+        "doc://com.apple.passkit/documentation/PassKit/PKIdentityRequest",
+        "doc://com.apple.passkit/documentation/PassKit/PKIdentityDocument",
+        "doc://com.apple.passkit/documentation/PassKit/PKIdentityElement",
+        "doc://com.apple.passkit/documentation/PassKit/PKIdentityButton",
+        "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButton",
+        "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButtonLabel",
+        "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButtonStyle"
+      ],
+      "title": "Identity sheet interactions and authorization"
+    },
+    {
+      "anchor": "Digital-car-keys",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKAddCarKeyPassConfiguration",
+        "doc://com.apple.passkit/documentation/PassKit/PKVehicleConnectionSession",
+        "doc://com.apple.passkit/documentation/PassKit/PKVehicleConnectionDelegate",
+        "doc://com.apple.passkit/documentation/PassKit/PKVehicleConnectionSessionConnectionState"
+      ],
+      "title": "Digital car keys"
+    },
+    {
+      "anchor": "Extend-Wallet-to-add-issuer-cards",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/implementing-wallet-extensions",
+        "doc://com.apple.passkit/documentation/PassKit/PKIssuerProvisioningExtensionHandler",
+        "doc://com.apple.passkit/documentation/PassKit/PKIssuerProvisioningExtensionAuthorizationProviding"
+      ],
+      "title": "Extend Wallet to add issuer cards"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Common data types that are used throughout the Wallet.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Common-objects",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKObject",
+        "doc://com.apple.passkit/documentation/PassKit/PKAddPassButton",
+        "doc://com.apple.passkit/documentation/PassKit/PKLabeledValue",
+        "doc://com.apple.passkit/documentation/PassKit/AddPassToWalletButton",
+        "doc://com.apple.passkit/documentation/PassKit/AddPassToWalletButtonFilter",
+        "doc://com.apple.passkit/documentation/PassKit/AddPassToWalletButtonResponse",
+        "doc://com.apple.passkit/documentation/PassKit/AddPassToWalletButtonStyle"
+      ],
+      "title": "Common objects"
+    },
+    {
+      "anchor": "Entitlements",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.pass-type-identifiers"
+      ],
+      "title": "Entitlements"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPassKitError",
+        "doc://com.apple.passkit/documentation/PassKit/PKAddSecureElementPassError",
+        "doc://com.apple.passkit/documentation/PassKit/PKPassKitError/Code",
+        "doc://com.apple.passkit/documentation/PassKit/PKAddSecureElementPassError/Code",
+        "doc://com.apple.passkit/documentation/PassKit/PKAddPaymentPassError",
+        "doc://com.apple.passkit/documentation/PassKit/PKIdentityError-swift.struct",
+        "doc://com.apple.passkit/documentation/PassKit/PKIdentityError-swift.struct/Code",
+        "doc://com.apple.passkit/documentation/PassKit/PKShareSecureElementPassError",
+        "doc://com.apple.passkit/documentation/PassKit/PKShareSecureElementPassError/Code",
+        "doc://com.apple.passkit/documentation/PassKit/PKVehicleConnectionErrorCode",
+        "doc://com.apple.passkit/documentation/PassKit/PayWithApplePayButtonPaymentAuthorizationPhase",
+        "doc://com.apple.passkit/documentation/PassKit/PKPassKitErrorDomain",
+        "doc://com.apple.passkit/documentation/PassKit/PKIdentityErrorDomain",
+        "doc://com.apple.passkit/documentation/PassKit/PKAddSecureElementPassErrorDomain",
+        "doc://com.apple.passkit/documentation/PassKit/PKShareSecureElementPassErrorDomain"
+      ],
+      "title": "Errors"
+    },
+    {
+      "anchor": "Japan-passes",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/JPKIPassContents",
+        "doc://com.apple.passkit/documentation/PassKit/PKAddIdentityDocumentConfiguration",
+        "doc://com.apple.passkit/documentation/PassKit/PKAddPassMetadataPreview",
+        "doc://com.apple.passkit/documentation/PassKit/PKIdentityDocumentMetadata",
+        "doc://com.apple.passkit/documentation/PassKit/PKIdentityNationalIDCardDescriptor",
+        "doc://com.apple.passkit/documentation/PassKit/PKJapanIndividualNumberCardMetadata"
+      ],
+      "title": "Japan passes"
+    },
+    {
+      "anchor": "Deprecated",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PayLaterView",
+        "doc://com.apple.passkit/documentation/PassKit/PKPayLaterView"
+      ],
+      "title": "Deprecated"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Pass-library",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPassLibrary"
+              ],
+              "title": "Pass library"
+            },
+            {
+              "anchor": "General-purpose-passes",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKSecureElementPass",
+                "doc://com.apple.passkit/documentation/PassKit/PKAddSecureElementPassConfiguration",
+                "doc://com.apple.passkit/documentation/PassKit/PKAddSecureElementPassViewController",
+                "doc://com.apple.passkit/documentation/PassKit/PKPass",
+                "doc://com.apple.passkit/documentation/PassKit/PKAddPassesViewController",
+                "doc://com.apple.passkit/documentation/PassKit/PKShareSecureElementPassViewController",
+                "doc://com.apple.passkit/documentation/PassKit/PKShareSecureElementPassViewControllerDelegate",
+                "doc://com.apple.passkit/documentation/PassKit/PKShareablePassMetadata/Preview-swift.class",
+                "doc://com.apple.passkit/documentation/PassKit/PKShareSecureElementPassResult"
+              ],
+              "title": "General purpose passes"
+            },
+            {
+              "anchor": "Payment-passes",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentPass",
+                "doc://com.apple.passkit/documentation/PassKit/PKAddPaymentPassViewController"
+              ],
+              "title": "Payment passes"
+            },
+            {
+              "anchor": "Stored-value-passes",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKTransitPassProperties",
+                "doc://com.apple.passkit/documentation/PassKit/PKSuicaPassProperties",
+                "doc://com.apple.passkit/documentation/PassKit/PKStoredValuePassProperties",
+                "doc://com.apple.passkit/documentation/PassKit/PKStoredValuePassBalance"
+              ],
+              "title": "Stored-value passes"
+            },
+            {
+              "anchor": "Shareable-passes",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKAddShareablePassConfiguration",
+                "doc://com.apple.passkit/documentation/PassKit/PKShareablePassMetadata",
+                "doc://com.apple.passkit/documentation/PassKit/PKAddShareablePassConfigurationPrimaryAction"
+              ],
+              "title": "Shareable passes"
+            },
+            {
+              "anchor": "Identity-sheet-interactions-and-authorization",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/requesting-identity-data-from-a-wallet-pass",
+                "doc://com.apple.passkit/documentation/PassKit/verifying-wallet-identity-requests",
+                "doc://com.apple.passkit/documentation/PassKit/PKIdentityAuthorizationController",
+                "doc://com.apple.passkit/documentation/PassKit/PKIdentityRequest",
+                "doc://com.apple.passkit/documentation/PassKit/PKIdentityDocument",
+                "doc://com.apple.passkit/documentation/PassKit/PKIdentityElement",
+                "doc://com.apple.passkit/documentation/PassKit/PKIdentityButton"
+              ],
+              "title": "Identity sheet interactions and authorization"
+            },
+            {
+              "anchor": "Digital-car-keys",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKAddCarKeyPassConfiguration",
+                "doc://com.apple.passkit/documentation/PassKit/PKVehicleConnectionSession",
+                "doc://com.apple.passkit/documentation/PassKit/PKVehicleConnectionDelegate",
+                "doc://com.apple.passkit/documentation/PassKit/PKVehicleConnectionSessionConnectionState"
+              ],
+              "title": "Digital car keys"
+            },
+            {
+              "anchor": "Extend-Wallet-to-add-issuer-cards",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/implementing-wallet-extensions",
+                "doc://com.apple.passkit/documentation/PassKit/PKIssuerProvisioningExtensionHandler",
+                "doc://com.apple.passkit/documentation/PassKit/PKIssuerProvisioningExtensionAuthorizationProviding"
+              ],
+              "title": "Extend Wallet to add issuer cards"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Common data types that are used throughout the Wallet.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Common-objects",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKObject",
+                "doc://com.apple.passkit/documentation/PassKit/PKAddPassButton",
+                "doc://com.apple.passkit/documentation/PassKit/PKLabeledValue"
+              ],
+              "title": "Common objects"
+            },
+            {
+              "anchor": "Entitlements",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.pass-type-identifiers"
+              ],
+              "title": "Entitlements"
+            },
+            {
+              "anchor": "Errors",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPassKitError/Code",
+                "doc://com.apple.passkit/documentation/PassKit/PKAddSecureElementPassError/Code",
+                "doc://com.apple.passkit/documentation/PassKit/PKAddPaymentPassError",
+                "doc://com.apple.passkit/documentation/PassKit/PKIdentityError-swift.struct/Code",
+                "doc://com.apple.passkit/documentation/PassKit/PKShareSecureElementPassError/Code",
+                "doc://com.apple.passkit/documentation/PassKit/PKVehicleConnectionErrorCode",
+                "doc://com.apple.passkit/documentation/PassKit/PKPassKitErrorDomain",
+                "doc://com.apple.passkit/documentation/PassKit/PKIdentityErrorDomain",
+                "doc://com.apple.passkit/documentation/PassKit/PKAddSecureElementPassErrorDomain",
+                "doc://com.apple.passkit/documentation/PassKit/PKShareSecureElementPassErrorDomain"
+              ],
+              "title": "Errors"
+            },
+            {
+              "anchor": "Japan-passes",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKAddIdentityDocumentConfiguration",
+                "doc://com.apple.passkit/documentation/PassKit/PKAddPassMetadataPreview",
+                "doc://com.apple.passkit/documentation/PassKit/PKIdentityDocumentMetadata",
+                "doc://com.apple.passkit/documentation/PassKit/PKIdentityNationalIDCardDescriptor",
+                "doc://com.apple.passkit/documentation/PassKit/PKJapanIndividualNumberCardMetadata"
+              ],
+              "title": "Japan passes"
+            },
+            {
+              "anchor": "Deprecated",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPayLaterView"
+              ],
+              "title": "Deprecated"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/WalletPasses"
+              ],
+              "title": "Related Documentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKStoredValuePassBalance/title",
+          "value": "PKStoredValuePassBalance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKStoredValuePassBalance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKStoredValuePassBalance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKStoredValuePassBalance/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKStoredValuePassBalance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKVehicleConnectionSession/title",
+          "value": "PKVehicleConnectionSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKVehicleConnectionSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKVehicleConnectionSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKVehicleConnectionSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKVehicleConnectionSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKSuicaPassProperties/title",
+          "value": "PKSuicaPassProperties"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKSuicaPassProperties/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKSuicaPassProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKSuicaPassProperties/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKSuicaPassProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddSecureElementPassError~1Code/title",
+          "value": "PKAddSecureElementPassErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddSecureElementPassError~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddSecureElementPassErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddSecureElementPassError~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddSecureElementPassErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKTransitPassProperties/title",
+          "value": "PKTransitPassProperties"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKTransitPassProperties/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKTransitPassProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKTransitPassProperties/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKTransitPassProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddSecureElementPassErrorDomain/title",
+          "value": "PKAddSecureElementPassErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddSecureElementPassErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddSecureElementPassErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPassKitError~1Code/title",
+          "value": "PKPassKitErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPassKitError~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPassKitErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPassKitError~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPassKitErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityDocument/title",
+          "value": "PKIdentityDocument"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityDocument/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityDocument/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKJapanIndividualNumberCardMetadata/title",
+          "value": "PKJapanIndividualNumberCardMetadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKJapanIndividualNumberCardMetadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKJapanIndividualNumberCardMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKJapanIndividualNumberCardMetadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKJapanIndividualNumberCardMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShareSecureElementPassViewControllerDelegate/title",
+          "value": "PKShareSecureElementPassViewControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShareSecureElementPassViewControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKShareSecureElementPassViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShareSecureElementPassViewControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKShareSecureElementPassViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddPassMetadataPreview/title",
+          "value": "PKAddPassMetadataPreview"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddPassMetadataPreview/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddPassMetadataPreview"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddPassMetadataPreview/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddPassMetadataPreview"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShareablePassMetadata~1Preview-swift.class/title",
+          "value": "PKShareablePassMetadataPreview"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShareablePassMetadata~1Preview-swift.class/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKShareablePassMetadataPreview"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShareablePassMetadata~1Preview-swift.class/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKShareablePassMetadataPreview"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShareSecureElementPassResult/title",
+          "value": "PKShareSecureElementPassResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShareSecureElementPassResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKShareSecureElementPassResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShareSecureElementPassResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKShareSecureElementPassResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddCarKeyPassConfiguration/title",
+          "value": "PKAddCarKeyPassConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddCarKeyPassConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddCarKeyPassConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddCarKeyPassConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddCarKeyPassConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityNationalIDCardDescriptor/title",
+          "value": "PKIdentityNationalIDCardDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityNationalIDCardDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityNationalIDCardDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityNationalIDCardDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityNationalIDCardDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentPass/title",
+          "value": "PKPaymentPass"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentPass/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentPass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentPass/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentPass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPass/title",
+          "value": "PKPass"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPass/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPass/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShareSecureElementPassViewController/title",
+          "value": "PKShareSecureElementPassViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShareSecureElementPassViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKShareSecureElementPassViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShareSecureElementPassViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKShareSecureElementPassViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityErrorDomain/title",
+          "value": "PKIdentityErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddPassButton/title",
+          "value": "PKAddPassButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddPassButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddPassButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddPassButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddPassButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKLabeledValue/title",
+          "value": "PKLabeledValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKLabeledValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKLabeledValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKLabeledValue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKLabeledValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddShareablePassConfiguration/title",
+          "value": "PKAddShareablePassConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddShareablePassConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddShareablePassConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddShareablePassConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddShareablePassConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPayLaterView/title",
+          "value": "PKPayLaterView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPayLaterView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPayLaterView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPayLaterView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPayLaterView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKVehicleConnectionDelegate/title",
+          "value": "PKVehicleConnectionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKVehicleConnectionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKVehicleConnectionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKVehicleConnectionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKVehicleConnectionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKSecureElementPass/title",
+          "value": "PKSecureElementPass"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKSecureElementPass/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKSecureElementPass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKSecureElementPass/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKSecureElementPass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShareablePassMetadata/title",
+          "value": "PKShareablePassMetadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShareablePassMetadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKShareablePassMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShareablePassMetadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKShareablePassMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKVehicleConnectionSessionConnectionState/title",
+          "value": "PKVehicleConnectionSessionConnectionState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKVehicleConnectionSessionConnectionState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKVehicleConnectionSessionConnectionState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKVehicleConnectionSessionConnectionState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKVehicleConnectionSessionConnectionState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddSecureElementPassViewController/title",
+          "value": "PKAddSecureElementPassViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddSecureElementPassViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddSecureElementPassViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddSecureElementPassViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddSecureElementPassViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityElement/title",
+          "value": "PKIdentityElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityElement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityElement/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddShareablePassConfigurationPrimaryAction/title",
+          "value": "PKAddShareablePassConfigurationPrimaryAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddShareablePassConfigurationPrimaryAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddShareablePassConfigurationPrimaryAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddShareablePassConfigurationPrimaryAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddShareablePassConfigurationPrimaryAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddPaymentPassViewController/title",
+          "value": "PKAddPaymentPassViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddPaymentPassViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddPaymentPassViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddPaymentPassViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddPaymentPassViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKObject/title",
+          "value": "PKObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKObject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityButton/title",
+          "value": "PKIdentityButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityRequest/title",
+          "value": "PKIdentityRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityError-swift.struct~1Code/title",
+          "value": "PKIdentityError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityError-swift.struct~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityError-swift.struct~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityAuthorizationController/title",
+          "value": "PKIdentityAuthorizationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityAuthorizationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityAuthorizationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityAuthorizationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityAuthorizationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIssuerProvisioningExtensionHandler/title",
+          "value": "PKIssuerProvisioningExtensionHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIssuerProvisioningExtensionHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIssuerProvisioningExtensionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIssuerProvisioningExtensionHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIssuerProvisioningExtensionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddPaymentPassError/title",
+          "value": "PKAddPaymentPassError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddPaymentPassError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddPaymentPassError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddPaymentPassError/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddPaymentPassError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPassLibrary/title",
+          "value": "PKPassLibrary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPassLibrary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPassLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPassLibrary/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPassLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPassKitErrorDomain/title",
+          "value": "PKPassKitErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPassKitErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPassKitErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddPassesViewController/title",
+          "value": "PKAddPassesViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddPassesViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddPassesViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddPassesViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddPassesViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityDocumentMetadata/title",
+          "value": "PKIdentityDocumentMetadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityDocumentMetadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityDocumentMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityDocumentMetadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityDocumentMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShareSecureElementPassErrorDomain/title",
+          "value": "PKShareSecureElementPassErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShareSecureElementPassErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKShareSecureElementPassErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShareSecureElementPassError~1Code/title",
+          "value": "PKShareSecureElementPassErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShareSecureElementPassError~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKShareSecureElementPassErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShareSecureElementPassError~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKShareSecureElementPassErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKVehicleConnectionErrorCode/title",
+          "value": "PKVehicleConnectionErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKVehicleConnectionErrorCode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKVehicleConnectionErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKVehicleConnectionErrorCode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKVehicleConnectionErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKStoredValuePassProperties/title",
+          "value": "PKStoredValuePassProperties"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKStoredValuePassProperties/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKStoredValuePassProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKStoredValuePassProperties/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKStoredValuePassProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIssuerProvisioningExtensionAuthorizationProviding/title",
+          "value": "PKIssuerProvisioningExtensionAuthorizationProviding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIssuerProvisioningExtensionAuthorizationProviding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIssuerProvisioningExtensionAuthorizationProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIssuerProvisioningExtensionAuthorizationProviding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIssuerProvisioningExtensionAuthorizationProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddIdentityDocumentConfiguration/title",
+          "value": "PKAddIdentityDocumentConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddIdentityDocumentConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddIdentityDocumentConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddIdentityDocumentConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddIdentityDocumentConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddSecureElementPassConfiguration/title",
+          "value": "PKAddSecureElementPassConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddSecureElementPassConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddSecureElementPassConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddSecureElementPassConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddSecureElementPassConfiguration"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/passkit/wallet"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/passkit/wallet"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

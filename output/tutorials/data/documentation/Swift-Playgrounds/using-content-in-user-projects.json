@@ -1,0 +1,467 @@
+{
+  "abstract": [
+    {
+      "text": "Learn how to bring sample code into your app playground.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/using-content-in-user-projects"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Importing sample content into user app playgrounds"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While using Swift Playgrounds you might discover some code in one of the various samples that you’d like to use in your app. For example, you might find a particular view has a useful layout, or that a model for a particular part of a sample app is similar to what you want in your own app. To bring code from an app playground (",
+              "type": "text"
+            },
+            {
+              "code": ".swiftpm",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), it’s helpful to know what you want to bring over. Here are some tips and tricks when it comes to bringing code from Swift Playgrounds samples into your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Transfer-data-models",
+          "level": 3,
+          "text": "Transfer data models",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Data representation is an important part of app development. For example, designing a class with all the necessary properties and methods ensures easy data passing. In addition, it’s important to consider how you store your data to make sure reading and writing happens quickly to make sure users aren’t waiting. The content in Swift Playgrounds shows a number of different models whether it’s a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/tutorials/sample-apps/chooseyourownstory",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and event in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/tutorials/sample-apps/dateplanner",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or a panda image used to make a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/tutorials/sample-apps/memecreator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first step in adopting code from another app playground is knowing what code you want to repurpose. For example, if you are making an app showing images available on a different website, you might look at the ",
+              "type": "text"
+            },
+            {
+              "code": "Panda",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "PandaCollectionFetcher",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/tutorials/sample-apps/memecreator",
+              "isActive": true,
+              "overridingTitle": "Meme Creator",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Meme Creator",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to see what information there is useful to you. You might start by looking at the way the ",
+              "type": "text"
+            },
+            {
+              "code": "PandaCollectionFetcher",
+              "type": "codeVoice"
+            },
+            {
+              "text": " collects and processes the data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You might find that data on the website you want to download images from uses a different model than the website used by Meme Creator. For example, assume the website allows you to make database style requests and returns a list of addresses. You would find that the ",
+              "type": "text"
+            },
+            {
+              "code": "Panda",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "PandaCollection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects will work as-is. What does change, however, is the code in the ",
+              "type": "text"
+            },
+            {
+              "code": "PandaCollectionFetcher",
+              "type": "codeVoice"
+            },
+            {
+              "text": " which you use to make a URL request with a database query, and then a small change to the way you process the data to handle a list instead of a dictionary. With those changes – and some renaming to fit the classes into your app – you can use code from Swift Playgrounds in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Transfer-views-and-view-elements",
+          "level": 3,
+          "text": "Transfer views and view elements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Views make up the visible portion of your app. Swift Playgrounds shows a number of different concepts for UI that can be used in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The key to finding view code you want to have in your app is to understand what your app needs. For example, if you’ve just completed the Date Planner sample, and you want to employ a list view with different sections, like ",
+              "type": "text"
+            },
+            {
+              "code": "EventList",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". To do this, it’s best to start by copying the entire view structure that you want to use. After you have that, there are a few more items you’ll needed to bring over:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Find all of the component views that make up the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EventList",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", namely ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Period",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EventRow",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EventEditor",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This ensures that you have all of the view code necessary to show the event list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Because the adopted code can no longer access the models in an older app playgrounds, remove references to the those models. Do this by either replacing the model references with fake data, or, if your model code is set up and ready for display, you can add references to your model code. After connecting the data to the view, check the preview to see if the view uses the data as expected.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make tweaks and small changes as necessary, such as adding modifiers to various views.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These steps work just as well when adopting view code for a component of another view. If the view code consists of SwiftUI built-in views like ",
+              "type": "text"
+            },
+            {
+              "code": "HStack",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "Text",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "Button",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", then you need to copy this structure and swap out the model code. If the component view you want consists of other views, follow the above steps and bring all of the component views into your app playground.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/add-a-swift-package": {
+      "abstract": [
+        {
+          "text": "Extend the functionality of your app playground by finding and adding a publicly available Swift package.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/add-a-swift-package",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Swift package to your app playground",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/add-a-swift-package"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/console-print-debugging": {
+      "abstract": [
+        {
+          "text": "Learn different methods to debug your code using console output.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/console-print-debugging",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging an App Playground using the Console",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/console-print-debugging"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/live-preview": {
+      "abstract": [
+        {
+          "text": "Use the canvas in Swift Playgrounds to see a live preview of the SwiftUI views in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/live-preview",
+      "kind": "article",
+      "role": "article",
+      "title": "Previewing SwiftUI views in Swift Playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/live-preview"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/project-capabilities": {
+      "abstract": [
+        {
+          "text": "Request access for your app to protected resources, services, or device hardware such as sensors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/project-capabilities",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting access to capabilities for your app playground",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/project-capabilities"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds": {
+      "abstract": [
+        {
+          "text": "Learn to write apps, repurpose sample code, create, and share learning experiences in Swift Playgrounds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+      "kind": "article",
+      "role": "collection",
+      "title": "Swift Playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/tutorials/sample-apps/chooseyourownstory": {
+      "identifier": "https://developer.apple.com/tutorials/sample-apps/chooseyourownstory",
+      "title": "page of a story",
+      "titleInlineContent": [
+        {
+          "text": "page of a story",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/tutorials/sample-apps/chooseyourownstory"
+    },
+    "https://developer.apple.com/tutorials/sample-apps/dateplanner": {
+      "identifier": "https://developer.apple.com/tutorials/sample-apps/dateplanner",
+      "title": "date planner",
+      "titleInlineContent": [
+        {
+          "text": "date planner",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/tutorials/sample-apps/dateplanner"
+    },
+    "https://developer.apple.com/tutorials/sample-apps/memecreator": {
+      "identifier": "https://developer.apple.com/tutorials/sample-apps/memecreator",
+      "title": "meme",
+      "titleInlineContent": [
+        {
+          "text": "meme",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/tutorials/sample-apps/memecreator"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-playgrounds",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/add-a-swift-package",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/console-print-debugging",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/live-preview",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/project-capabilities"
+      ],
+      "title": "App playgrounds"
+    }
+  ]
+}

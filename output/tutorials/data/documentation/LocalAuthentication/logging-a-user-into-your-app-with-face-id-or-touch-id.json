@@ -1,0 +1,1516 @@
+{
+  "abstract": [
+    {
+      "text": "Supplement your own authentication scheme with biometric authentication, making it easy for users to access sensitive parts of your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.localauthentication/documentation/LocalAuthentication/logging-a-user-into-your-app-with-face-id-or-touch-id"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Local Authentication"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.5",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.5",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.1",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Logging a User into Your App with Face ID or Touch ID"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users love Touch ID and Face ID because these authentication mechanisms let them access their devices securely, with minimal effort. When you adopt the LocalAuthentication framework, you streamline the user authentication experience in the typical case, while providing a fallback option for when biometrics aren’t available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-the-Face-ID-Usage-Description",
+          "level": 3,
+          "text": "Set the Face ID Usage Description",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In any project that uses biometrics, include the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW75",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key in your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. Without this key, the system won’t allow your app to use Face ID. The value for this key is a string that the system presents to the user the first time your app attempts to use Face ID. The string should clearly explain why your app needs access to this authentication mechanism. The system doesn’t require a comparable usage description for Touch ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-and-Configure-a-Context",
+          "level": 3,
+          "text": "Create and Configure a Context",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You perform biometric authentication in your app using an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/LAContext",
+              "isActive": true,
+              "overridingTitle": "LAContext",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "LAContext",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " instance, which brokers interaction between your app and the Secure Enclave. Begin by creating a context:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var context = LAContext()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can customize the messaging used by the context to guide the user through the flow. For example, you can set a custom message for the Cancel button that appears in various alert views:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "context.localizedCancelTitle = \"Enter Username/Password\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This helps the user understand that when they tap the button, they’ll be reverting to your normal authentication procedure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-Policy-Availability",
+          "level": 3,
+          "text": "Test Policy Availability",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before attempting to authenticate, test to make sure that you actually have the ability to do so by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/LAContext/canEvaluatePolicy(_:error:)",
+              "isActive": true,
+              "overridingTitle": "canEvaluatePolicy(_:error:)",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "canEvaluatePolicy(_:error:)",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var error: NSError?",
+            "guard context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) else {",
+            "    print(error?.localizedDescription ?? \"Can't evaluate policy\")",
+            "",
+            "    // Fall back to a asking for username and password.",
+            "    // ...",
+            "    return",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Choose a value from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/LAPolicy",
+              "isActive": true,
+              "overridingTitle": "LAPolicy",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "LAPolicy",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " enumeration for which to test. The policy controls how the authentication behaves. For example, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/LAPolicy/deviceOwnerAuthentication",
+              "isActive": true,
+              "overridingTitle": "deviceOwnerAuthentication",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "deviceOwnerAuthentication",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " policy used in this sample indicates that reverting to a passcode is allowed when biometrics fails or is unavailable. Alternatively, you can indicate the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/LAPolicy/deviceOwnerAuthenticationWithBiometrics",
+              "isActive": true,
+              "overridingTitle": "deviceOwnerAuthenticationWithBiometrics",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "deviceOwnerAuthenticationWithBiometrics",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " policy, which doesn’t allow reverting to the device passcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Evaluate-a-Policy",
+          "level": 3,
+          "text": "Evaluate a Policy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’re ready to authenticate, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/LAContext/evaluatePolicy(_:localizedReason:reply:)",
+              "isActive": true,
+              "overridingTitle": "evaluatePolicy(_:localizedReason:reply:)",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "evaluatePolicy(_:localizedReason:reply:)",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method, using the same policy you already tested:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Task {",
+            "    do {",
+            "        try await context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: \"Log in to your account\")",
+            "        state = .loggedin",
+            "    } catch let error {",
+            "        print(error.localizedDescription)",
+            "",
+            "        // Fall back to a asking for username and password.",
+            "        // ...",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For Touch ID, or when the user enters a passcode, the system displays the reason for authenticating that you provided in the method call. It’s important to provide a clear explanation, localized for any regions in which you operate, of why your app is asking the user to authenticate. The name of your app already appears before the reason you give, so you don’t need to include that in your message.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Optionally-Adjust-Your-User-Interface-to-Accommodate-Face-ID",
+          "level": 3,
+          "text": "Optionally, Adjust Your User Interface to Accommodate Face ID",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Aside from the biometric scanning operation itself, Face ID exhibits an important difference from Touch ID. When your app tries to use Touch ID, a system message asks the user to present a finger to scan. The user has time to think about and possibly abort the operation by canceling the prompt. When your app invokes Face ID, the device begins scanning the user’s face right away. Users don’t get a final opportunity to cancel. To accommodate this behavioral difference, you might want to provide a different UI, depending on the kind of biometrics available on the device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app provides a different UI by including a text label with a message that warns Face ID users that tapping the button results in an immediate Face ID scan. The app hides the label by default, revealing it only for users with Face ID who are currently logged out. Users with Touch ID (or no biometry at all) don’t need the message because they can cancel the operation before the scan actually takes place.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You test what kind of biometry the device supports by reading the context’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/LAContext/biometryType",
+              "isActive": true,
+              "overridingTitle": "biometryType",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "biometryType",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " parameter:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "faceIDLabel.isHidden = (state == .loggedin) || (context.biometryType != .faceID)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This parameter only contains a meaningful value after you run the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/LAContext/canEvaluatePolicy(_:error:)",
+              "isActive": true,
+              "overridingTitle": "canEvaluatePolicy(_:error:)",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "canEvaluatePolicy(_:error:)",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method on the context at least once.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-a-Fallback-Alternative-to-Biometrics",
+          "level": 3,
+          "text": "Provide a Fallback Alternative to Biometrics",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For various reasons, authentication sometimes fails or is unavailable:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user’s device doesn’t have Touch ID or Face ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user isn’t enrolled in biometrics, or doesn’t have a passcode set.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user cancels the operation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Touch ID or Face ID fails to recognize the user.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You’ve previously invalidated the context with a call to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/LAContext/invalidate()",
+                      "isActive": true,
+                      "overridingTitle": "invalidate()",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "invalidate()",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a complete list of possible error conditions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/LAError-swift.struct/Code",
+              "isActive": true,
+              "overridingTitle": "LAError.Code",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "LAError.Code",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app doesn’t implement alternative authentication. In a real app, if you encounter a local authentication error, fall back to your own authentication scheme, like asking for a username and password. Use biometrics as a supplement to something you’re already doing. Don’t depend on biometrics as your only authentication option.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "a6e7eb261400/LoggingAUserIntoYourAppWithFaceIDOrTouchID.zip": {
+      "checksum": "a6e7eb261400c0584de402d41df21aaf8e42332d4bec915782bcfc40588e2b688355ad71103b1fd262ad14f8b2558bed1c831f807b3a187f442f916d81bd24f4",
+      "identifier": "a6e7eb261400/LoggingAUserIntoYourAppWithFaceIDOrTouchID.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/a6e7eb261400/LoggingAUserIntoYourAppWithFaceIDOrTouchID.zip"
+    },
+    "doc://com.apple.documentation/documentation/LocalAuthentication/LAContext": {
+      "abstract": [
+        {
+          "text": "A mechanism for evaluating authentication policies and access controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LAContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/LAContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAContext",
+      "type": "topic",
+      "url": "/documentation/LocalAuthentication/LAContext"
+    },
+    "doc://com.apple.documentation/documentation/LocalAuthentication/LAContext/biometryType": {
+      "abstract": [
+        {
+          "text": "The type of biometric authentication supported by the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "biometryType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@LABiometryType",
+          "text": "LABiometryType"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/LAContext/biometryType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "biometryType",
+      "type": "topic",
+      "url": "/documentation/LocalAuthentication/LAContext/biometryType"
+    },
+    "doc://com.apple.documentation/documentation/LocalAuthentication/LAContext/canEvaluatePolicy(_:error:)": {
+      "abstract": [
+        {
+          "text": "Assesses whether authentication can proceed for a given policy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canEvaluatePolicy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "policy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@LAPolicy",
+          "text": "LAPolicy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation14NSErrorPointera",
+          "text": "NSErrorPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/LAContext/canEvaluatePolicy(_:error:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canEvaluatePolicy(_:error:)",
+      "type": "topic",
+      "url": "/documentation/LocalAuthentication/LAContext/canEvaluatePolicy(_:error:)"
+    },
+    "doc://com.apple.documentation/documentation/LocalAuthentication/LAContext/evaluatePolicy(_:localizedReason:reply:)": {
+      "abstract": [
+        {
+          "text": "Evaluates the specified policy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "evaluatePolicy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "policy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@LAPolicy",
+          "text": "LAPolicy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "localizedReason"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "reply"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/LAContext/evaluatePolicy(_:localizedReason:reply:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "evaluatePolicy(_:localizedReason:reply:)",
+      "type": "topic",
+      "url": "/documentation/LocalAuthentication/LAContext/evaluatePolicy(_:localizedReason:reply:)"
+    },
+    "doc://com.apple.documentation/documentation/LocalAuthentication/LAContext/invalidate()": {
+      "abstract": [
+        {
+          "text": "Invalidates the authentication context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/LAContext/invalidate()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invalidate()",
+      "type": "topic",
+      "url": "/documentation/LocalAuthentication/LAContext/invalidate()"
+    },
+    "doc://com.apple.documentation/documentation/LocalAuthentication/LAError-swift.struct/Code": {
+      "abstract": [
+        {
+          "text": "Errors issued by the LocalAuthentication framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/LAError-swift.struct/Code",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAError.Code",
+      "type": "topic",
+      "url": "/documentation/LocalAuthentication/LAError-swift.struct/Code"
+    },
+    "doc://com.apple.documentation/documentation/LocalAuthentication/LAPolicy": {
+      "abstract": [
+        {
+          "text": "The set of available local authentication policies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LAPolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/LAPolicy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAPolicy",
+      "type": "topic",
+      "url": "/documentation/LocalAuthentication/LAPolicy"
+    },
+    "doc://com.apple.documentation/documentation/LocalAuthentication/LAPolicy/deviceOwnerAuthentication": {
+      "abstract": [
+        {
+          "text": "User authentication with biometry, Apple Watch, or the device passcode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceOwnerAuthentication"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/LAPolicy/deviceOwnerAuthentication",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAPolicy.deviceOwnerAuthentication",
+      "type": "topic",
+      "url": "/documentation/LocalAuthentication/LAPolicy/deviceOwnerAuthentication"
+    },
+    "doc://com.apple.documentation/documentation/LocalAuthentication/LAPolicy/deviceOwnerAuthenticationWithBiometrics": {
+      "abstract": [
+        {
+          "text": "User authentication with biometry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceOwnerAuthenticationWithBiometrics"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/LAPolicy/deviceOwnerAuthenticationWithBiometrics",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAPolicy.deviceOwnerAuthenticationWithBiometrics",
+      "type": "topic",
+      "url": "/documentation/LocalAuthentication/LAPolicy/deviceOwnerAuthenticationWithBiometrics"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication": {
+      "abstract": [
+        {
+          "text": "Authenticate users biometrically or with a passphrase they already know.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Local Authentication",
+      "type": "topic",
+      "url": "/documentation/localauthentication"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/accessing-keychain-items-with-face-id-or-touch-id": {
+      "abstract": [
+        {
+          "text": "Protect a keychain item with biometric authentication.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/accessing-keychain-items-with-face-id-or-touch-id",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Accessing Keychain Items with Face ID or Touch ID",
+      "type": "topic",
+      "url": "/documentation/localauthentication/accessing-keychain-items-with-face-id-or-touch-id"
+    },
+    "https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW75": {
+      "identifier": "https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW75",
+      "title": "NSFaceIDUsageDescription",
+      "titleInlineContent": [
+        {
+          "text": "NSFaceIDUsageDescription",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW75"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "a6e7eb261400/LoggingAUserIntoYourAppWithFaceIDOrTouchID.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/accessing-keychain-items-with-face-id-or-touch-id"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/accessing-keychain-items-with-face-id-or-touch-id"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1LocalAuthentication~1LAContext~1evaluatePolicy(_:localizedReason:reply:)/title",
+          "value": "evaluatePolicy:localizedReason:reply:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1LocalAuthentication~1LAContext~1evaluatePolicy(_:localizedReason:reply:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "evaluatePolicy:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@LAPolicy",
+              "text": "LAPolicy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "policy"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "localizedReason:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "localizedReason"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "reply:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "success"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "reply"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1LocalAuthentication~1LAContext/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "LAContext"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1LocalAuthentication~1LAPolicy~1deviceOwnerAuthenticationWithBiometrics/title",
+          "value": "LAPolicyDeviceOwnerAuthenticationWithBiometrics"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1LocalAuthentication~1LAPolicy~1deviceOwnerAuthenticationWithBiometrics/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAPolicyDeviceOwnerAuthenticationWithBiometrics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1LocalAuthentication~1LAContext~1canEvaluatePolicy(_:error:)/title",
+          "value": "canEvaluatePolicy:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1LocalAuthentication~1LAContext~1canEvaluatePolicy(_:error:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "canEvaluatePolicy:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@LAPolicy",
+              "text": "LAPolicy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "policy"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "error:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1LocalAuthentication~1LAContext~1invalidate()/title",
+          "value": "invalidate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1LocalAuthentication~1LAContext~1invalidate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "invalidate"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1LocalAuthentication~1LAContext~1biometryType/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@LABiometryType",
+              "text": "LABiometryType"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "biometryType"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1LocalAuthentication~1LAPolicy~1deviceOwnerAuthentication/title",
+          "value": "LAPolicyDeviceOwnerAuthentication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1LocalAuthentication~1LAPolicy~1deviceOwnerAuthentication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAPolicyDeviceOwnerAuthentication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1LocalAuthentication~1LAError-swift.struct~1Code/title",
+          "value": "LAError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1LocalAuthentication~1LAError-swift.struct~1Code/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "LAError"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSInteger",
+              "text": "NSInteger"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1LocalAuthentication~1LAPolicy/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "LAPolicy"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSInteger",
+              "text": "NSInteger"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/localauthentication/logging-a-user-into-your-app-with-face-id-or-touch-id"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/localauthentication/logging-a-user-into-your-app-with-face-id-or-touch-id"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1986 @@
+{
+  "abstract": [
+    {
+      "text": "Verify that connections to your server come from legitimate instances of your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/validating-apps-that-connect-to-your-server"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "DeviceCheck"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Validating apps that connect to your server"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adopt App Attest to check whether clients connecting to your server are valid instances",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of your app. Your app uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/shared",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create a cryptographic key on a device,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and then attest to the key’s validity. This produces an attestation object that your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app passes to your server, along with the corresponding key identifier. Your server",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "verifies the attestation object, and then extracts the embedded public key and other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information. Later, your server uses the key to verify assertion objects that your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app sends at critical points in the app’s life cycle, like when users try to download",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "premium content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "validating_apps_that_connect_to_your_server-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This article describes how to integrate App Attest into your server logic. For more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information about the activites you perform in your app to support App Attest, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/establishing-your-app-s-integrity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-a-challenge",
+          "level": 3,
+          "text": "Provide a challenge",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every time your app needs to communicate attestation data to your server, the app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "first asks the server for a unique, one-time challenge. App Attest integrates this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "challenge into the objects that it provides, and that your app sends back to your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "server for validation. This makes it harder for an attacker to implement a replay",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "attack.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app asks for a challenge, provide a randomized data value, and remember",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the value for use when verifying the corresponding attestation or assertion objects",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the client sends. How you use the challenge data depends on the kind of object that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you need to validate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Verify-the-attestation",
+          "level": 3,
+          "text": "Verify the attestation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Attest service creates an attestation object that consists of authenticator",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data and an attestation statement according to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.w3.org/TR/webauthn/#sec-authenticator-data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specification. The following authenticator fields are of particular interest for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "App Attest:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "RP ID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (32 bytes) — A hash of your app’s App ID, which is the concatenation of",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "your app’s App ID prefix, a period, and your app’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "value. The App ID prefix is usually automatically set to be your 10-digit",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "team identifier, and can be found by inspecting the Identifier entry",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "for your app in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/account/resources/identifiers/list",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " section of",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "your Apple Developer Account.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "counter",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (4 bytes) — A value that reports the number of times your app has used",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the attested key to sign an assertion.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "aaguid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (16 bytes) — An App Attest–specific constant that indicates whether the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "attested key belongs to the development or production environment. Apps generate",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "keys using the former during development, and the latter after distribution, as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.devicecheck.appattest-environment",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "describes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "credentialId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (32 bytes) — A hash of the public key part of the attested cryptographic",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "key pair.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An attestation ",
+                  "type": "text"
+                },
+                {
+                  "code": "RP ID",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " that an App Clip generates uses the full app’s identifier,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "not the App Clip’s identifier. For information about the difference between the two,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppClip/creating-an-app-clip-with-xcode",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The attestation statement uses a custom Apple attestation statement format with the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "following syntax:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "$$attStmtType //= (",
+            "                      fmt: \"apple-appattest\",",
+            "                      attStmt: StmtFormat",
+            "                  )",
+            "",
+            "StmtFormat =      {",
+            "                      x5c: [ credCert: bytes, * (caCert: bytes) ],",
+            "                      receipt: bytes,",
+            "                  }"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To verify and decode the attestation object, check that it has the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/rfc7049",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " data format with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the expected syntax. The decoded object looks like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  fmt: 'apple-appattest',",
+            "  attStmt: {",
+            "    x5c: [",
+            "      <Buffer 30 82 02 cc ... >,",
+            "      <Buffer 30 82 02 36 ... >",
+            "    ],",
+            "    receipt: <Buffer 30 80 06 09 ... >",
+            "  },",
+            "  authData: <Buffer 21 c9 9e 00 ... >",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the decoded object, along with the key identifier that your app sends, to perform",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify that the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x5c",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array contains the intermediate and leaf certificates for",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "App Attest, starting from the credential certificate in the first data buffer in",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the array (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "credcert",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "). Verify the validity of the certificates using Apple’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://www.apple.com/certificateauthority/private",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clientDataHash",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as the SHA256 hash of the one-time challenge your server",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "sends to your app before performing the attestation, and append that hash to the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "end of the authenticator data (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "authData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from the decoded object).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Generate a new SHA256 hash of the composite item to create ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nonce",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Obtain the value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "credCert",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " extension with OID ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1.2.840.113635.100.8.2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ",",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "which is a DER-encoded ASN.1 sequence. Decode the sequence and extract the single",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "octet string that it contains. Verify that the string equals ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nonce",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create the SHA256 hash of the public key in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "credCert",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with X9.62 uncompressed point format, and verify that it matches",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the key identifier from your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Compute the SHA256 hash of your app’s App ID, and verify that it’s the same as",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the authenticator data’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "RP ID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " hash.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify that the authenticator data’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "counter",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field equals ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify that the authenticator data’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "aaguid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field is either ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "appattestdevelop",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "if operating in the development environment, or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "appattest",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " followed by seven ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0x00",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "bytes if operating in the production environment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify that the authenticator data’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "credentialId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field is the same as the key",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After successfully completing these steps, you can trust the attestation object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Follow the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/attestation-object-validation-guide",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to ensure your implementation",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "for the steps above is correct.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Store-the-public-key-and-receipt",
+          "level": 3,
+          "text": "Store the public key and receipt",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Store the verified public key from ",
+              "type": "text"
+            },
+            {
+              "code": "credCert",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on your server and associate it with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the user for the specific device. You use this key to check assertions later. As",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an added protection against replay attacks, make sure that the public key doesn’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "already have an association with another user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The attestation statement also contains a receipt that you can use later in a server-to-server",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "call to request a fraud assessment metric from Apple. You use the metric to examine",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the number of attested keys for a specific device. This helps you to assess the risk",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that an attacker is using a compromised device to serve assertions to many compromised",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "versions of your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When attestation succeeds, independently verify and store the receipt immediately.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about how to interpret the receipt, and how to use a receipt",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to obtain or refresh the metric, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/assessing-fraud-risk",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Be prepared to store multiple (key, receipt) pairs for each user. Store",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "one pair for each device the user uses to access your services. Also, keep development",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "pairs separate from production pairs because you can’t use one set in the other’s",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "environment.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Verify-the-assertion",
+          "level": 3,
+          "text": "Verify the assertion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After successful attestation, your server can require the associated client to accompany",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "server requests with an assertion object. Each verified assertion reestablishes the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "legitimacy of the client. You typically require this for requests that access sensitive",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or premium content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The client creates the assertion by packaging the request as ",
+              "type": "text"
+            },
+            {
+              "code": "clientData",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and asking",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the App Attest service to sign the data with the attested private key. Along with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the signature, App Attest includes a simplified authenticator data instance in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "assertion object, similar to the one in the attestation object, but containing only",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the first few fields, including ",
+              "type": "text"
+            },
+            {
+              "code": "RP ID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "counter",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After receiving the client data and the assertion, you need to verify and decode",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the assertion to ensure it uses the CBOR data format and has the expected contents.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The decoded object looks like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  signature: <Buffer 30 45 02 20 ... >,",
+            "  authenticatorData: <Buffer 21 c9 9e 00 ... >",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To verify the assertion, use the decoded assertion, the client data, and the previously",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "stored public key, and follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Compute ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clientDataHash",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as the SHA256 hash of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clientData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Concatenate ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "authenticatorData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clientDataHash",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and apply a SHA256 hash",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "over the result to form ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nonce",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the public key that you store from the attestation object to verify that the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "assertion’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "signature",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is valid for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nonce",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Compute the SHA256 hash of the client’s App ID, and verify that it matches the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "RP ID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the authenticator data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify that the authenticator data’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "counter",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value is greater than the value",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "from the previous assertion, or greater than ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " on the first assertion.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify that the embedded challenge in the client data matches the earlier challenge",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to the client.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the assertion meets all of these conditions, you can trust it. Store ",
+              "type": "text"
+            },
+            {
+              "code": "counter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to use in step 5 when verifying the next assertion.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck": {
+      "abstract": [
+        {
+          "text": "Reduce fraudulent use of your services by managing device state and asserting app",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "integrity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DeviceCheck",
+      "type": "topic",
+      "url": "/documentation/devicecheck"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService": {
+      "abstract": [
+        {
+          "text": "A service that you use to validate the instance of your app running on a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DCAppAttestService"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DCAppAttestService"
+        }
+      ],
+      "role": "symbol",
+      "title": "DCAppAttestService",
+      "type": "topic",
+      "url": "/documentation/devicecheck/dcappattestservice"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/shared": {
+      "abstract": [
+        {
+          "text": "The shared App Attest service that you use to validate your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)DCAppAttestService",
+          "text": "DCAppAttestService"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/shared",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sharedService"
+        }
+      ],
+      "role": "symbol",
+      "title": "shared",
+      "type": "topic",
+      "url": "/documentation/devicecheck/dcappattestservice/shared"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/assessing-fraud-risk": {
+      "abstract": [
+        {
+          "text": "Request and analyze risk data using server-to-server calls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/assessing-fraud-risk",
+      "kind": "article",
+      "role": "article",
+      "title": "Assessing fraud risk",
+      "type": "topic",
+      "url": "/documentation/devicecheck/assessing-fraud-risk"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/attestation-object-validation-guide": {
+      "abstract": [
+        {
+          "text": "Use this guide to validate your implementation of verifying the attestation object verification process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/attestation-object-validation-guide",
+      "kind": "article",
+      "role": "article",
+      "title": "Attestation Object Validation Guide",
+      "type": "topic",
+      "url": "/documentation/devicecheck/attestation-object-validation-guide"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/establishing-your-app-s-integrity": {
+      "abstract": [
+        {
+          "text": "Ensure that requests your server receives come from legitimate instances of your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/establishing-your-app-s-integrity",
+      "kind": "article",
+      "role": "article",
+      "title": "Establishing your app’s integrity",
+      "type": "topic",
+      "url": "/documentation/devicecheck/establishing-your-app-s-integrity"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/preparing-to-use-the-app-attest-service": {
+      "abstract": [
+        {
+          "text": "Test your implementation in a development environment and onboard users gradually.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/preparing-to-use-the-app-attest-service",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing to use the app attest service",
+      "type": "topic",
+      "url": "/documentation/devicecheck/preparing-to-use-the-app-attest-service"
+    },
+    "doc://com.apple.documentation/documentation/AppClip/creating-an-app-clip-with-xcode": {
+      "abstract": [
+        {
+          "text": "Add an App Clip target to your Xcode project and share code between the App Clip and its corresponding full app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppClip/creating-an-app-clip-with-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an App Clip with Xcode",
+      "type": "topic",
+      "url": "/documentation/AppClip/creating-an-app-clip-with-xcode"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.devicecheck.appattest-environment": {
+      "abstract": [
+        {
+          "text": "The environment for an app that uses the App Attest service to validate itself.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.devicecheck.appattest-environment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App Attest Environment",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.devicecheck.appattest-environment"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleIdentifier",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/CFBundleIdentifier"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/account/resources/identifiers/list": {
+      "identifier": "https://developer.apple.com/account/resources/identifiers/list",
+      "title": "Certificates, Identifiers & Profiles",
+      "titleInlineContent": [
+        {
+          "text": "Certificates, Identifiers & Profiles",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/account/resources/identifiers/list"
+    },
+    "https://tools.ietf.org/html/rfc7049": {
+      "identifier": "https://tools.ietf.org/html/rfc7049",
+      "title": "Concise Binary Object Representation (CBOR)",
+      "titleInlineContent": [
+        {
+          "text": "Concise Binary",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Object Representation (CBOR)",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/rfc7049"
+    },
+    "https://www.apple.com/certificateauthority/private": {
+      "identifier": "https://www.apple.com/certificateauthority/private",
+      "title": "App Attest root certificate",
+      "titleInlineContent": [
+        {
+          "text": "App",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Attest root certificate",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.apple.com/certificateauthority/private"
+    },
+    "https://www.w3.org/TR/webauthn/#sec-authenticator-data": {
+      "identifier": "https://www.w3.org/TR/webauthn/#sec-authenticator-data",
+      "title": "Web Authentication",
+      "titleInlineContent": [
+        {
+          "text": "Web Authentication",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.w3.org/TR/webauthn/#sec-authenticator-data"
+    },
+    "validating_apps_that_connect_to_your_server-1": {
+      "alt": "A diagram showing how your server sends challenges to your app, which responds with an attestation or an assertion, while relying on the App Attest logic. ",
+      "identifier": "validating_apps_that_connect_to_your_server-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/af2153e7215540c665379d51d65f532a/validating_apps_that_connect_to_your_server-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81bc931ea8ac13fd1a2240605c0ffb0a/validating_apps_that_connect_to_your_server-1~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-Attest",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck/establishing-your-app-s-integrity",
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck/assessing-fraud-risk",
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck/preparing-to-use-the-app-attest-service",
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.devicecheck.appattest-environment"
+      ],
+      "title": "App Attest"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "App-Attest",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.DeviceCheck/documentation/DeviceCheck/establishing-your-app-s-integrity",
+                "doc://com.apple.DeviceCheck/documentation/DeviceCheck/assessing-fraud-risk",
+                "doc://com.apple.DeviceCheck/documentation/DeviceCheck/preparing-to-use-the-app-attest-service",
+                "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.devicecheck.appattest-environment"
+              ],
+              "title": "App Attest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCAppAttestService~1shared/title",
+          "value": "sharedService"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCAppAttestService~1shared/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sharedService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCAppAttestService/title",
+          "value": "DCAppAttestService"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCAppAttestService/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DCAppAttestService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCAppAttestService/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DCAppAttestService"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicecheck/validating-apps-that-connect-to-your-server"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/devicecheck/validating-apps-that-connect-to-your-server"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

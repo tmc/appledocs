@@ -1,0 +1,606 @@
+{
+  "abstract": [
+    {
+      "text": "Returns the container directory associated with the specified security application group identifier.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/file_system",
+        "doc://com.apple.documentation/documentation/foundation/nsfilemanager"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/icloud",
+        "doc://com.apple.documentation/documentation/foundation/nsfilemanager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1412643-containerurlforsecurityapplicati"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1412643,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSFileManager(im)containerURLForSecurityApplicationGroupIdentifier:",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSFileManager"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.8",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "containerURLForSecurityApplicationGroupIdentifier:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURL",
+              "text": "NSURL"
+            },
+            {
+              "kind": "text",
+              "text": " *"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "identifier",
+              "text": "containerURLForSecurityApplicationGroupIdentifier:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "groupIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A string that names the group whose shared directory you want to obtain. This input should exactly match one of the strings in the app's ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.security.application-groups",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "groupIdentifier"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A URL indicating the location of the group's shared directory in the file system. In iOS, the value is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when the group identifier is invalid. In macOS, a URL of the expected form is always returned, even if the app group is invalid, so be sure to test that you can access the underlying directory before attempting to use it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sandboxed apps in macOS and all apps in iOS that need to share files with other apps from the same developer on a given device use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.security.application-groups",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to join one or more application groups. The entitlement consists of an array of group identifier strings that indicate the groups to which the app belongs, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1745931",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1745902",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use one of these group identifier strings to locate the corresponding group's shared directory. When you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1412643-containerurlforsecurityapplicati",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with one of your app's group identifiers, the method returns an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance specifying the location in the file system of that group's shared directory. The behavior of application groups differs between macOS and iOS. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2851196",
+          "level": 3,
+          "text": "App Groups in macOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a sandboxed app in macOS, the group directory is located at ",
+              "type": "text"
+            },
+            {
+              "code": "~/Library/Group Containers/<application-group-id>",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", where the application group identifier begins with the developer's team identifier followed by a dot, followed by the specific group name. The system creates this directory automatically the first time your app needs it and never removes it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Always use the URL returned by this method to locate the group directory rather than manually constructing a URL with an explicit path. The exact location of the directory in the file system might change in future releases of macOS, but this method will always return the correct URL.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system also creates the ",
+              "type": "text"
+            },
+            {
+              "code": "Library/Application Support",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "Library/Caches",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "Library/Preferences",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subdirectories inside the group directory the first time you use it. You are free to add or remove subdirectories as you see fit, but you are encouraged to use these standardized locations as you would in the app's usual container.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you call the method with an invalid group identifier, namely one for which you do not have an entitlement, the method still returns a URL of the expected form, but the corresponding group directory does not actually exist, nor can your sandboxed app create it. Therefore be sure to test that you can successfully access the returned URL before using it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2851195",
+          "level": 3,
+          "text": "App Groups in iOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS, the group identifier starts with the word ",
+              "type": "text"
+            },
+            {
+              "code": "group",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and a dot, followed by the group name. However, the system makes no guarantee about the group directory's name or location in the file system. Indeed, the directory is accessible only with the file URL returned by this method. As in macOS, the system creates the directory when you need it. Unlike in macOS, when all the apps in a given app group are removed from the device, the system detects this condition and removes the corresponding group directory as well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system creates only the ",
+              "type": "text"
+            },
+            {
+              "code": "Library/Caches",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subdirectory automatically, but you can create others yourself if you need them. You are free to use the group directory as you see fit, but take care to coordinate its structure among all the group's apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you call the method with an invalid group identifier in iOS, the method returns a ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1745822": {
+      "identifier": "devLink-1745822",
+      "title": "App Sandbox Design Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/AboutAppSandbox/AboutAppSandbox.html#//apple_ref/doc/uid/TP40011183"
+    },
+    "devLink-1745902": {
+      "identifier": "devLink-1745902",
+      "title": "Entitlement Key Reference",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Miscellaneous/Reference/EntitlementKeyReference/Chapters/AboutEntitlements.html#//apple_ref/doc/uid/TP40011195"
+    },
+    "devLink-1745931": {
+      "identifier": "devLink-1745931",
+      "title": "Adding an App to an App Group",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Miscellaneous/Reference/EntitlementKeyReference/Chapters/EnablingAppSandbox.html#//apple_ref/doc/uid/TP40011195-CH4-SW19"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.security.application-groups": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.security.application-groups",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App Groups Entitlement",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.security.application-groups"
+    },
+    "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.security.application-groups": {
+      "abstract": [
+        {
+          "text": "A list of identifiers specifying the groups your app belongs to.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "App Groups Entitlement",
+      "identifier": "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.security.application-groups",
+      "kind": "symbol",
+      "name": "com.apple.security.application-groups",
+      "role": "symbol",
+      "title": "App Groups Entitlement",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.security.application-groups"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File System",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/icloud": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/icloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "iCloud",
+      "type": "topic",
+      "url": "/documentation/foundation/icloud"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilemanager": {
+      "abstract": [
+        {
+          "text": "A convenient interface to the contents of the file system, and the primary means of interacting with it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileManager",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1412643-containerurlforsecurityapplicati": {
+      "abstract": [
+        {
+          "text": "Returns the container directory associated with the specified security application group identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "containerURLForSecurityApplicationGroupIdentifier:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1412643-containerurlforsecurityapplicati",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "containerURLForSecurityApplicationGroupIdentifier:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilemanager/1412643-containerurlforsecurityapplicati"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.security.application-groups"
+      ],
+      "title": "Locating Application Group Container Directories"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "devLink-1745822",
+        "subsection-2974917",
+        "devLink-1745902"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsfilemanager/1412643-containerurlforsecurityapplicati"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/filemanager/1412643-containerurl"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

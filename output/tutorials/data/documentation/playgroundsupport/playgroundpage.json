@@ -1,0 +1,992 @@
+{
+  "abstract": [
+    {
+      "text": "An object you use to configure the state of a playground page and its live view.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/playgroundsupport"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1964507,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17PlaygroundSupport0A4PageC",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "PlaygroundPage"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Playground Support"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "11.0",
+        "name": "macOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "10.2",
+        "name": "Xcode"
+      },
+      {
+        "current": "4.0",
+        "introducedAt": "2.0",
+        "name": "Swift Playgrounds"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "PlaygroundPage"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS",
+            "Swift Playgrounds"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "final"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PlaygroundPage"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You access the current playground page by using this class's static ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/1964509-current",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property; no more than one page is ever active at the same time. Playground pages in Swift Playgrounds have different capabilities than playground pages in Xcode. For example, control over the execution mode is available only in Swift Playgrounds, while the Touch Bar is accessible only to playgrounds in Xcode. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Both playground environments can set a live view, which you use to show the visual results of running the code on the playground page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "PlaygroundPage.current.setLiveView(",
+            "    List(0..<42) { number in",
+            "        Text(\"My favorite number is \\(number).\")",
+            "    }",
+            ")"
+          ],
+          "metadata": {
+            "anchor": "3042654",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You also use the current page to configure the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "always-on live view",
+                  "type": "text"
+                }
+              ],
+              "type": "newTerm"
+            },
+            {
+              "text": ", a special live view that runs in a separate process from the code on a playground page and is available only in Swift Playgrounds. The always-on live view can display results that persist across multiple runs of the code on a page, or that you need for one-time setup tasks that take time to run. For example, you might use the always-on live view to display multiple stages of progress through a playground page that has multiple steps to reach the solution. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the always-on live view is hosted outside of the process that runs the code on a playground page, you communicate with it indirectly. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/messaging_between_a_playground_page_and_the_always-on_live_view",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/playgroundsupport": {
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Playground Support",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/messaging_between_a_playground_page_and_the_always-on_live_view": {
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/messaging_between_a_playground_page_and_the_always-on_live_view",
+      "kind": "article",
+      "role": "article",
+      "title": "Messaging Between a Playground Page and the Always-On Live View",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/messaging_between_a_playground_page_and_the_always-on_live_view"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage": {
+      "abstract": [
+        {
+          "text": "An object you use to configure the state of a playground page and its live view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaygroundPage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PlaygroundPage",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage#3042654": {
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage#3042654",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/playgroundsupport/playgroundpage#3042654"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/1964501-needsindefiniteexecution": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether indefinite execution is enabled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "needsIndefiniteExecution"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/1964501-needsindefiniteexecution",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "needsIndefiniteExecution",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage/1964501-needsindefiniteexecution"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/1964505-finishexecution": {
+      "abstract": [
+        {
+          "text": "Terminates execution of the current playground page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "finishExecution"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Never"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/1964505-finishexecution",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "finishExecution()",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage/1964505-finishexecution"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/1964506-liveview": {
+      "abstract": [
+        {
+          "text": "A live view that shows the result of running the code that’s on the current page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "liveView"
+        },
+        {
+          "kind": "text",
+          "text": ": (any PlaygroundLiveViewable)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/1964506-liveview",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "liveView",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage/1964506-liveview"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/1964509-current": {
+      "abstract": [
+        {
+          "text": "The current playground page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "current"
+        },
+        {
+          "kind": "text",
+          "text": ": PlaygroundPage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/1964509-current",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "current",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage/1964509-current"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/2919769-livetouchbar": {
+      "abstract": [
+        {
+          "text": "An object you use to add items to the Touch Bar of supported MacBook Pro models.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "liveTouchBar"
+        },
+        {
+          "kind": "text",
+          "text": ": NSTouchBar?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/2919769-livetouchbar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "liveTouchBar",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage/2919769-livetouchbar"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3029560-assessmentstatus": {
+      "abstract": [
+        {
+          "text": "A value that indicates whether a learner has passed, failed, or not yet finished the task on a page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "assessmentStatus"
+        },
+        {
+          "kind": "text",
+          "text": ": PlaygroundPage.AssessmentStatus?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3029560-assessmentstatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "assessmentStatus",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage/3029560-assessmentstatus"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3029561-executionmode": {
+      "abstract": [
+        {
+          "text": "The currently selected speed for executing the code on this playground page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "executionMode"
+        },
+        {
+          "kind": "text",
+          "text": ": PlaygroundPage.ExecutionMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3029561-executionmode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executionMode",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage/3029561-executionmode"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3029562-keyvaluestore": {
+      "abstract": [
+        {
+          "text": "An object that persists data on a page between multiple sessions.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyValueStore"
+        },
+        {
+          "kind": "text",
+          "text": ": PlaygroundKeyValueStore"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3029562-keyvaluestore",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keyValueStore",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage/3029562-keyvaluestore"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3029563-text": {
+      "abstract": [
+        {
+          "text": "The current contents of the playground page, including any user-entered text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "text"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3029563-text",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "text",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage/3029563-text"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3074093-wantsfullscreenliveview": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "wantsFullScreenLiveView"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3074093-wantsfullscreenliveview",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "wantsFullScreenLiveView",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage/3074093-wantsfullscreenliveview"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3239065-navigateto": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigateTo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "page"
+        },
+        {
+          "kind": "text",
+          "text": ": PlaygroundPage.PageNavigation)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3239065-navigateto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigateTo(page:)",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage/3239065-navigateto"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3239066-openapplication": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "openApplication"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withBundleIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "iTunesItemIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": Int?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3239066-openapplication",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "openApplication(withBundleIdentifier:iTunesItemIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage/3239066-openapplication"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3239067-openplayground": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "openPlayground"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withContentIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "toPageAtIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": Int?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3239067-openplayground",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "openPlayground(withContentIdentifier:toPageAtIndex:)",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage/3239067-openplayground"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3239068-showglossaryentry": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "showGlossaryEntry"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": UIView?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3239068-showglossaryentry",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "showGlossaryEntry(named:at:in:)",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage/3239068-showglossaryentry"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3375751-setliveview": {
+      "abstract": [
+        {
+          "text": "Displays a SwiftUI view that shows the result of running the code that’s on the current page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setLiveView"
+        },
+        {
+          "kind": "text",
+          "text": "<IncomingView>(IncomingView)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3375751-setliveview",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setLiveView(_:)",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage/3375751-setliveview"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3375752-setliveview": {
+      "abstract": [
+        {
+          "text": "Displays a view that shows the result of running the code that’s on the current page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setLiveView"
+        },
+        {
+          "kind": "text",
+          "text": "<IncomingView>(IncomingView)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3375752-setliveview",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setLiveView(_:)",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage/3375752-setliveview"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3919478-gettext": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "getText"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forSourceFile"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "inUserModule"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3919478-gettext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getText(forSourceFile:inUserModule:)",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage/3919478-gettext"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3919479-listsourcefiles": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "listSourceFiles"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "inUserModule"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3919479-listsourcefiles",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listSourceFiles(inUserModule:)",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage/3919479-listsourcefiles"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3919480-usermodulenames": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "userModuleNames"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3919480-usermodulenames",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "userModuleNames",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage/3919480-usermodulenames"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/assessmentstatus": {
+      "abstract": [
+        {
+          "text": "The values you use to communicate whether a learner has passed, failed, or not yet finished the task on a page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaygroundPage.AssessmentStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/assessmentstatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PlaygroundPage.AssessmentStatus",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage/assessmentstatus"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/executionmode": {
+      "abstract": [
+        {
+          "text": "The available speeds for executing the code on a playground page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaygroundPage.ExecutionMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/executionmode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PlaygroundPage.ExecutionMode",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage/executionmode"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/pagenavigation": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaygroundPage.PageNavigation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/pagenavigation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PlaygroundPage.PageNavigation",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage/pagenavigation"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "3034110",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/1964509-current",
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3375751-setliveview",
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3375752-setliveview",
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/1964506-liveview"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring Live Views"
+    },
+    {
+      "anchor": "3034113",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3029561-executionmode",
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/executionmode",
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/1964501-needsindefiniteexecution",
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/1964505-finishexecution"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring Execution"
+    },
+    {
+      "anchor": "3034112",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3029560-assessmentstatus",
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/assessmentstatus"
+      ],
+      "kind": "taskGroup",
+      "title": "Assessing Progress"
+    },
+    {
+      "anchor": "3034111",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3029563-text",
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3029562-keyvaluestore"
+      ],
+      "kind": "taskGroup",
+      "title": "Inspecting Page Data"
+    },
+    {
+      "anchor": "3034206",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/2919769-livetouchbar"
+      ],
+      "kind": "taskGroup",
+      "title": "Displaying Touch Bar Items"
+    },
+    {
+      "anchor": "3089309",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3919480-usermodulenames",
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3074093-wantsfullscreenliveview"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "3256514",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3919478-gettext",
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3919479-listsourcefiles",
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3239065-navigateto",
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3239066-openapplication",
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3239067-openplayground",
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/3239068-showglossaryentry"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "3256515",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/pagenavigation"
+      ],
+      "kind": "taskGroup",
+      "title": "Enumerations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/playgroundsupport/playgroundpage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

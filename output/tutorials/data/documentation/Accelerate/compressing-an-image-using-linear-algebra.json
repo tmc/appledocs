@@ -1,0 +1,2350 @@
+{
+  "abstract": [
+    {
+      "text": "Reduce the storage size of an image using singular value decomposition (SVD).",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/compressing-an-image-using-linear-algebra"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.3",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Compressing an image using linear algebra"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project decomposes an image into three factors using ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://mathworld.wolfram.com/SingularValueDecomposition.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (SVD). The sample compresses an image by computing the products of the factors submatrices. The image below shows two photographs. The first is the original image, and the second is the same image after the sample applies 10:1 compression:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "accelerate-denoising.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Any ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "m",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " x ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "n",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " matrix, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "A",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", has an SVD factorization that decomposes it into three factors:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "m",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " x ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "m",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": "  matrix ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "U",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " that contains the left singular vectors of matrix ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "A",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "m",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " x ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "n",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": "  diagonal matrix ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Σ",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " that contains the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://mathworld.wolfram.com/SingularValue.html",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " of matrix ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "A",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ", arranged in descending order",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "n",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " x ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "n",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": "  transposed matrix ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "V",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " that contains the right singular vectors of matrix ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "A",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses the Linear Algebra Package (LAPACK) function ",
+              "type": "text"
+            },
+            {
+              "code": "sgesvdx_",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to compute the SVD.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The figure below shows the SVD of a 5 x 3 matrix:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "accelerate-figure-1.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When matrix ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "A",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " contains image information, the magnitude of the singular values correlate to the visual significance of features in the image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample reduces the storage size of the original image by returning the product of submatrices of ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "U",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Σ",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Vᵀ",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". The sizes of the submatrices derive from the index of the first low singular value. The code in this sample defines that value as ",
+              "type": "text"
+            },
+            {
+              "code": "k",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if the diagonal elements of ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Σ",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "  are ",
+              "type": "text"
+            },
+            {
+              "code": "[2000, 1000, 24]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and you define ",
+              "type": "text"
+            },
+            {
+              "code": "k",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the app keeps ",
+              "type": "text"
+            },
+            {
+              "code": "[2000, 1000]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and discards ",
+              "type": "text"
+            },
+            {
+              "code": "24",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The following figure shows the matrix multiply function for this example, where the first two singular values contain significant values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "accelerate-figure-2.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-matrix-from-the-source-image",
+          "level": 3,
+          "text": "Create a matrix from the source image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample defines a ",
+              "type": "text"
+            },
+            {
+              "code": "Matrix",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure that simplifies passing image data to Accelerate’s linear algebra libraries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "public struct Matrix {",
+            "    /// The number of rows in the matrix.",
+            "    public let rowCount: Int",
+            "    ",
+            "    /// The number of columns in the matrix.",
+            "    public let columnCount: Int",
+            "    ",
+            "    /// The total number of elements in the matrix.",
+            "    public var count: Int {",
+            "        return rowCount * columnCount",
+            "    }",
+            "    ",
+            "    /// A pointer to the matrix's underlying data.",
+            "    public var data: UnsafeMutableBufferPointer<Float> {",
+            "        get {",
+            "            return dataReference.data",
+            "        }",
+            "        set {",
+            "            dataReference.data = newValue",
+            "        }",
+            "    }",
+            "",
+            "    /// A pointer to the matrix's underlying data reference.",
+            "    private var dataReference: MatrixDataReference",
+            "    ",
+            "    /// An object that wraps the structure's data and provides deallocation when the code releases the structure.",
+            "    private class MatrixDataReference {",
+            "        var data: UnsafeMutableBufferPointer<Float>",
+            "        ",
+            "        init(data: UnsafeMutableBufferPointer<Float>) {",
+            "            self.data = data",
+            "        }",
+            "        ",
+            "        deinit {",
+            "            self.data.deallocate()",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Matrix",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type provides an initializer that returns a new matrix that contains a 32-bit grayscale copy of the pixel values of a vImage buffer. The ",
+              "type": "text"
+            },
+            {
+              "code": "init(cgImage:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function passes ",
+              "type": "text"
+            },
+            {
+              "code": "kvImageNoAllocate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageBuffer_InitWithCGImage(_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and uses the matrix’s memory allocation. This ensures that there are no extra bytes at the end of each row. See “Create floating point pixels to use with vDSP” in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/finding-the-sharpest-image-in-a-sequence-of-captured-images",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information on row byte padding.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// The 32-bit planar image format that the `Matrix` type uses to",
+            "/// consume and produce `CGImage` instances.",
+            "private static var imageFormat = vImage_CGImageFormat(",
+            "    bitsPerComponent: 32,",
+            "    bitsPerPixel: 32,",
+            "    colorSpace: CGColorSpaceCreateDeviceGray(),",
+            "    bitmapInfo: CGBitmapInfo(rawValue:",
+            "                             kCGBitmapByteOrder32Host.rawValue |",
+            "                             CGBitmapInfo.floatComponents.rawValue |",
+            "                             CGImageAlphaInfo.none.rawValue))!",
+            "",
+            "/// Converts the specified image to 32-bit planar and returns a new matrix",
+            "/// that contains that image data.",
+            "public init?(cgImage: CGImage) {",
+            "    ",
+            "    self.init(rowCount: cgImage.height,",
+            "              columnCount: cgImage.width)",
+            "    ",
+            "    // Create a `vImage_Buffer` that shares data with `self`.",
+            "    var tmpBuffer = vImage_Buffer(",
+            "        data: self.data.baseAddress,",
+            "        height: vImagePixelCount(self.rowCount),",
+            "        width: vImagePixelCount(self.columnCount),",
+            "        rowBytes: self.columnCount * MemoryLayout<Float>.stride)",
+            "    ",
+            "    let error = vImageBuffer_InitWithCGImage(",
+            "        &tmpBuffer,",
+            "        &Matrix.imageFormat,",
+            "        [0, 0, 0, 0],",
+            "        cgImage,",
+            "        vImage_Flags(kvImageNoAllocate))",
+            "    ",
+            "    if error != kvImageNoError {",
+            "        return nil",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code creates a matrix instance from a Core Graphics image:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard",
+            "    let sourceCGImage = image.cgImage(forProposedRect: nil,",
+            "                                      context: nil,",
+            "                                      hints: nil),",
+            "    let sourceImageMatrix = Matrix(cgImage: sourceCGImage)  else {",
+            "    fatalError(\"Error initializing `SVDImageCompressor` instance.\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-factor-matrices",
+          "level": 3,
+          "text": "Create the factor matrices",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Matrix",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type provides an initializer that returns a new zero-filled matrix.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Returns a zero-filled matrix.",
+            "public init(rowCount: Int,",
+            "            columnCount: Int) {",
+            "    ",
+            "    let count = rowCount * columnCount",
+            "    ",
+            "    let start = UnsafeMutablePointer<Float>.allocate(capacity: count)",
+            "    ",
+            "    let buffer = UnsafeMutableBufferPointer(start: start,",
+            "                                            count: count)",
+            "    buffer.initialize(repeating: 0)",
+            "    ",
+            "    self.rowCount = rowCount",
+            "    self.columnCount = columnCount",
+            "    self.dataReference = MatrixDataReference(data: buffer)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code creates the three matrices that represent the factors:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// The _U_ in _A = U * Σ * Vᵀ_.",
+            "let u = Matrix(rowCount: a.rowCount,",
+            "               columnCount: k)",
+            "",
+            "/// The diagonal values of _Σ_ in _A = U * Σ * Vᵀ_.",
+            "let sigma = Matrix(rowCount: min(a.rowCount, a.columnCount),",
+            "                   columnCount: 1)",
+            "",
+            "/// The _Vᵀ_ in _A = U * Σ * Vᵀ_.",
+            "let vt = Matrix(rowCount: k,",
+            "                columnCount: a.columnCount )"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-the-SVD-options",
+          "level": 3,
+          "text": "Define the SVD options",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample requires fully populated ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "U",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Vᵀ",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " matrices, and defines the ",
+              "type": "text"
+            },
+            {
+              "code": "JOBU",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "JOBVT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameters that it passes to ",
+              "type": "text"
+            },
+            {
+              "code": "sgesvdx_",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as ",
+              "type": "text"
+            },
+            {
+              "code": "V",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". In order to specify that ",
+              "type": "text"
+            },
+            {
+              "code": "sgesvdx_",
+              "type": "codeVoice"
+            },
+            {
+              "text": " returns a specified number of singular values, the sample defines the ",
+              "type": "text"
+            },
+            {
+              "code": "RANGE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter as ",
+              "type": "text"
+            },
+            {
+              "code": "I",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var JOBU = Int8(\"V\".utf8.first!)",
+            "var JOBVT = Int8(\"V\".utf8.first!)",
+            "var RANGE = Int8(\"I\".utf8.first!)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-workspaces",
+          "level": 3,
+          "text": "Create the workspaces",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before computing the SVD, the sample performs a workspace query to calculate the optimal size of the workspace that ",
+              "type": "text"
+            },
+            {
+              "code": "sgesvdx_",
+              "type": "codeVoice"
+            },
+            {
+              "text": " requires. The following code specifies ",
+              "type": "text"
+            },
+            {
+              "code": "LWORK",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as ",
+              "type": "text"
+            },
+            {
+              "code": "-1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and passes a pointer to a single ",
+              "type": "text"
+            },
+            {
+              "code": "Float",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "code": "WORK",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var minusOne = __LAPACK_int(-1)",
+            "var workspaceDimension = Float()",
+            "sgesvdx_(&JOBU,",
+            "         &JOBVT,",
+            "         &RANGE,",
+            "         &m,",
+            "         &n,",
+            "         aCopy.baseAddress,",
+            "         &lda,",
+            "         &vl,",
+            "         &vu,",
+            "         &il,",
+            "         &iu,",
+            "         &ns,",
+            "         sigma.data.baseAddress,",
+            "         u.data.baseAddress,",
+            "         &ldu,",
+            "         vt.data.baseAddress,",
+            "         &ldvt,",
+            "         &workspaceDimension,",
+            "         &minusOne,",
+            "         iwork,",
+            "         &info)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "workspaceDimension",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the optimal size for the workspace.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code allocates the memory that the SVD routine uses as the workspace:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var lwork = __LAPACK_int(workspaceDimension)",
+            " ",
+            "let workspace = UnsafeMutablePointer<Float>.allocate(capacity: Int(lwork))",
+            "defer {",
+            "    workspace.deallocate()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Use-LAPACK-to-compute-the-SVD",
+          "level": 3,
+          "text": "Use LAPACK to compute the SVD",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To avoid multiple nested calls to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/withUnsafePointer(to:_:)-35wrn",
+              "isActive": true,
+              "overridingTitle": "withUnsafePointer(to:_:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "withUnsafePointer(to:_:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", the sample declares variables that shadow some of the matrix properties to pass to the SVD routine as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/UnsafePointer",
+              "isActive": true,
+              "overridingTitle": "UnsafePointer",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "UnsafePointer",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " structures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var m = __LAPACK_int(a.m)",
+            "var n = __LAPACK_int(a.n)",
+            "var lda = __LAPACK_int(a.m)",
+            "",
+            "var ldu = __LAPACK_int(u.m)",
+            "var ldvt = __LAPACK_int(vt.m)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The samples creates the ",
+              "type": "text"
+            },
+            {
+              "code": "iwork",
+              "type": "codeVoice"
+            },
+            {
+              "text": " integer array with a count of 12 times the minimum dimension of matrix ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "A",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let iwork = UnsafeMutablePointer<__LAPACK_int>.allocate(capacity: 12 * Int(min(m, n)))",
+            "defer {",
+            "    iwork.deallocate()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample calls the LAPACK function for a second time to compute the SVD.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Compute `iu - il + 1` singular values.",
+            "sgesvdx_(&JOBU,",
+            "         &JOBVT,",
+            "         &RANGE,",
+            "         &m,",
+            "         &n,",
+            "         aCopy.baseAddress,",
+            "         &lda,",
+            "         &vl,",
+            "         &vu,",
+            "         &il,",
+            "         &iu,",
+            "         &ns,",
+            "         sigma.data.baseAddress,",
+            "         u.data.baseAddress,",
+            "         &ldu,",
+            "         vt.data.baseAddress,",
+            "         &ldvt,",
+            "         workspace,",
+            "         &lwork,",
+            "         iwork,",
+            "         &info)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, the matrices ",
+              "type": "text"
+            },
+            {
+              "code": "sigma",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "u",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "vt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contain the SVD result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Convert-the-singular-values-vector-to-a-matrix",
+          "level": 3,
+          "text": "Convert the singular values vector to a matrix",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "sgesvdx_",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function computes the singular values as a vector. To convert the vector of ",
+              "type": "text"
+            },
+            {
+              "code": "k",
+              "type": "codeVoice"
+            },
+            {
+              "text": " diagonal values to a ",
+              "type": "text"
+            },
+            {
+              "code": "k * k",
+              "type": "codeVoice"
+            },
+            {
+              "text": " diagonal matrix, the ",
+              "type": "text"
+            },
+            {
+              "code": "Matrix",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type provides an initializer that returns a new matrix from diagonal values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Returns a column-major matrix with the specified diagonal elements.",
+            "public init<C>(diagonal: C,",
+            "               rowCount: Int,",
+            "               columnCount: Int)",
+            "where",
+            "C: Collection,",
+            "C.Index == Int,",
+            "C.Element == Float {",
+            "    ",
+            "    self.init(rowCount: rowCount,",
+            "              columnCount: columnCount)",
+            "    ",
+            "    for i in 0 ..< min(rowCount, columnCount, diagonal.count) {",
+            "        self[i * rowCount + i] = diagonal[i]",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code creates a ",
+              "type": "text"
+            },
+            {
+              "code": "k * k",
+              "type": "codeVoice"
+            },
+            {
+              "text": " diagonal matrix from the SVD sigma values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let sigma = Matrix(diagonal: svdResult.sigma.data,",
+            "                   rowCount: Int(k),",
+            "                   columnCount: Int(k))",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Multiply-the-factors",
+          "level": 3,
+          "text": "Multiply the factors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Matrix",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type provides a static function that wraps ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/cblas_sgemm(_:_:_:_:_:_:_:_:_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to multiply two matrices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "public static func multiply(a: Matrix,",
+            "                            b: Matrix,",
+            "                            c: Matrix,",
+            "                            k: Int32? = nil) {",
+            "",
+            "    cblas_sgemm(CblasColMajor,",
+            "                CblasNoTrans, CblasNoTrans,",
+            "                a.m,",
+            "                b.n,",
+            "                k ?? b.m,",
+            "                1,",
+            "                a.data.baseAddress, a.m,",
+            "                b.data.baseAddress, b.m,",
+            "                0,",
+            "                c.data.baseAddress, c.m)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses the matrix multiply function to recreate matrix ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "A",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " from the SVD factors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// The matrix that receives `u * sigma`.",
+            "let u_sigma = Matrix(rowCount: svdResult.u.rowCount,",
+            "                     columnCount: sigma.columnCount)",
+            "",
+            "Matrix.multiply(a: svdResult.u,",
+            "                b: sigma,",
+            "                c: u_sigma)",
+            "",
+            "/// The matrix that receives `u * sigma * vᵀ`.",
+            "let u_sigma_vt = Matrix(rowCount: u_sigma.rowCount,",
+            "                        columnCount: svdResult.vt.columnCount)",
+            "",
+            "Matrix.multiply(a: u_sigma,",
+            "                b: svdResult.vt,",
+            "                c: u_sigma_vt)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-Core-Graphics-image-from-the-product-of-the-factors",
+          "level": 3,
+          "text": "Create a Core Graphics image from the product of the factors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "cgImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " computed property returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+              "isActive": true,
+              "overridingTitle": "CGImage",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CGImage",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " instance from a matrix’s data. The computed property creates a temporary vImage buffer that shares its data with the matrix and uses the same planar 32-bit ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that the ",
+              "type": "text"
+            },
+            {
+              "code": "init(cgImage:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " initializer uses to convert a Core Graphics image to a matrix.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Returns a 32-bit per pixel, grayscale `CGImage`instance of the matrix's data.",
+            "public var cgImage: CGImage? {",
+            "    ",
+            "    let tmpBuffer = vImage_Buffer(",
+            "        data: self.data.baseAddress!,",
+            "        height: vImagePixelCount(self.rowCount),",
+            "        width: vImagePixelCount(self.columnCount),",
+            "        rowBytes: self.columnCount * MemoryLayout<Float>.stride)",
+            "    ",
+            "    return try? tmpBuffer.createCGImage(format: Matrix.imageFormat)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "accelerate-denoising.png": {
+      "alt": "Two photographs. The first contains a grayscale image of some flowers. The second shows the same image after compression and shows some degradation and compression artifacts.",
+      "identifier": "accelerate-denoising.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ac1163eb694e38c9ccbd27ae0f7b1c6b/accelerate-denoising.png"
+        }
+      ]
+    },
+    "accelerate-figure-1.png": {
+      "alt": "A diagram showing the singular value decomposition of five-times-three matrix A into three-times-three matrix U multiplied by five-times-three diagonal matrix sigma multiplied by five-times-five transposed matrix V.",
+      "identifier": "accelerate-figure-1.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f2a3240dea2deb68a5dca93d2d47fbbf/accelerate-figure-1.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d783d4146d94b82b0cf35a3bb5ba4da9/accelerate-figure-1~dark.png"
+        }
+      ]
+    },
+    "accelerate-figure-2.png": {
+      "alt": "A diagram showing the singular value decomposition of five-times-three matrix A into three-times-two matrix U multiplied by two-times-two diagonal matrix sigma multiplied by two-times-five transposed matrix V.",
+      "identifier": "accelerate-figure-2.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ab74c9ce63bde8cd4277e2f56d50acdd/accelerate-figure-2.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9b333fd7bc1a086a3a1306edc6d1e81f/accelerate-figure-2~dark.png"
+        }
+      ]
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/blas-library": {
+      "abstract": [
+        {
+          "text": "Perform common linear algebra operations with Apple’s implementation of the Basic Linear Algebra Subprograms (BLAS).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/blas-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "BLAS",
+      "type": "topic",
+      "url": "/documentation/accelerate/blas-library"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/cblas_sgemm(_:_:_:_:_:_:_:_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Multiplies two matrices (single-precision).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cblas_sgemm"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CBLAS_ORDER",
+          "text": "CBLAS_ORDER"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CBLAS_TRANSPOSE",
+          "text": "CBLAS_TRANSPOSE"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CBLAS_TRANSPOSE",
+          "text": "CBLAS_TRANSPOSE"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@__LAPACK_int",
+          "text": "__LAPACK_int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@__LAPACK_int",
+          "text": "__LAPACK_int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@__LAPACK_int",
+          "text": "__LAPACK_int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@__LAPACK_int",
+          "text": "__LAPACK_int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@__LAPACK_int",
+          "text": "__LAPACK_int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@__LAPACK_int",
+          "text": "__LAPACK_int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/cblas_sgemm(_:_:_:_:_:_:_:_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cblas_sgemm"
+        }
+      ],
+      "role": "symbol",
+      "title": "cblas_sgemm(_:_:_:_:_:_:_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/cblas_sgemm(_:_:_:_:_:_:_:_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/finding-an-interpolating-polynomial-using-the-vandermonde-method": {
+      "abstract": [
+        {
+          "text": "Use LAPACK to solve a linear system and find an interpolating polynomial to construct new points between a series of known data points.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/finding-an-interpolating-polynomial-using-the-vandermonde-method",
+      "kind": "article",
+      "role": "article",
+      "title": "Finding an interpolating polynomial using the Vandermonde method",
+      "type": "topic",
+      "url": "/documentation/accelerate/finding-an-interpolating-polynomial-using-the-vandermonde-method"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/finding-the-sharpest-image-in-a-sequence-of-captured-images": {
+      "abstract": [
+        {
+          "text": "Share image data between vDSP and vImage to compute the sharpest image from a bracketed photo sequence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/finding-the-sharpest-image-in-a-sequence-of-captured-images",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Finding the sharpest image in a sequence of captured images",
+      "type": "topic",
+      "url": "/documentation/accelerate/finding-the-sharpest-image-in-a-sequence-of-captured-images"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-of-linear-equations-with-lapack": {
+      "abstract": [
+        {
+          "text": "Select the optimal LAPACK routine to solve a system of linear equations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-of-linear-equations-with-lapack",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Solving systems of linear equations with LAPACK",
+      "type": "topic",
+      "url": "/documentation/accelerate/solving-systems-of-linear-equations-with-lapack"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageBuffer_InitWithCGImage(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Initializes a vImage buffer with the contents of a Core Graphics image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageBuffer_InitWithCGImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_CGImageFormat",
+          "text": "vImage_CGImageFormat"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageBuffer_InitWithCGImage(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageBuffer_InitWithCGImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageBuffer_InitWithCGImage(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagebuffer_initwithcgimage(_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat": {
+      "abstract": [
+        {
+          "text": "The description of a Core Graphics image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_CGImageFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_CGImageFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_CGImageFormat",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_cgimageformat"
+    },
+    "doc://com.apple.documentation/documentation/Swift/UnsafePointer": {
+      "abstract": [
+        {
+          "text": "A pointer for accessing data of a specific type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Pointee"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Pointee"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Copyable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/UnsafePointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnsafePointer",
+      "type": "topic",
+      "url": "/documentation/Swift/UnsafePointer"
+    },
+    "doc://com.apple.documentation/documentation/Swift/withUnsafePointer(to:_:)-35wrn": {
+      "abstract": [
+        {
+          "text": "Invokes the given closure with a pointer to the given argument.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withUnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "borrowing"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Copyable, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Copyable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/withUnsafePointer(to:_:)-35wrn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withUnsafePointer(to:_:)",
+      "type": "topic",
+      "url": "/documentation/Swift/withUnsafePointer(to:_:)-35wrn"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgimage": {
+      "abstract": [
+        {
+          "text": "A bitmap image or image mask.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImage",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgimage"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "f3385c2aa082/CompressingAnImageUsingLinearAlgebra.zip": {
+      "checksum": "f3385c2aa0826933f185e4bbdce6b938b8a95398dfc4286a3e3f9c311668336961991ea4e607322bdba76fea52e70c7ab571b275b4651ec33dc8d604ddabf8bd",
+      "identifier": "f3385c2aa082/CompressingAnImageUsingLinearAlgebra.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/f3385c2aa082/CompressingAnImageUsingLinearAlgebra.zip"
+    },
+    "https://mathworld.wolfram.com/SingularValue.html": {
+      "identifier": "https://mathworld.wolfram.com/SingularValue.html",
+      "title": "singular values",
+      "titleInlineContent": [
+        {
+          "text": "singular values",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://mathworld.wolfram.com/SingularValue.html"
+    },
+    "https://mathworld.wolfram.com/SingularValueDecomposition.html": {
+      "identifier": "https://mathworld.wolfram.com/SingularValueDecomposition.html",
+      "title": "singular value decomposition",
+      "titleInlineContent": [
+        {
+          "text": "singular value decomposition",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://mathworld.wolfram.com/SingularValueDecomposition.html"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "f3385c2aa082/CompressingAnImageUsingLinearAlgebra.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Linear-Algebra",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-of-linear-equations-with-lapack",
+        "doc://com.apple.accelerate/documentation/Accelerate/finding-an-interpolating-polynomial-using-the-vandermonde-method",
+        "doc://com.apple.accelerate/documentation/Accelerate/blas-library"
+      ],
+      "title": "Linear Algebra"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1cblas_sgemm(_:_:_:_:_:_:_:_:_:_:_:_:_:_:)/title",
+          "value": "cblas_sgemm"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1cblas_sgemm(_:_:_:_:_:_:_:_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cblas_sgemm"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgimage/title",
+          "value": "CGImageRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGImageFormat/title",
+          "value": "vImage_CGImageFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGImageFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_CGImageFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGImageFormat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_CGImageFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageBuffer_InitWithCGImage(_:_:_:_:_:)/title",
+          "value": "vImageBuffer_InitWithCGImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageBuffer_InitWithCGImage(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageBuffer_InitWithCGImage"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

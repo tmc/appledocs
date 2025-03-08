@@ -1,0 +1,1472 @@
+{
+  "abstract": [
+    {
+      "text": "OSSet provides an unordered set store of objects.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/libkern",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/osset"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1393034,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@OSSet",
+    "modules": [
+      {
+        "name": "DriverKit"
+      },
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "24.4",
+        "introducedAt": "21.0",
+        "name": "DriverKit"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "OSSet"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "DriverKit"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "OSSet"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/osarray",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSArray",
+              "text": "OSArray"
+            }
+          ]
+        },
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "OSSet"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSCollection",
+              "text": "OSCollection"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "OSSet is a container for Libkern C++ objects (those derived from OSMetaClassBase, in particular OSObject). Storage and access follow basic set logic: you can add or remove an object, and test whether the set contains a particular object. A given object is only stored in the set once, and there is no ordering of objects in the set. A subclass OSOrderedSet, provides for ordered set logic.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As with all Libkern collection classes, OSSet retains objects added to it, and releases objects removed from it. An OSSet also grows as necessary to accommodate new objects, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "unlike",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " Core Foundation collections (it does not, however, shrink).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use Restrictions",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With very few exceptions in the I/O Kit, all Libkern-based C++ classes, functions, and macros are ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "unsafe",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " to use in a primary interrupt context. Consult the I/O Kit documentation related to primary interrupts for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "OSSet provides no concurrency protection; it's up to the usage context to provide any protection necessary. Some portions of the I/O Kit, such as IORegistryEntry, handle synchronization via defined member functions for setting properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/driverkit/osarray": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSArray",
+      "type": "topic",
+      "url": "/documentation/driverkit/osarray"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osset/3758352-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osset/3758352-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/driverkit/osset/3758352-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "libkern",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern/data_types": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern/data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Types",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern/data_types"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray": {
+      "abstract": [
+        {
+          "text": "OSArray provides an indexed store of objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSArray",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for Libkern collections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSCollection",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollectioniterator": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollectioniterator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSCollectionIterator",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollectioniterator"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdictionary": {
+      "abstract": [
+        {
+          "text": "OSDictionary provides an associative store using strings for keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSDictionary",
+      "type": "topic",
+      "url": "/documentation/kernel/osdictionary"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ositerator": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for Libkern iterators.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ositerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSIterator",
+      "type": "topic",
+      "url": "/documentation/kernel/ositerator"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osorderedset": {
+      "abstract": [
+        {
+          "text": "OSOrderedSet provides an ordered set store of objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osorderedset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSOrderedSet",
+      "type": "topic",
+      "url": "/documentation/kernel/osorderedset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset": {
+      "abstract": [
+        {
+          "text": "OSSet provides an unordered set store of objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSSet",
+      "type": "topic",
+      "url": "/documentation/kernel/osset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535159-flushcollection": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "flushCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535159-flushcollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "flushCollection",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535159-flushcollection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535161-initwithset": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535161-initwithset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithSet",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535161-initwithset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535162-initwithcapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535162-initwithcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535162-initwithcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535163-withcapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535163-withcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535163-withcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535164-inititerator": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initIterator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535164-inititerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initIterator",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535164-inititerator"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535166-getanyobject": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getAnyObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535166-getanyobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getAnyObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535166-getanyobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535167-getnextobjectforiterator": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNextObjectForIterator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535167-getnextobjectforiterator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getNextObjectForIterator",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535167-getnextobjectforiterator"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535168-merge": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "merge"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535168-merge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "merge",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535168-merge"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535169-getcapacityincrement": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCapacityIncrement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535169-getcapacityincrement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCapacityIncrement",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535169-getcapacityincrement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535170-containsobject": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "containsObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535170-containsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "containsObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535170-containsobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535171-isequalto": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqualTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535171-isequalto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqualTo",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535171-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535173-setcapacityincrement": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCapacityIncrement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535173-setcapacityincrement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCapacityIncrement",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535173-setcapacityincrement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535174-initwitharray": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535174-initwitharray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithArray",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535174-initwitharray"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535175-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535175-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535175-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535176-witharray": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535176-witharray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withArray",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535176-witharray"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535177-setoptions": {
+      "abstract": [
+        {
+          "text": "Recursively sets option bits in the set and all child collections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535177-setoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setOptions",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535177-setoptions"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535179-member": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "member"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535179-member",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "member",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535179-member"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535180-iteratorsize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "iteratorSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535180-iteratorsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "iteratorSize",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535180-iteratorsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535182-getcount": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCount"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535182-getcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCount",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535182-getcount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535183-removeobject": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535183-removeobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535183-removeobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535185-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535185-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535185-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535186-withset": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535186-withset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withSet",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535186-withset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535188-setobject": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535188-setobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535188-setobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535189-initwithobjects": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithObjects"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535189-initwithobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithObjects",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535189-initwithobjects"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535191-serialize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "serialize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535191-serialize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "serialize",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535191-serialize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535193-withobjects": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withObjects"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535193-withobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withObjects",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535193-withobjects"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535195-ensurecapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ensureCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535195-ensurecapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ensureCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535195-ensurecapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535197-getcapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535197-getcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535197-getcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1535199-copycollection": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1535199-copycollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copyCollection",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1535199-copycollection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1808031-containsobject": {
+      "abstract": [
+        {
+          "text": "Checks the set for the presence of an object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1808031-containsobject",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "containsObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1808031-containsobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1808046-copycollection": {
+      "abstract": [
+        {
+          "text": "Creates a deep copy of this set and its child collections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1808046-copycollection",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "copyCollection",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1808046-copycollection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1808068-ensurecapacity": {
+      "abstract": [
+        {
+          "text": "Ensures the set has enough space to store the requested number of distinct objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1808068-ensurecapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "ensureCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1808068-ensurecapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1808084-flushcollection": {
+      "abstract": [
+        {
+          "text": "Removes and releases all objects within the set.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1808084-flushcollection",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "flushCollection",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1808084-flushcollection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1808104-free": {
+      "abstract": [
+        {
+          "text": "Deallocates or releases any resources used by the OSSet instance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1808104-free",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1808104-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1808128-getanyobject": {
+      "abstract": [
+        {
+          "text": "Returns an arbitrary (not random) object from the set.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1808128-getanyobject",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getAnyObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1808128-getanyobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1808152-getcapacity": {
+      "abstract": [
+        {
+          "text": "Returns the number of objects the set can store without reallocating.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1808152-getcapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1808152-getcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1808173-getcapacityincrement": {
+      "abstract": [
+        {
+          "text": "Returns the storage increment of the set.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1808173-getcapacityincrement",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCapacityIncrement",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1808173-getcapacityincrement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1808189-getcount": {
+      "abstract": [
+        {
+          "text": "Returns the current number of objects within the set.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1808189-getcount",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCount",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1808189-getcount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1808200-initwitharray": {
+      "abstract": [
+        {
+          "text": "Initializes a new OSSet populated with the contents of an OSArray.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1808200-initwitharray",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithArray",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1808200-initwitharray"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1808213-initwithcapacity": {
+      "abstract": [
+        {
+          "text": "Initializes a new instance of OSSet.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1808213-initwithcapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1808213-initwithcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1808221-initwithobjects": {
+      "abstract": [
+        {
+          "text": "Initializes a new OSSet populated with objects provided.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1808221-initwithobjects",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithObjects",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1808221-initwithobjects"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1808228-initwithset": {
+      "abstract": [
+        {
+          "text": "Initializes a new OSSet populated with the contents of another OSSet.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1808228-initwithset",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithSet",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1808228-initwithset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1808235-isequalto": {
+      "abstract": [
+        {
+          "text": "Tests the equality of an OSSet against an arbitrary object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1808235-isequalto",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isEqualTo(const OSMetaClassBase *)",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1808235-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1808239-isequalto": {
+      "abstract": [
+        {
+          "text": "Tests the equality of two OSSet objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1808239-isequalto",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isEqualTo(const OSSet *)",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1808239-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1808245-member": {
+      "abstract": [
+        {
+          "text": "Checks the set for the presence of an object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1808245-member",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "member",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1808245-member"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1808250-merge": {
+      "abstract": [
+        {
+          "text": "Adds the contents of an OSArray to the set.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1808250-merge",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "merge(const OSArray *)",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1808250-merge"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1808253-merge": {
+      "abstract": [
+        {
+          "text": "Adds the contents of an OSet to the set.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1808253-merge",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "merge(const OSSet *)",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1808253-merge"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1808257-removeobject": {
+      "abstract": [
+        {
+          "text": "Removes an object from the set.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1808257-removeobject",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "removeObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1808257-removeobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1808260-serialize": {
+      "abstract": [
+        {
+          "text": "Archives the receiver into the provided OSSerialize object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1808260-serialize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "serialize",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1808260-serialize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1808264-setcapacityincrement": {
+      "abstract": [
+        {
+          "text": "Sets the storage increment of the set.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1808264-setcapacityincrement",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCapacityIncrement",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1808264-setcapacityincrement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1808269-setobject": {
+      "abstract": [
+        {
+          "text": "Adds an object to the OSSet if it is not already present.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1808269-setobject",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1808269-setobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1808277-witharray": {
+      "abstract": [
+        {
+          "text": "Creates and initializes an OSSet populated with the contents of an OSArray.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1808277-witharray",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withArray",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1808277-witharray"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1808282-withcapacity": {
+      "abstract": [
+        {
+          "text": "Creates and initializes an empty OSSet.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1808282-withcapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1808282-withcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1808287-withobjects": {
+      "abstract": [
+        {
+          "text": "Creates and initializes an OSSet populated with objects provided.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1808287-withobjects",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withObjects",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1808287-withobjects"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/1808291-withset": {
+      "abstract": [
+        {
+          "text": "Creates and initializes an OSSet populated with the contents of another OSSet.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/1808291-withset",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withSet",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/1808291-withset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/3516842-isequalto": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqualTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/3516842-isequalto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqualTo",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/3516842-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/3516843-merge": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "merge"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/3516843-merge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "merge",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/3516843-merge"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/3567176-removeobject": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/3567176-removeobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/3567176-removeobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset/3567177-setobject": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset/3567177-setobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osset/3567177-setobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/osarray",
+        "doc://com.apple.documentation/documentation/kernel/oscollection"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osarray",
+        "doc://com.apple.documentation/documentation/kernel/osdictionary",
+        "doc://com.apple.documentation/documentation/kernel/osorderedset",
+        "doc://com.apple.documentation/documentation/kernel/oscollection",
+        "doc://com.apple.documentation/documentation/kernel/oscollectioniterator",
+        "doc://com.apple.documentation/documentation/kernel/ositerator"
+      ],
+      "title": "Collections"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1673561",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osset/1808031-containsobject",
+        "doc://com.apple.documentation/documentation/kernel/osset/1808046-copycollection",
+        "doc://com.apple.documentation/documentation/kernel/osset/1808068-ensurecapacity",
+        "doc://com.apple.documentation/documentation/kernel/osset/1808084-flushcollection",
+        "doc://com.apple.documentation/documentation/kernel/osset/1808104-free",
+        "doc://com.apple.documentation/documentation/kernel/osset/1808128-getanyobject",
+        "doc://com.apple.documentation/documentation/kernel/osset/1808152-getcapacity",
+        "doc://com.apple.documentation/documentation/kernel/osset/1808173-getcapacityincrement",
+        "doc://com.apple.documentation/documentation/kernel/osset/1808189-getcount",
+        "doc://com.apple.documentation/documentation/kernel/osset/1808200-initwitharray",
+        "doc://com.apple.documentation/documentation/kernel/osset/1808213-initwithcapacity",
+        "doc://com.apple.documentation/documentation/kernel/osset/1808221-initwithobjects",
+        "doc://com.apple.documentation/documentation/kernel/osset/1808228-initwithset",
+        "doc://com.apple.documentation/documentation/kernel/osset/1808235-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osset/1808239-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osset/1808245-member",
+        "doc://com.apple.documentation/documentation/kernel/osset/1808250-merge",
+        "doc://com.apple.documentation/documentation/kernel/osset/1808253-merge",
+        "doc://com.apple.documentation/documentation/kernel/osset/1808257-removeobject",
+        "doc://com.apple.documentation/documentation/kernel/osset/1808260-serialize",
+        "doc://com.apple.documentation/documentation/kernel/osset/1808264-setcapacityincrement",
+        "doc://com.apple.documentation/documentation/kernel/osset/1808269-setobject",
+        "doc://com.apple.documentation/documentation/kernel/osset/1808277-witharray",
+        "doc://com.apple.documentation/documentation/kernel/osset/1808282-withcapacity",
+        "doc://com.apple.documentation/documentation/kernel/osset/1808287-withobjects",
+        "doc://com.apple.documentation/documentation/kernel/osset/1808291-withset"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "2863043",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osset/1535170-containsobject",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535199-copycollection",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535195-ensurecapacity",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535159-flushcollection",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535175-free",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535166-getanyobject",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535197-getcapacity",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535169-getcapacityincrement",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535182-getcount",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535185-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535167-getnextobjectforiterator",
+        "doc://com.apple.documentation/documentation/driverkit/osset/3758352-init",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535164-inititerator",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535174-initwitharray",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535162-initwithcapacity",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535189-initwithobjects",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535161-initwithset",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535171-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osset/3516842-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535180-iteratorsize",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535179-member",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535168-merge",
+        "doc://com.apple.documentation/documentation/kernel/osset/3516843-merge",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535183-removeobject",
+        "doc://com.apple.documentation/documentation/kernel/osset/3567176-removeobject",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535191-serialize",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535173-setcapacityincrement",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535188-setobject",
+        "doc://com.apple.documentation/documentation/kernel/osset/3567177-setobject",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535177-setoptions"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "2863044",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osset/1535176-witharray",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535163-withcapacity",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535193-withobjects",
+        "doc://com.apple.documentation/documentation/kernel/osset/1535186-withset"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/osset",
+        "documentation/driverkit/osset"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

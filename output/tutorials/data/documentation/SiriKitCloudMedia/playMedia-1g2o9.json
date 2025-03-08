@@ -1,0 +1,1141 @@
+{
+  "abstract": [
+    {
+      "text": "Interpret the user’s request to play a media item, and provide instructions to access a corresponding playback queue.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "SiriKit Cloud Media",
+      "versions": [
+        "1.1.0",
+        "1.1.1"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/playMedia-1g2o9"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:sirikit_media_api:post:intent-playMedia",
+    "modules": [
+      {
+        "name": "SiriKit Cloud Media"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "playMedia"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0.2",
+        "name": "SiriKit Cloud Media"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Process a Play Media Intent"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://cloudextension-testservice.local/api/"
+        },
+        {
+          "kind": "path",
+          "text": "intent/playMedia"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The client’s current user interface language. Respond with localized content for this language, if available.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Accept-Language",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "minimum",
+              "value": "1"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An approximate deadline, in seconds, for processing this real-time user request. The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Session",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object provides the exact deadline for handling an intent.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Request-Timeout",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "uint32"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "maximumLength",
+              "value": "250"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "/AppleCloudExtension/([0-9]+\\.[0-9]+\\.[0-9]+) *.*/"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The extension protocol running on the client. This is an RFC 7231-compliant string that contains the product name ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AppleCloudExtension",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " and the SiriKit Extension library version running on the client.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "User-Agent",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "minimum",
+              "value": "1"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of previous requests from the client. The client omits this header on the first attempt.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "x-applecloudextension-retry-count",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "uint32"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "minimumLength",
+              "value": "1"
+            },
+            {
+              "kind": "maximumLength",
+              "value": "128"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A constant session identifier to include in each request and response. Respond to each request with the session ID the client sends in that request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "x-applecloudextension-session-id",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "header",
+      "title": "Header Parameters"
+    },
+    {
+      "bodyContentType": [
+        {
+          "kind": "text",
+          "text": "["
+        },
+        {
+          "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingInvocation",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "data:sirikit_media_api:PlayMediaIntentHandlingInvocation",
+          "text": "PlayMediaIntentHandlingInvocation"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "An array of intents to play media.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request is successful.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingInvocationResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:sirikit_media_api:PlayMediaIntentHandlingInvocationResponse",
+              "text": "PlayMediaIntentHandlingInvocationResponse"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Processing a play media request requires a few steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resolve the intended media item.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resolve any playback customizations, such as repeat mode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Handle the intent.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide a playback queue.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can improve the overall response time to the user’s request by providing a response for resolving any playback customizations, and handling the intent alongside your response to the request to resolve the intended media item. This allows the client to skip subsequent requests when you can resolve each parameter successfully. If your service responds with a disambiguation, confirmation, or failure, the client disregards the pre-emptive responses, and sends the subsequent intent-processing requests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia": {
+      "abstract": [
+        {
+          "text": "Stream music directly to HomePod speakers from your media service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SiriKit Cloud Media",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntent": {
+      "abstract": [
+        {
+          "text": "An object that describes the user’s request to play a media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayMediaIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayMediaIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayMediaIntent",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmediaintent"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingHandleInvocationResponse": {
+      "abstract": [
+        {
+          "text": "Your service’s response to a request to handle a fully resolved play media intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayMediaIntentHandlingHandleInvocationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingHandleInvocationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayMediaIntentHandlingHandleInvocationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayMediaIntentHandlingHandleInvocationResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmediaintenthandlinghandleinvocationresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingInvocation": {
+      "abstract": [
+        {
+          "text": "A request to process a play media intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayMediaIntentHandlingInvocation"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingInvocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayMediaIntentHandlingInvocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayMediaIntentHandlingInvocation",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmediaintenthandlinginvocation"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingInvocationResponse": {
+      "abstract": [
+        {
+          "text": "The service’s response to a request to process a play media intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayMediaIntentHandlingInvocationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingInvocationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayMediaIntentHandlingInvocationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayMediaIntentHandlingInvocationResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmediaintenthandlinginvocationresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingResolveMediaItemsInvocationResponse": {
+      "abstract": [
+        {
+          "text": "Your service’s response to a request to resolve media items in a play media intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayMediaIntentHandlingResolveMediaItemsInvocationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingResolveMediaItemsInvocationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayMediaIntentHandlingResolveMediaItemsInvocationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayMediaIntentHandlingResolveMediaItemsInvocationResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmediaintenthandlingresolvemediaitemsinvocationresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingResolvePlayShuffledInvocationResponse": {
+      "abstract": [
+        {
+          "text": "Your service’s response to a request to resolve whether a play media intent requests a shuffled queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayMediaIntentHandlingResolvePlayShuffledInvocationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingResolvePlayShuffledInvocationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayMediaIntentHandlingResolvePlayShuffledInvocationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayMediaIntentHandlingResolvePlayShuffledInvocationResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmediaintenthandlingresolveplayshuffledinvocationresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingResolvePlaybackQueueLocationInvocationResponse": {
+      "abstract": [
+        {
+          "text": "Your service’s response to a request to resolve the queue location in a play media intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayMediaIntentHandlingResolvePlaybackQueueLocationInvocationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingResolvePlaybackQueueLocationInvocationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayMediaIntentHandlingResolvePlaybackQueueLocationInvocationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayMediaIntentHandlingResolvePlaybackQueueLocationInvocationResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmediaintenthandlingresolveplaybackqueuelocationinvocationresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingResolvePlaybackRepeatModeInvocationResponse": {
+      "abstract": [
+        {
+          "text": "Your service’s response to a request to resolve the repeat mode in a play media intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayMediaIntentHandlingResolvePlaybackRepeatModeInvocationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingResolvePlaybackRepeatModeInvocationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayMediaIntentHandlingResolvePlaybackRepeatModeInvocationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayMediaIntentHandlingResolvePlaybackRepeatModeInvocationResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmediaintenthandlingresolveplaybackrepeatmodeinvocationresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingResolvePlaybackRepeatModeInvocationResponse/Result-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The result of resolving the repeat mode for a play media intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayMediaIntentHandlingResolvePlaybackRepeatModeInvocationResponse.Result"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingResolvePlaybackRepeatModeInvocationResponse/Result-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayMediaIntentHandlingResolvePlaybackRepeatModeInvocationResponse.Result"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayMediaIntentHandlingResolvePlaybackRepeatModeInvocationResponse.Result",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmediaintenthandlingresolveplaybackrepeatmodeinvocationresponse/result-data.dictionary"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingResolveResumePlaybackInvocationResponse": {
+      "abstract": [
+        {
+          "text": "Your service’s response to a request to resolve whether a play media intent resumes the current playback queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayMediaIntentHandlingResolveResumePlaybackInvocationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingResolveResumePlaybackInvocationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayMediaIntentHandlingResolveResumePlaybackInvocationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayMediaIntentHandlingResolveResumePlaybackInvocationResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmediaintenthandlingresolveresumeplaybackinvocationresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentResponse": {
+      "abstract": [
+        {
+          "text": "A structure that contains a response code indicating how your service handles a play media intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayMediaIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayMediaIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayMediaIntentResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmediaintentresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentResponseCode": {
+      "abstract": [
+        {
+          "text": "Codes your service can return when handling a play media intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayMediaIntentResponseCode"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentResponseCode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayMediaIntentResponseCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayMediaIntentResponseCode",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmediaintentresponsecode"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaMediaItemResolutionResult": {
+      "abstract": [
+        {
+          "text": "A media item that matches a play media intent, or information about why your service can’t provide a media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayMediaMediaItemResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaMediaItemResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayMediaMediaItemResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayMediaMediaItemResolutionResult",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmediamediaitemresolutionresult"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaMediaItemUnsupportedReason": {
+      "abstract": [
+        {
+          "text": "Reasons the media service can’t play the media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayMediaMediaItemUnsupportedReason"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaMediaItemUnsupportedReason",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayMediaMediaItemUnsupportedReason"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayMediaMediaItemUnsupportedReason",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmediamediaitemunsupportedreason"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlaybackQueueLocation": {
+      "abstract": [
+        {
+          "text": "Possible locations in a playback queue to insert a media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaybackQueueLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlaybackQueueLocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlaybackQueueLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlaybackQueueLocation",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playbackqueuelocation"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlaybackQueueLocationResolutionResult": {
+      "abstract": [
+        {
+          "text": "Information about whether your service can resolve the specified queue location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaybackQueueLocationResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlaybackQueueLocationResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlaybackQueueLocationResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlaybackQueueLocationResolutionResult",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playbackqueuelocationresolutionresult"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlaybackRepeatMode": {
+      "abstract": [
+        {
+          "text": "The possible repeat modes for a media queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaybackRepeatMode"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlaybackRepeatMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlaybackRepeatMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlaybackRepeatMode",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playbackrepeatmode"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlaybackRepeatModeResolutionResult": {
+      "abstract": [
+        {
+          "text": "Information about whether your service can identify the specified repeat mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaybackRepeatModeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlaybackRepeatModeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlaybackRepeatModeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlaybackRepeatModeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playbackrepeatmoderesolutionresult"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Session": {
+      "abstract": [
+        {
+          "text": "Information the client provides about a sequence of requests and responses to process an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Session"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Session",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Session"
+        }
+      ],
+      "role": "symbol",
+      "title": "Session",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/session"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/playMedia-1g2o9": {
+      "abstract": [
+        {
+          "text": "Interpret the user’s request to play a media item, and provide instructions to access a corresponding playback queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/playMedia-1g2o9",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playMedia"
+        }
+      ],
+      "role": "symbol",
+      "title": "Process a Play Media Intent",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmedia-1g2o9"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/playMedia-1onzj": {
+      "abstract": [
+        {
+          "text": "Provide a playback queue from a successfully processed play media intent.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/playMedia-1onzj",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playMedia"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Media Queue",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmedia-1onzj"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Media-Play-Queues",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/playMedia-1onzj"
+      ],
+      "title": "Media Play Queues"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Processing-a-Play-Media-Intent",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntent",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingInvocation",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingInvocationResponse"
+      ],
+      "title": "Processing a Play Media Intent"
+    },
+    {
+      "anchor": "Resolving-a-Media-Item",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingResolveMediaItemsInvocationResponse",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaMediaItemResolutionResult",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaMediaItemUnsupportedReason"
+      ],
+      "title": "Resolving a Media Item"
+    },
+    {
+      "anchor": "Handling-a-Play-Media-Intent",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingHandleInvocationResponse",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentResponse",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentResponseCode"
+      ],
+      "title": "Handling a Play Media Intent"
+    },
+    {
+      "anchor": "Resolving-the-Intended-Repeat-Mode",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingResolvePlaybackRepeatModeInvocationResponse",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingResolvePlaybackRepeatModeInvocationResponse/Result-data.dictionary",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlaybackRepeatModeResolutionResult",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlaybackRepeatMode"
+      ],
+      "title": "Resolving the Intended Repeat Mode"
+    },
+    {
+      "anchor": "Resolving-the-Intended-Queue-Location",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingResolvePlaybackQueueLocationInvocationResponse",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlaybackQueueLocationResolutionResult",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlaybackQueueLocation"
+      ],
+      "title": "Resolving the Intended Queue Location"
+    },
+    {
+      "anchor": "Resuming-Playback",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingResolveResumePlaybackInvocationResponse"
+      ],
+      "title": "Resuming Playback"
+    },
+    {
+      "anchor": "Shuffling-Playback",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaIntentHandlingResolvePlayShuffledInvocationResponse"
+      ],
+      "title": "Shuffling Playback"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/sirikitcloudmedia/playmedia-1g2o9"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

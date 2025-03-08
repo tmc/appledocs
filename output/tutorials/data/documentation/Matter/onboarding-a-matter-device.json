@@ -1,0 +1,2064 @@
+{
+  "abstract": [
+    {
+      "text": "Prepare your app to discover and control a Matter device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.matter/documentation/Matter"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.matter/documentation/Matter/onboarding-a-matter-device"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Matter"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Onboarding a Matter device"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want your app to interact with a Matter device, you need to commission it. ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Commissioning",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " a Matter device makes it a part of your ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "fabric",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which is a collection of Matter devices that communicate with each other.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can securely commission a Matter device using certificates. Generate your own certificates using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.matter/documentation/Matter/MTRCertificates",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or another process. Alternatively, you can provide a root ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.matter/documentation/Matter/MTRKeypair",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and the Matter framework generates certificates for you.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Obtain-the-onboarding-payload",
+          "level": 3,
+          "text": "Obtain the onboarding payload",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MatterSupport",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework provides an onboarding payload that you use to discover a device. Implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/commissionDevice(in:onboardingPayload:commissioningID:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to obtain the onboarding payload, then securely commission a Matter device using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.matter/documentation/Matter/MTRDeviceController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MatterSupport/Adding-Matter-support-to-your-ecosystem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-persistent-storage",
+          "level": 3,
+          "text": "Provide persistent storage",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.matter/documentation/Matter/MTRStorage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " so that the Matter framework can store and retrieve persistent data, then create an instance of that object and pass it to an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.matter/documentation/Matter/MTRDeviceControllerFactoryParams",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Set the factory parameter object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.matter/documentation/Matter/MTRDeviceControllerFactoryParams/productAttestationAuthorityCertificates",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to an array of trusted Matter certificates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Obtain a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.matter/documentation/Matter/MTRDeviceControllerFactory",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " shared instance, then call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.matter/documentation/Matter/MTRDeviceControllerFactory/start(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and handle any errors that may occur.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class MyStorage : NSObject, MTRStorage {",
+            "    func storageData(forKey key: String) -> Data? {",
+            "        // Return the data for the given key, if any.",
+            "    }",
+            "",
+            "    func setStorageData(_ value: Data, forKey key: String) -> Bool {",
+            "        // Store the data for the given key. Return true on success,",
+            "        // false on failure.",
+            "    }",
+            "",
+            "    func removeStorageData(forKey key: String) -> Bool {",
+            "        // Remove the given key from the storage. Return true on success,",
+            "        // false on failure.",
+            "    }",
+            "}",
+            "",
+            "// Obtain the controller factory.",
+            "let factory = MTRDeviceControllerFactory.sharedInstance()",
+            "",
+            "let storage = MyStorage()",
+            "let factoryParams = MTRDeviceControllerFactoryParams(storage: storage)",
+            "",
+            "// Set `factoryParams.productAttestationAuthorityCertificates` to an",
+            "// array of trusted Matter PAA certificates.",
+            "",
+            "do {",
+            "    // Start the controller factory.",
+            "    try factory.start(factoryParams)",
+            "} catch {",
+            "    // Handle any errors.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-up-security-for-the-commissioning",
+          "level": 3,
+          "text": "Set up security for the commissioning",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an Identity Protection Key (IPK) and save it to iCloud Keychain. You need this IPK every time you start the controller for this fabric.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let ipk = NSMutableData(length: 16) else {",
+            "    return",
+            "}",
+            "",
+            "let status = SecRandomCopyBytes(kSecRandomDefault, ipk.count, ipk.mutableBytes)",
+            "",
+            "if status != errSecSuccess {",
+            "    // Handle any errors.",
+            "} else {",
+            "    // Save the IPK in the keychain.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, create ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.matter/documentation/Matter/MTRDeviceControllerStartupParams",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If you’re providing your own operational, intermediate, and root certificates, implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.matter/documentation/Matter/MTROperationalCertificateIssuer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and provide it to the controller so you can issue certificates to devices you commission.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class MyCertificateIssuer : NSObject, MTROperationalCertificateIssuer",
+            "{",
+            "    func issueOperationalCertificate(forRequest csrInfo: MTROperationalCSRInfo, attestationInfo: MTRDeviceAttestationInfo, controller: MTRDeviceController) async throws -> MTROperationalCertificateChain {",
+            "        // Issue your certificates here.",
+            "    }",
+            "    ",
+            "    var shouldSkipAttestationCertificateValidation: Bool = false    ",
+            "}",
+            "",
+            "let params = MTRDeviceControllerStartupParams(ipk: ipk, operationalKeypair: myKeypair, operationalCertificate: operationalCertificate, intermediateCertificate: nil, rootCertificate: rootCertificate)",
+            "params.operationalCertificateIssuer = MyCertificateIssuer()",
+            "params.operationalCertificateIssuerQueue = DispatchQueue(label: \"Certificate issuer queue\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Otherwise, pass in the IPK, a fabric identifier of your choosing, and the root ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.matter/documentation/Matter/MTRKeypair",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " you created earlier. In this case, the Matter framework creates the certificates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let params = MTRDeviceControllerStartupParams(ipk: ipk, ",
+            "fabricID: fabricID, nocSigner: myRootKeypair)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Store the root key and IPK in iCloud Keychain. Make sure you use the same fabric identifier every time you create this controller.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In either case, set ",
+              "type": "text"
+            },
+            {
+              "code": "params.vendorID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to your Connectivity Standards Alliance-assigned vendor identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Commission-the-Matter-device",
+          "level": 3,
+          "text": "Commission the Matter device",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you start commissioning, create a controller. If you’re creating a controller for this fabric for the first time, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.matter/documentation/Matter/MTRDeviceControllerFactory/createController(onNewFabric:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "; otherwise, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.matter/documentation/Matter/MTRDeviceControllerFactory/createController(onExistingFabric:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let controller: MTRDeviceController",
+            "do {",
+            "    controller = try factory.createController(onNewFabric: params)",
+            "} catch {",
+            "    do {",
+            "        controller = try factory.createController(onExistingFabric: params)",
+            "    } catch {",
+            "        // Handle errors.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement the delegate methods to receive callbacks as the commissioning progresses, then call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.matter/documentation/Matter/MTRDeviceController/setDeviceControllerDelegate(_:queue:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to register the delegate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.matter/documentation/Matter/MTRSetupPayload",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.matter/documentation/Matter/MTRSetupPayload/init(onboardingPayload:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", then call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.matter/documentation/Matter/MTRDeviceController/setupCommissioningSession(with:newNodeID:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.matter/documentation/Matter/MTRSetupPayload",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and the node ID to assign to the device. When the commissioning session is set up, the framework calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.matter/documentation/Matter/MTRDeviceControllerDelegate/controller(_:commissioningSessionEstablishmentDone:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.matter/documentation/Matter/MTRDeviceController/commissionNode(withID:commissioningParams:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the node ID and commissioning parameters. When commissioning completes, the framework notifies your delegate with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.matter/documentation/Matter/MTRDevicePairingDelegate/onCommissioningComplete(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let nodeID = 1",
+            "",
+            "class MyControllerDelegate : NSObject, MTRDeviceControllerDelegate {",
+            "    func controller(_ controller: MTRDeviceController, ",
+            "statusUpdate status: MTRCommissioningStatus) {",
+            "        // Check for `MTRCommissioningStatus.failed`, and if so, handle it.",
+            "    }",
+            "",
+            "    func controller(_ controller: MTRDeviceController, ",
+            "commissioningSessionEstablishmentDone error: Error?) {",
+            "        // Check for error and handle it.",
+            "        do {",
+            "            // `myDesiredNodeID` must match the node ID passed to ",
+            "            // `setupCommissioningSessionWithPayload`.",
+            "            try controller.commissionNode(withID: nodeID,",
+            "commissioningParams: MTRCommissioningParameters())",
+            "        } catch {",
+            "            // Handle failure to start commissioning the node.",
+            "        }",
+            "",
+            "        // Keep waiting for `commissioningComplete`.",
+            "    }",
+            "",
+            "    func controller(_ controller: MTRDeviceController, ",
+            "commissioningComplete error: Error?,",
+            "nodeID: NSNumber?) {",
+            "        // Check for error and handle it.",
+            "        // If no error, node is commissioned with `nodeID` as its node ID.",
+            "    }",
+            "}",
+            "",
+            "// Create the delegate and set it.",
+            "let myDelegate = MyControllerDelegate()",
+            "controller.setDevicecontrollerDelegate(myDelegate, queue: )",
+            "",
+            "// Create the `MTRSetupPayload` then start the commissioning.",
+            "let payload = MTRSetupPayload.init(onboardingPayload:onboardingPayload)",
+            "controller.setupCommissioningSession(with: payload, newNodeID: nodeID)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/MatterSupport": {
+      "abstract": [
+        {
+          "text": "Coordinate and control compatible smart home accessories.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MatterSupport",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MatterSupport",
+      "type": "topic",
+      "url": "/documentation/MatterSupport"
+    },
+    "doc://com.apple.documentation/documentation/MatterSupport/Adding-Matter-support-to-your-ecosystem": {
+      "abstract": [
+        {
+          "text": "Allow people to add Matter accessories to your platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MatterSupport/Adding-Matter-support-to-your-ecosystem",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Matter support to your ecosystem",
+      "type": "topic",
+      "url": "/documentation/MatterSupport/Adding-Matter-support-to-your-ecosystem"
+    },
+    "doc://com.apple.documentation/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/commissionDevice(in:onboardingPayload:commissioningID:)": {
+      "abstract": [
+        {
+          "text": "Commissions the device with the onboarding payload.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commissionDevice"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:13MatterSupport0A16AddDeviceRequestV",
+          "text": "MatterAddDeviceRequest"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:13MatterSupport0A16AddDeviceRequestV4HomeV",
+          "text": "Home"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "onboardingPayload"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "commissioningID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/commissionDevice(in:onboardingPayload:commissioningID:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commissionDevice(in:onboardingPayload:commissioningID:)",
+      "type": "topic",
+      "url": "/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/commissionDevice(in:onboardingPayload:commissioningID:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.matter/documentation/Matter": {
+      "abstract": [
+        {
+          "text": "Communicate with and control smart home devices from a variety of manufacturers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.matter/documentation/Matter",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Matter",
+      "type": "topic",
+      "url": "/documentation/matter"
+    },
+    "doc://com.apple.matter/documentation/Matter/MTRCertificates": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTRCertificates"
+        }
+      ],
+      "identifier": "doc://com.apple.matter/documentation/Matter/MTRCertificates",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTRCertificates"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTRCertificates",
+      "type": "topic",
+      "url": "/documentation/matter/mtrcertificates"
+    },
+    "doc://com.apple.matter/documentation/Matter/MTRDeviceController": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTRDeviceController"
+        }
+      ],
+      "identifier": "doc://com.apple.matter/documentation/Matter/MTRDeviceController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTRDeviceController"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTRDeviceController",
+      "type": "topic",
+      "url": "/documentation/matter/mtrdevicecontroller"
+    },
+    "doc://com.apple.matter/documentation/Matter/MTRDeviceController/commissionNode(withID:commissioningParams:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commissionNode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "commissioningParams"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTRCommissioningParameters",
+          "text": "MTRCommissioningParameters"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.matter/documentation/Matter/MTRDeviceController/commissionNode(withID:commissioningParams:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "commissionNodeWithID:commissioningParams:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "commissionNode(withID:commissioningParams:)",
+      "type": "topic",
+      "url": "/documentation/matter/mtrdevicecontroller/commissionnode(withid:commissioningparams:)"
+    },
+    "doc://com.apple.matter/documentation/Matter/MTRDeviceController/setDeviceControllerDelegate(_:queue:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDeviceControllerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTRDeviceControllerDelegate",
+          "text": "MTRDeviceControllerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "queue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.matter/documentation/Matter/MTRDeviceController/setDeviceControllerDelegate(_:queue:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setDeviceControllerDelegate:queue:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setDeviceControllerDelegate(_:queue:)",
+      "type": "topic",
+      "url": "/documentation/matter/mtrdevicecontroller/setdevicecontrollerdelegate(_:queue:)"
+    },
+    "doc://com.apple.matter/documentation/Matter/MTRDeviceController/setupCommissioningSession(with:newNodeID:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setupCommissioningSession"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTRSetupPayload",
+          "text": "MTRSetupPayload"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "newNodeID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.matter/documentation/Matter/MTRDeviceController/setupCommissioningSession(with:newNodeID:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setupCommissioningSessionWithPayload:newNodeID:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setupCommissioningSession(with:newNodeID:)",
+      "type": "topic",
+      "url": "/documentation/matter/mtrdevicecontroller/setupcommissioningsession(with:newnodeid:)"
+    },
+    "doc://com.apple.matter/documentation/Matter/MTRDeviceControllerDelegate/controller(_:commissioningSessionEstablishmentDone:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "controller"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTRDeviceController",
+          "text": "MTRDeviceController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "commissioningSessionEstablishmentDone"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.matter/documentation/Matter/MTRDeviceControllerDelegate/controller(_:commissioningSessionEstablishmentDone:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "controller:commissioningSessionEstablishmentDone:"
+        }
+      ],
+      "role": "symbol",
+      "title": "controller(_:commissioningSessionEstablishmentDone:)",
+      "type": "topic",
+      "url": "/documentation/matter/mtrdevicecontrollerdelegate/controller(_:commissioningsessionestablishmentdone:)"
+    },
+    "doc://com.apple.matter/documentation/Matter/MTRDeviceControllerFactory": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTRDeviceControllerFactory"
+        }
+      ],
+      "identifier": "doc://com.apple.matter/documentation/Matter/MTRDeviceControllerFactory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTRDeviceControllerFactory"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTRDeviceControllerFactory",
+      "type": "topic",
+      "url": "/documentation/matter/mtrdevicecontrollerfactory"
+    },
+    "doc://com.apple.matter/documentation/Matter/MTRDeviceControllerFactory/createController(onExistingFabric:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "createController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "onExistingFabric"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTRDeviceControllerStartupParams",
+          "text": "MTRDeviceControllerStartupParams"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTRDeviceController",
+          "text": "MTRDeviceController"
+        }
+      ],
+      "identifier": "doc://com.apple.matter/documentation/Matter/MTRDeviceControllerFactory/createController(onExistingFabric:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "createControllerOnExistingFabric:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "createController(onExistingFabric:)",
+      "type": "topic",
+      "url": "/documentation/matter/mtrdevicecontrollerfactory/createcontroller(onexistingfabric:)"
+    },
+    "doc://com.apple.matter/documentation/Matter/MTRDeviceControllerFactory/createController(onNewFabric:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "createController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "onNewFabric"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTRDeviceControllerStartupParams",
+          "text": "MTRDeviceControllerStartupParams"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTRDeviceController",
+          "text": "MTRDeviceController"
+        }
+      ],
+      "identifier": "doc://com.apple.matter/documentation/Matter/MTRDeviceControllerFactory/createController(onNewFabric:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "createControllerOnNewFabric:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "createController(onNewFabric:)",
+      "type": "topic",
+      "url": "/documentation/matter/mtrdevicecontrollerfactory/createcontroller(onnewfabric:)"
+    },
+    "doc://com.apple.matter/documentation/Matter/MTRDeviceControllerFactory/start(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTRDeviceControllerFactoryParams",
+          "text": "MTRDeviceControllerFactoryParams"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.matter/documentation/Matter/MTRDeviceControllerFactory/start(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startControllerFactory:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "start(_:)",
+      "type": "topic",
+      "url": "/documentation/matter/mtrdevicecontrollerfactory/start(_:)"
+    },
+    "doc://com.apple.matter/documentation/Matter/MTRDeviceControllerFactoryParams": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTRDeviceControllerFactoryParams"
+        }
+      ],
+      "identifier": "doc://com.apple.matter/documentation/Matter/MTRDeviceControllerFactoryParams",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTRDeviceControllerFactoryParams"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTRDeviceControllerFactoryParams",
+      "type": "topic",
+      "url": "/documentation/matter/mtrdevicecontrollerfactoryparams"
+    },
+    "doc://com.apple.matter/documentation/Matter/MTRDeviceControllerFactoryParams/productAttestationAuthorityCertificates": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "productAttestationAuthorityCertificates"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.matter/documentation/Matter/MTRDeviceControllerFactoryParams/productAttestationAuthorityCertificates",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "productAttestationAuthorityCertificates"
+        }
+      ],
+      "role": "symbol",
+      "title": "productAttestationAuthorityCertificates",
+      "type": "topic",
+      "url": "/documentation/matter/mtrdevicecontrollerfactoryparams/productattestationauthoritycertificates"
+    },
+    "doc://com.apple.matter/documentation/Matter/MTRDeviceControllerStartupParams": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTRDeviceControllerStartupParams"
+        }
+      ],
+      "identifier": "doc://com.apple.matter/documentation/Matter/MTRDeviceControllerStartupParams",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTRDeviceControllerStartupParams"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTRDeviceControllerStartupParams",
+      "type": "topic",
+      "url": "/documentation/matter/mtrdevicecontrollerstartupparams"
+    },
+    "doc://com.apple.matter/documentation/Matter/MTRDevicePairingDelegate/onCommissioningComplete(_:)": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onCommissioningComplete"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.matter/documentation/Matter/MTRDevicePairingDelegate/onCommissioningComplete(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "onCommissioningComplete:"
+        }
+      ],
+      "role": "symbol",
+      "title": "onCommissioningComplete(_:)",
+      "type": "topic",
+      "url": "/documentation/matter/mtrdevicepairingdelegate/oncommissioningcomplete(_:)"
+    },
+    "doc://com.apple.matter/documentation/Matter/MTRKeypair": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTRKeypair"
+        }
+      ],
+      "identifier": "doc://com.apple.matter/documentation/Matter/MTRKeypair",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTRKeypair"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTRKeypair",
+      "type": "topic",
+      "url": "/documentation/matter/mtrkeypair"
+    },
+    "doc://com.apple.matter/documentation/Matter/MTROperationalCertificateIssuer": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTROperationalCertificateIssuer"
+        }
+      ],
+      "identifier": "doc://com.apple.matter/documentation/Matter/MTROperationalCertificateIssuer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTROperationalCertificateIssuer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTROperationalCertificateIssuer",
+      "type": "topic",
+      "url": "/documentation/matter/mtroperationalcertificateissuer"
+    },
+    "doc://com.apple.matter/documentation/Matter/MTRSetupPayload": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTRSetupPayload"
+        }
+      ],
+      "identifier": "doc://com.apple.matter/documentation/Matter/MTRSetupPayload",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTRSetupPayload"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTRSetupPayload",
+      "type": "topic",
+      "url": "/documentation/matter/mtrsetuppayload"
+    },
+    "doc://com.apple.matter/documentation/Matter/MTRSetupPayload/init(onboardingPayload:)": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "onboardingPayload"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.matter/documentation/Matter/MTRSetupPayload/init(onboardingPayload:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setupPayloadWithOnboardingPayload:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(onboardingPayload:)",
+      "type": "topic",
+      "url": "/documentation/matter/mtrsetuppayload/init(onboardingpayload:)"
+    },
+    "doc://com.apple.matter/documentation/Matter/MTRStorage": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTRStorage"
+        }
+      ],
+      "identifier": "doc://com.apple.matter/documentation/Matter/MTRStorage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTRStorage"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTRStorage",
+      "type": "topic",
+      "url": "/documentation/matter/mtrstorage"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceController~1setDeviceControllerDelegate(_:queue:)/title",
+          "value": "setDeviceControllerDelegate:queue:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceController~1setDeviceControllerDelegate(_:queue:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setDeviceControllerDelegate:queue:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceControllerFactory~1createController(onNewFabric:)/title",
+          "value": "createControllerOnNewFabric:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceControllerFactory~1createController(onNewFabric:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "createControllerOnNewFabric:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceControllerFactoryParams/title",
+          "value": "MTRDeviceControllerFactoryParams"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceControllerFactoryParams/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTRDeviceControllerFactoryParams"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceControllerFactoryParams/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTRDeviceControllerFactoryParams"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceControllerStartupParams/title",
+          "value": "MTRDeviceControllerStartupParams"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceControllerStartupParams/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTRDeviceControllerStartupParams"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceControllerStartupParams/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTRDeviceControllerStartupParams"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceControllerDelegate~1controller(_:commissioningSessionEstablishmentDone:)/title",
+          "value": "controller:commissioningSessionEstablishmentDone:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceControllerDelegate~1controller(_:commissioningSessionEstablishmentDone:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "controller:commissioningSessionEstablishmentDone:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTROperationalCertificateIssuer/title",
+          "value": "MTROperationalCertificateIssuer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTROperationalCertificateIssuer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTROperationalCertificateIssuer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTROperationalCertificateIssuer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTROperationalCertificateIssuer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceControllerFactoryParams~1productAttestationAuthorityCertificates/title",
+          "value": "productAttestationAuthorityCertificates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceControllerFactoryParams~1productAttestationAuthorityCertificates/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "productAttestationAuthorityCertificates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceController~1commissionNode(withID:commissioningParams:)/title",
+          "value": "commissionNodeWithID:commissioningParams:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceController~1commissionNode(withID:commissioningParams:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "commissionNodeWithID:commissioningParams:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRSetupPayload/title",
+          "value": "MTRSetupPayload"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRSetupPayload/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTRSetupPayload"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRSetupPayload/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTRSetupPayload"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRStorage/title",
+          "value": "MTRStorage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRStorage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTRStorage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRStorage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTRStorage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceController/title",
+          "value": "MTRDeviceController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTRDeviceController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTRDeviceController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceController~1setupCommissioningSession(with:newNodeID:)/title",
+          "value": "setupCommissioningSessionWithPayload:newNodeID:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceController~1setupCommissioningSession(with:newNodeID:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setupCommissioningSessionWithPayload:newNodeID:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceControllerFactory/title",
+          "value": "MTRDeviceControllerFactory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceControllerFactory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTRDeviceControllerFactory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceControllerFactory/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTRDeviceControllerFactory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceControllerFactory~1createController(onExistingFabric:)/title",
+          "value": "createControllerOnExistingFabric:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceControllerFactory~1createController(onExistingFabric:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "createControllerOnExistingFabric:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDevicePairingDelegate~1onCommissioningComplete(_:)/title",
+          "value": "onCommissioningComplete:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDevicePairingDelegate~1onCommissioningComplete(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "onCommissioningComplete:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceControllerFactory~1start(_:)/title",
+          "value": "startControllerFactory:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRDeviceControllerFactory~1start(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startControllerFactory:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRKeypair/title",
+          "value": "MTRKeypair"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRKeypair/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTRKeypair"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRKeypair/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTRKeypair"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRCertificates/title",
+          "value": "MTRCertificates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRCertificates/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTRCertificates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRCertificates/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTRCertificates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRSetupPayload~1init(onboardingPayload:)/title",
+          "value": "setupPayloadWithOnboardingPayload:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.matter~1documentation~1Matter~1MTRSetupPayload~1init(onboardingPayload:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "setupPayloadWithOnboardingPayload:error:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/matter/onboarding-a-matter-device"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/matter/onboarding-a-matter-device"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

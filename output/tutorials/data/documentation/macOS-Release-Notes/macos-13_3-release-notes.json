@@ -1,0 +1,1491 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_3-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "macOS Ventura 13.3 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The macOS 13.3 SDK provides support to develop apps for Mac computers running Ventura 13.3. The SDK comes bundled with Xcode 14.3, available from the Mac App Store. For information on the compatibility requirements for Xcode 14.3, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "/documentation/Xcode-Release-Notes/xcode-14_3-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Accelerate",
+          "level": 3,
+          "text": "Accelerate",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The BLAS and LAPACK libraries under the Accelerate framework are now inline with reference version 3.9.1. These new interfaces provide additional functionality and a new ILP64 interface. To use the new interfaces, define ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ACCELERATE_NEW_LAPACK",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " before including the Accelerate or vecLib headers. For ILP64 interfaces, also define ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ACCELERATE_LAPACK_ILP64",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". For Swift projects, specify ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ACCELERATE_NEW_LAPACK=1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ACCELERATE_LAPACK_ILP64=1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as preprocessor macros in Xcode build settings.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(105572917)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Accessory-Security",
+          "level": 3,
+          "text": "Accessory Security",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On Apple silicon portables, SD or SD extended capacity cards require user approval before the card can communicate with macOS.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(102838867)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Core-ML",
+          "level": 3,
+          "text": "Core ML",
+          "type": "heading"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Core ML Model Deployment is being deprecated. Consider using Background Assets or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSURLSession",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instead.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(102993813)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "iCloud-Settings",
+          "level": 3,
+          "text": "iCloud Settings",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You might be unable to enter the upgrade page for iCloud+ from iCloud Settings.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(104629261)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Click “Upgrade to iCloud+” from ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://www.apple.com/icloud/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to trigger the upgrade page.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Some apps which previously displayed sync toggles in iCloud Drive Settings aren’t currently displayed.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(105239897)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Installation",
+          "level": 3,
+          "text": "Installation",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS Ventura 13.3 beta installer fails when upgrading from versions prior to macOS Big Sur.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(106102320)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Upgrade to macOS Ventura 13.2.1 before upgrading to macOS Ventura 13.3.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Metal",
+          "level": 3,
+          "text": "Metal",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/metal/mtlaccelerationstructurecommandencoder?language=objc",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " now supports ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for a refit scratch buffer if the required size of the buffer is zero bytes.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(103192673)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Pages-Numbers-and-Keynote",
+          "level": 3,
+          "text": "Pages, Numbers, and Keynote",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When Advanced Data Protection for iCloud is turned on, Pages, Numbers, and Keynote might unexpectedly require collaborative documents to be closed.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(103463223)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Close the affected document, spreadsheet, or presentation and reopen it after a few minutes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Safari-Web-Extensions",
+          "level": 3,
+          "text": "Safari Web Extensions",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added support for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "modifyHeaders",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " action type for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "declarativeNetRequest",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " rules.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(71867709)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added support for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "browser.storage.session",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to store up to 10MB of data in-memory.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(79283961)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added support for persistent content scripts via ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "browser.scripting.registerContentScript",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "browser.scripting.getRegisteredContentScripts",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "browser.scripting.unregisterContentScripts",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "scripting.updateContentScripts",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(91261369)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "browser.webNavigation",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " events firing for hosts where the extension didn’t have access. Extensions should request host permissions for sites to receive events.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(100204850)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "StoreKit",
+          "level": 3,
+          "text": "StoreKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue causing iOS apps on Mac to fail while purchasing or restoring in-app content.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(102123618)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "SwiftUI",
+          "level": 3,
+          "text": "SwiftUI",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a regression where the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "truncationMode",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " view modifier didn’t truncate ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "TextField",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " on macOS.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(53647517)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Dragging an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Image",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " using ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "draggable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " modifier no longer causes an app to freeze.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(99157719)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: An App defined with a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Window",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " scene will no longer cause the window tabbing menu items to be displayed, nor will it participate in any window tabbing behavior.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(100982500)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Presentations in SwiftUI using the ‘sheet’ or ‘fullScreenCover’ modifier can now be dynamically presented again while a dismiss animation is in progress. Previously, attempting to present again in this case would do nothing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Note: A data race in app code that was previously ignored might cause a sheet to be presented again with this change. If this happens, check that your state isn’t triggering a new presentation.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(101487810)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue on macOS where columns in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Table",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " might not be able to be resized.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(101936572)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: When used as an auxiliary scene in a SwiftUI App, the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Window",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " scene will now behave as an auxiliary window with respect to Stage Manager and full screen mode.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(102106455)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "List",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".sidebar",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " style now supports swipe actions.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(103910772)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "List",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DisclosureGroup",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " now supports expand/collapse animations when ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "isExpanded",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is set within a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "withAnimation",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " block.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(104923100)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Table",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " on macOS will now properly respond to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "scrollTo",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " requests with dynamcially added rows as target IDs.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(105579236)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "SwiftUI-Navigation",
+          "level": 3,
+          "text": "SwiftUI Navigation",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".navigationSplitViewColumn",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".layoutPriority",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " now control the widths of columns of a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NavigationSplitView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " on macOS. Use the existing ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".windowResizability(.contentSize)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " scene modifier if needed to control the window’s size based off a root ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NavigationSplitView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "struct MeasuredNavigationSplit: View {",
+                    "   var body: some View {",
+                    "      NavigationSplitView {",
+                    "          Color.cyan",
+                    "              .navigationSplitViewColumnWidth(min: 90, ideal: 100, max: 300)",
+                    "              .layoutPriority(2)",
+                    "       } content: {",
+                    "          Color.pink",
+                    "              .navigationSplitViewColumnWidth(ideal: 300, max: 400)",
+                    "              .layoutPriority(3)",
+                    "       } detail: {",
+                    "          Color.yellow",
+                    "              .navigationSplitViewColumnWidth(min: 200, ideal: 300)",
+                    "              .layoutPriority(2)",
+                    "       }",
+                    "   }",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "(58333786)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Navigation destinations nested within ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NavigationStack",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NavigationSplitView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " are detected more performantly and reliably, no longer logging update cycles.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(97597634)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Navigation destinations that present a new view on top of a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NavigationSplitViewColumn",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (rather than pushing a view onto a stack in that column) no longer cause an assertion failure on iOS or infinite loop on macOS when the destination view is itself a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NavigationStack",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For example, the below construction is functional",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "NavigationSplitView { ",
+                    "    SidebarView()",
+                    "    .navigationDestination(isPresented: $present) {",
+                    "        NavigationStack { ... }",
+                    "    }",
+                    "} detail: { ... }"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "(103278180)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Navigation destinations with data dependencies captured from ancestor views update more reliably.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "struct DataDependentNavigation: View {",
+                    "  @State var changeColor: Bool = false",
+                    "  @State var present: Bool = false",
+                    "",
+                    "  var body: some View {",
+                    "  NavigationSplitView {",
+                    "    Color.blue",
+                    "      .navigationDestination(isPresented: $present) {",
+                    "           // This is a data dependency from an ancestor view",
+                    "            changeColor ? Color.green : Color.yellow",
+                    "      }",
+                    "  } detail: {",
+                    "    Color.teal",
+                    "  }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "(103429535)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Task-Manager",
+          "level": 3,
+          "text": "Task Manager",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue introduced in macOS Ventura 13.1 that caused the system to post excessive “Background Items Added” notifications after toggling items in System Settings > General > Login Items. Toggling items in macOS Ventura 13.2 doesn’t cause excessive notifications, but that release doesn’t automatically correct the issue inherited from macOS Ventura 13.1.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(102352141)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Virtualization",
+          "level": 3,
+          "text": "Virtualization",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Installing macOS Ventura 13.3 beta on a virtual machine running on a Apple silicon Mac might result in a hang during setup.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(105504504)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "/documentation/Xcode-Release-Notes/xcode-14_3-release-notes": {
+      "identifier": "/documentation/Xcode-Release-Notes/xcode-14_3-release-notes",
+      "title": "Xcode 14.3 Release Notes",
+      "titleInlineContent": [
+        {
+          "text": "Xcode 14.3 Release Notes",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "/documentation/Xcode-Release-Notes/xcode-14_3-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Ventura 13 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-13-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Ventura 13.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-13_1-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Ventura 13.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-13_2-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Ventura 13.4 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-13_4-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_5-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_5-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Ventura 13.5 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-13_5-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the macOS SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "macOS Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes"
+    },
+    "https://developer.apple.com/documentation/metal/mtlaccelerationstructurecommandencoder?language=objc": {
+      "identifier": "https://developer.apple.com/documentation/metal/mtlaccelerationstructurecommandencoder?language=objc",
+      "title": "MTLAccelerationStructureCommandEncoder",
+      "titleInlineContent": [
+        {
+          "text": "MTLAccelerationStructureCommandEncoder",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/metal/mtlaccelerationstructurecommandencoder?language=objc"
+    },
+    "https://www.apple.com/icloud/": {
+      "identifier": "https://www.apple.com/icloud/",
+      "title": "https://www.apple.com/icloud/",
+      "titleInlineContent": [
+        {
+          "text": "https://www.apple.com/icloud/",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.apple.com/icloud/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "macOS-13",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_5-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_4-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_2-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_1-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13-release-notes"
+      ],
+      "title": "macOS 13"
+    }
+  ]
+}

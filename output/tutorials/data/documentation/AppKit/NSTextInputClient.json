@@ -1,0 +1,2691 @@
+{
+  "abstract": [
+    {
+      "text": "A set of methods that text views need to implement to interact properly with the text input management system.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)NSTextInputClient",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSTextInputClient"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSTextInputClient"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "NSTextInputClient"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTextInputClient"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.appkit/documentation/AppKit/adopting-the-system-text-cursor-in-custom-text-views",
+        "doc://com.apple.appkit/documentation/AppKit/supporting-writing-tools-via-the-pasteboard"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create another text view class, you can either subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Methods specific to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " protocol are intended for dealing with text input and generally aren’t suitable for other purposes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextAlternatives": {
+      "abstract": [
+        {
+          "text": "A list of alternative strings for a piece of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextAlternatives"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextAlternatives",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextAlternatives"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextAlternatives",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextalternatives"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextCheckingClient": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextCheckingClient"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextCheckingClient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextCheckingClient"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextCheckingClient",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextcheckingclient"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextContent": {
+      "abstract": [
+        {
+          "text": "A protocol that describes specific kinds of input content types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextContent"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextContent",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextcontent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient": {
+      "abstract": [
+        {
+          "text": "A set of methods that text views need to implement to interact properly with the text input management system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextInputClient"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextInputClient"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextInputClient",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputclient"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/attributedString()": {
+      "abstract": [
+        {
+          "text": "Returns an attributed string representing the receiver’s text storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributedString"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSAttributedString",
+          "text": "NSAttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/attributedString()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attributedString"
+        }
+      ],
+      "role": "symbol",
+      "title": "attributedString()",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputclient/attributedstring()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/attributedSubstring(forProposedRange:actualRange:)": {
+      "abstract": [
+        {
+          "text": "Returns an attributed string derived from the given range in the receiver’s text storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributedSubstring"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forProposedRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "actualRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRangePointer",
+          "text": "NSRangePointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSAttributedString",
+          "text": "NSAttributedString"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/attributedSubstring(forProposedRange:actualRange:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attributedSubstringForProposedRange:actualRange:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "attributedSubstring(forProposedRange:actualRange:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputclient/attributedsubstring(forproposedrange:actualrange:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/baselineDeltaForCharacter(at:)": {
+      "abstract": [
+        {
+          "text": "Returns the baseline position of a given character relative to the origin of rectangle returned by ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/firstRect(forCharacterRange:actualRange:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "baselineDeltaForCharacter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/baselineDeltaForCharacter(at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "baselineDeltaForCharacterAtIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "baselineDeltaForCharacter(at:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputclient/baselinedeltaforcharacter(at:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/characterIndex(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the index of the character whose bounding rectangle includes the given point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "characterIndex"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/characterIndex(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "characterIndexForPoint:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "characterIndex(for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputclient/characterindex(for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/doCommand(by:)": {
+      "abstract": [
+        {
+          "text": "Invokes the action specified by the given selector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "doCommand"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/doCommand(by:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "doCommandBySelector:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "doCommand(by:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputclient/docommand(by:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/documentVisibleRect": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "documentVisibleRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/documentVisibleRect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "documentVisibleRect"
+        }
+      ],
+      "role": "symbol",
+      "title": "documentVisibleRect",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputclient/documentvisiblerect"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/drawsVerticallyForCharacter(at:)": {
+      "abstract": [
+        {
+          "text": "Informs the text input management system whether the protocol-conforming client renders the character at the given index vertically.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "drawsVerticallyForCharacter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/drawsVerticallyForCharacter(at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "drawsVerticallyForCharacterAtIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "drawsVerticallyForCharacter(at:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputclient/drawsverticallyforcharacter(at:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/firstRect(forCharacterRange:actualRange:)": {
+      "abstract": [
+        {
+          "text": "Returns the first logical boundary rectangle for characters in the given range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "firstRect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forCharacterRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "actualRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRangePointer",
+          "text": "NSRangePointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/firstRect(forCharacterRange:actualRange:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "firstRectForCharacterRange:actualRange:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "firstRect(forCharacterRange:actualRange:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputclient/firstrect(forcharacterrange:actualrange:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/fractionOfDistanceThroughGlyph(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the fraction of the distance from the left side of the character to the right side that a given point lies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fractionOfDistanceThroughGlyph"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/fractionOfDistanceThroughGlyph(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fractionOfDistanceThroughGlyphForPoint:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fractionOfDistanceThroughGlyph(for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputclient/fractionofdistancethroughglyph(for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/hasMarkedText()": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the receiver has marked text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasMarkedText"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/hasMarkedText()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hasMarkedText"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "hasMarkedText()",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputclient/hasmarkedtext()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/insert(_:replacementRange:)": {
+      "abstract": [
+        {
+          "text": "Inserts an adaptive image into the text at the specifed location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSAdaptiveImageGlyph",
+          "text": "NSAdaptiveImageGlyph"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "replacementRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/insert(_:replacementRange:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insertAdaptiveImageGlyph:replacementRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "insert(_:replacementRange:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputclient/insert(_:replacementrange:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/insertText(_:replacementRange:)": {
+      "abstract": [
+        {
+          "text": "Inserts the given string into the receiver, replacing the specified content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertText"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "replacementRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/insertText(_:replacementRange:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insertText:replacementRange:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "insertText(_:replacementRange:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputclient/inserttext(_:replacementrange:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/markedRange()": {
+      "abstract": [
+        {
+          "text": "Returns the range of the marked text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "markedRange"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/markedRange()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "markedRange"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "markedRange()",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputclient/markedrange()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/preferredTextAccessoryPlacement()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredTextAccessoryPlacement"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSTextCursorAccessoryPlacement",
+          "text": "NSTextCursorAccessoryPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/preferredTextAccessoryPlacement()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredTextAccessoryPlacement"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredTextAccessoryPlacement()",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputclient/preferredtextaccessoryplacement()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/selectedRange()": {
+      "abstract": [
+        {
+          "text": "Returns the range of selected text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedRange"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/selectedRange()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectedRange"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "selectedRange()",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputclient/selectedrange()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/setMarkedText(_:selectedRange:replacementRange:)": {
+      "abstract": [
+        {
+          "text": "Replaces a specified range in the receiver’s text storage with the given string and sets the selection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMarkedText"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "selectedRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "replacementRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/setMarkedText(_:selectedRange:replacementRange:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setMarkedText:selectedRange:replacementRange:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setMarkedText(_:selectedRange:replacementRange:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputclient/setmarkedtext(_:selectedrange:replacementrange:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/supportsAdaptiveImageGlyph": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the document supports adaptive images in the input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportsAdaptiveImageGlyph"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/supportsAdaptiveImageGlyph",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportsAdaptiveImageGlyph"
+        }
+      ],
+      "role": "symbol",
+      "title": "supportsAdaptiveImageGlyph",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputclient/supportsadaptiveimageglyph"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/unionRectInVisibleSelectedRange": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unionRectInVisibleSelectedRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/unionRectInVisibleSelectedRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unionRectInVisibleSelectedRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "unionRectInVisibleSelectedRange",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputclient/unionrectinvisibleselectedrange"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/unmarkText()": {
+      "abstract": [
+        {
+          "text": "Unmarks the marked text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unmarkText"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/unmarkText()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unmarkText"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "unmarkText()",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputclient/unmarktext()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/validAttributesForMarkedText()": {
+      "abstract": [
+        {
+          "text": "Returns an array of attribute names recognized by the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "validAttributesForMarkedText"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSAttributedString",
+          "text": "NSAttributedString"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSAttributedStringKey",
+          "text": "Key"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/validAttributesForMarkedText()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "validAttributesForMarkedText"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "validAttributesForMarkedText()",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputclient/validattributesformarkedtext()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/windowLevel()": {
+      "abstract": [
+        {
+          "text": "Returns the window level of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowLevel"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/windowLevel()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "windowLevel"
+        }
+      ],
+      "role": "symbol",
+      "title": "windowLevel()",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputclient/windowlevel()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputContext": {
+      "abstract": [
+        {
+          "text": "An object that represents the Cocoa text input system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextInputContext"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextInputContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextInputContext",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputcontext"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInsertionIndicator": {
+      "abstract": [
+        {
+          "text": "A view that represents the insertion indicator in text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextInsertionIndicator"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInsertionIndicator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextInsertionIndicator"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextInsertionIndicator",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinsertionindicator"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInsertionIndicator/AutomaticModeOptions-swift.struct": {
+      "abstract": [
+        {
+          "text": "Options that affect the automatic display mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AutomaticModeOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInsertionIndicator/AutomaticModeOptions-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AutomaticModeOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextInsertionIndicator.AutomaticModeOptions",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinsertionindicator/automaticmodeoptions-swift.struct"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInsertionIndicator/DisplayMode-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that determine how to display the system text cursor in a custom text UI.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DisplayMode"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInsertionIndicator/DisplayMode-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DisplayMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextInsertionIndicator.DisplayMode",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinsertionindicator/displaymode-swift.enum"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextView": {
+      "abstract": [
+        {
+          "text": "A view that draws text and handles user interactions with that text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextView",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView": {
+      "abstract": [
+        {
+          "text": "The infrastructure for drawing, printing, and handling events in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/adopting-the-system-text-cursor-in-custom-text-views": {
+      "abstract": [
+        {
+          "text": "Incorporate the system text cursor into your custom text UI in AppKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/adopting-the-system-text-cursor-in-custom-text-views",
+      "kind": "article",
+      "role": "article",
+      "title": "Adopting the system text cursor in custom text views",
+      "type": "topic",
+      "url": "/documentation/appkit/adopting-the-system-text-cursor-in-custom-text-views"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/supporting-writing-tools-via-the-pasteboard": {
+      "abstract": [
+        {
+          "text": "Adopt a simplified version of the Writing Tools experience in a custom",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "view using the pasteboard and macOS services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/supporting-writing-tools-via-the-pasteboard",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Writing Tools via the pasteboard",
+      "type": "topic",
+      "url": "/documentation/appkit/supporting-writing-tools-via-the-pasteboard"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextCheckingClient"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextView"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Text-input",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/adopting-the-system-text-cursor-in-custom-text-views",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInputContext",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextAlternatives",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextContent",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInsertionIndicator",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInsertionIndicator/DisplayMode-swift.enum",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInsertionIndicator/AutomaticModeOptions-swift.struct"
+      ],
+      "title": "Text input"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Handling-marked-text",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/hasMarkedText()",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/markedRange()",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/selectedRange()",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/setMarkedText(_:selectedRange:replacementRange:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/unmarkText()",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/validAttributesForMarkedText()"
+      ],
+      "title": "Handling marked text"
+    },
+    {
+      "anchor": "Storing-text",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/attributedString()",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/attributedSubstring(forProposedRange:actualRange:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/insertText(_:replacementRange:)"
+      ],
+      "title": "Storing text"
+    },
+    {
+      "anchor": "Getting-character-coordinates",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/characterIndex(for:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/firstRect(forCharacterRange:actualRange:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/baselineDeltaForCharacter(at:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/drawsVerticallyForCharacter(at:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/fractionOfDistanceThroughGlyph(for:)"
+      ],
+      "title": "Getting character coordinates"
+    },
+    {
+      "anchor": "Placing-content",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/documentVisibleRect",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/unionRectInVisibleSelectedRange",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/preferredTextAccessoryPlacement()",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/windowLevel()"
+      ],
+      "title": "Placing content"
+    },
+    {
+      "anchor": "Binding-keystrokes",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/doCommand(by:)"
+      ],
+      "title": "Binding keystrokes"
+    },
+    {
+      "anchor": "Supporting-adaptive-images",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/supportsAdaptiveImageGlyph",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/insert(_:replacementRange:)"
+      ],
+      "title": "Supporting adaptive images"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSTextInputClient"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInputClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInputClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Handling-marked-text",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/hasMarkedText()",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/markedRange()",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/selectedRange()",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/setMarkedText(_:selectedRange:replacementRange:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/unmarkText()",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/validAttributesForMarkedText()"
+              ],
+              "title": "Handling marked text"
+            },
+            {
+              "anchor": "Storing-text",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/attributedString()",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/attributedSubstring(forProposedRange:actualRange:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/insertText(_:replacementRange:)"
+              ],
+              "title": "Storing text"
+            },
+            {
+              "anchor": "Getting-character-coordinates",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/characterIndex(for:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/firstRect(forCharacterRange:actualRange:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/baselineDeltaForCharacter(at:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/drawsVerticallyForCharacter(at:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/fractionOfDistanceThroughGlyph(for:)"
+              ],
+              "title": "Getting character coordinates"
+            },
+            {
+              "anchor": "Placing-content",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/documentVisibleRect",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/unionRectInVisibleSelectedRange",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/preferredTextAccessoryPlacement()",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/windowLevel()"
+              ],
+              "title": "Placing content"
+            },
+            {
+              "anchor": "Binding-keystrokes",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/doCommand(by:)"
+              ],
+              "title": "Binding keystrokes"
+            },
+            {
+              "anchor": "Supporting-adaptive-images",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/supportsAdaptiveImageGlyph",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient/insert(_:replacementRange:)"
+              ],
+              "title": "Supporting adaptive images"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextCheckingClient"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextView"
+              ],
+              "kind": "relationships",
+              "title": "Conforming Types",
+              "type": "conformingTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Text-input",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/adopting-the-system-text-cursor-in-custom-text-views",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInputContext",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextAlternatives",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextContent",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInsertionIndicator",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInsertionIndicator/DisplayMode-swift.enum",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInsertionIndicator/AutomaticModeOptions-swift.struct"
+              ],
+              "title": "Text input"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSTextInputClient"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1attributedString()/title",
+          "value": "attributedString"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1attributedString()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "attributedString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView/title",
+          "value": "NSTextView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient/title",
+          "value": "NSTextInputClient"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInputClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInputClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1hasMarkedText()/title",
+          "value": "hasMarkedText"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1hasMarkedText()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "hasMarkedText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1documentVisibleRect/title",
+          "value": "documentVisibleRect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1documentVisibleRect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "documentVisibleRect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1validAttributesForMarkedText()/title",
+          "value": "validAttributesForMarkedText"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1validAttributesForMarkedText()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "validAttributesForMarkedText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1unionRectInVisibleSelectedRange/title",
+          "value": "unionRectInVisibleSelectedRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1unionRectInVisibleSelectedRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "unionRectInVisibleSelectedRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1unmarkText()/title",
+          "value": "unmarkText"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1unmarkText()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unmarkText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextCheckingClient/title",
+          "value": "NSTextCheckingClient"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextCheckingClient/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextCheckingClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextCheckingClient/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextCheckingClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContent/title",
+          "value": "NSTextContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1drawsVerticallyForCharacter(at:)/title",
+          "value": "drawsVerticallyForCharacterAtIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1drawsVerticallyForCharacter(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawsVerticallyForCharacterAtIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1doCommand(by:)/title",
+          "value": "doCommandBySelector:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1doCommand(by:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "doCommandBySelector:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1characterIndex(for:)/title",
+          "value": "characterIndexForPoint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1characterIndex(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "characterIndexForPoint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1insertText(_:replacementRange:)/title",
+          "value": "insertText:replacementRange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1insertText(_:replacementRange:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insertText:replacementRange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1selectedRange()/title",
+          "value": "selectedRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1selectedRange()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "selectedRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInsertionIndicator~1AutomaticModeOptions-swift.struct/title",
+          "value": "NSTextInsertionIndicatorAutomaticModeOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInsertionIndicator~1AutomaticModeOptions-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInsertionIndicatorAutomaticModeOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInsertionIndicator~1AutomaticModeOptions-swift.struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInsertionIndicatorAutomaticModeOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1attributedSubstring(forProposedRange:actualRange:)/title",
+          "value": "attributedSubstringForProposedRange:actualRange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1attributedSubstring(forProposedRange:actualRange:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "attributedSubstringForProposedRange:actualRange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1windowLevel()/title",
+          "value": "windowLevel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1windowLevel()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "windowLevel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1baselineDeltaForCharacter(at:)/title",
+          "value": "baselineDeltaForCharacterAtIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1baselineDeltaForCharacter(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "baselineDeltaForCharacterAtIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextAlternatives/title",
+          "value": "NSTextAlternatives"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextAlternatives/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextAlternatives"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextAlternatives/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextAlternatives"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1firstRect(forCharacterRange:actualRange:)/title",
+          "value": "firstRectForCharacterRange:actualRange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1firstRect(forCharacterRange:actualRange:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "firstRectForCharacterRange:actualRange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1insert(_:replacementRange:)/title",
+          "value": "insertAdaptiveImageGlyph:replacementRange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1insert(_:replacementRange:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insertAdaptiveImageGlyph:replacementRange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputContext/title",
+          "value": "NSTextInputContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInputContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInputContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1markedRange()/title",
+          "value": "markedRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1markedRange()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "markedRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1supportsAdaptiveImageGlyph/title",
+          "value": "supportsAdaptiveImageGlyph"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1supportsAdaptiveImageGlyph/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "supportsAdaptiveImageGlyph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInsertionIndicator~1DisplayMode-swift.enum/title",
+          "value": "NSTextInsertionIndicatorDisplayMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInsertionIndicator~1DisplayMode-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInsertionIndicatorDisplayMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInsertionIndicator~1DisplayMode-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInsertionIndicatorDisplayMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/title",
+          "value": "NSView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1preferredTextAccessoryPlacement()/title",
+          "value": "preferredTextAccessoryPlacement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1preferredTextAccessoryPlacement()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "preferredTextAccessoryPlacement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInsertionIndicator/title",
+          "value": "NSTextInsertionIndicator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInsertionIndicator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInsertionIndicator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInsertionIndicator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInsertionIndicator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1fractionOfDistanceThroughGlyph(for:)/title",
+          "value": "fractionOfDistanceThroughGlyphForPoint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1fractionOfDistanceThroughGlyph(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fractionOfDistanceThroughGlyphForPoint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1setMarkedText(_:selectedRange:replacementRange:)/title",
+          "value": "setMarkedText:selectedRange:replacementRange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient~1setMarkedText(_:selectedRange:replacementRange:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setMarkedText:selectedRange:replacementRange:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nstextinputclient"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nstextinputclient"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

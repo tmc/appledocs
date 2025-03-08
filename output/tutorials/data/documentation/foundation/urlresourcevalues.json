@@ -1,0 +1,4177 @@
+{
+  "abstract": [
+    {
+      "text": "The properties that the file system resources support.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+        "doc://com.apple.documentation/documentation/foundation/url"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1780215,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation17URLResourceValuesV",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "URLResourceValues"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.10",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "8.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "URLResourceValues"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "URLResourceValues"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Not all property values exist for all file system URLs. For example, if a file is located on a volume that doesn’t support creation dates, you can request the creation date property, but the request returns ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and doesn’t generate an error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Only the fields requested by the keys you pass into the ",
+              "type": "text"
+            },
+            {
+              "code": "URL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to receive this value will be populated. The other fields return ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " regardless of the underlying property on the file system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a convenience, you can request volume resource values from any file system URL. The value returned reflects the property value for the volume that the resource is located on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Numbers, Data, and Basic Values",
+      "type": "topic",
+      "url": "/documentation/foundation/numbers_data_and_basic_values"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL",
+      "type": "topic",
+      "url": "/documentation/foundation/url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1779940-setresourcevalues": {
+      "abstract": [
+        {
+          "text": "Sets the resource value identified by a given resource key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setResourceValues"
+        },
+        {
+          "kind": "text",
+          "text": "(URLResourceValues)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1779940-setresourcevalues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setResourceValues(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1779940-setresourcevalues"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780058-resourcevalues": {
+      "abstract": [
+        {
+          "text": "Returns a collection of resource values identified by the given resource keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "resourceValues"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": Set<URLResourceKey>) -> URLResourceValues"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780058-resourcevalues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resourceValues(forKeys:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780058-resourcevalues"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780077-removeallcachedresourcevalues": {
+      "abstract": [
+        {
+          "text": "Removes all cached resource values and all temporary resource values from the URL object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllCachedResourceValues"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780077-removeallcachedresourcevalues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeAllCachedResourceValues()",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780077-removeallcachedresourcevalues"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780250-removecachedresourcevalue": {
+      "abstract": [
+        {
+          "text": "Removes the cached resource value identified by a given resource value key from the URL object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeCachedResourceValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": URLResourceKey)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780250-removecachedresourcevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeCachedResourceValue(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780250-removecachedresourcevalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780285-settemporaryresourcevalue": {
+      "abstract": [
+        {
+          "text": "Sets a temporary resource value on the URL object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTemporaryResourceValue"
+        },
+        {
+          "kind": "text",
+          "text": "(any Sendable, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": URLResourceKey)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780285-settemporaryresourcevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setTemporaryResourceValue(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780285-settemporaryresourcevalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcekey": {
+      "abstract": [
+        {
+          "text": "Keys that apply to file system URLs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLResourceKey"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLResourceKey",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcekey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues": {
+      "abstract": [
+        {
+          "text": "The properties that the file system resources support.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLResourceValues"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLResourceValues",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779596-volumesupportshardlinks": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume format supports hard links.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeSupportsHardLinks"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779596-volumesupportshardlinks",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeSupportsHardLinks",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779596-volumesupportshardlinks"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779599-parentdirectory": {
+      "abstract": [
+        {
+          "text": "The resource’s parent directory, if any.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "parentDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779599-parentdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parentDirectory",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779599-parentdirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779608-volumeavailablecapacity": {
+      "abstract": [
+        {
+          "text": "The volume’s available capacity, in bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeAvailableCapacity"
+        },
+        {
+          "kind": "text",
+          "text": ": Int?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779608-volumeavailablecapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeAvailableCapacity",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779608-volumeavailablecapacity"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779621-issymboliclink": {
+      "abstract": [
+        {
+          "text": "True for symlinks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSymbolicLink"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779621-issymboliclink",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isSymbolicLink",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779621-issymboliclink"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779623-ubiquitousitemhasunresolvedconfl": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the item has outstanding conflicts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "ubiquitousItemHasUnresolvedConflicts"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779623-ubiquitousitemhasunresolvedconfl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ubiquitousItemHasUnresolvedConflicts",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779623-ubiquitousitemhasunresolvedconfl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779639-path": {
+      "abstract": [
+        {
+          "text": "The URL’s path as a file system path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779639-path",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "path",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779639-path"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779653-volumecreationdate": {
+      "abstract": [
+        {
+          "text": "The volume’s creation date, or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if this cannot be determined.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeCreationDate"
+        },
+        {
+          "kind": "text",
+          "text": ": Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779653-volumecreationdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeCreationDate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779653-volumecreationdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779663-volume": {
+      "abstract": [
+        {
+          "text": "URL of the volume on which the resource is stored.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volume"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779663-volume",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volume",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779663-volume"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779664-totalfilesize": {
+      "abstract": [
+        {
+          "text": "The total displayable size of the file, in bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "totalFileSize"
+        },
+        {
+          "kind": "text",
+          "text": ": Int?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779664-totalfilesize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "totalFileSize",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779664-totalfilesize"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779677-ismounttrigger": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether this URL is a file system trigger directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isMountTrigger"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779677-ismounttrigger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isMountTrigger",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779677-ismounttrigger"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779695-isaliasfile": {
+      "abstract": [
+        {
+          "text": "true if the resource is a Finder alias file or a symlink, false otherwise",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAliasFile"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779695-isaliasfile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isAliasFile",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779695-isaliasfile"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779697-ubiquitousitemisuploaded": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether data is present in the cloud for the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "ubiquitousItemIsUploaded"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779697-ubiquitousitemisuploaded",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ubiquitousItemIsUploaded",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779697-ubiquitousitemisuploaded"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779702-volumesupportsrenaming": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume can be renamed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeSupportsRenaming"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779702-volumesupportsrenaming",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeSupportsRenaming",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779702-volumesupportsrenaming"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779706-isubiquitousitem": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the item is in the iCloud storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isUbiquitousItem"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779706-isubiquitousitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isUbiquitousItem",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779706-isubiquitousitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779715-volumeisrootfilesystem": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume is the root file system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeIsRootFileSystem"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779715-volumeisrootfilesystem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeIsRootFileSystem",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779715-volumeisrootfilesystem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779729-volumemaximumfilesize": {
+      "abstract": [
+        {
+          "text": "The largest file size supported by this file system, in bytes, or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if this cannot be determined.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeMaximumFileSize"
+        },
+        {
+          "kind": "text",
+          "text": ": Int?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779729-volumemaximumfilesize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeMaximumFileSize",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779729-volumemaximumfilesize"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779734-filesize": {
+      "abstract": [
+        {
+          "text": "The total file size, in bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileSize"
+        },
+        {
+          "kind": "text",
+          "text": ": Int?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779734-filesize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileSize",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779734-filesize"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779740-isuserimmutable": {
+      "abstract": [
+        {
+          "text": "True for user-immutable resources",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isUserImmutable"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779740-isuserimmutable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isUserImmutable",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779740-isuserimmutable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779747-filesecurity": {
+      "abstract": [
+        {
+          "text": "The file system object’s security information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileSecurity"
+        },
+        {
+          "kind": "text",
+          "text": ": NSFileSecurity?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779747-filesecurity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileSecurity",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779747-filesecurity"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779749-volumeidentifier": {
+      "abstract": [
+        {
+          "text": "An identifier that identifies the volume the file system object is on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": (any NSCopying & NSSecureCoding & NSObjectProtocol)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779749-volumeidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeIdentifier",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779749-volumeidentifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779751-totalfileallocatedsize": {
+      "abstract": [
+        {
+          "text": "The total allocated size of the file, in bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "totalFileAllocatedSize"
+        },
+        {
+          "kind": "text",
+          "text": ": Int?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779751-totalfileallocatedsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "totalFileAllocatedSize",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779751-totalfileallocatedsize"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779761-volumesupportsadvisoryfilelockin": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume implements whole-file flock(2) style advisory locks, and the O_EXLOCK and O_SHLOCK flags of the open(2) call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeSupportsAdvisoryFileLocking"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779761-volumesupportsadvisoryfilelockin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeSupportsAdvisoryFileLocking",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779761-volumesupportsadvisoryfilelockin"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779762-contentaccessdate": {
+      "abstract": [
+        {
+          "text": "The date the resource was last accessed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentAccessDate"
+        },
+        {
+          "kind": "text",
+          "text": ": Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779762-contentaccessdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentAccessDate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779762-contentaccessdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779763-canonicalpath": {
+      "abstract": [
+        {
+          "text": "The URL’s path as a canonical absolute file system path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "canonicalPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779763-canonicalpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canonicalPath",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779763-canonicalpath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779765-volumeisencrypted": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume is encrypted.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeIsEncrypted"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779765-volumeisencrypted",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeIsEncrypted",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779765-volumeisencrypted"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779770-preferredioblocksize": {
+      "abstract": [
+        {
+          "text": "The optimal block size when reading or writing this file’s data, or nil if not available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredIOBlockSize"
+        },
+        {
+          "kind": "text",
+          "text": ": Int?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779770-preferredioblocksize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preferredIOBlockSize",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779770-preferredioblocksize"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779774-allvalues": {
+      "abstract": [
+        {
+          "text": "A loosely-typed dictionary containing all keys and values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "allValues"
+        },
+        {
+          "kind": "text",
+          "text": ": [URLResourceKey : Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779774-allvalues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allValues",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779774-allvalues"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779778-init": {
+      "abstract": [
+        {
+          "text": "Initializes a new resource values structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779778-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779778-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779789-volumesupportsrootdirectorydates": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume supports reliable storage of times for the root directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeSupportsRootDirectoryDates"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779789-volumesupportsrootdirectorydates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeSupportsRootDirectoryDates",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779789-volumesupportsrootdirectorydates"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779793-fileresourceidentifier": {
+      "abstract": [
+        {
+          "text": "An identifier for comparing two file system objects for equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileResourceIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": (any NSCopying & NSSecureCoding & NSObjectProtocol)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779793-fileresourceidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileResourceIdentifier",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779793-fileresourceidentifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779825-volumelocalizedformatdescription": {
+      "abstract": [
+        {
+          "text": "The volume format that’s visible to the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeLocalizedFormatDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779825-volumelocalizedformatdescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeLocalizedFormatDescription",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779825-volumelocalizedformatdescription"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779837-volumesupportsjournaling": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume format supports a journal used to speed recovery in case of unplanned restart (such as a power outage or crash).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeSupportsJournaling"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779837-volumesupportsjournaling",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeSupportsJournaling",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779837-volumesupportsjournaling"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779848-isexecutable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether you can execute the file resource or search a directory resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isExecutable"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779848-isexecutable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isExecutable",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779848-isexecutable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779853-isreadable": {
+      "abstract": [
+        {
+          "text": "True if this process (as determined by EUID) can read the resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isReadable"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779853-isreadable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isReadable",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779853-isreadable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779856-ispackage": {
+      "abstract": [
+        {
+          "text": "True for packaged directories.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPackage"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779856-ispackage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isPackage",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779856-ispackage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779862-name": {
+      "abstract": [
+        {
+          "text": "The resource name provided by the file system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779862-name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779862-name"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779916-generationidentifier": {
+      "abstract": [
+        {
+          "text": "An opaque generation identifier which can be compared using ",
+          "type": "text"
+        },
+        {
+          "code": "==",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to determine if the data in a document has been modified.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "generationIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": (any NSCopying & NSSecureCoding & NSObjectProtocol)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779916-generationidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "generationIdentifier",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779916-generationidentifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779928-localizedname": {
+      "abstract": [
+        {
+          "text": "Localized or extension-hidden name as displayed to users.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedName"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779928-localizedname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedName",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779928-localizedname"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779933-attributemodificationdate": {
+      "abstract": [
+        {
+          "text": "The time the resource’s attributes were last modified.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributeModificationDate"
+        },
+        {
+          "kind": "text",
+          "text": ": Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779933-attributemodificationdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attributeModificationDate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779933-attributemodificationdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779958-ubiquitousitemisdownloading": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the system is downloading the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "ubiquitousItemIsDownloading"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779958-ubiquitousitemisdownloading",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ubiquitousItemIsDownloading",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779958-ubiquitousitemisdownloading"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779985-fileresourcetype": {
+      "abstract": [
+        {
+          "text": "The type of the file system object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileResourceType"
+        },
+        {
+          "kind": "text",
+          "text": ": URLFileResourceType?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779985-fileresourcetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileResourceType",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779985-fileresourcetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779995-volumeisreadonly": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume is read-only.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeIsReadOnly"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779995-volumeisreadonly",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeIsReadOnly",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1779995-volumeisreadonly"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780000-ubiquitousitemcontainerdisplayna": {
+      "abstract": [
+        {
+          "text": "The name of the item’s container as the system displays it to users.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "ubiquitousItemContainerDisplayName"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780000-ubiquitousitemcontainerdisplayna",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ubiquitousItemContainerDisplayName",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780000-ubiquitousitemcontainerdisplayna"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780002-isexcludedfrombackup": {
+      "abstract": [
+        {
+          "text": "True if resource should be excluded from backups, false otherwise.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isExcludedFromBackup"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780002-isexcludedfrombackup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isExcludedFromBackup",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780002-isexcludedfrombackup"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780009-volumelocalizedname": {
+      "abstract": [
+        {
+          "text": "The name of the volume that’s visible to the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeLocalizedName"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780009-volumelocalizedname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeLocalizedName",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780009-volumelocalizedname"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780013-hashiddenextension": {
+      "abstract": [
+        {
+          "text": "True for resources whose filename extension is removed from the localized name property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasHiddenExtension"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780013-hashiddenextension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasHiddenExtension",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780013-hashiddenextension"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780025-ubiquitousitemdownloadingerror": {
+      "abstract": [
+        {
+          "text": "The error when downloading the item from iCloud fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "ubiquitousItemDownloadingError"
+        },
+        {
+          "kind": "text",
+          "text": ": NSError?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780025-ubiquitousitemdownloadingerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ubiquitousItemDownloadingError",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780025-ubiquitousitemdownloadingerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780026-volumeisejectable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume’s media is ejectable from the drive mechanism under software control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeIsEjectable"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780026-volumeisejectable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeIsEjectable",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780026-volumeisejectable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780029-isregularfile": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the resource is a regular file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isRegularFile"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780029-isregularfile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isRegularFile",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780029-isregularfile"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780042-ubiquitousitemdownloadrequested": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the user or the system requests a download of the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "ubiquitousItemDownloadRequested"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780042-ubiquitousitemdownloadrequested",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ubiquitousItemDownloadRequested",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780042-ubiquitousitemdownloadrequested"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780043-ubiquitousitemisuploading": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the system is uploading the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "ubiquitousItemIsUploading"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780043-ubiquitousitemisuploading",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ubiquitousItemIsUploading",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780043-ubiquitousitemisuploading"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780059-volumename": {
+      "abstract": [
+        {
+          "text": "The name of the volume.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeName"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780059-volumename",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeName",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780059-volumename"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780060-volumeisinternal": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume’s device is connected to an internal bus, or nil if not available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeIsInternal"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780060-volumeisinternal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeIsInternal",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780060-volumeisinternal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780075-ubiquitousitemuploadingerror": {
+      "abstract": [
+        {
+          "text": "The error when uploading the item to iCloud fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "ubiquitousItemUploadingError"
+        },
+        {
+          "kind": "text",
+          "text": ": NSError?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780075-ubiquitousitemuploadingerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ubiquitousItemUploadingError",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780075-ubiquitousitemuploadingerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780079-labelnumber": {
+      "abstract": [
+        {
+          "text": "The label number assigned to the resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "labelNumber"
+        },
+        {
+          "kind": "text",
+          "text": ": Int?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780079-labelnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "labelNumber",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780079-labelnumber"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780096-volumesupportspersistentids": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume format supports persistent object identifiers and can look up file system objects by their IDs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeSupportsPersistentIDs"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780096-volumesupportspersistentids",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeSupportsPersistentIDs",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780096-volumesupportspersistentids"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780099-volumesupportsvolumesizes": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume supports returning volume size values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeSupportsVolumeSizes"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780099-volumesupportsvolumesizes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeSupportsVolumeSizes",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780099-volumesupportsvolumesizes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780117-isapplication": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the resource is an application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isApplication"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780117-isapplication",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isApplication",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780117-isapplication"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780118-issystemimmutable": {
+      "abstract": [
+        {
+          "text": "True for system-immutable resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSystemImmutable"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780118-issystemimmutable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isSystemImmutable",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780118-issystemimmutable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780149-volumeisautomounted": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume is automounted.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeIsAutomounted"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780149-volumeisautomounted",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeIsAutomounted",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780149-volumeisautomounted"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780213-typeidentifier": {
+      "abstract": [
+        {
+          "text": "A string that represents the identifier for the type of the resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780213-typeidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typeIdentifier",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780213-typeidentifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780240-documentidentifier": {
+      "abstract": [
+        {
+          "text": "A value that the kernel assigns to identify a document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "documentIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": Int?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780240-documentidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "documentIdentifier",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780240-documentidentifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780247-volumeuuidstring": {
+      "abstract": [
+        {
+          "text": "The volume’s persistent ",
+          "type": "text"
+        },
+        {
+          "code": "UUID",
+          "type": "codeVoice"
+        },
+        {
+          "text": " as a string, or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if a persistent ",
+          "type": "text"
+        },
+        {
+          "code": "UUID",
+          "type": "codeVoice"
+        },
+        {
+          "text": " is not available for the volume.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeUUIDString"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780247-volumeuuidstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeUUIDString",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780247-volumeuuidstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780260-addedtodirectorydate": {
+      "abstract": [
+        {
+          "text": "The date the resource was created, or renamed into or within its parent directory. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "addedToDirectoryDate"
+        },
+        {
+          "kind": "text",
+          "text": ": Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780260-addedtodirectorydate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addedToDirectoryDate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780260-addedtodirectorydate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780279-iswritable": {
+      "abstract": [
+        {
+          "text": "True if this process (as determined by EUID) can write to the resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isWritable"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780279-iswritable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isWritable",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780279-iswritable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780286-isvolume": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the root directory is a volume.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isVolume"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780286-isvolume",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isVolume",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780286-isvolume"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780289-localizedtypedescription": {
+      "abstract": [
+        {
+          "text": "User-visible type or “kind” description.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedTypeDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780289-localizedtypedescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedTypeDescription",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780289-localizedtypedescription"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780292-volumeresourcecount": {
+      "abstract": [
+        {
+          "text": "The total number of resources on the volume.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeResourceCount"
+        },
+        {
+          "kind": "text",
+          "text": ": Int?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780292-volumeresourcecount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeResourceCount",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780292-volumeresourcecount"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780293-volumesupportsextendedsecurity": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume implements extended security (ACLs).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeSupportsExtendedSecurity"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780293-volumesupportsextendedsecurity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeSupportsExtendedSecurity",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780293-volumesupportsextendedsecurity"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780299-volumesupportscasesensitivenames": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume format treats upper and lower case characters in file and directory names as different.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeSupportsCaseSensitiveNames"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780299-volumesupportscasesensitivenames",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeSupportsCaseSensitiveNames",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780299-volumesupportscasesensitivenames"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780309-volumesupportscompression": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume supports transparent decompression of compressed files using decmpfs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeSupportsCompression"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780309-volumesupportscompression",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeSupportsCompression",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780309-volumesupportscompression"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780311-volumesupportszeroruns": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume keeps track of allocated but unwritten parts of a file so that it can substitute zeroes without actually writing zeroes to the media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeSupportsZeroRuns"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780311-volumesupportszeroruns",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeSupportsZeroRuns",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780311-volumesupportszeroruns"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780312-contentmodificationdate": {
+      "abstract": [
+        {
+          "text": "The time the resource content was last modified.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentModificationDate"
+        },
+        {
+          "kind": "text",
+          "text": ": Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780312-contentmodificationdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentModificationDate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780312-contentmodificationdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780319-linkcount": {
+      "abstract": [
+        {
+          "text": "Number of hard links to the resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "linkCount"
+        },
+        {
+          "kind": "text",
+          "text": ": Int?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780319-linkcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "linkCount",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780319-linkcount"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780330-volumetotalcapacity": {
+      "abstract": [
+        {
+          "text": "The volume’s total capacity, in bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeTotalCapacity"
+        },
+        {
+          "kind": "text",
+          "text": ": Int?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780330-volumetotalcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeTotalCapacity",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780330-volumetotalcapacity"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780331-volumesupportscasepreservednames": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume format preserves the case of file and directory names.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeSupportsCasePreservedNames"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780331-volumesupportscasepreservednames",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeSupportsCasePreservedNames",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780331-volumesupportscasepreservednames"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780334-fileprotection": {
+      "abstract": [
+        {
+          "text": "The protection level for the file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileProtection"
+        },
+        {
+          "kind": "text",
+          "text": ": URLFileProtection?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780334-fileprotection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileProtection",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780334-fileprotection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780341-creationdate": {
+      "abstract": [
+        {
+          "text": "The date the resource was created.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "creationDate"
+        },
+        {
+          "kind": "text",
+          "text": ": Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780341-creationdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "creationDate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780341-creationdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780366-volumeisbrowsable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume is visible through the user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeIsBrowsable"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780366-volumeisbrowsable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeIsBrowsable",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780366-volumeisbrowsable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780377-volumeisremovable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume’s media is removable from the drive mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeIsRemovable"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780377-volumeisremovable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeIsRemovable",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780377-volumeisremovable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780392-ubiquitousitemdownloadingstatus": {
+      "abstract": [
+        {
+          "text": "The download status of the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "ubiquitousItemDownloadingStatus"
+        },
+        {
+          "kind": "text",
+          "text": ": URLUbiquitousItemDownloadingStatus?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780392-ubiquitousitemdownloadingstatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ubiquitousItemDownloadingStatus",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780392-ubiquitousitemdownloadingstatus"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780393-ishidden": {
+      "abstract": [
+        {
+          "text": "True for resources normally not displayed to users.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isHidden"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780393-ishidden",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isHidden",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780393-ishidden"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780411-volumeislocal": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume is on a local device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeIsLocal"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780411-volumeislocal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeIsLocal",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780411-volumeislocal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780429-localizedlabel": {
+      "abstract": [
+        {
+          "text": "The user-visible label text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedLabel"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780429-localizedlabel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedLabel",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780429-localizedlabel"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780434-volumesupportssparsefiles": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume format supports sparse files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeSupportsSparseFiles"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780434-volumesupportssparsefiles",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeSupportsSparseFiles",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780434-volumesupportssparsefiles"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780444-volumeisjournaling": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume is currently using a journal for speedy recovery after an unplanned restart.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeIsJournaling"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780444-volumeisjournaling",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeIsJournaling",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780444-volumeisjournaling"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780454-volumeurlforremounting": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "URL",
+          "type": "codeVoice"
+        },
+        {
+          "text": " needed to remount a network volume, or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if not available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeURLForRemounting"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780454-volumeurlforremounting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeURLForRemounting",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780454-volumeurlforremounting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780458-volumesupportssymboliclinks": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume format supports symbolic links.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeSupportsSymbolicLinks"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780458-volumesupportssymboliclinks",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeSupportsSymbolicLinks",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780458-volumesupportssymboliclinks"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780482-fileallocatedsize": {
+      "abstract": [
+        {
+          "text": "The total allocated size on-disk for the file, in bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileAllocatedSize"
+        },
+        {
+          "kind": "text",
+          "text": ": Int?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780482-fileallocatedsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileAllocatedSize",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780482-fileallocatedsize"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780491-isdirectory": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the resource is a directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780491-isdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isDirectory",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780491-isdirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1792017-tagnames": {
+      "abstract": [
+        {
+          "text": "The array of Tag names.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "tagNames"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1792017-tagnames",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tagNames",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1792017-tagnames"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1792021-quarantineproperties": {
+      "abstract": [
+        {
+          "text": "The quarantine properties as defined in LSQuarantine.h. To remove quarantine information from a file, pass ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " as the value when setting this property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "quarantineProperties"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1792021-quarantineproperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "quarantineProperties",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1792021-quarantineproperties"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1792022-applicationisscriptable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the application is scriptable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationIsScriptable"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1792022-applicationisscriptable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applicationIsScriptable",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1792022-applicationisscriptable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1792039-customicon": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "customIcon"
+        },
+        {
+          "kind": "text",
+          "text": ": NSImage?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1792039-customicon",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "customIcon",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1792039-customicon"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1792043-effectiveicon": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "effectiveIcon"
+        },
+        {
+          "kind": "text",
+          "text": ": AnyObject?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1792043-effectiveicon",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "effectiveIcon",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1792043-effectiveicon"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1792045-thumbnail": {
+      "abstract": [
+        {
+          "text": "A thumbnail image of the URL.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "thumbnail"
+        },
+        {
+          "kind": "text",
+          "text": ": NSImage?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1792045-thumbnail",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "thumbnail",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1792045-thumbnail"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1792046-labelcolor": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "labelColor"
+        },
+        {
+          "kind": "text",
+          "text": ": NSColor?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1792046-labelcolor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "labelColor",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1792046-labelcolor"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2882746-thumbnaildictionary": {
+      "abstract": [
+        {
+          "text": "A dictionary of UIKit image objects keyed by size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "thumbnailDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": [URLThumbnailDictionaryItem : UIImage]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2882746-thumbnaildictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "thumbnailDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/2882746-thumbnaildictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2887139-thumbnaildictionary": {
+      "abstract": [
+        {
+          "text": "A dictionary of AppKit image objects keyed by size.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "thumbnailDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": [URLThumbnailDictionaryItem : NSImage]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2887139-thumbnaildictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "thumbnailDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/2887139-thumbnaildictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2919789-ubiquitousshareditemcurrentuserr": {
+      "abstract": [
+        {
+          "text": "The current user’s role for the shared item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "ubiquitousSharedItemCurrentUserRole"
+        },
+        {
+          "kind": "text",
+          "text": ": URLUbiquitousSharedItemRole?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2919789-ubiquitousshareditemcurrentuserr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ubiquitousSharedItemCurrentUserRole",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/2919789-ubiquitousshareditemcurrentuserr"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2919790-ubiquitousshareditemmostrecented": {
+      "abstract": [
+        {
+          "text": "The name components of the most recent editor of the shared item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "ubiquitousSharedItemMostRecentEditorNameComponents"
+        },
+        {
+          "kind": "text",
+          "text": ": PersonNameComponents?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2919790-ubiquitousshareditemmostrecented",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ubiquitousSharedItemMostRecentEditorNameComponents",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/2919790-ubiquitousshareditemmostrecented"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2919791-volumeavailablecapacityforopport": {
+      "abstract": [
+        {
+          "text": "The volume’s available capacity for storing nonessential resources, in bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeAvailableCapacityForOpportunisticUsage"
+        },
+        {
+          "kind": "text",
+          "text": ": Int64?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2919791-volumeavailablecapacityforopport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeAvailableCapacityForOpportunisticUsage",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/2919791-volumeavailablecapacityforopport"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2919792-ubiquitousshareditemownernamecom": {
+      "abstract": [
+        {
+          "text": "The name components of the owner of the shared item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "ubiquitousSharedItemOwnerNameComponents"
+        },
+        {
+          "kind": "text",
+          "text": ": PersonNameComponents?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2919792-ubiquitousshareditemownernamecom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ubiquitousSharedItemOwnerNameComponents",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/2919792-ubiquitousshareditemownernamecom"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2919793-volumeavailablecapacityforimport": {
+      "abstract": [
+        {
+          "text": "The volume’s available capacity for storing important resources, in bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeAvailableCapacityForImportantUsage"
+        },
+        {
+          "kind": "text",
+          "text": ": Int64?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2919793-volumeavailablecapacityforimport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeAvailableCapacityForImportantUsage",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/2919793-volumeavailablecapacityforimport"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2919794-ubiquitousshareditemcurrentuserp": {
+      "abstract": [
+        {
+          "text": "The current user’s permissions for the shared item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "ubiquitousSharedItemCurrentUserPermissions"
+        },
+        {
+          "kind": "text",
+          "text": ": URLUbiquitousSharedItemPermissions?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2919794-ubiquitousshareditemcurrentuserp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ubiquitousSharedItemCurrentUserPermissions",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/2919794-ubiquitousshareditemcurrentuserp"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2919795-ubiquitousitemisshared": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates a shared item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "ubiquitousItemIsShared"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2919795-ubiquitousitemisshared",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ubiquitousItemIsShared",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/2919795-ubiquitousitemisshared"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3020553-volumesupportsaccesspermissions": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume supports setting standard access permissions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeSupportsAccessPermissions"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3020553-volumesupportsaccesspermissions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeSupportsAccessPermissions",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/3020553-volumesupportsaccesspermissions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3020554-volumesupportsexclusiverenaming": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume warns of a pre-existing destination when renaming a file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeSupportsExclusiveRenaming"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3020554-volumesupportsexclusiverenaming",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeSupportsExclusiveRenaming",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/3020554-volumesupportsexclusiverenaming"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3020555-volumesupportsfilecloning": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume supports file cloning.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeSupportsFileCloning"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3020555-volumesupportsfilecloning",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeSupportsFileCloning",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/3020555-volumesupportsfilecloning"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3020556-volumesupportsimmutablefiles": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume supports making files immutable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeSupportsImmutableFiles"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3020556-volumesupportsimmutablefiles",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeSupportsImmutableFiles",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/3020556-volumesupportsimmutablefiles"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3020557-volumesupportsswaprenaming": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the volume supports swapping source and target files when both exist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeSupportsSwapRenaming"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3020557-volumesupportsswaprenaming",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeSupportsSwapRenaming",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/3020557-volumesupportsswaprenaming"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3551434-contenttype": {
+      "abstract": [
+        {
+          "text": "The resource’s type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentType"
+        },
+        {
+          "kind": "text",
+          "text": ": UTType?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3551434-contenttype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentType",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/3551434-contenttype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3666469-filecontentidentifier": {
+      "abstract": [
+        {
+          "text": "A value APFS assigns that identifies a file’s content data stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileContentIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": Int64?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3666469-filecontentidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileContentIdentifier",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/3666469-filecontentidentifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3666470-ispurgeable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the file system can delete a file when the system needs to free space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPurgeable"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3666470-ispurgeable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isPurgeable",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/3666470-ispurgeable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3666471-issparse": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the file has sparse regions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSparse"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3666471-issparse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isSparse",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/3666471-issparse"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3666472-mayhaveextendedattributes": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates the file may have extended attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "mayHaveExtendedAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3666472-mayhaveextendedattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mayHaveExtendedAttributes",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/3666472-mayhaveextendedattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3666473-maysharefilecontent": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the cloned files and their original files may share data blocks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "mayShareFileContent"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3666473-maysharefilecontent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mayShareFileContent",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/3666473-maysharefilecontent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3726571-ubiquitousitemisexcludedfromsync": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates the system excludes the item from syncing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "ubiquitousItemIsExcludedFromSync"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3726571-ubiquitousitemisexcludedfromsync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ubiquitousItemIsExcludedFromSync",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/3726571-ubiquitousitemisexcludedfromsync"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/4142676-fileidentifier": {
+      "abstract": [
+        {
+          "text": "The file system’s internal inode identifier for the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt64?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/4142676-fileidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileIdentifier",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/4142676-fileidentifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/4142677-volumemountfromlocation": {
+      "abstract": [
+        {
+          "text": "The file system device location, as a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeMountFromLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/4142677-volumemountfromlocation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeMountFromLocation",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/4142677-volumemountfromlocation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/4142678-volumesubtype": {
+      "abstract": [
+        {
+          "text": "An integer value that indicates the file system subtype.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeSubtype"
+        },
+        {
+          "kind": "text",
+          "text": ": Int?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/4142678-volumesubtype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeSubtype",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/4142678-volumesubtype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/4142679-volumetypename": {
+      "abstract": [
+        {
+          "text": "The volume’s type name, as a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeTypeName"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/4142679-volumetypename",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeTypeName",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/4142679-volumetypename"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/4282161-directoryentrycount": {
+      "abstract": [
+        {
+          "text": "The count of file system objects in the directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "directoryEntryCount"
+        },
+        {
+          "kind": "text",
+          "text": ": Int?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/4282161-directoryentrycount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "directoryEntryCount",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/4282161-directoryentrycount"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/1780058-resourcevalues",
+        "doc://com.apple.documentation/documentation/foundation/url/1779940-setresourcevalues",
+        "doc://com.apple.documentation/documentation/foundation/url/1780250-removecachedresourcevalue",
+        "doc://com.apple.documentation/documentation/foundation/url/1780077-removeallcachedresourcevalues",
+        "doc://com.apple.documentation/documentation/foundation/url/1780285-settemporaryresourcevalue",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcekey"
+      ],
+      "title": "Accessing resource values"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2928573",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1792022-applicationisscriptable",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780117-isapplication"
+      ],
+      "kind": "taskGroup",
+      "title": "Application values"
+    },
+    {
+      "anchor": "2928574",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780491-isdirectory",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/4282161-directoryentrycount"
+      ],
+      "kind": "taskGroup",
+      "title": "Directory values"
+    },
+    {
+      "anchor": "2928575",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780240-documentidentifier",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3666469-filecontentidentifier",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780482-fileallocatedsize",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780334-fileprotection",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779793-fileresourceidentifier",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779985-fileresourcetype",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779747-filesecurity",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779734-filesize",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3666470-ispurgeable",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3666471-issparse",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3666472-mayhaveextendedattributes",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779848-isexecutable",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780029-isregularfile",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3666473-maysharefilecontent",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779751-totalfileallocatedsize",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779664-totalfilesize",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/4142676-fileidentifier"
+      ],
+      "kind": "taskGroup",
+      "title": "File values"
+    },
+    {
+      "anchor": "2923135",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779608-volumeavailablecapacity",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2919793-volumeavailablecapacityforimport",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2919791-volumeavailablecapacityforopport",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780330-volumetotalcapacity"
+      ],
+      "kind": "taskGroup",
+      "title": "Volume capacity values"
+    },
+    {
+      "anchor": "2923134",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780149-volumeisautomounted",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780366-volumeisbrowsable",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780026-volumeisejectable",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779765-volumeisencrypted",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780060-volumeisinternal",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780444-volumeisjournaling",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780411-volumeislocal",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779995-volumeisreadonly",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780377-volumeisremovable",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779715-volumeisrootfilesystem",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/4142679-volumetypename",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/4142678-volumesubtype",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/4142677-volumemountfromlocation"
+      ],
+      "kind": "taskGroup",
+      "title": "Volume status values"
+    },
+    {
+      "anchor": "2923133",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779677-ismounttrigger",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780286-isvolume",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779663-volume",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779653-volumecreationdate",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779749-volumeidentifier",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779825-volumelocalizedformatdescription",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780009-volumelocalizedname",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779729-volumemaximumfilesize",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780059-volumename",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780292-volumeresourcecount",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3020553-volumesupportsaccesspermissions",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779761-volumesupportsadvisoryfilelockin",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780331-volumesupportscasepreservednames",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780299-volumesupportscasesensitivenames",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780309-volumesupportscompression",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3020554-volumesupportsexclusiverenaming",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780293-volumesupportsextendedsecurity",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3020555-volumesupportsfilecloning",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779596-volumesupportshardlinks",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3020556-volumesupportsimmutablefiles",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779837-volumesupportsjournaling",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780096-volumesupportspersistentids",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779702-volumesupportsrenaming",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779789-volumesupportsrootdirectorydates",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780434-volumesupportssparsefiles",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3020557-volumesupportsswaprenaming",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780458-volumesupportssymboliclinks",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780099-volumesupportsvolumesizes",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780311-volumesupportszeroruns",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780454-volumeurlforremounting",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780247-volumeuuidstring"
+      ],
+      "kind": "taskGroup",
+      "title": "Volume support values"
+    },
+    {
+      "anchor": "2923132",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779706-isubiquitousitem",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2919795-ubiquitousitemisshared",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3726571-ubiquitousitemisexcludedfromsync",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2919794-ubiquitousshareditemcurrentuserp",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2919789-ubiquitousshareditemcurrentuserr",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2919790-ubiquitousshareditemmostrecented",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2919792-ubiquitousshareditemownernamecom",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780000-ubiquitousitemcontainerdisplayna",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780042-ubiquitousitemdownloadrequested",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780025-ubiquitousitemdownloadingerror",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780392-ubiquitousitemdownloadingstatus",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779623-ubiquitousitemhasunresolvedconfl",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779958-ubiquitousitemisdownloading",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779697-ubiquitousitemisuploaded",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780043-ubiquitousitemisuploading",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780075-ubiquitousitemuploadingerror"
+      ],
+      "kind": "taskGroup",
+      "title": "Ubiquitous values"
+    },
+    {
+      "anchor": "2931414",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1792045-thumbnail",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2882746-thumbnaildictionary",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/2887139-thumbnaildictionary"
+      ],
+      "kind": "taskGroup",
+      "title": "Thumbnail values"
+    },
+    {
+      "anchor": "2851055",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780260-addedtodirectorydate",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779774-allvalues",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779933-attributemodificationdate",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779763-canonicalpath",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779762-contentaccessdate",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780312-contentmodificationdate",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780341-creationdate",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1792039-customicon",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1792043-effectiveicon",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779916-generationidentifier",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780013-hashiddenextension",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779695-isaliasfile",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780002-isexcludedfrombackup",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780393-ishidden",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779856-ispackage",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779853-isreadable",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779621-issymboliclink",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780118-issystemimmutable",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779740-isuserimmutable",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780279-iswritable",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1792046-labelcolor",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780079-labelnumber",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780319-linkcount",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780429-localizedlabel",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779928-localizedname",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780289-localizedtypedescription",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779862-name",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779599-parentdirectory",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779639-path",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779770-preferredioblocksize",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1792021-quarantineproperties",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1792017-tagnames",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780213-typeidentifier",
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/3551434-contenttype"
+      ],
+      "kind": "taskGroup",
+      "title": "Universal resource values"
+    },
+    {
+      "anchor": "2851054",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1779778-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/urlresourcevalues"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

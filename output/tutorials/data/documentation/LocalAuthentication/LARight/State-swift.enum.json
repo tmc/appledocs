@@ -1,0 +1,1089 @@
+{
+  "abstract": [
+    {
+      "text": "The possible states for a right during authorization.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight/State-swift.enum"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "LocalAuthentication",
+    "externalID": "c:@E@LARightState",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "enum"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "State"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Local Authentication"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "State"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration",
+    "symbolKind": "enum",
+    "title": "LARight.State"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "State"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use key-value observation and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Combine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework to observe the authorization state of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let right = LARight()",
+            "let cancellable = right",
+            "    .publisher(for: \\.state)",
+            "    .sink { _ in",
+            "        print(\"Right updated to \\(right.state)\")",
+            "    }",
+            "",
+            "try await right.authorize(localizedReason: \"Access sandcastle competition designs\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Combine-PageImage-card.png": {
+      "alt": "The Swift language logo, overlaid by a graph of interconnected lines and points.",
+      "identifier": "Combine-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8df9b2bdcd94118827dd29f28f3915d7/Combine-PageImage-card~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ba2aa5f2e9d9ae5b196c642a6cf121dd/Combine-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/Combine": {
+      "abstract": [
+        {
+          "text": "Customize handling of asynchronous events by combining event-processing operators.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Combine",
+      "images": [
+        {
+          "identifier": "Combine-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Combine",
+      "type": "topic",
+      "url": "/documentation/Combine"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication": {
+      "abstract": [
+        {
+          "text": "Authenticate users biometrically or with a passphrase they already know.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Local Authentication",
+      "type": "topic",
+      "url": "/documentation/localauthentication"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAContext": {
+      "abstract": [
+        {
+          "text": "A mechanism for evaluating authentication policies and access controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LAContext"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LAContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "LAContext",
+      "type": "topic",
+      "url": "/documentation/localauthentication/lacontext"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight": {
+      "abstract": [
+        {
+          "text": "A grouped set of requirements that gate access to a resource or operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LARight"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LARight"
+        }
+      ],
+      "role": "symbol",
+      "title": "LARight",
+      "type": "topic",
+      "url": "/documentation/localauthentication/laright"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight/State-swift.enum": {
+      "abstract": [
+        {
+          "text": "The possible states for a right during authorization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight/State-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "role": "symbol",
+      "title": "LARight.State",
+      "type": "topic",
+      "url": "/documentation/localauthentication/laright/state-swift.enum"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight/State-swift.enum/authorized": {
+      "abstract": [
+        {
+          "text": "The authorization completed successfully.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorized"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight/State-swift.enum/authorized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LARightStateAuthorized"
+        }
+      ],
+      "role": "symbol",
+      "title": "LARight.State.authorized",
+      "type": "topic",
+      "url": "/documentation/localauthentication/laright/state-swift.enum/authorized"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight/State-swift.enum/authorizing": {
+      "abstract": [
+        {
+          "text": "The authorization is in progress but not completed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizing"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight/State-swift.enum/authorizing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LARightStateAuthorizing"
+        }
+      ],
+      "role": "symbol",
+      "title": "LARight.State.authorizing",
+      "type": "topic",
+      "url": "/documentation/localauthentication/laright/state-swift.enum/authorizing"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight/State-swift.enum/init(rawValue:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "rawValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight/State-swift.enum/init(rawValue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(rawValue:)",
+      "type": "topic",
+      "url": "/documentation/localauthentication/laright/state-swift.enum/init(rawvalue:)"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight/State-swift.enum/notAuthorized": {
+      "abstract": [
+        {
+          "text": "The authorization failed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notAuthorized"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight/State-swift.enum/notAuthorized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LARightStateNotAuthorized"
+        }
+      ],
+      "role": "symbol",
+      "title": "LARight.State.notAuthorized",
+      "type": "topic",
+      "url": "/documentation/localauthentication/laright/state-swift.enum/notauthorized"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight/State-swift.enum/unknown": {
+      "abstract": [
+        {
+          "text": "The authorization is in an unknown state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unknown"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight/State-swift.enum/unknown",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LARightStateUnknown"
+        }
+      ],
+      "role": "symbol",
+      "title": "LARight.State.unknown",
+      "type": "topic",
+      "url": "/documentation/localauthentication/laright/state-swift.enum/unknown"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:SY": {
+      "abstract": [
+        {
+          "text": "A type that can be converted to and from an associated raw value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RawRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SY8RawValueQa",
+          "text": "RawValue"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SY",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RawRepresentable",
+      "type": "topic",
+      "url": "/documentation/Swift/RawRepresentable"
+    },
+    "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Escapable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/Swift/BitwiseCopyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:SY",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Authentication-and-access",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAContext"
+      ],
+      "title": "Authentication and access"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Authorization-states",
+      "identifiers": [
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight/State-swift.enum/authorizing",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight/State-swift.enum/authorized",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight/State-swift.enum/notAuthorized",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight/State-swift.enum/unknown"
+      ],
+      "title": "Authorization states"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight/State-swift.enum/init(rawValue:)"
+      ],
+      "title": "Initializers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Enumeration"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "LARightState"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "enum"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LARightState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LARightState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Authorization-states",
+              "identifiers": [
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight/State-swift.enum/authorizing",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight/State-swift.enum/authorized",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight/State-swift.enum/notAuthorized",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight/State-swift.enum/unknown"
+              ],
+              "title": "Authorization states"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Authentication-and-access",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAContext"
+              ],
+              "title": "Authentication and access"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "enum"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "LARightState"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@NSInteger",
+                    "text": "NSInteger"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARight~1State-swift.enum~1authorized/title",
+          "value": "LARightStateAuthorized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARight~1State-swift.enum~1authorized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LARightStateAuthorized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARight~1State-swift.enum/title",
+          "value": "LARightState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARight~1State-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LARightState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARight~1State-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LARightState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARight~1State-swift.enum~1notAuthorized/title",
+          "value": "LARightStateNotAuthorized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARight~1State-swift.enum~1notAuthorized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LARightStateNotAuthorized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARight~1State-swift.enum~1authorizing/title",
+          "value": "LARightStateAuthorizing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARight~1State-swift.enum~1authorizing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LARightStateAuthorizing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARight/title",
+          "value": "LARight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LARight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARight/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LARight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAContext/title",
+          "value": "LAContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARight~1State-swift.enum~1unknown/title",
+          "value": "LARightStateUnknown"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARight~1State-swift.enum~1unknown/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LARightStateUnknown"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/localauthentication/laright/state-swift.enum"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/localauthentication/laright/state-swift.enum"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

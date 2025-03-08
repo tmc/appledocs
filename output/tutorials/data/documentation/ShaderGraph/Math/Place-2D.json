@@ -1,0 +1,1248 @@
+{
+  "abstract": [
+    {
+      "text": "Transforms UV texture coordinates for 2D texture placement.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Place-2D"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "Shader_ND_place2d_vector2",
+    "images": [
+      {
+        "identifier": "purple.arrow.up.and.down.and.arrow.left.and.right.png",
+        "type": "icon"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ShaderGraph"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "ShaderGraph Node",
+    "symbolKind": "subscript",
+    "title": "Place 2D"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Parameter-Types",
+          "level": 2,
+          "text": "Parameter Types",
+          "type": "heading"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "header": "row",
+                  "rows": [
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Input",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Type",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ],
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "Texture Coordinates",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Vector2f",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ],
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "Pivot",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Vector2f",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ],
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "Scale",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Vector2f",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ],
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "Rotate",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Float",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ],
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "Offset",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Vector2f",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ]
+                  ],
+                  "type": "table"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "header": "row",
+                  "rows": [
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Output",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Type",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ],
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "Out",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Vector2f",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ]
+                  ],
+                  "type": "table"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "anchor": "Parameter-descriptions",
+          "level": 2,
+          "text": "Parameter descriptions",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The input texture coordinates to transform. The default value is the current surface texture coordinates with an index of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Texture Coordinates",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The pivot point for scaling and rotating the texture coordinates. The node subtracts this value from ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "U",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "V",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " before it applies the scale or rotation. The node then adds this value back later.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Pivot",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The value by which to scale the texture coordinates. The node divides the ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "U",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "V",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " coordinates by this value. The default value is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "(1,1)",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Scale",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The number of degrees to rotate the texture coordinates. A postive value rotates the texture coordinates by that many degrees counter-clockwise and the resulting image clockwise. A negative value rotates the texture coordinates by that many degrees clockwise and the resulting image counter-clockwise. The default value is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Rotate",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The value to offset the postion of the texture coordinates. The node subtracts this value from the texture coordinates after it has been scaled, rotated, and the pivot has been added back. The default value is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "(0,0)",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Offset",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Place 2D node can be used to transform texture coordinates and apply these basic transformations to textures.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Below is an example of a simple node graph that uses the Place 2D Node to transform texture coordinates that are then passed to an image node.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Place2dGraph",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The incoming texture coordinates are transformed in three ways. They are scaled down to half the size, rotated 180 degrees, and offset by 0.5 in both the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "U",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "V",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " direction. For the scale and rotation, the pivot point is set to ",
+              "type": "text"
+            },
+            {
+              "code": "(0.5, 0.5)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Because texture coordinates generally range from ",
+              "type": "text"
+            },
+            {
+              "code": "(0-1)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " this means the scale and rotation are done from the center point of the image.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Below is the original image and the texture with the transformation applied.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Place2dMaterial1",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Original Image",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 6
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Place2dMaterial2",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Image after transformations",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 11
+            }
+          ],
+          "numberOfColumns": 17,
+          "type": "row"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Place2dGraph": {
+      "alt": null,
+      "identifier": "Place2dGraph",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9eedcf2c05258008ef6543a7b5d1d075/Place2dGraph.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5f0c06cdefcdce486a54ae688c924a36/Place2dGraph~dark.png"
+        }
+      ]
+    },
+    "Place2dMaterial1": {
+      "alt": null,
+      "identifier": "Place2dMaterial1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/78717aea759b374d62a6c56468ba269e/Place2dMaterial1.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9716c18554c6d057b4220e923ce5f2bd/Place2dMaterial1~dark.png"
+        }
+      ]
+    },
+    "Place2dMaterial2": {
+      "alt": null,
+      "identifier": "Place2dMaterial2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/efc54695250fd8a7151a87eab115b4f3/Place2dMaterial2.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/293c817f43e9a6ef61e9420d16b0366a/Place2dMaterial2~dark.png"
+        }
+      ]
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph": {
+      "abstract": [
+        {
+          "text": "Create custom materials and effects for 3D content in Reality Composer Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ShaderGraph",
+      "type": "topic",
+      "url": "/documentation/shadergraph"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math": {
+      "abstract": [
+        {
+          "text": "Perform a wide variety of mathematical and transformative operations on data values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Math",
+      "type": "topic",
+      "url": "/documentation/shadergraph/math"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Abs": {
+      "abstract": [
+        {
+          "text": "Outputs the per-channel absolute value of the input.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Abs",
+      "images": [
+        {
+          "identifier": "purple.decrease.quotelevel.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Abs",
+      "type": "topic",
+      "url": "/documentation/shadergraph/math/abs"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Acos": {
+      "abstract": [
+        {
+          "text": "The arccosine of the incoming value in radians.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Acos",
+      "images": [
+        {
+          "identifier": "purple.angle.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Acos",
+      "type": "topic",
+      "url": "/documentation/shadergraph/math/acos"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Add": {
+      "abstract": [
+        {
+          "text": "Adds two values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Add",
+      "images": [
+        {
+          "identifier": "purple.plus.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Add",
+      "type": "topic",
+      "url": "/documentation/shadergraph/math/add"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Asin": {
+      "abstract": [
+        {
+          "text": "The arcsine of the incoming value in radians.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Asin",
+      "images": [
+        {
+          "identifier": "purple.angle.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Asin",
+      "type": "topic",
+      "url": "/documentation/shadergraph/math/asin"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Atan2": {
+      "abstract": [
+        {
+          "text": "The arctangent of the expression (iny/inx) in radians.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Atan2",
+      "images": [
+        {
+          "identifier": "purple.angle.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Atan2",
+      "type": "topic",
+      "url": "/documentation/shadergraph/math/atan2"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Ceiling": {
+      "abstract": [
+        {
+          "text": "Outputs the nearest integer value, per-channel, greater than or equal to the incoming values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Ceiling",
+      "images": [
+        {
+          "identifier": "purple.square.2.stack.3d.top.fill.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Ceiling",
+      "type": "topic",
+      "url": "/documentation/shadergraph/math/ceiling"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Cos": {
+      "abstract": [
+        {
+          "text": "The cosine of the incoming value in radians.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Cos",
+      "images": [
+        {
+          "identifier": "purple.angle.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Cos",
+      "type": "topic",
+      "url": "/documentation/shadergraph/math/cos"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Divide": {
+      "abstract": [
+        {
+          "text": "Divides two values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Divide",
+      "images": [
+        {
+          "identifier": "purple.divide.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Divide",
+      "type": "topic",
+      "url": "/documentation/shadergraph/math/divide"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Floor": {
+      "abstract": [
+        {
+          "text": "Outputs the nearest integer value, per-channel, less than or equal to the incoming values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Floor",
+      "images": [
+        {
+          "identifier": "purple.square.2.stack.3d.bottom.fill.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Floor",
+      "type": "topic",
+      "url": "/documentation/shadergraph/math/floor"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Modulo": {
+      "abstract": [
+        {
+          "text": "Outputs the remaining fraction after dividing the input by a value and subtracting the integer portion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Modulo",
+      "images": [
+        {
+          "identifier": "purple.percent.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Modulo",
+      "type": "topic",
+      "url": "/documentation/shadergraph/math/modulo"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Multiply": {
+      "abstract": [
+        {
+          "text": "Multiplies two values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Multiply",
+      "images": [
+        {
+          "identifier": "purple.multiply.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Multiply",
+      "type": "topic",
+      "url": "/documentation/shadergraph/math/multiply"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Place-2D": {
+      "abstract": [
+        {
+          "text": "Transforms UV texture coordinates for 2D texture placement.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Place-2D",
+      "images": [
+        {
+          "identifier": "purple.arrow.up.and.down.and.arrow.left.and.right.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Place 2D",
+      "type": "topic",
+      "url": "/documentation/shadergraph/math/place-2d"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Power": {
+      "abstract": [
+        {
+          "text": "Raises the incoming value to an exponent.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Power",
+      "images": [
+        {
+          "identifier": "purple.chevron.up.circle.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Power",
+      "type": "topic",
+      "url": "/documentation/shadergraph/math/power"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Sin": {
+      "abstract": [
+        {
+          "text": "The sine of the incoming value in radians.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Sin",
+      "images": [
+        {
+          "identifier": "purple.angle.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sin",
+      "type": "topic",
+      "url": "/documentation/shadergraph/math/sin"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Subtract": {
+      "abstract": [
+        {
+          "text": "Subtracts two values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Subtract",
+      "images": [
+        {
+          "identifier": "purple.minus.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Subtract",
+      "type": "topic",
+      "url": "/documentation/shadergraph/math/subtract"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Tan": {
+      "abstract": [
+        {
+          "text": "The tangent of the incoming value in radians.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Tan",
+      "images": [
+        {
+          "identifier": "purple.angle.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Tan",
+      "type": "topic",
+      "url": "/documentation/shadergraph/math/tan"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "purple.angle.png": {
+      "alt": "nil",
+      "identifier": "purple.angle.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/70b2815f7ebea438d165015e28cc1bb5/purple.angle.png"
+        }
+      ]
+    },
+    "purple.arrow.up.and.down.and.arrow.left.and.right.png": {
+      "alt": "nil",
+      "identifier": "purple.arrow.up.and.down.and.arrow.left.and.right.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/951062370d2f157c82015a20d8a39cb0/purple.arrow.up.and.down.and.arrow.left.and.right.png"
+        }
+      ]
+    },
+    "purple.chevron.up.circle.png": {
+      "alt": "nil",
+      "identifier": "purple.chevron.up.circle.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/50124817a224f4067f7a3b9d4cab8b97/purple.chevron.up.circle.png"
+        }
+      ]
+    },
+    "purple.decrease.quotelevel.png": {
+      "alt": "nil",
+      "identifier": "purple.decrease.quotelevel.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/801a3024c023c15955903215e7221db3/purple.decrease.quotelevel.png"
+        }
+      ]
+    },
+    "purple.divide.png": {
+      "alt": "nil",
+      "identifier": "purple.divide.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fd14d98c8b9f22cdf54e1d43e136c0d3/purple.divide.png"
+        }
+      ]
+    },
+    "purple.minus.png": {
+      "alt": "nil",
+      "identifier": "purple.minus.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/13db209dc30b073496df8844fc233ed4/purple.minus.png"
+        }
+      ]
+    },
+    "purple.multiply.png": {
+      "alt": "nil",
+      "identifier": "purple.multiply.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d02838e0743eb15495cb2adf0da7377d/purple.multiply.png"
+        }
+      ]
+    },
+    "purple.percent.png": {
+      "alt": "nil",
+      "identifier": "purple.percent.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1e68a9b370757fda4e83dd376ce20c9c/purple.percent.png"
+        }
+      ]
+    },
+    "purple.plus.png": {
+      "alt": "nil",
+      "identifier": "purple.plus.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ebad9addfe97e60de05acfe9e4971ad7/purple.plus.png"
+        }
+      ]
+    },
+    "purple.square.2.stack.3d.bottom.fill.png": {
+      "alt": "nil",
+      "identifier": "purple.square.2.stack.3d.bottom.fill.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7df04e249327160de51447d853dee11f/purple.square.2.stack.3d.bottom.fill.png"
+        }
+      ]
+    },
+    "purple.square.2.stack.3d.top.fill.png": {
+      "alt": "nil",
+      "identifier": "purple.square.2.stack.3d.top.fill.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/20abf154191bb99f01af2b9e42cfeba8/purple.square.2.stack.3d.top.fill.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Nodes",
+      "generated": true,
+      "identifiers": [
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Add",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Subtract",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Multiply",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Divide",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Modulo",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Abs",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Floor",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Ceiling",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Power",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Sin",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Cos",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Tan",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Asin",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Acos",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math/Atan2"
+      ],
+      "title": "Nodes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/shadergraph/math/place-2d"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1284 @@
+{
+  "abstract": [
+    {
+      "text": "Chart content that represents data using a sequence of connected line segments.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Charts/documentation/Charts"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Charts/documentation/Charts/LineMark"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:6Charts8LineMarkV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "LineMark"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift Charts"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "LineMark"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "LineMark"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "LineMark"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.Charts/documentation/Charts/Creating-a-chart-using-Swift-Charts"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create a line chart by plotting a category or date property, typically with the x position, and plotting a number category, typically with the y position. The example",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "below plots the ",
+              "type": "text"
+            },
+            {
+              "code": "date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to the x position and the ",
+              "type": "text"
+            },
+            {
+              "code": "hoursOfSunshine",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to the y position using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/LineMark/init(x:y:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MonthlyHoursOfSunshine {",
+            "    var date: Date",
+            "    var hoursOfSunshine: Double",
+            "",
+            "    init(month: Int, hoursOfSunshine: Double) {",
+            "        let calendar = Calendar.autoupdatingCurrent",
+            "        self.date = calendar.date(from: DateComponents(year: 2020, month: month))!",
+            "        self.hoursOfSunshine = hoursOfSunshine",
+            "    }",
+            "}",
+            "",
+            "var data: [MonthlyHoursOfSunshine] = [",
+            "    MonthlyHoursOfSunshine(month: 1, hoursOfSunshine: 74),",
+            "    MonthlyHoursOfSunshine(month: 2, hoursOfSunshine: 99),",
+            "    // ...",
+            "    MonthlyHoursOfSunshine(month: 12, hoursOfSunshine: 62)",
+            "]",
+            "",
+            "var body: some View {",
+            "    Chart(data) {",
+            "        LineMark(",
+            "            x: .value(\"Month\", $0.date),",
+            "            y: .value(\"Hours of Sunshine\", $0.hoursOfSunshine)",
+            "        )",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "LineMarkSwift.LineMarkLineChart.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Plotting-multiple-lines",
+          "level": 3,
+          "text": "Plotting multiple lines",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can plot multiple lines in a chart either by explicitly specifying the ",
+              "type": "text"
+            },
+            {
+              "code": "series",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/LineMark/init(x:y:series:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or by applying the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/ChartContent/foregroundStyle(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/ChartContent/lineStyle(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifiers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Line marks with the same ",
+              "type": "text"
+            },
+            {
+              "code": "series",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value will always be rendered together as a single line.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When ",
+              "type": "text"
+            },
+            {
+              "code": "series",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is unspecified line marks with the same value plotted to foreground style and line style will be grouped together and plotted on their own line.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The example below plots one line per distinct value in ",
+              "type": "text"
+            },
+            {
+              "code": "city",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and colors each line based on the ",
+              "type": "text"
+            },
+            {
+              "code": "city",
+              "type": "codeVoice"
+            },
+            {
+              "text": " it represents:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MonthlyHoursOfSunshine {",
+            "    var city: String",
+            "    var date: Date",
+            "    var hoursOfSunshine: Double",
+            "",
+            "    init(city: String, month: Int, hoursOfSunshine: Double) {",
+            "        let calendar = Calendar.autoupdatingCurrent",
+            "        self.city = city",
+            "        self.date = calendar.date(from: DateComponents(year: 2020, month: month))!",
+            "        self.hoursOfSunshine = hoursOfSunshine",
+            "    }",
+            "}",
+            "",
+            "var data: [MonthlyHoursOfSunshine] = [",
+            "    MonthlyHoursOfSunshine(city: \"Seattle\", month: 1, hoursOfSunshine: 74),",
+            "    MonthlyHoursOfSunshine(city: \"Cupertino\", month: 1, hoursOfSunshine: 196),",
+            "    // ...",
+            "    MonthlyHoursOfSunshine(city: \"Seattle\", month: 12, hoursOfSunshine: 62),",
+            "    MonthlyHoursOfSunshine(city: \"Cupertino\", month: 12, hoursOfSunshine: 199)",
+            "]",
+            "",
+            "var body: some View {",
+            "    Chart(data) {",
+            "        LineMark(",
+            "            x: .value(\"Month\", $0.date),",
+            "            y: .value(\"Hours of Sunshine\", $0.hoursOfSunshine)",
+            "        )",
+            "        .foregroundStyle(by: .value(\"City\", $0.city))",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "LineMarkSwift.LineMarkMultiSeriesLineChart.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Colors are repeated if the number of series is greater than the total number of colors.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "LineMarkSwift.LineMarkLineChart.png": {
+      "alt": "Line chart with date on x-axis and hours of sunshine on y-axis. One line showing 12 points representing hours of sunshine in a month 1 74, 2 99, 3 154, 4 201, 5 247, 6 234, 7 304, 8 248, 9 197, 10 122, 11 77, 12 62.",
+      "identifier": "LineMarkSwift.LineMarkLineChart.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f5d223bb9ca48efff7a8b1d5772443a5/LineMarkSwift.LineMarkLineChart@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b29790cab797787fe63a31d15d92e549/LineMarkSwift.LineMarkLineChart~dark@2x.png"
+        }
+      ]
+    },
+    "LineMarkSwift.LineMarkMultiSeriesLineChart.png": {
+      "alt": "Multi-series line chart with date on x-axis and hours of sunshine on y-axis. Two lines showing 12 points representing hours of sunshine in a month for  a city. Seattle: 1 74, 2 99, 3 154, 4 201, 5 247, 6 234, 7 304, 8 248, 9 197, 10 122, 11 77, 12 62 and Cupertino: 1 196, 2 204, 3 253, 4 288, 5 311, 6 342, 7 360, 8 331, 9 300, 10 246, 11 212, 12 199.",
+      "identifier": "LineMarkSwift.LineMarkMultiSeriesLineChart.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/664a5f51f8a32304b545b80911697bb0/LineMarkSwift.LineMarkMultiSeriesLineChart@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cf2687fb01fa446b1d7978a454be1cd9/LineMarkSwift.LineMarkMultiSeriesLineChart~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Charts/documentation/Charts": {
+      "abstract": [
+        {
+          "text": "Construct and customize charts on every Apple platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift Charts",
+      "type": "topic",
+      "url": "/documentation/charts"
+    },
+    "doc://com.apple.Charts/documentation/Charts/AreaMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using the area of one or more regions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AreaMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/AreaMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AreaMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "AreaMark",
+      "type": "topic",
+      "url": "/documentation/charts/areamark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/BarMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using bars.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BarMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/BarMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BarMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "BarMark",
+      "type": "topic",
+      "url": "/documentation/charts/barmark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/ChartContent": {
+      "abstract": [
+        {
+          "text": "A type that represents the content that you draw on a chart.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChartContent"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/ChartContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ChartContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ChartContent",
+      "type": "topic",
+      "url": "/documentation/charts/chartcontent"
+    },
+    "doc://com.apple.Charts/documentation/Charts/ChartContent/foregroundStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the foreground style for the chart content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "foregroundStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts12ChartContentP",
+          "text": "ChartContent"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/ChartContent/foregroundStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "foregroundStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/charts/chartcontent/foregroundstyle(_:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/ChartContent/lineStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for line marks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lineStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11StrokeStyleV",
+          "text": "StrokeStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts12ChartContentP",
+          "text": "ChartContent"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/ChartContent/lineStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lineStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/charts/chartcontent/linestyle(_:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/Creating-a-chart-using-Swift-Charts": {
+      "abstract": [
+        {
+          "text": "Make a chart by combining chart building blocks in SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/Creating-a-chart-using-Swift-Charts",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a chart using Swift Charts",
+      "type": "topic",
+      "url": "/documentation/charts/creating-a-chart-using-swift-charts"
+    },
+    "doc://com.apple.Charts/documentation/Charts/LineMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using a sequence of connected line segments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LineMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/LineMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LineMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "LineMark",
+      "type": "topic",
+      "url": "/documentation/charts/linemark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/LineMark/init(x:y:)": {
+      "abstract": [
+        {
+          "text": "Creates a line mark.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/LineMark/init(x:y:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(x:y:)",
+      "type": "topic",
+      "url": "/documentation/charts/linemark/init(x:y:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/LineMark/init(x:y:series:)": {
+      "abstract": [
+        {
+          "text": "Creates a separate line for each unique value of series.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "series"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/LineMark/init(x:y:series:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(x:y:series:)",
+      "type": "topic",
+      "url": "/documentation/charts/linemark/init(x:y:series:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/PointMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using points.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PointMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/PointMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PointMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "PointMark",
+      "type": "topic",
+      "url": "/documentation/charts/pointmark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/RectangleMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using rectangles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RectangleMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/RectangleMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RectangleMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "RectangleMark",
+      "type": "topic",
+      "url": "/documentation/charts/rectanglemark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/RuleMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using a single horizontal or vertical rule.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RuleMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/RuleMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RuleMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "RuleMark",
+      "type": "topic",
+      "url": "/documentation/charts/rulemark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/SectorMark": {
+      "abstract": [
+        {
+          "text": "A sector of a pie or donut chart, which shows how individual categories make up a meaningful total.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SectorMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/SectorMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SectorMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "SectorMark",
+      "type": "topic",
+      "url": "/documentation/charts/sectormark"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Charts/documentation/Charts/ChartContent",
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Marks",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Charts/documentation/Charts/AreaMark",
+        "doc://com.apple.Charts/documentation/Charts/PointMark",
+        "doc://com.apple.Charts/documentation/Charts/RectangleMark",
+        "doc://com.apple.Charts/documentation/Charts/RuleMark",
+        "doc://com.apple.Charts/documentation/Charts/BarMark",
+        "doc://com.apple.Charts/documentation/Charts/SectorMark"
+      ],
+      "title": "Marks"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-line-mark",
+      "identifiers": [
+        "doc://com.apple.Charts/documentation/Charts/LineMark/init(x:y:)",
+        "doc://com.apple.Charts/documentation/Charts/LineMark/init(x:y:series:)"
+      ],
+      "title": "Creating a line mark"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/charts/linemark"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

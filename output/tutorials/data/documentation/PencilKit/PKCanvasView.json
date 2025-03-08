@@ -1,0 +1,3794 @@
+{
+  "abstract": [
+    {
+      "text": "A view that captures Apple Pencil input and displays the rendered results in an iOS app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.pencilkit/documentation/PencilKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)PKCanvasView",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PKCanvasView"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PencilKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PKCanvasView"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "PKCanvasView"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PKCanvasView"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.pencilkit/documentation/PencilKit/supporting-backward-compatibility-for-ink-types"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object captures content drawn using Apple Pencil or the user’s finger and displays it in your app. The canvas view handles all of the touch events and data coming from Apple Pencil, and renders that information using the tool you specify. The canvas stores the captured input in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKDrawingReference",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a scroll view, so you can make the drawable area bigger than the canvas view’s frame rectangle. To do that, set the inherited ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIScrollView/contentSize",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to the size you want. The canvas view automatically scales its underlying content to match the size you specify. Users scroll around the canvas using a two-finger pan gesture. (If the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/allowsFingerDrawing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", users scroll with only one finger.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A canvas view conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerObserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, so you can add it as an observer of the window’s tool picker. The tool picker displays a floating palette of tools that the user can choose from. As the user interacts with items in the palette, such as changing ink colors, or line widths, the canvas automatically updates its drawing environment accordingly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/UIKit/UIScrollView/contentSize": {
+      "abstract": [
+        {
+          "text": "The size of the content view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIScrollView/contentSize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentSize",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIScrollView/contentSize"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit": {
+      "abstract": [
+        {
+          "text": "Capture touch and Apple Pencil input as a drawing, and display that content from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PencilKit",
+      "type": "topic",
+      "url": "/documentation/pencilkit"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView": {
+      "abstract": [
+        {
+          "text": "A view that captures Apple Pencil input and displays the rendered results in an iOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKCanvasView"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKCanvasView"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKCanvasView",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkcanvasview"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/allowsFingerDrawing": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the canvas accepts input from the user’s finger in addition to Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsFingerDrawing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/allowsFingerDrawing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsFingerDrawing"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsFingerDrawing",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkcanvasview/allowsfingerdrawing"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/delegate": {
+      "abstract": [
+        {
+          "text": "The object you use to respond to changes in the drawn content or with the selected tool.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)PKCanvasViewDelegate",
+          "text": "PKCanvasViewDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkcanvasview/delegate"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/drawing": {
+      "abstract": [
+        {
+          "text": "The data object that the canvas uses to store drawn content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "drawing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9PencilKit9PKDrawingV",
+          "text": "PKDrawing"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/drawing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "drawing"
+        }
+      ],
+      "role": "symbol",
+      "title": "drawing",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkcanvasview/drawing"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/drawingGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "The gesture recognizer that the canvas uses to track touch events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "drawingGestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIGestureRecognizer",
+          "text": "UIGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/drawingGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "drawingGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "drawingGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkcanvasview/drawinggesturerecognizer"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/drawingPolicy": {
+      "abstract": [
+        {
+          "text": "The policy that controls the types of touches allowed when drawing on the canvas.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "drawingPolicy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PKCanvasViewDrawingPolicy",
+          "text": "PKCanvasViewDrawingPolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/drawingPolicy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "drawingPolicy"
+        }
+      ],
+      "role": "symbol",
+      "title": "drawingPolicy",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkcanvasview/drawingpolicy"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/isDrawingEnabled": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDrawingEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/isDrawingEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "drawingEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isDrawingEnabled",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkcanvasview/isdrawingenabled"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/isRulerActive": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether a ruler view is visible on the canvas.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isRulerActive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/isRulerActive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rulerActive"
+        }
+      ],
+      "role": "symbol",
+      "title": "isRulerActive",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkcanvasview/isruleractive"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/maximumSupportedContentVersion": {
+      "abstract": [
+        {
+          "text": "The maximum version of PencilKit to support.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumSupportedContentVersion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PKContentVersion",
+          "text": "PKContentVersion"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/maximumSupportedContentVersion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumSupportedContentVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "maximumSupportedContentVersion",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkcanvasview/maximumsupportedcontentversion"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/tool-1kj57": {
+      "abstract": [
+        {
+          "text": "The currently selected tool used for drawing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tool"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9PencilKit6PKToolP",
+          "text": "PKTool"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/tool-1kj57",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tool",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkcanvasview/tool-1kj57"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/tool-6str6": {
+      "abstract": [
+        {
+          "text": "The currently selected tool used for drawing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "tool"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/tool-6str6",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tool",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkcanvasview/tool-6str6"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasViewDelegate": {
+      "abstract": [
+        {
+          "text": "Methods for monitoring drawing related changes in a canvas view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKCanvasViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKCanvasViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKCanvasViewDelegate",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkcanvasviewdelegate"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasViewDrawingPolicy": {
+      "abstract": [
+        {
+          "text": "Constants that you use to specify the type of drawing gestures your app permits while the user draws on the canvas.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKCanvasViewDrawingPolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasViewDrawingPolicy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKCanvasViewDrawingPolicy"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKCanvasViewDrawingPolicy",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkcanvasviewdrawingpolicy"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKDrawing-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure representing the drawing information captured by a canvas view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKDrawing"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKDrawing-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKDrawing"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKDrawing",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkdrawing-swift.struct"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKDrawingReference": {
+      "abstract": [
+        {
+          "text": "A data structure that contains the drawing information captured by a canvas view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKDrawingReference"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKDrawingReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKDrawingReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKDrawingReference",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkdrawingreference"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKFloatRange": {
+      "abstract": [
+        {
+          "text": "A utility class that represents range components of a stroke.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "PKFloatRange"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKFloatRange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PKFloatRange",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkfloatrange"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKInk-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure that represents an ink that specifies its type, color, and width.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKInk"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKInk-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKInk"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKInk",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkink-swift.struct"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKInkReference": {
+      "abstract": [
+        {
+          "text": "Provides a description of the creation and rendering of marks on a canvas.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKInkReference"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKInkReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKInkReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKInkReference",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkinkreference"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKStroke-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure that represents the paths, boundaries, and other properties of a stroke drawn on a canvas.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKStroke"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKStroke-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKStroke"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKStroke",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkstroke-swift.struct"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKStrokePath-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure that captures the components of a stroke and provides methods to find and interpolate points along the stroke’s path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKStrokePath"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKStrokePath-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKStrokePath"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKStrokePath",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkstrokepath-swift.struct"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKStrokePathReference": {
+      "abstract": [
+        {
+          "text": "A class that captures the components of a stroke and provides methods to find and interpolate points along the stroke’s path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKStrokePathReference"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKStrokePathReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKStrokePathReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKStrokePathReference",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkstrokepathreference"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKStrokePoint-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure that represents the properties of a specific point along a stroke’s path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKStrokePoint"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKStrokePoint-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKStrokePoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKStrokePoint",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkstrokepoint-swift.struct"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKStrokePointReference": {
+      "abstract": [
+        {
+          "text": "A class that represents the properties of a specific point along a stroke’s path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKStrokePointReference"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKStrokePointReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKStrokePointReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKStrokePointReference",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkstrokepointreference"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKStrokeReference": {
+      "abstract": [
+        {
+          "text": "A class that represents the paths, boundaries and other properties of a stroke drawn on a canvas.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKStrokeReference"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKStrokeReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKStrokeReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKStrokeReference",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkstrokereference"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerObserver": {
+      "abstract": [
+        {
+          "text": "An interface you use to detect when the user changes the selected tools and drawing characteristics of a tool picker object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKToolPickerObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerObserver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKToolPickerObserver"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKToolPickerObserver",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpickerobserver"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/customizing-scribble-with-interactions": {
+      "abstract": [
+        {
+          "text": "Enable writing on a non-text-input view by adding interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/customizing-scribble-with-interactions",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Customizing Scribble with Interactions",
+      "type": "topic",
+      "url": "/documentation/pencilkit/customizing-scribble-with-interactions"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/drawing-with-pencilkit": {
+      "abstract": [
+        {
+          "text": "Add expressive, low-latency drawing to your app using PencilKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/drawing-with-pencilkit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Drawing with PencilKit",
+      "type": "topic",
+      "url": "/documentation/pencilkit/drawing-with-pencilkit"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/inspecting-modifying-and-constructing-pencilkit-drawings": {
+      "abstract": [
+        {
+          "text": "Score users’ ability to match PencilKit drawings generated from text, by accessing the strokes and points inside PencilKit drawings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/inspecting-modifying-and-constructing-pencilkit-drawings",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Inspecting, Modifying, and Constructing PencilKit Drawings",
+      "type": "topic",
+      "url": "/documentation/pencilkit/inspecting-modifying-and-constructing-pencilkit-drawings"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/supporting-backward-compatibility-for-ink-types": {
+      "abstract": [
+        {
+          "text": "Leverage the latest PencilKit features while providing a good user experience in earlier versions of the OS that don’t support those features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/supporting-backward-compatibility-for-ink-types",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting backward compatibility for ink types",
+      "type": "topic",
+      "url": "/documentation/pencilkit/supporting-backward-compatibility-for-ink-types"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)UIScrollView": {
+      "abstract": [
+        {
+          "text": "A view that allows the scrolling and zooming of its contained views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIScrollView"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)UIScrollView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIScrollView",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIScrollView"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)CALayerDelegate": {
+      "abstract": [
+        {
+          "text": "Methods your app can implement to respond to layer-related events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CALayerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)CALayerDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CALayerDelegate",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CALayerDelegate"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTouchBarProvider"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIAccessibilityIdentification": {
+      "abstract": [
+        {
+          "text": "Methods that associate a unique identifier with elements in your user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityIdentification"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIAccessibilityIdentification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIAccessibilityIdentification",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIAccessibilityIdentification"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIActivityItemsConfigurationProviding": {
+      "abstract": [
+        {
+          "text": "An interface that provides a source for shareable content to fulfill user requests to share current content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemsConfigurationProviding"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIActivityItemsConfigurationProviding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIActivityItemsConfigurationProviding",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIActivityItemsConfigurationProviding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIAppearance": {
+      "abstract": [
+        {
+          "text": "A collection of methods that gives you access to the appearance proxy for a class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAppearance"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIAppearance",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIAppearance",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIAppearance"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIAppearanceContainer": {
+      "abstract": [
+        {
+          "text": "A protocol that a class must adopt to allow appearance customization using the [`UIAppearance`](doc://com.apple.uikit/documentation/UIKit/UIAppearance) API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAppearanceContainer"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIAppearanceContainer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIAppearanceContainer",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIAppearanceContainer"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UICoordinateSpace": {
+      "abstract": [
+        {
+          "text": "A set of methods for converting between different frames of reference on a screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICoordinateSpace"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UICoordinateSpace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICoordinateSpace",
+      "type": "topic",
+      "url": "/documentation/UIKit/UICoordinateSpace"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIDynamicItem": {
+      "abstract": [
+        {
+          "text": "A set of methods that can make a custom object eligible to participate in UIKit Dynamics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDynamicItem"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIDynamicItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIDynamicItem",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIDynamicItem"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusEnvironment": {
+      "abstract": [
+        {
+          "text": "A set of methods that define the focus behavior for a branch of the view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusEnvironment"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusEnvironment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIFocusEnvironment",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIFocusEnvironment"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItem": {
+      "abstract": [
+        {
+          "text": "An object that can become focused.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusItem"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIFocusEnvironment",
+          "text": "UIFocusEnvironment"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIFocusItem",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIFocusItem"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItemContainer": {
+      "abstract": [
+        {
+          "text": "The container responsible for providing geometric context to focus items within a given focus environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusItemContainer"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItemContainer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIFocusItemContainer",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIFocusItemContainer"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItemScrollableContainer": {
+      "abstract": [
+        {
+          "text": "A type of focus item container that supports automatic scrolling of focusable content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusItemScrollableContainer"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIFocusItemContainer",
+          "text": "UIFocusItemContainer"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItemScrollableContainer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIFocusItemScrollableContainer",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIFocusItemScrollableContainer"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UILargeContentViewerItem": {
+      "abstract": [
+        {
+          "text": "Methods that provide details about how to display your custom content in the large content viewer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILargeContentViewerItem"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UILargeContentViewerItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UILargeContentViewerItem",
+      "type": "topic",
+      "url": "/documentation/UIKit/UILargeContentViewerItem"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIPasteConfigurationSupporting": {
+      "abstract": [
+        {
+          "text": "The interface that determines whether a responder object supports paste configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPasteConfigurationSupporting"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIPasteConfigurationSupporting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIPasteConfigurationSupporting",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPasteConfigurationSupporting"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIPopoverPresentationControllerSourceItem": {
+      "abstract": [
+        {
+          "text": "A type that can be an anchor for a popover presentation controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPopoverPresentationControllerSourceItem"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIPopoverPresentationControllerSourceItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIPopoverPresentationControllerSourceItem",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPopoverPresentationControllerSourceItem"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIResponderStandardEditActions": {
+      "abstract": [
+        {
+          "text": "A set of standard methods that apps can adopt to support editing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIResponderStandardEditActions"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIResponderStandardEditActions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIResponderStandardEditActions",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIResponderStandardEditActions"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UITraitEnvironment": {
+      "abstract": [
+        {
+          "text": "A set of methods that makes the iOS interface environment available to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitEnvironment"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UITraitEnvironment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITraitEnvironment",
+      "type": "topic",
+      "url": "/documentation/UIKit/UITraitEnvironment"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "The protocol you adopt to restore an object’s state from a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIUserActivityRestoring"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIUserActivityRestoring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIUserActivityRestoring"
+    },
+    "doc://com.externally.resolved.symbol/s:5UIKit23UITraitChangeObservableP": {
+      "abstract": [
+        {
+          "text": "A type that calls your code in reaction to changes in the trait environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitChangeObservable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:5UIKit23UITraitChangeObservableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITraitChangeObservable",
+      "type": "topic",
+      "url": "/documentation/UIKit/UITraitChangeObservable-67e94"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)UIScrollView"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)CALayerDelegate",
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerObserver",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIAccessibilityIdentification",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIActivityItemsConfigurationProviding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIAppearance",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIAppearanceContainer",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UICoordinateSpace",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIDynamicItem",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusEnvironment",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItem",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItemContainer",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItemScrollableContainer",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UILargeContentViewerItem",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIPasteConfigurationSupporting",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIPopoverPresentationControllerSourceItem",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIResponderStandardEditActions",
+        "doc://com.externally.resolved.symbol/s:5UIKit23UITraitChangeObservableP",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UITraitEnvironment",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIUserActivityRestoring"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Canvas",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.pencilkit/documentation/PencilKit/drawing-with-pencilkit",
+        "doc://com.apple.pencilkit/documentation/PencilKit/customizing-scribble-with-interactions",
+        "doc://com.apple.pencilkit/documentation/PencilKit/inspecting-modifying-and-constructing-pencilkit-drawings",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKDrawing-swift.struct",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKStroke-swift.struct",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKStrokePath-swift.struct",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKStrokePoint-swift.struct",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKInk-swift.struct"
+      ],
+      "title": "Canvas"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Responding-to-drawing-related-changes",
+      "identifiers": [
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/delegate",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasViewDelegate"
+      ],
+      "title": "Responding to drawing-related changes"
+    },
+    {
+      "anchor": "Configuring-the-drawing-environment",
+      "identifiers": [
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/tool-1kj57",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/isRulerActive",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/allowsFingerDrawing",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/drawingPolicy",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasViewDrawingPolicy"
+      ],
+      "title": "Configuring the drawing environment"
+    },
+    {
+      "anchor": "Getting-the-drawing-gesture-recognizer",
+      "identifiers": [
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/drawingGestureRecognizer"
+      ],
+      "title": "Getting the drawing gesture recognizer"
+    },
+    {
+      "anchor": "Getting-the-captured-data",
+      "identifiers": [
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/drawing"
+      ],
+      "title": "Getting the captured data"
+    },
+    {
+      "anchor": "Supporting-PencilKit-versions",
+      "identifiers": [
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/maximumSupportedContentVersion"
+      ],
+      "title": "Supporting PencilKit versions"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "identifiers": [
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/isDrawingEnabled"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "PKCanvasView"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKCanvasView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKCanvasView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.pencilkit/documentation/PencilKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Responding-to-drawing-related-changes",
+              "identifiers": [
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/delegate",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasViewDelegate"
+              ],
+              "title": "Responding to drawing-related changes"
+            },
+            {
+              "anchor": "Configuring-the-drawing-environment",
+              "identifiers": [
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/tool-6str6",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/isRulerActive",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/allowsFingerDrawing",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/drawingPolicy",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasViewDrawingPolicy"
+              ],
+              "title": "Configuring the drawing environment"
+            },
+            {
+              "anchor": "Getting-the-drawing-gesture-recognizer",
+              "identifiers": [
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/drawingGestureRecognizer"
+              ],
+              "title": "Getting the drawing gesture recognizer"
+            },
+            {
+              "anchor": "Getting-the-captured-data",
+              "identifiers": [
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/drawing"
+              ],
+              "title": "Getting the captured data"
+            },
+            {
+              "anchor": "Supporting-PencilKit-versions",
+              "identifiers": [
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/maximumSupportedContentVersion"
+              ],
+              "title": "Supporting PencilKit versions"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "identifiers": [
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView/isDrawingEnabled"
+              ],
+              "title": "Instance Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)UIScrollView"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerObserver"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Canvas",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKDrawingReference",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKStrokeReference",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKStrokePathReference",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKStrokePointReference",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKInkReference",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKFloatRange"
+              ],
+              "title": "Canvas"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PKCanvasView"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)UIScrollView",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)UIScrollView",
+                    "text": "UIScrollView"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIFocusEnvironment/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIFocusEnvironment"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKStrokePointReference/title",
+          "value": "PKStrokePoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKStrokePointReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKStrokePoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKStrokePointReference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKStrokePoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView~1maximumSupportedContentVersion/title",
+          "value": "maximumSupportedContentVersion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView~1maximumSupportedContentVersion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maximumSupportedContentVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKDrawingReference/title",
+          "value": "PKDrawing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKDrawingReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKDrawing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKDrawingReference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKDrawing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIUserActivityRestoring"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIFocusItem/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIFocusItem"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)UIFocusEnvironment",
+              "text": "UIFocusEnvironment"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView~1allowsFingerDrawing/title",
+          "value": "allowsFingerDrawing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView~1allowsFingerDrawing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsFingerDrawing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)CALayerDelegate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CALayerDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIActivityItemsConfigurationProviding/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemsConfigurationProviding"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UITraitEnvironment/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UITraitEnvironment"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIFocusItemScrollableContainer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIFocusItemScrollableContainer"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)UIFocusItemContainer",
+              "text": "UIFocusItemContainer"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKInkReference/title",
+          "value": "PKInk"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKInkReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKInk"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKInkReference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKInk"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)UIScrollView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIScrollView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIDynamicItem/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIDynamicItem"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIAppearanceContainer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIAppearanceContainer"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIAppearance/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIAppearance"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIAccessibilityIdentification/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityIdentification"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView~1drawingPolicy/title",
+          "value": "drawingPolicy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView~1drawingPolicy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "drawingPolicy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIPopoverPresentationControllerSourceItem/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIPopoverPresentationControllerSourceItem"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIPasteConfigurationSupporting/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIPasteConfigurationSupporting"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasViewDrawingPolicy/title",
+          "value": "PKCanvasViewDrawingPolicy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasViewDrawingPolicy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKCanvasViewDrawingPolicy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasViewDrawingPolicy/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKCanvasViewDrawingPolicy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIResponderStandardEditActions/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIResponderStandardEditActions"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKStrokeReference/title",
+          "value": "PKStroke"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKStrokeReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKStroke"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKStrokeReference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKStroke"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView/title",
+          "value": "PKCanvasView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKCanvasView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKCanvasView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasViewDelegate/title",
+          "value": "PKCanvasViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKCanvasViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasViewDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKCanvasViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerObserver/title",
+          "value": "PKToolPickerObserver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerObserver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPickerObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerObserver/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPickerObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UILargeContentViewerItem/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UILargeContentViewerItem"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIScrollView~1contentSize/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGSize",
+              "text": "CGSize"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "contentSize"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView~1drawing/title",
+          "value": "drawing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView~1drawing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "drawing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView~1isDrawingEnabled/title",
+          "value": "drawingEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView~1isDrawingEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "drawingEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIFocusItemContainer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIFocusItemContainer"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKStrokePathReference/title",
+          "value": "PKStrokePath"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKStrokePathReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKStrokePath"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKStrokePathReference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKStrokePath"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView~1drawingGestureRecognizer/title",
+          "value": "drawingGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView~1drawingGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "drawingGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UICoordinateSpace/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UICoordinateSpace"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView~1isRulerActive/title",
+          "value": "rulerActive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView~1isRulerActive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rulerActive"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/pencilkit/pkcanvasview"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/pencilkit/pkcanvasview"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

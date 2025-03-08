@@ -1,0 +1,663 @@
+{
+  "abstract": [
+    {
+      "text": "Create your own workout app, quickly and easily, with HealthKit and SwiftUI.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit",
+        "doc://com.apple.healthkit/documentation/HealthKit/workouts-and-activity-rings"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/build-a-workout-app-for-apple-watch"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "8.0",
+        "name": "watchOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Build a workout app for Apple Watch"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC21 session",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc21/10009/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you run the sample code project in Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the sample with the latest version of Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the top-level project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For the three targets, select the correct team in the Signing & Capabilities pane (next to Team) to let Xcode automatically manage your provisioning profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make a note of the Bundle Identifier of the WatchKit App target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file of the WatchKit Extension target, and change the value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSExtension",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " > ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSExtensionAttributes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " > ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "WKAppBundleIdentifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key to the bundle ID you noted in the previous step.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make a clean build and run the sample app on your device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "bbad22b45f22/BuildAWorkoutAppForAppleWatch.zip": {
+      "checksum": "bbad22b45f223295214fd326b1dd24118afd3c8297efa70d51505f669014bc8c3efc86f368dd8082b3b5a516ee6d6b914fe0d1f9e23dc28bf8b48a15c502062e",
+      "identifier": "bbad22b45f22/BuildAWorkoutAppForAppleWatch.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/bbad22b45f22/BuildAWorkoutAppForAppleWatch.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKLiveWorkoutBuilder": {
+      "abstract": [
+        {
+          "text": "A builder object that constructs a workout incrementally based on live data from an active workout session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKLiveWorkoutBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKLiveWorkoutBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKLiveWorkoutBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKLiveWorkoutBuilder",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkliveworkoutbuilder"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKLiveWorkoutDataSource": {
+      "abstract": [
+        {
+          "text": "A data source that automatically provides live data from an active workout session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKLiveWorkoutDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKLiveWorkoutDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKLiveWorkoutDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKLiveWorkoutDataSource",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkliveworkoutdatasource"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutConfiguration": {
+      "abstract": [
+        {
+          "text": "An object that contains configuration information about a workout session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutConfiguration",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutconfiguration"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession": {
+      "abstract": [
+        {
+          "text": "A session that tracks the user’s workout on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutSession"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutSession",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSessionState": {
+      "abstract": [
+        {
+          "text": "A workout session’s state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutSessionState"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSessionState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutSessionState"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutSessionState",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsessionstate"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/building-a-multidevice-workout-app": {
+      "abstract": [
+        {
+          "text": "Mirror a workout from a watchOS app to its companion iOS app, and perform bidirectional communication between them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/building-a-multidevice-workout-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a multidevice workout app",
+      "type": "topic",
+      "url": "/documentation/healthkit/building-a-multidevice-workout-app"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/running-workout-sessions": {
+      "abstract": [
+        {
+          "text": "Track a workout on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/running-workout-sessions",
+      "kind": "article",
+      "role": "article",
+      "title": "Running workout sessions",
+      "type": "topic",
+      "url": "/documentation/healthkit/running-workout-sessions"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/workouts-and-activity-rings": {
+      "abstract": [
+        {
+          "text": "Manage workouts, workout sessions, and activity summaries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/workouts-and-activity-rings",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workouts and activity rings",
+      "type": "topic",
+      "url": "/documentation/healthkit/workouts-and-activity-rings"
+    },
+    "https://developer.apple.com/wwdc21/10009/": {
+      "identifier": "https://developer.apple.com/wwdc21/10009/",
+      "title": "10009: Build a workout app for Apple Watch",
+      "titleInlineContent": [
+        {
+          "text": "10009: Build a workout app for Apple Watch",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc21/10009/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "bbad22b45f22/BuildAWorkoutAppForAppleWatch.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sessions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/running-workout-sessions",
+        "doc://com.apple.healthkit/documentation/HealthKit/building-a-multidevice-workout-app",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutConfiguration",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSessionState",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKLiveWorkoutBuilder",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKLiveWorkoutDataSource"
+      ],
+      "title": "Sessions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSessionState/title",
+          "value": "HKWorkoutSessionState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSessionState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutSessionState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSessionState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutSessionState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKLiveWorkoutBuilder/title",
+          "value": "HKLiveWorkoutBuilder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKLiveWorkoutBuilder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKLiveWorkoutBuilder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKLiveWorkoutBuilder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKLiveWorkoutBuilder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKLiveWorkoutDataSource/title",
+          "value": "HKLiveWorkoutDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKLiveWorkoutDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKLiveWorkoutDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKLiveWorkoutDataSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKLiveWorkoutDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession/title",
+          "value": "HKWorkoutSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutConfiguration/title",
+          "value": "HKWorkoutConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutConfiguration"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

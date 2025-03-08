@@ -1,0 +1,477 @@
+{
+  "abstract": [
+    {
+      "text": "The current managed apps available to this device.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution",
+        "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution/ManagedAppLibrary"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution/ManagedAppLibrary/availableApps"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:22ManagedAppDistribution0aB7LibraryC13availableAppsAC0aF0Vvp",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "availableApps"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:22ManagedAppDistribution0aB7LibraryC",
+        "text": "ManagedAppLibrary"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:22ManagedAppDistribution0aB7LibraryC0A4AppsV",
+        "text": "ManagedApps"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ManagedAppDistribution"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.2",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.2",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": true,
+        "deprecated": false,
+        "introducedAt": "2.4",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "availableApps"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "final"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "availableApps"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution/ManagedAppLibrary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:22ManagedAppDistribution0aB7LibraryC",
+              "text": "ManagedAppLibrary"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution/ManagedAppLibrary/ManagedApps",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:22ManagedAppDistribution0aB7LibraryC0A4AppsV",
+              "text": "ManagedApps"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The current managed apps are of type ",
+              "type": "text"
+            },
+            {
+              "code": "Result<[ManagedApp], ManagedAppDistributionError>",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Use an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "asynchronous ",
+              "type": "text"
+            },
+            {
+              "code": "for",
+              "type": "codeVoice"
+            },
+            {
+              "text": " loop to update your views when the current managed apps change.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the device can’t retrieve the metadata for the apps, fetching the list of managed apps fails with ",
+              "type": "text"
+            },
+            {
+              "code": "ManagedAppDistributionError.networkError",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". An example of this failure is if the device is offline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The async sequence returns an error and the sequence ends when running as an iOS app on macOS.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution": {
+      "abstract": [
+        {
+          "text": "Manage the distribution of apps within an organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ManagedAppDistribution",
+      "type": "topic",
+      "url": "/documentation/managedappdistribution"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution/ManagedAppLibrary": {
+      "abstract": [
+        {
+          "text": "A representation of a library of managed apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ManagedAppLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution/ManagedAppLibrary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ManagedAppLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "ManagedAppLibrary",
+      "type": "topic",
+      "url": "/documentation/managedappdistribution/managedapplibrary"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution/ManagedAppLibrary/ManagedApps": {
+      "abstract": [
+        {
+          "text": "An array of managed apps that updates as apps become available or unavailable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ManagedApps"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution/ManagedAppLibrary/ManagedApps",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ManagedApps"
+        }
+      ],
+      "role": "symbol",
+      "title": "ManagedAppLibrary.ManagedApps",
+      "type": "topic",
+      "url": "/documentation/managedappdistribution/managedapplibrary/managedapps"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution/ManagedAppLibrary/availableApps": {
+      "abstract": [
+        {
+          "text": "The current managed apps available to this device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableApps"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:22ManagedAppDistribution0aB7LibraryC",
+          "text": "ManagedAppLibrary"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:22ManagedAppDistribution0aB7LibraryC0A4AppsV",
+          "text": "ManagedApps"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution/ManagedAppLibrary/availableApps",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "availableApps",
+      "type": "topic",
+      "url": "/documentation/managedappdistribution/managedapplibrary/availableapps"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution/ManagedAppLibrary/currentDistributor": {
+      "abstract": [
+        {
+          "text": "The library provider for managed apps on this device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentDistributor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:22ManagedAppDistribution0aB7LibraryC",
+          "text": "ManagedAppLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution/ManagedAppLibrary/currentDistributor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentDistributor",
+      "type": "topic",
+      "url": "/documentation/managedappdistribution/managedapplibrary/currentdistributor"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Obtaining-library-information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution/ManagedAppLibrary/ManagedApps",
+        "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution/ManagedAppLibrary/currentDistributor"
+      ],
+      "title": "Obtaining library information"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/managedappdistribution/managedapplibrary/availableapps"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

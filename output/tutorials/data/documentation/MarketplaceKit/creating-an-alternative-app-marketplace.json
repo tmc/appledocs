@@ -1,0 +1,1156 @@
+{
+  "abstract": [
+    {
+      "text": "Enable the distribution of other third-party apps from within your marketplace app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/creating-an-alternative-app-marketplace"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "MarketplaceKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating an alternative app marketplace"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "alternative app marketplace",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is an iOS or iPadOS app from which someone can install other third-party apps. To create a marketplace, fill out a webform that outlines the qualifications. If approved, Apple enables a code-signing entitlement on your account to distribute your marketplace app on the web. Apple also provides you with a framework that facilitates the secure installation of apps that your marketplace distributes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-alternative-app-marketplace-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The architecture of an alternative marketplace includes an app, a webpage, from which people download your app, and a web server that stores app data it regularly receives from App Store Connect. When people download an app through your alternative app marketplace, your web server communicates with the device’s operating system directly by providing authentication services, app licenses, and app data to facilitate a secure app installation experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-alternative-app-marketplace-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you’re interested in publishing an alternative app marketplace, review the criteria and submit a request using the web form here: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/support/alternative-app-marketplace-in-the-eu/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Design-a-marketplace-app",
+          "level": 2,
+          "text": "Design a marketplace app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an alternative app marketplace:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build a new app; only new bundle IDs qualify for marketplace provisioning.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a code-signing configuration that the system requires to launch your app on devices. Marketplace apps require the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.marketplace.app-installation",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " entitlement, which is a ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "managed entitlement",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ". To provision managed entitlements, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/help/account/reference/provisioning-with-managed-capabilities/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build with Xcode 15.3 or later, to accommodate ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " framework availability. MarketplaceKit lets people install apps from an alternative marketplace on supported devices.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use APIs that vary from App Store apps. Specifically, use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AdAttributionKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for ads, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BackgroundAssets",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to download large files, and a custom e-commerce solution.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-alternative-app-marketplace-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Don’t use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/StoreKit",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or the App Store’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/StoreKit/in-app-purchase",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " system, or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in your marketplace app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Set-up-your-marketplace-app-for-alternative-distribution",
+          "level": 2,
+          "text": "Set up your marketplace app for alternative distribution",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set up a marketplace, provide your web domain and a distribution key to App Store Connect, which facilitates the secure distribution of your app over the web.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The domain ensures that your marketplace app installs only from your website, and the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "distribution key",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Regularly verifies the agreement, or ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "relationship",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ", you make with other developers that distribute their app on your marketplace.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Signs a token that the system uses to verify each installation request of your app, or the apps that your marketplace distributes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-alternative-app-marketplace-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/distributing-your-app-from-your-website",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Facilitate-the-life-cycle-of-your-apps",
+          "level": 2,
+          "text": "Facilitate the life cycle of your apps",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a developer prepares to distribute their app on your marketplace, provide them a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "marketplace token",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". They upload the token in App Store Connect, which enables them to choose your marketplace as a distributor. The process of generating and exchanging the token occurs between just your app marketplace and the inquring app developer. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/creating-keys-and-establishing-alternative-marketplace-connections",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To handle other regular requests, implement a web server that:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Manages available apps by communicating with App Store Connect. When an app that your maketplace distributes completes Notarization, App Store Connect sends the app to your server. App Store Connect also notifies your server when a developer removes an app from sale or when Apple issues an app take-down request. To receive notifications and perform the actions they require, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/processing-alternative-marketplace-notifications",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provides apps and app licenses to a person’s device. When a person attempts to download an app from your marketplace, the system requests a license from your server followed by the app itself. The system calls various endpoints that you publish on your server to process license requests and app requests. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/installing-apps-from-an-alternative-marketplace",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-alternative-app-marketplace-5",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although you store apps on — and serve apps from — your web server, people install the apps only from within your alternative app marketplace app, not your website.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "People can find an app on your alternative app marketplace using Spotlight search if you maintain a list of available apps and upload it to a location known to Apple. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/marketplace-search-configurations",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Test-the-app-during-development",
+          "level": 2,
+          "text": "Test the app during development",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "App marketplace development can occur anywhere in the world, as Xcode allows running a development-signed or Ad-Hoc signed app marketplace on Simulator and all supported physical devices running iOS or iPadOS 18.2 and later. Through the development build, apps that the marketplace distributes can also install and run.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, workflows that involve submission to App Store Connect, such as beta testing your app through internal TestFlight and web distribution of your marketplace app, need to occur on a device in the EU, signed in with an Apple Account that has an EU country or region.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can test the installation of the apps that your marketplace distributes on a physical device when:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A relationship exists with the app in App Store Connect. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/manage-distribution-on-an-alternative-app-marketplace",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The developer manually sends you an alternative distribution package for the app that they retrieve from App Store Connect or your webhook receives a notification from App Store Connect. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/processing-alternative-marketplace-notifications",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your marketplace server ingests the app’s alternative distribution package; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/ingesting-an-alternative-distribution-package",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test distribution over the web, ensure:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your marketplace app completes Notarization in App Store Connect; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/create-an-marketplace-app",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your webpage contains a properly formatted download link to your app’s alternative distribution package; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://docs.devpubs.apple.com/releases/rainbowe-rc/documentation/appdistribution/creating-an-alternative-app-marketplace#Design-a-webpage-suitable-for-app-download",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To test system-wide search, upload your app catalog. Apple ingests the upload and enables its contents to show up in Lookup, Safari, and Spotlight search on a device within 24 hours. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/building-a-searchable-catalog-for-your-marketplace-app-for-inclusion-in-spotlight",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "creating-an-alternative-app-marketplace-1": {
+      "alt": "Three screenshots of iPhone that show the stages of installing a fictional alternative app marketplace called Megabyte Mart from a website. The left screenshot has the caption App marketplace website and shows the app icon for Megabyte Mart, which is a representation of a shopping basket, below that is the app title Megabyte Mart, below that are lines that represent descriptive text, and below that is the button Install Megabyte Mart. The center screenshot has the caption Install sheet and shows a confirmation, the title of the sheet is megabytemart.com Would Like to Install an App Marketplace, followed by lines that represent descriptive text, followed by the Megabyte Mart app info, which includes the developer name Tapland, Inc. as well as screenshots, below the app info is the Install App Marketplace button, followed by a cancel button. The right screenshot has the caption Installed app marketplace and shows a representation of the homescreen with Megabyte Mart installed.",
+      "identifier": "creating-an-alternative-app-marketplace-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cce0736022552862d455798516182807/creating-an-alternative-app-marketplace-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d20ca675d8fa972e171d736cec01f29e/creating-an-alternative-app-marketplace-1~dark@2x.png"
+        }
+      ]
+    },
+    "creating-an-alternative-app-marketplace-2": {
+      "alt": "Three screenshots of iPhone that show the stages of installing an app, Backyard Birds, from a fictional alternative app marketplace called Megabyte Mart. The left screenshot has the caption Alternative app marketplace and shows a representation of the Megabyte Mart app that show the app icon for Backyard Birds with an Install button in a list. The center screenshot has the caption Install sheet and shows a confirmation, the title of the sheet is Megabyte Mart Would Like to Install an App, followed by lines that represent descriptive text, followed by the Backyard Birds app info, which includes the developer name Tapland, Inc. as well as screenshots, below the app info is the Install App button, followed by a Cancel button. The right screenshot has the caption App from an alternative marketplace and shows a representation of the homescreen with Megabyte Mart and Backyard Birds installed.",
+      "identifier": "creating-an-alternative-app-marketplace-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/04f5de82797e5c7eca1bf416f5a0f9c3/creating-an-alternative-app-marketplace-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/eb940bca85eba285c541a8a2a2c62a44/creating-an-alternative-app-marketplace-2~dark@2x.png"
+        }
+      ]
+    },
+    "creating-an-alternative-app-marketplace-3": {
+      "alt": "A diagram that represents that the marketplace developer builds and deploys the Marketplace app, a Marketplace webpage, and a Marketplace server.",
+      "identifier": "creating-an-alternative-app-marketplace-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8e1b1493239f806f33d7346f00dad26c/creating-an-alternative-app-marketplace-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b267319a9f391a53a945745d73df0ebd/creating-an-alternative-app-marketplace-3~dark@2x.png"
+        }
+      ]
+    },
+    "creating-an-alternative-app-marketplace-4": {
+      "alt": "Three screenshots of iPhone that show the stages of purchasing an app in a fictional alternative app marketplace called Megabyte Mart. The left screenshot has the caption App Purchase and shows two apps available for purchase, Backyard Birds and Camping App. The center screenshot has the caption External payments provider and shows a checkout sheet for the Camping App, which costs $5.99, from Megabyte Mart with Apple Pay as the first payment method in a list of payment methods. The right screenshot has the caption Install sheet and shows a sheet with the title Megabyte Mart Would Like to Install an App, below the title is the Camping App app information, including placeholder screenshots and the developer name Tapland, Inc., below the app information is an Install App button, and below that is a Cancel button.",
+      "identifier": "creating-an-alternative-app-marketplace-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/98fe516fe9bdde87205b2076d10a289c/creating-an-alternative-app-marketplace-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e8099b0fba3d9d5d13d2153ff22b162e/creating-an-alternative-app-marketplace-4~dark@2x.png"
+        }
+      ]
+    },
+    "creating-an-alternative-app-marketplace-5": {
+      "alt": "A diagram that represents the relationships described in the preceding list. When a developer requests distribution by an alternative marketplace, they send a request to that marketplace, the marketplace provides a key to the developer, the developer uploads a unique key to App Store Connect, then App Store Connect sends the app to the alternative marketplace for distribution. When a person requests an app installation from the alternative marketplace, the marketplace authenticates the request and determines whether to provide a license to the operating system, the operating system then downloads and installs the app from the alternative marketplace.",
+      "identifier": "creating-an-alternative-app-marketplace-5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1122da563715c7341ee4d63683f933cc/creating-an-alternative-app-marketplace-5@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b6c2773a76970a2c3be3fcddb23b13f7/creating-an-alternative-app-marketplace-5~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit": {
+      "abstract": [
+        {
+          "text": "Create an alternative app marketplace, distribute your app on an alternative app marketplace, or distribute your app from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MarketplaceKit",
+      "type": "topic",
+      "url": "/documentation/marketplacekit"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/marketplacekit/distributing-your-app-from-your-website": {
+      "abstract": [
+        {
+          "text": "Configure your app and website to enable people to install your app on their devices from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/distributing-your-app-from-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing your app from your website",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/distributing-your-app-from-your-website"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/marketplacekit/distributing-your-app-on-an-alternative-marketplace": {
+      "abstract": [
+        {
+          "text": "Design your app for alternative distribution from an alternative app marketplace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/distributing-your-app-on-an-alternative-marketplace",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing your app on an alternative app marketplace",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/distributing-your-app-on-an-alternative-marketplace"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/marketplacekit/ingesting-an-alternative-distribution-package": {
+      "abstract": [
+        {
+          "text": "Process an available app version from App Store Connect and store it for download from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/ingesting-an-alternative-distribution-package",
+      "kind": "article",
+      "role": "article",
+      "title": "Ingesting an alternative distribution package",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/ingesting-an-alternative-distribution-package"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/marketplacekit/installing-apps-from-an-alternative-marketplace": {
+      "abstract": [
+        {
+          "text": "Manage the installation of apps that developers distribute from your marketplace app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/installing-apps-from-an-alternative-marketplace",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing apps from an alternative marketplace",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/installing-apps-from-an-alternative-marketplace"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/marketplacekit/processing-alternative-marketplace-notifications": {
+      "abstract": [
+        {
+          "text": "Manage the addition and removal of apps available on your alternative marketplace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/processing-alternative-marketplace-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Processing alternative app marketplace notifications",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/processing-alternative-marketplace-notifications"
+    },
+    "doc://com.apple.documentation/documentation/AdAttributionKit": {
+      "abstract": [
+        {
+          "text": "Present, process, and register postbacks for in-app ads in the App Store and alternative app marketplaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AdAttributionKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AdAttributionKit",
+      "type": "topic",
+      "url": "/documentation/AdAttributionKit"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/building-a-searchable-catalog-for-your-marketplace-app-for-inclusion-in-spotlight": {
+      "abstract": [
+        {
+          "text": "Set up and build your alternative marketplace’s searchable index.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/building-a-searchable-catalog-for-your-marketplace-app-for-inclusion-in-spotlight",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a searchable catalog for your marketplace app for inclusion in Spotlight",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/building-a-searchable-catalog-for-your-marketplace-app-for-inclusion-in-spotlight"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/creating-keys-and-establishing-alternative-marketplace-connections": {
+      "abstract": [
+        {
+          "text": "Manage keys you use to sign JSON web tokens and connect marketplaces with apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/creating-keys-and-establishing-alternative-marketplace-connections",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating keys and establishing alternative marketplace connections",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/creating-keys-and-establishing-alternative-marketplace-connections"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/marketplace-search-configurations": {
+      "abstract": [
+        {
+          "text": "Add and read information for alternative marketplace search configurations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/marketplace-search-configurations",
+      "kind": "article",
+      "role": "article",
+      "title": "Marketplace Search Configurations",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/marketplace-search-configurations"
+    },
+    "doc://com.apple.documentation/documentation/BackgroundAssets": {
+      "abstract": [
+        {
+          "text": "Schedule background downloads of large assets after app installation, when the app updates, and periodically while the app remains on-device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BackgroundAssets",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Background Assets",
+      "type": "topic",
+      "url": "/documentation/BackgroundAssets"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.marketplace.app-installation": {
+      "abstract": [
+        {
+          "text": "The entitlement that enables an app to vend other apps as an alternative app marketplace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.marketplace.app-installation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.marketplace.app-installation",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.marketplace.app-installation"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/StoreKit"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "article",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/StoreKit/in-app-purchase"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/help/account/reference/provisioning-with-managed-capabilities/": {
+      "identifier": "https://developer.apple.com/help/account/reference/provisioning-with-managed-capabilities/",
+      "title": "Provisioning with managed capabilities",
+      "titleInlineContent": [
+        {
+          "text": "Provisioning with managed capabilities",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/reference/provisioning-with-managed-capabilities/"
+    },
+    "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/create-an-marketplace-app": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/create-an-marketplace-app",
+      "title": "Create a marketplace app",
+      "titleInlineContent": [
+        {
+          "text": "Create a marketplace app",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/create-an-marketplace-app"
+    },
+    "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/manage-distribution-on-an-alternative-app-marketplace": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/manage-distribution-on-an-alternative-app-marketplace",
+      "title": "Manage distribution on an alternative app marketplace",
+      "titleInlineContent": [
+        {
+          "text": "Manage distribution on an alternative app marketplace",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/manage-distribution-on-an-alternative-app-marketplace"
+    },
+    "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/",
+      "title": "On Demand Resources",
+      "titleInlineContent": [
+        {
+          "text": "On Demand Resources",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/"
+    },
+    "https://developer.apple.com/support/alternative-app-marketplace-in-the-eu/": {
+      "identifier": "https://developer.apple.com/support/alternative-app-marketplace-in-the-eu/",
+      "title": "Getting started as an alternative app marketplace in the European Union",
+      "titleInlineContent": [
+        {
+          "text": "Getting started as an alternative app marketplace in the European Union",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/alternative-app-marketplace-in-the-eu/"
+    },
+    "https://docs.devpubs.apple.com/releases/rainbowe-rc/documentation/appdistribution/creating-an-alternative-app-marketplace#Design-a-webpage-suitable-for-app-download": {
+      "identifier": "https://docs.devpubs.apple.com/releases/rainbowe-rc/documentation/appdistribution/creating-an-alternative-app-marketplace#Design-a-webpage-suitable-for-app-download",
+      "title": "Design a webpage suitable for app download",
+      "titleInlineContent": [
+        {
+          "text": "Design a webpage suitable for app download",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.devpubs.apple.com/releases/rainbowe-rc/documentation/appdistribution/creating-an-alternative-app-marketplace#Design-a-webpage-suitable-for-app-download"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.MarketplaceKit/documentation/marketplacekit/distributing-your-app-from-your-website",
+        "doc://com.apple.MarketplaceKit/documentation/marketplacekit/distributing-your-app-on-an-alternative-marketplace"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/marketplacekit/creating-an-alternative-app-marketplace"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

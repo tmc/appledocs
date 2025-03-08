@@ -1,0 +1,498 @@
+{
+  "abstract": [
+    {
+      "text": "Use development mode to test your app without a Managed Apple ID.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.classkit/documentation/ClassKit",
+        "doc://com.apple.classkit/documentation/ClassKit/enabling-classkit-in-your-app"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.classkit/documentation/ClassKit/testing-your-classkit-app-during-development"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ClassKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Testing your ClassKit app during development"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you distribute your ClassKit-enabled app through the App Store, it runs in production mode. In this mode, ClassKit shares data with Schoolwork on the device, and also with other devices through iCloud—for example, so that assignments made on a teacher’s device can be transmitted to students’ devices, or so that progress reported by a student returns to the teacher that made the assignment. To define these roles and enable these connections, users must be signed in to devices with Managed Apple IDs issued by an educational institution enrolled in Apple School Manager.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During development, you might not have access to users with Managed Apple IDs. Instead, you run your app in development mode. In this mode, which Xcode enables by default, you manually set the user’s role in your device Settings, and all ClassKit data remains stored locally on your device. Nothing is sent to iCloud, and so a Managed Apple ID isn’t required. However, the ClassKit API behaves just as it does in production mode, so that you can test your ClassKit adoption.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can’t test ClassKit behavior in Simulator because Schoolwork isn’t available in that environment. Instead, test your ClassKit adoption on real iOS devices with the Schoolwork app installed.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Choose-a-role-in-the-ClassKit-developer-settings",
+          "level": 3,
+          "text": "Choose a role in the ClassKit developer settings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you install Schoolwork on an iOS device, new developer settings appear for controlling ClassKit development mode behavior. Go to Settings > Developer on the device and choose ClassKit API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2977081",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the view that appears, choose either a teacher or student role for the device. The role you choose changes how ClassKit routes data, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkit/documentation/ClassKit/about-classkit-and-user-roles",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2977079",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can switch back and forth between the teacher and student roles as needed. For example, begin as a teacher and run your app to establish your assignable content. Then create an assignment with Schoolwork. Next, switch to student mode and complete the assignment in your app. Finally, switch back to teacher mode to see the reported student progress. If you want to start over, tap Reset Development Data, shown just underneath the role selection in the screenshot above, to purge the student and teacher databases.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you later want to test with real managed accounts, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkit/documentation/ClassKit/testing-your-classkit-app-during-development#Optionally-test-in-production-mode-with-managed-Apple-IDs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " below, exit development mode by returning to the Off setting.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Flush-cached-ClassKit-data-after-changing-roles",
+          "level": 3,
+          "text": "Flush cached ClassKit data after changing roles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because development mode stores teacher and student data in their own dedicated database on a single device, it’s important to flush any cached ClassKit data from memory after you change roles. Otherwise, you might be working with cached items from the teacher’s database after changing to the student role, or vice versa. This results in undefined behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The easiest way to flush data is to restart your app, forcing ClassKit to reload or recreate data when you begin operating in the new role, rather than relying on possibly stale data in memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Optionally-test-in-production-mode-with-managed-Apple-IDs",
+          "level": 3,
+          "text": "Optionally, test in production mode with managed Apple IDs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can fully qualify your ClassKit adoption using development mode, as explained above. But if you do need to launch your app from Xcode in an environment where users are logged in with Managed Apple IDs, you can choose production mode manually.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you enable the ClassKit capability in Xcode for your app, Xcode adds a ",
+              "type": "text"
+            },
+            {
+              "code": "ClassKit Environment",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement to the build and sets its value to ",
+              "type": "text"
+            },
+            {
+              "code": "development",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This entitlement value enables ClassKit and opts your app in to ClassKit’s development features by default. As part of the App Store submission process, Xcode automatically changes the entitlement’s value to ",
+              "type": "text"
+            },
+            {
+              "code": "production",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which deactivates development mode behavior for instances of the app distributed through the App Store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To override this behavior and choose production mode during development, modify the entitlement manually by opening your app’s entitlements file and setting the ClassKit entitlement’s value to ",
+              "type": "text"
+            },
+            {
+              "code": "production",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3016370",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "From your app’s point of view, the ClassKit API behaves exactly the same in production mode as it did in development mode, but the framework only interacts with Schoolwork and the network if you sign in to the device with a Managed Apple ID. If you don’t sign in with a Managed Apple ID in production mode, ClassKit treats you as an unmanaged user, silently dropping any data you report through the API. Similarly, ClassKit drops data unless your school’s IT administrator enables student progress in Apple School Manager, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/apple-school-manager/asm921383508",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you choose production mode in your app’s entitlements, make sure to disable ClassKit development mode on your development devices. In Settings, choose Developer > ClassKit API > Off. Otherwise, ClassKit keeps all data on the device, regardless of your app’s settings.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.classkit/documentation/ClassKit": {
+      "abstract": [
+        {
+          "text": "Enable teachers to assign activities from your app’s content and to view student progress.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClassKit",
+      "type": "topic",
+      "url": "/documentation/classkit"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/about-classkit-and-user-roles": {
+      "abstract": [
+        {
+          "text": "Understand how ClassKit interacts with different kinds of users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/about-classkit-and-user-roles",
+      "kind": "article",
+      "role": "article",
+      "title": "About ClassKit and user roles",
+      "type": "topic",
+      "url": "/documentation/classkit/about-classkit-and-user-roles"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/enabling-classkit-in-your-app": {
+      "abstract": [
+        {
+          "text": "Prepare your app and your development environment to adopt ClassKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/enabling-classkit-in-your-app",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Enabling ClassKit in your app",
+      "type": "topic",
+      "url": "/documentation/classkit/enabling-classkit-in-your-app"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/testing-your-classkit-app-during-development#Optionally-test-in-production-mode-with-managed-Apple-IDs": {
+      "abstract": [],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/testing-your-classkit-app-during-development#Optionally-test-in-production-mode-with-managed-Apple-IDs",
+      "kind": "section",
+      "title": "Optionally, test in production mode with managed Apple IDs",
+      "type": "topic",
+      "url": "/documentation/classkit/testing-your-classkit-app-during-development#Optionally-test-in-production-mode-with-managed-Apple-IDs"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://support.apple.com/guide/apple-school-manager/asm921383508": {
+      "identifier": "https://support.apple.com/guide/apple-school-manager/asm921383508",
+      "title": "Use Schoolwork to manage student progress in Apple School Manager",
+      "titleInlineContent": [
+        {
+          "text": "Use Schoolwork to manage student progress in Apple School Manager",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/apple-school-manager/asm921383508"
+    },
+    "media-2977079": {
+      "alt": "Screenshot of ClassKit API developer settings on an iPad showing the available roles of Off, Teacher, and Student, with Off currently selected. The settings also include a button for resetting development data.",
+      "identifier": "media-2977079",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9a10b4efa13bd16482c6bac9d43a5553/media-2977079@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9677b597b30dd8c7911fe8ac9500ff62/media-2977079~dark@2x.png"
+        }
+      ]
+    },
+    "media-2977081": {
+      "alt": "Screenshot of the Settings app on an iPad with the Developer item selected in the Settings table on the left, and with the ClassKit API item highlighted in the Developer table on the right.",
+      "identifier": "media-2977081",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e131620ac7b7d8ff4ad9141ee851d3bf/media-2977081@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d147b53bf39bbb7ab2620b795713a11/media-2977081~dark@2x.png"
+        }
+      ]
+    },
+    "media-3016370": {
+      "alt": "Screenshot of Xcode with the MyApp.entitlements file selected in the navigation pane, and the ClassKit Environment entitlement visible in the entitlements file. The value for the entitlement is set to “production”.",
+      "identifier": "media-3016370",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f4efceae5a72efc5668815761b0ebdd7/media-3016370@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/classkit/testing-your-classkit-app-during-development"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/classkit/testing-your-classkit-app-during-development"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

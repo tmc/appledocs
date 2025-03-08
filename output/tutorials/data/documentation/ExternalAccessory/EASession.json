@@ -1,0 +1,1203 @@
+{
+  "abstract": [
+    {
+      "text": "The object you use to manage communications between your app and a connected hardware accessory.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.externalaccessory/documentation/ExternalAccessory"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EASession"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)EASession",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "EASession"
+      }
+    ],
+    "modules": [
+      {
+        "name": "External Accessory"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "EASession"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.13",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "EASession"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "EASession"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EASession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object creates a communications channel between your app and a connected hardware accessory. The manufacturer of the device must share the accessory’s supported protocols with you. When you create your session, specify one of these protocols to initiate communication with the accessory. After initializing an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EASession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, use the provided output and input streams to transfer data to and from the accessory using that protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After creating a session object, immediately retrieve and configure the stream objects provided by the session. Streams send events to their associated delegate to notify it of changes in the stream status. For example, streams notify the delegate when data is waiting to be read or when more space is available for writing data. For more information about how to use stream objects, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Streams/Streams.html#//apple_ref/doc/uid/10000188i",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When sending and receiving data using the provided streams, it is your responsibility to ensure the data is formatted according to the specified protocol. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EASession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class has no knowledge of specific accessory protocols and doesn’t attempt to format the data in any way before or after transferring it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.externalaccessory/documentation/ExternalAccessory": {
+      "abstract": [
+        {
+          "text": "Communicate with accessories that connect to a device with the Apple Lightning connector, or with Bluetooth wireless technology.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "External Accessory",
+      "type": "topic",
+      "url": "/documentation/externalaccessory"
+    },
+    "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessory": {
+      "abstract": [
+        {
+          "text": "An object that contains information about a single, connected hardware accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EAAccessory"
+        }
+      ],
+      "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EAAccessory"
+        }
+      ],
+      "role": "symbol",
+      "title": "EAAccessory",
+      "type": "topic",
+      "url": "/documentation/externalaccessory/eaaccessory"
+    },
+    "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EASession": {
+      "abstract": [
+        {
+          "text": "The object you use to manage communications between your app and a connected hardware accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EASession"
+        }
+      ],
+      "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EASession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EASession"
+        }
+      ],
+      "role": "symbol",
+      "title": "EASession",
+      "type": "topic",
+      "url": "/documentation/externalaccessory/easession"
+    },
+    "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EASession/accessory": {
+      "abstract": [
+        {
+          "text": "The accessory attached to the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessory"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EAAccessory",
+          "text": "EAAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EASession/accessory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accessory"
+        }
+      ],
+      "role": "symbol",
+      "title": "accessory",
+      "type": "topic",
+      "url": "/documentation/externalaccessory/easession/accessory"
+    },
+    "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EASession/init(accessory:forProtocol:)": {
+      "abstract": [
+        {
+          "text": "Initializes the session for the specified accessory and protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "accessory"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EAAccessory",
+          "text": "EAAccessory"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EASession/init(accessory:forProtocol:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithAccessory:forProtocol:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(accessory:forProtocol:)",
+      "type": "topic",
+      "url": "/documentation/externalaccessory/easession/init(accessory:forprotocol:)"
+    },
+    "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EASession/inputStream": {
+      "abstract": [
+        {
+          "text": "The stream to use for receiving data from the accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputStream"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSInputStream",
+          "text": "InputStream"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EASession/inputStream",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inputStream"
+        }
+      ],
+      "role": "symbol",
+      "title": "inputStream",
+      "type": "topic",
+      "url": "/documentation/externalaccessory/easession/inputstream"
+    },
+    "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EASession/outputStream": {
+      "abstract": [
+        {
+          "text": "The stream to use for sending data to the accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputStream"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOutputStream",
+          "text": "OutputStream"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EASession/outputStream",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outputStream"
+        }
+      ],
+      "role": "symbol",
+      "title": "outputStream",
+      "type": "topic",
+      "url": "/documentation/externalaccessory/easession/outputstream"
+    },
+    "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EASession/protocolString": {
+      "abstract": [
+        {
+          "text": "The protocol being used for communication with the accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "protocolString"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EASession/protocolString",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "protocolString"
+        }
+      ],
+      "role": "symbol",
+      "title": "protocolString",
+      "type": "topic",
+      "url": "/documentation/externalaccessory/easession/protocolstring"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Streams/Streams.html#//apple_ref/doc/uid/10000188i": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Streams/Streams.html#//apple_ref/doc/uid/10000188i",
+      "title": "Stream Programming Guide",
+      "titleInlineContent": [
+        {
+          "text": "Stream Programming Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Streams/Streams.html#//apple_ref/doc/uid/10000188i"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Accessory-Communication",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessory"
+      ],
+      "title": "Accessory Communication"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-the-Session-Object",
+      "identifiers": [
+        "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EASession/init(accessory:forProtocol:)"
+      ],
+      "title": "Creating the Session Object"
+    },
+    {
+      "anchor": "Getting-Session-Information",
+      "identifiers": [
+        "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EASession/accessory",
+        "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EASession/protocolString"
+      ],
+      "title": "Getting Session Information"
+    },
+    {
+      "anchor": "Getting-the-Communication-Streams",
+      "identifiers": [
+        "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EASession/inputStream",
+        "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EASession/outputStream"
+      ],
+      "title": "Getting the Communication Streams"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.13",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "EASession"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EASession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EASession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.externalaccessory/documentation/ExternalAccessory"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-the-Session-Object",
+              "identifiers": [
+                "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EASession/init(accessory:forProtocol:)"
+              ],
+              "title": "Creating the Session Object"
+            },
+            {
+              "anchor": "Getting-Session-Information",
+              "identifiers": [
+                "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EASession/accessory",
+                "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EASession/protocolString"
+              ],
+              "title": "Getting Session Information"
+            },
+            {
+              "anchor": "Getting-the-Communication-Streams",
+              "identifiers": [
+                "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EASession/inputStream",
+                "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EASession/outputStream"
+              ],
+              "title": "Getting the Communication Streams"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Accessory-Communication",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessory"
+              ],
+              "title": "Accessory Communication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "EASession"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EASession/title",
+          "value": "EASession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EASession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EASession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EASession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EASession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EASession~1inputStream/title",
+          "value": "inputStream"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EASession~1inputStream/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "inputStream"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EASession~1outputStream/title",
+          "value": "outputStream"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EASession~1outputStream/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "outputStream"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EAAccessory/title",
+          "value": "EAAccessory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EAAccessory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EAAccessory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EAAccessory/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EAAccessory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EASession~1accessory/title",
+          "value": "accessory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EASession~1accessory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accessory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EASession~1protocolString/title",
+          "value": "protocolString"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EASession~1protocolString/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "protocolString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EASession~1init(accessory:forProtocol:)/title",
+          "value": "initWithAccessory:forProtocol:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EASession~1init(accessory:forProtocol:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithAccessory:forProtocol:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/externalaccessory/easession"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/externalaccessory/easession"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

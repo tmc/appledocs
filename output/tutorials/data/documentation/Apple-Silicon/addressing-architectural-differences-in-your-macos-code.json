@@ -1,0 +1,3301 @@
+{
+  "abstract": [
+    {
+      "text": "Fix problems that stem from architectural differences between Apple silicon and Intel-based",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "Mac computers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Apple-Silicon/documentation/apple-silicon"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Apple-Silicon/documentation/apple-silicon",
+        "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/porting-your-macos-apps-to-apple-silicon"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/addressing-architectural-differences-in-your-macos-code"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Addressing Architectural Differences in Your macOS Code"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Assumptions you make for your code on Intel-based Mac computers may not always apply",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on Apple silicon. Architectural differences between the two systems exist, and may",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "cause your code to run incorrectly or crash. Use the following tips to identify potential",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "problem areas in your code before you begin testing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Fetch-System-and-Hardware-Details-Dynamically",
+          "level": 3,
+          "text": "Fetch System and Hardware Details Dynamically",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Code that depends on specific system details or hardware configurations may crash",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or yield unexpected behaviors on Apple silicon. Many hardware features are different",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on Apple silicon and Intel-based Mac computers; some system features may also be",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "different. If you hardcode a particular value for a feature, your code may not work",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as expected on systems where the value is different.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead of hardcoding values related to the underlying system, fetch those values",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dynamically from system global variables whenever possible. For example, fetch the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "size of virtual memory pages from the ",
+              "type": "text"
+            },
+            {
+              "code": "vm_page_size",
+              "type": "codeVoice"
+            },
+            {
+              "text": " global variable. When a global",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variable isn’t available, use the ",
+              "type": "text"
+            },
+            {
+              "code": "sysctl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/kernel/1387446-sysctlbyname",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "functions to fetch the information instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some features of Apple silicon are decidedly different than those of Intel-based",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Mac computers, and may impact your code if you don’t fetch them dynamically. These",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "features include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Virtual memory page sizes are different. Fetch the value from the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "vm_page_size",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "global variable.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Cache line sizes are different. Fetch the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "hw.cachelinesize",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " setting using ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sysctl",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "CPU-specific features. Fetch the feature availability using sysctl and a string",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of the form ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "hw.optional.",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "<feature>",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ", where ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "<feature>",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " is the feature you want.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For example, to determine if AVX512 instructions are available, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "hw.optional.avx512f",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "string.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To see the list of available hardware features, run the command ",
+              "type": "text"
+            },
+            {
+              "code": "sysctl hw",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in Terminal. For other system features, run ",
+              "type": "text"
+            },
+            {
+              "code": "sysctl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with a different domain string,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as ",
+              "type": "text"
+            },
+            {
+              "code": "kern",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "user",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "machdep",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Synchronize-Access-to-Shared-Data-in-Memory",
+          "level": 3,
+          "text": "Synchronize Access to Shared Data in Memory",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Always protect shared data with locks, memory barriers, and other synchronization",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "primitives present in macOS. A strong memory-ordering model, like the one in Intel-based",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Mac computers, adds implicit memory barriers to prevent the processor from reordering",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "load and store instructions in a way that might introduce race conditions. A weak",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "memory ordering model, like the one in Apple silicon, gives the processor more flexibility",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to reorder memory instructions and improve performance, but doesn’t add implicit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "memory barriers. To ensure the correctness of your code on both platforms, add explicit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "synchronization primitives to your code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "macOS includes numerous synchronization primitives:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Grand Central Dispatch (GCD) provides serial queues and other ways to synchronize",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "tasks; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Dispatch",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@synchronized",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " directive creates a mutex lock for Objective-C code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " framework defines",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "standard mutexes, conditions, and other types of locks.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/os",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " framework provides “unfair”",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "locks for synchronization.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The pthreads library defines standard mutexes and condition variables.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The C11/C++11 primitives in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "stdatomic.h",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " support custom memory ordering in atomic",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "operations.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use lockless algorithms or custom synchronization techniques, consider replacing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "them with system-provided primitives. If you’re not able to adopt the system primitives,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "validate the correctness of your custom code on Apple silicon before deploying it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in your binary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use the thread sanitizer to detect data races and identify places where your",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "code requires synchronization. For more information, see",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Dont-Redeclare-a-Function-to-Have-Variable-Parameters",
+          "level": 3,
+          "text": "Don’t Redeclare a Function to Have Variable Parameters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "x86_64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "arm64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " architectures have different calling conventions for variadic",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "functions—functions with a variable number of parameters. On ",
+              "type": "text"
+            },
+            {
+              "code": "x86_64",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the compiler",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "treats fixed and variadic parameters the same, placing parameters in registers first",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and only using the stack when no more registers are available. On ",
+              "type": "text"
+            },
+            {
+              "code": "arm64",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the compiler",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "always places variadic parameters on the stack, regardless of whether registers are",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "available. If you implement a function with fixed parameters, but redeclare it with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variadic parameters, the mismatch causes unexpected behavior at runtime.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To understand the problem, consider the following function, which has only fixed",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "int foo(const char *mystr, BOOL mybool, char mychar, int myint, long mylong)",
+            "{",
+            "    NSLog(@\"foo(%s, %x, %x, %x, %lx)\", mystr, mybool, mychar, myint, mylong);",
+            "    return 42;",
+            "}"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s possible to redeclare the function elsewhere in your library and execute it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "successfully with code similar to the following on the ",
+              "type": "text"
+            },
+            {
+              "code": "x86_64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " architecture:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extern int foo(const char *mystr, ...);",
+            "void printTestValues() {",
+            "   BOOL mybool = YES;",
+            "   char mychar = 42;",
+            "   int myint = 0xfeedface;",
+            "   long mylong = 0x0123456789abcdef;",
+            "   foo(\"hello\", mybool, mychar, myint, mylong);",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The same code fails on ",
+              "type": "text"
+            },
+            {
+              "code": "arm64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " because the caller of the function and the function",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "itself marshal the parameters differently. The function expects all of the parameters",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to be in registers. However, the caller passes only the first parameter in a register;",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it passes all remaining parameters on the stack. As a result, the function implementation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "looks for the parameters in the wrong place, leading to unexpected results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Even if you don’t redeclare your functions explicitly, functions like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1456712-objc_msgsend",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "redeclare your functions and methods implicitly. For more information, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/addressing-architectural-differences-in-your-macos-code#Enable-Strict-Type-Enforcement-for-Dynamic-Method-Dispatching",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-Strict-Type-Enforcement-for-Dynamic-Method-Dispatching",
+          "level": 3,
+          "text": "Enable Strict Type Enforcement for Dynamic Method Dispatching",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Due to calling convention differences between the ",
+              "type": "text"
+            },
+            {
+              "code": "x86_64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "arm64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " architectures,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "update your dynamic-dispatching code to pass parameters correctly on both platforms.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A function like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1456712-objc_msgsend",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "calls a method of an object, passing the parameters you supply to that method. Because",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1456712-objc_msgsend",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " must",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "support calls to any method, it accepts a variable list of parameters instead of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "fixed parameters. This usage of variable parameters changes how ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1456712-objc_msgsend",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "calls your function, effectively redeclaring your method as a variadic function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To illustrate the problem, consider an example where you want to call the following",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1456712-objc_msgsend",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (void)document:(NSDocument*)doc ",
+            "         didSave:(BOOL)didSave ",
+            "     contextInfo:(void*)contextInfo;"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1456712-objc_msgsend",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "declares your method as variadic, the compiler places the method’s parameters on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the stack, in accordance with the calling conventions for the ",
+              "type": "text"
+            },
+            {
+              "code": "arm64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " architecture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, the original method declaration contains fixed parameters, not variable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parameters. As a result, the method’s implementation looks for its parameters in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "registers, which is where the compiler places fixed parameters for ",
+              "type": "text"
+            },
+            {
+              "code": "arm64",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "mismatch causes the method call to generate undefined results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To fix dynamic-dispatching issues in your code, define a type-safe function pointer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instead of calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1456712-objc_msgsend",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "directly. You can use type-safe function pointers in both your ",
+              "type": "text"
+            },
+            {
+              "code": "arm64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "x86_64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code. A type-safe function pointer specifies the exact number of parameters, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "incorporates the type information for each parameter into the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1456712-objc_msgsend",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "call, allowing the compiler to generate the calling conventions the method expects.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, a type-safe function pointer for the ",
+              "type": "text"
+            },
+            {
+              "code": "document:didSave:contextInfo:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method looks like the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Declare a type-safe function pointer.",
+            "void (* didSaveDispatcher)(id,SEL,NSDocument *,BOOL,void *) = ",
+            "       (void(*)(id,SEL,NSDocument *,BOOL,void *))objc_msgSend;"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To initiate the dynamic dispatch operation, pass the target object, selector, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method parameters to your function pointer, as shown in the following code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Call the function, dispatching it through objc_msgSend.",
+            "didSaveDispatcher(myDelegate, mySelector, myDocument, NO, myPtr);"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To locate places where you’re not calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1456712-objc_msgsend",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in a type-safe way, enable the Enable strict Checking of objc_msgSend Calls build",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "setting. When the value of that setting is ",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the compiler flags your code where",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you’re not using a type-safe function pointer with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1456712-objc_msgsend",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Address-Numerical-Differences-in-Specific-Frameworks",
+          "level": 3,
+          "text": "Address Numerical Differences in Specific Frameworks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some frameworks include minor changes that might impact code when porting to Apple",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "silicon. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/NSTextAlignment",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " enumeration",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "uses different numerical values for some constants on ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "arm64",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x86_64",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " architectures.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "When referring to constants using numerical values, validate that you use the correct",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "values on each architecture.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage/ResizingMode-swift.enum",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage/ResizingMode-swift.enum",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "enumerations uses different numerical values for some constants on ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "arm64",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x86_64",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "architectures. When referring to constants using numerical values, validate that",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "you use the correct values on each architecture.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Encoder IDs in the Video Toolbox framework may differ on ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "arm64",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x86_64",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " architectures",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and on different versions of macOS. For example, the value in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/kVTVideoEncoderSpecification_EncoderID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "may differ between architectures.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional information about framework differences, see the specific framework",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "reference.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Replace-Raw-Assembly-Code-with-Builtin-Intrinsics",
+          "level": 3,
+          "text": "Replace Raw Assembly Code with Builtin Intrinsics",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app uses assembly code for specific tasks, or uses processor-specific ",
+              "type": "text"
+            },
+            {
+              "code": "__builtin",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "functions, switch to the compiler’s builtin intrinsic functions instead. The compiler’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "builtin intrinsics give you the same benefits of assembly code, but in a cross-platform",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "package. During compilation, the compiler substitutes the builtin intrinsic function",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "call for the appropriate set of assembly instructions for the current platform.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To illustrate the benefits of builtin intrinsics, consider the implementation of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a function that counts the number of leading zeros in a value. The following example",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "shows you how to use the builtin intrinsic for the ",
+              "type": "text"
+            },
+            {
+              "code": "CLZ",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instruction to count the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "number of leading zeros in an integer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "int GOOD_count_leading_zeroes(int x){",
+            "    int count;",
+            "    if(x == 0){",
+            "        return (sizeof(x) * CHAR_BIT);",
+            "    }",
+            "#if __has_builtin(__builtin_clz)",
+            "    count = __builtin_clz(x); // undefined when operating on 0",
+            "#else",
+            "    int index = 1;",
+            "    for(; x != 1; ++index){",
+            "        x = (unsigned)x >> 1;",
+            "    }",
+            "    count = ((sizeof(x) * CHAR_BIT) - index);",
+            "#endif"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implementing the same behavior without the builtin intrinsic requires significantly",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "more code, as shown in the following example. The required code is also more complicated",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "because it provides custom implementations for each processor architecture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "int BAD_count_leading_zeroes(int x){",
+            "    int count;",
+            "    if(x == 0){",
+            "        return (sizeof(x) * CHAR_BIT);",
+            "    }",
+            "#if defined(__x86_64__)",
+            "    __asm__ (",
+            "        \"bsrl %1, %0\\n\\t\" // undefined when operating on 0",
+            "        \"xorl $0x1f, %1\"",
+            "        : \"=r\" (count)",
+            "        : \"r\" (x)",
+            "    );",
+            "#elif defined(__aarch64__)",
+            "    __asm__ (",
+            "        \"clz %w1, %w0\"",
+            "        : \"=r\" (count)",
+            "        : \"r\" (x)",
+            "    );",
+            "#else",
+            "    int index = 1;",
+            "    for(; x != 1; ++index){",
+            "        x = (unsigned)x >> 1;",
+            "    }",
+            "    count = ((sizeof(x) * CHAR_BIT) - index);",
+            "#endif",
+            "    return count;",
+            "}"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a list of builtin intrinsic functions provided by the clang compiler, see the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "clang documentation at ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://llvm.org",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-Processor-Specific-Vector-Instructions",
+          "level": 3,
+          "text": "Update Processor-Specific Vector Instructions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your code includes instructions for the SSE, AVX, AVX2, or AVX512 units of Intel",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "processors, update that code to support Apple silicon. The best alternative to processor-specific",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "vector code is to use the Accelerate framework, which provides a vast library of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "vector operations optimized for all Mac computers. Accelerate leverages all available",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "hardware of the current system to perform:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Vector and matrix computations",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Image manipulation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Digital signal processing",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Linear algebra computations",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Compression",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Neural network operations",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the Accelerate framework, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accelerate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-Timebase-Information-to-Mach-Absolute-Time-Values",
+          "level": 3,
+          "text": "Apply Timebase Information to Mach Absolute Time Values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Always apply timebase information to values you receive from ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/kernel/1462446-mach_absolute_time",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and never assume that the function returns the number of nanoseconds since boot.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The value returned by the ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/kernel/1462446-mach_absolute_time",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "function is different for native and translated processes, and doesn’t necessarily",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "correspond to the number of nanoseconds since boot. Applying timebase information",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ensures that you can distribute time values between processes and between different",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "computers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows how to apply the timebase information to the value returned",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by the ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/kernel/1462446-mach_absolute_time",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "uint64_t MachTimeToNanoseconds(uint64_t machTime) {",
+            "    uint64_t nanoseconds = 0;",
+            "    static mach_timebase_info_data_t sTimebase;",
+            "    if (sTimebase.denom == 0)",
+            "        (void)mach_timebase_info(&sTimebase);",
+            "",
+            "    nanoseconds = ((machTime * sTimebase.numer) / sTimebase.denom);",
+            "",
+            "    return nanoseconds;",
+            "}"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To retrieve time values in nanoseconds without converting  ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/kernel/1462446-mach_absolute_time",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "values, call the ",
+              "type": "text"
+            },
+            {
+              "code": "clock_gettime_nsec_np",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Audit-Code-that-Contains-Float-to-Int-Conversions",
+          "level": 3,
+          "text": "Audit Code that Contains Float-to-Int Conversions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple silicon and Intel-based Mac computers handle some float-to-int conversions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "differently in C-based languages. To illustrate one of the differences, consider",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the conversion of the floating-point representation of infinity to a ",
+              "type": "text"
+            },
+            {
+              "code": "uint32_t",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "int32_t",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "uint32_t a = (uint32_t)INFINITY;",
+            "int32_t b = (int32_t)INFINITY;"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "arm64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " architecture converts this value to the nearest possible integer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "a = 0xffffffff = 4294967295  // The largest unsigned integer",
+            "b = 0x7fffffff = 2147483647  // The largest signed integer"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the unsigned conversion, the ",
+              "type": "text"
+            },
+            {
+              "code": "x86_64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " architecture wraps the value to ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the signed conversion, it sets the value to an indefinite integer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "a = 0x00000000 = 0  // Wrap around to zero.",
+            "b = 0x80000000 = -21474836548  // The indefinite integer value."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Swift programming language defines consistent float-to-int conversion",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "behaviors for all CPU architectures.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your code converts floating-point numbers to integers, audit your code to make",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sure that you handle boundary conditions correctly. One way to detect invalid conversions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is to run the UBSan tool with the ",
+              "type": "text"
+            },
+            {
+              "code": "float-cast-overflow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option selected. To detect",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "implicit conversions by the compiler, enable the ",
+              "type": "text"
+            },
+            {
+              "code": "-Wconversion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " compiler flag when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "building your code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about how to use the UBSan tool, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Treat-BOOL-Variables-as-Binary-Values",
+          "level": 3,
+          "text": "Treat BOOL Variables as Binary Values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a rule, the Objective-C ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/bool",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type has only two appropriate values: ",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "NO",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". On Apple silicon, the compiler",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "defines the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/bool",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "be a native ",
+              "type": "text"
+            },
+            {
+              "code": "bool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", but on Intel-based Mac computers, it is a signed",
+              "type": "text"
+            },
+            {
+              "code": " char",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". To avoid",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "issues in universal binaries:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Never perform mathematical operations on ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/objectivec/bool",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "variables.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Never increment or decrement ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/objectivec/bool",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "variables.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Never assume the numerical value of a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/objectivec/bool",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "is anything other than ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To illustrate the problem, consider the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "int nBytes = 1024;",
+            "BOOL receivedBytes = nBytes;",
+            "",
+            "if (receivedBytes) {",
+            "   printf(\"Success!\\n\");",
+            "} else {",
+            "   printf(\"Failure...\\n\");",
+            "}"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On the ",
+              "type": "text"
+            },
+            {
+              "code": "x86_64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " architecture, ",
+              "type": "text"
+            },
+            {
+              "code": "receivedBytes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " evaluates to ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". On the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "arm64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " architecture, ",
+              "type": "text"
+            },
+            {
+              "code": "receivedBytes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " evaluates to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". One way to fix the preceding",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code is to include two negation operators (",
+              "type": "text"
+            },
+            {
+              "code": "!!",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") in front of the ",
+              "type": "text"
+            },
+            {
+              "code": "nBytes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "before assigning it to the ",
+              "type": "text"
+            },
+            {
+              "code": "receivedBytes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable, as shown in the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "int nBytes = 1024;",
+            "BOOL receivedBytes = !!nBytes;"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Enable the ",
+                  "type": "text"
+                },
+                {
+                  "code": "-Wobjc-signed-char-bool-implicit-int-conversion",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " compiler option",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "to generate warnings for implicit ",
+                  "type": "text"
+                },
+                {
+                  "code": "BOOL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " conversions at compile time.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Update-Just-In-Time-Compilers",
+          "level": 3,
+          "text": "Update Just-In-Time Compilers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Update the workflow of any just-in-time compilers to support Apple silicon, which",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "prevent all memory pages from being simultaneously writable and executable. On Intel-based",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Mac computers, this same behavior applies only to apps that adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/hardened-runtime",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/porting-just-in-time-compilers-to-apple-silicon",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-C++-Code",
+          "level": 3,
+          "text": "Update C++ Code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The C++ ABI for Apple silicon matches the ABI for iOS devices, and not the ABI for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Intel-based Mac computers. For information about the ABI, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Xcode/Conceptual/iPhoneOSABIReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009020-SW1",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/addressing-architectural-differences-in-your-macos-code#Enable-Strict-Type-Enforcement-for-Dynamic-Method-Dispatching": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/addressing-architectural-differences-in-your-macos-code#Enable-Strict-Type-Enforcement-for-Dynamic-Method-Dispatching",
+      "kind": "section",
+      "title": "Enable Strict Type Enforcement for Dynamic Method Dispatching",
+      "type": "topic",
+      "url": "/documentation/apple-silicon/addressing-architectural-differences-in-your-macos-code#Enable-Strict-Type-Enforcement-for-Dynamic-Method-Dispatching"
+    },
+    "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/porting-just-in-time-compilers-to-apple-silicon": {
+      "abstract": [
+        {
+          "text": "Update your just-in-time (JIT) compiler to work with the Hardened Runtime capability,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and with Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/porting-just-in-time-compilers-to-apple-silicon",
+      "kind": "article",
+      "role": "article",
+      "title": "Porting just-in-time compilers to Apple silicon",
+      "type": "topic",
+      "url": "/documentation/apple-silicon/porting-just-in-time-compilers-to-apple-silicon"
+    },
+    "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/porting-your-audio-code-to-apple-silicon": {
+      "abstract": [
+        {
+          "text": "Eliminate issues in your audio-specific code when running on Apple silicon Mac computers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/porting-your-audio-code-to-apple-silicon",
+      "kind": "article",
+      "role": "article",
+      "title": "Porting Your Audio Code to Apple Silicon",
+      "type": "topic",
+      "url": "/documentation/apple-silicon/porting-your-audio-code-to-apple-silicon"
+    },
+    "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/porting-your-macos-apps-to-apple-silicon": {
+      "abstract": [
+        {
+          "text": "Create a version of your macOS app that runs on both Apple silicon and Intel-based",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Mac computers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/porting-your-macos-apps-to-apple-silicon",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Porting Your macOS Apps to Apple Silicon",
+      "type": "topic",
+      "url": "/documentation/apple-silicon/porting-your-macos-apps-to-apple-silicon"
+    },
+    "doc://com.apple.Apple-Silicon/documentation/apple-silicon": {
+      "abstract": [
+        {
+          "text": "Get the resources you need to create software for Macs with Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Apple-Silicon/documentation/apple-silicon",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple Silicon",
+      "type": "topic",
+      "url": "/documentation/apple-silicon"
+    },
+    "doc://com.apple.documentation/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/Accelerate"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSImage/ResizingMode-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that describe the resizing mode for the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ResizingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage/ResizingMode-swift.enum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSImage.ResizingMode",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSImage/ResizingMode-swift.enum"
+    },
+    "doc://com.apple.documentation/documentation/Dispatch": {
+      "abstract": [
+        {
+          "text": "Execute code concurrently on multicore hardware by submitting work to dispatch queues managed by the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Dispatch",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Dispatch",
+      "type": "topic",
+      "url": "/documentation/Dispatch"
+    },
+    "doc://com.apple.documentation/documentation/Security/hardened-runtime": {
+      "abstract": [
+        {
+          "text": "Manage security protections and resource access for your macOS apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/hardened-runtime",
+      "kind": "article",
+      "role": "article",
+      "title": "Hardened Runtime",
+      "type": "topic",
+      "url": "/documentation/Security/hardened-runtime"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/NSTextAlignment": {
+      "abstract": [
+        {
+          "text": "Constants that specify text alignment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextAlignment"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/NSTextAlignment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTextAlignment",
+      "type": "topic",
+      "url": "/documentation/UIKit/NSTextAlignment"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIImage/ResizingMode-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that specify the possible resizing modes for an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ResizingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage/ResizingMode-swift.enum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIImage.ResizingMode",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIImage/ResizingMode-swift.enum"
+    },
+    "doc://com.apple.documentation/documentation/VideoToolbox/kVTVideoEncoderSpecification_EncoderID": {
+      "abstract": [
+        {
+          "text": "A key that indicates a particular video encoder to use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kVTVideoEncoderSpecification_EncoderID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/kVTVideoEncoderSpecification_EncoderID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kVTVideoEncoderSpecification_EncoderID",
+      "type": "topic",
+      "url": "/documentation/VideoToolbox/kVTVideoEncoderSpecification_EncoderID"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early": {
+      "abstract": [
+        {
+          "text": "Identify runtime crashes and undefined behaviors in your app during testing using Xcode’s sanitizer tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early",
+      "kind": "article",
+      "role": "article",
+      "title": "Diagnosing memory, thread, and crash issues early",
+      "type": "topic",
+      "url": "/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "abstract": [
+        {
+          "text": "Access essential data types, collections, and operating-system services to define the base layer of functionality for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1456712-objc_msgsend": {
+      "abstract": [
+        {
+          "text": "Sends a message with a simple return value to an instance of a class.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1456712-objc_msgsend",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_msgSend",
+      "type": "topic",
+      "url": "/documentation/objectivec/1456712-objc_msgsend"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/bool": {
+      "abstract": [
+        {
+          "text": "Type to represent a Boolean value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/bool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BOOL",
+      "type": "topic",
+      "url": "/documentation/objectivec/bool"
+    },
+    "doc://com.apple.documentation/documentation/os": {
+      "abstract": [
+        {
+          "text": "Coordinate the scheduling and synchronization of your app’s tasks, and log information to the console to diagnose issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/os",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "os",
+      "type": "topic",
+      "url": "/documentation/os"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/library/archive/documentation/Xcode/Conceptual/iPhoneOSABIReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009020-SW1": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Xcode/Conceptual/iPhoneOSABIReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009020-SW1",
+      "title": "iOS ABI Function Call Guide",
+      "titleInlineContent": [
+        {
+          "text": "iOS ABI Function Call",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Xcode/Conceptual/iPhoneOSABIReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009020-SW1"
+    },
+    "https://llvm.org": {
+      "identifier": "https://llvm.org",
+      "title": "https://llvm.org",
+      "titleInlineContent": [
+        {
+          "text": "https://llvm.org",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://llvm.org"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "General-Porting-Tips",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/porting-your-audio-code-to-apple-silicon",
+        "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/porting-just-in-time-compilers-to-apple-silicon"
+      ],
+      "title": "General Porting Tips"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSImage~1ResizingMode-swift.enum/title",
+          "value": "NSImageResizingMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSImage~1ResizingMode-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSImageResizingMode"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSInteger",
+              "text": "NSInteger"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImage~1ResizingMode-swift.enum/title",
+          "value": "UIImageResizingMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImage~1ResizingMode-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIImageResizingMode"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSInteger",
+              "text": "NSInteger"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1kVTVideoEncoderSpecification_EncoderID/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kVTVideoEncoderSpecification_EncoderID"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1NSTextAlignment/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTextAlignment"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSInteger",
+              "text": "NSInteger"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2381 @@
+{
+  "abstract": [
+    {
+      "text": "Chart content that represents data using the area of one or more regions.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Charts/documentation/Charts"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Charts/documentation/Charts/AreaMark"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:6Charts8AreaMarkV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AreaMark"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift Charts"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AreaMark"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "AreaMark"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AreaMark"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "code": "AreaMark",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to represent data as filled regions on a chart. To",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "create a simple area mark chart, plot a date or an ordered string property",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on the x-axis, and a number on the y-axis. For example, suppose you have",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data that represents the cost of a cheeseburger over time, stored in an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "array of ",
+              "type": "text"
+            },
+            {
+              "code": "Food",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structures:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let cheeseburgerCost: [Food] = [",
+            "    .init(name: \"Cheeseburger\", price: 0.15, year: 1960),",
+            "    .init(name: \"Cheeseburger\", price: 0.20, year: 1970),",
+            "    // ...",
+            "    .init(name: \"Cheeseburger\", price: 1.10, year: 2020)",
+            "]",
+            "",
+            "struct Food: Identifiable {",
+            "    let name: String",
+            "    let price: Double",
+            "    let date: Date",
+            "    let id = UUID()",
+            "",
+            "    init(name: String, price: Double, year: Int) {",
+            "        self.name = name",
+            "        self.price = price",
+            "        let calendar = Calendar.autoupdatingCurrent",
+            "        self.date = calendar.date(from: DateComponents(year: year))!",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create labeled data in the form of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/PlottableValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for each of the ",
+              "type": "text"
+            },
+            {
+              "code": "x",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "y",
+              "type": "codeVoice"
+            },
+            {
+              "text": " inputs to an area mark:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Chart(cheeseburgerCost) { cost in",
+            "    AreaMark(",
+            "        x: .value(\"Date\", cost.date),",
+            "        y: .value(\"Price\", cost.price)",
+            "    )",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The resulting chart automatically scales and labels the axes based on the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data, and fills the area under the data points with a default color:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "AreaMark-1-macOS",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want only the line without filling in the area below the line, use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/LineMark",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-detail-with-a-stacked-area-chart",
+          "level": 3,
+          "text": "Add detail with a stacked area chart",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To represent an additional dimension of information, you can create a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "stacked area chart. For example, suppose you have another data set that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "represents the same cost data from the previous example, but which is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "broken into the component costs for the burger, bun, and cheese:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let cheeseburgerCostByItem: [Food] = [",
+            "    .init(name: \"Burger\", price: 0.07, year: 1960),",
+            "    .init(name: \"Cheese\", price: 0.03, year: 1960),",
+            "    .init(name: \"Bun\", price: 0.05, year: 1960),",
+            "    .init(name: \"Burger\", price: 0.10, year: 1970),",
+            "    .init(name: \"Cheese\", price: 0.04, year: 1970),",
+            "    .init(name: \"Bun\", price: 0.06, year: 1970),",
+            "    // ...",
+            "    .init(name: \"Burger\", price: 0.60, year: 2020),",
+            "    .init(name: \"Cheese\", price: 0.26, year: 2020),",
+            "    .init(name: \"Bun\", price: 0.24, year: 2020)",
+            "]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can again create an area mark with the data, but in this case add the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/ChartContent/foregroundStyle(by:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to create a stacked area",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "chart that divides the information into distinct regions based on the data’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "name",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Chart(cheeseburgerCostByItem) { cost in",
+            "    AreaMark(",
+            "        x: .value(\"Date\", cost.date),",
+            "        y: .value(\"Price\", cost.price)",
+            "    )",
+            "    .foregroundStyle(by: .value(\"Food Item\", cost.name))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The chart automatically assigns a different color to each region, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "adds a legend that indicates what each color represents based on the names",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that you provide to the modifier:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "AreaMark-2-macOS",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Stack-the-data-in-different-ways",
+          "level": 3,
+          "text": "Stack the data in different ways",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can highlight different aspects of the data by stacking it in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "different ways. For example, the previous chart shows the absolute",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contributions of each ingredient to the cheeseburger’s total cost. To see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the relative contributions instead, you can create a normalized chart by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "setting the area mark’s ",
+              "type": "text"
+            },
+            {
+              "code": "stacking",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/MarkStackingMethod/normalized",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Chart(cheeseburgerCostByItem) { cost in",
+            "    AreaMark(",
+            "        x: .value(\"Date\", cost.date),",
+            "        y: .value(\"Price\", cost.price),",
+            "        stacking: .normalized",
+            "    )",
+            "    .foregroundStyle(by: .value(\"Food Item\", cost.name))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "AreaMark-3-macOS",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/MarkStackingMethod/center",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " stacking to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "create a streamgraph, which shifts the area chart’s baseline to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "center of the chart’s plotting area:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Chart(cheeseburgerCostByItem) { cost in",
+            "    AreaMark(",
+            "        x: .value(\"Date\", cost.date),",
+            "        y: .value(\"Price\", cost.price),",
+            "        stacking: .center",
+            "    )",
+            "    .foregroundStyle(by: .value(\"Food Item\", cost.name))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "AreaMark-4-macOS",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-range-area-chart",
+          "level": 3,
+          "text": "Create a range area chart",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also use area marks to create a range area chart, where you provide",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an interval to fill in for each data point. To do this, you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provide either a date or ordered string category for the x-axis and a range",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of values for the y-axis, or vice versa. For example, suppose you record",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the minimum and maximum temperatures every day in a ",
+              "type": "text"
+            },
+            {
+              "code": "Weather",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Weather: Identifiable {",
+            "    let date: Date",
+            "    let maximumTemperature: Double",
+            "    let minimumTemperature: Double",
+            "    let id: Int",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you load a collection of these structures into a ",
+              "type": "text"
+            },
+            {
+              "code": "data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array, you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use the date on the x-axis, and each day’s minimum and maximum temperature",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as the start and end points for the y-axis:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Chart(data) { day in",
+            "    AreaMark(",
+            "        x: .value(\"Date\", day.date),",
+            "        yStart: .value(\"Minimum Temperature\", day.minimumTemperature),",
+            "        yEnd: .value(\"Maximum Temperature\", day.maximumTemperature)",
+            "    )",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This creates a filled region that’s shaped by the start and end points on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "each date:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "AreaMark-5-macOS",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "AreaMark-1-macOS": {
+      "alt": "A chart that shows the years 1960 to 2020 on the x-axis and a number in the range of 0 to 1.5 on the y-axis. An irregular, monotonically increasing, piecewise linear curve starts near the lower left and continues toward the upper right. The area under the curve is filled in with a blue color.",
+      "identifier": "AreaMark-1-macOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/36b91667605910cb6256e819437543de/AreaMark-1-macOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c5fa5deae23b091d5a8606f21c5805d6/AreaMark-1-macOS~dark@2x.png"
+        }
+      ]
+    },
+    "AreaMark-2-macOS": {
+      "alt": "A chart that shows the years 1960 to 2020 on the x-axis and a number in the range of 0 to 1.5 on the y-axis. Three irregular, non-intersecting, monotonically increasing, piecewise linear curves start near the lower left and continue toward the upper right. The area under the bottom curve is filled with blue. The area above the bottom curve and below the next curve is filled with green. The area above the second and below the top curve is filled with orange. A legend below the chart area indicates that blue corresponds to Burger, green to Cheese, and orange to Bun.",
+      "identifier": "AreaMark-2-macOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f03ac9a62e36cdb1ce6df64115395802/AreaMark-2-macOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/745eadb11c0d7c616719bbe7130c81d4/AreaMark-2-macOS~dark@2x.png"
+        }
+      ]
+    },
+    "AreaMark-3-macOS": {
+      "alt": "A chart that shows the years 1960 to 2020 on the x-axis and a number in the range of 0 to 100 on the y-axis. The entire chart is filled with color, divided into three different horizontal regions that are separated by irregular, piecewise linear curves that span the width of the chart. The area under the bottom curve is filled with blue. The area above the bottom curve and below the top curve is filled with green. The area above the top curve is filled with orange. A legend below the chart area indicates that blue corresponds to Burger, green to Cheese, and orange to Bun.",
+      "identifier": "AreaMark-3-macOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f4379eba09194b147f20c639f3cd0683/AreaMark-3-macOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6c5585fdcc59b0900ad09327d1979d57/AreaMark-3-macOS~dark@2x.png"
+        }
+      ]
+    },
+    "AreaMark-4-macOS": {
+      "alt": "A chart that shows the years 1960 to 2020 on the x-axis and a number in the range of -1 to 1 on the y-axis. Three irregular, piecewise linear horizontal regions appear near the middle of the chart, growing from small on the left to larger on the right. The top region is filled with orange, the middle region is filled with green, and the bottom region is filled with blue. A legend below the chart area indicates that blue corresponds to Burger, green to Cheese, and orange to Bun.",
+      "identifier": "AreaMark-4-macOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bd7f2fe8fa45dce254912e1fbd5e86c1/AreaMark-4-macOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2e1ac1899c0ebbf19d2e787459d1a61a/AreaMark-4-macOS~dark@2x.png"
+        }
+      ]
+    },
+    "AreaMark-5-macOS": {
+      "alt": "A chart that shows month names on the x-axis, ranging from January to October, and a number in the range 0 to 80 on the y-axis. A solid blue region spans the chart from left to right. The region is close to the middle of the y-axis on either end, and closer to the top of the chart in the middle. The region is thinner at the ends and thicker in the middle.",
+      "identifier": "AreaMark-5-macOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/312b9822d288c8f1e400decc5e04ad9e/AreaMark-5-macOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/844b14f59af63aa15747c015e7c9703e/AreaMark-5-macOS~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Charts/documentation/Charts": {
+      "abstract": [
+        {
+          "text": "Construct and customize charts on every Apple platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift Charts",
+      "type": "topic",
+      "url": "/documentation/charts"
+    },
+    "doc://com.apple.Charts/documentation/Charts/AreaMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using the area of one or more regions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AreaMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/AreaMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AreaMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "AreaMark",
+      "type": "topic",
+      "url": "/documentation/charts/areamark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/AreaMark/init(x:y:series:stacking:)": {
+      "abstract": [
+        {
+          "text": "Creates an area mark and associates it with the specified series.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "series"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stacking"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts18MarkStackingMethodV",
+          "text": "MarkStackingMethod"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/AreaMark/init(x:y:series:stacking:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(x:y:series:stacking:)",
+      "type": "topic",
+      "url": "/documentation/charts/areamark/init(x:y:series:stacking:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/AreaMark/init(x:y:stacking:)": {
+      "abstract": [
+        {
+          "text": "Creates an area mark using the specified horizontal and vertical",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "positions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stacking"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts18MarkStackingMethodV",
+          "text": "MarkStackingMethod"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/AreaMark/init(x:y:stacking:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(x:y:stacking:)",
+      "type": "topic",
+      "url": "/documentation/charts/areamark/init(x:y:stacking:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/AreaMark/init(x:yStart:yEnd:)": {
+      "abstract": [
+        {
+          "text": "Creates an area mark that plots values with a vertical interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "yStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "yEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/AreaMark/init(x:yStart:yEnd:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(x:yStart:yEnd:)",
+      "type": "topic",
+      "url": "/documentation/charts/areamark/init(x:ystart:yend:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/AreaMark/init(x:yStart:yEnd:series:)": {
+      "abstract": [
+        {
+          "text": "Creates an area mark that plots values with a vertical interval",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and associates it with the specified series.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "yStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "yEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "series"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/AreaMark/init(x:yStart:yEnd:series:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(x:yStart:yEnd:series:)",
+      "type": "topic",
+      "url": "/documentation/charts/areamark/init(x:ystart:yend:series:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/AreaMark/init(xStart:xEnd:y:)": {
+      "abstract": [
+        {
+          "text": "Creates an area mark that plots values with a horizontal interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "xStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "xEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/AreaMark/init(xStart:xEnd:y:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(xStart:xEnd:y:)",
+      "type": "topic",
+      "url": "/documentation/charts/areamark/init(xstart:xend:y:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/AreaMark/init(xStart:xEnd:y:series:)": {
+      "abstract": [
+        {
+          "text": "Creates an area mark that plots values with a horizontal interval",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and associates it with the specified series.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "xStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "xEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "series"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/AreaMark/init(xStart:xEnd:y:series:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(xStart:xEnd:y:series:)",
+      "type": "topic",
+      "url": "/documentation/charts/areamark/init(xstart:xend:y:series:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/BarMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using bars.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BarMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/BarMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BarMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "BarMark",
+      "type": "topic",
+      "url": "/documentation/charts/barmark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/ChartContent": {
+      "abstract": [
+        {
+          "text": "A type that represents the content that you draw on a chart.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChartContent"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/ChartContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ChartContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ChartContent",
+      "type": "topic",
+      "url": "/documentation/charts/chartcontent"
+    },
+    "doc://com.apple.Charts/documentation/Charts/ChartContent/foregroundStyle(by:)": {
+      "abstract": [
+        {
+          "text": "Represents data using a foreground style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "foregroundStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts12ChartContentP",
+          "text": "ChartContent"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/ChartContent/foregroundStyle(by:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "foregroundStyle(by:)",
+      "type": "topic",
+      "url": "/documentation/charts/chartcontent/foregroundstyle(by:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/LineMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using a sequence of connected line segments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LineMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/LineMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LineMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "LineMark",
+      "type": "topic",
+      "url": "/documentation/charts/linemark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/MarkStackingMethod/center": {
+      "abstract": [
+        {
+          "text": "Stack marks using a center offset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "center"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts18MarkStackingMethodV",
+          "text": "MarkStackingMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/MarkStackingMethod/center",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "center",
+      "type": "topic",
+      "url": "/documentation/charts/markstackingmethod/center"
+    },
+    "doc://com.apple.Charts/documentation/Charts/MarkStackingMethod/normalized": {
+      "abstract": [
+        {
+          "text": "Create normalized stacked bar and area charts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "normalized"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts18MarkStackingMethodV",
+          "text": "MarkStackingMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/MarkStackingMethod/normalized",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "normalized",
+      "type": "topic",
+      "url": "/documentation/charts/markstackingmethod/normalized"
+    },
+    "doc://com.apple.Charts/documentation/Charts/PlottableValue": {
+      "abstract": [
+        {
+          "text": "Labeled data that you plot in a chart using marks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlottableValue"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/PlottableValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlottableValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlottableValue",
+      "type": "topic",
+      "url": "/documentation/charts/plottablevalue"
+    },
+    "doc://com.apple.Charts/documentation/Charts/PointMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using points.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PointMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/PointMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PointMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "PointMark",
+      "type": "topic",
+      "url": "/documentation/charts/pointmark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/RectangleMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using rectangles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RectangleMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/RectangleMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RectangleMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "RectangleMark",
+      "type": "topic",
+      "url": "/documentation/charts/rectanglemark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/RuleMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using a single horizontal or vertical rule.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RuleMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/RuleMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RuleMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "RuleMark",
+      "type": "topic",
+      "url": "/documentation/charts/rulemark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/SectorMark": {
+      "abstract": [
+        {
+          "text": "A sector of a pie or donut chart, which shows how individual categories make up a meaningful total.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SectorMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/SectorMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SectorMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "SectorMark",
+      "type": "topic",
+      "url": "/documentation/charts/sectormark"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Charts/documentation/Charts/ChartContent",
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Marks",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Charts/documentation/Charts/LineMark",
+        "doc://com.apple.Charts/documentation/Charts/PointMark",
+        "doc://com.apple.Charts/documentation/Charts/RectangleMark",
+        "doc://com.apple.Charts/documentation/Charts/RuleMark",
+        "doc://com.apple.Charts/documentation/Charts/BarMark",
+        "doc://com.apple.Charts/documentation/Charts/SectorMark"
+      ],
+      "title": "Marks"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-area-mark",
+      "identifiers": [
+        "doc://com.apple.Charts/documentation/Charts/AreaMark/init(x:y:stacking:)",
+        "doc://com.apple.Charts/documentation/Charts/AreaMark/init(x:y:series:stacking:)"
+      ],
+      "title": "Creating an area mark"
+    },
+    {
+      "anchor": "Creating-a-range-area-chart",
+      "identifiers": [
+        "doc://com.apple.Charts/documentation/Charts/AreaMark/init(x:yStart:yEnd:)",
+        "doc://com.apple.Charts/documentation/Charts/AreaMark/init(x:yStart:yEnd:series:)",
+        "doc://com.apple.Charts/documentation/Charts/AreaMark/init(xStart:xEnd:y:)",
+        "doc://com.apple.Charts/documentation/Charts/AreaMark/init(xStart:xEnd:y:series:)"
+      ],
+      "title": "Creating a range area chart"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/charts/areamark"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

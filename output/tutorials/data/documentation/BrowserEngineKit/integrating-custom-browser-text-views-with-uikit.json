@@ -1,0 +1,5055 @@
+{
+  "abstract": [
+    {
+      "text": "Process keyboard interactions asynchronously in your iOS browser app’s text view.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/text-interaction"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/integrating-custom-browser-text-views-with-uikit"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "BrowserEngineKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Integrating custom browser text views with UIKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iOS apps that draw custom text views adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol to inform the text input system about changes in state related to text input and selection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In browser apps, the text input system might need information that your app prepares by communicating with an extension asynchronously, or information that the app prepares by executing Javascript from a web site.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In these situations, your text view additionally adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The text input system uses this protocol to make asynchronous requests for information about the text in your view, and to supply information about gestures that support text interactions, including selecting text and modifying the selection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-your-custom-text-view",
+          "level": 3,
+          "text": "Create your custom text view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "BETextInput",
+              "type": "codeVoice"
+            },
+            {
+              "text": " isn’t a complete replacement for ",
+              "type": "text"
+            },
+            {
+              "code": "UITextInput",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", so a custom view that participates in the text system needs to conform to both protocols.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "public class MyTextView: UIView, BETextInput, UITextInput {",
+            "",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement the required ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods in your view class.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "At runtime, the text system determines whether your text field implements ",
+              "type": "text"
+            },
+            {
+              "code": "BETextInput",
+              "type": "codeVoice"
+            },
+            {
+              "text": " counterparts to the ",
+              "type": "text"
+            },
+            {
+              "code": "UITextInput",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods; if it does, the text system calls the ",
+              "type": "text"
+            },
+            {
+              "code": "BETextInput",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods instead of the ",
+              "type": "text"
+            },
+            {
+              "code": "UITextInput",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your custom view’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/textInputView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is the view that the system uses for all coordinate transforms when handling text-input gestures.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you create the text input view, add a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInteraction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the view’s interactions.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The operating system uses the ",
+              "type": "text"
+            },
+            {
+              "code": "BETextInteraction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to track the state of text-input gestures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Accept-a-delegate-object",
+          "level": 3,
+          "text": "Accept a delegate object",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a property ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/asyncInputDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInputDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on your view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The operating system provides delegates when it needs notifications for text input changes; you don’t conform to ",
+              "type": "text"
+            },
+            {
+              "code": "BETextInputDelegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in your code or implement its methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "public class MyTextView: UIView, BETextInput, UITextInput {",
+            "\tweak var asyncInputDelegate: BETextInputDelegate? = nil",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Report-whether-the-text-view-performs-actions",
+          "level": 3,
+          "text": "Report whether the text view performs actions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/canPerformAction(_:withSender:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in your view, returning ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when your view can perform the action and ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " otherwise.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you return ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the operating system doesn’t call the action method even if your class implements it (so ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol/1418583-responds",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the action method’s selector returns ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Return ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when your view is in a state where it doesn’t handle the action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Accept-text-input",
+          "level": 3,
+          "text": "Accept text input",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system tells your text view which writing direction the person is using to input text with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/setBaseWritingDirection(_:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/handleKeyEntry(_:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to accept key events from the text input system, which you interpret to insert characters and perform actions for key combinations that the text system doesn’t interpret.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Asynchronously process the key event, and call the completion handler when you’re done, passing ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the second parameter if you handled the event, ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " otherwise.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system calls ",
+              "type": "text"
+            },
+            {
+              "code": "handleKeyEntry(_:completionHandler:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " multiple times for one keypress:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Once when someone initially presses the key and it enters the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEKeyEntry/KeyPressState/down",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Zero or more times for repeated entry if the key remains pressed down, in which case ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEKeyEntry/isKeyRepeating",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Once when someone releases the key and it re-enters the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEKeyEntry/KeyPressState/up",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t handle the key event and return ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from the completion handler, call the delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInputDelegate/shouldDeferEventHandlingToSystem(for:context:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to give the system an opportunity to handle the event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Your text view needs to call the completion handler for each key event it receives, to indicate to the text system that it’s ready for the next event.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The operating system processes key events on a serial queue, so if you don’t call the completion handler you block key input to your app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/shiftKeyStateChanged(fromState:toState:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to discover when someone presses and releases the shift key and when someone engages and disengages the caps lock.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Report-text-content-and-layout",
+          "level": 3,
+          "text": "Report text content and layout",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tell the text system what text is in a given range in your text view with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/text(in:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your implementation of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/offset(from:to:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", report the difference between two text positions, counting the number of insertion points (locations that the text caret can adopt) between the text positions.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A negative value means that the first position is after the second position; zero means they are the same position; and a positive value means that the first position is before the second position.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Select-text-and-respond-to-selection-changes",
+          "level": 3,
+          "text": "Select text and respond to selection changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the operating system detects that someone is starting a gesture in your text view, it sends your text view ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/textInteractionGesture(_:shouldBeginAt:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", passing the type of gesture it detects and the location of the gesture in your view’s coordinate system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To permit the gesture to proceed, return ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from this method; otherwise, return ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you permit the gesture, then as someone selects text in your text view, the text system sends your text view one of the following methods, depending on the gesture:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The gesture moves the text selection caret in the given direction.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/moveSelection(atBoundary:in:completionHandler:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The gesture locates the text selection caret at the given point.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/selectPosition(at:completionHandler:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The gesture updates the selection to the text contained at the given granularity and point.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/selectText(in:at:completionHandler:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The gesture adjusts the selection to include the text at the given point.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/updateSelection(extent:boundary:completionHandler:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The operating system changed the point at which it’s tracking the gesture.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/updateCurrentSelection(to:from:in:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The gesture changes the selection to the text between the given points.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/setSelection(from:to:gesture:state:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The gesture adjusts the selection’s start or end boundary to the text at the given point.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/adjustSelectionBoundary(to:touchPhase:baseIsStart:flags:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The view’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/selectedText",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property needs to contain the selection and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/selectedTextRange",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property needs to contain the range of the selection.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the selection caret is in the document, then ",
+              "type": "text"
+            },
+            {
+              "code": "selectedTextRange",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has zero length.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If someone hasn’t selected any text, both of these properties need to be ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the selection is at the beginning of the text document, then return ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the value for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/isSelectionAtDocumentStart",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "; otherwise, return ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As someone continues their text-selection gesture, you need to update the geometry of the selection so that the text system draws the selection UI correctly.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/selectionRects(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/caretRect(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to provide the selection geometry to the text system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/updateSelection(extent:boundary:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to get notified when someone modifies the selection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Your text view also needs to support marked text.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Marked text",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " is very similar to selected text, and represents a range of text proposed for insertion that someone hasn’t yet confirmed they want.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Use distinct display styles for marked and selected text.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Edit-text-and-support-autocorrect",
+          "level": 3,
+          "text": "Edit text and support autocorrect",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The text system calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/delete(in:to:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when someone deletes text using the backspace or delete keys.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The direction indicates whether to delete text ahead of or behind the insertion point.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You support autocorrect in your text view by implementing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/replaceSelectedText(_:withText:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", replacing the original text in your text storage with the ",
+              "type": "text"
+            },
+            {
+              "code": "replacementText",
+              "type": "codeVoice"
+            },
+            {
+              "text": " string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the text system requires extra context around the current selection to make autocorrect suggestions, it calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/requestTextContextForAutocorrection(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the completion handler, return a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextDocumentContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that includes the complete sentence that contains the selection.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the selection is at a sentence boundary, also include the preceding sentence.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/insert(_:)-5iryn",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to accept suggested text from the text system as a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextSuggestion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", for example, when someone uses AutoFill to complete the value for a text field.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Scroll-the-text-view-automatically",
+          "level": 3,
+          "text": "Scroll the text view automatically",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some text interactions — including placing the text cursor in a view and updating the selection range — require a text view to scroll automatically so the person can see the text with which they’re interacting.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When the text system needs to automatically scroll your text view, it sends ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/autoscroll(to:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", with a point in the coordinate space of your text view’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/textInputView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that needs to become visible.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When the person completes the interaction, the text system sends ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/cancelAutoscroll()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-text-alternatives",
+          "level": 3,
+          "text": "Provide text alternatives",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When someone uses Apple Pencil to enter handwritten text into a text view, text alternatives provide alternate interpretations of the person’s input that the person can choose to replace the transcribed text.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To support text alternatives in your browser text view, implement these methods:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Add text alternatives to the text view for the currently selected text.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/add(_:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Insert the given text or one of its alternatives.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/insert(_:)-6x7hd",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Remove the text alternatives for the currently selected text.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/removeTextAlternatives()",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Supply the available text alternatives.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/alternativesForSelectedText()",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Respond-to-someone-dismissing-the-keyboard",
+          "level": 3,
+          "text": "Respond to someone dismissing the keyboard",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On iPad, a person can dismiss the on-screen keyboard from a control on the keyboard UI, which ends the current text-editing session.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/keyboardWillDismiss()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to react to the person dismissing the keyboard while your text view is active.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the browser view that hosts your text control needs to retain first-responder status after someone dismisses the keyboard, for example, to provide keyboard-driven scrolling, or it needs to execute Javascript when someone finishes editing text, use this method to remove keyboard focus from the text control without resigning first-responder status.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit": {
+      "abstract": [
+        {
+          "text": "Create a browser that renders content using an alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BrowserEngineKit",
+      "type": "topic",
+      "url": "/documentation/browserenginekit"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEKeyEntry/KeyPressState/down": {
+      "abstract": [
+        {
+          "text": "The key is down.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "down"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEKeyEntry/KeyPressState/down",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEKeyPressStateDown"
+        }
+      ],
+      "role": "symbol",
+      "title": "BEKeyEntry.KeyPressState.down",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bekeyentry/keypressstate/down"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEKeyEntry/KeyPressState/up": {
+      "abstract": [
+        {
+          "text": "The key is up.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "up"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEKeyEntry/KeyPressState/up",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEKeyPressStateUp"
+        }
+      ],
+      "role": "symbol",
+      "title": "BEKeyEntry.KeyPressState.up",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bekeyentry/keypressstate/up"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEKeyEntry/isKeyRepeating": {
+      "abstract": [
+        {
+          "text": "Represents whether the event is repeating.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isKeyRepeating"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEKeyEntry/isKeyRepeating",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "keyRepeating"
+        }
+      ],
+      "role": "symbol",
+      "title": "isKeyRepeating",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bekeyentry/iskeyrepeating"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextDocumentContext": {
+      "abstract": [
+        {
+          "text": "Information about the text surrounding a selection in a document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BETextDocumentContext"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextDocumentContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BETextDocumentContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "BETextDocumentContext",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextdocumentcontext"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput": {
+      "abstract": [
+        {
+          "text": "A protocol to which text views conform to asynchronously integrate with the text system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BETextInput"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BETextInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "BETextInput",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/add(_:)": {
+      "abstract": [
+        {
+          "text": "Adds text alternatives to the text input object for the current selection",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)BETextAlternatives",
+          "text": "BETextAlternatives"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/add(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addTextAlternatives:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "add(_:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/add(_:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/adjustSelectionBoundary(to:touchPhase:baseIsStart:flags:)": {
+      "abstract": [
+        {
+          "text": "Adjusts the selection’s start or end boundary specified by ",
+          "type": "text"
+        },
+        {
+          "code": "boundaryIsStart",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to the ",
+          "type": "text"
+        },
+        {
+          "code": "point",
+          "type": "codeVoice"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "adjustSelectionBoundary"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "touchPhase"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@BESelectionTouchPhase",
+          "text": "BESelectionTouchPhase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "baseIsStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@BESelectionFlags",
+          "text": "BESelectionFlags"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/adjustSelectionBoundary(to:touchPhase:baseIsStart:flags:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "adjustSelectionBoundaryToPoint:touchPhase:baseIsStart:flags:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "adjustSelectionBoundary(to:touchPhase:baseIsStart:flags:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/adjustselectionboundary(to:touchphase:baseisstart:flags:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/alternativesForSelectedText()": {
+      "abstract": [
+        {
+          "text": "Returns the text alternatives that are available to the text input object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alternativesForSelectedText"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)BETextAlternatives",
+          "text": "BETextAlternatives"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/alternativesForSelectedText()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "alternativesForSelectedText"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "alternativesForSelectedText()",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/alternativesforselectedtext()"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/asyncInputDelegate": {
+      "abstract": [
+        {
+          "text": "A system-provided input delegate is assigned when the system is interested in input changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "asyncInputDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)BETextInputDelegate",
+          "text": "BETextInputDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/asyncInputDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "asyncInputDelegate"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "asyncInputDelegate",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/asyncinputdelegate"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/autoscroll(to:)": {
+      "abstract": [
+        {
+          "text": "Indicates autoscrolling has been triggered by a text interaction gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autoscroll"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/autoscroll(to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autoscrollToPoint:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "autoscroll(to:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/autoscroll(to:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/canPerformAction(_:withSender:)": {
+      "abstract": [
+        {
+          "text": "Returns whether text related actions, such those included in UIResponderStandardEditActions, can be handled",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canPerformAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withSender"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/canPerformAction(_:withSender:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canPerformAction:withSender:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "canPerformAction(_:withSender:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/canperformaction(_:withsender:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/cancelAutoscroll()": {
+      "abstract": [
+        {
+          "text": "Indicates autoscrolling is complete.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancelAutoscroll"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/cancelAutoscroll()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cancelAutoscroll"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "cancelAutoscroll()",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/cancelautoscroll()"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/caretRect(for:)": {
+      "abstract": [
+        {
+          "text": "Returns a rectangle to draw the caret at a specified insertion point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "caretRect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextPosition",
+          "text": "UITextPosition"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/caretRect(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "caretRectForPosition:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "caretRect(for:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/caretrect(for:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/delete(in:to:)": {
+      "abstract": [
+        {
+          "text": "Deletes text by the specified direction and granularity.  Current supported combinations include:",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delete"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UITextStorageDirection",
+          "text": "UITextStorageDirection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UITextGranularity",
+          "text": "UITextGranularity"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/delete(in:to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deleteInDirection:toGranularity:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "delete(in:to:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/delete(in:to:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/handleKeyEntry(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Accepts key-entry events from the text system for the text view to process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleKeyEntry"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)BEKeyEntry",
+          "text": "BEKeyEntry"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)BEKeyEntry",
+          "text": "BEKeyEntry"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/handleKeyEntry(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleKeyEntry:withCompletionHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "handleKeyEntry(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/handlekeyentry(_:completionhandler:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/insert(_:)-5iryn": {
+      "abstract": [
+        {
+          "text": "Inserts a ",
+          "type": "text"
+        },
+        {
+          "code": "textSuggestion",
+          "type": "codeVoice"
+        },
+        {
+          "text": " in response to a user suggestion selection",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)BETextSuggestion",
+          "text": "BETextSuggestion"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/insert(_:)-5iryn",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insertTextSuggestion:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "insert(_:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/insert(_:)-5iryn"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/insert(_:)-6x7hd": {
+      "abstract": [
+        {
+          "text": "Inserts the given ",
+          "type": "text"
+        },
+        {
+          "code": "text",
+          "type": "codeVoice"
+        },
+        {
+          "text": " or one of it’s alternative texts available on ",
+          "type": "text"
+        },
+        {
+          "code": "alternatives",
+          "type": "codeVoice"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)BETextAlternatives",
+          "text": "BETextAlternatives"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/insert(_:)-6x7hd",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insertTextAlternatives:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "insert(_:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/insert(_:)-6x7hd"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/isSelectionAtDocumentStart": {
+      "abstract": [
+        {
+          "text": "Represents whether the current selection is at the beginning of the document",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSelectionAtDocumentStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/isSelectionAtDocumentStart",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectionAtDocumentStart"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "isSelectionAtDocumentStart",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/isselectionatdocumentstart"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/keyboardWillDismiss()": {
+      "abstract": [
+        {
+          "text": "Called when the user has requested the keyboard to dismiss itself.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardWillDismiss"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/keyboardWillDismiss()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "keyboardWillDismiss"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyboardWillDismiss()",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/keyboardwilldismiss()"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/moveSelection(atBoundary:in:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Moves the caret to relative to the current position in the ",
+          "type": "text"
+        },
+        {
+          "code": "direction",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to the given ",
+          "type": "text"
+        },
+        {
+          "code": "granularity",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "direction",
+          "type": "codeVoice"
+        },
+        {
+          "text": " is “forward” or “backward” in accordance with the directionality of the language.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "moveSelection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atBoundary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UITextGranularity",
+          "text": "UITextGranularity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UITextStorageDirection",
+          "text": "UITextStorageDirection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/moveSelection(atBoundary:in:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "moveSelectionAtBoundary:inStorageDirection:completionHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "moveSelection(atBoundary:in:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/moveselection(atboundary:in:completionhandler:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/offset(from:to:)": {
+      "abstract": [
+        {
+          "text": "Returns the number of UTF-16 characters between one text position and another text position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextPosition",
+          "text": "UITextPosition"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextPosition",
+          "text": "UITextPosition"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/offset(from:to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "offsetFromPosition:toPosition:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "offset(from:to:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/offset(from:to:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/removeTextAlternatives()": {
+      "abstract": [
+        {
+          "text": "Removes text alternatives from the text input object for the current selection",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeTextAlternatives"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/removeTextAlternatives()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeTextAlternatives"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeTextAlternatives()",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/removetextalternatives()"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/replaceSelectedText(_:withText:)": {
+      "abstract": [
+        {
+          "text": "Replaces the specified ",
+          "type": "text"
+        },
+        {
+          "code": "text",
+          "type": "codeVoice"
+        },
+        {
+          "text": " with ",
+          "type": "text"
+        },
+        {
+          "code": "replacementText",
+          "type": "codeVoice"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replaceSelectedText"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withText"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/replaceSelectedText(_:withText:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "replaceSelectedText:withText:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "replaceSelectedText(_:withText:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/replaceselectedtext(_:withtext:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/requestTextContextForAutocorrection(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Invoked by the system to gather context around the current selection.  Clients should generally include the setence",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that contains the current selection and include the previous sentence if the current selection is at a boundary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestTextContextForAutocorrection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)BETextDocumentContext",
+          "text": "BETextDocumentContext"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/requestTextContextForAutocorrection(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestTextContextForAutocorrectionWithCompletionHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "requestTextContextForAutocorrection(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/requesttextcontextforautocorrection(completionhandler:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/selectPosition(at:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Sets the selection caret to the given point",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectPosition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/selectPosition(at:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectPositionAtPoint:completionHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "selectPosition(at:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/selectposition(at:completionhandler:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/selectText(in:at:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Selects the text within the given granularity at the given point in the text view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectText"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UITextGranularity",
+          "text": "UITextGranularity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/selectText(in:at:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectTextInGranularity:atPoint:completionHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "selectText(in:at:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/selecttext(in:at:completionhandler:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/selectedText": {
+      "abstract": [
+        {
+          "text": "String representing the selected text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedText"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/selectedText",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectedText"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "selectedText",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/selectedtext"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/selectedTextRange": {
+      "abstract": [
+        {
+          "text": "Range representing the selected text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedTextRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextRange",
+          "text": "UITextRange"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/selectedTextRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectedTextRange"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "selectedTextRange",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/selectedtextrange"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/selectionRects(for:)": {
+      "abstract": [
+        {
+          "text": "Returns an array of selection rects corresponding to the range of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectionRects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextRange",
+          "text": "UITextRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextSelectionRect",
+          "text": "UITextSelectionRect"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/selectionRects(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectionRectsForRange:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "selectionRects(for:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/selectionrects(for:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/setBaseWritingDirection(_:for:)": {
+      "abstract": [
+        {
+          "text": "Sets the base writing direction for a specified range of text in a document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBaseWritingDirection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSWritingDirection",
+          "text": "NSWritingDirection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextRange",
+          "text": "UITextRange"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/setBaseWritingDirection(_:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setBaseWritingDirection:forRange:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setBaseWritingDirection(_:for:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/setbasewritingdirection(_:for:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/setSelection(from:to:gesture:state:)": {
+      "abstract": [
+        {
+          "text": "Notifies the text view that its selection needs to change to the text between the given points.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSelection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "gesture"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@BEGestureType",
+          "text": "BEGestureType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIGestureRecognizer",
+          "text": "UIGestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIGestureRecognizerState",
+          "text": "State"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/setSelection(from:to:gesture:state:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setSelectionFromPoint:toPoint:gesture:state:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setSelection(from:to:gesture:state:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/setselection(from:to:gesture:state:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/shiftKeyStateChanged(fromState:toState:)": {
+      "abstract": [
+        {
+          "text": "Indicates a transition in shift state",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shiftKeyStateChanged"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@BEKeyModifierFlags",
+          "text": "BEKeyModifierFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@BEKeyModifierFlags",
+          "text": "BEKeyModifierFlags"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/shiftKeyStateChanged(fromState:toState:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shiftKeyStateChangedFromState:toState:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "shiftKeyStateChanged(fromState:toState:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/shiftkeystatechanged(fromstate:tostate:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/text(in:)": {
+      "abstract": [
+        {
+          "text": "Returns the text in the specified range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "text"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextRange",
+          "text": "UITextRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/text(in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textInRange:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "text(in:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/text(in:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/textInputView": {
+      "abstract": [
+        {
+          "text": "An affiliated view that provides a coordinate system for all geometric values in this protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textInputView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/textInputView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textInputView"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "textInputView",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/textinputview"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/textInteractionGesture(_:shouldBeginAt:)": {
+      "abstract": [
+        {
+          "text": "Returns whether a gesture with the given ",
+          "type": "text"
+        },
+        {
+          "code": "gestureType",
+          "type": "codeVoice"
+        },
+        {
+          "text": " should begin for the given ",
+          "type": "text"
+        },
+        {
+          "code": "point",
+          "type": "codeVoice"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textInteractionGesture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@BEGestureType",
+          "text": "BEGestureType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shouldBeginAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/textInteractionGesture(_:shouldBeginAt:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textInteractionGesture:shouldBeginAtPoint:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "textInteractionGesture(_:shouldBeginAt:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/textinteractiongesture(_:shouldbeginat:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/updateCurrentSelection(to:from:in:)": {
+      "abstract": [
+        {
+          "text": "Indicates the ",
+          "type": "text"
+        },
+        {
+          "code": "point",
+          "type": "codeVoice"
+        },
+        {
+          "text": " the text interaction gesture is tracking has changed",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateCurrentSelection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@BEGestureType",
+          "text": "BEGestureType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIGestureRecognizer",
+          "text": "UIGestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIGestureRecognizerState",
+          "text": "State"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/updateCurrentSelection(to:from:in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateCurrentSelectionTo:fromGesture:inState:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "updateCurrentSelection(to:from:in:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/updatecurrentselection(to:from:in:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/updateSelection(extent:boundary:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Includes the text up to the given point in the current text selection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateSelection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "extent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "boundary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UITextGranularity",
+          "text": "UITextGranularity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/updateSelection(extent:boundary:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateSelectionWithExtentPoint:boundary:completionHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "updateSelection(extent:boundary:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/updateselection(extent:boundary:completionhandler:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInputDelegate": {
+      "abstract": [
+        {
+          "text": "A delegate protocol that a browser text view uses to notify the text system of changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BETextInputDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInputDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BETextInputDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "BETextInputDelegate",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinputdelegate"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInputDelegate/shouldDeferEventHandlingToSystem(for:context:)": {
+      "abstract": [
+        {
+          "text": "Defers the key event to the system and returns whether the key event was handled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldDeferEventHandlingToSystem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)BETextInput",
+          "text": "BETextInput"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)BEKeyEntryContext",
+          "text": "BEKeyEntryContext"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInputDelegate/shouldDeferEventHandlingToSystem(for:context:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shouldDeferEventHandlingToSystemForTextInput:context:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "shouldDeferEventHandlingToSystem(for:context:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinputdelegate/shoulddefereventhandlingtosystem(for:context:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInteraction": {
+      "abstract": [
+        {
+          "text": "An interaction you add to a text view to support extended text gestures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BETextInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BETextInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "BETextInteraction",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinteraction"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextSuggestion": {
+      "abstract": [
+        {
+          "text": "A text suggestion to insert into a document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BETextSuggestion"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextSuggestion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BETextSuggestion"
+        }
+      ],
+      "role": "symbol",
+      "title": "BETextSuggestion",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextsuggestion"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/support-extended-text-interactions": {
+      "abstract": [
+        {
+          "text": "Share content, add replacement shortcuts, and perform other rich actions in browser text views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/support-extended-text-interactions",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting extended text interactions",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/support-extended-text-interactions"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/text-interaction": {
+      "abstract": [
+        {
+          "text": "Integrate your web browser engine asynchronously with the text system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/text-interaction",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Text interaction",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/text-interaction"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UITextInput": {
+      "abstract": [
+        {
+          "text": "A set of methods for interacting with the text input system and enabling features in documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextInput"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIKeyInput",
+          "text": "UIKeyInput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextInput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITextInput",
+      "type": "topic",
+      "url": "/documentation/UIKit/UITextInput"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol/1418583-responds": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the receiver implements or inherits a method that can respond to a specified message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "responds"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": Selector!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol/1418583-responds",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "responds(to:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol/1418583-responds"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Custom-text-views",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/support-extended-text-interactions",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInputDelegate"
+      ],
+      "title": "Custom text views"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Custom-text-views",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/support-extended-text-interactions",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInputDelegate"
+              ],
+              "title": "Custom text views"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1insert(_:)-5iryn/title",
+          "value": "insertTextSuggestion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1insert(_:)-5iryn/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insertTextSuggestion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEKeyEntry~1KeyPressState~1down/title",
+          "value": "BEKeyPressStateDown"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEKeyEntry~1KeyPressState~1down/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEKeyPressStateDown"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInputDelegate/title",
+          "value": "BETextInputDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInputDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BETextInputDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInputDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BETextInputDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1text(in:)/title",
+          "value": "textInRange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1text(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textInRange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInteraction/title",
+          "value": "BETextInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInteraction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BETextInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInteraction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BETextInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1canPerformAction(_:withSender:)/title",
+          "value": "canPerformAction:withSender:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1canPerformAction(_:withSender:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "canPerformAction:withSender:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1shiftKeyStateChanged(fromState:toState:)/title",
+          "value": "shiftKeyStateChangedFromState:toState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1shiftKeyStateChanged(fromState:toState:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "shiftKeyStateChangedFromState:toState:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1cancelAutoscroll()/title",
+          "value": "cancelAutoscroll"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1cancelAutoscroll()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "cancelAutoscroll"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1selectedText/title",
+          "value": "selectedText"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1selectedText/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selectedText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1handleKeyEntry(_:completionHandler:)/title",
+          "value": "handleKeyEntry:withCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1handleKeyEntry(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleKeyEntry:withCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1setSelection(from:to:gesture:state:)/title",
+          "value": "setSelectionFromPoint:toPoint:gesture:state:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1setSelection(from:to:gesture:state:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setSelectionFromPoint:toPoint:gesture:state:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1selectionRects(for:)/title",
+          "value": "selectionRectsForRange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1selectionRects(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "selectionRectsForRange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1updateCurrentSelection(to:from:in:)/title",
+          "value": "updateCurrentSelectionTo:fromGesture:inState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1updateCurrentSelection(to:from:in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateCurrentSelectionTo:fromGesture:inState:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1caretRect(for:)/title",
+          "value": "caretRectForPosition:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1caretRect(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "caretRectForPosition:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInputDelegate~1shouldDeferEventHandlingToSystem(for:context:)/title",
+          "value": "shouldDeferEventHandlingToSystemForTextInput:context:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInputDelegate~1shouldDeferEventHandlingToSystem(for:context:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "shouldDeferEventHandlingToSystemForTextInput:context:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1adjustSelectionBoundary(to:touchPhase:baseIsStart:flags:)/title",
+          "value": "adjustSelectionBoundaryToPoint:touchPhase:baseIsStart:flags:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1adjustSelectionBoundary(to:touchPhase:baseIsStart:flags:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "adjustSelectionBoundaryToPoint:touchPhase:baseIsStart:flags:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1isSelectionAtDocumentStart/title",
+          "value": "selectionAtDocumentStart"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1isSelectionAtDocumentStart/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selectionAtDocumentStart"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1textInputView/title",
+          "value": "textInputView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1textInputView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "textInputView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEKeyEntry~1isKeyRepeating/title",
+          "value": "keyRepeating"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEKeyEntry~1isKeyRepeating/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "keyRepeating"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1requestTextContextForAutocorrection(completionHandler:)/title",
+          "value": "requestTextContextForAutocorrectionWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1requestTextContextForAutocorrection(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestTextContextForAutocorrectionWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobjectprotocol~11418583-responds/title",
+          "value": "respondsToSelector:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1add(_:)/title",
+          "value": "addTextAlternatives:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1add(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addTextAlternatives:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEKeyEntry~1KeyPressState~1up/title",
+          "value": "BEKeyPressStateUp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEKeyEntry~1KeyPressState~1up/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEKeyPressStateUp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UITextInput/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UITextInput"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)UIKeyInput",
+              "text": "UIKeyInput"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1moveSelection(atBoundary:in:completionHandler:)/title",
+          "value": "moveSelectionAtBoundary:inStorageDirection:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1moveSelection(atBoundary:in:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "moveSelectionAtBoundary:inStorageDirection:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1alternativesForSelectedText()/title",
+          "value": "alternativesForSelectedText"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1alternativesForSelectedText()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "alternativesForSelectedText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1replaceSelectedText(_:withText:)/title",
+          "value": "replaceSelectedText:withText:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1replaceSelectedText(_:withText:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "replaceSelectedText:withText:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1removeTextAlternatives()/title",
+          "value": "removeTextAlternatives"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1removeTextAlternatives()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeTextAlternatives"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1textInteractionGesture(_:shouldBeginAt:)/title",
+          "value": "textInteractionGesture:shouldBeginAtPoint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1textInteractionGesture(_:shouldBeginAt:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textInteractionGesture:shouldBeginAtPoint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1updateSelection(extent:boundary:completionHandler:)/title",
+          "value": "updateSelectionWithExtentPoint:boundary:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1updateSelection(extent:boundary:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateSelectionWithExtentPoint:boundary:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1autoscroll(to:)/title",
+          "value": "autoscrollToPoint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1autoscroll(to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "autoscrollToPoint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1selectedTextRange/title",
+          "value": "selectedTextRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1selectedTextRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selectedTextRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1keyboardWillDismiss()/title",
+          "value": "keyboardWillDismiss"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1keyboardWillDismiss()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "keyboardWillDismiss"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1setBaseWritingDirection(_:for:)/title",
+          "value": "setBaseWritingDirection:forRange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1setBaseWritingDirection(_:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setBaseWritingDirection:forRange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextSuggestion/title",
+          "value": "BETextSuggestion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextSuggestion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BETextSuggestion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextSuggestion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BETextSuggestion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1selectText(in:at:completionHandler:)/title",
+          "value": "selectTextInGranularity:atPoint:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1selectText(in:at:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "selectTextInGranularity:atPoint:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1offset(from:to:)/title",
+          "value": "offsetFromPosition:toPosition:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1offset(from:to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "offsetFromPosition:toPosition:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1selectPosition(at:completionHandler:)/title",
+          "value": "selectPositionAtPoint:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1selectPosition(at:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "selectPositionAtPoint:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1insert(_:)-6x7hd/title",
+          "value": "insertTextAlternatives:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1insert(_:)-6x7hd/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insertTextAlternatives:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1asyncInputDelegate/title",
+          "value": "asyncInputDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1asyncInputDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "asyncInputDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextDocumentContext/title",
+          "value": "BETextDocumentContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextDocumentContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BETextDocumentContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextDocumentContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BETextDocumentContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1delete(in:to:)/title",
+          "value": "deleteInDirection:toGranularity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1delete(in:to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "deleteInDirection:toGranularity:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput/title",
+          "value": "BETextInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BETextInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BETextInput"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/browserenginekit/integrating-custom-browser-text-views-with-uikit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/browserenginekit/integrating-custom-browser-text-views-with-uikit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

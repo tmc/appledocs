@@ -1,0 +1,1509 @@
+{
+  "abstract": [
+    {
+      "text": "Create a content blocker for Safari in Xcode.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safariservices/documentation/SafariServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safariservices/documentation/SafariServices/creating-a-content-blocker"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a content blocker"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Content blockers are app extensions that you build using Xcode. They indicate to Safari a set of rules to use to block content in the browser window. Blocking behaviors include hiding elements, blocking loads, and stripping cookies from Safari requests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use a containing app to contain and deliver a content blocker in the App Store. The containing app defines the context to provide to the extension and initiates the extension life cycle  by sending a request in response to a user action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the content blocker launches, it communicates with its containing app through a set of shared resources, and it communicates directly with Safari.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4047829",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps tell Safari in advance what kinds of content to block. Because Safari doesn’t have to consult with the app during loading, and because Xcode compiles content blockers into bytecode, this model runs efficiently. Additionally, content blockers have no knowledge of users’ history or the websites they visit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-the-extension-target-to-your-containing-app",
+          "level": 3,
+          "text": "Add the extension target to your containing app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Choose File > New > Target and select Content Blocker Extension. Click Next and give your content blocker a name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4047980",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-behaviors-to-your-content-blocker",
+          "level": 3,
+          "text": "Add behaviors to your content blocker",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your Xcode project, open the folder with the same title as your content blocker. This folder contains the action request handler and a JSON file, along with a property list file and an entitlements file. Open the ",
+              "type": "text"
+            },
+            {
+              "code": "blockerList.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the JSON file, write rules to define content-blocking behaviors. Each rule is a JSON object containing action and trigger dictionaries. The action tells Safari what to do when it encounters a match for the trigger. The trigger tells Safari when to perform the corresponding action. Content blockers are JSON arrays of these rules.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[",
+            "    {",
+            "        \"trigger\": {",
+            "            ...",
+            "        },",
+            "        \"action\": {",
+            "            ...",
+            "        }",
+            "    },",
+            "    {",
+            "        \"trigger\": {",
+            "            ...",
+            "        },",
+            "        \"action\": {",
+            "            ...",
+            "        }",
+            "    }",
+            "]"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-triggers-to-your-content-blocker",
+          "level": 3,
+          "text": "Add triggers to your content blocker",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A trigger dictionary must include a ",
+              "type": "text"
+            },
+            {
+              "code": "url-filter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key, which specifies a pattern to match the URL against. The remaining keys are optional and modify the behavior of the trigger. For example, you can limit the trigger to specific domains or have it not apply when Safari finds a match for a specific domain.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to write a trigger for image and style sheet resources that Safari finds on any domain except those specified, add the following to the JSON file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"trigger\": {",
+            "        \"url-filter\": \".*\",",
+            "        \"resource-type\": [\"image\", \"style-sheet\"],",
+            "        \"unless-domain\": [\"your-content-server.com\", \"trusted-content-server.com\"]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Capture-URLs-by-pattern",
+          "level": 4,
+          "text": "Capture URLs by pattern",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In ",
+              "type": "text"
+            },
+            {
+              "code": "url-filter",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", match more than just a specific URL, using regular expressions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Syntax",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": ".*",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Matches all strings with a dot appearing zero or more times. Use this syntax to match every URL.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": ".",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Matches any character.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\.",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Explicitly matches the dot character.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "[a-b]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Matches a range of alphabetic characters.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "(abc)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Matches groups of the specified characters.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "+",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Matches the preceding term one or more times.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "*",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Matches the preceding character zero or more times.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "?",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Matches the preceding character zero or one time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Use-trigger-fields-to-define-patterns",
+          "level": 4,
+          "text": "Use trigger fields to define patterns",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are many valid trigger fields you can use to define patterns.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Trigger",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "url-filter-is-case-sensitive",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Boolean value. The default value is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "false",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "if-domain",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array of strings to match to a URL’s domain; limits the action to a list of specific domains. The values must be lowercase ASCII, or Punycode for non-ASCII. Add ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "*",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in front to match domain and subdomains. You can’t use this with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "unless-domain",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "unless-domain",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array of strings to match to a URL’s domain; acts on any site except domains in a provided list. The values must be lowercase ASCII, or Punycode for non-ASCII. Add ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "*",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in front to match domain and subdomains. You can’t use this with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "if-domain",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "resource-type",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array of strings representing the resource types (how the browser intends to use the resource) that the rule needs to match. If you don’t specify this, the rule matches all resource types. Valid values are ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "document",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "image",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "style-sheet",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "script",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "font",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "raw",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (any untyped load), ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "svg-document",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "media",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "popup",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ping",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "fetch",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "websocket",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "other",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (like ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "raw",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", but doesn’t include ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "fetch",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "websocket",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "load-type",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array of strings that can include one of two mutually exclusive values. If you don’t specify this, the rule matches all load types. ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "first-party",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " triggers only if the resource has the same scheme, domain, and port as the main page resource. ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "third-party",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " triggers if the resource isn’t from the same domain as the main page resource.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "if-top-url",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array of strings to match to the entire main document URL; limits the action to a specific list of URL patterns. The values must be lowercase ASCII, or Punycode for non-ASCII. You can’t use this with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "unless-top-url",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "unless-top-url",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array of strings to match to the entire main document URL; acts on any site except URL patterns in the provided list. The values must be lowercase ASCII, or Punycode for non-ASCII. You can’t use this with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "if-top-url",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "load-context",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array of strings that specify loading contexts. Valid values are ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "top-frame",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "child-frame",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Add-actions-to-your-content-blocker",
+          "level": 3,
+          "text": "Add actions to your content blocker",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a trigger matches a resource, the browser queues the associated action for execution. Safari evaluates all the triggers, and executes the actions in order. When a domain matches a trigger, Safari skips all rules after the triggered rule that specify the same action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Group the rules with similar actions together to improve performance. For example, first specify rules that block content loading, followed by rules that block cookies. The trigger evaluation continues at the first rule that specifies a different action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are only two valid fields for actions: ",
+              "type": "text"
+            },
+            {
+              "code": "type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "selector",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". An action type is required. If the type is ",
+              "type": "text"
+            },
+            {
+              "code": "css-display-none",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", a ",
+              "type": "text"
+            },
+            {
+              "code": "selector",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is required as well; otherwise, the ",
+              "type": "text"
+            },
+            {
+              "code": "selector",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is optional.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, you can specify the following type and selector:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"action\": {",
+            "        \"type\": \"css-display-none\",",
+            "        \"selector\": \"#newsletter, :matches(.main-page, .article) .news-overlay\"",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Select-values-for-the-type-field",
+          "level": 4,
+          "text": "Select values for the type field",
+          "type": "heading"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Syntax",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "block",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Stops loading of the resource. If Safari caches the resource, it ignores the cache.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "block-cookies",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Strips cookies from the header before sending it to the server. This only blocks cookies otherwise acceptable to Safari’s privacy policy. Combining with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ignore-previous-rules",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " doesn’t override the browser’s privacy settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "css-display-none",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Hides elements of the page based on a CSS selector. A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "selector",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field contains the selector list. Any matching element has its ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "display",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property set to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "none",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which hides it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ignore-previous-rules",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ignores previously triggered actions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "make-https",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Changes a URL from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "http",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "https",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This doesn’t affect URLs with a specified (nondefault) port and links using other protocols.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the ",
+              "type": "text"
+            },
+            {
+              "code": "selector",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field, specify a string that defines a selector list. This value is required when the action type is ",
+              "type": "text"
+            },
+            {
+              "code": "css-display-none",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If it’s not, Safari ignores the ",
+              "type": "text"
+            },
+            {
+              "code": "selector",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field. Use CSS identifiers as the individual selector values, separated by commas. Safari and WebKit support all of the CSS selectors for Safari content-blocking rules.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices": {
+      "abstract": [
+        {
+          "text": "Enable web views and services in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Services",
+      "type": "topic",
+      "url": "/documentation/safariservices"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFContentBlockerManager": {
+      "abstract": [
+        {
+          "text": "A class that your app uses to interact with a content blocker extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFContentBlockerManager"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFContentBlockerManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFContentBlockerManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFContentBlockerManager",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfcontentblockermanager"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFContentBlockerState": {
+      "abstract": [
+        {
+          "text": "The state of a content blocker extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFContentBlockerState"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFContentBlockerState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFContentBlockerState"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFContentBlockerState",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfcontentblockerstate"
+    },
+    "media-4047829": {
+      "alt": "An image showing a content blocker communicating with various resources.",
+      "identifier": "media-4047829",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f6abb4e38e5784ce33805c31812e484a/media-4047829@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d3930c1047388198b3f25e93818f8a96/media-4047829~dark@2x.png"
+        }
+      ]
+    },
+    "media-4047980": {
+      "alt": "An Xcode screenshot showing the Content Blocker Extension option selected in the Choose a template for your new target dialog.",
+      "identifier": "media-4047980",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/63322313c509c7bdb7bb2ba0e49da099/media-4047980@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/df50479b27670968c72f14b56ae0a0a8/media-4047980~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Content-blockers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/SFContentBlockerManager",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFContentBlockerState"
+      ],
+      "title": "Content blockers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Content-blockers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/SFContentBlockerManager",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFContentBlockerState"
+              ],
+              "title": "Content blockers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFContentBlockerManager/title",
+          "value": "SFContentBlockerManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFContentBlockerManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFContentBlockerManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFContentBlockerManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFContentBlockerManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFContentBlockerState/title",
+          "value": "SFContentBlockerState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFContentBlockerState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFContentBlockerState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFContentBlockerState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFContentBlockerState"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safariservices/creating-a-content-blocker"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safariservices/creating-a-content-blocker"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

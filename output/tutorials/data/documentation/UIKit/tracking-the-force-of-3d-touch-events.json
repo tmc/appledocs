@@ -1,0 +1,587 @@
+{
+  "abstract": [
+    {
+      "text": "Manipulate your content based on the force of touches.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/tracking-the-force-of-3d-touch-events"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Tracking the force of 3D Touch events"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A touch on the screen primarily conveys the location of that touch. However, devices that support 3D Touch also report the amount of force imparted by the user’s finger onto the screen. (Similarly, Apple Pencil reports the amount of force at its tip to the connected device.) You can use both the touch location and the force value as input to your app. For example, a drawing app might use force to set the thickness of the current line.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3004389",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The raw force value associated with a touch is available in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch/force",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. You can compare that value against the value in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch/maximumPossibleForce",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to determine the relative amount of force.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your app implements peek-and-pop support, don’t use raw force don’t as input to your app. For information about using 3D Touch to support the UIKit peek-and-pop APIs, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/Adopting3DTouchOniPhone/index.html#//apple_ref/doc/uid/TP40016543",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For guidance about using 3D Touch, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/ios/human-interface-guidelines/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITouch": {
+      "abstract": [
+        {
+          "text": "An object representing the location, size, movement, and force of a touch occurring on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITouch"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITouch"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITouch",
+      "type": "topic",
+      "url": "/documentation/uikit/uitouch"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITouch/force": {
+      "abstract": [
+        {
+          "text": "The force of the touch, where a value of ",
+          "type": "text"
+        },
+        {
+          "code": "1.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": " represents the force of an average touch (predetermined by the system, not user-specific).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "force"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch/force",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "force"
+        }
+      ],
+      "role": "symbol",
+      "title": "force",
+      "type": "topic",
+      "url": "/documentation/uikit/uitouch/force"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITouch/maximumPossibleForce": {
+      "abstract": [
+        {
+          "text": "The maximum possible force for a touch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumPossibleForce"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch/maximumPossibleForce",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumPossibleForce"
+        }
+      ],
+      "role": "symbol",
+      "title": "maximumPossibleForce",
+      "type": "topic",
+      "url": "/documentation/uikit/uitouch/maximumpossibleforce"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/checking-the-availability-of-3d-touch": {
+      "abstract": [
+        {
+          "text": "Check whether a device supports 3D Touch before enabling features that use it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/checking-the-availability-of-3d-touch",
+      "kind": "article",
+      "role": "article",
+      "title": "Checking the availability of 3D Touch",
+      "type": "topic",
+      "url": "/documentation/uikit/checking-the-availability-of-3d-touch"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-input-from-apple-pencil": {
+      "abstract": [
+        {
+          "text": "Learn how to detect and respond to touches from Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-input-from-apple-pencil",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Handling input from Apple Pencil",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-input-from-apple-pencil"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-touches-in-your-view": {
+      "abstract": [
+        {
+          "text": "Use touch events directly on a view subclass if touch handling is intricately linked to the view’s content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-touches-in-your-view",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Handling touches in your view",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-touches-in-your-view"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/illustrating-the-force-altitude-and-azimuth-properties-of-touch-input": {
+      "abstract": [
+        {
+          "text": "Capture Apple Pencil and touch input in views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/illustrating-the-force-altitude-and-azimuth-properties-of-touch-input",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Illustrating the force, altitude, and azimuth properties of touch input",
+      "type": "topic",
+      "url": "/documentation/uikit/illustrating-the-force-altitude-and-azimuth-properties-of-touch-input"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/leveraging-touch-input-for-drawing-apps": {
+      "abstract": [
+        {
+          "text": "Capture touches as a series of strokes and render them efficiently on a drawing canvas.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/leveraging-touch-input-for-drawing-apps",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Leveraging touch input for drawing apps",
+      "type": "topic",
+      "url": "/documentation/uikit/leveraging-touch-input-for-drawing-apps"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures": {
+      "abstract": [
+        {
+          "text": "Encapsulate your app’s event-handling logic in gesture recognizers so that you can reuse that code throughout your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Touches, presses, and gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/touches-presses-and-gestures"
+    },
+    "https://developer.apple.com/ios/human-interface-guidelines/": {
+      "identifier": "https://developer.apple.com/ios/human-interface-guidelines/",
+      "title": "iOS Human Interface Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "iOS Human Interface Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/ios/human-interface-guidelines/"
+    },
+    "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/Adopting3DTouchOniPhone/index.html#//apple_ref/doc/uid/TP40016543": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/Adopting3DTouchOniPhone/index.html#//apple_ref/doc/uid/TP40016543",
+      "title": "Adopting 3D Touch on iPhone",
+      "titleInlineContent": [
+        {
+          "text": "Adopting 3D Touch on iPhone",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/Adopting3DTouchOniPhone/index.html#//apple_ref/doc/uid/TP40016543"
+    },
+    "media-3004389": {
+      "alt": "An illustration of how 3D Touch devices can detect touch force. A finger is shown pressing on the display, with rings emanating outward to indicate a force touch.",
+      "identifier": "media-3004389",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6cce02da09a2858d0500b92c37705dfd/media-3004389@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Touches",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/handling-touches-in-your-view",
+        "doc://com.apple.uikit/documentation/UIKit/handling-input-from-apple-pencil",
+        "doc://com.apple.uikit/documentation/UIKit/illustrating-the-force-altitude-and-azimuth-properties-of-touch-input",
+        "doc://com.apple.uikit/documentation/UIKit/leveraging-touch-input-for-drawing-apps",
+        "doc://com.apple.uikit/documentation/UIKit/UITouch"
+      ],
+      "title": "Touches"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Related-articles",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/checking-the-availability-of-3d-touch"
+      ],
+      "title": "Related articles"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Related-articles",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/checking-the-availability-of-3d-touch"
+              ],
+              "title": "Related articles"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Touches",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/handling-touches-in-your-view",
+                "doc://com.apple.uikit/documentation/UIKit/handling-input-from-apple-pencil",
+                "doc://com.apple.uikit/documentation/UIKit/illustrating-the-force-altitude-and-azimuth-properties-of-touch-input",
+                "doc://com.apple.uikit/documentation/UIKit/leveraging-touch-input-for-drawing-apps",
+                "doc://com.apple.uikit/documentation/UIKit/UITouch"
+              ],
+              "title": "Touches"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch~1force/title",
+          "value": "force"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch~1force/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "force"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/title",
+          "value": "UITouch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITouch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITouch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch~1maximumPossibleForce/title",
+          "value": "maximumPossibleForce"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch~1maximumPossibleForce/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maximumPossibleForce"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/tracking-the-force-of-3d-touch-events"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/tracking-the-force-of-3d-touch-events"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2182 @@
+{
+  "abstract": [
+    {
+      "text": "A formatted string that conveys the difference in time between the current date and a date that you specify.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/WidgetKit",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " to create complications for watchOS 10 or later. For more information, see Migrating to WidgetKit.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.clockkit/documentation/ClockKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CLKRelativeDateTextProvider",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CLKRelativeDateTextProvider"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ClockKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CLKRelativeDateTextProvider"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "9.0",
+        "introducedAt": "2.0",
+        "message": "On watchOS 9.0 or later, use WidgetKit instead",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CLKRelativeDateTextProvider"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CLKRelativeDateTextProvider"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use a relative date text provider to implement timers or other relative time values in an efficient way. Instead of using multiple timeline entries to replicate a countdown timer, create a single timeline entry with a relative date text provider. When the user views the clock face, ClockKit automatically updates the relative time value in your complication, providing up-to-date time information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating the formatted string, the relative date text provider creates the longest string that fits in the given space. It includes as many of the requested date elements as it can, but may truncate elements or use abbreviations as needed. The formatted string takes into account the user’s region and locale settings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Date-Format-Options",
+          "level": 3,
+          "text": "Date Format Options",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating a ",
+              "type": "text"
+            },
+            {
+              "code": "CLKRelativeDateTextProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object, you must specify which calendar units you want included in the resulting date. Only the following calendar units are supported:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/unit/1415822-nsyearcalendarunit",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/unit/1408613-nsmonthcalendarunit",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/unit/1411920-nsweekofmonthcalendarunit",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/unit/1409435-nsdaycalendarunit",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/unit/1411272-nshourcalendarunit",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/unit/1413292-nsminutecalendarunit",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/unit/1416859-nssecondcalendarunit",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When creating a relative date provider using the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateStyle/timer",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " style, only the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/unit/1411272-nshourcalendarunit",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/unit/1413292-nsminutecalendarunit",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/unit/1416859-nssecondcalendarunit",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " units are supported.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All other calendar units are ignored.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The format of the relative time value is dependent on the date style you choose when creating the text provider. For a list of possible styles and examples of each, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.clockkit/documentation/ClockKit": {
+      "abstract": [
+        {
+          "text": "Display app-specific data on the clock face.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClockKit",
+      "type": "topic",
+      "url": "/documentation/clockkit"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKDateTextProvider": {
+      "abstract": [
+        {
+          "text": "A formatted string that conveys a date without any time information.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKDateTextProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKDateTextProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKDateTextProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKDateTextProvider",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkdatetextprovider"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateStyle": {
+      "abstract": [
+        {
+          "text": "Constants indicating the formatting style for the relative date values.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKRelativeDateStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKRelativeDateStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKRelativeDateStyle",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkrelativedatestyle"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateStyle/timer": {
+      "abstract": [
+        {
+          "text": "A timer style.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timer"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateStyle/timer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKRelativeDateStyleTimer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKRelativeDateStyle.timer",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkrelativedatestyle/timer"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider": {
+      "abstract": [
+        {
+          "text": "A formatted string that conveys the difference in time between the current date and a date that you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKRelativeDateTextProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKRelativeDateTextProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKRelativeDateTextProvider",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkrelativedatetextprovider"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/calendarUnits": {
+      "abstract": [
+        {
+          "text": "The calendar units to include in the formatted string.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "calendarUnits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCalendar",
+          "text": "NSCalendar"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSCalendarUnit",
+          "text": "Unit"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/calendarUnits",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "calendarUnits"
+        }
+      ],
+      "role": "symbol",
+      "title": "calendarUnits",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkrelativedatetextprovider/calendarunits"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/date": {
+      "abstract": [
+        {
+          "text": "The target date to use for calculations.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "date"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/date",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "date"
+        }
+      ],
+      "role": "symbol",
+      "title": "date",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkrelativedatetextprovider/date"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/init(date:relativeTo:style:units:)": {
+      "abstract": [
+        {
+          "text": "Creates a text provider that shows the difference in time between the provided dates.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "date"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "relativeTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CLKRelativeDateStyle",
+          "text": "CLKRelativeDateStyle"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "units"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCalendar",
+          "text": "NSCalendar"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSCalendarUnit",
+          "text": "Unit"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/init(date:relativeTo:style:units:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textProviderWithDate:relativeToDate:style:units:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(date:relativeTo:style:units:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkrelativedatetextprovider/init(date:relativeto:style:units:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/init(date:style:units:)": {
+      "abstract": [
+        {
+          "text": "Creates a text provider that shows the difference between the current time and the specified date.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "date"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CLKRelativeDateStyle",
+          "text": "CLKRelativeDateStyle"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "units"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCalendar",
+          "text": "NSCalendar"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSCalendarUnit",
+          "text": "Unit"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/init(date:style:units:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textProviderWithDate:style:units:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(date:style:units:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkrelativedatetextprovider/init(date:style:units:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/initWithDate:relativeToDate:style:units:": {
+      "abstract": [
+        {
+          "text": "Creates a text provider that shows the difference in time between the provided dates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithDate:relativeToDate:style:units:"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/initWithDate:relativeToDate:style:units:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithDate:relativeToDate:style:units:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithDate:relativeToDate:style:units:",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkrelativedatetextprovider/initwithdate:relativetodate:style:units:"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/initWithDate:style:units:": {
+      "abstract": [
+        {
+          "text": "Creates a text provider that shows the difference between the current time and the specified date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithDate:style:units:"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/initWithDate:style:units:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithDate:style:units:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithDate:style:units:",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkrelativedatetextprovider/initwithdate:style:units:"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/relativeDateStyle": {
+      "abstract": [
+        {
+          "text": "The formatting style to use for the relative time value.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "relativeDateStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CLKRelativeDateStyle",
+          "text": "CLKRelativeDateStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/relativeDateStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "relativeDateStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "relativeDateStyle",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkrelativedatetextprovider/relativedatestyle"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/relativeToDate": {
+      "abstract": [
+        {
+          "text": "The end date that the text provider uses when calculating a fixed, relative date.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "relativeToDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/relativeToDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "relativeToDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "relativeToDate",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkrelativedatetextprovider/relativetodate"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKSimpleTextProvider": {
+      "abstract": [
+        {
+          "text": "A single line of text to display in your complication interface.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKSimpleTextProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKSimpleTextProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKSimpleTextProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKSimpleTextProvider",
+      "type": "topic",
+      "url": "/documentation/clockkit/clksimpletextprovider"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKTextProvider": {
+      "abstract": [
+        {
+          "text": "The common behavior for displaying text-based data in a complication.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKTextProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKTextProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKTextProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKTextProvider",
+      "type": "topic",
+      "url": "/documentation/clockkit/clktextprovider"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKTimeIntervalTextProvider": {
+      "abstract": [
+        {
+          "text": "A formatted time range.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKTimeIntervalTextProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKTimeIntervalTextProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKTimeIntervalTextProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKTimeIntervalTextProvider",
+      "type": "topic",
+      "url": "/documentation/clockkit/clktimeintervaltextprovider"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKTimeTextProvider": {
+      "abstract": [
+        {
+          "text": "A formatted time value.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKTimeTextProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKTimeTextProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKTimeTextProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKTimeTextProvider",
+      "type": "topic",
+      "url": "/documentation/clockkit/clktimetextprovider"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry": {
+      "abstract": [
+        {
+          "text": "Package your app-specific data into a template and create a timeline entry for that template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a timeline entry",
+      "type": "topic",
+      "url": "/documentation/clockkit/creating-a-timeline-entry"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Extend the reach of your app by creating widgets, watch complications, Live Activities, and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WidgetKit",
+      "type": "topic",
+      "url": "/documentation/WidgetKit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar/unit/1408613-nsmonthcalendarunit": {
+      "abstract": [
+        {
+          "text": "Specifies the month unit. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMonthCalendarUnit"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCalendar.Unit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/unit/1408613-nsmonthcalendarunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMonthCalendarUnit",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar/unit/1408613-nsmonthcalendarunit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar/unit/1409435-nsdaycalendarunit": {
+      "abstract": [
+        {
+          "text": "Specifies the day unit. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDayCalendarUnit"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCalendar.Unit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/unit/1409435-nsdaycalendarunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDayCalendarUnit",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar/unit/1409435-nsdaycalendarunit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar/unit/1411272-nshourcalendarunit": {
+      "abstract": [
+        {
+          "text": "Specifies the hour unit.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHourCalendarUnit"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCalendar.Unit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/unit/1411272-nshourcalendarunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHourCalendarUnit",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar/unit/1411272-nshourcalendarunit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar/unit/1411920-nsweekofmonthcalendarunit": {
+      "abstract": [
+        {
+          "text": "Specifies the original week of a month calendar unit.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSWeekOfMonthCalendarUnit"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCalendar.Unit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/unit/1411920-nsweekofmonthcalendarunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSWeekOfMonthCalendarUnit",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar/unit/1411920-nsweekofmonthcalendarunit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar/unit/1413292-nsminutecalendarunit": {
+      "abstract": [
+        {
+          "text": "Specifies the minute unit.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMinuteCalendarUnit"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCalendar.Unit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/unit/1413292-nsminutecalendarunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMinuteCalendarUnit",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar/unit/1413292-nsminutecalendarunit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar/unit/1415822-nsyearcalendarunit": {
+      "abstract": [
+        {
+          "text": "Specifies the year unit.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSYearCalendarUnit"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCalendar.Unit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/unit/1415822-nsyearcalendarunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSYearCalendarUnit",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar/unit/1415822-nsyearcalendarunit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar/unit/1416859-nssecondcalendarunit": {
+      "abstract": [
+        {
+          "text": "Specifies the second unit.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecondCalendarUnit"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCalendar.Unit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/unit/1416859-nssecondcalendarunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecondCalendarUnit",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar/unit/1416859-nssecondcalendarunit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKTextProvider"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Text-providers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKSimpleTextProvider",
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKDateTextProvider",
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKTimeIntervalTextProvider",
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKTimeTextProvider",
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKTextProvider"
+      ],
+      "title": "Text providers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Text-Provider",
+      "identifiers": [
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/init(date:style:units:)",
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/init(date:relativeTo:style:units:)"
+      ],
+      "title": "Creating a Text Provider"
+    },
+    {
+      "anchor": "Getting-the-Date-Information",
+      "identifiers": [
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/date",
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/relativeToDate",
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/relativeDateStyle",
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/calendarUnits"
+      ],
+      "title": "Getting the Date Information"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateStyle"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "9.0",
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CLKRelativeDateTextProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKRelativeDateTextProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKRelativeDateTextProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.clockkit/documentation/ClockKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Text-Provider",
+              "identifiers": [
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/init(date:style:units:)",
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/initWithDate:style:units:",
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/init(date:relativeTo:style:units:)",
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/initWithDate:relativeToDate:style:units:"
+              ],
+              "title": "Creating a Text Provider"
+            },
+            {
+              "anchor": "Getting-the-Date-Information",
+              "identifiers": [
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/date",
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/relativeToDate",
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/relativeDateStyle",
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateTextProvider/calendarUnits"
+              ],
+              "title": "Getting the Date Information"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKRelativeDateStyle"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKTextProvider"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Text-providers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKSimpleTextProvider",
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKDateTextProvider",
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKTimeIntervalTextProvider",
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKTimeTextProvider",
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKTextProvider"
+              ],
+              "title": "Text providers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CLKRelativeDateTextProvider"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKTextProvider",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)CLKTextProvider",
+                    "text": "CLKTextProvider"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/WidgetKit",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to create complications for watchOS 10 or later. For more information, see Migrating to WidgetKit.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKTimeTextProvider/title",
+          "value": "CLKTimeTextProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKTimeTextProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKTimeTextProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKTimeTextProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKTimeTextProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKRelativeDateTextProvider~1relativeDateStyle/title",
+          "value": "relativeDateStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKRelativeDateTextProvider~1relativeDateStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "relativeDateStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKTimeIntervalTextProvider/title",
+          "value": "CLKTimeIntervalTextProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKTimeIntervalTextProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKTimeIntervalTextProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKTimeIntervalTextProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKTimeIntervalTextProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKRelativeDateTextProvider~1date/title",
+          "value": "date"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKRelativeDateTextProvider~1date/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "date"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKRelativeDateTextProvider~1init(date:style:units:)/title",
+          "value": "textProviderWithDate:style:units:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKRelativeDateTextProvider~1init(date:style:units:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "textProviderWithDate:style:units:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKRelativeDateStyle~1timer/title",
+          "value": "CLKRelativeDateStyleTimer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKRelativeDateStyle~1timer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKRelativeDateStyleTimer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKTextProvider/title",
+          "value": "CLKTextProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKTextProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKTextProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKTextProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKTextProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKSimpleTextProvider/title",
+          "value": "CLKSimpleTextProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKSimpleTextProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKSimpleTextProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKSimpleTextProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKSimpleTextProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKRelativeDateTextProvider~1relativeToDate/title",
+          "value": "relativeToDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKRelativeDateTextProvider~1relativeToDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "relativeToDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKRelativeDateTextProvider/title",
+          "value": "CLKRelativeDateTextProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKRelativeDateTextProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKRelativeDateTextProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKRelativeDateTextProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKRelativeDateTextProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKDateTextProvider/title",
+          "value": "CLKDateTextProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKDateTextProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKDateTextProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKDateTextProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKDateTextProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKRelativeDateStyle/title",
+          "value": "CLKRelativeDateStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKRelativeDateStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKRelativeDateStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKRelativeDateStyle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKRelativeDateStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKRelativeDateTextProvider~1init(date:relativeTo:style:units:)/title",
+          "value": "textProviderWithDate:relativeToDate:style:units:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKRelativeDateTextProvider~1init(date:relativeTo:style:units:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "textProviderWithDate:relativeToDate:style:units:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKRelativeDateTextProvider~1calendarUnits/title",
+          "value": "calendarUnits"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKRelativeDateTextProvider~1calendarUnits/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "calendarUnits"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/clockkit/clkrelativedatetextprovider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/clockkit/clkrelativedatetextprovider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1187 @@
+{
+  "abstract": [
+    {
+      "text": "Use Xcode previews to iteratively develop, fine-tune, and troubleshoot widgets and Live Activities.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.WidgetKit/documentation/WidgetKit/Previewing-widgets-and-live-activities-in-xcode"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WidgetKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Previewing widgets and Live Activities in Xcode"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With Xcode previews, you can make changes to your app’s code and see the results quickly in the preview canvas. Using the ",
+              "type": "text"
+            },
+            {
+              "code": "#Preview",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macros for widgets, you can preview widgets and Live Activities. The macros allow you to provide timeline entries and content states and click through timeline updates and content changes. As a result, Xcode previews help you quickly and iteratively develop, review, and fine-tune functionality and animations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For general information about Xcode previews, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/previewing-your-apps-interface-in-xcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Xcode previews support for iOS and watchOS widgets, and Live Activities. Debug your macOS widgets as described in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Debugging-Widgets",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Provide-timeline-entries-to-widget-previews",
+          "level": 3,
+          "text": "Provide timeline entries to widget previews",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With Xcode previews, you can preview each widget for context and appearance to adjust your widget layouts as needed and iteratively refine their appearance. For example, create a preview for you ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemSmall",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " widget and view it on the preview canvas in light mode, dark mode, in StandBy, in NightMode, and on the iPad Lock Screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using one of the ",
+              "type": "text"
+            },
+            {
+              "code": "#Preview",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macros, provide Xcode with the widget and its widget families:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview(_:as:widget:timelineProvider:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview(_:as:using:widget:timelineProvider:)-4ljg1",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview(_:as:using:widget:timelineProvider:)-3df1l",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview(_:as:widget:timeline:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that you can create a timeline provider to supply the preview with timeline entries, or create a new timeline with entries specific to the widget.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For either option, Xcode creates a preview for each timeline entry and shows transitions for each data update when you navigate from entry to entry in the preview canvas.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you provide a ",
+              "type": "text"
+            },
+            {
+              "code": "timelineProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you can easily look for issues as your widget updates and identify bugs and things to polish as data changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In some cases, you might need to fix an animation that occurs later in the timeline. Creating a specific timeline is especially useful because it can help you fix the issue faster by focusing on a specific transition between two timeline entries. For example, you might supply the preview with a timeline provider that has 10 entries and identify an optimization for the transition from entry 9 to 10. To focus on optimizing this specific transition without going through entries 1 to 8, you create a preview with a ",
+              "type": "text"
+            },
+            {
+              "code": "timeline",
+              "type": "codeVoice"
+            },
+            {
+              "text": " specific to this case that only contains entries 9 and 10.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows a preview for the medium system family widget of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample code project that uses a timeline with two entries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "",
+            "#Preview(as: .systemMedium, widget: {",
+            "    EmojiRangerWidget()",
+            "}, timeline: {",
+            "    let date = Date()",
+            "    SimpleEntry(date: date, relevance: nil, hero: .spouty)",
+            "    SimpleEntry(date: date.addingTimeInterval(60), relevance: nil, hero: .spook)",
+            "})"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can click the pin button in the upper left of the canvas to keep the preview active even when navigating to another file. Then, press the preview’s play button in the timeline and the loop button. This process allows you to make code changes in one half of the editor — for example, fixing a transition in one file — while you view the updates live in the preview canvas on the second half of the editor without navigating back and forth from the preview canvas.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-previews-for-your-Live-Activities",
+          "level": 3,
+          "text": "Create previews for your Live Activities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Previewing Live Activities with Xcode works similar to previewing widgets. The only notable difference is that ActivityKit doesn’t use timelines to update your Live Activities. As a result, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview(_:as:using:widget:contentStates:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro for Live Activities let you provide ",
+              "type": "text"
+            },
+            {
+              "code": "contentStates",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to preview content updates for your Live Activity previews.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.WidgetKit/documentation/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Extend the reach of your app by creating widgets, watch complications, Live Activities, and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WidgetKit",
+      "type": "topic",
+      "url": "/documentation/widgetkit"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Debugging-Widgets": {
+      "abstract": [
+        {
+          "text": "Set environment variables in Xcode to control your widget’s configuration in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Debugging-Widgets",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging Widgets",
+      "type": "topic",
+      "url": "/documentation/widgetkit/debugging-widgets"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview(_:as:using:widget:contentStates:)": {
+      "abstract": [
+        {
+          "text": "Preview a widget with an activity configuration, using the specified attributes and content states.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Preview"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Widget"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "as"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit23ActivityPreviewViewKindO",
+          "text": "ActivityPreviewViewKind"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "widget"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Widget"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "contentStates"
+        },
+        {
+          "kind": "text",
+          "text": ": () "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A10AttributesP12ContentStateQa",
+          "text": "ContentState"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview(_:as:using:widget:contentStates:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Preview(_:as:using:widget:contentStates:)",
+      "type": "topic",
+      "url": "/documentation/widgetkit/preview(_:as:using:widget:contentstates:)"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview(_:as:using:widget:timelineProvider:)-3df1l": {
+      "abstract": [
+        {
+          "text": "Preview a widget with an intent configuration, using the specified timeline provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Preview"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Widget"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Provider"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "as"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit0A6FamilyO",
+          "text": "WidgetFamily"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Provider"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit22IntentTimelineProviderP0C0Qa",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "widget"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Widget"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timelineProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Provider"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview(_:as:using:widget:timelineProvider:)-3df1l",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Preview(_:as:using:widget:timelineProvider:)",
+      "type": "topic",
+      "url": "/documentation/widgetkit/preview(_:as:using:widget:timelineprovider:)-3df1l"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview(_:as:using:widget:timelineProvider:)-4ljg1": {
+      "abstract": [
+        {
+          "text": "Preview a widget with an app intent configuration, using the specified timeline provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Preview"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Widget"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Provider"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "as"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit0A6FamilyO",
+          "text": "WidgetFamily"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Provider"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit25AppIntentTimelineProviderP0D0Qa",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "widget"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Widget"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timelineProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Provider"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview(_:as:using:widget:timelineProvider:)-4ljg1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Preview(_:as:using:widget:timelineProvider:)",
+      "type": "topic",
+      "url": "/documentation/widgetkit/preview(_:as:using:widget:timelineprovider:)-4ljg1"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview(_:as:widget:timeline:)": {
+      "abstract": [
+        {
+          "text": "Preview a timeline-style widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Preview"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Widget"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "as"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit0A6FamilyO",
+          "text": "WidgetFamily"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "widget"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Widget"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timeline"
+        },
+        {
+          "kind": "text",
+          "text": ": () "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit13TimelineEntryP",
+          "text": "TimelineEntry"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview(_:as:widget:timeline:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Preview(_:as:widget:timeline:)",
+      "type": "topic",
+      "url": "/documentation/widgetkit/preview(_:as:widget:timeline:)"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview(_:as:widget:timelineProvider:)": {
+      "abstract": [
+        {
+          "text": "Preview a widget with a static configuration, using the specified timeline provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Preview"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Widget"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Provider"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "as"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit0A6FamilyO",
+          "text": "WidgetFamily"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "widget"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Widget"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timelineProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Provider"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview(_:as:widget:timelineProvider:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Preview(_:as:widget:timelineProvider:)",
+      "type": "topic",
+      "url": "/documentation/widgetkit/preview(_:as:widget:timelineprovider:)"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview-macros": {
+      "abstract": [
+        {
+          "text": "Use Swift macros to create widget previews in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview-macros",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preview macros",
+      "type": "topic",
+      "url": "/documentation/widgetkit/preview-macros"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemSmall": {
+      "abstract": [
+        {
+          "text": "A small widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemSmall"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemSmall",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetFamily.systemSmall",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily/systemsmall"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetPreviewContext": {
+      "abstract": [
+        {
+          "text": "A specification for the context of a widget preview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetPreviewContext"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetPreviewContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetPreviewContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetPreviewContext",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetpreviewcontext"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations": {
+      "abstract": [
+        {
+          "text": "Offer Live Activities, controls, animate data updates, and add interactivity to widgets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Emoji Rangers: Supporting Live Activities, interactivity, and animations",
+      "type": "topic",
+      "url": "/documentation/widgetkit/emoji-rangers-supporting-live-activities-interactivity-and-animations"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/previewing-your-apps-interface-in-xcode": {
+      "abstract": [
+        {
+          "text": "Iterate designs quickly and preview your apps’ displays across different Apple devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/previewing-your-apps-interface-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Previewing your app’s interface in Xcode",
+      "type": "topic",
+      "url": "/documentation/Xcode/previewing-your-apps-interface-in-xcode"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Widget-preview-and-debugging",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Debugging-Widgets",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetPreviewContext",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview-macros"
+      ],
+      "title": "Widget preview and debugging"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Widget-preview-and-debugging",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Debugging-Widgets",
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview-macros"
+              ],
+              "title": "Widget preview and debugging"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/widgetkit/previewing-widgets-and-live-activities-in-xcode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/widgetkit/previewing-widgets-and-live-activities-in-xcode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

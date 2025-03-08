@@ -1,0 +1,2523 @@
+{
+  "abstract": [
+    {
+      "text": "A text field that converts text into visually distinct tokens.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSTokenField"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSTokenField",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSTokenField"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSTokenField"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSTokenField"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTokenField"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a token field when you want typed text to be transformed into “tokens”, which are visually distinct elements in the text field interface. For example, you might use a token field in a mail app to display email addresses for individual users. The distinct appearance of tokens makes them easy for users to distinguish from surrounding text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSTokenField",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTokenFieldCell",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to implement much of the control’s functionality. ",
+              "type": "text"
+            },
+            {
+              "code": "NSTokenField",
+              "type": "codeVoice"
+            },
+            {
+              "text": " provides cover methods for most methods of ",
+              "type": "text"
+            },
+            {
+              "code": "NSTokenFieldCell",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which invoke the corresponding cell method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In OS X v10.4 and earlier, represented objects associated with token fields had to conform to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". Starting with OS X v10.5, they no longer need to.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "In OS X v10.4, ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSTokenField",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " trims whitespace around tokens but it does not trim whitespace in macOS versions 10.5.0 and 10.5.1. In OS X v10.5.2, you get whitespace-trimming behavior by either linking against the v10.4 binary or linking against the v10.5 binary and ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "not",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " implementing the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTokenFieldDelegate/tokenField(_:representedObjectForEditing:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method. If you do not want the whitespace-trimming behavior, link against the v10.5 binary and implement this method, returning the editing string if you have no represented object.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Notes",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElementProtocol": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary to interact with an assistive app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityElementProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElementProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityElementProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityElementProtocol",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilityelementprotocol"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityNavigableStaticText": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary for an accessibility element to act as navigable static text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityNavigableStaticText"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityNavigableStaticText",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityNavigableStaticText"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityNavigableStaticText",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilitynavigablestatictext"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityProtocol": {
+      "abstract": [
+        {
+          "text": "The complete list of properties and methods for accessible elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityProtocol",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilityprotocol"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityStaticText": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary for an accessibility element to act as static text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityStaticText"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityStaticText",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityStaticText"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityStaticText",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilitystatictext"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAnimatablePropertyContainer": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines a way to add animation to an existing class with a minimum of API impact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAnimatablePropertyContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAnimatablePropertyContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAnimatablePropertyContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAnimatablePropertyContainer",
+      "type": "topic",
+      "url": "/documentation/appkit/nsanimatablepropertycontainer"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAppearanceCustomization": {
+      "abstract": [
+        {
+          "text": "A set of methods for getting and setting the appearance attributes of a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAppearanceCustomization"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAppearanceCustomization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAppearanceCustomization"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAppearanceCustomization",
+      "type": "topic",
+      "url": "/documentation/appkit/nsappearancecustomization"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDraggingDestination": {
+      "abstract": [
+        {
+          "text": "A set of methods that the destination object (or recipient) of a dragged image must implement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDraggingDestination"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDraggingDestination",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDraggingDestination"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDraggingDestination",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdraggingdestination"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStandardKeyBindingResponding": {
+      "abstract": [
+        {
+          "text": "Methods that responder subclasses implement to support key binding commands, such as inserting tabs and newlines, or moving the insertion point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStandardKeyBindingResponding"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStandardKeyBindingResponding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSStandardKeyBindingResponding"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSStandardKeyBindingResponding",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstandardkeybindingresponding"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextContent": {
+      "abstract": [
+        {
+          "text": "A protocol that describes specific kinds of input content types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextContent"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextContent",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextcontent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextField": {
+      "abstract": [
+        {
+          "text": "Text the user can select or edit to send an action message to a target when the user presses the Return key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextField"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextField",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextField"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextField",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextfield"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTokenField": {
+      "abstract": [
+        {
+          "text": "A text field that converts text into visually distinct tokens.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTokenField"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTokenField",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTokenField"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTokenField",
+      "type": "topic",
+      "url": "/documentation/appkit/nstokenfield"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTokenField/TokenStyle-swift.enum": {
+      "abstract": [
+        {
+          "text": "The NSTokenStyle constants define how tokens are displayed and editable in the ",
+          "type": "text"
+        },
+        {
+          "code": "NSTokenFieldCell",
+          "type": "codeVoice"
+        },
+        {
+          "text": ". These values are used by ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTokenFieldCell/tokenStyle",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and the delegate method ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTokenFieldCellDelegate/tokenFieldCell(_:styleForRepresentedObject:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TokenStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTokenField/TokenStyle-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TokenStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTokenField.TokenStyle",
+      "type": "topic",
+      "url": "/documentation/appkit/nstokenfield/tokenstyle-swift.enum"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTokenField/completionDelay": {
+      "abstract": [
+        {
+          "text": "The receiver’s completion delay.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionDelay"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTokenField/completionDelay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "completionDelay"
+        }
+      ],
+      "role": "symbol",
+      "title": "completionDelay",
+      "type": "topic",
+      "url": "/documentation/appkit/nstokenfield/completiondelay"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTokenField/defaultCompletionDelay": {
+      "abstract": [
+        {
+          "text": "Returns the default completion delay.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultCompletionDelay"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTokenField/defaultCompletionDelay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "defaultCompletionDelay"
+        }
+      ],
+      "role": "symbol",
+      "title": "defaultCompletionDelay",
+      "type": "topic",
+      "url": "/documentation/appkit/nstokenfield/defaultcompletiondelay"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTokenField/defaultTokenizingCharacterSet": {
+      "abstract": [
+        {
+          "text": "Returns the default tokenizing character set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultTokenizingCharacterSet"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation12CharacterSetV",
+          "text": "CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTokenField/defaultTokenizingCharacterSet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "defaultTokenizingCharacterSet"
+        }
+      ],
+      "role": "symbol",
+      "title": "defaultTokenizingCharacterSet",
+      "type": "topic",
+      "url": "/documentation/appkit/nstokenfield/defaulttokenizingcharacterset"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTokenField/delegate": {
+      "abstract": [
+        {
+          "text": "Returns the token field’s delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSTokenFieldDelegate",
+          "text": "NSTokenFieldDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTokenField/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nstokenfield/delegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTokenField/tokenStyle-swift.property": {
+      "abstract": [
+        {
+          "text": "The token style of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTokenField",
+          "text": "NSTokenField"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSTokenStyle",
+          "text": "TokenStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTokenField/tokenStyle-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tokenStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "tokenStyle",
+      "type": "topic",
+      "url": "/documentation/appkit/nstokenfield/tokenstyle-swift.property"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTokenField/tokenizingCharacterSet": {
+      "abstract": [
+        {
+          "text": "The recevier’s tokenizing character set to ",
+          "type": "text"
+        },
+        {
+          "code": "characterSet",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenizingCharacterSet"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation12CharacterSetV",
+          "text": "CharacterSet"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTokenField/tokenizingCharacterSet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tokenizingCharacterSet"
+        }
+      ],
+      "role": "symbol",
+      "title": "tokenizingCharacterSet",
+      "type": "topic",
+      "url": "/documentation/appkit/nstokenfield/tokenizingcharacterset"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTokenFieldCell": {
+      "abstract": [
+        {
+          "text": "A text field cell subclass that enables tokenized editing of an array of objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTokenFieldCell"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTokenFieldCell",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTokenFieldCell"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTokenFieldCell",
+      "type": "topic",
+      "url": "/documentation/appkit/nstokenfieldcell"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTokenFieldCell/tokenStyle": {
+      "abstract": [
+        {
+          "text": "The token style of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTokenField",
+          "text": "NSTokenField"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSTokenStyle",
+          "text": "TokenStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTokenFieldCell/tokenStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tokenStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "tokenStyle",
+      "type": "topic",
+      "url": "/documentation/appkit/nstokenfieldcell/tokenstyle"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTokenFieldCellDelegate/tokenFieldCell(_:styleForRepresentedObject:)": {
+      "abstract": [
+        {
+          "text": "Allows the delegate to return the token style for editing the specified represented object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenFieldCell"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTokenFieldCell",
+          "text": "NSTokenFieldCell"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "styleForRepresentedObject"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTokenField",
+          "text": "NSTokenField"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSTokenStyle",
+          "text": "TokenStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTokenFieldCellDelegate/tokenFieldCell(_:styleForRepresentedObject:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tokenFieldCell:styleForRepresentedObject:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tokenFieldCell(_:styleForRepresentedObject:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstokenfieldcelldelegate/tokenfieldcell(_:styleforrepresentedobject:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTokenFieldDelegate/tokenField(_:representedObjectForEditing:)": {
+      "abstract": [
+        {
+          "text": "Allows the delegate to provide a represented object for the given editing string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenField"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTokenField",
+          "text": "NSTokenField"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "representedObjectForEditing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTokenFieldDelegate/tokenField(_:representedObjectForEditing:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tokenField:representedObjectForEditingString:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tokenField(_:representedObjectForEditing:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstokenfielddelegate/tokenfield(_:representedobjectforediting:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/appkit/nstouchbarprovider"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "A protocol that marks classes to restore the state of your app to continue a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityRestoring"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserActivityRestoring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityRestoring"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuseractivityrestoring"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceItemIdentification": {
+      "abstract": [
+        {
+          "text": "A set of methods used to associate a unique identifier with objects in your user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceItemIdentification"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceItemIdentification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceItemIdentification"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserInterfaceItemIdentification",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuserinterfaceitemidentification"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations": {
+      "abstract": [
+        {
+          "text": "A protocol that a custom class can adopt to manage the enabled state of a UI element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceValidations"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceValidations"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserInterfaceValidations",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuserinterfacevalidations"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextField"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElementProtocol",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityNavigableStaticText",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityProtocol",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityStaticText",
+        "doc://com.apple.appkit/documentation/AppKit/NSAnimatablePropertyContainer",
+        "doc://com.apple.appkit/documentation/AppKit/NSAppearanceCustomization",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.apple.appkit/documentation/AppKit/NSDraggingDestination",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.apple.appkit/documentation/AppKit/NSStandardKeyBindingResponding",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextContent",
+        "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider",
+        "doc://com.apple.appkit/documentation/AppKit/NSUserActivityRestoring",
+        "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceItemIdentification",
+        "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Configuring-the-Token-Style",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTokenField/tokenStyle-swift.property"
+      ],
+      "title": "Configuring the Token Style"
+    },
+    {
+      "anchor": "Configuring-the-Tokenizing-Character-Set",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTokenField/tokenizingCharacterSet",
+        "doc://com.apple.appkit/documentation/AppKit/NSTokenField/defaultTokenizingCharacterSet"
+      ],
+      "title": "Configuring the Tokenizing Character Set"
+    },
+    {
+      "anchor": "Configuring-the-Completion-Delay",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTokenField/completionDelay",
+        "doc://com.apple.appkit/documentation/AppKit/NSTokenField/defaultCompletionDelay"
+      ],
+      "title": "Configuring the Completion Delay"
+    },
+    {
+      "anchor": "Getting-and-Setting-the-Delegate",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTokenField/delegate"
+      ],
+      "title": "Getting and Setting the Delegate"
+    },
+    {
+      "anchor": "Enumerations",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTokenField/TokenStyle-swift.enum"
+      ],
+      "title": "Enumerations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSTokenField"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTokenField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTokenField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Configuring-the-Token-Style",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTokenField/tokenStyle-swift.property"
+              ],
+              "title": "Configuring the Token Style"
+            },
+            {
+              "anchor": "Configuring-the-Tokenizing-Character-Set",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTokenField/tokenizingCharacterSet",
+                "doc://com.apple.appkit/documentation/AppKit/NSTokenField/defaultTokenizingCharacterSet"
+              ],
+              "title": "Configuring the Tokenizing Character Set"
+            },
+            {
+              "anchor": "Configuring-the-Completion-Delay",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTokenField/completionDelay",
+                "doc://com.apple.appkit/documentation/AppKit/NSTokenField/defaultCompletionDelay"
+              ],
+              "title": "Configuring the Completion Delay"
+            },
+            {
+              "anchor": "Getting-and-Setting-the-Delegate",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTokenField/delegate"
+              ],
+              "title": "Getting and Setting the Delegate"
+            },
+            {
+              "anchor": "Enumerations",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTokenField/TokenStyle-swift.enum"
+              ],
+              "title": "Enumerations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextField"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSTokenField"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextField",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSTextField",
+                    "text": "NSTextField"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenField/title",
+          "value": "NSTokenField"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenField/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTokenField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenField/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTokenField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceValidations/title",
+          "value": "NSUserInterfaceValidations"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceValidations/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceValidations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceValidations/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceValidations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenFieldDelegate~1tokenField(_:representedObjectForEditing:)/title",
+          "value": "tokenField:representedObjectForEditingString:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenFieldDelegate~1tokenField(_:representedObjectForEditing:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tokenField:representedObjectForEditingString:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityElementProtocol/title",
+          "value": "NSAccessibilityElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityElementProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityElementProtocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityStaticText/title",
+          "value": "NSAccessibilityStaticText"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityStaticText/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityStaticText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityStaticText/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityStaticText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenFieldCell~1tokenStyle/title",
+          "value": "tokenStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenFieldCell~1tokenStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tokenStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenField~1tokenStyle-swift.property/title",
+          "value": "tokenStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenField~1tokenStyle-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tokenStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/title",
+          "value": "NSTouchBarProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserActivityRestoring/title",
+          "value": "NSUserActivityRestoring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserActivityRestoring/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingDestination/title",
+          "value": "NSDraggingDestination"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingDestination/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDraggingDestination"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingDestination/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDraggingDestination"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAnimatablePropertyContainer/title",
+          "value": "NSAnimatablePropertyContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAnimatablePropertyContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAnimatablePropertyContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAnimatablePropertyContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAnimatablePropertyContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextField/title",
+          "value": "NSTextField"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextField/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextField/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenFieldCellDelegate~1tokenFieldCell(_:styleForRepresentedObject:)/title",
+          "value": "tokenFieldCell:styleForRepresentedObject:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenFieldCellDelegate~1tokenFieldCell(_:styleForRepresentedObject:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tokenFieldCell:styleForRepresentedObject:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenField~1defaultCompletionDelay/title",
+          "value": "defaultCompletionDelay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenField~1defaultCompletionDelay/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "defaultCompletionDelay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenField~1defaultTokenizingCharacterSet/title",
+          "value": "defaultTokenizingCharacterSet"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenField~1defaultTokenizingCharacterSet/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "defaultTokenizingCharacterSet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContent/title",
+          "value": "NSTextContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenField~1tokenizingCharacterSet/title",
+          "value": "tokenizingCharacterSet"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenField~1tokenizingCharacterSet/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tokenizingCharacterSet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenField~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenField~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceItemIdentification/title",
+          "value": "NSUserInterfaceItemIdentification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceItemIdentification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceItemIdentification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceItemIdentification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceItemIdentification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityNavigableStaticText/title",
+          "value": "NSAccessibilityNavigableStaticText"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityNavigableStaticText/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityNavigableStaticText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityNavigableStaticText/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityNavigableStaticText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenField~1completionDelay/title",
+          "value": "completionDelay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenField~1completionDelay/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "completionDelay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenField~1TokenStyle-swift.enum/title",
+          "value": "NSTokenStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenField~1TokenStyle-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTokenStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenField~1TokenStyle-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTokenStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenFieldCell/title",
+          "value": "NSTokenFieldCell"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenFieldCell/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTokenFieldCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTokenFieldCell/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTokenFieldCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAppearanceCustomization/title",
+          "value": "NSAppearanceCustomization"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAppearanceCustomization/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAppearanceCustomization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAppearanceCustomization/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAppearanceCustomization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityProtocol/title",
+          "value": "NSAccessibility"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibility"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityProtocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibility"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStandardKeyBindingResponding/title",
+          "value": "NSStandardKeyBindingResponding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStandardKeyBindingResponding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStandardKeyBindingResponding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStandardKeyBindingResponding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStandardKeyBindingResponding"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nstokenfield"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nstokenfield"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

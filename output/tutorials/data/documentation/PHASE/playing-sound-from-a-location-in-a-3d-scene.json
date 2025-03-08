@@ -1,0 +1,2718 @@
+{
+  "abstract": [
+    {
+      "text": "Position sound from a specific direction and automatically raise or lower volume based on the environment.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.phase/documentation/PHASE"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.phase/documentation/PHASE/playing-sound-from-a-location-in-a-3d-scene"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "PHASE"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Playing sound from a location in a 3D scene"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Audio that adjusts its volume based on distance to a specific reference point is called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "spatial audio",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". Spatial audio transmits sound from a particular location, or source, in a specific direction that you define by describing the sound’s 3D position and orientation. Your app can leverage spatial audio to define the point of reference, or define a listener as a player in a game. For example, to indicate that a horn resides on the left-hand side of a scene, PHASE outputs audio more through the left speaker.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "PHASE spatial audio accommodates a scene layout in several ways: by observing objects in the scene, the shape of the sound’s source, obstructions, and the point of reference of a listener. To complement obstacles and indoor locations in your scene, you can use spatial audio to layer environmental effects, for example, a reflection or reverberation, on top of spatial sounds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After describing your app’s scene, you queue sound to play by creating an event node asset that instructs PHASE on what to play and when. At runtime, PHASE checks your app’s state through the event node asset and plays sounds at the right moment that react in accordance to your app’s visual appearance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-an-objects-scene-position-and-orientation",
+          "level": 3,
+          "text": "Set an object’s scene position and orientation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before PHASE plays sound in 3D, you create several objects to model your app’s visual scene. Initialize and add the following classes to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEngine/rootObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the engine’s root object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESource",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for sound sources",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEListener",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for a listener",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEOccluder",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for optional occluders",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each class derives from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which defines a transform to provide it with a unique 3D position and orientation in the scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app can define the scene as a level in a game that’s composed of a detailed set of visual properties, for example, textured pixel data, lighting, and animation. However, to play sound in accordance with the visual scene, PHASE only needs to know the scene’s geometric shape. PHASE interprets the shape through a tranform (of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/simd/simd_float4x4",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), and in particular, its array of four-column vectors. The following transform defines a zeroed orientation and position for a board-game piece:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var chessPiecePose: simd_float4x4 = matrix_identity_float4x4"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-the-location-from-which-sound-plays",
+          "level": 3,
+          "text": "Define the location from which sound plays",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first type of object you define in the PHASE scene describes a location from which sound originates, such as a chess piece that makes a shuffling noise as it slides to a location on the board. A source emanates sound from a single point in space, or a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "voluminous area",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". To produce sound at a point in the scene, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the engine parameter, for example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let chessPiecePointSource = PHASESource(engine: engine)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, add the source to the scene by handing it to the engine. You can add an object as a child to any other object by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEObject/addChild(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the parent. The result models a scene as a connected graph of objects, or an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "object hierarchy",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". The following code adds the chess piece as child of the engine’s root:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do { try engine.rootObject.addChild(chessPiecePointSource) } ",
+            "catch { print (\"Failed to add a child object to the scene.\") }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "PHASE interprets object positions in the coordinate space of the parent, which for the root object is the coordinate space of the scene, or the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "world",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " space. Set an object’s position by assigning the transform’s first three elements of the last column. The following code sets a chess piece’s position to ",
+              "type": "text"
+            },
+            {
+              "code": "(0,0,-6)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which is 6 meters in front of the world origin ",
+              "type": "text"
+            },
+            {
+              "code": "(0,0,0)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "chessPiecePose.columns.3.z -= 6.0",
+            "chessPiecePointSource.transform = chessPiecePose"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Set the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEngine/unitsPerMeter",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " parameter to instruct PHASE to interpret ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEObject/transform",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " values in your app’s preferred unit of measurement.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Originate-sound-from-a-geometric-area",
+          "level": 3,
+          "text": "Originate sound from a geometric area",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For spatial sounds, the framework requires a 3D position from which the sound originates. To emanate sound from an area larger than a point, for example, the full length of an electric fence in a game, describe the region by configuring a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEShape",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. The following code models a fence by using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ModelIO",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " plane:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let fenceMesh = MDLMesh(",
+            "   planeWithExtent: vector3(0.1, 0.1, 0.1), ",
+            "   segments: vector2(1, 1), ",
+            "   geometryType: .triangles, ",
+            "   allocator: nil)",
+            "",
+            "let fenceShape = PHASEShape(engine: engine, mesh: fenceMesh)",
+            "let volumetricFenceSource = PHASESource(engine: engine, shapes: [fenceShape])",
+            "",
+            "do { try engine.rootObject.addChild(volumetricFenceSource) } ",
+            "catch { print (\"Failed to add a child object to the scene.\") }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can supply high-resolution geometry to a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESource",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". For collision detection, games usually supply a low-resolution approximation that contains a detailed visual asset to maximize runtime performance. However, ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEShape",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " supports geometry of any resolution with little performance impact.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-an-object-that-hears-sound",
+          "level": 3,
+          "text": "Create an object that hears sound",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEListener",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is an object within an app that hears sound; it’s the central position and orientation at which the user experiences spatial audio. The framework adjusts the volume of a sound source based on its unique position and orientation with respect to the listener. For example, a sound that plays far off in the distance from the listener plays quietly, and a closer sound plays more loudly. The following code creates a listener and defines its position and orientation in the scene:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let origin: simd_float4x4 = matrix_identity_float4x4",
+            "let listener = PHASEListener(engine: engine)",
+            "listener.transform = origin"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the listener to the scene by inserting it into the object hierarchy. The following code adds the listener as a child of the engine’s root object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do { try engine.rootObject.addChild(listener) } ",
+            "catch { print (\"Failed to add child object to the scene.\") }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-up-occluder-options-for-obstructed-sound",
+          "level": 3,
+          "text": "Set up occluder options for obstructed sound",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The framework lowers the volume of a sound source when an obstacle blocks its path to the listener. The result creates a realistic effect in cases where, for example, the player takes cover behind a gallery pillar, which reduces the volume of commotion from the other side of the room.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To define an obstacle, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEOccluder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a shape and position that matches the pillar’s visual counterpart. The following code defines an occluder’s geometric shape using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ModelIO",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "defaultOccluderSize: Float = 1.0",
+            "",
+            "let pillarOccluderMesh = MDLMesh.newCylinder(withHeight: 10.0, ",
+            "    radii: vector_float2(defaultOccluderSize, defaultOccluderSize), ",
+            "    radialSegments: 9, ",
+            "    verticalSegments: 1, ",
+            "    geometryType: MDLGeometryType.triangles, ",
+            "    inwardNormals: false, ",
+            "    allocator: nil)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can tweak the reflectivity of a particular occluder by choosing a physical material that makes up the occluder. The material you choose implements a blend between how much an occluder reflects sound and how much sound passes through it. To select a material, pass its corresponding preset, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEMaterialPreset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", into a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEMaterial",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let occluderMaterial = PHASEMaterial(engine: engine, preset: .concrete)",
+            "let occluderShape = PHASEShape(engine: engine,",
+            "   mesh: pillarOccluderMesh,",
+            "   materials: [occluderMaterial])",
+            "",
+            "let occluder = PHASEOccluder(engine: engine,",
+            "   shapes: [occluderShape])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Position an occluder in the scene by setting its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEObject/transform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The following code places an occluder midway between the source and listener by dividing the custom ",
+              "type": "text"
+            },
+            {
+              "code": "defaultSourceDistance",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable by two:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let defaultSourceDistance: Float = 10.0",
+            "",
+            "var occluderTransform: simd_float4x4 = origin",
+            "occluderTransform.columns.3.z -= defaultSourceDistance / 2.0",
+            "occluder.transform = occluderTransform"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Activate the occluder by adding it into the scene. The following code adds the occluder as a child of the root object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do { try engine.rootObject.addChild(occluder) } ",
+            "catch { print (\"Failed to add a child object to the scene.\") }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Describe-the-output-pipeline",
+          "level": 3,
+          "text": "Describe the output pipeline",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As one of the final stages in audio playback configuration, the app specifies the particular object, or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "mixer",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", that combines in-flight audio signals for transmission to the output device. For spatial audio, the app creates a spatial mixer, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESpatialMixerDefinition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The following code defines a spatial mixer for two sources:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let chessPieceSpatialMixer = PHASESpatialMixerDefinition(",
+            "    spatialPipeline: PHASESpatialPipeline(",
+            "        flags: .directPathTransmission)!)",
+            "",
+            "let fenceSpatialMixer = PHASESpatialMixerDefinition(",
+            "    spatialPipeline: PHASESpatialPipeline(",
+            "        flags: .directPathTransmission)!)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The spatial mixer can add environmental layers to the output, such as reflections or reverb, by including the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESpatialPipeline/Flags-swift.struct/earlyReflections",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESpatialPipeline/Flags-swift.struct/lateReverb",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " cases, in addition to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESpatialPipeline/Flags-swift.struct/directPathTransmission",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to the ",
+              "type": "text"
+            },
+            {
+              "code": "flags",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Adjust-volume-based-on-distance",
+          "level": 3,
+          "text": "Adjust volume based on distance",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "PHASE attenuates sound over the distance between a source and a listener by observing the distance model you define on the spatial mixer. As a source emits sound, the spatial mixer adjusts its volume based on the distance from the listener. The farther away the source is from the listener, the more the volume attenuates and the quieter the sound gets with respect to the listener.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Without a distance model, the spatial mixer plays sound at a constant level, disregarding the distance between the source and the listener.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about distance modeling and its various types, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "geometric",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "envelope",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/spatial-mixing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGeometricSpreadingDistanceModelParameters",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a model that simulates sound loss over distance realistically. The distance model ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGeometricSpreadingDistanceModelParameters/rolloffFactor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " emphasizes or deemphasizes this model. At ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", sound that emanates between the source and listener loses 6 dB every time distance doubles. At ",
+              "type": "text"
+            },
+            {
+              "code": "2.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the loss doubles. At ",
+              "type": "text"
+            },
+            {
+              "code": "0.5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the loss halves, and so on. The following code defines a geometric spatial model for the scene’s spatial mixers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let simpleModel = PHASEGeometricSpreadingDistanceModelParameters()",
+            "simpleModel.rolloffFactor = 1.0",
+            "",
+            "chessPieceSpatialMixer.distanceModelParameters = simpleModel",
+            "fenceSpatialMixer.distanceModelParameters = simpleModel"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Generate-a-sound-event",
+          "level": 3,
+          "text": "Generate a sound event",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When PHASE understands the layout and configuration of the scene, sound reacts in accordance when your app plays a sound event by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You generate a sound event from a sound-event node that describes your particular playback needs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, identify the sound assets for your sound events and register them with the engine’s asset registry. The following code loads two files bundled with the project titled “shuffling.wav” and “buzzing.wav”:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let shufflingSoundUrl = Bundle.main.url(forResource: \"shuffling\", withExtension: \"wav\")!",
+            "var shufflingSoundAsset:PHASESoundAsset!",
+            "do {",
+            "    shufflingSoundAsset = try engine.assetRegistry.registerSoundAsset(",
+            "    url: shufflingSoundUrl,",
+            "    identifier: \"shufflingSound\",",
+            "    assetType: PHASEAsset.AssetType.resident,",
+            "    channelLayout: nil,",
+            "    normalizationMode: .dynamic)",
+            "} catch {",
+            "    print(\"Failed to register the sound asset.\")",
+            "}",
+            "",
+            "let buzzingSoundUrl = Bundle.main.url(forResource: \"buzzing\", withExtension: \"wav\")!",
+            "var electricBuzzingSoundAsset:PHASESoundAsset!",
+            "do {",
+            "    electricBuzzingSoundAsset = try engine!.assetRegistry.registerSoundAsset(",
+            "    url: buzzingSoundUrl,",
+            "    identifier: \"buzzingSound\",",
+            "    assetType: .resident,",
+            "    channelLayout: nil,",
+            "    normalizationMode: .dynamic)",
+            "} catch {",
+            "    print(\"Failed to register the sound asset.\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code creates sampler nodes for both the shuffling chess piece and electrified fence:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Define the shuffling chess piece one-shot sound.",
+            "let shufflingSamplerNode = PHASESamplerNodeDefinition(",
+            "    soundAssetIdentifier: shufflingSoundAsset.identifier,",
+            "    mixerDefinition: chessPieceSpatialMixer,",
+            "    identifier: shufflingSoundAsset.identifier + \"_SamplerNode\")",
+            "",
+            "shufflingSamplerNode.playbackMode = .oneShot",
+            "",
+            "// Define the buzzing electric fence looping sound.",
+            "let electricBuzzingSamplerNode = PHASESamplerNodeDefinition(",
+            "    soundAssetIdentifier: electricBuzzingSoundAsset.identifier,",
+            "    mixerDefinition: fenceSpatialMixer,",
+            "    identifier: electricBuzzingSoundAsset.identifier + \"_SamplerNode\")",
+            "",
+            "electricBuzzingSamplerNode.playbackMode = .looping"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Give PHASE information about the sound-event nodes by registering their assets with the engine:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var shufflingSoundEventAsset: PHASESoundEventNodeAsset!",
+            "do { shufflingSoundEventAsset = try ",
+            "    engine.assetRegistry.registerSoundEventAsset(  ",
+            "    rootNode: shufflingSamplerNode,",
+            "    identifier: shufflingSoundAsset.identifier + \"_SoundEventAsset\")",
+            "} catch { print(\"Failed to register a sound event asset.\") } ",
+            "",
+            "var buzzingSoundEventAsset: PHASESoundEventNodeAsset!",
+            "do { buzzingSoundEventAsset = try ",
+            "    engine.assetRegistry.registerSoundEventAsset(  ",
+            "    rootNode: electricBuzzingSamplerNode,",
+            "    identifier: electricBuzzingSoundAsset.identifier + \"_SoundEventAsset\")",
+            "} catch { print(\"Failed to register a sound event asset.\") }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Define which sound source plays the audio and the listener that hears it by configuring a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEMixerParameters",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object for each spatial mixer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let chessPieceSpatialMixerParams = PHASEMixerParameters()",
+            "chessPieceSpatialMixerParams.addSpatialMixerParameters(",
+            "    identifier: chessPieceSpatialMixer.identifier,",
+            "    source: chessPiecePointSource,",
+            "    listener: listener)",
+            "",
+            "let fenceSpatialMixerParams = PHASEMixerParameters()",
+            "fenceSpatialMixerParams.addSpatialMixerParameters(",
+            "    identifier: fenceSpatialMixer.identifier,",
+            "    source: volumetricFenceSource,",
+            "    listener: listener)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To play the sounds, generate a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance for each node and call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/start(completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the sound event. Associate the source to the sound event by passing its ",
+              "type": "text"
+            },
+            {
+              "code": "spatialMixerParams",
+              "type": "codeVoice"
+            },
+            {
+              "text": " through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer ",
+              "type": "text"
+            },
+            {
+              "code": "mixerParameters",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let buzzingSoundEvent = try! PHASESoundEvent(engine: engine,",
+            "    assetIdentifier: buzzingSoundEventAsset.identifier,",
+            "    mixerParameters: fenceSpatialMixerParams)",
+            "",
+            "buzzingSoundEvent.start(completion: nil)",
+            "",
+            "let shufflingSoundEvent = try! PHASESoundEvent(engine: engine,",
+            "    assetIdentifier: shufflingSoundEventAsset.identifier,",
+            "    mixerParameters: chessPieceSpatialMixerParams)",
+            "",
+            "shufflingSoundEvent.start(completion: nil)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because ",
+              "type": "text"
+            },
+            {
+              "code": "electricBuzzingSamplerNode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "shufflingSamplerNode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " have no children, both ",
+              "type": "text"
+            },
+            {
+              "code": "buzzingSoundEventAsset",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "shufflingSoundEventAsset",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contain a node hierarchy of only one node. When the app invokes a sound event from these assets, the same audio plays consistently.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can create a more sophisticated node hiearchy that plays different sounds based on your app’s state. By adding multiple nodes that sample varying audio as children to a control node, PHASE plays the right audio for the moment based on control logic that you define. For more information, see Audio Selection and Playback.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Personalizing-spatial-audio-in-your-app-PageImage-card.png": {
+      "alt": "[Stylized image of a person's head and shoulders, with AirPods visible on either side of the head. Around the person are concentric circles indicating sound.]",
+      "identifier": "Personalizing-spatial-audio-in-your-app-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/458d3629d64a7bb95149d26677821ea9/Personalizing-spatial-audio-in-your-app-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2d51b4d8ee491c3605548c128eb9cf62/Personalizing-spatial-audio-in-your-app-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/ModelIO": {
+      "abstract": [
+        {
+          "text": "Import, export, and manipulate 3D models using a common infrastructure that integrates MetalKit, GLKit, and SceneKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ModelIO",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Model I/O",
+      "type": "topic",
+      "url": "/documentation/ModelIO"
+    },
+    "doc://com.apple.documentation/documentation/Updates/PHASE": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to PHASE.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Updates/PHASE",
+      "kind": "article",
+      "role": "article",
+      "title": "PHASE updates",
+      "type": "topic",
+      "url": "/documentation/Updates/PHASE"
+    },
+    "doc://com.apple.documentation/documentation/simd/simd_float4x4": {
+      "abstract": [
+        {
+          "text": "A matrix of four columns and four rows that contains single-precision values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simd_float4x4"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/simd/simd_float4x4",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "simd_float4x4",
+      "type": "topic",
+      "url": "/documentation/simd/simd_float4x4"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.phase/documentation/PHASE": {
+      "abstract": [
+        {
+          "text": "Create dynamic audio experiences in your game or app that react to events and cues in the environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PHASE",
+      "type": "topic",
+      "url": "/documentation/phase"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEEngine/rootObject": {
+      "abstract": [
+        {
+          "text": "The main object to which the app adds child objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rootObject"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASEObject",
+          "text": "PHASEObject"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEngine/rootObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rootObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "rootObject",
+      "type": "topic",
+      "url": "/documentation/phase/phaseengine/rootobject"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEEngine/unitsPerMeter": {
+      "abstract": [
+        {
+          "text": "A conversion factor from meters to your app’s preferred unit of measurement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unitsPerMeter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEngine/unitsPerMeter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unitsPerMeter"
+        }
+      ],
+      "role": "symbol",
+      "title": "unitsPerMeter",
+      "type": "topic",
+      "url": "/documentation/phase/phaseengine/unitspermeter"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEGeometricSpreadingDistanceModelParameters": {
+      "abstract": [
+        {
+          "text": "An object that dissipates sound frequencies over distance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEGeometricSpreadingDistanceModelParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGeometricSpreadingDistanceModelParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEGeometricSpreadingDistanceModelParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEGeometricSpreadingDistanceModelParameters",
+      "type": "topic",
+      "url": "/documentation/phase/phasegeometricspreadingdistancemodelparameters"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEGeometricSpreadingDistanceModelParameters/rolloffFactor": {
+      "abstract": [
+        {
+          "text": "A value that fades specific frequencies over a distance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rolloffFactor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGeometricSpreadingDistanceModelParameters/rolloffFactor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rolloffFactor"
+        }
+      ],
+      "role": "symbol",
+      "title": "rolloffFactor",
+      "type": "topic",
+      "url": "/documentation/phase/phasegeometricspreadingdistancemodelparameters/rollofffactor"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEListener": {
+      "abstract": [
+        {
+          "text": "A central point of reference that defines the location within the scene that’s most audible to the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEListener"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEListener",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEListener"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEListener",
+      "type": "topic",
+      "url": "/documentation/phase/phaselistener"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEMaterial": {
+      "abstract": [
+        {
+          "text": "Surface characteristics that determine the acoustic properties of an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEMaterial",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEMaterial"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEMaterial",
+      "type": "topic",
+      "url": "/documentation/phase/phasematerial"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEMaterialPreset": {
+      "abstract": [
+        {
+          "text": "A collection of physical surfaces that each add a unique acoustic quality to your app’s audio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEMaterialPreset"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEMaterialPreset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEMaterialPreset"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEMaterialPreset",
+      "type": "topic",
+      "url": "/documentation/phase/phasematerialpreset"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEMixerParameters": {
+      "abstract": [
+        {
+          "text": "An object that specifies a mixer for sound events and orients them in 3D space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEMixerParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEMixerParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEMixerParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEMixerParameters",
+      "type": "topic",
+      "url": "/documentation/phase/phasemixerparameters"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEObject": {
+      "abstract": [
+        {
+          "text": "An object in the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEObject"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEObject",
+      "type": "topic",
+      "url": "/documentation/phase/phaseobject"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEObject/addChild(_:)": {
+      "abstract": [
+        {
+          "text": "Adds the given object as a child.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addChild"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASEObject",
+          "text": "PHASEObject"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEObject/addChild(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addChild:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addChild(_:)",
+      "type": "topic",
+      "url": "/documentation/phase/phaseobject/addchild(_:)"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEObject/transform": {
+      "abstract": [
+        {
+          "text": "A matrix, in local coordinates, that determines the object’s pose in the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_float4x4",
+          "text": "simd_float4x4"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEObject/transform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transform"
+        }
+      ],
+      "role": "symbol",
+      "title": "transform",
+      "type": "topic",
+      "url": "/documentation/phase/phaseobject/transform"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEOccluder": {
+      "abstract": [
+        {
+          "text": "An object with a shape and position that blocks audio from reaching the listener.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEOccluder"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEOccluder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEOccluder"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEOccluder",
+      "type": "topic",
+      "url": "/documentation/phase/phaseoccluder"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEShape": {
+      "abstract": [
+        {
+          "text": "A collection of points that connect to form a 3D volume.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEShape"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEShape",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEShape"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEShape",
+      "type": "topic",
+      "url": "/documentation/phase/phaseshape"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent": {
+      "abstract": [
+        {
+          "text": "An object that determines which audio to play.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASESoundEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASESoundEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASESoundEvent",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundevent"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/start(completion:)": {
+      "abstract": [
+        {
+          "text": "Invokes the sound event and runs the specified code on completion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASESoundEvent",
+          "text": "PHASESoundEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHASESoundEventStartHandlerReason",
+          "text": "StartHandlerReason"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/start(completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startWithCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "start(completion:)",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundevent/start(completion:)"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESource": {
+      "abstract": [
+        {
+          "text": "An object that plays audio from a 3D location and orientation in a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASESource"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASESource"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASESource",
+      "type": "topic",
+      "url": "/documentation/phase/phasesource"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESpatialMixerDefinition": {
+      "abstract": [
+        {
+          "text": "An audio-layering object that produces environmental effects and plays sound with a 3D position and orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASESpatialMixerDefinition"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESpatialMixerDefinition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASESpatialMixerDefinition"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASESpatialMixerDefinition",
+      "type": "topic",
+      "url": "/documentation/phase/phasespatialmixerdefinition"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESpatialPipeline/Flags-swift.struct/directPathTransmission": {
+      "abstract": [
+        {
+          "text": "A spatial property that refers to the original audio signal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "directPathTransmission"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASESpatialPipeline",
+          "text": "PHASESpatialPipeline"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHASESpatialPipelineFlags",
+          "text": "Flags"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESpatialPipeline/Flags-swift.struct/directPathTransmission",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASESpatialPipelineFlagDirectPathTransmission"
+        }
+      ],
+      "role": "symbol",
+      "title": "directPathTransmission",
+      "type": "topic",
+      "url": "/documentation/phase/phasespatialpipeline/flags-swift.struct/directpathtransmission"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESpatialPipeline/Flags-swift.struct/earlyReflections": {
+      "abstract": [
+        {
+          "text": "A spatial property that refers to the earlier echoes along the duration of sound resonance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "earlyReflections"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASESpatialPipeline",
+          "text": "PHASESpatialPipeline"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHASESpatialPipelineFlags",
+          "text": "Flags"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESpatialPipeline/Flags-swift.struct/earlyReflections",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASESpatialPipelineFlagEarlyReflections"
+        }
+      ],
+      "role": "symbol",
+      "title": "earlyReflections",
+      "type": "topic",
+      "url": "/documentation/phase/phasespatialpipeline/flags-swift.struct/earlyreflections"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESpatialPipeline/Flags-swift.struct/lateReverb": {
+      "abstract": [
+        {
+          "text": "A spatial property that refers to the later echoes along the duration of sound resonance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lateReverb"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASESpatialPipeline",
+          "text": "PHASESpatialPipeline"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHASESpatialPipelineFlags",
+          "text": "Flags"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESpatialPipeline/Flags-swift.struct/lateReverb",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASESpatialPipelineFlagLateReverb"
+        }
+      ],
+      "role": "symbol",
+      "title": "lateReverb",
+      "type": "topic",
+      "url": "/documentation/phase/phasespatialpipeline/flags-swift.struct/latereverb"
+    },
+    "doc://com.apple.phase/documentation/PHASE/personalizing-spatial-audio-in-your-app": {
+      "abstract": [
+        {
+          "text": "Enhance the realism of spatial audio output by tracking a person’s head movement and accounting for their personal spatial audio profile.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/personalizing-spatial-audio-in-your-app",
+      "images": [
+        {
+          "identifier": "Personalizing-spatial-audio-in-your-app-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Personalizing spatial audio in your app",
+      "type": "topic",
+      "url": "/documentation/phase/personalizing-spatial-audio-in-your-app"
+    },
+    "doc://com.apple.phase/documentation/PHASE/spatial-mixing": {
+      "abstract": [
+        {
+          "text": "Define environmental characteristics that determine how sound plays in your app’s 3D soundscape.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/spatial-mixing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Spatial Mixing",
+      "type": "topic",
+      "url": "/documentation/phase/spatial-mixing"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/personalizing-spatial-audio-in-your-app",
+        "doc://com.apple.documentation/documentation/Updates/PHASE"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/personalizing-spatial-audio-in-your-app"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1unitsPerMeter/title",
+          "value": "unitsPerMeter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1unitsPerMeter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "unitsPerMeter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGeometricSpreadingDistanceModelParameters~1rolloffFactor/title",
+          "value": "rolloffFactor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGeometricSpreadingDistanceModelParameters~1rolloffFactor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rolloffFactor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESpatialPipeline~1Flags-swift.struct~1directPathTransmission/title",
+          "value": "PHASESpatialPipelineFlagDirectPathTransmission"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESpatialPipeline~1Flags-swift.struct~1directPathTransmission/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESpatialPipelineFlagDirectPathTransmission"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEShape/title",
+          "value": "PHASEShape"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEShape/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEShape"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEShape/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEShape"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEMaterial/title",
+          "value": "PHASEMaterial"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEMaterial/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEMaterial"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEMaterial/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEMaterial"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEObject/title",
+          "value": "PHASEObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEObject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEOccluder/title",
+          "value": "PHASEOccluder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEOccluder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEOccluder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEOccluder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEOccluder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1simd~1simd_float4x4/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " { ... } "
+            },
+            {
+              "kind": "identifier",
+              "text": "simd_float4x4"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEObject~1transform/title",
+          "value": "transform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEObject~1transform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1rootObject/title",
+          "value": "rootObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1rootObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rootObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEMixerParameters/title",
+          "value": "PHASEMixerParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEMixerParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEMixerParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEMixerParameters/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEMixerParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESpatialPipeline~1Flags-swift.struct~1earlyReflections/title",
+          "value": "PHASESpatialPipelineFlagEarlyReflections"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESpatialPipeline~1Flags-swift.struct~1earlyReflections/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESpatialPipelineFlagEarlyReflections"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESpatialPipeline~1Flags-swift.struct~1lateReverb/title",
+          "value": "PHASESpatialPipelineFlagLateReverb"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESpatialPipeline~1Flags-swift.struct~1lateReverb/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESpatialPipelineFlagLateReverb"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent/title",
+          "value": "PHASESoundEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESoundEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESoundEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1start(completion:)/title",
+          "value": "startWithCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1start(completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startWithCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEObject~1addChild(_:)/title",
+          "value": "addChild:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEObject~1addChild(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addChild:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESource/title",
+          "value": "PHASESource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEMaterialPreset/title",
+          "value": "PHASEMaterialPreset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEMaterialPreset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEMaterialPreset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEMaterialPreset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEMaterialPreset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEListener/title",
+          "value": "PHASEListener"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEListener/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEListener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEListener/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEListener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGeometricSpreadingDistanceModelParameters/title",
+          "value": "PHASEGeometricSpreadingDistanceModelParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGeometricSpreadingDistanceModelParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEGeometricSpreadingDistanceModelParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGeometricSpreadingDistanceModelParameters/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEGeometricSpreadingDistanceModelParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESpatialMixerDefinition/title",
+          "value": "PHASESpatialMixerDefinition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESpatialMixerDefinition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESpatialMixerDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESpatialMixerDefinition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESpatialMixerDefinition"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/phase/playing-sound-from-a-location-in-a-3d-scene"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/phase/playing-sound-from-a-location-in-a-3d-scene"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

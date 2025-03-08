@@ -1,0 +1,820 @@
+{
+  "abstract": [
+    {
+      "text": "Determines dead-key state transitions in a ",
+      "type": "text"
+    },
+    {
+      "code": "'uchr'",
+      "type": "codeVoice"
+    },
+    {
+      "text": " resource.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreservices/uckeystaterecord"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1390634,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@UCKeyStateRecord",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "UCKeyStateRecord"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "UCKeyStateRecord"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UCKeyStateRecord"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Unicode keyboard-layout (",
+              "type": "text"
+            },
+            {
+              "code": "'uchr'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") resource contains the data necessary to map virtual key codes to Unicode character codes for a given keyboard layout. The ",
+              "type": "text"
+            },
+            {
+              "code": "'uchr'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " format consists of a header information section and five key mapping data sections. The ",
+              "type": "text"
+            },
+            {
+              "code": "UCKeyStateRecord",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type is used in the third key mapping section of the ",
+              "type": "text"
+            },
+            {
+              "code": "'uchr'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " resource to determine dead-key state transitions. The ",
+              "type": "text"
+            },
+            {
+              "code": "UCKeyStateRecord",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure permits complex dead-key state processing, such as a series of transitions from one dead-key state directly into another, in which each transition can emit a sequence of one or more Unicode characters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Any modifier key combination which initiates a dead-key state or which is a valid terminator of a dead-key state refers to one of these records via the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeyoutput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  values in key-code-to-character tables. A ",
+              "type": "text"
+            },
+            {
+              "code": "UCKeyOutput",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value may index the offsets contained in a  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeystaterecordsindex",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  structure, which in turn refers to the actual dead-key state records. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each ",
+              "type": "text"
+            },
+            {
+              "code": "UCKeyStateRecord",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure maps from the current dead-key state to the character data to be output or the following dead-key state (if any), as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the current dead-key state is zero (that is, there are no dead keys in effect) the value in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "stateZeroCharData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is output and the state is set to the value in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "stateZeroNextState ",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "  (this can be used to initiate a dead-key state). ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": " If the current dead-key state is non-zero and there is an entry for the state in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "stateEntryData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", then the corresponding value in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "stateEntryData.charData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is output. The next state is then set to either a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "kUCKeyStateEntryTerminalFormat",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "kUCKeyStateEntryRangeFormat",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value; in either case, if the next dead-key state is 0, this implements a valid dead-key state terminator. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": " If the current dead-key state is non-zero, and there is no entry for the state in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "stateEntryData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the default state terminator is output from the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "'uchr'",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " resource’s  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeystateterminators",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "  table for the current state (or nothing may be output, if there is no ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UCKeyStateTerminators",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " table or it has no entry for the current state). Then the value in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "stateZeroCharData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is output, and the state is set to the value in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "stateZeroNextState",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Unicode Utilities",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/unicode_utilities"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities/1390376-key_state_entry_formats": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities/1390376-key_state_entry_formats",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Key State Entry Formats",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/unicode_utilities/1390376-key_state_entry_formats"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeyoutput": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeyoutput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UCKeyOutput",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeyoutput"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeystateentryrange": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeystateentryrange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UCKeyStateEntryRange",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeystateentryrange"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeystateentryterminal": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeystateentryterminal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UCKeyStateEntryTerminal",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeystateentryterminal"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeystaterecord/1390413-stateentrydata": {
+      "abstract": [
+        {
+          "text": "An array of dead-key state entries, whose size depends on their format, but which will always be a multiple of 4 bytes. Each entry maps from the current dead-key state to the Unicode character(s) that result when a given character key is pressed or to the next dead-key state, if any. The format of the entry is specified by the ",
+          "type": "text"
+        },
+        {
+          "code": "stateEntryFormat",
+          "type": "codeVoice"
+        },
+        {
+          "text": " field to be either that of type ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeystateentryterminal",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeystateentryrange",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "stateEntryData"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeystaterecord/1390413-stateentrydata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stateEntryData",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeystaterecord/1390413-stateentrydata"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeystaterecord/1390450-stateentryformat": {
+      "abstract": [
+        {
+          "text": "An unsigned 16-bit integer specifying the format of the data in the ",
+          "type": "text"
+        },
+        {
+          "code": "stateEntryData",
+          "type": "codeVoice"
+        },
+        {
+          "text": " field’s array. This should be 0 if the ",
+          "type": "text"
+        },
+        {
+          "code": "stateEntryCount",
+          "type": "codeVoice"
+        },
+        {
+          "text": " field is set to 0. Currently available values are ",
+          "type": "text"
+        },
+        {
+          "code": "kUCKeyStateEntryTerminalFormat",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "code": "kUCKeyStateEntryRangeFormat",
+          "type": "codeVoice"
+        },
+        {
+          "text": "; see ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities/1390376-key_state_entry_formats",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " for descriptions of these values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "stateEntryFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeystaterecord/1390450-stateentryformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stateEntryFormat",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeystaterecord/1390450-stateentryformat"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeystaterecord/1390554-statezeronextstate": {
+      "abstract": [
+        {
+          "text": "An unsigned 16-bit integer specifying the dead-key state produced from a given key code when no previous dead-key state is in effect. If the ",
+          "type": "text"
+        },
+        {
+          "code": "UCKeyStateRecord",
+          "type": "codeVoice"
+        },
+        {
+          "text": " structure does not initiate a dead-key state (but only provides terminators for other dead-key states), this will be 0. A non-zero value specifies the resulting new dead-key state and refers to the current state entry within the ",
+          "type": "text"
+        },
+        {
+          "code": "stateEntryData[]",
+          "type": "codeVoice"
+        },
+        {
+          "text": " field for the following dead-key state record that is applied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "stateZeroNextState"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeystaterecord/1390554-statezeronextstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stateZeroNextState",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeystaterecord/1390554-statezeronextstate"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeystaterecord/1390580-statezerochardata": {
+      "abstract": [
+        {
+          "text": "A value of type ",
+          "type": "text"
+        },
+        {
+          "code": "UCKeyCharSeq",
+          "type": "codeVoice"
+        },
+        {
+          "text": " specifying the Unicode character(s) produced from a given key code while no dead-key state is in effect. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "stateZeroCharData"
+        },
+        {
+          "kind": "text",
+          "text": ": UCKeyCharSeq"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeystaterecord/1390580-statezerochardata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stateZeroCharData",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeystaterecord/1390580-statezerochardata"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeystaterecord/1390646-stateentrycount": {
+      "abstract": [
+        {
+          "text": "An unsigned 16-bit integer specifying the number of elements in the ",
+          "type": "text"
+        },
+        {
+          "code": "stateEntryData",
+          "type": "codeVoice"
+        },
+        {
+          "text": " field’s array for a given dead-key state record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "stateEntryCount"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeystaterecord/1390646-stateentrycount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stateEntryCount",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeystaterecord/1390646-stateentrycount"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeystaterecord/1442959-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "stateZeroCharData"
+        },
+        {
+          "kind": "text",
+          "text": ": UCKeyCharSeq, "
+        },
+        {
+          "kind": "identifier",
+          "text": "stateZeroNextState"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt16, "
+        },
+        {
+          "kind": "identifier",
+          "text": "stateEntryCount"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt16, "
+        },
+        {
+          "kind": "identifier",
+          "text": "stateEntryFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt16, "
+        },
+        {
+          "kind": "identifier",
+          "text": "stateEntryData"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt32)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeystaterecord/1442959-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(stateZeroCharData:stateZeroNextState:stateEntryCount:stateEntryFormat:stateEntryData:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeystaterecord/1442959-init"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeystaterecord/1448351-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeystaterecord/1448351-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeystaterecord/1448351-init"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeystaterecordsindex": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeystaterecordsindex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UCKeyStateRecordsIndex",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeystaterecordsindex"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeystateterminators": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeystateterminators",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UCKeyStateTerminators",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeystateterminators"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "2860661",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/uckeystaterecord/1448351-init",
+        "doc://com.apple.documentation/documentation/coreservices/uckeystaterecord/1442959-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "2860662",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/uckeystaterecord/1390646-stateentrycount",
+        "doc://com.apple.documentation/documentation/coreservices/uckeystaterecord/1390413-stateentrydata",
+        "doc://com.apple.documentation/documentation/coreservices/uckeystaterecord/1390450-stateentryformat",
+        "doc://com.apple.documentation/documentation/coreservices/uckeystaterecord/1390580-statezerochardata",
+        "doc://com.apple.documentation/documentation/coreservices/uckeystaterecord/1390554-statezeronextstate"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/uckeystaterecord"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreservices/uckeystaterecord"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

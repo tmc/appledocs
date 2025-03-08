@@ -1,0 +1,1088 @@
+{
+  "abstract": [
+    {
+      "text": "Integrate your app’s workflow within the Final Cut Pro interface to streamline data exchange.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/workflow-extensions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Workflow Extensions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app supports workflows that require users to exchange data between your app and Final Cut Pro, consider adding a workflow extension to your app. A workflow extension is not a replacement for your app; it’s an extension of the app’s functionality, made available within the Final Cut Pro interface. When a user’s workflow requires frequent switching between your app and the Final Cut Pro interface, having your app’s functionality within the interface provides a seamless user experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must use a macOS app to contain and deliver your workflow extension. The app that contains the extension is called the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "container app",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a user launches an extension, Final Cut Pro hosts the extension in its interface, inside a floating window, and becomes the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "host app",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". However, the amount of information a workflow extension presents in a floating window space may not be sufficient for complex tasks. Create an extension for workflows that are optimized for limited screen size; for example, managing media files, and browsing and accessing stock footage. Delegate time-consuming or complicated tasks to the container app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3570238",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can extend a workflow extension’s functionality beyond data exchange by using the libraries provided in the Workflow Extension SDK. The libraries facilitate a workflow extension’s interaction and communication with the Final Cut Pro timeline. You can use the APIs in the SDK to support workflows that allow users to collaborate in real time on a project opened in both Final Cut Pro and the workflow extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/ProExtensionAttributes": {
+      "abstract": [
+        {
+          "text": "A dictionary that specifies the minimum size of the floating window in which Final Cut Pro hosts the extension view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/ProExtensionAttributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ProExtensionAttributes",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSExtension/ProExtensionAttributes"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/ProExtensionPrincipalViewControllerClass": {
+      "abstract": [
+        {
+          "text": "The name of the principal view controller class of your extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/ProExtensionPrincipalViewControllerClass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ProExtensionPrincipalViewControllerClass",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSExtension/ProExtensionPrincipalViewControllerClass"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-a-workflow-extension": {
+      "abstract": [
+        {
+          "text": "Create a workflow extension in Xcode by using the Final Cut Pro Workflow Extension template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-a-workflow-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a Workflow Extension",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/building-a-workflow-extension"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/content-and-metadata-exchanges-with-final-cut-pro": {
+      "abstract": [
+        {
+          "text": "Send media assets and timeline sequences to Final Cut Pro for editing, and receive rendered media and editing decisions in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/content-and-metadata-exchanges-with-final-cut-pro",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Content and Metadata Exchanges with Final Cut Pro",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/content-and-metadata-exchanges-with-final-cut-pro"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/designing-workflow-extensions": {
+      "abstract": [
+        {
+          "text": "Follow these design guidelines to provide a unique experience to workflow extension users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/designing-workflow-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Designing Workflow Extensions",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/designing-workflow-extensions"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference": {
+      "abstract": [
+        {
+          "text": "Create documents that describe the data your app or workflow extension exchanges with Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FCPXML Reference",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fcpxml-reference"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/interacting-with-the-final-cut-pro-timeline": {
+      "abstract": [
+        {
+          "text": "Extend your workflows beyond media exchange by enabling a workflow extension to interact with the Final Cut Pro timeline.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/interacting-with-the-final-cut-pro-timeline",
+      "kind": "article",
+      "role": "article",
+      "title": "Interacting with the Final Cut Pro Timeline",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/interacting-with-the-final-cut-pro-timeline"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXEvent": {
+      "abstract": [
+        {
+          "text": "An object that contains details of an event in the Final Cut Pro library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FCPXEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FCPXEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "FCPXEvent",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fcpxevent"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXHost": {
+      "abstract": [
+        {
+          "text": "A protocol that provides an interface to retrieve the Final Cut Pro timeline proxy objects and details of the host app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FCPXHost"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXHost",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FCPXHost"
+        }
+      ],
+      "role": "symbol",
+      "title": "FCPXHost",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fcpxhost"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXLibrary": {
+      "abstract": [
+        {
+          "text": "An object that contains details of a Final Cut Pro library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FCPXLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXLibrary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FCPXLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "FCPXLibrary",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fcpxlibrary"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXObject": {
+      "abstract": [
+        {
+          "text": "An abstract superclass for Final Cut Pro timeline proxy objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FCPXObject"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FCPXObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "FCPXObject",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fcpxobject"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXObjectType": {
+      "abstract": [
+        {
+          "text": "The Final Cut Pro timeline object types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FCPXObjectType"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXObjectType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FCPXObjectType"
+        }
+      ],
+      "role": "symbol",
+      "title": "FCPXObjectType",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fcpxobjecttype"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXProject": {
+      "abstract": [
+        {
+          "text": "An object that contains details of a project with the sequence open in the Final Cut Pro timeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FCPXProject"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXProject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FCPXProject"
+        }
+      ],
+      "role": "symbol",
+      "title": "FCPXProject",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fcpxproject"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXSequence": {
+      "abstract": [
+        {
+          "text": "An object that contains details of a sequence that’s open in the Final Cut Pro timeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FCPXSequence"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FCPXSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "FCPXSequence",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fcpxsequence"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXSequenceTimecodeFormat": {
+      "abstract": [
+        {
+          "text": "The display format of the sequence timecode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FCPXSequenceTimecodeFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXSequenceTimecodeFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FCPXSequenceTimecodeFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "FCPXSequenceTimecodeFormat",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fcpxsequencetimecodeformat"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimeline": {
+      "abstract": [
+        {
+          "text": "An interface that has methods and properties to communicate and interact with the Final Cut Pro timeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FCPXTimeline"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimeline",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FCPXTimeline"
+        }
+      ],
+      "role": "symbol",
+      "title": "FCPXTimeline",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fcpxtimeline"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimelineObserver": {
+      "abstract": [
+        {
+          "text": "An interface with optional methods implemented by observers of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimeline",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FCPXTimelineObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimelineObserver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FCPXTimelineObserver"
+        }
+      ],
+      "role": "symbol",
+      "title": "FCPXTimelineObserver",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fcpxtimelineobserver"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/ProExtensionHostSingleton()": {
+      "abstract": [
+        {
+          "text": "Returns the singleton proxy instance of the host object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProExtensionHostSingleton"
+        },
+        {
+          "kind": "text",
+          "text": "() -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/ProExtensionHostSingleton()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProExtensionHostSingleton"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProExtensionHostSingleton()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/proextensionhostsingleton()"
+    },
+    "media-3570238": {
+      "alt": "Screenshot showing a workflow extension inside a floating window in the Final Cut Pro interface.",
+      "identifier": "media-3570238",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0186979dd745350eb5ed6f60ba4712e7/media-3570238@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0186979dd745350eb5ed6f60ba4712e7/media-3570238~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "XML-Data-Exchange",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/content-and-metadata-exchanges-with-final-cut-pro",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference"
+      ],
+      "title": "XML Data Exchange"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/designing-workflow-extensions",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-a-workflow-extension"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Information-Property-List-Keys",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/ProExtensionPrincipalViewControllerClass",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/ProExtensionAttributes"
+      ],
+      "title": "Information Property List Keys"
+    },
+    {
+      "anchor": "FCPX-Interactions",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/interacting-with-the-final-cut-pro-timeline",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXHost",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/ProExtensionHostSingleton()",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimeline",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimelineObserver"
+      ],
+      "title": "FCPX Interactions"
+    },
+    {
+      "anchor": "FCPX-Timeline-Proxy-Objects",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXObject",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXObjectType",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXLibrary",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXEvent",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXProject",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXSequence",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXSequenceTimecodeFormat"
+      ],
+      "title": "FCPX Timeline Proxy Objects"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/designing-workflow-extensions",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-a-workflow-extension"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Information-Property-List-Keys",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/ProExtensionPrincipalViewControllerClass",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/ProExtensionAttributes"
+              ],
+              "title": "Information Property List Keys"
+            },
+            {
+              "anchor": "FCPX-Interactions",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/interacting-with-the-final-cut-pro-timeline",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXHost",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/ProExtensionHostSingleton()",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimeline",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXTimelineObserver"
+              ],
+              "title": "FCPX Interactions"
+            },
+            {
+              "anchor": "FCPX-Timeline-Proxy-Objects",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXObject",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXObjectType",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXLibrary",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXEvent",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXProject",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXSequence",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FCPXSequenceTimecodeFormat"
+              ],
+              "title": "FCPX Timeline Proxy Objects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "XML-Data-Exchange",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/content-and-metadata-exchanges-with-final-cut-pro",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference"
+              ],
+              "title": "XML Data Exchange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXLibrary/title",
+          "value": "FCPXLibrary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXLibrary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FCPXLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXLibrary/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FCPXLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXTimeline/title",
+          "value": "FCPXTimeline"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXTimeline/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FCPXTimeline"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXTimeline/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FCPXTimeline"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXTimelineObserver/title",
+          "value": "FCPXTimelineObserver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXTimelineObserver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FCPXTimelineObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXTimelineObserver/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FCPXTimelineObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXObject/title",
+          "value": "FCPXObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FCPXObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXObject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FCPXObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1ProExtensionHostSingleton()/title",
+          "value": "ProExtensionHostSingleton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1ProExtensionHostSingleton()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ProExtensionHostSingleton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXProject/title",
+          "value": "FCPXProject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXProject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FCPXProject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXProject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FCPXProject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXObjectType/title",
+          "value": "FCPXObjectType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXObjectType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FCPXObjectType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXObjectType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FCPXObjectType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXSequence/title",
+          "value": "FCPXSequence"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXSequence/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FCPXSequence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXSequence/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FCPXSequence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXEvent/title",
+          "value": "FCPXEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FCPXEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FCPXEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXHost/title",
+          "value": "FCPXHost"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXHost/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FCPXHost"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXHost/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FCPXHost"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXSequenceTimecodeFormat/title",
+          "value": "FCPXSequenceTimecodeFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXSequenceTimecodeFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FCPXSequenceTimecodeFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FCPXSequenceTimecodeFormat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FCPXSequenceTimecodeFormat"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/workflow-extensions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/workflow-extensions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

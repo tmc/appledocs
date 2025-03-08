@@ -1,0 +1,905 @@
+{
+  "abstract": [
+    {
+      "text": "Synchronize access to resources in your app by signaling events.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/resource-synchronization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/about-synchronization-events"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "About Synchronization Events"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use events to specify synchronization points in your app. For example, you might use an event to synchronize graphics rendering commands running on one command queue with compute processing being performed on another command queue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metal provides two different kinds of events:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Nonshareable. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLEvent",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects synchronize events within a single device object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Shareable. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSharedEvent",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects synchronize events across multiple device objects, processors, or processes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Shareable events have a higher overhead than nonshareable events. Don’t use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLSharedEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to synchronize events within a single device object; use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Event-Signaling-and-Waiting",
+          "level": 3,
+          "text": "Event Signaling and Waiting",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An event contains a monotonically increasing unsigned 64-bit integer. An event starts with a value of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You can either update the event’s value by ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "signaling",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " it, or block further execution by ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "waiting",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " on the event. Typically, you keep an integer value in your app for each event and increase its value each time you need to synchronize on the event. For example, you might increment the number each time you render a new frame of animation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To signal a change to the event, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/encodeSignalEvent(_:value:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on a command buffer, passing in the new value for this event. Metal signals the event after all scheduled commands prior to the event have finished, updating the event’s value if the new value is larger than its current value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To wait for an event to be signaled, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/encodeWaitForEvent(_:value:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on a command buffer, passing in the value to wait for. Commands that are after this event on the queue are not executed until the event’s value is at least as large as the value you provide.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can only encode events outside command encoder boundaries, not between encoded commands of a command encoder.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/encodeSignalEvent(_:value:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that updates an event’s value, which can clear the GPU to run passes from other command buffers waiting for the event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeSignalEvent"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLEvent",
+          "text": "MTLEvent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/encodeSignalEvent(_:value:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "encodeSignalEvent:value:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "encodeSignalEvent(_:value:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/encodesignalevent(_:value:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/encodeWaitForEvent(_:value:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command into the command buffer that pauses the GPU from running the buffer’s subsequent passes until the event equals or exceeds a value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeWaitForEvent"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLEvent",
+          "text": "MTLEvent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/encodeWaitForEvent(_:value:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "encodeWaitForEvent:value:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "encodeWaitForEvent(_:value:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/encodewaitforevent(_:value:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLEvent": {
+      "abstract": [
+        {
+          "text": "A simple semaphore to synchronize access to Metal resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLEvent",
+      "type": "topic",
+      "url": "/documentation/metal/mtlevent"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSharedEvent": {
+      "abstract": [
+        {
+          "text": "An object you use to synchronize access to Metal resources across multiple CPUs, GPUs, and processes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSharedEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLSharedEvent",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsharedevent"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSharedEventHandle": {
+      "abstract": [
+        {
+          "text": "An object you use to recreate a shareable event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEventHandle"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSharedEventHandle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEventHandle"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLSharedEventHandle",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsharedeventhandle"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSharedEventListener": {
+      "abstract": [
+        {
+          "text": "A listener for shareable event notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEventListener"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSharedEventListener",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEventListener"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLSharedEventListener",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsharedeventlistener"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSharedEventNotificationBlock": {
+      "abstract": [
+        {
+          "text": "A block of code invoked after a shareable event’s signal value equals or exceeds a given value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEventNotificationBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSharedEventNotificationBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEventNotificationBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLSharedEventNotificationBlock",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsharedeventnotificationblock"
+    },
+    "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-events": {
+      "abstract": [
+        {
+          "text": "Use events to synchronize access to resources allocated on a heap.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-events",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing a Multistage Image Filter Using Heaps and Events",
+      "type": "topic",
+      "url": "/documentation/metal/implementing-a-multistage-image-filter-using-heaps-and-events"
+    },
+    "doc://com.apple.metal/documentation/Metal/resource-synchronization": {
+      "abstract": [
+        {
+          "text": "Coordinate the contents of data buffers, textures, and other resources that CPUs and GPUs share access to.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/resource-synchronization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resource Synchronization",
+      "type": "topic",
+      "url": "/documentation/metal/resource-synchronization"
+    },
+    "doc://com.apple.metal/documentation/Metal/synchronizing-events-across-multiple-devices-or-processes": {
+      "abstract": [
+        {
+          "text": "Use shareable events to synchronize your app’s work across multiple devices or processes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/synchronizing-events-across-multiple-devices-or-processes",
+      "kind": "article",
+      "role": "article",
+      "title": "Synchronizing Events Across Multiple Devices or Processes",
+      "type": "topic",
+      "url": "/documentation/metal/synchronizing-events-across-multiple-devices-or-processes"
+    },
+    "doc://com.apple.metal/documentation/Metal/synchronizing-events-between-a-gpu-and-the-cpu": {
+      "abstract": [
+        {
+          "text": "Use shareable events to synchronize your app’s work between a GPU and the CPU.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/synchronizing-events-between-a-gpu-and-the-cpu",
+      "kind": "article",
+      "role": "article",
+      "title": "Synchronizing Events Between a GPU and the CPU",
+      "type": "topic",
+      "url": "/documentation/metal/synchronizing-events-between-a-gpu-and-the-cpu"
+    },
+    "doc://com.apple.metal/documentation/Metal/synchronizing-events-within-a-single-device": {
+      "abstract": [
+        {
+          "text": "Use nonshareable events to synchronize your app’s work within a single device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/synchronizing-events-within-a-single-device",
+      "kind": "article",
+      "role": "article",
+      "title": "Synchronizing Events Within a Single Device",
+      "type": "topic",
+      "url": "/documentation/metal/synchronizing-events-within-a-single-device"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Signal-Events",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-events",
+        "doc://com.apple.metal/documentation/Metal/synchronizing-events-within-a-single-device",
+        "doc://com.apple.metal/documentation/Metal/synchronizing-events-across-multiple-devices-or-processes",
+        "doc://com.apple.metal/documentation/Metal/synchronizing-events-between-a-gpu-and-the-cpu",
+        "doc://com.apple.metal/documentation/Metal/MTLEvent",
+        "doc://com.apple.metal/documentation/Metal/MTLSharedEvent",
+        "doc://com.apple.metal/documentation/Metal/MTLSharedEventHandle",
+        "doc://com.apple.metal/documentation/Metal/MTLSharedEventListener",
+        "doc://com.apple.metal/documentation/Metal/MTLSharedEventNotificationBlock"
+      ],
+      "title": "Signal Events"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Signal-Events",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-events",
+                "doc://com.apple.metal/documentation/Metal/synchronizing-events-within-a-single-device",
+                "doc://com.apple.metal/documentation/Metal/synchronizing-events-across-multiple-devices-or-processes",
+                "doc://com.apple.metal/documentation/Metal/synchronizing-events-between-a-gpu-and-the-cpu",
+                "doc://com.apple.metal/documentation/Metal/MTLEvent",
+                "doc://com.apple.metal/documentation/Metal/MTLSharedEvent",
+                "doc://com.apple.metal/documentation/Metal/MTLSharedEventHandle",
+                "doc://com.apple.metal/documentation/Metal/MTLSharedEventListener",
+                "doc://com.apple.metal/documentation/Metal/MTLSharedEventNotificationBlock"
+              ],
+              "title": "Signal Events"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1encodeWaitForEvent(_:value:)/title",
+          "value": "encodeWaitForEvent:value:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1encodeWaitForEvent(_:value:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "encodeWaitForEvent:value:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEvent/title",
+          "value": "MTLSharedEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventListener/title",
+          "value": "MTLSharedEventListener"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventListener/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEventListener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventListener/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEventListener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1encodeSignalEvent(_:value:)/title",
+          "value": "encodeSignalEvent:value:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1encodeSignalEvent(_:value:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "encodeSignalEvent:value:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventNotificationBlock/title",
+          "value": "MTLSharedEventNotificationBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventNotificationBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEventNotificationBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventNotificationBlock/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEventNotificationBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventHandle/title",
+          "value": "MTLSharedEventHandle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventHandle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEventHandle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventHandle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEventHandle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLEvent/title",
+          "value": "MTLEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLEvent"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/about-synchronization-events"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/about-synchronization-events"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2024 @@
+{
+  "abstract": [
+    {
+      "text": "A description of the edits made to an asset’s photo, video, or Live Photo content, which allows your app to reconstruct or revert the effects of prior editing sessions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.photokit/documentation/Photos"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.photokit/documentation/Photos/PHAdjustmentData"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)PHAdjustmentData",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PHAdjustmentData"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Photos"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PHAdjustmentData"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "PHAdjustmentData"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PHAdjustmentData"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.photokit/documentation/PhotoKit/editing-asset-content",
+        "doc://com.apple.photokit/documentation/PhotoKit/creating-photo-editing-extensions"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a user edits an asset, Photos saves a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHAdjustmentData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object along with the modified image or video data. This object provides an application-defined “recipe” you can use to reconstruct the edit. For example, if your app applies filters to a photo, you might create adjustment data that identifies which filters the user picked, the parameters for each, and the order to apply the filters in. Later, the user can resume working with those filters and parameters by using your app or another app that understands your adjustment data format. When iCloud Photos is enabled, a user can revert or resume edits made on a different device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You work with adjustment data when editing an asset, using either the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHAsset/requestContentEditingInput(with:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method or a photo extension view controller that implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHContentEditingController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When you begin an edit (through a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.photokit/documentation/Photos/PHContentEditingInput",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object), examine the editing input’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.photokit/documentation/Photos/PHContentEditingInput/adjustmentData",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property to decide whether the last edit made to the asset is compatible with your app. If so, you can allow the user to resume working with that edit. If not, you can make further edits to the last saved version of the photo.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When you commit an edit (through a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.photokit/documentation/Photos/PHContentEditingOutput",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object), provide a new adjustment whose data represents the changes your app made.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each asset, Photos stores only one ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHAdjustmentData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, representing the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "most recent",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " edit made to the asset’s content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/creating-photo-editing-extensions": {
+      "abstract": [
+        {
+          "text": "Provide custom functionality in the Photos app by bundling an app extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/creating-photo-editing-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating Photo Editing Extensions",
+      "type": "topic",
+      "url": "/documentation/photokit/creating-photo-editing-extensions"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/editing-asset-content": {
+      "abstract": [
+        {
+          "text": "Make a request to modify and save a photo or video asset.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/editing-asset-content",
+      "kind": "article",
+      "role": "article",
+      "title": "Editing Asset Content",
+      "type": "topic",
+      "url": "/documentation/photokit/editing-asset-content"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/editing-request-info-keys": {
+      "abstract": [
+        {
+          "text": "Keys indicating the status of an asset content editing request, used in the completion handler of the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.photokit/documentation/Photos/PHAsset/requestContentEditingInput(with:completionHandler:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " method.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/editing-request-info-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Editing Request Info Keys",
+      "type": "topic",
+      "url": "/documentation/photokit/editing-request-info-keys"
+    },
+    "doc://com.apple.photokit/documentation/Photos": {
+      "abstract": [
+        {
+          "text": "Work with image and video assets that the Photos app manages, including those from iCloud Photos and Live Photos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Photos",
+      "type": "topic",
+      "url": "/documentation/photos"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAdjustmentData": {
+      "abstract": [
+        {
+          "text": "A description of the edits made to an asset’s photo, video, or Live Photo content, which allows your app to reconstruct or revert the effects of prior editing sessions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHAdjustmentData"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAdjustmentData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHAdjustmentData"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHAdjustmentData",
+      "type": "topic",
+      "url": "/documentation/photos/phadjustmentdata"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAdjustmentData/data": {
+      "abstract": [
+        {
+          "text": "Data that contains the information necessary to reconstruct the adjustment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAdjustmentData/data",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "data"
+        }
+      ],
+      "role": "symbol",
+      "title": "data",
+      "type": "topic",
+      "url": "/documentation/photos/phadjustmentdata/data"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAdjustmentData/formatIdentifier": {
+      "abstract": [
+        {
+          "text": "A string uniquely identifying the format of the adjustment data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAdjustmentData/formatIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "formatIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "formatIdentifier",
+      "type": "topic",
+      "url": "/documentation/photos/phadjustmentdata/formatidentifier"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAdjustmentData/formatVersion": {
+      "abstract": [
+        {
+          "text": "A version number for the adjustment data format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatVersion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAdjustmentData/formatVersion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "formatVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "formatVersion",
+      "type": "topic",
+      "url": "/documentation/photos/phadjustmentdata/formatversion"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAdjustmentData/init(formatIdentifier:formatVersion:data:)": {
+      "abstract": [
+        {
+          "text": "Initializes an adjustment object with the specified format and data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "formatIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "formatVersion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAdjustmentData/init(formatIdentifier:formatVersion:data:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithFormatIdentifier:formatVersion:data:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(formatIdentifier:formatVersion:data:)",
+      "type": "topic",
+      "url": "/documentation/photos/phadjustmentdata/init(formatidentifier:formatversion:data:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAsset/canPerform(_:)": {
+      "abstract": [
+        {
+          "text": "Returns whether the asset supports the specified editing operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canPerform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHAssetEditOperation",
+          "text": "PHAssetEditOperation"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAsset/canPerform(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canPerformEditOperation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "canPerform(_:)",
+      "type": "topic",
+      "url": "/documentation/photos/phasset/canperform(_:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAsset/cancelContentEditingInputRequest(_:)": {
+      "abstract": [
+        {
+          "text": "Cancels a request for editing the asset’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancelContentEditingInputRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@PHContentEditingInputRequestID",
+          "text": "PHContentEditingInputRequestID"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAsset/cancelContentEditingInputRequest(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cancelContentEditingInputRequest:"
+        }
+      ],
+      "role": "symbol",
+      "title": "cancelContentEditingInputRequest(_:)",
+      "type": "topic",
+      "url": "/documentation/photos/phasset/cancelcontenteditinginputrequest(_:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAsset/requestContentEditingInput(with:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Requests asset information for beginning a content editing session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestContentEditingInput"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHContentEditingInputRequestOptions",
+          "text": "PHContentEditingInputRequestOptions"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHContentEditingInput",
+          "text": "PHContentEditingInput"
+        },
+        {
+          "kind": "text",
+          "text": "?, ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@PHContentEditingInputRequestID",
+          "text": "PHContentEditingInputRequestID"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAsset/requestContentEditingInput(with:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestContentEditingInputWithOptions:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestContentEditingInput(with:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/photos/phasset/requestcontenteditinginput(with:completionhandler:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAssetEditOperation": {
+      "abstract": [
+        {
+          "text": "Values identifying possible actions an asset can support, used by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.photokit/documentation/Photos/PHAsset/canPerform(_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHAssetEditOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAssetEditOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHAssetEditOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHAssetEditOperation",
+      "type": "topic",
+      "url": "/documentation/photos/phasseteditoperation"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHContentEditingInput": {
+      "abstract": [
+        {
+          "text": "A container that provides information about and access to the image, video, or Live Photo content of an asset to be edited.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHContentEditingInput"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHContentEditingInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHContentEditingInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHContentEditingInput",
+      "type": "topic",
+      "url": "/documentation/photos/phcontenteditinginput"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHContentEditingInput/adjustmentData": {
+      "abstract": [
+        {
+          "text": "An object that describes the most recent edit to the asset’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "adjustmentData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHAdjustmentData",
+          "text": "PHAdjustmentData"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHContentEditingInput/adjustmentData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "adjustmentData"
+        }
+      ],
+      "role": "symbol",
+      "title": "adjustmentData",
+      "type": "topic",
+      "url": "/documentation/photos/phcontenteditinginput/adjustmentdata"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHContentEditingInputRequestID": {
+      "abstract": [
+        {
+          "text": "An identifier for an asset content editing session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHContentEditingInputRequestID"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHContentEditingInputRequestID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHContentEditingInputRequestID"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHContentEditingInputRequestID",
+      "type": "topic",
+      "url": "/documentation/photos/phcontenteditinginputrequestid"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHContentEditingInputRequestOptions": {
+      "abstract": [
+        {
+          "text": "A set of options affecting the delivery of image or video data when you request to edit the content of a Photos asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHContentEditingInputRequestOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHContentEditingInputRequestOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHContentEditingInputRequestOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHContentEditingInputRequestOptions",
+      "type": "topic",
+      "url": "/documentation/photos/phcontenteditinginputrequestoptions"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHContentEditingOutput": {
+      "abstract": [
+        {
+          "text": "A container to which you provide the results of editing the photo, video, or Live Photo content of a Photos asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHContentEditingOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHContentEditingOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHContentEditingOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHContentEditingOutput",
+      "type": "topic",
+      "url": "/documentation/photos/phcontenteditingoutput"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHLivePhotoEditingContext": {
+      "abstract": [
+        {
+          "text": "An editing session for modifying the photo, video, and audio content of a Live Photo.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHLivePhotoEditingContext"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHLivePhotoEditingContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHLivePhotoEditingContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHLivePhotoEditingContext",
+      "type": "topic",
+      "url": "/documentation/photos/phlivephotoeditingcontext"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHLivePhotoFrame": {
+      "abstract": [
+        {
+          "text": "A container that provides image content for a single frame of a Live Photo in an editing context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHLivePhotoFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHLivePhotoFrame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHLivePhotoFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHLivePhotoFrame",
+      "type": "topic",
+      "url": "/documentation/photos/phlivephotoframe"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHContentEditingController": {
+      "abstract": [
+        {
+          "text": "A protocol your custom view controller class implements to provide a user interface for your Photos extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHContentEditingController"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHContentEditingController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHContentEditingController"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHContentEditingController",
+      "type": "topic",
+      "url": "/documentation/photosui/phcontenteditingcontroller"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Editing-an-Asset",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/PhotoKit/editing-asset-content",
+        "doc://com.apple.photokit/documentation/Photos/PHContentEditingInput",
+        "doc://com.apple.photokit/documentation/Photos/PHContentEditingOutput",
+        "doc://com.apple.photokit/documentation/Photos/PHContentEditingInputRequestOptions",
+        "doc://com.apple.photokit/documentation/Photos/PHLivePhotoEditingContext",
+        "doc://com.apple.photokit/documentation/Photos/PHLivePhotoFrame",
+        "doc://com.apple.photokit/documentation/Photos/PHAsset/canPerform(_:)",
+        "doc://com.apple.photokit/documentation/Photos/PHAssetEditOperation",
+        "doc://com.apple.photokit/documentation/Photos/PHAsset/requestContentEditingInput(with:completionHandler:)",
+        "doc://com.apple.photokit/documentation/Photos/PHAsset/cancelContentEditingInputRequest(_:)",
+        "doc://com.apple.photokit/documentation/Photos/PHContentEditingInputRequestID",
+        "doc://com.apple.photokit/documentation/PhotoKit/editing-request-info-keys"
+      ],
+      "title": "Editing an Asset"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-Adjustment",
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/Photos/PHAdjustmentData/init(formatIdentifier:formatVersion:data:)"
+      ],
+      "title": "Creating an Adjustment"
+    },
+    {
+      "anchor": "Identifying-the-Format-of-an-Adjustments-Data",
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/Photos/PHAdjustmentData/formatIdentifier",
+        "doc://com.apple.photokit/documentation/Photos/PHAdjustmentData/formatVersion"
+      ],
+      "title": "Identifying the Format of an Adjustment’s Data"
+    },
+    {
+      "anchor": "Reading-an-Adjustments-Data",
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/Photos/PHAdjustmentData/data"
+      ],
+      "title": "Reading an Adjustment’s Data"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "PHAdjustmentData"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAdjustmentData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAdjustmentData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.photokit/documentation/Photos"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-an-Adjustment",
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/Photos/PHAdjustmentData/init(formatIdentifier:formatVersion:data:)"
+              ],
+              "title": "Creating an Adjustment"
+            },
+            {
+              "anchor": "Identifying-the-Format-of-an-Adjustments-Data",
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/Photos/PHAdjustmentData/formatIdentifier",
+                "doc://com.apple.photokit/documentation/Photos/PHAdjustmentData/formatVersion"
+              ],
+              "title": "Identifying the Format of an Adjustment’s Data"
+            },
+            {
+              "anchor": "Reading-an-Adjustments-Data",
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/Photos/PHAdjustmentData/data"
+              ],
+              "title": "Reading an Adjustment’s Data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Editing-an-Asset",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/Photos/PHContentEditingInput",
+                "doc://com.apple.photokit/documentation/Photos/PHContentEditingOutput",
+                "doc://com.apple.photokit/documentation/Photos/PHContentEditingInputRequestOptions",
+                "doc://com.apple.photokit/documentation/Photos/PHLivePhotoEditingContext",
+                "doc://com.apple.photokit/documentation/Photos/PHLivePhotoFrame",
+                "doc://com.apple.photokit/documentation/Photos/PHAsset/canPerform(_:)",
+                "doc://com.apple.photokit/documentation/Photos/PHAssetEditOperation",
+                "doc://com.apple.photokit/documentation/Photos/PHAsset/requestContentEditingInput(with:completionHandler:)",
+                "doc://com.apple.photokit/documentation/Photos/PHAsset/cancelContentEditingInputRequest(_:)",
+                "doc://com.apple.photokit/documentation/Photos/PHContentEditingInputRequestID"
+              ],
+              "title": "Editing an Asset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PHAdjustmentData"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHContentEditingOutput/title",
+          "value": "PHContentEditingOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHContentEditingOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHContentEditingOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHContentEditingOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHContentEditingOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHContentEditingInputRequestOptions/title",
+          "value": "PHContentEditingInputRequestOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHContentEditingInputRequestOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHContentEditingInputRequestOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHContentEditingInputRequestOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHContentEditingInputRequestOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAsset~1requestContentEditingInput(with:completionHandler:)/title",
+          "value": "requestContentEditingInputWithOptions:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAsset~1requestContentEditingInput(with:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestContentEditingInputWithOptions:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHContentEditingInput/title",
+          "value": "PHContentEditingInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHContentEditingInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHContentEditingInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHContentEditingInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHContentEditingInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAsset~1cancelContentEditingInputRequest(_:)/title",
+          "value": "cancelContentEditingInputRequest:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAsset~1cancelContentEditingInputRequest(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "cancelContentEditingInputRequest:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAsset~1canPerform(_:)/title",
+          "value": "canPerformEditOperation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAsset~1canPerform(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "canPerformEditOperation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAdjustmentData~1init(formatIdentifier:formatVersion:data:)/title",
+          "value": "initWithFormatIdentifier:formatVersion:data:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAdjustmentData~1init(formatIdentifier:formatVersion:data:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithFormatIdentifier:formatVersion:data:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhotoEditingContext/title",
+          "value": "PHLivePhotoEditingContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhotoEditingContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHLivePhotoEditingContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhotoEditingContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHLivePhotoEditingContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAdjustmentData/title",
+          "value": "PHAdjustmentData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAdjustmentData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAdjustmentData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAdjustmentData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAdjustmentData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAdjustmentData~1data/title",
+          "value": "data"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAdjustmentData~1data/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetEditOperation/title",
+          "value": "PHAssetEditOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetEditOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAssetEditOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetEditOperation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAssetEditOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAdjustmentData~1formatVersion/title",
+          "value": "formatVersion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAdjustmentData~1formatVersion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "formatVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhotoFrame/title",
+          "value": "PHLivePhotoFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhotoFrame/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHLivePhotoFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhotoFrame/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHLivePhotoFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHContentEditingInputRequestID/title",
+          "value": "PHContentEditingInputRequestID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHContentEditingInputRequestID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHContentEditingInputRequestID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHContentEditingInputRequestID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHContentEditingInputRequestID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAdjustmentData~1formatIdentifier/title",
+          "value": "formatIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAdjustmentData~1formatIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "formatIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHContentEditingInput~1adjustmentData/title",
+          "value": "adjustmentData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHContentEditingInput~1adjustmentData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "adjustmentData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHContentEditingController/title",
+          "value": "PHContentEditingController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHContentEditingController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHContentEditingController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHContentEditingController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHContentEditingController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/photos/phadjustmentdata"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/photos/phadjustmentdata"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1825 @@
+{
+  "abstract": [
+    {
+      "text": "Help users organize their photos into albums and browse photo collections in a grid-based layout using PhotoKit.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.photokit/documentation/PhotoKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.photokit/documentation/PhotoKit/browsing-and-modifying-photo-albums"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.2",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Browsing and Modifying Photo Albums"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Photos app on iOS displays assets in a thumbnail grid. This sample demonstrates how to achieve a similar layout with a custom ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UICollectionViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". It fetches asset thumbnails using PhotoKit, then displays them as a single photo, video, or Live Photo asset.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app, PhotoBrowse, also demonstrates how to organize the user’s photos into albums and built-in collections, such as Recently Added and Favorites. It supports album creation, deletion, modification, as well as the editing and favoriting of individual assets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Getting-Started",
+          "level": 3,
+          "text": "Getting Started",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app, PhotoBrowse, runs on iOS and tvOS and requires the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS 12 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "tvOS 12 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you build and run the project in Xcode, you may also add photos to the app in Simulator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "List-Albums-and-Built-in-Collections",
+          "level": 3,
+          "text": "List Albums and Built-in Collections",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app first launches, it fetches all of the user’s photo assets. All requests for asset data—single photos, albums, and user collections—go through PhotoKit’s shared ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, so the app registers the main view controller once its view loads:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "PHPhotoLibrary.shared().register(self)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To list all the user’s albums and collections, the app creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHFetchOptions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and dispatches several fetch requests:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let allPhotosOptions = PHFetchOptions()",
+            "allPhotosOptions.sortDescriptors = [NSSortDescriptor(key: \"creationDate\", ascending: true)]",
+            "allPhotos = PHAsset.fetchAssets(with: allPhotosOptions)",
+            "smartAlbums = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .albumRegular, options: nil)",
+            "userCollections = PHCollectionList.fetchTopLevelUserCollections(with: nil)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The resulting ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHFetchResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " informs the app about the structure of the user’s photo library, allowing the user interface to show the number of photos in each album.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-Assets-in-a-Thumbnail-Grid",
+          "level": 3,
+          "text": "Display Assets in a Thumbnail Grid",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app implements thumbnail grid browsing by subclassing ",
+              "type": "text"
+            },
+            {
+              "code": "UICollectionViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "code": "AssetGridViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the grid view controller loads, it updates the image cache, which allows thumbnails to load quickly as the user scrolls:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let (addedRects, removedRects) = differencesBetweenRects(previousPreheatRect, preheatRect)",
+            "let addedAssets = addedRects",
+            "    .flatMap { rect in collectionView!.indexPathsForElements(in: rect) }",
+            "    .map { indexPath in fetchResult.object(at: indexPath.item) }",
+            "let removedAssets = removedRects",
+            "    .flatMap { rect in collectionView!.indexPathsForElements(in: rect) }",
+            "    .map { indexPath in fetchResult.object(at: indexPath.item) }",
+            "",
+            "// Update the assets the PHCachingImageManager is caching.",
+            "imageManager.startCachingImages(for: addedAssets,",
+            "                                targetSize: thumbnailSize, contentMode: .aspectFill, options: nil)",
+            "imageManager.stopCachingImages(for: removedAssets,",
+            "                               targetSize: thumbnailSize, contentMode: .aspectFill, options: nil)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement the ",
+              "type": "text"
+            },
+            {
+              "code": "UICollectionView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " delegate method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UICollectionView/cellForItem(at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to use thumbnails instead of full assets. PhotoKit allows you to request assets directly, and even badge Live Photos to set them apart:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Dequeue a GridViewCell.",
+            "guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: \"GridViewCell\", for: indexPath) as? GridViewCell",
+            "    else { fatalError(\"Unexpected cell in collection view\") }",
+            "",
+            "// Add a badge to the cell if the PHAsset represents a Live Photo.",
+            "if asset.mediaSubtypes.contains(.photoLive) {",
+            "    cell.livePhotoBadgeImage = PHLivePhotoView.livePhotoBadgeImage(options: .overContent)",
+            "}",
+            "",
+            "// Request an image for the asset from the PHCachingImageManager.",
+            "cell.representedAssetIdentifier = asset.localIdentifier",
+            "imageManager.requestImage(for: asset, targetSize: thumbnailSize, contentMode: .aspectFill, options: nil, resultHandler: { image, _ in",
+            "    // UIKit may have recycled this cell by the handler's activation time.",
+            "    // Set the cell's thumbnail image only if it's still showing the same asset.",
+            "    if cell.representedAssetIdentifier == asset.localIdentifier {",
+            "        cell.thumbnailImage = image",
+            "    }",
+            "})"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Show-a-Single-Photo-Video-or-Live-Photo",
+          "level": 3,
+          "text": "Show a Single Photo, Video, or Live Photo",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "AssetViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implements the view of a single asset. If the asset is a video or Live Photo, the view controller also supports playback through a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIBarButtonItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set the appropriate toolbar items based on the media type of the asset.",
+            "#if os(iOS)",
+            "navigationController?.isToolbarHidden = false",
+            "navigationController?.hidesBarsOnTap = true",
+            "if asset.mediaType == .video {",
+            "    toolbarItems = [favoriteButton, space, playButton, space, trashButton]",
+            "} else {",
+            "    // In iOS, present both stills and Live Photos the same way, because",
+            "    // PHLivePhotoView provides the same gesture-based UI as in the Photos app.",
+            "    toolbarItems = [favoriteButton, space, trashButton]",
+            "}",
+            "#elseif os(tvOS)",
+            "if asset.mediaType == .video {",
+            "    navigationItem.leftBarButtonItems = [playButton, favoriteButton, trashButton]",
+            "} else {",
+            "    // In tvOS, PHLivePhotoView doesn't support playback gestures,",
+            "    // so add a play button for Live Photos.",
+            "    if asset.mediaSubtypes.contains(.photoLive) {",
+            "        navigationItem.leftBarButtonItems = [favoriteButton, trashButton]",
+            "    } else {",
+            "        navigationItem.leftBarButtonItems = [livePhotoPlayButton, favoriteButton, trashButton]",
+            "    }",
+            "}",
+            "#endif"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On tvOS, PhotoKit supports Live Photo playback:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#if os(tvOS)",
+            "@IBAction func playLivePhoto(_ sender: Any) {",
+            "    livePhotoView.startPlayback(with: .full)",
+            "}",
+            "#endif"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The view controller supports playback by creating an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and layering it on top of the item once the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHImageManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " fetches a video:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Request an AVPlayerItem for the displayed PHAsset.",
+            "// Then configure a layer for playing it.",
+            "PHImageManager.default().requestPlayerItem(forVideo: asset, options: options, resultHandler: { playerItem, info in",
+            "    DispatchQueue.main.sync {",
+            "        guard self.playerLayer == nil else { return }",
+            "        ",
+            "        // Create an AVPlayer and AVPlayerLayer with the AVPlayerItem.",
+            "        let player = AVPlayer(playerItem: playerItem)",
+            "        let playerLayer = AVPlayerLayer(player: player)",
+            "        ",
+            "        // Configure the AVPlayerLayer and add it to the view.",
+            "        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspect",
+            "        playerLayer.frame = self.view.layer.bounds",
+            "        self.view.layer.addSublayer(playerLayer)",
+            "        ",
+            "        player.play()",
+            "        ",
+            "        // Cache the player layer by reference, so you can remove it later.",
+            "        self.playerLayer = playerLayer",
+            "    }",
+            "})"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Apply-Canned-Filters-in-an-Editing-Interface",
+          "level": 3,
+          "text": "Apply Canned Filters in an Editing Interface",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "AssetViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view allows the user to edit the photo and save changes back to the photo library. It uses an alert controller to display a list of preset editing options, including sepia tone, chrome, and revert.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Allow editing only if the PHAsset supports edit operations.",
+            "if asset.canPerform(.content) {",
+            "    // Add actions for some canned filters.",
+            "    alertController.addAction(UIAlertAction(title: NSLocalizedString(\"Sepia Tone\", comment: \"\"),",
+            "                                            style: .default, handler: getFilter(\"CISepiaTone\")))",
+            "    alertController.addAction(UIAlertAction(title: NSLocalizedString(\"Chrome\", comment: \"\"),",
+            "                                            style: .default, handler: getFilter(\"CIPhotoEffectChrome\")))",
+            "    ",
+            "    // Add actions to revert any edits that have been made to the PHAsset.",
+            "    alertController.addAction(UIAlertAction(title: NSLocalizedString(\"Revert\", comment: \"\"),",
+            "                                            style: .default, handler: revertAsset))",
+            "}",
+            "// Present the UIAlertController.",
+            "present(alertController, animated: true)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each option creates an edit request and prepares a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHContentEditingOutput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to encapsulate edit results as data. A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object communicates the edit back to the user’s photo library.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "DispatchQueue.global(qos: .userInitiated).async {",
+            "    ",
+            "    // Create adjustment data describing the edit.",
+            "    let adjustmentData = PHAdjustmentData(formatIdentifier: self.formatIdentifier,",
+            "                                          formatVersion: self.formatVersion,",
+            "                                          data: filterName.data(using: .utf8)!)",
+            "    ",
+            "    // Create content editing output, write the adjustment data.",
+            "    let output = PHContentEditingOutput(contentEditingInput: input)",
+            "    output.adjustmentData = adjustmentData",
+            "    ",
+            "    // Select a filtering function for the asset's media type.",
+            "    let applyFunc: (String, PHContentEditingInput, PHContentEditingOutput, @escaping () -> Void) -> Void",
+            "    if self.asset.mediaSubtypes.contains(.photoLive) {",
+            "        applyFunc = self.applyLivePhotoFilter",
+            "    } else if self.asset.mediaType == .image {",
+            "        applyFunc = self.applyPhotoFilter",
+            "    } else {",
+            "        applyFunc = self.applyVideoFilter",
+            "    }",
+            "    ",
+            "    // Apply the filter.",
+            "    applyFunc(filterName, input, output, {",
+            "        // When the app finishes rendering the filtered result, commit the edit to the photo library.",
+            "        PHPhotoLibrary.shared().performChanges({",
+            "            let request = PHAssetChangeRequest(for: self.asset)",
+            "            request.contentEditingOutput = output",
+            "        }, completionHandler: { success, error in",
+            "            if !success { print(\"Can't edit the asset: \\(String(describing: error))\") }",
+            "        })",
+            "    })",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the user picks a filter, the app applies it and outputs the saved asset immediately. There’s no UI state for having chosen—but not yet committed—an edit. As such, there’s no role for reading adjustment data to resume",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in-progress edits, since PhotoBrowse has no notion of ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "in-progress",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". However, it’s still good practice to write adjustment data so that potential future versions of the app—or other apps that understand your adjustment data format—could make use of it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-New-Album",
+          "level": 3,
+          "text": "Create a New Album",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An alert controller allows the user to add a new album:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "PHPhotoLibrary.shared().performChanges({",
+            "    PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: title)",
+            "}, completionHandler: { success, error in",
+            "    if !success { print(\"Error creating album: \\(String(describing: error)).\") }",
+            "})"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-an-Asset-to-a-Collection",
+          "level": 3,
+          "text": "Add an Asset to a Collection",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user chooses to add an asset by tapping the Add button (+) in the navigation bar, PhotoBrowse creates a mock photo from a random color at a random orientation. Like other changes to a user’s photo library, adding an asset requires the app to wrap the addition inside a ",
+              "type": "text"
+            },
+            {
+              "code": "PHAssetChangeRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Add the asset to the photo library.",
+            "PHPhotoLibrary.shared().performChanges({",
+            "    let creationRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)",
+            "    if let assetCollection = self.assetCollection {",
+            "        let addAssetRequest = PHAssetCollectionChangeRequest(for: assetCollection)",
+            "        addAssetRequest?.addAssets([creationRequest.placeholderForCreatedAsset!] as NSArray)",
+            "    }",
+            "}, completionHandler: {success, error in",
+            "    if !success { print(\"Error creating the asset: \\(String(describing: error))\") }",
+            "})"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Delete-Assets-and-Albums",
+          "level": 3,
+          "text": "Delete Assets and Albums",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The user can delete an asset through the trash can button at the lower-right corner of ",
+              "type": "text"
+            },
+            {
+              "code": "AssetViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For removal from an album, PhotoBrowse wraps the deletion operation inside a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHAssetCollectionChangeRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. For  removal from the entire photo library, PhotoBrowse wraps the deletion operation inside a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if assetCollection != nil {",
+            "    // Remove the asset from the selected album.",
+            "    PHPhotoLibrary.shared().performChanges({",
+            "        let request = PHAssetCollectionChangeRequest(for: self.assetCollection)!",
+            "        request.removeAssets([self.asset as Any] as NSArray)",
+            "    }, completionHandler: completion)",
+            "} else {",
+            "    // Delete the asset from the photo library.",
+            "    PHPhotoLibrary.shared().performChanges({",
+            "        PHAssetChangeRequest.deleteAssets([self.asset as Any] as NSArray)",
+            "    }, completionHandler: completion)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Favorite-an-Asset",
+          "level": 3,
+          "text": "Favorite an Asset",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users can favorite an asset by toggling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHAsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " parameter ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHAsset/isFavorite",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "PHPhotoLibrary.shared().performChanges({",
+            "    let request = PHAssetChangeRequest(for: self.asset)",
+            "    request.isFavorite = !self.asset.isFavorite",
+            "}, completionHandler: { success, error in",
+            "    if success {",
+            "        DispatchQueue.main.sync {",
+            "            sender.title = self.asset.isFavorite ? \"♥︎\" : \"♡\"",
+            "        }",
+            "    } else {",
+            "        print(\"Can't mark the asset as a Favorite: \\(String(describing: error))\")",
+            "    }",
+            "})"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Observe-and-Respond-to-Changes",
+          "level": 3,
+          "text": "Observe and Respond to Changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Register your main view controller—and any view that shows the user  assets—to observe changes to the photo library, so your app can receive and respond to notifications as assets change. These changes may not necessarily occur inside your app’s functionality; they could originate from other apps, other devices, iCloud Photos, or Shared Albums:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let changeDetails = changeInstance.changeDetails(for: allPhotos) {",
+            "    // Update the cached fetch result.",
+            "    allPhotos = changeDetails.fetchResultAfterChanges",
+            "    // Don't update the table row that always reads \"All Photos.\"",
+            "}",
+            "",
+            "// Update the cached fetch results, and reload the table sections to match.",
+            "if let changeDetails = changeInstance.changeDetails(for: smartAlbums) {",
+            "    smartAlbums = changeDetails.fetchResultAfterChanges",
+            "    tableView.reloadSections(IndexSet(integer: Section.smartAlbums.rawValue), with: .automatic)",
+            "}",
+            "if let changeDetails = changeInstance.changeDetails(for: userCollections) {",
+            "    userCollections = changeDetails.fetchResultAfterChanges",
+            "    tableView.reloadSections(IndexSet(integer: Section.userCollections.rawValue), with: .automatic)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Be sure to unregister your change observer after the app’s main view controller goes away.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "PHPhotoLibrary.shared().unregisterChangeObserver(self)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer": {
+      "abstract": [
+        {
+          "text": "An object that provides the interface to control the player’s transport behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayer",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVPlayer"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIBarButtonItem": {
+      "abstract": [
+        {
+          "text": "A specialized button for placement on a toolbar, navigation bar, or shortcuts bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIBarButtonItem"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIBarButtonItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIBarButtonItem",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIBarButtonItem"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UICollectionView/cellForItem(at:)": {
+      "abstract": [
+        {
+          "text": "Gets the cell object at the index path you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cellForItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "indexPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UICollectionViewCell",
+          "text": "UICollectionViewCell"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UICollectionView/cellForItem(at:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cellForItem(at:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UICollectionView/cellForItem(at:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UICollectionViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that specializes in managing a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UICollectionViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICollectionViewController",
+      "type": "topic",
+      "url": "/documentation/UIKit/UICollectionViewController"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit": {
+      "abstract": [
+        {
+          "text": "Work with image and video assets that the Photos app manages, including those from iCloud Photos and Live Photos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "PhotoKit",
+      "type": "topic",
+      "url": "/documentation/photokit"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/bringing-photos-picker-to-your-swiftui-app": {
+      "abstract": [
+        {
+          "text": "Select media assets by using a Photos picker view that SwiftUI provides.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/bringing-photos-picker-to-your-swiftui-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Bringing Photos picker to your SwiftUI app",
+      "type": "topic",
+      "url": "/documentation/photokit/bringing-photos-picker-to-your-swiftui-app"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/creating-a-slideshow-project-extension-for-photos": {
+      "abstract": [
+        {
+          "text": "Augment the macOS Photos app with extensions that support project creation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/creating-a-slideshow-project-extension-for-photos",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a Slideshow Project Extension for Photos",
+      "type": "topic",
+      "url": "/documentation/photokit/creating-a-slideshow-project-extension-for-photos"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/implementing-an-inline-photos-picker": {
+      "abstract": [
+        {
+          "text": "Embed a system-provided, half-height Photos picker into your app’s view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/implementing-an-inline-photos-picker",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing an inline Photos picker",
+      "type": "topic",
+      "url": "/documentation/photokit/implementing-an-inline-photos-picker"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/selecting-photos-and-videos-in-ios": {
+      "abstract": [
+        {
+          "text": "Improve the user experience of finding and selecting assets by using the Photos picker.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/selecting-photos-and-videos-in-ios",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Selecting Photos and Videos in iOS",
+      "type": "topic",
+      "url": "/documentation/photokit/selecting-photos-and-videos-in-ios"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAsset": {
+      "abstract": [
+        {
+          "text": "A representation of an image, video, or Live Photo in the Photos library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHAsset",
+      "type": "topic",
+      "url": "/documentation/photos/phasset"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAsset/isFavorite": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the user marks the asset as a favorite.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isFavorite"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAsset/isFavorite",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "favorite"
+        }
+      ],
+      "role": "symbol",
+      "title": "isFavorite",
+      "type": "topic",
+      "url": "/documentation/photos/phasset/isfavorite"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest": {
+      "abstract": [
+        {
+          "text": "A request to create, delete, change metadata for, or edit the content of a Photos asset, for use in a photo library change block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHAssetChangeRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHAssetChangeRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHAssetChangeRequest",
+      "type": "topic",
+      "url": "/documentation/photos/phassetchangerequest"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAssetCollectionChangeRequest": {
+      "abstract": [
+        {
+          "text": "A request to create, delete, or modify a Photos asset collection, for use in a photo library change block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHAssetCollectionChangeRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAssetCollectionChangeRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHAssetCollectionChangeRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHAssetCollectionChangeRequest",
+      "type": "topic",
+      "url": "/documentation/photos/phassetcollectionchangerequest"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHContentEditingOutput": {
+      "abstract": [
+        {
+          "text": "A container to which you provide the results of editing the photo, video, or Live Photo content of a Photos asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHContentEditingOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHContentEditingOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHContentEditingOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHContentEditingOutput",
+      "type": "topic",
+      "url": "/documentation/photos/phcontenteditingoutput"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHFetchOptions": {
+      "abstract": [
+        {
+          "text": "A set of options that affect the filtering, sorting, and management of results that Photos returns when you fetch asset or collection objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHFetchOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHFetchOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHFetchOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHFetchOptions",
+      "type": "topic",
+      "url": "/documentation/photos/phfetchoptions"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHFetchResult": {
+      "abstract": [
+        {
+          "text": "An ordered list of assets or collections returned from a Photos fetch method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHFetchResult"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHFetchResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHFetchResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHFetchResult",
+      "type": "topic",
+      "url": "/documentation/photos/phfetchresult"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHImageManager": {
+      "abstract": [
+        {
+          "text": "An object that facilitates retrieving or generating preview thumbnails and asset data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHImageManager"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHImageManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHImageManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHImageManager",
+      "type": "topic",
+      "url": "/documentation/photos/phimagemanager"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary": {
+      "abstract": [
+        {
+          "text": "An object that manages access and changes to the user’s photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHPhotoLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHPhotoLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHPhotoLibrary",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary"
+    },
+    "f3bb304e42b4/BrowsingAndModifyingPhotoAlbums.zip": {
+      "checksum": "f3bb304e42b4cd5c5b1442e567bc1123244d9c743ccc8048ca869f8a3d70423883a34fe9caecbcaf357b97aa4d33a7b31ce3536975c374087d8874b2151c03da",
+      "identifier": "f3bb304e42b4/BrowsingAndModifyingPhotoAlbums.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/f3bb304e42b4/BrowsingAndModifyingPhotoAlbums.zip"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "f3bb304e42b4/BrowsingAndModifyingPhotoAlbums.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sample-code",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/PhotoKit/selecting-photos-and-videos-in-ios",
+        "doc://com.apple.photokit/documentation/PhotoKit/bringing-photos-picker-to-your-swiftui-app",
+        "doc://com.apple.photokit/documentation/PhotoKit/implementing-an-inline-photos-picker",
+        "doc://com.apple.photokit/documentation/PhotoKit/creating-a-slideshow-project-extension-for-photos"
+      ],
+      "title": "Sample code"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVPlayer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHContentEditingOutput/title",
+          "value": "PHContentEditingOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHContentEditingOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHContentEditingOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHContentEditingOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHContentEditingOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHFetchOptions/title",
+          "value": "PHFetchOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHFetchOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHFetchOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHFetchOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHFetchOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAsset/title",
+          "value": "PHAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAsset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAsset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UICollectionViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHImageManager/title",
+          "value": "PHImageManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHImageManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHImageManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHImageManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHImageManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetCollectionChangeRequest/title",
+          "value": "PHAssetCollectionChangeRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetCollectionChangeRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAssetCollectionChangeRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetCollectionChangeRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAssetCollectionChangeRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetChangeRequest/title",
+          "value": "PHAssetChangeRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetChangeRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAssetChangeRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetChangeRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAssetChangeRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAsset~1isFavorite/title",
+          "value": "favorite"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAsset~1isFavorite/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "favorite"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIBarButtonItem/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonItem"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIBarItem",
+              "text": "UIBarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UICollectionView~1cellForItem(at:)/title",
+          "value": "cellForItemAtIndexPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UICollectionView~1cellForItem(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UICollectionViewCell",
+              "text": "UICollectionViewCell"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "cellForItemAtIndexPath:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSIndexPath",
+              "text": "NSIndexPath"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "indexPath"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHFetchResult/title",
+          "value": "PHFetchResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHFetchResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHFetchResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHFetchResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHFetchResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary/title",
+          "value": "PHPhotoLibrary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPhotoLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPhotoLibrary"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

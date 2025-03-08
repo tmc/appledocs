@@ -1,0 +1,556 @@
+{
+  "abstract": [
+    {
+      "text": "Returns a Boolean value that indicates whether the invoking object appears able to read a specified file. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/file_system",
+        "doc://com.apple.documentation/documentation/foundation/nsfilemanager"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/icloud",
+        "doc://com.apple.documentation/documentation/foundation/nsfilemanager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1418292-isreadablefileatpath"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1418292,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSFileManager(im)isReadableFileAtPath:",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSFileManager"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "isReadableFileAtPath:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "keyword",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "identifier",
+              "text": "isReadableFileAtPath:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "path"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A file path.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "path"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " if the current process has read privileges for the file at ",
+              "type": "text"
+            },
+            {
+              "code": "path",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; otherwise ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " if the process does not have read privileges or the existence of the file could not be determined. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the file at ",
+              "type": "text"
+            },
+            {
+              "code": "path",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is inaccessible to your app, perhaps because it does not have search privileges for one or more parent directories, this method returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ". This method traverses symbolic links in the path. This method also uses the real user ID and group ID, as opposed to the effective user and group IDs, to determine if the file is readable. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Attempting to predicate behavior based on the current state of the file system or a particular file on the file system is not recommended. Doing so can cause odd behavior or race conditions. It's far better to attempt an operation (such as loading a file or creating a directory), check for errors, and handle those errors gracefully than it is to try to figure out ahead of time whether the operation will succeed. For more information on file system race conditions, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1728033",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1727741",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1727741": {
+      "identifier": "devLink-1727741",
+      "title": "Secure Coding Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/SecureCodingGuide/Introduction.html#//apple_ref/doc/uid/TP40002415"
+    },
+    "devLink-1728033": {
+      "identifier": "devLink-1728033",
+      "title": "Race Conditions and Secure File Operations",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/SecureCodingGuide/Articles/RaceConditions.html#//apple_ref/doc/uid/TP40002585"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File System",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/icloud": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/icloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "iCloud",
+      "type": "topic",
+      "url": "/documentation/foundation/icloud"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilemanager": {
+      "abstract": [
+        {
+          "text": "A convenient interface to the contents of the file system, and the primary means of interacting with it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileManager",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1408087-isdeletablefileatpath": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the invoking object appears able to delete a specified file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDeletableFileAtPath:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1408087-isdeletablefileatpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isDeletableFileAtPath:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilemanager/1408087-isdeletablefileatpath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1410277-fileexistsatpath": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a file or directory exists at a specified path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileExistsAtPath:isDirectory:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1410277-fileexistsatpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileExistsAtPath:isDirectory:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilemanager/1410277-fileexistsatpath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1414159-isexecutablefileatpath": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the operating system appears able to execute a specified file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isExecutableFileAtPath:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1414159-isexecutablefileatpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isExecutableFileAtPath:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilemanager/1414159-isexecutablefileatpath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1415645-fileexistsatpath": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a file or directory exists at a specified path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileExistsAtPath:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1415645-fileexistsatpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileExistsAtPath:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilemanager/1415645-fileexistsatpath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1416680-iswritablefileatpath": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the invoking object appears able to write to a specified file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isWritableFileAtPath:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1416680-iswritablefileatpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isWritableFileAtPath:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilemanager/1416680-iswritablefileatpath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1418292-isreadablefileatpath": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the invoking object appears able to read a specified file. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isReadableFileAtPath:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1418292-isreadablefileatpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isReadableFileAtPath:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilemanager/1418292-isreadablefileatpath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/no": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NO",
+      "type": "topic",
+      "url": "/documentation/objectivec/no"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/yes": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "YES",
+      "type": "topic",
+      "url": "/documentation/objectivec/yes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1415645-fileexistsatpath",
+        "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1410277-fileexistsatpath",
+        "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1416680-iswritablefileatpath",
+        "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1414159-isexecutablefileatpath",
+        "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1408087-isdeletablefileatpath"
+      ],
+      "title": "Determining Access to Files"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsfilemanager/1418292-isreadablefileatpath"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/filemanager/1418292-isreadablefile"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

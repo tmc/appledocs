@@ -1,0 +1,1795 @@
+{
+  "abstract": [
+    {
+      "text": "A manager that applies and removes hotspot configurations of Wi-Fi networks.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkextension/documentation/NetworkExtension"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NEHotspotConfigurationManager",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NEHotspotConfigurationManager"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Network Extension"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NEHotspotConfigurationManager"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NEHotspotConfigurationManager"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NEHotspotConfigurationManager"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app creates a new hotspot configuration using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and applies it to a Wi-Fi network or attempts to update a previously configured network, the device prompts the user for approval. Without explicit user consent, your app can’t make configuration changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/removeConfiguration(forHS20DomainName:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/removeConfiguration(forSSID:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to delete a configuration that it has added, but not a configuration added by another app or user. The user can also delete configured networks using Settings > Wi-Fi.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app is uninstalled, iOS removes the configurations of all networks your app has configured, including their keychain entries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Hotspot Configuration Manager errors are listed in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationError",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " class, you must enable the Hotspot Configuration capability in Xcode. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.HotspotConfiguration",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.HotspotConfiguration": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether your app can use the hotspot manager to configure Wi-Fi networks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.HotspotConfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hotspot Configuration Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.networking.HotspotConfiguration"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension": {
+      "abstract": [
+        {
+          "text": "Customize and extend core networking features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network Extension",
+      "type": "topic",
+      "url": "/documentation/networkextension"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfiguration": {
+      "abstract": [
+        {
+          "text": "Configuration settings for a Wi-Fi network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEHotspotConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEHotspotConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEHotspotConfiguration",
+      "type": "topic",
+      "url": "/documentation/networkextension/nehotspotconfiguration"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationError": {
+      "abstract": [
+        {
+          "text": "Error values returned by hotspot configuration manager methods.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEHotspotConfigurationError"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEHotspotConfigurationError"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEHotspotConfigurationError",
+      "type": "topic",
+      "url": "/documentation/networkextension/nehotspotconfigurationerror"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationErrorDomain": {
+      "abstract": [
+        {
+          "text": "The domain string for errors involving hotspot configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEHotspotConfigurationErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEHotspotConfigurationErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEHotspotConfigurationErrorDomain",
+      "type": "topic",
+      "url": "/documentation/networkextension/nehotspotconfigurationerrordomain"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager": {
+      "abstract": [
+        {
+          "text": "A manager that applies and removes hotspot configurations of Wi-Fi networks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEHotspotConfigurationManager"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEHotspotConfigurationManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEHotspotConfigurationManager",
+      "type": "topic",
+      "url": "/documentation/networkextension/nehotspotconfigurationmanager"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/apply(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Adds or updates a Wi-Fi network configuration after prompting the user for permission, and then attempts to join the network under certain conditions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "apply"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NEHotspotConfiguration",
+          "text": "NEHotspotConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/apply(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applyConfiguration:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "apply(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/nehotspotconfigurationmanager/apply(_:completionhandler:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/getConfiguredSSIDs(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Submits a completion handler the configuration manager calls to send your app",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the names of the SSIDs or Wi-Fi hotspot domains in the configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getConfiguredSSIDs"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/getConfiguredSSIDs(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getConfiguredSSIDsWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getConfiguredSSIDs(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/nehotspotconfigurationmanager/getconfiguredssids(completionhandler:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/joinAccessoryHotspot(_:passphrase:completionHandler:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "joinAccessoryHotspot"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAccessory",
+          "text": "ASAccessory"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "passphrase"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/joinAccessoryHotspot(_:passphrase:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "joinAccessoryHotspot:passphrase:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "joinAccessoryHotspot(_:passphrase:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/nehotspotconfigurationmanager/joinaccessoryhotspot(_:passphrase:completionhandler:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/joinAccessoryHotspotWithoutSecurity(_:completionHandler:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "joinAccessoryHotspotWithoutSecurity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAccessory",
+          "text": "ASAccessory"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/joinAccessoryHotspotWithoutSecurity(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "joinAccessoryHotspotWithoutSecurity:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "joinAccessoryHotspotWithoutSecurity(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/nehotspotconfigurationmanager/joinaccessoryhotspotwithoutsecurity(_:completionhandler:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/removeConfiguration(forHS20DomainName:)": {
+      "abstract": [
+        {
+          "text": "Removes a Wi-Fi hotspot configuration, identified by a Hotspot 2.0 domain name, that your app previously added.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forHS20DomainName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/removeConfiguration(forHS20DomainName:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeConfigurationForHS20DomainName:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeConfiguration(forHS20DomainName:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/nehotspotconfigurationmanager/removeconfiguration(forhs20domainname:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/removeConfiguration(forSSID:)": {
+      "abstract": [
+        {
+          "text": "Removes a Wi-Fi configuration, identified by an SSID, that your app previously added.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forSSID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/removeConfiguration(forSSID:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeConfigurationForSSID:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeConfiguration(forSSID:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/nehotspotconfigurationmanager/removeconfiguration(forssid:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/shared": {
+      "abstract": [
+        {
+          "text": "Instantiates ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " as a singleton, so it can be shared.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NEHotspotConfigurationManager",
+          "text": "NEHotspotConfigurationManager"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/shared",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sharedManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "shared",
+      "type": "topic",
+      "url": "/documentation/networkextension/nehotspotconfigurationmanager/shared"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotEAPSettings": {
+      "abstract": [
+        {
+          "text": "Extensible Authentication Protocol settings for configuring WPA and WPA2 enterprise Wi-Fi networks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEHotspotEAPSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotEAPSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEHotspotEAPSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEHotspotEAPSettings",
+      "type": "topic",
+      "url": "/documentation/networkextension/nehotspoteapsettings"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotHS20Settings": {
+      "abstract": [
+        {
+          "text": "Settings for configuring Hotspot 2.0 Wi-Fi networks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEHotspotHS20Settings"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotHS20Settings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEHotspotHS20Settings"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEHotspotHS20Settings",
+      "type": "topic",
+      "url": "/documentation/networkextension/nehotspoths20settings"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Wi-Fi-network-configuration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfiguration",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotEAPSettings",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotHS20Settings"
+      ],
+      "title": "Wi-Fi network configuration"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-configurations",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/shared",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/apply(_:completionHandler:)"
+      ],
+      "title": "Creating configurations"
+    },
+    {
+      "anchor": "Getting-a-list-of-configurations",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/getConfiguredSSIDs(completionHandler:)"
+      ],
+      "title": "Getting a list of configurations"
+    },
+    {
+      "anchor": "Removing-configuration",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/removeConfiguration(forHS20DomainName:)",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/removeConfiguration(forSSID:)"
+      ],
+      "title": "Removing configuration"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationErrorDomain",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationError"
+      ],
+      "title": "Errors"
+    },
+    {
+      "anchor": "Entitlements",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.HotspotConfiguration"
+      ],
+      "title": "Entitlements"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/joinAccessoryHotspot(_:passphrase:completionHandler:)",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/joinAccessoryHotspotWithoutSecurity(_:completionHandler:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NEHotspotConfigurationManager"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEHotspotConfigurationManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEHotspotConfigurationManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.networkextension/documentation/NetworkExtension"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-configurations",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/shared",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/apply(_:completionHandler:)"
+              ],
+              "title": "Creating configurations"
+            },
+            {
+              "anchor": "Getting-a-list-of-configurations",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/getConfiguredSSIDs(completionHandler:)"
+              ],
+              "title": "Getting a list of configurations"
+            },
+            {
+              "anchor": "Removing-configuration",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/removeConfiguration(forHS20DomainName:)",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/removeConfiguration(forSSID:)"
+              ],
+              "title": "Removing configuration"
+            },
+            {
+              "anchor": "Errors",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationErrorDomain",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationError"
+              ],
+              "title": "Errors"
+            },
+            {
+              "anchor": "Entitlements",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.HotspotConfiguration"
+              ],
+              "title": "Entitlements"
+            },
+            {
+              "anchor": "Instance-Methods",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/joinAccessoryHotspot(_:passphrase:completionHandler:)",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfigurationManager/joinAccessoryHotspotWithoutSecurity(_:completionHandler:)"
+              ],
+              "title": "Instance Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Wi-Fi-network-configuration",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotConfiguration",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotEAPSettings",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEHotspotHS20Settings"
+              ],
+              "title": "Wi-Fi network configuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NEHotspotConfigurationManager"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotConfigurationManager~1removeConfiguration(forSSID:)/title",
+          "value": "removeConfigurationForSSID:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotConfigurationManager~1removeConfiguration(forSSID:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeConfigurationForSSID:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotConfigurationManager~1joinAccessoryHotspotWithoutSecurity(_:completionHandler:)/title",
+          "value": "joinAccessoryHotspotWithoutSecurity:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotConfigurationManager~1joinAccessoryHotspotWithoutSecurity(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "joinAccessoryHotspotWithoutSecurity:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotConfigurationError/title",
+          "value": "NEHotspotConfigurationError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotConfigurationError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEHotspotConfigurationError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotConfigurationError/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEHotspotConfigurationError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotHS20Settings/title",
+          "value": "NEHotspotHS20Settings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotHS20Settings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEHotspotHS20Settings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotHS20Settings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEHotspotHS20Settings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotConfigurationManager~1joinAccessoryHotspot(_:passphrase:completionHandler:)/title",
+          "value": "joinAccessoryHotspot:passphrase:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotConfigurationManager~1joinAccessoryHotspot(_:passphrase:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "joinAccessoryHotspot:passphrase:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotConfigurationManager~1getConfiguredSSIDs(completionHandler:)/title",
+          "value": "getConfiguredSSIDsWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotConfigurationManager~1getConfiguredSSIDs(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getConfiguredSSIDsWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotConfigurationManager~1apply(_:completionHandler:)/title",
+          "value": "applyConfiguration:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotConfigurationManager~1apply(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "applyConfiguration:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotConfigurationErrorDomain/title",
+          "value": "NEHotspotConfigurationErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotConfigurationErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEHotspotConfigurationErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotEAPSettings/title",
+          "value": "NEHotspotEAPSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotEAPSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEHotspotEAPSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotEAPSettings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEHotspotEAPSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotConfiguration/title",
+          "value": "NEHotspotConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEHotspotConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEHotspotConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotConfigurationManager/title",
+          "value": "NEHotspotConfigurationManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotConfigurationManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEHotspotConfigurationManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotConfigurationManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEHotspotConfigurationManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotConfigurationManager~1shared/title",
+          "value": "sharedManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotConfigurationManager~1shared/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sharedManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotConfigurationManager~1removeConfiguration(forHS20DomainName:)/title",
+          "value": "removeConfigurationForHS20DomainName:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEHotspotConfigurationManager~1removeConfiguration(forHS20DomainName:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeConfigurationForHS20DomainName:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/networkextension/nehotspotconfigurationmanager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/networkextension/nehotspotconfigurationmanager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,751 @@
+{
+  "abstract": [
+    {
+      "text": "A lazily initializable atomic strong reference.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Synchronization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Synchronization/AtomicLazyReference"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:15Synchronization19AtomicLazyReferenceV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AtomicLazyReference"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Synchronization"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AtomicLazyReference"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "AtomicLazyReference"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@frozen"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AtomicLazyReference"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Instance"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Instance"
+            },
+            {
+              "kind": "text",
+              "text": " : AnyObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These values can be set (initialized) exactly once, but read many",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "times.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Instance",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", and ",
+            "type": "text"
+          },
+          {
+            "code": "Sendable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization": {
+      "abstract": [
+        {
+          "text": "Build synchronization constructs using low-level, primitive operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Synchronization",
+      "type": "topic",
+      "url": "/documentation/synchronization"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/Atomic": {
+      "abstract": [
+        {
+          "text": "An atomic value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Atomic"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/Atomic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Atomic"
+        }
+      ],
+      "role": "symbol",
+      "title": "Atomic",
+      "type": "topic",
+      "url": "/documentation/synchronization/atomic"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/AtomicLazyReference": {
+      "abstract": [
+        {
+          "text": "A lazily initializable atomic strong reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AtomicLazyReference"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/AtomicLazyReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AtomicLazyReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "AtomicLazyReference",
+      "type": "topic",
+      "url": "/documentation/synchronization/atomiclazyreference"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/AtomicLazyReference/init()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/AtomicLazyReference/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/synchronization/atomiclazyreference/init()"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/AtomicLazyReference/load()": {
+      "abstract": [
+        {
+          "text": "Atomically loads and returns the current value of this reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "load"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Instance"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/AtomicLazyReference/load()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "load()",
+      "type": "topic",
+      "url": "/documentation/synchronization/atomiclazyreference/load()"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/AtomicLazyReference/storeIfNil(_:)": {
+      "abstract": [
+        {
+          "text": "Atomically initializes this reference if its current value is nil, then",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "returns the initialized value. If this reference is already initialized,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "then ",
+          "type": "text"
+        },
+        {
+          "code": "storeIfNil(_:)",
+          "type": "codeVoice"
+        },
+        {
+          "text": " discards its supplied argument and returns the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "current value without updating it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storeIfNil"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "consuming"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Instance"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Instance"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/AtomicLazyReference/storeIfNil(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "storeIfNil(_:)",
+      "type": "topic",
+      "url": "/documentation/synchronization/atomiclazyreference/storeifnil(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/AtomicOptionalRepresentable": {
+      "abstract": [
+        {
+          "text": "An atomic value that also supports atomic operations when wrapped",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in an ",
+          "type": "text"
+        },
+        {
+          "code": "Optional",
+          "type": "codeVoice"
+        },
+        {
+          "text": ". Atomic optional representable types come with a standalone",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "atomic representation for their optional-wrapped variants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AtomicOptionalRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/AtomicOptionalRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AtomicOptionalRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "AtomicOptionalRepresentable",
+      "type": "topic",
+      "url": "/documentation/synchronization/atomicoptionalrepresentable"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable": {
+      "abstract": [
+        {
+          "text": "A type that supports atomic operations through a separate atomic storage",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AtomicRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AtomicRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "AtomicRepresentable",
+      "type": "topic",
+      "url": "/documentation/synchronization/atomicrepresentable"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/WordPair": {
+      "abstract": [
+        {
+          "text": "A pair of two word sized ",
+          "type": "text"
+        },
+        {
+          "code": "UInt",
+          "type": "codeVoice"
+        },
+        {
+          "text": "s.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WordPair"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/WordPair",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WordPair"
+        }
+      ],
+      "role": "symbol",
+      "title": "WordPair",
+      "type": "topic",
+      "url": "/documentation/synchronization/wordpair"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Atomic-Values",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Synchronization/Atomic",
+        "doc://com.apple.Swift/documentation/Synchronization/WordPair",
+        "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable",
+        "doc://com.apple.Swift/documentation/Synchronization/AtomicOptionalRepresentable"
+      ],
+      "title": "Atomic Values"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Synchronization/AtomicLazyReference/init()"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Synchronization/AtomicLazyReference/load()",
+        "doc://com.apple.Swift/documentation/Synchronization/AtomicLazyReference/storeIfNil(_:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/synchronization/atomiclazyreference"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

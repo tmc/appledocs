@@ -1,0 +1,3661 @@
+{
+  "abstract": [
+    {
+      "text": "Ensure that dates, currencies, and numbers display correctly across multiple languages and locales by using formatters.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/localization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/preparing-dates-numbers-with-formatters"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Preparing dates, currencies, and numbers for translation"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Languages and regions have different formats for presenting dates and numbers. Some languages use the period (.) as a decimal separator, and others use the comma (,). Some place the percent sign before the number when formatting percentages. And many regions display time and date differently, despite being part of the same language.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead of trying to account for all these variations yourself, use the formatters built into Foundation to create localizable versions of the dates and numbers you want to present.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Format-dates-with-predefined-styles",
+          "level": 3,
+          "text": "Format dates with predefined styles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To convert a date or number into a localizable string, use the Foundation formatters and styles. These APIs take instances of your date and number objects, and convert them into localizable formatted strings according to the locale of the device your app is running on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to create a localizable string from a date object, create an instance of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " you want to format and then call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/date/3796312-formatted",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function on the date.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// The current time and date. Example output is for en_US locale.en_US locale.",
+            "let date = Date.now",
+            "",
+            "// A default, formatted, localizable date string.",
+            "let defaultFormatted = date.formatted()",
+            "// \"8/25/2023, 12:03 PM\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To vary the date components that display, or display only the time or the date, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/date/3766588-formatted",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method on the ",
+              "type": "text"
+            },
+            {
+              "code": "Date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object passing in instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/date/formatstyle/datestyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/date/formatstyle/timestyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// The date you want to format.",
+            "let meetingDate = Date.now",
+            "",
+            "// A formatted date displaying only the date.",
+            "let formattedDate = meetingDate.formatted(date: .abbreviated, time: .omitted)",
+            "// \"Aug 25, 2023\"",
+            "",
+            "// A formatted date displaying only the time.",
+            "let formattedTime = meetingDate.formatted(date: .omitted, time: .standard)",
+            "// \"12:03:10 PM\"",
+            "",
+            "// A formatted date displaying both the date and time.",
+            "let formattedDateAndTime = meetingDate.formatted(date: .complete, time: .complete)",
+            "// \"Friday, August 25, 2023 at 12:03:10 PM PDT\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-your-own-custom-date-styles",
+          "level": 3,
+          "text": "Create your own custom date styles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To format a date to a specific style, create your own custom date style including only the date properties you want to display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to create a date that includes only the month, day, and year:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an instance of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Date",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object you want to format.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/date/formatstyle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " structure or use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/date/formatstyle/3798884-datetime",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " factory variable, and chain together the properties you want to display in successive function calls.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Then pass that ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Date.FormatStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " structure as an input into the the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/date/3766587-formatted",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " function on the date object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "// A date string with specific attributes.",
+            "let myDate = Date.now",
+            "let formatStyle = Date.FormatStyle.dateTime.year().day().month()",
+            "let formatted = date.formatted(formatStyle)",
+            "// \"Sep 7, 2023\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also achieve the same result in one line.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Same result in one line using the `dateTime` factory variable.",
+            "let formatted = Date.now.formatted(.dateTime.year().day().month())",
+            "// \"Sep 7, 2023\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The order of the fields you pass into the ",
+              "type": "text"
+            },
+            {
+              "code": "formatted(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function doesn’t matter. For example, these lines of code produce the same result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Same result.",
+            "Date.now.formatted(.dateTime.year().month().day().hour().minute().second())",
+            "Date.now.formatted(.dateTime.second().minute().hour().day().month().year())",
+            "// \"Sep 7, 2023 at 10:29:52 AM\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Customize the date styles you want to display by chaining together instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/date/formatstyle/symbol",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structures along with their respective formatting properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// A date string for a wide month format.",
+            "let formattedWide = date.formatted(.dateTime.year().day().month(.wide))",
+            "// \"September 7, 2023\"",
+            "",
+            "// A date string for a wide weekday.",
+            "let formattedWeekday = date.formatted(.dateTime.weekday(.wide))",
+            "// \"Thursday\"",
+            "",
+            "// A date string for the ISO 8601 time and date standard.",
+            "let logFormat = date.formatted(.iso8601)",
+            "// \"2023-09-07T17:25:39Z\"",
+            "",
+            "// A date string representing a file format.",
+            "let fileNameFormat = date.formatted(.iso8601.year().month().day().dateSeparator(.dash))",
+            "// \"2023-09-07\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Format-percents-and-scientific-numbers",
+          "level": 3,
+          "text": "Format percents and scientific numbers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want to create a localizable string for a number (such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Int",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Double",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/decimal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Float",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), call ",
+              "type": "text"
+            },
+            {
+              "code": "formatted()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "formatted(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on the number instance, along with the format style to display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to create a formatted version of an ",
+              "type": "text"
+            },
+            {
+              "code": "Int",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Int32/formatted()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function on the number.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let value = 12345",
+            "// A default, formatted, localizable date string.",
+            "var formatted = value.formatted()",
+            "// \"12,345\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To format the number as a percent, call ",
+              "type": "text"
+            },
+            {
+              "code": "formatted(_ format:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on the number you want to display with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/numberformatter/style/percent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " number format style. Integers convert directly into percentages using the whole number.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let number = 25",
+            "let numberFormatted = number.formatted(.percent)",
+            "// \"25%\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Fractions convert between the range of 0 and 1.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let fraction = 0.25",
+            "let fractionFormatted = fraction.formatted(.percent)",
+            "// \"25%\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display a number using scientific notation, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Sequence/formatted(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the number to display using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/numberformatstyleconfiguration/notation/3767168-scientific",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766757-notation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870086-number",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " format styles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let scientific = 42e9",
+            "let scientificFormatted = scientific.formatted(.number.notation(.scientific))",
+            "// \"4.2E10\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Format-currencies",
+          "level": 3,
+          "text": "Format currencies",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To present a number as a localizable currency:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Look up the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://en.wikipedia.org/wiki/ISO_4217",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " of the currency you want to display (such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"CAD\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for Canada).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pass that code as a parameter to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/decimal/formatstyle/currency",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " format style initializer ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/decimal/formatstyle/currency/3796348-init",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Then call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/decimal/3796456-formatted",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " on the number passing in the currency format instance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "// A number formatted in different currencies.",
+            "let amount: Decimal = 12345.67",
+            "amount.formatted(.currency(code: \"JPY\"))",
+            "// \"¥12,346\"",
+            "amount.formatted(.currency(code: \"EUR\").presentation(.fullName))",
+            "// \"12,345.67 euros\"",
+            "amount.formatted(.currency(code: \"USD\").grouping(.automatic))",
+            "// \"$12,345.67\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To ensure accuracy, don’t use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Swift/Float",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Swift/Double",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to represent currency in your app. Use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/decimal",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Format-times-as-intervals-or-durations",
+          "level": 3,
+          "text": "Format times as intervals or durations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display an interval of time as a localizable string:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create two instances of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object — one representing the start of the time interval and the other the end.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Using these two dates, create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/Range",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " structure setting the upper and lower bounds of the interval.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Then call one of the range formatters — such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/Range/formatted()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/Range/formatted(date:time:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " — passing in the time and date styles you want to display.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "// An example of a time interval.",
+            "",
+            "// The current time and date. Example output is for en_US locale.",
+            "let now = Date.now",
+            "",
+            "// 5000 seconds from now.",
+            "let later = now + TimeInterval(5000)",
+            "",
+            "// The default formatted display for a time interval.",
+            "let range = (now..<later).formatted()",
+            "// \"9/8/2023, 10:44 AM – 12:07 PM\"",
+            "",
+            "// A time interval formatted using a predefined date format.",
+            "let noDate = (now..<later).formatted(date: .omitted, time: .complete)",
+            "// \"10:44:39 AM PDT – 12:07:59 PM PDT\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display time as a duration, you can similarly define a date range and convert that range into a duration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// An example of a duration.",
+            "",
+            "// Duration from a range of dates.",
+            "let timeDuration = (now..<later).formatted(.timeDuration)",
+            "// \"1:23:20\"",
+            "",
+            "let components = (now..<later).formatted(.components(style: .wide))",
+            "// \"1 hour, 23 minutes, 20 seconds\"",
+            "",
+            "let relative = later.formatted(.relative(presentation: .named, unitsStyle: .wide))",
+            "// \"in 1 hour\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also use factory methods like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Duration/seconds(_:)-5ifzr",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Duration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure to produce localizable durations from a single number.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to display a given number of seconds as a duration of time:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pass in the number of seconds you want to display to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/Duration/seconds(_:)-5ifzr",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " function of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/Duration",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " structure.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Then call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/Duration/formatted(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", passing in instances of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/Duration/TimeFormatStyle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/Duration/UnitsFormatStyle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to achieve the format and style you want.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "// Duration formatted from a single unit of time.",
+            "Duration.seconds(2000).formatted(.time(pattern: .hourMinute)) ",
+            "// \"0:33\"",
+            "Duration.seconds(2000).formatted(.time(pattern: .hourMinuteSecond)) ",
+            "// \"0:33:20\"",
+            "Duration.seconds(2000).formatted(.time(pattern: .minuteSecond)) ",
+            "// \"33:20\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Format-items-as-lists",
+          "level": 3,
+          "text": "Format items as lists",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a localizable string in the form of a list, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/listformatstyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure along with either the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Sequence/formatted()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Sequence/formatted(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to create a string representation of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Sequence",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// An array of strings formatted into a list.",
+            "let sizes = [\"small\", \"medium\", \"large\"]",
+            "sizes.formatted(.list(type: .and, width: .narrow))",
+            "// \"small, medium, large\"",
+            "sizes.formatted(.list(type: .and, width: .standard))",
+            "// \"small, medium, and large\"",
+            "sizes.formatted(.list(type: .and, width: .short))",
+            "// \"small, medium, & large\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also create lists using different formatting styles by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/listformatstyle/3796585-list",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function along with specific list format styles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// A list of numbers formatted as percentages.",
+            "[25, 50, 75].formatted(.list(memberStyle: .percent, type: .or))",
+            "// \"25%, 50%, or 75%\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Convert-and-display-measurement-units-across-different-locales",
+          "level": 3,
+          "text": "Convert and display measurement units across different locales",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Units of measure vary significantly depending on the locale the format style uses. For example, a distance in feet for the ",
+              "type": "text"
+            },
+            {
+              "code": "en_US",
+              "type": "codeVoice"
+            },
+            {
+              "text": " locale appears as meters using the French locale ",
+              "type": "text"
+            },
+            {
+              "code": "fr_FR",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure your units of measure convert and display properly across different languages and regions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/measurement",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " structure to define a variable representing the unit of measure you want to display.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Then call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/measurement/3816389-formatted",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/measurement/3816389-formatted",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " on the variable to get the display style you want.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, say you want to convert and display the following measurements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Measurements to display.",
+            "let speedLimit = Measurement(value: 110, unit: UnitSpeed.kilometersPerHour)",
+            "let distanceToMoon = Measurement(value: 384400, unit: UnitLength.kilometers)",
+            "let surfBoardLength = Measurement(value: 8, unit: UnitLength.feet)",
+            "let waterTemperature = Measurement(value: 61.2, unit: UnitTemperature.fahrenheit)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To convert them using the default format, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/measurement/3816389-formatted",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the measurement object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Example output is for en_US locale.",
+            "",
+            "// Default display for a unit of measure.",
+            "speedLimit.formatted()",
+            "// \"68 mph\"",
+            "distanceToMoon.formatted()",
+            "// \"238,855 mi\"",
+            "surfBoardLength.formatted()",
+            "// \"8 ft\"",
+            "waterTemperature.formatted()",
+            "// \"61.2°F\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To customize the output, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/measurement/3816389-formatted",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function on the measurement using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/stringstyle/3870200-measurement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " factory method to create the format and style you want.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Custom display options for a unit of measure.",
+            "distanceToMoon.formatted(.measurement(width: .wide))",
+            "// \"238,855 miles\"",
+            "distanceToMoon.formatted(.measurement(width: .abbreviated))",
+            "// \"238,855 mi\"",
+            "distanceToMoon.formatted(.measurement(width: .narrow))",
+            "// \"238,855mi\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Format-dates-and-numbers-in-SwiftUI",
+          "level": 3,
+          "text": "Format dates and numbers in SwiftUI",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To format dates and numbers in SwiftUI, use the ",
+              "type": "text"
+            },
+            {
+              "code": "format",
+              "type": "codeVoice"
+            },
+            {
+              "text": " initializers on SwiftUI view controls to customize how those strings display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, here is a SwiftUI view that displays three different localizable formats of ",
+              "type": "text"
+            },
+            {
+              "code": "Date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text/init(_:format:)-2p5e7",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@State private var myDate = Date.now",
+            "",
+            "var body: some View {",
+            "    VStack {",
+            "        Text(myDate, format: Date.FormatStyle(date: .numeric, time: .omitted))",
+            "        Text(myDate, format: Date.FormatStyle(date: .complete, time: .complete))",
+            "        Text(myDate, format: Date.FormatStyle().hour(.defaultDigits(amPM: .omitted)).minute())",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TextField/init(_:value:format:prompt:)-7flsn",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TextField",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view to present a number as a percentage for a tip.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@State private var tip = 0.15",
+            "",
+            "var body: some View {",
+            "    HStack {",
+            "        Text(\"Tip\")",
+            "        Spacer()",
+            "        TextField(\"Amount\", value: $tip, format: .percent)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Test-the-formatters",
+          "level": 2,
+          "text": "Test the formatters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test and see how your formatters display in different languages and regions, create an instance of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/locale",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, passing in the ",
+              "type": "text"
+            },
+            {
+              "code": "identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of the region you want to test. Then set that locale on the output of your formatted string to see how that string displays in that language and region.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, you can see how your localizable strings display in French as follows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// The locale for France French.",
+            "let frenchLocale = Locale(identifier: \"fr_FR\")",
+            "                        ",
+            "let stages = [\"50\", \"75\", \"100\"]",
+            "stages.formatted(.list(type: .and).locale(frenchLocale))",
+            "// \"50, 75 et 100\"",
+            "stages.formatted(.list(type: .or).locale(frenchLocale))",
+            "// \"50, 75 ou 100\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test your formatters in SwiftUI, set the locale in the environment variable in the ",
+              "type": "text"
+            },
+            {
+              "code": "#Preview",
+              "type": "codeVoice"
+            },
+            {
+              "text": " section of your code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ContentView: View {",
+            "    @State private var myDate = Date.now",
+            "    @Environment(\\.locale) var locale",
+            "",
+            "    var body: some View {",
+            "        VStack {",
+            "            Text(myDate, format: .dateTime.second().minute().hour().day().month().year().locale(locale))",
+            "        }",
+            "    }",
+            "}",
+            "",
+            "#Preview {",
+            "    Group {",
+            "        ContentView()",
+            "            .environment(\\.locale, Locale(identifier: \"fr_FR\"))",
+            "        ContentView()",
+            "            .environment(\\.locale, Locale(identifier: \"pt_BR\"))",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/localization": {
+      "abstract": [
+        {
+          "text": "Expand the market for your app by supporting multiple languages and regions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/localization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Localization",
+      "type": "topic",
+      "url": "/documentation/xcode/localization"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/preparing-your-apps-text-for-translation": {
+      "abstract": [
+        {
+          "text": "Make your app’s text translatable by leveraging the localization APIs in the Foundation framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/preparing-your-apps-text-for-translation",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing your app’s text for translation",
+      "type": "topic",
+      "url": "/documentation/xcode/preparing-your-apps-text-for-translation"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/preparing-your-interface-for-localization": {
+      "abstract": [
+        {
+          "text": "Find text in your app that needs translation and verify that your interface adapts",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to translated text.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/preparing-your-interface-for-localization",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing your interface for localization",
+      "type": "topic",
+      "url": "/documentation/xcode/preparing-your-interface-for-localization"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Double": {
+      "abstract": [
+        {
+          "text": "A double-precision, floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Double",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Double",
+      "type": "topic",
+      "url": "/documentation/Swift/Double"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Duration": {
+      "abstract": [
+        {
+          "text": "A representation of high precision time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Duration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Duration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Duration",
+      "type": "topic",
+      "url": "/documentation/Swift/Duration"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Duration/TimeFormatStyle": {
+      "abstract": [
+        {
+          "text": "A format style that shows durations in a compact, localized format with separators.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimeFormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Duration/TimeFormatStyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Duration.TimeFormatStyle",
+      "type": "topic",
+      "url": "/documentation/Swift/Duration/TimeFormatStyle"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Duration/UnitsFormatStyle": {
+      "abstract": [
+        {
+          "text": "A format style that shows durations with localized labeled components",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnitsFormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Duration/UnitsFormatStyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Duration.UnitsFormatStyle",
+      "type": "topic",
+      "url": "/documentation/Swift/Duration/UnitsFormatStyle"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Duration/formatted(_:)": {
+      "abstract": [
+        {
+          "text": "Formats the duration, using the provided format style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatted"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "v"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation11FormatStyleP0B6OutputQa",
+          "text": "FormatOutput"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation11FormatStyleP",
+          "text": "FormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation11FormatStyleP0B5InputQa",
+          "text": "FormatInput"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Duration/formatted(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatted(_:)",
+      "type": "topic",
+      "url": "/documentation/Swift/Duration/formatted(_:)"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Duration/seconds(_:)-5ifzr": {
+      "abstract": [
+        {
+          "text": "Construct a `Duration` given a number of seconds represented as a `Double` by converting the value into the closest attosecond scale value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "seconds"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "seconds"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Duration/seconds(_:)-5ifzr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "seconds(_:)",
+      "type": "topic",
+      "url": "/documentation/Swift/Duration/seconds(_:)-5ifzr"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Float": {
+      "abstract": [
+        {
+          "text": "A single-precision, floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Float",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Float",
+      "type": "topic",
+      "url": "/documentation/Swift/Float"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Int": {
+      "abstract": [
+        {
+          "text": "A signed integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Int",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/Swift/Int"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Int32/formatted()": {
+      "abstract": [
+        {
+          "text": "Format `self` using `IntegerFormatStyle()`",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatted"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Int32/formatted()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatted()",
+      "type": "topic",
+      "url": "/documentation/Swift/Int32/formatted()"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Range": {
+      "abstract": [
+        {
+          "text": "A half-open interval from a lower bound up to, but not including, an upper bound.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Bound"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Bound"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SL",
+          "text": "Comparable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Range",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Range",
+      "type": "topic",
+      "url": "/documentation/Swift/Range"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Range/formatted()": {
+      "abstract": [
+        {
+          "text": "Formats the date range as an interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatted"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Range/formatted()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatted()",
+      "type": "topic",
+      "url": "/documentation/Swift/Range/formatted()"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Range/formatted(date:time:)": {
+      "abstract": [
+        {
+          "text": "Formats the date range using the specified date and time format styles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatted"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "date"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV19IntervalFormatStyleV",
+          "text": "IntervalFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV19IntervalFormatStyleV0bE0a",
+          "text": "DateStyle"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "time"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV19IntervalFormatStyleV",
+          "text": "IntervalFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV19IntervalFormatStyleV04TimeE0a",
+          "text": "TimeStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Range/formatted(date:time:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatted(date:time:)",
+      "type": "topic",
+      "url": "/documentation/Swift/Range/formatted(date:time:)"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Sequence": {
+      "abstract": [
+        {
+          "text": "A type that provides sequential, iterated access to its elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Sequence",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sequence",
+      "type": "topic",
+      "url": "/documentation/Swift/Sequence"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Sequence/formatted()": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatted"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Sequence/formatted()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatted()",
+      "type": "topic",
+      "url": "/documentation/Swift/Sequence/formatted()"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Sequence/formatted(_:)": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatted"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation11FormatStyleP0B6OutputQa",
+          "text": "FormatOutput"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation11FormatStyleP0B5InputQa",
+          "text": "FormatInput"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation11FormatStyleP",
+          "text": "FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Sequence/formatted(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatted(_:)",
+      "type": "topic",
+      "url": "/documentation/Swift/Sequence/formatted(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Text": {
+      "abstract": [
+        {
+          "text": "A view that displays one or more lines of read-only text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Text",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Text"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Text/init(_:format:)-2p5e7": {
+      "abstract": [
+        {
+          "text": "Creates a text view that displays the formatted representation of a nonstring type supported by a corresponding format style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "input"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation11FormatStyleP0B5InputQa",
+          "text": "FormatInput"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation11FormatStyleP",
+          "text": "FormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation11FormatStyleP0B5InputQa",
+          "text": "FormatInput"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation11FormatStyleP0B6OutputQa",
+          "text": "FormatOutput"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation16AttributedStringV",
+          "text": "AttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text/init(_:format:)-2p5e7",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:format:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Text/init(_:format:)-2p5e7"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/TextField": {
+      "abstract": [
+        {
+          "text": "A control that displays an editable text interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextField"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TextField",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TextField",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/TextField"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/TextField/init(_:value:format:prompt:)-7flsn": {
+      "abstract": [
+        {
+          "text": "Creates a text field that applies a format style to a bound value, with a label generated from a title string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation11FormatStyleP0B5InputQa",
+          "text": "FormatInput"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "prompt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil) "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sy",
+          "text": "StringProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation20ParseableFormatStyleP",
+          "text": "ParseableFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation11FormatStyleP0B6OutputQa",
+          "text": "FormatOutput"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TextField/init(_:value:format:prompt:)-7flsn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:value:format:prompt:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/TextField/init(_:value:format:prompt:)-7flsn"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date": {
+      "abstract": [
+        {
+          "text": "A specific point in time, independent of any calendar or time zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Date"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date",
+      "type": "topic",
+      "url": "/documentation/foundation/date"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/3766587-formatted": {
+      "abstract": [
+        {
+          "text": "Generates a locale-aware string representation of a date using the specified date format style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatted"
+        },
+        {
+          "kind": "text",
+          "text": "<F>(F) -> F.FormatOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/3766587-formatted",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatted(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/date/3766587-formatted"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/3766588-formatted": {
+      "abstract": [
+        {
+          "text": "Generates a locale-aware string representation of a date using specified date and time format styles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatted"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "date"
+        },
+        {
+          "kind": "text",
+          "text": ": Date.FormatStyle.DateStyle, "
+        },
+        {
+          "kind": "identifier",
+          "text": "time"
+        },
+        {
+          "kind": "text",
+          "text": ": Date.FormatStyle.TimeStyle) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/3766588-formatted",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatted(date:time:)",
+      "type": "topic",
+      "url": "/documentation/foundation/date/3766588-formatted"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/3796312-formatted": {
+      "abstract": [
+        {
+          "text": "Generates a locale-aware string representation of a date using the default date format style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatted"
+        },
+        {
+          "kind": "text",
+          "text": "() -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/3796312-formatted",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatted()",
+      "type": "topic",
+      "url": "/documentation/foundation/date/3796312-formatted"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/formatstyle": {
+      "abstract": [
+        {
+          "text": "A structure that creates a locale-appropriate string representation of a date instance and converts strings of dates and times into date instances.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Date.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date.FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/date/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/formatstyle/3798884-datetime": {
+      "abstract": [
+        {
+          "text": "A factory variable used as a base for custom date format styles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "dateTime"
+        },
+        {
+          "kind": "text",
+          "text": ": Date.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/formatstyle/3798884-datetime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dateTime",
+      "type": "topic",
+      "url": "/documentation/foundation/date/formatstyle/3798884-datetime"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/formatstyle/datestyle": {
+      "abstract": [
+        {
+          "text": "Type that defines date styles varied in length or components included.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Date.FormatStyle.DateStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/formatstyle/datestyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date.FormatStyle.DateStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/date/formatstyle/datestyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/formatstyle/symbol": {
+      "abstract": [
+        {
+          "text": "Types that customize formatting templates either by using the date format style’s modifier functions or by constructing fixed-pattern date format strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Date.FormatStyle.Symbol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/formatstyle/symbol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date.FormatStyle.Symbol",
+      "type": "topic",
+      "url": "/documentation/foundation/date/formatstyle/symbol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/formatstyle/timestyle": {
+      "abstract": [
+        {
+          "text": "Type that defines time styles varied in length or components included.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Date.FormatStyle.TimeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/formatstyle/timestyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date.FormatStyle.TimeStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/date/formatstyle/timestyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/decimal": {
+      "abstract": [
+        {
+          "text": "A structure representing a base-10 number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decimal"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/decimal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decimal",
+      "type": "topic",
+      "url": "/documentation/foundation/decimal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/decimal/3796456-formatted": {
+      "abstract": [
+        {
+          "text": "Formats the decimal using the provided format style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatted"
+        },
+        {
+          "kind": "text",
+          "text": "<S>(S) -> S.FormatOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/decimal/3796456-formatted",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatted(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/decimal/3796456-formatted"
+    },
+    "doc://com.apple.documentation/documentation/foundation/decimal/formatstyle/currency": {
+      "abstract": [
+        {
+          "text": "A format style that converts between decimal currency values and their textual representations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decimal.FormatStyle.Currency"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/decimal/formatstyle/currency",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decimal.FormatStyle.Currency",
+      "type": "topic",
+      "url": "/documentation/foundation/decimal/formatstyle/currency"
+    },
+    "doc://com.apple.documentation/documentation/foundation/decimal/formatstyle/currency/3796348-init": {
+      "abstract": [
+        {
+          "text": "Creates a decimal currency format style that uses the given currency code and locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "code"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/decimal/formatstyle/currency/3796348-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(code:locale:)",
+      "type": "topic",
+      "url": "/documentation/foundation/decimal/formatstyle/currency/3796348-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766757-notation": {
+      "abstract": [
+        {
+          "text": "Modifies the format style to use the specified notation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "notation"
+        },
+        {
+          "kind": "text",
+          "text": "(FloatingPointFormatStyle<Value>.Configuration.Notation) -> FloatingPointFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766757-notation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "notation(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3766757-notation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870086-number": {
+      "abstract": [
+        {
+          "text": "A floating-point format style instance for use with the Swift standard double-precision floating-point type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "number"
+        },
+        {
+          "kind": "text",
+          "text": ": FloatingPointFormatStyle<Double>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870086-number",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "number",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3870086-number"
+    },
+    "doc://com.apple.documentation/documentation/foundation/listformatstyle": {
+      "abstract": [
+        {
+          "text": "A type that formats lists of items with a separator and conjunction appropriate for a given locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "ListFormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/listformatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ListFormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/listformatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/listformatstyle/3796585-list": {
+      "abstract": [
+        {
+          "text": "Creates a list format style using the provided format style and list style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "list"
+        },
+        {
+          "kind": "text",
+          "text": "<MemberStyle, Base>("
+        },
+        {
+          "kind": "identifier",
+          "text": "memberStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": MemberStyle, "
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": ListFormatStyle<MemberStyle, Base>.ListType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": ListFormatStyle<MemberStyle, Base>.Width) -> ListFormatStyle<Style, Base>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/listformatstyle/3796585-list",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "list(memberStyle:type:width:)",
+      "type": "topic",
+      "url": "/documentation/foundation/listformatstyle/3796585-list"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale": {
+      "abstract": [
+        {
+          "text": "Information about linguistic, cultural, and technological conventions for use in formatting data for presentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Locale"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Locale",
+      "type": "topic",
+      "url": "/documentation/foundation/locale"
+    },
+    "doc://com.apple.documentation/documentation/foundation/measurement": {
+      "abstract": [
+        {
+          "text": "A numeric quantity labeled with a unit of measure, with support for unit conversion and unit-aware calculations. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Measurement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/measurement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Measurement",
+      "type": "topic",
+      "url": "/documentation/foundation/measurement"
+    },
+    "doc://com.apple.documentation/documentation/foundation/measurement/3816389-formatted": {
+      "abstract": [
+        {
+          "text": "Generates a locale-aware string representation of a measurement using the provided measurement format style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatted"
+        },
+        {
+          "kind": "text",
+          "text": "<S>(S) -> S.FormatOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/measurement/3816389-formatted",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatted(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/measurement/3816389-formatted"
+    },
+    "doc://com.apple.documentation/documentation/foundation/numberformatstyleconfiguration/notation/3767168-scientific": {
+      "abstract": [
+        {
+          "text": "A notation constant that formats values with scientific notation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "scientific"
+        },
+        {
+          "kind": "text",
+          "text": ": NumberFormatStyleConfiguration.Notation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numberformatstyleconfiguration/notation/3767168-scientific",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scientific",
+      "type": "topic",
+      "url": "/documentation/foundation/numberformatstyleconfiguration/notation/3767168-scientific"
+    },
+    "doc://com.apple.documentation/documentation/foundation/numberformatter/style/percent": {
+      "abstract": [
+        {
+          "text": "A percent style format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "percent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numberformatter/style/percent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NumberFormatter.Style.percent",
+      "type": "topic",
+      "url": "/documentation/foundation/numberformatter/style/percent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/stringstyle/3870200-measurement": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "measurement"
+        },
+        {
+          "kind": "text",
+          "text": "<UnitType>("
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": Measurement<UnitType>.FormatStyle.UnitWidth, "
+        },
+        {
+          "kind": "identifier",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": MeasurementFormatUnitUsage<UnitType>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": FloatingPointFormatStyle<Double>?) -> StringStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/stringstyle/3870200-measurement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "measurement(width:usage:numberFormatStyle:)",
+      "type": "topic",
+      "url": "/documentation/foundation/stringstyle/3870200-measurement"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://en.wikipedia.org/wiki/ISO_4217": {
+      "identifier": "https://en.wikipedia.org/wiki/ISO_4217",
+      "title": "code",
+      "titleInlineContent": [
+        {
+          "text": "code",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://en.wikipedia.org/wiki/ISO_4217"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Strings-and-text",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/preparing-your-interface-for-localization",
+        "doc://com.apple.Xcode/documentation/Xcode/preparing-your-apps-text-for-translation"
+      ],
+      "title": "Strings and text"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1numberformatter~1style~1percent/title",
+          "value": "NSNumberFormatterPercentStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1decimal/title",
+          "value": "NSDecimal"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,980 @@
+{
+  "abstract": [
+    {
+      "text": "Returns an array of dictionaries containing the localized user setting summary strings.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintPanelAccessorizing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSPrintPanelAccessorizing/localizedSummaryItems()"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)NSPrintPanelAccessorizing(im)localizedSummaryItems",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "localizedSummaryItems"
+      },
+      {
+        "kind": "text",
+        "text": "() -> [["
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)NSPrintPanel",
+        "text": "NSPrintPanel"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@NSPrintPanelAccessorySummaryKey",
+        "text": "AccessorySummaryKey"
+      },
+      {
+        "kind": "text",
+        "text": " : "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:SS",
+        "text": "String"
+      },
+      {
+        "kind": "text",
+        "text": "]]"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "localizedSummaryItems"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "required": true,
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "localizedSummaryItems()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "localizedSummaryItems"
+            },
+            {
+              "kind": "text",
+              "text": "() -> [["
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintPanel",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSPrintPanel",
+              "text": "NSPrintPanel"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintPanel/AccessorySummaryKey",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSPrintPanelAccessorySummaryKey",
+              "text": "AccessorySummaryKey"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SS",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SS",
+              "text": "String"
+            },
+            {
+              "kind": "text",
+              "text": "]]"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An array of ",
+              "type": "text"
+            },
+            {
+              "code": "NSDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects, each of which contains a ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrintPanelAccessorySummaryItemNameKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrintPanelAccessorySummaryItemDescriptionKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key. The values for the keys are both strings. This method must not return ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Accessory panels must implement this method to return information about the panel’s current settings. The returned array should contain a dictionary for each setting that is managed by the accessory panel and each dictionary should contain two key-value pairs identifying the name of the setting and its current value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your accessory view must be KVO-compliant for the ",
+              "type": "text"
+            },
+            {
+              "code": "localizedSummaryItems",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key path because ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrintPanel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object observes that key path and uses it to keep the contents of the summary view up to date. This means your view should manually send KVO notifications to observers for the ",
+              "type": "text"
+            },
+            {
+              "code": "localizedSummaryItems",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key path whenever the contents of the set of summary items changes. For more information on supporting key-value observing and manual notifications, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintPanel": {
+      "abstract": [
+        {
+          "text": "The Print panel that queries the user for information about a print job.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPrintPanel"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintPanel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPrintPanel"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPrintPanel",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintpanel"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintPanel/AccessorySummaryKey": {
+      "abstract": [
+        {
+          "text": "Constants that specify the accessory panel keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessorySummaryKey"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintPanel/AccessorySummaryKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccessorySummaryKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPrintPanel.AccessorySummaryKey",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintpanel/accessorysummarykey"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintPanelAccessorizing": {
+      "abstract": [
+        {
+          "text": "A set of methods that a Print panel object can use to get information from a printing accessory controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPrintPanelAccessorizing"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintPanelAccessorizing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPrintPanelAccessorizing"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPrintPanelAccessorizing",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintpanelaccessorizing"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintPanelAccessorizing/keyPathsForValuesAffectingPreview()": {
+      "abstract": [
+        {
+          "text": "Returns a set of strings identifying the key paths for any properties that might affect the built-in print preview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyPathsForValuesAffectingPreview"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintPanelAccessorizing/keyPathsForValuesAffectingPreview()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "keyPathsForValuesAffectingPreview"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyPathsForValuesAffectingPreview()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintpanelaccessorizing/keypathsforvaluesaffectingpreview()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintPanelAccessorizing/localizedSummaryItems()": {
+      "abstract": [
+        {
+          "text": "Returns an array of dictionaries containing the localized user setting summary strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedSummaryItems"
+        },
+        {
+          "kind": "text",
+          "text": "() -> [["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPrintPanel",
+          "text": "NSPrintPanel"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPrintPanelAccessorySummaryKey",
+          "text": "AccessorySummaryKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintPanelAccessorizing/localizedSummaryItems()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "localizedSummaryItems"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "localizedSummaryItems()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintpanelaccessorizing/localizedsummaryitems()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SS": {
+      "abstract": [
+        {
+          "text": "A Unicode string value that is a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/Swift/String"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i",
+      "title": "Key-Value Observing Programming Guide",
+      "titleInlineContent": [
+        {
+          "text": "Key-Value Observing Programming Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Responding-to-Being-Loaded-from-a-Nib-File",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintPanelAccessorizing/keyPathsForValuesAffectingPreview()",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintPanel/AccessorySummaryKey"
+      ],
+      "title": "Responding to Being Loaded from a Nib File"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "localizedSummaryItems"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "localizedSummaryItems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintPanelAccessorizing"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Responding-to-Being-Loaded-from-a-Nib-File",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintPanelAccessorizing/keyPathsForValuesAffectingPreview()",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintPanel/AccessorySummaryKey"
+              ],
+              "title": "Responding to Being Loaded from a Nib File"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:Q$objc(cs)NSArray",
+                    "text": "NSArray<NSDictionary<NSString *,NSString *> *>"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "localizedSummaryItems"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "content": [
+              {
+                "anchor": "return-value",
+                "level": 2,
+                "text": "Return Value",
+                "type": "heading"
+              },
+              {
+                "inlineContent": [
+                  {
+                    "text": "An array of ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "NSDictionary",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " objects, each of which contains a ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "NSPrintPanelAccessorySummaryItemNameKey",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " and ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "NSPrintPanelAccessorySummaryItemDescriptionKey",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " key. The values for the keys are both strings. This method must not return ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "nil",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": ".",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "kind": "content"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintPanel/title",
+          "value": "NSPrintPanel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintPanel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrintPanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintPanel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrintPanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintPanelAccessorizing/title",
+          "value": "NSPrintPanelAccessorizing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintPanelAccessorizing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrintPanelAccessorizing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintPanelAccessorizing/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrintPanelAccessorizing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintPanelAccessorizing~1localizedSummaryItems()/title",
+          "value": "localizedSummaryItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintPanelAccessorizing~1localizedSummaryItems()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "localizedSummaryItems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintPanelAccessorizing~1keyPathsForValuesAffectingPreview()/title",
+          "value": "keyPathsForValuesAffectingPreview"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintPanelAccessorizing~1keyPathsForValuesAffectingPreview()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "keyPathsForValuesAffectingPreview"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintPanel~1AccessorySummaryKey/title",
+          "value": "NSPrintPanelAccessorySummaryKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintPanel~1AccessorySummaryKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrintPanelAccessorySummaryKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintPanel~1AccessorySummaryKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrintPanelAccessorySummaryKey"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsprintpanelaccessorizing/localizedsummaryitems()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsprintpanelaccessorizing/localizedsummaryitems()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

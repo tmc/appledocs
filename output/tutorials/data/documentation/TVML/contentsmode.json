@@ -1,0 +1,509 @@
+{
+  "abstract": [
+    {
+      "text": "Specifies how an image is expanded to fill its containing element.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.TVML/documentation/TVML",
+        "doc://com.apple.TVML/documentation/TVML/image-attributes"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.TVML/documentation/TVML",
+        "doc://com.apple.TVML/documentation/TVML/display-elements",
+        "doc://com.apple.TVML/documentation/TVML/decorationimage"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.TVML/documentation/TVML",
+        "doc://com.apple.TVML/documentation/TVML/display-elements",
+        "doc://com.apple.TVML/documentation/TVML/fullscreenimg"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.TVML/documentation/TVML",
+        "doc://com.apple.TVML/documentation/TVML/display-elements",
+        "doc://com.apple.TVML/documentation/TVML/heroimg"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.TVML/documentation/TVML",
+        "doc://com.apple.TVML/documentation/TVML/display-elements",
+        "doc://com.apple.TVML/documentation/TVML/img"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.TVML/documentation/TVML/contentsmode"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "contentsMode"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "contentsMode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute to specify how the image is scaled within its bounding",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "box. Here’s an example that demonstrates the ",
+              "type": "text"
+            },
+            {
+              "code": "contentsMode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute in a ",
+              "type": "text"
+            },
+            {
+              "code": "stackTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<document>",
+            "    <stackTemplate>",
+            "        <banner>",
+            "            <title>contentsMode</title>",
+            "        </banner>",
+            "        <collectionList>",
+            "            <shelf>",
+            "                <section>",
+            "                    <lockup>",
+            "                        <img contentsMode=\"aspectFit\" width=\"600\" height=\"300\" aspectRatio=\"1:1\" src=\"path to images on your server/Car_Movie_200x200.png\"/>",
+            "                        <title>aspectFit</title>",
+            "                    </lockup>",
+            "                    <lockup>",
+            "                        <img contentsMode=\"aspectFitBB\" width=\"600\" height=\"300\" src=\"path to images on your server/Car_Movie_200x200.png\"/>",
+            "                        <title>aspectFitBB</title>",
+            "                    </lockup>",
+            "                    <lockup>",
+            "                        <img contentsMode=\"aspectFill\" width=\"600\" height=\"300\" src=\"path to images on your server/Car_Movie_200x200.png\" contentsMode=\"aspectFill\"/>",
+            "                        <title>aspectFill</title>",
+            "                    </lockup>",
+            "                </section>",
+            "            </shelf>",
+            "        </collectionList>",
+            "    </stackTemplate>",
+            "</document>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When using the ",
+                  "type": "text"
+                },
+                {
+                  "code": "aspectFit",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " value, you must also include the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.TVML/documentation/TVML/aspectratio",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "attribute for the content to scale appropriately.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Values",
+          "level": 3,
+          "text": "Values",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The image scales to fit in the bounding box using fixed aspect ratio. The output bounding box has the same size as the scaled image, leaving no remaining area. The output bounding box may be smaller than its specified size.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "aspectFit",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The image scales to fit in the bounding box using fixed aspect ratio. The output bounding box keeps its specified size. Any unfilled area of the bounding box is white.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "aspectFitBB",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The image scales to fill in the bounding box using fixed aspect ratio. Portions of the image may be clipped.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "aspectFill",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Elements-That-Use-contentsMode",
+          "level": 3,
+          "text": "Elements That Use contentsMode",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.TVML/documentation/TVML/img",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.TVML/documentation/TVML": {
+      "abstract": [
+        {
+          "text": "Use Apple TV Markup Language to create individual pages inside of a client-server",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML",
+      "kind": "article",
+      "role": "collection",
+      "title": "TVML",
+      "type": "topic",
+      "url": "/documentation/tvml"
+    },
+    "doc://com.apple.TVML/documentation/TVML/aspectfill": {
+      "abstract": [
+        {
+          "text": "Stretches an image to fill the containing bounding box.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/aspectfill",
+      "kind": "article",
+      "role": "article",
+      "title": "aspectFill",
+      "type": "topic",
+      "url": "/documentation/tvml/aspectfill"
+    },
+    "doc://com.apple.TVML/documentation/TVML/aspectratio": {
+      "abstract": [
+        {
+          "text": "Specifies the aspect ratio of an image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/aspectratio",
+      "kind": "article",
+      "role": "article",
+      "title": "aspectRatio",
+      "type": "topic",
+      "url": "/documentation/tvml/aspectratio"
+    },
+    "doc://com.apple.TVML/documentation/TVML/decorationimage": {
+      "abstract": [
+        {
+          "text": "Displays images inside of other elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/decorationimage",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "decorationImage",
+      "type": "topic",
+      "url": "/documentation/tvml/decorationimage"
+    },
+    "doc://com.apple.TVML/documentation/TVML/display-elements": {
+      "abstract": [
+        {
+          "text": "Display a visual element, such as an image, badge, or progress overlay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/display-elements",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Display Elements",
+      "type": "topic",
+      "url": "/documentation/tvml/display-elements"
+    },
+    "doc://com.apple.TVML/documentation/TVML/fullscreenimg": {
+      "abstract": [
+        {
+          "text": "Displays an image over an entire element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/fullscreenimg",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "fullscreenImg",
+      "type": "topic",
+      "url": "/documentation/tvml/fullscreenimg"
+    },
+    "doc://com.apple.TVML/documentation/TVML/heroimg": {
+      "abstract": [
+        {
+          "text": "Displays an image that is usually large and detailed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/heroimg",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "heroImg",
+      "type": "topic",
+      "url": "/documentation/tvml/heroimg"
+    },
+    "doc://com.apple.TVML/documentation/TVML/image-attributes": {
+      "abstract": [
+        {
+          "text": "Retrieve images from a server and specify how they fit into an element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/image-attributes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Image Attributes",
+      "type": "topic",
+      "url": "/documentation/tvml/image-attributes"
+    },
+    "doc://com.apple.TVML/documentation/TVML/img": {
+      "abstract": [
+        {
+          "text": "Displays an image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/img",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "img",
+      "type": "topic",
+      "url": "/documentation/tvml/img"
+    },
+    "doc://com.apple.TVML/documentation/TVML/mode": {
+      "abstract": [
+        {
+          "text": "Specifies how an image is displayed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/mode",
+      "kind": "article",
+      "role": "article",
+      "title": "mode",
+      "type": "topic",
+      "url": "/documentation/tvml/mode"
+    },
+    "doc://com.apple.TVML/documentation/TVML/opaque": {
+      "abstract": [
+        {
+          "text": "Indicates whether an image has a transparent background.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/opaque",
+      "kind": "article",
+      "role": "article",
+      "title": "opaque",
+      "type": "topic",
+      "url": "/documentation/tvml/opaque"
+    },
+    "doc://com.apple.TVML/documentation/TVML/type": {
+      "abstract": [
+        {
+          "text": "Specifies how a badge is drawn.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/type",
+      "kind": "article",
+      "role": "article",
+      "title": "type",
+      "type": "topic",
+      "url": "/documentation/tvml/type"
+    },
+    "doc://com.apple.TVML/documentation/TVML/value": {
+      "abstract": [
+        {
+          "text": "Specifies the value used for a fillable element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/value",
+      "kind": "article",
+      "role": "article",
+      "title": "value",
+      "type": "topic",
+      "url": "/documentation/tvml/value"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Image-Display",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.TVML/documentation/TVML/aspectfill",
+        "doc://com.apple.TVML/documentation/TVML/opaque",
+        "doc://com.apple.TVML/documentation/TVML/mode",
+        "doc://com.apple.TVML/documentation/TVML/type",
+        "doc://com.apple.TVML/documentation/TVML/value"
+      ],
+      "title": "Image Display"
+    }
+  ]
+}

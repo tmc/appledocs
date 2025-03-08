@@ -1,0 +1,579 @@
+{
+  "abstract": [
+    {
+      "text": "Read a user in an Apple School Manager organization.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Roster API",
+      "versions": [
+        "1.0.0 beta 1",
+        "1.0.0"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.rosterapi/documentation/RosterAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.rosterapi/documentation/RosterAPI/returns-a-specific-user-in-an-Apple-School-Manager-organization"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:roster_api:get:rosterapi-v1-users-{}",
+    "modules": [
+      {
+        "name": "Roster API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "returns a specific user in an Apple School Manager organization"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0.0",
+        "name": "Roster API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Read a user"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api-school.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "rosterapi/v1/users/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{userId}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The identifier from the user. Use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "id",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " field from the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.rosterapi/documentation/RosterAPI/User",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "userId",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.rosterapi/documentation/RosterAPI/User",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:roster_api:User",
+              "text": "User"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The access token was invalid.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Access to the requested user was forbidden.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Forbidden",
+          "status": 403,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The server didn’t find a user with the given ",
+                  "type": "text"
+                },
+                {
+                  "code": "userId",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in the organization.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Not Found",
+          "status": 404,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The client made too many requests. The response includes an ",
+                  "type": "text"
+                },
+                {
+                  "code": "X-Retry-After",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " header that indicates the number of seconds to wait before making another request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "status": 429,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The server encountered an internal error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": []
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.rosterapi/documentation/RosterAPI/integrating-with-roster-api-and-sign-in-with-apple"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Access to the ",
+              "type": "text"
+            },
+            {
+              "code": "users",
+              "type": "codeVoice"
+            },
+            {
+              "text": " resource requires authorization to the ",
+              "type": "text"
+            },
+            {
+              "code": "edu.users.read",
+              "type": "codeVoice"
+            },
+            {
+              "text": " scope.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "curl \"https://api-school.apple.com/rosterapi/v1/users/1234\" \\",
+                    "        -H \"Authorization: Bearer ${TOKEN}\""
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"id\": \"1234\",",
+                    "  \"email\": \"user@example.edu\",",
+                    "  \"givenName\": \"Finny\",",
+                    "  \"middleName”: \"Kim\",",
+                    "  \"familyName\": \"Ho\",",
+                    "  \"grade\": \"10\",",
+                    "  \"roleLocationMapping\": [",
+                    "    {",
+                    "      \"roleName\": \"Student\",",
+                    "      \"locationId\": \"LO:1234\"",
+                    "    }",
+                    "  ],",
+                    "  \"dateCreated\": \"2022-04-25T16:00:45Z\",",
+                    "  \"dateLastModified\": \"2022-04-25T16:00:45Z\"",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.rosterapi/documentation/RosterAPI": {
+      "abstract": [
+        {
+          "text": "Read information about people and classes from an Apple School Manager organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.rosterapi/documentation/RosterAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Roster API",
+      "type": "topic",
+      "url": "/documentation/rosterapi"
+    },
+    "doc://com.apple.rosterapi/documentation/RosterAPI/RoleLocation": {
+      "abstract": [
+        {
+          "text": "A mapping between a role assumed by a user in an Apple School Manager organization, and the corresponding location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RoleLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.rosterapi/documentation/RosterAPI/RoleLocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RoleLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "RoleLocation",
+      "type": "topic",
+      "url": "/documentation/rosterapi/rolelocation"
+    },
+    "doc://com.apple.rosterapi/documentation/RosterAPI/User": {
+      "abstract": [
+        {
+          "text": "A user in an Apple School Manager organization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "User"
+        }
+      ],
+      "identifier": "doc://com.apple.rosterapi/documentation/RosterAPI/User",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "User"
+        }
+      ],
+      "role": "symbol",
+      "title": "User",
+      "type": "topic",
+      "url": "/documentation/rosterapi/user"
+    },
+    "doc://com.apple.rosterapi/documentation/RosterAPI/Users": {
+      "abstract": [
+        {
+          "text": "A list of users, with a token for pagination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Users"
+        }
+      ],
+      "identifier": "doc://com.apple.rosterapi/documentation/RosterAPI/Users",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Users"
+        }
+      ],
+      "role": "symbol",
+      "title": "Users",
+      "type": "topic",
+      "url": "/documentation/rosterapi/users"
+    },
+    "doc://com.apple.rosterapi/documentation/RosterAPI/integrating-with-roster-api-and-sign-in-with-apple": {
+      "abstract": [
+        {
+          "text": "Associate someone’s Managed Apple ID with their identity in Apple School Manager.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.rosterapi/documentation/RosterAPI/integrating-with-roster-api-and-sign-in-with-apple",
+      "kind": "article",
+      "role": "article",
+      "title": "Integrating with Roster API and Sign in with Apple",
+      "type": "topic",
+      "url": "/documentation/rosterapi/integrating-with-roster-api-and-sign-in-with-apple"
+    },
+    "doc://com.apple.rosterapi/documentation/RosterAPI/returns-a-list-of-users-in-an-Apple-School-Manager-organization": {
+      "abstract": [
+        {
+          "text": "List users in an Apple School Manager organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.rosterapi/documentation/RosterAPI/returns-a-list-of-users-in-an-Apple-School-Manager-organization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "returns a list of users in an Apple School Manager organization"
+        }
+      ],
+      "role": "symbol",
+      "title": "List users",
+      "type": "topic",
+      "url": "/documentation/rosterapi/returns-a-list-of-users-in-an-apple-school-manager-organization"
+    },
+    "doc://com.apple.rosterapi/documentation/RosterAPI/returns-a-specific-user-in-an-Apple-School-Manager-organization": {
+      "abstract": [
+        {
+          "text": "Read a user in an Apple School Manager organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.rosterapi/documentation/RosterAPI/returns-a-specific-user-in-an-Apple-School-Manager-organization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "returns a specific user in an Apple School Manager organization"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read a user",
+      "type": "topic",
+      "url": "/documentation/rosterapi/returns-a-specific-user-in-an-apple-school-manager-organization"
+    },
+    "doc://com.apple.rosterapi/documentation/RosterAPI/returns-a-users-for-an-Apple-School-Manager-class": {
+      "abstract": [
+        {
+          "text": "List users in a class of an Apple School Manager organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.rosterapi/documentation/RosterAPI/returns-a-users-for-an-Apple-School-Manager-class",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "returns a users for an Apple School Manager class"
+        }
+      ],
+      "role": "symbol",
+      "title": "List users in a class",
+      "type": "topic",
+      "url": "/documentation/rosterapi/returns-a-users-for-an-apple-school-manager-class"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Information-about-users",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.rosterapi/documentation/RosterAPI/User",
+        "doc://com.apple.rosterapi/documentation/RosterAPI/RoleLocation",
+        "doc://com.apple.rosterapi/documentation/RosterAPI/returns-a-list-of-users-in-an-Apple-School-Manager-organization",
+        "doc://com.apple.rosterapi/documentation/RosterAPI/returns-a-users-for-an-Apple-School-Manager-class",
+        "doc://com.apple.rosterapi/documentation/RosterAPI/Users"
+      ],
+      "title": "Information about users"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/rosterapi/returns-a-specific-user-in-an-apple-school-manager-organization"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

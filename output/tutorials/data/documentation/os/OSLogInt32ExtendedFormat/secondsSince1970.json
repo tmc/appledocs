@@ -1,0 +1,631 @@
+{
+  "abstract": [
+    {
+      "text": "A format that displays a 32-bit integer as a date.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.os/documentation/os",
+        "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/secondsSince1970"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:2os24OSLogInt32ExtendedFormatO16secondsSince1970yA2CmF",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "case"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "secondsSince1970"
+      }
+    ],
+    "modules": [
+      {
+        "name": "os"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Case",
+    "symbolKind": "case",
+    "title": "OSLogInt32ExtendedFormat.secondsSince1970"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "case"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "secondsSince1970"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this option to format the interpolated value as a date and time, such as ",
+              "type": "text"
+            },
+            {
+              "code": "2007-01-09 09:41:00",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The formatter considers the value you provide as a duration, in seconds, and adds it to the UNIX epoch to calculate the date it displays. The UNIX epoch is a method of describing a specific point in time using the elapsed number of seconds since 00:00:00 UTC January 1, 1970.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example applies the ",
+              "type": "text"
+            },
+            {
+              "code": "secondsSince1970",
+              "type": "codeVoice"
+            },
+            {
+              "text": " formatter to the 32-bit integer value ",
+              "type": "text"
+            },
+            {
+              "code": "604_800",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which is the exact number of seconds in one week:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a logger with the specified subsystem and category.",
+            "let logger = Logger(subsystem: \"com.example.OSLogValueFormatting\",",
+            "                    category: \"Formatter Output\")",
+            "                ",
+            "// Assign the value to interpolate. In this case, the number of",
+            "// seconds in an entire week.",
+            "let value: Int32 = 604_800",
+            "                ",
+            "// Write the value to the log using the specified format.",
+            "logger.info(\".secondsSince1970 output is \\(value, format: .secondsSince1970)\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "And the system writes the following message to the log:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[Formatter Output] .secondsSince1970 output is 1970-01-08 00:00:00"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.os/documentation/os": {
+      "abstract": [
+        {
+          "text": "Coordinate the scheduling and synchronization of your app’s tasks, and log information to the console to diagnose issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "os",
+      "type": "topic",
+      "url": "/documentation/os"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat": {
+      "abstract": [
+        {
+          "text": "The formatting options for 32-bit integer values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLogInt32ExtendedFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSLogInt32ExtendedFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSLogInt32ExtendedFormat",
+      "type": "topic",
+      "url": "/documentation/os/oslogint32extendedformat"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/answer": {
+      "abstract": [
+        {
+          "text": "A format that displays a 32-bit integer as yes or no.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "answer"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/answer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLogInt32ExtendedFormat.answer",
+      "type": "topic",
+      "url": "/documentation/os/oslogint32extendedformat/answer"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/bitrate": {
+      "abstract": [
+        {
+          "text": "A format that displays a 32-bit integer as a bit rate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bitrate"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/bitrate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLogInt32ExtendedFormat.bitrate",
+      "type": "topic",
+      "url": "/documentation/os/oslogint32extendedformat/bitrate"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/bitrateIEC": {
+      "abstract": [
+        {
+          "text": "A format that displays a 32-bit integer as an IEC bit rate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bitrateIEC"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/bitrateIEC",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLogInt32ExtendedFormat.bitrateIEC",
+      "type": "topic",
+      "url": "/documentation/os/oslogint32extendedformat/bitrateiec"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/byteCount": {
+      "abstract": [
+        {
+          "text": "A format that displays a 32-bit integer as bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "byteCount"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/byteCount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLogInt32ExtendedFormat.byteCount",
+      "type": "topic",
+      "url": "/documentation/os/oslogint32extendedformat/bytecount"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/byteCountIEC": {
+      "abstract": [
+        {
+          "text": "A format that displays a 32-bit integer as IEC bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "byteCountIEC"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/byteCountIEC",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLogInt32ExtendedFormat.byteCountIEC",
+      "type": "topic",
+      "url": "/documentation/os/oslogint32extendedformat/bytecountiec"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/darwinErrno": {
+      "abstract": [
+        {
+          "text": "A format that displays a 32-bit integer as a Darwin error number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "darwinErrno"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/darwinErrno",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLogInt32ExtendedFormat.darwinErrno",
+      "type": "topic",
+      "url": "/documentation/os/oslogint32extendedformat/darwinerrno"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/darwinMode": {
+      "abstract": [
+        {
+          "text": "A format that displays a 32-bit integer as a Darwin file mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "darwinMode"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/darwinMode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLogInt32ExtendedFormat.darwinMode",
+      "type": "topic",
+      "url": "/documentation/os/oslogint32extendedformat/darwinmode"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/darwinSignal": {
+      "abstract": [
+        {
+          "text": "A format that displays a 32-bit integer as a Darwin signal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "darwinSignal"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/darwinSignal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLogInt32ExtendedFormat.darwinSignal",
+      "type": "topic",
+      "url": "/documentation/os/oslogint32extendedformat/darwinsignal"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/ipv4Address": {
+      "abstract": [
+        {
+          "text": "A format that displays a 32-bit integer as an IPv4 address.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ipv4Address"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/ipv4Address",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLogInt32ExtendedFormat.ipv4Address",
+      "type": "topic",
+      "url": "/documentation/os/oslogint32extendedformat/ipv4address"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/secondsSince1970": {
+      "abstract": [
+        {
+          "text": "A format that displays a 32-bit integer as a date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "secondsSince1970"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/secondsSince1970",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLogInt32ExtendedFormat.secondsSince1970",
+      "type": "topic",
+      "url": "/documentation/os/oslogint32extendedformat/secondssince1970"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/truth": {
+      "abstract": [
+        {
+          "text": "A format that displays a 32-bit integer as true or false.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "truth"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/truth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLogInt32ExtendedFormat.truth",
+      "type": "topic",
+      "url": "/documentation/os/oslogint32extendedformat/truth"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-the-Formats",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/ipv4Address",
+        "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/darwinErrno",
+        "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/darwinMode",
+        "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/darwinSignal",
+        "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/bitrate",
+        "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/bitrateIEC",
+        "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/byteCount",
+        "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/byteCountIEC",
+        "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/truth",
+        "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat/answer"
+      ],
+      "title": "Getting the Formats"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/os/oslogint32extendedformat/secondssince1970"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

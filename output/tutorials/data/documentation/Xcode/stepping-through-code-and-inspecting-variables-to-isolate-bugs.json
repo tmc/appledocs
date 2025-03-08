@@ -1,0 +1,1275 @@
+{
+  "abstract": [
+    {
+      "text": "Find the cause of your bugs by watching variables change as you step through your",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "source code in the debugger.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/stepping-through-code-and-inspecting-variables-to-isolate-bugs"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Stepping through code and inspecting variables to isolate bugs"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the root cause of a bug isn’t immediately obvious when inspecting your source",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code, watching your variables change as you step through the code helps you isolate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "where the bug is occurring so you can investigate the possible cause for it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Xcode debugger provides several methods to step through your code and inspect",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variables. You can precisely control execution of your code from a breakpoint, stepping",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "into and out of called functions as necessary to determine where your bug occurs.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can monitor variables while stepping through code, or pause execution to inspect",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "them more closely.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start your investigation at a breakpoint when your app is in a known good state before",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the bug occurs, at a point where you think the bug may be about to happen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Step-through-code-in-the-debugger",
+          "level": 3,
+          "text": "Step through code in the debugger",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you run your app, the debugger pauses at the first breakpoint it encounters,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and, by default, updates the display to show the Debug navigator, the source editor,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the debug bar, the variable viewer, and the console.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "stepping-through-code-and-inspecting-variables-to-isolate-bugs-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Customize what Xcode displays when running your app in the debugger by choosing Xcode > Settings > Behaviors",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and selecting options under Running.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the buttons in the debug bar to control the execution of your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "stepping-through-code-and-inspecting-variables-to-isolate-bugs-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Continue normal execution from the paused position until the app stops at the next",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "breakpoint with the Continue button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pause the app without setting a breakpoint using the Pause button. The Continue",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "button changes to the Pause button when the app is running.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Execute the next instruction in the same function with the Step Over button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Execute the next instruction using the Step Into button. If the next instruction",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "is inside another method or function, the debugger jumps to that function and continues",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "executing it each time you click the Step Into button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Step Out button to skip the rest of the function and return to the next",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "instruction in the calling function or method after using Step Into.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As you step through your app, inspect variables relevant to your bug and watch for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "unexpected values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "See-variable-values-in-code-and-the-variable-viewer",
+          "level": 3,
+          "text": "See variable values in code and the variable viewer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app pauses at a breakpoint, hover over a variable in your source code to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view its current value. If the variable is an image or other type that isn’t expressible",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as text, click the Quick Look button at the upper-right to see a preview of the variable.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Click the Print Description button to print a description of the object in the console.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "stepping-through-code-and-inspecting-variables-to-isolate-bugs-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The variable viewer lists the variables available in the current execution context.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Select the scope of variables to view from the selector at the bottom left of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "viewer: automatic, local, or all variables, registers, globals, and statics. Use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the filter field to find variables matching a pattern.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "stepping-through-code-and-inspecting-variables-to-isolate-bugs-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each variable shows a brief summary of the variable’s type, value, and pointer location,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "if applicable. The variable viewer generates the summary it shows with the lldb command",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "frame variable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If the summary for a variable isn’t available or only shows a memory",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pointer, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/stepping-through-code-and-inspecting-variables-to-isolate-bugs#Evaluate-expressions-in-the-console",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "section below for more ways to inspect the variable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Click the disclosure triangles to explore instance variables for classes and structures,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or internals for other data types. Select a variable and click the Quick Look button",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to see a preview of the variable, click the Print Description button to print a description",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the object in the console.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "See-the-call-stack-and-navigate-related-code",
+          "level": 3,
+          "text": "See the call stack and navigate related code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the debugger pauses at a breakpoint, it shows the current active threads and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the current call stack in the Debug navigator, and highlights the breakpoint. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "call stack represents the relationships of function or method calls that result in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the current breakpoint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "stepping-through-code-and-inspecting-variables-to-isolate-bugs-5",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select a line in the call stack if you suspect that your bug is in a calling function.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The calling function might change an instance variable incorrectly, or may be passing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an incorrect value in a parameter. The debugger shows the source code for that point",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the related variables in the variable viewer, if the source code is available",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the project. Otherwise, the debugger shows the assembly code for the selected",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "line. Inspect the variables at this point for unexpected values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select a thread to expand or collapse the view of the call stack for that thread.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Select a line in the call stack for the thread to see the source and variables.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Evaluate-expressions-in-the-console",
+          "level": 3,
+          "text": "Evaluate expressions in the console",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To see more information than the summary of a variable shows in the variables viewer,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or to change the value of a variable in the middle of a debugging session, use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "console to interact with the debugger directly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Print the value of a variable in the current stack frame using ",
+              "type": "text"
+            },
+            {
+              "code": "frame variable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or the shortened alias ",
+              "type": "text"
+            },
+            {
+              "code": "v",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "(lldb) v self.fruitList.title",
+            "(String) self.fruitList.title = \"Healthy Fruit”",
+            "(lldb) v self.listData[0]",
+            "(String) [0] = “Banana\""
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The frame variable command returns only what is currently in memory and doesn’t evaluate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "expressions, so it returns an error if you attempt to print something more. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it won’t print a function or method call, an ",
+              "type": "text"
+            },
+            {
+              "code": "@Published",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable, or a calculated",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "(lldb) v fruitList.fruit(at: indexPath)",
+            "error: no variable named 'fruitList' found in this frame",
+            "error: no variable named 'indexPath)' found in this frame",
+            "(lldb) v self.fruitList.calculatedFruitCount",
+            "error: \"calculatedFruitCount\" is not a member of \"(Debugger_Demo.FruitList) self.fruitList”"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Evaluate an expression and print the result in the console with the ",
+              "type": "text"
+            },
+            {
+              "code": "expression",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "command, or the aliases ",
+              "type": "text"
+            },
+            {
+              "code": "expr",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "p.",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "(lldb) p self.fruitList.calculatedFruitCount",
+            "(Int) $R18 = 9",
+            "(lldb) p fruitList.fruit(at: indexPath)",
+            "(Debugger_Demo.FruitItem) $R20 = 0x00006000013dcc90 (fruitName = \"Strawberry\", fruitDescription = \"Small red berry with seeds on the outside.”)",
+            "(lldb) expr fruit.fruitName",
+            "(String) $R14 = \"Strawberry\"",
+            "(lldb) p fruit.fruitName == \"Peach\"",
+            "(Bool) $R16 = false"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "p",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command compiles code to evaluate the expression, so it handles function",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "calls and calculated variables. Use the references that ",
+              "type": "text"
+            },
+            {
+              "code": "p",
+              "type": "codeVoice"
+            },
+            {
+              "text": " provides as parts of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "other expressions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "(lldb) p fruit.fruitName",
+            "(String) $R2 = \"Banana\"",
+            "(lldb) p fruit.fruitName",
+            "(String) $R6 = \"Strawberry\"",
+            "(lldb) p $R2 + \", \" + $R6",
+            "(String) $R8 = \"Banana, Strawberry\""
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For some classes, using ",
+              "type": "text"
+            },
+            {
+              "code": "p",
+              "type": "codeVoice"
+            },
+            {
+              "text": " may display only a memory pointer location, or may show",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a fully expanded view of all the attributes of the class, which can be a lot of unnecessary",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information. In those cases, use ",
+              "type": "text"
+            },
+            {
+              "code": "po",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", an alias for ",
+              "type": "text"
+            },
+            {
+              "code": "expression —object-description",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This version also compiles code to evaluate the expression, but it prints an object",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "description for the result, which you can customize for your objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "(lldb) po cell",
+            "<Debugger_Demo.ListTableViewCell: 0x7fca3450e520; baseClass = UITableViewCell; frame = (0 28; 414 43.5); clipsToBounds = YES; layer = <CALayer: 0x600001d3ed40>>",
+            "(lldb) po fruitList",
+            "Yummy Fruit: 9 items starting with Banana"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Customize what the debugger shows for your objects by adding a debug description.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In Swift, implement the ",
+                  "type": "text"
+                },
+                {
+                  "code": "CustomDebugStringProtocol",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for your object. For Objective-C",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "objects that extend ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSObject",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", override ",
+                  "type": "text"
+                },
+                {
+                  "code": "debugDescription",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Change the value of a variable in memory while you are debugging with either ",
+              "type": "text"
+            },
+            {
+              "code": "p",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or ",
+              "type": "text"
+            },
+            {
+              "code": "po.",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "(lldb) po fruitList.title = \"Tasty Fruit\"",
+            "0 elements",
+            "",
+            "(lldb) po fruitList",
+            "Tasty Fruit: 9 items starting with Banana"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you print an item that you declare using a protocol, ",
+              "type": "text"
+            },
+            {
+              "code": "p",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "po",
+              "type": "codeVoice"
+            },
+            {
+              "text": " print an error",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "because they don’t perform iterative dynamic type resolution. Use ",
+              "type": "text"
+            },
+            {
+              "code": "v",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to print variables",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when ",
+              "type": "text"
+            },
+            {
+              "code": "p",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "po",
+              "type": "codeVoice"
+            },
+            {
+              "text": " print an error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "(lldb) po fruitItem.fruitName",
+            "error: <EXPR>:3:11: error: value of type 'FruitDisplayProtocol' has no member 'fruitName'",
+            "fruitItem.fruitName",
+            "~~~~~~~~~ ^~~~~~~~~",
+            "",
+            "(lldb) v fruitItem.fruitName",
+            "(String) fruitItem.fruitName = \"Apple\""
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/setting-breakpoints-to-pause-your-running-app": {
+      "abstract": [
+        {
+          "text": "Specify where your app pauses when running the debugger to investigate bugs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/setting-breakpoints-to-pause-your-running-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting breakpoints to pause your running app",
+      "type": "topic",
+      "url": "/documentation/xcode/setting-breakpoints-to-pause-your-running-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/stepping-through-code-and-inspecting-variables-to-isolate-bugs#Evaluate-expressions-in-the-console": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/stepping-through-code-and-inspecting-variables-to-isolate-bugs#Evaluate-expressions-in-the-console",
+      "kind": "section",
+      "title": "Evaluate expressions in the console",
+      "type": "topic",
+      "url": "/documentation/xcode/stepping-through-code-and-inspecting-variables-to-isolate-bugs#Evaluate-expressions-in-the-console"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "stepping-through-code-and-inspecting-variables-to-isolate-bugs-1": {
+      "alt": "Xcode paused on a breakpoint in an app, showing the debug navigator, source code editor with breakpoint highlighted, variable viewer, and debugger console.",
+      "identifier": "stepping-through-code-and-inspecting-variables-to-isolate-bugs-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0599792a0f39a1675e2fc12a06197687/stepping-through-code-and-inspecting-variables-to-isolate-bugs-1@2x.png"
+        }
+      ]
+    },
+    "stepping-through-code-and-inspecting-variables-to-isolate-bugs-2": {
+      "alt": "Xcode debugger toolbar, showing the show or hide debug area button, activate or deactivate all breakpoints button, continue button, step into button, step out button, debug view hierarchy button, debug memory graph button, environment overrides button, simulate location button, and choose stack frame area.",
+      "identifier": "stepping-through-code-and-inspecting-variables-to-isolate-bugs-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/870c41e7250ac061a333c1ec9977c41a/stepping-through-code-and-inspecting-variables-to-isolate-bugs-2@2x.png"
+        }
+      ]
+    },
+    "stepping-through-code-and-inspecting-variables-to-isolate-bugs-3": {
+      "alt": "Xcode displaying the debugger paused on a line of code, showing hover window with variable details for the fruit variable.",
+      "identifier": "stepping-through-code-and-inspecting-variables-to-isolate-bugs-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e08881a65188e0d8bd08796d30c057d1/stepping-through-code-and-inspecting-variables-to-isolate-bugs-3@2x.png"
+        }
+      ]
+    },
+    "stepping-through-code-and-inspecting-variables-to-isolate-bugs-4": {
+      "alt": "Xcode paused at a breakpoint, showing the debugger variable viewer. ",
+      "identifier": "stepping-through-code-and-inspecting-variables-to-isolate-bugs-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e3455d146066fc12046dd758765a9830/stepping-through-code-and-inspecting-variables-to-isolate-bugs-4@2x.png"
+        }
+      ]
+    },
+    "stepping-through-code-and-inspecting-variables-to-isolate-bugs-5": {
+      "alt": "Xcode displaying a call stack in the debug navigator while paused at a breakpoint.",
+      "identifier": "stepping-through-code-and-inspecting-variables-to-isolate-bugs-5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ee212d72c2c37c23c220aa15178f729e/stepping-through-code-and-inspecting-variables-to-isolate-bugs-5@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Breakpoints-and-variables",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/setting-breakpoints-to-pause-your-running-app"
+      ],
+      "title": "Breakpoints and variables"
+    }
+  ]
+}

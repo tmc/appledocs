@@ -1,0 +1,1134 @@
+{
+  "abstract": [
+    {
+      "text": "Access texture data from the CPU by copying it to a buffer.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/metal-sample-code-library"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/onscreen-presentation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/reading-pixel-data-from-a-drawable-texture"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.5",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Reading Pixel Data from a Drawable Texture"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metal optimizes textures for fast access by the GPU, but it doesn’t allow you to directly access a texture’s contents from the CPU.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When your app code needs to change or read a texture’s contents, you use Metal to copy data between textures and CPU-accessible memory — either system memory or a Metal buffer allocated using shared storage.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This sample configures drawable textures for read access and copies rendered pixel data from those textures to a Metal buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Run the sample, then tap or click on a single point to read the pixel data stored at that point.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Alternatively, drag out a rectangle to capture pixel data for a region on the screen.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample converts your selection to a rectangle in the drawable texture’s coordinate system.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Next, it renders an image to the texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Finally, it copies the pixel data from the selected rectangle into a buffer for the sample to process further.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Drawable-Texture-for-Read-Access",
+          "level": 3,
+          "text": "Configure the Drawable Texture for Read Access",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, MetalKit views create drawable textures for rendering only, so other Metal commands can’t access the texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The code below creates a view whose textures include read access.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because the sample needs to get a texture whenever the user selects part of the view, the code configures the view’s Metal layer to wait indefinitely for a new drawable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "_view.framebufferOnly = NO;",
+            "((CAMetalLayer*)_view.layer).allowsNextDrawableTimeout = NO;",
+            "_view.colorPixelFormat = MTLPixelFormatBGRA8Unorm;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because configuring the drawable textures for read access means that Metal may not apply some optimizations, only change the drawable configuration when necessary.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For similar reasons, don’t configure the view to wait indefinitely in performance-sensitive apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-Which-Pixels-to-Copy",
+          "level": 3,
+          "text": "Determine Which Pixels to Copy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class manages user interaction.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When a user interacts with a view, AppKit and UIKit send events with positions specified in the view’s coordinate system.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To determine which pixels to copy from the Metal drawable texture, the app transforms these view coordinates into Metal’s texture coordinate system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because of differences in graphics coordinate systems and APIs, the code to convert between view coordinates and texture coordinates varies by platform.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS, the code calls the ",
+              "type": "text"
+            },
+            {
+              "code": "pointToBacking:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method on the view to convert a position into a pixel location in the backing store, and then applies a coordinate transformation to adjust the origin and the y-axis.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "CGPoint bottomUpPixelPosition = [_view convertPointToBacking:event.locationInWindow];",
+            "CGPoint topDownPixelPosition = CGPointMake(bottomUpPixelPosition.x,",
+            "                                           _view.drawableSize.height - bottomUpPixelPosition.y);"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS, the app reads the view’s ",
+              "type": "text"
+            },
+            {
+              "code": "contentScaleFactor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and applies a scaling transform to the view coordinate.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "iOS views and Metal textures use the same coordinate conventions, so the code doesn’t move the origin or change the y-axis orientation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (CGPoint)pointToBacking:(CGPoint)point",
+            "{",
+            "    CGFloat scale = _view.contentScaleFactor;",
+            "",
+            "    CGPoint pixel;",
+            "",
+            "    pixel.x = point.x * scale;",
+            "    pixel.y = point.y * scale;",
+            "",
+            "    // Round the pixel values down to put them on a well-defined grid.",
+            "    pixel.x = (int64_t)pixel.x;",
+            "    pixel.y = (int64_t)pixel.y;",
+            "",
+            "    // Add .5 to move to the center of the pixel.",
+            "    pixel.x += 0.5f;",
+            "    pixel.y += 0.5f;",
+            "",
+            "    return pixel;",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Render-the-Pixel-Data",
+          "level": 3,
+          "text": "Render the Pixel Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user selects a rectangle in the view, the view controller calls the ",
+              "type": "text"
+            },
+            {
+              "code": "renderAndReadPixelsFromView:withRegion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to render the drawable’s contents and copy them to a Metal buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It creates a new command buffer and calls a utility method to encode a render pass.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The specific rendered image isn’t important to this sample.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "",
+            "id<MTLCommandBuffer> commandBuffer = [_commandQueue commandBuffer];",
+            "",
+            "// Encode a render pass to render the image to the drawable texture.",
+            "[self drawScene:view withCommandBuffer:commandBuffer];",
+            ""
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After encoding the render pass, it calls another method to encode commands to copy a section of the rendered texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample encodes the commands to copy the pixel data before presenting the drawable texture because the system discards the texture’s contents after presenting it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "id<MTLTexture> readTexture = view.currentDrawable.texture;",
+            "",
+            "MTLOrigin readOrigin = MTLOriginMake(region.origin.x, region.origin.y, 0);",
+            "MTLSize readSize = MTLSizeMake(region.size.width, region.size.height, 1);",
+            "",
+            "const id<MTLBuffer> pixelBuffer = [self readPixelsWithCommandBuffer:commandBuffer",
+            "                                                        fromTexture:readTexture",
+            "                                                           atOrigin:readOrigin",
+            "                                                           withSize:readSize];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Copy-Pixel-Data-to-a-Buffer",
+          "level": 3,
+          "text": "Copy Pixel Data to a Buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The renderer’s ",
+              "type": "text"
+            },
+            {
+              "code": "readPixelsWithCommandBuffer:fromTexture:atOrigin:withSize:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method encodes the commands to copy the texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because the sample passes the same command buffer into this method, Metal encodes these new commands after the render pass.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Metal automatically manages the dependencies on the destination texture, and ensures that rendering completes before copying the texture data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, the method allocates a Metal buffer to hold the pixel data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It calculates the size of the buffer by multiplying the size of one pixel in bytes by the region’s width and height.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Similarly, the code calculates the number of bytes per row, which the code needs later when copying the data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample doesn’t add any padding at the end of rows.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then, it calls the Metal device object to create the new Metal buffer, specifying a shared storage mode so that the app can read the buffer’s contents afterwards.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSUInteger bytesPerPixel = sizeofPixelFormat(texture.pixelFormat);",
+            "NSUInteger bytesPerRow   = size.width * bytesPerPixel;",
+            "NSUInteger bytesPerImage = size.height * bytesPerRow;",
+            "",
+            "_readBuffer = [texture.device newBufferWithLength:bytesPerImage options:MTLResourceStorageModeShared];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, the method creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which provides commands that copy data between Metal resources, fill resources with data, and perform other similar resource-related tasks that don’t directly involve computation or rendering.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample encodes a blit command to copy the texture data to the beginning of the new buffer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It then ends the blit pass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "id <MTLBlitCommandEncoder> blitEncoder = [commandBuffer blitCommandEncoder];",
+            "",
+            "[blitEncoder copyFromTexture:texture",
+            "                 sourceSlice:0",
+            "                 sourceLevel:0",
+            "                sourceOrigin:origin",
+            "                  sourceSize:size",
+            "                    toBuffer:_readBuffer",
+            "           destinationOffset:0",
+            "      destinationBytesPerRow:bytesPerRow",
+            "    destinationBytesPerImage:bytesPerImage];",
+            "",
+            "[blitEncoder endEncoding];",
+            ""
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, it commits the command buffer and calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/waitUntilCompleted()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to immediately wait for the GPU to finish executing the rendering and blit commands.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After this call returns control to the method, the buffer contains the requested pixel data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In a real-time app, synchronizing commands unnecessarily reduces parallelism between the CPU and GPU; this sample synchronizes in this way to simplify the code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[commandBuffer commit];",
+            "",
+            "// The app must wait for the GPU to complete the blit pass before it can",
+            "// read data from _readBuffer.",
+            "[commandBuffer waitUntilCompleted];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Read-the-Pixels-From-the-Buffer",
+          "level": 3,
+          "text": "Read the Pixels From the Buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app calls the buffer’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer/contents()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to get a pointer to the pixel data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "AAPLPixelBGRA8Unorm *pixels = (AAPLPixelBGRA8Unorm *)pixelBuffer.contents;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample copies the buffer’s data into an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and passes it to another method to initialize an ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. For more information on ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/creating-and-sampling-textures",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create an `NSData` object and initialize it with the pixel data.",
+            "// Use the CPU to copy the pixel data from the `pixelBuffer.contents`",
+            "// pointer to `data`.",
+            "NSData *data = [[NSData alloc] initWithBytes:pixels length:pixelBuffer.length];",
+            "",
+            "// Create a new image from the pixel data.",
+            "AAPLImage *image = [[AAPLImage alloc] initWithBGRA8UnormData:data",
+            "                                                       width:readSize.width",
+            "                                                      height:readSize.height];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The renderer returns this image object to the view controller for further processing.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The view controller’s behavior varies depending on the operating system.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In MacOS, the sample writes the image to the file  ",
+              "type": "text"
+            },
+            {
+              "code": "~/Desktop/ReadPixelsImage.tga",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", while in iOS, the sample adds the image to the Photos library.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The view controller performs this processing without using Metal, so the steps it takes aren’t important to this sample.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "5c3065ab48e5/ReadingPixelDataFromADrawableTexture.zip": {
+      "checksum": "5c3065ab48e5d20269e27d7659a7dfdadee03899243f6974ddd1a699ba16657c663f17c2aab2a9f92619dc772ff3d8e130a1eac0532f8c3d26576c7a16306ef6",
+      "identifier": "5c3065ab48e5/ReadingPixelDataFromADrawableTexture.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/5c3065ab48e5/ReadingPixelDataFromADrawableTexture.zip"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata": {
+      "abstract": [
+        {
+          "text": "A static byte buffer that bridges to ; use  when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An interface you can use to encode GPU commands that copy and modify the underlying memory of various Metal resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLBlitCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLBlitCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLBlitCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer/contents()": {
+      "abstract": [
+        {
+          "text": "Gets the system address of the buffer’s storage allocation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contents"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer/contents()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contents"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "contents()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer/contents()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/waitUntilCompleted()": {
+      "abstract": [
+        {
+          "text": "Blocks the current thread until the GPU finishes executing the command buffer and all of its completion handlers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "waitUntilCompleted"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/waitUntilCompleted()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "waitUntilCompleted"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "waitUntilCompleted()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/waituntilcompleted()"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-and-sampling-textures": {
+      "abstract": [
+        {
+          "text": "Load image data into a texture and apply it to a quadrangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-and-sampling-textures",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating and Sampling Textures",
+      "type": "topic",
+      "url": "/documentation/metal/creating-and-sampling-textures"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-sample-code-library": {
+      "abstract": [
+        {
+          "text": "Explore the complete set of Metal samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-sample-code-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Sample Code Library",
+      "type": "topic",
+      "url": "/documentation/metal/metal-sample-code-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/onscreen-presentation": {
+      "abstract": [
+        {
+          "text": "Show the output from a GPU’s rendering pass to the user in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/onscreen-presentation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Onscreen Presentation",
+      "type": "topic",
+      "url": "/documentation/metal/onscreen-presentation"
+    },
+    "doc://com.apple.metal/documentation/Metal/processing-a-texture-in-a-compute-function": {
+      "abstract": [
+        {
+          "text": "Perform parallel calculations on structured data by placing the data in textures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/processing-a-texture-in-a-compute-function",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Processing a Texture in a Compute Function",
+      "type": "topic",
+      "url": "/documentation/metal/processing-a-texture-in-a-compute-function"
+    },
+    "doc://com.apple.metal/documentation/Metal/streaming-large-images-with-metal-sparse-textures": {
+      "abstract": [
+        {
+          "text": "Limit texture memory usage for large textures by loading or unloading image detail on the basis of MIP and tile region.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/streaming-large-images-with-metal-sparse-textures",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Streaming large images with Metal sparse textures",
+      "type": "topic",
+      "url": "/documentation/metal/streaming-large-images-with-metal-sparse-textures"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "5c3065ab48e5/ReadingPixelDataFromADrawableTexture.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Textures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/processing-a-texture-in-a-compute-function",
+        "doc://com.apple.metal/documentation/Metal/creating-and-sampling-textures",
+        "doc://com.apple.metal/documentation/Metal/streaming-large-images-with-metal-sparse-textures"
+      ],
+      "title": "Textures"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Textures",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/processing-a-texture-in-a-compute-function",
+                "doc://com.apple.metal/documentation/Metal/creating-and-sampling-textures",
+                "doc://com.apple.metal/documentation/Metal/streaming-large-images-with-metal-sparse-textures"
+              ],
+              "title": "Textures"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsdata/abstract",
+          "value": [
+            {
+              "text": "A static byte buffer in memory.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder/title",
+          "value": "MTLBlitCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBlitCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBlitCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer~1contents()/title",
+          "value": "contents"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer~1contents()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "contents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1waitUntilCompleted()/title",
+          "value": "waitUntilCompleted"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1waitUntilCompleted()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "waitUntilCompleted"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/reading-pixel-data-from-a-drawable-texture"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/reading-pixel-data-from-a-drawable-texture"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

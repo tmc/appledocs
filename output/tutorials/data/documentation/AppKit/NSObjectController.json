@@ -1,0 +1,2901 @@
+{
+  "abstract": [
+    {
+      "text": "A controller that can manage an object’s properties referenced by key-value paths.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSObjectController"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSObjectController",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSObjectController"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSObjectController"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSObjectController"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSObjectController"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a Cocoa bindings–compatible controller class. Properties of the content object of instances of this class can be bound to user interface elements to access and modify their values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the content of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance is an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. This allows a single ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to be used to manage many different properties referenced by key-value paths. The default content object class can be changed by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/objectClass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which subclasses must override. Your application should use a custom data class that is key-value compliant whenever possible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Object-Controllers-Entity-Mode-and-Lazy-Fetching",
+          "level": 3,
+          "text": "Object Controllers, Entity Mode, and Lazy Fetching",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSObjectController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and its subclasses, when in entity mode, can now fetch lazily. With lazy fetching enabled using the property ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/usesLazyFetching",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the controller will try to fetch only a small amount of data from available persistent stores. This can provide a significant improvement in memory use when a large amount of content is stored on disk but just a subset of that data is required in memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When set to use lazy fetching, a controller will fetch objects in batches. You can change the default batch size for your application by setting a value for the the user default “",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.CocoaBindings.LazyFetchBatchSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": "”. If you have table views bound to an array controller set to use lazy fetching, the size of the controller’s batch size will grow as the table views’ visible row count grows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add, Insert, and Remove operations on controllers that use lazy fetching behave similarly to the same operations on a regular controller. The difference is that it is faster to sort an array controller using lazy fetching if:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "All of the keys in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sortDescriptors",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array are modeled, non transient properties.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "All of the selectors in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sortDescriptors",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array are ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "compare:",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "caseInsensitiveCompare:",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "There are no changes in the controller’s managed object context",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSArrayController": {
+      "abstract": [
+        {
+          "text": "A bindings-compatible controller that manages a collection of objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSArrayController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSArrayController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSArrayController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSArrayController",
+      "type": "topic",
+      "url": "/documentation/appkit/nsarraycontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSController": {
+      "abstract": [
+        {
+          "text": "An abstract class that implements the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSEditor",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSEditorRegistration",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " informal protocols required for controller classes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSController",
+      "type": "topic",
+      "url": "/documentation/appkit/nscontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSEditor": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSEditor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSEditor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSEditor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSEditor",
+      "type": "topic",
+      "url": "/documentation/appkit/nseditor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSEditorRegistration": {
+      "abstract": [
+        {
+          "text": "A set of methods that controllers can implement to enable an editor view to inform the controller when it has uncommitted changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSEditorRegistration"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSEditorRegistration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSEditorRegistration"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSEditorRegistration",
+      "type": "topic",
+      "url": "/documentation/appkit/nseditorregistration"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSObjectController": {
+      "abstract": [
+        {
+          "text": "A controller that can manage an object’s properties referenced by key-value paths.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSObjectController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSObjectController",
+      "type": "topic",
+      "url": "/documentation/appkit/nsobjectcontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSObjectController/add(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new object and sets it as the receiver’s content object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/add(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "add:"
+        }
+      ],
+      "role": "symbol",
+      "title": "add(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsobjectcontroller/add(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSObjectController/addObject(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the receiver’s content object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/addObject(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addObject:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addObject(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsobjectcontroller/addobject(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSObjectController/automaticallyPreparesContent": {
+      "abstract": [
+        {
+          "text": "A Boolean that shows whether the receiver automatically creates and inserts new content objects automatically when loading from a nib file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automaticallyPreparesContent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/automaticallyPreparesContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "automaticallyPreparesContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "automaticallyPreparesContent",
+      "type": "topic",
+      "url": "/documentation/appkit/nsobjectcontroller/automaticallypreparescontent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSObjectController/canAdd": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an object can be added to the receiver using ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/add(_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canAdd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/canAdd",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canAdd"
+        }
+      ],
+      "role": "symbol",
+      "title": "canAdd",
+      "type": "topic",
+      "url": "/documentation/appkit/nsobjectcontroller/canadd"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSObjectController/canRemove": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an object can be removed from the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canRemove"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/canRemove",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canRemove"
+        }
+      ],
+      "role": "symbol",
+      "title": "canRemove",
+      "type": "topic",
+      "url": "/documentation/appkit/nsobjectcontroller/canremove"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSObjectController/content": {
+      "abstract": [
+        {
+          "text": "The receiver’s content object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/content",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "content"
+        }
+      ],
+      "role": "symbol",
+      "title": "content",
+      "type": "topic",
+      "url": "/documentation/appkit/nsobjectcontroller/content"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSObjectController/defaultFetchRequest()": {
+      "abstract": [
+        {
+          "text": "Returns the default fetch request used by the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultFetchRequest"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFetchRequest",
+          "text": "NSFetchRequest"
+        },
+        {
+          "kind": "text",
+          "text": "<any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSFetchRequestResult",
+          "text": "NSFetchRequestResult"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/defaultFetchRequest()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "defaultFetchRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "defaultFetchRequest()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsobjectcontroller/defaultfetchrequest()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSObjectController/entityName": {
+      "abstract": [
+        {
+          "text": "The entity name used by the receiver to create new objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "entityName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/entityName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "entityName"
+        }
+      ],
+      "role": "symbol",
+      "title": "entityName",
+      "type": "topic",
+      "url": "/documentation/appkit/nsobjectcontroller/entityname"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSObjectController/fetch(_:)": {
+      "abstract": [
+        {
+          "text": "Causes the receiver to fetch the data objects specified by the entity name and fetch predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/fetch(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetch:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetch(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsobjectcontroller/fetch(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSObjectController/fetch(with:merge:)": {
+      "abstract": [
+        {
+          "text": "Subclasses should override this method to customize a fetch request, for example to specify fetch limits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFetchRequest",
+          "text": "NSFetchRequest"
+        },
+        {
+          "kind": "text",
+          "text": "<any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSFetchRequestResult",
+          "text": "NSFetchRequestResult"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "merge"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/fetch(with:merge:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchWithRequest:merge:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetch(with:merge:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsobjectcontroller/fetch(with:merge:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSObjectController/fetchPredicate": {
+      "abstract": [
+        {
+          "text": "The receiver’s fetch predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchPredicate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/fetchPredicate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchPredicate"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchPredicate",
+      "type": "topic",
+      "url": "/documentation/appkit/nsobjectcontroller/fetchpredicate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSObjectController/init(coder:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/init(coder:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCoder:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsobjectcontroller/init(coder:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSObjectController/init(content:)": {
+      "abstract": [
+        {
+          "text": "Initializes and returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSObjectController",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object with the given content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/init(content:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithContent:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(content:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsobjectcontroller/init(content:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSObjectController/isEditable": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the receiver allows adding and removing objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEditable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/isEditable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "editable"
+        }
+      ],
+      "role": "symbol",
+      "title": "isEditable",
+      "type": "topic",
+      "url": "/documentation/appkit/nsobjectcontroller/iseditable"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSObjectController/managedObjectContext": {
+      "abstract": [
+        {
+          "text": "The receiver’s managed object context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "managedObjectContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSManagedObjectContext",
+          "text": "NSManagedObjectContext"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/managedObjectContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "managedObjectContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "managedObjectContext",
+      "type": "topic",
+      "url": "/documentation/appkit/nsobjectcontroller/managedobjectcontext"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSObjectController/newObject()": {
+      "abstract": [
+        {
+          "text": "Creates and returns a new object of the appropriate class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "newObject"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/newObject()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "newObject()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsobjectcontroller/newobject()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSObjectController/objectClass": {
+      "abstract": [
+        {
+          "text": "The object class to use when creating new objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectClass"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8AnyClassa",
+          "text": "AnyClass"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/objectClass",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "objectClass"
+        }
+      ],
+      "role": "symbol",
+      "title": "objectClass",
+      "type": "topic",
+      "url": "/documentation/appkit/nsobjectcontroller/objectclass"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSObjectController/prepareContent()": {
+      "abstract": [
+        {
+          "text": "Typically overridden by subclasses that require additional control over the creation of new objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareContent"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/prepareContent()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "prepareContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "prepareContent()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsobjectcontroller/preparecontent()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSObjectController/remove(_:)": {
+      "abstract": [
+        {
+          "text": "Removes the receiver’s content object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/remove(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "remove:"
+        }
+      ],
+      "role": "symbol",
+      "title": "remove(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsobjectcontroller/remove(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSObjectController/removeObject(_:)": {
+      "abstract": [
+        {
+          "text": "Removes a given object from the receiver’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/removeObject(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeObject:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeObject(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsobjectcontroller/removeobject(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSObjectController/selectedObjects": {
+      "abstract": [
+        {
+          "text": "An array of all objects to be affected by editing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedObjects"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/selectedObjects",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectedObjects"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectedObjects",
+      "type": "topic",
+      "url": "/documentation/appkit/nsobjectcontroller/selectedobjects"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSObjectController/selection": {
+      "abstract": [
+        {
+          "text": "A proxy object representing the receiver’s selection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/selection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selection"
+        }
+      ],
+      "role": "symbol",
+      "title": "selection",
+      "type": "topic",
+      "url": "/documentation/appkit/nsobjectcontroller/selection"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSObjectController/usesLazyFetching": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the receiver uses lazy fetching.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "usesLazyFetching"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/usesLazyFetching",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "usesLazyFetching"
+        }
+      ],
+      "role": "symbol",
+      "title": "usesLazyFetching",
+      "type": "topic",
+      "url": "/documentation/appkit/nsobjectcontroller/useslazyfetching"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSObjectController/validateUserInterfaceItem(_:)": {
+      "abstract": [
+        {
+          "text": "Returns whether the receiver can handle the action method for a user interface item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "validateUserInterfaceItem"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSValidatedUserInterfaceItem",
+          "text": "NSValidatedUserInterfaceItem"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSObjectController/validateUserInterfaceItem(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "validateUserInterfaceItem:"
+        }
+      ],
+      "role": "symbol",
+      "title": "validateUserInterfaceItem(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsobjectcontroller/validateuserinterfaceitem(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController": {
+      "abstract": [
+        {
+          "text": "A bindings-compatible controller that manages a tree of objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTreeController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTreeController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTreeController",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary": {
+      "abstract": [
+        {
+          "text": "An object representing a dynamic collection of key-value pairs, for use instead of a  variable in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutabledictionary"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSController"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSArrayController",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.apple.appkit/documentation/AppKit/NSEditor",
+        "doc://com.apple.appkit/documentation/AppKit/NSEditorRegistration",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Core-Controllers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSController"
+      ],
+      "title": "Core Controllers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializing-an-object-controller",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSObjectController/init(content:)"
+      ],
+      "title": "Initializing an object controller"
+    },
+    {
+      "anchor": "Managing-content",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSObjectController/content",
+        "doc://com.apple.appkit/documentation/AppKit/NSObjectController/automaticallyPreparesContent",
+        "doc://com.apple.appkit/documentation/AppKit/NSObjectController/prepareContent()"
+      ],
+      "title": "Managing content"
+    },
+    {
+      "anchor": "Setting-the-content-class",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSObjectController/objectClass"
+      ],
+      "title": "Setting the content class"
+    },
+    {
+      "anchor": "Managing-objects",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSObjectController/newObject()",
+        "doc://com.apple.appkit/documentation/AppKit/NSObjectController/addObject(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSObjectController/removeObject(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSObjectController/add(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSObjectController/canAdd",
+        "doc://com.apple.appkit/documentation/AppKit/NSObjectController/remove(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSObjectController/canRemove"
+      ],
+      "title": "Managing objects"
+    },
+    {
+      "anchor": "Managing-editing",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSObjectController/isEditable"
+      ],
+      "title": "Managing editing"
+    },
+    {
+      "anchor": "Core-Data-support",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSObjectController/entityName",
+        "doc://com.apple.appkit/documentation/AppKit/NSObjectController/fetch(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSObjectController/usesLazyFetching",
+        "doc://com.apple.appkit/documentation/AppKit/NSObjectController/defaultFetchRequest()",
+        "doc://com.apple.appkit/documentation/AppKit/NSObjectController/fetchPredicate",
+        "doc://com.apple.appkit/documentation/AppKit/NSObjectController/managedObjectContext",
+        "doc://com.apple.appkit/documentation/AppKit/NSObjectController/fetch(with:merge:)"
+      ],
+      "title": "Core Data support"
+    },
+    {
+      "anchor": "Obtaining-selections",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSObjectController/selectedObjects",
+        "doc://com.apple.appkit/documentation/AppKit/NSObjectController/selection"
+      ],
+      "title": "Obtaining selections"
+    },
+    {
+      "anchor": "Validating-user-interface-items",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSObjectController/validateUserInterfaceItem(_:)"
+      ],
+      "title": "Validating user interface items"
+    },
+    {
+      "anchor": "Initializers",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSObjectController/init(coder:)"
+      ],
+      "title": "Initializers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSObjectController"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSObjectController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSObjectController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Initializing-an-object-controller",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSObjectController/init(content:)"
+              ],
+              "title": "Initializing an object controller"
+            },
+            {
+              "anchor": "Managing-content",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSObjectController/content",
+                "doc://com.apple.appkit/documentation/AppKit/NSObjectController/automaticallyPreparesContent",
+                "doc://com.apple.appkit/documentation/AppKit/NSObjectController/prepareContent()"
+              ],
+              "title": "Managing content"
+            },
+            {
+              "anchor": "Setting-the-content-class",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSObjectController/objectClass"
+              ],
+              "title": "Setting the content class"
+            },
+            {
+              "anchor": "Managing-objects",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSObjectController/newObject()",
+                "doc://com.apple.appkit/documentation/AppKit/NSObjectController/addObject(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSObjectController/removeObject(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSObjectController/add(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSObjectController/canAdd",
+                "doc://com.apple.appkit/documentation/AppKit/NSObjectController/remove(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSObjectController/canRemove"
+              ],
+              "title": "Managing objects"
+            },
+            {
+              "anchor": "Managing-editing",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSObjectController/isEditable"
+              ],
+              "title": "Managing editing"
+            },
+            {
+              "anchor": "Core-Data-support",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSObjectController/entityName",
+                "doc://com.apple.appkit/documentation/AppKit/NSObjectController/fetch(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSObjectController/usesLazyFetching",
+                "doc://com.apple.appkit/documentation/AppKit/NSObjectController/defaultFetchRequest()",
+                "doc://com.apple.appkit/documentation/AppKit/NSObjectController/fetchPredicate",
+                "doc://com.apple.appkit/documentation/AppKit/NSObjectController/managedObjectContext",
+                "doc://com.apple.appkit/documentation/AppKit/NSObjectController/fetch(with:merge:)"
+              ],
+              "title": "Core Data support"
+            },
+            {
+              "anchor": "Obtaining-selections",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSObjectController/selectedObjects",
+                "doc://com.apple.appkit/documentation/AppKit/NSObjectController/selection"
+              ],
+              "title": "Obtaining selections"
+            },
+            {
+              "anchor": "Validating-user-interface-items",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSObjectController/validateUserInterfaceItem(_:)"
+              ],
+              "title": "Validating user interface items"
+            },
+            {
+              "anchor": "Initializers",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSObjectController/init(coder:)"
+              ],
+              "title": "Initializers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSController"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSArrayController",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Core-Controllers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSController"
+              ],
+              "title": "Core Controllers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSObjectController"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.appkit/documentation/AppKit/NSController",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSController",
+                    "text": "NSController"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1fetch(_:)/title",
+          "value": "fetch:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1fetch(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetch:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1objectClass/title",
+          "value": "objectClass"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1objectClass/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "objectClass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1canRemove/title",
+          "value": "canRemove"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1canRemove/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "canRemove"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1init(coder:)/title",
+          "value": "initWithCoder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1init(coder:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithCoder:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1removeObject(_:)/title",
+          "value": "removeObject:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1removeObject(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeObject:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1add(_:)/title",
+          "value": "add:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1add(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "add:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1defaultFetchRequest()/title",
+          "value": "defaultFetchRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1defaultFetchRequest()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "defaultFetchRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1canAdd/title",
+          "value": "canAdd"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1canAdd/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "canAdd"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSArrayController/title",
+          "value": "NSArrayController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSArrayController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSArrayController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSArrayController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSArrayController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1remove(_:)/title",
+          "value": "remove:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1remove(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "remove:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEditorRegistration/title",
+          "value": "NSEditorRegistration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEditorRegistration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEditorRegistration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEditorRegistration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEditorRegistration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1addObject(_:)/title",
+          "value": "addObject:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1addObject(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addObject:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1prepareContent()/title",
+          "value": "prepareContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1prepareContent()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "prepareContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1fetchPredicate/title",
+          "value": "fetchPredicate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1fetchPredicate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fetchPredicate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1isEditable/title",
+          "value": "editable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1isEditable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "editable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1entityName/title",
+          "value": "entityName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1entityName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "entityName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1validateUserInterfaceItem(_:)/title",
+          "value": "validateUserInterfaceItem:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1validateUserInterfaceItem(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "validateUserInterfaceItem:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEditor/title",
+          "value": "NSEditor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEditor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEditor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEditor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEditor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1usesLazyFetching/title",
+          "value": "usesLazyFetching"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1usesLazyFetching/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "usesLazyFetching"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1automaticallyPreparesContent/title",
+          "value": "automaticallyPreparesContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1automaticallyPreparesContent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "automaticallyPreparesContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsmutabledictionary/abstract",
+          "value": [
+            {
+              "text": "A dynamic collection of objects associated with unique keys.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1newObject()/title",
+          "value": "newObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1newObject()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1managedObjectContext/title",
+          "value": "managedObjectContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1managedObjectContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "managedObjectContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1selection/title",
+          "value": "selection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1selection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1selectedObjects/title",
+          "value": "selectedObjects"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1selectedObjects/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selectedObjects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1init(content:)/title",
+          "value": "initWithContent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1init(content:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithContent:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1fetch(with:merge:)/title",
+          "value": "fetchWithRequest:merge:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1fetch(with:merge:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchWithRequest:merge:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController/title",
+          "value": "NSObjectController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSObjectController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSObjectController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController/title",
+          "value": "NSTreeController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTreeController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTreeController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSController/title",
+          "value": "NSController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1content/title",
+          "value": "content"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSObjectController~1content/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "content"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsobjectcontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsobjectcontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,800 @@
+{
+  "abstract": [
+    {
+      "text": "Compare how visionOS handles events and manages its rendering loop differently from other Apple platforms.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/understanding-the-visionos-render-pipeline"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Understanding the visionOS render pipeline"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Like other Apple platforms, visionOS renders changes to the UI in response to updates your app makes, input events, callbacks from actions you initiate, timers, and notifications. Unique on Apple Vision Pro, the system renders updates to the images the device displays in order to reposition the UI relative to changes in head position. When the system detects eye and hand movement, deliberate or inadvertent, it requires additional processing to determine what a person is looking at, or interacting with, to calculate a response. The system does a lot more to render an up-to-date UI and account for input from spatial algorithms.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following diagram illustrates how input propagates through the system and updates content in visionOS:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "event-handling-display-updates",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A person initiates an interaction through a look, hand gesture, a keyboard, or pointing device.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "User input",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Sensors, or other hardware, recognize the input and forward it to the operating system (OS).",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Hardware",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The OS relies on collision detection to determine which entity or entities to direct an interaction to, and the process responsible for handling the user input event — the app that owns the scene where the event occurs.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "OS event delivery",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The system puts the event into an app-specific queue, and your app’s main thread picks up those events from the queue and processes them. Your app updates its audio and visual output in response to these events. Your app updates the shared render server with any changes to the UI view hierarchy and 3D RealityKit based content.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Main thread work",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "render server",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " is a continuously running process (",
+                        "type": "text"
+                      },
+                      {
+                        "code": "backboardd",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ") that receives updates from all the running apps and other processes with Core Animation and RealityKit content to display. The render server processes the updates and composites them into a single drawable image. It sends this combined image to the compositor.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Render server",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "compositor",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": ", another continuously running process, receives the image frames from the render server, processes data about your surroundings from Apple Vision Pro sensors and cameras, then combines them into a set of images to display. To maintain visual smoothness, the compositor strives to maintain a consistent display refresh rate.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Compositor",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "On visionOS, the display driver wakes up at a regular interval to update the display with the new image from the compositor. This differs from other platforms where the display driver checks at regular intervals with the render server to determine whether the screen needs updating.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Update display",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Shared Space, each app updates its own UI and 3D content and syncs the updates to its view hierarchy and content to the shared render server. This server renders the updates from multiple apps running side-by-side. Then, the render server works with the compositor to generate final images to display of the UI and people’s surroundings. Metal apps in a Full Space use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CompositorServices",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework to render drawable frames directly to the Compositor, bypassing the render server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "normal-app-render-pipeline",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app running in the Shared Space has content or updates that take too long to render, the render server can miss deadlines. Visual updates you expect in one compositor frame don’t show up until a later frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "render-server-stall",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the RealityKit Trace template in Instruments to profile your app and identify workflows with dropped frames and other rendering and responsiveness bottlenecks. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.visionOS/documentation/visionOS/analyzing-the-performance-of-your-visionOS-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To learn about optimizations you can make in your SwiftUI and UIKit interfaces, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-your-UI-on-visionOS",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To learn about optimizing your RealityKit content, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-RealityKit-content-on-visionOS",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CompositorServices",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework to bypass the render server, use the Metal System Trace template to profile your app’s performance. For more info, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pace your metal frame submissions so that the compositor receives a new frame from your app on each of its updates.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Maintain a consistent metal rendering frame rate that is equal to the Apple Vision Pro display refresh rate. Use the visualizations in the Display instrument timeline to compare your rendered frame times to the display refresh rate — usually 90Hz on the Apple Vision Pro, but it can be higher under certain environmental conditions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Query a new foveation map and pose prediction for each frame immediately before you use it to encode GPU work.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Avoid long-running fragment and vertex shader executions from your Metal app, or from custom materials with Reality Composer Pro.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Avoid any long frame stalls. If your app takes too long to submit a new frame to the compositor, the system terminates it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about implementing fully immersive Metal apps, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CompositorServices/drawing-fully-immersive-content-using-metal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and watch the video ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/videos/play/wwdc2023/10089",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "A38C4FF5-3AFA-41B2-8750-AE16F67A1CA1": {
+      "alt": null,
+      "identifier": "A38C4FF5-3AFA-41B2-8750-AE16F67A1CA1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/A38C4FF5-3AFA-41B2-8750-AE16F67A1CA1/8143_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/A38C4FF5-3AFA-41B2-8750-AE16F67A1CA1/8143_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/A38C4FF5-3AFA-41B2-8750-AE16F67A1CA1/8143_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/CompositorServices": {
+      "abstract": [
+        {
+          "text": "Take control of the drawing environment and render your own content using Metal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CompositorServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Compositor Services",
+      "type": "topic",
+      "url": "/documentation/CompositorServices"
+    },
+    "doc://com.apple.documentation/documentation/CompositorServices/drawing-fully-immersive-content-using-metal": {
+      "abstract": [
+        {
+          "text": "Create a fully immersive experience in visionOS using a custom Metal-based rendering engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CompositorServices/drawing-fully-immersive-content-using-metal",
+      "kind": "article",
+      "role": "article",
+      "title": "Drawing fully immersive content using Metal",
+      "type": "topic",
+      "url": "/documentation/CompositorServices/drawing-fully-immersive-content-using-metal"
+    },
+    "doc://com.apple.documentation/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/Metal"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app": {
+      "abstract": [
+        {
+          "text": "Ensure consistent, smooth rendering by profiling your app’s frame time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing the performance of your Metal app",
+      "type": "topic",
+      "url": "/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2023/10089": {
+      "abstract": [
+        {
+          "text": "Find out how you can use Metal to render fully immersive experiences for visionOS. We’ll show you how to set up a rendering session on the platform and create a basic render loop, and share how you can make your experience interactive by incorporating spatial input.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2023/10089",
+      "images": [
+        {
+          "identifier": "A38C4FF5-3AFA-41B2-8750-AE16F67A1CA1",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Discover Metal for immersive apps",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10089"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/analyzing-the-performance-of-your-visionOS-app": {
+      "abstract": [
+        {
+          "text": "Use the RealityKit Trace template in Instruments to evaluate and improve the performance of your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/analyzing-the-performance-of-your-visionOS-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing the performance of your visionOS app",
+      "type": "topic",
+      "url": "/documentation/visionos/analyzing-the-performance-of-your-visionos-app"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/creating-a-performance-plan-for-visionos-app": {
+      "abstract": [
+        {
+          "text": "Identify your app’s performance and power goals and create a plan to measure and assess them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/creating-a-performance-plan-for-visionos-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a performance plan for your visionOS app",
+      "type": "topic",
+      "url": "/documentation/visionos/creating-a-performance-plan-for-visionos-app"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-RealityKit-content-on-visionOS": {
+      "abstract": [
+        {
+          "text": "Optimize your app’s 3D augmented reality content to render efficiently on visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-RealityKit-content-on-visionOS",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing the rendering cost of RealityKit content on visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos/reducing-the-rendering-cost-of-realitykit-content-on-visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-your-UI-on-visionOS": {
+      "abstract": [
+        {
+          "text": "Optimize your 2D user interface rendering on visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-your-UI-on-visionOS",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing the rendering cost of your UI on visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos/reducing-the-rendering-cost-of-your-ui-on-visionos"
+    },
+    "event-handling-display-updates": {
+      "alt": "A timeline illustration with a horizontal bar labeled Your app that spans four columns. At the top left above the first column, a label called User input has an arrow pointing down to a square labeled Hardware. Below that and to the right above the horizontal bar is a rectangle labeled OS event delivery. Both rectangles are  in the first column. A dashed line separating the first and second column is labeled Begin time. In the second column, a rectangle labeled Main thread work sits on the horizontal bar. A horizontal line labeled Main thread busy appears at the bottom of the column aligned with the rectangle. A dashed line separating the second and third column is labeled Commit deadline. The fourth column contains a rectangle labeled Render server below the horizontal bar. The rectangle is left-aligned to the dashed line labeled Commit deadline, but not aligned with the right side of the column. A label called Compositor deadline has an arrow pointing down to the end of the square labeled Render server. Below that and to the right below the horizontal bar is a rectangle labeled Compositor. A dashed line that separates the third and fourth column is labeled Presentation time. A horizontal line at the bottom labeled Frame lifetime spans the second and third columns starting at the dashed line labeled Begin time and ending at the dashed line labeled Presentation time. The fifth column contains a rectangle labeled Update display below the horizontal bar that is left-aligned in its column. A horizontal line at the bottom labeled Delay perceived by the user spans from the User clicks arrow on the left to the right side of the Update display rectangle.",
+      "identifier": "event-handling-display-updates",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f135e589d07d8ac571d18388a19ebef8/event-handling-display-updates@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c56234f65299dcb1098916e5d1b8c5df/event-handling-display-updates~dark@2x.png"
+        }
+      ]
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "normal-app-render-pipeline": {
+      "alt": "An  illustration with four rows that shows how the render server and the compositor process updates to your app's content. This first three rows contain boxes to the left and aligned with each other. From top to bottom, these boxes are labeled App updates content, Core Animation + RealityKit rendering, and Matches display refresh rate. To the right of the box labeled App updates content, in the first row, are boxes labeled SwiftUI, SwiftUI + RealityKit, UIKit, Metal, and Metal + Compositor Services. To the right of the box labeled Core Animation + RealityKit rendering, in the second row, is a box labeled Render server. It spans the width of four boxes in the in the first row, SwiftUI, SwiftUI + RealityKit, UIKit, and Metal, with arrows pointing down from those boxes into it. To the right of the box labeled Matches Display refresh rate, in the third row, is a box labeled Compositor. It spans the width of all five boxes in the first row, including the one labeled Metal + Compositor Services. Arrows point down from the box labeled Render server in the second row and the box labeled Metal + Compositor Services in the first row into the this box. The last row contains a single box labeled Displays that also spans the width of the same five boxes in the first row with an arrow pointing down from the box labeled Compositor in the third row.",
+      "identifier": "normal-app-render-pipeline",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/47cad1e38831838b9e2fd1f18f335bb4/normal-app-render-pipeline@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1693a3f8d18625f9aa59fd05b6c28ca7/normal-app-render-pipeline~dark@2x.png"
+        }
+      ]
+    },
+    "render-server-stall": {
+      "alt": "A timeline illustration that spans four columns. At the top inside the first column is a rectangle labeled App. Below that, beginning at the start of the second column and extending into the third is a rectangle labeled Render Server Frame X. A dashed line separating the second and third column is labeled Rendering deadline. The third column contains a rectangle that extends the full length of the column labeled Compositor Frame Y. The fourth column contains a rectangle that extends the full length of the column labeled Compositor Frame Y+1.",
+      "identifier": "render-server-stall",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/683cc064475300e56e6ff485f7e190ab/render-server-stall@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2360da3f66f62589c643f36257bab2f5/render-server-stall~dark@2x.png"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Performance",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/creating-a-performance-plan-for-visionos-app",
+        "doc://com.apple.visionOS/documentation/visionOS/analyzing-the-performance-of-your-visionOS-app",
+        "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-your-UI-on-visionOS",
+        "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-RealityKit-content-on-visionOS"
+      ],
+      "title": "Performance"
+    }
+  ]
+}

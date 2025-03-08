@@ -1,0 +1,494 @@
+{
+  "abstract": [
+    {
+      "text": "Access the app transaction to learn when a customer first purchased an app, to determine the app features they’re entitled to.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/supporting-business-model-changes-by-using-the-app-transaction"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Supporting business model changes by using the app transaction"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppTransaction/originalAppVersion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property indicates the app version that the customer purchased. If you change your business model from a paid app to a free app that offers in-app purchases, use this property to learn whether the customer purchased your app before you changed the business model. Then, use that information to determine your customers’ entitlement to features that were available in the paid app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, an app that is a paid app in version 1 has premium features available to everyone who buys it. For version 2, the developer changes the business model, making it a free app that offers in-app purchases. Version 2 of the app has the same premium features, but now they’re available as in-app purchases.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In version 2, the developer wants to continue to provide the premium features to customers who purchased version 1. To do so, the app performs the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app’s code includes a constant that indicates the version the business model changed; that constant is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"2\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in this example.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app compares the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppTransaction/originalAppVersion",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "  value with the constant. If the customer purchased the app before the business model changed, the app determines that they’re entitled to the premium features.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app also checks the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/currentEntitlements",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " sequence and delivers any in-app purchases the customers may have made.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app that performs these steps ensures that paid customers can access the premium features that were included with the app they purchased.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code example below demonstrates how an app gets an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppTransaction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", compares the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppTransaction/originalAppVersion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a constant that represents an app version, and determines the customer’s entitlements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do {",
+            "    // Get the appTransaction.",
+            "    let shared = try await AppTransaction.shared",
+            "    if case .verified(let appTransaction) = shared {",
+            "        // Hard-code the major version number in which the app's business model changed.",
+            "        let newBusinessModelMajorVersion = \"2\" ",
+            "",
+            "        // Get the major version number of the version the customer originally purchased.",
+            "        let versionComponents = appTransaction.originalAppVersion.split(separator: \".\")",
+            "        let originalMajorVersion = versionComponents[0]",
+            "",
+            "        if originalMajorVersion < newBusinessModelMajorVersion {",
+            "            // This customer purchased the app before the business model changed.",
+            "            // Deliver content that they're entitled to based on their app purchase.",
+            "        }",
+            "        else {",
+            "            // This customer purchased the app after the business model changed.",
+            "        }",
+            "    }",
+            "}",
+            "catch {",
+            "    // Handle errors.",
+            "}",
+            "",
+            "// Iterate through any other products the customer purchased.",
+            "for await result in Transaction.currentEntitlements {",
+            "    if case .verified(let transaction) = result {",
+            "        // Deliver the content based on the customer's current entitlements.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Session 10007:  ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2022/10007/",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related sessions from WWDC22",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/AppTransaction": {
+      "abstract": [
+        {
+          "text": "Information that represents the customer’s purchase of the app, cryptographically signed by the App Store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppTransaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppTransaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppTransaction",
+      "type": "topic",
+      "url": "/documentation/storekit/apptransaction"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/AppTransaction/originalAppVersion": {
+      "abstract": [
+        {
+          "text": "The app version that the customer originally purchased from the App Store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "originalAppVersion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppTransaction/originalAppVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "originalAppVersion",
+      "type": "topic",
+      "url": "/documentation/storekit/apptransaction/originalappversion"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/currentEntitlements": {
+      "abstract": [
+        {
+          "text": "A sequence of the latest transactions that entitle a customer to In-App Purchases and subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentEntitlements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV12TransactionsV",
+          "text": "Transactions"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/currentEntitlements",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentEntitlements",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/currententitlements"
+    },
+    "https://developer.apple.com/videos/play/wwdc2022/10007/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2022/10007/",
+      "title": "What’s new with in-app purchase",
+      "titleInlineContent": [
+        {
+          "text": "What’s new with in-app purchase",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2022/10007/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-transaction",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/AppTransaction"
+      ],
+      "title": "App transaction"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "App-transaction",
+              "generated": true,
+              "identifiers": [],
+              "title": "App transaction"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/supporting-business-model-changes-by-using-the-app-transaction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/supporting-business-model-changes-by-using-the-app-transaction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

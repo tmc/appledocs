@@ -1,0 +1,507 @@
+{
+  "abstract": [
+    {
+      "text": "You implement this protocol when a class’s objects have subcomponents that can be discarded when not being used, thereby giving an application a smaller memory footprint.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/collections",
+        "doc://com.apple.documentation/documentation/foundation/nscache"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1417711,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)NSDiscardableContent",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "protocol "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSDiscardableContent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.6",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "intf",
+    "title": "NSDiscardableContent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSDiscardableContent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "NSDiscardableContent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object’s life cycle is dependent upon a “counter” variable. An ",
+              "type": "text"
+            },
+            {
+              "code": "NSDiscardableContent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object is a purgeable block of memory that keeps track of whether or not it is currently being used by some other object. When this memory is being read, or is still needed, its counter variable will be greater than or equal to 1. When it is not being used, and can be discarded, the counter variable will be equal to 0. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the counter is equal to 0, the block of memory may be discarded if memory is tight at that point in time. In order to discard the content, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1408998-discardcontentifpossible",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the object, which will free the associated memory if the counter variable equals 0.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, ",
+              "type": "text"
+            },
+            {
+              "code": "NSDiscardableContent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects are initialized with their counter equal to 1 to ensure that they are not immediately discarded by the memory-management system. From this point, you must keep track of the counter variable’s state. Calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1412187-begincontentaccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method increments the counter variable by 1, thus ensuring that the object will not be discarded. When you no longer need the object, decrement its counter by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1407535-endcontentaccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Foundation framework includes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nspurgeabledata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class, which provides a default implementation of this protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/collections": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/collections",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collections",
+      "type": "topic",
+      "url": "/documentation/foundation/collections"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscache": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscache",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCache",
+      "type": "topic",
+      "url": "/documentation/foundation/nscache"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscache/1408469-evictsobjectswithdiscardedconten": {
+      "abstract": [
+        {
+          "text": "Whether the cache will automatically evict discardable-content objects whose content has been discarded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "evictsObjectsWithDiscardedContent"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscache/1408469-evictsobjectswithdiscardedconten",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "evictsObjectsWithDiscardedContent",
+      "type": "topic",
+      "url": "/documentation/foundation/nscache/1408469-evictsobjectswithdiscardedconten"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent": {
+      "abstract": [
+        {
+          "text": "You implement this protocol when a class’s objects have subcomponents that can be discarded when not being used, thereby giving an application a smaller memory footprint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDiscardableContent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDiscardableContent",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdiscardablecontent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1407535-endcontentaccess": {
+      "abstract": [
+        {
+          "text": "Called if the discardable contents are no longer being accessed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "endContentAccess"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1407535-endcontentaccess",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "endContentAccess()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdiscardablecontent/1407535-endcontentaccess"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1408998-discardcontentifpossible": {
+      "abstract": [
+        {
+          "text": "Called to discard the contents of the receiver if the value of the accessed counter is 0.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "discardContentIfPossible"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1408998-discardcontentifpossible",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "discardContentIfPossible()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdiscardablecontent/1408998-discardcontentifpossible"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1412187-begincontentaccess": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the discardable contents are still available and have been successfully accessed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginContentAccess"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1412187-begincontentaccess",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "beginContentAccess()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdiscardablecontent/1412187-begincontentaccess"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1417470-iscontentdiscarded": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the content has been discarded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isContentDiscarded"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1417470-iscontentdiscarded",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "isContentDiscarded()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdiscardablecontent/1417470-iscontentdiscarded"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspurgeabledata": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspurgeabledata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPurgeableData",
+      "type": "topic",
+      "url": "/documentation/foundation/nspurgeabledata"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nspurgeabledata"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscache/1408469-evictsobjectswithdiscardedconten"
+      ],
+      "title": "Managing Discardable Content"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1661506",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1412187-begincontentaccess",
+        "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1407535-endcontentaccess"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Content"
+    },
+    {
+      "anchor": "1661529",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1408998-discardcontentifpossible",
+        "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1417470-iscontentdiscarded"
+      ],
+      "kind": "taskGroup",
+      "title": "Discarding Content"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsdiscardablecontent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsdiscardablecontent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

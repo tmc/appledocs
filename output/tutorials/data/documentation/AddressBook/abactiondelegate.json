@@ -1,0 +1,463 @@
+{
+  "abstract": [
+    {
+      "text": "Implement an Address Book action plug-in to support the display of rollover menus on top of custom items.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.addressbook/documentation/AddressBook"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.addressbook/documentation/AddressBook/abactiondelegate"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Address Book"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "ABActionDelegate"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "ABActionDelegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " informal protocol allows you to populate the rollover menus of Address Book with custom items. You do this by implementing an Address Book action plug-in. The plug-in’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " must implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1411302-actionproperty",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1411304-title",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1411298-performaction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each action plug-in can implement only one action. Actions can only apply to items with labels. An action can display a simple window inside the Address Book application; if your action actions needs to do anything else, it should launch your own application to perform the action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use Xcode to create Address Book action plug-ins. Place action plug-ins in ",
+              "type": "text"
+            },
+            {
+              "code": "~/Library/Address Book Plug-Ins",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "/Library/Address Book Plug-Ins",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", depending on the scope you want for the action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.addressbook/documentation/AddressBook": {
+      "abstract": [
+        {
+          "text": "Access the centralized database for storing users’ contacts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.addressbook/documentation/AddressBook",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Address Book",
+      "type": "topic",
+      "url": "/documentation/addressbook"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle": {
+      "abstract": [
+        {
+          "text": "A representation of the code and resources stored in a bundle directory on disk. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bundle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bundle",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1411298-performaction": {
+      "abstract": [
+        {
+          "text": "Sent to the delegate to perform the action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "performAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": ABPerson!, "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1411298-performaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performAction(for:identifier:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1411298-performaction"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1411300-shouldenableaction": {
+      "abstract": [
+        {
+          "text": "Sent to the delegate to determine whether the action should be enabled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldEnableAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": ABPerson!, "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1411300-shouldenableaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shouldEnableAction(for:identifier:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1411300-shouldenableaction"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1411302-actionproperty": {
+      "abstract": [
+        {
+          "text": "Sent to the delegate to request the property the action applies to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "actionProperty"
+        },
+        {
+          "kind": "text",
+          "text": "() -> String!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1411302-actionproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "actionProperty()",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1411302-actionproperty"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1411304-title": {
+      "abstract": [
+        {
+          "text": "Sent to the delegate to request the title of the menu item for the action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": ABPerson!, "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String!) -> String!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1411304-title",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "title(for:identifier:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1411304-title"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Performing-actions",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1411298-performaction"
+      ],
+      "title": "Performing actions"
+    },
+    {
+      "anchor": "Querying",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1411302-actionproperty",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1411300-shouldenableaction",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1411304-title"
+      ],
+      "title": "Querying"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Performing-actions",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/objectivec/nsobject/1411298-performaction"
+              ],
+              "title": "Performing actions"
+            },
+            {
+              "anchor": "Querying",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/objectivec/nsobject/1411302-actionproperty",
+                "doc://com.apple.documentation/documentation/objectivec/nsobject/1411300-shouldenableaction",
+                "doc://com.apple.documentation/documentation/objectivec/nsobject/1411304-title"
+              ],
+              "title": "Querying"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11411302-actionproperty/title",
+          "value": "actionProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11411304-title/title",
+          "value": "titleForPerson:identifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11411298-performaction/title",
+          "value": "performActionForPerson:identifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11411300-shouldenableaction/title",
+          "value": "shouldEnableActionForPerson:identifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1bundle/title",
+          "value": "NSBundle"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/addressbook/abactiondelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/addressbook/abactiondelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

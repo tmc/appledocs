@@ -1,0 +1,3244 @@
+{
+  "abstract": [
+    {
+      "text": "Enable Live Text data scanning of text and codes that appear in the camera’s viewfinder.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.VisionKit/documentation/VisionKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.VisionKit/documentation/VisionKit/scanning-data-with-the-camera"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "VisionKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Scanning data with the camera"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Let users scan text and codes with the camera, similar to the Live Text interface",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the Camera app. VisionKit provides the live video, guidance for the user, item",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "highlighting, and tap-to-focus and pinch-to-zoom functionality. You provide the user",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with feedback and actions for the items the scanner recognizes and the user taps.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, your app can let users scan a QR code on a warehouse box, or call a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "support number on product materials.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and implement its delegate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "methods to handle when the scanner identifies items in the camera’s live video. When",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "users tap an item, such as a QR code, you offer an appropriate action, depending",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on the item type. A QR code contains data, called a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "payload",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", such as a phone number",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or email address. If the payload is a website, you can open it in the browser or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "perform some other custom action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "scanning_data_with_the_camera-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The code listings in this article use asynchronous methods that you",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "invoke from an ",
+                  "type": "text"
+                },
+                {
+                  "code": "async",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " method or within a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Swift/Task",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "structure. For details on asynchronous flows, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Swift/concurrency",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Provide-a-reason-for-using-the-camera",
+          "level": 3,
+          "text": "Provide a reason for using the camera",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first time your app attempts to use the camera, the system prompts users for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "permission. It displays a dialog that includes the name of your app and a reason",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that you provide to notify users why you’re using the camera. If the user grants",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "permission, you can use the camera on the device; otherwise, the user is unable to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use your app to scan text or codes. If you don’t add this key, a runtime error occurs",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when you access the camera.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You provide the reason for using the camera in the Xcode project configuration. Add",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "key to the target’s information property list in Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the project editor, select the target and click Info.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Under Custom iOS Target Properties, click the Plus button in any row.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From the pop-up menu in the Key column, choose Privacy - Camera Usage Description.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Value column, enter the reason, such as “Your camera is used to scan text",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and codes.”",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "scanning_data_with_the_camera-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about privacy keys, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/requesting-access-to-protected-resources",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-data-scanner-view-controller",
+          "level": 3,
+          "text": "Create a data scanner view controller",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your code, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that you configure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the needs of your app. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class provides",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the interface for scanning items in the live video. In the parameters of the initializer,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you specify the types of items to scan, the quality level, whether to return multiple",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "items, and more.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let viewController = DataScannerViewController(",
+            "    recognizedDataTypes: [.text(), .barcode()],",
+            "    qualityLevel: .fast,",
+            "    recognizesMultipleItems: false,",
+            "    isHighFrameRateTrackingEnabled: false,",
+            "    isHighlightingEnabled: true)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For larger items, you can pass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/QualityLevel-swift.enum/fast",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as the quality parameter to increase recognition speed by lowering the resolution.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For smaller items, pass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/QualityLevel-swift.enum/accurate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to increase the resolution. If you’re unsure of the content, pass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/QualityLevel-swift.enum/balanced",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you overlay an interface on the live video, pass ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the ",
+              "type": "text"
+            },
+            {
+              "code": "isHighFrameRateTrackingEnabled",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parameter so that the scanner updates the geometry of items more frequently. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, pass ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " so that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your custom highlights keep up with the camera movement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the other parameters of the initializer to disable specific interface features",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and gestures. For example, pass ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the ",
+              "type": "text"
+            },
+            {
+              "code": "isGuidanceEnabled",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to remove text that appears in the live video",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "while the user is scanning, such as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Slow Down",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you create the view controller and before you present it, set its delegate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to an object in your app that handles the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewControllerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol callbacks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "viewController.delegate = self"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-when-the-scanner-becomes-unavailable",
+          "level": 3,
+          "text": "Handle when the scanner becomes unavailable",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before presenting an interface for scanning, confirm that the device supports scanning",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and that your app has access to the camera.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Check that these two properties are true:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the scanner can run on the user’s device, the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DataScannerViewController",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/isSupported",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "class property is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The data scanner is available on devices with the A12 Bionic",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "chip and later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the user doesn’t deny your app access to the camera, or there’s no other restrictions",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to using the camera, the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DataScannerViewController",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/isAvailable",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "class property is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, when this convenience property that checks both these values returns",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", enable the scanning interface in your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var scannerAvailable: Bool {",
+            "    DataScannerViewController.isSupported &&",
+            "    DataScannerViewController.isAvailable",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the scanner becomes unavailable for any reason while your app is running, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data scanner calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewControllerDelegate/dataScanner(_:becameUnavailableWithError:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "delegate method. Implement this delegate method to disable or remove the data-scanning",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "controls in your interface. For example, the scanner calls this method when users",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tap Don’t Allow the first time the system prompt appears, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/scanning-data-with-the-camera#Provide-a-reason-for-using-the-camera",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To reset the user authorization when testing your code, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/requesting-access-to-protected-resources#3137869",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "scanning_data_with_the_camera-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Begin-data-scanning",
+          "level": 3,
+          "text": "Begin data scanning",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the user allows access to the camera without restrictions, you can begin scanning",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for items that appear in the live video by invoking the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/startScanning()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "try? viewController.startScanning()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The view controller begins scanning for items and maintains a collection of the current",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "recognized items. To process items as they appear in the live video, implement these",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewControllerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol methods to handle when the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scanner adds, deletes, and updates items in the collection:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewControllerDelegate/dataScanner(_:didAdd:allItems:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewControllerDelegate/dataScanner(_:didRemove:allItems:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewControllerDelegate/dataScanner(_:didUpdate:allItems:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For text items, the items in the ",
+              "type": "text"
+            },
+            {
+              "code": "allItems",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter appear in the reading order",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in which the strings appear in the live video.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When scanning QR codes, implement these methods to show an item’s payload, such as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a URL, email address, or other data. To process items when the user taps them, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/scanning-data-with-the-camera#Respond-when-users-tap-an-item",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Highlight-recognized-items",
+          "level": 3,
+          "text": "Highlight recognized items",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you pass ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the ",
+              "type": "text"
+            },
+            {
+              "code": "isHighlightingEnabled",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter in the initializer when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you create the view controller, the scanner automatically highlights items it recognizes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Optionally, provide your own interface for highlighting recognized items. Implement",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewControllerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol methods that the scanner",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "invokes when modifying the list of recognized items in the live video. Then add your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "custom highlights of the recognized items as subviews of the view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/overlayContainerView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you pass ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the ",
+              "type": "text"
+            },
+            {
+              "code": "recognizesMultipleItems",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter in the initializer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when you create the view controller, the scanner picks only one item in the live",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "video. By default the scanner picks the item closest to the center. However, users",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can provide a hint to the scanner for which item to highlight. If users tap an area",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the live video, the scanner recognizes the item closest to the tap.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Respond-when-users-tap-an-item",
+          "level": 3,
+          "text": "Respond when users tap an item",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When users tap a recognized item in the live video, the view controller invokes the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewControllerDelegate/dataScanner(_:didTapOn:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method and passes the recognized item. Implement this method to take some action,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "depending on the item the user taps. Use the parameters of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/RecognizedItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "enumeration to get details about the item, such as the bounds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to handle when users tap a QR code, implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewControllerDelegate/dataScanner(_:didTapOn:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method to perform an action with the QR code’s payload. If the user taps text, provide",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "other actions for text, such as copying it to the pasteboard.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func dataScanner(_ dataScanner: DataScannerViewController, didTapOn item: RecognizedItem) {",
+            "    switch item {",
+            "    case .text(let text):",
+            "        // Copy the text to the pasteboard.",
+            "        UIPasteboard.general.string = text.transcript",
+            "    case .barcode(let code):",
+            "        // Open the URL in the browser.",
+            "        ...",
+            "    default:",
+            "        // Insert code to handle other data types.",
+            "        ...",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Dismiss-the-data-scanner-view-controller",
+          "level": 3,
+          "text": "Dismiss the data scanner view controller",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When users perform an action, such as tapping an item, you can dismiss the view controller.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Alternatively, you can start and stop scanning while the view controller shows the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "live video.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To stop scanning, use the ",
+              "type": "text"
+            },
+            {
+              "code": "DataScannerViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/stopScanning()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method in one of the delegate methods. For example, after you capture information",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "about the tapped item, stop scanning and dismiss the view controller in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewControllerDelegate/dataScanner(_:didTapOn:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "delegate method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "dataScanner.stopScanning()",
+            "dataScanner.dismiss(animated: true)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Scan-specific-types-of-text-and-codes",
+          "level": 3,
+          "text": "Scan specific types of text and codes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can specify the exact types of text and codes that the data scanner recognizes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by passing custom types to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a custom text type, pass one of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/TextContentType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "values to the text type initializer. The data scanner supports URLs, dates, email",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "addresses, telephone numbers, and more. For example, a travel app can create a flight",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "number text type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".text(textContentType: .flightNumber)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a custom barcode type, pass the symbology you want to scan to the barcode",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type initializer. For a complete list of the symbology that the data scanner supports,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/VNBarcodeSymbology",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, create a type for scanning Aztec codes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".barcode(symbologies: [.aztec])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then pass the custom types as the ",
+              "type": "text"
+            },
+            {
+              "code": "recognizedDataTypes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "initializer. For example, create a data scanner that only recognizes URLs and QR",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "codes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Specify the types of data to recognize.",
+            "let recognizedDataTypes:Set<DataScannerViewController.RecognizedDataType> = [",
+            "    .text(textContentType: .URL),",
+            "    .barcode(symbologies: [.qr])",
+            "]",
+            "",
+            "// Create the data scanner.",
+            "let dataScanner = DataScannerViewController(recognizedDataTypes: recognizedDataTypes)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Recognize-more-languages",
+          "level": 3,
+          "text": "Recognize more languages",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the data scanner view controller prioritizes text in the user’s preferred",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "languages. If you know the content contains other languages, create the view controller",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by passing a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/RecognizedDataType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you configure for those languages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/RecognizedDataType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/RecognizedDataType/text(languages:textContentType:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "initializer to pass the identifiers for the languages you want to recognize.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let textDataType: DataScannerViewController.RecognizedDataType =",
+            "    .text(languages: [\"en-US\", \"fr-FR\", \"de-DE\"])",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then pass the data type in the ",
+              "type": "text"
+            },
+            {
+              "code": "recognizedDataTypes ",
+              "type": "codeVoice"
+            },
+            {
+              "text": "parameter of the initializer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when you create the ",
+              "type": "text"
+            },
+            {
+              "code": "DataScannerViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine whether the data scanner view controller supports a language, check",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "whether the array that the ",
+              "type": "text"
+            },
+            {
+              "code": "DataScannerViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/supportedTextRecognitionLanguages",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "class property returns includes the language ID. For more information on language",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "IDs, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/choosing-localization-regions-and-scripts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.VisionKit/documentation/VisionKit": {
+      "abstract": [
+        {
+          "text": "Identify and extract information in the environment using the device’s camera, or in images that your app displays.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "VisionKit",
+      "type": "topic",
+      "url": "/documentation/visionkit"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController": {
+      "abstract": [
+        {
+          "text": "An object that scans the camera live video for text, data in text, and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "machine-readable codes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataScannerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataScannerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "DataScannerViewController",
+      "type": "topic",
+      "url": "/documentation/visionkit/datascannerviewcontroller"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/QualityLevel-swift.enum/accurate": {
+      "abstract": [
+        {
+          "text": "A quality level that prioritizes recognition accuracy over speed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accurate"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/QualityLevel-swift.enum/accurate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DataScannerViewController.QualityLevel.accurate",
+      "type": "topic",
+      "url": "/documentation/visionkit/datascannerviewcontroller/qualitylevel-swift.enum/accurate"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/QualityLevel-swift.enum/balanced": {
+      "abstract": [
+        {
+          "text": "A quality level that’s between fast and accurate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "balanced"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/QualityLevel-swift.enum/balanced",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DataScannerViewController.QualityLevel.balanced",
+      "type": "topic",
+      "url": "/documentation/visionkit/datascannerviewcontroller/qualitylevel-swift.enum/balanced"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/QualityLevel-swift.enum/fast": {
+      "abstract": [
+        {
+          "text": "A quality level that prioritizes recognition speed over accuracy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fast"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/QualityLevel-swift.enum/fast",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DataScannerViewController.QualityLevel.fast",
+      "type": "topic",
+      "url": "/documentation/visionkit/datascannerviewcontroller/qualitylevel-swift.enum/fast"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/RecognizedDataType": {
+      "abstract": [
+        {
+          "text": "A type of data that the scanner recognizes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RecognizedDataType"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/RecognizedDataType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RecognizedDataType"
+        }
+      ],
+      "role": "symbol",
+      "title": "DataScannerViewController.RecognizedDataType",
+      "type": "topic",
+      "url": "/documentation/visionkit/datascannerviewcontroller/recognizeddatatype"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/RecognizedDataType/text(languages:textContentType:)": {
+      "abstract": [
+        {
+          "text": "Creates a data type for text and information the scanner finds in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "text"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "languages"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "textContentType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@VisionKit@objc(cs)DataScannerViewController",
+          "text": "DataScannerViewController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit25DataScannerViewControllerC15TextContentTypeO",
+          "text": "TextContentType"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@VisionKit@objc(cs)DataScannerViewController",
+          "text": "DataScannerViewController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit25DataScannerViewControllerC010RecognizedC4TypeV",
+          "text": "RecognizedDataType"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/RecognizedDataType/text(languages:textContentType:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "text(languages:textContentType:)",
+      "type": "topic",
+      "url": "/documentation/visionkit/datascannerviewcontroller/recognizeddatatype/text(languages:textcontenttype:)"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/TextContentType": {
+      "abstract": [
+        {
+          "text": "Types of text that a data scanner recognizes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextContentType"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/TextContentType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextContentType"
+        }
+      ],
+      "role": "symbol",
+      "title": "DataScannerViewController.TextContentType",
+      "type": "topic",
+      "url": "/documentation/visionkit/datascannerviewcontroller/textcontenttype"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/isAvailable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether a person grants your app access",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to the camera and doesn’t have any restrictions to using the camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAvailable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/isAvailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isAvailable",
+      "type": "topic",
+      "url": "/documentation/visionkit/datascannerviewcontroller/isavailable"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/isSupported": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the device supports data",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "scanning.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/isSupported",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isSupported",
+      "type": "topic",
+      "url": "/documentation/visionkit/datascannerviewcontroller/issupported"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/overlayContainerView": {
+      "abstract": [
+        {
+          "text": "A view that the data scanner displays over its view without interfering",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "with the Live Text interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "overlayContainerView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/overlayContainerView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "overlayContainerView",
+      "type": "topic",
+      "url": "/documentation/visionkit/datascannerviewcontroller/overlaycontainerview"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/startScanning()": {
+      "abstract": [
+        {
+          "text": "Starts scanning the camera’s live video for data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startScanning"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/startScanning()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startScanning()",
+      "type": "topic",
+      "url": "/documentation/visionkit/datascannerviewcontroller/startscanning()"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/stopScanning()": {
+      "abstract": [
+        {
+          "text": "Stops scanning the camera’s live video for data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopScanning"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/stopScanning()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stopScanning()",
+      "type": "topic",
+      "url": "/documentation/visionkit/datascannerviewcontroller/stopscanning()"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/supportedTextRecognitionLanguages": {
+      "abstract": [
+        {
+          "text": "The identifiers for the languages that the data scanner recognizes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportedTextRecognitionLanguages"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController/supportedTextRecognitionLanguages",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "supportedTextRecognitionLanguages",
+      "type": "topic",
+      "url": "/documentation/visionkit/datascannerviewcontroller/supportedtextrecognitionlanguages"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewControllerDelegate": {
+      "abstract": [
+        {
+          "text": "A delegate object that responds when people interact with items that the data",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "scanner recognizes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataScannerViewControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataScannerViewControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "DataScannerViewControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/visionkit/datascannerviewcontrollerdelegate"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewControllerDelegate/dataScanner(_:becameUnavailableWithError:)": {
+      "abstract": [
+        {
+          "text": "Responds when the data scanner becomes unavailable and stops scanning.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataScanner"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@VisionKit@objc(cs)DataScannerViewController",
+          "text": "DataScannerViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "becameUnavailableWithError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@VisionKit@objc(cs)DataScannerViewController",
+          "text": "DataScannerViewController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit25DataScannerViewControllerC19ScanningUnavailableO",
+          "text": "ScanningUnavailable"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewControllerDelegate/dataScanner(_:becameUnavailableWithError:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "dataScanner(_:becameUnavailableWithError:)",
+      "type": "topic",
+      "url": "/documentation/visionkit/datascannerviewcontrollerdelegate/datascanner(_:becameunavailablewitherror:)"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewControllerDelegate/dataScanner(_:didAdd:allItems:)": {
+      "abstract": [
+        {
+          "text": "Responds when the data scanner starts recognizing an item.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataScanner"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@VisionKit@objc(cs)DataScannerViewController",
+          "text": "DataScannerViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAdd"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit14RecognizedItemO",
+          "text": "RecognizedItem"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "allItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit14RecognizedItemO",
+          "text": "RecognizedItem"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewControllerDelegate/dataScanner(_:didAdd:allItems:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "dataScanner(_:didAdd:allItems:)",
+      "type": "topic",
+      "url": "/documentation/visionkit/datascannerviewcontrollerdelegate/datascanner(_:didadd:allitems:)"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewControllerDelegate/dataScanner(_:didRemove:allItems:)": {
+      "abstract": [
+        {
+          "text": "Responds when the data scanner stops recognizing an item.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataScanner"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@VisionKit@objc(cs)DataScannerViewController",
+          "text": "DataScannerViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didRemove"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit14RecognizedItemO",
+          "text": "RecognizedItem"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "allItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit14RecognizedItemO",
+          "text": "RecognizedItem"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewControllerDelegate/dataScanner(_:didRemove:allItems:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "dataScanner(_:didRemove:allItems:)",
+      "type": "topic",
+      "url": "/documentation/visionkit/datascannerviewcontrollerdelegate/datascanner(_:didremove:allitems:)"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewControllerDelegate/dataScanner(_:didTapOn:)": {
+      "abstract": [
+        {
+          "text": "Responds when a person taps an item that the data scanner recognizes.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataScanner"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@VisionKit@objc(cs)DataScannerViewController",
+          "text": "DataScannerViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didTapOn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit14RecognizedItemO",
+          "text": "RecognizedItem"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewControllerDelegate/dataScanner(_:didTapOn:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "dataScanner(_:didTapOn:)",
+      "type": "topic",
+      "url": "/documentation/visionkit/datascannerviewcontrollerdelegate/datascanner(_:didtapon:)"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewControllerDelegate/dataScanner(_:didUpdate:allItems:)": {
+      "abstract": [
+        {
+          "text": "Responds when the data scanner updates the geometry of an item it",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "recognizes.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataScanner"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@VisionKit@objc(cs)DataScannerViewController",
+          "text": "DataScannerViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit14RecognizedItemO",
+          "text": "RecognizedItem"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "allItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit14RecognizedItemO",
+          "text": "RecognizedItem"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewControllerDelegate/dataScanner(_:didUpdate:allItems:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "dataScanner(_:didUpdate:allItems:)",
+      "type": "topic",
+      "url": "/documentation/visionkit/datascannerviewcontrollerdelegate/datascanner(_:didupdate:allitems:)"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/RecognizedItem": {
+      "abstract": [
+        {
+          "text": "An item that the data scanner recognizes in the camera’s live video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RecognizedItem"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/RecognizedItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RecognizedItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "RecognizedItem",
+      "type": "topic",
+      "url": "/documentation/visionkit/recognizeditem"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/scanning-data-with-the-camera#Provide-a-reason-for-using-the-camera": {
+      "abstract": [],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/scanning-data-with-the-camera#Provide-a-reason-for-using-the-camera",
+      "kind": "section",
+      "title": "Provide a reason for using the camera",
+      "type": "topic",
+      "url": "/documentation/visionkit/scanning-data-with-the-camera#Provide-a-reason-for-using-the-camera"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/scanning-data-with-the-camera#Respond-when-users-tap-an-item": {
+      "abstract": [],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/scanning-data-with-the-camera#Respond-when-users-tap-an-item",
+      "kind": "section",
+      "title": "Respond when users tap an item",
+      "type": "topic",
+      "url": "/documentation/visionkit/scanning-data-with-the-camera#Respond-when-users-tap-an-item"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the device’s camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCameraUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Task": {
+      "abstract": [
+        {
+          "text": "A unit of asynchronous work.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Task"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Success"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Success"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Task",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Task",
+      "type": "topic",
+      "url": "/documentation/Swift/Task"
+    },
+    "doc://com.apple.documentation/documentation/Swift/concurrency": {
+      "abstract": [
+        {
+          "text": "Perform asynchronous and parallel operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/concurrency",
+      "kind": "article",
+      "role": "article",
+      "title": "Concurrency",
+      "type": "topic",
+      "url": "/documentation/Swift/concurrency"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/requesting-access-to-protected-resources": {
+      "abstract": [
+        {
+          "text": "Provide a purpose string that explains to a person why you need access to protected resources on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/requesting-access-to-protected-resources",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting access to protected resources",
+      "type": "topic",
+      "url": "/documentation/UIKit/requesting-access-to-protected-resources"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/requesting-access-to-protected-resources#3137869": {
+      "abstract": [
+        {
+          "text": "Provide a purpose string that explains to a person why you need access to protected resources on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/requesting-access-to-protected-resources#3137869",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting access to protected resources",
+      "type": "topic",
+      "url": "/documentation/UIKit/requesting-access-to-protected-resources"
+    },
+    "doc://com.apple.documentation/documentation/Vision/VNBarcodeSymbology": {
+      "abstract": [
+        {
+          "text": "The barcode symbologies that the framework detects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNBarcodeSymbology"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/VNBarcodeSymbology",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNBarcodeSymbology",
+      "type": "topic",
+      "url": "/documentation/Vision/VNBarcodeSymbology"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/choosing-localization-regions-and-scripts": {
+      "abstract": [
+        {
+          "text": "Add a language-only localization or localizations specific to regional variants and scripts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/choosing-localization-regions-and-scripts",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing localization regions and scripts",
+      "type": "topic",
+      "url": "/documentation/Xcode/choosing-localization-regions-and-scripts"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "scanning_data_with_the_camera-1": {
+      "alt": "A mockup of an iPhone screen showing the data scanner view controller view with a QR code highlighted in the camera’s live video.",
+      "identifier": "scanning_data_with_the_camera-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e5caaaf0e057ee741c6e3ebda42dd26a/scanning_data_with_the_camera-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/adc74296c64789d3b29a2ce5efd7d153/scanning_data_with_the_camera-1~dark@2x.png"
+        }
+      ]
+    },
+    "scanning_data_with_the_camera-2": {
+      "alt": "A screenshot of the Xcode project editor showing the target selected and editing the Privacy - Camera Usage Description key in the Information Property List.",
+      "identifier": "scanning_data_with_the_camera-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0706781ba990ceeea9f4737390b4f684/scanning_data_with_the_camera-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3d1cbb4c6ff3a74a43174567e04f499c/scanning_data_with_the_camera-2~dark@2x.png"
+        }
+      ]
+    },
+    "scanning_data_with_the_camera-3": {
+      "alt": "A screenshot of an iPhone showing the system dialog requesting access to the camera with the reason given by the app, and the Don’t Allow and OK buttons.",
+      "identifier": "scanning_data_with_the_camera-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7398cd9d1c637939db7eacdd3d2e7e9b/scanning_data_with_the_camera-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7398cd9d1c637939db7eacdd3d2e7e9b/scanning_data_with_the_camera-3~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Barcode-and-text-scanning-through-the-camera",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewController",
+        "doc://com.apple.VisionKit/documentation/VisionKit/DataScannerViewControllerDelegate",
+        "doc://com.apple.VisionKit/documentation/VisionKit/RecognizedItem"
+      ],
+      "title": "Barcode and text scanning through the camera"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Barcode-and-text-scanning-through-the-camera",
+              "generated": true,
+              "identifiers": [],
+              "title": "Barcode and text scanning through the camera"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Vision~1VNBarcodeSymbology/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "VNBarcodeSymbology"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/visionkit/scanning-data-with-the-camera"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/visionkit/scanning-data-with-the-camera"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

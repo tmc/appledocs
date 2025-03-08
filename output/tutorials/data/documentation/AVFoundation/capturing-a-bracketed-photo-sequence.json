@@ -1,0 +1,1278 @@
+{
+  "abstract": [
+    {
+      "text": "Capture several photos at once, varying parameters like exposure duration or light sensitivity.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/photo-capture",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-still-and-live-photos"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-a-bracketed-photo-sequence"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Capturing a Bracketed Photo Sequence"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Bracketing is a well-known photographic technique in which a sequence of shots is rapidly taken of the same scene, usually varying only in a single parameter such as aperture or shutter speed (exposure length). Experienced photographers use this technique to help them choose the best photos after shooting, or to apply offline post-processing that fuses multiple images together to create extended dynamic range or other special effects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS, you can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoBracketSettings",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to automatically capture a bracket of photos for each ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/capturePhoto(with:delegate:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " call. Once you’ve built a single-exposure camera in your app (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-still-and-live-photos",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), follow these steps to add multi-image bracket support.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Choose-Bracket-Settings",
+          "level": 3,
+          "text": "Choose Bracket Settings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You specify a multi-exposure bracket by providing an array of bracket settings obejcts. iOS offers two types of automatic bracketing:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureAutoExposureBracketedStillImageSettings",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to create a bracket that varies exposure-compensation values relative to automatic exposure.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureManualExposureBracketedStillImageSettings",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to create a bracket with custom exposure durations and ISO sensitivity values for each photo in the bracket.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To define a bracket, create an array of one of these types, with values that describe the settings variations you want to capture. For example, the code below defines a bracket that captures three images at three different exposure values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Get AVCaptureBracketedStillImageSettings for a set of exposure values.",
+            "let exposureValues: [Float] = [-2, 0, +2]",
+            "let makeAutoExposureSettings = AVCaptureAutoExposureBracketedStillImageSettings.autoExposureSettings(exposureTargetBias:)",
+            "let exposureSettings = exposureValues.map(makeAutoExposureSettings)",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In Swift, you can easily convert an array of exposure values to an array of bracket settings by passing the appropriate initializer to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "map(_:)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " function, as shown above.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-Photo-Settings-and-Shoot",
+          "level": 3,
+          "text": "Create Photo Settings and Shoot",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object you create when shooting a single photo, to shoot a bracketed capture you’ll need an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoBracketSettings",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. This object combines the general settings that apply to all photos in the bracket with your bracket settings that specify how each photo differs from the rest of the bracket.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As with single-image capture, you create a photo settings object by choosing the image codec and file format for the resulting photos, but you also provide the bracket settings you’ve chosen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create photo settings for HEIF/HEVC capture and no RAW output",
+            "// and enable cross-bracket image stabilization.",
+            "let photoSettings = AVCapturePhotoBracketSettings(rawPixelFormatType: 0,",
+            "    processedFormat: [AVVideoCodecKey : AVVideoCodecType.hevc],",
+            "    bracketedSettings: exposureSettings)",
+            "photoSettings.isLensStabilizationEnabled =",
+            "    self.photoOutput.isLensStabilizationDuringBracketedCaptureSupported",
+            "",
+            "// Shoot the bracket, using a custom class to handle capture delegate callbacks.",
+            "let captureProcessor = PhotoCaptureProcessor()",
+            "self.photoOutput.capturePhoto(with: photoSettings, delegate: captureProcessor)",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Turning on ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoBracketSettings/isLensStabilizationEnabled",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " (if supported) causes the camera to apply optical image stabilization (OIS) across the entire bracket, so that photos resulting from the bracket still line up with each other even if the device moves during capture.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Handle-Bracketed-Capture-Results",
+          "level": 3,
+          "text": "Handle Bracketed Capture Results",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The photo output calls your delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate/photoOutput(_:didFinishProcessingPhoto:error:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method at least once for each exposure in the bracket, and possibly additional times depending on your capture settings. For example, if you request RAW+HEIF capture in a three-exposure bracket, the photo output calls your delegate’s ",
+              "type": "text"
+            },
+            {
+              "code": "didFinishProcessingPhoto",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method six times (2 formats × 3 exposures), providing six ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To keep track of multiple results, compare the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/photoCount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from each photo to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/expectedPhotoCount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of your resolved settings. When those numbers are equal, you’ve received all results from the capture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureAutoExposureBracketedStillImageSettings": {
+      "abstract": [
+        {
+          "text": "A configuration for defining bracketed photo captures in terms of bias relative to automatic exposure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureAutoExposureBracketedStillImageSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureAutoExposureBracketedStillImageSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureAutoExposureBracketedStillImageSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureAutoExposureBracketedStillImageSettings",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureautoexposurebracketedstillimagesettings"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureManualExposureBracketedStillImageSettings": {
+      "abstract": [
+        {
+          "text": "A configuration for defining bracketed photo captures in terms of specific exposure and ISO values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureManualExposureBracketedStillImageSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureManualExposureBracketedStillImageSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureManualExposureBracketedStillImageSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureManualExposureBracketedStillImageSettings",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturemanualexposurebracketedstillimagesettings"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto": {
+      "abstract": [
+        {
+          "text": "A container for image data from a photo capture output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhoto"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhoto"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhoto",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/photoCount": {
+      "abstract": [
+        {
+          "text": "The 1-based index of this photo capture relative to other results from the same capture request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "photoCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/photoCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "photoCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "photoCount",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/photocount"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoBracketSettings": {
+      "abstract": [
+        {
+          "text": "A specification of the features and settings to use for a photo capture request that captures multiple images with varied settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoBracketSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoBracketSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoBracketSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhotoBracketSettings",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotobracketsettings"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoBracketSettings/isLensStabilizationEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that specifies whether to stabilize the lens for the duration of the bracketed capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isLensStabilizationEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoBracketSettings/isLensStabilizationEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lensStabilizationEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isLensStabilizationEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotobracketsettings/islensstabilizationenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate/photoOutput(_:didFinishProcessingPhoto:error:)": {
+      "abstract": [
+        {
+          "text": "Provides the delegate with the captured image and associated metadata resulting from a photo capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "photoOutput"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCapturePhotoOutput",
+          "text": "AVCapturePhotoOutput"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFinishProcessingPhoto"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCapturePhoto",
+          "text": "AVCapturePhoto"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate/photoOutput(_:didFinishProcessingPhoto:error:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "captureOutput:didFinishProcessingPhoto:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "photoOutput(_:didFinishProcessingPhoto:error:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotocapturedelegate/photooutput(_:didfinishprocessingphoto:error:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput": {
+      "abstract": [
+        {
+          "text": "A capture output for still image, Live Photos, and other photography workflows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhotoOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotooutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/capturePhoto(with:delegate:)": {
+      "abstract": [
+        {
+          "text": "Initiates a photo capture using the specified settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "capturePhoto"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCapturePhotoSettings",
+          "text": "AVCapturePhotoSettings"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)AVCapturePhotoCaptureDelegate",
+          "text": "AVCapturePhotoCaptureDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/capturePhoto(with:delegate:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "capturePhotoWithSettings:delegate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "capturePhoto(with:delegate:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotooutput/capturephoto(with:delegate:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings": {
+      "abstract": [
+        {
+          "text": "A specification of the features and settings to use for a single photo capture request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhotoSettings",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotosettings"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/expectedPhotoCount": {
+      "abstract": [
+        {
+          "text": "The number of photo capture results in the capture request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "expectedPhotoCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/expectedPhotoCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "expectedPhotoCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "expectedPhotoCount",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureresolvedphotosettings/expectedphotocount"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-photos-with-depth": {
+      "abstract": [
+        {
+          "text": "Get a depth map with a photo to create effects like the system camera’s Portrait mode (on compatible devices).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-photos-with-depth",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing Photos with Depth",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capturing-photos-with-depth"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-still-and-live-photos": {
+      "abstract": [
+        {
+          "text": "Configure and capture single or multiple still images, Live Photos, and other forms of photography.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-still-and-live-photos",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Capturing Still and Live Photos",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capturing-still-and-live-photos"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-thumbnail-and-preview-images": {
+      "abstract": [
+        {
+          "text": "Enable delivery of reduced-size images with the main image in a photo capture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-thumbnail-and-preview-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing Thumbnail and Preview Images",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capturing-thumbnail-and-preview-images"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-uncompressed-image-data": {
+      "abstract": [
+        {
+          "text": "Get processed image data without compression to use for filtering or lossless output.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-uncompressed-image-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing Uncompressed Image Data",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capturing-uncompressed-image-data"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/photo-capture": {
+      "abstract": [
+        {
+          "text": "Capture high-quality still images, Live Photos, and supporting photo data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/photo-capture",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Photo capture",
+      "type": "topic",
+      "url": "/documentation/avfoundation/photo-capture"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "More-Capture-Options",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-photos-with-depth",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-uncompressed-image-data",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-thumbnail-and-preview-images"
+      ],
+      "title": "More Capture Options"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "More-Capture-Options",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-photos-with-depth",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-uncompressed-image-data",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-thumbnail-and-preview-images"
+              ],
+              "title": "More Capture Options"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1photoCount/title",
+          "value": "photoCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1photoCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "photoCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureResolvedPhotoSettings~1expectedPhotoCount/title",
+          "value": "expectedPhotoCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureResolvedPhotoSettings~1expectedPhotoCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "expectedPhotoCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings/title",
+          "value": "AVCapturePhotoSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoBracketSettings/title",
+          "value": "AVCapturePhotoBracketSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoBracketSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoBracketSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoBracketSettings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoBracketSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureManualExposureBracketedStillImageSettings/title",
+          "value": "AVCaptureManualExposureBracketedStillImageSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureManualExposureBracketedStillImageSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureManualExposureBracketedStillImageSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureManualExposureBracketedStillImageSettings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureManualExposureBracketedStillImageSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput~1capturePhoto(with:delegate:)/title",
+          "value": "capturePhotoWithSettings:delegate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput~1capturePhoto(with:delegate:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "capturePhotoWithSettings:delegate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput/title",
+          "value": "AVCapturePhotoOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto/title",
+          "value": "AVCapturePhoto"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhoto"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhoto"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoCaptureDelegate~1photoOutput(_:didFinishProcessingPhoto:error:)/title",
+          "value": "captureOutput:didFinishProcessingPhoto:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoCaptureDelegate~1photoOutput(_:didFinishProcessingPhoto:error:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "captureOutput:didFinishProcessingPhoto:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureAutoExposureBracketedStillImageSettings/title",
+          "value": "AVCaptureAutoExposureBracketedStillImageSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureAutoExposureBracketedStillImageSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureAutoExposureBracketedStillImageSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureAutoExposureBracketedStillImageSettings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureAutoExposureBracketedStillImageSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoBracketSettings~1isLensStabilizationEnabled/title",
+          "value": "lensStabilizationEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoBracketSettings~1isLensStabilizationEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lensStabilizationEnabled"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/capturing-a-bracketed-photo-sequence"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/capturing-a-bracketed-photo-sequence"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

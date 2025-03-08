@@ -1,0 +1,635 @@
+{
+  "abstract": [
+    {
+      "text": "Add and configure a source editor extension in your Xcode project.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.xcodekit/documentation/XcodeKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.xcodekit/documentation/XcodeKit/creating-a-source-editor-extension"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "XcodeKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a Source Editor Extension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You build extensions to the source editor in Xcode using XcodeKit. Source editor extensions can read and modify the contents of a source file, as well as read and modify the current text selection within the editor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-New-macOS-Project-in-Xcode",
+          "level": 3,
+          "text": "Create a New macOS Project in Xcode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a source editor extension, begin by creating a new macOS project in Xcode.  Add a new Xcode Source Editor Extension target to your project, as shown in the figure below, and activate its associated scheme when prompted. The project now contains an additional source folder with files from the template for source editor extensions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because your extension runs in Xcode, you must enable development signing for each target in your project. For more information about code signing for projects during development, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/IDEs/Conceptual/AppStoreDistributionTutorial/Introduction/Introduction.html#//apple_ref/doc/uid/TP40013839",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2902151",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The template in your new extension creates the ",
+              "type": "text"
+            },
+            {
+              "code": "SourceEditorCommand",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class. This class makes your code conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xcodekit/documentation/XcodeKit/XCSourceEditorCommand",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, so Xcode can associate a command with your code. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xcodekit/documentation/XcodeKit/XCSourceEditorCommand/perform(with:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method is the entry point for handling commands defined in your extension. This method is called each time a user selects one of your extension’s commands from the Editor menu.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-Customizable-Behavior",
+          "level": 3,
+          "text": "Add Customizable Behavior",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add customizable behavior to your source editor extension by filling in the body of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xcodekit/documentation/XcodeKit/XCSourceEditorCommand/perform(with:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. The following example shows a command that reverses the order of the lines in a source editor:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class SourceEditorCommand: NSObject, XCSourceEditorCommand {",
+            "    func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void ) -> Void {",
+            "        // Retrieve the contents of the current source editor.",
+            "        let lines = invocation.buffer.lines",
+            "        // Reverse the order of the lines in a copy.",
+            "        let updatedText = Array(lines.reversed())",
+            "        lines.removeAllObjects()",
+            "        lines.addObjects(from: updatedText)",
+            "        // Signal to Xcode that the command has completed.",
+            "        completionHandler(nil)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The extension template is configured by default to define just one command. To change its name or to add more commands, edit your extension target’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on adding and configuring additional commands, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xcodekit/documentation/XcodeKit/XCSourceEditorCommandDefinitionKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.xcodekit/documentation/XcodeKit": {
+      "abstract": [
+        {
+          "text": "Create extensions to add commands to the Xcode source editor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xcodekit/documentation/XcodeKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XcodeKit",
+      "type": "topic",
+      "url": "/documentation/xcodekit"
+    },
+    "doc://com.apple.xcodekit/documentation/XcodeKit/XCSourceEditorCommand": {
+      "abstract": [
+        {
+          "text": "The protocol you implement to handle command invocations in a source editor extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCSourceEditorCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.xcodekit/documentation/XcodeKit/XCSourceEditorCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCSourceEditorCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCSourceEditorCommand",
+      "type": "topic",
+      "url": "/documentation/xcodekit/xcsourceeditorcommand"
+    },
+    "doc://com.apple.xcodekit/documentation/XcodeKit/XCSourceEditorCommand/perform(with:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Performs the action associated with the command using the information in an invocation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCSourceEditorCommandInvocation",
+          "text": "XCSourceEditorCommandInvocation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.xcodekit/documentation/XcodeKit/XCSourceEditorCommand/perform(with:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "performCommandWithInvocation:completionHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "perform(with:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/xcodekit/xcsourceeditorcommand/perform(with:completionhandler:)"
+    },
+    "doc://com.apple.xcodekit/documentation/XcodeKit/XCSourceEditorCommandDefinitionKey": {
+      "abstract": [
+        {
+          "text": "A key in the dictionary that defines a source editor command.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCSourceEditorCommandDefinitionKey"
+        }
+      ],
+      "identifier": "doc://com.apple.xcodekit/documentation/XcodeKit/XCSourceEditorCommandDefinitionKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCSourceEditorCommandDefinitionKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCSourceEditorCommandDefinitionKey",
+      "type": "topic",
+      "url": "/documentation/xcodekit/xcsourceeditorcommanddefinitionkey"
+    },
+    "doc://com.apple.xcodekit/documentation/XcodeKit/XCSourceEditorExtension": {
+      "abstract": [
+        {
+          "text": "The protocol you implement to create Xcode source editor extensions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCSourceEditorExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.xcodekit/documentation/XcodeKit/XCSourceEditorExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCSourceEditorExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCSourceEditorExtension",
+      "type": "topic",
+      "url": "/documentation/xcodekit/xcsourceeditorextension"
+    },
+    "doc://com.apple.xcodekit/documentation/XcodeKit/testing-your-source-editor-extension": {
+      "abstract": [
+        {
+          "text": "Launch a special instance of Xcode to test your source editor extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xcodekit/documentation/XcodeKit/testing-your-source-editor-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing Your Source Editor Extension",
+      "type": "topic",
+      "url": "/documentation/xcodekit/testing-your-source-editor-extension"
+    },
+    "https://developer.apple.com/library/archive/documentation/IDEs/Conceptual/AppStoreDistributionTutorial/Introduction/Introduction.html#//apple_ref/doc/uid/TP40013839": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/IDEs/Conceptual/AppStoreDistributionTutorial/Introduction/Introduction.html#//apple_ref/doc/uid/TP40013839",
+      "title": "App Distribution Quick Start",
+      "titleInlineContent": [
+        {
+          "text": "App Distribution Quick Start",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/IDEs/Conceptual/AppStoreDistributionTutorial/Introduction/Introduction.html#//apple_ref/doc/uid/TP40013839"
+    },
+    "media-2902151": {
+      "alt": "Xcode screenshot showing the different kinds of project targets. Among the available targets, Xcode Source Editor Extension is selected.",
+      "identifier": "media-2902151",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a8baa50e1a4026e0f66da489a9f39d5d/media-2902151@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.xcodekit/documentation/XcodeKit/testing-your-source-editor-extension",
+        "doc://com.apple.xcodekit/documentation/XcodeKit/XCSourceEditorExtension"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.xcodekit/documentation/XcodeKit/testing-your-source-editor-extension",
+                "doc://com.apple.xcodekit/documentation/XcodeKit/XCSourceEditorExtension"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcodekit~1documentation~1XcodeKit~1XCSourceEditorCommandDefinitionKey/title",
+          "value": "XCSourceEditorCommandDefinitionKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcodekit~1documentation~1XcodeKit~1XCSourceEditorCommandDefinitionKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCSourceEditorCommandDefinitionKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcodekit~1documentation~1XcodeKit~1XCSourceEditorCommandDefinitionKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCSourceEditorCommandDefinitionKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcodekit~1documentation~1XcodeKit~1XCSourceEditorCommand~1perform(with:completionHandler:)/title",
+          "value": "performCommandWithInvocation:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcodekit~1documentation~1XcodeKit~1XCSourceEditorCommand~1perform(with:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "performCommandWithInvocation:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcodekit~1documentation~1XcodeKit~1XCSourceEditorCommand/title",
+          "value": "XCSourceEditorCommand"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcodekit~1documentation~1XcodeKit~1XCSourceEditorCommand/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCSourceEditorCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcodekit~1documentation~1XcodeKit~1XCSourceEditorCommand/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCSourceEditorCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcodekit~1documentation~1XcodeKit~1XCSourceEditorExtension/title",
+          "value": "XCSourceEditorExtension"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcodekit~1documentation~1XcodeKit~1XCSourceEditorExtension/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCSourceEditorExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcodekit~1documentation~1XcodeKit~1XCSourceEditorExtension/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCSourceEditorExtension"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/xcodekit/creating-a-source-editor-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/xcodekit/creating-a-source-editor-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5056 @@
+{
+  "abstract": [
+    {
+      "text": "An IOService class representing a PCI device.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/pci"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iopcidevice"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1398582,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOPCIDevice",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "11.0",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOPCIDevice"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOPCIDevice"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOService",
+              "text": "IOService"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The discovery of a PCI device by the PCI bus family results in an instance of the IOPCIDevice being created and published. It provides services for looking up and mapping memory mapped hardware, and access to the PCI configuration and I/O spaces.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Matching Supported by IOPCIDevice",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Two types of matching are available, OpenFirmware name matching and PCI register matching. Currently, only one of these two matching schemes can be used in the same property table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "OpenFirmware Name Matching",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "IOService performs matching based on the IONameMatch property (see IOService). IOPCIDevices created with OpenFirmware device tree entries will name match based on the standard OpenFirmware name matching properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "PCI Register Matching",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A PCI device driver can also match on the values of certain config space registers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In each case, several matching values can be specified, and an optional mask for the value of the config space register may follow the value, preceded by an '&' character.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "kIOPCIMatchKey, \"IOPCIMatch\"",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The kIOPCIMatchKey property matches the vendor and device ID (0x00) register, or the subsystem register (0x2c).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "kIOPCIPrimaryMatchKey, \"IOPCIPrimaryMatch\"",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The kIOPCIPrimaryMatchKey property matches the vendor and device ID (0x00) register.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "kIOPCISecondaryMatchKey, \"IOPCISecondaryMatch\"",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The kIOPCISecondaryMatchKey property matches the subsystem register (0x2c).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "kIOPCIClassMatchKey, \"IOPCIClassMatch\"",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The kIOPCIClassMatchKey property matches the class code register (0x08). The default mask for this register is 0xffffff00.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Examples:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "&ltkey&gtIOPCIMatch&lt/key&gt",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "&ltstring&gt0x00261011&lt/string&gt",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Matches a device whose vendor ID is 0x1011, and device ID is 0x0026, including subsystem IDs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "&ltkey&gtIOPCIMatch&lt/key&gt",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "&ltstring&gt0x00789004&0x00ffffff 0x78009004&0x0xff00ffff&lt/string&gt",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Matches with any device with a vendor ID of 0x9004, and a device ID of 0xzz78 or 0x78zz, where 'z' is don't care.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "&ltkey&gtIOPCIClassMatch&lt/key&gt",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "&ltstring&gt0x02000000&0xffff0000&lt/string&gt",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Matches a device whose class code is 0x0200zz, an ethernet device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/pci": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/pci",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "PCI",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/pci"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device": {
+      "abstract": [
+        {
+          "text": "Create an IOKit driver to support Thunderbolt devices that implement features not supported in PCIDriverKit, such as wireless networking or audio. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing a PCIe Kext for a Thunderbolt Device",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioagpdevice": {
+      "abstract": [
+        {
+          "text": "An IOService class representing an AGP primary device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioagpdevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOAGPDevice",
+      "type": "topic",
+      "url": "/documentation/kernel/ioagpdevice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice": {
+      "abstract": [
+        {
+          "text": "An IOService class representing a PCI device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOPCIDevice",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398476-getbusnumber": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getBusNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398476-getbusnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getBusNumber",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398476-getbusnumber"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398479-attach": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "attach"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398479-attach",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attach",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398479-attach"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398481-extendedfindpcicapability": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "extendedFindPCICapability"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398481-extendedfindpcicapability",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "extendedFindPCICapability",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398481-extendedfindpcicapability"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398485-findpcicapability": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "findPCICapability"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398485-findpcicapability",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "findPCICapability",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398485-findpcicapability"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398493-savedevicestate": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "saveDeviceState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398493-savedevicestate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "saveDeviceState",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398493-savedevicestate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398497-configwrite32": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "configWrite32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398497-configwrite32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configWrite32",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398497-configwrite32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398498-settunnell1enable": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTunnelL1Enable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398498-settunnell1enable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setTunnelL1Enable",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398498-settunnell1enable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398500-configaccess": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "configAccess"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398500-configaccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configAccess",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398500-configaccess"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398504-createeventsource": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "createEventSource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398504-createeventsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createEventSource",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398504-createeventsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398512-ioread16": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ioRead16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398512-ioread16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ioRead16",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398512-ioread16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398535-relocate": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "relocate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398535-relocate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "relocate",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398535-relocate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398543-haspcipowermanagement": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasPCIPowerManagement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398543-haspcipowermanagement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasPCIPowerManagement",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398543-haspcipowermanagement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398549-getfunctionnumber": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getFunctionNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398549-getfunctionnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getFunctionNumber",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398549-getfunctionnumber"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398553-setconfighandler": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setConfigHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398553-setconfighandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setConfigHandler",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398553-setconfighandler"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398555-initialpowerstatefordomainstate": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initialPowerStateForDomainState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398555-initialpowerstatefordomainstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initialPowerStateForDomainState",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398555-initialpowerstatefordomainstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398588-ioread8": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ioRead8"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398588-ioread8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ioRead8",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398588-ioread8"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398591-extendedconfigread16": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "extendedConfigRead16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398591-extendedconfigread16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "extendedConfigRead16",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398591-extendedconfigread16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398613-extendedconfigread32": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "extendedConfigRead32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398613-extendedconfigread32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "extendedConfigRead32",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398613-extendedconfigread32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398617-enableltr": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "enableLTR"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398617-enableltr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enableLTR",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398617-enableltr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398619-enablepcipowermanagement": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "enablePCIPowerManagement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398619-enablepcipowermanagement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enablePCIPowerManagement",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398619-enablepcipowermanagement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398630-setmemoryenable": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMemoryEnable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398630-setmemoryenable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setMemoryEnable",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398630-setmemoryenable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398640-setconfigbits": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setConfigBits"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398640-setconfigbits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setConfigBits",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398640-setconfigbits"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398666-matchpropertytable": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "matchPropertyTable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398666-matchpropertytable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "matchPropertyTable",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398666-matchpropertytable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398669-initreserved": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initReserved"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398669-initreserved",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initReserved",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398669-initreserved"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398671-configread16": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "configRead16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398671-configread16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configRead16",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398671-configread16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398677-detach": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "detach"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398677-detach",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detach",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398677-detach"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398685-requestprobe": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestProbe"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398685-requestprobe",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestProbe",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398685-requestprobe"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398705-iowrite16": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ioWrite16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398705-iowrite16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ioWrite16",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398705-iowrite16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398709-protectdevice": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "protectDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398709-protectdevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "protectDevice",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398709-protectdevice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398717-ioread32": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ioRead32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398717-ioread32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ioRead32",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398717-ioread32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398727-iodevicememory": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ioDeviceMemory"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398727-iodevicememory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ioDeviceMemory",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398727-iodevicememory"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398729-setpowerstate": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPowerState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398729-setpowerstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPowerState",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398729-setpowerstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398736-setaspmstate": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setASPMState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398736-setaspmstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setASPMState",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398736-setaspmstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398741-extendedconfigwrite16": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "extendedConfigWrite16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398741-extendedconfigwrite16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "extendedConfigWrite16",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398741-extendedconfigwrite16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398761-kernelrequestprobe": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "kernelRequestProbe"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398761-kernelrequestprobe",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kernelRequestProbe",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398761-kernelrequestprobe"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398763-getdevicememorywithregister": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getDeviceMemoryWithRegister"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398763-getdevicememorywithregister",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getDeviceMemoryWithRegister",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398763-getdevicememorywithregister"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398771-getmetaclass": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398771-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398771-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398775-iowrite32": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ioWrite32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398775-iowrite32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ioWrite32",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398775-iowrite32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398789-mapdevicememorywithregister": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapDeviceMemoryWithRegister"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398789-mapdevicememorywithregister",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapDeviceMemoryWithRegister",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398789-mapdevicememorywithregister"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398799-powerstatewillchangeto": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "powerStateWillChangeTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398799-powerstatewillchangeto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "powerStateWillChangeTo",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398799-powerstatewillchangeto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398803-getdevicenumber": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getDeviceNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398803-getdevicenumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getDeviceNumber",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398803-getdevicenumber"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398814-configread8": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "configRead8"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398814-configread8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configRead8",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398814-configread8"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398816-extendedconfigwrite32": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "extendedConfigWrite32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398816-extendedconfigwrite32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "extendedConfigWrite32",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398816-extendedconfigwrite32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398828-setpcipowerstate": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPCIPowerState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398828-setpcipowerstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPCIPowerState",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398828-setpcipowerstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398837-comparename": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "compareName"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398837-comparename",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "compareName",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398837-comparename"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398840-newuserclient": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "newUserClient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398840-newuserclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "newUserClient",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398840-newuserclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398852-getresources": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getResources"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398852-getresources",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getResources",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398852-getresources"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398855-iowrite8": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ioWrite8"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398855-iowrite8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ioWrite8",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398855-iowrite8"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398863-updatewakereason": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateWakeReason"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398863-updatewakereason",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updateWakeReason",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398863-updatewakereason"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398866-copyaererrordescriptionforbit": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyAERErrorDescriptionForBit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398866-copyaererrordescriptionforbit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copyAERErrorDescriptionForBit",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398866-copyaererrordescriptionforbit"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398874-restoredevicestate": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "restoreDeviceState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398874-restoredevicestate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "restoreDeviceState",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398874-restoredevicestate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398879-extendedconfigwrite8": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "extendedConfigWrite8"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398879-extendedconfigwrite8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "extendedConfigWrite8",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398879-extendedconfigwrite8"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398888-setioenable": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setIOEnable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398888-setioenable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setIOEnable",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398888-setioenable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398893-checklink": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "checkLink"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398893-checklink",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "checkLink",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398893-checklink"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398899-configwrite8": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "configWrite8"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398899-configwrite8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configWrite8",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398899-configwrite8"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398903-setlatencytolerance": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setLatencyTolerance"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398903-setlatencytolerance",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setLatencyTolerance",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398903-setlatencytolerance"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398907-init": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398907-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398907-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398909-free": {
+      "abstract": [
+        {
+          "text": "Performs any final cleanup for the object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398909-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398909-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398913-getdevicememorywithindex": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getDeviceMemoryWithIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398913-getdevicememorywithindex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getDeviceMemoryWithIndex",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398913-getdevicememorywithindex"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398921-powerstatefordomainstate": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "powerStateForDomainState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398921-powerstatefordomainstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "powerStateForDomainState",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398921-powerstatefordomainstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398925-configread32": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "configRead32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398925-configread32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configRead32",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398925-configread32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398929-detachabove": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "detachAbove"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398929-detachabove",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detachAbove",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398929-detachabove"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398935-extendedconfigread8": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "extendedConfigRead8"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398935-extendedconfigread8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "extendedConfigRead8",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398935-extendedconfigread8"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398957-setproperties": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398957-setproperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setProperties",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398957-setproperties"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398961-matchlocation": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "matchLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398961-matchlocation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "matchLocation",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398961-matchlocation"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398970-setbusmasterenable": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBusMasterEnable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398970-setbusmasterenable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setBusMasterEnable",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398970-setbusmasterenable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398982-callplatformfunction": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "callPlatformFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398982-callplatformfunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "callPlatformFunction",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398982-callplatformfunction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398984-configwrite16": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "configWrite16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398984-configwrite16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configWrite16",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1398984-configwrite16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1399002-maxcapabilityfordomainstate": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "maxCapabilityForDomainState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1399002-maxcapabilityfordomainstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "maxCapabilityForDomainState",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1399002-maxcapabilityfordomainstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810221-configread16": {
+      "abstract": [
+        {
+          "text": "Reads a 16-bit value from the PCI device's configuration space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810221-configread16",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "configRead16",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1810221-configread16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810249-configread32": {
+      "abstract": [
+        {
+          "text": "Reads a 32-bit value from the PCI device's configuration space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810249-configread32",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "configRead32",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1810249-configread32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810282-configread8": {
+      "abstract": [
+        {
+          "text": "Reads a 8-bit value from the PCI device's configuration space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810282-configread8",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "configRead8",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1810282-configread8"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810325-configwrite16": {
+      "abstract": [
+        {
+          "text": "Writes a 16-bit value to the PCI device's configuration space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810325-configwrite16",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "configWrite16",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1810325-configwrite16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810356-configwrite32": {
+      "abstract": [
+        {
+          "text": "Writes a 32-bit value to the PCI device's configuration space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810356-configwrite32",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "configWrite32",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1810356-configwrite32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810381-configwrite8": {
+      "abstract": [
+        {
+          "text": "Writes a 8-bit value to the PCI device's configuration space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810381-configwrite8",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "configWrite8",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1810381-configwrite8"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810420-enablepcipowermanagement": {
+      "abstract": [
+        {
+          "text": "enable PCI power management for sleep state",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810420-enablepcipowermanagement",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "enablePCIPowerManagement",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1810420-enablepcipowermanagement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810448-extendedconfigread16": {
+      "abstract": [
+        {
+          "text": "Reads a 16-bit value from the PCI device's configuration space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810448-extendedconfigread16",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "extendedConfigRead16",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1810448-extendedconfigread16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810495-extendedconfigread32": {
+      "abstract": [
+        {
+          "text": "Reads a 32-bit value from the PCI device's configuration space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810495-extendedconfigread32",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "extendedConfigRead32",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1810495-extendedconfigread32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810539-extendedconfigread8": {
+      "abstract": [
+        {
+          "text": "Reads a 8-bit value from the PCI device's configuration space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810539-extendedconfigread8",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "extendedConfigRead8",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1810539-extendedconfigread8"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810577-extendedconfigwrite16": {
+      "abstract": [
+        {
+          "text": "Writes a 16-bit value to the PCI device's configuration space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810577-extendedconfigwrite16",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "extendedConfigWrite16",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1810577-extendedconfigwrite16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810617-extendedconfigwrite32": {
+      "abstract": [
+        {
+          "text": "Writes a 32-bit value to the PCI device's configuration space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810617-extendedconfigwrite32",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "extendedConfigWrite32",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1810617-extendedconfigwrite32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810659-extendedconfigwrite8": {
+      "abstract": [
+        {
+          "text": "Writes a 8-bit value to the PCI device's configuration space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810659-extendedconfigwrite8",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "extendedConfigWrite8",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1810659-extendedconfigwrite8"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810707-extendedfindpcicapability": {
+      "abstract": [
+        {
+          "text": "Search configuration space for a PCI capability register.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810707-extendedfindpcicapability",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "extendedFindPCICapability",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1810707-extendedfindpcicapability"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810749-findpcicapability": {
+      "abstract": [
+        {
+          "text": "Search configuration space for a PCI capability register.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810749-findpcicapability",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "findPCICapability",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1810749-findpcicapability"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810790-getbusnumber": {
+      "abstract": [
+        {
+          "text": "Accessor to return the PCI device's assigned bus number.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810790-getbusnumber",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getBusNumber",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1810790-getbusnumber"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810831-getdevicememorywithregister": {
+      "abstract": [
+        {
+          "text": "Returns an instance of IODeviceMemory representing one of the device's memory mapped ranges.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810831-getdevicememorywithregister",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getDeviceMemoryWithRegister",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1810831-getdevicememorywithregister"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810861-getdevicenumber": {
+      "abstract": [
+        {
+          "text": "Accessor to return the PCI device's device number.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810861-getdevicenumber",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getDeviceNumber",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1810861-getdevicenumber"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810892-getfunctionnumber": {
+      "abstract": [
+        {
+          "text": "Accessor to return the PCI device's function number.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810892-getfunctionnumber",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getFunctionNumber",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1810892-getfunctionnumber"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810931-haspcipowermanagement": {
+      "abstract": [
+        {
+          "text": "determine whether or not the device supports PCI Bus Power Management.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810931-haspcipowermanagement",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "hasPCIPowerManagement",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1810931-haspcipowermanagement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810959-iodevicememory": {
+      "abstract": [
+        {
+          "text": "Accessor to the I/O space aperture for the bus.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810959-iodevicememory",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "ioDeviceMemory",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1810959-iodevicememory"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810986-ioread16": {
+      "abstract": [
+        {
+          "text": "Reads a 16-bit value from an I/O space aperture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810986-ioread16",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "ioRead16",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1810986-ioread16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811005-ioread32": {
+      "abstract": [
+        {
+          "text": "Reads a 32-bit value from an I/O space aperture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811005-ioread32",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "ioRead32",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1811005-ioread32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811039-ioread8": {
+      "abstract": [
+        {
+          "text": "Reads a 8-bit value from an I/O space aperture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811039-ioread8",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "ioRead8",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1811039-ioread8"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811083-iowrite16": {
+      "abstract": [
+        {
+          "text": "Writes a 16-bit value to an I/O space aperture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811083-iowrite16",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "ioWrite16",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1811083-iowrite16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811113-iowrite32": {
+      "abstract": [
+        {
+          "text": "Writes a 32-bit value to an I/O space aperture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811113-iowrite32",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "ioWrite32",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1811113-iowrite32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811151-iowrite8": {
+      "abstract": [
+        {
+          "text": "Writes a 8-bit value to an I/O space aperture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811151-iowrite8",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "ioWrite8",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1811151-iowrite8"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811470-mapdevicememorywithregister": {
+      "abstract": [
+        {
+          "text": "Maps a physical range of the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811470-mapdevicememorywithregister",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "mapDeviceMemoryWithRegister",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1811470-mapdevicememorywithregister"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811490-setbusmasterenable": {
+      "abstract": [
+        {
+          "text": "Enables bus mastering on the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811490-setbusmasterenable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setBusMasterEnable",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1811490-setbusmasterenable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811511-setconfigbits": {
+      "abstract": [
+        {
+          "text": "Sets masked bits in a configuration space register.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811511-setconfigbits",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setConfigBits",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1811511-setconfigbits"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811528-setioenable": {
+      "abstract": [
+        {
+          "text": "Sets the device's I/O space response.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811528-setioenable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setIOEnable",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1811528-setioenable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811543-setmemoryenable": {
+      "abstract": [
+        {
+          "text": "Sets the device's memory space response.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811543-setmemoryenable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setMemoryEnable",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/1811543-setmemoryenable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3172732-enableacs": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "enableACS"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3172732-enableacs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enableACS",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3172732-enableacs"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3180683-dispatch": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "Dispatch"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3180683-dispatch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Dispatch",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3180683-dispatch"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516629-enablepcipowermanagement": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnablePCIPowerManagement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516629-enablepcipowermanagement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EnablePCIPowerManagement",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3516629-enablepcipowermanagement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516630-enablepcipowermanagement_impl": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnablePCIPowerManagement_Impl"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516630-enablepcipowermanagement_impl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EnablePCIPowerManagement_Impl",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3516630-enablepcipowermanagement_impl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516631-enablepcipowermanagement_invoke": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnablePCIPowerManagement_Invoke"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516631-enablepcipowermanagement_invoke",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EnablePCIPowerManagement_Invoke",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3516631-enablepcipowermanagement_invoke"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516632-findpcicapability": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "FindPCICapability"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516632-findpcicapability",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FindPCICapability",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3516632-findpcicapability"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516633-findpcicapability_impl": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "FindPCICapability_Impl"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516633-findpcicapability_impl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FindPCICapability_Impl",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3516633-findpcicapability_impl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516634-findpcicapability_invoke": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "FindPCICapability_Invoke"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516634-findpcicapability_invoke",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FindPCICapability_Invoke",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3516634-findpcicapability_invoke"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516635-getbusdevicefunction": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetBusDeviceFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516635-getbusdevicefunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetBusDeviceFunction",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3516635-getbusdevicefunction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516636-getbusdevicefunction_impl": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetBusDeviceFunction_Impl"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516636-getbusdevicefunction_impl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetBusDeviceFunction_Impl",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3516636-getbusdevicefunction_impl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516637-getbusdevicefunction_invoke": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetBusDeviceFunction_Invoke"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516637-getbusdevicefunction_invoke",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetBusDeviceFunction_Invoke",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3516637-getbusdevicefunction_invoke"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516638-haspcipowermanagement": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "HasPCIPowerManagement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516638-haspcipowermanagement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HasPCIPowerManagement",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3516638-haspcipowermanagement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516639-haspcipowermanagement_impl": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "HasPCIPowerManagement_Impl"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516639-haspcipowermanagement_impl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HasPCIPowerManagement_Impl",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3516639-haspcipowermanagement_impl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516640-haspcipowermanagement_invoke": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "HasPCIPowerManagement_Invoke"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516640-haspcipowermanagement_invoke",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HasPCIPowerManagement_Invoke",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3516640-haspcipowermanagement_invoke"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516649-callplatformfunction": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "callPlatformFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516649-callplatformfunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "callPlatformFunction",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3516649-callplatformfunction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516650-configread16": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "configRead16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516650-configread16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configRead16",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3516650-configread16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516651-configread32": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "configRead32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516651-configread32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configRead32",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3516651-configread32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516652-configread8": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "configRead8"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516652-configread8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configRead8",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3516652-configread8"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516653-configwrite16": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "configWrite16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516653-configwrite16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configWrite16",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3516653-configwrite16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516654-configwrite32": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "configWrite32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516654-configwrite32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configWrite32",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3516654-configwrite32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516655-configwrite8": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "configWrite8"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516655-configwrite8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configWrite8",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3516655-configwrite8"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516656-init": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516656-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3516656-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3538575-matchpropertytable": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "matchPropertyTable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3538575-matchpropertytable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "matchPropertyTable",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3538575-matchpropertytable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3543394-handleclose": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleClose"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3543394-handleclose",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleClose",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3543394-handleclose"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3543395-handleopen": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleOpen"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3543395-handleopen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3543395-handleopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3684899-devicememoryread16": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceMemoryRead16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3684899-devicememoryread16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deviceMemoryRead16",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3684899-devicememoryread16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3684900-devicememoryread32": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceMemoryRead32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3684900-devicememoryread32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deviceMemoryRead32",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3684900-devicememoryread32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3684901-devicememoryread64": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceMemoryRead64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3684901-devicememoryread64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deviceMemoryRead64",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3684901-devicememoryread64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3684902-devicememoryread8": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceMemoryRead8"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3684902-devicememoryread8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deviceMemoryRead8",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3684902-devicememoryread8"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3684903-devicememorywrite16": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceMemoryWrite16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3684903-devicememorywrite16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deviceMemoryWrite16",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3684903-devicememorywrite16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3684904-devicememorywrite32": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceMemoryWrite32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3684904-devicememorywrite32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deviceMemoryWrite32",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3684904-devicememorywrite32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3684905-devicememorywrite64": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceMemoryWrite64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3684905-devicememorywrite64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deviceMemoryWrite64",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3684905-devicememorywrite64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3684906-devicememorywrite8": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceMemoryWrite8"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3684906-devicememorywrite8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deviceMemoryWrite8",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3684906-devicememorywrite8"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3736273-clientcrashed_impl": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ClientCrashed_Impl"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3736273-clientcrashed_impl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ClientCrashed_Impl",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3736273-clientcrashed_impl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3738458-setproperties_impl": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetProperties_Impl"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3738458-setproperties_impl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetProperties_Impl",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3738458-setproperties_impl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3753534-getproperty": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3753534-getproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getProperty",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3753534-getproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3857680-restoredevicestate": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "RestoreDeviceState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3857680-restoredevicestate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RestoreDeviceState",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3857680-restoredevicestate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3857681-restoredevicestate_impl": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "RestoreDeviceState_Impl"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3857681-restoredevicestate_impl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RestoreDeviceState_Impl",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3857681-restoredevicestate_impl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3857682-restoredevicestate_invoke": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "RestoreDeviceState_Invoke"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3857682-restoredevicestate_invoke",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RestoreDeviceState_Invoke",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3857682-restoredevicestate_invoke"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3857683-savedevicestate": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SaveDeviceState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3857683-savedevicestate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SaveDeviceState",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3857683-savedevicestate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3857684-savedevicestate_impl": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SaveDeviceState_Impl"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3857684-savedevicestate_impl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SaveDeviceState_Impl",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3857684-savedevicestate_impl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3857685-savedevicestate_invoke": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "SaveDeviceState_Invoke"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3857685-savedevicestate_invoke",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SaveDeviceState_Invoke",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3857685-savedevicestate_invoke"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3861819-getbarinfo": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetBARInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3861819-getbarinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetBARInfo",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3861819-getbarinfo"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3861820-getbarinfo_impl": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetBARInfo_Impl"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3861820-getbarinfo_impl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetBARInfo_Impl",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3861820-getbarinfo_impl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3861821-getbarinfo_invoke": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetBARInfo_Invoke"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3861821-getbarinfo_invoke",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetBARInfo_Invoke",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3861821-getbarinfo_invoke"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3917649-setbusleadenable": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBusLeadEnable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3917649-setbusleadenable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setBusLeadEnable",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3917649-setbusleadenable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3919729-configureinterrupts": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConfigureInterrupts"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3919729-configureinterrupts",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConfigureInterrupts",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3919729-configureinterrupts"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3919730-configureinterrupts_impl": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConfigureInterrupts_Impl"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3919730-configureinterrupts_impl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConfigureInterrupts_Impl",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3919730-configureinterrupts_impl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3919731-configureinterrupts_invoke": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConfigureInterrupts_Invoke"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3919731-configureinterrupts_invoke",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConfigureInterrupts_Invoke",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3919731-configureinterrupts_invoke"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3919732-configureinterrupts": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "configureInterrupts"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3919732-configureinterrupts",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configureInterrupts",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3919732-configureinterrupts"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3928138-addpowerchild": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addPowerChild"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3928138-addpowerchild",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addPowerChild",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3928138-addpowerchild"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3928139-removepowerchild": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removePowerChild"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3928139-removepowerchild",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removePowerChild",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3928139-removepowerchild"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943407-getlinkspeed": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetLinkSpeed"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943407-getlinkspeed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetLinkSpeed",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3943407-getlinkspeed"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943408-getlinkspeed_impl": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetLinkSpeed_Impl"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943408-getlinkspeed_impl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetLinkSpeed_Impl",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3943408-getlinkspeed_impl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943409-getlinkspeed_invoke": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetLinkSpeed_Invoke"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943409-getlinkspeed_invoke",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetLinkSpeed_Invoke",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3943409-getlinkspeed_invoke"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943410-reset": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "Reset"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943410-reset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Reset",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3943410-reset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943411-reset_impl": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "Reset_Impl"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943411-reset_impl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Reset_Impl",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3943411-reset_impl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943412-reset_invoke": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "Reset_Invoke"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943412-reset_invoke",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Reset_Invoke",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3943412-reset_invoke"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943413-setlinkspeed": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetLinkSpeed"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943413-setlinkspeed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetLinkSpeed",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3943413-setlinkspeed"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943414-setlinkspeed_impl": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetLinkSpeed_Impl"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943414-setlinkspeed_impl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetLinkSpeed_Impl",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3943414-setlinkspeed_impl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943415-setlinkspeed_invoke": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetLinkSpeed_Invoke"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943415-setlinkspeed_invoke",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetLinkSpeed_Invoke",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3943415-setlinkspeed_invoke"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943416-getclosecommandmask": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCloseCommandMask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943416-getclosecommandmask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCloseCommandMask",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3943416-getclosecommandmask"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943417-getlinkspeed": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getLinkSpeed"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943417-getlinkspeed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getLinkSpeed",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3943417-getlinkspeed"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943418-registercrashnotification": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerCrashNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943418-registercrashnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerCrashNotification",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3943418-registercrashnotification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943419-reset": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "reset"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943419-reset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reset",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3943419-reset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943420-setlinkspeed": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setLinkSpeed"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943420-setlinkspeed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setLinkSpeed",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3943420-setlinkspeed"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943421-unregistercrashnotification": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "unregisterCrashNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943421-unregistercrashnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unregisterCrashNotification",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3943421-unregistercrashnotification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3986557-setaspmstate": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetASPMState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3986557-setaspmstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetASPMState",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3986557-setaspmstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3986558-setaspmstate_impl": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetASPMState_Impl"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3986558-setaspmstate_impl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetASPMState_Impl",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3986558-setaspmstate_impl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/3986559-setaspmstate_invoke": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetASPMState_Invoke"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/3986559-setaspmstate_invoke",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetASPMState_Invoke",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/3986559-setaspmstate_invoke"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4097725-setproperty": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4097725-setproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setProperty",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4097725-setproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4097726-setproperty": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4097726-setproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setProperty",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4097726-setproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4097727-setproperty": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4097727-setproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setProperty",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4097727-setproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4097728-setproperty": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4097728-setproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setProperty",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4097728-setproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4097729-setproperty": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4097729-setproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setProperty",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4097729-setproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4097730-setproperty": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4097730-setproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setProperty",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4097730-setproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4097731-setproperty": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4097731-setproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setProperty",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4097731-setproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4116459-configwrite16filter": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "configWrite16Filter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4116459-configwrite16filter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configWrite16Filter",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4116459-configwrite16filter"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4116460-configwrite32filter": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "configWrite32Filter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4116460-configwrite32filter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configWrite32Filter",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4116460-configwrite32filter"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4116461-configwrite8filter": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "configWrite8Filter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4116461-configwrite8filter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configWrite8Filter",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4116461-configwrite8filter"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359881-completeflr": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "completeFLR"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359881-completeflr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "completeFLR",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4359881-completeflr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359882-detachfromchild": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "detachFromChild"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359882-detachfromchild",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detachFromChild",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4359882-detachfromchild"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359883-devicememoryread": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceMemoryRead"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359883-devicememoryread",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deviceMemoryRead",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4359883-devicememoryread"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359884-devicememorywrite": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceMemoryWrite"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359884-devicememorywrite",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deviceMemoryWrite",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4359884-devicememorywrite"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359885-flr": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "flr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359885-flr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "flr",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4359885-flr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359886-isdownstreamfacing": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDownstreamFacing"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359886-isdownstreamfacing",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isDownstreamFacing",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4359886-isdownstreamfacing"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359887-launchreprobethread": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "launchReprobeThread"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359887-launchreprobethread",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "launchReprobeThread",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4359887-launchreprobethread"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359888-powerstatewillchangetogated": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "powerStateWillChangeToGated"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359888-powerstatewillchangetogated",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "powerStateWillChangeToGated",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4359888-powerstatewillchangetogated"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359889-prepareflr": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareFLR"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359889-prepareflr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepareFLR",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4359889-prepareflr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359890-reprobethreadcall": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "reprobeThreadCall"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359890-reprobethreadcall",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reprobeThreadCall",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4359890-reprobethreadcall"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359891-resetfunction": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "resetFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359891-resetfunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resetFunction",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4359891-resetfunction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359892-resetnubstate": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "resetNubState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359892-resetnubstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resetNubState",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4359892-resetnubstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359893-setpowerstategated": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPowerStateGated"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359893-setpowerstategated",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPowerStateGated",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4359893-setpowerstategated"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359894-supportsflr": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportsFLR"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359894-supportsflr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "supportsFLR",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4359894-supportsflr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4395252-shouldskipreset": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldSkipReset"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4395252-shouldskipreset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shouldSkipReset",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4395252-shouldskipreset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4446109-devicememoryread16": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceMemoryRead16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4446109-devicememoryread16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deviceMemoryRead16",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4446109-devicememoryread16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4446110-devicememoryread32": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceMemoryRead32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4446110-devicememoryread32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deviceMemoryRead32",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4446110-devicememoryread32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4446111-devicememoryread64": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceMemoryRead64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4446111-devicememoryread64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deviceMemoryRead64",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4446111-devicememoryread64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4446112-devicememoryread8": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceMemoryRead8"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4446112-devicememoryread8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deviceMemoryRead8",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4446112-devicememoryread8"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4446113-devicememorywrite16": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceMemoryWrite16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4446113-devicememorywrite16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deviceMemoryWrite16",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4446113-devicememorywrite16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4446114-devicememorywrite32": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceMemoryWrite32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4446114-devicememorywrite32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deviceMemoryWrite32",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4446114-devicememorywrite32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4446115-devicememorywrite64": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceMemoryWrite64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4446115-devicememorywrite64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deviceMemoryWrite64",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4446115-devicememorywrite64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4446116-devicememorywrite8": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceMemoryWrite8"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4446116-devicememorywrite8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deviceMemoryWrite8",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4446116-devicememorywrite8"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/4480432-hasl1errata": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasL1Errata"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/4480432-hasl1errata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasL1Errata",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/4480432-hasl1errata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice/reserved": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice/reserved",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "reserved",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice/reserved"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/close": {
+      "abstract": [
+        {
+          "text": "Closes the session to the PCI device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "Close"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/close",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Close",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/close"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/configurationread16": {
+      "abstract": [
+        {
+          "text": "Reads a 16-bit data value synchronously from the device’s configuration space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConfigurationRead16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/configurationread16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConfigurationRead16",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/configurationread16"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/configurationread32": {
+      "abstract": [
+        {
+          "text": "Reads a 32-bit data value synchronously from the device’s configuration space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConfigurationRead32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/configurationread32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConfigurationRead32",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/configurationread32"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/configurationread8": {
+      "abstract": [
+        {
+          "text": "Reads an 8-bit data value synchronously from the device’s configuration space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConfigurationRead8"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/configurationread8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConfigurationRead8",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/configurationread8"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/configurationwrite16": {
+      "abstract": [
+        {
+          "text": "Writes an 16-bit data value to the device’s configuration space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConfigurationWrite16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/configurationwrite16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConfigurationWrite16",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/configurationwrite16"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/configurationwrite32": {
+      "abstract": [
+        {
+          "text": "Writes an 32-bit data value to the device’s configuration space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConfigurationWrite32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/configurationwrite32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConfigurationWrite32",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/configurationwrite32"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/configurationwrite8": {
+      "abstract": [
+        {
+          "text": "Writes an 8-bit data value to the device’s configuration space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConfigurationWrite8"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/configurationwrite8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConfigurationWrite8",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/configurationwrite8"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memoryread16-50bq8": {
+      "abstract": [
+        {
+          "text": "Reads a 16-bit value synchronously from the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "MemoryRead16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memoryread16-50bq8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryRead16",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memoryread16-50bq8"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memoryread16-9qkdh": {
+      "abstract": [
+        {
+          "text": "Reads a 16-bit value synchronously from the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "MemoryRead16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memoryread16-9qkdh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryRead16",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memoryread16-9qkdh"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memoryread32-60hg9": {
+      "abstract": [
+        {
+          "text": "Reads a 32-bit value synchronously from the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "MemoryRead32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memoryread32-60hg9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryRead32",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memoryread32-60hg9"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memoryread32-84jap": {
+      "abstract": [
+        {
+          "text": "Reads a 32-bit value synchronously from the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "MemoryRead32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memoryread32-84jap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryRead32",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memoryread32-84jap"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memoryread64-37uob": {
+      "abstract": [
+        {
+          "text": "Reads a 64-bit value synchronously from the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "MemoryRead64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memoryread64-37uob",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryRead64",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memoryread64-37uob"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memoryread64-9ntrf": {
+      "abstract": [
+        {
+          "text": "Reads a 64-bit value synchronously from the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "MemoryRead64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memoryread64-9ntrf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryRead64",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memoryread64-9ntrf"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memoryread8-1edw0": {
+      "abstract": [
+        {
+          "text": "Reads a 8-bit value synchronously from the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "MemoryRead8"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memoryread8-1edw0",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryRead8",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memoryread8-1edw0"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memoryread8-7b2zp": {
+      "abstract": [
+        {
+          "text": "Reads a 8-bit value synchronously from the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "MemoryRead8"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memoryread8-7b2zp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryRead8",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memoryread8-7b2zp"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memorywrite16-534yk": {
+      "abstract": [
+        {
+          "text": "Writes an 16-bit value to the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "MemoryWrite16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memorywrite16-534yk",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryWrite16",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memorywrite16-534yk"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memorywrite16-8k6ch": {
+      "abstract": [
+        {
+          "text": "Writes an 16-bit value to the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "MemoryWrite16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memorywrite16-8k6ch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryWrite16",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memorywrite16-8k6ch"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memorywrite32-4pmh": {
+      "abstract": [
+        {
+          "text": "Writes an 32-bit value to the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "MemoryWrite32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memorywrite32-4pmh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryWrite32",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memorywrite32-4pmh"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memorywrite32-ow7r": {
+      "abstract": [
+        {
+          "text": "Writes an 32-bit value to the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "MemoryWrite32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memorywrite32-ow7r",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryWrite32",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memorywrite32-ow7r"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memorywrite64-8qyob": {
+      "abstract": [
+        {
+          "text": "Writes an 64-bit value to the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "MemoryWrite64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memorywrite64-8qyob",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryWrite64",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memorywrite64-8qyob"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memorywrite64-nvpu": {
+      "abstract": [
+        {
+          "text": "Writes an 64-bit value to the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "MemoryWrite64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memorywrite64-nvpu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryWrite64",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memorywrite64-nvpu"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memorywrite8-1uey6": {
+      "abstract": [
+        {
+          "text": "Writes an 8-bit value to the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "MemoryWrite8"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memorywrite8-1uey6",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryWrite8",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memorywrite8-1uey6"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memorywrite8-fzh6": {
+      "abstract": [
+        {
+          "text": "Writes an 8-bit value to the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "MemoryWrite8"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memorywrite8-fzh6",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryWrite8",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memorywrite8-fzh6"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/open": {
+      "abstract": [
+        {
+          "text": "Opens a session to the PCI device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "Open"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/open",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Open",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/open"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device",
+        "doc://com.apple.documentation/documentation/kernel/ioagpdevice"
+      ],
+      "title": "Devices"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1818667",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810221-configread16",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810249-configread32",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810282-configread8",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810325-configwrite16",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810356-configwrite32",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810381-configwrite8",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810420-enablepcipowermanagement",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810448-extendedconfigread16",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810495-extendedconfigread32",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810539-extendedconfigread8",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810577-extendedconfigwrite16",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810617-extendedconfigwrite32",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810659-extendedconfigwrite8",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810707-extendedfindpcicapability",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810749-findpcicapability",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810790-getbusnumber",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810831-getdevicememorywithregister",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810861-getdevicenumber",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810892-getfunctionnumber",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810931-haspcipowermanagement",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810959-iodevicememory",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1810986-ioread16",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811005-ioread32",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811039-ioread8",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811083-iowrite16",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811113-iowrite32",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811151-iowrite8",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811470-mapdevicememorywithregister",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811490-setbusmasterenable",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811511-setconfigbits",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811528-setioenable",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1811543-setmemoryenable"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "1818690",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/reserved"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Variables"
+    },
+    {
+      "anchor": "2855369",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3736273-clientcrashed_impl",
+        "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/close",
+        "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/configurationread16",
+        "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/configurationread32",
+        "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/configurationread8",
+        "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/configurationwrite16",
+        "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/configurationwrite32",
+        "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/configurationwrite8",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3919729-configureinterrupts",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3919730-configureinterrupts_impl",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3180683-dispatch",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516629-enablepcipowermanagement",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516630-enablepcipowermanagement_impl",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516632-findpcicapability",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516633-findpcicapability_impl",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3861819-getbarinfo",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3861820-getbarinfo_impl",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516635-getbusdevicefunction",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516636-getbusdevicefunction_impl",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943407-getlinkspeed",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943408-getlinkspeed_impl",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516638-haspcipowermanagement",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516639-haspcipowermanagement_impl",
+        "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memoryread16-9qkdh",
+        "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memoryread16-50bq8",
+        "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memoryread32-60hg9",
+        "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memoryread32-84jap",
+        "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memoryread64-9ntrf",
+        "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memoryread64-37uob",
+        "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memoryread8-1edw0",
+        "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memoryread8-7b2zp",
+        "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memorywrite16-8k6ch",
+        "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memorywrite16-534yk",
+        "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memorywrite32-ow7r",
+        "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memorywrite32-4pmh",
+        "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memorywrite64-8qyob",
+        "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memorywrite64-nvpu",
+        "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memorywrite8-fzh6",
+        "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/memorywrite8-1uey6",
+        "doc://com.apple.documentation/documentation/pcidriverkit/iopcidevice/open",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943410-reset",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943411-reset_impl",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3857680-restoredevicestate",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3857681-restoredevicestate_impl",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3857683-savedevicestate",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3857684-savedevicestate_impl",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3986557-setaspmstate",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3986558-setaspmstate_impl",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943413-setlinkspeed",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943414-setlinkspeed_impl",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3738458-setproperties_impl",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3928138-addpowerchild",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398479-attach",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398982-callplatformfunction",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516649-callplatformfunction",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398893-checklink",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398837-comparename",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359881-completeflr",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398500-configaccess",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398671-configread16",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516650-configread16",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398925-configread32",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516651-configread32",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398814-configread8",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516652-configread8",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398984-configwrite16",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516653-configwrite16",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4116459-configwrite16filter",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398497-configwrite32",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516654-configwrite32",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4116460-configwrite32filter",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398899-configwrite8",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516655-configwrite8",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4116461-configwrite8filter",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3919732-configureinterrupts",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398866-copyaererrordescriptionforbit",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398504-createeventsource",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398677-detach",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398929-detachabove",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359882-detachfromchild",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359883-devicememoryread",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3684899-devicememoryread16",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4446109-devicememoryread16",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3684900-devicememoryread32",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4446110-devicememoryread32",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3684901-devicememoryread64",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4446111-devicememoryread64",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3684902-devicememoryread8",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4446112-devicememoryread8",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359884-devicememorywrite",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3684903-devicememorywrite16",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4446113-devicememorywrite16",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3684904-devicememorywrite32",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4446114-devicememorywrite32",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3684905-devicememorywrite64",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4446115-devicememorywrite64",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3684906-devicememorywrite8",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4446116-devicememorywrite8",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3172732-enableacs",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398617-enableltr",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398619-enablepcipowermanagement",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398591-extendedconfigread16",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398613-extendedconfigread32",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398935-extendedconfigread8",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398741-extendedconfigwrite16",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398816-extendedconfigwrite32",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398879-extendedconfigwrite8",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398481-extendedfindpcicapability",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398485-findpcicapability",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359885-flr",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398909-free",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398476-getbusnumber",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398913-getdevicememorywithindex",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398763-getdevicememorywithregister",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398803-getdevicenumber",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398549-getfunctionnumber",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943417-getlinkspeed",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398771-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3753534-getproperty",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398852-getresources",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3543394-handleclose",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3543395-handleopen",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398543-haspcipowermanagement",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398907-init",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516656-init",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398669-initreserved",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398555-initialpowerstatefordomainstate",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398727-iodevicememory",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398512-ioread16",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398717-ioread32",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398588-ioread8",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398705-iowrite16",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398775-iowrite32",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398855-iowrite8",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359886-isdownstreamfacing",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398761-kernelrequestprobe",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359887-launchreprobethread",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398789-mapdevicememorywithregister",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398961-matchlocation",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398666-matchpropertytable",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3538575-matchpropertytable",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1399002-maxcapabilityfordomainstate",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398840-newuserclient",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398921-powerstatefordomainstate",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398799-powerstatewillchangeto",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359888-powerstatewillchangetogated",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359889-prepareflr",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398709-protectdevice",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943418-registercrashnotification",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398535-relocate",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3928139-removepowerchild",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359890-reprobethreadcall",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398685-requestprobe",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943419-reset",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359891-resetfunction",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359892-resetnubstate",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398874-restoredevicestate",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398493-savedevicestate",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398736-setaspmstate",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3917649-setbusleadenable",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398970-setbusmasterenable",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398640-setconfigbits",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398553-setconfighandler",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398888-setioenable",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398903-setlatencytolerance",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943420-setlinkspeed",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398630-setmemoryenable",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398828-setpcipowerstate",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398729-setpowerstate",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359893-setpowerstategated",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398957-setproperties",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4097725-setproperty",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4097726-setproperty",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4097727-setproperty",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4097728-setproperty",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4097729-setproperty",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4097730-setproperty",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4097731-setproperty",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398498-settunnell1enable",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4395252-shouldskipreset",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4359894-supportsflr",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943421-unregistercrashnotification",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/1398863-updatewakereason"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "3356459",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3919731-configureinterrupts_invoke",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516631-enablepcipowermanagement_invoke",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516634-findpcicapability_invoke",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3861821-getbarinfo_invoke",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516637-getbusdevicefunction_invoke",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943409-getlinkspeed_invoke",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3516640-haspcipowermanagement_invoke",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943412-reset_invoke",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3857682-restoredevicestate_invoke",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3857685-savedevicestate_invoke",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3986559-setaspmstate_invoke",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943415-setlinkspeed_invoke",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/3943416-getclosecommandmask",
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice/4480432-hasl1errata"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iopcidevice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

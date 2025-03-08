@@ -1,0 +1,1927 @@
+{
+  "abstract": [
+    {
+      "text": "An object that supports using Core Image filters to process an individual video frame in a video composition.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousCIImageFilteringRequest"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AVAsynchronousCIImageFilteringRequest",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AVAsynchronousCIImageFilteringRequest"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AVAsynchronousCIImageFilteringRequest"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AVAsynchronousCIImageFilteringRequest"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAsynchronousCIImageFilteringRequest"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use this class when creating a composition for Core Image filtering with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition/init(asset:applyingCIFiltersWithHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. In that method call, you provide a block to be called by AVFoundation as it processes each frame of video, and the block’s sole parameter is a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousCIImageFilteringRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. Use that object both to the video frame image to be filtered and allows you to return a filtered image to AVFoundation for display or export. The code listing below shows an example of applying a filter to an asset.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "guard let filter = CIFilter(name: \"CIGaussianBlur\") else { return }",
+                    "let composition = AVVideoComposition(asset: asset) { request in",
+                    "    // Clamp to avoid blurring transparent pixels at the image edges.",
+                    "    let source = request.sourceImage.clampedToExtent()",
+                    "    filter.setValue(source, forKey: kCIInputImageKey)",
+                    "",
+                    "    // Vary filter parameters based on the video timing.",
+                    "    let seconds = CMTimeGetSeconds(request.compositionTime)",
+                    "    filter.setValue(seconds * 10.0, forKey: kCIInputRadiusKey)",
+                    "            ",
+                    "    // Crop the blurred output to the bounds of the original image.",
+                    "    if let output = filter.outputImage?.cropped(to: request.sourceImage.extent) {",
+                    "        request.finish(with: output, context: nil)",
+                    "    } else {",
+                    "        request.finish(with: AppError.customError)",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "CIFilter *filter = [CIFilter filterWithName:@\"CIGaussianBlur\"];",
+                    "AVVideoComposition *composition = [AVVideoComposition videoCompositionWithAsset: asset",
+                    "    applyingCIFiltersWithHandler:^(AVAsynchronousCIImageFilteringRequest *request){",
+                    "        // Clamp to avoid blurring transparent pixels at the image edges",
+                    "        CIImage *source = [request.sourceImage imageByClampingToExtent];",
+                    "        [filter setValue:source forKey:kCIInputImageKey];",
+                    " ",
+                    "        // Vary filter parameters based on video timing",
+                    "        Float64 seconds = CMTimeGetSeconds(request.compositionTime);",
+                    "        [filter setValue:seconds * 10.0 forKey:kCIInputRadiusKey];",
+                    " ",
+                    "        // Crop the blurred output to the bounds of the original image",
+                    "        CIImage *output = [filter.outputImage imageByCroppingToRect:request.sourceImage.extent];",
+                    " ",
+                    "        // Provide the filter output to the composition",
+                    "        [request finishWithImage:output context:nil];",
+                    "    }];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To use the created video composition for playback, create an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object from the same asset used as the composition’s source, then assign the composition to the player item’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/videoComposition",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property. To export the composition to a new movie file, create an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetExportSession",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object from the same source asset, then assign the composition to the export session’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetExportSession/videoComposition",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetExportSession": {
+      "abstract": [
+        {
+          "text": "An object that exports assets in a format that you specify using an export preset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetExportSession"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetExportSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetExportSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetExportSession",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetexportsession"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetExportSession/videoComposition": {
+      "abstract": [
+        {
+          "text": "An optional object that provides instructions for how to composite frames of video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoComposition"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVVideoComposition",
+          "text": "AVVideoComposition"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetExportSession/videoComposition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoComposition"
+        }
+      ],
+      "role": "symbol",
+      "title": "videoComposition",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetexportsession/videocomposition"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousCIImageFilteringRequest": {
+      "abstract": [
+        {
+          "text": "An object that supports using Core Image filters to process an individual video frame in a video composition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAsynchronousCIImageFilteringRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousCIImageFilteringRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAsynchronousCIImageFilteringRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAsynchronousCIImageFilteringRequest",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avasynchronousciimagefilteringrequest"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousCIImageFilteringRequest/compositionTime": {
+      "abstract": [
+        {
+          "text": "The time in the video composition corresponding to the frame being processed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compositionTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousCIImageFilteringRequest/compositionTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compositionTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "compositionTime",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avasynchronousciimagefilteringrequest/compositiontime"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousCIImageFilteringRequest/finish(with:)": {
+      "abstract": [
+        {
+          "text": "Notifies AVFoundation that you cannot fulfill the image filtering request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "finish"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousCIImageFilteringRequest/finish(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "finishWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "finish(with:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avasynchronousciimagefilteringrequest/finish(with:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousCIImageFilteringRequest/finish(with:context:)": {
+      "abstract": [
+        {
+          "text": "Provides the filtered video frame image to AVFoundation for further processing or display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "finish"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CIImage",
+          "text": "CIImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CIContext",
+          "text": "CIContext"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousCIImageFilteringRequest/finish(with:context:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "finishWithImage:context:"
+        }
+      ],
+      "role": "symbol",
+      "title": "finish(with:context:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avasynchronousciimagefilteringrequest/finish(with:context:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousCIImageFilteringRequest/renderSize": {
+      "abstract": [
+        {
+          "text": "The width and height, in pixels, of the frame being processed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousCIImageFilteringRequest/renderSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renderSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "renderSize",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avasynchronousciimagefilteringrequest/rendersize"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousCIImageFilteringRequest/sourceImage": {
+      "abstract": [
+        {
+          "text": "The current video frame image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CIImage",
+          "text": "CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousCIImageFilteringRequest/sourceImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sourceImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "sourceImage",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avasynchronousciimagefilteringrequest/sourceimage"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem": {
+      "abstract": [
+        {
+          "text": "An object that models the timing and presentation state of an asset during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItem"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerItem",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritem"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/videoComposition": {
+      "abstract": [
+        {
+          "text": "The video composition settings to be applied during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoComposition"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVVideoComposition",
+          "text": "AVVideoComposition"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/videoComposition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoComposition"
+        }
+      ],
+      "role": "symbol",
+      "title": "videoComposition",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritem/videocomposition"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition/init(asset:applyingCIFiltersWithHandler:)": {
+      "abstract": [
+        {
+          "text": "Creates a video composition configured to apply Core Image filters to each video frame of the specified asset.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "asset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAsset",
+          "text": "AVAsset"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "applyingCIFiltersWithHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAsynchronousCIImageFilteringRequest",
+          "text": "AVAsynchronousCIImageFilteringRequest"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition/init(asset:applyingCIFiltersWithHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoCompositionWithAsset:applyingCIFiltersWithHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(asset:applyingCIFiltersWithHandler:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideocomposition/init(asset:applyingcifilterswithhandler:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition/init(propertiesOf:)": {
+      "abstract": [
+        {
+          "text": "Creates a video composition object configured to present the video tracks of the specified asset.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "propertiesOf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAsset",
+          "text": "AVAsset"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition/init(propertiesOf:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoCompositionWithPropertiesOfAsset:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(propertiesOf:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideocomposition/init(propertiesof:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition/videoComposition(with:applyingCIFiltersWithHandler:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Returns a new video composition that’s configured to apply Core Image filters to each video frame of the specified asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoComposition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAsset",
+          "text": "AVAsset"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "applyingCIFiltersWithHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAsynchronousCIImageFilteringRequest",
+          "text": "AVAsynchronousCIImageFilteringRequest"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVVideoComposition",
+          "text": "AVVideoComposition"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition/videoComposition(with:applyingCIFiltersWithHandler:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "videoComposition(with:applyingCIFiltersWithHandler:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideocomposition/videocomposition(with:applyingcifilterswithhandler:completionhandler:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition/videoComposition(withPropertiesOf:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Returns a new video composition that’s configured to present the video tracks of the specified asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoComposition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withPropertiesOf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAsset",
+          "text": "AVAsset"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVVideoComposition",
+          "text": "AVVideoComposition"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition/videoComposition(withPropertiesOf:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoCompositionWithPropertiesOfAsset:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "videoComposition(withPropertiesOf:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideocomposition/videocomposition(withpropertiesof:completionhandler:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-a-Video-Composition",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition/videoComposition(withPropertiesOf:completionHandler:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition/videoComposition(with:applyingCIFiltersWithHandler:completionHandler:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition/init(propertiesOf:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition/init(asset:applyingCIFiltersWithHandler:)"
+      ],
+      "title": "Creating a Video Composition"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-the-Image-to-be-Filtered",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousCIImageFilteringRequest/sourceImage"
+      ],
+      "title": "Getting the Image to be Filtered"
+    },
+    {
+      "anchor": "Getting-Contextual-Information-for-Filtering",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousCIImageFilteringRequest/compositionTime",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousCIImageFilteringRequest/renderSize"
+      ],
+      "title": "Getting Contextual Information for Filtering"
+    },
+    {
+      "anchor": "Returning-the-Filtered-Image",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousCIImageFilteringRequest/finish(with:context:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousCIImageFilteringRequest/finish(with:)"
+      ],
+      "title": "Returning the Filtered Image"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AVAsynchronousCIImageFilteringRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAsynchronousCIImageFilteringRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAsynchronousCIImageFilteringRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfoundation/documentation/AVFoundation"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Getting-the-Image-to-be-Filtered",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousCIImageFilteringRequest/sourceImage"
+              ],
+              "title": "Getting the Image to be Filtered"
+            },
+            {
+              "anchor": "Getting-Contextual-Information-for-Filtering",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousCIImageFilteringRequest/compositionTime",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousCIImageFilteringRequest/renderSize"
+              ],
+              "title": "Getting Contextual Information for Filtering"
+            },
+            {
+              "anchor": "Returning-the-Filtered-Image",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousCIImageFilteringRequest/finish(with:context:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousCIImageFilteringRequest/finish(with:)"
+              ],
+              "title": "Returning the Filtered Image"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Video-Composition",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition/videoComposition(withPropertiesOf:completionHandler:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition/videoComposition(with:applyingCIFiltersWithHandler:completionHandler:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition/init(propertiesOf:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition/init(asset:applyingCIFiltersWithHandler:)"
+              ],
+              "title": "Creating a Video Composition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AVAsynchronousCIImageFilteringRequest"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsynchronousCIImageFilteringRequest/title",
+          "value": "AVAsynchronousCIImageFilteringRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsynchronousCIImageFilteringRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAsynchronousCIImageFilteringRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsynchronousCIImageFilteringRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAsynchronousCIImageFilteringRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetExportSession~1videoComposition/title",
+          "value": "videoComposition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetExportSession~1videoComposition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "videoComposition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoComposition~1init(asset:applyingCIFiltersWithHandler:)/title",
+          "value": "videoCompositionWithAsset:applyingCIFiltersWithHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoComposition~1init(asset:applyingCIFiltersWithHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "videoCompositionWithAsset:applyingCIFiltersWithHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsynchronousCIImageFilteringRequest~1sourceImage/title",
+          "value": "sourceImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsynchronousCIImageFilteringRequest~1sourceImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sourceImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1videoComposition/title",
+          "value": "videoComposition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1videoComposition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "videoComposition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetExportSession/title",
+          "value": "AVAssetExportSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetExportSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetExportSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetExportSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetExportSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoComposition~1videoComposition(withPropertiesOf:completionHandler:)/title",
+          "value": "videoCompositionWithPropertiesOfAsset:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoComposition~1videoComposition(withPropertiesOf:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "videoCompositionWithPropertiesOfAsset:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoComposition~1init(propertiesOf:)/title",
+          "value": "videoCompositionWithPropertiesOfAsset:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoComposition~1init(propertiesOf:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "videoCompositionWithPropertiesOfAsset:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsynchronousCIImageFilteringRequest~1compositionTime/title",
+          "value": "compositionTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsynchronousCIImageFilteringRequest~1compositionTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compositionTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsynchronousCIImageFilteringRequest~1finish(with:)/title",
+          "value": "finishWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsynchronousCIImageFilteringRequest~1finish(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "finishWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsynchronousCIImageFilteringRequest~1finish(with:context:)/title",
+          "value": "finishWithImage:context:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsynchronousCIImageFilteringRequest~1finish(with:context:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "finishWithImage:context:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem/title",
+          "value": "AVPlayerItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsynchronousCIImageFilteringRequest~1renderSize/title",
+          "value": "renderSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsynchronousCIImageFilteringRequest~1renderSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "renderSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoComposition~1videoComposition(with:applyingCIFiltersWithHandler:completionHandler:)/title",
+          "value": "videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoComposition~1videoComposition(with:applyingCIFiltersWithHandler:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/avasynchronousciimagefilteringrequest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/avasynchronousciimagefilteringrequest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

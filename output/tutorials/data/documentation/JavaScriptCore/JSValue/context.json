@@ -1,0 +1,788 @@
+{
+  "abstract": [
+    {
+      "text": "The JavaScript context hosting this value.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.javascriptcore/documentation/JavaScriptCore",
+        "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue/context"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)JSValue(py)context",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "context"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)JSContext",
+        "text": "JSContext"
+      },
+      {
+        "kind": "text",
+        "text": "!"
+      }
+    ],
+    "modules": [
+      {
+        "name": "JavaScriptCore"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "context"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.9",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "context"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "context"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSContext",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)JSContext",
+              "text": "JSContext"
+            },
+            {
+              "kind": "text",
+              "text": "! { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A value maintains a strong reference to its enclosing JavaScript environment (a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object). As such, you should not store JavaScript values inside objects that are owned by the same ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, as this action creates a retain cycle. To properly manage memory when storing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSManagedValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can pass a value to other JavaScript contexts with the same virtual machine, but not to contexts with other virtual machines. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSContext/virtualMachine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of a value’s context to determine which other contexts can use the value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.javascriptcore/documentation/JavaScriptCore": {
+      "abstract": [
+        {
+          "text": "Evaluate JavaScript programs from within an app, and support JavaScript scripting of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "JavaScriptCore",
+      "type": "topic",
+      "url": "/documentation/javascriptcore"
+    },
+    "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSContext": {
+      "abstract": [
+        {
+          "text": "A JavaScript execution environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "JSContext"
+        }
+      ],
+      "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JSContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "JSContext",
+      "type": "topic",
+      "url": "/documentation/javascriptcore/jscontext"
+    },
+    "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSContext/virtualMachine": {
+      "abstract": [
+        {
+          "text": "The JavaScript virtual machine to which the context belongs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "virtualMachine"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)JSVirtualMachine",
+          "text": "JSVirtualMachine"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSContext/virtualMachine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "virtualMachine"
+        }
+      ],
+      "role": "symbol",
+      "title": "virtualMachine",
+      "type": "topic",
+      "url": "/documentation/javascriptcore/jscontext/virtualmachine"
+    },
+    "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSManagedValue": {
+      "abstract": [
+        {
+          "text": "A JavaScript value with conditional retain behavior to provide automatic memory management.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "JSManagedValue"
+        }
+      ],
+      "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSManagedValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JSManagedValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "JSManagedValue",
+      "type": "topic",
+      "url": "/documentation/javascriptcore/jsmanagedvalue"
+    },
+    "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue": {
+      "abstract": [
+        {
+          "text": "A JavaScript value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "JSValue"
+        }
+      ],
+      "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JSValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "JSValue",
+      "type": "topic",
+      "url": "/documentation/javascriptcore/jsvalue"
+    },
+    "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue/context": {
+      "abstract": [
+        {
+          "text": "The JavaScript context hosting this value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)JSContext",
+          "text": "JSContext"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue/context",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "context"
+        }
+      ],
+      "role": "symbol",
+      "title": "context",
+      "type": "topic",
+      "url": "/documentation/javascriptcore/jsvalue/context"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.9",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "context"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "context"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.javascriptcore/documentation/JavaScriptCore",
+                "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "strong"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "readonly"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSContext",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)JSContext",
+                    "text": "JSContext"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "context"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSValue~1context/title",
+          "value": "context"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSValue~1context/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "context"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSValue/title",
+          "value": "JSValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "JSValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSValue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "JSValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSContext/title",
+          "value": "JSContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "JSContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "JSContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSManagedValue/title",
+          "value": "JSManagedValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSManagedValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "JSManagedValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSManagedValue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "JSManagedValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSContext~1virtualMachine/title",
+          "value": "virtualMachine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSContext~1virtualMachine/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "virtualMachine"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/javascriptcore/jsvalue/context"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/javascriptcore/jsvalue/context"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

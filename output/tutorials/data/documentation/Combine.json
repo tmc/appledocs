@@ -1,0 +1,1854 @@
+{
+  "abstract": [
+    {
+      "text": "Customize handling of asynchronous events by combining event-processing operators.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Combine/documentation/Combine"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "Combine",
+    "images": [
+      {
+        "identifier": "Combine-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Combine"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.15",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "6.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Combine"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Combine framework provides a declarative Swift API for processing values over",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "time. These values can represent many kinds of asynchronous events. Combine declares",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "publishers",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to expose values that can change over time, and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "subscribers",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to receive",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "those values from the publishers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol declares a type that can deliver",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "a sequence of values over time. Publishers have ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "operators",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " to act on the values",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "received from upstream publishers and republish them.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "At the end of a chain of publishers, a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Combine/documentation/Combine/Subscriber",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " acts",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "on elements as it receives them. Publishers only emit values when explicitly requested",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to do so by subscribers. This puts your subscriber code in control of how fast it",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "receives events from the publishers it’s connected to.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Several Foundation types expose their functionality through publishers, including",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/timer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Combine also provides",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a built-in publisher for any property that’s compliant with Key-Value Observing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can combine the output of multiple publishers and coordinate their interaction.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, you can subscribe to updates from a text field’s publisher, and use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the text to perform URL requests. You can then use another publisher to process the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "responses and use them to update your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By adopting Combine, you’ll make your code easier to read and maintain, by centralizing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your event-processing code and eliminating troublesome techniques like nested closures",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and convention-based callbacks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Combine-PageImage-card.png": {
+      "alt": "The Swift language logo, overlaid by a graph of interconnected lines and points.",
+      "identifier": "Combine-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ba2aa5f2e9d9ae5b196c642a6cf121dd/Combine-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8df9b2bdcd94118827dd29f28f3915d7/Combine-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Combine/documentation/Combine": {
+      "abstract": [
+        {
+          "text": "Customize handling of asynchronous events by combining event-processing operators.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine",
+      "images": [
+        {
+          "identifier": "Combine-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Combine",
+      "type": "topic",
+      "url": "/documentation/combine"
+    },
+    "doc://com.apple.Combine/documentation/Combine/AnyCancellable": {
+      "abstract": [
+        {
+          "text": "A type-erasing cancellable object that executes a provided closure when canceled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnyCancellable"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/AnyCancellable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnyCancellable"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnyCancellable",
+      "type": "topic",
+      "url": "/documentation/combine/anycancellable"
+    },
+    "doc://com.apple.Combine/documentation/Combine/AnyPublisher": {
+      "abstract": [
+        {
+          "text": "A publisher that performs type erasure by wrapping another publisher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnyPublisher"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/AnyPublisher",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnyPublisher"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnyPublisher",
+      "type": "topic",
+      "url": "/documentation/combine/anypublisher"
+    },
+    "doc://com.apple.Combine/documentation/Combine/AnySubscriber": {
+      "abstract": [
+        {
+          "text": "A type-erasing subscriber.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnySubscriber"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/AnySubscriber",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnySubscriber"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnySubscriber",
+      "type": "topic",
+      "url": "/documentation/combine/anysubscriber"
+    },
+    "doc://com.apple.Combine/documentation/Combine/AsyncPublisher": {
+      "abstract": [
+        {
+          "text": "A publisher that exposes its elements as an asynchronous sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AsyncPublisher"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/AsyncPublisher",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AsyncPublisher"
+        }
+      ],
+      "role": "symbol",
+      "title": "AsyncPublisher",
+      "type": "topic",
+      "url": "/documentation/combine/asyncpublisher"
+    },
+    "doc://com.apple.Combine/documentation/Combine/AsyncThrowingPublisher": {
+      "abstract": [
+        {
+          "text": "A publisher that exposes its elements as a throwing asynchronous sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AsyncThrowingPublisher"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/AsyncThrowingPublisher",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AsyncThrowingPublisher"
+        }
+      ],
+      "role": "symbol",
+      "title": "AsyncThrowingPublisher",
+      "type": "topic",
+      "url": "/documentation/combine/asyncthrowingpublisher"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Cancellable": {
+      "abstract": [
+        {
+          "text": "A protocol indicating that an activity or action supports cancellation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Cancellable"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Cancellable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Cancellable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Cancellable",
+      "type": "topic",
+      "url": "/documentation/combine/cancellable"
+    },
+    "doc://com.apple.Combine/documentation/Combine/CombineIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for identifying publisher streams.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CombineIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/CombineIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CombineIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "CombineIdentifier",
+      "type": "topic",
+      "url": "/documentation/combine/combineidentifier"
+    },
+    "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher": {
+      "abstract": [
+        {
+          "text": "A publisher that provides an explicit means of connecting and canceling publication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConnectablePublisher"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ConnectablePublisher"
+        }
+      ],
+      "role": "symbol",
+      "title": "ConnectablePublisher",
+      "type": "topic",
+      "url": "/documentation/combine/connectablepublisher"
+    },
+    "doc://com.apple.Combine/documentation/Combine/CurrentValueSubject": {
+      "abstract": [
+        {
+          "text": "A subject that wraps a single value and publishes a new element whenever the value changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CurrentValueSubject"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/CurrentValueSubject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CurrentValueSubject"
+        }
+      ],
+      "role": "symbol",
+      "title": "CurrentValueSubject",
+      "type": "topic",
+      "url": "/documentation/combine/currentvaluesubject"
+    },
+    "doc://com.apple.Combine/documentation/Combine/CustomCombineIdentifierConvertible": {
+      "abstract": [
+        {
+          "text": "A protocol for uniquely identifying publisher streams.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomCombineIdentifierConvertible"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/CustomCombineIdentifierConvertible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomCombineIdentifierConvertible"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomCombineIdentifierConvertible",
+      "type": "topic",
+      "url": "/documentation/combine/customcombineidentifierconvertible"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Deferred": {
+      "abstract": [
+        {
+          "text": "A publisher that awaits subscription before running the supplied closure to create a publisher for the new subscriber.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Deferred"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Deferred",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Deferred"
+        }
+      ],
+      "role": "symbol",
+      "title": "Deferred",
+      "type": "topic",
+      "url": "/documentation/combine/deferred"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Empty": {
+      "abstract": [
+        {
+          "text": "A publisher that never publishes any values, and optionally finishes immediately.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Empty"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Empty",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Empty"
+        }
+      ],
+      "role": "symbol",
+      "title": "Empty",
+      "type": "topic",
+      "url": "/documentation/combine/empty"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Fail": {
+      "abstract": [
+        {
+          "text": "A publisher that immediately terminates with the specified error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Fail"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Fail",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Fail"
+        }
+      ],
+      "role": "symbol",
+      "title": "Fail",
+      "type": "topic",
+      "url": "/documentation/combine/fail"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Future": {
+      "abstract": [
+        {
+          "text": "A publisher that eventually produces a single value and then finishes or fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Future"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Future",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Future"
+        }
+      ],
+      "role": "symbol",
+      "title": "Future",
+      "type": "topic",
+      "url": "/documentation/combine/future"
+    },
+    "doc://com.apple.Combine/documentation/Combine/ImmediateScheduler": {
+      "abstract": [
+        {
+          "text": "A scheduler for performing synchronous actions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImmediateScheduler"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/ImmediateScheduler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImmediateScheduler"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImmediateScheduler",
+      "type": "topic",
+      "url": "/documentation/combine/immediatescheduler"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Just": {
+      "abstract": [
+        {
+          "text": "A publisher that emits an output to each subscriber just once, and then finishes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Just"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Just",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Just"
+        }
+      ],
+      "role": "symbol",
+      "title": "Just",
+      "type": "topic",
+      "url": "/documentation/combine/just"
+    },
+    "doc://com.apple.Combine/documentation/Combine/ObservableObject": {
+      "abstract": [
+        {
+          "text": "A type of object with a publisher that emits before the object has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ObservableObject"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/ObservableObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ObservableObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "ObservableObject",
+      "type": "topic",
+      "url": "/documentation/combine/observableobject"
+    },
+    "doc://com.apple.Combine/documentation/Combine/ObservableObjectPublisher": {
+      "abstract": [
+        {
+          "text": "A publisher that publishes changes from observable objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ObservableObjectPublisher"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/ObservableObjectPublisher",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ObservableObjectPublisher"
+        }
+      ],
+      "role": "symbol",
+      "title": "ObservableObjectPublisher",
+      "type": "topic",
+      "url": "/documentation/combine/observableobjectpublisher"
+    },
+    "doc://com.apple.Combine/documentation/Combine/PassthroughSubject": {
+      "abstract": [
+        {
+          "text": "A subject that broadcasts elements to downstream subscribers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PassthroughSubject"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/PassthroughSubject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PassthroughSubject"
+        }
+      ],
+      "role": "symbol",
+      "title": "PassthroughSubject",
+      "type": "topic",
+      "url": "/documentation/combine/passthroughsubject"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Published": {
+      "abstract": [
+        {
+          "text": "A type that publishes a property marked with an attribute.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Published"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Published",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Published"
+        }
+      ],
+      "role": "symbol",
+      "title": "Published",
+      "type": "topic",
+      "url": "/documentation/combine/published"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher": {
+      "abstract": [
+        {
+          "text": "Declares that a type can transmit a sequence of values over time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Publisher"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Publisher"
+        }
+      ],
+      "role": "symbol",
+      "title": "Publisher",
+      "type": "topic",
+      "url": "/documentation/combine/publisher"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publishers": {
+      "abstract": [
+        {
+          "text": "A namespace for types that serve as publishers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Publishers"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publishers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Publishers"
+        }
+      ],
+      "role": "symbol",
+      "title": "Publishers",
+      "type": "topic",
+      "url": "/documentation/combine/publishers"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Record": {
+      "abstract": [
+        {
+          "text": "A publisher that allows for recording a series of inputs and a completion, for later playback to each subscriber.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Record"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Record",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Record"
+        }
+      ],
+      "role": "symbol",
+      "title": "Record",
+      "type": "topic",
+      "url": "/documentation/combine/record"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Scheduler": {
+      "abstract": [
+        {
+          "text": "A protocol that defines when and how to execute a closure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Scheduler"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Scheduler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Scheduler"
+        }
+      ],
+      "role": "symbol",
+      "title": "Scheduler",
+      "type": "topic",
+      "url": "/documentation/combine/scheduler"
+    },
+    "doc://com.apple.Combine/documentation/Combine/SchedulerTimeIntervalConvertible": {
+      "abstract": [
+        {
+          "text": "A protocol that provides a scheduler with an expression for relative time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SchedulerTimeIntervalConvertible"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/SchedulerTimeIntervalConvertible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SchedulerTimeIntervalConvertible"
+        }
+      ],
+      "role": "symbol",
+      "title": "SchedulerTimeIntervalConvertible",
+      "type": "topic",
+      "url": "/documentation/combine/schedulertimeintervalconvertible"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Subject": {
+      "abstract": [
+        {
+          "text": "A publisher that exposes a method for outside callers to publish elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Subject"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Subject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Subject"
+        }
+      ],
+      "role": "symbol",
+      "title": "Subject",
+      "type": "topic",
+      "url": "/documentation/combine/subject"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Subscriber": {
+      "abstract": [
+        {
+          "text": "A protocol that declares a type that can receive input from a publisher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Subscriber"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Subscriber",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Subscriber"
+        }
+      ],
+      "role": "symbol",
+      "title": "Subscriber",
+      "type": "topic",
+      "url": "/documentation/combine/subscriber"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Subscribers": {
+      "abstract": [
+        {
+          "text": "A namespace for types that serve as subscribers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Subscribers"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Subscribers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Subscribers"
+        }
+      ],
+      "role": "symbol",
+      "title": "Subscribers",
+      "type": "topic",
+      "url": "/documentation/combine/subscribers"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Subscription": {
+      "abstract": [
+        {
+          "text": "A protocol representing the connection of a subscriber to a publisher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Subscription"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Subscription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Subscription"
+        }
+      ],
+      "role": "symbol",
+      "title": "Subscription",
+      "type": "topic",
+      "url": "/documentation/combine/subscription"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Subscriptions": {
+      "abstract": [
+        {
+          "text": "A namespace for symbols related to subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Subscriptions"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Subscriptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Subscriptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "Subscriptions",
+      "type": "topic",
+      "url": "/documentation/combine/subscriptions"
+    },
+    "doc://com.apple.Combine/documentation/Combine/TopLevelDecoder": {
+      "abstract": [
+        {
+          "text": "A type that defines methods for decoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TopLevelDecoder"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/TopLevelDecoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TopLevelDecoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "TopLevelDecoder",
+      "type": "topic",
+      "url": "/documentation/combine/topleveldecoder"
+    },
+    "doc://com.apple.Combine/documentation/Combine/TopLevelEncoder": {
+      "abstract": [
+        {
+          "text": "A type that defines methods for encoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TopLevelEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/TopLevelEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TopLevelEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "TopLevelEncoder",
+      "type": "topic",
+      "url": "/documentation/combine/toplevelencoder"
+    },
+    "doc://com.apple.Combine/documentation/Combine/controlling-publishing-with-connectable-publishers": {
+      "abstract": [
+        {
+          "text": "Coordinate when publishers start sending elements to subscribers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/controlling-publishing-with-connectable-publishers",
+      "kind": "article",
+      "role": "article",
+      "title": "Controlling Publishing with Connectable Publishers",
+      "type": "topic",
+      "url": "/documentation/combine/controlling-publishing-with-connectable-publishers"
+    },
+    "doc://com.apple.Combine/documentation/Combine/performing-key-value-observing-with-combine": {
+      "abstract": [
+        {
+          "text": "Expose KVO changes with a Combine publisher.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/performing-key-value-observing-with-combine",
+      "kind": "article",
+      "role": "article",
+      "title": "Performing Key-Value Observing with Combine",
+      "type": "topic",
+      "url": "/documentation/combine/performing-key-value-observing-with-combine"
+    },
+    "doc://com.apple.Combine/documentation/Combine/processing-published-elements-with-subscribers": {
+      "abstract": [
+        {
+          "text": "Apply back pressure to precisely control when publishers produce elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/processing-published-elements-with-subscribers",
+      "kind": "article",
+      "role": "article",
+      "title": "Processing Published Elements with Subscribers",
+      "type": "topic",
+      "url": "/documentation/combine/processing-published-elements-with-subscribers"
+    },
+    "doc://com.apple.Combine/documentation/Combine/receiving-and-handling-events-with-combine": {
+      "abstract": [
+        {
+          "text": "Customize and receive events from asynchronous sources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/receiving-and-handling-events-with-combine",
+      "kind": "article",
+      "role": "article",
+      "title": "Receiving and Handling Events with Combine",
+      "type": "topic",
+      "url": "/documentation/combine/receiving-and-handling-events-with-combine"
+    },
+    "doc://com.apple.Combine/documentation/Combine/replacing-foundation-timers-with-timer-publishers": {
+      "abstract": [
+        {
+          "text": "Publish elements periodically by using a timer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/replacing-foundation-timers-with-timer-publishers",
+      "kind": "article",
+      "role": "article",
+      "title": "Replacing Foundation Timers with Timer Publishers",
+      "type": "topic",
+      "url": "/documentation/combine/replacing-foundation-timers-with-timer-publishers"
+    },
+    "doc://com.apple.Combine/documentation/Combine/routing-notifications-to-combine-subscribers": {
+      "abstract": [
+        {
+          "text": "Deliver notifications to subscribers by using notification centers’ publishers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/routing-notifications-to-combine-subscribers",
+      "kind": "article",
+      "role": "article",
+      "title": "Routing Notifications to Combine Subscribers",
+      "type": "topic",
+      "url": "/documentation/combine/routing-notifications-to-combine-subscribers"
+    },
+    "doc://com.apple.Combine/documentation/Combine/using-combine-for-your-app-s-asynchronous-code": {
+      "abstract": [
+        {
+          "text": "Apply common patterns to migrate your closure-based, event-handling code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/using-combine-for-your-app-s-asynchronous-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Combine for Your App’s Asynchronous Code",
+      "type": "topic",
+      "url": "/documentation/combine/using-combine-for-your-app-s-asynchronous-code"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notificationcenter": {
+      "abstract": [
+        {
+          "text": "A notification dispatch mechanism that enables the broadcast of information to registered observers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NotificationCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NotificationCenter",
+      "type": "topic",
+      "url": "/documentation/foundation/notificationcenter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/timer": {
+      "abstract": [
+        {
+          "text": "A timer that fires after a certain time interval has elapsed, sending a specified message to a target object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Timer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/timer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Timer",
+      "type": "topic",
+      "url": "/documentation/foundation/timer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.Combine/documentation/Combine/receiving-and-handling-events-with-combine"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Publishers",
+      "identifiers": [
+        "doc://com.apple.Combine/documentation/Combine/Publisher",
+        "doc://com.apple.Combine/documentation/Combine/Publishers",
+        "doc://com.apple.Combine/documentation/Combine/AnyPublisher",
+        "doc://com.apple.Combine/documentation/Combine/Published",
+        "doc://com.apple.Combine/documentation/Combine/Cancellable",
+        "doc://com.apple.Combine/documentation/Combine/AnyCancellable"
+      ],
+      "title": "Publishers"
+    },
+    {
+      "anchor": "Convenience-Publishers",
+      "identifiers": [
+        "doc://com.apple.Combine/documentation/Combine/Future",
+        "doc://com.apple.Combine/documentation/Combine/Just",
+        "doc://com.apple.Combine/documentation/Combine/Deferred",
+        "doc://com.apple.Combine/documentation/Combine/Empty",
+        "doc://com.apple.Combine/documentation/Combine/Fail",
+        "doc://com.apple.Combine/documentation/Combine/Record"
+      ],
+      "title": "Convenience Publishers"
+    },
+    {
+      "anchor": "Connectable-Publishers",
+      "identifiers": [
+        "doc://com.apple.Combine/documentation/Combine/controlling-publishing-with-connectable-publishers",
+        "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher"
+      ],
+      "title": "Connectable Publishers"
+    },
+    {
+      "anchor": "Subscribers",
+      "identifiers": [
+        "doc://com.apple.Combine/documentation/Combine/processing-published-elements-with-subscribers",
+        "doc://com.apple.Combine/documentation/Combine/Subscriber",
+        "doc://com.apple.Combine/documentation/Combine/Subscribers",
+        "doc://com.apple.Combine/documentation/Combine/AnySubscriber",
+        "doc://com.apple.Combine/documentation/Combine/Subscription",
+        "doc://com.apple.Combine/documentation/Combine/Subscriptions"
+      ],
+      "title": "Subscribers"
+    },
+    {
+      "anchor": "Subjects",
+      "identifiers": [
+        "doc://com.apple.Combine/documentation/Combine/Subject",
+        "doc://com.apple.Combine/documentation/Combine/CurrentValueSubject",
+        "doc://com.apple.Combine/documentation/Combine/PassthroughSubject"
+      ],
+      "title": "Subjects"
+    },
+    {
+      "anchor": "Schedulers",
+      "identifiers": [
+        "doc://com.apple.Combine/documentation/Combine/Scheduler",
+        "doc://com.apple.Combine/documentation/Combine/ImmediateScheduler",
+        "doc://com.apple.Combine/documentation/Combine/SchedulerTimeIntervalConvertible"
+      ],
+      "title": "Schedulers"
+    },
+    {
+      "anchor": "Combine-Migration",
+      "identifiers": [
+        "doc://com.apple.Combine/documentation/Combine/routing-notifications-to-combine-subscribers",
+        "doc://com.apple.Combine/documentation/Combine/replacing-foundation-timers-with-timer-publishers",
+        "doc://com.apple.Combine/documentation/Combine/performing-key-value-observing-with-combine",
+        "doc://com.apple.Combine/documentation/Combine/using-combine-for-your-app-s-asynchronous-code"
+      ],
+      "title": "Combine Migration"
+    },
+    {
+      "anchor": "Observable-Objects",
+      "identifiers": [
+        "doc://com.apple.Combine/documentation/Combine/ObservableObject",
+        "doc://com.apple.Combine/documentation/Combine/ObservableObjectPublisher"
+      ],
+      "title": "Observable Objects"
+    },
+    {
+      "anchor": "Asynchronous-Publishers",
+      "identifiers": [
+        "doc://com.apple.Combine/documentation/Combine/AsyncPublisher",
+        "doc://com.apple.Combine/documentation/Combine/AsyncThrowingPublisher"
+      ],
+      "title": "Asynchronous Publishers"
+    },
+    {
+      "anchor": "Encoders-and-Decoders",
+      "identifiers": [
+        "doc://com.apple.Combine/documentation/Combine/TopLevelEncoder",
+        "doc://com.apple.Combine/documentation/Combine/TopLevelDecoder"
+      ],
+      "title": "Encoders and Decoders"
+    },
+    {
+      "anchor": "Debugging-Identifiers",
+      "identifiers": [
+        "doc://com.apple.Combine/documentation/Combine/CustomCombineIdentifierConvertible",
+        "doc://com.apple.Combine/documentation/Combine/CombineIdentifier"
+      ],
+      "title": "Debugging Identifiers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1timer/title",
+          "value": "NSTimer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1notificationcenter/title",
+          "value": "NSNotificationCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsession/title",
+          "value": "NSURLSession"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/combine"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

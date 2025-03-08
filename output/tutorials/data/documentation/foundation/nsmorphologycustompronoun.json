@@ -1,0 +1,563 @@
+{
+  "abstract": [
+    {
+      "text": "A custom pronoun behavior for use in a specific langauge.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting",
+        "doc://com.apple.documentation/documentation/foundation/nsmorphology"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting",
+        "doc://com.apple.documentation/documentation/foundation/nsinflectionruleexplicit",
+        "doc://com.apple.documentation/documentation/foundation/nsmorphology"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3746955,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSMorphologyCustomPronoun",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "17.0",
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "17.0",
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "17.0",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "14.0",
+        "introducedAt": "12.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "17.0",
+        "introducedAt": "15.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "deprecated": true,
+        "deprecatedAt": "1.0",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "deprecated": true,
+        "deprecatedAt": "10.0",
+        "introducedAt": "8.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSMorphologyCustomPronoun"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSMorphologyCustomPronoun"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance on a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmorphology",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance when you want to provide a langauge-specific customization of pronoun use in that language. Different languages have different requirements for the grammatical information needed to apply a custom pronoun, so you set custom pronoun behavior on a per-language basis.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below shows how to create English “ze” and “hir” custom pronouns:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let ze = [[NSMorphologyCustomPronoun alloc] init];",
+            "ze.subjectForm = \"ze\";",
+            "ze.objectForm = \"hir\";",
+            "ze.possessiveForm = \"hir\";",
+            "ze.possessiveAdjectiveForm = \"hir\";",
+            "ze.reflexiveForm = \"hirself\";"
+          ],
+          "metadata": {
+            "anchor": "3814304",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " only supports third-person pronouns. Use this feature when your app needs to refer to third parties with a specific pronoun.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Formatting",
+      "type": "topic",
+      "url": "/documentation/foundation/data_formatting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinflectionruleexplicit": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinflectionruleexplicit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSInflectionRuleExplicit",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinflectionruleexplicit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmorphology": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmorphology",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMorphology",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmorphology"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmorphology/3746948-custompronounforlanguage": {
+      "abstract": [
+        {
+          "text": "Returns any custom pronoun behavior this morphology applies to the given language.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "customPronounForLanguage:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmorphology/3746948-custompronounforlanguage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "customPronounForLanguage:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmorphology/3746948-custompronounforlanguage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmorphology/3746952-setcustompronoun": {
+      "abstract": [
+        {
+          "text": "Sets a custom pronoun behavior for this morphology to apply to the given language.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCustomPronoun:forLanguage:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmorphology/3746952-setcustompronoun",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCustomPronoun:forLanguage:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmorphology/3746952-setcustompronoun"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun": {
+      "abstract": [
+        {
+          "text": "A custom pronoun behavior for use in a specific langauge.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMorphologyCustomPronoun",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmorphologycustompronoun"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun#3814304": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun#3814304",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/nsmorphologycustompronoun#3814304"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun/3746956-issupportedforlanguage": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the given language supports setting custom pronouns.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSupportedForLanguage:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun/3746956-issupportedforlanguage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isSupportedForLanguage:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmorphologycustompronoun/3746956-issupportedforlanguage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun/3746957-objectform": {
+      "abstract": [
+        {
+          "text": "The object pronoun form to apply when using this custom pronoun behavior.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun/3746957-objectform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objectForm",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmorphologycustompronoun/3746957-objectform"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun/3746958-possessiveadjectiveform": {
+      "abstract": [
+        {
+          "text": "The posessive adjective pronoun form to apply when using this custom pronoun behavior.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun/3746958-possessiveadjectiveform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "possessiveAdjectiveForm",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmorphologycustompronoun/3746958-possessiveadjectiveform"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun/3746959-possessiveform": {
+      "abstract": [
+        {
+          "text": "The posessive pronoun form to apply when using this custom pronoun behavior.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun/3746959-possessiveform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "possessiveForm",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmorphologycustompronoun/3746959-possessiveform"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun/3746960-reflexiveform": {
+      "abstract": [
+        {
+          "text": "The reflexive pronoun form to apply when using this custom pronoun behavior.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun/3746960-reflexiveform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reflexiveForm",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmorphologycustompronoun/3746960-reflexiveform"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun/3746961-requiredkeysforlanguage": {
+      "abstract": [
+        {
+          "text": "Returns a collection of the custom pronoun keys required by this language.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "requiredKeysForLanguage:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun/3746961-requiredkeysforlanguage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requiredKeysForLanguage:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmorphologycustompronoun/3746961-requiredkeysforlanguage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun/3746962-subjectform": {
+      "abstract": [
+        {
+          "text": "The subject pronoun form to apply when using this custom pronoun behavior.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun/3746962-subjectform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subjectForm",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmorphologycustompronoun/3746962-subjectform"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418956-nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmorphology/3746952-setcustompronoun",
+        "doc://com.apple.documentation/documentation/foundation/nsmorphology/3746948-custompronounforlanguage"
+      ],
+      "title": "Accessing Per-Language Features"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3814303",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun/3746956-issupportedforlanguage",
+        "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun/3746961-requiredkeysforlanguage"
+      ],
+      "kind": "taskGroup",
+      "title": "Assessing Custom Pronoun Support"
+    },
+    {
+      "anchor": "3814305",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun/3746962-subjectform",
+        "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun/3746957-objectform",
+        "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun/3746959-possessiveform",
+        "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun/3746958-possessiveadjectiveform",
+        "doc://com.apple.documentation/documentation/foundation/nsmorphologycustompronoun/3746960-reflexiveform"
+      ],
+      "kind": "taskGroup",
+      "title": "Determining Pronoun Forms"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsmorphologycustompronoun"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

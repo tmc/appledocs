@@ -1,0 +1,389 @@
+{
+  "abstract": [
+    {
+      "text": "Use an MPS neural network graph to train a simple neural network digit classifier.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/metalperformanceshaders/training_a_neural_network_with_metal_performance_shaders"
+  },
+  "kind": "article",
+  "legacy_identifier": 3240577,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal Performance Shaders"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.15",
+        "name": "macOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "11.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Training a Neural Network with Metal Performance Shaders"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code describes how to write a neural network using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and how to train the network to recognize a digit in an image. The sample trains a network for 300 iterations on a batch size of 40 images. You’ll see how to set up training of weights and biases using data sources, including how to initialize and update weights. You’ll also see how to validate the network using a test dataset.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC 2019 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-3330057",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use any dataset of your choice to train this model.  The following dataset works well for this purpose:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "link-3314614",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Please note that Apple does not own the copyright to this dataset nor makes any representations about the applicable terms of use for this dataset.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you choose to use this dataset, the sample includes a script that downloads the dataset from that location and pass it as input to the model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3330056",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you run the sample code project in Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make sure your Mac is running macOS 10.15 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make sure you are running Xcode 11 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/metalperformanceshaders": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels": {
+      "abstract": [
+        {
+          "text": "Build neural networks with layers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Convolutional Neural Network Kernels",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/convolutional_neural_network_kernels"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage": {
+      "abstract": [
+        {
+          "text": "A texture that may have more than four channels for use in convolutional neural networks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImage",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNGraph",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngraph"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage": {
+      "abstract": [
+        {
+          "text": "A texture for use in convolutional neural networks that stores transient data to be used and discarded promptly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSTemporaryImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSTemporaryImage",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpstemporaryimage"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks": {
+      "abstract": [
+        {
+          "text": "Simplify the creation of neural networks using networks of filter, image, and state nodes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Objects that Simplify the Creation of Neural Networks",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/recurrent_neural_networks": {
+      "abstract": [
+        {
+          "text": "Create recurrent neural networks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/recurrent_neural_networks",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Recurrent Neural Networks",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/recurrent_neural_networks"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/training_a_neural_network_with_metal_performance_shaders": {
+      "abstract": [
+        {
+          "text": "Use an MPS neural network graph to train a simple neural network digit classifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/training_a_neural_network_with_metal_performance_shaders",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Training a Neural Network with Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/training_a_neural_network_with_metal_performance_shaders"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs-assets.developer.apple.com/published/2bfedbd0e5/TrainingANeuralNetworkWithMetalPerformanceShaders.zip": {
+      "checksum": "d1199d65720da676af2bbb5321d167060a7299bf6c7c868d012e6cb10b836bfb026f6764f0b216a48259f4cb83b8593bf4324e1d300d3e8447bebe7e73f0112d",
+      "identifier": "https://docs-assets.developer.apple.com/published/2bfedbd0e5/TrainingANeuralNetworkWithMetalPerformanceShaders.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/2bfedbd0e5/TrainingANeuralNetworkWithMetalPerformanceShaders.zip"
+    },
+    "link-3314614": {
+      "identifier": "link-3314614",
+      "kind": "article",
+      "role": "link",
+      "title": "MNIST Dataset",
+      "type": "topic",
+      "url": "http://yann.lecun.com/exdb/mnist/"
+    },
+    "link-3330057": {
+      "identifier": "link-3330057",
+      "kind": "article",
+      "role": "link",
+      "title": "614: Metal for Machine Learning",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc19/614/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/2bfedbd0e5/TrainingANeuralNetworkWithMetalPerformanceShaders.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/recurrent_neural_networks"
+      ],
+      "title": "Neural Networks"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/training_a_neural_network_with_metal_performance_shaders"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/training_a_neural_network_with_metal_performance_shaders"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

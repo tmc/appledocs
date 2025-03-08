@@ -1,0 +1,355 @@
+{
+  "abstract": [
+    {
+      "text": "Scan for peripherals and display them in your playground's live view.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/playgroundbluetooth"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/playgroundbluetooth/connecting_to_bluetooth_peripherals_in_swift_playgrounds"
+  },
+  "kind": "article",
+  "legacy_identifier": 3030118,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Playground Bluetooth"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Connecting to Bluetooth Peripherals in Swift Playgrounds"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Playgrounds use Bluetooth to connect to nearby peripherals to send and receive commands or data. You can incorporate periperals into your playground to have your users learn programming concepts by interacting with real-world objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3030120",
+          "level": 3,
+          "text": "Scan for Peripherals",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothcentralmanager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to scan for and connect to nearby Bluetooth peripherals. It automatically stores the ID of the most recently connected peripheral. The example below scans for all kinds of peripherals by passing ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the initializer for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothcentralmanagerdelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let managerDelegate: PlaygroundBluetoothCentralManagerDelegate = <# manager delegate instance #>",
+            " ",
+            "let manager = PlaygroundBluetoothCentralManager(services: nil)",
+            "manager.delegate = managerDelegate"
+          ],
+          "metadata": {
+            "anchor": "3030121",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you determine which Bluetooth services your playground page requires, instead of passing ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for those services, pass an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBUUID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3030119",
+          "level": 3,
+          "text": "Display Peripherals in a Live View",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to display status information about nearby peripherals. The example belows shows how to configure and place a connection view on a playground page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let viewDelegate: PlaygroundBluetoothConnectionViewDelegate = <# view delegate instance #>",
+            "let connectionView = PlaygroundBluetoothConnectionView(centralManager: manager, delegate: viewDelegate)",
+            "connectionView.dataSource = viewDelegate",
+            " ",
+            "// Place the connection view within the rest of your page's content.",
+            "let page: UIViewController & PlaygroundLiveViewSafeAreaContainer = <# playground page view controller #>",
+            "page.view.addSubview(connectionView)",
+            " ",
+            "// Position the connection view in the top right corner.",
+            "connectionView.topAnchor.constraint(equalTo: page.liveViewSafeAreaGuide.topAnchor, constant: 20).isActive = true",
+            "connectionView.trailingAnchor.constraint(equalTo: page.liveViewSafeAreaGuide.trailingAnchor, constant: -20).isActive = true",
+            " ",
+            "PlaygroundPage.current.liveView = page"
+          ],
+          "metadata": {
+            "anchor": "3030122",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Always use the system-provided ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " to display connection information for peripherals. Doing so helps provide a consistent experience for people who also use playground books created by others.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBUUID": {
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBUUID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CBUUID",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbuuid"
+    },
+    "doc://com.apple.documentation/documentation/playgroundbluetooth": {
+      "identifier": "doc://com.apple.documentation/documentation/playgroundbluetooth",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Playground Bluetooth",
+      "type": "topic",
+      "url": "/documentation/playgroundbluetooth"
+    },
+    "doc://com.apple.documentation/documentation/playgroundbluetooth/connecting_to_bluetooth_peripherals_in_swift_playgrounds": {
+      "abstract": [
+        {
+          "text": "Scan for peripherals and display them in your playground's live view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundbluetooth/connecting_to_bluetooth_peripherals_in_swift_playgrounds",
+      "kind": "article",
+      "role": "article",
+      "title": "Connecting to Bluetooth Peripherals in Swift Playgrounds",
+      "type": "topic",
+      "url": "/documentation/playgroundbluetooth/connecting_to_bluetooth_peripherals_in_swift_playgrounds"
+    },
+    "doc://com.apple.documentation/documentation/playgroundbluetooth/connecting_to_bluetooth_peripherals_in_swift_playgrounds#3030121": {
+      "identifier": "doc://com.apple.documentation/documentation/playgroundbluetooth/connecting_to_bluetooth_peripherals_in_swift_playgrounds#3030121",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/playgroundbluetooth/connecting_to_bluetooth_peripherals_in_swift_playgrounds#3030121"
+    },
+    "doc://com.apple.documentation/documentation/playgroundbluetooth/connecting_to_bluetooth_peripherals_in_swift_playgrounds#3030122": {
+      "identifier": "doc://com.apple.documentation/documentation/playgroundbluetooth/connecting_to_bluetooth_peripherals_in_swift_playgrounds#3030122",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/playgroundbluetooth/connecting_to_bluetooth_peripherals_in_swift_playgrounds#3030122"
+    },
+    "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothcentralmanager": {
+      "abstract": [
+        {
+          "text": "A streamlined interface for connecting the central manager for the current playground page to nearby Bluetooth peripherals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaygroundBluetoothCentralManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothcentralmanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PlaygroundBluetoothCentralManager",
+      "type": "topic",
+      "url": "/documentation/playgroundbluetooth/playgroundbluetoothcentralmanager"
+    },
+    "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothcentralmanagerdelegate": {
+      "abstract": [
+        {
+          "text": "A delegate you use to respond to peripheral discovery and manage the lifecycle of connections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaygroundBluetoothCentralManagerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothcentralmanagerdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PlaygroundBluetoothCentralManagerDelegate",
+      "type": "topic",
+      "url": "/documentation/playgroundbluetooth/playgroundbluetoothcentralmanagerdelegate"
+    },
+    "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview": {
+      "identifier": "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PlaygroundBluetoothConnectionView",
+      "type": "topic",
+      "url": "/documentation/playgroundbluetooth/playgroundbluetoothconnectionview"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothcentralmanager",
+        "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothcentralmanagerdelegate"
+      ],
+      "title": "Peripheral Connection"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/playgroundbluetooth/connecting_to_bluetooth_peripherals_in_swift_playgrounds"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

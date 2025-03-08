@@ -1,0 +1,491 @@
+{
+  "abstract": [],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/mass_storage",
+        "doc://com.apple.documentation/documentation/kernel/iostorage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iostorage/1811068-read"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1811068,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "parent": {
+      "title": "IOStorage"
+    },
+    "role": "pseudoSymbol",
+    "symbolKind": "instm",
+    "title": "read()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "#ifdef __LP64__"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " virtual void read("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " IOService *client, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " UInt64 byteStart, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " IOMemoryDescriptor *buffer, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " IOStorageAttributes *attributes, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " IOStorageCompletion *completion) = 0; "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "#else /* !__LP64__ */"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "virtual void read("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " IOService *client, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " UInt64 byteStart, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " IOMemoryDescriptor *buffer, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " IOStorageAttributes *attributes, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " IOStorageCompletion *completion); "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "#endif "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "/* !__LP64__ */"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Client requesting the read.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "client"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Starting byte offset for the data transfer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "byteStart"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Buffer for the data transfer. The size of the buffer implies the size of the data transfer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "buffer"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Attributes of the data transfer. See IOStorageAttributes. It is the responsibility of the callee to maintain the information for the duration of the data transfer, as necessary.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "attributes"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Completion routine to call once the data transfer is complete. It is the responsibility of the callee to maintain the information for the duration of the data transfer, as necessary.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "completion"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Read data from the storage object at the specified byte offset into the specified buffer, asynchronously. When the read completes, the caller will be notified via the specified completion action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The buffer will be retained for the duration of the read.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/mass_storage": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/mass_storage",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Mass Storage",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/mass_storage"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostorage": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOStorage",
+      "type": "topic",
+      "url": "/documentation/kernel/iostorage"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostorage/1810767-complete": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostorage/1810767-complete",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "complete",
+      "type": "topic",
+      "url": "/documentation/kernel/iostorage/1810767-complete"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostorage/1810820-copyphysicalextent": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostorage/1810820-copyphysicalextent",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "copyPhysicalExtent",
+      "type": "topic",
+      "url": "/documentation/kernel/iostorage/1810820-copyphysicalextent"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostorage/1810866-handleclose": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostorage/1810866-handleclose",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleClose",
+      "type": "topic",
+      "url": "/documentation/kernel/iostorage/1810866-handleclose"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostorage/1810905-handleisopen": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostorage/1810905-handleisopen",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleIsOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/iostorage/1810905-handleisopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostorage/1810948-handleopen": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostorage/1810948-handleopen",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/iostorage/1810948-handleopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostorage/1810985-lockphysicalextents": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostorage/1810985-lockphysicalextents",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "lockPhysicalExtents",
+      "type": "topic",
+      "url": "/documentation/kernel/iostorage/1810985-lockphysicalextents"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostorage/1811013-open": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostorage/1811013-open",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "open",
+      "type": "topic",
+      "url": "/documentation/kernel/iostorage/1811013-open"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostorage/1811038-read": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostorage/1811038-read",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "read()",
+      "type": "topic",
+      "url": "/documentation/kernel/iostorage/1811038-read"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostorage/1811068-read": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostorage/1811068-read",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "read()",
+      "type": "topic",
+      "url": "/documentation/kernel/iostorage/1811068-read"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostorage/1811091-synchronizecache": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostorage/1811091-synchronizecache",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "synchronizeCache",
+      "type": "topic",
+      "url": "/documentation/kernel/iostorage/1811091-synchronizecache"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostorage/1811117-unlockphysicalextents": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostorage/1811117-unlockphysicalextents",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "unlockPhysicalExtents",
+      "type": "topic",
+      "url": "/documentation/kernel/iostorage/1811117-unlockphysicalextents"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostorage/1811145-unmap": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostorage/1811145-unmap",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "unmap",
+      "type": "topic",
+      "url": "/documentation/kernel/iostorage/1811145-unmap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostorage/1811168-write": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostorage/1811168-write",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "write()",
+      "type": "topic",
+      "url": "/documentation/kernel/iostorage/1811168-write"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostorage/1811185-write": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostorage/1811185-write",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "write()",
+      "type": "topic",
+      "url": "/documentation/kernel/iostorage/1811185-write"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iostorage/1810767-complete",
+        "doc://com.apple.documentation/documentation/kernel/iostorage/1810820-copyphysicalextent",
+        "doc://com.apple.documentation/documentation/kernel/iostorage/1810866-handleclose",
+        "doc://com.apple.documentation/documentation/kernel/iostorage/1810905-handleisopen",
+        "doc://com.apple.documentation/documentation/kernel/iostorage/1810948-handleopen",
+        "doc://com.apple.documentation/documentation/kernel/iostorage/1810985-lockphysicalextents",
+        "doc://com.apple.documentation/documentation/kernel/iostorage/1811013-open",
+        "doc://com.apple.documentation/documentation/kernel/iostorage/1811038-read",
+        "doc://com.apple.documentation/documentation/kernel/iostorage/1811091-synchronizecache",
+        "doc://com.apple.documentation/documentation/kernel/iostorage/1811117-unlockphysicalextents",
+        "doc://com.apple.documentation/documentation/kernel/iostorage/1811145-unmap",
+        "doc://com.apple.documentation/documentation/kernel/iostorage/1811168-write",
+        "doc://com.apple.documentation/documentation/kernel/iostorage/1811185-write"
+      ],
+      "title": "Miscellaneous"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iostorage/1811068-read"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

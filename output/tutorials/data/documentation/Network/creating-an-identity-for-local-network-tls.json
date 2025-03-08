@@ -1,0 +1,1028 @@
+{
+  "abstract": [
+    {
+      "text": "Learn how to create and use a digital identity in your application for local network TLS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.network/documentation/Network"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.network/documentation/Network/creating-an-identity-for-local-network-tls"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Network"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating an Identity for Local Network TLS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the context of Transport Layer Security (TLS), a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "digital identity",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a cryptographic asset that contains a certificate and an associated private key for encrypting network traffic sent between a client and a server. Creating a digital identity for iOS or macOS is done so clients can communicate using TLS over the internet or a local network.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this scenario, a server accepts client connections on a local network. While this article focuses on local network TLS, you can apply many of the concepts for other use cases. For example, setting up TLS with a certificate obtained from third-party Certificate Authority or configuring any system that needs to establish chain of trust to a root certificate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prepare-the-Environment",
+          "level": 3,
+          "text": "Prepare the Environment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Imagine you’re building an app to handle orders in a restaurant. This app runs on a server device  — like an iPad or Mac — located at the front desk. Out in the restaurant, customers create and send orders to the server to be processed by the server using iOS client devices. In this situation, the server uses a digital identity from a local certificate authority to provide TLS to the clients. The following article explains how to setup both the server and client devices for local network TLS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an identity for local network TLS the first thing you need to do is create and manage a local Certificate Authority (CA). A CA is a trusted entity that issues certificates for use in cryptographic operations. In this case, the CA serves as the trusted source of truth to issue a certificate that is used in a digital identity for TLS. Without this trusted authority, clients won’t be able to verify the issuer of the certificate they are using.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After creating the CA, you need to issue a leaf certificate for the digital identity that is installed on the server. Next, you need to distribute the identity to the server. In the restaurant example, this is either the macOS or iOS device acting as the server. Lastly, you also need to distribute the root certificate to all of the iOS client devices in the restaurant network so that they can establish the chain of trust during the handshake process, and trust evaluation doesn’t need to be overridden.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An overview of how this would work can be described as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create and manage your own certificate authority using the Keychain app on macOS.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Distribute the identity to the server. On macOS, either create and use an identity on the same machine the server is running on, or securely distribute the PKCS#12 file to the device Keychain. On iOS, import the PKCS#12 file onto the server device. For example, you could load the PKCS#12 file onto a thumb drive and import it to the iOS server app and save it in the Keychain.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On iOS client devices, install the root certificate onto the iOS device to form the chain of trust.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Distribute-the-Identity-to-the-Server",
+          "level": 3,
+          "text": "Distribute the Identity to the Server",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On iOS, the certificate authority owner is faced with the challenge of distributing the identity to the server. After transferring the identity on the server — either through thumb drive or through secure network transfer — save it to the Keychain. To save the identity in the iOS Keychain, use the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let password = <# A password from the Keychain #>",
+            "let options = [kSecImportExportPassphrase: password ] as NSDictionary",
+            "var rawItems: CFArray?",
+            "let status = SecPKCS12Import(data as CFData, // Data from imported Identity.",
+            "                             options as CFDictionary,",
+            "                             &rawItems)",
+            "",
+            "guard status == errSecSuccess,",
+            "      let items = rawItems,",
+            "      let dictionaryItems = items as? Array<Dictionary<String, Any>> else {",
+            "    // handle error …",
+            "}",
+            "",
+            "let secIdentity: SecIdentity = dictionaryItems[0][kSecImportItemIdentity as String] as! SecIdentity",
+            "",
+            "// Notice that kSecClass as String: kSecClassIdentity isn't used here as this is inferred from kSecValueRef.",
+            "let identityAddition = [",
+            "    kSecValueRef: secIdentity,",
+            "    kSecAttrLabel: \"ListenerIdentityLabel\"",
+            "] as NSDictionary",
+            "",
+            "let identityStatus = SecItemAdd(identityAddition as CFDictionary, nil)",
+            "",
+            "guard identityStatus == errSecSuccess else {",
+            "    // handle error …",
+            "}",
+            "// Added identity successfully."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To retrieve the identity from the iOS Keychain, use the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func getSecIdentity() -> SecIdentity? {",
+            "",
+            "    // On the query, use kSecClassIdentity to make sure a SecIdentity is extracted.",
+            "    let identityQuery = [",
+            "        kSecClass: kSecClassIdentity,",
+            "        kSecReturnRef: true,",
+            "        kSecAttrLabel: \"ListenerIdentityLabel\"",
+            "    ] as NSDictionary",
+            "    var identityItem: CFTypeRef?",
+            "    let getIdentityStatus = SecItemCopyMatching(identityQuery as CFDictionary, &identityItem)",
+            "",
+            "    guard getIdentityStatus == errSecSuccess else {",
+            "        // handle error …",
+            "    }",
+            "    let secIdentity = identityItem as! SecIdentity",
+            "    return secIdentity",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the local identity accessible from the Keychain, set it to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/NWListener",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to serve connections using TLS 1.2+ with the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let tlsOptions = NWProtocolTLS.Options()",
+            "let tlsParams = NWParameters(tls: tlsOptions, tcp: .init())",
+            "",
+            "if let secIdentity = getSecIdentity(),",
+            "   let identity = sec_identity_create(secIdentity) {",
+            "    sec_protocol_options_set_min_tls_protocol_version(",
+            "        tlsOptions.securityProtocolOptions, .TLSv12)",
+            "    sec_protocol_options_set_local_identity(",
+            "        tlsOptions.securityProtocolOptions, identity)",
+            "} ",
+            "let listener = try NWListener(using: tlsParams, on: 4433)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On macOS, the code is largely the same except if the ",
+              "type": "text"
+            },
+            {
+              "code": "NWListener",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is running on the same machine that set up the local certificate authority then the app’s code can reference the identity by loading a reference from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/SecCertificate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the Keychain. To retrieve the identity from the Keychain on macOS, use the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func getSecIdentity() -> SecIdentity? {",
+            "",
+            "    var identity: SecIdentity?",
+            "    let getquery = [kSecClass: kSecClassCertificate,",
+            "        kSecAttrLabel: \"certificate_name_in_keychain\",",
+            "        kSecReturnRef: true] as NSDictionary",
+            "",
+            "    var item: CFTypeRef?",
+            "    let status = SecItemCopyMatching(getquery as CFDictionary, &item)",
+            "    guard status == errSecSuccess else {",
+            "        // handle error …",
+            "    }",
+            "    let certificate = item as! SecCertificate",
+            "",
+            "    let identityStatus = SecIdentityCreateWithCertificate(nil, certificate, &identity)",
+            "    guard identityStatus == errSecSuccess else {",
+            "        // handle error …",
+            "    }",
+            "    return identity",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After loading the identity on macOS, you can use the exact same ",
+              "type": "text"
+            },
+            {
+              "code": "NWListener",
+              "type": "codeVoice"
+            },
+            {
+              "text": " code on iOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Client-Devices",
+          "level": 3,
+          "text": "Configure the Client Devices",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For clients that connect to the server, install the root certificate on the client device to avoid overriding trust evaluation. After installing the root certificate on the client device, the client connects to the server using a local network name. When connecting from the client side of the connection, use the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let tlsOptions = NWProtocolTLS.Options()",
+            "sec_protocol_options_set_min_tls_protocol_version(",
+            "    tlsOptions.securityProtocolOptions, ",
+            "    .TLSv12)",
+            "",
+            "let tlsParams = NWParameters(tls: tlsOptions, tcp: .init())",
+            "",
+            "let endpoint = NWEndpoint.hostPort(host: \"listener-name.local\", port: 4433)",
+            "let connection = NWConnection(to: endpoint, using: tlsParams)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If the root certificate from the CA is installed on the device, you can use the code above without implementing ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Security/sec_protocol_options_set_verify_block(_:_:_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to override trust evaluation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your client needs to connect over IP, instead of using a local network name, the server needs to use a leaf certificate that lists the IP in the “IP Address” field of the Subject Alternative Name. This also avoids having to override trust evaluation on the client and allows client connections to use the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let tlsOptions = NWProtocolTLS.Options()",
+            "sec_protocol_options_set_min_tls_protocol_version(",
+            "    tlsOptions.securityProtocolOptions, ",
+            "    .TLSv12)",
+            "",
+            "let tlsParams = NWParameters(tls: tlsOptions, tcp: .init())",
+            "",
+            "let endpoint = NWEndpoint.hostPort(host: \"x.x.x.x\", port: 4433)",
+            "let connection = NWConnection(to: endpoint, using: tlsParams)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Attempting to connect from a client to a server without the root certificate installed on the client iOS device results in application errors similar to the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// [BoringSSL] boringssl_context_error_print(1863) boringssl ctx 0x2813acbe0: 4348594328:error:1000007d:SSL routines:OPENSSL_internal:CERTIFICATE_VERIFY_FAILED",
+            "// [BoringSSL] boringssl_session_handshake_incomplete(164) [C1:1][0x1032186d0] SSL library error"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The same is true if either the IP Address or DNS Name in the Subject Alternative Name fields are missing in the leaf certificate.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To work around this on the client, use ",
+              "type": "text"
+            },
+            {
+              "code": "sec_protocol_options_set_verify_block",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to perform your own verification checks on the peer’s leaf certificate. This isn’t the recommended path, but could be done in extreme cases. In the following example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/SecPolicyCreateBasicX509()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " checks against the certificate’s basic x509 policy:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "sec_protocol_options_set_verify_block(tlsOptions.securityProtocolOptions, { (_, trust, completionHandler) in",
+            "    let secTrustRef = sec_trust_copy_ref(trust).takeRetainedValue() as SecTrust",
+            "",
+            "    // Cannot do hostname here because of IP.",
+            "    let x509Policy = SecPolicyCreateBasicX509()",
+            "    SecTrustSetPolicies(secTrustRef, x509Policy)",
+            "",
+            "    var error: CFError?",
+            "    if !SecTrustEvaluateWithError(secTrustRef, &error) {",
+            "        completionHandler(false)",
+            "    }",
+            "    // Perfom other certificate-based checks.  ",
+            "",
+            "    completionHandler(true)",
+            "}, .main)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "From there the client can set up a handshake using TLS on a local network.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Security/SecCertificate": {
+      "abstract": [
+        {
+          "text": "An abstract Core Foundation-type object representing an X.509 certificate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCertificate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/SecCertificate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecCertificate",
+      "type": "topic",
+      "url": "/documentation/Security/SecCertificate"
+    },
+    "doc://com.apple.documentation/documentation/Security/SecPolicyCreateBasicX509()": {
+      "abstract": [
+        {
+          "text": "Returns a policy object for the default X.509 policy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecPolicyCreateBasicX509"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecPolicyRef",
+          "text": "SecPolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/SecPolicyCreateBasicX509()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecPolicyCreateBasicX509()",
+      "type": "topic",
+      "url": "/documentation/Security/SecPolicyCreateBasicX509()"
+    },
+    "doc://com.apple.documentation/documentation/Security/sec_protocol_options_set_verify_block(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sec_protocol_options_set_verify_block"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@sec_protocol_options_t",
+          "text": "sec_protocol_options_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "verify_block"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@sec_protocol_verify_t",
+          "text": "sec_protocol_verify_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "verify_block_queue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/sec_protocol_options_set_verify_block(_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sec_protocol_options_set_verify_block(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/Security/sec_protocol_options_set_verify_block(_:_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.network/documentation/Network": {
+      "abstract": [
+        {
+          "text": "Create network connections to send and receive data using transport and security protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/network"
+    },
+    "doc://com.apple.network/documentation/Network/NWListener": {
+      "abstract": [
+        {
+          "text": "An object you use to listen for incoming network connections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWListener"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWListener",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWListener"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWListener",
+      "type": "topic",
+      "url": "/documentation/network/nwlistener"
+    },
+    "doc://com.apple.network/documentation/Network/privacy-management": {
+      "abstract": [
+        {
+          "text": "Configure parameters related to user privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/privacy-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Privacy Management",
+      "type": "topic",
+      "url": "/documentation/network/privacy-management"
+    },
+    "doc://com.apple.network/documentation/Network/security-options": {
+      "abstract": [
+        {
+          "text": "Configure security options for TLS handshakes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/security-options",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Security Options",
+      "type": "topic",
+      "url": "/documentation/network/security-options"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Network-Security-and-Privacy",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/security-options",
+        "doc://com.apple.network/documentation/Network/privacy-management"
+      ],
+      "title": "Network Security and Privacy"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Network-Security-and-Privacy",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.network/documentation/Network/security-options",
+                "doc://com.apple.network/documentation/Network/privacy-management"
+              ],
+              "title": "Network Security and Privacy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1SecPolicyCreateBasicX509()/title",
+          "value": "SecPolicyCreateBasicX509"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1SecPolicyCreateBasicX509()/fragments",
+          "value": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SecPolicyRef",
+              "text": "SecPolicyRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SecPolicyCreateBasicX509"
+            },
+            {
+              "kind": "text",
+              "text": "();"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1sec_protocol_options_set_verify_block(_:_:_:)/title",
+          "value": "sec_protocol_options_set_verify_block"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1sec_protocol_options_set_verify_block(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "sec_protocol_options_set_verify_block"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@sec_protocol_options_t",
+              "text": "sec_protocol_options_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "options"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@sec_protocol_verify_t",
+              "text": "sec_protocol_verify_t"
+            },
+            {
+              "kind": "internalParam",
+              "text": "verify_block"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@dispatch_queue_t",
+              "text": "dispatch_queue_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "verify_block_queue"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1SecCertificate/title",
+          "value": "SecCertificateRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1SecCertificate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@__SecCertificate",
+              "text": "__SecCertificate"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "SecCertificateRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/network/creating-an-identity-for-local-network-tls"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/network/creating-an-identity-for-local-network-tls"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

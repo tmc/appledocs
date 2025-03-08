@@ -1,0 +1,349 @@
+{
+  "abstract": [
+    {
+      "text": "Implement a forward plus renderer using the latest features on Apple GPUs.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/metal-sample-code-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-forward-plus-lighting-using-tile-shaders"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.4",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Rendering a Scene with Forward Plus Lighting Using Tile Shaders"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC 2019 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc19/601/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build the project with Xcode 11 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Target an iOS device with an A11 chip or later and iOS 11 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-sample-code-library": {
+      "abstract": [
+        {
+          "text": "Explore the complete set of Metal samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-sample-code-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Sample Code Library",
+      "type": "topic",
+      "url": "/documentation/metal/metal-sample-code-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-c++": {
+      "abstract": [
+        {
+          "text": "Avoid expensive lighting calculations by implementing a deferred lighting renderer optimized for immediate mode and tile-based deferred renderer GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-c++",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rendering a Scene with Deferred Lighting in C++",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-a-scene-with-deferred-lighting-in-c++"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-objective-c": {
+      "abstract": [
+        {
+          "text": "Avoid expensive lighting calculations by implementing a deferred lighting renderer optimized for immediate mode and tile-based deferred renderer GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-objective-c",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rendering a Scene with Deferred Lighting in Objective-C",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-a-scene-with-deferred-lighting-in-objective-c"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-swift": {
+      "abstract": [
+        {
+          "text": "Avoid expensive lighting calculations by implementing a deferred lighting renderer optimized for immediate mode and tile-based deferred renderer GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-swift",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rendering a Scene with Deferred Lighting in Swift",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-a-scene-with-deferred-lighting-in-swift"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-reflections-with-fewer-render-passes": {
+      "abstract": [
+        {
+          "text": "Use layer selection to reduce the number of render passes needed to generate an environment map.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-reflections-with-fewer-render-passes",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rendering Reflections with Fewer Render Passes",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-reflections-with-fewer-render-passes"
+    },
+    "fe3d30fb3691/RenderingASceneWithForwardPlusLightingUsingTileShaders.zip": {
+      "checksum": "fe3d30fb3691917f3a7eb60ee9c5aeef4a673faad8b084f5b254295a4b06f1a187ce1179dd0f4b4d73f11b8c422c91a90e8f622405787c5e6d0f39a91111c789",
+      "identifier": "fe3d30fb3691/RenderingASceneWithForwardPlusLightingUsingTileShaders.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/fe3d30fb3691/RenderingASceneWithForwardPlusLightingUsingTileShaders.zip"
+    },
+    "https://developer.apple.com/videos/play/wwdc19/601/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc19/601/",
+      "title": "601: Modern Rendering with Metal",
+      "titleInlineContent": [
+        {
+          "text": "601: Modern Rendering with Metal",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc19/601/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "fe3d30fb3691/RenderingASceneWithForwardPlusLightingUsingTileShaders.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Lighting-Techniques",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-objective-c",
+        "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-swift",
+        "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-c++",
+        "doc://com.apple.metal/documentation/Metal/rendering-reflections-with-fewer-render-passes"
+      ],
+      "title": "Lighting Techniques"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Lighting-Techniques",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-objective-c",
+                "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-swift",
+                "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-c++",
+                "doc://com.apple.metal/documentation/Metal/rendering-reflections-with-fewer-render-passes"
+              ],
+              "title": "Lighting Techniques"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/rendering-a-scene-with-forward-plus-lighting-using-tile-shaders"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/rendering-a-scene-with-forward-plus-lighting-using-tile-shaders"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

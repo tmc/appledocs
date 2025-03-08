@@ -1,0 +1,1120 @@
+{
+  "abstract": [
+    {
+      "text": "Add an Intent Extension to your app to handle money transfer requests with Siri.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/SiriKit"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/SiriKit",
+        "doc://com.apple.sirikit/documentation/Intents",
+        "doc://com.apple.sirikit/documentation/SiriKit/payments"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/SiriKit/handling-payment-requests-with-sirikit"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "10.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Handling Payment Requests with SiriKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app in this sample project demonstrates how to send payments between users by implementing ",
+              "type": "text"
+            },
+            {
+              "text": "`INSendPaymentIntentHandling`",
+              "type": "text"
+            },
+            {
+              "text": ". Users can make payments with Siri and view a list of previously completed payments inside the main app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The project consists of three targets:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Payments",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", an iOS app which shows a history of completed payments.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "PaymentsIntentsExtension",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", an Intent Extension that integrates with SiriKit to send payments.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "PaymentsFramework",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", an embedded framework containing shared code needed by both the Intent Extension and the main app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SiriKit/creating-an-intents-app-extension",
+              "isActive": true,
+              "overridingTitle": "Creating an Intents App Extension",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Creating an Intents App Extension",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". for more information on the general process of adding an Intent Extension to your app, including how to enable the Siri capability and configure the ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtension",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keys in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app can be run in the iOS Simulator without any special setup, but in order to run on a device you will need to update the build settings and enable an App Group for the project:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Payments.xcodeproj",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with the latest version of Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the project editor, set a new bundle identifier under Identity on the General pane for each of the three targets in the project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Capabilities pane, make sure that App Groups is switched on for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Payments",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PaymentsIntentsExtension",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " targets.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add an App Group identifier with the format ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "group.com.example",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reference the new App Group identifier in the source code. Open ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PaymentProvider.swift",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and modify the implementation of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sharedUserDefaults",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property to reference the new identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Each target in the project must preface its bundle identifier with the bundle identifier of the app’s main target. For example, if you set the bundle identifier for the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Payments",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " target to ",
+                  "type": "text"
+                },
+                {
+                  "code": "com.example.Payments",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", then you should set the bundle identifier for the ",
+                  "type": "text"
+                },
+                {
+                  "code": "PaymentsIntentsExtension",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " target to ",
+                  "type": "text"
+                },
+                {
+                  "code": "com.example.Payments.PaymentsIntentsExtension",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Resolve-Payment-Parameters",
+          "level": 3,
+          "text": "Resolve Payment Parameters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first step in processing a payment with ",
+              "type": "text"
+            },
+            {
+              "code": "INSendPaymentIntentHandling",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is to obtain the payee for the transaction and the currency amount to send to the payee. Depending on the command that the user speaks to Siri, your app may have to deal with one of the following scenarios:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The initial request specifies all required parameters. For example, the user requests, “Send $50 to Jane with Payments.”",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The request lacks some required parameters. For example, the user requests, “Send money to Jane with Payments.”",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The request supplies incorrect or inaccurate parameters. For example, the user requests, “Send money to Dave with Payments,”",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "when no valid contacts match “Dave”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The initial request supplies no parameters. For example, the user requests, “Send money with Payments.”",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The extension resolves each parameter separately by responding to methods from the ",
+              "type": "text"
+            },
+            {
+              "text": "`INSendPaymentIntentHandling`",
+              "type": "text"
+            },
+            {
+              "text": " protocol. Depending on the initial request and subsequent conversation with Siri, each of the parameter resolution methods may be called multiple times as Siri clarifies the request from the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The extension resolves the payee parameter through calls to ",
+              "type": "text"
+            },
+            {
+              "text": "`resolvePayee(for:with:)`",
+              "type": "text"
+            },
+            {
+              "text": ". Use this method to take input from Siri, match it to a payee, and asynchronously return an ",
+              "type": "text"
+            },
+            {
+              "text": "`INPersonResolutionResult`",
+              "type": "text"
+            },
+            {
+              "text": " by calling ",
+              "type": "text"
+            },
+            {
+              "text": "`success(with:)`",
+              "type": "text"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "text": "`confirmationRequired(with:)`",
+              "type": "text"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "text": "`disambiguation(with:)`",
+              "type": "text"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "text": "`needsValue()`",
+              "type": "text"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "text": "`unsupported()`",
+              "type": "text"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func resolvePayee(for intent: INSendPaymentIntent, with completion: @escaping (INPersonResolutionResult) -> Void) {",
+            "    if let payee = intent.payee {",
+            "        // Look up contacts that match the payee.",
+            "        contactLookup.lookup(displayName: payee.displayName) { contacts in",
+            "            // Build the `INIntentResolutionResult` to pass to the `completion` closure.",
+            "            let result: INPersonResolutionResult",
+            "",
+            "            if let contact = contacts.first, contacts.count == 1 {",
+            "                // An exact single match.",
+            "                let resolvedPayee = INPerson(contact: contact)",
+            "                result = INPersonResolutionResult.success(with: resolvedPayee)",
+            "            } else if contacts.isEmpty {",
+            "                // Found no matches.",
+            "                result = INPersonResolutionResult.unsupported()",
+            "            } else {",
+            "                // Found more than one match; user needs to clarify the intended contact.",
+            "                let people: [INPerson] = contacts.map { contact in",
+            "                    return INPerson(contact: contact)",
+            "                }",
+            "                result = INPersonResolutionResult.disambiguation(with: people)",
+            "            }",
+            "            completion(result)",
+            "        }",
+            "    } else if let mostRecentPayee = paymentProvider.mostRecentPayment?.contact {",
+            "        // No payee provided; suggest the last payee.",
+            "        let result = INPersonResolutionResult.confirmationRequired(with: INPerson(contact: mostRecentPayee))",
+            "        completion(result)",
+            "    } else {",
+            "        // No payee provided and there was no previous payee.",
+            "        let result = INPersonResolutionResult.needsValue()",
+            "        completion(result)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The extension resolves the currency amount for the payment through calls to ",
+              "type": "text"
+            },
+            {
+              "text": "`resolveCurrencyAmount(for:with:)`",
+              "type": "text"
+            },
+            {
+              "text": ", and optionally a note to be associated with the transaction is resolved with calls to ",
+              "type": "text"
+            },
+            {
+              "text": "`resolveNote(for:with:)`",
+              "type": "text"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func resolveCurrencyAmount(for intent: INSendPaymentIntent, with completion: @escaping (INCurrencyAmountResolutionResult) -> Void) {",
+            "    let result: INCurrencyAmountResolutionResult",
+            "",
+            "    // Resolve the currency amount.",
+            "    if let currencyAmount = intent.currencyAmount, let amount = currencyAmount.amount, let currencyCode = currencyAmount.currencyCode {",
+            "        if amount.intValue <= 0 {",
+            "            // The amount needs to be a positive value.",
+            "            result = INCurrencyAmountResolutionResult.unsupported()",
+            "        } else if let currencyCode = paymentProvider.validate(currencyCode) {",
+            "            // Make a new `INCurrencyAmount` with the resolved currency code.",
+            "            let resolvedAmount = INCurrencyAmount(amount: amount, currencyCode: currencyCode)",
+            "            result = INCurrencyAmountResolutionResult.success(with: resolvedAmount)",
+            "        } else {",
+            "            // Unsupported currency.",
+            "            result = INCurrencyAmountResolutionResult.unsupported()",
+            "        }",
+            "    } else if let mostRecentPayment = paymentProvider.mostRecentPayment {",
+            "        // No amount provided; suggest the last amount sent.",
+            "        let suggestedAmount = INCurrencyAmount(amount: NSDecimalNumber(decimal: mostRecentPayment.amount),",
+            "                                               currencyCode: mostRecentPayment.currencyCode)",
+            "        result = INCurrencyAmountResolutionResult.confirmationRequired(with: suggestedAmount)",
+            "    } else {",
+            "        // No amount provided and there was no previous payment.",
+            "        result = INCurrencyAmountResolutionResult.needsValue()",
+            "    }",
+            "    completion(result)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-Domain-Specific-Language",
+          "level": 3,
+          "text": "Add Domain-Specific Language",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "text": "`INVocabulary`",
+              "type": "text"
+            },
+            {
+              "text": " to aid Siri with recognizing any domain-specific vocabulary users are likely to use in their voice commands. For example, in this sample project payee names are not taken from the user’s contacts but from a predefined list inside the app, so these names are added as additional vocabulary with ",
+              "type": "text"
+            },
+            {
+              "text": "`setVocabularyStrings:ofType:`",
+              "type": "text"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Register names of contacts that may not be in the user's address book.",
+            "let contactNames = Contact.sampleContacts.map { $0.formattedName }",
+            "INVocabulary.shared().setVocabularyStrings(NSOrderedSet(array: contactNames), of: .contactName)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "More information on the types of custom vocabulary that are appropriate to add to Siri can be found in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SiriKit/registering-custom-vocabulary-with-sirikit#2865079",
+              "isActive": true,
+              "overridingTitle": "Registering Custom Vocabulary with SiriKit",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Registering Custom Vocabulary with SiriKit",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Confirm-and-Complete-the-Payment",
+          "level": 3,
+          "text": "Confirm and Complete the Payment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When all parameters have been resolved, the system calls ",
+              "type": "text"
+            },
+            {
+              "text": "`confirm(intent:completion:)`",
+              "type": "text"
+            },
+            {
+              "text": " to let the app validate the transaction details. Pass back the status of the transaction by calling the ",
+              "type": "text"
+            },
+            {
+              "code": "completion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " block with an ",
+              "type": "text"
+            },
+            {
+              "text": "`INSendPaymentIntentResponse`",
+              "type": "text"
+            },
+            {
+              "text": " object initialized from a ",
+              "type": "text"
+            },
+            {
+              "text": "`INSendPaymentIntentResponseCode`",
+              "type": "text"
+            },
+            {
+              "text": " and an ",
+              "type": "text"
+            },
+            {
+              "text": "`INPaymentRecord`",
+              "type": "text"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "text": "`paymentRecord`",
+              "type": "text"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func confirm(intent: INSendPaymentIntent, completion: @escaping (INSendPaymentIntentResponse) -> Void) {",
+            "    guard",
+            "        let payee = intent.payee,",
+            "        let payeeHandle = payee.personHandle,",
+            "        let currencyAmount = intent.currencyAmount,",
+            "        let amount = currencyAmount.amount,",
+            "        let currencyCode = currencyAmount.currencyCode",
+            "        else { completion(INSendPaymentIntentResponse(code: .failure, userActivity: nil)); return }",
+            "",
+            "    contactLookup.lookup(emailAddress: payeeHandle.value!) { contact in",
+            "        guard let contact = contact else {",
+            "            completion(INSendPaymentIntentResponse(code: .failure, userActivity: nil))",
+            "            return",
+            "        }",
+            "",
+            "        let payment = Payment(contact: contact, amount: amount.decimalValue, currencyCode: currencyCode)",
+            "",
+            "        self.paymentProvider.canSend(payment) { success, error in",
+            "            guard success else {",
+            "                completion(INSendPaymentIntentResponse(code: .failure, userActivity: nil))",
+            "                return",
+            "            }",
+            "",
+            "            let response = INSendPaymentIntentResponse(code: .success, userActivity: nil)",
+            "            response.paymentRecord = self.makePaymentRecord(for: intent)",
+            "",
+            "            completion(response)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, once the payment has been confirmed by the user, the system calls ",
+              "type": "text"
+            },
+            {
+              "text": "`handle(intent:completion:)`",
+              "type": "text"
+            },
+            {
+              "text": ". Use this method to perform the confirmed transaction and pass back the status of the transaction by calling the ",
+              "type": "text"
+            },
+            {
+              "code": "completion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " block.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func handle(intent: INSendPaymentIntent, completion: @escaping (INSendPaymentIntentResponse) -> Void) {",
+            "    guard",
+            "        let payee = intent.payee,",
+            "        let payeeHandle = payee.personHandle,",
+            "        let currencyAmount = intent.currencyAmount,",
+            "        let amount = currencyAmount.amount,",
+            "        let currencyCode = currencyAmount.currencyCode",
+            "        else { completion(INSendPaymentIntentResponse(code: .failure, userActivity: nil)); return }",
+            "",
+            "    contactLookup.lookup(emailAddress: payeeHandle.value!) { contact in",
+            "        guard let contact = contact else {",
+            "            completion(INSendPaymentIntentResponse(code: .failure, userActivity: nil))",
+            "            return",
+            "        }",
+            "",
+            "        let payment = Payment(contact: contact, amount: amount.decimalValue, currencyCode: currencyCode)",
+            "",
+            "        self.paymentProvider.send(payment) { success, _, _ in",
+            "            guard success else {",
+            "                completion(INSendPaymentIntentResponse(code: .failure, userActivity: nil))",
+            "                return",
+            "            }",
+            "",
+            "            let response = INSendPaymentIntentResponse(code: .success, userActivity: nil)",
+            "            response.paymentRecord = self.makePaymentRecord(for: intent)",
+            "",
+            "            completion(response)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "5460339aebf0/HandlingPaymentRequestsWithSiriKit.zip": {
+      "checksum": "5460339aebf09d644ecb9e9e323de57f8a80a5607da4496c4869efb26a931efb2e69271b327e2bf43796c40911c53c08025d5e8ea8494ecd1e68c6c2e3a8de51",
+      "identifier": "5460339aebf0/HandlingPaymentRequestsWithSiriKit.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/5460339aebf0/HandlingPaymentRequestsWithSiriKit.zip"
+    },
+    "doc://com.apple.documentation/documentation/SiriKit/creating-an-intents-app-extension": {
+      "abstract": [
+        {
+          "text": "Add and configure an Intents app extension in your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SiriKit/creating-an-intents-app-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Intents App Extension",
+      "type": "topic",
+      "url": "/documentation/SiriKit/creating-an-intents-app-extension"
+    },
+    "doc://com.apple.documentation/documentation/SiriKit/registering-custom-vocabulary-with-sirikit#2865079": {
+      "abstract": [
+        {
+          "text": "Register your app’s custom terminology, and provide sample phrases for how to use your app with Siri.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SiriKit/registering-custom-vocabulary-with-sirikit#2865079",
+      "kind": "article",
+      "role": "article",
+      "title": "Registering Custom Vocabulary with SiriKit",
+      "type": "topic",
+      "url": "/documentation/SiriKit/registering-custom-vocabulary-with-sirikit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit": {
+      "abstract": [
+        {
+          "text": "Empower users to interact with their devices through voice, intelligent suggestions, and personalized workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/adding-shortcuts-for-wind-down": {
+      "abstract": [
+        {
+          "text": "Reveal your app’s shortcuts inside the Health app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/adding-shortcuts-for-wind-down",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adding Shortcuts for Wind Down",
+      "type": "topic",
+      "url": "/documentation/sirikit/adding-shortcuts-for-wind-down"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/booking-rides-with-sirikit": {
+      "abstract": [
+        {
+          "text": "Add Intents extensions to your app to handle requests to book rides using Siri and Maps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/booking-rides-with-sirikit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Booking Rides with SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit/booking-rides-with-sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/handling-workout-requests-with-sirikit": {
+      "abstract": [
+        {
+          "text": "Add an Intent Extension to your app that handles requests to control workouts with Siri.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/handling-workout-requests-with-sirikit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Handling Workout Requests with SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit/handling-workout-requests-with-sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/integrating-your-app-with-siri-event-suggestions": {
+      "abstract": [
+        {
+          "text": "Donate reservations and provide quick access to event details throughout the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/integrating-your-app-with-siri-event-suggestions",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Integrating Your App with Siri Event Suggestions",
+      "type": "topic",
+      "url": "/documentation/sirikit/integrating-your-app-with-siri-event-suggestions"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/managing-audio-with-sirikit": {
+      "abstract": [
+        {
+          "text": "Control audio playback and handle requests to add media using SiriKit Media Intents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/managing-audio-with-sirikit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Managing Audio with SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit/managing-audio-with-sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/payments": {
+      "abstract": [
+        {
+          "text": "Send payments between users or pay bills.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/payments",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Payments",
+      "type": "topic",
+      "url": "/documentation/sirikit/payments"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/providing-hands-free-app-control-with-intents": {
+      "abstract": [
+        {
+          "text": "Resolve, confirm, and handle intents without an extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/providing-hands-free-app-control-with-intents",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Providing Hands-Free App Control with Intents",
+      "type": "topic",
+      "url": "/documentation/sirikit/providing-hands-free-app-control-with-intents"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-accelerating-app-interactions-with-shortcuts": {
+      "abstract": [
+        {
+          "text": "Make it easy for people to use Siri with your app by providing shortcuts to your app’s actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-accelerating-app-interactions-with-shortcuts",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Soup Chef: Accelerating App Interactions with Shortcuts",
+      "type": "topic",
+      "url": "/documentation/sirikit/soup-chef-accelerating-app-interactions-with-shortcuts"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-with-app-intents-migrating-custom-intents": {
+      "abstract": [
+        {
+          "text": "Integrating App Intents to provide your appʼs actions to Siri and Shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-with-app-intents-migrating-custom-intents",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Soup Chef with App Intents: Migrating custom intents",
+      "type": "topic",
+      "url": "/documentation/sirikit/soup-chef-with-app-intents-migrating-custom-intents"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "5460339aebf0/HandlingPaymentRequestsWithSiriKit.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sample-code",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/adding-shortcuts-for-wind-down",
+        "doc://com.apple.sirikit/documentation/SiriKit/booking-rides-with-sirikit",
+        "doc://com.apple.sirikit/documentation/SiriKit/handling-workout-requests-with-sirikit",
+        "doc://com.apple.sirikit/documentation/SiriKit/integrating-your-app-with-siri-event-suggestions",
+        "doc://com.apple.sirikit/documentation/SiriKit/managing-audio-with-sirikit",
+        "doc://com.apple.sirikit/documentation/SiriKit/providing-hands-free-app-control-with-intents",
+        "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-accelerating-app-interactions-with-shortcuts",
+        "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-with-app-intents-migrating-custom-intents"
+      ],
+      "title": "Sample code"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1574 @@
+{
+  "abstract": [
+    {
+      "text": "Use room tracking in visionOS to provide custom interactions with physical spaces.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/building_local_experiences_with_room_tracking"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "Building-local-experiences-with-room-tracking-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Building local experiences with room tracking"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample allows your app to keep track of rooms as discrete, identifiable places, and enables you to provide a customized virtual experience inside a specific room, and to get notified when someone enters or leaves the room. These customizations can be as simple as knowing when to stop room-specific animations, or to support the creation of location-specific virtual content such as in-game treasures, effects, or even portals to virtual worlds that contain other content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample demonstrates how to use room tracking by enabling a person to place spheres in a space and continuously query the framework as to whether those spheres are in the same room as the person. As someone moves into, through, and out of the room, ARKit delivers ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/RoomAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " updates that represent the latest knowledge of the current room. This structure provides a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/RoomAnchor/contains(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " query method that you use to determine if the spheres are in the current room, and highlight them accordingly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app has an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "occlusion mode",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", in which the room geometry the framework renders is a transparent occluder that hides virtual objects outside the room. It also has a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "wall selection mode",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", in which someone may select a specific wall for the purpose of replacing it with a video or virtual portal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This app requires Xcode 16 and visionOS 2 or later, and an Apple Vision Pro. ARKit room tracking isn’t supported in Simulator.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Ensure-all-data-providers-are-in-an-authorized-state",
+          "level": 2,
+          "text": "Ensure all data providers are in an authorized state",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app must request permission to use certain visionOS capabilities before being able to access data associated with them. For example, attempting to access the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/RoomTrackingProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " displays a permission sheet asking the user to authorize your app’s access. If the user has previously denied this request, the app displays an error message in the scene. For information about using a ",
+              "type": "text"
+            },
+            {
+              "code": "RoomTrackingProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/visionOS/setting-up-access-to-arkit-data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For information about best practices for privacy, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/visionOS/adopting-best-practices-for-privacy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To use the room tracking capabilities in visionOS in your app, you need to provide the  ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSWorldSensingUsageDescription",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " key in your app’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " along with a description of why your app uses this feature. This sample already provides this key and description.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "code": [
+            "func areAllDataProvidersAuthorized() async -> Bool {",
+            "    // It's sufficient to check that the authorization status isn't `denied`.",
+            "    // If it's `notdetermined`, ARKit presents a permission pop-up menu that appears as soon",
+            "    // as the session runs.",
+            "    let authorization = await ARKitSession().queryAuthorization(for: [.worldSensing])",
+            "    return authorization[.worldSensing] != .denied",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Configure-room-tracking",
+          "level": 2,
+          "text": "Configure room tracking",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set up room tracking by first configuring an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/ARKitSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance, then add a  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/WorldTrackingProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and a  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/RoomTrackingProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the session as shown in the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private let session = ARKitSession()",
+            "private let worldTracking = WorldTrackingProvider()",
+            "private let roomTracking = RoomTrackingProvider()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to instantiating the world and room tracking providers in the ",
+              "type": "text"
+            },
+            {
+              "code": "AppState",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you need to create storage for the in-room anchors the app tracks:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// A dictionary that contains `RoomAnchor` structures.",
+            "private var roomAnchors = [UUID: RoomAnchor]()",
+            "/// A dictionary that contains `WorldAnchor` structures.",
+            "private var worldAnchors = [UUID: WorldAnchor]()",
+            "/// A dictionary that contains `ModelEntity` structures for spheres.",
+            "private var sphereEntities = [UUID: ModelEntity]()",
+            "/// A dictionary that contains `ModelEntity` structures for room anchors.",
+            "private var roomEntities = [UUID: ModelEntity]()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You also need to create the materials the framework uses to render the in-room anchors:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Material for spheres in the current room.",
+            "private let inRoomSphereMaterial = SimpleMaterial(color: .green, roughness: 0.2, isMetallic: true)",
+            "// Material for spheres not in the current room.",
+            "private let outOfRoomSphereMaterial = SimpleMaterial(color: .red, roughness: 0.2, isMetallic: true)",
+            "// Material the app applies to room entities to show occlusion effects.",
+            "private let occlusionMaterial = OcclusionMaterial()",
+            "// Material for current room walls.",
+            "private var wallMaterial = UnlitMaterial(color: .blue)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Allow-a-person-to-place-room-tracking-anchors",
+          "level": 2,
+          "text": "Allow a person to place room tracking anchors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Placing a ",
+              "type": "text"
+            },
+            {
+              "code": "roomAnchor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object in the room consists of two processes. The first phase allows the person to review the anchor, which the sample renders as a sphere in front of the device from the person’s perspective:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func createPreviewSphere() -> ModelEntity {",
+            "    let sphereMesh = MeshResource.generateSphere(radius: 0.1)",
+            "    let sphereMaterial = SimpleMaterial(color: .gray.withAlphaComponent(0.5), roughness: 0.2, isMetallic: false)",
+            "    let sphere = ModelEntity(mesh: sphereMesh, materials: [sphereMaterial])",
+            "    ",
+            "    // Enables gestures on the preview sphere.",
+            "    // Looking at the preview and using a pinch gesture causes a world anchored sphere to appear.",
+            "    sphere.generateCollisionShapes(recursive: false, static: true)",
+            "    // Ensures the preview only accepts indirect input (for tap gestures).",
+            "    sphere.components.set(InputTargetComponent(allowedInputTypes: [.indirect]))",
+            "    ",
+            "    // The preview sphere only becomes visible once someone clicks the Add a Sphere button.",
+            "    sphere.isEnabled = false",
+            "    ",
+            "    return sphere",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The second phase allows a person to place the sphere (a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/WorldAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") in their surroundings  with a tap gesture. Gestures such as this are SwiftUI view modifiers you apply to the room’s ",
+              "type": "text"
+            },
+            {
+              "code": "View",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as shown below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".gesture(SpatialTapGesture().targetedToAnyEntity().onEnded { event in",
+            "    if event.entity == previewSphere {",
+            "        Task {",
+            "            // To place a sphere you need to:",
+            "            // 1. Create a world anchor with the translation of that offset transform and add the anchor to the world tracking provider.",
+            "            // 2. Create the sphere's geometry in `processWorldTrackingUpdates()` after you have successfully added the world anchor.",
+            "            await appState.addWorldAnchor(at: event.entity.transformMatrix(relativeTo: nil))",
+            "            appState.showPreviewSphere = false",
+            "        }",
+            "    }",
+            "})"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a person places spheres in the room, they appear in green to indicate they’re anchors in the current room. If a person leaves the room, all of the room anchors in the previous room dim and become red to indicate a person has left the room. If there are anchors in the room a person enters into, they change color to indicate the person is currently in the room.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This changing state and the property of a room being ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "current",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is what allows an app to make decisions about what actions, animations, or other processes make sense in a specific location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-the-current-room-and-respond-to-updates",
+          "level": 2,
+          "text": "Check the current room and respond to updates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a person moves from room to room, ARKit’s room tracking process checks to see which room is current and reports back changes to the app through the ",
+              "type": "text"
+            },
+            {
+              "code": "RoomTrackingProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/RoomTrackingProvider/anchorUpdates",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which is an asynchronous sequence of all anchor updates. As these updates come in, a ",
+              "type": "text"
+            },
+            {
+              "code": "Task",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view modifier in the app’s ",
+              "type": "text"
+            },
+            {
+              "code": "WorldAndRoomView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " calls a method that looks for anchors to update, as demonstrated here:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func processRoomTrackingUpdates() async {",
+            "    for await update in roomTracking.anchorUpdates {",
+            "        let roomAnchor = update.anchor",
+            "        switch update.event {",
+            "        case .removed:",
+            "            if roomAnchor.isCurrentRoom {",
+            "                colliderWallsRoot.children.removeAll()",
+            "                if let currentRenderedWall {",
+            "                    renderWallRoot.removeChild(currentRenderedWall)",
+            "                }",
+            "            }",
+            "            roomAnchors.removeValue(forKey: roomAnchor.id)",
+            "            roomEntities[roomAnchor.id]?.removeFromParent()",
+            "            roomEntities.removeValue(forKey: roomAnchor.id)",
+            "            updateSphereState()",
+            "        case .added, .updated:",
+            "            roomAnchors[roomAnchor.id] = roomAnchor",
+            "            guard let roomMeshResource = roomAnchor.geometry.asMeshResource() else { continue }",
+            "            if update.event == .added {",
+            "                let roomEntity = ModelEntity(mesh: roomMeshResource, materials: [occlusionMaterial])",
+            "                roomEntity.transform = Transform(matrix: roomAnchor.originFromAnchorTransform)",
+            "                roomEntities[roomAnchor.id] = roomEntity",
+            "                roomEntity.isEnabled = roomAnchor.isCurrentRoom",
+            "                roomRoot.addChild(roomEntity)",
+            "                ",
+            "            } else if update.event == .updated {",
+            "                guard let roomEntity = roomEntities[roomAnchor.id] else { continue }",
+            "                roomEntity.model?.mesh = roomMeshResource",
+            "                roomEntity.transform = Transform(matrix: roomAnchor.originFromAnchorTransform)",
+            "                roomEntity.isEnabled = roomAnchor.isCurrentRoom",
+            "            }",
+            "            ",
+            "            updateSphereState()",
+            "            ",
+            "            if roomAnchor.isCurrentRoom {",
+            "                currentRoomID = roomAnchor.id",
+            "                if renderWallRoot.isEnabled {",
+            "                    await updateCurrentRoomWalls(for: roomAnchor)",
+            "                }",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Find-and-select-walls",
+          "level": 2,
+          "text": "Find and select walls",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Room tracking also enables someone to find and select walls in the current room. You can use this as an additional interaction surface, such as creating a “portal” to another virtual space. The process of selecting a wall in a room is split into two modes: an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "unlocked mode",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " where actively looking at a specific wall causes ARKit to highlight it in blue, and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "locked mode",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " where a person has selected a wall and it receives continuous updates from the ",
+              "type": "text"
+            },
+            {
+              "code": "RoomTrackingProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "unlocked mode",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " requires performing a ray cast query in the direction of the a person’s head, which returns the first wall that it hits, as shown here:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Updates the wall in front of the person when a wall isn't in a selected state.",
+            "func updateFacingWall() {",
+            "    guard renderWallRoot.isEnabled && !isWallSelectionLocked else {",
+            "        return",
+            "    }",
+            "    // Update within 10 m.",
+            "    let distance: Float = 10",
+            "    ",
+            "    let deviceAnchor = worldTracking.queryDeviceAnchor(atTimestamp: CACurrentMediaTime())",
+            "    guard let deviceAnchor, deviceAnchor.isTracked == true else {",
+            "        return",
+            "    }",
+            "    let deviceInOriginCoordinates = deviceAnchor.originFromAnchorTransform",
+            "    ",
+            "    let lookAtPointInDeviceCoordinate = SIMD4<Float>(0, 0, -distance, 1)",
+            "    let lookAtPointInOriginCoordinates = deviceInOriginCoordinates * lookAtPointInDeviceCoordinate",
+            "    ",
+            "    guard let scene = colliderWallsRoot.scene else {",
+            "        logger.error(\"Failed to find the scene of `colliderWallsRoot`.\")",
+            "        return",
+            "    }",
+            "    ",
+            "    let hitWall = scene.raycast(from: deviceInOriginCoordinates.columns.3.xyz, to: lookAtPointInOriginCoordinates.xyz, query: .nearest)",
+            "    ",
+            "    guard !hitWall.isEmpty else {",
+            "        return",
+            "    }",
+            "    // Render the first hit wall.",
+            "    renderWallRoot.children.removeAll()",
+            "",
+            "    let hitEntity = hitWall[0].entity",
+            "    currentRenderedWall = hitEntity",
+            "    renderWallRoot.addChild(hitEntity)",
+            "}",
+            "",
+            "/// Updates walls under the collider walls root.",
+            "///",
+            "/// If someone has chosen and locked a wall, this method updates and renders that wall.",
+            "/// If someone hasn't locked a wall, the method updates and renders the wall in front of",
+            "/// them  in `WorldAndRoomView` at a rate of 10 Hz.",
+            "private func updateCurrentRoomWalls(for roomAnchor: RoomAnchor) async {",
+            "    let newColliderWalls = Entity()",
+            "    let wallGeometries = roomAnchor.geometries(of: .wall)",
+            "    for wallGeometry in wallGeometries {",
+            "        guard let wallMeshResource = wallGeometry.asMeshResource() else {",
+            "            continue",
+            "        }",
+            "        ",
+            "        let wallEntity = ModelEntity(mesh: wallMeshResource, materials: [wallMaterial])",
+            "        wallEntity.transform = Transform(matrix: roomAnchor.originFromAnchorTransform)",
+            "        ",
+            "        guard let shape = try? await ShapeResource.generateStaticMesh(from: wallMeshResource) else {",
+            "            logger.error(\"Failed to create ShapeResource from wall geometries.\")",
+            "            continue",
+            "        }",
+            "        ",
+            "        wallEntity.collision = CollisionComponent(shapes: [shape], isStatic: true)",
+            "        newColliderWalls.addChild(wallEntity)",
+            "    }",
+            "    // Clear old walls.",
+            "    colliderWallsRoot.children.removeAll()",
+            "    colliderWallsRoot.addChild(newColliderWalls)",
+            "    ",
+            "    if isWallSelectionLocked {",
+            "        let wallCandidateEntities = Array(newColliderWalls.children)",
+            "        updateLockedWall(wallCandidateEntities: wallCandidateEntities)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Keep-focus-on-the-current-room",
+          "level": 2,
+          "text": "Keep focus on the current room",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Room tracking operates only in the current room a person is in. If someone leaves one room and enters another, the previous room is no longer valid, and the framework only updates mesh-room associations and plane-room associations for the current room. Only use the current room anchor and discard any noncurrent rooms.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Be-aware-of-limitations",
+          "level": 2,
+          "text": "Be aware of limitations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Clutter in a room, large furniture elements, and very large spaces may interfere with ARKit’s ability to accurately detect walls and fully detect the dimensions of a room. In the case of very large indoor spaces, or in rooms with low-light conditions, the framework may only provide a floor mesh. Additionally, visionOS doesn’t support using room tracking outdoors or when Apple Vision Pro is in Travel Mode. In these cases, there’s no current room. For more information on implementing immersive experiences, see Human Interface Guidelines > ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/immersive-experiences",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Be mindful of how much content you include in immersive scenes that use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersionStyle/mixed",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " style. Content that fills a significant portion of the screen, even if that content is partially transparent, can prevent the person from seeing potential hazards in their surroundings. If you want to immerse the person in your content, configure your space with the  ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersionStyle/full",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " style. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/documentation/visionos/creating-fully-immersive-experiences",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Warning",
+          "style": "warning",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Building-local-experiences-with-room-tracking-PageImage-card.png": {
+      "alt": null,
+      "identifier": "Building-local-experiences-with-room-tracking-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ecb2f88d37f7bba036c739568409febf/Building-local-experiences-with-room-tracking-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/af99ba5e2e307907caed07d89553f518/Building-local-experiences-with-room-tracking-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "Happy-Beam-intro.png": {
+      "alt": "A screenshot showing the Happy Beam game. A player makes a heart gesture with their hands, a beam projects from it aimed at nearby clouds, and a scoreboard window shows seven points.",
+      "identifier": "Happy-Beam-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/52b497b6d705af322726d7371dee6ddd/Happy-Beam-intro@2x.png"
+        }
+      ]
+    },
+    "Object-Tracking-PageImage-card.png": {
+      "alt": "An image of a room with several rectangular tiers on which glowing and textured, reflective spheres rest.",
+      "identifier": "Object-Tracking-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dfd3696d1b7df884ded8407cef3e8045/Object-Tracking-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2332d74827799a86de0261e14c5a61f5/Object-Tracking-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/ARKit/ARKitSession": {
+      "abstract": [
+        {
+          "text": "The main entry point for receiving data from ARKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARKitSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/ARKitSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARKitSession",
+      "type": "topic",
+      "url": "/documentation/ARKit/ARKitSession"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/RoomAnchor": {
+      "abstract": [
+        {
+          "text": "The representation of a room ARKit is currently tracking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RoomAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/RoomAnchor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RoomAnchor",
+      "type": "topic",
+      "url": "/documentation/ARKit/RoomAnchor"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/RoomAnchor/contains(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a room contains the provided point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contains"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "point"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD3V",
+          "text": "SIMD3"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/RoomAnchor/contains(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contains(_:)",
+      "type": "topic",
+      "url": "/documentation/ARKit/RoomAnchor/contains(_:)"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/RoomTrackingProvider": {
+      "abstract": [
+        {
+          "text": "A source of real-time information about the room that a person is currently in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RoomTrackingProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/RoomTrackingProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RoomTrackingProvider",
+      "type": "topic",
+      "url": "/documentation/ARKit/RoomTrackingProvider"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/RoomTrackingProvider/anchorUpdates": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence of room anchor updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "anchorUpdates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5ARKit20AnchorUpdateSequenceV",
+          "text": "AnchorUpdateSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5ARKit10RoomAnchorV",
+          "text": "RoomAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "> { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/RoomTrackingProvider/anchorUpdates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "anchorUpdates",
+      "type": "topic",
+      "url": "/documentation/ARKit/RoomTrackingProvider/anchorUpdates"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/WorldAnchor": {
+      "abstract": [
+        {
+          "text": "A fixed location in a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WorldAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/WorldAnchor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WorldAnchor",
+      "type": "topic",
+      "url": "/documentation/ARKit/WorldAnchor"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/WorldTrackingProvider": {
+      "abstract": [
+        {
+          "text": "A source of live data about the device pose and anchors in a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WorldTrackingProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/WorldTrackingProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WorldTrackingProvider",
+      "type": "topic",
+      "url": "/documentation/ARKit/WorldTrackingProvider"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSWorldSensingUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to image tracking, plane detection, or scene reconstruction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSWorldSensingUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSWorldSensingUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSWorldSensingUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ImmersionStyle/full": {
+      "abstract": [
+        {
+          "text": "An immersion style that displays unbounded content that completely replaces passthrough video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "full"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI18FullImmersionStyleV",
+          "text": "FullImmersionStyle"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersionStyle/full",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "full",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ImmersionStyle/full"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ImmersionStyle/mixed": {
+      "abstract": [
+        {
+          "text": "An immersion style that displays unbounded content intermixed with other app content, along with passthrough video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mixed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI19MixedImmersionStyleV",
+          "text": "MixedImmersionStyle"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersionStyle/mixed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mixed",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ImmersionStyle/mixed"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/adopting-best-practices-for-privacy": {
+      "abstract": [
+        {
+          "text": "Minimize your use of sensitive information and provide a clear statement of what information you do use and how you use it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/adopting-best-practices-for-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "Adopting best practices for privacy and user preferences",
+      "type": "topic",
+      "url": "/documentation/visionOS/adopting-best-practices-for-privacy"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/setting-up-access-to-arkit-data": {
+      "abstract": [
+        {
+          "text": "Check whether your app can use ARKit and respect people’s privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/setting-up-access-to-arkit-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up access to ARKit data",
+      "type": "topic",
+      "url": "/documentation/visionOS/setting-up-access-to-arkit-data"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/exploring_object_tracking_with_arkit": {
+      "abstract": [
+        {
+          "text": "Find and track real-world objects in visionOS using reference objects trained with Create ML.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/exploring_object_tracking_with_arkit",
+      "images": [
+        {
+          "identifier": "Object-Tracking-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Exploring object tracking with ARKit",
+      "type": "topic",
+      "url": "/documentation/visionos/exploring_object_tracking_with_arkit"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/happybeam": {
+      "abstract": [
+        {
+          "text": "Leverage a Full Space to create a fun game using ARKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/happybeam",
+      "images": [
+        {
+          "identifier": "Happy-Beam-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Happy Beam",
+      "type": "topic",
+      "url": "/documentation/visionos/happybeam"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/incorporating-real-world-surroundings-in-an-immersive-experience": {
+      "abstract": [
+        {
+          "text": "Create an immersive experience by making your app’s content respond to the local shape of the world.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/incorporating-real-world-surroundings-in-an-immersive-experience",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Incorporating real-world surroundings in an immersive experience",
+      "type": "topic",
+      "url": "/documentation/visionos/incorporating-real-world-surroundings-in-an-immersive-experience"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/object-tracking-with-reality-composer-pro-experiences": {
+      "abstract": [
+        {
+          "text": "Use object tracking in visionOS to attach digital content to real objects to create engaging experiences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/object-tracking-with-reality-composer-pro-experiences",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Object tracking with Reality Composer Pro experiences",
+      "type": "topic",
+      "url": "/documentation/visionos/object-tracking-with-reality-composer-pro-experiences"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/placing-content-on-detected-planes": {
+      "abstract": [
+        {
+          "text": "Detect horizontal surfaces like tables and floors, as well as vertical planes like walls and doors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/placing-content-on-detected-planes",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Placing content on detected planes",
+      "type": "topic",
+      "url": "/documentation/visionos/placing-content-on-detected-planes"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/placing-entities-using-head-and-device-transform": {
+      "abstract": [
+        {
+          "text": "Query and react to changes in the position and rotation of Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/placing-entities-using-head-and-device-transform",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Placing entities using head and device transform",
+      "type": "topic",
+      "url": "/documentation/visionos/placing-entities-using-head-and-device-transform"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/setting-up-access-to-arkit-data": {
+      "abstract": [
+        {
+          "text": "Check whether your app can use ARKit and respect people’s privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/setting-up-access-to-arkit-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up access to ARKit data",
+      "type": "topic",
+      "url": "/documentation/visionos/setting-up-access-to-arkit-data"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/tracking-images-in-3d-space": {
+      "abstract": [
+        {
+          "text": "Place content based on the current position of a known image in a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/tracking-images-in-3d-space",
+      "kind": "article",
+      "role": "article",
+      "title": "Tracking preregistered images in 3D space",
+      "type": "topic",
+      "url": "/documentation/visionos/tracking-images-in-3d-space"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/tracking-points-in-world-space": {
+      "abstract": [
+        {
+          "text": "Retrieve the position and orientation of anchors your app stores in ARKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/tracking-points-in-world-space",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Tracking specific points in world space",
+      "type": "topic",
+      "url": "/documentation/visionos/tracking-points-in-world-space"
+    },
+    "e1b86cf8321c/BuildingLocalExperiencesWithRoomTracking.zip": {
+      "checksum": "e1b86cf8321c6302031bd755a90bf6bb707661111309e1a677bd445e294b0288ae67ed6d71d83b5632e19e8566de30f30e5e5e6cf0e398f726dbf417a3629b69",
+      "identifier": "e1b86cf8321c/BuildingLocalExperiencesWithRoomTracking.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/e1b86cf8321c/BuildingLocalExperiencesWithRoomTracking.zip"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/immersive-experiences": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/immersive-experiences",
+      "title": "Immersive experiences",
+      "titleInlineContent": [
+        {
+          "text": "Immersive experiences",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/immersive-experiences"
+    },
+    "https://developer.apple.com/documentation/visionos/creating-fully-immersive-experiences": {
+      "identifier": "https://developer.apple.com/documentation/visionos/creating-fully-immersive-experiences",
+      "title": "Creating fully immersive experiences in your app",
+      "titleInlineContent": [
+        {
+          "text": "Creating fully immersive experiences in your app",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/visionos/creating-fully-immersive-experiences"
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "e1b86cf8321c/BuildingLocalExperiencesWithRoomTracking.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "ARKit",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/happybeam",
+        "doc://com.apple.visionOS/documentation/visionOS/setting-up-access-to-arkit-data",
+        "doc://com.apple.visionOS/documentation/visionOS/incorporating-real-world-surroundings-in-an-immersive-experience",
+        "doc://com.apple.visionOS/documentation/visionOS/placing-content-on-detected-planes",
+        "doc://com.apple.visionOS/documentation/visionOS/tracking-points-in-world-space",
+        "doc://com.apple.visionOS/documentation/visionOS/tracking-images-in-3d-space",
+        "doc://com.apple.visionOS/documentation/visionOS/exploring_object_tracking_with_arkit",
+        "doc://com.apple.visionOS/documentation/visionOS/object-tracking-with-reality-composer-pro-experiences",
+        "doc://com.apple.visionOS/documentation/visionOS/placing-entities-using-head-and-device-transform"
+      ],
+      "title": "ARKit"
+    }
+  ]
+}

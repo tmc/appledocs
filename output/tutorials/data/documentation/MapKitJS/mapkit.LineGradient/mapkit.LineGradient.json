@@ -1,0 +1,429 @@
+{
+  "abstract": [
+    {
+      "text": "Creates a style that renders a gradient along the length of a line.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "added",
+      "platform": "MapKit JS",
+      "versions": [
+        "5.0",
+        "5.78.1"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.LineGradient"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.LineGradient/mapkit.LineGradient"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "instctr/mapkit.LineGradient/mapkit.LineGradient",
+    "modules": [
+      {
+        "name": "MapKit JS"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "5.45",
+        "name": "MapKit JS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Initializer",
+    "symbolKind": "init",
+    "title": "mapkit.LineGradient"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: MapKit JS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "new"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "text",
+              "text": "mapkit.LineGradient"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "\t"
+            },
+            {
+              "kind": "keyword",
+              "text": "optional"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Object"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "text",
+              "text": "options"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A JavaScript object with unit distance values as keys with matched CSS colors.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "options"
+        }
+      ]
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit-js-5"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The unit distance keys must be a number between ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". A value of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represents the beginning of the polyline and a value of ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represents the end. The associated values are CSS colors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example creates a new gradient that progresses from ",
+              "type": "text"
+            },
+            {
+              "code": "blue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " at the start of the line to ",
+              "type": "text"
+            },
+            {
+              "code": "red",
+              "type": "codeVoice"
+            },
+            {
+              "text": " at the end:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "overlay.style.lineGradient = new mapkit.LineGradient({",
+            "    0: \"blue\",",
+            "    1: \"red\"",
+            "});"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the start or end of the line don’t have a defined color, the gradient uses the style’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.Style/strokeColor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as a default.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can extend gradients programatically with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.LineGradient/addColorStop",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.LineGradient/addColorStopAtIndex",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS": {
+      "abstract": [
+        {
+          "text": "Embed interactive Apple Maps on your website, annotate points of interest, and perform georelated searches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MapKit JS",
+      "type": "topic",
+      "url": "/documentation/mapkitjs"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit-js-5": {
+      "abstract": [
+        {
+          "text": "Use the most up-to-date version of MapKit JS on your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit-js-5",
+      "kind": "article",
+      "role": "article",
+      "title": "MapKit JS 5",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit-js-5"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.LineGradient": {
+      "abstract": [
+        {
+          "text": "A line that displays with a gradient along the length of the line.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.LineGradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit.LineGradient",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.linegradient"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.LineGradient/addColorStop": {
+      "abstract": [
+        {
+          "text": "Adds a color transition point to the gradient.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.LineGradient/addColorStop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addColorStop",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.linegradient/addcolorstop"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.LineGradient/addColorStopAtIndex": {
+      "abstract": [
+        {
+          "text": "Adds a color transition at the index point in the list of points within a polyline.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.LineGradient/addColorStopAtIndex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addColorStopAtIndex",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.linegradient/addcolorstopatindex"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.LineGradient/mapkit.LineGradient": {
+      "abstract": [
+        {
+          "text": "Creates a style that renders a gradient along the length of a line.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.LineGradient/mapkit.LineGradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit.LineGradient",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.linegradient/mapkit.linegradient"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.Style/strokeColor": {
+      "abstract": [
+        {
+          "text": "The stroke color of a line.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.Style/strokeColor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "strokeColor",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.style/strokecolor"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-a-Line-Gradient",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.LineGradient/addColorStop",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.LineGradient/addColorStopAtIndex"
+      ],
+      "title": "Creating a Line Gradient"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mapkitjs/mapkit.linegradient/mapkit.linegradient"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

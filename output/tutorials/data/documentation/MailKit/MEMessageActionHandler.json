@@ -1,0 +1,870 @@
+{
+  "abstract": [
+    {
+      "text": "An object that performs actions on messages as the system downloads them.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mailkit/documentation/MailKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mailkit/documentation/MailKit/MEMessageActionHandler"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MEMessageActionHandler",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MEMessageActionHandler"
+      }
+    ],
+    "modules": [
+      {
+        "name": "MailKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MEMessageActionHandler"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "MEMessageActionHandler"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MEMessageActionHandler"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As MailKit downloads messages, it invokes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEMessageActionHandler/decideAction(for:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method on your handler. You indicate the action to take for each message, such as marking it as read or unread, flagging it, or archiving it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To indicate that your extension contains a message action handler, add ",
+              "type": "text"
+            },
+            {
+              "code": "MEMessageActionHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/MEExtensionCapabilities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array in the extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>NSExtensionAttributes</key>",
+            "<dict>",
+            "    <key>MEExtensionCapabilities</key>",
+            "    <array>",
+            "        <string>MEMessageActionHandler</string>",
+            "    </array>",
+            "</dict>"
+          ],
+          "syntax": "plist",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/MEExtensionCapabilities": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/MEExtensionCapabilities",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MEExtensionCapabilities",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/MEExtensionCapabilities"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit": {
+      "abstract": [
+        {
+          "text": "Secure, customize, and act on email messages that users send and receive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MailKit",
+      "type": "topic",
+      "url": "/documentation/mailkit"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit/MEMessageAction": {
+      "abstract": [
+        {
+          "text": "An action the system performs on a message, such as setting a color or archiving it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEMessageAction"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEMessageAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEMessageAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEMessageAction",
+      "type": "topic",
+      "url": "/documentation/mailkit/memessageaction"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit/MEMessageAction/MessageColor": {
+      "abstract": [
+        {
+          "text": "A color that the system uses to display a message in the message list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MessageColor"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEMessageAction/MessageColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MessageColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEMessageAction.MessageColor",
+      "type": "topic",
+      "url": "/documentation/mailkit/memessageaction/messagecolor"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit/MEMessageActionDecision": {
+      "abstract": [
+        {
+          "text": "The action that the system performs on a message, or a request to ask the action handler again later when the message content is available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEMessageActionDecision"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEMessageActionDecision",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEMessageActionDecision"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEMessageActionDecision",
+      "type": "topic",
+      "url": "/documentation/mailkit/memessageactiondecision"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit/MEMessageActionHandler": {
+      "abstract": [
+        {
+          "text": "An object that performs actions on messages as the system downloads them.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEMessageActionHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEMessageActionHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEMessageActionHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEMessageActionHandler",
+      "type": "topic",
+      "url": "/documentation/mailkit/memessageactionhandler"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit/MEMessageActionHandler/decideAction(for:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Determines the action that the system takes when it downloads a message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "decideAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MEMessage",
+          "text": "MEMessage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MEMessageActionDecision",
+          "text": "MEMessageActionDecision"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEMessageActionHandler/decideAction(for:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "decideActionForMessage:completionHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "decideAction(for:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/mailkit/memessageactionhandler/decideaction(for:completionhandler:)"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit/MEMessageActionHandler/requiredHeaders": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requiredHeaders"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEMessageActionHandler/requiredHeaders",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requiredHeaders"
+        }
+      ],
+      "role": "symbol",
+      "title": "requiredHeaders",
+      "type": "topic",
+      "url": "/documentation/mailkit/memessageactionhandler/requiredheaders"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Performing-Actions-on-Messages",
+      "identifiers": [
+        "doc://com.apple.mailkit/documentation/MailKit/MEMessageActionHandler/decideAction(for:completionHandler:)",
+        "doc://com.apple.mailkit/documentation/MailKit/MEMessageAction",
+        "doc://com.apple.mailkit/documentation/MailKit/MEMessageActionDecision",
+        "doc://com.apple.mailkit/documentation/MailKit/MEMessageAction/MessageColor"
+      ],
+      "title": "Performing Actions on Messages"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "identifiers": [
+        "doc://com.apple.mailkit/documentation/MailKit/MEMessageActionHandler/requiredHeaders"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MEMessageActionHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEMessageActionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEMessageActionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.mailkit/documentation/MailKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Performing-Actions-on-Messages",
+              "identifiers": [
+                "doc://com.apple.mailkit/documentation/MailKit/MEMessageActionHandler/decideAction(for:completionHandler:)",
+                "doc://com.apple.mailkit/documentation/MailKit/MEMessageAction",
+                "doc://com.apple.mailkit/documentation/MailKit/MEMessageActionDecision",
+                "doc://com.apple.mailkit/documentation/MailKit/MEMessageAction/MessageColor"
+              ],
+              "title": "Performing Actions on Messages"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "identifiers": [
+                "doc://com.apple.mailkit/documentation/MailKit/MEMessageActionHandler/requiredHeaders"
+              ],
+              "title": "Instance Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MEMessageActionHandler"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageActionHandler~1requiredHeaders/title",
+          "value": "requiredHeaders"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageActionHandler~1requiredHeaders/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "requiredHeaders"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageActionHandler/title",
+          "value": "MEMessageActionHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageActionHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEMessageActionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageActionHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEMessageActionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageActionHandler~1decideAction(for:completionHandler:)/title",
+          "value": "decideActionForMessage:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageActionHandler~1decideAction(for:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "decideActionForMessage:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageAction~1MessageColor/title",
+          "value": "MEMessageActionMessageColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageAction~1MessageColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEMessageActionMessageColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageAction~1MessageColor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEMessageActionMessageColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageAction/title",
+          "value": "MEMessageAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEMessageAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEMessageAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageActionDecision/title",
+          "value": "MEMessageActionDecision"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageActionDecision/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEMessageActionDecision"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageActionDecision/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEMessageActionDecision"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mailkit/memessageactionhandler"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mailkit/memessageactionhandler"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

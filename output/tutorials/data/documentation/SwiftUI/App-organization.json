@@ -1,0 +1,951 @@
+{
+  "abstract": [
+    {
+      "text": "Define the entry point and top-level structure of your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/App-organization"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "App organization"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Describe your app’s structure declaratively, much like you declare a view’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "appearance. Create a type that conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use it to enumerate the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scenes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that represent aspects of your app’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "app-organization-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftUI enables you to write code that works across all of Apple’s platforms.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, it also enables you to tailor your app to the specific capabilities",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of each platform. For example, if you need to respond to the callbacks that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system traditionally makes on a UIKit, AppKit, or WatchKit app’s delegate,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "define a delegate object and instantiate it in your app structure using an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "appropriate delegate adaptor property wrapper, like",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIApplicationDelegateAdaptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For platform-specific design guidance, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/getting-started",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the Human Interface Guidelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Backyard-Birds-intro.png": {
+      "alt": "A screenshot of a Mac, iPad, and iPhone all running the Backyard Birds app.",
+      "identifier": "Backyard-Birds-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/308516255a4b167225a334a5a55a1ff3/Backyard-Birds-intro@2x.png"
+        }
+      ]
+    },
+    "Creating-a-tvOS-media-catalog-app-in-SwiftUI-PageImage-card.png": {
+      "alt": "A conceptual illustration of a grid layout in a tvOS app showing a collection of media.",
+      "identifier": "Creating-a-tvOS-media-catalog-app-in-SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f8f5afc34a7f95c0fa6bd64a4a4ca9b3/Creating-a-tvOS-media-catalog-app-in-SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/146ac72c6b4ce7d798f5817eba25d7f6/Creating-a-tvOS-media-catalog-app-in-SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "Destination-Video-intro.png": {
+      "alt": null,
+      "identifier": "Destination-Video-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/648c665254129674ce04bbc64dbeeb2d/Destination-Video-intro@2x.png"
+        }
+      ]
+    },
+    "Hello-World-intro.png": {
+      "alt": null,
+      "identifier": "Hello-World-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/770e1d0451ba3b86de3b05eb0ce728b7/Hello-World-intro@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "app-organization-hero": {
+      "alt": null,
+      "identifier": "app-organization-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/37814b39f4f1ecc76cd13f967145c10e/app-organization-hero@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/App": {
+      "abstract": [
+        {
+          "text": "A type that represents the structure and behavior of an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "App"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "App"
+        }
+      ],
+      "role": "symbol",
+      "title": "App",
+      "type": "topic",
+      "url": "/documentation/swiftui/app"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/App-extensions": {
+      "abstract": [
+        {
+          "text": "Extend your app’s basic functionality to other parts of the system, like",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "by adding a Widget.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App extensions",
+      "type": "topic",
+      "url": "/documentation/swiftui/app-extensions"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Backyard-birds-sample": {
+      "abstract": [
+        {
+          "text": "Create an app with persistent data, interactive widgets, and an all new in-app purchase experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Backyard-birds-sample",
+      "images": [
+        {
+          "identifier": "Backyard-Birds-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Backyard Birds: Building an app with SwiftData and widgets",
+      "type": "topic",
+      "url": "/documentation/swiftui/backyard-birds-sample"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Creating-a-tvOS-media-catalog-app-in-SwiftUI": {
+      "abstract": [
+        {
+          "text": "Build standard content lockups and rows of content shelves for your tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Creating-a-tvOS-media-catalog-app-in-SwiftUI",
+      "images": [
+        {
+          "identifier": "Creating-a-tvOS-media-catalog-app-in-SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a tvOS media catalog app in SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui/creating-a-tvos-media-catalog-app-in-swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Documents": {
+      "abstract": [
+        {
+          "text": "Enable people to open and manage documents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Documents",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Documents",
+      "type": "topic",
+      "url": "/documentation/swiftui/documents"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Immersive-spaces": {
+      "abstract": [
+        {
+          "text": "Display unbounded content in a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Immersive-spaces",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Immersive spaces",
+      "type": "topic",
+      "url": "/documentation/swiftui/immersive-spaces"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Migrating-to-the-SwiftUI-life-cycle": {
+      "abstract": [
+        {
+          "text": "Use a scene-based life cycle in SwiftUI while keeping your existing codebase.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Migrating-to-the-SwiftUI-life-cycle",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating to the SwiftUI life cycle",
+      "type": "topic",
+      "url": "/documentation/swiftui/migrating-to-the-swiftui-life-cycle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Modal-presentations": {
+      "abstract": [
+        {
+          "text": "Present content in a separate view that offers focused interaction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Modal-presentations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Modal presentations",
+      "type": "topic",
+      "url": "/documentation/swiftui/modal-presentations"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSApplicationDelegateAdaptor": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that you use to create an AppKit app delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSApplicationDelegateAdaptor"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSApplicationDelegateAdaptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSApplicationDelegateAdaptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSApplicationDelegateAdaptor",
+      "type": "topic",
+      "url": "/documentation/swiftui/nsapplicationdelegateadaptor"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Navigation": {
+      "abstract": [
+        {
+          "text": "Enable people to move between different parts of your app’s view hierarchy",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "within a scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Navigation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Navigation",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigation"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scenes": {
+      "abstract": [
+        {
+          "text": "Declare the user interface groupings that make up the parts of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scenes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scenes",
+      "type": "topic",
+      "url": "/documentation/swiftui/scenes"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Search": {
+      "abstract": [
+        {
+          "text": "Enable people to search for text or other content within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Search",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Search",
+      "type": "topic",
+      "url": "/documentation/swiftui/search"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Toolbars": {
+      "abstract": [
+        {
+          "text": "Provide immediate access to frequently used commands and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Toolbars",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Toolbars",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbars"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIApplicationDelegateAdaptor": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that you use to create a UIKit app delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIApplicationDelegateAdaptor"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIApplicationDelegateAdaptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIApplicationDelegateAdaptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIApplicationDelegateAdaptor",
+      "type": "topic",
+      "url": "/documentation/swiftui/uiapplicationdelegateadaptor"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WKApplicationDelegateAdaptor": {
+      "abstract": [
+        {
+          "text": "A property wrapper that is used in ",
+          "type": "text"
+        },
+        {
+          "code": "App",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to provide a delegate from",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "WatchKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKApplicationDelegateAdaptor"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WKApplicationDelegateAdaptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKApplicationDelegateAdaptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKApplicationDelegateAdaptor",
+      "type": "topic",
+      "url": "/documentation/swiftui/wkapplicationdelegateadaptor"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WKExtensionDelegateAdaptor": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that you use to create a WatchKit extension delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKExtensionDelegateAdaptor"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WKExtensionDelegateAdaptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKExtensionDelegateAdaptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKExtensionDelegateAdaptor",
+      "type": "topic",
+      "url": "/documentation/swiftui/wkextensiondelegateadaptor"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Windows": {
+      "abstract": [
+        {
+          "text": "Display user interface content in a window or a collection of windows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Windows",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Windows",
+      "type": "topic",
+      "url": "/documentation/swiftui/windows"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/getting-started": {
+      "abstract": [
+        {
+          "text": "Create an app or game that feels at home on every platform you support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/getting-started",
+      "images": [
+        {
+          "identifier": "overview.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "platforms.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Getting started",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/getting-started"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UILaunchScreen": {
+      "abstract": [
+        {
+          "text": "The user interface to show while an app launches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UILaunchScreen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UILaunchScreen",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UILaunchScreen"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UILaunchScreens": {
+      "abstract": [
+        {
+          "text": "The user interfaces to show while an app launches in response to different URL schemes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UILaunchScreens",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UILaunchScreens",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UILaunchScreens"
+    },
+    "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui": {
+      "abstract": [
+        {
+          "text": "Create a shared codebase to build a multiplatform app that offers widgets and an App Clip.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Fruta: Building a Feature-Rich App with SwiftUI",
+      "type": "topic",
+      "url": "/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui"
+    },
+    "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app": {
+      "abstract": [
+        {
+          "text": "Create a single codebase and app target for Mac, iPad, and iPhone.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Food Truck: Building a SwiftUI multiplatform app",
+      "type": "topic",
+      "url": "/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/World": {
+      "abstract": [
+        {
+          "text": "Use windows, volumes, and immersive spaces to teach people about the Earth.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/World",
+      "images": [
+        {
+          "identifier": "Hello-World-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Hello World",
+      "type": "topic",
+      "url": "/documentation/visionOS/World"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/destination-video": {
+      "abstract": [
+        {
+          "text": "Leverage SwiftUI to build an immersive media experience in a multiplatform app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/destination-video",
+      "images": [
+        {
+          "identifier": "Destination-Video-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Destination Video",
+      "type": "topic",
+      "url": "/documentation/visionOS/destination-video"
+    },
+    "overview.svg": {
+      "alt": null,
+      "identifier": "overview.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "overview",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c9d2e563aa23997588edd7b4538f6c5b/overview.svg"
+        }
+      ]
+    },
+    "platforms.png": {
+      "alt": null,
+      "identifier": "platforms.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5f1118c7a04054c091da4877d8ad6a30/platforms@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e58f43448e82f7e07d3b2998362d9712/platforms~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-structure",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scenes",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Windows",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Immersive-spaces",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Documents",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Navigation",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Modal-presentations",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Toolbars",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Search",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/App-extensions"
+      ],
+      "title": "App structure"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-app",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/visionOS/destination-video",
+        "doc://com.apple.documentation/documentation/visionOS/World",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Backyard-birds-sample",
+        "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app",
+        "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Migrating-to-the-SwiftUI-life-cycle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/App"
+      ],
+      "title": "Creating an app"
+    },
+    {
+      "anchor": "Targeting-iOS-and-iPadOS",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UILaunchScreen",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UILaunchScreens",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIApplicationDelegateAdaptor"
+      ],
+      "title": "Targeting iOS and iPadOS"
+    },
+    {
+      "anchor": "Targeting-macOS",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSApplicationDelegateAdaptor"
+      ],
+      "title": "Targeting macOS"
+    },
+    {
+      "anchor": "Targeting-watchOS",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WKApplicationDelegateAdaptor",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WKExtensionDelegateAdaptor"
+      ],
+      "title": "Targeting watchOS"
+    },
+    {
+      "anchor": "Targeting-tvOS",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Creating-a-tvOS-media-catalog-app-in-SwiftUI"
+      ],
+      "title": "Targeting tvOS"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/app-organization"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

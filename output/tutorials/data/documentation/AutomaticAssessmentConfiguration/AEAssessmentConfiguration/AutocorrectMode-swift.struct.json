@@ -1,0 +1,1219 @@
+{
+  "abstract": [
+    {
+      "text": "The set of autocorrect features that you can enable during an assessment.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration",
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/AutocorrectMode-swift.struct"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "AutomaticAssessmentConfiguration",
+    "externalID": "c:@E@AEAutocorrectMode",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AutocorrectMode"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Automatic Assessment Configuration"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AutocorrectMode"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "AEAssessmentConfiguration.AutocorrectMode"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AutocorrectMode"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use one or more of the autocorrect modes to set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/autocorrectMode-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance. For example, you can enable both spelling and punctuation corrections by combining ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/AutocorrectMode-swift.struct/spelling",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/AutocorrectMode-swift.struct/punctuation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let config = AEAssessmentConfiguration()",
+                    "",
+                    "#if os(iOS) // Available only on iOS and iPadOS.",
+                    "config.autocorrectMode = [.punctuation, .spelling]",
+                    "#endif",
+                    "",
+                    "let session = AEAssessmentSession(configuration: config)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "AEAssessmentConfiguration *config = [AEAssessmentConfiguration new];",
+                    "",
+                    "#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR // Available only on iOS and iPadOS.",
+                    "config.autocorrectMode = AEAutocorrectModePunctuation | AEAutocorrectModeSpelling;",
+                    "#endif",
+                    "",
+                    "AEAssessmentSession *session = [[AEAssessmentSession alloc] initWithConfiguration:config];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration": {
+      "abstract": [
+        {
+          "text": "Enter single-app mode and prevent students from accessing specific system features while taking an exam.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Automatic Assessment Configuration",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration": {
+      "abstract": [
+        {
+          "text": "Configuration information for an assessment session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEAssessmentConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AEAssessmentConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "AEAssessmentConfiguration",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/AutocorrectMode-swift.struct": {
+      "abstract": [
+        {
+          "text": "The set of autocorrect features that you can enable during an assessment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AutocorrectMode"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/AutocorrectMode-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AutocorrectMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AEAssessmentConfiguration.AutocorrectMode",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/autocorrectmode-swift.struct"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/AutocorrectMode-swift.struct/init(rawValue:)": {
+      "abstract": [
+        {
+          "text": "Creates a new mode instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "rawValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/AutocorrectMode-swift.struct/init(rawValue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(rawValue:)",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/autocorrectmode-swift.struct/init(rawvalue:)"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/AutocorrectMode-swift.struct/punctuation": {
+      "abstract": [
+        {
+          "text": "A mode in which autocorrect checks punctuation as the user types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "punctuation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AEAssessmentConfiguration",
+          "text": "AEAssessmentConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AEAutocorrectMode",
+          "text": "AutocorrectMode"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/AutocorrectMode-swift.struct/punctuation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AEAutocorrectModePunctuation"
+        }
+      ],
+      "role": "symbol",
+      "title": "punctuation",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/autocorrectmode-swift.struct/punctuation"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/AutocorrectMode-swift.struct/spelling": {
+      "abstract": [
+        {
+          "text": "A mode in which autocorrect checks for spelling as the user types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "spelling"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AEAssessmentConfiguration",
+          "text": "AEAssessmentConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AEAutocorrectMode",
+          "text": "AutocorrectMode"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/AutocorrectMode-swift.struct/spelling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AEAutocorrectModeSpelling"
+        }
+      ],
+      "role": "symbol",
+      "title": "spelling",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/autocorrectmode-swift.struct/spelling"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsSpellCheck": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to allow spell check during an assessment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsSpellCheck"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsSpellCheck",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsSpellCheck"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsSpellCheck",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/allowsspellcheck"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/autocorrectMode-swift.property": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to allow Autocorrect during an assessment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autocorrectMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AEAssessmentConfiguration",
+          "text": "AEAssessmentConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AEAutocorrectMode",
+          "text": "AutocorrectMode"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/autocorrectMode-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autocorrectMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "autocorrectMode",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/autocorrectmode-swift.property"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAutocorrectMode/AEAutocorrectModeNone": {
+      "abstract": [
+        {
+          "text": "A mode that indicates autocorrect doesn’t check anything.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AEAutocorrectModeNone"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAutocorrectMode/AEAutocorrectModeNone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEAutocorrectModeNone",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeautocorrectmode/aeautocorrectmodenone"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:SY": {
+      "abstract": [
+        {
+          "text": "A type that can be converted to and from an associated raw value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RawRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SY8RawValueQa",
+          "text": "RawValue"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SY",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RawRepresentable",
+      "type": "topic",
+      "url": "/documentation/Swift/RawRepresentable"
+    },
+    "doc://com.externally.resolved.symbol/s:s10SetAlgebraP": {
+      "abstract": [
+        {
+          "text": "A type that provides mathematical set operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetAlgebra"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s10SetAlgebraP7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": "> : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s25ExpressibleByArrayLiteralP",
+          "text": "ExpressibleByArrayLiteral"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s10SetAlgebraP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetAlgebra",
+      "type": "topic",
+      "url": "/documentation/Swift/SetAlgebra"
+    },
+    "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Escapable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/Swift/BitwiseCopyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s25ExpressibleByArrayLiteralP": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized using an array literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByArrayLiteral"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s25ExpressibleByArrayLiteralP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExpressibleByArrayLiteral",
+      "type": "topic",
+      "url": "/documentation/Swift/ExpressibleByArrayLiteral"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "doc://com.externally.resolved.symbol/s:s9OptionSetP": {
+      "abstract": [
+        {
+          "text": "A type that presents a mathematical set interface to a bit set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OptionSet"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SY",
+          "text": "RawRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s10SetAlgebraP",
+          "text": "SetAlgebra"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s9OptionSetP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OptionSet",
+      "type": "topic",
+      "url": "/documentation/Swift/OptionSet"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:s25ExpressibleByArrayLiteralP",
+        "doc://com.externally.resolved.symbol/s:s9OptionSetP",
+        "doc://com.externally.resolved.symbol/s:SY",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.externally.resolved.symbol/s:s10SetAlgebraP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Allowing-corrections",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsSpellCheck",
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/autocorrectMode-swift.property"
+      ],
+      "title": "Allowing corrections"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-mode",
+      "identifiers": [
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/AutocorrectMode-swift.struct/init(rawValue:)"
+      ],
+      "title": "Creating a mode"
+    },
+    {
+      "anchor": "Modes",
+      "identifiers": [
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/AutocorrectMode-swift.struct/punctuation",
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/AutocorrectMode-swift.struct/spelling"
+      ],
+      "title": "Modes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.4",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.4",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.4",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15.4",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Enumeration"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AEAutocorrectMode"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "enum"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAutocorrectMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAutocorrectMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Modes",
+              "identifiers": [
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/AutocorrectMode-swift.struct/punctuation",
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/AutocorrectMode-swift.struct/spelling",
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAutocorrectMode/AEAutocorrectModeNone"
+              ],
+              "title": "Modes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Allowing-corrections",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsSpellCheck",
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/autocorrectMode-swift.property"
+              ],
+              "title": "Allowing corrections"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "enum"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AEAutocorrectMode"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@NSUInteger",
+                    "text": "NSUInteger"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1autocorrectMode-swift.property/title",
+          "value": "autocorrectMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1autocorrectMode-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "autocorrectMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1AutocorrectMode-swift.struct~1spelling/title",
+          "value": "AEAutocorrectModeSpelling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1AutocorrectMode-swift.struct~1spelling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAutocorrectModeSpelling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1AutocorrectMode-swift.struct~1punctuation/title",
+          "value": "AEAutocorrectModePunctuation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1AutocorrectMode-swift.struct~1punctuation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAutocorrectModePunctuation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1allowsSpellCheck/title",
+          "value": "allowsSpellCheck"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1allowsSpellCheck/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsSpellCheck"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration/title",
+          "value": "AEAssessmentConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAssessmentConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAssessmentConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1AutocorrectMode-swift.struct/title",
+          "value": "AEAutocorrectMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1AutocorrectMode-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAutocorrectMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1AutocorrectMode-swift.struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAutocorrectMode"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/autocorrectmode-swift.struct"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/autocorrectmode-swift.struct"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

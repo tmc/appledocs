@@ -1,0 +1,1135 @@
+{
+  "abstract": [
+    {
+      "text": "Make core types or concepts discoverable to the system by declaring",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "them as app entities.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AppIntents/documentation/AppIntents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AppIntents/documentation/AppIntents/app-entities"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Intents"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "App entities"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "App entities provide the system with information about your app’s data, or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "about concepts related to your app’s data. App entities help the system resolve",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parameters for app intents by letting it introspect relevant types. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, a photo app that provides app entities for its photos and albums might",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "also provide app entities to represent “the current photo” or “this album.”",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "These specific app entities help resolve intents more quickly and with fewer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "verbal interactions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Define app entities for core types and concepts that you want to make available",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to system experiences. Add properties for any data values that help people",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "discover entities using queries. For example, add the name of a photo album",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or the currency amount for a financial transaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.AppIntents/documentation/AppIntents": {
+      "abstract": [
+        {
+          "text": "Make your app’s content and actions discoverable with system experiences like Spotlight, widgets, and enhanced action capabilities of Siri, powered by Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Intents",
+      "type": "topic",
+      "url": "/documentation/appintents"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/Adding-parameters-to-an-app-intent": {
+      "abstract": [
+        {
+          "text": "Enable people to configure app intents with their custom input values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Adding-parameters-to-an-app-intent",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding parameters to an app intent",
+      "type": "topic",
+      "url": "/documentation/appintents/adding-parameters-to-an-app-intent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AnyIntentValue": {
+      "abstract": [
+        {
+          "text": "A type the system uses to access a parameter or property value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnyIntentValue"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AnyIntentValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnyIntentValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnyIntentValue",
+      "type": "topic",
+      "url": "/documentation/appintents/anyintentvalue"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity": {
+      "abstract": [
+        {
+          "text": "An interface for exposing a custom type or app-specific concept to system experiences like Siri and the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppEntity",
+      "type": "topic",
+      "url": "/documentation/appintents/appentity"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppEnum": {
+      "abstract": [
+        {
+          "text": "An interface to express that a custom type has a predefined, static set of valid values to display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppEnum"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEnum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppEnum"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppEnum",
+      "type": "topic",
+      "url": "/documentation/appintents/appenum"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppValue": {
+      "abstract": [
+        {
+          "text": "An interface that describes conceptual types you use in app intents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppValue"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppValue",
+      "type": "topic",
+      "url": "/documentation/appintents/appvalue"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/CaseDisplayRepresentable": {
+      "abstract": [
+        {
+          "text": "An interface for providing the visual representation for an iterable collection of values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CaseDisplayRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/CaseDisplayRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CaseDisplayRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "CaseDisplayRepresentable",
+      "type": "topic",
+      "url": "/documentation/appintents/casedisplayrepresentable"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/DisplayRepresentable": {
+      "abstract": [
+        {
+          "text": "An interface for providing a dynamic visual representation of a specific type and instances of that type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DisplayRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DisplayRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DisplayRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "DisplayRepresentable",
+      "type": "topic",
+      "url": "/documentation/appintents/displayrepresentable"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/DisplayRepresentation": {
+      "abstract": [
+        {
+          "text": "A type that describes the user interface presentation of a custom type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DisplayRepresentation"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DisplayRepresentation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DisplayRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "DisplayRepresentation",
+      "type": "topic",
+      "url": "/documentation/appintents/displayrepresentation"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier": {
+      "abstract": [
+        {
+          "text": "A type that uniquely identifies a specific instance of an app entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityIdentifier",
+      "type": "topic",
+      "url": "/documentation/appintents/entityidentifier"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifierConvertible": {
+      "abstract": [
+        {
+          "text": "An interface for converting between an entity’s identifier and its string",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityIdentifierConvertible"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifierConvertible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityIdentifierConvertible"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityIdentifierConvertible",
+      "type": "topic",
+      "url": "/documentation/appintents/entityidentifierconvertible"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityProperty": {
+      "abstract": [
+        {
+          "text": "A property wrapper that exposes the associated property to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityProperty",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityProperty",
+      "type": "topic",
+      "url": "/documentation/appintents/entityproperty"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/FileEntity": {
+      "abstract": [
+        {
+          "text": "An entity that refers to a document or other file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/FileEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FileEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "FileEntity",
+      "type": "topic",
+      "url": "/documentation/appintents/fileentity"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IndexedEntity": {
+      "abstract": [
+        {
+          "code": "IndexedEntity",
+          "type": "codeVoice"
+        },
+        {
+          "text": " represents an App Entity decorated with an attribute set.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "A set of attributes that enable the system to perform structured indexing  and queries of entities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IndexedEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IndexedEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IndexedEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "IndexedEntity",
+      "type": "topic",
+      "url": "/documentation/appintents/indexedentity"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/InstanceDisplayRepresentable": {
+      "abstract": [
+        {
+          "text": "An interface for providing the visual representation for an instance of a specific type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "InstanceDisplayRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/InstanceDisplayRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InstanceDisplayRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "InstanceDisplayRepresentable",
+      "type": "topic",
+      "url": "/documentation/appintents/instancedisplayrepresentable"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/Integrating-custom-types-into-your-intents": {
+      "abstract": [
+        {
+          "text": "Provide the system with information about the types your app uses to model its",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "data so that your intents can use those types as parameters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Integrating-custom-types-into-your-intents",
+      "kind": "article",
+      "role": "article",
+      "title": "Integrating custom data types into your intents",
+      "type": "topic",
+      "url": "/documentation/appintents/integrating-custom-types-into-your-intents"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/PersistentlyIdentifiable": {
+      "abstract": [
+        {
+          "text": "Defines a string that uniquely identifies a type. This is useful for maintaining the identity",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of a type, even when its type name is changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PersistentlyIdentifiable"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/PersistentlyIdentifiable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PersistentlyIdentifiable"
+        }
+      ],
+      "role": "symbol",
+      "title": "PersistentlyIdentifiable",
+      "type": "topic",
+      "url": "/documentation/appintents/persistentlyidentifiable"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/StaticDisplayRepresentable": {
+      "abstract": [
+        {
+          "text": "An interface for providing a static visual representation of a specific type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StaticDisplayRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/StaticDisplayRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StaticDisplayRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "StaticDisplayRepresentable",
+      "type": "topic",
+      "url": "/documentation/appintents/staticdisplayrepresentable"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/TransientAppEntity": {
+      "abstract": [
+        {
+          "text": "A type that represents a transient model object which exposes its interface to App Intents via",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "properties. Note that ",
+          "type": "text"
+        },
+        {
+          "code": "TransientAppEntity",
+          "type": "codeVoice"
+        },
+        {
+          "text": " types are not meant to be queried.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TransientAppEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/TransientAppEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TransientAppEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "TransientAppEntity",
+      "type": "topic",
+      "url": "/documentation/appintents/transientappentity"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/TypeDisplayRepresentable": {
+      "abstract": [
+        {
+          "text": "An interface for providing the visual representation of a specific type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TypeDisplayRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/TypeDisplayRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TypeDisplayRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "TypeDisplayRepresentable",
+      "type": "topic",
+      "url": "/documentation/appintents/typedisplayrepresentable"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/TypeDisplayRepresentation": {
+      "abstract": [
+        {
+          "text": "A type that describes the user interface presentation of a custom type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TypeDisplayRepresentation"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/TypeDisplayRepresentation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TypeDisplayRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "TypeDisplayRepresentation",
+      "type": "topic",
+      "url": "/documentation/appintents/typedisplayrepresentation"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/URLRepresentableEntity": {
+      "abstract": [
+        {
+          "text": "An app entity with a URL representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLRepresentableEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/URLRepresentableEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "URLRepresentableEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "URLRepresentableEntity",
+      "type": "topic",
+      "url": "/documentation/appintents/urlrepresentableentity"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/URLRepresentableEnum": {
+      "abstract": [
+        {
+          "text": "An app enum with a URL representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLRepresentableEnum"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/URLRepresentableEnum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "URLRepresentableEnum"
+        }
+      ],
+      "role": "symbol",
+      "title": "URLRepresentableEnum",
+      "type": "topic",
+      "url": "/documentation/appintents/urlrepresentableenum"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/UniqueAppEntity": {
+      "abstract": [
+        {
+          "text": "An entity that will only ever have one value, such as global settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UniqueAppEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/UniqueAppEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UniqueAppEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "UniqueAppEntity",
+      "type": "topic",
+      "url": "/documentation/appintents/uniqueappentity"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/entity-queries": {
+      "abstract": [
+        {
+          "text": "Help the system find the entities your app defines and use",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "them to resolve parameters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/entity-queries",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Entity queries",
+      "type": "topic",
+      "url": "/documentation/appintents/entity-queries"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/parameter-resolution": {
+      "abstract": [
+        {
+          "text": "Define the required parameters for your app intents and specify how to resolve",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "those parameters at runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/parameter-resolution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Parameter resolution",
+      "type": "topic",
+      "url": "/documentation/appintents/parameter-resolution"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/resolvers": {
+      "abstract": [
+        {
+          "text": "Resolve the parameters of your app intents, and extend the standard resolution",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "types to include your app’s custom types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/resolvers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resolvers",
+      "type": "topic",
+      "url": "/documentation/appintents/resolvers"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Parameters-custom-data-types-and-queries",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/Adding-parameters-to-an-app-intent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/Integrating-custom-types-into-your-intents",
+        "doc://com.apple.AppIntents/documentation/AppIntents/parameter-resolution",
+        "doc://com.apple.AppIntents/documentation/AppIntents/entity-queries",
+        "doc://com.apple.AppIntents/documentation/AppIntents/resolvers"
+      ],
+      "title": "Parameters, custom data types, and queries"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Entities",
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/Integrating-custom-types-into-your-intents",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity",
+        "doc://com.apple.AppIntents/documentation/AppIntents/FileEntity",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IndexedEntity",
+        "doc://com.apple.AppIntents/documentation/AppIntents/TransientAppEntity",
+        "doc://com.apple.AppIntents/documentation/AppIntents/UniqueAppEntity",
+        "doc://com.apple.AppIntents/documentation/AppIntents/URLRepresentableEntity"
+      ],
+      "title": "Entities"
+    },
+    {
+      "anchor": "Entity-identity",
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/PersistentlyIdentifiable",
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier",
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifierConvertible"
+      ],
+      "title": "Entity identity"
+    },
+    {
+      "anchor": "Entity-content",
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityProperty",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppValue",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AnyIntentValue",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppEnum",
+        "doc://com.apple.AppIntents/documentation/AppIntents/URLRepresentableEnum"
+      ],
+      "title": "Entity content"
+    },
+    {
+      "anchor": "Entity-presentation",
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/DisplayRepresentation",
+        "doc://com.apple.AppIntents/documentation/AppIntents/DisplayRepresentable",
+        "doc://com.apple.AppIntents/documentation/AppIntents/InstanceDisplayRepresentable",
+        "doc://com.apple.AppIntents/documentation/AppIntents/TypeDisplayRepresentable",
+        "doc://com.apple.AppIntents/documentation/AppIntents/TypeDisplayRepresentation",
+        "doc://com.apple.AppIntents/documentation/AppIntents/StaticDisplayRepresentable",
+        "doc://com.apple.AppIntents/documentation/AppIntents/CaseDisplayRepresentable"
+      ],
+      "title": "Entity presentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appintents/app-entities"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

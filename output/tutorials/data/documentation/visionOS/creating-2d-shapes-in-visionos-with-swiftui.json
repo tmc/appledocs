@@ -1,0 +1,1386 @@
+{
+  "abstract": [
+    {
+      "text": "Draw two-dimensional shapes in your visionOS app with SwiftUI shapes",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "or with your custom shapes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS",
+        "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/creating-2d-shapes-in-visionos-with-swiftui"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "sample-2d-shapes-1-main-view.png",
+        "type": "card"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating 2D shapes with SwiftUI"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project demonstrates how to create and display 2D shapes in your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "visionOS app, using SwiftUI views that adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Shape",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "including your custom types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following image shows the main view of the app, which draws four shapes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A circle",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A rectangle",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A triangle",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A dashed line",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "sample-2d-shapes-1-main-view.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftUI defines the ",
+              "type": "text"
+            },
+            {
+              "code": "Circle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "Rectangle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " types, and the sample defines",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the custom types ",
+              "type": "text"
+            },
+            {
+              "code": "Triangle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "Line",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-existing-shapes-from-SwiftUI-to-a-view",
+          "level": 3,
+          "text": "Add existing shapes from SwiftUI to a view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app’s main view draws the outline of a circle and a rectangle by adding an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Circle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Rectangle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", respectively.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ShapesView: View {",
+            "    var body: some View {",
+            "        /// The gap between each shape.",
+            "        let spaceBetweenShapes: CGFloat = 30.0",
+            "",
+            "        /// The width and height for the frame of each shape view.",
+            "        let shapeScale: CGFloat = 100.0",
+            "",
+            "        /// A width for all the lines in each shape.",
+            "        let strokeWidth: CGFloat = 5.0",
+            "",
+            "        // ...",
+            "",
+            "        HStack(spacing: spaceBetweenShapes) {",
+            "            Circle()",
+            "                .stroke(lineWidth: strokeWidth)",
+            "                .frame(width: shapeScale, height: shapeScale)",
+            "            Rectangle()",
+            "                .stroke(lineWidth: strokeWidth)",
+            "                .frame(width: shapeScale, height: shapeScale)",
+            "                ",
+            "            // ...",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Shape/stroke(_:lineWidth:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method sets the thickness of the line that the shape uses to draw itself,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/frame(width:height:alignment:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method puts the shape inside an invisible view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-custom-shape-types",
+          "level": 3,
+          "text": "Create custom shape types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample defines custom shape types for lines and triangles that draw themselves by adopting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Shape",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol and implementing a custom ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Path",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Line",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type stores two endpoints and draws a line between them in its ",
+              "type": "text"
+            },
+            {
+              "code": "path(in:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "",
+            "struct Line: Shape {",
+            "    let endPoint1: CGPoint",
+            "    let endPoint2: CGPoint",
+            "",
+            "    // ...",
+            "    ",
+            "    func path(in bounds: CGRect) -> Path {",
+            "        /// The drawing path for the triangle shape.",
+            "        var path = Path()",
+            "        ",
+            "        // Draw the line between the two endpoints.",
+            "        path.move(to: endPoint1)",
+            "        path.addLine(to: endPoint2)",
+            "",
+            "        return path",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Triangle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type stores three vertices for a triangle and draws a line",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "between each vertex in its custom ",
+              "type": "text"
+            },
+            {
+              "code": "path(in:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "",
+            "struct Triangle: Shape {",
+            "    let vertex1: CGPoint",
+            "    let vertex2: CGPoint",
+            "    let vertex3: CGPoint",
+            "",
+            "    // ...",
+            "    ",
+            "    func path(in bounds: CGRect) -> Path {",
+            "        /// The drawing path for the triangle shape.",
+            "        var path = Path()",
+            "",
+            "        // Start at the first vertex.",
+            "        path.move(to: vertex1)",
+            "",
+            "        // Draw the triangle's first two sides.",
+            "        path.addLine(to: vertex2)",
+            "        path.addLine(to: vertex3)",
+            "        ",
+            "        // Draw the triangle's third side by returning to the first vertex.",
+            "        path.closeSubpath()",
+            "",
+            "        return path",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The shapes view adds a triangle by creating three",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgpoint",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and passing them to the ",
+              "type": "text"
+            },
+            {
+              "code": "Triangle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ShapesView: View {",
+            "    var body: some View {",
+            "        /// The gap between each shape.",
+            "        let spaceBetweenShapes: CGFloat = 30.0",
+            "",
+            "        /// The width and height for the frame of each shape view.",
+            "        let shapeScale: CGFloat = 100.0",
+            "",
+            "        /// A width for all the lines in each shape.",
+            "        let strokeWidth: CGFloat = 5.0",
+            "",
+            "        /// The upper-leading corner of the triangle.",
+            "        let vertex1 = CGPoint(x: 0.0, y: 0.0)",
+            "",
+            "        /// The lower-trailing corner of the triangle.",
+            "        let vertex2 = CGPoint(x: shapeScale, y: shapeScale)",
+            "",
+            "        /// The lower-leading corner of the triangle.",
+            "        let vertex3 = CGPoint(x: 0.0, y: shapeScale)",
+            "",
+            "        // ...",
+            "",
+            "        HStack(spacing: spaceBetweenShapes) {",
+            "            // ...",
+            "            ",
+            "            Triangle(vertex1, vertex2, vertex3)",
+            "                .stroke(lineWidth: strokeWidth)",
+            "                .frame(width: shapeScale, height: shapeScale)",
+            "         ",
+            "            // ...",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each vertex uses SwiftUI coordinates. The origin of this coordinate system is in the upper-left corner,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the y-axis increases in a downward direction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-customizations-to-shape-types",
+          "level": 3,
+          "text": "Add customizations to shape types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To draw a line with dashes, add a ",
+              "type": "text"
+            },
+            {
+              "code": "dashed(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to the ",
+              "type": "text"
+            },
+            {
+              "code": "Line",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type, which the sample puts in an extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension Line {",
+            "    func dashed(_ width: CGFloat,",
+            "                _ dashPattern: [CGFloat]? = nil) -> some Shape {",
+            "        let pattern = dashPattern ?? [width]",
+            "        let style = StrokeStyle(lineWidth: width, dash: pattern)",
+            "",
+            "        return stroke(style: style)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method creates an instance of a line, applying a stroke style to it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The shapes view calls this method to create a dashed line based on the stroke width for all the shapes in the view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "        /// The gap between each shape.",
+            "        let spaceBetweenShapes: CGFloat = 30.0",
+            "",
+            "        /// The width and height for the frame of each shape view.",
+            "        let shapeScale: CGFloat = 100.0",
+            "",
+            "        /// A width for all the lines in each shape.",
+            "        let strokeWidth: CGFloat = 5.0",
+            "",
+            "        // ...",
+            "",
+            "        /// A pattern for the dashed line.",
+            "        let strokePattern = [3 * strokeWidth, 2 * strokeWidth]",
+            "",
+            "        HStack(spacing: spaceBetweenShapes) {",
+            "            // ...",
+            "            ",
+            "            Line(shapeScale)",
+            "                .dashed(strokeWidth, strokePattern)",
+            "                .frame(width: shapeScale, height: shapeScale)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this sample, the view draws each line segment one-and-a-half times longer than the gaps between adjacent line segments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "anchor": "See-Also",
+                  "level": 2,
+                  "text": "See Also",
+                  "type": "heading"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 1,
+          "type": "row"
+        },
+        {
+          "anchor": "Related-samples",
+          "level": 4,
+          "text": "Related samples",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.visionOS/documentation/visionOS/creating-3d-shapes-in-visionos-with-realitykit"
+          ],
+          "style": "list",
+          "type": "links"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "5d97d949da4b/Creating2DShapesInVisionOSWithSwiftUI.zip": {
+      "checksum": "5d97d949da4b0a1e7563886bd05a21068f6d88cba7a27ff33f621114b90454df949fa0059aec903f0cf230df505991f24eeda7acfa614c240d50e7111b2a851f",
+      "identifier": "5d97d949da4b/Creating2DShapesInVisionOSWithSwiftUI.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/5d97d949da4b/Creating2DShapesInVisionOSWithSwiftUI.zip"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Circle": {
+      "abstract": [
+        {
+          "text": "A circle centered on the frame of the view containing it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Circle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Circle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Circle",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Circle"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Path": {
+      "abstract": [
+        {
+          "text": "The outline of a 2D shape.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Path"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Path",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Path",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Path"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Rectangle": {
+      "abstract": [
+        {
+          "text": "A rectangular shape aligned inside the frame of the view containing it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Rectangle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Rectangle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Rectangle",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Rectangle"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Shape": {
+      "abstract": [
+        {
+          "text": "A 2D shape that you can use when drawing a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Shape"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10AnimatableP",
+          "text": "Animatable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "_RemoveGlobalActorIsolation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Shape",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Shape",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Shape"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Shape/stroke(_:lineWidth:)": {
+      "abstract": [
+        {
+          "text": "Traces the outline of this shape with a color or gradient.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stroke"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lineWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": " = 1) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10ShapeStyleP",
+          "text": "ShapeStyle"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Shape/stroke(_:lineWidth:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stroke(_:lineWidth:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Shape/stroke(_:lineWidth:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/frame(width:height:alignment:)": {
+      "abstract": [
+        {
+          "text": "Positions this view within an invisible frame with the specified size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AlignmentV",
+          "text": "Alignment"
+        },
+        {
+          "kind": "text",
+          "text": " = .center) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/frame(width:height:alignment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frame(width:height:alignment:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/frame(width:height:alignment:)"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgpoint": {
+      "abstract": [
+        {
+          "text": "A structure that contains a point in a two-dimensional coordinate system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgpoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPoint",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgpoint"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/creating-3d-shapes-in-visionos-with-realitykit": {
+      "abstract": [
+        {
+          "text": "Display a horizontal row of three-dimensional shapes in your visionOS app, using predefined mesh and white material.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/creating-3d-shapes-in-visionos-with-realitykit",
+      "images": [
+        {
+          "identifier": "sample-3d-shapes-1-main-view.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating 3D entities with RealityKit",
+      "type": "topic",
+      "url": "/documentation/visionos/creating-3d-shapes-in-visionos-with-realitykit"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples": {
+      "abstract": [
+        {
+          "text": "Learn the fundamentals of building apps for visionOS with beginner-friendly sample code projects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples",
+      "images": [
+        {
+          "identifier": "introductory-visionOS-samples.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Introductory visionOS samples",
+      "type": "topic",
+      "url": "/documentation/visionos/introductory-visionos-samples"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "introductory-visionOS-samples.png": {
+      "alt": "A translucent window displaying five white, three-dimensional entities in a horizontal row. From left to right, the shapes are a box, a rounded box, a right sphere, a cone, and a cylinder that all top-align.",
+      "identifier": "introductory-visionOS-samples.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3d386622a70e5f41179e6a4c98a125c7/introductory-visionOS-samples@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/58fa94f103305452c567401d648dedc5/introductory-visionOS-samples~dark@2x.png"
+        }
+      ]
+    },
+    "sample-2d-shapes-1-main-view.png": {
+      "alt": "A screenshot of a visionOS app in Simulator with one translucent window displaying a circle, a square, a triangle, and a dotted line that top-align.",
+      "identifier": "sample-2d-shapes-1-main-view.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b90e18496a4aec9e565db5247d51fa7b/sample-2d-shapes-1-main-view.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c2a55381ac311f3f641e4a2823308b5c/sample-2d-shapes-1-main-view~dark.png"
+        }
+      ]
+    },
+    "sample-3d-shapes-1-main-view.png": {
+      "alt": "",
+      "identifier": "sample-3d-shapes-1-main-view.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5e013edfa7e1ad36291edb644bd975c2/sample-3d-shapes-1-main-view.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b0e1eb5660516c5759744b9525ca8088/sample-3d-shapes-1-main-view~dark.png"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "5d97d949da4b/Creating2DShapesInVisionOSWithSwiftUI.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

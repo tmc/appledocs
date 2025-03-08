@@ -1,0 +1,1747 @@
+{
+  "abstract": [
+    {
+      "text": "Enable drag-and-drop interactions in lists, tables and custom views.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Drag-and-drop"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Adopting-drag-and-drop-using-SwiftUI"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Adopting drag and drop using SwiftUI"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project demonstrates how a SwiftUI view can act as a drag source or drop destination.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable drag interactions, add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/draggable(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to a view to send or receive",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/Transferable",
+              "isActive": true,
+              "overridingTitle": "Transferable",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Transferable",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " items within an app,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "among a collection of your own apps, or between your apps and others that support the import or export of a specified data format.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To handle dropped content, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/dropDestination(for:action:isTargeted:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to receive the expected dropped item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the sample app, people can drag a contact from a list of contacts and drop it into another app; such as Contacts, Notes, or Messages.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Additionally, people can drag and drop new contacts from other apps, like Contacts or Notes, into the sample app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On iPad, people can use this sample with a second app such as Contacts or Notes in Split View. People can drag a row from this app into Contacts or drag a contact from Contacts into this app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-Drag-Interactions",
+          "level": 3,
+          "text": "Enable Drag Interactions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable dragging, add the ",
+              "type": "text"
+            },
+            {
+              "code": "draggable(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier to a view to send items that conform to ",
+              "type": "text"
+            },
+            {
+              "code": "Transferable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "List {",
+            "    ForEach(dataModel.contacts) { contact in",
+            "        NavigationLink {",
+            "            ContactDetailView(contact: contact)",
+            "        } label: {",
+            "            CompactContactView(contact: contact)",
+            "                .draggable(contact) {",
+            "                    ThumbnailView(contact: contact)",
+            "                }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When someone drags a contact from a list of contacts, the app uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/draggable(_:preview:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to define a custom preview for the dragged item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about adopting the draggable API to provide items for drag operations,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Making-a-view-into-a-drag-source",
+              "isActive": true,
+              "overridingTitle": "Making a view into a drag source",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Making a view into a drag source",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-drop-interactions",
+          "level": 3,
+          "text": "Enable drop interactions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "dropDestination(for:action:isTargeted:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier to receive dragged items and define the destination that handles the dropped content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".dropDestination(for: Contact.self) { droppedContacts, index in",
+            "    dataModel.handleDroppedContacts(droppedContacts: droppedContacts, index: index)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The modifier expects a type ",
+              "type": "text"
+            },
+            {
+              "code": "Contact",
+              "type": "codeVoice"
+            },
+            {
+              "text": " which conforms to the ",
+              "type": "text"
+            },
+            {
+              "code": "Transferable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The implementation of the ",
+              "type": "text"
+            },
+            {
+              "code": "dropDestination(for:action:isTargeted:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/coretransferable/transferrepresentation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to receive a dragged item representing the dropped contact information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app defines the transfer representations in order of preference.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app uses the most suitable representation to create and initialize a ",
+              "type": "text"
+            },
+            {
+              "code": "Contact",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static var transferRepresentation: some TransferRepresentation {",
+            "    // Allows a Contact to be transferred with a custom content type.",
+            "    CodableRepresentation(contentType: .exampleContact)",
+            "    // Allows importing and exporting Contact data as a vCard.",
+            "    DataRepresentation(contentType: .vCard) { contact in",
+            "        try contact.toVCardData()",
+            "    } importing: { data in",
+            "        try await parseVCardData(data)",
+            "    }",
+            "    .suggestedFileName { $0.fullName }",
+            "    // Enables exporting the `phoneNumber` string as a proxy for the entire `Contact`.",
+            "    ProxyRepresentation { contact in",
+            "        contact.phoneNumber",
+            "    } importing: { value in",
+            "        Contact(id: UUID().uuidString, givenName: value, familyName: \"\", phoneNumber: \"\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the app receives an item with a custom ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UniformTypeIdentifiers",
+              "isActive": true,
+              "overridingTitle": "uniform type identifier",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "uniform type identifier",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", for example ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.contact",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/CodableRepresentation",
+              "isActive": true,
+              "overridingTitle": "CodableRepresentation",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CodableRepresentation",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to represent the ",
+              "type": "text"
+            },
+            {
+              "code": "Contact",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "com.example.contact",
+              "type": "codeVoice"
+            },
+            {
+              "text": " declared by the sample app conforms to public.contact.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To ensure the operating system understands how to handle the content type, it should conform to either ",
+              "type": "text"
+            },
+            {
+              "code": "UTType.data",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "UTType.package",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or one of the types that inherit from these two.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/ProxyRepresentation",
+              "isActive": true,
+              "overridingTitle": "ProxyRepresentation",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "ProxyRepresentation",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " serves as an alternative representation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that allows people to drag and drop a contact into any text editor that doesn’t support ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.contact",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UniformTypeIdentifiers/UTType-swift.struct/vCard",
+              "isActive": true,
+              "overridingTitle": "vCard",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "vCard",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " content but works with text formats.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In this case, the app exports the ",
+              "type": "text"
+            },
+            {
+              "code": "phoneNumber",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as a string.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When someone drops a string on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/List",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Table",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the sample app uses the ",
+              "type": "text"
+            },
+            {
+              "code": "ProxyRepresentation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to convert that string into a ",
+              "type": "text"
+            },
+            {
+              "code": "Contact",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/DataRepresentation",
+              "isActive": true,
+              "overridingTitle": "DataRepresentation",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "DataRepresentation",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "creates a binary representation of the ",
+              "type": "text"
+            },
+            {
+              "code": "Contact",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object and constructs the value for the receiver that supports the ",
+              "type": "text"
+            },
+            {
+              "code": "vCard",
+              "type": "codeVoice"
+            },
+            {
+              "text": " content type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When someone drops the contact on the ",
+              "type": "text"
+            },
+            {
+              "code": "Table",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "List",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the completion handler inserts the dropped contact into the collection of contacts at the drop location.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the drop doesn’t specify an index, the completion handler adds the dropped contact to the end of the collection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func handleDroppedContacts(droppedContacts: [Contact], index: Int? = nil) {",
+            "    guard let firstContact = droppedContacts.first else {",
+            "        return",
+            "    }",
+            "    // If the ID of the first contact exists in the contacts list,",
+            "    // move the contact from its current position to the new index.",
+            "    // If no index is specified, insert the contact at the end of the list.",
+            "    if let existingIndex = contacts.firstIndex(where: { $0.id == firstContact.id }) {",
+            "        let indexSet = IndexSet(integer: existingIndex)",
+            "        contacts.move(fromOffsets: indexSet, toOffset: index ?? contacts.endIndex)",
+            "    } else {",
+            "        contacts.insert(firstContact, at: index ?? contacts.endIndex)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, the ",
+              "type": "text"
+            },
+            {
+              "code": "dropDestination(for:action:isTargeted:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier can receive drag interactions that start in any other view or app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance on adopting drag and drop, see Human Interface Guidelines > ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/drag-and-drop",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "865816f9f1f5/AdoptingDragAndDropUsingSwiftUI.zip": {
+      "checksum": "865816f9f1f5285e0a5d582e15c221b4a8c96f5d52f812c39569aea191e48b6f1bbf91fe871e8cb301b3181ef7ed8ce17f45761110325c31e4ddd33393362ed3",
+      "identifier": "865816f9f1f5/AdoptingDragAndDropUsingSwiftUI.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/865816f9f1f5/AdoptingDragAndDropUsingSwiftUI.zip"
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Drag-and-drop": {
+      "abstract": [
+        {
+          "text": "Enable people to move or duplicate items by dragging them from one location to another.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Drag-and-drop",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Drag and drop",
+      "type": "topic",
+      "url": "/documentation/swiftui/drag-and-drop"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/List": {
+      "abstract": [
+        {
+          "text": "A container that presents rows of data arranged in a single column,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "optionally providing the ability to select one or more members.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "List"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/List",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "List"
+        }
+      ],
+      "role": "symbol",
+      "title": "List",
+      "type": "topic",
+      "url": "/documentation/swiftui/list"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Making-a-view-into-a-drag-source": {
+      "abstract": [
+        {
+          "text": "Adopt draggable API to provide items for drag-and-drop operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Making-a-view-into-a-drag-source",
+      "kind": "article",
+      "role": "article",
+      "title": "Making a view into a drag source",
+      "type": "topic",
+      "url": "/documentation/swiftui/making-a-view-into-a-drag-source"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Table": {
+      "abstract": [
+        {
+          "text": "A container that presents rows of data arranged in one or more columns,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "optionally providing the ability to select one or more members.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Table"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Table",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Table"
+        }
+      ],
+      "role": "symbol",
+      "title": "Table",
+      "type": "topic",
+      "url": "/documentation/swiftui/table"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/draggable(_:)": {
+      "abstract": [
+        {
+          "text": "Activates this view as the source of a drag and drop operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "draggable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/draggable(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "draggable(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/draggable(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/draggable(_:preview:)": {
+      "abstract": [
+        {
+          "text": "Activates this view as the source of a drag and drop operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "draggable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "preview"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/draggable(_:preview:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "draggable(_:preview:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/draggable(_:preview:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/dropDestination(for:action:isTargeted:)": {
+      "abstract": [
+        {
+          "text": "Defines the destination of a drag and drop operation that handles the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "dropped content with a closure that you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dropDestination"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isTargeted"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/dropDestination(for:action:isTargeted:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dropDestination(for:action:isTargeted:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/dropdestination(for:action:istargeted:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreTransferable/CodableRepresentation": {
+      "abstract": [
+        {
+          "text": "A transfer representation for types that participate in Swift’s protocols for encoding and decoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CodableRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Encoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Decoder"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable0B0P",
+          "text": "Transferable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Se",
+          "text": "Decodable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SE",
+          "text": "Encodable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Encoder"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine15TopLevelEncoderP",
+          "text": "TopLevelEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Decoder"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine15TopLevelDecoderP",
+          "text": "TopLevelDecoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Encoder"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine15TopLevelEncoderP6OutputQa",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Decoder"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine15TopLevelDecoderP5InputQa",
+          "text": "Input"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/CodableRepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CodableRepresentation",
+      "type": "topic",
+      "url": "/documentation/CoreTransferable/CodableRepresentation"
+    },
+    "doc://com.apple.documentation/documentation/CoreTransferable/DataRepresentation": {
+      "abstract": [
+        {
+          "text": "A transfer representation for types that provide their own binary data conversion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable0B0P",
+          "text": "Transferable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/DataRepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DataRepresentation",
+      "type": "topic",
+      "url": "/documentation/CoreTransferable/DataRepresentation"
+    },
+    "doc://com.apple.documentation/documentation/CoreTransferable/ProxyRepresentation": {
+      "abstract": [
+        {
+          "text": "A transfer representation that uses another type’s transfer representation as its own.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProxyRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "ProxyRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable0B0P",
+          "text": "Transferable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ProxyRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable0B0P",
+          "text": "Transferable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/ProxyRepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ProxyRepresentation",
+      "type": "topic",
+      "url": "/documentation/CoreTransferable/ProxyRepresentation"
+    },
+    "doc://com.apple.documentation/documentation/CoreTransferable/Transferable": {
+      "abstract": [
+        {
+          "text": "A protocol that describes how a type interacts with transport APIs such as drag and drop or copy and paste.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transferable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/Transferable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Transferable",
+      "type": "topic",
+      "url": "/documentation/CoreTransferable/Transferable"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Making-a-view-into-a-drag-source": {
+      "abstract": [
+        {
+          "text": "Adopt draggable API to provide items for drag-and-drop operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Making-a-view-into-a-drag-source",
+      "kind": "article",
+      "role": "article",
+      "title": "Making a view into a drag source",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Making-a-view-into-a-drag-source"
+    },
+    "doc://com.apple.documentation/documentation/UniformTypeIdentifiers": {
+      "abstract": [
+        {
+          "text": "Provide uniform type identifiers that describe file types for storage or transfer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UniformTypeIdentifiers",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Uniform Type Identifiers",
+      "type": "topic",
+      "url": "/documentation/UniformTypeIdentifiers"
+    },
+    "doc://com.apple.documentation/documentation/UniformTypeIdentifiers/UTType-swift.struct/vCard": {
+      "abstract": [
+        {
+          "text": "A type that represents a vCard file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vCard"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:22UniformTypeIdentifiers6UTTypeV",
+          "text": "UTType"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UniformTypeIdentifiers/UTType-swift.struct/vCard",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vCard",
+      "type": "topic",
+      "url": "/documentation/UniformTypeIdentifiers/UTType-swift.struct/vCard"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/coretransferable/transferrepresentation": {
+      "identifier": "https://developer.apple.com/coretransferable/transferrepresentation",
+      "title": "transferRepresentation",
+      "titleInlineContent": [
+        {
+          "code": "transferRepresentation",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/coretransferable/transferrepresentation"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/drag-and-drop": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/drag-and-drop",
+      "title": "Drag and drop",
+      "titleInlineContent": [
+        {
+          "text": "Drag and drop",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/drag-and-drop"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "865816f9f1f5/AdoptingDragAndDropUsingSwiftUI.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Making-a-view-into-a-drag-source"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/adopting-drag-and-drop-using-swiftui"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

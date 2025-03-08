@@ -1,0 +1,985 @@
+{
+  "abstract": [
+    {
+      "text": "An object that generates a 3D asset from room-capture data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomBuilder"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:8RoomPlan0A7BuilderC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "RoomBuilder"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RoomPlan"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "RoomBuilder"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": true,
+        "deprecated": false,
+        "deprecatedAt": "1.0",
+        "introducedAt": "16.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "RoomBuilder"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "RoomBuilder"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This class processes data from an earlier scan to generate a detailed ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app receives raw captured room data (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoomData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") through:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The view delegate (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureViewDelegate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") callback ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureViewDelegate/captureView(shouldPresent:error:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "for an app that provides room-scanning features through the framework-provided view (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The scan session (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") callback ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSessionDelegate/captureSession(_:didEndWith:error:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "for an app that provides room-scanning features by displaying its own view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app generates a detailed captured room object by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomBuilder/capturedRoom(from:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the raw data. Your app can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "then inspect or modify this data before exporting the scanned room to a USDZ file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RoomPlan/documentation/RoomPlan": {
+      "abstract": [
+        {
+          "text": "Create a 3D model of a room by interactively guiding people to scan their physical environment using a device’s camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RoomPlan",
+      "type": "topic",
+      "url": "/documentation/roomplan"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom": {
+      "abstract": [
+        {
+          "text": "A structure that provides the key details of a scanned room.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CapturedRoom"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CapturedRoom"
+        }
+      ],
+      "role": "symbol",
+      "title": "CapturedRoom",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/USDExportOptions": {
+      "abstract": [
+        {
+          "text": "Options that determine the underlying data format of a scan export.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "USDExportOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/USDExportOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "USDExportOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "CapturedRoom.USDExportOptions",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/usdexportoptions"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoomData": {
+      "abstract": [
+        {
+          "text": "An opaque object that holds the raw results of a scan.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CapturedRoomData"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoomData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CapturedRoomData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CapturedRoomData",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroomdata"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomBuilder": {
+      "abstract": [
+        {
+          "text": "An object that generates a 3D asset from room-capture data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RoomBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RoomBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "RoomBuilder",
+      "type": "topic",
+      "url": "/documentation/roomplan/roombuilder"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomBuilder/BuildError": {
+      "abstract": [
+        {
+          "text": "Errors that can occur during captured room-data processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BuildError"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomBuilder/BuildError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BuildError"
+        }
+      ],
+      "role": "symbol",
+      "title": "RoomBuilder.BuildError",
+      "type": "topic",
+      "url": "/documentation/roomplan/roombuilder/builderror"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomBuilder/ConfigurationOptions": {
+      "abstract": [
+        {
+          "text": "The configuration options for the RoomBuilder",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConfigurationOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomBuilder/ConfigurationOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ConfigurationOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "RoomBuilder.ConfigurationOptions",
+      "type": "topic",
+      "url": "/documentation/roomplan/roombuilder/configurationoptions"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomBuilder/capturedRoom(from:)": {
+      "abstract": [
+        {
+          "text": "Begins the 3D model generation process",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "capturedRoom"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan08CapturedA4DataV",
+          "text": "CapturedRoomData"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan08CapturedA0V",
+          "text": "CapturedRoom"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomBuilder/capturedRoom(from:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "capturedRoom(from:)",
+      "type": "topic",
+      "url": "/documentation/roomplan/roombuilder/capturedroom(from:)"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomBuilder/init(options:)": {
+      "abstract": [
+        {
+          "text": "Creates a session with assets from RSCaptureSession",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan0A7BuilderC",
+          "text": "RoomBuilder"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan0A7BuilderC20ConfigurationOptionsV",
+          "text": "ConfigurationOptions"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomBuilder/init(options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(options:)",
+      "type": "topic",
+      "url": "/documentation/roomplan/roombuilder/init(options:)"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession": {
+      "abstract": [
+        {
+          "text": "An object that manages the room-scanning process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RoomCaptureSession"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RoomCaptureSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "RoomCaptureSession",
+      "type": "topic",
+      "url": "/documentation/roomplan/roomcapturesession"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSessionDelegate/captureSession(_:didEndWith:error:)": {
+      "abstract": [
+        {
+          "text": "Notifies the delegate of completion with either scan results or an error.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "captureSession"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan0A14CaptureSessionC",
+          "text": "RoomCaptureSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didEndWith"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan08CapturedA4DataV",
+          "text": "CapturedRoomData"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSessionDelegate/captureSession(_:didEndWith:error:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "captureSession(_:didEndWith:error:)",
+      "type": "topic",
+      "url": "/documentation/roomplan/roomcapturesessiondelegate/capturesession(_:didendwith:error:)"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureView": {
+      "abstract": [
+        {
+          "text": "A view that enables the user to scan their room with the device’s camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RoomCaptureView"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RoomCaptureView"
+        }
+      ],
+      "role": "symbol",
+      "title": "RoomCaptureView",
+      "type": "topic",
+      "url": "/documentation/roomplan/roomcaptureview"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureViewDelegate": {
+      "abstract": [
+        {
+          "text": "A specification to post-process the results of a scan.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RoomCaptureViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RoomCaptureViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "RoomCaptureViewDelegate",
+      "type": "topic",
+      "url": "/documentation/roomplan/roomcaptureviewdelegate"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureViewDelegate/captureView(shouldPresent:error:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate for permission to present post-processed scan results.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "captureView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "shouldPresent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan08CapturedA4DataV",
+          "text": "CapturedRoomData"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureViewDelegate/captureView(shouldPresent:error:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "captureView(shouldPresent:error:)",
+      "type": "topic",
+      "url": "/documentation/roomplan/roomcaptureviewdelegate/captureview(shouldpresent:error:)"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/StructureBuilder": {
+      "abstract": [
+        {
+          "text": "An object that combines multiple scan sessions into a single captured result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StructureBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/StructureBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StructureBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "StructureBuilder",
+      "type": "topic",
+      "url": "/documentation/roomplan/structurebuilder"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/providing-custom-models-for-captured-rooms-and-structure-exports": {
+      "abstract": [
+        {
+          "text": "Enhance the look of an exported 3D model by substituting object bounding boxes with detailed 3D renditions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/providing-custom-models-for-captured-rooms-and-structure-exports",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Providing custom models for captured rooms and structure exports",
+      "type": "topic",
+      "url": "/documentation/roomplan/providing-custom-models-for-captured-rooms-and-structure-exports"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "3D-Asset-Output",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/providing-custom-models-for-captured-rooms-and-structure-exports",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/StructureBuilder",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/USDExportOptions"
+      ],
+      "title": "3D Asset Output"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-room-builder",
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomBuilder/init(options:)",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomBuilder/ConfigurationOptions"
+      ],
+      "title": "Creating a room builder"
+    },
+    {
+      "anchor": "Processing-a-prior-scan",
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomBuilder/capturedRoom(from:)"
+      ],
+      "title": "Processing a prior scan"
+    },
+    {
+      "anchor": "Handling-errors",
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomBuilder/BuildError"
+      ],
+      "title": "Handling errors"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/roomplan/roombuilder"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

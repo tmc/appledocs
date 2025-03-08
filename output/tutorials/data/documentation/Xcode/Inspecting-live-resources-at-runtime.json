@@ -1,0 +1,519 @@
+{
+  "abstract": [
+    {
+      "text": "Validate your resources by viewing the contents of your textures and buffers while debugging your Metal app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/Metal-developer-workflows"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-live-resources-at-runtime"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Inspecting live resources at runtime"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can preview contents of textures and buffers while debugging your app in Xcode by pausing on a breakpoint, inspecting a variable that references the resource, and then clicking the Preview button.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This is one quick way to validate that your resources have the correct contents while debugging at runtime.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you disable GPU Frame Capture, you can’t inspect resource content while your app is running.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-in-Xcode",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to learn how to reenable it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Inspect-your-textures-and-buffers",
+          "level": 3,
+          "text": "Inspect your textures and buffers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, pause the app inside a scope that contains a variable referencing the resource.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can achieve this by setting a breakpoint on a line that references the resource.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To set a breakpoint, click the line number to the left of the source editor.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The example below shows a breakpoint for the line where ",
+              "type": "text"
+            },
+            {
+              "code": "_skyMap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is bound to the render encoder:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-quick-look-set-breakpoint.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, when yor app pauses at the breakpoint, move the pointer over the variable referencing the resource to reveal the Value inspector.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-quick-look-hit-breakpoint.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, click the Preview button to show the contents of the resource.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-quick-look-preview.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the resource is a texture and has multiple slices, like the sky map above, you can drag the slider at the bottom of the Preview popover to see each slice.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the resource has any unexpected values, you can investigate further with the Metal debugger (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Investigating-visual-artifacts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Metal-Developer-Workflow-PageImage-card.png": {
+      "alt": "Metal logo",
+      "identifier": "Metal-Developer-Workflow-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/713b476e42e48070365a2abf70bc49b0/Metal-Developer-Workflow-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e226f618b21dde7899eba5de3bd4641a/Metal-Developer-Workflow-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-in-Xcode": {
+      "abstract": [
+        {
+          "text": "Analyze your app’s performance by configuring your project to use the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-in-Xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing a Metal workload in Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode/capturing-a-metal-workload-in-xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Investigating-visual-artifacts": {
+      "abstract": [
+        {
+          "text": "Discover, diagnose, and fix visual artifacts in your app with the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Investigating-visual-artifacts",
+      "kind": "article",
+      "role": "article",
+      "title": "Investigating visual artifacts",
+      "type": "topic",
+      "url": "/documentation/xcode/investigating-visual-artifacts"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Metal-developer-workflows": {
+      "abstract": [
+        {
+          "text": "Locate and fix issues related to your app’s use of the Metal API and GPU functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Metal-developer-workflows",
+      "images": [
+        {
+          "identifier": "Metal-Developer-Workflow-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal developer workflows",
+      "type": "topic",
+      "url": "/documentation/xcode/metal-developer-workflows"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Monitoring-your-Metal-apps-graphics-performance": {
+      "abstract": [
+        {
+          "text": "Catch performance issues using the Metal Performance HUD while your app is running.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Monitoring-your-Metal-apps-graphics-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Monitoring your Metal app’s graphics performance",
+      "type": "topic",
+      "url": "/documentation/xcode/monitoring-your-metal-apps-graphics-performance"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Validating-your-apps-Metal-API-usage": {
+      "abstract": [
+        {
+          "text": "Catch runtime issues in your Metal app using API Validation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Validating-your-apps-Metal-API-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Validating your app’s Metal API usage",
+      "type": "topic",
+      "url": "/documentation/xcode/validating-your-apps-metal-api-usage"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Validating-your-apps-Metal-shader-usage": {
+      "abstract": [
+        {
+          "text": "Catch common shader runtime issues using Shader Validation while your app is running.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Validating-your-apps-Metal-shader-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Validating your app’s Metal shader usage",
+      "type": "topic",
+      "url": "/documentation/xcode/validating-your-apps-metal-shader-usage"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "gputools-quick-look-hit-breakpoint.png": {
+      "alt": "A screenshot of the source editor, breaking at a line of code with a breakpoint. The variable underscore sky map is highlighted.",
+      "identifier": "gputools-quick-look-hit-breakpoint.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9aa0598844d901e8b5057ee8ac8ca780/gputools-quick-look-hit-breakpoint.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/24adafad63942811b270bcf3df4145c2/gputools-quick-look-hit-breakpoint@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fcd074dbe07edb318450bf5f9f50521f/gputools-quick-look-hit-breakpoint~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4958b40d14e3eb8bfa6a0d859cc8e610/gputools-quick-look-hit-breakpoint~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-quick-look-preview.png": {
+      "alt": "A screenshot of the Preview popover showing the contents of the variable underscore sky map.",
+      "identifier": "gputools-quick-look-preview.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fbe722e73cfb2c917ea07f8b549b5472/gputools-quick-look-preview.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/25eff4f8f589d29d1b0b63e375b2cf18/gputools-quick-look-preview@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/86d0f5d585db954723891789d3f23070/gputools-quick-look-preview~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b10847f01d2d625eb199f8782aeb1525/gputools-quick-look-preview~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-quick-look-set-breakpoint.png": {
+      "alt": "A screenshot of Xcode’s source editor, highlighting a line of code with a breakpoint.",
+      "identifier": "gputools-quick-look-set-breakpoint.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9d0947e6a5927c77c54eaa1f808840a4/gputools-quick-look-set-breakpoint.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f33f01dc549725c850875379bfa880f1/gputools-quick-look-set-breakpoint@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/470d0db02771d2fe52919b004a5156f3/gputools-quick-look-set-breakpoint~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6f5fdd2d1325409d4ed93258bb91e01c/gputools-quick-look-set-breakpoint~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Runtime-diagnostics",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Validating-your-apps-Metal-API-usage",
+        "doc://com.apple.Xcode/documentation/Xcode/Validating-your-apps-Metal-shader-usage",
+        "doc://com.apple.Xcode/documentation/Xcode/Monitoring-your-Metal-apps-graphics-performance"
+      ],
+      "title": "Runtime diagnostics"
+    }
+  ]
+}

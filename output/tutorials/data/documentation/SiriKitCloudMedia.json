@@ -1,0 +1,1672 @@
+{
+  "abstract": [
+    {
+      "text": "Stream music directly to HomePod speakers from your media service.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "SiriKit Cloud Media",
+      "versions": [
+        "1.1.0",
+        "1.1.1"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "SiriKitCloudMedia",
+    "modules": [
+      {
+        "name": "SiriKit Cloud Media"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0.2",
+        "name": "SiriKit Cloud Media"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Web Service",
+    "symbolKind": "module",
+    "title": "SiriKit Cloud Media"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user asks an authorized HomePod speaker to play some media, the media device can contact your ",
+              "type": "text"
+            },
+            {
+              "code": "SiriKitCloudMedia",
+              "type": "codeVoice"
+            },
+            {
+              "text": " service directly, rather than send requests through an intermediary iOS device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Download the SiriKit Cloud Media ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/sample-code/siri/sirikit-cloud-media-open-api.zip",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For details about applying for the SiriKit Media Intents on HomePod program, see the HomePod section of ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/siri",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Users-HomePod",
+          "level": 3,
+          "text": "Configure the User’s HomePod",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Authorize HomePod speakers to contact your media service by adopting ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MediaSetup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in your iOS app and vending tokens from an OAuth service. After the user enables your service for devices in their home, they can manage access in the Home app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provide a HomePod speaker with details about sending requests to your service by implementing the configuration endpoint. Include paths and required headers for the endpoints you support. See  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Configuration-Resource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "During a single session, some requests may come from a different HomePod speaker or an Apple TV within the user’s home. Respond to these requests the same as you do when a single device sends all of them. Use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Session",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object to maintain continuity.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Respond-to-a-Siri-Intent-with-a-Media-Playback-Queue",
+          "level": 3,
+          "text": "Respond to a Siri Intent with a Media Playback Queue",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/playMedia-1g2o9",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint to receive the user’s request, resolve the media they want to play, and handle the intent. Respond with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UserActivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which the client uses to request a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Queue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of media ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Content",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/playMedia-1onzj",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Manage how frequently the user can skip content in a queue, and what playback controls are available with each piece of content, with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaControl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " you include in each queue. Monitor user interactions and playback progress with periodic updates on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateActivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint. You may optionally respond to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateActivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " requests with a queue segment to replace or modify the current playback queue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Adapt-to-the-Users-Tastes",
+          "level": 3,
+          "text": "Adapt to the User’s Tastes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Empower the user to customize their library and playlists with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/addMedia",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint. They might ask Siri to add a certain artist’s latest album to their library, or to add the currently playing song to their Karaoke Practice playlist.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also tune algorithmic playlists by incorporating the preferences users share as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateMediaAffinity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " intents. For example, if the user says “I like rock-and-roll,” you might include more songs from that genre the next time they ask to play some music. Or if they say “I don’t like this song,” you might exclude the currently playing song from future recommendations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/MediaSetup": {
+      "abstract": [
+        {
+          "text": "Enable users to configure HomePod speakers to stream music directly from your media service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MediaSetup",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Media Setup",
+      "type": "topic",
+      "url": "/documentation/MediaSetup"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia": {
+      "abstract": [
+        {
+          "text": "Stream music directly to HomePod speakers from your media service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SiriKit Cloud Media",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/BooleanResolutionResult": {
+      "abstract": [
+        {
+          "text": "A Boolean value that matches an intent parameter, or information about why your service can’t determine the value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "BooleanResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/BooleanResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BooleanResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "BooleanResolutionResult",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/booleanresolutionresult"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Configuration-Resource": {
+      "abstract": [
+        {
+          "text": "Provide configuration details for your media server’s endpoints to a HomePod speaker or an Apple TV.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Configuration-Resource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Configuration Resource"
+        }
+      ],
+      "role": "symbol",
+      "title": "Configure Your Service Endpoints",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/configuration-resource"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Constraints": {
+      "abstract": [
+        {
+          "text": "Client-originated limitations on how to process a request, such as including explicit content and how much content the client device can receive in a response.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Constraints"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Constraints",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Constraints"
+        }
+      ],
+      "role": "symbol",
+      "title": "Constraints",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/constraints"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Content": {
+      "abstract": [
+        {
+          "text": "A description of a piece of playback content, such as a song, podcast, or advertisement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Content"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Content",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Content"
+        }
+      ],
+      "role": "symbol",
+      "title": "Content",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/content"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentFailure": {
+      "abstract": [
+        {
+          "text": "An object that describes why the client can’t play a specific piece of content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentFailure"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentFailure",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentFailure"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContentFailure",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/contentfailure"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentPlaybackFailureRequest": {
+      "abstract": [
+        {
+          "text": "A request the client sends to recover from failed content playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentPlaybackFailureRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentPlaybackFailureRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentPlaybackFailureRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContentPlaybackFailureRequest",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/contentplaybackfailurerequest"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentPlaybackFailureResponse": {
+      "abstract": [
+        {
+          "text": "A response that allows the client to recover from failed content playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentPlaybackFailureResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentPlaybackFailureResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentPlaybackFailureResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContentPlaybackFailureResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/contentplaybackfailureresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentProtectionKeyRequest": {
+      "abstract": [
+        {
+          "text": "A request for an item’s content protection key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentProtectionKeyRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentProtectionKeyRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentProtectionKeyRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContentProtectionKeyRequest",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/contentprotectionkeyrequest"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentProtectionKeyResponse": {
+      "abstract": [
+        {
+          "text": "A response to a request for an item’s content protection key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentProtectionKeyResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentProtectionKeyResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentProtectionKeyResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContentProtectionKeyResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/contentprotectionkeyresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentProtectionKeySystem": {
+      "abstract": [
+        {
+          "text": "The content protection key systems that SiriKit Cloud Media supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentProtectionKeySystem"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentProtectionKeySystem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentProtectionKeySystem"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContentProtectionKeySystem",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/contentprotectionkeysystem"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ExtensionConfig": {
+      "abstract": [
+        {
+          "text": "Instructions for accessing your media service’s endpoints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtensionConfig"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ExtensionConfig",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtensionConfig"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtensionConfig",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/extensionconfig"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ExtensionConfigTag": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a specific media service configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtensionConfigTag"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ExtensionConfigTag",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtensionConfigTag"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtensionConfigTag",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/extensionconfigtag"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Intent": {
+      "abstract": [
+        {
+          "text": "A user request for your service to fulfill.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Intent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Intent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Intent"
+        }
+      ],
+      "role": "symbol",
+      "title": "Intent",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/intent"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/IntentResolutionResult": {
+      "abstract": [
+        {
+          "text": "An object that matches a parameter of an intent, or information about why your service can’t determine a value for the parameter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntentResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/IntentResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IntentResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "IntentResolutionResult",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/intentresolutionresult"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/IntentResponse": {
+      "abstract": [
+        {
+          "text": "Your service’s response to an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/IntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "IntentResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/intentresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Invocation": {
+      "abstract": [
+        {
+          "text": "Properties that clients include in requests to all intent endpoints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Invocation"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Invocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Invocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "Invocation",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/invocation"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/InvocationResponse": {
+      "abstract": [
+        {
+          "text": "Properties to include in responses from all intent endpoints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvocationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/InvocationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvocationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "InvocationResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/invocationresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/MediaItem": {
+      "abstract": [
+        {
+          "text": "A particular piece of media that an intent references, such as a song, podcast episode, or playlist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MediaItem"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/MediaItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MediaItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "MediaItem",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/mediaitem"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/MediaItemType": {
+      "abstract": [
+        {
+          "text": "Types of media items or media searches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "MediaItemType"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/MediaItemType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MediaItemType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MediaItemType",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/mediaitemtype"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/MediaReference": {
+      "abstract": [
+        {
+          "text": "A way of identifying the current media item rather than with metadata.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "MediaReference"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/MediaReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MediaReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "MediaReference",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/mediareference"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/MediaSearch": {
+      "abstract": [
+        {
+          "text": "A description of the media items the user wants to play, add to a playlist, or express a preference for.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MediaSearch"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/MediaSearch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MediaSearch"
+        }
+      ],
+      "role": "symbol",
+      "title": "MediaSearch",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/mediasearch"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaControl": {
+      "abstract": [
+        {
+          "text": "A configuration for permitted user interactions and other player behaviors during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayMediaControl"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayMediaControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayMediaControl",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmediacontrol"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaControlActivity": {
+      "abstract": [
+        {
+          "text": "Options for reporting playback progress.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayMediaControlActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaControlActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayMediaControlActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayMediaControlActivity",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmediacontrolactivity"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayerContext": {
+      "abstract": [
+        {
+          "text": "Information about the current playback content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayerContext"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayerContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayerContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayerContext",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playercontext"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ProtocolException": {
+      "abstract": [
+        {
+          "text": "An exception response from a media service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProtocolException"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ProtocolException",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProtocolException"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProtocolException",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/protocolexception"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ProtocolExceptionInvocationResponse": {
+      "abstract": [
+        {
+          "text": "A response object that indicates when the service fails to process the client’s request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProtocolExceptionInvocationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ProtocolExceptionInvocationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProtocolExceptionInvocationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProtocolExceptionInvocationResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/protocolexceptioninvocationresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ProtocolExceptionReason": {
+      "abstract": [
+        {
+          "text": "Categories of exceptions a service can encounter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProtocolExceptionReason"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ProtocolExceptionReason",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProtocolExceptionReason"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProtocolExceptionReason",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/protocolexceptionreason"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Queue": {
+      "abstract": [
+        {
+          "text": "A sequence of media content for playback, with links to the previous and next segments of a full playback queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Queue"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Queue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Queue"
+        }
+      ],
+      "role": "symbol",
+      "title": "Queue",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/queue"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueActivityReportEvent": {
+      "abstract": [
+        {
+          "text": "An event that occurs during content playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "QueueActivityReportEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueActivityReportEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QueueActivityReportEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "QueueActivityReportEvent",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/queueactivityreportevent"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Session": {
+      "abstract": [
+        {
+          "text": "Information the client provides about a sequence of requests and responses to process an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Session"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Session",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Session"
+        }
+      ],
+      "role": "symbol",
+      "title": "Session",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/session"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UnderlyingError": {
+      "abstract": [
+        {
+          "text": "An object that describes a system framework error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnderlyingError"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UnderlyingError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnderlyingError"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnderlyingError",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/underlyingerror"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityRequest": {
+      "abstract": [
+        {
+          "text": "A report of the client’s current playback state and recent user interaction, and an opportunity for your service to modify the client’s playback queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdateActivityRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UpdateActivityRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "UpdateActivityRequest",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updateactivityrequest"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityResponse": {
+      "abstract": [
+        {
+          "text": "Updates to the client’s queue and user activity in response to a report of playback progress.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdateActivityResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UpdateActivityResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UpdateActivityResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updateactivityresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UserActivity": {
+      "abstract": [
+        {
+          "text": "The context for playing a media queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UserActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UserActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "UserActivity",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/useractivity"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/addMedia": {
+      "abstract": [
+        {
+          "text": "Add media items to the user’s library or to a playlist.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/addMedia",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addMedia"
+        }
+      ],
+      "role": "symbol",
+      "title": "Process an Add Media Intent",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/addmedia"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/contentPlaybackFailure": {
+      "abstract": [
+        {
+          "text": "Provide a recovery queue that allows the client to resume playback after an error.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/contentPlaybackFailure",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentPlaybackFailure"
+        }
+      ],
+      "role": "symbol",
+      "title": "Recover from Content Playback Failure",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/contentplaybackfailure"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/contentProtectionKey": {
+      "abstract": [
+        {
+          "text": "Provide the content key for a specific protected asset.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/contentProtectionKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentProtectionKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "Retrieve an Asset’s Content Protection Key",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/contentprotectionkey"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/playMedia-1g2o9": {
+      "abstract": [
+        {
+          "text": "Interpret the user’s request to play a media item, and provide instructions to access a corresponding playback queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/playMedia-1g2o9",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playMedia"
+        }
+      ],
+      "role": "symbol",
+      "title": "Process a Play Media Intent",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmedia-1g2o9"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/playMedia-1onzj": {
+      "abstract": [
+        {
+          "text": "Provide a playback queue from a successfully processed play media intent.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/playMedia-1onzj",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playMedia"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Media Queue",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmedia-1onzj"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateActivity": {
+      "abstract": [
+        {
+          "text": "Monitor progress through the playback queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "Report Playback Progress and Activity",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updateactivity"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateMediaAffinity": {
+      "abstract": [
+        {
+          "text": "Record the user’s preference for a specific media item or a broader category of media.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateMediaAffinity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateMediaAffinity"
+        }
+      ],
+      "role": "symbol",
+      "title": "Process an Update Media Affinity Intent",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updatemediaaffinity"
+    },
+    "https://developer.apple.com/sample-code/siri/sirikit-cloud-media-open-api.zip": {
+      "identifier": "https://developer.apple.com/sample-code/siri/sirikit-cloud-media-open-api.zip",
+      "title": "OpenAPI Specification",
+      "titleInlineContent": [
+        {
+          "text": "OpenAPI Specification",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/sample-code/siri/sirikit-cloud-media-open-api.zip"
+    },
+    "https://developer.apple.com/siri": {
+      "identifier": "https://developer.apple.com/siri",
+      "title": "Siri for Developers",
+      "titleInlineContent": [
+        {
+          "text": "Siri for Developers",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/siri"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Device-Configuration",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Configuration-Resource",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ExtensionConfigTag",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ExtensionConfig",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaControlActivity"
+      ],
+      "title": "Device Configuration"
+    },
+    {
+      "anchor": "Media-Play-Queues",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/playMedia-1g2o9",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/playMedia-1onzj"
+      ],
+      "title": "Media Play Queues"
+    },
+    {
+      "anchor": "Content-Protection",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/contentProtectionKey",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentProtectionKeyRequest",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentProtectionKeyResponse",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentProtectionKeySystem"
+      ],
+      "title": "Content Protection"
+    },
+    {
+      "anchor": "Playback-Events",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueActivityReportEvent",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateActivity",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityRequest",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityResponse",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateMediaAffinity"
+      ],
+      "title": "Playback Events"
+    },
+    {
+      "anchor": "Playback-Failure",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/contentPlaybackFailure",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentFailure",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentPlaybackFailureRequest",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentPlaybackFailureResponse"
+      ],
+      "title": "Playback Failure"
+    },
+    {
+      "anchor": "Library-and-Playlists",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/addMedia"
+      ],
+      "title": "Library and Playlists"
+    },
+    {
+      "anchor": "Media-Items",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/MediaItem",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/MediaReference",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/MediaSearch",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/MediaItemType"
+      ],
+      "title": "Media Items"
+    },
+    {
+      "anchor": "Requests",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Invocation",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Session",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Constraints",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayerContext",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/InvocationResponse"
+      ],
+      "title": "Requests"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Common objects for processing intents.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Intents",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Intent",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/IntentResponse",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UserActivity",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/IntentResolutionResult",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/BooleanResolutionResult"
+      ],
+      "title": "Intents"
+    },
+    {
+      "anchor": "Exceptions",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ProtocolExceptionInvocationResponse",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ProtocolException",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ProtocolExceptionReason"
+      ],
+      "title": "Exceptions"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UnderlyingError"
+      ],
+      "title": "Errors"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/sirikitcloudmedia"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1599 @@
+{
+  "abstract": [
+    {
+      "text": "Improve your code to get the best performance from both Apple silicon and Intel-based",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "Mac computers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Apple-Silicon/documentation/apple-silicon"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/tuning-your-code-s-performance-for-apple-silicon"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Tuning Your Code’s Performance for Apple Silicon"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tuning the performance of any code requires separate passes on both Apple silicon",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and Intel-based Mac computers. Code that runs well on one platform might not run",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "well on the other, and making assumptions about the underlying hardware can lead",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to unexpected performance regressions in your code. Testing on actual hardware is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the only way to verify that your code runs efficiently and doesn’t have any regressions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "One way to improve performance on both platforms is to leverage Apple technologies",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "wherever possible. Apple tunes its frameworks for each architecture, and often provides",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "APIs to help you adjust the performance of your own code. Take advantage of these",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "APIs to ensure your code runs efficiently on all Mac computers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "tuning-your-code-s-performance-for-apple-silicon-1.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Gather-Information-Using-Instruments-and-Other-Apple-Tools",
+          "level": 3,
+          "text": "Gather Information Using Instruments and Other Apple Tools",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use Instruments to gather performance data for your app on both Apple silicon and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Intel-based Mac computers. Instruments runs natively on both systems, and offers",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the same tools for gathering data. Use the data you gather to identify potential",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "performance regressions, and the parts of your code that you might need to change.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Assign-Quality-of-Service-QoS-Classes-to-Work",
+          "level": 3,
+          "text": "Assign Quality-of-Service (QoS) Classes to Work",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "QoS classes categorize the work you perform using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/operation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "objects, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/operationqueue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "objects, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/process",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/thread",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects, dispatch",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "queues, and POSIX threads (pthreads). The QoS class you assign to a work item communicates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the importance of that item to the system. The system uses that information to prioritize",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and schedule the item accordingly. The system defines the following QoS classes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "User interactive—Applies to work that interacts with the user, such as code that",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "runs on the app’s main thread. If the work doesn’t happen quickly, the user interface",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "may appear frozen. This class emphasizes maximum performance and responsiveness.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "User initiated—Applies to work that the user initiates, such as opening a saved",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "document. The user expects your app to perform the work quickly. This class emphasizes",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "performance and responsiveness.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Utility—Applies to work that takes anywhere from a few seconds to a few minutes",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to complete. Examples include downloading a document or importing data. This class",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "offers a balance between responsiveness, performance, and energy efficiency.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Background—Applies to work that isn’t visible to the user and may take significant",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "time to complete. Examples include indexing, backing up, or synchronizing data. This",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "class emphasizes energy efficiency.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Accurately assigning QoS classes to tasks ensures that your app is both responsive",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and energy efficient on all Macs. On Apple silicon, a task’s QoS class influences",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "whether the system runs that task on a performance core (P core) or efficiency core",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(E core). For example, the system is more likely to run Background tasks on E cores",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to maximize battery life. If you don’t assign QoS classes, your app’s responsiveness",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and efficiency may suffer as a result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you manually configure your thread’s priority using ",
+              "type": "text"
+            },
+            {
+              "code": "pthread_setschedparam",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "setpriority",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or ",
+              "type": "text"
+            },
+            {
+              "code": "thread_set_policy",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", transition to APIs that set QoS classes instead. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use the ",
+              "type": "text"
+            },
+            {
+              "code": "pthread_set_qos_class_self_np",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to set the QoS class of your POSIX",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "threads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about how the system applies and interprets QoS classes, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/power_efficiency_guidelines_osx/PrioritizeWorkAtTheTaskLevel.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/power_efficiency_guidelines_osx/index.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about configuring dispatch queues and QoS classes, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Dispatch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Execute-Tasks-Using-Grand-Central-Dispatch",
+          "level": 3,
+          "text": "Execute Tasks Using Grand Central Dispatch",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Grand Central Dispatch (GCD) manages the efficient execution of your app’s tasks.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use GCD to execute serially, concurrently, or in parallel on the system’s available",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "cores. GCD handles the scheduling of tasks on system-provided threads, and schedules",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "those threads for execution on the system’s available processor cores. On a Mac with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Apple silicon, GCD takes into account the differences in core types, distributing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tasks to the appropriate core type to get the needed performance or efficiency.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For most apps, GCD offers the best solution for executing tasks. Instead of custom",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "thread pools, you use dispatch queues to schedule your tasks for execution. Dispatch",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "queues support the execution of tasks either serially or concurrently.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about how to use GCD, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Dispatch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Manage-Parallel-Computation-Tasks-Efficiently",
+          "level": 3,
+          "text": "Manage Parallel-Computation Tasks Efficiently",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "One way to improve performance is to divide a problem into multiple pieces and execute",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "those pieces in parallel on the available cores. Use this approach for large tasks",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that require significant processing resources. For example, use it to divide an image",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "into multiple pieces and process those pieces in parallel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In GCD, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Dispatch/DispatchQueue/concurrentPerform(iterations:execute:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "function takes a provided block and calls it multiple times on the available system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "cores. This function uses a work-stealing algorithm to keep each core busy with work",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and is an efficient way to process large tasks in parallel. On Apple silicon, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "algorithm distributes work efficiently to both p-cores and e-cores, adjusting the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "distribution of tasks dynamically as needed. To ensure the maximum benefit of this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "algorithm, make the number of iterations at least three times the total number of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "cores on the system. The system needs enough iterations to ensure appropriate distribution",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the tasks across different types of cores.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you implement parallel computations using your own thread pools, use you own work-stealing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "algorithm to distribute tasks dynamically. If you use a static distribution, threads",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "running on P cores will finish much sooner than threads running on E cores. As with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the GCD function, make the number of tasks greater than the number of cores to ensure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a fair distribution of work.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Dont-Keep-Threads-Active-And-Idle",
+          "level": 3,
+          "text": "Don’t Keep Threads Active And Idle",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Keeping a thread active while it tries to acquire a resource might minimize the overhead",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of switching thread contexts, but at great cost. When you keep a thread active but",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "doing nothing, you prevent a CPU core from doing other work. On Apple silicon, this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "behavior exacerbates performance issues in producer-consumer algorithms when the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "consumer thread runs on a p-core and the producer runs on an e-core. Instead, eliminate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "spin locks and other spin-wait code that causes your thread to hold on to a core.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Replace them with an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/os/os_unfair_lock",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", a condition",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variable, or a standard mutex that lets your thread block.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to avoiding spin locks, avoid ",
+              "type": "text"
+            },
+            {
+              "code": "pthread_yield_np",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and equivalent functions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that yield the thread’s time to higher-priority threads instead of blocking outright.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Yield-related APIs allow the current thread to continue running when the waiting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "threads have lower priorities. This behavior prevents the system from scheduling",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "some lower-priority threads and doing productive work.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about synchronization primitives for threads, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/os",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework or the pthreads API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-Daemons-and-Agents-That-Work-on-Your-Apps-Behalf",
+          "level": 3,
+          "text": "Configure Daemons and Agents That Work on Your App’s Behalf",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Daemons and launch agents are separate background processes that provide on-demand",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "services for your app. You might use one to serve web pages, coordinate access to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a shared database, or perform work on behalf of your foreground app. When creating",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a daemon or launch agent, do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Always include the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ProcessType",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key in your daemon or launch agent’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "file. The system uses that key to determine your daemon’s purpose and adjust its",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "available resources accordingly. For example, setting the key to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Adaptive",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " adjusts",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "resources based on interactions with your app. For more information, see the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "launchd.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "man page.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use XPC to communicate with your daemon or launch agent. The system uses context",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "information in XPC messages to track when a daemon or launch agent performs work",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "on behalf of your app. If you use sockets or other IPC mechanisms for communication,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the system loses that ability, which might lead to less optimal scheduling decisions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On Apple silicon, your app’s behavior doesn’t influence the performance characteristics",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of any associated daemons or launch agents by default. When you use XPC, the system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "recognizes that a relationship exists between the app and your daemon or launch agent.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "That relationship causes the system to associate the daemon or launch agent’s work",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with your app’s performance characteristics.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When scheduling asynchronous tasks for execution from an XPC message handler, Apple",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "technologies like Grand Central Dispatch (GCD) and Core Foundation automatically",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "add relevant XPC context information to the corresponding thread state. The system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "relies on that state information to track the relationship between your app and daemon.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you distribute work using custom thread technologies, call",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/dispatch/1431050-dispatch_block_create",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to capture and propagate any XPC context information to your custom threads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Apple-Silicon/documentation/apple-silicon": {
+      "abstract": [
+        {
+          "text": "Get the resources you need to create software for Macs with Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Apple-Silicon/documentation/apple-silicon",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple Silicon",
+      "type": "topic",
+      "url": "/documentation/apple-silicon"
+    },
+    "doc://com.apple.documentation/documentation/Dispatch": {
+      "abstract": [
+        {
+          "text": "Execute code concurrently on multicore hardware by submitting work to dispatch queues managed by the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Dispatch",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Dispatch",
+      "type": "topic",
+      "url": "/documentation/Dispatch"
+    },
+    "doc://com.apple.documentation/documentation/Dispatch/DispatchQueue/concurrentPerform(iterations:execute:)": {
+      "abstract": [
+        {
+          "text": "Submits a single block to the dispatch queue and causes the block to be executed the specified number of times.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "concurrentPerform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "iterations"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "execute"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "work"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Dispatch/DispatchQueue/concurrentPerform(iterations:execute:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "concurrentPerform(iterations:execute:)",
+      "type": "topic",
+      "url": "/documentation/Dispatch/DispatchQueue/concurrentPerform(iterations:execute:)"
+    },
+    "doc://com.apple.documentation/documentation/dispatch/1431050-dispatch_block_create": {
+      "abstract": [
+        {
+          "text": "Creates a new dispatch block on the heap using an existing block and the given flags.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/dispatch/1431050-dispatch_block_create",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_block_create",
+      "type": "topic",
+      "url": "/documentation/dispatch/1431050-dispatch_block_create"
+    },
+    "doc://com.apple.documentation/documentation/foundation/operation": {
+      "abstract": [
+        {
+          "text": "An abstract class that represents the code and data associated with a single task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Operation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/operation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Operation",
+      "type": "topic",
+      "url": "/documentation/foundation/operation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/operationqueue": {
+      "abstract": [
+        {
+          "text": "A queue that regulates the execution of operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "OperationQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/operationqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OperationQueue",
+      "type": "topic",
+      "url": "/documentation/foundation/operationqueue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/process": {
+      "abstract": [
+        {
+          "text": "An object that represents a subprocess of the current process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Process"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/process",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Process",
+      "type": "topic",
+      "url": "/documentation/foundation/process"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread": {
+      "abstract": [
+        {
+          "text": "A thread of execution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Thread"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Thread",
+      "type": "topic",
+      "url": "/documentation/foundation/thread"
+    },
+    "doc://com.apple.documentation/documentation/os": {
+      "abstract": [
+        {
+          "text": "Coordinate the scheduling and synchronization of your app’s tasks, and log information to the console to diagnose issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/os",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "os",
+      "type": "topic",
+      "url": "/documentation/os"
+    },
+    "doc://com.apple.documentation/documentation/os/os_unfair_lock": {
+      "abstract": [
+        {
+          "text": "A structure that contains the data for an unfair lock.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typedef"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@os_unfair_lock_s",
+          "text": "os_unfair_lock_s"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "os_unfair_lock"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/os/os_unfair_lock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_unfair_lock",
+      "type": "topic",
+      "url": "/documentation/os/os_unfair_lock"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/power_efficiency_guidelines_osx/PrioritizeWorkAtTheTaskLevel.html": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/power_efficiency_guidelines_osx/PrioritizeWorkAtTheTaskLevel.html",
+      "title": "Prioritize Work at the Task Level",
+      "titleInlineContent": [
+        {
+          "text": "Prioritize Work at the Task Level",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/power_efficiency_guidelines_osx/PrioritizeWorkAtTheTaskLevel.html"
+    },
+    "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/power_efficiency_guidelines_osx/index.html": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/power_efficiency_guidelines_osx/index.html",
+      "title": "Energy Efficiency Guide for Mac Apps",
+      "titleInlineContent": [
+        {
+          "text": "Energy Efficiency Guide for Mac Apps",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/power_efficiency_guidelines_osx/index.html"
+    },
+    "tuning-your-code-s-performance-for-apple-silicon-1.png": {
+      "alt": "An illustration of the differences between asymmetric and symmetric cores of Mac computers.",
+      "identifier": "tuning-your-code-s-performance-for-apple-silicon-1.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fa376487547a82aa73139b9b65bdd4/tuning-your-code-s-performance-for-apple-silicon-1@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1process/title",
+          "value": "NSTask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1operationqueue/title",
+          "value": "NSOperationQueue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1operation/title",
+          "value": "NSOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1thread/title",
+          "value": "NSThread"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,503 @@
+{
+  "abstract": [
+    {
+      "text": "Determines the operation queue that is used to call methods on the connection’s delegate.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/legacy_url_loading_systems",
+        "doc://com.apple.documentation/documentation/foundation/nsurlconnection"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1411849-setdelegatequeue"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1411849,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSURLConnection(im)setDelegateQueue:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "setDelegateQueue"
+      },
+      {
+        "kind": "text",
+        "text": "(OperationQueue?)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSURLConnection"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.7",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "setDelegateQueue(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "setDelegateQueue"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "queue"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/operationqueue",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSOperationQueue",
+              "text": "OperationQueue"
+            },
+            {
+              "kind": "text",
+              "text": "?"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The operation queue to use when calling delegate methods.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "queue"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, a connection is scheduled on the current thread in the default mode when it is created. If you create a connection with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1418425-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and provide ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " for the ",
+              "type": "text"
+            },
+            {
+              "code": "startImmediately",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, you can instead schedule the connection on an operation queue before starting it with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1417345-start",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You cannot reschedule a connection after it has started.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It is an error to schedule delegate method calls with both this method and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1417485-schedule",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection": {
+      "abstract": [
+        {
+          "text": "An object that enables you to start and stop URL requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLConnection",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1409722-unschedule": {
+      "abstract": [
+        {
+          "text": "Causes the connection to stop calling delegate methods in the specified run loop and mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "unschedule"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forMode"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.Mode)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1409722-unschedule",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unschedule(from:forMode:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection/1409722-unschedule"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1411849-setdelegatequeue": {
+      "abstract": [
+        {
+          "text": "Determines the operation queue that is used to call methods on the connection’s delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDelegateQueue"
+        },
+        {
+          "kind": "text",
+          "text": "(OperationQueue?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1411849-setdelegatequeue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDelegateQueue(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection/1411849-setdelegatequeue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1417345-start": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1417345-start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "start()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection/1417345-start"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1417485-schedule": {
+      "abstract": [
+        {
+          "text": "Determines the run loop and mode that the connection uses to call methods on its delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "schedule"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forMode"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.Mode)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1417485-schedule",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "schedule(in:forMode:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection/1417485-schedule"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1418425-init": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1418425-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(request:delegate:startImmediately:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection/1418425-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/operationqueue": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/operationqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OperationQueue",
+      "type": "topic",
+      "url": "/documentation/foundation/operationqueue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/legacy_url_loading_systems": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/legacy_url_loading_systems",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Legacy URL Loading Systems",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/legacy_url_loading_systems"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1417485-schedule",
+        "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1409722-unschedule"
+      ],
+      "title": "Scheduling Delegate Method Calls"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsurlconnection/1411849-setdelegatequeue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsurlconnection/1411849-setdelegatequeue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

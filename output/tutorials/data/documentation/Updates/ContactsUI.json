@@ -1,0 +1,528 @@
+{
+  "abstract": [
+    {
+      "text": "Learn about important changes to ContactsUI.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Updates/documentation/Updates"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Updates/documentation/Updates/ContactsUI"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Updates"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "ContactsUI updates"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Browse notable changes in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contactsui",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "June-2024",
+          "level": 2,
+          "text": "June 2024",
+          "type": "heading"
+        },
+        {
+          "anchor": "Limited-access-to-contacts",
+          "level": 3,
+          "text": "Limited access to contacts",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check your app’s authorization status for a new value, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CNAuthorizationStatus.limited",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This represents a new status in which a person can grant your app access to a limited subset of their contacts, rather than make an all-or-nothing choice. When your app first calls ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CNContactStore.requestAccess(for:completionHandler:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", an alert asks the person using the app whether to allow contacts access at all. If they allow access, they can choose either full access or choose which contacts to allow, which appears to your app as the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".limited",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " authorization status. They can revise their choices later in the Settings app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allow someone to quickly add more contacts to this limited-access group by displaying a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ContactAccessButton",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in your app’s contact search UI. You initialize this SwiftUI view with a search substring and sets of ignored emails and phone numbers. If a single person matches this query, the button shows the contact and offers to add them to the contacts your app can access. If there are multiple matches, tapping the button shows a separate view to select contacts.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the SwiftUI view modifier ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "contactAccessPicker(isPresented:completionHandler:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " if you want to conditionally show a full-screen picker that adds contacts to your limited-access app. The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "isPresented",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter binds to a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Bool",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value, and shows the picker when the bound value becomes ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Apple-Intelligence-updates-page-PageImage-card.png": {
+      "alt": "A stylistic image of the Apple Intelligence logo.",
+      "identifier": "Apple-Intelligence-updates-page-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/582fe08f6f69a366c2f1b35cd91e3c52/Apple-Intelligence-updates-page-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d4b11a932a5a2c7880eccd8043a1c524/Apple-Intelligence-updates-page-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Updates/documentation/Updates": {
+      "abstract": [
+        {
+          "text": "View major documentation updates and highlights from WWDC, browse ongoing updates from a set of framework releases over time, and jump to the latest release notes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates",
+      "images": [
+        {
+          "identifier": "featured.svg",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Updates",
+      "type": "topic",
+      "url": "/documentation/updates"
+    },
+    "doc://com.apple.Updates/documentation/Updates/ARKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to ARKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/ARKit",
+      "kind": "article",
+      "role": "article",
+      "title": "ARKit updates",
+      "type": "topic",
+      "url": "/documentation/updates/arkit"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AVFAudio": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to AVFAudio.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AVFAudio",
+      "kind": "article",
+      "role": "article",
+      "title": "AVFAudio updates",
+      "type": "topic",
+      "url": "/documentation/updates/avfaudio"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to AVFoundation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AVFoundation",
+      "kind": "article",
+      "role": "article",
+      "title": "AVFoundation updates",
+      "type": "topic",
+      "url": "/documentation/updates/avfoundation"
+    },
+    "doc://com.apple.Updates/documentation/Updates/Accelerate": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Accelerate.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/Accelerate",
+      "kind": "article",
+      "role": "article",
+      "title": "Accelerate updates",
+      "type": "topic",
+      "url": "/documentation/updates/accelerate"
+    },
+    "doc://com.apple.Updates/documentation/Updates/Accessibility": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Accessibility.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/Accessibility",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessibility updates",
+      "type": "topic",
+      "url": "/documentation/updates/accessibility"
+    },
+    "doc://com.apple.Updates/documentation/Updates/ActivityKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes in ActivityKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/ActivityKit",
+      "kind": "article",
+      "role": "article",
+      "title": "ActivityKit updates",
+      "type": "topic",
+      "url": "/documentation/updates/activitykit"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AdAttributionKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to AdAttributionKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AdAttributionKit",
+      "kind": "article",
+      "role": "article",
+      "title": "AdAttributionKit Updates",
+      "type": "topic",
+      "url": "/documentation/updates/adattributionkit"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AppIntents": {
+      "abstract": [
+        {
+          "text": "Learn about important changes in App Intents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AppIntents",
+      "kind": "article",
+      "role": "article",
+      "title": "App Intents updates",
+      "type": "topic",
+      "url": "/documentation/updates/appintents"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AppKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to AppKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AppKit",
+      "kind": "article",
+      "role": "article",
+      "title": "AppKit updates",
+      "type": "topic",
+      "url": "/documentation/updates/appkit"
+    },
+    "doc://com.apple.Updates/documentation/Updates/Apple-Intelligence": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/Apple-Intelligence",
+      "images": [
+        {
+          "identifier": "Apple-Intelligence-updates-page-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Apple Intelligence updates",
+      "type": "topic",
+      "url": "/documentation/updates/apple-intelligence"
+    },
+    "doc://com.apple.Updates/documentation/Updates/ApplePencil": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/ApplePencil",
+      "kind": "article",
+      "role": "article",
+      "title": "Apple Pencil updates",
+      "type": "topic",
+      "url": "/documentation/updates/applepencil"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Audio Toolbox.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AudioToolbox",
+      "kind": "article",
+      "role": "article",
+      "title": "Audio Toolbox updates",
+      "type": "topic",
+      "url": "/documentation/updates/audiotoolbox"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AuthenticationServices": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to AuthenticationServices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AuthenticationServices",
+      "kind": "article",
+      "role": "article",
+      "title": "AuthenticationServices updates",
+      "type": "topic",
+      "url": "/documentation/updates/authenticationservices"
+    },
+    "doc://com.apple.Updates/documentation/Updates/BundleResources": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Bundle Resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/BundleResources",
+      "kind": "article",
+      "role": "article",
+      "title": "Bundle Resources updates",
+      "type": "topic",
+      "url": "/documentation/updates/bundleresources"
+    },
+    "doc://com.apple.Updates/documentation/Updates/CoreLocation": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Core Location.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/CoreLocation",
+      "kind": "article",
+      "role": "article",
+      "title": "Core Location updates",
+      "type": "topic",
+      "url": "/documentation/updates/corelocation"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "featured.svg": {
+      "alt": "An icon, with a star and a speech bubble around it, representing updates.",
+      "identifier": "featured.svg",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/70c10a18eb39cac81bd40849ad68cbff/featured.svg"
+        }
+      ]
+    },
+    "https://developer.apple.com/documentation/contactsui": {
+      "identifier": "https://developer.apple.com/documentation/contactsui",
+      "title": "ContactsUI",
+      "titleInlineContent": [
+        {
+          "text": "ContactsUI",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contactsui"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Technology-updates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Updates/documentation/Updates/Accelerate",
+        "doc://com.apple.Updates/documentation/Updates/Accessibility",
+        "doc://com.apple.Updates/documentation/Updates/ActivityKit",
+        "doc://com.apple.Updates/documentation/Updates/AdAttributionKit",
+        "doc://com.apple.Updates/documentation/Updates/AppIntents",
+        "doc://com.apple.Updates/documentation/Updates/AppKit",
+        "doc://com.apple.Updates/documentation/Updates/Apple-Intelligence",
+        "doc://com.apple.Updates/documentation/Updates/ApplePencil",
+        "doc://com.apple.Updates/documentation/Updates/ARKit",
+        "doc://com.apple.Updates/documentation/Updates/AudioToolbox",
+        "doc://com.apple.Updates/documentation/Updates/AuthenticationServices",
+        "doc://com.apple.Updates/documentation/Updates/AVFAudio",
+        "doc://com.apple.Updates/documentation/Updates/AVFoundation",
+        "doc://com.apple.Updates/documentation/Updates/BundleResources",
+        "doc://com.apple.Updates/documentation/Updates/CoreLocation"
+      ],
+      "title": "Technology updates"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/updates/contactsui"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

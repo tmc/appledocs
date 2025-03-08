@@ -1,0 +1,791 @@
+{
+  "abstract": [
+    {
+      "text": "Provide contacts managed by your app to the system-wide Contacts ecosystem.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ContactProvider/documentation/ContactProvider"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "ContactProvider",
+    "modules": [
+      {
+        "name": "ContactProvider"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "ContactProvider"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the Contact Provider framework if your app manages its own contacts to make them available in other apps that use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Contacts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework. This enables apps like Phone and Mail to provide personal names and images for incoming calls or messages when your app knows the caller or sender. Instead of adding contacts directly with the Contacts framework, your app provides read-only contact items that it can update, and which the person using your app can easily enable, disable, add, or remove. This enables people to organize the contacts they use in your app separately from their personal contacts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide contacts from your app, add an app extension that extends ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderExtension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The extension is responsible for enumerating contacts that your app manages. Your app manages the extension with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class. Use the manager to enable or disable the extension domain, typically using the default domain. After enabling the extension domain, the extension can run and sync contacts, making contacts available to other apps that use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Contacts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Xcode provides a Contact Provider extension template for use in an existing project to add Contact Provider support. Select your project in the Project navigator, choose Editor > Add Target, or click the Add button (+) in the Projects and Targets list, and choose Contact Provider Extension from the iOS templates.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are several ways the extension can run and update contacts. Your app can call the manager’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/signalEnumerator(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which loads the extension and asks it to provide an updated set of contacts. An example of using this call is when the app knows that new contacts are available from its server; it can then fetch these contacts and have the extension provide them to the system Contacts database. In addition, when connected to power overnight, Contacts schedules time for all enabled contact provider extension domains to sync at low priority.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A person using the device can see providers in the Settings app and selectively enable or disable them. Disabling a contact provider makes its contacts unavailable to other apps. Deleting the app deletes the extension and all of its contacts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.ContactProvider/documentation/ContactProvider": {
+      "abstract": [
+        {
+          "text": "Provide contacts managed by your app to the system-wide Contacts ecosystem.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ContactProvider",
+      "type": "topic",
+      "url": "/documentation/contactprovider"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItem": {
+      "abstract": [
+        {
+          "text": "An item in the contact database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContactItem"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContactItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContactItem",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactitem"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemChangeObserver": {
+      "abstract": [
+        {
+          "text": "A protocol that defines a system observer that receives a resumable enumeration of changed contact items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContactItemChangeObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemChangeObserver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContactItemChangeObserver"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContactItemChangeObserver",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactitemchangeobserver"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemContentObserver": {
+      "abstract": [
+        {
+          "text": "A protocol that defines a system observer that receives a resumable enumeration of all items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContactItemContentObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemContentObserver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContactItemContentObserver"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContactItemContentObserver",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactitemcontentobserver"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerating": {
+      "abstract": [
+        {
+          "text": "A protocol to provide enumerators for collections of contact items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContactItemEnumerating"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerating",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContactItemEnumerating"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContactItemEnumerating",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactitemenumerating"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerator": {
+      "abstract": [
+        {
+          "text": "A protocol to provide enumerations of all contact items and changed contact items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContactItemEnumerator"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContactItemEnumerator"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContactItemEnumerator",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactitemenumerator"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderDomain": {
+      "abstract": [
+        {
+          "text": "A domain, including traits like an identifier and display name, used to configure the extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContactProviderDomain"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContactProviderDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContactProviderDomain",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactproviderdomain"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderError": {
+      "abstract": [
+        {
+          "text": "Errors thrown by the Contact Provider framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContactProviderError"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContactProviderError"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContactProviderError",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactprovidererror"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderExtension": {
+      "abstract": [
+        {
+          "text": "The protocol your app extension implements, which provides contact items to the system-wide Contacts ecosystem.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContactProviderExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContactProviderExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContactProviderExtension",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactproviderextension"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager": {
+      "abstract": [
+        {
+          "text": "An interface for the app to control its extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContactProviderManager"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContactProviderManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContactProviderManager",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactprovidermanager"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/signalEnumerator(for:)": {
+      "abstract": [
+        {
+          "text": "Requests that the extension enumerate its contacts for the domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "signalEnumerator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ContactProvider0A4ItemO",
+          "text": "ContactItem"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ContactProvider0A4ItemO10IdentifierV",
+          "text": "Identifier"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/signalEnumerator(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "signalEnumerator(for:)",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactprovidermanager/signalenumerator(for:)"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderVersionNumber": {
+      "abstract": [
+        {
+          "text": "Project version number for ContactProvider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ContactProviderVersionNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderVersionNumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ContactProviderVersionNumber",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactproviderversionnumber"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderVersionString": {
+      "abstract": [
+        {
+          "text": "Project version string for ContactProvider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ContactProviderVersionString"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderVersionString",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ContactProviderVersionString",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactproviderversionstring"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/DefaultContactProviderDomain": {
+      "abstract": [
+        {
+          "text": "The default domain the extension uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DefaultContactProviderDomain"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/DefaultContactProviderDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DefaultContactProviderDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "DefaultContactProviderDomain",
+      "type": "topic",
+      "url": "/documentation/contactprovider/defaultcontactproviderdomain"
+    },
+    "doc://com.apple.documentation/documentation/Contacts": {
+      "abstract": [
+        {
+          "text": "Access the user’s contacts, and format and localize contact information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Contacts",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Contacts",
+      "type": "topic",
+      "url": "/documentation/Contacts"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-contact-provider-extension",
+      "identifiers": [
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderExtension"
+      ],
+      "title": "Creating a contact provider extension"
+    },
+    {
+      "anchor": "Managing-an-extension-in-an-app",
+      "identifiers": [
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager"
+      ],
+      "title": "Managing an extension in an app"
+    },
+    {
+      "anchor": "Working-with-domains",
+      "identifiers": [
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderDomain",
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/DefaultContactProviderDomain"
+      ],
+      "title": "Working with domains"
+    },
+    {
+      "anchor": "Providing-contacts",
+      "identifiers": [
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItem",
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerating",
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerator"
+      ],
+      "title": "Providing contacts"
+    },
+    {
+      "anchor": "Receiving-contacts",
+      "identifiers": [
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemContentObserver",
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemChangeObserver"
+      ],
+      "title": "Receiving contacts"
+    },
+    {
+      "anchor": "Supporting-types",
+      "identifiers": [
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderError"
+      ],
+      "title": "Supporting types"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Variables",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderVersionNumber",
+                "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderVersionString"
+              ],
+              "title": "Variables"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/contactprovider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/contactprovider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

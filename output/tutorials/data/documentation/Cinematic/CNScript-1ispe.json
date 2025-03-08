@@ -1,0 +1,1892 @@
+{
+  "abstract": [
+    {
+      "text": "A collection of focus decisions, focus transitions, detections, and detection tracks associated with a movie captured in Cinematic mode and methods to change them.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cinematic/documentation/Cinematic"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:9Cinematic8CNScriptC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CNScript"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Cinematic"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CNScript"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CNScript"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "macOS",
+            "tvOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "final"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CNScript"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Cinematic script provides thread-safe access to information about the focus decisions made in the original recorded Cinematic movie. The script supports changing those decisions and obtaining updated information about where to focus each frame. You can snapshot changes to a script and later reload them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Look up what you need up front, outside your critical code, and pass the immutable results to where it’s needed. That way, you’re not blocked when you access the information inside the rendering portion of your code.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cinematic/documentation/Cinematic": {
+      "abstract": [
+        {
+          "text": "Integrate playback and editing of assets captured in Cinematic mode into your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Cinematic",
+      "type": "topic",
+      "url": "/documentation/cinematic"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe": {
+      "abstract": [
+        {
+          "text": "A collection of focus decisions, focus transitions, detections, and detection tracks associated with a movie captured in Cinematic mode and methods to change them.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CNScript"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CNScript"
+        }
+      ],
+      "role": "symbol",
+      "title": "CNScript",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/Changes": {
+      "abstract": [
+        {
+          "text": "An object that represents a snapshot of the changes made to a movie script, including the added user decisions and detection tracks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Changes"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/Changes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Changes"
+        }
+      ],
+      "role": "symbol",
+      "title": "CNScript.Changes",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/changes"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/Frame": {
+      "abstract": [
+        {
+          "text": "An object that represents what to focus on, and where to focus, in a given movie frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Frame"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/Frame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Frame"
+        }
+      ],
+      "role": "symbol",
+      "title": "CNScript.Frame",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/frame"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/addDetectionTrack(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a user-created detection track.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addDetectionTrack"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic16CNDetectionTrackC",
+          "text": "CNDetectionTrack"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CNDetectionID",
+          "text": "CNDetectionID"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/addDetectionTrack(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addDetectionTrack(_:)",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/adddetectiontrack(_:)"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/addUserDecision(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a new user decision, and replaces an existing user decision if the times are identical.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addUserDecision"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic10CNDecisionV",
+          "text": "CNDecision"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/addUserDecision(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addUserDecision(_:)",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/adduserdecision(_:)"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/addedDetectionTracks": {
+      "abstract": [
+        {
+          "text": "An array of the detection tracks added since recording the original Cinematic movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addedDetectionTracks"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic16CNDetectionTrackC",
+          "text": "CNDetectionTrack"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/addedDetectionTracks",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addedDetectionTracks",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/addeddetectiontracks"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/baseDecisions(in:)": {
+      "abstract": [
+        {
+          "text": "All base decisions made automatically during recording in the given time range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "baseDecisions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic10CNDecisionV",
+          "text": "CNDecision"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/baseDecisions(in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "baseDecisions(in:)",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/basedecisions(in:)"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/changes()": {
+      "abstract": [
+        {
+          "text": "Changes made since recording the Cinematic asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "changes"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic8CNScriptC",
+          "text": "CNScript"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic8CNScriptC7ChangesV",
+          "text": "Changes"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/changes()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "changes()",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/changes()"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/changes(trimmedBy:)": {
+      "abstract": [
+        {
+          "text": "Changes trimmed and time range shifted to start at zero.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "changes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "trimmedBy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic8CNScriptC",
+          "text": "CNScript"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic8CNScriptC7ChangesV",
+          "text": "Changes"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/changes(trimmedBy:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "changes(trimmedBy:)",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/changes(trimmedby:)"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/decision(after:)": {
+      "abstract": [
+        {
+          "text": "The decision that occurs after the given time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "decision"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "after"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic10CNDecisionV",
+          "text": "CNDecision"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/decision(after:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decision(after:)",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/decision(after:)"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/decision(at:tolerance:)": {
+      "abstract": [
+        {
+          "text": "The closest decision to the given time within the given tolerance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "decision"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "tolerance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic10CNDecisionV",
+          "text": "CNDecision"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/decision(at:tolerance:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decision(at:tolerance:)",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/decision(at:tolerance:)"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/decision(before:)": {
+      "abstract": [
+        {
+          "text": "The decision that occurs before the given time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "decision"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "before"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic10CNDecisionV",
+          "text": "CNDecision"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/decision(before:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decision(before:)",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/decision(before:)"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/decisions(in:)": {
+      "abstract": [
+        {
+          "text": "All decisions within the given time range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "decisions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic10CNDecisionV",
+          "text": "CNDecision"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/decisions(in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decisions(in:)",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/decisions(in:)"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/detectionTrack(for:)-1xvsa": {
+      "abstract": [
+        {
+          "text": "A detection track representing all detections selected by a given decision.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detectionTrack"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic10CNDecisionV",
+          "text": "CNDecision"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic16CNDetectionTrackC",
+          "text": "CNDetectionTrack"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/detectionTrack(for:)-1xvsa",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detectionTrack(for:)",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/detectiontrack(for:)-1xvsa"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/detectionTrack(for:)-6f8mk": {
+      "abstract": [
+        {
+          "text": "A detection track representing all detections with the given detection ID, over the entire Cinematic script.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detectionTrack"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CNDetectionID",
+          "text": "CNDetectionID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic16CNDetectionTrackC",
+          "text": "CNDetectionTrack"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/detectionTrack(for:)-6f8mk",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detectionTrack(for:)",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/detectiontrack(for:)-6f8mk"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/fNumber": {
+      "abstract": [
+        {
+          "text": "The f-stop value which inversely affects the aperture used to render the Cinematic image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fNumber"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/fNumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fNumber",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/fnumber"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/frame(at:tolerance:)": {
+      "abstract": [
+        {
+          "text": "The closest frame to the given time within the given tolerance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "tolerance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic8CNScriptC",
+          "text": "CNScript"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic8CNScriptC5FrameV",
+          "text": "Frame"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/frame(at:tolerance:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frame(at:tolerance:)",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/frame(at:tolerance:)"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/frames(in:)": {
+      "abstract": [
+        {
+          "text": "All frames within the given time range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frames"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic8CNScriptC",
+          "text": "CNScript"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic8CNScriptC5FrameV",
+          "text": "Frame"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/frames(in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frames(in:)",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/frames(in:)"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/init(asset:changes:progress:)": {
+      "abstract": [
+        {
+          "text": "Creates a Cinematic script based on a movie and applying changes to the movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "asset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAsset",
+          "text": "AVAsset"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "changes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic8CNScriptC",
+          "text": "CNScript"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic8CNScriptC7ChangesV",
+          "text": "Changes"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "progress"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSProgress",
+          "text": "Progress"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/init(asset:changes:progress:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(asset:changes:progress:)",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/init(asset:changes:progress:)"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/primaryDecision(at:)": {
+      "abstract": [
+        {
+          "text": "The primary decision that’s in effect at the specified time, unless it’s outside the time range of the Cinematic script.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "primaryDecision"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic10CNDecisionV",
+          "text": "CNDecision"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/primaryDecision(at:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "primaryDecision(at:)",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/primarydecision(at:)"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/reload(changes:)": {
+      "abstract": [
+        {
+          "text": "Reloads the Cinematic script with optional changes applied, removing any previous changes made.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reload"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "changes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic8CNScriptC",
+          "text": "CNScript"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic8CNScriptC7ChangesV",
+          "text": "Changes"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/reload(changes:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reload(changes:)",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/reload(changes:)"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/removeAllUserDecisions()": {
+      "abstract": [
+        {
+          "text": "Removes all user decisions and reverts to base decisions only.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllUserDecisions"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/removeAllUserDecisions()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeAllUserDecisions()",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/removealluserdecisions()"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/removeDetectionTrack(_:)": {
+      "abstract": [
+        {
+          "text": "Removes the user-created detection track.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeDetectionTrack"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic16CNDetectionTrackC",
+          "text": "CNDetectionTrack"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/removeDetectionTrack(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeDetectionTrack(_:)",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/removedetectiontrack(_:)"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/removeUserDecision(_:)": {
+      "abstract": [
+        {
+          "text": "Removes an existing user decision.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeUserDecision"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic10CNDecisionV",
+          "text": "CNDecision"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/removeUserDecision(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeUserDecision(_:)",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/removeuserdecision(_:)"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/secondaryDecision(at:)": {
+      "abstract": [
+        {
+          "text": "If a given time is during a focus transition, the system transitions toward a secondary decision.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "secondaryDecision"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic10CNDecisionV",
+          "text": "CNDecision"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/secondaryDecision(at:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "secondaryDecision(at:)",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/secondarydecision(at:)"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/timeRange": {
+      "abstract": [
+        {
+          "text": "The time range of the selected track.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/timeRange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeRange",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/timerange"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/timeRangeOfTransition(after:)": {
+      "abstract": [
+        {
+          "text": "The time range during which the focus transitioned away from the given decision.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeRangeOfTransition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "after"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic10CNDecisionV",
+          "text": "CNDecision"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/timeRangeOfTransition(after:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeRangeOfTransition(after:)",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/timerangeoftransition(after:)"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/timeRangeOfTransition(before:)": {
+      "abstract": [
+        {
+          "text": "The time range during which the focus transitioned toward the given decision.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeRangeOfTransition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "before"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic10CNDecisionV",
+          "text": "CNDecision"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/timeRangeOfTransition(before:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeRangeOfTransition(before:)",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/timerangeoftransition(before:)"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/userDecisions(in:)": {
+      "abstract": [
+        {
+          "text": "All user decisions in the given time range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userDecisions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic10CNDecisionV",
+          "text": "CNDecision"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/userDecisions(in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "userDecisions(in:)",
+      "type": "topic",
+      "url": "/documentation/cinematic/cnscript-1ispe/userdecisions(in:)"
+    },
+    "doc://com.apple.cinematic/documentation/Cinematic/playing-and-editing-cinematic-mode-video": {
+      "abstract": [
+        {
+          "text": "Play and edit Cinematic mode video with an adjustable depth of field and focus points.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cinematic/documentation/Cinematic/playing-and-editing-cinematic-mode-video",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Playing and editing Cinematic mode video",
+      "type": "topic",
+      "url": "/documentation/cinematic/playing-and-editing-cinematic-mode-video"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cinematic/documentation/Cinematic/playing-and-editing-cinematic-mode-video"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/Changes",
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/Frame"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/init(asset:changes:progress:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/addedDetectionTracks",
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/fNumber",
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/timeRange"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/addDetectionTrack(_:)",
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/addUserDecision(_:)",
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/baseDecisions(in:)",
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/changes()",
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/changes(trimmedBy:)",
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/decision(after:)",
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/decision(at:tolerance:)",
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/decision(before:)",
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/decisions(in:)",
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/detectionTrack(for:)-1xvsa",
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/detectionTrack(for:)-6f8mk",
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/frame(at:tolerance:)",
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/frames(in:)",
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/primaryDecision(at:)",
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/reload(changes:)",
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/removeAllUserDecisions()",
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/removeDetectionTrack(_:)",
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/removeUserDecision(_:)",
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/secondaryDecision(at:)",
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/timeRangeOfTransition(after:)",
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/timeRangeOfTransition(before:)",
+        "doc://com.apple.cinematic/documentation/Cinematic/CNScript-1ispe/userDecisions(in:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cinematic/cnscript-1ispe"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

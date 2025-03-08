@@ -1,0 +1,1304 @@
+{
+  "abstract": [
+    {
+      "text": "Create and adjust spatial audio in visionOS with RealityKit.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS",
+        "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/playing-spatial-audio-in-visionos"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Playing spatial audio"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample demonstrates how to load and play a spatial audio file in a visionOS app with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/SpatialAudioComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". As the following image shows, you can use this component to configure how an entity emits sounds into a person’s environment:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "sample-spatialaudio-1-main-view.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-axis-visualizer",
+          "level": 3,
+          "text": "Create the axis visualizer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using existing RealityKit shapes, the sample creates an axis visualizer in the app’s main view to represent the x, y, and z axes of the audio source:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import RealityKit",
+            "",
+            "struct AxisVisualizer {",
+            "    static func make() -> Entity {",
+            "        /// The entity that contains four different meshes.",
+            "        let entity = Entity()",
+            "",
+            "        /// The width, length, and radius values that each mesh uses.",
+            "        let width: Float = 0.0025",
+            "        let length: Float = 0.1",
+            "        let radius: Float = 0.005",
+            "        ",
+            "        // ...",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The structure uses a ",
+              "type": "text"
+            },
+            {
+              "code": "make()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to create the entity that contains the axis mesh.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create the representation of the x-axis, the app creates a box mesh with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/MeshResource/generateBox(size:cornerRadius:)-2ovma",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and a red ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/UnlitMaterial",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", then combines the two with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ModelEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static func make() -> Entity {",
+            "    // ...",
+            "",
+            "    /// The box for the x-axis.",
+            "    let xAxisMesh = MeshResource.generateBox(size: [length, width, width])",
+            "",
+            "    /// The unlit red material.",
+            "    let xAxisMaterial = UnlitMaterial(color: .systemRed)",
+            "",
+            "    /// The entity with the box and material that represents the x-axis.",
+            "    let xAxisEntity = ModelEntity(mesh: xAxisMesh, materials: [xAxisMaterial])",
+            "",
+            "    // Set the postion of the x-axis entity in 3D space.",
+            "    xAxisEntity.position = [0.5 * length, 0, 0]",
+            "",
+            "    // Add the x-axis to the parent entity.",
+            "    entity.addChild(xAxisEntity)",
+            "",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app follows similar steps to create the representation of the y and z axes, by adjusting the color of the material, the position of the entity, and the corresponding vector of three scalar values representing the width, height, and depth of the box.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an origin point and complete the visualizer, the app creates a white sphere at the default position, using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/MeshResource/generateSphere(radius:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static func make() -> Entity {",
+            "    // ...",
+            "",
+            "    /// The sphere for the origin point.",
+            "    let originMesh = MeshResource.generateSphere(radius: radius)",
+            "",
+            "    /// The unlit white material.",
+            "    let originMaterial = UnlitMaterial(color: .white)",
+            "",
+            "    /// The entity with the sphere and white material that represents the origin point.",
+            "    let originEntity = ModelEntity(mesh: originMesh, materials: [originMaterial])",
+            "",
+            "    // Add the origin entity to the main entity.",
+            "    entity.addChild(originEntity)",
+            "",
+            "    return entity",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-decibel-slider",
+          "level": 3,
+          "text": "Create a decibel slider",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To adjust the decibels for the gain, the direct level, and the reverb level of the audio source, the app creates the ",
+              "type": "text"
+            },
+            {
+              "code": "DecibelSlider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view that the app adds to the main body view. The view contains a ",
+              "type": "text"
+            },
+            {
+              "code": "name",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property, which represents the name of the property that it controls, and a ",
+              "type": "text"
+            },
+            {
+              "code": "value",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable, which stores the decibel value:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "",
+            "/// A view that formats as a slider to adjust decibel values.",
+            "struct DecibelSlider: View {",
+            "    /// The name of the value that changes.",
+            "    let name: String",
+            "",
+            "    /// The binding to a numerical double that stores the decibel value.",
+            "    let value: Binding<Double>",
+            "",
+            "    var body: some View {",
+            "        VStack {",
+            "            HStack {",
+            "                Text(name)",
+            "                Spacer()",
+            "                Text(value.wrappedValue.formatted(.number.precision(.fractionLength(.zero))) + \"dB\")",
+            "                    .monospacedDigit()",
+            "            }",
+            "            /// The slider with a range of -60 to 0.",
+            "            Slider(value: value, in: -60 ... 0)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Slider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " within the view, a person can control the ",
+              "type": "text"
+            },
+            {
+              "code": "value",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property from the bounded linear range of values between -60 and 0.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-up-the-main-window",
+          "level": 3,
+          "text": "Set up the main window",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create the main view, the app combines the following subviews:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "audioSource",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "description",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "config",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "import RealityKit",
+            "",
+            "struct SpatialAudioView: View {",
+            "    /// The new entity to contain the audio sample.",
+            "    let entity = Entity()",
+            "",
+            "    /// The gain value of the audio source.",
+            "    @State private var gain: Audio.Decibel = .zero",
+            "",
+            "    /// The direct signal that emits from the audio source.",
+            "    @State private var directLevel: Audio.Decibel = .zero",
+            "",
+            "    /// The reverb of the audio source.",
+            "    @State private var reverbLevel: Audio.Decibel = .zero",
+            "",
+            "    var body: some View {",
+            "        HStack {",
+            "            audioSource",
+            "",
+            "            VStack {",
+            "                description",
+            "                Spacer()",
+            "                configuration",
+            "            }",
+            "            .padding(30)",
+            "            .frame(width: 350)",
+            "        }",
+            "    }",
+            "",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The view creates ",
+              "type": "text"
+            },
+            {
+              "code": "entity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to hold the audio sample. The ",
+              "type": "text"
+            },
+            {
+              "code": "gain",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "directLevel",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "reverbLevel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties represent the default values for the audio source.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Play-the-spatial-audio",
+          "level": 3,
+          "text": "Play the spatial audio",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the necessary properties are in place, the ",
+              "type": "text"
+            },
+            {
+              "code": "audioSource",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view loads the audio file and configures it for continuous playback. Then the app sets up ",
+              "type": "text"
+            },
+            {
+              "code": "entity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with a ",
+              "type": "text"
+            },
+            {
+              "code": "SpatialAudioComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to play the audio in the reality view:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var audioSource: some View {",
+            "    RealityView { content in",
+            "        // Add the entity to the `RealityView`.",
+            "        content.add(entity)",
+            "",
+            "        /// The name of the audio source.",
+            "        let audioName: String = \"FunkySynth.m4a\"",
+            "",
+            "        /// The configuration to loop the audio file continously.",
+            "        let configuration = AudioFileResource.Configuration(shouldLoop: true)",
+            "",
+            "        // Load the audio source and set its configuration.",
+            "        guard let audio = try? AudioFileResource.load(",
+            "            named: audioName,",
+            "            configuration: configuration",
+            "        ) else {",
+            "            print(\"Failed to load audio file.\")",
+            "            return",
+            "        }",
+            "",
+            "        /// The focus for the directivity of the spatial audio.",
+            "        let focus: Double = 0.5",
+            "",
+            "        // Add a spatial component to the entity that emits in the forward direction.",
+            "        entity.spatialAudio = SpatialAudioComponent(directivity: .beam(focus: focus))",
+            "",
+            "        // Set the entity to play audio.",
+            "        entity.playAudio(audio)",
+            "    }",
+            "",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After adding the entity to the reality view, the app attaches the ",
+              "type": "text"
+            },
+            {
+              "code": ".onAppear",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": ".onChange",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifiers to spawn the axis visualizer. Then the app enables the view to modify the entity’s ",
+              "type": "text"
+            },
+            {
+              "code": "gain",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "directLevel",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "reverbLevel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by adjusting the corresponding representation values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var audioSource: some View {",
+            "    RealityView { content in",
+            "",
+            "        // ...",
+            "",
+            "    }",
+            "    // Create a 3D axis representation and add it as a child.",
+            "    .onAppear { entity.addChild(AxisVisualizer.make()) }",
+            "",
+            "    // Enable the view to change the gain parameter.",
+            "    .onChange(of: gain) { entity.spatialAudio?.gain = gain }",
+            "",
+            "    // Enable the view to change the direct level parameter.",
+            "    .onChange(of: directLevel) { entity.spatialAudio?.directLevel = directLevel }",
+            "",
+            "    // Enable the view to change the reverb parameter.",
+            "    .onChange(of: reverbLevel) { entity.spatialAudio?.reverbLevel = reverbLevel }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Showcase-text-descriptions",
+          "level": 3,
+          "text": "Showcase text descriptions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates the ",
+              "type": "text"
+            },
+            {
+              "code": "description",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view to display the collection of texts and guide people through the audio experience in the app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var description: some View {",
+            "    VStack(alignment: .leading, spacing: 12) {",
+            "        Text(\"Spatial Audio\")",
+            "            .font(.title)",
+            "",
+            "        Text(\"Push the app away from you, then bring it closer to you\")",
+            "        Text(\"Notice how the sound gets quieter and louder as it moves\")",
+            "            .foregroundStyle(.secondary)",
+            "",
+            "        Text(\"Move the app around you\")",
+            "        Text(\"Notice how the sound emanates around you as it moves\")",
+            "            .foregroundStyle(.secondary)",
+            "",
+            "        Text(\"Rotate your head\")",
+            "        Text(\"Notice how the sound radiates from the app's location\")",
+            "            .foregroundStyle(.secondary)",
+            "",
+            "        Text(\"Move your head towards the red axis\")",
+            "        Text(\"Notice how the sound gets louder as you move towards the emitter\")",
+            "            .foregroundStyle(.secondary)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Control-the-spatial-audio",
+          "level": 3,
+          "text": "Control the spatial audio",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To adjust the ",
+              "type": "text"
+            },
+            {
+              "code": "gain",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "directLevel",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "reverbLevel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties, the sample implements the ",
+              "type": "text"
+            },
+            {
+              "code": "configuration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view, adding the ",
+              "type": "text"
+            },
+            {
+              "code": "decibelSlider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that allows people to drag to adjust the values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var configuration: some View {",
+            "    VStack {",
+            "        /// The slider to control the gain value.",
+            "        DecibelSlider(name: \"Gain\", value: $gain)",
+            "",
+            "        /// The slider to control the direct level value.",
+            "        DecibelSlider(name: \"Direct Level\", value: $directLevel)",
+            "",
+            "        /// The slider to control the reverb level.",
+            "        DecibelSlider(name: \"Reverb Level\", value: $reverbLevel)",
+            "    }",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Related-to",
+          "level": 4,
+          "text": "Related to",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.documentation/documentation/RealityKit/SpatialAudioComponent"
+          ],
+          "style": "list",
+          "type": "links"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "d80280abbf97/PlayingSpatialAudioInVisionOS.zip": {
+      "checksum": "d80280abbf9760ea712b9686481afabed97b36dbdd971f76d26b3d780f15805f4368e80adc8a608a8eeecd8c4747557b74910224f8f1b2a3520a4ffd789928bb",
+      "identifier": "d80280abbf97/PlayingSpatialAudioInVisionOS.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/d80280abbf97/PlayingSpatialAudioInVisionOS.zip"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/MeshResource/generateBox(size:cornerRadius:)-2ovma": {
+      "abstract": [
+        {
+          "text": "Creates a box mesh from a vector of three scalar values that represent width, height, and depth, respectively, and a radius for the corners.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "generateBox"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD3V",
+          "text": "SIMD3"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "cornerRadius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": " = 0) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation12MeshResourceC",
+          "text": "MeshResource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/MeshResource/generateBox(size:cornerRadius:)-2ovma",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "generateBox(size:cornerRadius:)",
+      "type": "topic",
+      "url": "/documentation/RealityKit/MeshResource/generateBox(size:cornerRadius:)-2ovma"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/MeshResource/generateSphere(radius:)": {
+      "abstract": [
+        {
+          "text": "Creates a new sphere mesh with the specified radius.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "generateSphere"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "radius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation12MeshResourceC",
+          "text": "MeshResource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/MeshResource/generateSphere(radius:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "generateSphere(radius:)",
+      "type": "topic",
+      "url": "/documentation/RealityKit/MeshResource/generateSphere(radius:)"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ModelEntity": {
+      "abstract": [
+        {
+          "text": "A representation of a physical object that RealityKit renders and optionally simulates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ModelEntity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ModelEntity",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ModelEntity"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/SpatialAudioComponent": {
+      "abstract": [
+        {
+          "text": "A component that configures how sounds emit from an entity into a person’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpatialAudioComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/SpatialAudioComponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpatialAudioComponent",
+      "type": "topic",
+      "url": "/documentation/RealityKit/SpatialAudioComponent"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/UnlitMaterial": {
+      "abstract": [
+        {
+          "text": "A material that doesn’t respond to lights in the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnlitMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/UnlitMaterial",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnlitMaterial",
+      "type": "topic",
+      "url": "/documentation/RealityKit/UnlitMaterial"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Slider": {
+      "abstract": [
+        {
+          "text": "A control for selecting a value from a bounded linear range of values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Slider"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "ValueLabel"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ValueLabel"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Slider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Slider",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Slider"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples": {
+      "abstract": [
+        {
+          "text": "Learn the fundamentals of building apps for visionOS with beginner-friendly sample code projects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples",
+      "images": [
+        {
+          "identifier": "introductory-visionOS-samples.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Introductory visionOS samples",
+      "type": "topic",
+      "url": "/documentation/visionos/introductory-visionos-samples"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "introductory-visionOS-samples.png": {
+      "alt": "A translucent window displaying five white, three-dimensional entities in a horizontal row. From left to right, the shapes are a box, a rounded box, a right sphere, a cone, and a cylinder that all top-align.",
+      "identifier": "introductory-visionOS-samples.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3d386622a70e5f41179e6a4c98a125c7/introductory-visionOS-samples@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/58fa94f103305452c567401d648dedc5/introductory-visionOS-samples~dark@2x.png"
+        }
+      ]
+    },
+    "sample-spatialaudio-1-main-view.png": {
+      "alt": "This is a screenshot of a visionOS app in the Simulator. The right side features an axis visualizer, while the left side presents a description of texts and three draggers that correspond to gain, direct level, and reverb levels.",
+      "identifier": "sample-spatialaudio-1-main-view.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a82c3d0e1e04b389f7d985bc885b09a8/sample-spatialaudio-1-main-view.png"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "d80280abbf97/PlayingSpatialAudioInVisionOS.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": []
+}

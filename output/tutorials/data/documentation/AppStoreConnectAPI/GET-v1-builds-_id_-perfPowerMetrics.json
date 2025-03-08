@@ -1,0 +1,791 @@
+{
+  "abstract": [
+    {
+      "text": "Get the performance and power metrics data for a specific build.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.0",
+        "3.6"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-builds-_id_-perfPowerMetrics"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:app_store_connect_api:get:v1-builds-{}-perfPowerMetrics",
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GET /v1/builds/{id}/perfPowerMetrics"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.2",
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get Power and Performance Metrics for a Build"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.appstoreconnect.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/builds/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{id}"
+        },
+        {
+          "kind": "path",
+          "text": "/perfPowerMetrics"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The resource ID that uniquely identifies the build to return metrics data for. Obtain the build resource ID from the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-builds",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "id",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Device types by which to filter. Use ",
+                  "type": "text"
+                },
+                {
+                  "code": "all_iphones",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for all iPhone models. Use ",
+                  "type": "text"
+                },
+                {
+                  "code": "all_ipads",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for all iPad models.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "filter[deviceType]",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "DISK",
+                "HANG",
+                "BATTERY",
+                "LAUNCH",
+                "MEMORY",
+                "ANIMATION",
+                "TERMINATION"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Types of metrics by which to filter. For more information about metric types, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/MetricCategory",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "filter[metricType]",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "IOS"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Platforms by which to filter.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "filter[platform]",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/vnd.apple.xcode-metrics+json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/xcodeMetrics",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:xcodeMetrics",
+              "text": "xcodeMetrics"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An error occurred with your request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Request not authorized.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Resource not found.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-1-4-release-notes"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below requests iOS animation metrics on all iPads for a specific build. To get the metrics for all of the most-recent app versions instead, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-perfPowerMetrics",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example-Request-and-Response",
+          "level": 3,
+          "text": "Example Request and Response",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "https://api.appstoreconnect.apple.com/v1/builds/43d3a970-273c-4bc9-88ee-aa5c05610ac1/perfPowerMetrics?filter[deviceType]=all_ipads&filter[metricType]=ANIMATION&filter[platform]=iOS"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"productData\": [",
+                    "    {",
+                    "      \"platform\": \"iOS\",",
+                    "      \"metricCategories\": [",
+                    "        {",
+                    "          \"identifier\": \"ANIMATION\",",
+                    "          \"metrics\": [",
+                    "            {",
+                    "              \"identifier\": \"scrollHitchRate\",",
+                    "              \"unit\": {",
+                    "                \"identifier\": \"scrollHitchRate\",",
+                    "                \"displayName\": \"%\"",
+                    "              },",
+                    "              \"datasets\": [",
+                    "                {",
+                    "                  \"filterCriteria\": {",
+                    "                    \"percentile\": \"percentile.fifty\",",
+                    "                    \"device\": \"all_ipads\",",
+                    "                    \"deviceMarketingName\": \"All iPads\"",
+                    "                  },",
+                    "                  \"points\": [",
+                    "                    {",
+                    "                      \"version\": \"10.0\",",
+                    "                      \"value\": 6.5,",
+                    "                      \"goal\": \"fair\"",
+                    "                    }",
+                    "                  ]",
+                    "                },",
+                    "                {",
+                    "                  \"filterCriteria\": {",
+                    "                    \"percentile\": \"percentile.ninety\",",
+                    "                    \"device\": \"all_ipads\",",
+                    "                    \"deviceMarketingName\": \"All iPads\"",
+                    "                  },",
+                    "                  \"points\": [",
+                    "                    {",
+                    "                      \"version\": \"10.0\",",
+                    "                      \"value\": 29.7,",
+                    "                      \"goal\": \"poor\"",
+                    "                    }",
+                    "                  ]",
+                    "                }",
+                    "              ],",
+                    "              \"goalKeys\": [",
+                    "                {",
+                    "                  \"goalKey\": \"poor\",",
+                    "                  \"lowerBound\": 10",
+                    "                },",
+                    "                {",
+                    "                  \"upperBound\": 10,",
+                    "                  \"goalKey\": \"fair\",",
+                    "                  \"lowerBound\": 5",
+                    "                },",
+                    "                {",
+                    "                  \"upperBound\": 5,",
+                    "                  \"goalKey\": \"good\",",
+                    "                  \"lowerBound\": 0",
+                    "                }",
+                    "              ]",
+                    "            }",
+                    "          ]",
+                    "        }",
+                    "      ]",
+                    "    }",
+                    "  ],",
+                    "  \"version\": \"1.0.0\"",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse": {
+      "abstract": [
+        {
+          "text": "The error details that an API returns in the response body whenever the API request isn’t successful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/errorresponse"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-perfPowerMetrics": {
+      "abstract": [
+        {
+          "text": "Get the performance and power metrics data for the most recent version of an app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-perfPowerMetrics",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/apps/{id}/perfPowerMetrics"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Power and Performance Metrics for an App",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-apps-_id_-perfpowermetrics"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-builds": {
+      "abstract": [
+        {
+          "text": "Find and list builds for all apps in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-builds",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/builds"
+        }
+      ],
+      "role": "symbol",
+      "title": "List Builds",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-builds"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-builds-_id_-diagnosticSignatures": {
+      "abstract": [
+        {
+          "text": "List the aggregate backtrace signatures captured for a specific build.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-builds-_id_-diagnosticSignatures",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/builds/{id}/diagnosticSignatures"
+        }
+      ],
+      "role": "symbol",
+      "title": "List All Diagnostic Signatures for a Build",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-builds-_id_-diagnosticsignatures"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-builds-_id_-perfPowerMetrics": {
+      "abstract": [
+        {
+          "text": "Get the performance and power metrics data for a specific build.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-builds-_id_-perfPowerMetrics",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/builds/{id}/perfPowerMetrics"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Power and Performance Metrics for a Build",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-builds-_id_-perfpowermetrics"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-diagnosticSignatures-_id_-logs": {
+      "abstract": [
+        {
+          "text": "Get the anonymized backtrace logs associated with a specific diagnostic signature.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-diagnosticSignatures-_id_-logs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/diagnosticSignatures/{id}/logs"
+        }
+      ],
+      "role": "symbol",
+      "title": "Download Logs for a Diagnostic Signature",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-diagnosticsignatures-_id_-logs"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/MetricCategory": {
+      "abstract": [
+        {
+          "text": "Categories of metric reports for apps that you distribute through the App Store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "MetricCategory"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/MetricCategory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MetricCategory"
+        }
+      ],
+      "role": "symbol",
+      "title": "MetricCategory",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/metriccategory"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-1-4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-1-4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 1.4 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-1-4-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/retrieve-power-and-performance-metrics-and-log-insights": {
+      "abstract": [
+        {
+          "text": "Establish a connection between a marketplace and a marketplace app and configure marketplace settings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/retrieve-power-and-performance-metrics-and-log-insights",
+      "kind": "article",
+      "role": "article",
+      "title": "Retrieve Power and Performance Metrics and Log Insights",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/retrieve-power-and-performance-metrics-and-log-insights"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/xcodeMetrics": {
+      "abstract": [
+        {
+          "text": "A response that contains power and performance measurements for your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "xcodeMetrics"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/xcodeMetrics",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "xcodeMetrics"
+        }
+      ],
+      "role": "symbol",
+      "title": "xcodeMetrics",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/xcodemetrics"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-Metrics-and-Diagnostic-Logs",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/retrieve-power-and-performance-metrics-and-log-insights",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-perfPowerMetrics",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-builds-_id_-diagnosticSignatures",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-diagnosticSignatures-_id_-logs"
+      ],
+      "title": "Getting Metrics and Diagnostic Logs"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/get-v1-builds-_id_-perfpowermetrics"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

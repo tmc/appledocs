@@ -1,0 +1,574 @@
+{
+  "abstract": [
+    {
+      "text": "Sets the specified rendering context as the current rendering context.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.agl/documentation/AGL"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.agl/documentation/AGL/aglSetCurrentContext"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@aglSetCurrentContext",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "aglSetCurrentContext"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AGL"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "aglSetCurrentContext"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.9",
+        "introducedAt": "10.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "aglSetCurrentContext"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@GLboolean",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@GLboolean",
+              "text": "GLboolean"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "aglSetCurrentContext"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.agl/documentation/AGL/AGLContext",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AGLContext",
+              "text": "AGLContext"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "ctx"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The rendering context to set as the current rendering context. Pass ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to release the current rendering context without assigning a new one.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "ctx"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Returns ",
+              "type": "text"
+            },
+            {
+              "code": "GL_FALSE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if it fails for any reason, ",
+              "type": "text"
+            },
+            {
+              "code": "GL_TRUE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " otherwise. If an error occurs, call the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.agl/documentation/AGL/aglGetError",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine what the error is.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There can be only one current rendering context. Subsequent OpenGL rendering calls operate on the current rendering context to modify the drawable object associated with it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use AGL macros to bypass the current rendering context mechanism and maintain your own current rendering context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A context is current on a per-thread basis. Multiple threads must serialize calls into the same context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.agl/documentation/AGL": {
+      "abstract": [
+        {
+          "text": "Create and manage OpenGL rendering contexts for use in macOS, and perform operations on drawable objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AGL",
+      "type": "topic",
+      "url": "/documentation/agl"
+    },
+    "doc://com.apple.agl/documentation/AGL/AGLContext": {
+      "abstract": [
+        {
+          "text": "Represents a pointer to an opaque AGL context object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AGLContext"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/AGLContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AGLContext",
+      "type": "topic",
+      "url": "/documentation/agl/aglcontext"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglCopyContext": {
+      "abstract": [
+        {
+          "text": "Copies the specified state variables from one rendering context to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglCopyContext"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglCopyContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglCopyContext",
+      "type": "topic",
+      "url": "/documentation/agl/aglcopycontext"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglCreateContext": {
+      "abstract": [
+        {
+          "text": "Creates an AGL rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglCreateContext"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglCreateContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglCreateContext",
+      "type": "topic",
+      "url": "/documentation/agl/aglcreatecontext"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglDestroyContext": {
+      "abstract": [
+        {
+          "text": "Frees the resources associated with a rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglDestroyContext"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglDestroyContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglDestroyContext",
+      "type": "topic",
+      "url": "/documentation/agl/agldestroycontext"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglGetCGLContext": {
+      "abstract": [
+        {
+          "text": "Gets the CGL rendering context associated with an AGL rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglGetCGLContext"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglGetCGLContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglGetCGLContext",
+      "type": "topic",
+      "url": "/documentation/agl/aglgetcglcontext"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglGetCurrentContext": {
+      "abstract": [
+        {
+          "text": "Returns the current rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglGetCurrentContext"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglGetCurrentContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglGetCurrentContext",
+      "type": "topic",
+      "url": "/documentation/agl/aglgetcurrentcontext"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglGetError": {
+      "abstract": [
+        {
+          "text": "Returns an AGL error code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglGetError"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglGetError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglGetError",
+      "type": "topic",
+      "url": "/documentation/agl/aglgeterror"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglSetCurrentContext": {
+      "abstract": [
+        {
+          "text": "Sets the specified rendering context as the current rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglSetCurrentContext"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglSetCurrentContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglSetCurrentContext",
+      "type": "topic",
+      "url": "/documentation/agl/aglsetcurrentcontext"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglSwapBuffers": {
+      "abstract": [
+        {
+          "text": "Exchanges the front and back buffers of the specified rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglSwapBuffers"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglSwapBuffers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglSwapBuffers",
+      "type": "topic",
+      "url": "/documentation/agl/aglswapbuffers"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglUpdateContext": {
+      "abstract": [
+        {
+          "text": "Notifies the rendering context that the window geometry has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglUpdateContext"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglUpdateContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglUpdateContext",
+      "type": "topic",
+      "url": "/documentation/agl/aglupdatecontext"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@GLboolean": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLboolean"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@GLboolean",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GLboolean",
+      "type": "topic",
+      "url": "/documentation/OpenGLES/GLboolean"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-Contexts",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.agl/documentation/AGL/aglCreateContext",
+        "doc://com.apple.agl/documentation/AGL/aglCopyContext",
+        "doc://com.apple.agl/documentation/AGL/aglDestroyContext",
+        "doc://com.apple.agl/documentation/AGL/aglGetCGLContext",
+        "doc://com.apple.agl/documentation/AGL/aglGetCurrentContext",
+        "doc://com.apple.agl/documentation/AGL/aglSwapBuffers",
+        "doc://com.apple.agl/documentation/AGL/aglUpdateContext"
+      ],
+      "title": "Managing Contexts"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@GLboolean/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@uint8_t",
+              "text": "uint8_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GLboolean"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/agl/aglsetcurrentcontext"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

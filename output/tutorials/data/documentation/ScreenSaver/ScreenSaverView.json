@@ -1,0 +1,2477 @@
+{
+  "abstract": [
+    {
+      "text": "An abstract class that defines the interface for subclassers to interact with the screen saver infrastructure.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.screensaver/documentation/ScreenSaver"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)ScreenSaverView",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ScreenSaverView"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Screen Saver"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ScreenSaverView"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "ScreenSaverView"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ScreenSaverView"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides the interface for your screen saver, including the content you animate onscreen and an optional configuration sheet. Create your own custom subclass and add it to your screen saver bundle. Use your subclass to create the animations that you want to appear onscreen, and to specify additional animation details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When someone previews your screen saver in System Preferences, the system instantiates your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " subclass.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can draw from your view’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/draw(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, or you can draw directly from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/animateOneFrame()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. If you prefer to use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/draw(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/animateOneFrame()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView/setNeedsDisplay(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and specify the portions of your view that require updates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSView/setNeedsDisplay(_:)": {
+      "abstract": [
+        {
+          "text": "Marks the region of the view within the specified rectangle as needing display, increasing the view’s existing invalid region to include it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setNeedsDisplay"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "invalidRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView/setNeedsDisplay(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setNeedsDisplay(_:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSView/setNeedsDisplay(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver": {
+      "abstract": [
+        {
+          "text": "Animate screen savers, and interact with the screen saver infrastructure.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Screen Saver",
+      "type": "topic",
+      "url": "/documentation/screensaver"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverDefaults": {
+      "abstract": [
+        {
+          "text": "A class that defines a set of methods for saving and restoring user defaults for screen savers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScreenSaverDefaults"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverDefaults",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScreenSaverDefaults"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScreenSaverDefaults",
+      "type": "topic",
+      "url": "/documentation/screensaver/screensaverdefaults"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView": {
+      "abstract": [
+        {
+          "text": "An abstract class that defines the interface for subclassers to interact with the screen saver infrastructure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScreenSaverView"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScreenSaverView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScreenSaverView",
+      "type": "topic",
+      "url": "/documentation/screensaver/screensaverview"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/animateOneFrame()": {
+      "abstract": [
+        {
+          "text": "Advances the screen saver’s animation by a single frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "animateOneFrame"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/animateOneFrame()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "animateOneFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "animateOneFrame()",
+      "type": "topic",
+      "url": "/documentation/screensaver/screensaverview/animateoneframe()"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/animationTimeInterval": {
+      "abstract": [
+        {
+          "text": "The time interval between animation frames.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "animationTimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/animationTimeInterval",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "animationTimeInterval"
+        }
+      ],
+      "role": "symbol",
+      "title": "animationTimeInterval",
+      "type": "topic",
+      "url": "/documentation/screensaver/screensaverview/animationtimeinterval"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/backingStoreType()": {
+      "abstract": [
+        {
+          "text": "Returns the type of backing store you want for your screen saver’s window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "backingStoreType"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWindow",
+          "text": "NSWindow"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSBackingStoreType",
+          "text": "BackingStoreType"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/backingStoreType()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "backingStoreType"
+        }
+      ],
+      "role": "symbol",
+      "title": "backingStoreType()",
+      "type": "topic",
+      "url": "/documentation/screensaver/screensaverview/backingstoretype()"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/configureSheet": {
+      "abstract": [
+        {
+          "text": "The window that contains the controls to configure the screen saver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "configureSheet"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWindow",
+          "text": "NSWindow"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/configureSheet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "configureSheet"
+        }
+      ],
+      "role": "symbol",
+      "title": "configureSheet",
+      "type": "topic",
+      "url": "/documentation/screensaver/screensaverview/configuresheet"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/draw(_:)": {
+      "abstract": [
+        {
+          "text": "Draws the screen saver view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "draw"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/draw(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "drawRect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "draw(_:)",
+      "type": "topic",
+      "url": "/documentation/screensaver/screensaverview/draw(_:)"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/hasConfigureSheet": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the screen saver has an associated configuration sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasConfigureSheet"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/hasConfigureSheet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hasConfigureSheet"
+        }
+      ],
+      "role": "symbol",
+      "title": "hasConfigureSheet",
+      "type": "topic",
+      "url": "/documentation/screensaver/screensaverview/hasconfiguresheet"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/init(frame:isPreview:)": {
+      "abstract": [
+        {
+          "text": "Creates a newly allocated screen saver view with the specified frame rectangle and preview information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "frame"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isPreview"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/init(frame:isPreview:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithFrame:isPreview:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(frame:isPreview:)",
+      "type": "topic",
+      "url": "/documentation/screensaver/screensaverview/init(frame:ispreview:)"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/isAnimating": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the screen saver is animating.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAnimating"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/isAnimating",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "animating"
+        }
+      ],
+      "role": "symbol",
+      "title": "isAnimating",
+      "type": "topic",
+      "url": "/documentation/screensaver/screensaverview/isanimating"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/isPreview": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the screen saver view is set to a size suitable for previewing its content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPreview"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/isPreview",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preview"
+        }
+      ],
+      "role": "symbol",
+      "title": "isPreview",
+      "type": "topic",
+      "url": "/documentation/screensaver/screensaverview/ispreview"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/performGammaFade()": {
+      "abstract": [
+        {
+          "text": "Indicates whether to perform a gradual screen fade when the system starts and stops your screen saver’s animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performGammaFade"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/performGammaFade()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "performGammaFade"
+        }
+      ],
+      "role": "symbol",
+      "title": "performGammaFade()",
+      "type": "topic",
+      "url": "/documentation/screensaver/screensaverview/performgammafade()"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/startAnimation()": {
+      "abstract": [
+        {
+          "text": "Activates the periodic timer that animates the screen saver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startAnimation"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/startAnimation()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "startAnimation()",
+      "type": "topic",
+      "url": "/documentation/screensaver/screensaverview/startanimation()"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/stopAnimation()": {
+      "abstract": [
+        {
+          "text": "Deactivates the timer that advances the animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopAnimation"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/stopAnimation()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopAnimation()",
+      "type": "topic",
+      "url": "/documentation/screensaver/screensaverview/stopanimation()"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSView": {
+      "abstract": [
+        {
+          "text": "The infrastructure for drawing, printing, and handling events in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSView",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSView"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSAccessibility": {
+      "abstract": [
+        {
+          "text": "The complete list of properties and methods for accessible elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityProtocol"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSAccessibility",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAccessibilityProtocol",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAccessibilityProtocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSAccessibilityElement": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary to interact with an assistive app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityElementProtocol"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSAccessibilityElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAccessibilityElementProtocol",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAccessibilityElementProtocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSAnimatablePropertyContainer": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines a way to add animation to an existing class with a minimum of API impact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAnimatablePropertyContainer"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSAnimatablePropertyContainer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAnimatablePropertyContainer",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAnimatablePropertyContainer"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSAppearanceCustomization": {
+      "abstract": [
+        {
+          "text": "A set of methods for getting and setting the appearance attributes of a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAppearanceCustomization"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSAppearanceCustomization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAppearanceCustomization",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAppearanceCustomization"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSDraggingDestination": {
+      "abstract": [
+        {
+          "text": "A set of methods that the destination object (or recipient) of a dragged image must implement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDraggingDestination"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSDraggingDestination",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDraggingDestination",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSDraggingDestination"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding": {
+      "abstract": [
+        {
+          "text": "Methods that responder subclasses implement to support key binding commands, such as inserting tabs and newlines, or moving the insertion point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStandardKeyBindingResponding"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSStandardKeyBindingResponding",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSStandardKeyBindingResponding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTouchBarProvider"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "A protocol that marks classes to restore the state of your app to continue a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityRestoring"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSUserActivityRestoring"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSUserInterfaceItemIdentification": {
+      "abstract": [
+        {
+          "text": "A set of methods used to associate a unique identifier with objects in your user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceItemIdentification"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSUserInterfaceItemIdentification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserInterfaceItemIdentification",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSUserInterfaceItemIdentification"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSView"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSAccessibilityElement",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSAccessibility",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSAnimatablePropertyContainer",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSAppearanceCustomization",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSDraggingDestination",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSUserInterfaceItemIdentification"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Interface",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverDefaults"
+      ],
+      "title": "Interface"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-screen-saver-view",
+      "identifiers": [
+        "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/init(frame:isPreview:)"
+      ],
+      "title": "Creating a screen saver view"
+    },
+    {
+      "anchor": "Getting-the-preferred-window-behavior",
+      "identifiers": [
+        "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/backingStoreType()",
+        "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/performGammaFade()"
+      ],
+      "title": "Getting the preferred window behavior"
+    },
+    {
+      "anchor": "Setting-and-getting-the-animation-time-interval",
+      "identifiers": [
+        "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/animationTimeInterval"
+      ],
+      "title": "Setting and getting the animation time interval"
+    },
+    {
+      "anchor": "Animating-the-screen-saver",
+      "identifiers": [
+        "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/startAnimation()",
+        "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/animateOneFrame()",
+        "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/stopAnimation()",
+        "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/isAnimating"
+      ],
+      "title": "Animating the screen saver"
+    },
+    {
+      "anchor": "Drawing-the-view",
+      "identifiers": [
+        "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/draw(_:)",
+        "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/isPreview"
+      ],
+      "title": "Drawing the view"
+    },
+    {
+      "anchor": "Accessing-the-configuration-sheet",
+      "identifiers": [
+        "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/hasConfigureSheet",
+        "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/configureSheet"
+      ],
+      "title": "Accessing the configuration sheet"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "ScreenSaverView"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ScreenSaverView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ScreenSaverView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.screensaver/documentation/ScreenSaver"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-screen-saver-view",
+              "identifiers": [
+                "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/init(frame:isPreview:)"
+              ],
+              "title": "Creating a screen saver view"
+            },
+            {
+              "anchor": "Getting-the-preferred-window-behavior",
+              "identifiers": [
+                "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/backingStoreType()",
+                "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/performGammaFade()"
+              ],
+              "title": "Getting the preferred window behavior"
+            },
+            {
+              "anchor": "Setting-and-getting-the-animation-time-interval",
+              "identifiers": [
+                "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/animationTimeInterval"
+              ],
+              "title": "Setting and getting the animation time interval"
+            },
+            {
+              "anchor": "Animating-the-screen-saver",
+              "identifiers": [
+                "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/startAnimation()",
+                "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/animateOneFrame()",
+                "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/stopAnimation()",
+                "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/isAnimating"
+              ],
+              "title": "Animating the screen saver"
+            },
+            {
+              "anchor": "Drawing-the-view",
+              "identifiers": [
+                "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/draw(_:)",
+                "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/isPreview"
+              ],
+              "title": "Drawing the view"
+            },
+            {
+              "anchor": "Accessing-the-configuration-sheet",
+              "identifiers": [
+                "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/hasConfigureSheet",
+                "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/configureSheet"
+              ],
+              "title": "Accessing the configuration sheet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSView"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Interface",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverDefaults"
+              ],
+              "title": "Interface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "ScreenSaverView"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSView",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSView",
+                    "text": "NSView"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1configureSheet/title",
+          "value": "configureSheet"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1configureSheet/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "configureSheet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1animateOneFrame()/title",
+          "value": "animateOneFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1animateOneFrame()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "animateOneFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1startAnimation()/title",
+          "value": "startAnimation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1startAnimation()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView/title",
+          "value": "ScreenSaverView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ScreenSaverView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ScreenSaverView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverDefaults/title",
+          "value": "ScreenSaverDefaults"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverDefaults/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ScreenSaverDefaults"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverDefaults/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ScreenSaverDefaults"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSAccessibility/title",
+          "value": "NSAccessibility"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSAccessibility/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAccessibility"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSAppearanceCustomization/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAppearanceCustomization"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1animationTimeInterval/title",
+          "value": "animationTimeInterval"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1animationTimeInterval/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "animationTimeInterval"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1isAnimating/title",
+          "value": "animating"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1isAnimating/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "animating"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSStandardKeyBindingResponding/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSStandardKeyBindingResponding"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSUserInterfaceItemIdentification/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceItemIdentification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSView~1setNeedsDisplay(_:)/title",
+          "value": "setNeedsDisplayInRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSView~1setNeedsDisplay(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "setNeedsDisplayInRect:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSRect",
+              "text": "NSRect"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "invalidRect"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSAccessibilityElement/title",
+          "value": "NSAccessibilityElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSAccessibilityElement/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityElement"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)NSView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSResponder",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1isPreview/title",
+          "value": "preview"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1isPreview/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preview"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1draw(_:)/title",
+          "value": "drawRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1draw(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1stopAnimation()/title",
+          "value": "stopAnimation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1stopAnimation()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSDraggingDestination/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSDraggingDestination"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1init(frame:isPreview:)/title",
+          "value": "initWithFrame:isPreview:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1init(frame:isPreview:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithFrame:isPreview:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1performGammaFade()/title",
+          "value": "performGammaFade"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1performGammaFade()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "performGammaFade"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSAnimatablePropertyContainer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAnimatablePropertyContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1hasConfigureSheet/title",
+          "value": "hasConfigureSheet"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1hasConfigureSheet/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hasConfigureSheet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSUserActivityRestoring"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1backingStoreType()/title",
+          "value": "backingStoreType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1backingStoreType()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "backingStoreType"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/screensaver/screensaverview"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/screensaver/screensaverview"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,866 @@
+{
+  "abstract": [
+    {
+      "text": "A rule that affects how an attributed string performs automatic grammatical agreement.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/inflectionrule"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3766807,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation14InflectionRuleO",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "enum "
+      },
+      {
+        "kind": "identifier",
+        "text": "InflectionRule"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "12.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "8.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "13.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration",
+    "symbolKind": "enum",
+    "title": "InflectionRule"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "InflectionRule"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most apps can rely on loading localized strings to perform automatic grammar agreement. Typically, strings in your app’s strings files use the Markdown extension syntax to indicate portions of the string that may require inflection to agree grammatically. This transformation occurs when you load the attributed string with methods like ",
+              "type": "text"
+            },
+            {
+              "code": "init(localized:options:table:bundle:locale:comment:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, if the system lacks information about the words in the string, you may need to apply an inflection rule programmatically. For example, a social networking app may have gender information about other users that you want to apply at runtime. When performing manual inflection at runtime, you use an inflection rule to indicate to the system what portions of a string should be automatically edited, and what to match. Apply the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/3764631-inflect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attribute to set an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/inflectionrule",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " on an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", then call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/3796152-inflected",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to perform the grammar agreement and produce an edited string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var string = AttributedString(localized: \"They liked your post.\")",
+            "// The user who liked the post uses feminine pronouns.",
+            "var morphology = Morphology()",
+            "morphology.grammaticalGender = .feminine",
+            "string.inflect = InflectionRule(morphology: morphology)",
+            "let result = string.inflected()",
+            "// result == \"She liked your post.\""
+          ],
+          "metadata": {
+            "anchor": "3820431",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Decodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Decodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/swift/decodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Encodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Encodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/swift/encodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Hashable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/swift/hashable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring/3796152-inflected": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/3796152-inflected",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inflected()",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring/3796152-inflected"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/3764631-inflect": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/3764631-inflect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inflect",
+      "type": "topic",
+      "url": "/documentation/foundation/attributescopes/foundationattributes/3764631-inflect"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Formatting",
+      "type": "topic",
+      "url": "/documentation/foundation/data_formatting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inflectionconcept": {
+      "abstract": [
+        {
+          "text": "An inflection method to use when localizing text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "InflectionConcept"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inflectionconcept",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "InflectionConcept",
+      "type": "topic",
+      "url": "/documentation/foundation/inflectionconcept"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inflectionrule": {
+      "abstract": [
+        {
+          "text": "A rule that affects how an attributed string performs automatic grammatical agreement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "InflectionRule"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inflectionrule",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "InflectionRule",
+      "type": "topic",
+      "url": "/documentation/foundation/inflectionrule"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inflectionrule#3820431": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inflectionrule#3820431",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/inflectionrule#3820431"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766808": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are not equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "!= "
+        },
+        {
+          "kind": "text",
+          "text": "(InflectionRule, InflectionRule) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766808",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "!=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/inflectionrule/3766808"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766809": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether two values are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "== "
+        },
+        {
+          "kind": "text",
+          "text": "(InflectionRule, InflectionRule) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766809",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/inflectionrule/3766809"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766811-caninflect": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the rule can inflect a given language.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "canInflect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "language"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766811-caninflect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canInflect(language:)",
+      "type": "topic",
+      "url": "/documentation/foundation/inflectionrule/3766811-caninflect"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766812-caninflectpreferredlocalization": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the rule can inflect the user’s current preferred localization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "canInflectPreferredLocalization"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766812-caninflectpreferredlocalization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canInflectPreferredLocalization",
+      "type": "topic",
+      "url": "/documentation/foundation/inflectionrule/3766812-caninflectpreferredlocalization"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766813-encode": {
+      "abstract": [
+        {
+          "text": "Creates a new instance by decoding from the given decoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any Encoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766813-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/inflectionrule/3766813-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766815-hash": {
+      "abstract": [
+        {
+          "text": "Hashes the essential components of this value by feeding them into the given hasher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hash"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": inout Hasher)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766815-hash",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hash(into:)",
+      "type": "topic",
+      "url": "/documentation/foundation/inflectionrule/3766815-hash"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766816-hashvalue": {
+      "abstract": [
+        {
+          "text": "The hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "hashValue"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766816-hashvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hashValue",
+      "type": "topic",
+      "url": "/documentation/foundation/inflectionrule/3766816-hashvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766817-init": {
+      "abstract": [
+        {
+          "text": "Creates a new instance by decoding from the given decoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any Decoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766817-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/inflectionrule/3766817-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766818-init": {
+      "abstract": [
+        {
+          "text": "Creates an inflection rule with the given morphology.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "morphology"
+        },
+        {
+          "kind": "text",
+          "text": ": Morphology)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766818-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(morphology:)",
+      "type": "topic",
+      "url": "/documentation/foundation/inflectionrule/3766818-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inflectionrule/automatic": {
+      "abstract": [
+        {
+          "text": "An inflection rule that performs automatic grammar agreement with default transformations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "automatic"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inflectionrule/automatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "InflectionRule.automatic",
+      "type": "topic",
+      "url": "/documentation/foundation/inflectionrule/automatic"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inflectionrule/explicit": {
+      "abstract": [
+        {
+          "text": "An inflection rule that uses a morphology instance to determine how to inflect attribued strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "explicit"
+        },
+        {
+          "kind": "text",
+          "text": "(Morphology)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inflectionrule/explicit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "InflectionRule.explicit(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/inflectionrule/explicit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/morphology": {
+      "abstract": [
+        {
+          "text": "A description of the grammatical properties of a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Morphology"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/morphology",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Morphology",
+      "type": "topic",
+      "url": "/documentation/foundation/morphology"
+    },
+    "doc://com.apple.documentation/documentation/foundation/morphology/pronoun": {
+      "abstract": [
+        {
+          "text": "A custom pronoun for referring to a third person.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Morphology.Pronoun"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/morphology/pronoun",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Morphology.Pronoun",
+      "type": "topic",
+      "url": "/documentation/foundation/morphology/pronoun"
+    },
+    "doc://com.apple.documentation/documentation/foundation/termofaddress": {
+      "abstract": [
+        {
+          "text": "The type for representing grammatical gender in localized text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "TermOfAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/termofaddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TermOfAddress",
+      "type": "topic",
+      "url": "/documentation/foundation/termofaddress"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Decodable",
+        "doc://com.apple.Swift/documentation/Swift/Encodable",
+        "doc://com.apple.Swift/documentation/Swift/Hashable",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/morphology",
+        "doc://com.apple.documentation/documentation/foundation/termofaddress",
+        "doc://com.apple.documentation/documentation/foundation/inflectionconcept",
+        "doc://com.apple.documentation/documentation/foundation/morphology/pronoun"
+      ],
+      "title": "Automatic grammar agreement"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3793364",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766818-init",
+        "doc://com.apple.documentation/documentation/foundation/morphology"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating an Inflection Rule from a Morphology"
+    },
+    {
+      "anchor": "3793359",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/inflectionrule/automatic",
+        "doc://com.apple.documentation/documentation/foundation/inflectionrule/explicit"
+      ],
+      "kind": "taskGroup",
+      "title": "Inflection Rule Behaviors"
+    },
+    {
+      "anchor": "3793356",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766811-caninflect",
+        "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766812-caninflectpreferredlocalization"
+      ],
+      "kind": "taskGroup",
+      "title": "Determining Availability"
+    },
+    {
+      "anchor": "3793358",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766817-init",
+        "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766813-encode"
+      ],
+      "kind": "taskGroup",
+      "title": "Encoding and Decoding"
+    },
+    {
+      "anchor": "3793361",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766816-hashvalue",
+        "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766815-hash"
+      ],
+      "kind": "taskGroup",
+      "title": "Hashing"
+    },
+    {
+      "anchor": "3793355",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766809",
+        "doc://com.apple.documentation/documentation/foundation/inflectionrule/3766808"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing Inflection Rules"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/inflectionrule"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

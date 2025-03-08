@@ -1,0 +1,672 @@
+{
+  "abstract": [
+    {
+      "text": "Learn the best way to record a packet trace when communicating with Apple.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.network/documentation/Network",
+        "doc://com.apple.network/documentation/Network/recording-a-packet-trace"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.network/documentation/Network/submitting-a-packet-trace-to-apple"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Network"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Submitting a Packet Trace to Apple"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At times you may need to record a packet trace and then share it with Apple for further analysis. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You might be reporting a bug where a packet trace is needed by the Apple engineers to understand, and hence fix, the bug.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You might be working with Developer Technical Support (DTS) to investigate a problem that can only be reproduced on your network.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you submit a packet trace in such situations, follow the instructions below to ensure that you’ve included all the relevant information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "These instructions are also useful if you’re investigating a problem reported by an advanced user and need them to send ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "you",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " a packet trace to further that investigation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Record-the-Trace",
+          "level": 3,
+          "text": "Record the Trace",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Follow these steps to record a packet trace to submit to Apple.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "These steps assume you’re recording the trace using the facilities built in to macOS. If necessary you can use a third-party tool, and even a tool on another platform, to record your trace, but make sure to read the information on packet trace formats in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.network/documentation/Network/submitting-a-packet-trace-to-apple#Work-Through-the-Submission-Checklist",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you’re developing for the Mac, determine the correct interface as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.network/documentation/Network/recording-a-packet-trace#Choose-the-Correct-Interface",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". If you’re developing for iOS, set up a remote virtual interface (RVI) per the instructions in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.network/documentation/Network/recording-a-packet-trace#Set-Up-iOS-Packet-Tracing",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open a Terminal window and run the command ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sudo tcpdump -i en0 -w trace.pcap",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", replacing ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "en0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with the name of the network interface from step 1.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reproduce the problem.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When you’re done, press Control-C in Terminal to stop the packet trace.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Locate the resulting ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "trace.pcap",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Follow the instructions in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.network/documentation/Network/submitting-a-packet-trace-to-apple#Work-Through-the-Submission-Checklist",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to ensure that you’ve included all the necessary information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Submit the file to Apple as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.network/documentation/Network/submitting-a-packet-trace-to-apple#Submit-the-Packet-Trace-to-Apple",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Work-Through-the-Submission-Checklist",
+          "level": 3,
+          "text": "Work Through the Submission Checklist",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you submit a packet trace to Apple, make sure you provide:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The system type and OS version of the computer that recorded the packet trace. In the case of an RVI trace, include this information for both the Mac and the iOS device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you’re using a packet trace tool that’s not built in to macOS, include the name and version of the tool you used to record the packet trace.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each relevant machine shown in the packet trace, describe the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The machine’s role in the network conversation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The system type and OS version",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The machine’s IP address",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The machine’s hardware address (also known as the Ethernet address, Wi-Fi address, or MAC address)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Submit-the-Packet-Trace-to-Apple",
+          "level": 3,
+          "text": "Submit the Packet Trace to Apple",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you submit your trace to Apple, make sure you’ve included all of the information described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/submitting-a-packet-trace-to-apple#Work-Through-the-Submission-Checklist",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can put this information in a separate text file if you want, but it’s OK to just include it as text in your bug report, DTS support request, and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re using a packet trace tool whose native file format is PCAP or PcapNg (including ",
+              "type": "text"
+            },
+            {
+              "code": "tcpdump",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", Wireshark, and various others), you can include your packet trace file as is. Otherwise, include the original packet trace file and, if the file isn’t already text, export the trace as text and include that text file as well. That way Apple is guaranteed to be able to read your packet trace.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.network/documentation/Network": {
+      "abstract": [
+        {
+          "text": "Create network connections to send and receive data using transport and security protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/network"
+    },
+    "doc://com.apple.network/documentation/Network/recording-a-packet-trace": {
+      "abstract": [
+        {
+          "text": "Learn how to record a low-level trace of network traffic.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/recording-a-packet-trace",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Recording a Packet Trace",
+      "type": "topic",
+      "url": "/documentation/network/recording-a-packet-trace"
+    },
+    "doc://com.apple.network/documentation/Network/recording-a-packet-trace#Choose-the-Correct-Interface": {
+      "abstract": [],
+      "identifier": "doc://com.apple.network/documentation/Network/recording-a-packet-trace#Choose-the-Correct-Interface",
+      "kind": "section",
+      "title": "Choose the Correct Interface",
+      "type": "topic",
+      "url": "/documentation/network/recording-a-packet-trace#Choose-the-Correct-Interface"
+    },
+    "doc://com.apple.network/documentation/Network/recording-a-packet-trace#Set-Up-iOS-Packet-Tracing": {
+      "abstract": [],
+      "identifier": "doc://com.apple.network/documentation/Network/recording-a-packet-trace#Set-Up-iOS-Packet-Tracing",
+      "kind": "section",
+      "title": "Set Up iOS Packet Tracing",
+      "type": "topic",
+      "url": "/documentation/network/recording-a-packet-trace#Set-Up-iOS-Packet-Tracing"
+    },
+    "doc://com.apple.network/documentation/Network/recording-a-wi-fi-packet-trace": {
+      "abstract": [
+        {
+          "text": "Record traces of Wi-Fi traffic and traffic management.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/recording-a-wi-fi-packet-trace",
+      "kind": "article",
+      "role": "article",
+      "title": "Recording a Wi-Fi Packet Trace",
+      "type": "topic",
+      "url": "/documentation/network/recording-a-wi-fi-packet-trace"
+    },
+    "doc://com.apple.network/documentation/Network/submitting-a-packet-trace-to-apple#Submit-the-Packet-Trace-to-Apple": {
+      "abstract": [],
+      "identifier": "doc://com.apple.network/documentation/Network/submitting-a-packet-trace-to-apple#Submit-the-Packet-Trace-to-Apple",
+      "kind": "section",
+      "title": "Submit the Packet Trace to Apple",
+      "type": "topic",
+      "url": "/documentation/network/submitting-a-packet-trace-to-apple#Submit-the-Packet-Trace-to-Apple"
+    },
+    "doc://com.apple.network/documentation/Network/submitting-a-packet-trace-to-apple#Work-Through-the-Submission-Checklist": {
+      "abstract": [],
+      "identifier": "doc://com.apple.network/documentation/Network/submitting-a-packet-trace-to-apple#Work-Through-the-Submission-Checklist",
+      "kind": "section",
+      "title": "Work Through the Submission Checklist",
+      "type": "topic",
+      "url": "/documentation/network/submitting-a-packet-trace-to-apple#Work-Through-the-Submission-Checklist"
+    },
+    "doc://com.apple.network/documentation/Network/troubleshooting-packet-traces": {
+      "abstract": [
+        {
+          "text": "Take action to address packet tracing problems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/troubleshooting-packet-traces",
+      "kind": "article",
+      "role": "article",
+      "title": "Troubleshooting Packet Traces",
+      "type": "topic",
+      "url": "/documentation/network/troubleshooting-packet-traces"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Working-with-Packet-Traces",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/troubleshooting-packet-traces",
+        "doc://com.apple.network/documentation/Network/recording-a-wi-fi-packet-trace"
+      ],
+      "title": "Working with Packet Traces"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Working-with-Packet-Traces",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.network/documentation/Network/troubleshooting-packet-traces",
+                "doc://com.apple.network/documentation/Network/recording-a-wi-fi-packet-trace"
+              ],
+              "title": "Working with Packet Traces"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/network/submitting-a-packet-trace-to-apple"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/network/submitting-a-packet-trace-to-apple"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

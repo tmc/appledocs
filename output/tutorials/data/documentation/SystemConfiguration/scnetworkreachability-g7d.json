@@ -1,0 +1,1847 @@
+{
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkreachability-g7d"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "System Configuration"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "SCNetworkReachability"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "All ",
+                  "type": "text"
+                },
+                {
+                  "code": "SCNetworkReachability",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " functions are deprecated, because network conditions change too frequently for preflight reachability tests to be accurate and useful. Instead of trying to perform a preflight check, just attempt your connection. The connection may not be available immediately, but you can use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/2908812-waitsforconnectivity",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to automatically connect as soon as it’s possible to do so. If you’re using the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Network",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " framework, you can monitor the state of an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Network/NWConnection",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " (",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Network/nw_connection_t",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in Objective-C), which lets you know when the connection is waiting for a change in connectivity before automatically proceeding. In limited cases, if you need to change a network request based on the network you’re using, use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Network/NWPathMonitor",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to observe the system networking state.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "SCNetworkReachability",
+              "type": "codeVoice"
+            },
+            {
+              "text": " programming interface allows an application to determine the status of a system’s current network configuration and the reachability of a target host. A remote host is considered reachable when a data packet, sent by an application into the network stack, can leave the local device. Reachability doesn’t guarantee that the data packet will actually be received by the host.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "SCNetworkReachability",
+              "type": "codeVoice"
+            },
+            {
+              "text": " programming interface supports a synchronous and an asynchronous model. In the synchronous model, you get the reachability status by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityGetFlags(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. In the asynchronous model, you can schedule the ",
+              "type": "text"
+            },
+            {
+              "code": "SCNetworkReachability",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object on the run loop of a client object’s thread. The client implements a callback function to receive notifications when the reachability status of a given remote host changes. Note that these functions follow Core Foundation naming conventions. A function that has “Create” or “Copy” in its name returns a reference you must release with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about detecting and interpreting errors generated by calling these functions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/system-configuration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Network": {
+      "abstract": [
+        {
+          "text": "Create network connections to send and receive data using transport and security protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/Network"
+    },
+    "doc://com.apple.documentation/documentation/Network/NWConnection": {
+      "abstract": [
+        {
+          "text": "A bidirectional data connection between a local endpoint and a remote endpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/NWConnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NWConnection",
+      "type": "topic",
+      "url": "/documentation/Network/NWConnection"
+    },
+    "doc://com.apple.documentation/documentation/Network/NWPathMonitor": {
+      "abstract": [
+        {
+          "text": "An observer that you use to monitor and react to network changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWPathMonitor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/NWPathMonitor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NWPathMonitor",
+      "type": "topic",
+      "url": "/documentation/Network/NWPathMonitor"
+    },
+    "doc://com.apple.documentation/documentation/Network/nw_connection_t": {
+      "abstract": [
+        {
+          "text": "A bidirectional data connection between a local endpoint and a remote endpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_connection_t"
+        },
+        {
+          "kind": "text",
+          "text": " = any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)OS_nw_connection",
+          "text": "OS_nw_connection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/nw_connection_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nw_connection_t",
+      "type": "topic",
+      "url": "/documentation/Network/nw_connection_t"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease": {
+      "abstract": [
+        {
+          "text": "Releases a Core Foundation object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFRelease",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1521153-cfrelease"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration object that defines behavior and policies for a URL session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSessionConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/2908812-waitsforconnectivity": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the session should wait for connectivity to become available, or fail immediately.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "waitsForConnectivity"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/2908812-waitsforconnectivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "waitsForConnectivity",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration/2908812-waitsforconnectivity"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration": {
+      "abstract": [
+        {
+          "text": "Allow applications to access a device’s network configuration settings. Determine the reachability of the device, such as whether Wi-Fi or cell connectivity are active.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "System Configuration",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachability": {
+      "abstract": [
+        {
+          "text": "The handle to a network address or name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkReachability"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachability",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkReachability"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkReachability",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkreachability"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityCallBack": {
+      "abstract": [
+        {
+          "text": "Type of callback function used when the reachability of a network address or name changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkReachabilityCallBack"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityCallBack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkReachabilityCallBack"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkReachabilityCallBack",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkreachabilitycallback"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityContext": {
+      "abstract": [
+        {
+          "text": "Structure containing user-specified data and callbacks used with ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilitySetCallback(_:_:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkReachabilityContext"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkReachabilityContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkReachabilityContext",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkreachabilitycontext"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityCreateWithAddress(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a reachability reference to the specified network address.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkReachabilityCreateWithAddress"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@sockaddr",
+          "text": "sockaddr"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNetworkReachabilityRef",
+          "text": "SCNetworkReachability"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityCreateWithAddress(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkReachabilityCreateWithAddress"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkReachabilityCreateWithAddress(_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkreachabilitycreatewithaddress(_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityCreateWithAddressPair(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a reachability reference to the specified network address.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkReachabilityCreateWithAddressPair"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@sockaddr",
+          "text": "sockaddr"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@sockaddr",
+          "text": "sockaddr"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNetworkReachabilityRef",
+          "text": "SCNetworkReachability"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityCreateWithAddressPair(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkReachabilityCreateWithAddressPair"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkReachabilityCreateWithAddressPair(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkreachabilitycreatewithaddresspair(_:_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityCreateWithName(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a reachability reference to the specified network host or node name.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkReachabilityCreateWithName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNetworkReachabilityRef",
+          "text": "SCNetworkReachability"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityCreateWithName(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkReachabilityCreateWithName"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkReachabilityCreateWithName(_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkreachabilitycreatewithname(_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityFlags": {
+      "abstract": [
+        {
+          "text": "Flags that indicate the reachability of a network node name or address, including whether a connection is required, and whether some user intervention might be required when establishing a connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkReachabilityFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkReachabilityFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkReachabilityFlags",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkreachabilityflags"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityGetFlags(_:_:)": {
+      "abstract": [
+        {
+          "text": "Determines if the specified network target is reachable using the current network configuration.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkReachabilityGetFlags"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNetworkReachabilityRef",
+          "text": "SCNetworkReachability"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SCNetworkReachabilityFlags",
+          "text": "SCNetworkReachabilityFlags"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityGetFlags(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkReachabilityGetFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkReachabilityGetFlags(_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkreachabilitygetflags(_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the type identifier of all ",
+          "type": "text"
+        },
+        {
+          "code": "SCNetworkReachability",
+          "type": "codeVoice"
+        },
+        {
+          "text": " instances.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkReachabilityGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkReachabilityGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkReachabilityGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkreachabilitygettypeid()"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityScheduleWithRunLoop(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Schedules the specified network target with the specified run loop and mode.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkReachabilityScheduleWithRunLoop"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNetworkReachabilityRef",
+          "text": "SCNetworkReachability"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFRunLoopRef",
+          "text": "CFRunLoop"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityScheduleWithRunLoop(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkReachabilityScheduleWithRunLoop"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkReachabilityScheduleWithRunLoop(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkreachabilityschedulewithrunloop(_:_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilitySetCallback(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Assigns a client to the specified target, which receives callbacks when the reachability of the target changes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkReachabilitySetCallback"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNetworkReachabilityRef",
+          "text": "SCNetworkReachability"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNetworkReachabilityCallBack",
+          "text": "SCNetworkReachabilityCallBack"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SCNetworkReachabilityContext",
+          "text": "SCNetworkReachabilityContext"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilitySetCallback(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkReachabilitySetCallback"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkReachabilitySetCallback(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkreachabilitysetcallback(_:_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilitySetDispatchQueue(_:_:)": {
+      "abstract": [
+        {
+          "text": "Schedules callbacks for the specified target on the specified dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkReachabilitySetDispatchQueue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNetworkReachabilityRef",
+          "text": "SCNetworkReachability"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilitySetDispatchQueue(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkReachabilitySetDispatchQueue"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkReachabilitySetDispatchQueue(_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkreachabilitysetdispatchqueue(_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityUnscheduleFromRunLoop(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Unschedules the specified target from the specified run loop and mode.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkReachabilityUnscheduleFromRunLoop"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNetworkReachabilityRef",
+          "text": "SCNetworkReachability"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFRunLoopRef",
+          "text": "CFRunLoop"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityUnscheduleFromRunLoop(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkReachabilityUnscheduleFromRunLoop"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkReachabilityUnscheduleFromRunLoop(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkreachabilityunschedulefromrunloop(_:_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/dhcpclientpreferences": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/dhcpclientpreferences",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "DHCPClientPreferences",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/dhcpclientpreferences"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstore-gb2": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstore-gb2",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCDynamicStore",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstore-gb2"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorecopydhcpinfo-apicollection": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorecopydhcpinfo-apicollection",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCDynamicStoreCopyDHCPInfo",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstorecopydhcpinfo-apicollection"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorecopyspecific": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorecopyspecific",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCDynamicStoreCopySpecific",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstorecopyspecific"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorekey": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorekey",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCDynamicStoreKey",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstorekey"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetwork": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetwork",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCNetwork",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetwork"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkconfiguration": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkconfiguration",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCNetworkConfiguration",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkconfiguration"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkconnection-g7e": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkconnection-g7e",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCNetworkConnection",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkconnection-g7e"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferences-ft8": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferences-ft8",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCPreferences",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scpreferences-ft8"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferencespath": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferencespath",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCPreferencesPath",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scpreferencespath"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferencessetspecific": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferencessetspecific",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCPreferencesSetSpecific",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scpreferencessetspecific"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scschemadefinitions": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scschemadefinitions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCSchemaDefinitions",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scschemadefinitions"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/system-configuration": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/system-configuration",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "System Configuration",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/system-configuration"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-constants": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SystemConfiguration Constants",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/systemconfiguration-constants"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-data-types": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-data-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SystemConfiguration Data Types",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/systemconfiguration-data-types"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-enumerations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-enumerations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SystemConfiguration Enumerations",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/systemconfiguration-enumerations"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-functions": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SystemConfiguration Functions",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/systemconfiguration-functions"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Reference",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstore-gb2",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorecopyspecific",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorekey",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetwork",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkconfiguration",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkconnection-g7e",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferences-ft8",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferencespath",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferencessetspecific",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scschemadefinitions",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/system-configuration",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-enumerations",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-constants",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-functions",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-data-types"
+      ],
+      "title": "Reference"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Reachability-Reference",
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityCreateWithAddress(_:_:)",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityCreateWithAddressPair(_:_:_:)",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityCreateWithName(_:_:)"
+      ],
+      "title": "Creating a Reachability Reference"
+    },
+    {
+      "anchor": "Determining-Reachability-Status",
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityGetFlags(_:_:)"
+      ],
+      "title": "Determining Reachability Status"
+    },
+    {
+      "anchor": "Preparing-to-Determine-Reachability",
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityGetTypeID()",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilitySetCallback(_:_:_:)",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityScheduleWithRunLoop(_:_:_:)",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityUnscheduleFromRunLoop(_:_:_:)",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilitySetDispatchQueue(_:_:)"
+      ],
+      "title": "Preparing to Determine Reachability"
+    },
+    {
+      "anchor": "Callbacks",
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityCallBack"
+      ],
+      "title": "Callbacks"
+    },
+    {
+      "anchor": "Data-Types",
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachability",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityContext"
+      ],
+      "title": "Data Types"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityFlags"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Reachability-Reference",
+              "identifiers": [
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityCreateWithAddress(_:_:)",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityCreateWithAddressPair(_:_:_:)",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityCreateWithName(_:_:)"
+              ],
+              "title": "Creating a Reachability Reference"
+            },
+            {
+              "anchor": "Determining-Reachability-Status",
+              "identifiers": [
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityGetFlags(_:_:)"
+              ],
+              "title": "Determining Reachability Status"
+            },
+            {
+              "anchor": "Preparing-to-Determine-Reachability",
+              "identifiers": [
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityGetTypeID()",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilitySetCallback(_:_:_:)",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityScheduleWithRunLoop(_:_:_:)",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityUnscheduleFromRunLoop(_:_:_:)",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilitySetDispatchQueue(_:_:)"
+              ],
+              "title": "Preparing to Determine Reachability"
+            },
+            {
+              "anchor": "Callbacks",
+              "identifiers": [
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityCallBack"
+              ],
+              "title": "Callbacks"
+            },
+            {
+              "anchor": "Data-Types",
+              "identifiers": [
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachability",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityContext"
+              ],
+              "title": "Data Types"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkReachabilityFlags"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Reference",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/dhcpclientpreferences",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstore-gb2",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorecopydhcpinfo-apicollection",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorecopyspecific",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorekey",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetwork",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkconfiguration",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkconnection-g7e",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferences-ft8",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferencespath",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferencessetspecific",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scschemadefinitions",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/system-configuration",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-enumerations",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-constants"
+              ],
+              "title": "Reference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilitySetCallback(_:_:_:)/title",
+          "value": "SCNetworkReachabilitySetCallback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilitySetCallback(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkReachabilitySetCallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachability/title",
+          "value": "SCNetworkReachabilityRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachability/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkReachabilityRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachability/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkReachabilityRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilityContext/title",
+          "value": "SCNetworkReachabilityContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilityContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkReachabilityContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilityContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkReachabilityContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilityUnscheduleFromRunLoop(_:_:_:)/title",
+          "value": "SCNetworkReachabilityUnscheduleFromRunLoop"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilityUnscheduleFromRunLoop(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkReachabilityUnscheduleFromRunLoop"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilityFlags/title",
+          "value": "SCNetworkReachabilityFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilityFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkReachabilityFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilityFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkReachabilityFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilityGetTypeID()/title",
+          "value": "SCNetworkReachabilityGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilityGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkReachabilityGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilityCallBack/title",
+          "value": "SCNetworkReachabilityCallBack"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilityCallBack/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkReachabilityCallBack"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilityCallBack/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkReachabilityCallBack"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilityCreateWithAddress(_:_:)/title",
+          "value": "SCNetworkReachabilityCreateWithAddress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilityCreateWithAddress(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkReachabilityCreateWithAddress"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilityGetFlags(_:_:)/title",
+          "value": "SCNetworkReachabilityGetFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilityGetFlags(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkReachabilityGetFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilityCreateWithAddressPair(_:_:_:)/title",
+          "value": "SCNetworkReachabilityCreateWithAddressPair"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilityCreateWithAddressPair(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkReachabilityCreateWithAddressPair"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilityScheduleWithRunLoop(_:_:_:)/title",
+          "value": "SCNetworkReachabilityScheduleWithRunLoop"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilityScheduleWithRunLoop(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkReachabilityScheduleWithRunLoop"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsessionconfiguration/title",
+          "value": "NSURLSessionConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilityCreateWithName(_:_:)/title",
+          "value": "SCNetworkReachabilityCreateWithName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilityCreateWithName(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkReachabilityCreateWithName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Network~1nw_connection_t/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSObjectobjc(pl)OS_nw_connection",
+              "text": "NSObject<OS_nw_connection>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "nw_connection_t"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilitySetDispatchQueue(_:_:)/title",
+          "value": "SCNetworkReachabilitySetDispatchQueue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkReachabilitySetDispatchQueue(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkReachabilitySetDispatchQueue"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/systemconfiguration/scnetworkreachability-g7d"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/systemconfiguration/scnetworkreachability-g7d"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

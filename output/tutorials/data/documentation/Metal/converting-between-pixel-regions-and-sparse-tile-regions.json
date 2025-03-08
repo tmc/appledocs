@@ -1,0 +1,1345 @@
+{
+  "abstract": [
+    {
+      "text": "Learn how a sparse texture’s contents are organized in memory.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/textures"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/converting-between-pixel-regions-and-sparse-tile-regions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Converting Between Pixel Regions and Sparse Tile Regions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Metal, when you create textures or copy data into or out of them, you specify sizes and regions in pixels. (Usually, this means creating ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLSize",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRegion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structures that specify sizes and offsets in pixel units.) You still use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLSize",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRegion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when working with sparse textures. However, some new actions, such as mapping and unmapping of memory in sparse textures, require you to specify sizes in tile-sized units instead. Metal provides utility methods that convert between pixel measurements and tile-sized measurements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-the-Dimensions-of-a-Sparse-Tile",
+          "level": 3,
+          "text": "Determine the Dimensions of a Sparse Tile",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All sparse tiles created by a given device object have the same size in bytes. However, the number of pixels in a sparse tile varies for each texture, depending on pixel size. To get the dimensions, in pixels, of a sparse tile for a specific texture format, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/sparseTileSize(with:pixelFormat:sampleCount:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method on the device object, passing in the texture format and sample count:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MTLSize tileSize = [_device sparseTileSizeWithTextureType:MTLTextureType2D",
+            "                        pixelFormat:MTLPixelFormatBGRA8Unorm",
+            "                        sampleCount:1];"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All tiles in a texture have the same dimensions, and the texture is laid out as a grid of sparse tiles. For example, the following texture image is ",
+              "type": "text"
+            },
+            {
+              "code": "256 x 256",
+              "type": "codeVoice"
+            },
+            {
+              "text": " pixels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3380379",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the tile size is ",
+              "type": "text"
+            },
+            {
+              "code": "64 x 64",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", to cover the texture, you need a ",
+              "type": "text"
+            },
+            {
+              "code": "4 x 4",
+              "type": "codeVoice"
+            },
+            {
+              "text": " grid of sparse tiles. A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRegion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in tile coordinates with an origin of ",
+              "type": "text"
+            },
+            {
+              "code": "(0,0)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and a size of ",
+              "type": "text"
+            },
+            {
+              "code": "(1,1)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " corresponds to a pixel region with an origin of ",
+              "type": "text"
+            },
+            {
+              "code": "(0,0)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and a size of ",
+              "type": "text"
+            },
+            {
+              "code": "(64,64)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Similarly, a tile region with an origin of ",
+              "type": "text"
+            },
+            {
+              "code": "(2,1)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and a size of ",
+              "type": "text"
+            },
+            {
+              "code": "(2,3)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " corresponds to a pixel region with an origin of ",
+              "type": "text"
+            },
+            {
+              "code": "(128,64)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and a size of ",
+              "type": "text"
+            },
+            {
+              "code": "(128,196)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Convert-from-Pixels-to-Tiles",
+          "level": 3,
+          "text": "Convert from Pixels to Tiles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To convert from a pixel region to a tile region, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/convertSparsePixelRegions(_:toTileRegions:withTileSize:alignmentMode:numRegions:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method on a device object, as shown in the code below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MTLRegion pixelRegion[1] = { MTLRegionMake2D(64, 64, 128, 128)};",
+            "MTLRegion tileRegion[1];",
+            "",
+            "[_device convertSparsePixelRegions:pixelRegion",
+            "                     toTileRegions:tileRegion",
+            "                      withTileSize:tileSize",
+            "                     alignmentMode:MTLSparseTextureRegionAlignmentModeOutward",
+            "                        numRegions:1];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the pixel region doesn’t precisely align to the tile size, the alignment mode parameter determines whether the tile region expands outward to encompass any partially covered tiles (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLSparseTextureRegionAlignmentMode/outward",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") or whether those partially covered regions are ignored (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLSparseTextureRegionAlignmentMode/inward",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Convert-from-Tiles-to-Pixels",
+          "level": 3,
+          "text": "Convert from Tiles to Pixels",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, you can convert from tile units into pixel units. The resulting pixel region is always aligned to tile boundaries, so you don’t need to specify an alignment parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[_device convertSparseTileRegions:&tileRegion",
+            "                   toPixelRegions:&pixelRegion",
+            "                     withTileSize:tileSize",
+            "                       numRegions:1];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/convertSparsePixelRegions(_:toTileRegions:withTileSize:alignmentMode:numRegions:)": {
+      "abstract": [
+        {
+          "text": "Converts a list of sparse pixel regions to tile regions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertSparsePixelRegions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLRegion",
+          "text": "MTLRegion"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toTileRegions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLRegion",
+          "text": "MTLRegion"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withTileSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLSize",
+          "text": "MTLSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignmentMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLSparseTextureRegionAlignmentMode",
+          "text": "MTLSparseTextureRegionAlignmentMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "numRegions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/convertSparsePixelRegions(_:toTileRegions:withTileSize:alignmentMode:numRegions:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertSparsePixelRegions:toTileRegions:withTileSize:alignmentMode:numRegions:"
+        }
+      ],
+      "role": "symbol",
+      "title": "convertSparsePixelRegions(_:toTileRegions:withTileSize:alignmentMode:numRegions:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/convertsparsepixelregions(_:totileregions:withtilesize:alignmentmode:numregions:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/sparseTileSize(with:pixelFormat:sampleCount:)": {
+      "abstract": [
+        {
+          "text": "Returns the dimensions of a sparse tile for a texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sparseTileSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLTextureType",
+          "text": "MTLTextureType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPixelFormat",
+          "text": "MTLPixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sampleCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLSize",
+          "text": "MTLSize"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/sparseTileSize(with:pixelFormat:sampleCount:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sparseTileSizeWithTextureType:pixelFormat:sampleCount:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "sparseTileSize(with:pixelFormat:sampleCount:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/sparsetilesize(with:pixelformat:samplecount:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLMapIndirectArguments": {
+      "abstract": [
+        {
+          "text": "The data layout for mapping sparse texture regions when using indirect commands.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLMapIndirectArguments"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLMapIndirectArguments",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLMapIndirectArguments"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLMapIndirectArguments",
+      "type": "topic",
+      "url": "/documentation/metal/mtlmapindirectarguments"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRegion": {
+      "abstract": [
+        {
+          "text": "The bounds for a subset of an object’s elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRegion"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRegion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRegion"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRegion",
+      "type": "topic",
+      "url": "/documentation/metal/mtlregion"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResourceStateCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An encoder that encodes commands that modify resource configurations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLResourceStateCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResourceStateCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLResourceStateCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLResourceStateCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresourcestatecommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResourceStatePassDescriptor": {
+      "abstract": [
+        {
+          "text": "A configuration for a resource state pass, used to create a resource state command encoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLResourceStatePassDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResourceStatePassDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLResourceStatePassDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLResourceStatePassDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresourcestatepassdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResourceStatePassSampleBufferAttachmentDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of where to store GPU counter information at the start and end of a resource state pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLResourceStatePassSampleBufferAttachmentDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResourceStatePassSampleBufferAttachmentDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLResourceStatePassSampleBufferAttachmentDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLResourceStatePassSampleBufferAttachmentDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresourcestatepasssamplebufferattachmentdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResourceStatePassSampleBufferAttachmentDescriptorArray": {
+      "abstract": [
+        {
+          "text": "An array of sample buffer attachments for a resource state pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLResourceStatePassSampleBufferAttachmentDescriptorArray"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResourceStatePassSampleBufferAttachmentDescriptorArray",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLResourceStatePassSampleBufferAttachmentDescriptorArray"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLResourceStatePassSampleBufferAttachmentDescriptorArray",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresourcestatepasssamplebufferattachmentdescriptorarray"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSize": {
+      "abstract": [
+        {
+          "text": "The dimensions of an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLSize"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLSize",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsize"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSparseTextureRegionAlignmentMode/inward": {
+      "abstract": [
+        {
+          "text": "The tile region ignores partially covered tiles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inward"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSparseTextureRegionAlignmentMode/inward",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLSparseTextureRegionAlignmentModeInward"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLSparseTextureRegionAlignmentMode.inward",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsparsetextureregionalignmentmode/inward"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSparseTextureRegionAlignmentMode/outward": {
+      "abstract": [
+        {
+          "text": "The tile region includes any partially covered tiles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outward"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSparseTextureRegionAlignmentMode/outward",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLSparseTextureRegionAlignmentModeOutward"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLSparseTextureRegionAlignmentMode.outward",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsparsetextureregionalignmentmode/outward"
+    },
+    "doc://com.apple.metal/documentation/Metal/assigning-memory-to-sparse-textures": {
+      "abstract": [
+        {
+          "text": "Use a resource state encoder to allocate and deallocate sparse tiles for a sparse texture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/assigning-memory-to-sparse-textures",
+      "kind": "article",
+      "role": "article",
+      "title": "Assigning Memory to Sparse Textures",
+      "type": "topic",
+      "url": "/documentation/metal/assigning-memory-to-sparse-textures"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-sparse-heaps-and-sparse-textures": {
+      "abstract": [
+        {
+          "text": "Allocate memory for sparse textures by creating a sparse heap.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-sparse-heaps-and-sparse-textures",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating Sparse Heaps and Sparse Textures",
+      "type": "topic",
+      "url": "/documentation/metal/creating-sparse-heaps-and-sparse-textures"
+    },
+    "doc://com.apple.metal/documentation/Metal/estimating-how-often-a-texture-region-is-accessed": {
+      "abstract": [
+        {
+          "text": "Use texture access patterns to determine when you need to map a texture region.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/estimating-how-often-a-texture-region-is-accessed",
+      "kind": "article",
+      "role": "article",
+      "title": "Estimating How Often a Texture Region Is Accessed",
+      "type": "topic",
+      "url": "/documentation/metal/estimating-how-often-a-texture-region-is-accessed"
+    },
+    "doc://com.apple.metal/documentation/Metal/managing-sparse-texture-memory": {
+      "abstract": [
+        {
+          "text": "Take direct control of memory allocation for texture data by using sparse textures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/managing-sparse-texture-memory",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Sparse Texture Memory",
+      "type": "topic",
+      "url": "/documentation/metal/managing-sparse-texture-memory"
+    },
+    "doc://com.apple.metal/documentation/Metal/reading-and-writing-to-sparse-textures": {
+      "abstract": [
+        {
+          "text": "Decide how to handle access to unmapped texture regions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/reading-and-writing-to-sparse-textures",
+      "kind": "article",
+      "role": "article",
+      "title": "Reading and Writing to Sparse Textures",
+      "type": "topic",
+      "url": "/documentation/metal/reading-and-writing-to-sparse-textures"
+    },
+    "doc://com.apple.metal/documentation/Metal/textures": {
+      "abstract": [
+        {
+          "text": "Create and manage typed data your app uses to exchange information with its shader functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/textures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Textures",
+      "type": "topic",
+      "url": "/documentation/metal/textures"
+    },
+    "media-3380379": {
+      "alt": "A figure showing tiles in a texture, specified in both pixel units and tile units. Pixel units are calculated by multiplying the dimensions in tile units by the tile dimensions. ",
+      "identifier": "media-3380379",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/91e723cce3377021c868557f38deadb2/media-3380379@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fbbe3726e778b668ad3c5b0e5acf38bc/media-3380379~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sparse-Textures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/managing-sparse-texture-memory",
+        "doc://com.apple.metal/documentation/Metal/creating-sparse-heaps-and-sparse-textures",
+        "doc://com.apple.metal/documentation/Metal/assigning-memory-to-sparse-textures",
+        "doc://com.apple.metal/documentation/Metal/reading-and-writing-to-sparse-textures",
+        "doc://com.apple.metal/documentation/Metal/estimating-how-often-a-texture-region-is-accessed",
+        "doc://com.apple.metal/documentation/Metal/MTLResourceStatePassDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLResourceStatePassSampleBufferAttachmentDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLResourceStatePassSampleBufferAttachmentDescriptorArray",
+        "doc://com.apple.metal/documentation/Metal/MTLResourceStateCommandEncoder",
+        "doc://com.apple.metal/documentation/Metal/MTLMapIndirectArguments"
+      ],
+      "title": "Sparse Textures"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Sparse-Textures",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/managing-sparse-texture-memory",
+                "doc://com.apple.metal/documentation/Metal/creating-sparse-heaps-and-sparse-textures",
+                "doc://com.apple.metal/documentation/Metal/assigning-memory-to-sparse-textures",
+                "doc://com.apple.metal/documentation/Metal/reading-and-writing-to-sparse-textures",
+                "doc://com.apple.metal/documentation/Metal/estimating-how-often-a-texture-region-is-accessed",
+                "doc://com.apple.metal/documentation/Metal/MTLResourceStatePassDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLResourceStatePassSampleBufferAttachmentDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLResourceStatePassSampleBufferAttachmentDescriptorArray",
+                "doc://com.apple.metal/documentation/Metal/MTLResourceStateCommandEncoder",
+                "doc://com.apple.metal/documentation/Metal/MTLMapIndirectArguments"
+              ],
+              "title": "Sparse Textures"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceStatePassSampleBufferAttachmentDescriptorArray/title",
+          "value": "MTLResourceStatePassSampleBufferAttachmentDescriptorArray"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceStatePassSampleBufferAttachmentDescriptorArray/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResourceStatePassSampleBufferAttachmentDescriptorArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceStatePassSampleBufferAttachmentDescriptorArray/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResourceStatePassSampleBufferAttachmentDescriptorArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceStateCommandEncoder/title",
+          "value": "MTLResourceStateCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceStateCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResourceStateCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceStateCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResourceStateCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLMapIndirectArguments/title",
+          "value": "MTLMapIndirectArguments"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLMapIndirectArguments/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLMapIndirectArguments"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLMapIndirectArguments/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLMapIndirectArguments"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRegion/title",
+          "value": "MTLRegion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRegion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRegion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRegion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRegion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1sparseTileSize(with:pixelFormat:sampleCount:)/title",
+          "value": "sparseTileSizeWithTextureType:pixelFormat:sampleCount:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1sparseTileSize(with:pixelFormat:sampleCount:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sparseTileSizeWithTextureType:pixelFormat:sampleCount:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSparseTextureRegionAlignmentMode~1outward/title",
+          "value": "MTLSparseTextureRegionAlignmentModeOutward"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSparseTextureRegionAlignmentMode~1outward/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSparseTextureRegionAlignmentModeOutward"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceStatePassDescriptor/title",
+          "value": "MTLResourceStatePassDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceStatePassDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResourceStatePassDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceStatePassDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResourceStatePassDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceStatePassSampleBufferAttachmentDescriptor/title",
+          "value": "MTLResourceStatePassSampleBufferAttachmentDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceStatePassSampleBufferAttachmentDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResourceStatePassSampleBufferAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceStatePassSampleBufferAttachmentDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResourceStatePassSampleBufferAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSize/title",
+          "value": "MTLSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSize/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1convertSparsePixelRegions(_:toTileRegions:withTileSize:alignmentMode:numRegions:)/title",
+          "value": "convertSparsePixelRegions:toTileRegions:withTileSize:alignmentMode:numRegions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1convertSparsePixelRegions(_:toTileRegions:withTileSize:alignmentMode:numRegions:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertSparsePixelRegions:toTileRegions:withTileSize:alignmentMode:numRegions:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSparseTextureRegionAlignmentMode~1inward/title",
+          "value": "MTLSparseTextureRegionAlignmentModeInward"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSparseTextureRegionAlignmentMode~1inward/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSparseTextureRegionAlignmentModeInward"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/converting-between-pixel-regions-and-sparse-tile-regions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/converting-between-pixel-regions-and-sparse-tile-regions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

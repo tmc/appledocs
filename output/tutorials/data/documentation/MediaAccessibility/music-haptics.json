@@ -1,0 +1,1268 @@
+{
+  "abstract": [
+    {
+      "text": "Play haptic tracks along with known music tracks.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/music-haptics"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Media Accessibility"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Music Haptics"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Music Haptics is an accessibility feature that allows a person to indicate that they want to play haptic tracks along with known music tracks.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This feature allows people who are deaf or hard of hearing to enjoy music through tactile feedback.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A person can turn on this feature in Settings > Accessibility > Music Haptics.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you play music in your app, you can support haptic feedback for known songs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Support-Music-Haptics",
+          "level": 3,
+          "text": "Support Music Haptics",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support Music Haptics in your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/MusicHapticsSupported",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " key to your app’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and set its value to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "YES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check whether Music Haptics is on using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMusicHapticsManager/isActive",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " on the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMusicHapticsManager/shared",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMusicHapticsManager",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Register for the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMusicHapticsManager/activeStatusDidChangeNotification",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " notification to listen for changes in the Music Haptics setting.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Supply a known song’s International Standard Recording Code (ISRC) as part of",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MediaPlayer/MPNowPlayingInfoCenter/nowPlayingInfo",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " dictionary",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MediaPlayer/MPNowPlayingInfoCenter",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", using the key",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MediaPlayer/MPNowPlayingInfoPropertyInternationalStandardRecordingCode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". For more information about becoming the Now Playing app, refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MediaPlayer/becoming-a-now-playable-app",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Indicate-haptic-playback-status",
+          "level": 3,
+          "text": "Indicate haptic playback status",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To indicate the status of haptic playback for Music Haptics, you can use the following symbols:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Symbol name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Status",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "API",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\"apple.haptics.and.music.note\"",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Active",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMusicHapticsManager/isActive",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\"apple.haptics.and.music.note.slash\"",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paused",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMusicHapticsManager/isActive",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "false",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\"apple.haptics.and.exclamationmark.triangle\"",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Unavailable",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMusicHapticsManager/checkHapticTrackAvailabilityForMedia(matchingCode:completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "false",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more details about using these symbols, refer to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/sf-symbols/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/MusicHapticsSupported": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates to the system that your app supports the Music Haptics feature.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/MusicHapticsSupported",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MusicHapticsSupported",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/MusicHapticsSupported"
+    },
+    "doc://com.apple.documentation/documentation/MediaPlayer/MPNowPlayingInfoCenter": {
+      "abstract": [
+        {
+          "text": "An object for setting the Now Playing information for media that your app plays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MediaPlayer/MPNowPlayingInfoCenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPNowPlayingInfoCenter",
+      "type": "topic",
+      "url": "/documentation/MediaPlayer/MPNowPlayingInfoCenter"
+    },
+    "doc://com.apple.documentation/documentation/MediaPlayer/MPNowPlayingInfoCenter/nowPlayingInfo": {
+      "abstract": [
+        {
+          "text": "The current Now Playing information for the default Now Playing info center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nowPlayingInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MediaPlayer/MPNowPlayingInfoCenter/nowPlayingInfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nowPlayingInfo",
+      "type": "topic",
+      "url": "/documentation/MediaPlayer/MPNowPlayingInfoCenter/nowPlayingInfo"
+    },
+    "doc://com.apple.documentation/documentation/MediaPlayer/MPNowPlayingInfoPropertyInternationalStandardRecordingCode": {
+      "abstract": [
+        {
+          "text": "The International Standard Recording Code (ISRC) of the Now Playing item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyInternationalStandardRecordingCode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MediaPlayer/MPNowPlayingInfoPropertyInternationalStandardRecordingCode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPNowPlayingInfoPropertyInternationalStandardRecordingCode",
+      "type": "topic",
+      "url": "/documentation/MediaPlayer/MPNowPlayingInfoPropertyInternationalStandardRecordingCode"
+    },
+    "doc://com.apple.documentation/documentation/MediaPlayer/becoming-a-now-playable-app": {
+      "abstract": [
+        {
+          "text": "Ensure your app is eligible to become the Now Playing app by adopting best practices for providing Now Playing info and registering for remote command center actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MediaPlayer/becoming-a-now-playable-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Becoming a now playable app",
+      "type": "topic",
+      "url": "/documentation/MediaPlayer/becoming-a-now-playable-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility": {
+      "abstract": [
+        {
+          "text": "Make your app’s media more accessible by supporting people’s systemwide preferences for video and audio content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Media Accessibility",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMusicHapticsManager": {
+      "abstract": [
+        {
+          "text": "A class that reports information about the Music Haptics feature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MAMusicHapticsManager"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMusicHapticsManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MAMusicHapticsManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "MAMusicHapticsManager",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/mamusichapticsmanager"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMusicHapticsManager/activeStatusDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts when the value of the Music Haptics system setting changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeStatusDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMusicHapticsManager/activeStatusDidChangeNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MAMusicHapticsManagerActiveStatusDidChangeNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "activeStatusDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/mamusichapticsmanager/activestatusdidchangenotification"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMusicHapticsManager/checkHapticTrackAvailabilityForMedia(matchingCode:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Checks whether a haptic track is available for the song with the specified International Standard Recording Code (ISRC).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "checkHapticTrackAvailabilityForMedia"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "matchingCode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMusicHapticsManager/checkHapticTrackAvailabilityForMedia(matchingCode:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "checkHapticTrackAvailabilityForMediaMatchingCode:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "checkHapticTrackAvailabilityForMedia(matchingCode:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/mamusichapticsmanager/checkhaptictrackavailabilityformedia(matchingcode:completionhandler:)"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMusicHapticsManager/isActive": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the system setting for Music Haptics is on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isActive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMusicHapticsManager/isActive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isActive"
+        }
+      ],
+      "role": "symbol",
+      "title": "isActive",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/mamusichapticsmanager/isactive"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMusicHapticsManager/shared": {
+      "abstract": [
+        {
+          "text": "The shared Music Haptics manager object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MAMusicHapticsManager",
+          "text": "MAMusicHapticsManager"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMusicHapticsManager/shared",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sharedManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "shared",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/mamusichapticsmanager/shared"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/captions": {
+      "abstract": [
+        {
+          "text": "Coordinate the presentation of closed-captioned data for your app’s media files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/captions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Captions",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/captions"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/flashing-lights": {
+      "abstract": [
+        {
+          "text": "Detect, mitigate, and inform people about flashing lights in media content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/flashing-lights",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Flashing lights",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/flashing-lights"
+    },
+    "https://developer.apple.com/sf-symbols/": {
+      "identifier": "https://developer.apple.com/sf-symbols/",
+      "title": "SF Symbols",
+      "titleInlineContent": [
+        {
+          "text": "SF Symbols",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/sf-symbols/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Features",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/captions",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/flashing-lights"
+      ],
+      "title": "Features"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Music-Haptics",
+      "identifiers": [
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMusicHapticsManager"
+      ],
+      "title": "Music Haptics"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Music-Haptics",
+              "identifiers": [
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMusicHapticsManager"
+              ],
+              "title": "Music Haptics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Features",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/captions",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/flashing-lights"
+              ],
+              "title": "Features"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyInternationalStandardRecordingCode/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoPropertyInternationalStandardRecordingCode"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAMusicHapticsManager~1isActive/title",
+          "value": "isActive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAMusicHapticsManager~1isActive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "isActive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAMusicHapticsManager~1shared/title",
+          "value": "sharedManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAMusicHapticsManager~1shared/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sharedManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAMusicHapticsManager/title",
+          "value": "MAMusicHapticsManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAMusicHapticsManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MAMusicHapticsManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAMusicHapticsManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MAMusicHapticsManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAMusicHapticsManager~1checkHapticTrackAvailabilityForMedia(matchingCode:completionHandler:)/title",
+          "value": "checkHapticTrackAvailabilityForMediaMatchingCode:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAMusicHapticsManager~1checkHapticTrackAvailabilityForMedia(matchingCode:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "checkHapticTrackAvailabilityForMediaMatchingCode:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAMusicHapticsManager~1activeStatusDidChangeNotification/title",
+          "value": "MAMusicHapticsManagerActiveStatusDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAMusicHapticsManager~1activeStatusDidChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MAMusicHapticsManagerActiveStatusDidChangeNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MediaPlayer~1MPNowPlayingInfoCenter/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoCenter"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MediaPlayer~1MPNowPlayingInfoCenter~1nowPlayingInfo/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+              "text": "NSDictionary<NSString *,id>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "nowPlayingInfo"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mediaaccessibility/music-haptics"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mediaaccessibility/music-haptics"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

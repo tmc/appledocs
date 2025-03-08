@@ -1,0 +1,1450 @@
+{
+  "abstract": [
+    {
+      "text": "A DriverKit provider object that manages communications with SCSI-based devices.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOUserSCSIParallelInterfaceController",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "IOUserSCSIParallelInterfaceController"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SCSIControllerDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "IOUserSCSIParallelInterfaceController"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "IOUserSCSIParallelInterfaceController"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOUserSCSIParallelInterfaceController"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement your driver by subclassing this class and overriding all pure virtual methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specifying-the-Drivers-Personality-Information",
+          "level": 3,
+          "text": "Specifying the Driver’s Personality Information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you subclass ",
+              "type": "text"
+            },
+            {
+              "code": "IOUserSCSIParallelInterfaceController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", update the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/IOKitPersonalities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key of your driver extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file with information to match your driver to appropriate hardware. For this class, always include the keys and values in the following table:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "IOClass",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "IOUserSCSIParallelInterfaceController",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "IOUserClass",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name of your custom dext class.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "IOProviderClass",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "IOPCIDevice",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "CFBundleIdentifierKernel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.iokit.IOSCSIParallelFamily",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Supporting-Power-Capabilities",
+          "level": 3,
+          "text": "Supporting Power Capabilities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "IOUserSCSIParallelInterfaceController supports the following power capabilities:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/driverkit/3325571-service_power_capabilities/kioservicepowercapabilityoff",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/driverkit/3325571-service_power_capabilities/kioservicepowercapabilityon",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/kIOServicePowerCapabilityPause",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180704-setpowerstate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method in your service object and use it to put your driver in a safe state for the new power setting. Call ",
+              "type": "text"
+            },
+            {
+              "code": "super",
+              "type": "codeVoice"
+            },
+            {
+              "text": " either as the last step in your implementation, or when the dext is ready to acknowledge the power state transition.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code example implements ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180704-setpowerstate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by performing a check to see if the new state is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/3325571-service_power_capabilities/kioservicepowercapabilityon",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If it is, the implementation calls a private ",
+              "type": "text"
+            },
+            {
+              "code": "IssueHardReset()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "kern_return_t",
+            "IMPL ( ExampleSCSIDext, SetPowerState )",
+            "{",
+            "    ",
+            "    kern_return_t ret = kIOReturnError;",
+            "",
+            "    …",
+            "",
+            "    if ( powerState == kIOServicePowerCapabilityOn )",
+            "    {",
+            "        ret = IssueHardReset ( );",
+            " ",
+            "        ivars->fCurrentPowerState = kIOServicePowerCapabilityOn;",
+            "    }",
+            "",
+            "    return ret;",
+            "",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The hypothetical driver in this example still needs to acknowledge the power state change when it’s appropriate. For example, it could ensure a rescan has brought up all its targets, and then call ",
+              "type": "text"
+            },
+            {
+              "code": "SetPowerState ( powerState, SUPERDISPATCH );",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/IOKitPersonalities": {
+      "abstract": [
+        {
+          "text": "One or more groups of attributes that tell the system about the devices your driver supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/IOKitPersonalities",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOKitPersonalities",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/IOKitPersonalities"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/3325571-service_power_capabilities/kioservicepowercapabilityoff": {
+      "abstract": [
+        {
+          "text": "The device is entering the sleep state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/3325571-service_power_capabilities/kioservicepowercapabilityoff",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOServicePowerCapabilityOff",
+      "type": "topic",
+      "url": "/documentation/driverkit/3325571-service_power_capabilities/kioservicepowercapabilityoff"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/3325571-service_power_capabilities/kioservicepowercapabilityon": {
+      "abstract": [
+        {
+          "text": "The device is fully powered.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/3325571-service_power_capabilities/kioservicepowercapabilityon",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOServicePowerCapabilityOn",
+      "type": "topic",
+      "url": "/documentation/driverkit/3325571-service_power_capabilities/kioservicepowercapabilityon"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180704-setpowerstate": {
+      "abstract": [
+        {
+          "text": "Updates the service in response to power-related changes for a provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180704-setpowerstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetPowerState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180704-setpowerstate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for SCSI protocol-based devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SCSIControllerDriverKit",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/DMAOutputSegmentType": {
+      "abstract": [
+        {
+          "text": "The size and endianness that the system uses for direct memory access (DMA).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DMAOutputSegmentType"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/DMAOutputSegmentType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DMAOutputSegmentType",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/dmaoutputsegmenttype"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController": {
+      "abstract": [
+        {
+          "text": "A DriverKit provider object that manages communications with SCSI-based devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserSCSIParallelInterfaceController"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserSCSIParallelInterfaceController",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/BundledParallelTaskCompletion": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "BundledParallelTaskCompletion"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/BundledParallelTaskCompletion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BundledParallelTaskCompletion",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/bundledparalleltaskcompletion"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/ParallelTaskCompletion": {
+      "abstract": [
+        {
+          "text": "Indicates to the system that the extension has completed an asynchronous request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ParallelTaskCompletion"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/ParallelTaskCompletion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ParallelTaskCompletion",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/paralleltaskcompletion"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserAbortTaskRequest": {
+      "abstract": [
+        {
+          "text": "Aborts a single task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserAbortTaskRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserAbortTaskRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserAbortTaskRequest",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/useraborttaskrequest"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserAbortTaskSetRequest": {
+      "abstract": [
+        {
+          "text": "Aborts all tasks in a logical unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserAbortTaskSetRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserAbortTaskSetRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserAbortTaskSetRequest",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/useraborttasksetrequest"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserCallMediaParametersHaveChanged": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserCallMediaParametersHaveChanged"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserCallMediaParametersHaveChanged",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserCallMediaParametersHaveChanged",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/usercallmediaparametershavechanged"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserClearACARequest": {
+      "abstract": [
+        {
+          "text": "Removes an autocontingent allegiance (ACA) attribute from a logical unit’s task set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserClearACARequest"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserClearACARequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserClearACARequest",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/userclearacarequest"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserClearTaskSetRequest": {
+      "abstract": [
+        {
+          "text": "Aborts all tasks in a logical unit and clears their data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserClearTaskSetRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserClearTaskSetRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserClearTaskSetRequest",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/usercleartasksetrequest"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserCreateTargetForID": {
+      "abstract": [
+        {
+          "text": "Creates the specified target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserCreateTargetForID"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserCreateTargetForID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserCreateTargetForID",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/usercreatetargetforid"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserDestroyTargetForID": {
+      "abstract": [
+        {
+          "text": "Destroys the specified target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserDestroyTargetForID"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserDestroyTargetForID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserDestroyTargetForID",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/userdestroytargetforid"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserDoesHBAPerformAutoSense": {
+      "abstract": [
+        {
+          "text": "Determines if the driver extension class automatically performs autosense and provides autosense data for each I/O in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserDoesHBAPerformAutoSense"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserDoesHBAPerformAutoSense",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserDoesHBAPerformAutoSense",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/userdoeshbaperformautosense"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserDoesHBAPerformDeviceManagement": {
+      "abstract": [
+        {
+          "text": "Determines if the host bus adapter (HBA) manages devices in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserDoesHBAPerformDeviceManagement"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserDoesHBAPerformDeviceManagement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserDoesHBAPerformDeviceManagement",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/userdoeshbaperformdevicemanagement"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserDoesHBASupportMultiPathing": {
+      "abstract": [
+        {
+          "text": "Queries the HBA child class to determine if it supports multipathing in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserDoesHBASupportMultiPathing"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserDoesHBASupportMultiPathing",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserDoesHBASupportMultiPathing",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/userdoeshbasupportmultipathing"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserDoesHBASupportSCSIParallelFeature": {
+      "abstract": [
+        {
+          "text": "Determines whether the driver extension class supports a specific feature in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserDoesHBASupportSCSIParallelFeature"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserDoesHBASupportSCSIParallelFeature",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserDoesHBASupportSCSIParallelFeature",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/userdoeshbasupportscsiparallelfeature"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserGetDMASpecification": {
+      "abstract": [
+        {
+          "text": "Gets the controller-specific direct memory access (DMA) specification in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserGetDMASpecification"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserGetDMASpecification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserGetDMASpecification",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/usergetdmaspecification"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserGetDataBuffer": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserGetDataBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserGetDataBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserGetDataBuffer",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/usergetdatabuffer"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserInitializeController": {
+      "abstract": [
+        {
+          "text": "Initializes the controller in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserInitializeController"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserInitializeController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserInitializeController",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/userinitializecontroller"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserInitializeTargetForID": {
+      "abstract": [
+        {
+          "text": "Initializes a target device in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserInitializeTargetForID"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserInitializeTargetForID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserInitializeTargetForID",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/userinitializetargetforid"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserLogicalUnitResetRequest": {
+      "abstract": [
+        {
+          "text": "Resets a logical unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserLogicalUnitResetRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserLogicalUnitResetRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserLogicalUnitResetRequest",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/userlogicalunitresetrequest"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserMapBundledParallelTaskCommandAndResponseBuffers": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserMapBundledParallelTaskCommandAndResponseBuffers"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserMapBundledParallelTaskCommandAndResponseBuffers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserMapBundledParallelTaskCommandAndResponseBuffers",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/usermapbundledparalleltaskcommandandresponsebuffers"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserMapHBAData": {
+      "abstract": [
+        {
+          "text": "Maps any host bus adapter (HBA)-specific task data in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserMapHBAData"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserMapHBAData",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserMapHBAData",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/usermaphbadata"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserProcessBundledParallelTasks": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserProcessBundledParallelTasks"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserProcessBundledParallelTasks",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserProcessBundledParallelTasks",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/userprocessbundledparalleltasks"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserProcessParallelTask": {
+      "abstract": [
+        {
+          "text": "Processes a parallel task in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserProcessParallelTask"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserProcessParallelTask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserProcessParallelTask",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/userprocessparalleltask"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserRemoveHBAProperties": {
+      "abstract": [
+        {
+          "text": "Removes properties from a host bus adapter in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserRemoveHBAProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserRemoveHBAProperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserRemoveHBAProperties",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/userremovehbaproperties"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserRemoveTargetProperties": {
+      "abstract": [
+        {
+          "text": "Removes properties from a target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserRemoveTargetProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserRemoveTargetProperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserRemoveTargetProperties",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/userremovetargetproperties"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserReportHBAConstraints": {
+      "abstract": [
+        {
+          "text": "Reports the I/O constraints for this controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserReportHBAConstraints"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserReportHBAConstraints",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserReportHBAConstraints",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/userreporthbaconstraints"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserReportHBAHighestLogicalUnitNumber": {
+      "abstract": [
+        {
+          "text": "Gets the highest logical unit number (LUN) in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserReportHBAHighestLogicalUnitNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserReportHBAHighestLogicalUnitNumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserReportHBAHighestLogicalUnitNumber",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/userreporthbahighestlogicalunitnumber"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserReportHighestSupportedDeviceID": {
+      "abstract": [
+        {
+          "text": "Gets the highest supported SCSI device identifier in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserReportHighestSupportedDeviceID"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserReportHighestSupportedDeviceID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserReportHighestSupportedDeviceID",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/userreporthighestsupporteddeviceid"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserReportInitiatorIdentifier": {
+      "abstract": [
+        {
+          "text": "Gets the SCSI device identifier for the host bus adapter (HBA) in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserReportInitiatorIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserReportInitiatorIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserReportInitiatorIdentifier",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/userreportinitiatoridentifier"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserReportMaximumTaskCount": {
+      "abstract": [
+        {
+          "text": "Gets the maximum number of outstanding tasks the HBA can process in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserReportMaximumTaskCount"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserReportMaximumTaskCount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserReportMaximumTaskCount",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/userreportmaximumtaskcount"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserSetHBAProperties": {
+      "abstract": [
+        {
+          "text": "Sets multiple properties for a host bus adapter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserSetHBAProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserSetHBAProperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserSetHBAProperties",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/usersethbaproperties"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserSetTargetProperties": {
+      "abstract": [
+        {
+          "text": "Sets properties on the target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserSetTargetProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserSetTargetProperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserSetTargetProperties",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/usersettargetproperties"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserStartController": {
+      "abstract": [
+        {
+          "text": "Starts the controller in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserStartController"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserStartController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserStartController",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/userstartcontroller"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserTargetPresentForID": {
+      "abstract": [
+        {
+          "text": "Checks if a specific target is present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserTargetPresentForID"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserTargetPresentForID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserTargetPresentForID",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/usertargetpresentforid"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserTargetResetRequest": {
+      "abstract": [
+        {
+          "text": "Resets a target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserTargetResetRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserTargetResetRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserTargetResetRequest",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/usertargetresetrequest"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/SCSIParallelFeature": {
+      "abstract": [
+        {
+          "text": "A feature that the driver extension supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SCSIParallelFeature"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/SCSIParallelFeature",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCSIParallelFeature",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/scsiparallelfeature"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/SCSIUserParallelResponse": {
+      "abstract": [
+        {
+          "text": "The properties of a completed request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SCSIUserParallelResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/SCSIUserParallelResponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCSIUserParallelResponse",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/scsiuserparallelresponse"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/SCSIUserParallelTask": {
+      "abstract": [
+        {
+          "text": "The properties of a parallel task to perform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SCSIUserParallelTask"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/SCSIUserParallelTask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCSIUserParallelTask",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/scsiuserparalleltask"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/kIOServicePowerCapabilityPause": {
+      "abstract": [
+        {
+          "text": "A PCIe-specific power state for halting transactions while reallocating resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "kIOServicePowerCapabilityPause"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/kIOServicePowerCapabilityPause",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOServicePowerCapabilityPause",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/kioservicepowercapabilitypause"
+    },
+    "doc://com.externally.resolved.symbol/c:@S@IOService": {
+      "abstract": [
+        {
+          "text": "The base class for managing the setup and registration of your driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@S@IOService",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:@S@IOService"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Managing-Controllers",
+      "identifiers": [
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserInitializeController",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserStartController"
+      ],
+      "title": "Managing Controllers"
+    },
+    {
+      "anchor": "Managing-Tasks",
+      "identifiers": [
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserProcessParallelTask",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/SCSIUserParallelTask",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/ParallelTaskCompletion",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/SCSIUserParallelResponse"
+      ],
+      "title": "Managing Tasks"
+    },
+    {
+      "anchor": "Managing-Targets",
+      "identifiers": [
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserInitializeTargetForID",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserCreateTargetForID",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserDestroyTargetForID",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserTargetPresentForID",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserSetTargetProperties",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserRemoveTargetProperties"
+      ],
+      "title": "Managing Targets"
+    },
+    {
+      "anchor": "Performing-SCSI-Standard-Task-Management",
+      "identifiers": [
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserAbortTaskRequest",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserAbortTaskSetRequest",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserClearACARequest",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserClearTaskSetRequest",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserLogicalUnitResetRequest",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserTargetResetRequest"
+      ],
+      "title": "Performing SCSI Standard Task Management"
+    },
+    {
+      "anchor": "Managing-Host-Bus-Adapters",
+      "identifiers": [
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserReportInitiatorIdentifier",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserReportHighestSupportedDeviceID",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserReportMaximumTaskCount",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserDoesHBAPerformDeviceManagement",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserReportHBAHighestLogicalUnitNumber",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserDoesHBAPerformAutoSense",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserDoesHBASupportMultiPathing",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserDoesHBASupportSCSIParallelFeature",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/SCSIParallelFeature",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserMapHBAData",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserSetHBAProperties",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserRemoveHBAProperties",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserReportHBAConstraints"
+      ],
+      "title": "Managing Host Bus Adapters"
+    },
+    {
+      "anchor": "Managing-Direct-Memory-Access",
+      "identifiers": [
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserGetDMASpecification",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/DMAOutputSegmentType"
+      ],
+      "title": "Managing Direct Memory Access"
+    },
+    {
+      "anchor": "Supporting-SCSI-Power-States",
+      "identifiers": [
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/kIOServicePowerCapabilityPause"
+      ],
+      "title": "Supporting SCSI Power States"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/BundledParallelTaskCompletion",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserCallMediaParametersHaveChanged",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserGetDataBuffer",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserMapBundledParallelTaskCommandAndResponseBuffers",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserProcessBundledParallelTasks"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

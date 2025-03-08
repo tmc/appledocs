@@ -1,0 +1,2235 @@
+{
+  "abstract": [
+    {
+      "text": "Send consumption information about a consumable in-app purchase or auto-renewable subscription to the App Store after your server receives a consumption request notification.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "App Store Server API",
+      "versions": [
+        "1.0 beta 1",
+        "1.13"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-transactions-consumption-_transactionId_"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:app_store_server_api:put:v1-transactions-consumption-{}",
+    "modules": [
+      {
+        "name": "App Store Server API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PUT /v1/transactions/consumption/{transactionId}"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "App Store Server API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Send Consumption Information"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "PUT"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.storekit.itunes.apple.com/inApps/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/transactions/consumption/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{transactionId}"
+        }
+      ]
+    },
+    {
+      "kind": "restEndpoint",
+      "title": "Sandbox URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "PUT"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.storekit-sandbox.itunes.apple.com/inApps/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/transactions/consumption/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{transactionId}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The transaction identifier for which you’re providing consumption information. You receive this identifier in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "CONSUMPTION_REQUEST",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " notification the App Store sends to your server’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " endpoint.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "transactionId",
+          "required": true,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/transactionId",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:transactionId",
+              "text": "transactionId"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/ConsumptionRequest",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "data:app_store_server_api:ConsumptionRequest",
+          "text": "ConsumptionRequest"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "The request body.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The App Store server received the consumption information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Accepted",
+          "status": 202,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Invalid request. See the error code for more information. If there’s no error code, the request is malformed.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidAccountTenureError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:InvalidAccountTenureError",
+              "text": "InvalidAccountTenureError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidAppAccountTokenError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:InvalidAppAccountTokenError",
+              "text": "InvalidAppAccountTokenError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidConsumptionStatusError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:InvalidConsumptionStatusError",
+              "text": "InvalidConsumptionStatusError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidCustomerConsentedError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:InvalidCustomerConsentedError",
+              "text": "InvalidCustomerConsentedError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidDeliveryStatusError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:InvalidDeliveryStatusError",
+              "text": "InvalidDeliveryStatusError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidLifetimeDollarsPurchasedError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:InvalidLifetimeDollarsPurchasedError",
+              "text": "InvalidLifetimeDollarsPurchasedError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidLifetimeDollarsRefundedError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:InvalidLifetimeDollarsRefundedError",
+              "text": "InvalidLifetimeDollarsRefundedError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidPlatformError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:InvalidPlatformError",
+              "text": "InvalidPlatformError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidPlayTimeError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:InvalidPlayTimeError",
+              "text": "InvalidPlayTimeError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidSampleContentProvidedError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:InvalidSampleContentProvidedError",
+              "text": "InvalidSampleContentProvidedError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidUserStatusError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:InvalidUserStatusError",
+              "text": "InvalidUserStatusError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidRefundPreferenceError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:InvalidRefundPreferenceError",
+              "text": "InvalidRefundPreferenceError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidTransactionTypeNotSupportedError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:InvalidTransactionTypeNotSupportedError",
+              "text": "InvalidTransactionTypeNotSupportedError"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The JSON Web Token (JWT) in the authorization header is invalid. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/generating-json-web-tokens-for-api-requests",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The transaction identifier wasn’t found.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/TransactionIdNotFoundError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:TransactionIdNotFoundError",
+              "text": "TransactionIdNotFoundError"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request exceeded the rate limit.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "status": 429,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/RateLimitExceededError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:RateLimitExceededError",
+              "text": "RateLimitExceededError"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Server error. Try again later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GeneralInternalError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:GeneralInternalError",
+              "text": "GeneralInternalError"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/app-store-server-api-changelog",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/identifying-rate-limits"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Store uses a variety of factors to determine if a refund request is approved or denied. To help inform and improve the refund process, you can send information about a user’s consumption of the in-app purchase to the App Store when the user requests a refund. The App Store uses the consumption information you provide to inform its refund decisions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a customer initiates a refund request for a consumable in-app purchase or auto-renewable subscription, the App Store sends a ",
+              "type": "text"
+            },
+            {
+              "code": "CONSUMPTION_REQUEST",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to your server through your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint. If the customer provided consent, respond by calling this API and sending the consumption data in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/ConsumptionRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the App Store. If not, don’t respond to the ",
+              "type": "text"
+            },
+            {
+              "code": "CONSUMPTION_REQUEST",
+              "type": "codeVoice"
+            },
+            {
+              "text": " notification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Respond within 12 hours of receiving the ",
+              "type": "text"
+            },
+            {
+              "code": "CONSUMPTION_REQUEST",
+              "type": "codeVoice"
+            },
+            {
+              "text": " notification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about configuring your server to receive App Store server notifications, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For information about initiating refund requests in an app, see any of the refund request methods, including ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction/beginRefundRequest(in:)-9k0pj",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction/beginRefundRequest(for:in:)-65tph",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction/beginRefundRequest(in:)-63bvd",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction/beginRefundRequest(for:in:)-9mscy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Obtain-valid-consent",
+          "level": 3,
+          "text": "Obtain valid consent",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must obtain valid consent from the user before sharing their personal data with Apple in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-transactions-consumption-_transactionId_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API. You, the developer, are solely responsible for obtaining valid consent because you’re sharing with Apple the data that you collected from the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The requirements to obtain valid consent vary under applicable law, and Apple can’t advise you on specific ways to obtain valid consent. Developers are responsible for determining specific compliance with applicable laws. If your app violates Apple’s guidelines, App Review will reach out and work with you to address any concerns.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here are some general guidelines to keep in mind for obtaining valid consent:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Valid consent is freely given, specific, informed, and unambiguous as to a user’s wishes with respect to their personal data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "As an example, when requesting consent, you may include: clear language that conveys to a user that you will provide Apple with some of their personal data to assist with reviewing the user’s app refund requests; clear language that conveys to users that they can withdraw their consent at any time; and a method for users to give their affirmative consent.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Opt-in consent is a higher standard for consent than offering an opt-out. Generally, if you don’t offer an individual the opportunity to opt out, it can be difficult to show that consent is freely given.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "After you’ve obtained consent, if there is a change in circumstances causing you to conclude that the user’s consent is no longer valid — for example, due to a change in the way you use or share data, or if the user withdraws consent for this purpose — you should update the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/customerConsented",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " flag and not send any further data from that user.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Don’t use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppTrackingTransparency",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " prompt to obtain consent for sharing data with Apple through the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-transactions-consumption-_transactionId_",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " API. Obtaining consent needed to use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-transactions-consumption-_transactionId_",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " endpoint is unrelated to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppTrackingTransparency",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". These two features are distinct and unrelated.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The data you share with Apple through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-transactions-consumption-_transactionId_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API isn’t used for tracking. You must separately obtain consent from users when sharing data with Apple using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-transactions-consumption-_transactionId_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Disclose-data-usage",
+          "level": 3,
+          "text": "Disclose data usage",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-transactions-consumption-_transactionId_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API, answer the app privacy questions to disclose in your labels any data you collect from your users and what you’re using it for. For more information about app privacy labels, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-store/app-privacy-details/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple uses and protects the data you share through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-transactions-consumption-_transactionId_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API in accordance with ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.apple.com/legal/privacy/en-ww/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For additional information about how Apple protects data, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/security/welcome/web",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Apple retains the data you provide through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-transactions-consumption-_transactionId_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API for the period necessary to fulfill the purpose for which the data was collected, which is to improve the refund process by obtaining data that assists with reviewing the customer’s refund request. Apple may share the data you provide through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-transactions-consumption-_transactionId_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API with service providers who act on our behalf, our partners, or others at your direction. Apple will not share the data with third parties for their own marketing purposes. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.apple.com/legal/privacy/data/en/app-store/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-requests-to-access-or-delete-consumption-data",
+          "level": 3,
+          "text": "Handle requests to access or delete consumption data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your users request access to or deletion of their personal data related to consumption information, inform them that they may submit requests directly to Apple by visiting ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://privacy.apple.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If your app stores data in CloudKit on behalf of your users, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CloudKit/responding-to-requests-to-delete-data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CloudKit/providing-user-access-to-cloudkit-data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CloudKit/changing-access-controls-on-user-data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI": {
+      "abstract": [
+        {
+          "text": "Manage your customers’ App Store transactions from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server API",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/ConsumptionRequest": {
+      "abstract": [
+        {
+          "text": "The request body containing consumption information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConsumptionRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/ConsumptionRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ConsumptionRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ConsumptionRequest",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/consumptionrequest"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GeneralInternalError": {
+      "abstract": [
+        {
+          "text": "An error that indicates a general internal error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GeneralInternalError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GeneralInternalError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GeneralInternalError"
+        }
+      ],
+      "role": "symbol",
+      "title": "GeneralInternalError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/generalinternalerror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidAccountTenureError": {
+      "abstract": [
+        {
+          "text": "An error that indicates the value of the account tenure field is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvalidAccountTenureError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidAccountTenureError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvalidAccountTenureError"
+        }
+      ],
+      "role": "symbol",
+      "title": "InvalidAccountTenureError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/invalidaccounttenureerror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidAppAccountTokenError": {
+      "abstract": [
+        {
+          "text": "An error that indicates the value of the app account token field is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvalidAppAccountTokenError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidAppAccountTokenError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvalidAppAccountTokenError"
+        }
+      ],
+      "role": "symbol",
+      "title": "InvalidAppAccountTokenError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/invalidappaccounttokenerror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidConsumptionStatusError": {
+      "abstract": [
+        {
+          "text": "An error that indicates the value of the consumption status field is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvalidConsumptionStatusError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidConsumptionStatusError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvalidConsumptionStatusError"
+        }
+      ],
+      "role": "symbol",
+      "title": "InvalidConsumptionStatusError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/invalidconsumptionstatuserror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidCustomerConsentedError": {
+      "abstract": [
+        {
+          "text": "An error that indicates the customer consented field is invalid or doesn’t indicate that the customer consented.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvalidCustomerConsentedError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidCustomerConsentedError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvalidCustomerConsentedError"
+        }
+      ],
+      "role": "symbol",
+      "title": "InvalidCustomerConsentedError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/invalidcustomerconsentederror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidDeliveryStatusError": {
+      "abstract": [
+        {
+          "text": "An error that indicates the value in the delivery status field is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvalidDeliveryStatusError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidDeliveryStatusError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvalidDeliveryStatusError"
+        }
+      ],
+      "role": "symbol",
+      "title": "InvalidDeliveryStatusError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/invaliddeliverystatuserror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidLifetimeDollarsPurchasedError": {
+      "abstract": [
+        {
+          "text": "An error that indicates the value in the lifetime dollars purchased field is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvalidLifetimeDollarsPurchasedError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidLifetimeDollarsPurchasedError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvalidLifetimeDollarsPurchasedError"
+        }
+      ],
+      "role": "symbol",
+      "title": "InvalidLifetimeDollarsPurchasedError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/invalidlifetimedollarspurchasederror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidLifetimeDollarsRefundedError": {
+      "abstract": [
+        {
+          "text": "An error that indicates the value in the lifetime dollars refunded field is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvalidLifetimeDollarsRefundedError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidLifetimeDollarsRefundedError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvalidLifetimeDollarsRefundedError"
+        }
+      ],
+      "role": "symbol",
+      "title": "InvalidLifetimeDollarsRefundedError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/invalidlifetimedollarsrefundederror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidPlatformError": {
+      "abstract": [
+        {
+          "text": "An error that indicates the value in the platform field is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvalidPlatformError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidPlatformError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvalidPlatformError"
+        }
+      ],
+      "role": "symbol",
+      "title": "InvalidPlatformError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/invalidplatformerror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidPlayTimeError": {
+      "abstract": [
+        {
+          "text": "An error that indicates the value in the playtime field is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvalidPlayTimeError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidPlayTimeError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvalidPlayTimeError"
+        }
+      ],
+      "role": "symbol",
+      "title": "InvalidPlayTimeError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/invalidplaytimeerror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidRefundPreferenceError": {
+      "abstract": [
+        {
+          "text": "An error that indicates an invalid refund preference code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvalidRefundPreferenceError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidRefundPreferenceError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvalidRefundPreferenceError"
+        }
+      ],
+      "role": "symbol",
+      "title": "InvalidRefundPreferenceError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/invalidrefundpreferenceerror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidSampleContentProvidedError": {
+      "abstract": [
+        {
+          "text": "An error that indicates the value in the sample content provided field is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvalidSampleContentProvidedError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidSampleContentProvidedError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvalidSampleContentProvidedError"
+        }
+      ],
+      "role": "symbol",
+      "title": "InvalidSampleContentProvidedError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/invalidsamplecontentprovidederror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidTransactionTypeNotSupportedError": {
+      "abstract": [
+        {
+          "text": "An error that indicates the transaction identifier represents an unsupported In-App Purchase type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvalidTransactionTypeNotSupportedError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidTransactionTypeNotSupportedError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvalidTransactionTypeNotSupportedError"
+        }
+      ],
+      "role": "symbol",
+      "title": "InvalidTransactionTypeNotSupportedError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/invalidtransactiontypenotsupportederror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidUserStatusError": {
+      "abstract": [
+        {
+          "text": "An error that indicates the value in the user status field is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvalidUserStatusError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidUserStatusError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvalidUserStatusError"
+        }
+      ],
+      "role": "symbol",
+      "title": "InvalidUserStatusError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/invaliduserstatuserror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-transactions-consumption-_transactionId_": {
+      "abstract": [
+        {
+          "text": "Send consumption information about a consumable in-app purchase or auto-renewable subscription to the App Store after your server receives a consumption request notification.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-transactions-consumption-_transactionId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PUT /v1/transactions/consumption/{transactionId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Send Consumption Information",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/put-v1-transactions-consumption-_transactionid_"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/RateLimitExceededError": {
+      "abstract": [
+        {
+          "text": "An error that indicates the request exceeded the rate limit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RateLimitExceededError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/RateLimitExceededError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RateLimitExceededError"
+        }
+      ],
+      "role": "symbol",
+      "title": "RateLimitExceededError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/ratelimitexceedederror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/TransactionIdNotFoundError": {
+      "abstract": [
+        {
+          "text": "An error that indicates a transaction identifier wasn’t found.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TransactionIdNotFoundError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/TransactionIdNotFoundError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TransactionIdNotFoundError"
+        }
+      ],
+      "role": "symbol",
+      "title": "TransactionIdNotFoundError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/transactionidnotfounderror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/app-store-server-api-changelog": {
+      "abstract": [
+        {
+          "text": "Learn about new features and updates in the App Store Server API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/app-store-server-api-changelog",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Server API changelog",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/app-store-server-api-changelog"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/customerConsented": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the customer consented to provide consumption data to the App Store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "customerConsented"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/customerConsented",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "customerConsented"
+        }
+      ],
+      "role": "symbol",
+      "title": "customerConsented",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/customerconsented"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/generating-json-web-tokens-for-api-requests": {
+      "abstract": [
+        {
+          "text": "Create JSON Web Tokens signed with your private key to authorize requests for App Store Server API and External Purchase Server API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/generating-json-web-tokens-for-api-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating JSON Web Tokens for API requests",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/generating-json-web-tokens-for-api-requests"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/identifying-rate-limits": {
+      "abstract": [
+        {
+          "text": "Recognize the rate limits that apply to App Store Server API endpoints and handle them in your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/identifying-rate-limits",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying rate limits",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/identifying-rate-limits"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/transactionId": {
+      "abstract": [
+        {
+          "text": "The unique identifier for a transaction, such as an In-App Purchase, restored In-App Purchase, or subscription renewal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "transactionId"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/transactionId",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transactionId"
+        }
+      ],
+      "role": "symbol",
+      "title": "transactionId",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/transactionid"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2": {
+      "abstract": [
+        {
+          "text": "Specify your secure server’s URL in App Store Connect to receive version 2 notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App Store Server Notifications V2",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications": {
+      "abstract": [
+        {
+          "text": "Configure your server and provide an HTTPS URL to receive notifications about in-app purchase events and unreported external purchase tokens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType": {
+      "abstract": [
+        {
+          "text": "The type that describes the in-app purchase or external purchase event for which the App Store sends the version 2 notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "string "
+        },
+        {
+          "kind": "identifier",
+          "text": "notificationType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "notificationType",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/notificationType"
+    },
+    "doc://com.apple.documentation/documentation/AppTrackingTransparency": {
+      "abstract": [
+        {
+          "text": "Request user authorization to access app-related data for tracking the user or the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppTrackingTransparency",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Tracking Transparency",
+      "type": "topic",
+      "url": "/documentation/AppTrackingTransparency"
+    },
+    "doc://com.apple.documentation/documentation/CloudKit/changing-access-controls-on-user-data": {
+      "abstract": [
+        {
+          "text": "Restrict access to or remove restrictions from a user’s data at their request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CloudKit/changing-access-controls-on-user-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Changing Access Controls on User Data",
+      "type": "topic",
+      "url": "/documentation/CloudKit/changing-access-controls-on-user-data"
+    },
+    "doc://com.apple.documentation/documentation/CloudKit/providing-user-access-to-cloudkit-data": {
+      "abstract": [
+        {
+          "text": "Provide users access to the data your app stores on their behalf.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CloudKit/providing-user-access-to-cloudkit-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing User Access to CloudKit Data",
+      "type": "topic",
+      "url": "/documentation/CloudKit/providing-user-access-to-cloudkit-data"
+    },
+    "doc://com.apple.documentation/documentation/CloudKit/responding-to-requests-to-delete-data": {
+      "abstract": [
+        {
+          "text": "Provide options for users to delete their CloudKit data from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CloudKit/responding-to-requests-to-delete-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to Requests to Delete Data",
+      "type": "topic",
+      "url": "/documentation/CloudKit/responding-to-requests-to-delete-data"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Transaction/beginRefundRequest(for:in:)-65tph": {
+      "abstract": [
+        {
+          "text": "Presents the refund request sheet for the specified transaction in a window scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginRefundRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "transactionID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWindowScene",
+          "text": "UIWindowScene"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV19RefundRequestStatusO",
+          "text": "RefundRequestStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction/beginRefundRequest(for:in:)-65tph",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginRefundRequest(for:in:)",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Transaction/beginRefundRequest(for:in:)-65tph"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Transaction/beginRefundRequest(for:in:)-9mscy": {
+      "abstract": [
+        {
+          "text": "Presents the refund request sheet for the specified transaction in a view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginRefundRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "transactionID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "controller"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV19RefundRequestStatusO",
+          "text": "RefundRequestStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction/beginRefundRequest(for:in:)-9mscy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginRefundRequest(for:in:)",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Transaction/beginRefundRequest(for:in:)-9mscy"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Transaction/beginRefundRequest(in:)-63bvd": {
+      "abstract": [
+        {
+          "text": "Presents the refund request sheet for the transaction in a view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginRefundRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "controller"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV19RefundRequestStatusO",
+          "text": "RefundRequestStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction/beginRefundRequest(in:)-63bvd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginRefundRequest(in:)",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Transaction/beginRefundRequest(in:)-63bvd"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Transaction/beginRefundRequest(in:)-9k0pj": {
+      "abstract": [
+        {
+          "text": "Presents the refund request sheet for the transaction in a window scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginRefundRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWindowScene",
+          "text": "UIWindowScene"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV19RefundRequestStatusO",
+          "text": "RefundRequestStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction/beginRefundRequest(in:)-9k0pj",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginRefundRequest(in:)",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Transaction/beginRefundRequest(in:)-9k0pj"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/app-store/app-privacy-details/": {
+      "identifier": "https://developer.apple.com/app-store/app-privacy-details/",
+      "title": "App privacy details on the App Store",
+      "titleInlineContent": [
+        {
+          "text": "App privacy details on the App Store",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/app-privacy-details/"
+    },
+    "https://privacy.apple.com": {
+      "identifier": "https://privacy.apple.com",
+      "title": "privacy.apple.com",
+      "titleInlineContent": [
+        {
+          "text": "privacy.apple.com",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://privacy.apple.com"
+    },
+    "https://support.apple.com/guide/security/welcome/web": {
+      "identifier": "https://support.apple.com/guide/security/welcome/web",
+      "title": "Apple Platform Security Guide",
+      "titleInlineContent": [
+        {
+          "text": "Apple Platform Security Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/security/welcome/web"
+    },
+    "https://www.apple.com/legal/privacy/data/en/app-store/": {
+      "identifier": "https://www.apple.com/legal/privacy/data/en/app-store/",
+      "title": "App Store & Privacy",
+      "titleInlineContent": [
+        {
+          "text": "App Store & Privacy",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.apple.com/legal/privacy/data/en/app-store/"
+    },
+    "https://www.apple.com/legal/privacy/en-ww/": {
+      "identifier": "https://www.apple.com/legal/privacy/en-ww/",
+      "title": "Apple’s Privacy Policy",
+      "titleInlineContent": [
+        {
+          "text": "Apple’s Privacy Policy",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.apple.com/legal/privacy/en-ww/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Consumption-information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/ConsumptionRequest"
+      ],
+      "title": "Consumption information"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreserverapi/put-v1-transactions-consumption-_transactionid_"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

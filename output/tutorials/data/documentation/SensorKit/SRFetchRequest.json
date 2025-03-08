@@ -1,0 +1,1667 @@
+{
+  "abstract": [
+    {
+      "text": "An object that defines the criteria for a sample query.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sensorkit/documentation/SensorKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchRequest"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SRFetchRequest",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SRFetchRequest"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SensorKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SRFetchRequest"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SRFetchRequest"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SRFetchRequest"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app configures an instance of this class to select the device from which to query sensor data. The time range (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchRequest/from",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchRequest/to",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") specifies when the framework records the data. A fetch query can retrieve only sensor data that the app records by first calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/startRecording()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To execute a fetch request, an app passes the instance of this class to its sensor reader’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/fetch(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The framework notifies the sensor reader’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/delegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " upon fetch-request completion with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReaderDelegate/sensorReader(_:didCompleteFetch:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If the fetch fails, the framework calls the delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReaderDelegate/sensorReader(_:fetching:failedWithError:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SensorKit places a 24-hour holding period on newly recorded data before an app can access it. This gives the user an opportunity to delete any data they don’t want to share with the app. A fetch request doesn’t return any results if its time range overlaps this holding period.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit": {
+      "abstract": [
+        {
+          "text": "Retrieve data and derived metrics from sensors on an iPhone, or paired Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SensorKit",
+      "type": "topic",
+      "url": "/documentation/sensorkit"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRAbsoluteTime": {
+      "abstract": [
+        {
+          "text": "A value that describes when the system records the data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SRAbsoluteTime"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRAbsoluteTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRAbsoluteTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "SRAbsoluteTime",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srabsolutetime"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRAbsoluteTime/current()": {
+      "abstract": [
+        {
+          "text": "Provides the current absolute time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "current"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SRAbsoluteTime",
+          "text": "SRAbsoluteTime"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRAbsoluteTime/current()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRAbsoluteTimeGetCurrent"
+        }
+      ],
+      "role": "symbol",
+      "title": "current()",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srabsolutetime/current()"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRAbsoluteTime/toCFAbsoluteTime()": {
+      "abstract": [
+        {
+          "text": "Converts an absolute time to a core-foundation absolute time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toCFAbsoluteTime"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAbsoluteTime",
+          "text": "CFAbsoluteTime"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRAbsoluteTime/toCFAbsoluteTime()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRAbsoluteTimeToCFAbsoluteTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "toCFAbsoluteTime()",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srabsolutetime/tocfabsolutetime()"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRAbsoluteTimeFromCFAbsoluteTime": {
+      "abstract": [
+        {
+          "text": "Provides an absolute time equivalent to the argument core-foundation absolute time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SRAbsoluteTimeFromCFAbsoluteTime"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRAbsoluteTimeFromCFAbsoluteTime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SRAbsoluteTimeFromCFAbsoluteTime",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srabsolutetimefromcfabsolutetime"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRAbsoluteTimeFromContinuousTime": {
+      "abstract": [
+        {
+          "text": "Provides an absolute time equivalent to the argument continuous time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SRAbsoluteTimeFromContinuousTime"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRAbsoluteTimeFromContinuousTime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SRAbsoluteTimeFromContinuousTime",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srabsolutetimefromcontinuoustime"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRDevice": {
+      "abstract": [
+        {
+          "text": "A representation of a device that provides sample data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SRDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "SRDevice",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srdevice"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchRequest": {
+      "abstract": [
+        {
+          "text": "An object that defines the criteria for a sample query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SRFetchRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRFetchRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "SRFetchRequest",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srfetchrequest"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchRequest/device": {
+      "abstract": [
+        {
+          "text": "The device to query for sample data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SRDevice",
+          "text": "SRDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchRequest/device",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "device"
+        }
+      ],
+      "role": "symbol",
+      "title": "device",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srfetchrequest/device"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchRequest/from": {
+      "abstract": [
+        {
+          "text": "Fetches sample information that occurs after this time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SRAbsoluteTime",
+          "text": "SRAbsoluteTime"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchRequest/from",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "from"
+        }
+      ],
+      "role": "symbol",
+      "title": "from",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srfetchrequest/from"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchRequest/to": {
+      "abstract": [
+        {
+          "text": "Fetches sample information that occurs before this time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SRAbsoluteTime",
+          "text": "SRAbsoluteTime"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchRequest/to",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "to"
+        }
+      ],
+      "role": "symbol",
+      "title": "to",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srfetchrequest/to"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchResult": {
+      "abstract": [
+        {
+          "text": "Recorded data that a sensor reader fetches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SRFetchResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRFetchResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "SRFetchResult",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srfetchresult"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/delegate": {
+      "abstract": [
+        {
+          "text": "An object that responds to sensor-related events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SRSensorReaderDelegate",
+          "text": "SRSensorReaderDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensorreader/delegate"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/fetch(_:)": {
+      "abstract": [
+        {
+          "text": "Fetches the samples that a fetch request specifies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SRFetchRequest",
+          "text": "SRFetchRequest"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/fetch(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetch:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetch(_:)",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensorreader/fetch(_:)"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/startRecording()": {
+      "abstract": [
+        {
+          "text": "Starts recording sensor data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startRecording"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/startRecording()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startRecording"
+        }
+      ],
+      "role": "symbol",
+      "title": "startRecording()",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensorreader/startrecording()"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReaderDelegate/sensorReader(_:didCompleteFetch:)": {
+      "abstract": [
+        {
+          "text": "Provides the delegate with a completed fetch request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sensorReader"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SRSensorReader",
+          "text": "SRSensorReader"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didCompleteFetch"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SRFetchRequest",
+          "text": "SRFetchRequest"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReaderDelegate/sensorReader(_:didCompleteFetch:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sensorReader:didCompleteFetch:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sensorReader(_:didCompleteFetch:)",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensorreaderdelegate/sensorreader(_:didcompletefetch:)"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReaderDelegate/sensorReader(_:fetching:failedWithError:)": {
+      "abstract": [
+        {
+          "text": "Provides the delegate with a fetch failure reason.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sensorReader"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SRSensorReader",
+          "text": "SRSensorReader"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fetching"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SRFetchRequest",
+          "text": "SRFetchRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "failedWithError"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReaderDelegate/sensorReader(_:fetching:failedWithError:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sensorReader:fetchingRequest:failedWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sensorReader(_:fetching:failedWithError:)",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensorreaderdelegate/sensorreader(_:fetching:failedwitherror:)"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Querying-data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchResult"
+      ],
+      "title": "Querying data"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Selecting-the-Device",
+      "identifiers": [
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchRequest/device",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRDevice"
+      ],
+      "title": "Selecting the Device"
+    },
+    {
+      "anchor": "Defining-the-Time-Range",
+      "identifiers": [
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchRequest/from",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchRequest/to",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRAbsoluteTime",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRAbsoluteTime/current()",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRAbsoluteTime/toCFAbsoluteTime()"
+      ],
+      "title": "Defining the Time Range"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SRFetchRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRFetchRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRFetchRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.sensorkit/documentation/SensorKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Selecting-the-Device",
+              "identifiers": [
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchRequest/device",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRDevice"
+              ],
+              "title": "Selecting the Device"
+            },
+            {
+              "anchor": "Defining-the-Time-Range",
+              "identifiers": [
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchRequest/from",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchRequest/to",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRAbsoluteTime",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRAbsoluteTime/current()",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRAbsoluteTimeFromCFAbsoluteTime",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRAbsoluteTimeFromContinuousTime",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRAbsoluteTime/toCFAbsoluteTime()"
+              ],
+              "title": "Defining the Time Range"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Querying-data",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchResult"
+              ],
+              "title": "Querying data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SRFetchRequest"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRFetchRequest~1device/title",
+          "value": "device"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRFetchRequest~1device/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "device"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRFetchRequest/title",
+          "value": "SRFetchRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRFetchRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRFetchRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRFetchRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRFetchRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReaderDelegate~1sensorReader(_:didCompleteFetch:)/title",
+          "value": "sensorReader:didCompleteFetch:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReaderDelegate~1sensorReader(_:didCompleteFetch:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sensorReader:didCompleteFetch:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader~1fetch(_:)/title",
+          "value": "fetch:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader~1fetch(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetch:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRDevice/title",
+          "value": "SRDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRFetchRequest~1to/title",
+          "value": "to"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRFetchRequest~1to/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "to"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRAbsoluteTime~1toCFAbsoluteTime()/title",
+          "value": "SRAbsoluteTimeToCFAbsoluteTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRAbsoluteTime~1toCFAbsoluteTime()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRAbsoluteTimeToCFAbsoluteTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader~1startRecording()/title",
+          "value": "startRecording"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader~1startRecording()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startRecording"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRFetchRequest~1from/title",
+          "value": "from"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRFetchRequest~1from/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "from"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRAbsoluteTime/title",
+          "value": "SRAbsoluteTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRAbsoluteTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRAbsoluteTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRAbsoluteTime/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRAbsoluteTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReaderDelegate~1sensorReader(_:fetching:failedWithError:)/title",
+          "value": "sensorReader:fetchingRequest:failedWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReaderDelegate~1sensorReader(_:fetching:failedWithError:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sensorReader:fetchingRequest:failedWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRFetchResult/title",
+          "value": "SRFetchResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRFetchResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRFetchResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRFetchResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRFetchResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRAbsoluteTime~1current()/title",
+          "value": "SRAbsoluteTimeGetCurrent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRAbsoluteTime~1current()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRAbsoluteTimeGetCurrent"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/sensorkit/srfetchrequest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/sensorkit/srfetchrequest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

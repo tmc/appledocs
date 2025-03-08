@@ -1,0 +1,421 @@
+{
+  "abstract": [
+    {
+      "text": "Performance optimization for method calls. Contains pointers to recently used methods.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/objectivec",
+        "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime/objc_cache"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1808498,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Objective-C Runtime"
+      }
+    ],
+    "role": "pseudoSymbol",
+    "symbolKind": "tag",
+    "title": "objc_cache"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "struct objc_cache"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "{"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "unsigned int mask;"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "unsigned int occupied;"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "Method buckets[1];"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "};"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To limit the need to perform linear searches of method lists for the definitions of frequently accessed methods—an operation that can considerably slow down method lookup—the Objective-C runtime functions store pointers to the definitions of the most recently called method of the class in an ",
+              "type": "text"
+            },
+            {
+              "code": "objc_cache",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/objectivec": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Objective-C Runtime",
+      "type": "topic",
+      "url": "/documentation/objectivec"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/category": {
+      "abstract": [
+        {
+          "text": "An opaque type that represents a category.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/category",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Category",
+      "type": "topic",
+      "url": "/documentation/objectivec/category"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/class": {
+      "abstract": [
+        {
+          "text": "An opaque type that represents an Objective-C class.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Class",
+      "type": "topic",
+      "url": "/documentation/objectivec/class"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/ivar": {
+      "abstract": [
+        {
+          "text": "An opaque type that represents an instance variable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/ivar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Ivar",
+      "type": "topic",
+      "url": "/documentation/objectivec/ivar"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/method": {
+      "abstract": [
+        {
+          "text": "An opaque type that represents a method in a class definition.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/method",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Method",
+      "type": "topic",
+      "url": "/documentation/objectivec/method"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/objc_method_description": {
+      "abstract": [
+        {
+          "text": "Defines an Objective-C method.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/objc_method_description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_method_description",
+      "type": "topic",
+      "url": "/documentation/objectivec/objc_method_description"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/objc_property_attribute_t": {
+      "abstract": [
+        {
+          "text": "Defines a property attribute.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/objc_property_attribute_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_property_attribute_t",
+      "type": "topic",
+      "url": "/documentation/objectivec/objc_property_attribute_t"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/objc_property_t": {
+      "abstract": [
+        {
+          "text": "An opaque type that represents an Objective-C declared property.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/objc_property_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_property_t",
+      "type": "topic",
+      "url": "/documentation/objectivec/objc_property_t"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Objective-C Runtime",
+      "type": "topic",
+      "url": "/documentation/objectivec/objective-c_runtime"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime/imp": {
+      "abstract": [
+        {
+          "text": "A pointer to the start of a method implementation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime/imp",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "IMP",
+      "type": "topic",
+      "url": "/documentation/objectivec/objective-c_runtime/imp"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime/objc_cache": {
+      "abstract": [
+        {
+          "text": "Performance optimization for method calls. Contains pointers to recently used methods.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime/objc_cache",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "objc_cache",
+      "type": "topic",
+      "url": "/documentation/objectivec/objective-c_runtime/objc_cache"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime/objc_cache/1808499-mask": {
+      "abstract": [
+        {
+          "text": "An integer specifying the total number of allocated cache buckets (minus one). During method lookup, the Objective-C runtime uses this field to determine the index at which to begin a linear search of the ",
+          "type": "text"
+        },
+        {
+          "code": "buckets",
+          "type": "codeVoice"
+        },
+        {
+          "text": " array. A pointer to a method’s selector is masked against this field using a logical AND operation (",
+          "type": "text"
+        },
+        {
+          "code": "index = (mask & selector))",
+          "type": "codeVoice"
+        },
+        {
+          "text": ". This serves as a simple hashing algorithm.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime/objc_cache/1808499-mask",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "mask",
+      "type": "topic",
+      "url": "/documentation/objectivec/objective-c_runtime/objc_cache/1808499-mask"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime/objc_cache/1808501-occupied": {
+      "abstract": [
+        {
+          "text": "An integer specifying the total number of occupied cache buckets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime/objc_cache/1808501-occupied",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "occupied",
+      "type": "topic",
+      "url": "/documentation/objectivec/objective-c_runtime/objc_cache/1808501-occupied"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime/objc_cache/1808503-buckets": {
+      "abstract": [
+        {
+          "text": "An array of pointers to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/objectivec/method",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " data structures. This array may contain no more than ",
+          "type": "text"
+        },
+        {
+          "code": "mask + 1",
+          "type": "codeVoice"
+        },
+        {
+          "text": " items. Note that pointers may be ",
+          "type": "text"
+        },
+        {
+          "code": "NULL",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", indicating that the cache bucket is unoccupied, and occupied buckets may not be contiguous. This array may grow over time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime/objc_cache/1808503-buckets",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "buckets",
+      "type": "topic",
+      "url": "/documentation/objectivec/objective-c_runtime/objc_cache/1808503-buckets"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/sel": {
+      "abstract": [
+        {
+          "text": "Defines an opaque type that represents a method selector.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/sel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SEL",
+      "type": "topic",
+      "url": "/documentation/objectivec/sel"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/class",
+        "doc://com.apple.documentation/documentation/objectivec/method",
+        "doc://com.apple.documentation/documentation/objectivec/ivar",
+        "doc://com.apple.documentation/documentation/objectivec/category",
+        "doc://com.apple.documentation/documentation/objectivec/objc_property_t",
+        "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime/imp",
+        "doc://com.apple.documentation/documentation/objectivec/sel",
+        "doc://com.apple.documentation/documentation/objectivec/objc_method_description",
+        "doc://com.apple.documentation/documentation/objectivec/objc_property_attribute_t"
+      ],
+      "title": "Class-Definition Data Structures"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1817647",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime/objc_cache/1808499-mask",
+        "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime/objc_cache/1808501-occupied",
+        "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime/objc_cache/1808503-buckets"
+      ],
+      "kind": "taskGroup",
+      "title": "Fields"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/objectivec/objective-c_runtime/objc_cache"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

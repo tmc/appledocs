@@ -1,0 +1,1516 @@
+{
+  "abstract": [
+    {
+      "text": "Create both asymmetric and symmetric cryptographic keys.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+        "doc://com.apple.security/documentation/Security/keys"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/generating-new-cryptographic-keys"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Generating New Cryptographic Keys"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Very often, you retrieve a key from an identity, a certificate, or the keychain, or with some other method described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/getting-an-existing-key",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Sometimes, however, you need to create your own keys.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Creating-an-Asymmetric-Key-Pair",
+          "level": 3,
+          "text": "Creating an Asymmetric Key Pair",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An asymmetric cryptographic key pair is composed of a public and a private key that are generated together. You distribute the public key freely, but you keep the private key secret. One or both may be stored in a keychain for safekeeping.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create an asymmetric key pair by first creating an attributes dictionary:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let tag = \"com.example.keys.mykey\".data(using: .utf8)!",
+                    "let attributes: [String: Any] =",
+                    "    [kSecAttrKeyType as String:            type,",
+                    "     kSecAttrKeySizeInBits as String:      2048,",
+                    "     kSecPrivateKeyAttrs as String:",
+                    "        [kSecAttrIsPermanent as String:    true,",
+                    "         kSecAttrApplicationTag as String: tag]",
+                    "]",
+                    ""
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "NSData* tag = [@\"com.example.keys.mykey\" dataUsingEncoding:NSUTF8StringEncoding];",
+                    "NSDictionary* attributes =",
+                    "    @{ (id)kSecAttrKeyType:               (id)kSecAttrKeyTypeRSA,",
+                    "       (id)kSecAttrKeySizeInBits:         @2048,",
+                    "       (id)kSecPrivateKeyAttrs:",
+                    "           @{ (id)kSecAttrIsPermanent:    @YES,",
+                    "              (id)kSecAttrApplicationTag: tag,",
+                    "              },",
+                    "     };"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At a minimum, you specify the type and size of keys to create using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecAttrKeyType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecAttrKeySizeInBits",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " parameters, respectively. The above example indicates 2048-bit RSA keys, though other options are available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You then optionally add a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecPrivateKeyAttrs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " parameter with a subdictionary that characterizes the private key. By assigning a value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the private key’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecAttrIsPermanent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attribute, you store it in the default keychain while creating it. You also specify the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecAttrApplicationTag",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attribute with a unique ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value so that you can find and retrieve it from the keychain later. The tag data is constructed from a string, using reverse DNS notation, though any unique tag will do.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You could add a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecPublicKeyAttrs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attribute to the attributes dictionary, specifying a distinct tag and keychain storage for the public key. However, it’s typically easier to store only the private key and then generate the public key from it when needed. That way you don’t need to keep track of another tag or clutter your keychain.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a complete list of available key attributes, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/key-generation-attributes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Be sure that you don’t generate multiple, identically tagged keys. These are difficult to tell apart during retrieval, unless they differ in some other, searchable characteristic. Instead, use a unique tag for each key generation operation, or delete old keys with a given tag using ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/SecItemDelete(_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " before creating a new one with that tag.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You then call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKeyCreateRandomKey(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function with the attributes dictionary:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "var error: Unmanaged<CFError>?",
+                    "guard let privateKey = SecKeyCreateRandomKey(attributes as CFDictionary, &error) else {",
+                    "    throw error!.takeRetainedValue() as Error",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "CFErrorRef error = NULL;",
+                    "SecKeyRef privateKey = SecKeyCreateRandomKey((__bridge CFDictionaryRef)attributes,",
+                    "                                             &error);",
+                    "if (!privateKey) {",
+                    "    NSError *err = CFBridgingRelease(error);  // ARC takes ownership",
+                    "    // Handle the error. . .",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the function fails to create a key, as indicated by a ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " return value, it fills in the ",
+              "type": "text"
+            },
+            {
+              "code": "error",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to indicate the reason for failure. Otherwise, the key reference points to a new private key that’s ready for use. The key is also stored in the default keychain, from where you can read it later, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/storing-keys-in-the-keychain",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If you need the corresponding public key (now or later), call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKeyCopyPublicKey(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function with the private key reference:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let publicKey = SecKeyCopyPublicKey(privateKey)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "SecKeyRef publicKey = SecKeyCopyPublicKey(privateKey);"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Objective-C, when you’re done with these key references, however you obtained them, you are responsible for releasing the associated memory:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if (publicKey)  { CFRelease(publicKey);  }",
+            "if (privateKey) { CFRelease(privateKey); }"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Creating-a-Symmetric-Key",
+          "level": 3,
+          "text": "Creating a Symmetric Key",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Asymmetric key cryptography is useful because it enables secure communication between two players who don’t share a secret ahead of time. However, it’s not ideal for bulk data transfer, because it’s computationally expensive and because it operates on small, fixed-sized chunks of data. Symmetric key cryptography, on the other hand, is computationally efficient. It allows you to handle data streams of arbitrary length but requires that both sender and receiver, and no one else, know the secret key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get the best of both worlds, you often use asymmetric cryptography to communicate a symmetric cryptographic key that you then use for bulk data transfer. When you do this with the certificate, key, and trust services API, you don’t explicitly create the symmetric key yourself. Instead, you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKeyCreateEncryptedData(_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create a symmetric key for you. This function creates the symmetric key, uses it to encrypt your data, and then encrypts the key itself with the public key that you provide. It then packages all of this data together and returns it to you. You then transmit it to a receiver, who uses the corresponding private key in a call to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKeyCreateDecryptedData(_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to reverse the operation. For more details, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/using-keys-for-encryption",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nsdata": {
+      "abstract": [
+        {
+          "text": "A static byte buffer that bridges to ; use  when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecItemDelete(_:)": {
+      "abstract": [
+        {
+          "text": "Deletes items that match a search query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecItemDelete"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecItemDelete(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecItemDelete"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecItemDelete(_:)",
+      "type": "topic",
+      "url": "/documentation/security/secitemdelete(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeyCopyPublicKey(_:)": {
+      "abstract": [
+        {
+          "text": "Gets the public key associated with the given private key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeyCopyPublicKey"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyRef",
+          "text": "SecKey"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyRef",
+          "text": "SecKey"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeyCopyPublicKey(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeyCopyPublicKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeyCopyPublicKey(_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeycopypublickey(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeyCreateDecryptedData(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Decrypts a block of data using a private key and specified algorithm.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeyCreateDecryptedData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyRef",
+          "text": "SecKey"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyAlgorithm",
+          "text": "SecKeyAlgorithm"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeyCreateDecryptedData(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeyCreateDecryptedData"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeyCreateDecryptedData(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeycreatedecrypteddata(_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeyCreateEncryptedData(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Encrypts a block of data using a public key and specified algorithm.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeyCreateEncryptedData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyRef",
+          "text": "SecKey"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyAlgorithm",
+          "text": "SecKeyAlgorithm"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeyCreateEncryptedData(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeyCreateEncryptedData"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeyCreateEncryptedData(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeycreateencrypteddata(_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeyCreateRandomKey(_:_:)": {
+      "abstract": [
+        {
+          "text": "Generates a new public-private key pair.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeyCreateRandomKey"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyRef",
+          "text": "SecKey"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeyCreateRandomKey(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeyCreateRandomKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeyCreateRandomKey(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeycreaterandomkey(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services": {
+      "abstract": [
+        {
+          "text": "Establish trust using certificates and cryptographic keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Certificate, Key, and Trust Services",
+      "type": "topic",
+      "url": "/documentation/security/certificate-key-and-trust-services"
+    },
+    "doc://com.apple.security/documentation/Security/getting-an-existing-key": {
+      "abstract": [
+        {
+          "text": "Learn how to obtain an existing cryptographic key.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/getting-an-existing-key",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting an Existing Key",
+      "type": "topic",
+      "url": "/documentation/security/getting-an-existing-key"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrApplicationTag": {
+      "abstract": [
+        {
+          "text": "A key whose value indicates the item’s private tag.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrApplicationTag"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrApplicationTag",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrApplicationTag"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrApplicationTag",
+      "type": "topic",
+      "url": "/documentation/security/ksecattrapplicationtag"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrIsPermanent": {
+      "abstract": [
+        {
+          "text": "A key whose value indicates the item’s permanence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrIsPermanent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrIsPermanent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrIsPermanent"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrIsPermanent",
+      "type": "topic",
+      "url": "/documentation/security/ksecattrispermanent"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrKeySizeInBits": {
+      "abstract": [
+        {
+          "text": "A key whose value indicates the number of bits in a cryptographic key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrKeySizeInBits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrKeySizeInBits",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrKeySizeInBits"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrKeySizeInBits",
+      "type": "topic",
+      "url": "/documentation/security/ksecattrkeysizeinbits"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrKeyType": {
+      "abstract": [
+        {
+          "text": "A key whose value indicates the item’s algorithm.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrKeyType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrKeyType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrKeyType"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrKeyType",
+      "type": "topic",
+      "url": "/documentation/security/ksecattrkeytype"
+    },
+    "doc://com.apple.security/documentation/Security/kSecPrivateKeyAttrs": {
+      "abstract": [
+        {
+          "text": "A key whose value is a dictionary of cryptographic key attributes specific to a private key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecPrivateKeyAttrs"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecPrivateKeyAttrs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecPrivateKeyAttrs"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecPrivateKeyAttrs",
+      "type": "topic",
+      "url": "/documentation/security/ksecprivatekeyattrs"
+    },
+    "doc://com.apple.security/documentation/Security/kSecPublicKeyAttrs": {
+      "abstract": [
+        {
+          "text": "A key whose value is a dictionary of cryptographic key attributes specific to a public key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecPublicKeyAttrs"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecPublicKeyAttrs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecPublicKeyAttrs"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecPublicKeyAttrs",
+      "type": "topic",
+      "url": "/documentation/security/ksecpublickeyattrs"
+    },
+    "doc://com.apple.security/documentation/Security/key-generation-attributes": {
+      "abstract": [
+        {
+          "text": "Use attribute dictionary keys during cryptographic key generation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/key-generation-attributes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Key Generation Attributes",
+      "type": "topic",
+      "url": "/documentation/security/key-generation-attributes"
+    },
+    "doc://com.apple.security/documentation/Security/keys": {
+      "abstract": [
+        {
+          "text": "Generate, store, and use cryptographic keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keys",
+      "type": "topic",
+      "url": "/documentation/security/keys"
+    },
+    "doc://com.apple.security/documentation/Security/storing-keys-in-the-keychain": {
+      "abstract": [
+        {
+          "text": "Store and access cryptographic keys in the keychain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/storing-keys-in-the-keychain",
+      "kind": "article",
+      "role": "article",
+      "title": "Storing Keys in the Keychain",
+      "type": "topic",
+      "url": "/documentation/security/storing-keys-in-the-keychain"
+    },
+    "doc://com.apple.security/documentation/Security/using-keys-for-encryption": {
+      "abstract": [
+        {
+          "text": "Perform asymmetric and symmetric encryption and decryption using cryptographic keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/using-keys-for-encryption",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Keys for Encryption",
+      "type": "topic",
+      "url": "/documentation/security/using-keys-for-encryption"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecPublicKeyAttrs/title",
+          "value": "kSecPublicKeyAttrs"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecPublicKeyAttrs/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecPublicKeyAttrs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrIsPermanent/title",
+          "value": "kSecAttrIsPermanent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrIsPermanent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrIsPermanent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemDelete(_:)/title",
+          "value": "SecItemDelete"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemDelete(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemDelete"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyCreateRandomKey(_:_:)/title",
+          "value": "SecKeyCreateRandomKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyCreateRandomKey(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeyCreateRandomKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrKeySizeInBits/title",
+          "value": "kSecAttrKeySizeInBits"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrKeySizeInBits/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrKeySizeInBits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyCopyPublicKey(_:)/title",
+          "value": "SecKeyCopyPublicKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyCopyPublicKey(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeyCopyPublicKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyCreateEncryptedData(_:_:_:_:)/title",
+          "value": "SecKeyCreateEncryptedData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyCreateEncryptedData(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeyCreateEncryptedData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrKeyType/title",
+          "value": "kSecAttrKeyType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrKeyType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrKeyType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrApplicationTag/title",
+          "value": "kSecAttrApplicationTag"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrApplicationTag/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrApplicationTag"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsdata/abstract",
+          "value": [
+            {
+              "text": "A static byte buffer in memory.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecPrivateKeyAttrs/title",
+          "value": "kSecPrivateKeyAttrs"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecPrivateKeyAttrs/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecPrivateKeyAttrs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyCreateDecryptedData(_:_:_:_:)/title",
+          "value": "SecKeyCreateDecryptedData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyCreateDecryptedData(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeyCreateDecryptedData"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/generating-new-cryptographic-keys"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/generating-new-cryptographic-keys"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

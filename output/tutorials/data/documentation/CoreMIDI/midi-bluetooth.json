@@ -1,0 +1,627 @@
+{
+  "abstract": [
+    {
+      "text": "Connect to Bluetooth Low Energy MIDI peripherals.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremidi/documentation/CoreMIDI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-bluetooth"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core MIDI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "MIDI Bluetooth"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS 13 or later and iOS 16 or later, the system automatically reconnects Bluetooth Low Energy (BLE) MIDI peripherals when powered on, if the device supports pairing. Previously, it was necessary to use Audio MIDI Setup to establish BLE MIDI connections.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For devices that don’t support pairing, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " can enable ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " connections for input/output (I/O).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This API enables connection of BLE MIDI peripherals that don’t support pairing using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Scan for and connect to a BLE MIDI peripheral.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Confirm the peripheral has a BLE MIDI service.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Confirm the BLE MIDI service on the peripheral has a MIDI I/O characteristic for the MIDI service.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once a BLE MIDI peripheral connects — and you confirm that it possess both the BLE MIDI service and BLE MIDI I/O characteristic — call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIBluetoothDriverActivateAllConnections()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to have ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " enable I/O on those connections.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To disconnect a peripheral, obtain the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBUUID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of the peripheral and call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIBluetoothDriverDisconnect(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremidi/documentation/CoreMIDI": {
+      "abstract": [
+        {
+          "text": "Communicate with MIDI devices such as hardware keyboards and synthesizers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core MIDI",
+      "type": "topic",
+      "url": "/documentation/coremidi"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIBluetoothDriverActivateAllConnections()": {
+      "abstract": [
+        {
+          "text": "Promote all active Bluetooth connections into an online MIDI device capable of input and output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIBluetoothDriverActivateAllConnections"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIBluetoothDriverActivateAllConnections()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIBluetoothDriverActivateAllConnections"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIBluetoothDriverActivateAllConnections()",
+      "type": "topic",
+      "url": "/documentation/coremidi/midibluetoothdriveractivateallconnections()"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIBluetoothDriverDisconnect(_:)": {
+      "abstract": [
+        {
+          "text": "Disconnect the Bluetooth MIDI driver from a Bluetooth Low Energy MIDI peripheral.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIBluetoothDriverDisconnect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIBluetoothDriverDisconnect(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIBluetoothDriverDisconnect"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIBluetoothDriverDisconnect(_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midibluetoothdriverdisconnect(_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-capability-inquiry": {
+      "abstract": [
+        {
+          "text": "Provide support for bidirectional discovery and configuration of devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-capability-inquiry",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI Capability Inquiry",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-capability-inquiry"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-drivers": {
+      "abstract": [
+        {
+          "text": "Create driver plug-ins.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-drivers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI Drivers",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-drivers"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-messages": {
+      "abstract": [
+        {
+          "text": "Create and configure messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-messages",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI Messages",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-messages"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-networking": {
+      "abstract": [
+        {
+          "text": "Create and manage devices connected over a local network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-networking",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI Networking",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-networking"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-services": {
+      "abstract": [
+        {
+          "text": "Communicate with hardware using Universal MIDI Packets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI Services",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-services"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-system-setup": {
+      "abstract": [
+        {
+          "text": "Configure the global MIDI system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-system-setup",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI System Setup",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-system-setup"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-thru-connection": {
+      "abstract": [
+        {
+          "text": "Create play-through connections between sources and destinations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-thru-connection",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI Thru Connection",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-thru-connection"
+    },
+    "doc://com.apple.documentation/documentation/CoreBluetooth": {
+      "abstract": [
+        {
+          "text": "Communicate with Bluetooth low energy and BR/EDR (“Classic”) Devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Bluetooth",
+      "type": "topic",
+      "url": "/documentation/CoreBluetooth"
+    },
+    "doc://com.apple.documentation/documentation/CoreBluetooth/CBUUID": {
+      "abstract": [
+        {
+          "text": "A universally unique identifier, as defined by Bluetooth standards.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBUUID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBUUID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CBUUID",
+      "type": "topic",
+      "url": "/documentation/CoreBluetooth/CBUUID"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Services",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-services",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-system-setup",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-messages",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-thru-connection",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-networking",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-drivers",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-capability-inquiry"
+      ],
+      "title": "Services"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Managing-Device-Connections",
+      "identifiers": [
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIBluetoothDriverActivateAllConnections()",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIBluetoothDriverDisconnect(_:)"
+      ],
+      "title": "Managing Device Connections"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Managing-Device-Connections",
+              "identifiers": [
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIBluetoothDriverActivateAllConnections()",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIBluetoothDriverDisconnect(_:)"
+              ],
+              "title": "Managing Device Connections"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Services",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-services",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-system-setup",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-messages",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-thru-connection",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-networking",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-drivers",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-capability-inquiry"
+              ],
+              "title": "Services"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIBluetoothDriverDisconnect(_:)/title",
+          "value": "MIDIBluetoothDriverDisconnect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIBluetoothDriverDisconnect(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIBluetoothDriverDisconnect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIBluetoothDriverActivateAllConnections()/title",
+          "value": "MIDIBluetoothDriverActivateAllConnections"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIBluetoothDriverActivateAllConnections()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIBluetoothDriverActivateAllConnections"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBUUID/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CBUUID"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremidi/midi-bluetooth"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremidi/midi-bluetooth"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

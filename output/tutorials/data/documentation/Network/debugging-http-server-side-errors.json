@@ -1,0 +1,855 @@
+{
+  "abstract": [
+    {
+      "text": "Understand HTTP server-side errors and how to debug them.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.network/documentation/Network"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.network/documentation/Network/debugging-http-server-side-errors"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Network"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Debugging HTTP Server-Side Errors"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple’s HTTP APIs report transport errors and server-side errors:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A transport error occurs due to a problem getting your request to, or getting the response from, the server. This ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nserror",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " value is typically passed to your completion handler block or to a delegate method like ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1411610-urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". If you get a transport error, investigate what is happening with your network traffic. To get started, read ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.network/documentation/Network/choosing-a-network-debugging-tool",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A server-side error occurs due to problems detected by the server. The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/httpurlresponse/1409395-statuscode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/httpurlresponse",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " contains the error.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The status codes returned by the server aren’t always easy to interpret (see Section 6, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Response Status Codes",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", of ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/rfc7231",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") . Many HTTP server-side errors don’t give you a way to determine, from the client side, what went wrong. These include the 5xx errors (like ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "500 Internal Server Error",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ") and many 4xx errors (for example, with ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "400 Bad Request",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", it’s hard to know exactly why the server considers the request bad).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Xcode 13 includes the HTTP Tracing instrument to aid in debugging HTTP issues. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following sections explain how to debug these server-side problems.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Print-the-HTTP-Response-Body",
+          "level": 3,
+          "text": "Print the HTTP Response Body",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In some cases, the error response from the server includes an HTTP response body that explains what the problem is. Look at the HTTP response body to see whether such an explanation is present. If it is, that’s the easiest way to figure out what went wrong. For example, consider this standard ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " request code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "URLSession.shared.dataTask(with: url) { (responseBody, response, error) in",
+            "    if let error = error {",
+            "        // Handle transport error.",
+            "    }",
+            "    let response = response as! HTTPURLResponse",
+            "    let responseBody = responseBody!",
+            "    if !(200...299).contains(response.statusCode) {",
+            "        // Handle HTTP server-side error.",
+            "    }",
+            "    // Handle success.",
+            "    print(\"success\")",
+            "}.resume()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A server-side error runs the line labeled “Handle HTTP server-side error.” To see if the server’s response contains any helpful hints as to what went wrong, add some code that prints the HTTP response body.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "        // Handle HTTP server-side error.",
+            "        if let responseString = String(bytes: responseBody, encoding: .utf8) {",
+            "            // The response body seems to be a valid UTF-8 string, so print that.",
+            "            print(responseString)",
+            "        } else {",
+            "            // Otherwise print a hex dump of the body.",
+            "            print(responseBody as NSData)",
+            "        }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Compare-Against-a-Working-Client",
+          "level": 3,
+          "text": "Compare Against a Working Client",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the HTTP response body doesn’t help, compare your request to a request issued by a working client. For example, the server might not fail if you send it the same request from:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A web browser, like Safari",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A command-line tool, like ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "curl",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An app running on a different platform",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have a working client, it’s relatively straightforward to debug your problem:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the same network debugging tool to record the requests made by your client and the working client. If you’re using HTTP (not HTTPS), use a low-level packet trace tool to record these requests (see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.network/documentation/Network/recording-a-packet-trace",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "). If you’re using HTTPS, with Transport Layer Security (TLS), you can’t see the HTTP request. In that case, if your server has a debugging mode that lets you see the plaintext request, look there. If not, a debugging HTTP proxy may let you see the request; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.network/documentation/Network/taking-advantage-of-third-party-network-debugging-tools#Debugging-HTTP-Proxies",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for more information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Compare the two requests. Focus on the most significant values first. Do the URL paths match? Do the HTTP methods match? Do the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Content-Type",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " headers match? What about the remaining headers? Do the request bodies match? If these all match and things still don’t work, you may need to look at more obscure values, like the HTTP transfer encoding and, if you’re using HTTPS, various TLS parameters.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Address any discrepancies.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Retry with your updated client.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If things still fail, go back to step 1.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Debug-on-the-Server",
+          "level": 3,
+          "text": "Debug on the Server",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t have access to a working client, or you can’t get things to work using the steps described in the previous section, your only remaining option is to debug the problem on the server. Ideally, the server has documented debugging options that offer more insight into the failure. If not, escalate the problem through the support channel associated with your server software.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/httpurlresponse": {
+      "abstract": [
+        {
+          "text": "The metadata associated with the response to an HTTP protocol URL load request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "HTTPURLResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/httpurlresponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HTTPURLResponse",
+      "type": "topic",
+      "url": "/documentation/foundation/httpurlresponse"
+    },
+    "doc://com.apple.documentation/documentation/foundation/httpurlresponse/1409395-statuscode": {
+      "abstract": [
+        {
+          "text": "The response’s HTTP status code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "statusCode"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/httpurlresponse/1409395-statuscode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "statusCode",
+      "type": "topic",
+      "url": "/documentation/foundation/httpurlresponse/1409395-statuscode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nserror": {
+      "abstract": [
+        {
+          "text": "Information about an error condition including a domain, a domain-specific error code, and application-specific information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSError",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments": {
+      "abstract": [
+        {
+          "text": "Measure HTTP-based network performance and usage of your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing HTTP traffic with Instruments",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1411610-urlsession": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the task finished transferring data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "urlSession"
+        },
+        {
+          "kind": "text",
+          "text": "(URLSession, "
+        },
+        {
+          "kind": "identifier",
+          "text": "task"
+        },
+        {
+          "kind": "text",
+          "text": ": URLSessionTask, "
+        },
+        {
+          "kind": "identifier",
+          "text": "didCompleteWithError"
+        },
+        {
+          "kind": "text",
+          "text": ": (any Error)?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1411610-urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlSession(_:task:didCompleteWithError:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontaskdelegate/1411610-urlsession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.network/documentation/Network": {
+      "abstract": [
+        {
+          "text": "Create network connections to send and receive data using transport and security protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/network"
+    },
+    "doc://com.apple.network/documentation/Network/choosing-a-network-debugging-tool": {
+      "abstract": [
+        {
+          "text": "Decide which tool works best for your network debugging problem.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/choosing-a-network-debugging-tool",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing a Network Debugging Tool",
+      "type": "topic",
+      "url": "/documentation/network/choosing-a-network-debugging-tool"
+    },
+    "doc://com.apple.network/documentation/Network/debugging-https-problems-with-cfnetwork-diagnostic-logging": {
+      "abstract": [
+        {
+          "text": "Use CFNetwork diagnostic logging to investigate HTTP and HTTPS problems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/debugging-https-problems-with-cfnetwork-diagnostic-logging",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging HTTPS Problems with CFNetwork Diagnostic Logging",
+      "type": "topic",
+      "url": "/documentation/network/debugging-https-problems-with-cfnetwork-diagnostic-logging"
+    },
+    "doc://com.apple.network/documentation/Network/recording-a-packet-trace": {
+      "abstract": [
+        {
+          "text": "Learn how to record a low-level trace of network traffic.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/recording-a-packet-trace",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Recording a Packet Trace",
+      "type": "topic",
+      "url": "/documentation/network/recording-a-packet-trace"
+    },
+    "doc://com.apple.network/documentation/Network/taking-advantage-of-third-party-network-debugging-tools": {
+      "abstract": [
+        {
+          "text": "Learn about the available third-party network debugging tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/taking-advantage-of-third-party-network-debugging-tools",
+      "kind": "article",
+      "role": "article",
+      "title": "Taking Advantage of Third-Party Network Debugging Tools",
+      "type": "topic",
+      "url": "/documentation/network/taking-advantage-of-third-party-network-debugging-tools"
+    },
+    "doc://com.apple.network/documentation/Network/taking-advantage-of-third-party-network-debugging-tools#Debugging-HTTP-Proxies": {
+      "abstract": [],
+      "identifier": "doc://com.apple.network/documentation/Network/taking-advantage-of-third-party-network-debugging-tools#Debugging-HTTP-Proxies",
+      "kind": "section",
+      "title": "Debugging HTTP Proxies",
+      "type": "topic",
+      "url": "/documentation/network/taking-advantage-of-third-party-network-debugging-tools#Debugging-HTTP-Proxies"
+    },
+    "doc://com.apple.network/documentation/Network/testing-and-debugging-l4s-in-your-app": {
+      "abstract": [
+        {
+          "text": "Learn how to verify your app on an L4S-capable host and network to improve your app’s responsiveness.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/testing-and-debugging-l4s-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing and Debugging L4S in Your App",
+      "type": "topic",
+      "url": "/documentation/network/testing-and-debugging-l4s-in-your-app"
+    },
+    "https://tools.ietf.org/html/rfc7231": {
+      "identifier": "https://tools.ietf.org/html/rfc7231",
+      "title": "RFC 7231",
+      "titleInlineContent": [
+        {
+          "text": "RFC 7231",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/rfc7231"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Network-Debugging",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/choosing-a-network-debugging-tool",
+        "doc://com.apple.network/documentation/Network/debugging-https-problems-with-cfnetwork-diagnostic-logging",
+        "doc://com.apple.network/documentation/Network/recording-a-packet-trace",
+        "doc://com.apple.network/documentation/Network/taking-advantage-of-third-party-network-debugging-tools",
+        "doc://com.apple.network/documentation/Network/testing-and-debugging-l4s-in-your-app"
+      ],
+      "title": "Network Debugging"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Network-Debugging",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.network/documentation/Network/choosing-a-network-debugging-tool",
+                "doc://com.apple.network/documentation/Network/debugging-https-problems-with-cfnetwork-diagnostic-logging",
+                "doc://com.apple.network/documentation/Network/recording-a-packet-trace",
+                "doc://com.apple.network/documentation/Network/taking-advantage-of-third-party-network-debugging-tools",
+                "doc://com.apple.network/documentation/Network/testing-and-debugging-l4s-in-your-app"
+              ],
+              "title": "Network Debugging"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsession/title",
+          "value": "NSURLSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1httpurlresponse/title",
+          "value": "NSHTTPURLResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsessiontaskdelegate~11411610-urlsession/title",
+          "value": "URLSession:task:didCompleteWithError:"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/network/debugging-http-server-side-errors"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/network/debugging-http-server-side-errors"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2023 @@
+{
+  "abstract": [
+    {
+      "text": "Learn about important changes to File Provider.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Updates/documentation/Updates"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Updates/documentation/Updates/FileProvider"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Updates"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "File Provider updates"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Browse notable changes in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/FileProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "June-2024",
+          "level": 2,
+          "text": "June 2024",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Offer people the ability to sync their Desktop and Documents folders with your File Provider app. Check whether a person opts in to sync these folders using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderDomain/replicatedKnownFolders",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Sync the folders using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderManager/claimKnownFolders(_:localizedReason:completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", or stop syncing using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderManager/releaseKnownFolders(_:localizedReason:completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " if the person opts out. Provide the system with information about which folders you support syncing through ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderDomain/supportedKnownFolders",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and share the locations of the folders by adopting ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderKnownFolderSupporting",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Cache files on external disks. Confirm whether a volume is eligible for storing a domain using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderManager/checkDomainsCanBeStoredOnVolume(at:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and create a domain on that volume using the new ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderDomain/init(displayName:userInfo:volumeURL:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " initializer. Store data about the current sync state using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderManager/stateDirectoryURL()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and determine whether to connect to a domain created on another device using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderExternalVolumeHandling/shouldConnectExternalDomain(completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Install the File Provider logging profile to log helpful information for debugging and troubleshooting. Download the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".mobileconfig",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file at ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/bug-reporting/profiles-and-logs/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "March-2024",
+          "level": 2,
+          "text": "March 2024",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Improve error handling with new underlying error codes for ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderError/Code/providerNotFound",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderError/Code/providerDomainTemporarilyUnavailable",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " indicates that the system is unable to service requests for this domain temporarily, and you can try again later. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderError/Code/providerDomainNotFound",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " indicates that there isn’t a registered domain for the corresponding identifier. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderError/Code/applicationExtensionNotFound",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " indicates that there isn’t an app extension within the app bundle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Apple-Intelligence-updates-page-PageImage-card.png": {
+      "alt": "A stylistic image of the Apple Intelligence logo.",
+      "identifier": "Apple-Intelligence-updates-page-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/582fe08f6f69a366c2f1b35cd91e3c52/Apple-Intelligence-updates-page-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d4b11a932a5a2c7880eccd8043a1c524/Apple-Intelligence-updates-page-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Updates/documentation/Updates": {
+      "abstract": [
+        {
+          "text": "View major documentation updates and highlights from WWDC, browse ongoing updates from a set of framework releases over time, and jump to the latest release notes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates",
+      "images": [
+        {
+          "identifier": "featured.svg",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Updates",
+      "type": "topic",
+      "url": "/documentation/updates"
+    },
+    "doc://com.apple.Updates/documentation/Updates/ARKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to ARKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/ARKit",
+      "kind": "article",
+      "role": "article",
+      "title": "ARKit updates",
+      "type": "topic",
+      "url": "/documentation/updates/arkit"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AVFAudio": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to AVFAudio.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AVFAudio",
+      "kind": "article",
+      "role": "article",
+      "title": "AVFAudio updates",
+      "type": "topic",
+      "url": "/documentation/updates/avfaudio"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to AVFoundation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AVFoundation",
+      "kind": "article",
+      "role": "article",
+      "title": "AVFoundation updates",
+      "type": "topic",
+      "url": "/documentation/updates/avfoundation"
+    },
+    "doc://com.apple.Updates/documentation/Updates/Accelerate": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Accelerate.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/Accelerate",
+      "kind": "article",
+      "role": "article",
+      "title": "Accelerate updates",
+      "type": "topic",
+      "url": "/documentation/updates/accelerate"
+    },
+    "doc://com.apple.Updates/documentation/Updates/Accessibility": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Accessibility.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/Accessibility",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessibility updates",
+      "type": "topic",
+      "url": "/documentation/updates/accessibility"
+    },
+    "doc://com.apple.Updates/documentation/Updates/ActivityKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes in ActivityKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/ActivityKit",
+      "kind": "article",
+      "role": "article",
+      "title": "ActivityKit updates",
+      "type": "topic",
+      "url": "/documentation/updates/activitykit"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AdAttributionKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to AdAttributionKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AdAttributionKit",
+      "kind": "article",
+      "role": "article",
+      "title": "AdAttributionKit Updates",
+      "type": "topic",
+      "url": "/documentation/updates/adattributionkit"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AppIntents": {
+      "abstract": [
+        {
+          "text": "Learn about important changes in App Intents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AppIntents",
+      "kind": "article",
+      "role": "article",
+      "title": "App Intents updates",
+      "type": "topic",
+      "url": "/documentation/updates/appintents"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AppKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to AppKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AppKit",
+      "kind": "article",
+      "role": "article",
+      "title": "AppKit updates",
+      "type": "topic",
+      "url": "/documentation/updates/appkit"
+    },
+    "doc://com.apple.Updates/documentation/Updates/Apple-Intelligence": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/Apple-Intelligence",
+      "images": [
+        {
+          "identifier": "Apple-Intelligence-updates-page-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Apple Intelligence updates",
+      "type": "topic",
+      "url": "/documentation/updates/apple-intelligence"
+    },
+    "doc://com.apple.Updates/documentation/Updates/ApplePencil": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/ApplePencil",
+      "kind": "article",
+      "role": "article",
+      "title": "Apple Pencil updates",
+      "type": "topic",
+      "url": "/documentation/updates/applepencil"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Audio Toolbox.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AudioToolbox",
+      "kind": "article",
+      "role": "article",
+      "title": "Audio Toolbox updates",
+      "type": "topic",
+      "url": "/documentation/updates/audiotoolbox"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AuthenticationServices": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to AuthenticationServices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AuthenticationServices",
+      "kind": "article",
+      "role": "article",
+      "title": "AuthenticationServices updates",
+      "type": "topic",
+      "url": "/documentation/updates/authenticationservices"
+    },
+    "doc://com.apple.Updates/documentation/Updates/BundleResources": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Bundle Resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/BundleResources",
+      "kind": "article",
+      "role": "article",
+      "title": "Bundle Resources updates",
+      "type": "topic",
+      "url": "/documentation/updates/bundleresources"
+    },
+    "doc://com.apple.Updates/documentation/Updates/ContactsUI": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to ContactsUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/ContactsUI",
+      "kind": "article",
+      "role": "article",
+      "title": "ContactsUI updates",
+      "type": "topic",
+      "url": "/documentation/updates/contactsui"
+    },
+    "doc://com.apple.documentation/documentation/FileProvider": {
+      "abstract": [
+        {
+          "text": "An extension other apps use to access files and folders managed by your app and synced with a remote storage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FileProvider",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "File Provider",
+      "type": "topic",
+      "url": "/documentation/FileProvider"
+    },
+    "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderDomain/init(displayName:userInfo:volumeURL:)": {
+      "abstract": [
+        {
+          "text": "Creates a new file provider domain with the specified URL and display name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "displayName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "] = [:], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "volumeURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderDomain/init(displayName:userInfo:volumeURL:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(displayName:userInfo:volumeURL:)",
+      "type": "topic",
+      "url": "/documentation/FileProvider/NSFileProviderDomain/init(displayName:userInfo:volumeURL:)"
+    },
+    "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderDomain/replicatedKnownFolders": {
+      "abstract": [
+        {
+          "text": "A list of known folders that the domain currently replicates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replicatedKnownFolders"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSFileProviderKnownFolders",
+          "text": "NSFileProviderKnownFolders"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderDomain/replicatedKnownFolders",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replicatedKnownFolders",
+      "type": "topic",
+      "url": "/documentation/FileProvider/NSFileProviderDomain/replicatedKnownFolders"
+    },
+    "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderDomain/supportedKnownFolders": {
+      "abstract": [
+        {
+          "text": "A list of known folders that the domain can replicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportedKnownFolders"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSFileProviderKnownFolders",
+          "text": "NSFileProviderKnownFolders"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderDomain/supportedKnownFolders",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "supportedKnownFolders",
+      "type": "topic",
+      "url": "/documentation/FileProvider/NSFileProviderDomain/supportedKnownFolders"
+    },
+    "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderError/Code/applicationExtensionNotFound": {
+      "abstract": [
+        {
+          "text": "An error indicating that there isn’t an app extension within the app bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationExtensionNotFound"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderError/Code/applicationExtensionNotFound",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileProviderError.Code.applicationExtensionNotFound",
+      "type": "topic",
+      "url": "/documentation/FileProvider/NSFileProviderError/Code/applicationExtensionNotFound"
+    },
+    "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderError/Code/providerDomainNotFound": {
+      "abstract": [
+        {
+          "text": "An error indicating that there isn’t a registered domain for the corresponding identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "providerDomainNotFound"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderError/Code/providerDomainNotFound",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileProviderError.Code.providerDomainNotFound",
+      "type": "topic",
+      "url": "/documentation/FileProvider/NSFileProviderError/Code/providerDomainNotFound"
+    },
+    "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderError/Code/providerDomainTemporarilyUnavailable": {
+      "abstract": [
+        {
+          "text": "An error indicating that the system is unable to service requests for the domain temporarily, and you can try again later.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "providerDomainTemporarilyUnavailable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderError/Code/providerDomainTemporarilyUnavailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileProviderError.Code.providerDomainTemporarilyUnavailable",
+      "type": "topic",
+      "url": "/documentation/FileProvider/NSFileProviderError/Code/providerDomainTemporarilyUnavailable"
+    },
+    "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderError/Code/providerNotFound": {
+      "abstract": [
+        {
+          "text": "An error indicating that the File Provider manager can’t find the specified provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "providerNotFound"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderError/Code/providerNotFound",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileProviderError.Code.providerNotFound",
+      "type": "topic",
+      "url": "/documentation/FileProvider/NSFileProviderError/Code/providerNotFound"
+    },
+    "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderExternalVolumeHandling/shouldConnectExternalDomain(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Determines whether to connect to a domain from another device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldConnectExternalDomain"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderExternalVolumeHandling/shouldConnectExternalDomain(completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shouldConnectExternalDomain(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/FileProvider/NSFileProviderExternalVolumeHandling/shouldConnectExternalDomain(completionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderKnownFolderSupporting": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the interface for sharing known-folder locations with the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderKnownFolderSupporting"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderKnownFolderSupporting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileProviderKnownFolderSupporting",
+      "type": "topic",
+      "url": "/documentation/FileProvider/NSFileProviderKnownFolderSupporting"
+    },
+    "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderManager/checkDomainsCanBeStoredOnVolume(at:)": {
+      "abstract": [
+        {
+          "text": "Checks whether the specified URL is eligible for storing a domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "checkDomainsCanBeStoredOnVolume"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFileProviderManager",
+          "text": "NSFileProviderManager"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So21NSFileProviderManagerC04FileB0E17EligibilityResultO",
+          "text": "EligibilityResult"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderManager/checkDomainsCanBeStoredOnVolume(at:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "checkDomainsCanBeStoredOnVolume(at:)",
+      "type": "topic",
+      "url": "/documentation/FileProvider/NSFileProviderManager/checkDomainsCanBeStoredOnVolume(at:)"
+    },
+    "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderManager/claimKnownFolders(_:localizedReason:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Asks the domain to sync the specified known folders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "claimKnownFolders"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "knownFolders"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFileProviderKnownFolderLocations",
+          "text": "NSFileProviderKnownFolderLocations"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "localizedReason"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderManager/claimKnownFolders(_:localizedReason:completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "claimKnownFolders(_:localizedReason:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/FileProvider/NSFileProviderManager/claimKnownFolders(_:localizedReason:completionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderManager/releaseKnownFolders(_:localizedReason:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Asks the system to stop replicating the specified known folders in the domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "releaseKnownFolders"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "knownFolders"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSFileProviderKnownFolders",
+          "text": "NSFileProviderKnownFolders"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "localizedReason"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderManager/releaseKnownFolders(_:localizedReason:completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "releaseKnownFolders(_:localizedReason:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/FileProvider/NSFileProviderManager/releaseKnownFolders(_:localizedReason:completionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderManager/stateDirectoryURL()": {
+      "abstract": [
+        {
+          "text": "Returns a URL for a directory for storing state information for the domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stateDirectoryURL"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderManager/stateDirectoryURL()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stateDirectoryURL()",
+      "type": "topic",
+      "url": "/documentation/FileProvider/NSFileProviderManager/stateDirectoryURL()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "featured.svg": {
+      "alt": "An icon, with a star and a speech bubble around it, representing updates.",
+      "identifier": "featured.svg",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/70c10a18eb39cac81bd40849ad68cbff/featured.svg"
+        }
+      ]
+    },
+    "https://developer.apple.com/bug-reporting/profiles-and-logs/": {
+      "identifier": "https://developer.apple.com/bug-reporting/profiles-and-logs/",
+      "title": "Profiles and Logs",
+      "titleInlineContent": [
+        {
+          "text": "Profiles and Logs",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/bug-reporting/profiles-and-logs/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Technology-updates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Updates/documentation/Updates/Accelerate",
+        "doc://com.apple.Updates/documentation/Updates/Accessibility",
+        "doc://com.apple.Updates/documentation/Updates/ActivityKit",
+        "doc://com.apple.Updates/documentation/Updates/AdAttributionKit",
+        "doc://com.apple.Updates/documentation/Updates/AppIntents",
+        "doc://com.apple.Updates/documentation/Updates/AppKit",
+        "doc://com.apple.Updates/documentation/Updates/Apple-Intelligence",
+        "doc://com.apple.Updates/documentation/Updates/ApplePencil",
+        "doc://com.apple.Updates/documentation/Updates/ARKit",
+        "doc://com.apple.Updates/documentation/Updates/AudioToolbox",
+        "doc://com.apple.Updates/documentation/Updates/AuthenticationServices",
+        "doc://com.apple.Updates/documentation/Updates/AVFAudio",
+        "doc://com.apple.Updates/documentation/Updates/AVFoundation",
+        "doc://com.apple.Updates/documentation/Updates/BundleResources",
+        "doc://com.apple.Updates/documentation/Updates/ContactsUI"
+      ],
+      "title": "Technology updates"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderError~1Code~1providerDomainNotFound/title",
+          "value": "NSFileProviderErrorProviderDomainNotFound"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderError~1Code~1providerDomainNotFound/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderErrorProviderDomainNotFound"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderManager~1stateDirectoryURL()/title",
+          "value": "stateDirectoryURLWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderManager~1stateDirectoryURL()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURL",
+              "text": "NSURL"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "stateDirectoryURLWithError:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderError~1Code~1providerDomainTemporarilyUnavailable/title",
+          "value": "NSFileProviderErrorProviderDomainTemporarilyUnavailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderError~1Code~1providerDomainTemporarilyUnavailable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderErrorProviderDomainTemporarilyUnavailable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderDomain~1supportedKnownFolders/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "assign"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readwrite"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@NSFileProviderKnownFolders",
+              "text": "NSFileProviderKnownFolders"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "supportedKnownFolders"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderError~1Code~1providerNotFound/title",
+          "value": "NSFileProviderErrorProviderNotFound"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderError~1Code~1providerNotFound/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderErrorProviderNotFound"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderError~1Code~1applicationExtensionNotFound/title",
+          "value": "NSFileProviderErrorApplicationExtensionNotFound"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderError~1Code~1applicationExtensionNotFound/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderErrorApplicationExtensionNotFound"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderExternalVolumeHandling~1shouldConnectExternalDomain(completionHandler:)/title",
+          "value": "shouldConnectExternalDomainWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderExternalVolumeHandling~1shouldConnectExternalDomain(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "shouldConnectExternalDomainWithCompletionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "connectionError"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderDomain~1init(displayName:userInfo:volumeURL:)/title",
+          "value": "initWithDisplayName:userInfo:volumeURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderDomain~1init(displayName:userInfo:volumeURL:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "keyword",
+              "text": "instancetype"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithDisplayName:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "displayName"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "userInfo:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSDictionary",
+              "text": "NSDictionary"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "userInfo"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "volumeURL:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURL",
+              "text": "NSURL"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "volumeURL"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderDomain~1replicatedKnownFolders/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "assign"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@NSFileProviderKnownFolders",
+              "text": "NSFileProviderKnownFolders"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "replicatedKnownFolders"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderKnownFolderSupporting/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderKnownFolderSupporting"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderManager~1releaseKnownFolders(_:localizedReason:completionHandler:)/title",
+          "value": "releaseKnownFolders:localizedReason:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderManager~1releaseKnownFolders(_:localizedReason:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "releaseKnownFolders:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@NSFileProviderKnownFolders",
+              "text": "NSFileProviderKnownFolders"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "knownFolders"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "localizedReason:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "localizedReason"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": ""
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderManager~1claimKnownFolders(_:localizedReason:completionHandler:)/title",
+          "value": "claimKnownFolders:localizedReason:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderManager~1claimKnownFolders(_:localizedReason:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "claimKnownFolders:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSFileProviderKnownFolderLocations",
+              "text": "NSFileProviderKnownFolderLocations"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "knownFolders"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "localizedReason:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "localizedReason"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": ""
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/updates/fileprovider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

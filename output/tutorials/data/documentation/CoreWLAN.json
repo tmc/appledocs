@@ -1,0 +1,962 @@
+{
+  "abstract": [
+    {
+      "text": "Query AirPort interfaces and choose wireless networks.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corewlan/documentation/CoreWLAN"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "CoreWLAN",
+    "modules": [
+      {
+        "name": "Core WLAN"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.6",
+        "name": "macOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Core WLAN"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The CoreWLAN framework provides APIs for querying AirPort interfaces and choosing networks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You access the Wi-Fi subsystem by working with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWWiFiClient",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance. This client object provides methods to obtain a handle on all of the system’s Wi-Fi interfaces, represented by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. You can also use the client to register to receive Wi-Fi event notifications. You assign a delegate conforming to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWEventDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol to process these notifications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because creating the client object is resource intensive, it’s usually best to work with a single object over the life of your app rather than creating a series of short lived instances. For convenience, the client class defines a shared instance singleton that you can use for this purpose.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the CoreWLAN framework in an app that adopts App Sandbox without any special exceptions as long as you use the interface objects vended from a client instance. If you initialize interface objects directly, you incur low level system socket accesses that are not considered sandbox safe. For more information about App Sandbox, read ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/AboutAppSandbox/AboutAppSandbox.html#//apple_ref/doc/uid/TP40011183",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corewlan/documentation/CoreWLAN": {
+      "abstract": [
+        {
+          "text": "Query AirPort interfaces and choose wireless networks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core WLAN",
+      "type": "topic",
+      "url": "/documentation/corewlan"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWChannel": {
+      "abstract": [
+        {
+          "text": "Encapsulates an IEEE 802.11 channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CWChannel"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWChannel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CWChannel"
+        }
+      ],
+      "role": "symbol",
+      "title": "CWChannel",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwchannel"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWCipherKeyFlags": {
+      "abstract": [
+        {
+          "text": "Cipher key flags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CWCipherKeyFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWCipherKeyFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CWCipherKeyFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "CWCipherKeyFlags",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwcipherkeyflags"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWConfiguration": {
+      "abstract": [
+        {
+          "text": "Encapsulates an immutable configuration for an AirPort WLAN interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CWConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CWConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "CWConfiguration",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwconfiguration"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWEventDelegate": {
+      "abstract": [
+        {
+          "text": "The interface a Wi-Fi client object uses to notify its delegate about Wi-Fi events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CWEventDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWEventDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CWEventDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CWEventDelegate",
+      "type": "topic",
+      "url": "/documentation/corewlan/cweventdelegate"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface": {
+      "abstract": [
+        {
+          "text": "Encapsulates an IEEE 802.11 interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CWInterface"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CWInterface"
+        }
+      ],
+      "role": "symbol",
+      "title": "CWInterface",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWMutableConfiguration": {
+      "abstract": [
+        {
+          "text": "Encapsulates a mutable configuration for an AirPort WLAN interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CWMutableConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWMutableConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CWMutableConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "CWMutableConfiguration",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwmutableconfiguration"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWMutableNetworkProfile": {
+      "abstract": [
+        {
+          "text": "Encapsulates a mutable network profile entry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CWMutableNetworkProfile"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWMutableNetworkProfile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CWMutableNetworkProfile"
+        }
+      ],
+      "role": "symbol",
+      "title": "CWMutableNetworkProfile",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwmutablenetworkprofile"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWNetwork": {
+      "abstract": [
+        {
+          "text": "Encapsulates an IEEE 802.11 network, providing read-only accessors to various properties of the network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CWNetwork"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWNetwork",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CWNetwork"
+        }
+      ],
+      "role": "symbol",
+      "title": "CWNetwork",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwnetwork"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWNetworkProfile": {
+      "abstract": [
+        {
+          "text": "Encapsulates an immutable network profile entry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CWNetworkProfile"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWNetworkProfile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CWNetworkProfile"
+        }
+      ],
+      "role": "symbol",
+      "title": "CWNetworkProfile",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwnetworkprofile"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWWiFiClient": {
+      "abstract": [
+        {
+          "text": "A wrapper around the entire Wi-Fi subsystem that you use to access interfaces and set up event notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CWWiFiClient"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWWiFiClient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CWWiFiClient"
+        }
+      ],
+      "role": "symbol",
+      "title": "CWWiFiClient",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwwificlient"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/corewlan-enumerations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/corewlan-enumerations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CoreWLAN Enumerations",
+      "type": "topic",
+      "url": "/documentation/corewlan/corewlan-enumerations"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/corewlan-functions": {
+      "abstract": [],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/corewlan-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CoreWLAN Functions",
+      "type": "topic",
+      "url": "/documentation/corewlan/corewlan-functions"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/corewlanconstants-h": {
+      "abstract": [],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/corewlanconstants-h",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CoreWLANConstants.h",
+      "type": "topic",
+      "url": "/documentation/corewlan/corewlanconstants-h"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/corewlantypes-h": {
+      "abstract": [],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/corewlantypes-h",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CoreWLANTypes.h",
+      "type": "topic",
+      "url": "/documentation/corewlan/corewlantypes-h"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/corewlanutil-h": {
+      "abstract": [],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/corewlanutil-h",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CoreWLANUtil.h",
+      "type": "topic",
+      "url": "/documentation/corewlan/corewlanutil-h"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/AboutAppSandbox/AboutAppSandbox.html#//apple_ref/doc/uid/TP40011183": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/AboutAppSandbox/AboutAppSandbox.html#//apple_ref/doc/uid/TP40011183",
+      "title": "App Sandbox Design Guide",
+      "titleInlineContent": [
+        {
+          "text": "App Sandbox Design Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/AboutAppSandbox/AboutAppSandbox.html#//apple_ref/doc/uid/TP40011183"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Classes",
+      "identifiers": [
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWChannel",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWConfiguration",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWMutableConfiguration",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWMutableNetworkProfile",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWNetwork",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWNetworkProfile",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWWiFiClient"
+      ],
+      "title": "Classes"
+    },
+    {
+      "anchor": "Protocols",
+      "identifiers": [
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWEventDelegate"
+      ],
+      "title": "Protocols"
+    },
+    {
+      "anchor": "Reference",
+      "identifiers": [
+        "doc://com.apple.corewlan/documentation/CoreWLAN/corewlanconstants-h",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/corewlantypes-h",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/corewlanutil-h",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/corewlan-enumerations",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/corewlan-functions"
+      ],
+      "title": "Reference"
+    },
+    {
+      "anchor": "Structures",
+      "identifiers": [
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWCipherKeyFlags"
+      ],
+      "title": "Structures"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Classes",
+              "identifiers": [
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWChannel",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWConfiguration",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWMutableConfiguration",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWMutableNetworkProfile",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWNetwork",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWNetworkProfile",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWWiFiClient"
+              ],
+              "title": "Classes"
+            },
+            {
+              "anchor": "Protocols",
+              "identifiers": [
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWEventDelegate"
+              ],
+              "title": "Protocols"
+            },
+            {
+              "anchor": "Reference",
+              "identifiers": [
+                "doc://com.apple.corewlan/documentation/CoreWLAN/corewlanconstants-h",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/corewlantypes-h",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/corewlanutil-h",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/corewlan-enumerations",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/corewlan-functions"
+              ],
+              "title": "Reference"
+            },
+            {
+              "anchor": "Structures",
+              "identifiers": [
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWCipherKeyFlags"
+              ],
+              "title": "Structures"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWMutableConfiguration/title",
+          "value": "CWMutableConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWMutableConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWMutableConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWMutableConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWMutableConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface/title",
+          "value": "CWInterface"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWInterface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWInterface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWNetwork/title",
+          "value": "CWNetwork"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWNetwork/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWNetwork"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWNetwork/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWNetwork"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWChannel/title",
+          "value": "CWChannel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWChannel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWChannel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWChannel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWChannel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWConfiguration/title",
+          "value": "CWConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWNetworkProfile/title",
+          "value": "CWNetworkProfile"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWNetworkProfile/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWNetworkProfile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWNetworkProfile/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWNetworkProfile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWMutableNetworkProfile/title",
+          "value": "CWMutableNetworkProfile"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWMutableNetworkProfile/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWMutableNetworkProfile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWMutableNetworkProfile/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWMutableNetworkProfile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWWiFiClient/title",
+          "value": "CWWiFiClient"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWWiFiClient/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWWiFiClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWWiFiClient/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWWiFiClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWCipherKeyFlags/title",
+          "value": "CWCipherKeyFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWCipherKeyFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWCipherKeyFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWCipherKeyFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWCipherKeyFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWEventDelegate/title",
+          "value": "CWEventDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWEventDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWEventDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWEventDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWEventDelegate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corewlan"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corewlan"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

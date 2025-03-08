@@ -1,0 +1,1374 @@
+{
+  "abstract": [
+    {
+      "text": "Present win-back offers to eligible customers in your app with the win-back offer sheet or by implementing custom merchandising.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/merchandising-win-back-offers-in-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Merchandising win-back offers in your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a customer is eligible for a win-back offer, StoreKit provides several ways to for your app to merchandise the offer. By default, StoreKit automatically displays a win-back offer sheet to eligible customers when the app launches. You can choose to suppress (or delay) this sheet using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Message",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API, present the win-back offer using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/storekit-views",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or use StoreKit APIs and customize your UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Session 10110: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc24/10110",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related sessions from WWDC24",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on configuring win-back offers, handling redeemed offers, and more, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/supporting-win-back-offers-in-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Present-the-offer-with-the-win-back-offer-sheet",
+          "level": 3,
+          "text": "Present the offer with the win-back offer sheet",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, when StoreKit receives a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Message/Reason-swift.struct/winBackOffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " message from the App Store, it displays a win-back offer sheet when the app launches. You don’t need any code to choose this default behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may choose to delay this message, or suppress it if you customize the way your app presents win-back offers. Listen for messages using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Message/messages-swift.type.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " asynchronous sequence when your app launches. Intercept the win-back offer message, which has a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Message/Reason-swift.struct/winBackOffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " reason. To suppress the message, ignore it by doing nothing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example code suppresses the win-back offer redemption message, and displays all other App Store messages immediately.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MessageExampleView: View {",
+            "    @Environment(\\.displayStoreKitMessage) private var displayStoreMessage",
+            "    ",
+            "    var body: some View {",
+            "        MyContentView()",
+            "            .task {",
+            "                for await message in StoreKit.Message.messages {",
+            "                    if message.reason != .winBackOffer {",
+            "                        // Ask the system to display messages now.",
+            "                        try? displayStoreMessage(message)",
+            "                    }",
+            "                }",
+            "            }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about App Store messages, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Message",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Redeeming an offer in the win-back offer sheet results in a transaction that StoreKit treats the same as transactions that occur outside of the app; your app observes the transaction in the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/updates",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " sequence.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Present-win-back-offers-in-StoreKit-views",
+          "level": 3,
+          "text": "Present win-back offers in StoreKit views",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "StoreKit views automatically support displaying pricing details in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for all subscription offers the customer is eligible for, including win-back offers. The StoreKit views fetch the offer metadata and set up the purchase for you. If a customer is eligible for multiple offers, use the view modifier ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/preferredSubscriptionOffer(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to control which offer to present.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/preferredSubscriptionOffer(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier takes a single parameter: a function that StoreKit calls for each subscription in the group. In this function, StoreKit provides the product object, the subscription information, and a list of all offers the customer is eligible for. Use this information and your own logic to decide which offer to present, and return its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionOffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. If you return ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the customer is eligible for an introductory offer, the app always displays the introductory offer in the view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Customize-a-win-back-offer-experience",
+          "level": 3,
+          "text": "Customize a win-back offer experience",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you choose to fully control the in-app merchandising experience, use the folllowing APIs to get information about the customer’s eligibility for win-back offers and the offer details:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo/eligibleWinBackOfferIDs",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to get the list of the product’s win-back offers the customer is eligibile for. If the customer is eligible for multiple offers, the App Store sorts this array with the best offer first.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Get the win-back offer details from the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/winBackOffers",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " array in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", which contains all the available win-back offers that you configure in App Store Connect. Compare the IDs from the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo/eligibleWinBackOfferIDs",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " array to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionOffer/id",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionOffer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/winBackOffers",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a win-back offer to a purchase, include the win-back offer the customer chooses in the purchase options, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/purchase(options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/SwiftUI/View/preferredSubscriptionOffer(_:)": {
+      "abstract": [
+        {
+          "text": "Selects a subscription offer to apply to a purchase that a customer makes from a subscription store view, a store view, or a product view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredSubscriptionOffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "offer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV16SubscriptionInfoV",
+          "text": "SubscriptionInfo"
+        },
+        {
+          "kind": "text",
+          "text": ", ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV17SubscriptionOfferV",
+          "text": "SubscriptionOffer"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV17SubscriptionOfferV",
+          "text": "SubscriptionOffer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/preferredSubscriptionOffer(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preferredSubscriptionOffer(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/preferredSubscriptionOffer(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Message": {
+      "abstract": [
+        {
+          "text": "An instance for receiving and displaying App Store messages in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Message"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Message",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Message"
+        }
+      ],
+      "role": "symbol",
+      "title": "Message",
+      "type": "topic",
+      "url": "/documentation/storekit/message"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Message/Reason-swift.struct/winBackOffer": {
+      "abstract": [
+        {
+          "text": "A message the App Store sends when the customer is eligible for a win-back offer that you configure in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "winBackOffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7MessageV",
+          "text": "Message"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7MessageV6ReasonV",
+          "text": "Reason"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Message/Reason-swift.struct/winBackOffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "winBackOffer",
+      "type": "topic",
+      "url": "/documentation/storekit/message/reason-swift.struct/winbackoffer"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Message/messages-swift.type.property": {
+      "abstract": [
+        {
+          "text": "The asynchronous sequence that sends a message when the App Store creates it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "messages"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7MessageV",
+          "text": "Message"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7MessageV8MessagesV",
+          "text": "Messages"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Message/messages-swift.type.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "messages",
+      "type": "topic",
+      "url": "/documentation/storekit/message/messages-swift.type.property"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo": {
+      "abstract": [
+        {
+          "text": "Information about an auto-renewable subscription, such as its status, period, subscription group, and subscription offer details.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.SubscriptionInfo",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptioninfo"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo": {
+      "abstract": [
+        {
+          "text": "The renewal information for an auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RenewalInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RenewalInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.SubscriptionInfo.RenewalInfo",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptioninfo/renewalinfo"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo/eligibleWinBackOfferIDs": {
+      "abstract": [
+        {
+          "text": "An array of strings that represent identifiers of win-back offers that the customer is eligible to redeem, sorted with the best offers first.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "eligibleWinBackOfferIDs"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo/eligibleWinBackOfferIDs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "eligibleWinBackOfferIDs",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptioninfo/renewalinfo/eligiblewinbackofferids"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/winBackOffers": {
+      "abstract": [
+        {
+          "text": "An array of available win-back offers for the auto-renewable subscription that you configured in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "winBackOffers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV17SubscriptionOfferV",
+          "text": "SubscriptionOffer"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/winBackOffers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "winBackOffers",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptioninfo/winbackoffers"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionOffer": {
+      "abstract": [
+        {
+          "text": "Information about a subscription offer that you configure in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionOffer"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionOffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionOffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.SubscriptionOffer",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptionoffer"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionOffer/OfferType": {
+      "abstract": [
+        {
+          "text": "The types of offers for auto-renewable subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OfferType"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionOffer/OfferType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OfferType"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.SubscriptionOffer.OfferType",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptionoffer/offertype"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionOffer/id": {
+      "abstract": [
+        {
+          "text": "The subscription offer identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionOffer/id",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "id",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptionoffer/id"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/purchase(options:)": {
+      "abstract": [
+        {
+          "text": "Initiates a purchase for the product with the App Store and displays the confirmation sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "purchase"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV14PurchaseOptionV",
+          "text": "PurchaseOption"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV14PurchaseResultO",
+          "text": "PurchaseResult"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/purchase(options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "purchase(options:)",
+      "type": "topic",
+      "url": "/documentation/storekit/product/purchase(options:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView": {
+      "abstract": [
+        {
+          "text": "A view that merchandises a collection of auto-renewable subscription options that belong to the same subscription group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreView"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreView"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreView",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstoreview"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/updates": {
+      "abstract": [
+        {
+          "text": "The asynchronous sequence that emits a transaction when the system creates or updates transactions that occur outside the app or on other devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV12TransactionsV",
+          "text": "Transactions"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/updates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updates",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/updates"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/storekit-views": {
+      "abstract": [
+        {
+          "text": "Display a customizable In-App Purchase store using StoreKit views for SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/storekit-views",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "StoreKit views",
+      "type": "topic",
+      "url": "/documentation/storekit/storekit-views"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/supporting-subscription-offer-codes-in-your-app": {
+      "abstract": [
+        {
+          "text": "Provide subscription service for customers who redeem offer codes through the App Store or within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/supporting-subscription-offer-codes-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting subscription offer codes in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/supporting-subscription-offer-codes-in-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/supporting-win-back-offers-in-your-app": {
+      "abstract": [
+        {
+          "text": "Re-engage previous subscribers with a free or discounted offer for an auto-renewable subscription, for a specific duration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/supporting-win-back-offers-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting win-back offers in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/supporting-win-back-offers-in-your-app"
+    },
+    "https://developer.apple.com/wwdc24/10110": {
+      "identifier": "https://developer.apple.com/wwdc24/10110",
+      "title": "Implement App Store Offers",
+      "titleInlineContent": [
+        {
+          "text": "Implement App Store Offers",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc24/10110"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Subscription-offers-and-offer-codes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/supporting-win-back-offers-in-your-app",
+        "doc://com.apple.storekit/documentation/StoreKit/supporting-subscription-offer-codes-in-your-app",
+        "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionOffer",
+        "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionOffer/OfferType"
+      ],
+      "title": "Subscription offers and offer codes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Subscription-offers-and-offer-codes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/supporting-win-back-offers-in-your-app",
+                "doc://com.apple.storekit/documentation/StoreKit/supporting-subscription-offer-codes-in-your-app"
+              ],
+              "title": "Subscription offers and offer codes"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/merchandising-win-back-offers-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/merchandising-win-back-offers-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

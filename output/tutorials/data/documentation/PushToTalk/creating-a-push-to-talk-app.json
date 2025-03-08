@@ -1,0 +1,3500 @@
+{
+  "abstract": [
+    {
+      "text": "Build a walkie-talkie style app with system user interface controls.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.pushtotalk/documentation/PushToTalk"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.pushtotalk/documentation/PushToTalk/creating-a-push-to-talk-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Push to Talk"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a Push to Talk app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Push to Talk (PTT) framework makes it easy to communicate with a group of individuals almost instantly with the press of a button. The framework provides your app with system user interface controls, as well as management for channel events. Handle push notifications and events like when audio transmission begins or ends, and when a person joins or leaves a channel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "PTT provides the interface, and you provide the back-end communication service. Its flexibility makes it compatible with your existing end-to-end communication solutions and backend infrastructure. Use PTT to integrate with Bluetooth accessories that trigger audio recording and transmission.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-your-Xcode-project",
+          "level": 3,
+          "text": "Configure your Xcode project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To begin using the PTT framework, configure Xcode with the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose your top-level project in the Xcode Project navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For your project’s target, choose Signing & Capabilities.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Editor > Add Capability, select Background Modes, and select Push to Talk from the list of modes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Editor > Add Capability and select Push to Talk.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Editor > Add Capability and select Push Notifications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Info, expand the Custom iOS Target Properties section, hover your pointer over a row and click the Add button (+). Enter the key name ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and a string value that explains why the app is requesting access to the device’s microphone.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Join-a-channel",
+          "level": 3,
+          "text": "Join a channel",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A channel represents and describes the PTT session to the system. Apps interact with channels through a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which is the primary interface for joining channels and performing actions like transmitting and receiving audio. Multiple calls to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/channelManager(delegate:restorationDelegate:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " result in the system returning the same shared instance, so store the channel manager in an instance variable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a channel manager instance.    ",
+            "channelManager = try await PTChannelManager.channelManager(delegate: self,",
+            "                                                           restorationDelegate: self) "
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Initialize the channel manager as soon as possible during startup to ensure the framework can restore existing channels and deliver push notifications to the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " describes the channel to the system so it can present details — like channel name and image — in the system UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a descriptor an app uses to join a channel.    ",
+            "let channelImage = UIImage(named: “ChannelImage”)    ",
+            "channelDescriptor = PTChannelDescriptor(name: “The channel name”,                                                                             ",
+            "                                        image: channelImage)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The framework uses shared system resources, so only one PTT channel can be active on the system at a time. To join a channel, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/requestJoinChannel(channelUUID:descriptor:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The system uses the same unique identifier when interacting with the manager throughout the life of the channel, so when joining a channel, store the descriptor and UUID for later use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Join a channel with a unique identifier and descriptor.",
+            "channelManager.requestJoinChannel(channelUUID: channelUUID,",
+            "                                  descriptor: channelDescriptor)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "A person can only join a channel when a PTT app is running in the foreground — with explicit user interaction — so apps need to provide buttons to allow a person to join and leave a channel.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After initializing the channel manager, the framework provides an ephemeral APNs device token in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:receivedEphemeralPushToken:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Get the variable-length push token and send it to the app’s server. The token isn’t active until a person joins the channel. If they leave the channel, wait until they rejoin to resume notifications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Joining a channel can fail when another channel is already active. On failure, the framework calls the delegate method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:failedToJoinChannel:error:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and contains a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelError-swift.struct/Code",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Restore-an-active-channel",
+          "level": 3,
+          "text": "Restore an active channel",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system terminates an app or a person reboots the device, the app needs to restore active channels. Provide a channel descriptor to update the system in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelRestorationDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The system only calls the restoration delegate method when it’s unable to use data it caches to restore a channel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Restore an active channel after relaunch.    ",
+            "func channelDescriptor(restoredChannelUUID channelUUID: UUID) -> PTChannelDescriptor {",
+            "    let descriptor = // Get a cached descriptor for the channel's unique identifier.",
+            "    return descriptor",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To keep the system responsive, return from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelRestorationDelegate/channelDescriptor(restoredChannelUUID:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as soon as possible. Don’t perform long-running or blocking tasks — like network requests — to retrieve a descriptor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-the-channel-transmission-mode",
+          "level": 3,
+          "text": "Set the channel transmission mode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After joining a channel, set the channel’s transmission mode to indicate when the user can transmit audio. The default transmission mode is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTTransmissionMode/halfDuplex",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", indicating that only one participant can send or receive audio at a time. The system prevents a person from transmitting audio while they’re receiving audio from a remote participant.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTTransmissionMode/fullDuplex",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to allow a person to transmit and receive audio simultaneously. In full-duplex mode, the system allows a person to begin transmitting even if they’re receiving audio.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "try await channelManager.setTransmissionMode(.fullDuplex, ",
+            "                                             channelUUID: channelUUID)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the transmission mode to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTTransmissionMode/listenOnly",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to prevent a participant from transmitting any audio.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Report-service-status",
+          "level": 3,
+          "text": "Report service status",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If there are any platform service disruptions, report the service status through the channel manager. For example, if there’s a network outage, report that the connection is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTServiceStatus/connecting",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "await channelManager.setServiceStatus(.connecting, ",
+            "                                      channelUUID: channelUUID)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the network is in a restored state, set the service status to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTServiceStatus/ready",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Transmit-audio",
+          "level": 3,
+          "text": "Transmit audio",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The framework provides flexibility in how apps handle audio transmission, and enables compatibility with other platforms. Apps implement their own audio encoding and streaming process to transmit audio between users. Start PTT transmissions from the system UI or by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/requestBeginTransmitting(channelUUID:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Begin transmission when the app is running in the foreground or following a characteristic change from a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system automatically interprets play or pause toggle events from wired headsets and CarPlay devices when the system has an active PTT channel. Events result in begin- or end-transmission events in the PTT framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To begin a transmission, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/requestBeginTransmitting(channelUUID:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a unique channel identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Begin transmitting to a channel.    ",
+            "channelManager.requestBeginTransmitting(channelUUID: channelUUID)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the request to begin transmitting succeeds, the framework calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:channelUUID:didBeginTransmittingFrom:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The framework also calls this method if transmission begins from the system UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// The transmission begins from the request source.    ",
+            "func channelManager(_ channelManager: PTChannelManager,",
+            "                    channelUUID: UUID,",
+            "                    didBeginTransmittingFrom source: PTChannelTransmitRequestSource) {        ",
+            "    // Begin reconnecting to the app’s PTT services backend infrastructure        ",
+            "    // and signal that the user is beginning to transmit.    ",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before recording and transmitting audio, wait for the framework to call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:didActivate:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The framework calls the method when the audio session is active. This allows for recording audio even if the app is in the background. The framework doesn’t call the method if the channel transmission mode is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTTransmissionMode/fullDuplex",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and already has an active audio session, because the app is receiving audio from a remote participant when a transmission begins.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// The audio session is in an active state and ready to use.    ",
+            "func channelManager(_ channelManager: PTChannelManager,",
+            "                    didActivate audioSession: AVAudioSession) {        ",
+            "    // Configure the audio session and begin recording.    ",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Let the system activate and deactivate the audio session to ensure it has the proper priority within the system.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system provides built-in sound effects to indicate that the microphone is in an activated or deactivated state. Don’t provide sound effects for these events. The framework doesn’t support custom sound effects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the system can’t begin transmission — for example, if a person has an active cellular call — the framework calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:failedToBeginTransmittingInChannel:error:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When transmission ends, the framework calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:channelUUID:didEndTransmittingFrom:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:didDeactivate:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The system then returns the app to a suspended state if it’s running in the background. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/beginBackgroundTask(expirationHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to request additional runtime to update the app’s server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Receive-audio",
+          "level": 3,
+          "text": "Receive audio",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The framework introduces a new APNs type for PTT apps. When an app’s server has new audio for a person to receive, it sends a PTT notification using the device push token that an app receives when joining a channel. A token is only active for the life of a channel, so an app receives a new token each time it joins a new channel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the APNs push type to ",
+              "type": "text"
+            },
+            {
+              "code": "pushtotalk",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the request header, and the topic header to the app’s bundle identifier with the ",
+              "type": "text"
+            },
+            {
+              "code": ".voip-ptt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " suffix. The payload can contain custom keys, such as the name of an active speaker or an indication that the session ended. Set the APNs priority to ",
+              "type": "text"
+            },
+            {
+              "code": "10",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to request immediate delivery, and set an expiration of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to prevent the system from delivering older pushes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "curl -v \\        ",
+            "    -d ‘{”activeSpeaker”:”The name of the active speaker”}’ \\",
+            "    -H “apns-push-type: pushtotalk” \\",
+            "    -H “apns-topic: <The app bundle id>.voip-ptt” \\",
+            "    -H “apns-priority: 10” \\",
+            "    -H “apns-expiration: 0” \\",
+            "    --http2 \\",
+            "    --cert <The certificate key name>.pem \\",
+            "    https://api.sandbox.push.apple.com/3/device/<token>"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app’s server sends a PTT notification, the system starts the app in the background and calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/incomingPushResult(channelManager:channelUUID:pushPayload:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When an app receives a push payload, it constructs a push result type to indicate what action to perform.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func incomingPushResult(channelManager: PTChannelManager,",
+            "                        channelUUID: UUID,",
+            "                        pushPayload: [String: Any]) -> PTPushResult {",
+            "    guard let activeSpeaker = pushPayload[“activeSpeaker”] as? String else {",
+            "        // Report that there's no active speaker, so leave the channel.",
+            "        return .leaveChannel",
+            "    }",
+            "",
+            "    let activeSpeakerImage = // Get the cached image for the active speaker.",
+            "    let participant = PTParticipant(name: activeSpeaker,",
+            "                                    image: activeSpeakerImage)",
+            "    // Report the active participant information to the system.",
+            "    return .activeRemoteParticipant(participant)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Return a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTPushResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as soon as possible and don’t block the thread. Perform network tasks — like downloading a speaker’s image or setting up a streaming network connection to a server — on a separate thread.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After setting ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTPushResult/activeRemoteParticipant(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the system activates the app’s audio session and calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:didActivate:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. When the app’s audio session is in an active state, begin playing back the audio it receives from the app’s server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the PTT channel transmission mode is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTTransmissionMode/halfDuplex",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and the local participant is transmitting when the app receives a PTT notification, returning an active participant results in an error. End the local participant’s transmission by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/stopTransmitting(channelUUID:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before returning an active remote participant. The system batches these operations together — without deactivating the audio session — so an app can immediately begin playing audio it receives from a remote participant.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an app is in the foreground, it can receive and queue messages for playback while playing messages it previously received.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a remote participant finishes speaking, set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/setActiveRemoteParticipant(_:channelUUID:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to indicate that the app is no longer receiving audio on the channel and the system can deactivate the audio session. This action updates the system UI and allows the user to transmit again.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Reduce-network-latency-and-handle-audio-interruptions",
+          "level": 3,
+          "text": "Reduce network latency and handle audio interruptions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To reduce the steps necessary to establish a secure TLS connection, and improve the initial connection speed, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework and implement ",
+              "type": "text"
+            },
+            {
+              "code": "QUIC",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For more information about ",
+              "type": "text"
+            },
+            {
+              "code": "QUIC",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/quic-options",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system prioritizes communications from cellular, FaceTime, and VoIP calls, so PTT apps need to respond accordingly and handle failures gracefully. Monitor and respond to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notifications, such as session interruptions, route changes, and failures. For more information about handling interruptions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/handling-audio-interruptions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-multiple-Push-to-Talk-conversations",
+          "level": 3,
+          "text": "Handle multiple Push to Talk conversations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support simultaneous conversations, join a single channel and update the channel descriptor to reflect the active conversation. Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/setChannelDescriptor(_:channelUUID:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to update the system UI when the active conversation changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an app is in the process of receiving audio, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/setActiveRemoteParticipant(_:channelUUID:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to update the system UI with new participant details when the conversation’s speaker changes. This eliminates having to send a new APNs notification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession": {
+      "abstract": [
+        {
+          "text": "An object that communicates to the system how you intend to use audio in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioSession",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioSession"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/handling-audio-interruptions": {
+      "abstract": [
+        {
+          "text": "Observe audio session notifications to ensure that your app responds appropriately to interruptions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/handling-audio-interruptions",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling audio interruptions",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/handling-audio-interruptions"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the device’s microphone.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMicrophoneUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/CoreBluetooth": {
+      "abstract": [
+        {
+          "text": "Communicate with Bluetooth low energy and BR/EDR (“Classic”) Devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Bluetooth",
+      "type": "topic",
+      "url": "/documentation/CoreBluetooth"
+    },
+    "doc://com.apple.documentation/documentation/Network": {
+      "abstract": [
+        {
+          "text": "Create network connections to send and receive data using transport and security protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/Network"
+    },
+    "doc://com.apple.documentation/documentation/Network/quic-options": {
+      "abstract": [
+        {
+          "text": "Configure options for connections that use the QUIC transport protocol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/quic-options",
+      "kind": "article",
+      "role": "article",
+      "title": "QUIC Options",
+      "type": "topic",
+      "url": "/documentation/Network/quic-options"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplication/beginBackgroundTask(expirationHandler:)": {
+      "abstract": [
+        {
+          "text": "Marks the start of a task that should continue if the app enters the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginBackgroundTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "expirationHandler"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": (@"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIBackgroundTaskIdentifier",
+          "text": "UIBackgroundTaskIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/beginBackgroundTask(expirationHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginBackgroundTask(expirationHandler:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplication/beginBackgroundTask(expirationHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk": {
+      "abstract": [
+        {
+          "text": "Display the system user interface for your app’s Push to Talk services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Push to Talk",
+      "type": "topic",
+      "url": "/documentation/pushtotalk"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that describes a channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PTChannelDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PTChannelDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "PTChannelDescriptor",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptchanneldescriptor"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelError-swift.struct/Code": {
+      "abstract": [
+        {
+          "text": "Error codes for channel operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelError-swift.struct/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "PTChannelError.Code",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptchannelerror-swift.struct/code"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager": {
+      "abstract": [
+        {
+          "text": "An object that represents a push-to-talk channel manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PTChannelManager"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PTChannelManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "PTChannelManager",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptchannelmanager"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/channelManager(delegate:restorationDelegate:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Creates a channel manager with the configuration you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "channelManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)PTChannelManagerDelegate",
+          "text": "PTChannelManagerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "restorationDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)PTChannelRestorationDelegate",
+          "text": "PTChannelRestorationDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PTChannelManager",
+          "text": "PTChannelManager"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/channelManager(delegate:restorationDelegate:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "channelManagerWithDelegate:restorationDelegate:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "channelManager(delegate:restorationDelegate:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptchannelmanager/channelmanager(delegate:restorationdelegate:completionhandler:)"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/requestBeginTransmitting(channelUUID:)": {
+      "abstract": [
+        {
+          "text": "Begins an audio transmission with the channel identifer you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestBeginTransmitting"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "channelUUID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/requestBeginTransmitting(channelUUID:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestBeginTransmittingWithChannelUUID:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestBeginTransmitting(channelUUID:)",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptchannelmanager/requestbegintransmitting(channeluuid:)"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/requestJoinChannel(channelUUID:descriptor:)": {
+      "abstract": [
+        {
+          "text": "Joins a channel with the identifier and descriptor you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestJoinChannel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "channelUUID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PTChannelDescriptor",
+          "text": "PTChannelDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/requestJoinChannel(channelUUID:descriptor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestJoinChannelWithUUID:descriptor:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestJoinChannel(channelUUID:descriptor:)",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptchannelmanager/requestjoinchannel(channeluuid:descriptor:)"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/setActiveRemoteParticipant(_:channelUUID:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Sets the active remote participant with the channel identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setActiveRemoteParticipant"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PTParticipant",
+          "text": "PTParticipant"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "channelUUID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/setActiveRemoteParticipant(_:channelUUID:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setActiveRemoteParticipant:forChannelUUID:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setActiveRemoteParticipant(_:channelUUID:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptchannelmanager/setactiveremoteparticipant(_:channeluuid:completionhandler:)"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/setChannelDescriptor(_:channelUUID:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Sets the channel description.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setChannelDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PTChannelDescriptor",
+          "text": "PTChannelDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "channelUUID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/setChannelDescriptor(_:channelUUID:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setChannelDescriptor:forChannelUUID:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setChannelDescriptor(_:channelUUID:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptchannelmanager/setchanneldescriptor(_:channeluuid:completionhandler:)"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/stopTransmitting(channelUUID:)": {
+      "abstract": [
+        {
+          "text": "Stops an audio transmission with the channel identifer you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopTransmitting"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "channelUUID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/stopTransmitting(channelUUID:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopTransmittingWithChannelUUID:"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopTransmitting(channelUUID:)",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptchannelmanager/stoptransmitting(channeluuid:)"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:channelUUID:didBeginTransmittingFrom:)": {
+      "abstract": [
+        {
+          "text": "Tells the observer that transmission began.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "channelManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PTChannelManager",
+          "text": "PTChannelManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "channelUUID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didBeginTransmittingFrom"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PTChannelTransmitRequestSource",
+          "text": "PTChannelTransmitRequestSource"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:channelUUID:didBeginTransmittingFrom:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "channelManager:channelUUID:didBeginTransmittingFromSource:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "channelManager(_:channelUUID:didBeginTransmittingFrom:)",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptchannelmanagerdelegate/channelmanager(_:channeluuid:didbegintransmittingfrom:)"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:channelUUID:didEndTransmittingFrom:)": {
+      "abstract": [
+        {
+          "text": "Tells the observer that transmission ended.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "channelManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PTChannelManager",
+          "text": "PTChannelManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "channelUUID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didEndTransmittingFrom"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PTChannelTransmitRequestSource",
+          "text": "PTChannelTransmitRequestSource"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:channelUUID:didEndTransmittingFrom:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "channelManager:channelUUID:didEndTransmittingFromSource:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "channelManager(_:channelUUID:didEndTransmittingFrom:)",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptchannelmanagerdelegate/channelmanager(_:channeluuid:didendtransmittingfrom:)"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:didActivate:)": {
+      "abstract": [
+        {
+          "text": "Tells the observer the audio session activated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "channelManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PTChannelManager",
+          "text": "PTChannelManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didActivate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioSession",
+          "text": "AVAudioSession"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:didActivate:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "channelManager:didActivateAudioSession:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "channelManager(_:didActivate:)",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptchannelmanagerdelegate/channelmanager(_:didactivate:)"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:didDeactivate:)": {
+      "abstract": [
+        {
+          "text": "Tells the observer the audio session deactivated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "channelManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PTChannelManager",
+          "text": "PTChannelManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didDeactivate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioSession",
+          "text": "AVAudioSession"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:didDeactivate:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "channelManager:didDeactivateAudioSession:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "channelManager(_:didDeactivate:)",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptchannelmanagerdelegate/channelmanager(_:diddeactivate:)"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:failedToBeginTransmittingInChannel:error:)": {
+      "abstract": [
+        {
+          "text": "Tells the observer that transmission failed to begin.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "channelManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PTChannelManager",
+          "text": "PTChannelManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "failedToBeginTransmittingInChannel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:failedToBeginTransmittingInChannel:error:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "channelManager:failedToBeginTransmittingInChannelWithUUID:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "channelManager(_:failedToBeginTransmittingInChannel:error:)",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptchannelmanagerdelegate/channelmanager(_:failedtobegintransmittinginchannel:error:)"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:failedToJoinChannel:error:)": {
+      "abstract": [
+        {
+          "text": "Tells the observer that the app failed to join a Push to Talk channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "channelManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PTChannelManager",
+          "text": "PTChannelManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "failedToJoinChannel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:failedToJoinChannel:error:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "channelManager:failedToJoinChannelWithUUID:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "channelManager(_:failedToJoinChannel:error:)",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptchannelmanagerdelegate/channelmanager(_:failedtojoinchannel:error:)"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:receivedEphemeralPushToken:)": {
+      "abstract": [
+        {
+          "text": "Tells the observer that the app received a push token after you create a channel manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "channelManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PTChannelManager",
+          "text": "PTChannelManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "receivedEphemeralPushToken"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:receivedEphemeralPushToken:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "channelManager:receivedEphemeralPushToken:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "channelManager(_:receivedEphemeralPushToken:)",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptchannelmanagerdelegate/channelmanager(_:receivedephemeralpushtoken:)"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/incomingPushResult(channelManager:channelUUID:pushPayload:)": {
+      "abstract": [
+        {
+          "text": "Tells the observer that the app has a push available to handle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "incomingPushResult"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "channelManager"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PTChannelManager",
+          "text": "PTChannelManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "channelUUID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pushPayload"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PTPushResult",
+          "text": "PTPushResult"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/incomingPushResult(channelManager:channelUUID:pushPayload:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "incomingPushResultForChannelManager:channelUUID:pushPayload:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "incomingPushResult(channelManager:channelUUID:pushPayload:)",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptchannelmanagerdelegate/incomingpushresult(channelmanager:channeluuid:pushpayload:)"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelRestorationDelegate": {
+      "abstract": [
+        {
+          "text": "A type that represents the channel restoration behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PTChannelRestorationDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelRestorationDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PTChannelRestorationDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "PTChannelRestorationDelegate",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptchannelrestorationdelegate"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelRestorationDelegate/channelDescriptor(restoredChannelUUID:)": {
+      "abstract": [
+        {
+          "text": "Tells your observer the system restored the channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "channelDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "restoredChannelUUID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PTChannelDescriptor",
+          "text": "PTChannelDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelRestorationDelegate/channelDescriptor(restoredChannelUUID:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "channelDescriptorForRestoredChannelUUID:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "channelDescriptor(restoredChannelUUID:)",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptchannelrestorationdelegate/channeldescriptor(restoredchanneluuid:)"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTPushResult": {
+      "abstract": [
+        {
+          "text": "An object that represents a push result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PTPushResult"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTPushResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PTPushResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "PTPushResult",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptpushresult"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTPushResult/activeRemoteParticipant(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a push result for reporting that a remote participant started to speak.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeRemoteParticipant"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PTParticipant",
+          "text": "PTParticipant"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PTPushResult",
+          "text": "PTPushResult"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTPushResult/activeRemoteParticipant(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pushResultForActiveRemoteParticipant:"
+        }
+      ],
+      "role": "symbol",
+      "title": "activeRemoteParticipant(_:)",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptpushresult/activeremoteparticipant(_:)"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTServiceStatus/connecting": {
+      "abstract": [
+        {
+          "text": "A type that indicates the service is attempting to establish a connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "connecting"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTServiceStatus/connecting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PTServiceStatusConnecting"
+        }
+      ],
+      "role": "symbol",
+      "title": "PTServiceStatus.connecting",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptservicestatus/connecting"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTServiceStatus/ready": {
+      "abstract": [
+        {
+          "text": "A type that indicates the service is available for use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ready"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTServiceStatus/ready",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PTServiceStatusReady"
+        }
+      ],
+      "role": "symbol",
+      "title": "PTServiceStatus.ready",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptservicestatus/ready"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTTransmissionMode/fullDuplex": {
+      "abstract": [
+        {
+          "text": "A type that indicates a participant can simultaneously receive and transmit audio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fullDuplex"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTTransmissionMode/fullDuplex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PTTransmissionModeFullDuplex"
+        }
+      ],
+      "role": "symbol",
+      "title": "PTTransmissionMode.fullDuplex",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/pttransmissionmode/fullduplex"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTTransmissionMode/halfDuplex": {
+      "abstract": [
+        {
+          "text": "A type that indicates a participant can’t simultaneously receive and transmit audio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "halfDuplex"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTTransmissionMode/halfDuplex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PTTransmissionModeHalfDuplex"
+        }
+      ],
+      "role": "symbol",
+      "title": "PTTransmissionMode.halfDuplex",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/pttransmissionmode/halfduplex"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTTransmissionMode/listenOnly": {
+      "abstract": [
+        {
+          "text": "A type that indicates a participant can only receive audio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listenOnly"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTTransmissionMode/listenOnly",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PTTransmissionModeListenOnly"
+        }
+      ],
+      "role": "symbol",
+      "title": "PTTransmissionMode.listenOnly",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/pttransmissionmode/listenonly"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManagerDelegate~1incomingPushResult(channelManager:channelUUID:pushPayload:)/title",
+          "value": "incomingPushResultForChannelManager:channelUUID:pushPayload:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManagerDelegate~1incomingPushResult(channelManager:channelUUID:pushPayload:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "incomingPushResultForChannelManager:channelUUID:pushPayload:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManagerDelegate~1channelManager(_:receivedEphemeralPushToken:)/title",
+          "value": "channelManager:receivedEphemeralPushToken:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManagerDelegate~1channelManager(_:receivedEphemeralPushToken:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "channelManager:receivedEphemeralPushToken:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManager~1stopTransmitting(channelUUID:)/title",
+          "value": "stopTransmittingWithChannelUUID:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManager~1stopTransmitting(channelUUID:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopTransmittingWithChannelUUID:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTTransmissionMode~1halfDuplex/title",
+          "value": "PTTransmissionModeHalfDuplex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTTransmissionMode~1halfDuplex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PTTransmissionModeHalfDuplex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManagerDelegate~1channelManager(_:channelUUID:didEndTransmittingFrom:)/title",
+          "value": "channelManager:channelUUID:didEndTransmittingFromSource:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManagerDelegate~1channelManager(_:channelUUID:didEndTransmittingFrom:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "channelManager:channelUUID:didEndTransmittingFromSource:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTTransmissionMode~1fullDuplex/title",
+          "value": "PTTransmissionModeFullDuplex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTTransmissionMode~1fullDuplex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PTTransmissionModeFullDuplex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTTransmissionMode~1listenOnly/title",
+          "value": "PTTransmissionModeListenOnly"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTTransmissionMode~1listenOnly/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PTTransmissionModeListenOnly"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManagerDelegate~1channelManager(_:failedToJoinChannel:error:)/title",
+          "value": "channelManager:failedToJoinChannelWithUUID:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManagerDelegate~1channelManager(_:failedToJoinChannel:error:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "channelManager:failedToJoinChannelWithUUID:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManager/title",
+          "value": "PTChannelManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PTChannelManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PTChannelManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelError-swift.struct~1Code/title",
+          "value": "PTChannelError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelError-swift.struct~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PTChannelError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelError-swift.struct~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PTChannelError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplication~1beginBackgroundTask(expirationHandler:)/title",
+          "value": "beginBackgroundTaskWithExpirationHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplication~1beginBackgroundTask(expirationHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@UIBackgroundTaskIdentifier",
+              "text": "UIBackgroundTaskIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "beginBackgroundTaskWithExpirationHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:BFv()",
+              "text": "void (^)(void)"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "handler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTServiceStatus~1ready/title",
+          "value": "PTServiceStatusReady"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTServiceStatus~1ready/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PTServiceStatusReady"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManager~1setChannelDescriptor(_:channelUUID:completionHandler:)/title",
+          "value": "setChannelDescriptor:forChannelUUID:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManager~1setChannelDescriptor(_:channelUUID:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setChannelDescriptor:forChannelUUID:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTServiceStatus~1connecting/title",
+          "value": "PTServiceStatusConnecting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTServiceStatus~1connecting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PTServiceStatusConnecting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelRestorationDelegate~1channelDescriptor(restoredChannelUUID:)/title",
+          "value": "channelDescriptorForRestoredChannelUUID:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelRestorationDelegate~1channelDescriptor(restoredChannelUUID:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "channelDescriptorForRestoredChannelUUID:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTPushResult~1activeRemoteParticipant(_:)/title",
+          "value": "pushResultForActiveRemoteParticipant:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTPushResult~1activeRemoteParticipant(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "pushResultForActiveRemoteParticipant:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManager~1requestBeginTransmitting(channelUUID:)/title",
+          "value": "requestBeginTransmittingWithChannelUUID:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManager~1requestBeginTransmitting(channelUUID:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestBeginTransmittingWithChannelUUID:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManagerDelegate~1channelManager(_:didActivate:)/title",
+          "value": "channelManager:didActivateAudioSession:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManagerDelegate~1channelManager(_:didActivate:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "channelManager:didActivateAudioSession:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManager~1requestJoinChannel(channelUUID:descriptor:)/title",
+          "value": "requestJoinChannelWithUUID:descriptor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManager~1requestJoinChannel(channelUUID:descriptor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestJoinChannelWithUUID:descriptor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTPushResult/title",
+          "value": "PTPushResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTPushResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PTPushResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTPushResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PTPushResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManagerDelegate~1channelManager(_:channelUUID:didBeginTransmittingFrom:)/title",
+          "value": "channelManager:channelUUID:didBeginTransmittingFromSource:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManagerDelegate~1channelManager(_:channelUUID:didBeginTransmittingFrom:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "channelManager:channelUUID:didBeginTransmittingFromSource:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManager~1channelManager(delegate:restorationDelegate:completionHandler:)/title",
+          "value": "channelManagerWithDelegate:restorationDelegate:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManager~1channelManager(delegate:restorationDelegate:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "channelManagerWithDelegate:restorationDelegate:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManagerDelegate~1channelManager(_:didDeactivate:)/title",
+          "value": "channelManager:didDeactivateAudioSession:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManagerDelegate~1channelManager(_:didDeactivate:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "channelManager:didDeactivateAudioSession:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelRestorationDelegate/title",
+          "value": "PTChannelRestorationDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelRestorationDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PTChannelRestorationDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelRestorationDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PTChannelRestorationDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelDescriptor/title",
+          "value": "PTChannelDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PTChannelDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PTChannelDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManager~1setActiveRemoteParticipant(_:channelUUID:completionHandler:)/title",
+          "value": "setActiveRemoteParticipant:forChannelUUID:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManager~1setActiveRemoteParticipant(_:channelUUID:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setActiveRemoteParticipant:forChannelUUID:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManagerDelegate~1channelManager(_:failedToBeginTransmittingInChannel:error:)/title",
+          "value": "channelManager:failedToBeginTransmittingInChannelWithUUID:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManagerDelegate~1channelManager(_:failedToBeginTransmittingInChannel:error:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "channelManager:failedToBeginTransmittingInChannelWithUUID:error:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/pushtotalk/creating-a-push-to-talk-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/pushtotalk/creating-a-push-to-talk-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

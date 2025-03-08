@@ -1,0 +1,459 @@
+{
+  "abstract": [
+    {
+      "text": "Access device nodes and other file-system entities.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/miscfs"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3571066,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "miscfs"
+  },
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1520755-spec_strategy": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1520755-spec_strategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "spec_strategy",
+      "type": "topic",
+      "url": "/documentation/kernel/1520755-spec_strategy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1520764-spec_write": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1520764-spec_write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "spec_write",
+      "type": "topic",
+      "url": "/documentation/kernel/1520764-spec_write"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1520770-spec_pathconf": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1520770-spec_pathconf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "spec_pathconf",
+      "type": "topic",
+      "url": "/documentation/kernel/1520770-spec_pathconf"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1520799-spec_ebadf": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1520799-spec_ebadf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "spec_ebadf",
+      "type": "topic",
+      "url": "/documentation/kernel/1520799-spec_ebadf"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1520802-spec_read": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1520802-spec_read",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "spec_read",
+      "type": "topic",
+      "url": "/documentation/kernel/1520802-spec_read"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1520817-spec_fsync": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1520817-spec_fsync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "spec_fsync",
+      "type": "topic",
+      "url": "/documentation/kernel/1520817-spec_fsync"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1520826-spec_lookup": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1520826-spec_lookup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "spec_lookup",
+      "type": "topic",
+      "url": "/documentation/kernel/1520826-spec_lookup"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1520832-spec_open": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1520832-spec_open",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "spec_open",
+      "type": "topic",
+      "url": "/documentation/kernel/1520832-spec_open"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1520840-spec_select": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1520840-spec_select",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "spec_select",
+      "type": "topic",
+      "url": "/documentation/kernel/1520840-spec_select"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1520848-spec_close": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1520848-spec_close",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "spec_close",
+      "type": "topic",
+      "url": "/documentation/kernel/1520848-spec_close"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1520850-spec_ioctl": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1520850-spec_ioctl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "spec_ioctl",
+      "type": "topic",
+      "url": "/documentation/kernel/1520850-spec_ioctl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1527437-fifo_read": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1527437-fifo_read",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fifo_read",
+      "type": "topic",
+      "url": "/documentation/kernel/1527437-fifo_read"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1527439-fifo_pathconf": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1527439-fifo_pathconf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fifo_pathconf",
+      "type": "topic",
+      "url": "/documentation/kernel/1527439-fifo_pathconf"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1527441-fifo_lookup": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1527441-fifo_lookup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fifo_lookup",
+      "type": "topic",
+      "url": "/documentation/kernel/1527441-fifo_lookup"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1527448-fifo_ioctl": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1527448-fifo_ioctl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fifo_ioctl",
+      "type": "topic",
+      "url": "/documentation/kernel/1527448-fifo_ioctl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1527453-fifo_inactive": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1527453-fifo_inactive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fifo_inactive",
+      "type": "topic",
+      "url": "/documentation/kernel/1527453-fifo_inactive"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1527454-fifo_select": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1527454-fifo_select",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fifo_select",
+      "type": "topic",
+      "url": "/documentation/kernel/1527454-fifo_select"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1527462-fifo_ebadf": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1527462-fifo_ebadf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fifo_ebadf",
+      "type": "topic",
+      "url": "/documentation/kernel/1527462-fifo_ebadf"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1527464-fifo_advlock": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1527464-fifo_advlock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fifo_advlock",
+      "type": "topic",
+      "url": "/documentation/kernel/1527464-fifo_advlock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1527466-fifo_open": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1527466-fifo_open",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fifo_open",
+      "type": "topic",
+      "url": "/documentation/kernel/1527466-fifo_open"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1527467-fifo_write": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1527467-fifo_write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fifo_write",
+      "type": "topic",
+      "url": "/documentation/kernel/1527467-fifo_write"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1527475-fifo_close": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1527475-fifo_close",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fifo_close",
+      "type": "topic",
+      "url": "/documentation/kernel/1527475-fifo_close"
+    },
+    "doc://com.apple.documentation/documentation/kernel/architecture": {
+      "abstract": [
+        {
+          "text": "Access machine-level and architectural information about the current platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/architecture",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "architecture",
+      "type": "topic",
+      "url": "/documentation/kernel/architecture"
+    },
+    "doc://com.apple.documentation/documentation/kernel/bsm": {
+      "abstract": [
+        {
+          "text": "Audit resource usage on the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/bsm",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "bsm",
+      "type": "topic",
+      "url": "/documentation/kernel/bsm"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hfs": {
+      "abstract": [
+        {
+          "text": "Access HFS file-system data structures. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hfs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "hfs",
+      "type": "topic",
+      "url": "/documentation/kernel/hfs"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kern": {
+      "abstract": [
+        {
+          "text": "Access kernel-level interfaces including clock, task, kernel extension, lock, and compression utilities.  ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kern",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "kern",
+      "type": "topic",
+      "url": "/documentation/kernel/kern"
+    },
+    "doc://com.apple.documentation/documentation/kernel/math": {
+      "abstract": [
+        {
+          "text": "Perform mathematical operations and manipulate integer, float, and double values.  ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/math",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Math",
+      "type": "topic",
+      "url": "/documentation/kernel/math"
+    },
+    "doc://com.apple.documentation/documentation/kernel/miscfs": {
+      "abstract": [
+        {
+          "text": "Access device nodes and other file-system entities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/miscfs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "miscfs",
+      "type": "topic",
+      "url": "/documentation/kernel/miscfs"
+    },
+    "doc://com.apple.documentation/documentation/kernel/net": {
+      "abstract": [
+        {
+          "text": "Access network-related utilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/net",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "net",
+      "type": "topic",
+      "url": "/documentation/kernel/net"
+    },
+    "doc://com.apple.documentation/documentation/kernel/strings": {
+      "abstract": [
+        {
+          "text": "Compare, convert, and catenate strings and access the resulting content of those strings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/strings",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Strings",
+      "type": "topic",
+      "url": "/documentation/kernel/strings"
+    },
+    "doc://com.apple.documentation/documentation/kernel/sys": {
+      "abstract": [
+        {
+          "text": "Access general system utilities for time, file systems, and system information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/sys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "sys",
+      "type": "topic",
+      "url": "/documentation/kernel/sys"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vfs": {
+      "abstract": [
+        {
+          "text": "Access the virtual file-system interfaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vfs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vfs",
+      "type": "topic",
+      "url": "/documentation/kernel/vfs"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm": {
+      "abstract": [
+        {
+          "text": "Interact with the virtual memory system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vm",
+      "type": "topic",
+      "url": "/documentation/kernel/vm"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/architecture",
+        "doc://com.apple.documentation/documentation/kernel/bsm",
+        "doc://com.apple.documentation/documentation/kernel/hfs",
+        "doc://com.apple.documentation/documentation/kernel/kern",
+        "doc://com.apple.documentation/documentation/kernel/math",
+        "doc://com.apple.documentation/documentation/kernel/net",
+        "doc://com.apple.documentation/documentation/kernel/strings",
+        "doc://com.apple.documentation/documentation/kernel/sys",
+        "doc://com.apple.documentation/documentation/kernel/vfs",
+        "doc://com.apple.documentation/documentation/kernel/vm"
+      ],
+      "title": "BSD"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3571063",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1527464-fifo_advlock",
+        "doc://com.apple.documentation/documentation/kernel/1527475-fifo_close",
+        "doc://com.apple.documentation/documentation/kernel/1527462-fifo_ebadf",
+        "doc://com.apple.documentation/documentation/kernel/1527453-fifo_inactive",
+        "doc://com.apple.documentation/documentation/kernel/1527448-fifo_ioctl",
+        "doc://com.apple.documentation/documentation/kernel/1527441-fifo_lookup",
+        "doc://com.apple.documentation/documentation/kernel/1527466-fifo_open",
+        "doc://com.apple.documentation/documentation/kernel/1527439-fifo_pathconf",
+        "doc://com.apple.documentation/documentation/kernel/1527437-fifo_read",
+        "doc://com.apple.documentation/documentation/kernel/1527454-fifo_select",
+        "doc://com.apple.documentation/documentation/kernel/1527467-fifo_write"
+      ],
+      "kind": "taskGroup",
+      "title": "fifo"
+    },
+    {
+      "anchor": "3571070",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1520848-spec_close",
+        "doc://com.apple.documentation/documentation/kernel/1520799-spec_ebadf",
+        "doc://com.apple.documentation/documentation/kernel/1520817-spec_fsync",
+        "doc://com.apple.documentation/documentation/kernel/1520850-spec_ioctl",
+        "doc://com.apple.documentation/documentation/kernel/1520826-spec_lookup",
+        "doc://com.apple.documentation/documentation/kernel/1520832-spec_open",
+        "doc://com.apple.documentation/documentation/kernel/1520770-spec_pathconf",
+        "doc://com.apple.documentation/documentation/kernel/1520802-spec_read",
+        "doc://com.apple.documentation/documentation/kernel/1520840-spec_select",
+        "doc://com.apple.documentation/documentation/kernel/1520755-spec_strategy",
+        "doc://com.apple.documentation/documentation/kernel/1520764-spec_write"
+      ],
+      "kind": "taskGroup",
+      "title": "spec"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/miscfs"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

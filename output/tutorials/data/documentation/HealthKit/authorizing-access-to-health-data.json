@@ -1,0 +1,1752 @@
+{
+  "abstract": [
+    {
+      "text": "Request permission to read and share data in your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/authorizing-access-to-health-data"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Authorizing access to health data"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To help protect people’s privacy, HealthKit requires fine-grained authorization. You need to request permission to both read and share each data type before your app attempts to use the data. However, you don’t need to request permission for all data types at once. Instead, it might make more sense to wait until you need to access the data before asking for permission.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As part of the privacy protections, your app doesn’t know whether someone granted or denied permission to read data from HealthKit. If they denied permission, attempts to read data from HealthKit return only samples that your app successfully saved to the HealthKit store. Additionally, in a Guest User session on Apple Vision Pro, the guest can view previously authorized data, but can’t access unauthorized data or change the authorizations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In iOS 17.2 and later, the Journal app encourages people to reflect on their day-to-day experiences, including physical accomplishments, workouts, and emotions and moods. If your app saves data to HealthKit, high-level summaries of that data can appear as suggestions in the Journal app, or in other apps that use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/JournalingSuggestions",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " framework.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Requesting permission to read and share data is only one part of protecting your user’s privacy. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/protecting-user-privacy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-HealthKit",
+          "level": 3,
+          "text": "Enable HealthKit",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can request authorization to read or save HealthKit data, you need to add the HealthKit capability to your app. You must also provide custom messages for the Health permissions sheet.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode requires separate custom messages for reading and writing HealthKit data. Set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthShareUsageDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key to customize the message for reading data and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthUpdateUsageDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key to customize the message for writing data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For projects created using Xcode 13 or later, set these keys in the Target Properties list on the app’s Info tab. For projects created with Xcode 12 or earlier, set these keys in the app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, check that Health data is available on the current device by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore/isHealthDataAvailable()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before calling any other HealthKit methods. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/setting-up-healthkit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Request-permission",
+          "level": 3,
+          "text": "Request permission",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To request permission to read or write data, start by creating the HealthKit data types that you want to read or write. The following example creates data types for active energy burned, distance cycling, distance walking or running, distance in a wheelchair, and heart rate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create the HealthKit data types your app",
+            "// needs to read and write.",
+            "let allTypes: Set = [",
+            "    HKQuantityType.workoutType(),",
+            "    HKQuantityType(.activeEnergyBurned),",
+            "    HKQuantityType(.distanceCycling),",
+            "    HKQuantityType(.distanceWalkingRunning),",
+            "    HKQuantityType(.distanceWheelchair),",
+            "    HKQuantityType(.heartRate)",
+            "]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, you can request read or write access to that data. To request access from the HealthKit store, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore/requestAuthorization(toShare:read:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do {",
+            "    // Check that Health data is available on the device.",
+            "    if HKHealthStore.isHealthDataAvailable() {",
+            "        ",
+            "        // Asynchronously request authorization to the data.",
+            "        try await healthStore.requestAuthorization(toShare: allTypes, read: allTypes)",
+            "    }",
+            "} catch {",
+            "    ",
+            "    // Typically, authorization requests only fail if you haven't set the",
+            "    // usage and share descriptions in your app's Info.plist, or if",
+            "    // Health data isn't available on the current device.",
+            "    fatalError(\"*** An unexpected error occurred while requesting authorization: \\(error.localizedDescription) ***\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To request access from SwiftUI, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/healthDataAccessRequest(store:shareTypes:readTypes:trigger:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "modifier.",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/healthDataAccessRequest(store:shareTypes:readTypes:trigger:completion:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "code": " ",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "modifier is only available if you import both SwiftUI and HealtKitUI.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "import HealthKitUI",
+            "",
+            "struct MyView: View {",
+            "    @State var authenticated = false",
+            "    @State var trigger = false",
+            "",
+            "    var body: some View {",
+            "        Button(\"Access health data\") {",
+            "            // OK to read or write HealthKit data here.",
+            "        }",
+            "        .disabled(!authenticated)",
+            "        ",
+            "        // If HealthKit data is available, request authorization",
+            "        // when this view appears.",
+            "        .onAppear() {",
+            "            ",
+            "            // Check that Health data is available on the device.",
+            "            if HKHealthStore.isHealthDataAvailable() {",
+            "                // Modifying the trigger initiates the health data",
+            "                // access request.",
+            "                trigger.toggle()",
+            "            }",
+            "        }",
+            "        ",
+            "        // Requests access to share and read HealthKit data types",
+            "        // when the trigger changes.",
+            "        .healthDataAccessRequest(store: healthStore,",
+            "                                 shareTypes: allTypes,",
+            "                                 readTypes: allTypes,",
+            "                                 trigger: trigger) { result in",
+            "            switch result {",
+            "                ",
+            "            case .success(_):",
+            "                authenticated = true",
+            "            case .failure(let error):",
+            "                // Handle the error here.",
+            "                fatalError(\"*** An error occurred while requesting authentication: \\(error) ***\")",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Any time your app requests new permissions, the system displays a form with all the requested data types shown. People can toggle individual read and share permissions on and off.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4328696",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn how to provide a great experience when asking for permissions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/healthkit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "People can change the permissions for your app at any time using either the Settings or the Health app. Your app appears in the Health app’s Sources tab, even if they didn’t allow permission to read or share data.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Check-for-authorization-before-saving-data",
+          "level": 3,
+          "text": "Check for authorization before saving data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If someone grants permission to share a data type, you can create new samples of that type and save them to the HealthKit store. However, before attempting to save any data, check to see if your app is authorized to share that data type by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore/authorizationStatus(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. If you haven’t yet requested permission, any attempts to save fail with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKError/Code/errorAuthorizationNotDetermined",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " error. If they’ve denied permission, attempts to save fail with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKError/Code/errorAuthorizationDenied",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Support-Guest-User-sessions-on-Vision-Pro",
+          "level": 3,
+          "text": "Support Guest User sessions on Vision Pro",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To protect their privacy, people can put their Vision Pro in a Guest User session before sharing it. This session lets the owner control which apps the guest can use, and what data they can see. For more information, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/en-us/117742",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A Guest User session has the following affects on HealthKit:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the owner has already authorized access to the data, the guest can read that data from the HealthKit store.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The guest can’t authorize any additional data types.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The system obscures Health data in the Privacy and Security and Health Data panels in Settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Any attempts to save data or otherwise mutate data in the HealthKit store fails with an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKError/Code/errorNotPermissibleForGuestUserMode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " error (or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKError/Code/errorHealthDataRestricted",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " on apps running in iOS 17).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "An app’s permissions don’t change when an app runs in a Guest User session. Therefore, ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore/authorizationStatus(for:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " returns ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " if the owner previously granted authorization to write the data, even though the app can’t write it during a Guest User session.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Any attempt to request authorization for HealthKit data types fails silently. The system doesn’t display the authorization sheet during a Guest User session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app receives an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKError/Code/errorNotPermissibleForGuestUserMode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " error, you can silently ignore the error for passive or periodic saves. Silently dropping the changes ensures that they don’t persist past the Guest User session without interrupting the guest’s experience. However, if the guest performs an action that would obviously result in saving data (for example, tapping a Save button), you can display an alert telling them that the action isn’t available during a Guest User session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-required-clinical-record-types",
+          "level": 3,
+          "text": "Specify required clinical record types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app requires access to specific clinical record data to function properly, specify the required clinical record types in your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthRequiredReadAuthorizationTypeIdentifiers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key. This key defines the data types that your app must have permission to read. Set the value to an array of strings containing the type identifiers for your required types. For a list of type identifiers, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalTypeIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To protect people’s privacy, you must specify three or more required clinical record types. If a person denies authorization to any of the types, authorization fails with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKError/Code/errorRequiredAuthorizationDenied",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " error; the system doesn’t tell your app which record types the person denied access to.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List": {
+      "abstract": [
+        {
+          "text": "A resource containing key-value pairs that identify and configure a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Information Property List",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthRequiredReadAuthorizationTypeIdentifiers": {
+      "abstract": [
+        {
+          "text": "The clinical record data types that your app must get permission to read.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthRequiredReadAuthorizationTypeIdentifiers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHealthRequiredReadAuthorizationTypeIdentifiers",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSHealthRequiredReadAuthorizationTypeIdentifiers"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthShareUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message to the user that explains why the app requested permission to read samples from the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthShareUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHealthShareUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSHealthShareUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthUpdateUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message to the user that explains why the app requested permission to save samples to the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthUpdateUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHealthUpdateUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSHealthUpdateUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/JournalingSuggestions": {
+      "abstract": [
+        {
+          "text": "Display a set of recent, personal events that inspire someone to contribute to your app’s creative workflow.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/JournalingSuggestions",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Journaling Suggestions",
+      "type": "topic",
+      "url": "/documentation/JournalingSuggestions"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/healthDataAccessRequest(store:shareTypes:readTypes:trigger:completion:)": {
+      "abstract": [
+        {
+          "text": "Requests permission to save and read the specified HealthKit data types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "healthDataAccessRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "store"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKHealthStore",
+          "text": "HKHealthStore"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shareTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKSampleType",
+          "text": "HKSampleType"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "readTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKObjectType",
+          "text": "HKObjectType"
+        },
+        {
+          "kind": "text",
+          "text": ">? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trigger"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/healthDataAccessRequest(store:shareTypes:readTypes:trigger:completion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "healthDataAccessRequest(store:shareTypes:readTypes:trigger:completion:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/healthDataAccessRequest(store:shareTypes:readTypes:trigger:completion:)"
+    },
+    "doc://com.apple.documentation/documentation/Updates/HealthKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to HealthKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Updates/HealthKit",
+      "kind": "article",
+      "role": "article",
+      "title": "HealthKit updates",
+      "type": "topic",
+      "url": "/documentation/Updates/HealthKit"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalTypeIdentifier": {
+      "abstract": [
+        {
+          "text": "A type identifier for the different categories of clinical records.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKClinicalTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalTypeIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKClinicalTypeIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKClinicalTypeIdentifier",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkclinicaltypeidentifier"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKError/Code/errorAuthorizationDenied": {
+      "abstract": [
+        {
+          "text": "The user hasn’t given the app permission to save data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errorAuthorizationDenied"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKError/Code/errorAuthorizationDenied",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKErrorAuthorizationDenied"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKError.Code.errorAuthorizationDenied",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkerror/code/errorauthorizationdenied"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKError/Code/errorAuthorizationNotDetermined": {
+      "abstract": [
+        {
+          "text": "The app hasn’t yet asked the user for the authorization required to complete the task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errorAuthorizationNotDetermined"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKError/Code/errorAuthorizationNotDetermined",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKErrorAuthorizationNotDetermined"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKError.Code.errorAuthorizationNotDetermined",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkerror/code/errorauthorizationnotdetermined"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKError/Code/errorHealthDataRestricted": {
+      "abstract": [
+        {
+          "text": "A Mobile Device Management (MDM) profile restricts the use of HealthKit on this device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errorHealthDataRestricted"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKError/Code/errorHealthDataRestricted",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKErrorHealthDataRestricted"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKError.Code.errorHealthDataRestricted",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkerror/code/errorhealthdatarestricted"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKError/Code/errorNotPermissibleForGuestUserMode": {
+      "abstract": [
+        {
+          "text": "The app attempted to write HealthKit data while in a Guest User session in visionOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errorNotPermissibleForGuestUserMode"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKError/Code/errorNotPermissibleForGuestUserMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKErrorNotPermissibleForGuestUserMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKError.Code.errorNotPermissibleForGuestUserMode",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkerror/code/errornotpermissibleforguestusermode"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKError/Code/errorRequiredAuthorizationDenied": {
+      "abstract": [
+        {
+          "text": "The user hasn’t granted the application authorization to access all the required clinical record types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errorRequiredAuthorizationDenied"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKError/Code/errorRequiredAuthorizationDenied",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKErrorRequiredAuthorizationDenied"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKError.Code.errorRequiredAuthorizationDenied",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkerror/code/errorrequiredauthorizationdenied"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore/authorizationStatus(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the app’s authorization status for sharing the specified data type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKObjectType",
+          "text": "HKObjectType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKAuthorizationStatus",
+          "text": "HKAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore/authorizationStatus(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationStatusForType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationStatus(for:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkhealthstore/authorizationstatus(for:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore/isHealthDataAvailable()": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether HealthKit is available on this device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isHealthDataAvailable"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore/isHealthDataAvailable()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isHealthDataAvailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "isHealthDataAvailable()",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkhealthstore/ishealthdataavailable()"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore/requestAuthorization(toShare:read:)": {
+      "abstract": [
+        {
+          "text": "Asynchronously requests permission to save and read the specified data types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toShare"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKSampleType",
+          "text": "HKSampleType"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "read"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKObjectType",
+          "text": "HKObjectType"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore/requestAuthorization(toShare:read:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestAuthorization(toShare:read:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkhealthstore/requestauthorization(toshare:read:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/about-the-healthkit-framework": {
+      "abstract": [
+        {
+          "text": "Learn about the architecture and design of the HealthKit framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/about-the-healthkit-framework",
+      "kind": "article",
+      "role": "article",
+      "title": "About the HealthKit framework",
+      "type": "topic",
+      "url": "/documentation/healthkit/about-the-healthkit-framework"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/protecting-user-privacy": {
+      "abstract": [
+        {
+          "text": "Respect and safeguard your user’s privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/protecting-user-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "Protecting user privacy",
+      "type": "topic",
+      "url": "/documentation/healthkit/protecting-user-privacy"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/setting-up-healthkit": {
+      "abstract": [
+        {
+          "text": "Set up and configure your HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/setting-up-healthkit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Setting up HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit/setting-up-healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKitUI": {
+      "abstract": [
+        {
+          "text": "Display user interface that enables a person to view and interact with their health data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKitUI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKitUI",
+      "type": "topic",
+      "url": "/documentation/healthkitui"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/healthkit": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/healthkit",
+      "title": "Human Interface Guidelines > HealthKit",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines > HealthKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/healthkit"
+    },
+    "https://support.apple.com/en-us/117742": {
+      "identifier": "https://support.apple.com/en-us/117742",
+      "title": "Let another person use your Apple Vision Pro with Guest User",
+      "titleInlineContent": [
+        {
+          "text": "Let another person use your Apple Vision Pro with Guest User",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/117742"
+    },
+    "media-4328696": {
+      "alt": "A screenshot of the permission sheet requesting permission to read and write the previously listed data types.",
+      "identifier": "media-4328696",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c12049160ce49f65c9d7cf6a469eb539/media-4328696@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ae18c16035377be2fcd69e95987a957c/media-4328696~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/about-the-healthkit-framework",
+        "doc://com.apple.healthkit/documentation/HealthKit/setting-up-healthkit",
+        "doc://com.apple.healthkit/documentation/HealthKit/protecting-user-privacy",
+        "doc://com.apple.documentation/documentation/Updates/HealthKit",
+        "doc://com.apple.healthkit/documentation/HealthKitUI"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKError~1Code~1errorAuthorizationDenied/title",
+          "value": "HKErrorAuthorizationDenied"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKError~1Code~1errorAuthorizationDenied/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKErrorAuthorizationDenied"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKError~1Code~1errorNotPermissibleForGuestUserMode/title",
+          "value": "HKErrorNotPermissibleForGuestUserMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKError~1Code~1errorNotPermissibleForGuestUserMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKErrorNotPermissibleForGuestUserMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKError~1Code~1errorHealthDataRestricted/title",
+          "value": "HKErrorHealthDataRestricted"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKError~1Code~1errorHealthDataRestricted/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKErrorHealthDataRestricted"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKError~1Code~1errorRequiredAuthorizationDenied/title",
+          "value": "HKErrorRequiredAuthorizationDenied"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKError~1Code~1errorRequiredAuthorizationDenied/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKErrorRequiredAuthorizationDenied"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalTypeIdentifier/title",
+          "value": "HKClinicalTypeIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalTypeIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKClinicalTypeIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalTypeIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKClinicalTypeIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKError~1Code~1errorAuthorizationNotDetermined/title",
+          "value": "HKErrorAuthorizationNotDetermined"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKError~1Code~1errorAuthorizationNotDetermined/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKErrorAuthorizationNotDetermined"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHealthStore~1authorizationStatus(for:)/title",
+          "value": "authorizationStatusForType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHealthStore~1authorizationStatus(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "authorizationStatusForType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHealthStore~1isHealthDataAvailable()/title",
+          "value": "isHealthDataAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHealthStore~1isHealthDataAvailable()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "isHealthDataAvailable"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,665 @@
+{
+  "abstract": [
+    {
+      "text": "Arrange views in a flexible grid, and handle the layout associated with those views.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/views-and-controls"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/grid-view"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Grid View"
+  },
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGridCell": {
+      "abstract": [
+        {
+          "text": "An individual content area within a grid view, typically at the intersection of a row and a column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSGridCell"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGridCell",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSGridCell"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSGridCell",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgridcell"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGridColumn": {
+      "abstract": [
+        {
+          "text": "A column within a grid view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSGridColumn"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGridColumn",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSGridColumn"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSGridColumn",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgridcolumn"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGridRow": {
+      "abstract": [
+        {
+          "text": "A row within a grid view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSGridRow"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGridRow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSGridRow"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSGridRow",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgridrow"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGridView": {
+      "abstract": [
+        {
+          "text": "A container that aligns views in a flexible grid of rows and columns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSGridView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGridView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSGridView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSGridView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgridview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSplitView": {
+      "abstract": [
+        {
+          "text": "A view that arranges two or more views in a linear stack running horizontally or vertically.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSplitView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSplitView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSplitView",
+      "type": "topic",
+      "url": "/documentation/appkit/nssplitview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView": {
+      "abstract": [
+        {
+          "text": "A view that arranges an array of views horizontally or vertically and updates their placement and sizing when the window size changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStackView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSStackView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSStackView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTabView": {
+      "abstract": [
+        {
+          "text": "A multipage interface that displays one page at a time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTabView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTabView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTabView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTabView",
+      "type": "topic",
+      "url": "/documentation/appkit/nstabview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/organize-your-user-interface-with-a-stack-view": {
+      "abstract": [
+        {
+          "text": "Group individual views in your app’s user interface into a scrollable stack view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/organize-your-user-interface-with-a-stack-view",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Organize Your User Interface with a Stack View",
+      "type": "topic",
+      "url": "/documentation/appkit/organize-your-user-interface-with-a-stack-view"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/scroll-view": {
+      "abstract": [
+        {
+          "text": "Provide an interface for navigating content that is too large to fit in the available space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/scroll-view",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scroll View",
+      "type": "topic",
+      "url": "/documentation/appkit/scroll-view"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/views-and-controls": {
+      "abstract": [
+        {
+          "text": "Present your content onscreen and handle user input and events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/views-and-controls",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Views and Controls",
+      "type": "topic",
+      "url": "/documentation/appkit/views-and-controls"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/xcode/localization-friendly_layouts_in_macos": {
+      "abstract": [
+        {
+          "text": "This project demonstrates localization-friendly auto layout constraints. It uses `NSGridView` as a container view to achieve localized layouts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/xcode/localization-friendly_layouts_in_macos",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Localization-Friendly Layouts in macOS",
+      "type": "topic",
+      "url": "/documentation/xcode/localization-friendly_layouts_in_macos"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Container-Views",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/xcode/localization-friendly_layouts_in_macos",
+        "doc://com.apple.appkit/documentation/AppKit/NSSplitView",
+        "doc://com.apple.appkit/documentation/AppKit/organize-your-user-interface-with-a-stack-view",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView",
+        "doc://com.apple.appkit/documentation/AppKit/NSTabView",
+        "doc://com.apple.appkit/documentation/AppKit/scroll-view"
+      ],
+      "title": "Container Views"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "View",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSGridView"
+      ],
+      "title": "View"
+    },
+    {
+      "anchor": "Cell",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSGridCell"
+      ],
+      "title": "Cell"
+    },
+    {
+      "anchor": "Rows-and-Columns",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSGridColumn",
+        "doc://com.apple.appkit/documentation/AppKit/NSGridRow"
+      ],
+      "title": "Rows and Columns"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "View",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGridView"
+              ],
+              "title": "View"
+            },
+            {
+              "anchor": "Cell",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGridCell"
+              ],
+              "title": "Cell"
+            },
+            {
+              "anchor": "Rows-and-Columns",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGridColumn",
+                "doc://com.apple.appkit/documentation/AppKit/NSGridRow"
+              ],
+              "title": "Rows and Columns"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Container-Views",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSplitView",
+                "doc://com.apple.appkit/documentation/AppKit/organize-your-user-interface-with-a-stack-view",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView",
+                "doc://com.apple.appkit/documentation/AppKit/NSTabView",
+                "doc://com.apple.appkit/documentation/AppKit/scroll-view"
+              ],
+              "title": "Container Views"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGridRow/title",
+          "value": "NSGridRow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGridRow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGridRow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGridRow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGridRow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGridCell/title",
+          "value": "NSGridCell"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGridCell/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGridCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGridCell/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGridCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTabView/title",
+          "value": "NSTabView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTabView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTabView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTabView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTabView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGridView/title",
+          "value": "NSGridView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGridView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGridView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGridView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGridView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView/title",
+          "value": "NSStackView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStackView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStackView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGridColumn/title",
+          "value": "NSGridColumn"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGridColumn/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGridColumn"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGridColumn/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGridColumn"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitView/title",
+          "value": "NSSplitView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSplitView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSplitView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/grid-view"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/grid-view"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

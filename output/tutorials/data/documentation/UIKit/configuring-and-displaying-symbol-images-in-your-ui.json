@@ -1,0 +1,3570 @@
+{
+  "abstract": [
+    {
+      "text": "Create scalable images that integrate with your app’s text, and adjust the appearance of those images dynamically.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/appearance-customization",
+        "doc://com.apple.uikit/documentation/UIKit/supporting-dark-mode-in-your-interface"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/images-and-pdf",
+        "doc://com.apple.uikit/documentation/UIKit/UIImage"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+        "doc://com.apple.uikit/documentation/UIKit/UIImageView"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/configuring-and-displaying-symbol-images-in-your-ui"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring and displaying symbol images in your UI"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Symbol images give you a consistent set of icons to use in your app, and ensure that those icons adapt to different sizes and to app-specific content. A symbol image contains a vector-based shape that scales without losing its sharpness. You generate its final appearance by applying a tint color, or if you’re using SF Symbols 2 or later, you can apply multiple colors to add depth and emphasis to your symbol. You use symbol images in places where you display a simple shape or glyph, such as a bar button item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although symbols are images, they support many traits you associate with text. In fact, several system symbol images include letters, numbers, or symbolic characters in their content. For example, the system provides symbol images for mathematical operators for addition, subtraction, multiplication, and division. You can also apply text-related traits to a symbol image to make it look like the surrounding text:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apply a font text style to a symbol image so that it matches text with the same style. Font text styles also cause symbol images to scale to match the current Dynamic Type setting.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apply weights, such as thin, heavy, or bold, to a symbol image.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Scale and style symbol images to match the font you use for text.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Align a symbol image with neighboring text by using the image’s baseline.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system provides a collection of standard symbol images for you, including images for folders, the trash can, favorite items, and many more. Symbol images also adapt to the current trait environment, reducing the work required to support different sized interfaces. To browse the available symbol images, use the SF Symbols app, which you can download from ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/resources/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also create symbol image files for your app’s custom iconography, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/creating-custom-symbol-images-for-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Load-a-symbol-image",
+          "level": 3,
+          "text": "Load a symbol image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When configuring an image view in a storyboard file, you browse the list of symbol image names in the Attribute inspector. When loading symbol images from your code, you look up the name for a symbol image using the SF Symbols app. For custom symbol images, create a Symbol Image Set asset in your asset catalog and load the asset by name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Methods for loading symbol images are available across SwiftUI, UIKit, and AppKit. In each, you use certain methods when loading system images by name. When loading custom symbol images, you use a different set of methods. Each method looks only for its designated image type, which avoids namespace collisions between your custom images and the system images.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following examples show how to load a system symbol and a custom symbol across frameworks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In SwiftUI, you use ",
+              "type": "text"
+            },
+            {
+              "code": "Image(systemName:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to load a system symbol image and ",
+              "type": "text"
+            },
+            {
+              "code": "Image(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to load your custom symbol, as the following code shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a system symbol image.",
+            "Image(systemName: \"multiply.circle.fill\")",
+            "",
+            "// Create a custom symbol image using an asset in an asset catalog in Xcode.",
+            "Image(\"custom.multiply.circle\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In UIKit, a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object includes methods for loading the symbol image with specific traits or configuration options. When you load system symbol images, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/init(systemName:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/init(systemName:compatibleWith:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/init(systemName:withConfiguration:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When you load your custom symbol images from an asset catalog, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/init(named:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/init(named:in:compatibleWith:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/init(named:in:with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a system symbol image.",
+            "let image = UIImage(systemName: \"multiply.circle.fill\")                  ",
+            "",
+            "// Create a custom symbol image using an asset in an asset catalog in Xcode.",
+            "let image = UIImage(named: \"custom.multiply.circle\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you use AppKit, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage/init(systemSymbolName:accessibilityDescription:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to load a system symbol image, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage/init(named:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to load your custom symbol image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a system symbol image with an accessibility description.",
+            "let image = NSImage(systemSymbolName: \"multiply.circle.fill\",",
+            "                    accessibilityDescription: \"A multiply symbol inside a filled circle.\")",
+            "",
+            "// Create a custom symbol image using an asset in an asset catalog in Xcode.",
+            "let image = NSImage(named: \"custom.multiply.circle\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Apply-a-specific-appearance-to-a-symbol-image",
+          "level": 3,
+          "text": "Apply a specific appearance to a symbol image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UIKit and AppKit methods return an image object with symbol image information. When you display that symbol image in an image view, the system applies default styling to it. An image with the default styling might appear out of place next to bold text or text that uses the headline text style.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make the symbol image blend in with the rest of your content, you create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/SymbolConfiguration-swift.class",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage/SymbolConfiguration-swift.class",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object with information about how to style the symbol image. Configure the object with the text style you use for neighboring labels and text views, or specify the font you use in those views. You can add weight information to give the symbol image a thinner or thicker appearance, and you can specify whether you want the image to appear slightly larger or smaller than the neighboring text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In UIKit, you assign configuration data to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImageView/preferredSymbolConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "code": "UIImageView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that contains your symbol image. Typically, you apply configuration data only to image views. For other types of system views, UIKit provides configuration data based on system requirements. For example, bars configure the symbol images in their bar button items to match the bar’s configuration. The only other time you might use configuration data is when drawing the image directly. In that case, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/Configuration-swift.class/applying(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to create a version of your image that includes the specified configuration data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a configuration object that the system initializes with two palette colors.",
+            "var config = UIImage.SymbolConfiguration(paletteColors: [.systemTeal, .systemGray5])",
+            "",
+            "// Apply a configuration that scales to the system font point size of 42.",
+            "config = config.applying(UIImage.SymbolConfiguration(font: .systemFont(ofSize: 42.0)))",
+            "",
+            "// Apply the configuration to an image view.",
+            "imageView.preferredSymbolConfiguration = config"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re using SwiftUI, there are several modifiers available to configure a symbol image, as the following code shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Image(systemName: \"multiply.circle.fill\")",
+            "      .foregroundStyle(.teal, .gray)",
+            "      .font(.system(size: 42.0))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In AppKit, you create a configuration object and set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImageView/symbolConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImageView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var configuration = NSImage.SymbolConfiguration(paletteColors: [.systemTeal, .systemGray])",
+            "configuration = config.applying(.init(textStyle: .title1))",
+            "imageView.symbolConfiguration = config"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Update-the-rendering-mode-for-a-symbol",
+          "level": 3,
+          "text": "Update the rendering mode for a symbol",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SF Symbols contains four rendering modes: monochrome, palette, hierarchical, and multicolor. Symbols don’t have an intrinsic color, so by default, the system uses the tint color to render them. For example, the following code illustrates applying a tint color to an entire image:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a system symbol image and apply a tint using SwiftUI.",
+            "Image(systemName: \"multiply.circle.fill\")",
+            "      .foregroundColor(.red)",
+            "",
+            "// Create a symbol image with a tint using UIKit.",
+            "imageView.image = image?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In SwiftUI, you set the rendering mode using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Image/symbolRenderingMode(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and apply colors using ",
+              "type": "text"
+            },
+            {
+              "code": "foregroundStyle(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If a symbol doesn’t support the rendering mode you choose, the system uses the monochrome version. Using ",
+              "type": "text"
+            },
+            {
+              "code": "foregroundStyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with multiple colors implies switching to palette rendering mode, so you can omit setting the rendering mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a system symbol image in palette rendering mode.",
+            "Image(systemName: \"multiply.circle.fill\")",
+            "      .foregroundStyle(.teal, .gray)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In UIKit and AppKit, you use a symbol configuration object to modify a symbol’s rendering mode. In AppKit, you apply a configuration using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage/withSymbolConfiguration(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", whereas in UIKit, you apply a configuration by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/applyingSymbolConfiguration(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", as the code below shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create an object configured for palette rendering mode.",
+            "let config = UIImage.SymbolConfiguration(paletteColors: [.systemTeal, .systemGray])",
+            "",
+            "// Create a new symbol image using the configuration object.",
+            "imageView.image = image.applyingSymbolConfiguration(config)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting in iOS 16, symbols don’t automatically render in monochrome mode when you don’t specify a mode. For example, the system symbol “airpodsmax” defaults to hierarchical. If your app needs monochrome rendering for a symbol, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/SymbolConfiguration-swift.class/preferringMonochrome()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To determine the default rendering mode for a symbol, find the symbol in the SF Symbols app and inspect the color sidebar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-variable-rendering",
+          "level": 3,
+          "text": "Apply variable rendering",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 16 and later, the system can dynamically apply colors to system and custom symbols using a percentage value to convey the strength or progress over time. For example, the following code creates a symbol of a speaker wave with two of the three bars highlighted:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a system symbol image at 36% intensity.",
+            "let image = UIImage(systemName: \"speaker.wave.3\", variableValue: 0.36)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use variable rendering in AppKit, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage/init(symbolName:variableValue:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-the-weight-and-scale-of-a-symbol",
+          "level": 3,
+          "text": "Update the weight and scale of a symbol",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are nine symbol weights corresponding to a weight of the San Francisco system font, helping you achieve precise weight matching between symbols and adjacent text, while supporting flexibility for different sizes and context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By specifying a scale, you adjust a symbol’s emphasis compared to adjacent text without disrupting the weight matching with text that uses the same point size.  See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/imageScale",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (SwiftUI), ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/SymbolScale",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (UIKit), and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage/SymbolScale",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (AppKit).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a large scaled symbol image using SwiftUI.",
+            "Image(systemName: \"multiply.circle.fill\")",
+            "      .imageScale(.large)",
+            "",
+            "// Create a large scaled symbol image using UIKit.",
+            "var config = UIImage.SymbolConfiguration(scale: .large)",
+            "imageView.image = image.withSymbolConfiguration(config)",
+            "",
+            "// Create a large scaled symbol image using AppKit.",
+            "var config = NSImage.SymbolConfiguration(scale: .large)",
+            "imageView.image = image.withSymbolConfiguration(config)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Apply-a-symbol-image-variant",
+          "level": 3,
+          "text": "Apply a symbol image variant",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SF Symbols defines design variants — such as outline, fill, slash, and enclosed — to help you communicate precise states and actions, while maintaining visual consistency and simplicity in your UI. For example, you might use the slash variant to show that an action is unavailable, or use the fill variant to indicate when the user selects something.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If a variant doesn’t exist for a symbol, the system uses the base symbol. For example, tab bars in iOS default to using a fill variant, so choosing a symbol without a fill variant uses the original symbol.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In SwiftUI, you use the modifier ",
+              "type": "text"
+            },
+            {
+              "code": "symbolVariant(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to apply a variant. Search the SF Symbols app to find the variants the multiply symbol supports, such as ",
+              "type": "text"
+            },
+            {
+              "code": "circle",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "circle.fill",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "square",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "square.fill",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a system symbol image that is enclosed with a filled circle variant.",
+            "Image(systemName: \"multiply\")",
+            "      .symbolVariant(.circle.fill)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Align-symbol-images-with-a-text-label-by-using-a-baseline",
+          "level": 3,
+          "text": "Align symbol images with a text label by using a baseline",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because of the typographical nature of SF Symbols, when you position an image view containing a symbol image next to a label, you should align the views using their baselines. To align views in your storyboard, select the two views and add a first baseline constraint. Programmatically, you create this constraint by setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/firstBaselineAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of both views to be equal, as the following code example shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "NSLayoutConstraint.activate([",
+                    "    imageView!.firstBaselineAnchor.constraint(equalTo: label!.firstBaselineAnchor)",
+                    "])"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "[NSLayoutConstraint activateConstraints:@[",
+                    "    [self.imageView.firstBaselineAnchor",
+                    "     constraintEqualToAnchor:self.label.firstBaselineAnchor]",
+                    "]];"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All system symbol images include baseline information, and ",
+              "type": "text"
+            },
+            {
+              "code": "UIImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " exposes the baseline value as an offset from the bottom of the image. Typically, the baseline of a symbol image aligns with the bottom of any text that appears in the image, but even symbol images without text have a baseline. In AppKit, a symbol’s baseline corresponds to the bottom of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage/alignmentRect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property, and in UIKit you can add a baseline to any image by calling its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/withBaselineOffset(fromBottom:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a custom symbol image.",
+            "let image = UIImage(named: \"custom.multiply.circle\")",
+            "",
+            "// Add an offset of 2.0 points from the baseline.",
+            "let baselineImage = image?.withBaselineOffset(fromBottom: 2.0)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In SwiftUI, you use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/VerticalAlignment/firstTextBaseline",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to baseline align a symbol with text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "HStack(alignment: .firstTextBaseline) {",
+            "    Image(systemName: \"menucard\")",
+            "    Text(\"SF Symbols\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Use-fallback-assets-for-deprecated-symbol-name-changes",
+          "level": 3,
+          "text": "Use fallback assets for deprecated symbol name changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Symbol names may change between operating system versions and SF Symbols app releases, so you need to review your symbol usage when supporting new versions. Look for the deployment target when browsing the SF Symbols app and use the old name if you’re backward deploying.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a symbol doesn’t render in your app, use the SF Symbols app to search for the symbol name, and look for availability updates by choosing View > Inspectors > Show Info Sidebar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Depending on the operating systems you support, you may need to provide assets that you fall back to. For example, SF Symbols is only supported in iOS 13 and later. In your asset catalog you might have a symbol image named ",
+              "type": "text"
+            },
+            {
+              "code": "gamecontroller",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and a fallback PNG asset named ",
+              "type": "text"
+            },
+            {
+              "code": "gamecontroller",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that you use for earlier operating system versions. Using Interface Builder, set an image view with your asset named ",
+              "type": "text"
+            },
+            {
+              "code": "gamecontroller",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and it loads the first available asset based on the platform.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Programmatically, you need to use #",
+              "type": "text"
+            },
+            {
+              "code": "available",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to load assets appropriately.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if #available(iOS 13.0, *) {",
+            "    // Load an SF Symbol image.",
+            "} else {",
+            "    // Load a PNG asset.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSImage/SymbolConfiguration-swift.class": {
+      "abstract": [
+        {
+          "text": "An object that contains the specific font, style, and weight attributes to apply to a symbol image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SymbolConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage/SymbolConfiguration-swift.class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSImage.SymbolConfiguration",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSImage/SymbolConfiguration-swift.class"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSImage/SymbolScale": {
+      "abstract": [
+        {
+          "text": "Constants that specify which scale variant of a symbol image to use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SymbolScale"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage/SymbolScale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSImage.SymbolScale",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSImage/SymbolScale"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSImage/alignmentRect": {
+      "abstract": [
+        {
+          "text": "A rectangle that you can use to position the image during layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alignmentRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage/alignmentRect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alignmentRect",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSImage/alignmentRect"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSImage/init(named:)": {
+      "abstract": [
+        {
+          "text": "Returns the image object associated with the specified name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImage",
+          "text": "NSImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSImageName",
+          "text": "Name"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage/init(named:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(named:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSImage/init(named:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSImage/init(symbolName:variableValue:)": {
+      "abstract": [
+        {
+          "text": "Creates a symbol image with the symbol name and variable value you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "symbolName"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "variableValue"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage/init(symbolName:variableValue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(symbolName:variableValue:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSImage/init(symbolName:variableValue:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSImage/init(systemSymbolName:accessibilityDescription:)": {
+      "abstract": [
+        {
+          "text": "Creates a symbol image with the system symbol name and accessibility description you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "systemSymbolName"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "accessibilityDescription"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage/init(systemSymbolName:accessibilityDescription:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(systemSymbolName:accessibilityDescription:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSImage/init(systemSymbolName:accessibilityDescription:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSImage/withSymbolConfiguration(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new symbol image with the specified configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withSymbolConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImage",
+          "text": "NSImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImageSymbolConfiguration",
+          "text": "SymbolConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImage",
+          "text": "NSImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage/withSymbolConfiguration(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withSymbolConfiguration(_:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSImage/withSymbolConfiguration(_:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSImageView": {
+      "abstract": [
+        {
+          "text": "A display of image data in a frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSImageView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImageView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSImageView",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSImageView"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSImageView/symbolConfiguration": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@NSCopying"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "symbolConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImage",
+          "text": "NSImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImageSymbolConfiguration",
+          "text": "SymbolConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImageView/symbolConfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "symbolConfiguration",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSImageView/symbolConfiguration"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/imageScale": {
+      "abstract": [
+        {
+          "text": "The image scale for this environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageScale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV",
+          "text": "Image"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV5ScaleO",
+          "text": "Scale"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/imageScale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "imageScale",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/imageScale"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Image/symbolRenderingMode(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the rendering mode for symbol images within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "symbolRenderingMode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "mode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI19SymbolRenderingModeV",
+          "text": "SymbolRenderingMode"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV",
+          "text": "Image"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Image/symbolRenderingMode(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "symbolRenderingMode(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Image/symbolRenderingMode(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/VerticalAlignment/firstTextBaseline": {
+      "abstract": [
+        {
+          "text": "A guide that marks the top-most text baseline in a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "firstTextBaseline"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17VerticalAlignmentV",
+          "text": "VerticalAlignment"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/VerticalAlignment/firstTextBaseline",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "firstTextBaseline",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/VerticalAlignment/firstTextBaseline"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImage": {
+      "abstract": [
+        {
+          "text": "An object that manages image data in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImage",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimage"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImage/Configuration-swift.class/applying(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a configuration object that applies the specified configuration values on top of the current object’s values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applying"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImageConfiguration",
+          "text": "Configuration"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/Configuration-swift.class/applying(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "configurationByApplyingConfiguration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "applying(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimage/configuration-swift.class/applying(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImage/SymbolConfiguration-swift.class": {
+      "abstract": [
+        {
+          "text": "An object that contains the specific font, size, style, and weight attributes to apply to a symbol image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SymbolConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/SymbolConfiguration-swift.class",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SymbolConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImage.SymbolConfiguration",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimage/symbolconfiguration-swift.class"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImage/SymbolConfiguration-swift.class/preferringMonochrome()": {
+      "abstract": [
+        {
+          "text": "Creates a color configuration that specifies that the symbol image uses its monochrome variant.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferringMonochrome"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/SymbolConfiguration-swift.class/preferringMonochrome()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "configurationPreferringMonochrome"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferringMonochrome()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimage/symbolconfiguration-swift.class/preferringmonochrome()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImage/SymbolScale": {
+      "abstract": [
+        {
+          "text": "Constants that indicate which scale variant of a symbol image to use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SymbolScale"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/SymbolScale",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SymbolScale"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImage.SymbolScale",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimage/symbolscale"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImage/applyingSymbolConfiguration(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new version of the current image, applying the specified configuration attributes on top of the current attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyingSymbolConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImageSymbolConfiguration",
+          "text": "SymbolConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/applyingSymbolConfiguration(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageByApplyingSymbolConfiguration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "applyingSymbolConfiguration(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimage/applyingsymbolconfiguration(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImage/init(named:)": {
+      "abstract": [
+        {
+          "text": "Creates an image object from the specified named asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/init(named:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageNamed:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(named:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimage/init(named:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImage/init(named:in:compatibleWith:)": {
+      "abstract": [
+        {
+          "text": "Creates an image object using the named image asset that’s compatible with the specified trait collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "compatibleWith"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITraitCollection",
+          "text": "UITraitCollection"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/init(named:in:compatibleWith:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageNamed:inBundle:compatibleWithTraitCollection:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(named:in:compatibleWith:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimage/init(named:in:compatiblewith:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImage/init(named:in:with:)": {
+      "abstract": [
+        {
+          "text": "Creates an image by using the named image asset that’s compatible with the configuration you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImageConfiguration",
+          "text": "Configuration"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/init(named:in:with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageNamed:inBundle:withConfiguration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(named:in:with:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimage/init(named:in:with:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImage/init(systemName:)": {
+      "abstract": [
+        {
+          "text": "Creates an image object that contains a system symbol image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "systemName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/init(systemName:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "systemImageNamed:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(systemName:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimage/init(systemname:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImage/init(systemName:compatibleWith:)": {
+      "abstract": [
+        {
+          "text": "Creates an image object that contains a system symbol image appropriate for the specified traits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "systemName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "compatibleWith"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITraitCollection",
+          "text": "UITraitCollection"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/init(systemName:compatibleWith:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "systemImageNamed:compatibleWithTraitCollection:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(systemName:compatibleWith:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimage/init(systemname:compatiblewith:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImage/init(systemName:withConfiguration:)": {
+      "abstract": [
+        {
+          "text": "Creates an image object that contains a system symbol image with the specified configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "systemName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImageConfiguration",
+          "text": "Configuration"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/init(systemName:withConfiguration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "systemImageNamed:withConfiguration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(systemName:withConfiguration:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimage/init(systemname:withconfiguration:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImage/withBaselineOffset(fromBottom:)": {
+      "abstract": [
+        {
+          "text": "Creates a new image with a baseline at the specified offset from the bottom of the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withBaselineOffset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromBottom"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/withBaselineOffset(fromBottom:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageWithBaselineOffsetFromBottom:"
+        }
+      ],
+      "role": "symbol",
+      "title": "withBaselineOffset(fromBottom:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimage/withbaselineoffset(frombottom:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImageView": {
+      "abstract": [
+        {
+          "text": "A view that displays a single image or a sequence of animated images in your interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImageView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImageView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIImageView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImageView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimageview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImageView/preferredSymbolConfiguration": {
+      "abstract": [
+        {
+          "text": "The configuration values to use when rendering the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredSymbolConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImageSymbolConfiguration",
+          "text": "SymbolConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImageView/preferredSymbolConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredSymbolConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredSymbolConfiguration",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimageview/preferredsymbolconfiguration"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/firstBaselineAnchor": {
+      "abstract": [
+        {
+          "text": "A layout anchor representing the baseline for the topmost line of text in the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "firstBaselineAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutYAxisAnchor",
+          "text": "NSLayoutYAxisAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/firstBaselineAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "firstBaselineAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "firstBaselineAnchor",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/firstbaselineanchor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/appearance-customization": {
+      "abstract": [
+        {
+          "text": "Add Dark Mode support to your app, customize the appearance of bars, and use appearance proxies to modify your UI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/appearance-customization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Appearance customization",
+      "type": "topic",
+      "url": "/documentation/uikit/appearance-customization"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/creating-custom-symbol-images-for-your-app": {
+      "abstract": [
+        {
+          "text": "Create, organize, and annotate symbol images using SF Symbols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/creating-custom-symbol-images-for-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating custom symbol images for your app",
+      "type": "topic",
+      "url": "/documentation/uikit/creating-custom-symbol-images-for-your-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/images-and-pdf": {
+      "abstract": [
+        {
+          "text": "Create and manage images, including those that use bitmap and PDF formats.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/images-and-pdf",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Images and PDF",
+      "type": "topic",
+      "url": "/documentation/uikit/images-and-pdf"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/providing-images-for-different-appearances": {
+      "abstract": [
+        {
+          "text": "Supply image resources appropriate for light and dark appearances and for high-contrast environments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/providing-images-for-different-appearances",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing images for different appearances",
+      "type": "topic",
+      "url": "/documentation/uikit/providing-images-for-different-appearances"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/supporting-dark-mode-in-your-interface": {
+      "abstract": [
+        {
+          "text": "Update colors, images, and behaviors so that your app adapts automatically when Dark Mode is active.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/supporting-dark-mode-in-your-interface",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Supporting Dark Mode in Your Interface",
+      "type": "topic",
+      "url": "/documentation/uikit/supporting-dark-mode-in-your-interface"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/views-and-controls": {
+      "abstract": [
+        {
+          "text": "Present your content onscreen and define the interactions allowed with that content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Views and controls",
+      "type": "topic",
+      "url": "/documentation/uikit/views-and-controls"
+    },
+    "https://developer.apple.com/design/resources/": {
+      "identifier": "https://developer.apple.com/design/resources/",
+      "title": "Apple Design Resources",
+      "titleInlineContent": [
+        {
+          "text": "Apple Design Resources",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/resources/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Images",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/providing-images-for-different-appearances"
+      ],
+      "title": "Images"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Images",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/providing-images-for-different-appearances"
+              ],
+              "title": "Images"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1applyingSymbolConfiguration(_:)/title",
+          "value": "imageByApplyingSymbolConfiguration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1applyingSymbolConfiguration(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "imageByApplyingSymbolConfiguration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1Configuration-swift.class~1applying(_:)/title",
+          "value": "configurationByApplyingConfiguration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1Configuration-swift.class~1applying(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "configurationByApplyingConfiguration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1init(systemName:)/title",
+          "value": "systemImageNamed:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1init(systemName:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "systemImageNamed:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1SymbolScale/title",
+          "value": "UIImageSymbolScale"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1SymbolScale/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImageSymbolScale"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1SymbolScale/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImageSymbolScale"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSImage~1init(symbolName:variableValue:)/title",
+          "value": "imageWithSymbolName:variableValue:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSImage~1init(symbolName:variableValue:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ ("
+            },
+            {
+              "kind": "keyword",
+              "text": "instancetype"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "imageWithSymbolName:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "name"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "variableValue:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:d",
+              "text": "double"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "value"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1init(named:in:with:)/title",
+          "value": "imageNamed:inBundle:withConfiguration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1init(named:in:with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "imageNamed:inBundle:withConfiguration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1SymbolConfiguration-swift.class~1preferringMonochrome()/title",
+          "value": "configurationPreferringMonochrome"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1SymbolConfiguration-swift.class~1preferringMonochrome()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "configurationPreferringMonochrome"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSImageView~1symbolConfiguration/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSImageSymbolConfiguration",
+              "text": "NSImageSymbolConfiguration"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "symbolConfiguration"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1init(systemName:withConfiguration:)/title",
+          "value": "systemImageNamed:withConfiguration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1init(systemName:withConfiguration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "systemImageNamed:withConfiguration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage/title",
+          "value": "UIImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class/title",
+          "value": "NSImageSymbolConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSImageSymbolConfiguration"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1init(named:)/title",
+          "value": "imageNamed:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1init(named:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "imageNamed:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSImage~1alignmentRect/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSRect",
+              "text": "NSRect"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "alignmentRect"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1withBaselineOffset(fromBottom:)/title",
+          "value": "imageWithBaselineOffsetFromBottom:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1withBaselineOffset(fromBottom:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "imageWithBaselineOffsetFromBottom:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSImage~1init(named:)/title",
+          "value": "imageNamed:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSImage~1init(named:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSImage",
+              "text": "NSImage"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "imageNamed:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSImageName",
+              "text": "NSImageName"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "name"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1init(systemName:compatibleWith:)/title",
+          "value": "systemImageNamed:compatibleWithTraitCollection:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1init(systemName:compatibleWith:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "systemImageNamed:compatibleWithTraitCollection:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSImage~1SymbolScale/title",
+          "value": "NSImageSymbolScale"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSImage~1SymbolScale/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSImageSymbolScale"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSInteger",
+              "text": "NSInteger"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSImageView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSImageView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSControl",
+              "text": "NSControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSImage~1withSymbolConfiguration(_:)/title",
+          "value": "imageWithSymbolConfiguration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSImage~1withSymbolConfiguration(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSImage",
+              "text": "NSImage"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "imageWithSymbolConfiguration:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSImageSymbolConfiguration",
+              "text": "NSImageSymbolConfiguration"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "configuration"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1SymbolConfiguration-swift.class/title",
+          "value": "UIImageSymbolConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1SymbolConfiguration-swift.class/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImageSymbolConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1SymbolConfiguration-swift.class/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImageSymbolConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1firstBaselineAnchor/title",
+          "value": "firstBaselineAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1firstBaselineAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "firstBaselineAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSImage~1init(systemSymbolName:accessibilityDescription:)/title",
+          "value": "imageWithSystemSymbolName:accessibilityDescription:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSImage~1init(systemSymbolName:accessibilityDescription:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ ("
+            },
+            {
+              "kind": "keyword",
+              "text": "instancetype"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "imageWithSystemSymbolName:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "name"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "accessibilityDescription:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "description"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImageView~1preferredSymbolConfiguration/title",
+          "value": "preferredSymbolConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImageView~1preferredSymbolConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preferredSymbolConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImageView/title",
+          "value": "UIImageView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImageView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImageView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImageView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImageView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1init(named:in:compatibleWith:)/title",
+          "value": "imageNamed:inBundle:compatibleWithTraitCollection:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1init(named:in:compatibleWith:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "imageNamed:inBundle:compatibleWithTraitCollection:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/configuring-and-displaying-symbol-images-in-your-ui"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/configuring-and-displaying-symbol-images-in-your-ui"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

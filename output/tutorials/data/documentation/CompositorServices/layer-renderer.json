@@ -1,0 +1,990 @@
+{
+  "abstract": [
+    {
+      "text": "A type that provides the Metal types and timing information you need to draw your content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.compositorservices/documentation/CompositorServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.compositorservices/documentation/CompositorServices/layer-renderer"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Compositor Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Layer renderer"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A layer renderer type creates a bridge between a SwiftUI scene and the Metal code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you use to draw fully immersive experiences.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you present an immersive space with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " content,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_t",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and makes it available to the content’s closure.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the information in the layer renderer to set up your app’s rendering loop,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and to start drawing frames of content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each layer renderer has information that tells the system how to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "configure the Metal textures and data types your app needs.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Compositor Services provides a default configuration for layer renderers,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "but you can customize the configuration as needed.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Specify your custom configuration details using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayerConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol and pass a type with those details to the initializer for your immersive space’s content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the layer renderer’s capability information to validate any configuration choices you make.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about how to create and configure a layer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and use it to run your rendering loop,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/drawing-fully-immersive-content-using-metal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.compositorservices/documentation/CompositorServices": {
+      "abstract": [
+        {
+          "text": "Take control of the drawing environment and render your own content using Metal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Compositor Services",
+      "type": "topic",
+      "url": "/documentation/compositorservices"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayer": {
+      "abstract": [
+        {
+          "text": "A type that you use with an immersive space to display fully immersive content using Metal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CompositorLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CompositorLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CompositorLayer",
+      "type": "topic",
+      "url": "/documentation/compositorservices/compositorlayer"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayerConfiguration": {
+      "abstract": [
+        {
+          "text": "An interface for specifying the texture configurations and rendering behaviors to use with your Metal rendering engine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CompositorLayerConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayerConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CompositorLayerConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "CompositorLayerConfiguration",
+      "type": "topic",
+      "url": "/documentation/compositorservices/compositorlayerconfiguration"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerFrameIndex": {
+      "abstract": [
+        {
+          "text": "A frame index in the layer’s timeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LayerFrameIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerFrameIndex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LayerFrameIndex"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerFrameIndex",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerframeindex"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer": {
+      "abstract": [
+        {
+          "text": "A type that provides the Metal types and timing information you need to draw your content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LayerRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LayerRenderer"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/State-swift.enum": {
+      "abstract": [
+        {
+          "text": "The states of the layer renderer, which tell you how to proceed with drawing operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/State-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer.State",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/state-swift.enum"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/device": {
+      "abstract": [
+        {
+          "text": "The GPU device that the layer renderer uses for drawing operations",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDevice",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/device",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_get_device"
+        }
+      ],
+      "role": "symbol",
+      "title": "device",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/device"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/minimumFrameRepeatCount": {
+      "abstract": [
+        {
+          "text": "The number of additional frames for which the system displays the same content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minimumFrameRepeatCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/minimumFrameRepeatCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_get_minimum_frame_repeat_count"
+        }
+      ],
+      "role": "symbol",
+      "title": "minimumFrameRepeatCount",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/minimumframerepeatcount"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/state-swift.property": {
+      "abstract": [
+        {
+          "text": "A value that indicates whether the layer renderer is currently visible",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and ready for you to draw content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CP_OBJECT_cp_layer_renderer",
+          "text": "LayerRenderer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@cp_layer_renderer_state",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/state-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_get_state"
+        }
+      ],
+      "role": "symbol",
+      "title": "state",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/state-swift.property"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/waitUntilRunning()": {
+      "abstract": [
+        {
+          "text": "Stops further execution of your code until the layer renderer leaves the paused state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "waitUntilRunning"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/waitUntilRunning()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_wait_until_running"
+        }
+      ],
+      "role": "symbol",
+      "title": "waitUntilRunning()",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/waituntilrunning()"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_query_next_frame": {
+      "abstract": [
+        {
+          "text": "Returns the next frame to use for drawing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_query_next_frame"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_query_next_frame",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_query_next_frame",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_query_next_frame"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_set_minimum_frame_repeat_count": {
+      "abstract": [
+        {
+          "text": "Sets the number of additional times the system displays a frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_set_minimum_frame_repeat_count"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_set_minimum_frame_repeat_count",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_set_minimum_frame_repeat_count",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_set_minimum_frame_repeat_count"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_t": {
+      "abstract": [
+        {
+          "text": "A type that provides the Metal types and timing information you need to draw your content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_t"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_t",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_t"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/drawing-fully-immersive-content-using-metal": {
+      "abstract": [
+        {
+          "text": "Create a fully immersive experience in visionOS using a custom Metal-based rendering engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/drawing-fully-immersive-content-using-metal",
+      "kind": "article",
+      "role": "article",
+      "title": "Drawing fully immersive content using Metal",
+      "type": "topic",
+      "url": "/documentation/compositorservices/drawing-fully-immersive-content-using-metal"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/frames": {
+      "abstract": [
+        {
+          "text": "A type that represents a single frame of content, manages the pace of animations,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and provides access to the drawable environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/frames",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Frames",
+      "type": "topic",
+      "url": "/documentation/compositorservices/frames"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/layer-capabilities": {
+      "abstract": [
+        {
+          "text": "The color formats, depth formats, and features that you can use to configure your rendering engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/layer-capabilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Layer capabilities",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layer-capabilities"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/layer-configuration": {
+      "abstract": [
+        {
+          "text": "The pixel formats, depth mask, texture layout,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and other drawing-related settings you use to configure your drawing code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/layer-configuration",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Layer configuration",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layer-configuration"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/layer-properties": {
+      "abstract": [
+        {
+          "text": "Information about the textures and views that the system created for your drawing code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/layer-properties",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Layer properties",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layer-properties"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/utilities": {
+      "abstract": [
+        {
+          "text": "Common types and utilities to manage your app’s rendering process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Utilities",
+      "type": "topic",
+      "url": "/documentation/compositorservices/utilities"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Render-loop-setup",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/frames",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/utilities"
+      ],
+      "title": "Render-loop setup"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Configuring-the-layer",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/layer-capabilities",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/layer-configuration",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/layer-properties"
+      ],
+      "title": "Configuring the layer"
+    },
+    {
+      "anchor": "Getting-the-GPU-device",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/device"
+      ],
+      "title": "Getting the GPU device"
+    },
+    {
+      "anchor": "Managing-the-rendering-loop",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/state-swift.property",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/waitUntilRunning()",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/State-swift.enum"
+      ],
+      "title": "Managing the rendering loop"
+    },
+    {
+      "anchor": "Drawing-a-frame-of-content",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_query_next_frame",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerFrameIndex"
+      ],
+      "title": "Drawing a frame of content"
+    },
+    {
+      "anchor": "Configuring-the-frame-update-rate",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/minimumFrameRepeatCount",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_set_minimum_frame_repeat_count"
+      ],
+      "title": "Configuring the frame update rate"
+    },
+    {
+      "anchor": "Getting-the-layer-type",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_t",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer"
+      ],
+      "title": "Getting the layer type"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1minimumFrameRepeatCount/title",
+          "value": "cp_layer_renderer_get_minimum_frame_repeat_count"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1minimumFrameRepeatCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_layer_renderer_get_minimum_frame_repeat_count"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1device/title",
+          "value": "cp_layer_renderer_get_device"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1device/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_layer_renderer_get_device"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1state-swift.property/title",
+          "value": "cp_layer_renderer_get_state"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1state-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_layer_renderer_get_state"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1waitUntilRunning()/title",
+          "value": "cp_layer_renderer_wait_until_running"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1waitUntilRunning()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_layer_renderer_wait_until_running"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer/title",
+          "value": "CP_OBJECT_cp_layer_renderer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CP_OBJECT_cp_layer_renderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CP_OBJECT_cp_layer_renderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1State-swift.enum/title",
+          "value": "cp_layer_renderer_state"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1State-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_layer_renderer_state"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1State-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_layer_renderer_state"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerFrameIndex/title",
+          "value": "cp_layer_frame_index_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerFrameIndex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_layer_frame_index_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerFrameIndex/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_layer_frame_index_t"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/compositorservices/layer-renderer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

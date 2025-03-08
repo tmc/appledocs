@@ -1,0 +1,1056 @@
+{
+  "abstract": [
+    {
+      "text": "Learn about important changes to ScreenCaptureKit.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Updates/documentation/Updates"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Updates/documentation/Updates/ScreenCaptureKit"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Updates"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "ScreenCaptureKit updates"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Browse notable changes in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ScreenCaptureKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "June-2024",
+          "level": 2,
+          "text": "June 2024",
+          "type": "heading"
+        },
+        {
+          "anchor": "AppKit",
+          "level": 3,
+          "text": "AppKit",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Share an app window with a remote viewer on demand with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "requestSharingOfWindow(_ window: NSWindow, completionHandler: @escaping ((any Error)?)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This method enables an app to share a window in response to a specific action, such as when a person clicks play in a document window, and streamlines a previously multistep window-sharing process.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Share a preview of a window with a remote viewer on demand with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "requestSharingOfWindow(usingPreview image: NSImage, title: String, completionHandler: @escaping ((any Error)?)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which causes the framework to call a delegate method to provide the window if there’s a valid sharing session and a person confirms the offer to share.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "SwiftUI",
+          "level": 3,
+          "text": "SwiftUI",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create new, sharable windows using the async function ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "openWindow(id: String, sharingBehavior: SharingBehavior)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This method gives presenting apps a way to share just the window they want recipients to see, even if that window takes over the entire screen and doesn’t allow access to the window picker, streamlining a previously multistep window-sharing process.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "ScreenCaptureKit",
+          "level": 3,
+          "text": "ScreenCaptureKit",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Capture screenshots across multiple displays.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Capture HDR content by adopting the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "captureDynamicRange",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SCStreamConfiguration",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which allows clients to choose between ",
+                      "type": "text"
+                    },
+                    {
+                      "code": " SCCaptureModeSDR",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SCCaptureModeHDRLocalDisplay",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SCCaptureModeHDRCanonicalDisplay",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " modes. Or use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SCStreamConfigurationPreset",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to simplify the selection of properties needed for capture HDR.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Capture microphone audio by streaming output with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SCStreamOutputTypeMicrophone",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " type to a sample handler queue that the framework processes and returns audio samples in buffers to the client via the stream’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "didOutputSampleBuffer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " delegate method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Record a stream’s screen, audio, and microphone output to a file using the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "outputURL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SCRecordingOutput",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which enables you to specify where the framework saves a recording file. Properties available in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SCRecordingOutputConfiguration",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " allow you to select the characteristics of the recording by choosing the file and codec types for the recording. The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SCRecordingOutputConfiguration",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " class methods enable you to enumerate the available codecs and file types ScreenCaptureKit supports.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Start and stop recordings with two new methods on ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SCStream",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " using ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "addRecordingOutput",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "removeRecordingOutput",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Respond to events occur during the process of recording to a file with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SCRecordingOutputDelegate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "June-2023",
+          "level": 2,
+          "text": "June 2023",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the new sharing picker: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ScreenCaptureKit/SCContentSharingPicker",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Access new properties of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for status on effects relevant to screen capture.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Take screenshots with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ScreenCaptureKit/SCStream",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Deprecated ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CGStream",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ScreenCaptureKit/SCStreamConfiguration",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instead.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Apple-Intelligence-updates-page-PageImage-card.png": {
+      "alt": "A stylistic image of the Apple Intelligence logo.",
+      "identifier": "Apple-Intelligence-updates-page-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/582fe08f6f69a366c2f1b35cd91e3c52/Apple-Intelligence-updates-page-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d4b11a932a5a2c7880eccd8043a1c524/Apple-Intelligence-updates-page-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Updates/documentation/Updates": {
+      "abstract": [
+        {
+          "text": "View major documentation updates and highlights from WWDC, browse ongoing updates from a set of framework releases over time, and jump to the latest release notes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates",
+      "images": [
+        {
+          "identifier": "featured.svg",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Updates",
+      "type": "topic",
+      "url": "/documentation/updates"
+    },
+    "doc://com.apple.Updates/documentation/Updates/ARKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to ARKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/ARKit",
+      "kind": "article",
+      "role": "article",
+      "title": "ARKit updates",
+      "type": "topic",
+      "url": "/documentation/updates/arkit"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AVFAudio": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to AVFAudio.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AVFAudio",
+      "kind": "article",
+      "role": "article",
+      "title": "AVFAudio updates",
+      "type": "topic",
+      "url": "/documentation/updates/avfaudio"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to AVFoundation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AVFoundation",
+      "kind": "article",
+      "role": "article",
+      "title": "AVFoundation updates",
+      "type": "topic",
+      "url": "/documentation/updates/avfoundation"
+    },
+    "doc://com.apple.Updates/documentation/Updates/Accelerate": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Accelerate.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/Accelerate",
+      "kind": "article",
+      "role": "article",
+      "title": "Accelerate updates",
+      "type": "topic",
+      "url": "/documentation/updates/accelerate"
+    },
+    "doc://com.apple.Updates/documentation/Updates/Accessibility": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Accessibility.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/Accessibility",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessibility updates",
+      "type": "topic",
+      "url": "/documentation/updates/accessibility"
+    },
+    "doc://com.apple.Updates/documentation/Updates/ActivityKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes in ActivityKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/ActivityKit",
+      "kind": "article",
+      "role": "article",
+      "title": "ActivityKit updates",
+      "type": "topic",
+      "url": "/documentation/updates/activitykit"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AdAttributionKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to AdAttributionKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AdAttributionKit",
+      "kind": "article",
+      "role": "article",
+      "title": "AdAttributionKit Updates",
+      "type": "topic",
+      "url": "/documentation/updates/adattributionkit"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AppIntents": {
+      "abstract": [
+        {
+          "text": "Learn about important changes in App Intents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AppIntents",
+      "kind": "article",
+      "role": "article",
+      "title": "App Intents updates",
+      "type": "topic",
+      "url": "/documentation/updates/appintents"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AppKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to AppKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AppKit",
+      "kind": "article",
+      "role": "article",
+      "title": "AppKit updates",
+      "type": "topic",
+      "url": "/documentation/updates/appkit"
+    },
+    "doc://com.apple.Updates/documentation/Updates/Apple-Intelligence": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/Apple-Intelligence",
+      "images": [
+        {
+          "identifier": "Apple-Intelligence-updates-page-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Apple Intelligence updates",
+      "type": "topic",
+      "url": "/documentation/updates/apple-intelligence"
+    },
+    "doc://com.apple.Updates/documentation/Updates/ApplePencil": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/ApplePencil",
+      "kind": "article",
+      "role": "article",
+      "title": "Apple Pencil updates",
+      "type": "topic",
+      "url": "/documentation/updates/applepencil"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Audio Toolbox.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AudioToolbox",
+      "kind": "article",
+      "role": "article",
+      "title": "Audio Toolbox updates",
+      "type": "topic",
+      "url": "/documentation/updates/audiotoolbox"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AuthenticationServices": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to AuthenticationServices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AuthenticationServices",
+      "kind": "article",
+      "role": "article",
+      "title": "AuthenticationServices updates",
+      "type": "topic",
+      "url": "/documentation/updates/authenticationservices"
+    },
+    "doc://com.apple.Updates/documentation/Updates/BundleResources": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Bundle Resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/BundleResources",
+      "kind": "article",
+      "role": "article",
+      "title": "Bundle Resources updates",
+      "type": "topic",
+      "url": "/documentation/updates/bundleresources"
+    },
+    "doc://com.apple.Updates/documentation/Updates/ContactsUI": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to ContactsUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/ContactsUI",
+      "kind": "article",
+      "role": "article",
+      "title": "ContactsUI updates",
+      "type": "topic",
+      "url": "/documentation/updates/contactsui"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice": {
+      "abstract": [
+        {
+          "text": "An object that represents a hardware or virtual capture device like a camera or microphone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureDevice",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureDevice"
+    },
+    "doc://com.apple.documentation/documentation/ScreenCaptureKit": {
+      "abstract": [
+        {
+          "text": "Filter and select screen content and stream it to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ScreenCaptureKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ScreenCaptureKit",
+      "type": "topic",
+      "url": "/documentation/ScreenCaptureKit"
+    },
+    "doc://com.apple.documentation/documentation/ScreenCaptureKit/SCContentSharingPicker": {
+      "abstract": [
+        {
+          "text": "An instance of a picker presented by the operating system for managing frame-capture streams.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCContentSharingPicker"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ScreenCaptureKit/SCContentSharingPicker",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCContentSharingPicker",
+      "type": "topic",
+      "url": "/documentation/ScreenCaptureKit/SCContentSharingPicker"
+    },
+    "doc://com.apple.documentation/documentation/ScreenCaptureKit/SCStream": {
+      "abstract": [
+        {
+          "text": "An instance that represents a stream of shareable content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCStream"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ScreenCaptureKit/SCStream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCStream",
+      "type": "topic",
+      "url": "/documentation/ScreenCaptureKit/SCStream"
+    },
+    "doc://com.apple.documentation/documentation/ScreenCaptureKit/SCStreamConfiguration": {
+      "abstract": [
+        {
+          "text": "An instance that provides the output configuration for a stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCStreamConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ScreenCaptureKit/SCStreamConfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCStreamConfiguration",
+      "type": "topic",
+      "url": "/documentation/ScreenCaptureKit/SCStreamConfiguration"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "featured.svg": {
+      "alt": "An icon, with a star and a speech bubble around it, representing updates.",
+      "identifier": "featured.svg",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/70c10a18eb39cac81bd40849ad68cbff/featured.svg"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Technology-updates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Updates/documentation/Updates/Accelerate",
+        "doc://com.apple.Updates/documentation/Updates/Accessibility",
+        "doc://com.apple.Updates/documentation/Updates/ActivityKit",
+        "doc://com.apple.Updates/documentation/Updates/AdAttributionKit",
+        "doc://com.apple.Updates/documentation/Updates/AppIntents",
+        "doc://com.apple.Updates/documentation/Updates/AppKit",
+        "doc://com.apple.Updates/documentation/Updates/Apple-Intelligence",
+        "doc://com.apple.Updates/documentation/Updates/ApplePencil",
+        "doc://com.apple.Updates/documentation/Updates/ARKit",
+        "doc://com.apple.Updates/documentation/Updates/AudioToolbox",
+        "doc://com.apple.Updates/documentation/Updates/AuthenticationServices",
+        "doc://com.apple.Updates/documentation/Updates/AVFAudio",
+        "doc://com.apple.Updates/documentation/Updates/AVFoundation",
+        "doc://com.apple.Updates/documentation/Updates/BundleResources",
+        "doc://com.apple.Updates/documentation/Updates/ContactsUI"
+      ],
+      "title": "Technology updates"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureDevice/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevice"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ScreenCaptureKit~1SCStreamConfiguration/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCStreamConfiguration"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ScreenCaptureKit~1SCStream/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCStream"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ScreenCaptureKit~1SCContentSharingPicker/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCContentSharingPicker"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/updates/screencapturekit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

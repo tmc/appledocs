@@ -1,0 +1,546 @@
+{
+  "abstract": [
+    {
+      "text": "Get metrics on a new rule set with real match requests before releasing it.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamekit/documentation/GameKit",
+        "doc://com.apple.gamekit/documentation/GameKit/matchmaking-rules"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamekit/documentation/GameKit/testing-rule-sets-with-player-traffic-using-metrics"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "GameKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Testing rule sets with player traffic using metrics"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you update the rule set of a queue that actively processes player match requests, make sure that the new rule set doesn’t introduce any performance regressions. Game Center provides APIs to evaluate the performance of a prerelease rule set with production match requests that the queue actively processes, without impacting the player experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-an-experimental-rule-set-to-a-queue",
+          "level": 3,
+          "text": "Add an experimental rule set to a queue",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can add an optional experimental rule set to a queue, in addition to the required rule set that Game Center uses in production. When you add an experimental rule set, Game Center processes the match requests in the queue using both the existing rule set and the experimental rule set, except that it doesn’t return the results of the experimental rule set to clients. So you can apply the same metrics APIs on the experimental rule set to analyze performance issues before you release it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set the experimental rule set of a queue, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/PATCH-v1-gameCenterMatchmakingQueues-_id_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint. Pass the queue’s identifier in the path parameters and include the experimental rule set’s identifier in the request body.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "PATCH /v1/gameCenterMatchmakingQueues/532ad9c0-1a28-4536-ad57-33213bcc0a29",
+            "{",
+            "  \"data\" : {",
+            "    \"type\" : \"gameCenterMatchmakingQueues\",",
+            "    \"id\" : \"532ad9c0-1a28-4536-ad57-33213bcc0a29\"",
+            "    \"relationships\" : {",
+            "      \"experimentRuleSet\" : {",
+            "        \"data\" : { \"type\": \"gameCenterMatchmakingRuleSet\", \"id\": \"6195839b-4ef7-4798-b91d-d59802111607\" }",
+            "      }",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Game Center uses the experimental rule set for next three days. If you want to use the experimental rule set longer, add it to the queue every three days until you’re done testing it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a new rule set and get its identifier, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/finding-players-using-matchmaking-rules",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "View-the-results-of-an-experimental-rule-set",
+          "level": 3,
+          "text": "View the results of an experimental rule set",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get the results of processing match requests using the experimental rule set, pass ",
+              "type": "text"
+            },
+            {
+              "code": "experimentalRuleSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the query parameter to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GET-v1-gameCenterMatchmakingQueues",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GET-v1-gameCenterMatchmakingQueues-_id_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoints. Then compare the results of the experimental rule set with the production rule set.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GET /v1/gameCenterMatchmakingQueues/532ad9c0-1a28-4536-ad57-33213bcc0a29/experimentMatchmakingRequests?granularity=PT15M&groupBy=result"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If it takes Game Center longer to find players or Game Center finds fewer players with the experimental rule set, check whether errors occur applying the rules and consider relaxing the rule conditions. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/troubleshooting-matchmaking-rules-using-metrics",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-the-size-of-the-queue",
+          "level": 3,
+          "text": "Check the size of the queue",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Also, check the queue size over time using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GET-v1-gameCenterMatchmakingQueues-_id_-metrics-experimentMatchmakingQueueSizes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint. If the queue size for the experimental rule set is larger than the queue size for the existing rule set, investigate whether the new rule set causes this before releasing it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GET /v1/gameCenterMatchmakingQueues/532ad9c0-1a28-4536-ad57-33213bcc0a29/metrics/experimentMatchmakingQueueSizes?granularity=PT15M"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Release-the-new-rule-set",
+          "level": 3,
+          "text": "Release the new rule set",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you finish testing the new rule set, release it by replacing the queue’s rule set with the new one.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, remove the experimental rule set that you used for testing from the queue using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/PATCH-v1-gameCenterMatchmakingQueues-_id_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint. Pass the queue identifier in the parameters and set ",
+              "type": "text"
+            },
+            {
+              "code": "data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "null",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the request body.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "PATCH /v1/gameCenterMatchmakingQueues/532ad9c0-1a28-4536-ad57-33213bcc0a29/relationships/experimentRuleSet",
+            "{",
+            "   \"data\" : null",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then set the queue’s rule set using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/PATCH-v1-gameCenterMatchmakingQueues-_id_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint. Pass the queue identifier in the parameters and include the new rule set’s identifier in the request body.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "PATCH /v1/gameCenterMatchmakingQueues/532ad9c0-1a28-4536-ad57-33213bcc0a29",
+            "{",
+            "  \"data\" : {",
+            "    \"type\" : \"gameCenterMatchmakingQueues\",",
+            "    \"id\" : \"532ad9c0-1a28-4536-ad57-33213bcc0a29\"",
+            "    \"relationships\" : {",
+            "      \"ruleSet\" : {",
+            "        \"data\" : { \"type\": \"gameCenterMatchmakingRuleSet\", \"id\": \"6195839b-4ef7-4798-b91d-d59802111607\" }",
+            "      }",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GET-v1-gameCenterMatchmakingQueues": {
+      "abstract": [
+        {
+          "text": "Get information about all queues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GET-v1-gameCenterMatchmakingQueues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "List all queues",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/GET-v1-gameCenterMatchmakingQueues"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GET-v1-gameCenterMatchmakingQueues-_id_": {
+      "abstract": [
+        {
+          "text": "Get information about a specific queue and its related objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GET-v1-gameCenterMatchmakingQueues-_id_",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Read queue information",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/GET-v1-gameCenterMatchmakingQueues-_id_"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GET-v1-gameCenterMatchmakingQueues-_id_-metrics-experimentMatchmakingQueueSizes": {
+      "abstract": [
+        {
+          "text": "Get the number of match requests that the queue processes using its experimental rule set.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GET-v1-gameCenterMatchmakingQueues-_id_-metrics-experimentMatchmakingQueueSizes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Get experimental queue size",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/GET-v1-gameCenterMatchmakingQueues-_id_-metrics-experimentMatchmakingQueueSizes"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/PATCH-v1-gameCenterMatchmakingQueues-_id_": {
+      "abstract": [
+        {
+          "text": "Update the properties of a specific queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/PATCH-v1-gameCenterMatchmakingQueues-_id_",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Modify a queue",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/PATCH-v1-gameCenterMatchmakingQueues-_id_"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit": {
+      "abstract": [
+        {
+          "text": "Enable players to interact with friends, compare leaderboard ranks, earn achievements, and participate in multiplayer games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GameKit",
+      "type": "topic",
+      "url": "/documentation/gamekit"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/finding-players-using-matchmaking-rules": {
+      "abstract": [
+        {
+          "text": "Create a more customized and optimized gaming experience by using matchmaking rules to find players in a real-time game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/finding-players-using-matchmaking-rules",
+      "kind": "article",
+      "role": "article",
+      "title": "Finding players using matchmaking rules",
+      "type": "topic",
+      "url": "/documentation/gamekit/finding-players-using-matchmaking-rules"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/matchmaking-rules": {
+      "abstract": [
+        {
+          "text": "Game Center applies different type of rules you create in a particular order to find the best matches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/matchmaking-rules",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Matchmaking rules",
+      "type": "topic",
+      "url": "/documentation/gamekit/matchmaking-rules"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/testing-matchmaking-rules": {
+      "abstract": [
+        {
+          "text": "Test your matchmaking rules before you use them in your game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/testing-matchmaking-rules",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing matchmaking rules",
+      "type": "topic",
+      "url": "/documentation/gamekit/testing-matchmaking-rules"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/troubleshooting-matchmaking-rules-using-metrics": {
+      "abstract": [
+        {
+          "text": "Investigate issues with Game Center by evaluating your matchmaking rules using metrics endpoints.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/troubleshooting-matchmaking-rules-using-metrics",
+      "kind": "article",
+      "role": "article",
+      "title": "Troubleshooting matchmaking rules using metrics",
+      "type": "topic",
+      "url": "/documentation/gamekit/troubleshooting-matchmaking-rules-using-metrics"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Testing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/testing-matchmaking-rules",
+        "doc://com.apple.gamekit/documentation/GameKit/troubleshooting-matchmaking-rules-using-metrics"
+      ],
+      "title": "Testing"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Testing",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/testing-matchmaking-rules",
+                "doc://com.apple.gamekit/documentation/GameKit/troubleshooting-matchmaking-rules-using-metrics"
+              ],
+              "title": "Testing"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamekit/testing-rule-sets-with-player-traffic-using-metrics"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gamekit/testing-rule-sets-with-player-traffic-using-metrics"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

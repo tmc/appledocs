@@ -1,0 +1,4352 @@
+{
+  "abstract": [
+    {
+      "text": "An object that organizes all of the active SpriteKit content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SKScene",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SKScene"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SKScene"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SKScene"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SKScene"
+            }
+          ]
+        },
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SKScene"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/subclassing-scenes-versus-assigning-a-delegate",
+        "doc://com.apple.spritekit/documentation/SpriteKit/controlling-user-interaction-on-nodes",
+        "doc://com.apple.spritekit/documentation/SpriteKit/customizing-the-behavior-of-a-node",
+        "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-nodes",
+        "doc://com.apple.spritekit/documentation/SpriteKit/choosing-a-spritekit-scene-renderer",
+        "doc://com.apple.spritekit/documentation/SpriteKit/responding-to-frame-cycle-events",
+        "doc://com.apple.spritekit/documentation/SpriteKit/displaying-3d-content-in-a-spritekit-scene",
+        "doc://com.apple.spritekit/documentation/SpriteKit/drawing-spritekit-content-in-a-view",
+        "doc://com.apple.spritekit/documentation/SpriteKit/creating-a-scene-from-a-file"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object represents a scene of content in SpriteKit. A scene is the root node in a tree of SpriteKit nodes (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). These nodes provide content that the scene animates and renders for display. To display a scene, you present it from an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKRenderer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceSKScene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "SKScene",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEffectNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and enables certain effects to apply to the entire scene. Though applying effects to an entire scene can be an expensive operation, creativity, and ingenuity may help you find some interesting ways to use effects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceSKScene": {
+      "abstract": [
+        {
+          "text": "A visual WatchKit element that displays a SpriteKit scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceSKScene"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceSKScene",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKInterfaceSKScene",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKInterfaceSKScene"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEffectNode": {
+      "abstract": [
+        {
+          "text": "A node that renders its children into a separate buffer, optionally applying an effect, before drawing the final result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKEffectNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEffectNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKEffectNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKEffectNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skeffectnode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode": {
+      "abstract": [
+        {
+          "text": "The base class of all SpriteKit nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKRenderer": {
+      "abstract": [
+        {
+          "text": "An object that renders a scene into a custom Metal rendering pipeline and drives the scene update cycle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKRenderer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKRenderer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKRenderer",
+      "type": "topic",
+      "url": "/documentation/spritekit/skrenderer"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene": {
+      "abstract": [
+        {
+          "text": "An object that organizes all of the active SpriteKit content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKScene"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKScene",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/anchorPoint": {
+      "abstract": [
+        {
+          "text": "The point in the view’s frame that corresponds to the scene’s origin.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "anchorPoint"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/anchorPoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "anchorPoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "anchorPoint",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/anchorpoint"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/audioEngine": {
+      "abstract": [
+        {
+          "text": "The AVFoundation audio engine used to play audio from audio nodes contained in the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "audioEngine"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioEngine",
+          "text": "AVAudioEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/audioEngine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "audioEngine"
+        }
+      ],
+      "role": "symbol",
+      "title": "audioEngine",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/audioengine"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/backgroundColor": {
+      "abstract": [
+        {
+          "text": "The background color of the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "backgroundColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIColor",
+          "text": "UIColor"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/backgroundColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "backgroundColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "backgroundColor",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/backgroundcolor"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/camera": {
+      "abstract": [
+        {
+          "text": "The camera node in the scene that determines what part of the scene’s coordinate space is visible in the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "camera"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKCameraNode",
+          "text": "SKCameraNode"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/camera",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "camera"
+        }
+      ],
+      "role": "symbol",
+      "title": "camera",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/camera"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/convertPoint(fromView:)": {
+      "abstract": [
+        {
+          "text": "Converts a point from view coordinates to scene coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertPoint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/convertPoint(fromView:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertPointFromView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "convertPoint(fromView:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/convertpoint(fromview:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/convertPoint(toView:)": {
+      "abstract": [
+        {
+          "text": "Converts a point from scene coordinates to view coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertPoint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/convertPoint(toView:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertPointToView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "convertPoint(toView:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/convertpoint(toview:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/delegate": {
+      "abstract": [
+        {
+          "text": "A delegate to be called during the animation loop.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SKSceneDelegate",
+          "text": "SKSceneDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/delegate"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/didApplyConstraints()": {
+      "abstract": [
+        {
+          "text": "Tells your app to peform any necessary logic after constraints are applied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didApplyConstraints"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/didApplyConstraints()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didApplyConstraints"
+        }
+      ],
+      "role": "symbol",
+      "title": "didApplyConstraints()",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/didapplyconstraints()"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/didChangeSize(_:)": {
+      "abstract": [
+        {
+          "text": "Tells you when the scene’s size has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didChangeSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/didChangeSize(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didChangeSize:"
+        }
+      ],
+      "role": "symbol",
+      "title": "didChangeSize(_:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/didchangesize(_:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/didEvaluateActions()": {
+      "abstract": [
+        {
+          "text": "Tells your app to peform any necessary logic after scene actions are evaluated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didEvaluateActions"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/didEvaluateActions()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didEvaluateActions"
+        }
+      ],
+      "role": "symbol",
+      "title": "didEvaluateActions()",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/didevaluateactions()"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/didFinishUpdate()": {
+      "abstract": [
+        {
+          "text": "Tells your app to peform any necessary logic after the scene has finished all of the steps required to process animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didFinishUpdate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/didFinishUpdate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didFinishUpdate"
+        }
+      ],
+      "role": "symbol",
+      "title": "didFinishUpdate()",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/didfinishupdate()"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/didMove(to:)": {
+      "abstract": [
+        {
+          "text": "Tells you when the scene is presented by a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didMove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKView",
+          "text": "SKView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/didMove(to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didMoveToView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "didMove(to:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/didmove(to:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/didSimulatePhysics()": {
+      "abstract": [
+        {
+          "text": "Tells your app to peform any necessary logic after physics simulations are performed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didSimulatePhysics"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/didSimulatePhysics()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didSimulatePhysics"
+        }
+      ],
+      "role": "symbol",
+      "title": "didSimulatePhysics()",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/didsimulatephysics()"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/init(size:)": {
+      "abstract": [
+        {
+          "text": "Initializes a new scene object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/init(size:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithSize:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(size:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/init(size:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/listener": {
+      "abstract": [
+        {
+          "text": "A node used to determine the position of the listener for positional audio in the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listener"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKNode",
+          "text": "SKNode"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/listener",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "listener"
+        }
+      ],
+      "role": "symbol",
+      "title": "listener",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/listener"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/physicsWorld": {
+      "abstract": [
+        {
+          "text": "The physics simulation associated with the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "physicsWorld"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKPhysicsWorld",
+          "text": "SKPhysicsWorld"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/physicsWorld",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "physicsWorld"
+        }
+      ],
+      "role": "symbol",
+      "title": "physicsWorld",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/physicsworld"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/scaleMode": {
+      "abstract": [
+        {
+          "text": "A setting that defines how the scene is mapped to the view that presents it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scaleMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SKSceneScaleMode",
+          "text": "SKSceneScaleMode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/scaleMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scaleMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "scaleMode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/scalemode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/sceneDidLoad()": {
+      "abstract": [
+        {
+          "text": "Tells you when the scene is presented.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sceneDidLoad"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/sceneDidLoad()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sceneDidLoad"
+        }
+      ],
+      "role": "symbol",
+      "title": "sceneDidLoad()",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/scenedidload()"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/sceneWithSize:": {
+      "abstract": [
+        {
+          "text": "Creates and returns a new scene object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "sceneWithSize:"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/sceneWithSize:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sceneWithSize:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sceneWithSize:",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/scenewithsize:"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/size": {
+      "abstract": [
+        {
+          "text": "The dimensions of the scene, in points.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/size",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "size"
+        }
+      ],
+      "role": "symbol",
+      "title": "size",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/size"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/update(_:)": {
+      "abstract": [
+        {
+          "text": "Tells your app to perform any app-specific logic to update your scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/update(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "update:"
+        }
+      ],
+      "role": "symbol",
+      "title": "update(_:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/update(_:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/view": {
+      "abstract": [
+        {
+          "text": "The view that is currently presenting the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKView",
+          "text": "SKView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/view",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "view"
+        }
+      ],
+      "role": "symbol",
+      "title": "view",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/view"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/willMove(from:)": {
+      "abstract": [
+        {
+          "text": "Tells you when the scene is about to be removed from a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "willMove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKView",
+          "text": "SKView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/willMove(from:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "willMoveFromView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "willMove(from:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/willmove(from:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate": {
+      "abstract": [
+        {
+          "text": "Methods that, when implemented, allow any class to participate in the SpriteKit render loop callbacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKSceneDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKSceneDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKSceneDelegate",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscenedelegate"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneScaleMode": {
+      "abstract": [
+        {
+          "text": "The modes that determine how the scene’s area is mapped to the view that presents it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKSceneScaleMode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneScaleMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKSceneScaleMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKSceneScaleMode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscenescalemode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKView": {
+      "abstract": [
+        {
+          "text": "A view subclass that renders a SpriteKit scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKView"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKView"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKView",
+      "type": "topic",
+      "url": "/documentation/spritekit/skview"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpGeometry": {
+      "abstract": [
+        {
+          "text": "A definition for a deformation of nodes that conform to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpable",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKWarpGeometry"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpGeometry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKWarpGeometry"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKWarpGeometry",
+      "type": "topic",
+      "url": "/documentation/spritekit/skwarpgeometry"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpable": {
+      "abstract": [
+        {
+          "text": "A protocol for objects that can be warped and animated by an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpGeometry",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKWarpable"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKWarpable"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKWarpable",
+      "type": "topic",
+      "url": "/documentation/spritekit/skwarpable"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/choosing-a-spritekit-scene-renderer": {
+      "abstract": [
+        {
+          "text": "Compare the different ways to display a SpriteKit scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/choosing-a-spritekit-scene-renderer",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing a SpriteKit Scene Renderer",
+      "type": "topic",
+      "url": "/documentation/spritekit/choosing-a-spritekit-scene-renderer"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/controlling-user-interaction-on-nodes": {
+      "abstract": [
+        {
+          "text": "Enable your node to respond to user input, like touches or mouse clicks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/controlling-user-interaction-on-nodes",
+      "kind": "article",
+      "role": "article",
+      "title": "Controlling User Interaction on Nodes",
+      "type": "topic",
+      "url": "/documentation/spritekit/controlling-user-interaction-on-nodes"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/creating-a-scene-from-a-file": {
+      "abstract": [
+        {
+          "text": "Load a scene that you configure in Xcode’s scene editor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/creating-a-scene-from-a-file",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Scene from a File",
+      "type": "topic",
+      "url": "/documentation/spritekit/creating-a-scene-from-a-file"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/creating-a-scene-with-a-transparent-background": {
+      "abstract": [
+        {
+          "text": "Set a transparent background color to show the content of the views below.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/creating-a-scene-with-a-transparent-background",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Scene with a Transparent Background",
+      "type": "topic",
+      "url": "/documentation/spritekit/creating-a-scene-with-a-transparent-background"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/customizing-the-behavior-of-a-node": {
+      "abstract": [
+        {
+          "text": "Organize your app’s logic and display code with nodes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/customizing-the-behavior-of-a-node",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the Behavior of a Node",
+      "type": "topic",
+      "url": "/documentation/spritekit/customizing-the-behavior-of-a-node"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/displaying-3d-content-in-a-spritekit-scene": {
+      "abstract": [
+        {
+          "text": "Draw SceneKit content in a SpriteKit scene by using a 3D node.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/displaying-3d-content-in-a-spritekit-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying 3D Content in a SpriteKit Scene",
+      "type": "topic",
+      "url": "/documentation/spritekit/displaying-3d-content-in-a-spritekit-scene"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/drawing-spritekit-content-in-a-view": {
+      "abstract": [
+        {
+          "text": "Display visual content using SpriteKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/drawing-spritekit-content-in-a-view",
+      "kind": "article",
+      "role": "article",
+      "title": "Drawing SpriteKit Content in a View",
+      "type": "topic",
+      "url": "/documentation/spritekit/drawing-spritekit-content-in-a-view"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-nodes": {
+      "abstract": [
+        {
+          "text": "Learn about the fundamental properties that provide a foundation for all other nodes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-nodes",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting Started with Nodes",
+      "type": "topic",
+      "url": "/documentation/spritekit/getting-started-with-nodes"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building": {
+      "abstract": [
+        {
+          "text": "Define the appearance or layout of scene content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Nodes for Scene Building",
+      "type": "topic",
+      "url": "/documentation/spritekit/nodes-for-scene-building"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/positioning-a-scene-s-origin-within-its-view": {
+      "abstract": [
+        {
+          "text": "Try the different ways to configure the scene’s origin inside its view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/positioning-a-scene-s-origin-within-its-view",
+      "kind": "article",
+      "role": "article",
+      "title": "Positioning a Scene’s Origin Within its View",
+      "type": "topic",
+      "url": "/documentation/spritekit/positioning-a-scene-s-origin-within-its-view"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/responding-to-frame-cycle-events": {
+      "abstract": [
+        {
+          "text": "Implement per-frame app logic, such as the scene’s update function that’s called every frame.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/responding-to-frame-cycle-events",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to Frame-Cycle Events",
+      "type": "topic",
+      "url": "/documentation/spritekit/responding-to-frame-cycle-events"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/scaling-a-scene-s-content-to-fit-the-view": {
+      "abstract": [
+        {
+          "text": "Configure the scale mode to determine how a scene is sized to fit its view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/scaling-a-scene-s-content-to-fit-the-view",
+      "kind": "article",
+      "role": "article",
+      "title": "Scaling a Scene’s Content to Fit the View",
+      "type": "topic",
+      "url": "/documentation/spritekit/scaling-a-scene-s-content-to-fit-the-view"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/subclassing-scenes-versus-assigning-a-delegate": {
+      "abstract": [
+        {
+          "text": "Use a scene delegate to share app logic across various scenes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/subclassing-scenes-versus-assigning-a-delegate",
+      "kind": "article",
+      "role": "article",
+      "title": "Subclassing Scenes Versus Assigning a Delegate",
+      "type": "topic",
+      "url": "/documentation/spritekit/subclassing-scenes-versus-assigning-a-delegate"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/using-audio-nodes-with-the-scene-s-listener": {
+      "abstract": [
+        {
+          "text": "Add audio to your scene, and optionally give it 2D-positional mixing characteristics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/using-audio-nodes-with-the-scene-s-listener",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Audio Nodes with the Scene’s Listener",
+      "type": "topic",
+      "url": "/documentation/spritekit/using-audio-nodes-with-the-scene-s-listener"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)GKSceneRootNodeType": {
+      "abstract": [
+        {
+          "text": "Identifies scene classes from other frameworks that support embedded GameplayKit information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKSceneRootNodeType"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)GKSceneRootNodeType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GKSceneRootNodeType",
+      "type": "topic",
+      "url": "/documentation/GameplayKit/GKSceneRootNodeType"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding": {
+      "abstract": [
+        {
+          "text": "Methods that responder subclasses implement to support key binding commands, such as inserting tabs and newlines, or moving the insertion point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStandardKeyBindingResponding"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSStandardKeyBindingResponding",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSStandardKeyBindingResponding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTouchBarProvider"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "A protocol that marks classes to restore the state of your app to continue a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityRestoring"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSUserActivityRestoring"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIActivityItemsConfigurationProviding": {
+      "abstract": [
+        {
+          "text": "An interface that provides a source for shareable content to fulfill user requests to share current content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemsConfigurationProviding"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIActivityItemsConfigurationProviding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIActivityItemsConfigurationProviding",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIActivityItemsConfigurationProviding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UICoordinateSpace": {
+      "abstract": [
+        {
+          "text": "A set of methods for converting between different frames of reference on a screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICoordinateSpace"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UICoordinateSpace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICoordinateSpace",
+      "type": "topic",
+      "url": "/documentation/UIKit/UICoordinateSpace"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusEnvironment": {
+      "abstract": [
+        {
+          "text": "A set of methods that define the focus behavior for a branch of the view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusEnvironment"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusEnvironment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIFocusEnvironment",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIFocusEnvironment"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItem": {
+      "abstract": [
+        {
+          "text": "An object that can become focused.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusItem"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIFocusEnvironment",
+          "text": "UIFocusEnvironment"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIFocusItem",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIFocusItem"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItemContainer": {
+      "abstract": [
+        {
+          "text": "The container responsible for providing geometric context to focus items within a given focus environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusItemContainer"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItemContainer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIFocusItemContainer",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIFocusItemContainer"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIPasteConfigurationSupporting": {
+      "abstract": [
+        {
+          "text": "The interface that determines whether a responder object supports paste configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPasteConfigurationSupporting"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIPasteConfigurationSupporting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIPasteConfigurationSupporting",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPasteConfigurationSupporting"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIResponderStandardEditActions": {
+      "abstract": [
+        {
+          "text": "A set of standard methods that apps can adopt to support editing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIResponderStandardEditActions"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIResponderStandardEditActions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIResponderStandardEditActions",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIResponderStandardEditActions"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "The protocol you adopt to restore an object’s state from a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIUserActivityRestoring"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIUserActivityRestoring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIUserActivityRestoring"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEffectNode"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/c:objc(pl)GKSceneRootNodeType",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKWarpable",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIActivityItemsConfigurationProviding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UICoordinateSpace",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusEnvironment",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItem",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItemContainer",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIPasteConfigurationSupporting",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIResponderStandardEditActions",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIUserActivityRestoring"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/drawing-spritekit-content-in-a-view",
+        "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Scene-from-a-File",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/creating-a-scene-from-a-file"
+      ],
+      "title": "Creating a Scene from a File"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Use code to manually create a scene and configure its properties.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Creating-a-Scene-Programmatically",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/init(size:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/size"
+      ],
+      "title": "Creating a Scene Programmatically"
+    },
+    {
+      "anchor": "Stretching-Content-to-Fit-the-View",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/scaling-a-scene-s-content-to-fit-the-view",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/scaleMode",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneScaleMode"
+      ],
+      "title": "Stretching Content to Fit the View"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Define which portion of the scene is visible at a given time.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Configuring-the-Viewport",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/positioning-a-scene-s-origin-within-its-view",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/camera",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/anchorPoint"
+      ],
+      "title": "Configuring the Viewport"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Override these functions to be notified when a scene is loaded or presented, or changes size.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Responding-to-Loading-and-Resizing-Events",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/sceneDidLoad()",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/didChangeSize(_:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/willMove(from:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/didMove(to:)"
+      ],
+      "title": "Responding to Loading and Resizing Events"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Callbacks occur every frame, telling you when to perform app logic.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Responding-to-Frame-Cycle-Events",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/responding-to-frame-cycle-events",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/update(_:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/didEvaluateActions()",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/didSimulatePhysics()",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/didApplyConstraints()",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/didFinishUpdate()"
+      ],
+      "title": "Responding to Frame-Cycle Events"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Instead of subclassing a scene to respond to update life-cycle events, assign a delegate to field them.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Configuring-a-Delegate",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/subclassing-scenes-versus-assigning-a-delegate",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/delegate",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate"
+      ],
+      "title": "Configuring a Delegate"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Adjust content that’s under a scene.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Setting-the-Background-Appearance",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/creating-a-scene-with-a-transparent-background",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/view",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/backgroundColor"
+      ],
+      "title": "Setting the Background Appearance"
+    },
+    {
+      "anchor": "Configuring-Physics-Properties",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/physicsWorld"
+      ],
+      "title": "Configuring Physics Properties"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Enable positional audio by defining a listener.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Adding-Positional-Audio",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/using-audio-nodes-with-the-scene-s-listener",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/listener",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/audioEngine"
+      ],
+      "title": "Adding Positional Audio"
+    },
+    {
+      "anchor": "Converting-Between-Coordinate-Systems",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/convertPoint(fromView:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/convertPoint(toView:)"
+      ],
+      "title": "Converting Between Coordinate Systems"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SKScene"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.spritekit/documentation/SpriteKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Scene-from-a-File",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/creating-a-scene-from-a-file"
+              ],
+              "title": "Creating a Scene from a File"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Use code to manually create a scene and configure its properties.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Creating-a-Scene-Programmatically",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/sceneWithSize:",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/init(size:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/size"
+              ],
+              "title": "Creating a Scene Programmatically"
+            },
+            {
+              "anchor": "Stretching-Content-to-Fit-the-View",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/scaling-a-scene-s-content-to-fit-the-view",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/scaleMode",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneScaleMode"
+              ],
+              "title": "Stretching Content to Fit the View"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Define which portion of the scene is visible at a given time.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Configuring-the-Viewport",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/positioning-a-scene-s-origin-within-its-view",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/camera",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/anchorPoint"
+              ],
+              "title": "Configuring the Viewport"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Override these functions to be notified when a scene is loaded or presented, or changes size.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Responding-to-Loading-and-Resizing-Events",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/sceneDidLoad()",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/didChangeSize(_:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/willMove(from:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/didMove(to:)"
+              ],
+              "title": "Responding to Loading and Resizing Events"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Callbacks occur every frame, telling you when to perform app logic.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Responding-to-Frame-Cycle-Events",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/responding-to-frame-cycle-events",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/update(_:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/didEvaluateActions()",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/didSimulatePhysics()",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/didApplyConstraints()",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/didFinishUpdate()"
+              ],
+              "title": "Responding to Frame-Cycle Events"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Instead of subclassing a scene to respond to update life-cycle events, assign a delegate to field them.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Configuring-a-Delegate",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/subclassing-scenes-versus-assigning-a-delegate",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/delegate",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate"
+              ],
+              "title": "Configuring a Delegate"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Adjust content that’s under a scene.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Setting-the-Background-Appearance",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/creating-a-scene-with-a-transparent-background",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/view",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/backgroundColor"
+              ],
+              "title": "Setting the Background Appearance"
+            },
+            {
+              "anchor": "Configuring-Physics-Properties",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/physicsWorld"
+              ],
+              "title": "Configuring Physics Properties"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Enable positional audio by defining a listener.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Adding-Positional-Audio",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/using-audio-nodes-with-the-scene-s-listener",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/listener",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/audioEngine"
+              ],
+              "title": "Adding Positional Audio"
+            },
+            {
+              "anchor": "Converting-Between-Coordinate-Systems",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/convertPoint(fromView:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/convertPoint(toView:)"
+              ],
+              "title": "Converting Between Coordinate Systems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEffectNode"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/s:s8CopyableP",
+                "doc://com.externally.resolved.symbol/c:objc(pl)GKSceneRootNodeType",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/drawing-spritekit-content-in-a-view",
+                "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SKScene"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEffectNode",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)SKEffectNode",
+                    "text": "SKEffectNode"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UICoordinateSpace/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UICoordinateSpace"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1backgroundColor/title",
+          "value": "backgroundColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1backgroundColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "backgroundColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1didSimulatePhysics()/title",
+          "value": "didSimulatePhysics"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1didSimulatePhysics()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didSimulatePhysics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSceneDelegate/title",
+          "value": "SKSceneDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSceneDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSceneDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIResponderStandardEditActions/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIResponderStandardEditActions"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIUserActivityRestoring"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1camera/title",
+          "value": "camera"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1camera/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "camera"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIPasteConfigurationSupporting/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIPasteConfigurationSupporting"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1didChangeSize(_:)/title",
+          "value": "didChangeSize:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1didChangeSize(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didChangeSize:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEffectNode/title",
+          "value": "SKEffectNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEffectNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKEffectNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEffectNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKEffectNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIFocusEnvironment/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIFocusEnvironment"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIActivityItemsConfigurationProviding/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemsConfigurationProviding"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1anchorPoint/title",
+          "value": "anchorPoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1anchorPoint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "anchorPoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIFocusItemContainer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIFocusItemContainer"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1audioEngine/title",
+          "value": "audioEngine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1audioEngine/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "audioEngine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKInterfaceSKScene/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceSKScene"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)WKInterfaceObject",
+              "text": "WKInterfaceObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/title",
+          "value": "SKNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1physicsWorld/title",
+          "value": "physicsWorld"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1physicsWorld/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "physicsWorld"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1willMove(from:)/title",
+          "value": "willMoveFromView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1willMove(from:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "willMoveFromView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKWarpable/title",
+          "value": "SKWarpable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKWarpable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKWarpable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKWarpable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKWarpable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)GKSceneRootNodeType/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GKSceneRootNodeType"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSStandardKeyBindingResponding/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSStandardKeyBindingResponding"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1size/title",
+          "value": "size"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1size/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "size"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKWarpGeometry/title",
+          "value": "SKWarpGeometry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKWarpGeometry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKWarpGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKWarpGeometry/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKWarpGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1view/title",
+          "value": "view"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1view/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "view"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1didMove(to:)/title",
+          "value": "didMoveToView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1didMove(to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didMoveToView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1listener/title",
+          "value": "listener"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1listener/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "listener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1update(_:)/title",
+          "value": "update:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1update(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "update:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKView/title",
+          "value": "SKView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSceneScaleMode/title",
+          "value": "SKSceneScaleMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSceneScaleMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKSceneScaleMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSceneScaleMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKSceneScaleMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1sceneDidLoad()/title",
+          "value": "sceneDidLoad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1sceneDidLoad()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sceneDidLoad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKRenderer/title",
+          "value": "SKRenderer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKRenderer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKRenderer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1didFinishUpdate()/title",
+          "value": "didFinishUpdate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1didFinishUpdate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didFinishUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1scaleMode/title",
+          "value": "scaleMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1scaleMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "scaleMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1didApplyConstraints()/title",
+          "value": "didApplyConstraints"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1didApplyConstraints()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didApplyConstraints"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene/title",
+          "value": "SKScene"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSUserActivityRestoring"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1convertPoint(toView:)/title",
+          "value": "convertPointToView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1convertPoint(toView:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertPointToView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1init(size:)/title",
+          "value": "initWithSize:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1init(size:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithSize:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1didEvaluateActions()/title",
+          "value": "didEvaluateActions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1didEvaluateActions()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didEvaluateActions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1convertPoint(fromView:)/title",
+          "value": "convertPointFromView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1convertPoint(fromView:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertPointFromView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIFocusItem/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIFocusItem"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)UIFocusEnvironment",
+              "text": "UIFocusEnvironment"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/skscene"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/skscene"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

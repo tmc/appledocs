@@ -1,0 +1,662 @@
+{
+  "abstract": [
+    {
+      "text": "Configure voices to speak strings of text.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/speech-synthesis"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Speech synthesis"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Speech Synthesis framework manages voice and speech synthesis, and requires two primary tasks:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVSpeechUtterance",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance that contains the text to speak. Optionally, configure speech parameters, such as voice and rate, for each utterance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create an utterance.",
+            "let utterance = AVSpeechUtterance(string: \"The quick brown fox jumped over the lazy dog.\")",
+            "",
+            "// Configure the utterance.",
+            "utterance.rate = 0.57",
+            "utterance.pitchMultiplier = 0.8",
+            "utterance.postUtteranceDelay = 0.2",
+            "utterance.volume = 0.8",
+            "",
+            "// Retrieve the British English voice.",
+            "let voice = AVSpeechSynthesisVoice(language: \"en-GB\")",
+            "",
+            "// Assign the voice to the utterance.",
+            "utterance.voice = voice"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pass the utterance to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVSpeechSynthesizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to produce spoken audio.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a speech synthesizer.",
+            "let synthesizer = AVSpeechSynthesizer()",
+            "",
+            "// Tell the synthesizer to speak the utterance.",
+            "synthesizer.speak(utterance)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Optionally, use the speech synthesizer instance to control or respond to ongoing speech; for example, assign its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVSpeechSynthesizer/delegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to receive speech event notifications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Speech generation occurs on device and isn’t sent to a server for processing.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/audio-playback-recording-and-processing": {
+      "abstract": [
+        {
+          "text": "Play, record, and process audio; configure your app’s system audio behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/audio-playback-recording-and-processing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio playback, recording, and processing",
+      "type": "topic",
+      "url": "/documentation/avfoundation/audio-playback-recording-and-processing"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVSpeechSynthesisProviderAudioUnit": {
+      "abstract": [
+        {
+          "text": "An object that generates speech from text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVSpeechSynthesisProviderAudioUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVSpeechSynthesisProviderAudioUnit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVSpeechSynthesisProviderAudioUnit",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVSpeechSynthesisProviderAudioUnit"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVSpeechSynthesisVoice": {
+      "abstract": [
+        {
+          "text": "A distinct voice for use in speech synthesis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVSpeechSynthesisVoice"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVSpeechSynthesisVoice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVSpeechSynthesisVoice",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVSpeechSynthesisVoice"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVSpeechSynthesizer": {
+      "abstract": [
+        {
+          "text": "An object that produces synthesized speech from text utterances and enables monitoring or controlling of ongoing speech.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVSpeechSynthesizer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVSpeechSynthesizer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVSpeechSynthesizer",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVSpeechSynthesizer"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVSpeechSynthesizer/delegate": {
+      "abstract": [
+        {
+          "text": "The delegate object for the speech synthesizer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "weak"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)AVSpeechSynthesizerDelegate",
+          "text": "AVSpeechSynthesizerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVSpeechSynthesizer/delegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVSpeechSynthesizer/delegate"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVSpeechUtterance": {
+      "abstract": [
+        {
+          "text": "An object that encapsulates the text for speech synthesis and parameters that affect the speech.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVSpeechUtterance"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVSpeechUtterance",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVSpeechUtterance",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVSpeechUtterance"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Audio",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/audio-playback-recording-and-processing"
+      ],
+      "title": "Audio"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Spoken-text-attributes",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/AVFAudio/AVSpeechUtterance",
+        "doc://com.apple.documentation/documentation/AVFAudio/AVSpeechSynthesisVoice"
+      ],
+      "title": "Spoken text attributes"
+    },
+    {
+      "anchor": "Speech-synthesis-controls",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/AVFAudio/AVSpeechSynthesizer"
+      ],
+      "title": "Speech synthesis controls"
+    },
+    {
+      "anchor": "Speech-synthesis-audio-unit",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/AVFAudio/AVSpeechSynthesisProviderAudioUnit"
+      ],
+      "title": "Speech synthesis audio unit"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Spoken-text-attributes",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/AVFAudio/AVSpeechUtterance",
+                "doc://com.apple.documentation/documentation/AVFAudio/AVSpeechSynthesisVoice"
+              ],
+              "title": "Spoken text attributes"
+            },
+            {
+              "anchor": "Speech-synthesis-controls",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/AVFAudio/AVSpeechSynthesizer"
+              ],
+              "title": "Speech synthesis controls"
+            },
+            {
+              "anchor": "Speech-synthesis-audio-unit",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/AVFAudio/AVSpeechSynthesisProviderAudioUnit"
+              ],
+              "title": "Speech synthesis audio unit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Audio",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/audio-playback-recording-and-processing"
+              ],
+              "title": "Audio"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVSpeechUtterance/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVSpeechUtterance"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVSpeechSynthesizer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVSpeechSynthesizer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVSpeechSynthesisVoice/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVSpeechSynthesisVoice"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVSpeechSynthesisProviderAudioUnit/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVSpeechSynthesisProviderAudioUnit"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AUAudioUnit",
+              "text": "AUAudioUnit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVSpeechSynthesizer~1delegate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "weak"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)AVSpeechSynthesizerDelegate",
+              "text": "id<AVSpeechSynthesizerDelegate>"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/speech-synthesis"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/speech-synthesis"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

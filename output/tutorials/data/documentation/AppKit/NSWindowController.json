@@ -1,0 +1,3555 @@
+{
+  "abstract": [
+    {
+      "text": "A controller that manages a window, usually a window stored in a nib file.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSWindowController"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSWindowController",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSWindowController"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSWindowController"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSWindowController"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSWindowController"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Managing a window entails:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Loading and displaying the window",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Closing the window when appropriate",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Customizing the window’s title",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Storing the window’s frame (size and location) in the defaults database",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Cascading the window in relation to other document windows of the app",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A window controller can manage a window by itself or as a role player in AppKit’s document-based architecture, which also includes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. In this architecture, a window controller is created and managed by a “document” (an instance of an ",
+              "type": "text"
+            },
+            {
+              "code": "NSDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subclass) and, in turn, keeps a reference to the document.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The relationship between a window controller and a nib file is important. Although a window controller can manage a programmatically created window, it usually manages a window in a nib file. The nib file can contain other top-level objects, including other windows, but the window controller’s responsibility is this primary window. The window controller is usually the owner of the nib file, even when it is part of a document-based app. Regardless of who is the file’s owner, the window controller is responsible for freeing all top-level objects in the nib file it loads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For simple documents—that is, documents with only one nib file containing a window—you need to do little directly with ",
+              "type": "text"
+            },
+            {
+              "code": "NSWindowController",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; AppKit creates one for you. However, if the default window controller is not sufficient, you can create a custom subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSWindowController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For documents with multiple windows or panels, your document must create separate instances of ",
+              "type": "text"
+            },
+            {
+              "code": "NSWindowController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (or of custom subclasses of ",
+              "type": "text"
+            },
+            {
+              "code": "NSWindowController",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), one for each window or panel. An example is a CAD app that has different windows for side, top, and front views of drawn objects. What you do in your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass determines whether the default ",
+              "type": "text"
+            },
+            {
+              "code": "NSWindowController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or separately created and configured ",
+              "type": "text"
+            },
+            {
+              "code": "NSWindowController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects are used.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Subclassing-NSWindowController",
+          "level": 3,
+          "text": "Subclassing NSWindowController",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You should create a subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSWindowController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when you want to augment the default behavior, such as to give the window a custom title or to perform some setup tasks before the window is loaded. In your class’s initialization method, be sure to invoke on ",
+              "type": "text"
+            },
+            {
+              "code": "super",
+              "type": "codeVoice"
+            },
+            {
+              "text": " either one of the ",
+              "type": "text"
+            },
+            {
+              "code": "initWithWindowNibName:...",
+              "type": "codeVoice"
+            },
+            {
+              "text": " initializers or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/init(window:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer. The initializer you choose depends on whether the window object originates in a nib file or is programmatically created.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also implement an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass to avoid requiring client code to get the corresponding nib’s filename and pass it to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/init(windowNibName:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/init(windowNibName:owner:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when instantiating the window controller. The best way to do this is to override ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowNibName",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to return the nib’s filename and instantiate the window controller by passing ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/init(window:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/init(window:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " designated initializer simplifies compliance with Swift initializer requirements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Typically, you override one of the methods listed below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Method Name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowWillLoad()",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Override to perform tasks before the window nib file is loaded.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowDidLoad()",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Override to perform tasks after the window nib file is loaded.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowTitle(forDocumentDisplayName:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Override to customize the window title.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also override ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/loadWindow()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to get different nib-searching or nib-loading behavior, although there is usually no need to do this.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument": {
+      "abstract": [
+        {
+          "text": "An abstract class that defines the interface for macOS documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDocument",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController": {
+      "abstract": [
+        {
+          "text": "An object that manages an app’s documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDocumentController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDocumentController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDocumentController",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSResponder": {
+      "abstract": [
+        {
+          "text": "An abstract class that forms the basis of event and command processing in AppKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSResponder"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSResponder"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSResponder",
+      "type": "topic",
+      "url": "/documentation/appkit/nsresponder"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSeguePerforming": {
+      "abstract": [
+        {
+          "text": "A set of methods that support the mediation of a custom segue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSeguePerforming"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSeguePerforming",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSeguePerforming"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSeguePerforming",
+      "type": "topic",
+      "url": "/documentation/appkit/nssegueperforming"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStandardKeyBindingResponding": {
+      "abstract": [
+        {
+          "text": "Methods that responder subclasses implement to support key binding commands, such as inserting tabs and newlines, or moving the insertion point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStandardKeyBindingResponding"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStandardKeyBindingResponding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSStandardKeyBindingResponding"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSStandardKeyBindingResponding",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstandardkeybindingresponding"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTitlebarAccessoryViewController": {
+      "abstract": [
+        {
+          "text": "An object that manages a custom view—known as an accessory view—in the title bar–toolbar area of a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTitlebarAccessoryViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTitlebarAccessoryViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTitlebarAccessoryViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTitlebarAccessoryViewController",
+      "type": "topic",
+      "url": "/documentation/appkit/nstitlebaraccessoryviewcontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/appkit/nstouchbarprovider"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "A protocol that marks classes to restore the state of your app to continue a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityRestoring"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserActivityRestoring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityRestoring"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuseractivityrestoring"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController": {
+      "abstract": [
+        {
+          "text": "A controller that manages a view, typically loaded from a nib file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSViewController",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController": {
+      "abstract": [
+        {
+          "text": "A controller that manages a window, usually a window stored in a nib file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSWindowController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSWindowController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindowController",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/WindowLoading": {
+      "abstract": [
+        {
+          "text": "A property wrapper that loads the receiver’s window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WindowLoading"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/WindowLoading",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WindowLoading"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindowController.WindowLoading",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/windowloading"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/close()": {
+      "abstract": [
+        {
+          "text": "Closes the window if it was loaded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "close"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/close()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "close"
+        }
+      ],
+      "role": "symbol",
+      "title": "close()",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/close()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/contentViewController": {
+      "abstract": [
+        {
+          "text": "The view controller for the window’s content view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentViewController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/contentViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "contentViewController",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/contentviewcontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/dismissController(_:)": {
+      "abstract": [
+        {
+          "text": "Dismisses the window controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dismissController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/dismissController(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dismissController:"
+        }
+      ],
+      "role": "symbol",
+      "title": "dismissController(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/dismisscontroller(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/document": {
+      "abstract": [
+        {
+          "text": "The document associated with the window controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "document"
+        },
+        {
+          "kind": "text",
+          "text": ": AnyObject?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/document",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "document"
+        }
+      ],
+      "role": "symbol",
+      "title": "document",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/document"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/init(coder:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/init(coder:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCoder:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/init(coder:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/init(window:)": {
+      "abstract": [
+        {
+          "text": "Returns a window controller initialized with a given window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "window"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWindow",
+          "text": "NSWindow"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/init(window:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithWindow:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(window:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/init(window:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/init(windowNibName:)": {
+      "abstract": [
+        {
+          "text": "Returns a window controller initialized with a nib file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "windowNibName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNib",
+          "text": "NSNib"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNibName",
+          "text": "Name"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/init(windowNibName:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithWindowNibName:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(windowNibName:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/init(windownibname:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/init(windowNibName:owner:)": {
+      "abstract": [
+        {
+          "text": "Returns a window controller initialized with a nib file and a specified owner for that nib file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "windowNibName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNib",
+          "text": "NSNib"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNibName",
+          "text": "Name"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "owner"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/init(windowNibName:owner:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithWindowNibName:owner:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(windowNibName:owner:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/init(windownibname:owner:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/init(windowNibPath:owner:)": {
+      "abstract": [
+        {
+          "text": "Returns a window controller initialized with a nib file at an absolute path and a specified owner.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "windowNibPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "owner"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/init(windowNibPath:owner:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithWindowNibPath:owner:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(windowNibPath:owner:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/init(windownibpath:owner:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/isWindowLoaded": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the nib file containing the receiver’s window has been loaded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isWindowLoaded"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/isWindowLoaded",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "windowLoaded"
+        }
+      ],
+      "role": "symbol",
+      "title": "isWindowLoaded",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/iswindowloaded"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/loadWindow()": {
+      "abstract": [
+        {
+          "text": "Loads the receiver’s window from the nib file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadWindow"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/loadWindow()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadWindow"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadWindow()",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/loadwindow()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/owner": {
+      "abstract": [
+        {
+          "text": "The owner of the nib file containing the window managed by the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "owner"
+        },
+        {
+          "kind": "text",
+          "text": ": AnyObject?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/owner",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "owner"
+        }
+      ],
+      "role": "symbol",
+      "title": "owner",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/owner"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/previewRepresentableActivityItems": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "previewRepresentableActivityItems"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSPreviewRepresentableActivityItem",
+          "text": "NSPreviewRepresentableActivityItem"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/previewRepresentableActivityItems",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "previewRepresentableActivityItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "previewRepresentableActivityItems",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/previewrepresentableactivityitems"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/setDocumentEdited(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the document edited flag for the window controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDocumentEdited"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/setDocumentEdited(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setDocumentEdited:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setDocumentEdited(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/setdocumentedited(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/shouldCascadeWindows": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the window will cascade in relation to other document windows when it is displayed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldCascadeWindows"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/shouldCascadeWindows",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shouldCascadeWindows"
+        }
+      ],
+      "role": "symbol",
+      "title": "shouldCascadeWindows",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/shouldcascadewindows"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/shouldCloseDocument": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the receiver necessarily closes the associated document when the window it manages is closed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldCloseDocument"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/shouldCloseDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shouldCloseDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "shouldCloseDocument",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/shouldclosedocument"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/showWindow(_:)": {
+      "abstract": [
+        {
+          "text": "Displays the window associated with the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showWindow"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/showWindow(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showWindow:"
+        }
+      ],
+      "role": "symbol",
+      "title": "showWindow(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/showwindow(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/storyboard": {
+      "abstract": [
+        {
+          "text": "The storyboard file from which the window controller was loaded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storyboard"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSStoryboard",
+          "text": "NSStoryboard"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/storyboard",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "storyboard"
+        }
+      ],
+      "role": "symbol",
+      "title": "storyboard",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/storyboard"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/synchronizeWindowTitleWithDocumentName()": {
+      "abstract": [
+        {
+          "text": "Synchronizes the displayed window title and the represented filename with the information in the associated document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "synchronizeWindowTitleWithDocumentName"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/synchronizeWindowTitleWithDocumentName()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "synchronizeWindowTitleWithDocumentName"
+        }
+      ],
+      "role": "symbol",
+      "title": "synchronizeWindowTitleWithDocumentName()",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/synchronizewindowtitlewithdocumentname()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/window": {
+      "abstract": [
+        {
+          "text": "The window owned by the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "window"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWindow",
+          "text": "NSWindow"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/window",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "window"
+        }
+      ],
+      "role": "symbol",
+      "title": "window",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/window"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowDidLoad()": {
+      "abstract": [
+        {
+          "text": "Sent after the window owned by the receiver has been loaded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowDidLoad"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowDidLoad()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "windowDidLoad"
+        }
+      ],
+      "role": "symbol",
+      "title": "windowDidLoad()",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/windowdidload()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowFrameAutosaveName": {
+      "abstract": [
+        {
+          "text": "The name under which the frame rectangle of the window owned by the receiver is stored in the defaults database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowFrameAutosaveName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWindow",
+          "text": "NSWindow"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSWindowFrameAutosaveName",
+          "text": "FrameAutosaveName"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowFrameAutosaveName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "windowFrameAutosaveName"
+        }
+      ],
+      "role": "symbol",
+      "title": "windowFrameAutosaveName",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/windowframeautosavename"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowNibName": {
+      "abstract": [
+        {
+          "text": "The name of the nib file that stores the window associated with the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowNibName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNib",
+          "text": "NSNib"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNibName",
+          "text": "Name"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowNibName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "windowNibName"
+        }
+      ],
+      "role": "symbol",
+      "title": "windowNibName",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/windownibname"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowNibPath": {
+      "abstract": [
+        {
+          "text": "The full path of the nib file that stores the window associated with the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowNibPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowNibPath",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "windowNibPath"
+        }
+      ],
+      "role": "symbol",
+      "title": "windowNibPath",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/windownibpath"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowTitle(forDocumentDisplayName:)": {
+      "abstract": [
+        {
+          "text": "Returns the window title to be used for a given document display name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowTitle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forDocumentDisplayName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowTitle(forDocumentDisplayName:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "windowTitleForDocumentDisplayName:"
+        }
+      ],
+      "role": "symbol",
+      "title": "windowTitle(forDocumentDisplayName:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/windowtitle(fordocumentdisplayname:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowWillLoad()": {
+      "abstract": [
+        {
+          "text": "Sent before the window owned by the receiver is loaded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowWillLoad"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowWillLoad()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "windowWillLoad"
+        }
+      ],
+      "role": "symbol",
+      "title": "windowWillLoad()",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/windowwillload()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSResponder"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.apple.appkit/documentation/AppKit/NSSeguePerforming",
+        "doc://com.apple.appkit/documentation/AppKit/NSStandardKeyBindingResponding",
+        "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider",
+        "doc://com.apple.appkit/documentation/AppKit/NSUserActivityRestoring",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Content-Controllers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController",
+        "doc://com.apple.appkit/documentation/AppKit/NSTitlebarAccessoryViewController"
+      ],
+      "title": "Content Controllers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializing-Window-Controllers",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/init(window:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/init(windowNibName:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/init(windowNibName:owner:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/init(windowNibPath:owner:)"
+      ],
+      "title": "Initializing Window Controllers"
+    },
+    {
+      "anchor": "Loading-and-Displaying-the-Window",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/loadWindow()",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/showWindow(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/isWindowLoaded",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/window",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowDidLoad()",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowWillLoad()"
+      ],
+      "title": "Loading and Displaying the Window"
+    },
+    {
+      "anchor": "Accessing-the-Document",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/document",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/setDocumentEdited(_:)"
+      ],
+      "title": "Accessing the Document"
+    },
+    {
+      "anchor": "Closing-the-Window",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/close()",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/shouldCloseDocument"
+      ],
+      "title": "Closing the Window"
+    },
+    {
+      "anchor": "Getting-Nib-and-Storyboard-Information",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/owner",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/storyboard",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowNibName",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowNibPath"
+      ],
+      "title": "Getting Nib and Storyboard Information"
+    },
+    {
+      "anchor": "Accessing-Window-Attributes-and-Content",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/shouldCascadeWindows",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowFrameAutosaveName",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/synchronizeWindowTitleWithDocumentName()",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowTitle(forDocumentDisplayName:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/contentViewController",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/dismissController(_:)"
+      ],
+      "title": "Accessing Window Attributes and Content"
+    },
+    {
+      "anchor": "Window-Property-Wrappers",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/WindowLoading"
+      ],
+      "title": "Window Property Wrappers"
+    },
+    {
+      "anchor": "Initializers",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/init(coder:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/previewRepresentableActivityItems"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSWindowController"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Initializing-Window-Controllers",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController/init(window:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController/init(windowNibName:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController/init(windowNibName:owner:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController/init(windowNibPath:owner:)"
+              ],
+              "title": "Initializing Window Controllers"
+            },
+            {
+              "anchor": "Loading-and-Displaying-the-Window",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController/loadWindow()",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController/showWindow(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController/isWindowLoaded",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController/window",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowDidLoad()",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowWillLoad()"
+              ],
+              "title": "Loading and Displaying the Window"
+            },
+            {
+              "anchor": "Accessing-the-Document",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController/document",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController/setDocumentEdited(_:)"
+              ],
+              "title": "Accessing the Document"
+            },
+            {
+              "anchor": "Closing-the-Window",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController/close()",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController/shouldCloseDocument"
+              ],
+              "title": "Closing the Window"
+            },
+            {
+              "anchor": "Getting-Nib-and-Storyboard-Information",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController/owner",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController/storyboard",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowNibName",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowNibPath"
+              ],
+              "title": "Getting Nib and Storyboard Information"
+            },
+            {
+              "anchor": "Accessing-Window-Attributes-and-Content",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController/shouldCascadeWindows",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowFrameAutosaveName",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController/synchronizeWindowTitleWithDocumentName()",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController/windowTitle(forDocumentDisplayName:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController/contentViewController",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController/dismissController(_:)"
+              ],
+              "title": "Accessing Window Attributes and Content"
+            },
+            {
+              "anchor": "Initializers",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController/init(coder:)"
+              ],
+              "title": "Initializers"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController/previewRepresentableActivityItems"
+              ],
+              "title": "Instance Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSResponder"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSeguePerforming"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Content-Controllers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController",
+                "doc://com.apple.appkit/documentation/AppKit/NSTitlebarAccessoryViewController"
+              ],
+              "title": "Content Controllers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSWindowController"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSResponder",
+                    "text": "NSResponder"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController/title",
+          "value": "NSViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1close()/title",
+          "value": "close"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1close()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "close"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSeguePerforming/title",
+          "value": "NSSeguePerforming"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSeguePerforming/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSeguePerforming"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSeguePerforming/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSeguePerforming"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1showWindow(_:)/title",
+          "value": "showWindow:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1showWindow(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "showWindow:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1windowNibPath/title",
+          "value": "windowNibPath"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1windowNibPath/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "windowNibPath"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1init(windowNibName:)/title",
+          "value": "initWithWindowNibName:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1init(windowNibName:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithWindowNibName:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1init(coder:)/title",
+          "value": "initWithCoder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1init(coder:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithCoder:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1contentViewController/title",
+          "value": "contentViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1contentViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contentViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1window/title",
+          "value": "window"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1window/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "window"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1windowDidLoad()/title",
+          "value": "windowDidLoad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1windowDidLoad()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "windowDidLoad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1init(windowNibName:owner:)/title",
+          "value": "initWithWindowNibName:owner:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1init(windowNibName:owner:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithWindowNibName:owner:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserActivityRestoring/title",
+          "value": "NSUserActivityRestoring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserActivityRestoring/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1init(windowNibPath:owner:)/title",
+          "value": "initWithWindowNibPath:owner:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1init(windowNibPath:owner:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithWindowNibPath:owner:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1setDocumentEdited(_:)/title",
+          "value": "setDocumentEdited:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1setDocumentEdited(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setDocumentEdited:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1windowTitle(forDocumentDisplayName:)/title",
+          "value": "windowTitleForDocumentDisplayName:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1windowTitle(forDocumentDisplayName:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "windowTitleForDocumentDisplayName:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1previewRepresentableActivityItems/title",
+          "value": "previewRepresentableActivityItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1previewRepresentableActivityItems/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "previewRepresentableActivityItems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1shouldCascadeWindows/title",
+          "value": "shouldCascadeWindows"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1shouldCascadeWindows/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shouldCascadeWindows"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1windowWillLoad()/title",
+          "value": "windowWillLoad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1windowWillLoad()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "windowWillLoad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument/title",
+          "value": "NSDocument"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1document/title",
+          "value": "document"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1document/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "document"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTitlebarAccessoryViewController/title",
+          "value": "NSTitlebarAccessoryViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTitlebarAccessoryViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTitlebarAccessoryViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTitlebarAccessoryViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTitlebarAccessoryViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1windowFrameAutosaveName/title",
+          "value": "windowFrameAutosaveName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1windowFrameAutosaveName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "windowFrameAutosaveName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1init(window:)/title",
+          "value": "initWithWindow:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1init(window:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithWindow:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1isWindowLoaded/title",
+          "value": "windowLoaded"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1isWindowLoaded/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "windowLoaded"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController/title",
+          "value": "NSDocumentController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDocumentController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDocumentController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1storyboard/title",
+          "value": "storyboard"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1storyboard/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "storyboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1owner/title",
+          "value": "owner"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1owner/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "owner"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1loadWindow()/title",
+          "value": "loadWindow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1loadWindow()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadWindow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/title",
+          "value": "NSTouchBarProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder/title",
+          "value": "NSResponder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1windowNibName/title",
+          "value": "windowNibName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1windowNibName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "windowNibName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStandardKeyBindingResponding/title",
+          "value": "NSStandardKeyBindingResponding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStandardKeyBindingResponding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStandardKeyBindingResponding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStandardKeyBindingResponding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStandardKeyBindingResponding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1shouldCloseDocument/title",
+          "value": "shouldCloseDocument"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1shouldCloseDocument/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shouldCloseDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController/title",
+          "value": "NSWindowController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1synchronizeWindowTitleWithDocumentName()/title",
+          "value": "synchronizeWindowTitleWithDocumentName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1synchronizeWindowTitleWithDocumentName()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "synchronizeWindowTitleWithDocumentName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1dismissController(_:)/title",
+          "value": "dismissController:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1dismissController(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "dismissController:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nswindowcontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nswindowcontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

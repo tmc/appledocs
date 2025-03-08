@@ -1,0 +1,1227 @@
+{
+  "abstract": [
+    {
+      "text": "The renewal states of auto-renewable subscriptions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/Product",
+        "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "StoreKit",
+    "externalID": "s:8StoreKit7ProductV16SubscriptionInfoV12RenewalStateV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "RenewalState"
+      }
+    ],
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "RenewalState"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Product.SubscriptionInfo.RenewalState"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "RenewalState"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-in-xcode"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A subscription’s renewal state indicates whether an auto-renewable subscription is entitled to service. Subscriptions in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState/subscribed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState/inGracePeriod",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " states are entitled to service.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Subscriptions in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState/expired",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState/inBillingRetryPeriod",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState/revoked",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " states aren’t entitled to service if the customer doesn’t have other ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/Status-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " items that give them entitlement to service for that subscription. For example, a customer may have a status in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState/expired",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state for a subscription that they purchased individually, and another status in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState/subscribed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state for the same subscription, which they get through Family Sharing. In that case, the customer has an entitlement to service for that subscription.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about Family Sharing, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/supporting-family-sharing-in-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information about entitlements, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/currentEntitlements",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product": {
+      "abstract": [
+        {
+          "text": "Information about a product that you configure in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Product"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Product"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product",
+      "type": "topic",
+      "url": "/documentation/storekit/product"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo": {
+      "abstract": [
+        {
+          "text": "Information about an auto-renewable subscription, such as its status, period, subscription group, and subscription offer details.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.SubscriptionInfo",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptioninfo"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo": {
+      "abstract": [
+        {
+          "text": "The renewal information for an auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RenewalInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RenewalInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.SubscriptionInfo.RenewalInfo",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptioninfo/renewalinfo"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState": {
+      "abstract": [
+        {
+          "text": "The renewal states of auto-renewable subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RenewalState"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RenewalState"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.SubscriptionInfo.RenewalState",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptioninfo/renewalstate"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState/expired": {
+      "abstract": [
+        {
+          "text": "The subscription expired.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "expired"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV16SubscriptionInfoV",
+          "text": "SubscriptionInfo"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV16SubscriptionInfoV12RenewalStateV",
+          "text": "RenewalState"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState/expired",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "expired",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptioninfo/renewalstate/expired"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState/inBillingRetryPeriod": {
+      "abstract": [
+        {
+          "text": "The subscription is in a billing retry period.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inBillingRetryPeriod"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV16SubscriptionInfoV",
+          "text": "SubscriptionInfo"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV16SubscriptionInfoV12RenewalStateV",
+          "text": "RenewalState"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState/inBillingRetryPeriod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inBillingRetryPeriod",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptioninfo/renewalstate/inbillingretryperiod"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState/inGracePeriod": {
+      "abstract": [
+        {
+          "text": "The subscription is in a billing grace period state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inGracePeriod"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV16SubscriptionInfoV",
+          "text": "SubscriptionInfo"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV16SubscriptionInfoV12RenewalStateV",
+          "text": "RenewalState"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState/inGracePeriod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inGracePeriod",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptioninfo/renewalstate/ingraceperiod"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState/localizedDescription": {
+      "abstract": [
+        {
+          "text": "A string containing the localized description of the renewal state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState/localizedDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedDescription",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptioninfo/renewalstate/localizeddescription"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState/revoked": {
+      "abstract": [
+        {
+          "text": "The App Store has revoked the customer’s access to the subscription group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "revoked"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV16SubscriptionInfoV",
+          "text": "SubscriptionInfo"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV16SubscriptionInfoV12RenewalStateV",
+          "text": "RenewalState"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState/revoked",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "revoked",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptioninfo/renewalstate/revoked"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState/subscribed": {
+      "abstract": [
+        {
+          "text": "The customer is currently subscribed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscribed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV16SubscriptionInfoV",
+          "text": "SubscriptionInfo"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV16SubscriptionInfoV12RenewalStateV",
+          "text": "RenewalState"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState/subscribed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscribed",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptioninfo/renewalstate/subscribed"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/Status-swift.struct": {
+      "abstract": [
+        {
+          "text": "The renewal status information for an auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Status"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/Status-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Status"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.SubscriptionInfo.Status",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptioninfo/status-swift.struct"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionPeriod": {
+      "abstract": [
+        {
+          "text": "Represents the duration of time between subscription renewals.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionPeriod"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionPeriod",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionPeriod"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionPeriod",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionperiod"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionRenewalInfo": {
+      "abstract": [
+        {
+          "text": "Represents the renewal information for an auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionRenewalInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionRenewalInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionRenewalInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionRenewalInfo",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionrenewalinfo"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionRenewalState": {
+      "abstract": [
+        {
+          "text": "The renewal states of auto-renewable subscriptions.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionRenewalState"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionRenewalState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionRenewalState"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionRenewalState",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionrenewalstate"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/currentEntitlements": {
+      "abstract": [
+        {
+          "text": "A sequence of the latest transactions that entitle a customer to In-App Purchases and subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentEntitlements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV12TransactionsV",
+          "text": "Transactions"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/currentEntitlements",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentEntitlements",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/currententitlements"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/supporting-family-sharing-in-your-app": {
+      "abstract": [
+        {
+          "text": "Provide service to share subscriptions and non-consumable products to family members.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/supporting-family-sharing-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Family Sharing in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/supporting-family-sharing-in-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases": {
+      "abstract": [
+        {
+          "text": "Verify that your app handles failed subscription renewals that are in the billing retry or billing grace period states, as well as failed In-App Purchases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing failing subscription renewals and In-App Purchases",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-failing-subscription-renewals-and-in-app-purchases"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-in-xcode": {
+      "abstract": [
+        {
+          "text": "Use locally configured product data to test and debug your In-App Purchases implementation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing In-App Purchases in Xcode",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-in-app-purchases-in-xcode"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:SY": {
+      "abstract": [
+        {
+          "text": "A type that can be converted to and from an associated raw value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RawRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SY8RawValueQa",
+          "text": "RawValue"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SY",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RawRepresentable",
+      "type": "topic",
+      "url": "/documentation/Swift/RawRepresentable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:SY",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Subscription-status-and-renewal-information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/Status-swift.struct",
+        "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionRenewalInfo",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionRenewalState",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionPeriod"
+      ],
+      "title": "Subscription status and renewal information"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-the-renewal-state",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState/subscribed",
+        "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState/expired",
+        "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState/inBillingRetryPeriod",
+        "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState/inGracePeriod",
+        "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState/revoked"
+      ],
+      "title": "Getting the renewal state"
+    },
+    {
+      "anchor": "Getting-a-localized-description",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState/localizedDescription"
+      ],
+      "title": "Getting a localized description"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/product/subscriptioninfo/renewalstate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

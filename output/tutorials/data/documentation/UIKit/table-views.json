@@ -1,0 +1,2268 @@
+{
+  "abstract": [
+    {
+      "text": "Display data in a single column of customizable rows.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/views-and-controls"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/table-views"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Table views"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A table view displays a single column of vertically scrolling content, divided into rows and sections. Each row of a table displays a single piece of information related to your app. Sections let you group related rows together. For example, the Contacts app uses a table to display the names of the user’s contacts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3148899",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Table views are a collaboration between many different objects, including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Cells. A cell provides the visual representation for your content. You can use the default cells provided by UIKit or define custom cells to suit the needs of your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Table view controller. You typically use a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object to manage a table view. You can use other view controllers too, but a table view controller is required for some table-related features to work.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your data source object. This object adopts the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDataSource",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol and provides the data for the table.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your delegate object. This object adopts the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDelegate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol and manages user interactions with the table’s contents.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/xcode/autosizing_views_for_localization_in_ios": {
+      "abstract": [
+        {
+          "text": "Add auto layout constraints to your app to achieve localizable views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/xcode/autosizing_views_for_localization_in_ios",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Autosizing Views for Localization in iOS",
+      "type": "topic",
+      "url": "/documentation/xcode/autosizing_views_for_localization_in_ios"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct": {
+      "abstract": [
+        {
+          "text": "A representation of the state of the data in a view at a specific point in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSnapshot"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSnapshot"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDiffableDataSourceSnapshot",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshotReference": {
+      "abstract": [
+        {
+          "text": "A representation of the state of the data in a view at a specific point in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSnapshotReference"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshotReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSnapshotReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDiffableDataSourceSnapshotReference",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshotreference"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIContextualAction": {
+      "abstract": [
+        {
+          "text": "An action to display when the user swipes a table row.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIContextualAction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContextualAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIContextualAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIContextualAction",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontextualaction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDataSourceTranslating": {
+      "abstract": [
+        {
+          "text": "An advanced interface for managing a data source object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDataSourceTranslating"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDataSourceTranslating",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDataSourceTranslating"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDataSourceTranslating",
+      "type": "topic",
+      "url": "/documentation/uikit/uidatasourcetranslating"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILocalizedIndexedCollation": {
+      "abstract": [
+        {
+          "text": "An object that organizes, sorts, and localizes the data for a table view that has a section index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILocalizedIndexedCollation"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILocalizedIndexedCollation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UILocalizedIndexedCollation"
+        }
+      ],
+      "role": "symbol",
+      "title": "UILocalizedIndexedCollation",
+      "type": "topic",
+      "url": "/documentation/uikit/uilocalizedindexedcollation"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIRefreshControl": {
+      "abstract": [
+        {
+          "text": "A standard control that can initiate the refreshing of a scroll view’s contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIRefreshControl"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIRefreshControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIRefreshControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIRefreshControl",
+      "type": "topic",
+      "url": "/documentation/uikit/uirefreshcontrol"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIScrollView": {
+      "abstract": [
+        {
+          "text": "A view that allows the scrolling and zooming of its contained views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIScrollView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScrollView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIScrollView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIScrollView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscrollview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIStackView": {
+      "abstract": [
+        {
+          "text": "A streamlined interface for laying out a collection of views in either a column or a row.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIStackView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStackView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIStackView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIStackView",
+      "type": "topic",
+      "url": "/documentation/uikit/uistackview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISwipeActionsConfiguration": {
+      "abstract": [
+        {
+          "text": "The set of actions to perform when swiping on rows of a table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISwipeActionsConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISwipeActionsConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISwipeActionsConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISwipeActionsConfiguration",
+      "type": "topic",
+      "url": "/documentation/uikit/uiswipeactionsconfiguration"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableView": {
+      "abstract": [
+        {
+          "text": "A view that presents data using rows in a single column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell": {
+      "abstract": [
+        {
+          "text": "The visual representation of a single row in a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewCell"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewCell"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewCell",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that specializes in managing a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewDataSource": {
+      "abstract": [
+        {
+          "text": "The methods that an object adopts to manage data and provide cells for a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewDataSource",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewdatasource"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewDataSourcePrefetching": {
+      "abstract": [
+        {
+          "text": "A protocol that provides advance warning of the data requirements for a table view, allowing you to start potentially long-running data operations early.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewDataSourcePrefetching"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDataSourcePrefetching",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewDataSourcePrefetching"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewDataSourcePrefetching",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewdatasourceprefetching"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewDelegate": {
+      "abstract": [
+        {
+          "text": "Methods for managing selections, configuring section headers and footers, deleting and reordering cells, and performing other actions in a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewDiffableDataSource-2euir": {
+      "abstract": [
+        {
+          "text": "The object you use to manage data and provide cells for a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewDiffableDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDiffableDataSource-2euir",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewDiffableDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewDiffableDataSource",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewdiffabledatasource-2euir"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewDiffableDataSourceReference": {
+      "abstract": [
+        {
+          "text": "The object you use to manage data and provide cells for a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewDiffableDataSourceReference"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDiffableDataSourceReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewDiffableDataSourceReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewDiffableDataSourceReference",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewdiffabledatasourcereference"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewDragDelegate": {
+      "abstract": [
+        {
+          "text": "The interface for initiating drags from a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewDragDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDragDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewDragDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewDragDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewdragdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewDropCoordinator": {
+      "abstract": [
+        {
+          "text": "An interface for coordinating your custom drop-related actions with the table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewDropCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDropCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewDropCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewDropCoordinator",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewdropcoordinator"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewDropDelegate": {
+      "abstract": [
+        {
+          "text": "The interface for handling drops in a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewDropDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDropDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewDropDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewDropDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewdropdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewDropItem": {
+      "abstract": [
+        {
+          "text": "The data associated with an item being dropped into the table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewDropItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDropItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewDropItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewDropItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewdropitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewDropPlaceholder": {
+      "abstract": [
+        {
+          "text": "A placeholder cell that supports customizing the drop preview parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewDropPlaceholder"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDropPlaceholder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewDropPlaceholder"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewDropPlaceholder",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewdropplaceholder"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewDropPlaceholderContext": {
+      "abstract": [
+        {
+          "text": "An object for tracking a placeholder cell that you added to your table during a drop operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewDropPlaceholderContext"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDropPlaceholderContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewDropPlaceholderContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewDropPlaceholderContext",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewdropplaceholdercontext"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewDropProposal": {
+      "abstract": [
+        {
+          "text": "Your proposed solution for handling a drop in a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewDropProposal"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDropProposal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewDropProposal"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewDropProposal",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewdropproposal"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewFocusUpdateContext": {
+      "abstract": [
+        {
+          "text": "A context object that provides information relevant to a specific focus update from one view to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewFocusUpdateContext"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewFocusUpdateContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewFocusUpdateContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewFocusUpdateContext",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewfocusupdatecontext"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewHeaderFooterView": {
+      "abstract": [
+        {
+          "text": "A reusable view that you place at the top or bottom of a table section to display additional information for that section.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewHeaderFooterView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewHeaderFooterView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewHeaderFooterView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewHeaderFooterView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewheaderfooterview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewPlaceholder": {
+      "abstract": [
+        {
+          "text": "An object that contains information about a placeholder cell being inserted into a table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewPlaceholder"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewPlaceholder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewPlaceholder"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewPlaceholder",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewplaceholder"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewRowAction": {
+      "abstract": [
+        {
+          "text": "A single action to present when the user swipes horizontally in a table row.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewRowAction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewRowAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewRowAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewRowAction",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewrowaction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/adding-headers-and-footers-to-table-sections": {
+      "abstract": [
+        {
+          "text": "Differentiate groups of rows visually by adding header and footer views to your table view’s sections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/adding-headers-and-footers-to-table-sections",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding headers and footers to table sections",
+      "type": "topic",
+      "url": "/documentation/uikit/adding-headers-and-footers-to-table-sections"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/adopting-drag-and-drop-in-a-table-view": {
+      "abstract": [
+        {
+          "text": "Demonstrates how to enable and implement drag and drop for a table view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/adopting-drag-and-drop-in-a-table-view",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adopting drag and drop in a table view",
+      "type": "topic",
+      "url": "/documentation/uikit/adopting-drag-and-drop-in-a-table-view"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/asynchronously-loading-images-into-table-and-collection-views": {
+      "abstract": [
+        {
+          "text": "Store and fetch images asynchronously to make your app more responsive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/asynchronously-loading-images-into-table-and-collection-views",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Asynchronously loading images into table and collection views",
+      "type": "topic",
+      "url": "/documentation/uikit/asynchronously-loading-images-into-table-and-collection-views"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/collection-views": {
+      "abstract": [
+        {
+          "text": "Display nested views using a configurable and highly customizable layout.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/collection-views",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collection views",
+      "type": "topic",
+      "url": "/documentation/uikit/collection-views"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/configuring-the-cells-for-your-table": {
+      "abstract": [
+        {
+          "text": "Specify the appearance and content of your table’s rows by defining one or more prototype cells in your storyboard.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/configuring-the-cells-for-your-table",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring the cells for your table",
+      "type": "topic",
+      "url": "/documentation/uikit/configuring-the-cells-for-your-table"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/creating-self-sizing-table-view-cells": {
+      "abstract": [
+        {
+          "text": "Create table view cells that support Dynamic Type and use system spacing constraints to adjust the spacing surrounding text labels.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/creating-self-sizing-table-view-cells",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating self-sizing table view cells",
+      "type": "topic",
+      "url": "/documentation/uikit/creating-self-sizing-table-view-cells"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/estimating-the-height-of-a-table-s-scrolling-area": {
+      "abstract": [
+        {
+          "text": "Provide height estimates for your table view’s headers, footers, and rows to ensure that scrolling accurately reflects the size of your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/estimating-the-height-of-a-table-s-scrolling-area",
+      "kind": "article",
+      "role": "article",
+      "title": "Estimating the height of a table’s scrolling area",
+      "type": "topic",
+      "url": "/documentation/uikit/estimating-the-height-of-a-table-s-scrolling-area"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/filling-a-table-with-data": {
+      "abstract": [
+        {
+          "text": "Create and configure cells for your table dynamically using a data source object, or provide them statically from your storyboard.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/filling-a-table-with-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Filling a table with data",
+      "type": "topic",
+      "url": "/documentation/uikit/filling-a-table-with-data"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-row-selection-in-a-table-view": {
+      "abstract": [
+        {
+          "text": "Detect when a user taps a table view cell so your app can take the next indicated action.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-row-selection-in-a-table-view",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling row selection in a table view",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-row-selection-in-a-table-view"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/selecting-multiple-items-with-a-two-finger-pan-gesture": {
+      "abstract": [
+        {
+          "text": "Accelerate user selection of multiple items using the multiselect gesture on table and collection views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/selecting-multiple-items-with-a-two-finger-pan-gesture",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Selecting multiple items with a two-finger pan gesture",
+      "type": "topic",
+      "url": "/documentation/uikit/selecting-multiple-items-with-a-two-finger-pan-gesture"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/supporting-drag-and-drop-in-table-views": {
+      "abstract": [
+        {
+          "text": "Initiate drags and handle drops from a table view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/supporting-drag-and-drop-in-table-views",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting drag and drop in table views",
+      "type": "topic",
+      "url": "/documentation/uikit/supporting-drag-and-drop-in-table-views"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/views-and-controls": {
+      "abstract": [
+        {
+          "text": "Present your content onscreen and define the interactions allowed with that content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Views and controls",
+      "type": "topic",
+      "url": "/documentation/uikit/views-and-controls"
+    },
+    "media-3148899": {
+      "alt": "Illustration showing three table view examples. The first contains only rows, the second contains rows grouped into sections, and the third contains custom cells.",
+      "identifier": "media-3148899",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a62f6812cd9c5880d56e7f8ae8cb859c/media-3148899@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a62f6812cd9c5880d56e7f8ae8cb859c/media-3148899~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Container-views",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/xcode/autosizing_views_for_localization_in_ios",
+        "doc://com.apple.uikit/documentation/UIKit/collection-views",
+        "doc://com.apple.uikit/documentation/UIKit/UIStackView",
+        "doc://com.apple.uikit/documentation/UIKit/UIScrollView"
+      ],
+      "title": "Container views"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITableView"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Data",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/filling-a-table-with-data",
+        "doc://com.apple.uikit/documentation/UIKit/asynchronously-loading-images-into-table-and-collection-views",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewDataSource",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewDataSourcePrefetching",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewDiffableDataSource-2euir",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UILocalizedIndexedCollation",
+        "doc://com.apple.uikit/documentation/UIKit/UIDataSourceTranslating",
+        "doc://com.apple.uikit/documentation/UIKit/UIRefreshControl"
+      ],
+      "title": "Data"
+    },
+    {
+      "anchor": "Table-management",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/estimating-the-height-of-a-table-s-scrolling-area",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewFocusUpdateContext"
+      ],
+      "title": "Table management"
+    },
+    {
+      "anchor": "Cells-headers-and-footers",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/configuring-the-cells-for-your-table",
+        "doc://com.apple.uikit/documentation/UIKit/creating-self-sizing-table-view-cells",
+        "doc://com.apple.uikit/documentation/UIKit/adding-headers-and-footers-to-table-sections",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewHeaderFooterView"
+      ],
+      "title": "Cells, headers, and footers"
+    },
+    {
+      "anchor": "Row-actions",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UISwipeActionsConfiguration",
+        "doc://com.apple.uikit/documentation/UIKit/UIContextualAction",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewRowAction"
+      ],
+      "title": "Row actions"
+    },
+    {
+      "anchor": "Selection-management",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/handling-row-selection-in-a-table-view",
+        "doc://com.apple.uikit/documentation/UIKit/selecting-multiple-items-with-a-two-finger-pan-gesture"
+      ],
+      "title": "Selection management"
+    },
+    {
+      "anchor": "Drag-and-drop",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/supporting-drag-and-drop-in-table-views",
+        "doc://com.apple.uikit/documentation/UIKit/adopting-drag-and-drop-in-a-table-view",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewDragDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewDropDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewDropCoordinator",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewDropItem",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewDropProposal"
+      ],
+      "title": "Drag and drop"
+    },
+    {
+      "anchor": "Placeholder-cells",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewDropPlaceholderContext",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewDropPlaceholder",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewPlaceholder"
+      ],
+      "title": "Placeholder cells"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITableView"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Data",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/filling-a-table-with-data",
+                "doc://com.apple.uikit/documentation/UIKit/asynchronously-loading-images-into-table-and-collection-views",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewDataSource",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewDataSourcePrefetching",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewDiffableDataSourceReference",
+                "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshotReference",
+                "doc://com.apple.uikit/documentation/UIKit/UILocalizedIndexedCollation",
+                "doc://com.apple.uikit/documentation/UIKit/UIDataSourceTranslating",
+                "doc://com.apple.uikit/documentation/UIKit/UIRefreshControl"
+              ],
+              "title": "Data"
+            },
+            {
+              "anchor": "Table-management",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/estimating-the-height-of-a-table-s-scrolling-area",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewFocusUpdateContext"
+              ],
+              "title": "Table management"
+            },
+            {
+              "anchor": "Cells-headers-and-footers",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/configuring-the-cells-for-your-table",
+                "doc://com.apple.uikit/documentation/UIKit/creating-self-sizing-table-view-cells",
+                "doc://com.apple.uikit/documentation/UIKit/adding-headers-and-footers-to-table-sections",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewHeaderFooterView"
+              ],
+              "title": "Cells, headers, and footers"
+            },
+            {
+              "anchor": "Row-actions",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UISwipeActionsConfiguration",
+                "doc://com.apple.uikit/documentation/UIKit/UIContextualAction",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewRowAction"
+              ],
+              "title": "Row actions"
+            },
+            {
+              "anchor": "Selection-management",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/handling-row-selection-in-a-table-view",
+                "doc://com.apple.uikit/documentation/UIKit/selecting-multiple-items-with-a-two-finger-pan-gesture"
+              ],
+              "title": "Selection management"
+            },
+            {
+              "anchor": "Drag-and-drop",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/supporting-drag-and-drop-in-table-views",
+                "doc://com.apple.uikit/documentation/UIKit/adopting-drag-and-drop-in-a-table-view",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewDragDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewDropDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewDropCoordinator",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewDropItem",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewDropProposal"
+              ],
+              "title": "Drag and drop"
+            },
+            {
+              "anchor": "Placeholder-cells",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewDropPlaceholderContext",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewDropPlaceholder",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewPlaceholder"
+              ],
+              "title": "Placeholder cells"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Container-views",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/collection-views",
+                "doc://com.apple.uikit/documentation/UIKit/UIStackView",
+                "doc://com.apple.uikit/documentation/UIKit/UIScrollView"
+              ],
+              "title": "Container views"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwipeActionsConfiguration/title",
+          "value": "UISwipeActionsConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwipeActionsConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISwipeActionsConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwipeActionsConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISwipeActionsConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILocalizedIndexedCollation/title",
+          "value": "UILocalizedIndexedCollation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILocalizedIndexedCollation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILocalizedIndexedCollation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILocalizedIndexedCollation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILocalizedIndexedCollation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableView/title",
+          "value": "UITableView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRefreshControl/title",
+          "value": "UIRefreshControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRefreshControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIRefreshControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRefreshControl/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIRefreshControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDropProposal/title",
+          "value": "UITableViewDropProposal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDropProposal/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDropProposal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDropProposal/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDropProposal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDropDelegate/title",
+          "value": "UITableViewDropDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDropDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDropDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDropDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDropDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewPlaceholder/title",
+          "value": "UITableViewPlaceholder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewPlaceholder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewPlaceholder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewPlaceholder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewPlaceholder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContextualAction/title",
+          "value": "UIContextualAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContextualAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContextualAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContextualAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContextualAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDropCoordinator/title",
+          "value": "UITableViewDropCoordinator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDropCoordinator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDropCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDropCoordinator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDropCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDataSource/title",
+          "value": "UITableViewDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDataSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDropItem/title",
+          "value": "UITableViewDropItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDropItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDropItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDropItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDropItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDataSourcePrefetching/title",
+          "value": "UITableViewDataSourcePrefetching"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDataSourcePrefetching/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDataSourcePrefetching"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDataSourcePrefetching/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDataSourcePrefetching"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewRowAction/title",
+          "value": "UITableViewRowAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewRowAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewRowAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewRowAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewRowAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewFocusUpdateContext/title",
+          "value": "UITableViewFocusUpdateContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewFocusUpdateContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewFocusUpdateContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewFocusUpdateContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewFocusUpdateContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDropPlaceholderContext/title",
+          "value": "UITableViewDropPlaceholderContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDropPlaceholderContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDropPlaceholderContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDropPlaceholderContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDropPlaceholderContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewHeaderFooterView/title",
+          "value": "UITableViewHeaderFooterView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewHeaderFooterView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewHeaderFooterView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewHeaderFooterView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewHeaderFooterView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDelegate/title",
+          "value": "UITableViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDiffableDataSourceReference/title",
+          "value": "UITableViewDiffableDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDiffableDataSourceReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDiffableDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDiffableDataSourceReference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDiffableDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDragDelegate/title",
+          "value": "UITableViewDragDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDragDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDragDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDragDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDragDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewController/title",
+          "value": "UITableViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScrollView/title",
+          "value": "UIScrollView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScrollView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScrollView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScrollView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScrollView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDiffableDataSourceSnapshotReference/title",
+          "value": "NSDiffableDataSourceSnapshot"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDiffableDataSourceSnapshotReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDiffableDataSourceSnapshot"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDiffableDataSourceSnapshotReference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDiffableDataSourceSnapshot"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDropPlaceholder/title",
+          "value": "UITableViewDropPlaceholder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDropPlaceholder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDropPlaceholder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDropPlaceholder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDropPlaceholder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDataSourceTranslating/title",
+          "value": "UIDataSourceTranslating"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDataSourceTranslating/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDataSourceTranslating"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDataSourceTranslating/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDataSourceTranslating"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell/title",
+          "value": "UITableViewCell"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStackView/title",
+          "value": "UIStackView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStackView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStackView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStackView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStackView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/table-views"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/table-views"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

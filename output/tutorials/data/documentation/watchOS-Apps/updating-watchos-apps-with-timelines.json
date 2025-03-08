@@ -1,0 +1,1958 @@
+{
+  "abstract": [
+    {
+      "text": "Seamlessly schedule updates to your user interface, even while it’s inactive.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/updating-watchos-apps-with-timelines"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Updating watchOS apps with timelines"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you schedule periodic updates to your user interface with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TimelineView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "updates continue to run even when your app is in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ScenePhase/background",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ScenePhase/inactive",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "making this an ideal choice for keeping a watchOS app up-to-date while in the Always",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "On state. Additionally, you can use a ",
+              "type": "text"
+            },
+            {
+              "code": "TimelineView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to drive other changes — such as animation — when your app is running in the foreground.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-up-the-timeline",
+          "level": 3,
+          "text": "Set up the timeline",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify the part of your user interface that receives periodic updates using a ",
+              "type": "text"
+            },
+            {
+              "code": "TimelineView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var body: some View {",
+            "    VStack {",
+            "",
+            "        // Use a timeline to recalculate the value every minute.",
+            "        `TimelineView`(EveryMinuteTimelineSchedule()) { context in",
+            "            // Display the current amount of caffeine in the user's body.",
+            "            Text(coffeeData.mgCaffeineString(atDate: context.date) + \" mg\")",
+            "                .font(.body)",
+            "                .fontWeight(.bold)",
+            "                .foregroundColor(colorForCaffeineDose())",
+            "        }",
+            "",
+            "        // Lay out static views here.",
+            "        Text(\"Current Caffeine Dose\")",
+            "            .font(.footnote)",
+            "",
+            "        Divider()",
+            "        ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "TimelineView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "takes a schedule that determines when the system makes updates. It also takes a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ViewBuilder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that defines the updatable content. The system then calls the view builder, passing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the context for each update.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TimelineView/Context",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contains both the time and the current ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TimelineView/Context/Cadence-swift.enum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the updates. When creating the updatable content for the ",
+              "type": "text"
+            },
+            {
+              "code": "TimelineView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use the time from the context, not the current system time. When in Always On, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system may request views up to 5 minutes in the future.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The cadence also indicates the current maximum rate for updates that the ",
+              "type": "text"
+            },
+            {
+              "code": "TimelineView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "receives:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Receives high-frequency updates that are suitable for driving animation.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TimelineView/Context/Cadence-swift.enum/live",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Receives up to one update per second.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TimelineView/Context/Cadence-swift.enum/seconds",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Receives up to one update per minute.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TimelineView/Context/Cadence-swift.enum/minutes",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The cadence can change from update to update. Always check the current value and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "hide information that isn’t relevant. For example, a timer app may show the time",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "remaining in minutes, seconds, and hundredths of a second when it receives updates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "at the ",
+              "type": "text"
+            },
+            {
+              "code": "TimelineView.Context.Cadence.live",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "frequency. It can also play animation at that frequency.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the updates drop to the ",
+              "type": "text"
+            },
+            {
+              "code": "TimelineView.Context.Cadence.seconds",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "frequency, the app hides the hundredths of seconds and swaps the animation for a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "static image. The countdown only shows minutes and seconds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the frequency drops to ",
+              "type": "text"
+            },
+            {
+              "code": "TimelineView.Context.Cadence.minutes",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the app also hides the seconds and only shows the time remaining to the nearest minute.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-the-schedule",
+          "level": 3,
+          "text": "Specify the schedule",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a ",
+              "type": "text"
+            },
+            {
+              "code": "TimelineView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you must specify the update schedule, which is an instance that adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TimelineSchedule",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol. While you can create your own custom schedules, SwiftUI provides schedules",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for many common use cases.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system attempts to trigger updates based on the schedule, but it can delay or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "defer an update based on the system’s current state. Additionally, if the schedule",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is more frequent than the current cadence, the system throttles the updates to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "cadence.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Common schedules include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A schedule to update the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "TimelineView",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " every minute. These updates align with the system clock. For example, if the schedule starts at 1:00 pm, you’d get updates at 1:01, 1:02, 1:03, and so on.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EveryMinuteTimelineSchedule",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A schedule to update your interface at a regular, repeating interval. When you create this schedule, you specify the starting time and the interval between updates.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/SwiftUI/PeriodicTimelineSchedule",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A schedule to create a ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "TimelineView",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " instance with high-frequency updates for animated content. When you create the schedule, you can set both the minimum interval and a Boolean value that indicates whether the animation is currently paused. If you don’t set a minimum interval, the system picks an appropriate update interval. Additionally, it only updates the view when the paused parameter is ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/swift/false",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/SwiftUI/AnimationTimelineSchedule",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A schedule to specify a list of update times. For example, an app that plays audiobooks might schedule updates for the beginning of each chapter. When you create an explicit timeline, you pass a ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/Swift/Sequence",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ", such as an ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/Swift/Array",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " of ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " instances. The system updates the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "TimelineView",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " at the time specified by each date in the sequence.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ExplicitTimelineSchedule",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Update-during-always-on",
+          "level": 3,
+          "text": "Update during always on",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use timeline views to update your watchOS app while it’s in the Always On",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "state; however, you must be able to specify the view’s contents given a ",
+              "type": "text"
+            },
+            {
+              "code": "Date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance for a time in the future. To improve performance, the system may ask for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "views up to 5 minutes in the future. For example, an egg timer could use a ",
+              "type": "text"
+            },
+            {
+              "code": "TimelineView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to display the time remaining during Always On because it can calculate the amount",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of time remaining given any arbitrary time in the future.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app is active and in the foreground, the timeline schedule runs in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TimelineScheduleMode/normal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "mode, and your ",
+              "type": "text"
+            },
+            {
+              "code": "TimelineView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can receive updates at the ",
+              "type": "text"
+            },
+            {
+              "code": "TimelineView.Context.Cadence.live",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "cadence. When your app transitions into Always On, the timeline schedule also transitions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "into the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TimelineScheduleMode/lowFrequency",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "mode, the cadence generally drops, and the system may batch-load future updates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In the Always On state, apps running a background session may not need to",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "use a ",
+                  "type": "text"
+                },
+                {
+                  "code": "TimelineView",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to update",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "their user interface. Any changes the app makes while running in the background continue",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "to update its interface; however, to preserve battery life, the system only refreshes",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the user interface about once per second. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/designing-your-app-for-the-always-on-state",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While the actual cadence can vary depending on the requested schedule and the current",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "state of the system, apps generally receive an update frequency based on whether",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "they have background runtime or are inactive, frontmost apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps with background runtime receive updates at the ",
+              "type": "text"
+            },
+            {
+              "code": "TimelineView.Context.Cadence.seconds",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "frequency. This would include apps with an active background session (like workout",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or background audio apps) or apps executing a background refresh task.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Inactive apps receive updates as long as they remain in the frontmost state, generally",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "at the ",
+              "type": "text"
+            },
+            {
+              "code": "TimelineView.Context.Cadence.minutes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "frequency. However, if you request a short burst of updates at the ",
+              "type": "text"
+            },
+            {
+              "code": "TimelineView.Context.Cadence.seconds",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "frequency, the system provides that cadence if possible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, an egg timer could use an ",
+              "type": "text"
+            },
+            {
+              "code": "ExplicitTimelineSchedule",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to set up per-minute updates for most of the countdown, and switch to per-second",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "updates for the last minute. If conditions permit, the system provides ",
+              "type": "text"
+            },
+            {
+              "code": "TimelineView.Context.Cadence.seconds",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "updates for the last minute.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppIntents/ActionButtonArticle": {
+      "abstract": [
+        {
+          "text": "Use App Intents to register actions for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/ActionButtonArticle",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to the Action button on Apple Watch Ultra",
+      "type": "topic",
+      "url": "/documentation/AppIntents/ActionButtonArticle"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Array": {
+      "abstract": [
+        {
+          "text": "An ordered, random-access collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Array"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Array",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Array",
+      "type": "topic",
+      "url": "/documentation/Swift/Array"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Sequence": {
+      "abstract": [
+        {
+          "text": "A type that provides sequential, iterated access to its elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Sequence",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sequence",
+      "type": "topic",
+      "url": "/documentation/Swift/Sequence"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/AnimationTimelineSchedule": {
+      "abstract": [
+        {
+          "text": "A pausable schedule of dates updating at a frequency no more quickly than the provided interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimationTimelineSchedule"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/AnimationTimelineSchedule",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AnimationTimelineSchedule",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/AnimationTimelineSchedule"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EveryMinuteTimelineSchedule": {
+      "abstract": [
+        {
+          "text": "A schedule for updating a timeline view at the start of every minute.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EveryMinuteTimelineSchedule"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EveryMinuteTimelineSchedule",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EveryMinuteTimelineSchedule",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EveryMinuteTimelineSchedule"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ExplicitTimelineSchedule": {
+      "abstract": [
+        {
+          "text": "A schedule for updating a timeline view at explicit points in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExplicitTimelineSchedule"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Entries"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Entries"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST",
+          "text": "Sequence"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Entries"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ExplicitTimelineSchedule",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExplicitTimelineSchedule",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ExplicitTimelineSchedule"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/PeriodicTimelineSchedule": {
+      "abstract": [
+        {
+          "text": "A schedule for updating a timeline view at regular intervals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PeriodicTimelineSchedule"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/PeriodicTimelineSchedule",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PeriodicTimelineSchedule",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/PeriodicTimelineSchedule"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ScenePhase/background": {
+      "abstract": [
+        {
+          "text": "The scene isn’t currently visible in the UI.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "background"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ScenePhase/background",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ScenePhase.background",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ScenePhase/background"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ScenePhase/inactive": {
+      "abstract": [
+        {
+          "text": "The scene is in the foreground but should pause its work.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inactive"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ScenePhase/inactive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ScenePhase.inactive",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ScenePhase/inactive"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/TimelineSchedule": {
+      "abstract": [
+        {
+          "text": "A type that provides a sequence of dates for use as a schedule.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimelineSchedule"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TimelineSchedule",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TimelineSchedule",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/TimelineSchedule"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/TimelineScheduleMode/lowFrequency": {
+      "abstract": [
+        {
+          "text": "A mode that produces schedule updates at a reduced rate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lowFrequency"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TimelineScheduleMode/lowFrequency",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TimelineScheduleMode.lowFrequency",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/TimelineScheduleMode/lowFrequency"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/TimelineScheduleMode/normal": {
+      "abstract": [
+        {
+          "text": "A mode that produces schedule updates at the schedule’s natural cadence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "normal"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TimelineScheduleMode/normal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TimelineScheduleMode.normal",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/TimelineScheduleMode/normal"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/TimelineView": {
+      "abstract": [
+        {
+          "text": "A view that updates according to a schedule that you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimelineView"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Schedule"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Schedule"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16TimelineScheduleP",
+          "text": "TimelineSchedule"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TimelineView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TimelineView",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/TimelineView"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/TimelineView/Context": {
+      "abstract": [
+        {
+          "text": "Information passed to a timeline view’s content callback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Context"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TimelineView/Context",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TimelineView.Context",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/TimelineView/Context"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/TimelineView/Context/Cadence-swift.enum": {
+      "abstract": [
+        {
+          "text": "A rate at which timeline views can receive updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Cadence"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TimelineView/Context/Cadence-swift.enum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TimelineView.Context.Cadence",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/TimelineView/Context/Cadence-swift.enum"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/TimelineView/Context/Cadence-swift.enum/live": {
+      "abstract": [
+        {
+          "text": "Updates the view continuously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "live"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TimelineView/Context/Cadence-swift.enum/live",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TimelineView.Context.Cadence.live",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/TimelineView/Context/Cadence-swift.enum/live"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/TimelineView/Context/Cadence-swift.enum/minutes": {
+      "abstract": [
+        {
+          "text": "Updates the view approximately once per minute.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minutes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TimelineView/Context/Cadence-swift.enum/minutes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TimelineView.Context.Cadence.minutes",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/TimelineView/Context/Cadence-swift.enum/minutes"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/TimelineView/Context/Cadence-swift.enum/seconds": {
+      "abstract": [
+        {
+          "text": "Updates the view approximately once per second.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "seconds"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TimelineView/Context/Cadence-swift.enum/seconds",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TimelineView.Context.Cadence.seconds",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/TimelineView/Context/Cadence-swift.enum/seconds"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ViewBuilder": {
+      "abstract": [
+        {
+          "text": "A custom parameter attribute that constructs views from closures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@resultBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ViewBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ViewBuilder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ViewBuilder",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ViewBuilder"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date": {
+      "abstract": [
+        {
+          "text": "A specific point in time, independent of any calendar or time zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Date"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date",
+      "type": "topic",
+      "url": "/documentation/foundation/date"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that combine complications, notifications, and Siri to create",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a personal experience on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps",
+      "images": [
+        {
+          "identifier": "watchOSApps-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "watchOS apps",
+      "type": "topic",
+      "url": "/documentation/watchos-apps"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/authenticating-users-on-apple-watch": {
+      "abstract": [
+        {
+          "text": "Create an account sign-up and sign-in strategy for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/authenticating-users-on-apple-watch",
+      "kind": "article",
+      "role": "article",
+      "title": "Authenticating users on Apple Watch",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/authenticating-users-on-apple-watch"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/creating-independent-watchos-apps": {
+      "abstract": [
+        {
+          "text": "Set up a watchOS app that installs and runs without a companion iOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/creating-independent-watchos-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating independent watchOS apps",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/creating-independent-watchos-apps"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/designing-your-app-for-the-always-on-state": {
+      "abstract": [
+        {
+          "text": "Customize your watchOS app’s user interface for continuous display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/designing-your-app-for-the-always-on-state",
+      "kind": "article",
+      "role": "article",
+      "title": "Designing your app for the Always On state",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/designing-your-app-for-the-always-on-state"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/enabling-double-tap": {
+      "abstract": [
+        {
+          "text": "Customize your app’s response to the double-tap gesture on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/enabling-double-tap",
+      "images": [
+        {
+          "identifier": "enabling-double-tap-on-watch-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling the double-tap gesture on Apple Watch",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/enabling-double-tap"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/keeping-your-watchos-app-s-content-up-to-date": {
+      "abstract": [
+        {
+          "text": "Ensure that your app’s content is relevant and up to date.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/keeping-your-watchos-app-s-content-up-to-date",
+      "kind": "article",
+      "role": "article",
+      "title": "Keeping your watchOS content up to date",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/keeping-your-watchos-app-s-content-up-to-date"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-up-a-watchos-project": {
+      "abstract": [
+        {
+          "text": "Create a new watchOS project or add a watch target to an existing iOS project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-up-a-watchos-project",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Setting up a watchOS project",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/setting-up-a-watchos-project"
+    },
+    "enabling-double-tap-on-watch-PageImage-card.png": {
+      "alt": "A stylistic representation of the double tap gesture on Apple Watch.",
+      "identifier": "enabling-double-tap-on-watch-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/31d5e805205ce0e598c55fdb76989025/enabling-double-tap-on-watch-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/235637bc0a7bc531746ce17b9ed199b3/enabling-double-tap-on-watch-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "watchOSApps-PageImage-card.png": {
+      "alt": "A stylized representation of Apple Watch.",
+      "identifier": "watchOSApps-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5e043ca96ec9c9e5579649124c448c35/watchOSApps-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2e82e5f258fb084d7b684889cabbe515/watchOSApps-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-experience",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-up-a-watchos-project",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/creating-independent-watchos-apps",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/keeping-your-watchos-app-s-content-up-to-date",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/authenticating-users-on-apple-watch",
+        "doc://com.apple.documentation/documentation/AppIntents/ActionButtonArticle",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/enabling-double-tap"
+      ],
+      "title": "App experience"
+    }
+  ]
+}

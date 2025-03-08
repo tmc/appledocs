@@ -1,0 +1,622 @@
+{
+  "abstract": [
+    {
+      "text": "Removes all entries specifying an observer from the notification center's dispatch table.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/notifications",
+        "doc://com.apple.documentation/documentation/foundation/notificationcenter"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/notificationcenter/1413994-removeobserver"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1413994,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSNotificationCenter(im)removeObserver:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "removeObserver"
+      },
+      {
+        "kind": "text",
+        "text": "(Any)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NotificationCenter"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "removeObserver(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeObserver"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "observer"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "keyword",
+              "text": "Any"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The observer to remove from the dispatch table. Specify an observer to remove only entries for this observer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "observer"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Removing the observer stops it from receiving notifications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you used ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/1411723-addobserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create your observer, you should call this method or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/1407263-removeobserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before the system deallocates any object that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/1411723-addobserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " specifies.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app targets iOS 9.0 and later or macOS 10.11 and later, and you used ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/1415360-addobserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you do not need to unregister the observer. If you forget or are unable to remove the observer, the system cleans up the next time it would have posted to it. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When removing an observer, remove it with the most specific detail possible. For example, if you used a name and object to register the observer, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/1407263-removeobserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the name and object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You shouldn't use this method to remove all observers from a long-lived object because your code may not be the only code adding observers that involve the object.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example illustrates how to unregister ",
+              "type": "text"
+            },
+            {
+              "code": "someObserver",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for all previously registered notifications. This is safe to do in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571947-dealloc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, but you shouldn’t use it otherwise (use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/1407263-removeobserver",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " instead).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NotificationCenter.default.removeObserver(someObserver)"
+          ],
+          "metadata": {
+            "anchor": "2555731",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notificationcenter": {
+      "abstract": [
+        {
+          "text": "A notification dispatch mechanism that enables the broadcast of information to registered observers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NotificationCenter",
+      "type": "topic",
+      "url": "/documentation/foundation/notificationcenter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notificationcenter/1407263-removeobserver": {
+      "abstract": [
+        {
+          "text": "Removes matching entries from the notification center's dispatch table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObserver"
+        },
+        {
+          "kind": "text",
+          "text": "(Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/1407263-removeobserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObserver(_:name:object:)",
+      "type": "topic",
+      "url": "/documentation/foundation/notificationcenter/1407263-removeobserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notificationcenter/1411723-addobserver": {
+      "abstract": [
+        {
+          "text": "Adds an entry to the notification center to receive notifications that passed to the provided block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addObserver"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forName"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "queue"
+        },
+        {
+          "kind": "text",
+          "text": ": OperationQueue?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": (Notification) -> Void) -> any NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/1411723-addobserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addObserver(forName:object:queue:using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/notificationcenter/1411723-addobserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notificationcenter/1413994-removeobserver": {
+      "abstract": [
+        {
+          "text": "Removes all entries specifying an observer from the notification center's dispatch table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObserver"
+        },
+        {
+          "kind": "text",
+          "text": "(Any)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/1413994-removeobserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObserver(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/notificationcenter/1413994-removeobserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notificationcenter/1413994-removeobserver#2555731": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/1413994-removeobserver#2555731",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/notificationcenter/1413994-removeobserver#2555731"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notificationcenter/1415360-addobserver": {
+      "abstract": [
+        {
+          "text": "Adds an entry to the notification center to call the provided selector with the notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addObserver"
+        },
+        {
+          "kind": "text",
+          "text": "(Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "selector"
+        },
+        {
+          "kind": "text",
+          "text": ": Selector, "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/1415360-addobserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addObserver(_:selector:name:object:)",
+      "type": "topic",
+      "url": "/documentation/foundation/notificationcenter/1415360-addobserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notifications": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notifications",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Notifications",
+      "type": "topic",
+      "url": "/documentation/foundation/notifications"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1571947-dealloc": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "dealloc"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571947-dealloc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dealloc",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1571947-dealloc"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/notificationcenter/1411723-addobserver",
+        "doc://com.apple.documentation/documentation/foundation/notificationcenter/1415360-addobserver",
+        "doc://com.apple.documentation/documentation/foundation/notificationcenter/1407263-removeobserver"
+      ],
+      "title": "Adding and Removing Notification Observers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsnotificationcenter/1413994-removeobserver"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/notificationcenter/1413994-removeobserver"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

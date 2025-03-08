@@ -1,0 +1,976 @@
+{
+  "abstract": [
+    {
+      "text": "Specify send preferences to the ",
+      "type": "text"
+    },
+    {
+      "code": "AESend",
+      "type": "codeVoice"
+    },
+    {
+      "text": " function.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreservices/aesendmode"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1449490,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@AESendMode",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "typealias "
+      },
+      {
+        "kind": "identifier",
+        "text": "AESendMode"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "tdef",
+    "title": "AESendMode"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typealias"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AESendMode"
+            },
+            {
+              "kind": "text",
+              "text": " = "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Int32",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s5Int32V",
+              "text": "Int32"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use these constants with the ",
+              "type": "text"
+            },
+            {
+              "code": "sendMode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to the ",
+              "type": "text"
+            },
+            {
+              "code": "AESend(_:_:_:_:_:_:_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to specify how the server application should handle the reply mode, the interaction level, the application switch mode, the reconnection mode, the return receipt mode, the recording mode, and whether to process non-reply Apple events. To obtain a value for this parameter, you add together constants to set the appropriate bits for the Apple event you are about to send. The following paragraphs provide additional information about how you use these constants.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can set only one flag reply preference (",
+              "type": "text"
+            },
+            {
+              "code": "kAENoReply",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "kAEQueueReply",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "kAEWaitReply",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), one user interaction preference (",
+              "type": "text"
+            },
+            {
+              "code": "kAENeverInteract",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "kAECanInteract",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "kAEAlwaysInteract",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), and one recording and execution preference (",
+              "type": "text"
+            },
+            {
+              "code": "kAEDontRecord",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "kAEDontExecute",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before the Apple Event Manager sends a reply event back to the client application, the ",
+              "type": "text"
+            },
+            {
+              "code": "keyAddressAttr",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute contains the address of the client application. After the client receives the reply event, the ",
+              "type": "text"
+            },
+            {
+              "code": "keyAddressAttr",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute contains the address of the server application.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you specify ",
+              "type": "text"
+            },
+            {
+              "code": "kAEWaitReply",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the Apple Event Manager uses the Event Manager to send the event. The Apple Event Manager then calls the ",
+              "type": "text"
+            },
+            {
+              "code": "WaitNextEvent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function on behalf of your application, causing your application to yield the processor and giving the server application a chance to receive and handle the Apple event. Your application continues to yield the processor until the server handles the Apple event or the request times out.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify the ",
+              "type": "text"
+            },
+            {
+              "code": "kAEWantReceipt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag if your application wants notification that the server application has accepted the Apple event. If you specify this flag, your application receives a return receipt as a high-level event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you specify the ",
+              "type": "text"
+            },
+            {
+              "code": "kAEWantReceipt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag and the server application does not accept the Apple event within the time specified by the ",
+              "type": "text"
+            },
+            {
+              "code": "timeOutInTicks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to ",
+              "type": "text"
+            },
+            {
+              "code": "AESend",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the ",
+              "type": "text"
+            },
+            {
+              "code": "AESend",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function returns a timeout error. Note that ",
+              "type": "text"
+            },
+            {
+              "code": "AESend",
+              "type": "codeVoice"
+            },
+            {
+              "text": " also returns a timeout error if your application sets the ",
+              "type": "text"
+            },
+            {
+              "code": "kAEWaitReply",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag and does not receive the reply Apple event within the time specified by the ",
+              "type": "text"
+            },
+            {
+              "code": "timeOutInTicks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use one of the three flags—",
+              "type": "text"
+            },
+            {
+              "code": "kAENeverInteract",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "kAECanInteract",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "kAEAlwaysInteract",
+              "type": "codeVoice"
+            },
+            {
+              "text": "—to specify whether the server should interact with the user when handling the Apple event. Specify ",
+              "type": "text"
+            },
+            {
+              "code": "kAENeverInteract",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the server should not interact with the user when handling the Apple event. You might specify this constant if you don’t want the user to be interrupted while the server is handling the Apple event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "kAECanInteract",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag if the server should interact with the user when the user needs to supply information to the server. Use the ",
+              "type": "text"
+            },
+            {
+              "code": "kAEAlwaysInteract",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag if the server should interact with the user whenever the server normally asks a user to confirm a decision or interact in any other way, even if no additional information is needed from the user. Note that it is the responsibility of the server and client applications to agree on how to interpret the ",
+              "type": "text"
+            },
+            {
+              "code": "kAEAlwaysInteract",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the client application does not set any one of the user interaction flags, the Apple Event Manager sets a default, depending on the location of the target of the Apple event. If the server application is on a remote computer, the Apple Event Manager sets the ",
+              "type": "text"
+            },
+            {
+              "code": "kAENeverInteract",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag as the default. If the target of the Apple event is on the local computer, the Apple Event Manager sets the ",
+              "type": "text"
+            },
+            {
+              "code": "kAECanInteract",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag as the default.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The server application should call ",
+              "type": "text"
+            },
+            {
+              "code": "AEInteractWithUser",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if it needs to interact with the user. If both the client and the server allow user interaction, the Apple Event Manager attempts to bring the server to the foreground if it is not already the foreground process. If both the ",
+              "type": "text"
+            },
+            {
+              "code": "kAECanSwitchLayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the ",
+              "type": "text"
+            },
+            {
+              "code": "kAEWaitReply",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flags are set, and if the client application is the active application on the local computer, the Apple Event Manager brings the server application directly to the front. Otherwise, the Apple Event Manager posts a notification request asking the user to bring the server application to the front, regardless of whether the ",
+              "type": "text"
+            },
+            {
+              "code": "kAECanSwitchLayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag is set. This ensures that the user will not be interrupted by an unexpected application switch. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify the ",
+              "type": "text"
+            },
+            {
+              "code": "kAEDontRecord",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag if your application is sending an Apple event to itself that you don’t want to be recorded. When Apple event recording has been turned on, every event that your application sends to itself will be automatically recorded by the Apple Event Manager except those sent with the ",
+              "type": "text"
+            },
+            {
+              "code": "kAEDontRecord",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag set.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify the ",
+              "type": "text"
+            },
+            {
+              "code": "kAEDontExecute",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag if your application is sending an Apple event to itself for recording purposes only—that is, if you want the Apple Event Manager to send a copy of the event to the recording process but you do not want your application actually to receive the event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See also ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1770279",
+          "level": 3,
+          "text": "Version-Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "kAEDontReconnect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "kAEWantReceipt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " constants are deprecated and unsupported in macOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Int32": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int32",
+      "type": "topic",
+      "url": "/documentation/swift/int32"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Event Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/apple_event_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Events",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kaealwaysinteract": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAEAlwaysInteract"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kaealwaysinteract",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAEAlwaysInteract",
+      "type": "topic",
+      "url": "/documentation/coreservices/kaealwaysinteract"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kaecaninteract": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAECanInteract"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kaecaninteract",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAECanInteract",
+      "type": "topic",
+      "url": "/documentation/coreservices/kaecaninteract"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kaecanswitchlayer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAECanSwitchLayer"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kaecanswitchlayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAECanSwitchLayer",
+      "type": "topic",
+      "url": "/documentation/coreservices/kaecanswitchlayer"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kaedontexecute": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAEDontExecute"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kaedontexecute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAEDontExecute",
+      "type": "topic",
+      "url": "/documentation/coreservices/kaedontexecute"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kaedontreconnect": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAEDontReconnect"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kaedontreconnect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAEDontReconnect",
+      "type": "topic",
+      "url": "/documentation/coreservices/kaedontreconnect"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kaedontrecord": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAEDontRecord"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kaedontrecord",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAEDontRecord",
+      "type": "topic",
+      "url": "/documentation/coreservices/kaedontrecord"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kaeneverinteract": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAENeverInteract"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kaeneverinteract",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAENeverInteract",
+      "type": "topic",
+      "url": "/documentation/coreservices/kaeneverinteract"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kaenoreply": {
+      "abstract": [
+        {
+          "text": "The reply preference—your application does not want a reply Apple event. If you set the bit specified by this constant, the server processes the Apple event as soon as it has the opportunity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAENoReply"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kaenoreply",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAENoReply",
+      "type": "topic",
+      "url": "/documentation/coreservices/kaenoreply"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kaeprocessnonreplyevents": {
+      "abstract": [
+        {
+          "text": "Allow processing of non-reply Apple events while awaiting a synchronous Apple event reply (you specified ",
+          "type": "text"
+        },
+        {
+          "code": "kAEWaitReply",
+          "type": "codeVoice"
+        },
+        {
+          "text": " for the reply preference).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAEProcessNonReplyEvents"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kaeprocessnonreplyevents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAEProcessNonReplyEvents",
+      "type": "topic",
+      "url": "/documentation/coreservices/kaeprocessnonreplyevents"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kaequeuereply": {
+      "abstract": [
+        {
+          "text": "The reply preference—your application wants a reply Apple event. If you set the bit specified by this constant, the reply appears in your event queue as soon as the server has the opportunity to process and respond to your Apple event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAEQueueReply"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kaequeuereply",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAEQueueReply",
+      "type": "topic",
+      "url": "/documentation/coreservices/kaequeuereply"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kaewaitreply": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAEWaitReply"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kaewaitreply",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAEWaitReply",
+      "type": "topic",
+      "url": "/documentation/coreservices/kaewaitreply"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kaewantreceipt": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAEWantReceipt"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kaewantreceipt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAEWantReceipt",
+      "type": "topic",
+      "url": "/documentation/coreservices/kaewantreceipt"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1770280",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/kaenoreply",
+        "doc://com.apple.documentation/documentation/coreservices/kaequeuereply",
+        "doc://com.apple.documentation/documentation/coreservices/kaewaitreply",
+        "doc://com.apple.documentation/documentation/coreservices/kaedontreconnect",
+        "doc://com.apple.documentation/documentation/coreservices/kaewantreceipt",
+        "doc://com.apple.documentation/documentation/coreservices/kaeneverinteract",
+        "doc://com.apple.documentation/documentation/coreservices/kaecaninteract",
+        "doc://com.apple.documentation/documentation/coreservices/kaealwaysinteract",
+        "doc://com.apple.documentation/documentation/coreservices/kaecanswitchlayer",
+        "doc://com.apple.documentation/documentation/coreservices/kaedontrecord",
+        "doc://com.apple.documentation/documentation/coreservices/kaedontexecute",
+        "doc://com.apple.documentation/documentation/coreservices/kaeprocessnonreplyevents"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/aesendmode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreservices/aesendmode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

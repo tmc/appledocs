@@ -1,0 +1,1173 @@
+{
+  "abstract": [
+    {
+      "text": "Create anchors that track objects you recognize in the camera feed, using a custom optical-recognition algorithm.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+        "doc://com.apple.arkit/documentation/ARKit/content-anchors"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/recognizing-and-labeling-arbitrary-objects"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Recognizing and Labeling Arbitrary Objects"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app parses the camera feed, using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreML",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " model that recognizes regular desktop items. The app displays a label onscreen that indicates when it recognizes an item. You then tap the screen to place a textual annotation in the physical environment that’s labeled with the name of the recognized object. Because the Core ML model used by this app doesn’t tell you where the object lies within an image, label placement relative to the object depends on where you tap.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "ARKit requires an iOS device with an A9 or later processor. ARKit is not available in iOS Simulator.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Implement-the-visioncore-ML-image-classifier",
+          "level": 2,
+          "text": "Implement the vision/core ML image classifier",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code’s ",
+              "type": "text"
+            },
+            {
+              "code": "classificationRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property, ",
+              "type": "text"
+            },
+            {
+              "code": "classifyCurrentImage() method, and ",
+              "type": "codeVoice"
+            },
+            {
+              "text": "processClassifications(for:error:)` method manage:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Core ML image-classifier model, loaded from an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "mlmodel",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file bundled with the app using the Swift API that Core ML generates for the model",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Vision/VNCoreMLRequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Vision/VNImageRequestHandler",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects for passing image data to the model for evaluation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more details on using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/VNImageRequestHandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/VNCoreMLRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and image classifier models, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample-code project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Run-the-AR-session-and-process-camera-images",
+          "level": 2,
+          "text": "Run the AR session and process camera images",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample ",
+              "type": "text"
+            },
+            {
+              "code": "ViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class manages the AR session and displays AR overlay content in a SpriteKit view. ARKit captures video frames from the camera and provides them to the view controller in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didUpdate:)-9v2kw",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, which then calls the ",
+              "type": "text"
+            },
+            {
+              "code": "classifyCurrentImage()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to run the Vision image classifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func session(_ session: ARSession, didUpdate frame: ARFrame) {",
+            "    // Do not enqueue other buffers for processing while another Vision task is still running.",
+            "    // The camera stream has only a finite amount of buffers available; holding too many buffers for analysis would starve the camera.",
+            "    guard currentBuffer == nil, case .normal = frame.camera.trackingState else {",
+            "        return",
+            "    }",
+            "    ",
+            "    // Retain the image buffer for Vision processing.",
+            "    self.currentBuffer = frame.capturedImage",
+            "    classifyCurrentImage()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Serialize-image-processing-for-real-time-performance",
+          "level": 2,
+          "text": "Serialize image processing for real-time performance",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "classifyCurrentImage()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method uses the view controller’s ",
+              "type": "text"
+            },
+            {
+              "code": "currentBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to track whether Vision is currently processing an image before starting another Vision task.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Most computer vision tasks are not rotation agnostic so it is important to pass in the orientation of the image with respect to device.",
+            "let orientation = CGImagePropertyOrientation(UIDevice.current.orientation)",
+            "",
+            "let requestHandler = VNImageRequestHandler(cvPixelBuffer: currentBuffer!, orientation: orientation)",
+            "visionQueue.async {",
+            "    do {",
+            "        // Release the pixel buffer when done, allowing the next buffer to be processed.",
+            "        defer { self.currentBuffer = nil }",
+            "        try requestHandler.perform([self.classificationRequest])",
+            "    } catch {",
+            "        print(\"Error: Vision request failed with error \\\"\\(error)\\\"\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Limit your processing to one buffer at a time for performance. The camera recycles a finite pool of pixel buffers, so retaining too many buffers for processing could starve the camera and shut down the capture session. Passing multiple buffers to Vision for processing would slow down processing of each image, adding latency and reducing the amount of CPU and GPU overhead for rendering AR visualizations.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition, the sample app enables the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/VNRequest/usesCPUOnly",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " setting for its Vision request, freeing the GPU for use in rendering.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Visualize-results-in-AR",
+          "level": 2,
+          "text": "Visualize results in AR",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The `processClassifications(for:error:) method stores the best-match result label produced by the image classifier and displays it in the corner of the screen. The user can then tap in the AR scene to place that label at a real-world position. Placing a label requires two main steps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, a tap gesture recognizer fires the ",
+              "type": "text"
+            },
+            {
+              "code": "placeLabelAtLocation(sender:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " action. This method uses the ARKit ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSKView/hitTest(_:types:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to estimate the 3D real-world position corresponding to the tap, and adds an anchor to the AR session at that position.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@IBAction func placeLabelAtLocation(sender: UITapGestureRecognizer) {",
+            "    let hitLocationInView = sender.location(in: sceneView)",
+            "    let hitTestResults = sceneView.hitTest(hitLocationInView, types: [.featurePoint, .estimatedHorizontalPlane])",
+            "    if let result = hitTestResults.first {",
+            "        ",
+            "        // Add a new anchor at the tap location.",
+            "        let anchor = ARAnchor(transform: result.worldTransform)",
+            "        sceneView.session.add(anchor: anchor)",
+            "        ",
+            "        // Track anchor ID to associate text with the anchor after ARKit creates a corresponding SKNode.",
+            "        anchorLabels[anchor.identifier] = identifierString",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, after ARKit automatically creates a SpriteKit node for the newly added anchor, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSKViewDelegate/view(_:didAdd:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method provides content for that node. In this case, the sample ",
+              "type": "text"
+            },
+            {
+              "code": "TemplateLabelNode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class creates a styled text label using the string provided by the image classifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func view(_ view: ARSKView, didAdd node: SKNode, for anchor: ARAnchor) {",
+            "    guard let labelText = anchorLabels[anchor.identifier] else {",
+            "        fatalError(\"missing expected associated label for anchor\")",
+            "    }",
+            "    let label = TemplateLabelNode(text: labelText)",
+            "    node.addChild(label)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "255f0d93500d/RecognizingAndLabelingArbitraryObjects.zip": {
+      "checksum": "255f0d93500d80f70ca97964f4c009fe0fb74b0e9818af6cd888086c941bc5a28485f94b37026e29c57ee9b1274dad3ac1416788bd4a57fb01f673598885b7fe",
+      "identifier": "255f0d93500d/RecognizingAndLabelingArbitraryObjects.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/255f0d93500d/RecognizingAndLabelingArbitraryObjects.zip"
+    },
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSKView/hitTest(_:types:)": {
+      "abstract": [
+        {
+          "text": "Searches for real-world objects or AR anchors in the captured camera image corresponding to a point in the SpriteKit view.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hitTest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "types"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARHitTestResult",
+          "text": "ARHitTestResult"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARHitTestResultType",
+          "text": "ResultType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARHitTestResult",
+          "text": "ARHitTestResult"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSKView/hitTest(_:types:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hitTest:types:"
+        }
+      ],
+      "role": "symbol",
+      "title": "hitTest(_:types:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arskview/hittest(_:types:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSKViewDelegate/view(_:didAdd:for:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a SpriteKit node corresponding to a new AR anchor has been added to the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSKView",
+          "text": "ARSKView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAdd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKNode",
+          "text": "SKNode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARAnchor",
+          "text": "ARAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSKViewDelegate/view(_:didAdd:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "view:didAddNode:forAnchor:"
+        }
+      ],
+      "role": "symbol",
+      "title": "view(_:didAdd:for:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arskviewdelegate/view(_:didadd:for:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didUpdate:)-9v2kw": {
+      "abstract": [
+        {
+          "text": "Provides a newly captured camera image and accompanying AR information to the delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARFrame",
+          "text": "ARFrame"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didUpdate:)-9v2kw",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didUpdateFrame:"
+        }
+      ],
+      "role": "symbol",
+      "title": "session(_:didUpdate:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsessiondelegate/session(_:didupdate:)-9v2kw"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios": {
+      "abstract": [
+        {
+          "text": "Integrate iOS device camera and motion features to produce augmented reality experiences in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in iOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-ios"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/content-anchors": {
+      "abstract": [
+        {
+          "text": "Identify items in the physical environment, including planar surfaces, images, physical objects, body positions, and faces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/content-anchors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Content Anchors",
+      "type": "topic",
+      "url": "/documentation/arkit/content-anchors"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/creating-screen-annotations-for-objects-in-an-ar-experience": {
+      "abstract": [
+        {
+          "text": "Annotate an AR experience with virtual sticky notes that you display onscreen over real and virtual objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/creating-screen-annotations-for-objects-in-an-ar-experience",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating screen annotations for objects in an AR experience",
+      "type": "topic",
+      "url": "/documentation/arkit/creating-screen-annotations-for-objects-in-an-ar-experience"
+    },
+    "doc://com.apple.documentation/documentation/CoreML": {
+      "abstract": [
+        {
+          "text": "Integrate machine learning models into your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core ML",
+      "type": "topic",
+      "url": "/documentation/CoreML"
+    },
+    "doc://com.apple.documentation/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/Vision"
+    },
+    "doc://com.apple.documentation/documentation/Vision/VNCoreMLRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request that uses a Core ML model to process images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNCoreMLRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/VNCoreMLRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNCoreMLRequest",
+      "type": "topic",
+      "url": "/documentation/Vision/VNCoreMLRequest"
+    },
+    "doc://com.apple.documentation/documentation/Vision/VNImageRequestHandler": {
+      "abstract": [
+        {
+          "text": "An object that processes one or more image-analysis request pertaining to a single image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNImageRequestHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/VNImageRequestHandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNImageRequestHandler",
+      "type": "topic",
+      "url": "/documentation/Vision/VNImageRequestHandler"
+    },
+    "doc://com.apple.documentation/documentation/Vision/VNRequest/usesCPUOnly": {
+      "abstract": [
+        {
+          "text": "A Boolean signifying that the Vision request should execute exclusively on the CPU.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "usesCPUOnly"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/VNRequest/usesCPUOnly",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "usesCPUOnly",
+      "type": "topic",
+      "url": "/documentation/Vision/VNRequest/usesCPUOnly"
+    },
+    "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml": {
+      "abstract": [
+        {
+          "text": "Crop and scale photos using the Vision framework and classify them with a Core ML model.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Classifying Images with Vision and Core ML",
+      "type": "topic",
+      "url": "/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "255f0d93500d/RecognizingAndLabelingArbitraryObjects.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Text-Annotations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/creating-screen-annotations-for-objects-in-an-ar-experience"
+      ],
+      "title": "Text Annotations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Text-Annotations",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/creating-screen-annotations-for-objects-in-an-ar-experience"
+              ],
+              "title": "Text Annotations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Vision~1VNImageRequestHandler/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "VNImageRequestHandler"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Vision~1VNCoreMLRequest/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "VNCoreMLRequest"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)VNImageBasedRequest",
+              "text": "VNImageBasedRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSKView~1hitTest(_:types:)/title",
+          "value": "hitTest:types:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSKView~1hitTest(_:types:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "hitTest:types:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate~1session(_:didUpdate:)-9v2kw/title",
+          "value": "session:didUpdateFrame:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate~1session(_:didUpdate:)-9v2kw/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didUpdateFrame:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Vision~1VNRequest~1usesCPUOnly/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readwrite"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "usesCPUOnly"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSKViewDelegate~1view(_:didAdd:for:)/title",
+          "value": "view:didAddNode:forAnchor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSKViewDelegate~1view(_:didAdd:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "view:didAddNode:forAnchor:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/recognizing-and-labeling-arbitrary-objects"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/recognizing-and-labeling-arbitrary-objects"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

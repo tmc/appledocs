@@ -1,0 +1,494 @@
+{
+  "abstract": [
+    {
+      "text": "The asynchronous sequence that emits a purchase intent when customers initiate a purchase outside of the app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/PurchaseIntent"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/PurchaseIntent/intents"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "StoreKit",
+    "externalID": "s:8StoreKit14PurchaseIntentV7intentsAC0C7IntentsVvpZ",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "static"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "intents"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:8StoreKit14PurchaseIntentV",
+        "text": "PurchaseIntent"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:8StoreKit14PurchaseIntentV0C7IntentsV",
+        "text": "PurchaseIntents"
+      }
+    ],
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.4",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.4",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.4",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "property",
+    "title": "intents"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "intents"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/PurchaseIntent",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:8StoreKit14PurchaseIntentV",
+              "text": "PurchaseIntent"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/PurchaseIntent/PurchaseIntents",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:8StoreKit14PurchaseIntentV0C7IntentsV",
+              "text": "PurchaseIntents"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.storekit/documentation/StoreKit/supporting-win-back-offers-in-your-app",
+        "doc://com.apple.storekit/documentation/StoreKit/supporting-promoted-in-app-purchases-in-your-app"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app receives a purchase intent when customers initiate a purchase outside of your app by selecting a promoted product on the App Store, or redeeming a win-back offer. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/PurchaseIntent/product",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to complete your app’s purchase workflow, including finishing the purchase, unlocking the product, and any other workflows specific to your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example code receives the purchase intent, and calls a method to complete the purchase workflow:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func purchaseProduct(_ product: Product) async {",
+            "    // Complete the purchase workflow.",
+            "    do {",
+            "        try await product.purchase()",
+            "    }",
+            "    catch {",
+            "        // Add your code to handle errors.",
+            "    }",
+            "    // Add your code for the remaining purchase workflow.",
+            "}",
+            "",
+            "for await purchaseIntent in PurchaseIntent.intents {",
+            "    // Receive the purchase intent and then complete the purchase workflow.",
+            "    await purchaseProduct(purchaseIntent.product)",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/PurchaseIntent": {
+      "abstract": [
+        {
+          "text": "An instance that emits purchase intents, which indicate that the customer initiated a purchase outside of your app, for your app to complete.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PurchaseIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/PurchaseIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PurchaseIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PurchaseIntent",
+      "type": "topic",
+      "url": "/documentation/storekit/purchaseintent"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/PurchaseIntent/PurchaseIntents": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence of purchase intents for purchases that customers initiate outside of the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PurchaseIntents"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/PurchaseIntent/PurchaseIntents",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PurchaseIntents"
+        }
+      ],
+      "role": "symbol",
+      "title": "PurchaseIntent.PurchaseIntents",
+      "type": "topic",
+      "url": "/documentation/storekit/purchaseintent/purchaseintents"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/PurchaseIntent/intents": {
+      "abstract": [
+        {
+          "text": "The asynchronous sequence that emits a purchase intent when customers initiate a purchase outside of the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "intents"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit14PurchaseIntentV",
+          "text": "PurchaseIntent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit14PurchaseIntentV0C7IntentsV",
+          "text": "PurchaseIntents"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/PurchaseIntent/intents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "intents",
+      "type": "topic",
+      "url": "/documentation/storekit/purchaseintent/intents"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/PurchaseIntent/product": {
+      "abstract": [
+        {
+          "text": "The product information of the In-App Purchase the customer selects to purchase outside of the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "product"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/PurchaseIntent/product",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "product",
+      "type": "topic",
+      "url": "/documentation/storekit/purchaseintent/product"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/supporting-promoted-in-app-purchases-in-your-app": {
+      "abstract": [
+        {
+          "text": "Display promoted In-App Purchases on your product page and handle purchases that users initiate on the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/supporting-promoted-in-app-purchases-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting promoted In-App Purchases in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/supporting-promoted-in-app-purchases-in-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/supporting-win-back-offers-in-your-app": {
+      "abstract": [
+        {
+          "text": "Re-engage previous subscribers with a free or discounted offer for an auto-renewable subscription, for a specific duration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/supporting-win-back-offers-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting win-back offers in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/supporting-win-back-offers-in-your-app"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-purchase-intents",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/PurchaseIntent/PurchaseIntents"
+      ],
+      "title": "Getting purchase intents"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/purchaseintent/intents"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

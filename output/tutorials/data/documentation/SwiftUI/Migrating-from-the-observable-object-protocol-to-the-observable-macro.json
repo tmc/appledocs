@@ -1,0 +1,2596 @@
+{
+  "abstract": [
+    {
+      "text": "Update your existing app to leverage the benefits of Observation in Swift.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Model-data"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Migrating-from-the-observable-object-protocol-to-the-observable-macro"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Migrating from the Observable Object protocol to the Observable macro"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting with iOS 17, iPadOS 17, macOS 14, tvOS 17, and watchOS 10, SwiftUI",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provides support for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Observation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a Swift-specific implementation of the observer design pattern. Adopting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Observation provides your app with the following benefits:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tracking optionals and collections of objects, which isn’t possible when",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Combine/ObservableObject",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Using existing data flow primitives like ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/State",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Environment",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "instead of object-based equivalents such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/StateObject",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentObject",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Updating views based on changes to the observable properties that a view’s",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/body-8kl5o",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " reads instead of any property changes that occur",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to an observable object, which can help improve your app’s performance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To take advantage of these benefits in your app, you’ll discover how to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "replace existing source code that relies on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Combine/ObservableObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with code that leverages the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Observation/Observable()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "macro.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Download this sample to see the migrated version of the sample app. To",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "see the premigrated version, download the sample available in",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Monitoring-model-data-changes-in-your-app",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". You can also use the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "premigrated version to code along with this article.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Use-the-Observable-macro",
+          "level": 3,
+          "text": "Use the Observable macro",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To adopt ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Observation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "existing app, begin by replacing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Combine/ObservableObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data model type with the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Observation/Observable()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "macro. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Observation/Observable()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "macro generates source code at compile time that adds observation support to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// BEFORE",
+                    "import SwiftUI",
+                    "",
+                    "class Library: ObservableObject {",
+                    "    // ...",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// AFTER",
+                    "import SwiftUI",
+                    "",
+                    "@Observable class Library {",
+                    "    // ...",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then remove",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Combine/Published",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "wrapper from observable properties. Observation doesn’t require a property",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "wrapper to make a property observable. Instead, the accessibility of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property in relationship to an observer, such as a view, determines whether",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a property is observable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// BEFORE",
+                    "@Observable class Library {",
+                    "    @Published var books: [Book] = [Book(), Book(), Book()]",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// AFTER",
+                    "@Observable class Library {",
+                    "    var books: [Book] = [Book(), Book(), Book()]",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have properties that are accessible to an observer that you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "don’t want to track, apply the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Observation/ObservationIgnored()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "macro to the property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Migrate-incrementally",
+          "level": 3,
+          "text": "Migrate incrementally",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t need to make a wholesale replacement of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Combine/ObservableObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol throughout your app. Instead, you can make changes incrementally.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Start by changing one data model type to use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Observation/Observable()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "macro. Your app can mix data model types that use different observation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "systems. However, SwiftUI tracks changes differently based on the observation system that a data model type uses, ",
+              "type": "text"
+            },
+            {
+              "code": "Observable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " versus ",
+              "type": "text"
+            },
+            {
+              "code": "ObservableObject",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may notice slight behavioral differences in your app based on the tracking",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method. For instance, when tracking as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Observation/Observable()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftUI updates a view only when an observable property changes and the view’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/body-8kl5o",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " reads the property directly. The view doesn’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "update when observable properties not read by ",
+              "type": "text"
+            },
+            {
+              "code": "body",
+              "type": "codeVoice"
+            },
+            {
+              "text": " changes. In contrast, a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view updates when any published property of an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Combine/ObservableObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance changes, even if the view doesn’t read the property that changes,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when tracking as ",
+              "type": "text"
+            },
+            {
+              "code": "ObservableObject",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To learn more about when SwiftUI updates views when observable",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "properties change, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Managing-model-data-in-your-app",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Migrate-other-source-code",
+          "level": 3,
+          "text": "Migrate other source code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The only change made to the sample app so far is to apply the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Observation/Observable()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "macro to ",
+              "type": "text"
+            },
+            {
+              "code": "Library",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and remove support for the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Combine/ObservableObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol. The app still uses the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Combine/ObservableObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data flow primitive like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/StateObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to manage an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "Library",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you were to build and run the app, SwiftUI still updates the views as expected.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "That’s because data flow property wrappers such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/StateObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " support types that use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Observation/Observable()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "macro. SwiftUI provides this support so apps can make source code changes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "incrementally.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, to fully adopt ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Observation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "replace the use of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/StateObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/State",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " after updating your data model type. For example, in the following code the main app structure creates an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance of ",
+              "type": "text"
+            },
+            {
+              "code": "Library",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and stores it as a ",
+              "type": "text"
+            },
+            {
+              "code": "StateObject",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". It also adds the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "Library",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance to the environment using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/environmentObject(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// BEFORE",
+            "@main",
+            "struct BookReaderApp: App {",
+            "    @StateObject private var library = Library()",
+            "",
+            "    var body: some Scene {",
+            "        WindowGroup {",
+            "            LibraryView()",
+            "                .environmentObject(library)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now that ",
+              "type": "text"
+            },
+            {
+              "code": "Library",
+              "type": "codeVoice"
+            },
+            {
+              "text": " no longer conforms to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Combine/ObservableObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code can change to use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/State",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/StateObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and to add ",
+              "type": "text"
+            },
+            {
+              "code": "library",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the environment using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/environment(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// AFTER",
+            "@main",
+            "struct BookReaderApp: App {",
+            "    @State private var library = Library()",
+            "",
+            "    var body: some Scene {",
+            "        WindowGroup {",
+            "            LibraryView()",
+            "                .environment(library)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "One more change must happen before ",
+              "type": "text"
+            },
+            {
+              "code": "Library",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fully adopts",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Observation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Previously the view",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "LibraryView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " retrieved a ",
+              "type": "text"
+            },
+            {
+              "code": "Library",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance from the environment using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property wrapper. The new code, however, uses the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Environment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property wrapper instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// BEFORE",
+                    "struct LibraryView: View {",
+                    "    @EnvironmentObject var library: Library",
+                    "",
+                    "    var body: some View {",
+                    "        List(library.books) { book in",
+                    "            BookView(book: book)",
+                    "        }",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// AFTER",
+                    "struct LibraryView: View {",
+                    "    @Environment(Library.self) private var library",
+                    "    ",
+                    "    var body: some View {",
+                    "        List(library.books) { book in",
+                    "            BookView(book: book)",
+                    "        }",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "anchor": "Remove-the-ObservedObject-property-wrapper",
+          "level": 3,
+          "text": "Remove the ObservedObject property wrapper",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To wrap up the migration of the sample app, change the data model type ",
+              "type": "text"
+            },
+            {
+              "code": "Book",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to support",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Observation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by removing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Combine/ObservableObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type declaration and apply the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Observation/Observable()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "macro. Then remove the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Combine/Published",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "wrapper from observable properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// BEFORE",
+                    "class Book: ObservableObject, Identifiable {",
+                    "    @Published var title = \"Sample Book Title\"",
+                    "    ",
+                    "    let id = UUID() // A unique identifier that never changes.",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// AFTER",
+                    "@Observable class Book: Identifiable {",
+                    "    var title = \"Sample Book Title\"",
+                    "    ",
+                    "    let id = UUID() // A unique identifier that never changes.",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, remove the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ObservedObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property wrapper from the ",
+              "type": "text"
+            },
+            {
+              "code": "book",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variable in the ",
+              "type": "text"
+            },
+            {
+              "code": "BookView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This property wrapper isn’t needed when adopting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Observation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". That’s because",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftUI automatically tracks any observable properties that a view’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/body-8kl5o",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " reads directly. For example, SwiftUI updates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "BookView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when ",
+              "type": "text"
+            },
+            {
+              "code": "book.title",
+              "type": "codeVoice"
+            },
+            {
+              "text": " changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// BEFORE",
+                    "struct BookView: View {",
+                    "    @ObservedObject var book: Book",
+                    "    @State private var isEditorPresented = false",
+                    "    ",
+                    "    var body: some View {",
+                    "        HStack {",
+                    "            Text(book.title)",
+                    "            Spacer()",
+                    "            Button(\"Edit\") {",
+                    "                isEditorPresented = true",
+                    "            }",
+                    "        }",
+                    "        .sheet(isPresented: $isEditorPresented) {",
+                    "            BookEditView(book: book)",
+                    "        }",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// AFTER",
+                    "struct BookView: View {",
+                    "    var book: Book",
+                    "    @State private var isEditorPresented = false",
+                    "    ",
+                    "    var body: some View {",
+                    "        HStack {",
+                    "            Text(book.title)",
+                    "            Spacer()",
+                    "            Button(\"Edit\") {",
+                    "                isEditorPresented = true",
+                    "            }",
+                    "        }",
+                    "        .sheet(isPresented: $isEditorPresented) {",
+                    "            BookEditView(book: book)",
+                    "        }",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, if a view needs a binding to an observable type, replace",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ObservedObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Bindable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property wrapper. This property",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "wrapper provides binding support to an observable type so that views that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "expect a binding can change an observable property. For instance, in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "following code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TextField",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " receives a binding to ",
+              "type": "text"
+            },
+            {
+              "code": "book.title",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// BEFORE",
+                    "struct BookEditView: View {",
+                    "    @ObservedObject var book: Book",
+                    "    @Environment(\\.dismiss) private var dismiss",
+                    "    ",
+                    "    var body: some View {",
+                    "        VStack() {",
+                    "            TextField(\"Title\", text: $book.title)",
+                    "                .textFieldStyle(.roundedBorder)",
+                    "                .onSubmit {",
+                    "                    dismiss()",
+                    "                }",
+                    "                ",
+                    "            Button(\"Close\") {",
+                    "                dismiss()",
+                    "            }",
+                    "            .buttonStyle(.borderedProminent)",
+                    "        }",
+                    "        .padding()",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// AFTER",
+                    "struct BookEditView: View {",
+                    "    @Bindable var book: Book",
+                    "    @Environment(\\.dismiss) private var dismiss",
+                    "    ",
+                    "    var body: some View {",
+                    "        VStack() {",
+                    "            TextField(\"Title\", text: $book.title)",
+                    "                .textFieldStyle(.roundedBorder)",
+                    "                .onSubmit {",
+                    "                    dismiss()",
+                    "                }",
+                    "                ",
+                    "            Button(\"Close\") {",
+                    "                dismiss()",
+                    "            }",
+                    "            .buttonStyle(.borderedProminent)",
+                    "        }",
+                    "        .padding()",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "b78f7ecb6749/ObservationSample.zip": {
+      "checksum": "b78f7ecb6749474db44470ceb86a35c079258dbb6d91d7999e7843b8b4419313d7622711096f006258930ea833dfe42ba02bbbab104c1f0db4e350a256ef9fe4",
+      "identifier": "b78f7ecb6749/ObservationSample.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/b78f7ecb6749/ObservationSample.zip"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Bindable": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that supports creating bindings to the mutable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "properties of observable objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bindable"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Bindable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Bindable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Bindable",
+      "type": "topic",
+      "url": "/documentation/swiftui/bindable"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Environment": {
+      "abstract": [
+        {
+          "text": "A property wrapper that reads a value from a view’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Environment"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Environment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Environment"
+        }
+      ],
+      "role": "symbol",
+      "title": "Environment",
+      "type": "topic",
+      "url": "/documentation/swiftui/environment"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentObject": {
+      "abstract": [
+        {
+          "text": "A property wrapper type for an observable object that a parent or ancestor",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "view supplies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnvironmentObject"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EnvironmentObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "EnvironmentObject",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentobject"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Managing-model-data-in-your-app": {
+      "abstract": [
+        {
+          "text": "Create connections between your app’s data model and views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Managing-model-data-in-your-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Managing model data in your app",
+      "type": "topic",
+      "url": "/documentation/swiftui/managing-model-data-in-your-app"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Model-data": {
+      "abstract": [
+        {
+          "text": "Manage the data that your app uses to drive its interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Model-data",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Model data",
+      "type": "topic",
+      "url": "/documentation/swiftui/model-data"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Monitoring-model-data-changes-in-your-app": {
+      "abstract": [
+        {
+          "text": "Show changes to data in your app’s user interface by using observable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Monitoring-model-data-changes-in-your-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Monitoring data changes in your app",
+      "type": "topic",
+      "url": "/documentation/swiftui/monitoring-model-data-changes-in-your-app"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ObservedObject": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that subscribes to an observable object and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "invalidates a view whenever the observable object changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ObservedObject"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ObservedObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ObservedObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "ObservedObject",
+      "type": "topic",
+      "url": "/documentation/swiftui/observedobject"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/State": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that can read and write a value managed by SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/State",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "role": "symbol",
+      "title": "State",
+      "type": "topic",
+      "url": "/documentation/swiftui/state"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/StateObject": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that instantiates an observable object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StateObject"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/StateObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StateObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "StateObject",
+      "type": "topic",
+      "url": "/documentation/swiftui/stateobject"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TextField": {
+      "abstract": [
+        {
+          "text": "A control that displays an editable text interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextField"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TextField",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextField"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextField",
+      "type": "topic",
+      "url": "/documentation/swiftui/textfield"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/body-8kl5o": {
+      "abstract": [
+        {
+          "text": "The content and behavior of the view.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 6,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP4BodyQa",
+          "text": "Body"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/body-8kl5o",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "body",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/body-8kl5o"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/environment(_:)": {
+      "abstract": [
+        {
+          "text": "Places an observable object in the view’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "environment"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/environment(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "environment(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/environment(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/environmentObject(_:)": {
+      "abstract": [
+        {
+          "text": "Supplies an observable object to a view’s hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "environmentObject"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/environmentObject(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "environmentObject(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/environmentobject(_:)"
+    },
+    "doc://com.apple.documentation/documentation/Combine/ObservableObject": {
+      "abstract": [
+        {
+          "text": "A type of object with a publisher that emits before the object has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ObservableObject"
+        },
+        {
+          "kind": "text",
+          "text": " : AnyObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Combine/ObservableObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ObservableObject",
+      "type": "topic",
+      "url": "/documentation/Combine/ObservableObject"
+    },
+    "doc://com.apple.documentation/documentation/Combine/Published": {
+      "abstract": [
+        {
+          "text": "A type that publishes a property marked with an attribute.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@propertyWrapper"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Published"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Combine/Published",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Published",
+      "type": "topic",
+      "url": "/documentation/Combine/Published"
+    },
+    "doc://com.apple.documentation/documentation/Observation": {
+      "abstract": [
+        {
+          "text": "Make responsive apps that update the presentation when underlying data changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Observation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Observation",
+      "type": "topic",
+      "url": "/documentation/Observation"
+    },
+    "doc://com.apple.documentation/documentation/Observation/Observable()": {
+      "abstract": [
+        {
+          "text": "Defines and implements conformance of the Observable protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@attached"
+        },
+        {
+          "kind": "text",
+          "text": "(member, names: named(_$observationRegistrar), named(access), named(withMutation)) "
+        },
+        {
+          "kind": "attribute",
+          "text": "@attached"
+        },
+        {
+          "kind": "text",
+          "text": "(memberAttribute) "
+        },
+        {
+          "kind": "attribute",
+          "text": "@attached"
+        },
+        {
+          "kind": "text",
+          "text": "(extension, conformances: "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Observation10ObservableP",
+          "text": "Observable"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Observable"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Observation/Observable()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Observable()",
+      "type": "topic",
+      "url": "/documentation/Observation/Observable()"
+    },
+    "doc://com.apple.documentation/documentation/Observation/ObservationIgnored()": {
+      "abstract": [
+        {
+          "text": "Disables observation tracking of a property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@attached"
+        },
+        {
+          "kind": "text",
+          "text": "(accessor, names: named(willSet)) "
+        },
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ObservationIgnored"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Observation/ObservationIgnored()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ObservationIgnored()",
+      "type": "topic",
+      "url": "/documentation/Observation/ObservationIgnored()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "b78f7ecb6749/ObservationSample.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-model-data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Managing-model-data-in-your-app",
+        "doc://com.apple.documentation/documentation/Observation/Observable()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Monitoring-model-data-changes-in-your-app",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/StateObject",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ObservedObject",
+        "doc://com.apple.documentation/documentation/Combine/ObservableObject"
+      ],
+      "title": "Creating model data"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Creating-model-data",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.SwiftUI/documentation/SwiftUI/Monitoring-model-data-changes-in-your-app"
+              ],
+              "title": "Creating model data"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/migrating-from-the-observable-object-protocol-to-the-observable-macro"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/swiftui/migrating-from-the-observable-object-protocol-to-the-observable-macro"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2721 @@
+{
+  "abstract": [
+    {
+      "text": "Coordinate the presentation of closed-captioned data for your app’s media files.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/captions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Media Accessibility"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Captions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People can create custom styles for caption appearance in Accessibility settings. The Media Accessibility framework provides access to these user-captioning settings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS, choose System Settings > Accessibility > Captions to access these options.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3709928",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a person creates a custom caption style, the settings affect attributes, such as caption color, font, and language.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3709929",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By choosing custom styles for media text, people are requesting improved legibility. The Media Accessibility functions let you to tailor the user experience of your media content. You must be able to influence the caption-rendering process at time of delivery for the following functions to be useful. Retrieving a person’s preferences and dynamically rendering the captions for maximum readability provides the best user experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility": {
+      "abstract": [
+        {
+          "text": "Make your app’s media more accessible by supporting people’s systemwide preferences for video and audio content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Media Accessibility",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAAudibleMediaCopyPreferredCharacteristics()": {
+      "abstract": [
+        {
+          "text": "Returns the preference for audible media characteristics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MAAudibleMediaCopyPreferredCharacteristics"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAAudibleMediaCopyPreferredCharacteristics()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MAAudibleMediaCopyPreferredCharacteristics"
+        }
+      ],
+      "role": "symbol",
+      "title": "MAAudibleMediaCopyPreferredCharacteristics()",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/maaudiblemediacopypreferredcharacteristics()"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceAddSelectedLanguage(_:_:)": {
+      "abstract": [
+        {
+          "text": "Adds a preference for caption language to the stack of languages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceAddSelectedLanguage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceDomain",
+          "text": "MACaptionAppearanceDomain"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceAddSelectedLanguage(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceAddSelectedLanguage"
+        }
+      ],
+      "role": "symbol",
+      "title": "MACaptionAppearanceAddSelectedLanguage(_:_:)",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/macaptionappearanceaddselectedlanguage(_:_:)"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceBehavior": {
+      "abstract": [
+        {
+          "text": "A value that indicates the preferred behavior for a preference setting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "MACaptionAppearanceBehavior",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/macaptionappearancebehavior"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceCopyBackgroundColor(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the preference for the text highlight color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceCopyBackgroundColor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceDomain",
+          "text": "MACaptionAppearanceDomain"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceBehavior",
+          "text": "MACaptionAppearanceBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGColorRef",
+          "text": "CGColor"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceCopyBackgroundColor(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceCopyBackgroundColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MACaptionAppearanceCopyBackgroundColor(_:_:)",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/macaptionappearancecopybackgroundcolor(_:_:)"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceCopyFontDescriptorForStyle(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the preferred font for the specified style of type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceCopyFontDescriptorForStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceDomain",
+          "text": "MACaptionAppearanceDomain"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceBehavior",
+          "text": "MACaptionAppearanceBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceFontStyle",
+          "text": "MACaptionAppearanceFontStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CTFontDescriptorRef",
+          "text": "CTFontDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceCopyFontDescriptorForStyle(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceCopyFontDescriptorForStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "MACaptionAppearanceCopyFontDescriptorForStyle(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/macaptionappearancecopyfontdescriptorforstyle(_:_:_:)"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceCopyForegroundColor(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the preference for text color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceCopyForegroundColor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceDomain",
+          "text": "MACaptionAppearanceDomain"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceBehavior",
+          "text": "MACaptionAppearanceBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGColorRef",
+          "text": "CGColor"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceCopyForegroundColor(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceCopyForegroundColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MACaptionAppearanceCopyForegroundColor(_:_:)",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/macaptionappearancecopyforegroundcolor(_:_:)"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceCopyPreferredCaptioningMediaCharacteristics(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the preferences for captioning sounds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceCopyPreferredCaptioningMediaCharacteristics"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceDomain",
+          "text": "MACaptionAppearanceDomain"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceCopyPreferredCaptioningMediaCharacteristics(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceCopyPreferredCaptioningMediaCharacteristics"
+        }
+      ],
+      "role": "symbol",
+      "title": "MACaptionAppearanceCopyPreferredCaptioningMediaCharacteristics(_:)",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/macaptionappearancecopypreferredcaptioningmediacharacteristics(_:)"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceCopySelectedLanguages(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the preferred caption languages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceCopySelectedLanguages"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceDomain",
+          "text": "MACaptionAppearanceDomain"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceCopySelectedLanguages(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceCopySelectedLanguages"
+        }
+      ],
+      "role": "symbol",
+      "title": "MACaptionAppearanceCopySelectedLanguages(_:)",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/macaptionappearancecopyselectedlanguages(_:)"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceCopyWindowColor(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the preference for the caption window’s color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceCopyWindowColor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceDomain",
+          "text": "MACaptionAppearanceDomain"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceBehavior",
+          "text": "MACaptionAppearanceBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGColorRef",
+          "text": "CGColor"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceCopyWindowColor(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceCopyWindowColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MACaptionAppearanceCopyWindowColor(_:_:)",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/macaptionappearancecopywindowcolor(_:_:)"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceDidDisplayCaptions(_:)": {
+      "abstract": [
+        {
+          "text": "Informs accessibility clients when captions display onscreen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceDidDisplayCaptions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceDidDisplayCaptions(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceDidDisplayCaptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "MACaptionAppearanceDidDisplayCaptions(_:)",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/macaptionappearancediddisplaycaptions(_:)"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceDisplayType": {
+      "abstract": [
+        {
+          "text": "A value that specifies the type of captions to display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceDisplayType"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceDisplayType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceDisplayType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MACaptionAppearanceDisplayType",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/macaptionappearancedisplaytype"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceDomain": {
+      "abstract": [
+        {
+          "text": "A value that specifies which domain to retrieve a preference setting from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceDomain"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "MACaptionAppearanceDomain",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/macaptionappearancedomain"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceFontStyle": {
+      "abstract": [
+        {
+          "text": "A value that specifies a font style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceFontStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceFontStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceFontStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "MACaptionAppearanceFontStyle",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/macaptionappearancefontstyle"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetBackgroundOpacity(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the preference for the text highlight opacity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceGetBackgroundOpacity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceDomain",
+          "text": "MACaptionAppearanceDomain"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceBehavior",
+          "text": "MACaptionAppearanceBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetBackgroundOpacity(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceGetBackgroundOpacity"
+        }
+      ],
+      "role": "symbol",
+      "title": "MACaptionAppearanceGetBackgroundOpacity(_:_:)",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/macaptionappearancegetbackgroundopacity(_:_:)"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetDisplayType(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the preferred type of captions to display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceGetDisplayType"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceDomain",
+          "text": "MACaptionAppearanceDomain"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceDisplayType",
+          "text": "MACaptionAppearanceDisplayType"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetDisplayType(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceGetDisplayType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MACaptionAppearanceGetDisplayType(_:)",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/macaptionappearancegetdisplaytype(_:)"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetForegroundOpacity(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the preference for text opacity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceGetForegroundOpacity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceDomain",
+          "text": "MACaptionAppearanceDomain"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceBehavior",
+          "text": "MACaptionAppearanceBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetForegroundOpacity(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceGetForegroundOpacity"
+        }
+      ],
+      "role": "symbol",
+      "title": "MACaptionAppearanceGetForegroundOpacity(_:_:)",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/macaptionappearancegetforegroundopacity(_:_:)"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetRelativeCharacterSize(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the preference for font scaling.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceGetRelativeCharacterSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceDomain",
+          "text": "MACaptionAppearanceDomain"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceBehavior",
+          "text": "MACaptionAppearanceBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetRelativeCharacterSize(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceGetRelativeCharacterSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "MACaptionAppearanceGetRelativeCharacterSize(_:_:)",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/macaptionappearancegetrelativecharactersize(_:_:)"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetTextEdgeStyle(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the preference for text edge style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceGetTextEdgeStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceDomain",
+          "text": "MACaptionAppearanceDomain"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceBehavior",
+          "text": "MACaptionAppearanceBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceTextEdgeStyle",
+          "text": "MACaptionAppearanceTextEdgeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetTextEdgeStyle(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceGetTextEdgeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "MACaptionAppearanceGetTextEdgeStyle(_:_:)",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/macaptionappearancegettextedgestyle(_:_:)"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetWindowOpacity(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the preference for the overlay’s opacity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceGetWindowOpacity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceDomain",
+          "text": "MACaptionAppearanceDomain"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceBehavior",
+          "text": "MACaptionAppearanceBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetWindowOpacity(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceGetWindowOpacity"
+        }
+      ],
+      "role": "symbol",
+      "title": "MACaptionAppearanceGetWindowOpacity(_:_:)",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/macaptionappearancegetwindowopacity(_:_:)"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetWindowRoundedCornerRadius(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the radius of the caption window’s corners.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceGetWindowRoundedCornerRadius"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceDomain",
+          "text": "MACaptionAppearanceDomain"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceBehavior",
+          "text": "MACaptionAppearanceBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetWindowRoundedCornerRadius(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceGetWindowRoundedCornerRadius"
+        }
+      ],
+      "role": "symbol",
+      "title": "MACaptionAppearanceGetWindowRoundedCornerRadius(_:_:)",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/macaptionappearancegetwindowroundedcornerradius(_:_:)"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceSetDisplayType(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the preference for the type of caption.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceSetDisplayType"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceDomain",
+          "text": "MACaptionAppearanceDomain"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MACaptionAppearanceDisplayType",
+          "text": "MACaptionAppearanceDisplayType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceSetDisplayType(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceSetDisplayType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MACaptionAppearanceSetDisplayType(_:_:)",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/macaptionappearancesetdisplaytype(_:_:)"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceTextEdgeStyle": {
+      "abstract": [
+        {
+          "text": "A value that specifies a style for the outside of the text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceTextEdgeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceTextEdgeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MACaptionAppearanceTextEdgeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "MACaptionAppearanceTextEdgeStyle",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/macaptionappearancetextedgestyle"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAImageCaptioningCopyCaption(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns an accessibility caption from an image’s metadata.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MAImageCaptioningCopyCaption"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAImageCaptioningCopyCaption(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MAImageCaptioningCopyCaption"
+        }
+      ],
+      "role": "symbol",
+      "title": "MAImageCaptioningCopyCaption(_:_:)",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/maimagecaptioningcopycaption(_:_:)"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAImageCaptioningCopyMetadataTagPath()": {
+      "abstract": [
+        {
+          "text": "Returns the metadata tag path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MAImageCaptioningCopyMetadataTagPath"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAImageCaptioningCopyMetadataTagPath()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MAImageCaptioningCopyMetadataTagPath"
+        }
+      ],
+      "role": "symbol",
+      "title": "MAImageCaptioningCopyMetadataTagPath()",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/maimagecaptioningcopymetadatatagpath()"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAImageCaptioningSetCaption(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the accessibility caption for an image’s metadata.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MAImageCaptioningSetCaption"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAImageCaptioningSetCaption(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MAImageCaptioningSetCaption"
+        }
+      ],
+      "role": "symbol",
+      "title": "MAImageCaptioningSetCaption(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/maimagecaptioningsetcaption(_:_:_:)"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMediaCharacteristicDescribesMusicAndSoundForAccessibility": {
+      "abstract": [
+        {
+          "text": "A media characteristic that indicates that a track includes legible content in the language of its specified locale that describes music and sound other than spoken dialog.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MAMediaCharacteristicDescribesMusicAndSoundForAccessibility"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMediaCharacteristicDescribesMusicAndSoundForAccessibility",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MAMediaCharacteristicDescribesMusicAndSoundForAccessibility"
+        }
+      ],
+      "role": "symbol",
+      "title": "MAMediaCharacteristicDescribesMusicAndSoundForAccessibility",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/mamediacharacteristicdescribesmusicandsoundforaccessibility"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMediaCharacteristicDescribesVideoForAccessibility": {
+      "abstract": [
+        {
+          "text": "A media characteristic that indicates that a track or media selection option includes audible content that describes a video for accessibility.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MAMediaCharacteristicDescribesVideoForAccessibility"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMediaCharacteristicDescribesVideoForAccessibility",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MAMediaCharacteristicDescribesVideoForAccessibility"
+        }
+      ],
+      "role": "symbol",
+      "title": "MAMediaCharacteristicDescribesVideoForAccessibility",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/mamediacharacteristicdescribesvideoforaccessibility"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMediaCharacteristicTranscribesSpokenDialogForAccessibility": {
+      "abstract": [
+        {
+          "text": "A media characteristic that indicates that a track includes legible content in the language of its specified locale that transcribes spoken dialog and identifies the speakers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MAMediaCharacteristicTranscribesSpokenDialogForAccessibility"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMediaCharacteristicTranscribesSpokenDialogForAccessibility",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MAMediaCharacteristicTranscribesSpokenDialogForAccessibility"
+        }
+      ],
+      "role": "symbol",
+      "title": "MAMediaCharacteristicTranscribesSpokenDialogForAccessibility",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/mamediacharacteristictranscribesspokendialogforaccessibility"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MA_EXPORT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MA_EXPORT"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MA_EXPORT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MA_EXPORT",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/ma_export"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MA_EXTERN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MA_EXTERN"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MA_EXTERN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MA_EXTERN",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/ma_extern"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MA_VISIBLE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MA_VISIBLE"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MA_VISIBLE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MA_VISIBLE",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/ma_visible"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/flashing-lights": {
+      "abstract": [
+        {
+          "text": "Detect, mitigate, and inform people about flashing lights in media content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/flashing-lights",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Flashing lights",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/flashing-lights"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/kMAAudibleMediaSettingsChangedNotification": {
+      "abstract": [
+        {
+          "text": "A notification that occurs when any user-defined audible media settings change.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kMAAudibleMediaSettingsChangedNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/kMAAudibleMediaSettingsChangedNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kMAAudibleMediaSettingsChangedNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "kMAAudibleMediaSettingsChangedNotification",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/kmaaudiblemediasettingschangednotification"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/kMACaptionAppearanceSettingsChangedNotification": {
+      "abstract": [
+        {
+          "text": "A notification that occurs when any user-defined caption settings change.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kMACaptionAppearanceSettingsChangedNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/kMACaptionAppearanceSettingsChangedNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kMACaptionAppearanceSettingsChangedNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "kMACaptionAppearanceSettingsChangedNotification",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/kmacaptionappearancesettingschangednotification"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/music-haptics": {
+      "abstract": [
+        {
+          "text": "Play haptic tracks along with known music tracks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/music-haptics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Music Haptics",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/music-haptics"
+    },
+    "media-3709928": {
+      "alt": "Screenshot of the Accessibility settings in macOS with Captions selected.",
+      "identifier": "media-3709928",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cf4c877230b565749de2dc221c1d7e44/media-3709928@2x.png"
+        }
+      ]
+    },
+    "media-3709929": {
+      "alt": "Screenshot of the Captions settings for a custom style in macOS.",
+      "identifier": "media-3709929",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ebc6720d9ef8c9e762f4375c3f9a7414/media-3709929@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Features",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/flashing-lights",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/music-haptics"
+      ],
+      "title": "Features"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "General-settings",
+      "identifiers": [
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/kMACaptionAppearanceSettingsChangedNotification",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceDidDisplayCaptions(_:)",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceCopyPreferredCaptioningMediaCharacteristics(_:)",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetDisplayType(_:)",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceSetDisplayType(_:_:)"
+      ],
+      "title": "General settings"
+    },
+    {
+      "anchor": "Language-settings",
+      "identifiers": [
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceAddSelectedLanguage(_:_:)",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceCopySelectedLanguages(_:)"
+      ],
+      "title": "Language settings"
+    },
+    {
+      "anchor": "Text-settings",
+      "identifiers": [
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceCopyFontDescriptorForStyle(_:_:_:)",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceCopyForegroundColor(_:_:)",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetForegroundOpacity(_:_:)",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetRelativeCharacterSize(_:_:)",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetTextEdgeStyle(_:_:)"
+      ],
+      "title": "Text settings"
+    },
+    {
+      "anchor": "Text-highlight-settings",
+      "identifiers": [
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceCopyBackgroundColor(_:_:)",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetBackgroundOpacity(_:_:)"
+      ],
+      "title": "Text highlight settings"
+    },
+    {
+      "anchor": "Caption-window-settings",
+      "identifiers": [
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceCopyWindowColor(_:_:)",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetWindowOpacity(_:_:)",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetWindowRoundedCornerRadius(_:_:)"
+      ],
+      "title": "Caption window settings"
+    },
+    {
+      "anchor": "Image-captioning-settings",
+      "identifiers": [
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAImageCaptioningCopyCaption(_:_:)",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAImageCaptioningSetCaption(_:_:_:)",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAImageCaptioningCopyMetadataTagPath()"
+      ],
+      "title": "Image captioning settings"
+    },
+    {
+      "anchor": "Audible-media-selection-settings",
+      "identifiers": [
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/kMAAudibleMediaSettingsChangedNotification",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAAudibleMediaCopyPreferredCharacteristics()",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMediaCharacteristicDescribesVideoForAccessibility",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMediaCharacteristicDescribesMusicAndSoundForAccessibility",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMediaCharacteristicTranscribesSpokenDialogForAccessibility"
+      ],
+      "title": "Audible media selection settings"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceDomain",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceDisplayType",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceBehavior",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceFontStyle",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceTextEdgeStyle"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "General-settings",
+              "identifiers": [
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/kMACaptionAppearanceSettingsChangedNotification",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceDidDisplayCaptions(_:)",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceCopyPreferredCaptioningMediaCharacteristics(_:)",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetDisplayType(_:)",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceSetDisplayType(_:_:)"
+              ],
+              "title": "General settings"
+            },
+            {
+              "anchor": "Language-settings",
+              "identifiers": [
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceAddSelectedLanguage(_:_:)",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceCopySelectedLanguages(_:)"
+              ],
+              "title": "Language settings"
+            },
+            {
+              "anchor": "Text-settings",
+              "identifiers": [
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceCopyFontDescriptorForStyle(_:_:_:)",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceCopyForegroundColor(_:_:)",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetForegroundOpacity(_:_:)",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetRelativeCharacterSize(_:_:)",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetTextEdgeStyle(_:_:)"
+              ],
+              "title": "Text settings"
+            },
+            {
+              "anchor": "Text-highlight-settings",
+              "identifiers": [
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceCopyBackgroundColor(_:_:)",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetBackgroundOpacity(_:_:)"
+              ],
+              "title": "Text highlight settings"
+            },
+            {
+              "anchor": "Caption-window-settings",
+              "identifiers": [
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceCopyWindowColor(_:_:)",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetWindowOpacity(_:_:)",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceGetWindowRoundedCornerRadius(_:_:)"
+              ],
+              "title": "Caption window settings"
+            },
+            {
+              "anchor": "Image-captioning-settings",
+              "identifiers": [
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAImageCaptioningCopyCaption(_:_:)",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAImageCaptioningSetCaption(_:_:_:)",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAImageCaptioningCopyMetadataTagPath()"
+              ],
+              "title": "Image captioning settings"
+            },
+            {
+              "anchor": "Audible-media-selection-settings",
+              "identifiers": [
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/kMAAudibleMediaSettingsChangedNotification",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAAudibleMediaCopyPreferredCharacteristics()",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMediaCharacteristicDescribesVideoForAccessibility",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMediaCharacteristicDescribesMusicAndSoundForAccessibility",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAMediaCharacteristicTranscribesSpokenDialogForAccessibility"
+              ],
+              "title": "Audible media selection settings"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceDomain",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceDisplayType",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceBehavior",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceFontStyle",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MACaptionAppearanceTextEdgeStyle"
+              ],
+              "title": "Constants"
+            },
+            {
+              "anchor": "Macros",
+              "identifiers": [
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MA_EXPORT",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MA_EXTERN",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MA_VISIBLE"
+              ],
+              "title": "Macros"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Features",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/flashing-lights",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/music-haptics"
+              ],
+              "title": "Features"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceBehavior/title",
+          "value": "MACaptionAppearanceBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceBehavior/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MACaptionAppearanceBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceBehavior/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MACaptionAppearanceBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceCopyForegroundColor(_:_:)/title",
+          "value": "MACaptionAppearanceCopyForegroundColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceCopyForegroundColor(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MACaptionAppearanceCopyForegroundColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1kMAAudibleMediaSettingsChangedNotification/title",
+          "value": "kMAAudibleMediaSettingsChangedNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1kMAAudibleMediaSettingsChangedNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kMAAudibleMediaSettingsChangedNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceAddSelectedLanguage(_:_:)/title",
+          "value": "MACaptionAppearanceAddSelectedLanguage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceAddSelectedLanguage(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MACaptionAppearanceAddSelectedLanguage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceCopyBackgroundColor(_:_:)/title",
+          "value": "MACaptionAppearanceCopyBackgroundColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceCopyBackgroundColor(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MACaptionAppearanceCopyBackgroundColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAImageCaptioningCopyMetadataTagPath()/title",
+          "value": "MAImageCaptioningCopyMetadataTagPath"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAImageCaptioningCopyMetadataTagPath()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MAImageCaptioningCopyMetadataTagPath"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceDisplayType/title",
+          "value": "MACaptionAppearanceDisplayType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceDisplayType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MACaptionAppearanceDisplayType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceDisplayType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MACaptionAppearanceDisplayType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceSetDisplayType(_:_:)/title",
+          "value": "MACaptionAppearanceSetDisplayType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceSetDisplayType(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MACaptionAppearanceSetDisplayType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceTextEdgeStyle/title",
+          "value": "MACaptionAppearanceTextEdgeStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceTextEdgeStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MACaptionAppearanceTextEdgeStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceTextEdgeStyle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MACaptionAppearanceTextEdgeStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAMediaCharacteristicTranscribesSpokenDialogForAccessibility/title",
+          "value": "MAMediaCharacteristicTranscribesSpokenDialogForAccessibility"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAMediaCharacteristicTranscribesSpokenDialogForAccessibility/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MAMediaCharacteristicTranscribesSpokenDialogForAccessibility"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceGetForegroundOpacity(_:_:)/title",
+          "value": "MACaptionAppearanceGetForegroundOpacity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceGetForegroundOpacity(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MACaptionAppearanceGetForegroundOpacity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceGetRelativeCharacterSize(_:_:)/title",
+          "value": "MACaptionAppearanceGetRelativeCharacterSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceGetRelativeCharacterSize(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MACaptionAppearanceGetRelativeCharacterSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceGetTextEdgeStyle(_:_:)/title",
+          "value": "MACaptionAppearanceGetTextEdgeStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceGetTextEdgeStyle(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MACaptionAppearanceGetTextEdgeStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAMediaCharacteristicDescribesVideoForAccessibility/title",
+          "value": "MAMediaCharacteristicDescribesVideoForAccessibility"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAMediaCharacteristicDescribesVideoForAccessibility/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MAMediaCharacteristicDescribesVideoForAccessibility"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAImageCaptioningCopyCaption(_:_:)/title",
+          "value": "MAImageCaptioningCopyCaption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAImageCaptioningCopyCaption(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MAImageCaptioningCopyCaption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceFontStyle/title",
+          "value": "MACaptionAppearanceFontStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceFontStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MACaptionAppearanceFontStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceFontStyle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MACaptionAppearanceFontStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1kMACaptionAppearanceSettingsChangedNotification/title",
+          "value": "kMACaptionAppearanceSettingsChangedNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1kMACaptionAppearanceSettingsChangedNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kMACaptionAppearanceSettingsChangedNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceGetDisplayType(_:)/title",
+          "value": "MACaptionAppearanceGetDisplayType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceGetDisplayType(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MACaptionAppearanceGetDisplayType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceCopyFontDescriptorForStyle(_:_:_:)/title",
+          "value": "MACaptionAppearanceCopyFontDescriptorForStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceCopyFontDescriptorForStyle(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MACaptionAppearanceCopyFontDescriptorForStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAImageCaptioningSetCaption(_:_:_:)/title",
+          "value": "MAImageCaptioningSetCaption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAImageCaptioningSetCaption(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MAImageCaptioningSetCaption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceGetWindowOpacity(_:_:)/title",
+          "value": "MACaptionAppearanceGetWindowOpacity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceGetWindowOpacity(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MACaptionAppearanceGetWindowOpacity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceCopyWindowColor(_:_:)/title",
+          "value": "MACaptionAppearanceCopyWindowColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceCopyWindowColor(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MACaptionAppearanceCopyWindowColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceCopyPreferredCaptioningMediaCharacteristics(_:)/title",
+          "value": "MACaptionAppearanceCopyPreferredCaptioningMediaCharacteristics"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceCopyPreferredCaptioningMediaCharacteristics(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MACaptionAppearanceCopyPreferredCaptioningMediaCharacteristics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAAudibleMediaCopyPreferredCharacteristics()/title",
+          "value": "MAAudibleMediaCopyPreferredCharacteristics"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAAudibleMediaCopyPreferredCharacteristics()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MAAudibleMediaCopyPreferredCharacteristics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceGetBackgroundOpacity(_:_:)/title",
+          "value": "MACaptionAppearanceGetBackgroundOpacity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceGetBackgroundOpacity(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MACaptionAppearanceGetBackgroundOpacity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceDidDisplayCaptions(_:)/title",
+          "value": "MACaptionAppearanceDidDisplayCaptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceDidDisplayCaptions(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MACaptionAppearanceDidDisplayCaptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceCopySelectedLanguages(_:)/title",
+          "value": "MACaptionAppearanceCopySelectedLanguages"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceCopySelectedLanguages(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MACaptionAppearanceCopySelectedLanguages"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAMediaCharacteristicDescribesMusicAndSoundForAccessibility/title",
+          "value": "MAMediaCharacteristicDescribesMusicAndSoundForAccessibility"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAMediaCharacteristicDescribesMusicAndSoundForAccessibility/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MAMediaCharacteristicDescribesMusicAndSoundForAccessibility"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceGetWindowRoundedCornerRadius(_:_:)/title",
+          "value": "MACaptionAppearanceGetWindowRoundedCornerRadius"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceGetWindowRoundedCornerRadius(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MACaptionAppearanceGetWindowRoundedCornerRadius"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceDomain/title",
+          "value": "MACaptionAppearanceDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MACaptionAppearanceDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MACaptionAppearanceDomain/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MACaptionAppearanceDomain"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mediaaccessibility/captions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mediaaccessibility/captions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

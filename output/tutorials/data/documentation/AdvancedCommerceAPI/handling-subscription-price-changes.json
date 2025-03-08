@@ -1,0 +1,1159 @@
+{
+  "abstract": [
+    {
+      "text": "Provide necessary customer communications to notify and gather applicable consent before you initiate a price change.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/handling-subscription-price-changes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Advanced Commerce API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Handling subscription price changes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you initiate a price increase, you must notify affected subscribers and gather applicable consent. To increase the price of a subscription:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Determine whether your price increase requires consent, based on the criteria described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/handling-subscription-price-changes#Request-consent-for-price-increases",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Design your in-app sheet to notify or receive subscriber consent.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Communicate with affected subscribers via email, price increase sheet, and push notification, following the timelines specified in the Subscription interval table below.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If consent is required, record subscriber consent in your system for reference.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/Change-Subscription-Price",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint in the Advanced Commerce API to initiate a price change for the individual subscription item.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you notify customers using all required communications and gather applicable consent, you can call the API to change the price. After a successful API call to increase the price, Apple sends a push notification to subscribers notifying them of the increase.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "subscription-price-increase-notification.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When you decrease the price of a SKU, you don’t need to provide any additional communications.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Request-consent-for-price-increases",
+          "level": 2,
+          "text": "Request consent for price increases",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If any of the following apply, you must request consent from the subscriber:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The subscriber is located in a region that requires consent for any price changes. For more information about these regions, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://help.apple.com/app-store-connect/#/devf3e625675",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The price increase is:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "More than 50 percent of the current price; and",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "The difference in price exceeds 5 United States Dollars (USD) per period for non-annual subscriptions, or 50 USD per year for annual subscriptions. International equivalents for prices not in USD are based on current exchange rates with specific thresholds subject to change based on changes in taxes or foreign exchange rates.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The subscriber had a price increase for the same subscription within the past 12 months.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The subscriber is located in South Korea and is converting from a free trial to a paid subscription, or from a discounted offer to a standard subscription price.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When consent is required, you must notify subscribers via email, price increase sheet, and push notification, according to the timelines below. If a subscriber doesn’t take any action, you can continue to request consent no more than once per week for each method. You may not raise the price until you receive the subscriber’s consent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following notification timeline applies to all cases, except for subscribers in South Korea who are converting from free trials and discount offers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Subscription interval",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Email, price increase sheet, and push notification timelines",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For 2-month, 3-month, 6-month, and annual subscriptions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "60 days before the renewal date",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Monthly subscriptions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "27 days before the renewal date",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Weekly subscriptions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "7 days before the renewal date",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For subscribers in South Korea who are converting from a free trial to a paid subscription, or from a discounted offer to a standard subscription price, use the following notification timelines:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Subscription interval",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Email, price increase sheet, and push notification timelines for South Korea",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For 2-month, 3-month, 6-month, and annual subscriptions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Within 30 days from the day before the payment or conversion",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Monthly subscriptions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Within 30 days from the day before the payment or conversion",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Weekly subscriptions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Within 30 days from the day before the payment or conversion",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For free trial or discounted offer conversions in South Korea, the 30-day window for notifications doesn’t include the conversion or payment date. For example, if a two-month free trial starts on March 1 and the payment or conversion date is May 1, you’re required to obtain the consent from the person between April 1 and April 30, the 30-day window before the payment or conversion date.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Notify-about-price-increases-when-consent-isnt-needed",
+          "level": 2,
+          "text": "Notify about price increases when consent isn’t needed",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When consent isn’t needed, you only need to notify subscribers about the new price. When increasing the price of multiple items within a bundle and none of the increases require consent, use a single API request so the customer receives a summary of the price increases, and combine notifications into a single communication per method (a single email, one price increase sheet, and a single push notification).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the following communications and timelines to notify subscribers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Email",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Price increase sheet",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Push notification",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "All subscription durations: Send 27 days before renewal date. Note that for weekly subscriptions, you call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/Change-Subscription-Price",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint on the fourth consecutive renewal to increase the price.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Display upon first app launch after entering notice period.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Display 7 days before renewal date, if someone hasn’t viewed the price increase sheet in-app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Unlike when requesting consent, you can omit sending a push notification if the customer acknowledges the increase on the price increase sheet first. Notifying via email is still required in either case.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Design-your-price-increase-communications",
+          "level": 2,
+          "text": "Design your price increase communications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure customers understand your price increase, provide the details in a clear and conspicuous manner in your email and in-app notifications. For a smooth customer experience, consider including a deep link in your push notification that directs to the price increase sheet within your app. Review the Human Interface Guidelines for best practices on ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/in-app-purchase#Helping-people-manage-their-subscriptions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", as well as ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/managing-notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " push notifications. Include these elements in your email and in-app notifications:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A header that makes it clear the communication is about a subscription price increase",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Old price of the subscription",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "New price of the subscription",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Date of the price increase",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An easy way for subscribers to review or cancel their subscription. To do this, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/AppStore/showManageSubscriptions(in:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " API.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For price increases that require consent, provide an “Agree to New Price” button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Design your subscription price increase sheet so it includes the proper information and is integrated with the look and feel of your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "subscription-price-increase-consent-not-needed.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For price increases that don’t require consent, include a header on your sheet that makes it clear the subscriber’s price is increasing, along with the required information above. Be sure to also provide an “OK” button so people can acknowledge the price increase notice before resuming other activity within your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "subscription-price-increase-consent-needed.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If consent is required, include a clear “Agree to New Price” button so customers can provide consent. You also need to provide a way for customers to access their Apple Account Subscription Settings, so they can review or cancel their subscription. You must also include a way for customers to close or dismiss the sheet.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases through the App Store for exceptionally large catalogs of custom one-time purchases, subscriptions, and subscriptions with optional add-ons.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Advanced Commerce API",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/Change-Subscription-Price": {
+      "abstract": [
+        {
+          "text": "Increase or decrease the price of an auto-renewable subscription, a bundle, or individual items within a subscription at the next renewal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/Change-Subscription-Price",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Change Subscription Price"
+        }
+      ],
+      "role": "symbol",
+      "title": "Change Subscription Price",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/change-subscription-price"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/handling-subscription-price-changes#Request-consent-for-price-increases": {
+      "abstract": [],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/handling-subscription-price-changes#Request-consent-for-price-increases",
+      "kind": "section",
+      "title": "Request consent for price increases",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/handling-subscription-price-changes#Request-consent-for-price-increases"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/prices": {
+      "abstract": [
+        {
+          "text": "Provide prices for SKUs with the supported number of decimal places, in milliunits of currency.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/prices",
+      "kind": "article",
+      "role": "article",
+      "title": "Specifying prices for Advanced Commerce SKUs",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/prices"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/taxcodes": {
+      "abstract": [
+        {
+          "text": "Select a tax code for each SKU that represents a product your app offers as an in-app purchase.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/taxcodes",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing tax codes for your SKUs",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/taxcodes"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/AppStore/showManageSubscriptions(in:)": {
+      "abstract": [
+        {
+          "text": "Presents the App Store sheet for managing subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showManageSubscriptions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWindowScene",
+          "text": "UIWindowScene"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/AppStore/showManageSubscriptions(in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "showManageSubscriptions(in:)",
+      "type": "topic",
+      "url": "/documentation/StoreKit/AppStore/showManageSubscriptions(in:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/in-app-purchase#Helping-people-manage-their-subscriptions": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/in-app-purchase#Helping-people-manage-their-subscriptions",
+      "title": "helping people manage their subscriptions",
+      "titleInlineContent": [
+        {
+          "text": "helping people manage their subscriptions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/in-app-purchase#Helping-people-manage-their-subscriptions"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/managing-notifications": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/managing-notifications",
+      "title": "managing",
+      "titleInlineContent": [
+        {
+          "text": "managing",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/managing-notifications"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/notifications": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/notifications",
+      "title": "designing",
+      "titleInlineContent": [
+        {
+          "text": "designing",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/notifications"
+    },
+    "https://help.apple.com/app-store-connect/#/devf3e625675": {
+      "identifier": "https://help.apple.com/app-store-connect/#/devf3e625675",
+      "title": "Auto-renewable subscription price increase thresholds",
+      "titleInlineContent": [
+        {
+          "text": "Auto-renewable subscription price increase thresholds",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/app-store-connect/#/devf3e625675"
+    },
+    "subscription-price-increase-consent-needed.png": {
+      "alt": "An illustration of a subscription price increase confirmation dialog for an iOS creator streaming app. Callouts indicate a button to dismiss the sheet, the new subscription price, and a button for the customer to consent to the new price.",
+      "identifier": "subscription-price-increase-consent-needed.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/96fb34ef7a8e3685ca54d8ccb1805f3d/subscription-price-increase-consent-needed@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bdbb52dfd4df12516ce39a4e0dca25ad/subscription-price-increase-consent-needed~dark@2x.png"
+        }
+      ]
+    },
+    "subscription-price-increase-consent-not-needed.png": {
+      "alt": "An illustration of a subscription price increase notice sheet for an iOS creator streaming app. Callouts indicate the messaging of the price increase, a button for the customer to acknowledge the price change, and a link for the customer to manage their subscription.",
+      "identifier": "subscription-price-increase-consent-not-needed.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3372b1f9080f4db062c1d1727b1f546f/subscription-price-increase-consent-not-needed@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/10ed0deac22caaa36839259213f1b79c/subscription-price-increase-consent-not-needed~dark@2x.png"
+        }
+      ]
+    },
+    "subscription-price-increase-notification.png": {
+      "alt": "A screenshot of the top half of the iOS Home Screen. A notification at the top of the screen displays information about a subscription price increase, including its new cost and frequency and the date when the subscription increases.",
+      "identifier": "subscription-price-increase-notification.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7fe872eaf43b2eaefbce11e6c9b9f2af/subscription-price-increase-notification@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3a75e0cd296c22f38685c00ea1f9c07c/subscription-price-increase-notification~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Tax-codes-and-pricing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/prices",
+        "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/taxcodes"
+      ],
+      "title": "Tax codes and pricing"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/advancedcommerceapi/handling-subscription-price-changes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

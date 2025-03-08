@@ -1,0 +1,1302 @@
+{
+  "abstract": [
+    {
+      "text": "Tells the input to analyze the appended media to determine whether it can improve the results by reencoding certain segments.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/markCurrentPassAsFinished()"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "AVFoundation",
+    "externalID": "c:objc(cs)AVAssetWriterInput(im)markCurrentPassAsFinished",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "markCurrentPassAsFinished"
+      },
+      {
+        "kind": "text",
+        "text": "()"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "markCurrentPassAsFinished"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "markCurrentPassAsFinished()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "markCurrentPassAsFinished"
+            },
+            {
+              "kind": "text",
+              "text": "()"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the value of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/canPerformMultiplePasses",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", call this method after you append all of your media data. After the input determines if it warrants performing an additional pass, the value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/currentPassDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " changes (typically asynchronously) to describe how to set up for the next pass. Although it’s possible to use key-value observing to determine when the value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/currentPassDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " changes, it’s typically more convenient to call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/respondToEachPassDescription(on:using:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to start the work for each pass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After reappending the media data for all of the time ranges of the new pass, call this method again to determine whether to reappend segments in another pass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Calling this method effectively cancels any previous invocation of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/requestMediaDataWhenReady(on:using:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which means that you may call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/requestMediaDataWhenReady(on:using:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " again for each new pass. This method provides a convenient way to consolidate these invocations in your code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After each pass, you have the option of keeping the most recent results by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/markAsFinished()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", instead of this method. If the value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/currentPassDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " at the beginning of a pass, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/markAsFinished()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to tell the input to not expect any further media data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/canPerformMultiplePasses",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/currentPassDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " immediately becomes ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " after calling this method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Before calling this method, you must add the input to an asset writer and call the writer’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter/startWriting()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter/startWriting()": {
+      "abstract": [
+        {
+          "text": "Tells the writer to start writing its output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startWriting"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter/startWriting()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startWriting"
+        }
+      ],
+      "role": "symbol",
+      "title": "startWriting()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriter/startwriting()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput": {
+      "abstract": [
+        {
+          "text": "An object that appends media samples to a track in an asset writer’s output file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetWriterInput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/canPerformMultiplePasses": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the input may perform multiple passes over appended media data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canPerformMultiplePasses"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/canPerformMultiplePasses",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canPerformMultiplePasses"
+        }
+      ],
+      "role": "symbol",
+      "title": "canPerformMultiplePasses",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinput/canperformmultiplepasses"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/currentPassDescription": {
+      "abstract": [
+        {
+          "text": "An object that describes the requirements for the current pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentPassDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAssetWriterInputPassDescription",
+          "text": "AVAssetWriterInputPassDescription"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/currentPassDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentPassDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "currentPassDescription",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinput/currentpassdescription"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/markAsFinished()": {
+      "abstract": [
+        {
+          "text": "Marks the input as finished to indicate that you’re done appending samples to it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "markAsFinished"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/markAsFinished()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "markAsFinished"
+        }
+      ],
+      "role": "symbol",
+      "title": "markAsFinished()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinput/markasfinished()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/markCurrentPassAsFinished()": {
+      "abstract": [
+        {
+          "text": "Tells the input to analyze the appended media to determine whether it can improve the results by reencoding certain segments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "markCurrentPassAsFinished"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/markCurrentPassAsFinished()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "markCurrentPassAsFinished"
+        }
+      ],
+      "role": "symbol",
+      "title": "markCurrentPassAsFinished()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinput/markcurrentpassasfinished()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/performsMultiPassEncodingIfSupported": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the input attempts to encode the source media data using multiple passes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performsMultiPassEncodingIfSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/performsMultiPassEncodingIfSupported",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "performsMultiPassEncodingIfSupported"
+        }
+      ],
+      "role": "symbol",
+      "title": "performsMultiPassEncodingIfSupported",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinput/performsmultipassencodingifsupported"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/requestMediaDataWhenReady(on:using:)": {
+      "abstract": [
+        {
+          "text": "Tells the input to request media data, at its convenience, to write to the output file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestMediaDataWhenReady"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/requestMediaDataWhenReady(on:using:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestMediaDataWhenReadyOnQueue:usingBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestMediaDataWhenReady(on:using:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinput/requestmediadatawhenready(on:using:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/respondToEachPassDescription(on:using:)": {
+      "abstract": [
+        {
+          "text": "Tells the input to invoke a callback whenever it begins a new pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "respondToEachPassDescription"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/respondToEachPassDescription(on:using:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "respondToEachPassDescriptionOnQueue:usingBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "respondToEachPassDescription(on:using:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinput/respondtoeachpassdescription(on:using:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputPassDescription": {
+      "abstract": [
+        {
+          "text": "An object that defines the interface to query for the requirements of the current pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInputPassDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputPassDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInputPassDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetWriterInputPassDescription",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinputpassdescription"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Performing-Multiple-Pass-Encoding",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/canPerformMultiplePasses",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/currentPassDescription",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputPassDescription",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/performsMultiPassEncodingIfSupported",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/respondToEachPassDescription(on:using:)"
+      ],
+      "title": "Performing Multiple-Pass Encoding"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.10",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "markCurrentPassAsFinished"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "markCurrentPassAsFinished"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfoundation/documentation/AVFoundation",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Performing-Multiple-Pass-Encoding",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/canPerformMultiplePasses",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/currentPassDescription",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputPassDescription",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/performsMultiPassEncodingIfSupported",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/respondToEachPassDescription(on:using:)"
+              ],
+              "title": "Performing Multiple-Pass Encoding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "markCurrentPassAsFinished"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput~1canPerformMultiplePasses/title",
+          "value": "canPerformMultiplePasses"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput~1canPerformMultiplePasses/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "canPerformMultiplePasses"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput~1currentPassDescription/title",
+          "value": "currentPassDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput~1currentPassDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "currentPassDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputPassDescription/title",
+          "value": "AVAssetWriterInputPassDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputPassDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInputPassDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputPassDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInputPassDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput/title",
+          "value": "AVAssetWriterInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriter~1startWriting()/title",
+          "value": "startWriting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriter~1startWriting()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startWriting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput~1markAsFinished()/title",
+          "value": "markAsFinished"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput~1markAsFinished()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "markAsFinished"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput~1respondToEachPassDescription(on:using:)/title",
+          "value": "respondToEachPassDescriptionOnQueue:usingBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput~1respondToEachPassDescription(on:using:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "respondToEachPassDescriptionOnQueue:usingBlock:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput~1requestMediaDataWhenReady(on:using:)/title",
+          "value": "requestMediaDataWhenReadyOnQueue:usingBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput~1requestMediaDataWhenReady(on:using:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestMediaDataWhenReadyOnQueue:usingBlock:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput~1performsMultiPassEncodingIfSupported/title",
+          "value": "performsMultiPassEncodingIfSupported"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput~1performsMultiPassEncodingIfSupported/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "performsMultiPassEncodingIfSupported"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput~1markCurrentPassAsFinished()/title",
+          "value": "markCurrentPassAsFinished"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput~1markCurrentPassAsFinished()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "markCurrentPassAsFinished"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/avassetwriterinput/markcurrentpassasfinished()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/avassetwriterinput/markcurrentpassasfinished()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,583 @@
+{
+  "abstract": [
+    {
+      "text": "Called by the main function to create and run the application.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSApplicationMain"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@NSApplicationMain",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "NSApplicationMain"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSApplicationMain"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "NSApplicationMain"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:I",
+              "text": "int"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSApplicationMain"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:I",
+              "text": "int"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "argc"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:C",
+              "text": "char"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "argv"
+            },
+            {
+              "kind": "text",
+              "text": "[]);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of arguments in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "argv",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "argc"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of pointers containing the arguments passed to the application at startup.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "argv"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method never returns a result code. Instead, it calls the ",
+              "type": "text"
+            },
+            {
+              "code": "exit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to exit the application and terminate the process. If you want to determine why the application exited, you should look at the result code from the ",
+              "type": "text"
+            },
+            {
+              "code": "exit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Creates the application, loads the main nib file from the application’s main bundle, and runs the application. You must call this function from the main thread of your application, and you typically call it only once from your application’s ",
+              "type": "text"
+            },
+            {
+              "code": "main",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function. Your ",
+              "type": "text"
+            },
+            {
+              "code": "main",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function is usually generated automatically by Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Special-Considerations",
+          "level": 3,
+          "text": "Special Considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSApplicationMain",
+              "type": "codeVoice"
+            },
+            {
+              "text": " itself ignores the ",
+              "type": "text"
+            },
+            {
+              "code": "argc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "argv",
+              "type": "codeVoice"
+            },
+            {
+              "text": " arguments. Instead, Cocoa gets its arguments indirectly through ",
+              "type": "text"
+            },
+            {
+              "code": "_NSGetArgv",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "_NSGetArgc",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "_NSGetEnviron",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (see <crt_externs.h>).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSApplication": {
+      "abstract": [
+        {
+          "text": "An object that manages an app’s main event loop and resources used by all of that app’s objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSApplication",
+      "type": "topic",
+      "url": "/documentation/appkit/nsapplication"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSApplicationDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods that manage your app’s life cycle and its interaction with common system services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSApplicationDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplicationDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSApplicationDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSApplicationDelegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nsapplicationdelegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSApplicationMain": {
+      "abstract": [
+        {
+          "text": "Called by the main function to create and run the application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSApplicationMain"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplicationMain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSApplicationMain",
+      "type": "topic",
+      "url": "/documentation/appkit/nsapplicationmain"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSRunningApplication": {
+      "abstract": [
+        {
+          "text": "An object that can manipulate and provide information for a single instance of an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRunningApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSRunningApplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSRunningApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSRunningApplication",
+      "type": "topic",
+      "url": "/documentation/appkit/nsrunningapplication"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Life-Cycle",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSApplication",
+        "doc://com.apple.appkit/documentation/AppKit/NSRunningApplication",
+        "doc://com.apple.appkit/documentation/AppKit/NSApplicationDelegate"
+      ],
+      "title": "Life Cycle"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplicationDelegate/title",
+          "value": "NSApplicationDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplicationDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSApplicationDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplicationDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSApplicationDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplication/title",
+          "value": "NSApplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSRunningApplication/title",
+          "value": "NSRunningApplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSRunningApplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSRunningApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSRunningApplication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSRunningApplication"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsapplicationmain"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

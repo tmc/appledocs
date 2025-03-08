@@ -1,0 +1,883 @@
+{
+  "abstract": [
+    {
+      "text": "Support the direct manipulation of your app’s content using drag and drop.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/drag-and-drop"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Drag and Drop"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With very little programming on your part, custom-view objects can be dragged and dropped anywhere. Objects become part of this dragging mechanism by conforming to dragging protocols: Draggable objects conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDraggingSource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, and destination objects (that is, receivers of a drop) conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDraggingDestination",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. AppKit hides all the details of tracking the cursor and displaying the dragged image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To learn how to adopt drag and drop in your iOS app, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/UIKit/drag-and-drop",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn how to use drag and drop for an image view, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/supporting-drag-and-drop-through-file-promises",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To use drag and drop in a table view, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/supporting-table-view-drag-and-drop-through-file-promises",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For an example of drag and drop in a collection view, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/supporting-collection-view-drag-and-drop-through-file-promises",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and for an outline view: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/navigating-hierarchical-data-using-outline-and-split-views",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDraggingDestination": {
+      "abstract": [
+        {
+          "text": "A set of methods that the destination object (or recipient) of a dragged image must implement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDraggingDestination"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDraggingDestination",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDraggingDestination"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDraggingDestination",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdraggingdestination"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDraggingImageComponent": {
+      "abstract": [
+        {
+          "text": "A single object in a dragging item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDraggingImageComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDraggingImageComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDraggingImageComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDraggingImageComponent",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdraggingimagecomponent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDraggingInfo": {
+      "abstract": [
+        {
+          "text": "A set of methods that supply information about a dragging session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDraggingInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDraggingInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDraggingInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDraggingInfo",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdragginginfo"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDraggingItem": {
+      "abstract": [
+        {
+          "text": "A single dragged item within a dragging session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDraggingItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDraggingItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDraggingItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDraggingItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdraggingitem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDraggingSession": {
+      "abstract": [
+        {
+          "text": "The encapsulation of a drag-and-drop action that supports modification of the drag while in progress.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDraggingSession"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDraggingSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDraggingSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDraggingSession",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdraggingsession"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDraggingSource": {
+      "abstract": [
+        {
+          "text": "A set of methods that are implemented by the source object in a dragging session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDraggingSource"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDraggingSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDraggingSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDraggingSource",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdraggingsource"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpringLoadingDestination": {
+      "abstract": [
+        {
+          "text": "A set of methods that the destination object (or recipient) of a dragged object can implement to support spring-loading.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSpringLoadingDestination"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpringLoadingDestination",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSpringLoadingDestination"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSpringLoadingDestination",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspringloadingdestination"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/accessibility-for-appkit": {
+      "abstract": [
+        {
+          "text": "Make your AppKit apps accessible to everyone who uses macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/accessibility-for-appkit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessibility for AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit/accessibility-for-appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/gestures": {
+      "abstract": [
+        {
+          "text": "Encapsulate your app’s event-handling logic in gesture recognizers so that you can reuse that code throughout your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Gestures",
+      "type": "topic",
+      "url": "/documentation/appkit/gestures"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/menus-cursors-and-the-dock": {
+      "abstract": [
+        {
+          "text": "Implement menus and cursors to facilitate interactions with your app, and use your app’s Dock tile to convey updated information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/menus-cursors-and-the-dock",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Menus, Cursors, and the Dock",
+      "type": "topic",
+      "url": "/documentation/appkit/menus-cursors-and-the-dock"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/mouse-keyboard-and-trackpad": {
+      "abstract": [
+        {
+          "text": "Handle events related to mouse, keyboard, and trackpad input.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/mouse-keyboard-and-trackpad",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Mouse, Keyboard, and Trackpad",
+      "type": "topic",
+      "url": "/documentation/appkit/mouse-keyboard-and-trackpad"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/navigating-hierarchical-data-using-outline-and-split-views": {
+      "abstract": [
+        {
+          "text": "Build a structured user interface that simplifies navigation in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/navigating-hierarchical-data-using-outline-and-split-views",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Navigating Hierarchical Data Using Outline and Split Views",
+      "type": "topic",
+      "url": "/documentation/appkit/navigating-hierarchical-data-using-outline-and-split-views"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/supporting-collection-view-drag-and-drop-through-file-promises": {
+      "abstract": [
+        {
+          "text": "Share data between macOS apps during drag and drop by using an item provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/supporting-collection-view-drag-and-drop-through-file-promises",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting Collection View Drag and Drop Through File Promises",
+      "type": "topic",
+      "url": "/documentation/appkit/supporting-collection-view-drag-and-drop-through-file-promises"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/supporting-drag-and-drop-through-file-promises": {
+      "abstract": [
+        {
+          "text": "Receive and provide file promises to support dragged app files and pasteboard operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/supporting-drag-and-drop-through-file-promises",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting Drag and Drop Through File Promises",
+      "type": "topic",
+      "url": "/documentation/appkit/supporting-drag-and-drop-through-file-promises"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/supporting-table-view-drag-and-drop-through-file-promises": {
+      "abstract": [
+        {
+          "text": "Share data between macOS apps during drag and drop by using an item provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/supporting-table-view-drag-and-drop-through-file-promises",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting Table View Drag and Drop Through File Promises",
+      "type": "topic",
+      "url": "/documentation/appkit/supporting-table-view-drag-and-drop-through-file-promises"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/touch-bar": {
+      "abstract": [
+        {
+          "text": "Display interactive content and controls in the Touch Bar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/touch-bar",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Touch Bar",
+      "type": "topic",
+      "url": "/documentation/appkit/touch-bar"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/drag-and-drop": {
+      "abstract": [
+        {
+          "text": "Bring drag and drop to your app by using interaction APIs with your views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/drag-and-drop",
+      "kind": "article",
+      "role": "article",
+      "title": "Drag and drop",
+      "type": "topic",
+      "url": "/documentation/UIKit/drag-and-drop"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-Interactions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/mouse-keyboard-and-trackpad",
+        "doc://com.apple.appkit/documentation/AppKit/menus-cursors-and-the-dock",
+        "doc://com.apple.appkit/documentation/AppKit/gestures",
+        "doc://com.apple.appkit/documentation/AppKit/touch-bar",
+        "doc://com.apple.appkit/documentation/AppKit/accessibility-for-appkit"
+      ],
+      "title": "User Interactions"
+    }
+  ],
+  "topicSections": [
+    {
+      "abstract": [
+        {
+          "text": "Originate content from a drag source by creating items to represent that content.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Drag-Sources",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSDraggingSource",
+        "doc://com.apple.appkit/documentation/AppKit/NSDraggingItem",
+        "doc://com.apple.appkit/documentation/AppKit/NSDraggingSession",
+        "doc://com.apple.appkit/documentation/AppKit/NSDraggingImageComponent"
+      ],
+      "title": "Drag Sources"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Receive dragged content in your app’s objects.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Drop-Targets",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSDraggingDestination",
+        "doc://com.apple.appkit/documentation/AppKit/NSDraggingInfo",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpringLoadingDestination"
+      ],
+      "title": "Drop Targets"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "abstract": [
+                {
+                  "text": "Originate content from a drag source by creating items to represent that content.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Drag-Sources",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSDraggingSource",
+                "doc://com.apple.appkit/documentation/AppKit/NSDraggingItem",
+                "doc://com.apple.appkit/documentation/AppKit/NSDraggingSession",
+                "doc://com.apple.appkit/documentation/AppKit/NSDraggingImageComponent"
+              ],
+              "title": "Drag Sources"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Receive dragged content in your app’s objects.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Drop-Targets",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSDraggingDestination",
+                "doc://com.apple.appkit/documentation/AppKit/NSDraggingInfo",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpringLoadingDestination"
+              ],
+              "title": "Drop Targets"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "User-Interactions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/mouse-keyboard-and-trackpad",
+                "doc://com.apple.appkit/documentation/AppKit/menus-cursors-and-the-dock",
+                "doc://com.apple.appkit/documentation/AppKit/gestures",
+                "doc://com.apple.appkit/documentation/AppKit/touch-bar",
+                "doc://com.apple.appkit/documentation/AppKit/accessibility-for-appkit"
+              ],
+              "title": "User Interactions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingSession/title",
+          "value": "NSDraggingSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDraggingSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDraggingSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingSource/title",
+          "value": "NSDraggingSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDraggingSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDraggingSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingDestination/title",
+          "value": "NSDraggingDestination"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingDestination/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDraggingDestination"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingDestination/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDraggingDestination"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingItem/title",
+          "value": "NSDraggingItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDraggingItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDraggingItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingImageComponent/title",
+          "value": "NSDraggingImageComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingImageComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDraggingImageComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingImageComponent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDraggingImageComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpringLoadingDestination/title",
+          "value": "NSSpringLoadingDestination"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpringLoadingDestination/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpringLoadingDestination"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpringLoadingDestination/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpringLoadingDestination"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingInfo/title",
+          "value": "NSDraggingInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDraggingInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingInfo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDraggingInfo"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/drag-and-drop"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/drag-and-drop"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

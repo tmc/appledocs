@@ -1,0 +1,1130 @@
+{
+  "abstract": [
+    {
+      "text": "Make it easy for people to use Siri with your app by providing shortcuts to your app’s actions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/SiriKit"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/SiriKit",
+        "doc://com.apple.sirikit/documentation/Intents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-accelerating-app-interactions-with-shortcuts"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.3",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.3",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.3",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "7.0",
+        "name": "watchOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Soup Chef: Accelerating App Interactions with Shortcuts"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Soup Chef is the fictitious app from this sample code project. The project shows you how to add shortcuts and personalized phrases to Siri. With shortcuts, users can access features of your app from places such as Spotlight search, Lock screen, and the Siri watch face. With phrases, users can speak to Siri to access your app’s features. For example, a user of Soup Chef may order a bowl of clam chowder by saying to Siri, “Order clam chowder.”",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can run Soup Chef, you need to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the app group name for the SoupChef, SoupChefIntents, SoupChefWatch Extension, and SoupChefIntentsWatch targets to a valid name. For more information on app groups, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://help.apple.com/xcode/mac/current/#/dev8dd3880fe",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Share-Code-Between-the-App-and-App-Extension",
+          "level": 3,
+          "text": "Share Code Between the App and App Extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Soup Chef project contains targets for an app and an Intents app extension, which the system uses to handle shortcuts that run in the background. To avoid duplicating code that is common across the two targets, the project includes a shared framework called SoupKit. This framework provides a central location for shared code responsible for tasks such as data management and donating shortcuts.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about structuring code, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SiriKit/structuring-your-code-to-support-app-extensions",
+              "isActive": true,
+              "overridingTitle": "Structuring Your Code to Support App Extensions",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Structuring Your Code to Support App Extensions",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-Common-Actions",
+          "level": 3,
+          "text": "Identify Common Actions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Soup Chef has a key feature that people are likely to use frequently: ordering soup. To make it easy for users to place an order for soup, it makes sense for the app to add a shortcut for this feature for use with Siri. By adding the shortcut, Siri can make suggestions to the user based on their previous order history. For example, say the user likes to order tomato soup every Monday around noon. After placing this order a few times using Soup Chef, Siri learns the user’s pattern, and can use that information to predicate when the user might place a similar order. On the following Monday, Siri suggests to the user that they might want to order a bowl of tomato soup from Soup Chef.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-Custom-Intents",
+          "level": 3,
+          "text": "Define Custom Intents",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a shortcut, the app needs an ",
+              "type": "text"
+            },
+            {
+              "code": "OrderSoup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " intent. However, the system doesn’t provide this type of intent, so Soup Chef provides a custom intent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Define a custom intent by first adding an Intent Definition file to your Xcode project. Then add the custom intent to the definition file. Soup Chef defines its custom intent as ",
+              "type": "text"
+            },
+            {
+              "code": "OrderSoup",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The intent has three parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "soup",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The type of soup.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "quantity",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The number of bowls of soup.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "toppings",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": Optionals toppings–such as cheese or croutons–to add to the soup.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Soup Chef uses the three parameters to define the different shortcut types. A shortcut type has a title, subtitle, and a set of parameter combinations such as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "soup",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "quantity",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "soup",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "toppings",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "soup",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "toppings",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "quantity",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These types define the schema that Siri uses to identify requests the user makes; for example, “Order tomato soup with cheese.” The parameter combination for this example is: ",
+              "type": "text"
+            },
+            {
+              "code": "soup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "toppings",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Soup Chef marks each shortcut type with ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Supports background execution",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "; this way, the system doesn’t need to open the app to handle the intent. When marked this way, the system uses Soup Chef’s Intents app extension to handle the order. This provides a better user experience because the user never leaves their current screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-Custom-Responses",
+          "level": 3,
+          "text": "Define Custom Responses",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "OrderSoup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " intent includes a set of custom responses that Siri shows to the user. Siri selects the response based on a code returned by the Intents app extension when it confirms or handles the intent. For example, if the user orders a cup of chili and chili isn’t on the menu that day, the extension returns the ",
+              "type": "text"
+            },
+            {
+              "code": "failureOutOfStock",
+              "type": "codeVoice"
+            },
+            {
+              "text": " code. Siri then responds to the user with “Sorry, we’re all out of chili.”",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if menuItem.attributes.contains(.available) == false {",
+            "    //  Here's an example of how to use a custom response for a failure case when a particular soup item is unavailable.",
+            "    completion(OrderSoupIntentResponse.failureOutOfStock(soup: soup))",
+            "    return",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Share-Intents-Between-Targets",
+          "level": 3,
+          "text": "Share Intents Between Targets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use a custom intent in an app, Xcode needs to generate source code for the items defined in the Intent Definition file. However, for apps that have a shared framework, like Soup Chef, code generation only needs to happen for the framework target. Generating the code for the shared framework and app causes conflicts due to duplicated code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To specify which target has the generated source code, use the Intent Classes setting in the Target Membership panel. For Soup Chef, only the SoupKit target uses the Intent Classes setting; all other targets use the No Generated Classes setting. And because SoupKit shares its code with other targets, the other targets can use ",
+              "type": "text"
+            },
+            {
+              "code": "OrderSoupIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Donate-Shortcuts",
+          "level": 3,
+          "text": "Donate Shortcuts",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before Siri can suggest shortcuts to the user, the app must tell Siri about the shortcuts through intent donations. An app makes a donation each time the user performs an action in the app. Soup Chef, for example, donates an ",
+              "type": "text"
+            },
+            {
+              "code": "OrderSoupIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " each time the user places an order through the app. Donating the intent each time the user places the order helps Siri learn about the user’s behavior, which helps Siri better predicate when the user may want to order soup again.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func donateInteraction(for order: Order) {",
+            "    let interaction = INInteraction(intent: order.intent, response: nil)",
+            "    ",
+            "    // Store the order identifier with the interaction so that it is easy",
+            "    // to locate an interaction from an order. When a soup is removed from",
+            "    // the menu, the app deletes the interaction so the soup isn't suggested",
+            "    // to the user.",
+            "    interaction.identifier = order.id.uuidString",
+            "    ",
+            "    interaction.donate { (error) in",
+            "        if error != nil {",
+            "            if let error = error as NSError? {",
+            "                Logger().debug(\"Interaction donation failed: \\(error)\")",
+            "            }",
+            "        } else {",
+            "            Logger().debug(\"Successfully donated interaction\")",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-Shortcuts",
+          "level": 3,
+          "text": "Handle Shortcuts",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As mentioned earlier, to handle a order soup intent, Soup Chef provides an Intents app extension, which handles the intent in the background. This makes it possible for the user to remain on the current screen – such as the Lock screen – while Soup Chef places the order in the background.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are times, however, when the app must launch to handle the intent; for example, when the user taps the shortcut in Search. That’s why Soup Chef also handles the order soup intent in its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UISceneDelegate/scene(_:continue:)",
+              "isActive": true,
+              "overridingTitle": "scene(_ scene: UIScene,  continue userActivity: NSUserActivity)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "scene(_ scene: UIScene,  continue userActivity: NSUserActivity)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " implementation found in the scene delegate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// The system calls this method when continuing a user activity through the restoration handler",
+            "/// in `UISceneDelegate scene(_:continue:)`.",
+            "override func restoreUserActivityState(_ activity: NSUserActivity) {",
+            "    super.restoreUserActivityState(activity)",
+            "",
+            "    if activity.activityType == NSUserActivity.viewMenuActivityType {",
+            "        ",
+            "        // This order came from the \"View Menu\" shortcut that is based on NSUserActivity.",
+            "        prepareForUserActivityRestoration() {",
+            "            self.performSegue(withIdentifier: SegueIdentifiers.soupMenu.rawValue, sender: nil)",
+            "        }",
+            "        ",
+            "    } else if activity.activityType == NSStringFromClass(OrderSoupIntent.self) {",
+            "        ",
+            "        // This order started as a shortcut, but isn't complete because the user tapped on the SoupChef Intent UI",
+            "        // during the order process. Let the user finish customizing their order.",
+            "        prepareForUserActivityRestoration() {",
+            "            self.performSegue(withIdentifier: SegueIdentifiers.soupMenu.rawValue, sender: activity)",
+            "        }",
+            "        ",
+            "    } else if activity.activityType == NSUserActivity.orderCompleteActivityType,",
+            "             let orderID = activity.userInfo?[NSUserActivity.ActivityKeys.orderID.rawValue] as? UUID,",
+            "             let order = soupOrderManager.order(matching: orderID) {",
+            "        ",
+            "        // This order was just created outside of the main app through an intent.",
+            "        // Display the order in the order history.",
+            "        prepareForUserActivityRestoration() {",
+            "            self.displayOrderDetail(order)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-Phrases-to-Siri",
+          "level": 3,
+          "text": "Add Phrases to Siri",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ordering soup based on suggestions from Siri is a great start to expediting soup orders, but Soup Chef goes one step further by letting the user set a voice phrase for a particular order, and adding that phrase to Siri. Afterward, the user can ask Siri to place the order by saying the phrase. For example, the user can add to Siri the phrase, “Clam chowder time,” for the shortcut that orders clam chowder with croutons. The next time the user craves clam chowder, they say to Siri, “Clam chowder time,” and Siri tells Soup Chef to place an order for clam chowder with croutons.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users can set custom phrases in the Shortcuts app. To make the experience better, however, Soup Chef provides the option to add the phrase directly from the app. From the order history, the user can tap a previous order to view its details. At the bottom of the order details is an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Add to Siri",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " button that, when tapped, lets the user set a new phrase. Soup Chef also provides a suggested phrase to help inspire the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "addShortcutButton = INUIAddVoiceShortcutButton(style: .automaticOutline)",
+            "addShortcutButton.shortcut = INShortcut(intent: orderSoupIntent)",
+            "addShortcutButton.delegate = configuration.delegate"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a phrase already exists for the shortcut, the button displays the current phrase, and allows the user to change the phrase directly from Soup Chef by presenting a view controller to edit or delete the current phrase.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func present(_ editVoiceShortcutViewController: INUIEditVoiceShortcutViewController, for addVoiceShortcutButton: INUIAddVoiceShortcutButton) {",
+            "    editVoiceShortcutViewController.delegate = self",
+            "    present(editVoiceShortcutViewController, animated: true, completion: nil)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adding shortcuts and phrases are two examples of how your app can accelerate user interactions with Siri. For more information on how your app can leverage Siri, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SiriKit",
+              "isActive": true,
+              "overridingTitle": "SiriKit",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "SiriKit",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " developer documentation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "087e5ed18661/SoupChefAcceleratingAppInteractionsWithShortcuts.zip": {
+      "checksum": "087e5ed18661f3625c28fceba849005bd9aa670ef06647af98703b042fccf7186fa2df949aa2838212b9ca596d10b61a8a493c68a9e2855fe7b71382ca65ba59",
+      "identifier": "087e5ed18661/SoupChefAcceleratingAppInteractionsWithShortcuts.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/087e5ed18661/SoupChefAcceleratingAppInteractionsWithShortcuts.zip"
+    },
+    "doc://com.apple.documentation/documentation/SiriKit": {
+      "abstract": [
+        {
+          "text": "Empower users to interact with their devices through voice, intelligent suggestions, and personalized workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SiriKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "SiriKit",
+      "type": "topic",
+      "url": "/documentation/SiriKit"
+    },
+    "doc://com.apple.documentation/documentation/SiriKit/structuring-your-code-to-support-app-extensions": {
+      "abstract": [
+        {
+          "text": "Move your back-end services to a private framework so your app and app extensions can use them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SiriKit/structuring-your-code-to-support-app-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Structuring Your Code to Support App Extensions",
+      "type": "topic",
+      "url": "/documentation/SiriKit/structuring-your-code-to-support-app-extensions"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UISceneDelegate/scene(_:continue:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate to handle the specified Handoff-related activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIScene",
+          "text": "UIScene"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "continue"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "userActivity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUserActivity",
+          "text": "NSUserActivity"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UISceneDelegate/scene(_:continue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scene(_:continue:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UISceneDelegate/scene(_:continue:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit": {
+      "abstract": [
+        {
+          "text": "Empower users to interact with their devices through voice, intelligent suggestions, and personalized workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/adding-shortcuts-for-wind-down": {
+      "abstract": [
+        {
+          "text": "Reveal your app’s shortcuts inside the Health app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/adding-shortcuts-for-wind-down",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adding Shortcuts for Wind Down",
+      "type": "topic",
+      "url": "/documentation/sirikit/adding-shortcuts-for-wind-down"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/booking-rides-with-sirikit": {
+      "abstract": [
+        {
+          "text": "Add Intents extensions to your app to handle requests to book rides using Siri and Maps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/booking-rides-with-sirikit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Booking Rides with SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit/booking-rides-with-sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/handling-payment-requests-with-sirikit": {
+      "abstract": [
+        {
+          "text": "Add an Intent Extension to your app to handle money transfer requests with Siri.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/handling-payment-requests-with-sirikit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Handling Payment Requests with SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit/handling-payment-requests-with-sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/handling-workout-requests-with-sirikit": {
+      "abstract": [
+        {
+          "text": "Add an Intent Extension to your app that handles requests to control workouts with Siri.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/handling-workout-requests-with-sirikit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Handling Workout Requests with SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit/handling-workout-requests-with-sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/integrating-your-app-with-siri-event-suggestions": {
+      "abstract": [
+        {
+          "text": "Donate reservations and provide quick access to event details throughout the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/integrating-your-app-with-siri-event-suggestions",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Integrating Your App with Siri Event Suggestions",
+      "type": "topic",
+      "url": "/documentation/sirikit/integrating-your-app-with-siri-event-suggestions"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/managing-audio-with-sirikit": {
+      "abstract": [
+        {
+          "text": "Control audio playback and handle requests to add media using SiriKit Media Intents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/managing-audio-with-sirikit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Managing Audio with SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit/managing-audio-with-sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/providing-hands-free-app-control-with-intents": {
+      "abstract": [
+        {
+          "text": "Resolve, confirm, and handle intents without an extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/providing-hands-free-app-control-with-intents",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Providing Hands-Free App Control with Intents",
+      "type": "topic",
+      "url": "/documentation/sirikit/providing-hands-free-app-control-with-intents"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-with-app-intents-migrating-custom-intents": {
+      "abstract": [
+        {
+          "text": "Integrating App Intents to provide your appʼs actions to Siri and Shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-with-app-intents-migrating-custom-intents",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Soup Chef with App Intents: Migrating custom intents",
+      "type": "topic",
+      "url": "/documentation/sirikit/soup-chef-with-app-intents-migrating-custom-intents"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev8dd3880fe": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev8dd3880fe",
+      "title": "Configure app groups",
+      "titleInlineContent": [
+        {
+          "text": "Configure app groups",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev8dd3880fe"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "087e5ed18661/SoupChefAcceleratingAppInteractionsWithShortcuts.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sample-code",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/adding-shortcuts-for-wind-down",
+        "doc://com.apple.sirikit/documentation/SiriKit/booking-rides-with-sirikit",
+        "doc://com.apple.sirikit/documentation/SiriKit/handling-payment-requests-with-sirikit",
+        "doc://com.apple.sirikit/documentation/SiriKit/handling-workout-requests-with-sirikit",
+        "doc://com.apple.sirikit/documentation/SiriKit/integrating-your-app-with-siri-event-suggestions",
+        "doc://com.apple.sirikit/documentation/SiriKit/managing-audio-with-sirikit",
+        "doc://com.apple.sirikit/documentation/SiriKit/providing-hands-free-app-control-with-intents",
+        "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-with-app-intents-migrating-custom-intents"
+      ],
+      "title": "Sample code"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UISceneDelegate~1scene(_:continue:)/title",
+          "value": "scene:continueUserActivity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UISceneDelegate~1scene(_:continue:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "scene:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIScene",
+              "text": "UIScene"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "scene"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "continueUserActivity:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSUserActivity",
+              "text": "NSUserActivity"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "userActivity"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

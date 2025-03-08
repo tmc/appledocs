@@ -1,0 +1,437 @@
+{
+  "abstract": [
+    {
+      "text": "A proxy for the receiving object",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/objectivec",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/objectivec/nsobject/1409224-autocontentaccessingproxy"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1409224,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSObject(py)autoContentAccessingProxy",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "var "
+      },
+      {
+        "kind": "identifier",
+        "text": "autoContentAccessingProxy"
+      },
+      {
+        "kind": "text",
+        "text": ": Any"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSObject"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.6",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "autoContentAccessingProxy"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "autoContentAccessingProxy"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "keyword",
+              "text": "Any"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This property returns a proxy for the receiving object if the receiver adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol and still has content that has not been discarded.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The proxy calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1412187-begincontentaccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the receiver to keep the content available as long as the proxy lives, and calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1407535-endcontentaccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when the proxy is deallocated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The wrapper object is otherwise a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsproxy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and forwards messages to the original receiver object as an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsproxy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " does.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method can be used to hide an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object's content volatility by creating an object that responds to the same messages but holds the contents of the original receiver available as long as the created proxy lives. Thus hidden, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object (by way of the proxy) can be given out to unsuspecting recipients of the object who would otherwise not know they might have to call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1412187-begincontentaccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1407535-endcontentaccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " around particular usages (specific to each ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object) of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDiscardableContent",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdiscardablecontent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1407535-endcontentaccess": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1407535-endcontentaccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "endContentAccess()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdiscardablecontent/1407535-endcontentaccess"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1412187-begincontentaccess": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1412187-begincontentaccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginContentAccess()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdiscardablecontent/1412187-begincontentaccess"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsproxy": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsproxy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSProxy",
+      "type": "topic",
+      "url": "/documentation/foundation/nsproxy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/objectivec": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Objective-C Runtime",
+      "type": "topic",
+      "url": "/documentation/objectivec"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1409224-autocontentaccessingproxy": {
+      "abstract": [
+        {
+          "text": "A proxy for the receiving object",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "autoContentAccessingProxy"
+        },
+        {
+          "kind": "text",
+          "text": ": Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1409224-autocontentaccessingproxy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "autoContentAccessingProxy",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1409224-autocontentaccessingproxy"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/objectivec/nsobject/1409224-autocontentaccessingproxy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/objectivec/nsobject/1409224-autocontentaccessingproxy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

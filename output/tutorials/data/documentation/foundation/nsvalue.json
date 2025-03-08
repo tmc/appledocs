@@ -1,0 +1,2646 @@
+{
+  "abstract": [
+    {
+      "text": "A simple container for a single C or Objective-C data item.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsvalue"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1413813,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSValue",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSValue"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSValue"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSValue"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object can hold any of the scalar types such as ",
+              "type": "text"
+            },
+            {
+              "code": "int",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "float",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "char",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as well as pointers, structures, and object ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " references. Use this class to work with such data types in collections (such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1737709",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and other APIs that require Objective-C objects. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects are always immutable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1679071",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The abstract ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class is the public interface of a class cluster consisting mostly of private, concrete classes that create and return a value object appropriate for a given situation. It is possible to subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", but doing so requires providing storage facilities for the value (which is not inherited by subclasses) and implementing two primitive methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1679074",
+          "level": 4,
+          "text": "Methods to Override",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Any subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "must",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " override the primitive instance methods ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1415141-getvalue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1412365-objctype",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". These methods must operate on the storage that you provide for the value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You might want to implement an initializer for your subclass that is suited to the storage you provide. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class does not have a designated initializer, so your initializer need only invoke the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418641-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "code": "super",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocols; if you want instances of your own custom subclass created from copying or coding, override the methods in these protocols.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may also wish to implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol/1418859-hash",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to make your subclass work well in collections.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1679080",
+          "level": 4,
+          "text": "Alternatives to Subclassing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need only to use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects for wrap a custom data types or structures defined by your app, you need not create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " subclass. Instead, create a category that uses existing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " methods to store and retrieve data of your custom type. For example, the code below defines a custom Polyhedron structure and creates ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " convenience methods to store and retrieve it:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "typedef struct {",
+            "    int numFaces;",
+            "    float radius;",
+            "} Polyhedron;",
+            " ",
+            "@interface NSValue (Polyhedron)",
+            "+ (instancetype)valuewithPolyhedron:(Polyhedron)value;",
+            "@property (readonly) Polyhedron polyhedronValue;",
+            "@end",
+            " ",
+            "@implementation NSValue (Polyhedron)",
+            "+ (instancetype)valuewithPolyhedron:(Polyhedron)value",
+            "{",
+            "    return [self valueWithBytes:&value objCType:@encode(Polyhedron)];",
+            "}",
+            "- (Polyhedron) polyhedronValue",
+            "{",
+            "    Polyhedron value;",
+            "    [self getValue:&value];",
+            "    return value;",
+            "}",
+            "@end"
+          ],
+          "metadata": {
+            "anchor": "2555868",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1737709": {
+      "identifier": "devLink-1737709",
+      "title": "Key-value coding",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/KeyValueCoding.html#//apple_ref/doc/uid/TP40008195-CH25"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumber": {
+      "abstract": [
+        {
+          "text": "An object wrapper for primitive scalar numeric values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNumber",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumber"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue": {
+      "abstract": [
+        {
+          "text": "A simple container for a single C or Objective-C data item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSValue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue#2555868": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue#2555868",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/nsvalue#2555868"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1385930-timerangevalue": {
+      "abstract": [
+        {
+          "text": "The CoreMedia time range structure representation of the value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeRangeValue"
+        },
+        {
+          "kind": "text",
+          "text": ": CMTimeRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1385930-timerangevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeRangeValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1385930-timerangevalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1386915-init": {
+      "abstract": [
+        {
+          "text": "Creates a new value object containing the specified CoreMedia time range structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "timeRange"
+        },
+        {
+          "kind": "text",
+          "text": ": CMTimeRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1386915-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(timeRange:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1386915-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1387277-timemappingvalue": {
+      "abstract": [
+        {
+          "text": "The CoreMedia time mapping structure representation of the value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeMappingValue"
+        },
+        {
+          "kind": "text",
+          "text": ": CMTimeMapping"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1387277-timemappingvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeMappingValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1387277-timemappingvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1387556-init": {
+      "abstract": [
+        {
+          "text": "Creates a new value object containing the specified CoreMedia time mapping structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "timeMapping"
+        },
+        {
+          "kind": "text",
+          "text": ": CMTimeMapping)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1387556-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(timeMapping:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1387556-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1388151-timevalue": {
+      "abstract": [
+        {
+          "text": "The CoreMedia time structure representation of the value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeValue"
+        },
+        {
+          "kind": "text",
+          "text": ": CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1388151-timevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1388151-timevalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1388561-init": {
+      "abstract": [
+        {
+          "text": "Creates a new value object containing the specified CoreMedia time structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "time"
+        },
+        {
+          "kind": "text",
+          "text": ": CMTime)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1388561-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(time:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1388561-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1391106-init": {
+      "abstract": [
+        {
+          "text": "Creates a new value object containing the specified Foundation point structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "point"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPoint)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1391106-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(point:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1391106-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1391123-edgeinsetsvalue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "edgeInsetsValue"
+        },
+        {
+          "kind": "text",
+          "text": ": NSEdgeInsets"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1391123-edgeinsetsvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "edgeInsetsValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1391123-edgeinsetsvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1391171-rectvalue": {
+      "abstract": [
+        {
+          "text": "The Foundation rectangle structure representation of the value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "rectValue"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1391171-rectvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rectValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1391171-rectvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1391181-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "edgeInsets"
+        },
+        {
+          "kind": "text",
+          "text": ": NSEdgeInsets)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1391181-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(edgeInsets:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1391181-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1391199-init": {
+      "abstract": [
+        {
+          "text": "Creates a new value object containing the specified Foundation size structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": NSSize)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1391199-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(size:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1391199-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1391255-pointvalue": {
+      "abstract": [
+        {
+          "text": "The Foundation point structure representation of the value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "pointValue"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1391255-pointvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pointValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1391255-pointvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1391281-init": {
+      "abstract": [
+        {
+          "text": "Creates a new value object containing the specified Foundation rectangle structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "rect"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRect)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1391281-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(rect:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1391281-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1391301-sizevalue": {
+      "abstract": [
+        {
+          "text": "The Foundation size structure representation of the value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "sizeValue"
+        },
+        {
+          "kind": "text",
+          "text": ": NSSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1391301-sizevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sizeValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1391301-sizevalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1408098-init": {
+      "abstract": [
+        {
+          "text": "Creates a value object containing the specified object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "nonretainedObject"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1408098-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(nonretainedObject:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1408098-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1409038-isequal": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the value object and another value object are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqual"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": NSValue) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1409038-isequal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqual(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1409038-isequal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1409669-scnvector3value": {
+      "abstract": [
+        {
+          "text": "The three-element Scene Kit vector representation of the value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "scnVector3Value"
+        },
+        {
+          "kind": "text",
+          "text": ": SCNVector3"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1409669-scnvector3value",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scnVector3Value",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1409669-scnvector3value"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1409671-init": {
+      "abstract": [
+        {
+          "text": "Creates a value object that contains the specified three-element SceneKit vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "scnVector3"
+        },
+        {
+          "kind": "text",
+          "text": ": SCNVector3)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1409671-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(scnVector3:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1409671-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1409680-init": {
+      "abstract": [
+        {
+          "text": "Creates a value object that contains the specified SceneKit 4 x 4 matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "scnMatrix4"
+        },
+        {
+          "kind": "text",
+          "text": ": SCNMatrix4)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1409680-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(scnMatrix4:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1409680-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1409684-scnmatrix4value": {
+      "abstract": [
+        {
+          "text": "The Scene Kit 4 x 4 matrix representation of the value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "scnMatrix4Value"
+        },
+        {
+          "kind": "text",
+          "text": ": SCNMatrix4"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1409684-scnmatrix4value",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scnMatrix4Value",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1409684-scnmatrix4value"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1409688-init": {
+      "abstract": [
+        {
+          "text": "Creates a value object that contains the specified four-element SceneKit vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "scnVector4"
+        },
+        {
+          "kind": "text",
+          "text": ": SCNVector4)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1409688-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(scnVector4:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1409688-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1409725-scnvector4value": {
+      "abstract": [
+        {
+          "text": "The four-element Scene Kit vector representation of the value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "scnVector4Value"
+        },
+        {
+          "kind": "text",
+          "text": ": SCNVector4"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1409725-scnvector4value",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scnVector4Value",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1409725-scnvector4value"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1410315-init": {
+      "abstract": [
+        {
+          "text": "Creates a new value object containing the specified Foundation range structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1410315-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(range:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1410315-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1410668-pointervalue": {
+      "abstract": [
+        {
+          "text": "Returns the value as an untyped pointer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "pointerValue"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1410668-pointervalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pointerValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1410668-pointervalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1411621-init": {
+      "abstract": [
+        {
+          "text": "Initializes a value object to contain the specified value, interpreted with the specified Objective-C type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "bytes"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeRawPointer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "objCType"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<CChar>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1411621-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(bytes:objCType:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1411621-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1412287-nonretainedobjectvalue": {
+      "abstract": [
+        {
+          "text": "The value as a non-retained pointer to an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "nonretainedObjectValue"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1412287-nonretainedobjectvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nonretainedObjectValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1412287-nonretainedobjectvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1412365-objctype": {
+      "abstract": [
+        {
+          "text": "A C string containing the Objective-C type of the data contained in the value object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "objCType"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<CChar>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1412365-objctype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objCType",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1412365-objctype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1413902-rangevalue": {
+      "abstract": [
+        {
+          "text": "The Foundation range structure representation of the value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "rangeValue"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1413902-rangevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rangeValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1413902-rangevalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1415141-getvalue": {
+      "abstract": [
+        {
+          "text": "Copies the value into the specified buffer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "getValue"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutableRawPointer)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1415141-getvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getValue(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1415141-getvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1415975-init": {
+      "abstract": [
+        {
+          "text": "Creates a value object containing the specified pointer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "pointer"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeRawPointer?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1415975-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(pointer:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1415975-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1417400-init": {
+      "abstract": [
+        {
+          "text": "Creates a value object containing the specified value, interpreted with the specified Objective-C type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeRawPointer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withObjCType"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<CChar>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1417400-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:withObjCType:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1417400-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1417896-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1417896-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1417896-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1436556-init": {
+      "abstract": [
+        {
+          "text": "Creates a new value object containing the specified CoreAnimation transform structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "caTransform3D"
+        },
+        {
+          "kind": "text",
+          "text": ": CATransform3D)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1436556-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(caTransform3D:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1436556-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1436572-catransform3dvalue": {
+      "abstract": [
+        {
+          "text": "The CoreAnimation transform structure representation of the value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "caTransform3DValue"
+        },
+        {
+          "kind": "text",
+          "text": ": CATransform3D"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1436572-catransform3dvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "caTransform3DValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1436572-catransform3dvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1452193-init": {
+      "abstract": [
+        {
+          "text": "Creates a new value object containing the specified CoreLocation geographic coordinate structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "mkCoordinate"
+        },
+        {
+          "kind": "text",
+          "text": ": CLLocationCoordinate2D)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1452193-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(mkCoordinate:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1452193-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1452333-init": {
+      "abstract": [
+        {
+          "text": "Creates a new value object containing the specified MapKit coordinate span structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "mkCoordinateSpan"
+        },
+        {
+          "kind": "text",
+          "text": ": MKCoordinateSpan)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1452333-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(mkCoordinateSpan:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1452333-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1452495-mkcoordinatevalue": {
+      "abstract": [
+        {
+          "text": "The CoreLocation geographic coordinate structure representation of the value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "mkCoordinateValue"
+        },
+        {
+          "kind": "text",
+          "text": ": CLLocationCoordinate2D"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1452495-mkcoordinatevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mkCoordinateValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1452495-mkcoordinatevalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1452516-mkcoordinatespanvalue": {
+      "abstract": [
+        {
+          "text": "The MapKit coordinate span structure representation of the value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "mkCoordinateSpanValue"
+        },
+        {
+          "kind": "text",
+          "text": ": MKCoordinateSpan"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1452516-mkcoordinatespanvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mkCoordinateSpanValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1452516-mkcoordinatespanvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1624485-init": {
+      "abstract": [
+        {
+          "text": "Creates a new value object containing the specified UIKit edge insets structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "uiEdgeInsets"
+        },
+        {
+          "kind": "text",
+          "text": ": UIEdgeInsets)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1624485-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(uiEdgeInsets:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1624485-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1624486-cgvectorvalue": {
+      "abstract": [
+        {
+          "text": "Returns the CoreGraphics vector structure representation of the value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cgVectorValue"
+        },
+        {
+          "kind": "text",
+          "text": ": CGVector"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1624486-cgvectorvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cgVectorValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1624486-cgvectorvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1624489-cgsizevalue": {
+      "abstract": [
+        {
+          "text": "Returns the CoreGraphics size structure representation of the value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cgSizeValue"
+        },
+        {
+          "kind": "text",
+          "text": ": CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1624489-cgsizevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cgSizeValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1624489-cgsizevalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1624493-init": {
+      "abstract": [
+        {
+          "text": "Creates a new value object containing the specified CoreGraphics vector structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "cgVector"
+        },
+        {
+          "kind": "text",
+          "text": ": CGVector)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1624493-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cgVector:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1624493-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1624503-init": {
+      "abstract": [
+        {
+          "text": "Creates a new value object containing the specified CoreGraphics affine transform structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "cgAffineTransform"
+        },
+        {
+          "kind": "text",
+          "text": ": CGAffineTransform)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1624503-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cgAffineTransform:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1624503-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1624506-cgrectvalue": {
+      "abstract": [
+        {
+          "text": "Returns the CoreGraphics rectangle structure representation of the value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cgRectValue"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1624506-cgrectvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cgRectValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1624506-cgrectvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1624511-init": {
+      "abstract": [
+        {
+          "text": "Creates a new value object containing the specified CoreGraphics size structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "cgSize"
+        },
+        {
+          "kind": "text",
+          "text": ": CGSize)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1624511-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cgSize:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1624511-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1624512-cgaffinetransformvalue": {
+      "abstract": [
+        {
+          "text": "Returns the CoreGraphics affine transform representation of the value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cgAffineTransformValue"
+        },
+        {
+          "kind": "text",
+          "text": ": CGAffineTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1624512-cgaffinetransformvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cgAffineTransformValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1624512-cgaffinetransformvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1624517-uiedgeinsetsvalue": {
+      "abstract": [
+        {
+          "text": "Returns the UIKit edge insets structure representation of the value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "uiEdgeInsetsValue"
+        },
+        {
+          "kind": "text",
+          "text": ": UIEdgeInsets"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1624517-uiedgeinsetsvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uiEdgeInsetsValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1624517-uiedgeinsetsvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1624526-uioffsetvalue": {
+      "abstract": [
+        {
+          "text": "Returns the UIKit offset structure representation of the value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "uiOffsetValue"
+        },
+        {
+          "kind": "text",
+          "text": ": UIOffset"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1624526-uioffsetvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uiOffsetValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1624526-uioffsetvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1624529-init": {
+      "abstract": [
+        {
+          "text": "Creates a new value object containing the specified CoreGraphics rectangle structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "cgRect"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1624529-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cgRect:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1624529-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1624530-init": {
+      "abstract": [
+        {
+          "text": "Creates a new value object containing the specified UIKit offset structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "uiOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": UIOffset)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1624530-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(uiOffset:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1624530-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1624531-init": {
+      "abstract": [
+        {
+          "text": "Creates a new value object containing the specified CoreGraphics point structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "cgPoint"
+        },
+        {
+          "kind": "text",
+          "text": ": CGPoint)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1624531-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cgPoint:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1624531-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/1624534-cgpointvalue": {
+      "abstract": [
+        {
+          "text": "Returns the CoreGraphics point structure representation of the value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cgPointValue"
+        },
+        {
+          "kind": "text",
+          "text": ": CGPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/1624534-cgpointvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cgPointValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/1624534-cgpointvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/2865836-directionaledgeinsetsvalue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "directionalEdgeInsetsValue"
+        },
+        {
+          "kind": "text",
+          "text": ": NSDirectionalEdgeInsets"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/2865836-directionaledgeinsetsvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "directionalEdgeInsetsValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/2865836-directionaledgeinsetsvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/2865954-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "directionalEdgeInsets"
+        },
+        {
+          "kind": "text",
+          "text": ": NSDirectionalEdgeInsets)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/2865954-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(directionalEdgeInsets:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/2865954-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/2919632-getvalue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "getValue"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutableRawPointer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/2919632-getvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getValue(_:size:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/2919632-getvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/3200273-value": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": "<StoredType>("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": StoredType.Type) -> StoredType?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/3200273-value",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "value(of:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/3200273-value"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/3950874-videodimensionsvalue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoDimensionsValue"
+        },
+        {
+          "kind": "text",
+          "text": ": CMVideoDimensions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/3950874-videodimensionsvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "videoDimensionsValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/3950874-videodimensionsvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/3950875-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "!("
+        },
+        {
+          "kind": "identifier",
+          "text": "videoDimensions"
+        },
+        {
+          "kind": "text",
+          "text": ": CMVideoDimensions)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/3950875-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(videoDimensions:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/3950875-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/4316279-gcpoint2value": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "gcPoint2Value"
+        },
+        {
+          "kind": "text",
+          "text": ": GCPoint2"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/4316279-gcpoint2value",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gcPoint2Value",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/4316279-gcpoint2value"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue/4316280-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "gcPoint2"
+        },
+        {
+          "kind": "text",
+          "text": ": GCPoint2)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue/4316280-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(gcPoint2:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue/4316280-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/foundation/valuetransformer": {
+      "abstract": [
+        {
+          "text": "An abstract class used to transform values from one representation to another. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "ValueTransformer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/valuetransformer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ValueTransformer",
+      "type": "topic",
+      "url": "/documentation/foundation/valuetransformer"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1418641-init": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418641-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1418641-init"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol/1418859-hash": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol/1418859-hash",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hash",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol/1418859-hash"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnumber",
+        "doc://com.apple.documentation/documentation/foundation/valuetransformer"
+      ],
+      "title": "Value Wrappers and Transformations"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1662101",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1411621-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1417400-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1415141-getvalue",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1412365-objctype"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with Raw Values"
+    },
+    {
+      "anchor": "1662160",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1415975-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1408098-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1410668-pointervalue",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1412287-nonretainedobjectvalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with Pointer and Object Values"
+    },
+    {
+      "anchor": "1662210",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1410315-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1413902-rangevalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with Range Values"
+    },
+    {
+      "anchor": "1662244",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1391106-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1391199-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1391281-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1391255-pointvalue",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1391301-sizevalue",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1391171-rectvalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with Foundation Geometry Values"
+    },
+    {
+      "anchor": "1662355",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1624531-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1624493-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1624511-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1624529-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1624503-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1624534-cgpointvalue",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1624486-cgvectorvalue",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1624489-cgsizevalue",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1624506-cgrectvalue",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1624512-cgaffinetransformvalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with CoreGraphics Geometry Values"
+    },
+    {
+      "anchor": "1662499",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1624485-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1624530-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1624517-uiedgeinsetsvalue",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1624526-uioffsetvalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with UIKit Geometry Values"
+    },
+    {
+      "anchor": "1662566",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1436556-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1436572-catransform3dvalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with CoreAnimation Transform Values"
+    },
+    {
+      "anchor": "1662602",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1388561-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1386915-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1387556-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1388151-timevalue",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1385930-timerangevalue",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1387277-timemappingvalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with Media Time Values"
+    },
+    {
+      "anchor": "1662693",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1452193-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1452333-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1452495-mkcoordinatevalue",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1452516-mkcoordinatespanvalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with Geographic Coordinate Values"
+    },
+    {
+      "anchor": "1662770",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1409671-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1409688-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1409680-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1409669-scnvector3value",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1409725-scnvector4value",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1409684-scnmatrix4value"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with SceneKit Vector and Matrix Values"
+    },
+    {
+      "anchor": "1662879",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1409038-isequal"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing Value Objects"
+    },
+    {
+      "anchor": "2855312",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1417896-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/2865954-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1391181-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/4316280-init",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/3950875-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "2855313",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/2865836-directionaledgeinsetsvalue",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/1391123-edgeinsetsvalue",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/4316279-gcpoint2value",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/3950874-videodimensionsvalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "2920038",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/2919632-getvalue",
+        "doc://com.apple.documentation/documentation/foundation/nsvalue/3200273-value"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsvalue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsvalue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1215 @@
+{
+  "abstract": [
+    {
+      "text": "Use a string catalog to translate text, handle plurals, and vary the text your app displays on specific devices.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/localization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/localizing-and-varying-text-with-a-string-catalog"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Localizing and varying text with a string catalog"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app delivers the best experience when it runs well in a person’s locale and displays content in their native language. Supporting multiple languages is more than translating text. It includes handling plurals for nouns and units, as well as displaying the right form of text on specific devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "localizing-and-varying-text-with-a-string-catalog-0-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a string catalog to localize and translate all your app’s text in a visual editor right in Xcode. A string catalog automatically tracks all the localizable strings from your code, and keeps your translations in one place.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use string catalogs to host translations, configure pluralization",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "messages for different regions and locales, and change how text appears on different devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Session 10155: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2023/10155",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related session from WWDC23",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Localize-your-apps-text",
+          "level": 3,
+          "text": "Localize your app’s text",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can translate text, you need to make it localizable. This involves wrapping the user-facing strings in your app in constructs that make them translatable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In SwiftUI, all string literals within a view are automatically localizable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// SwiftUI localizable text.",
+            "Text(\"Welcome\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make general text localizable using the ",
+              "type": "text"
+            },
+            {
+              "code": "String(localized:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " initializer. For apps targeting older platforms, use the ",
+              "type": "text"
+            },
+            {
+              "code": "NSLocalizedString",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macro.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// General localizable text.",
+            "String(localized: \"Buy a book\"))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add comments to give context and assist localizers when translating your text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Localizable text with comments.",
+            "Text(\"Explore\", comment: \"The title of the tab bar item that navigates to the Explore screen.\")",
+            "String(localized: \"Get Started\", comment: \"The label on the Get Started button that appears after they sign in.\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-a-string-catalog-to-your-project",
+          "level": 3,
+          "text": "Add a string catalog to your project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a string catalog to your project, choose File > New > File.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the sheet that appears, select the platform, enter ",
+              "type": "text"
+            },
+            {
+              "code": "string",
+              "type": "codeVoice"
+            },
+            {
+              "text": " into the filter field, select String Catalog, and click Next. In the dialog that appears, accept the default name ",
+              "type": "text"
+            },
+            {
+              "code": "Localizable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", choose a location, and click Create.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "localizing-and-varying-text-with-a-string-catalog-1-add-a-string-catalog",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your string catalog gets too big, you can create multiple string catalog files within a single Xcode project, and give each a unique name. Then choose which string catalog to use for each translation by passing the string catalog name to the ",
+              "type": "text"
+            },
+            {
+              "code": "tableName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "table",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to the respective localization API as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// A SwiftUI localization example pointing to a specific string catalog.",
+            "Text(\"Explore\", tableName: \"Navigation\")",
+            "",
+            "// A general text localization example pointing to a specific string catalog.",
+            "String(localized: \"Get Started\", table: \"MainScreen\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-a-language-to-your-project",
+          "level": 3,
+          "text": "Add a language to your project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support multiple languages in your app, add additional languages to your project. For each language, select the string catalog in the Project navigator, click the Add button (+) near the bottom of the string catalog editor, and select a language to add.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "localizing-and-varying-text-with-a-string-catalog-2-add-language",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-your-localizable-text-to-the-string-catalog",
+          "level": 3,
+          "text": "Add your localizable text to the string catalog",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode automatically keeps your string catalog and app in sync each time you build your project. To populate your string catalog with the localizable text from your app, choose Product > Build. Xcode identifies strings in your app that support localization, and then adds them to your string catalog.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "localizing-and-varying-text-with-a-string-catalog-2a-add-text",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the percent symbol beside each language to track your string catalog’s percentage of translation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-your-translations-using-the-string-catalog-editor",
+          "level": 3,
+          "text": "Add your translations using the string catalog editor",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After identifying your localizable strings and adding them to a string catalog, you can either manually translate them, or you can export them, send them to a third-party for translation, and then import them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enter your app’s translations manually, select the string catalog and click the language you want to add translations for. Then click the text field of the Language column for each key in the table and enter the translation for that key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Newly added strings that require translation appear with a New icon in the State column. When you add a translation, the New icon changes to a green checkmark. As you add translations, the percent symbol beside the language updates, displaying the translation percentage for that language. When a string catalog language reaches full translation, the percent symbol changes to a green checkmark.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "localizing-and-varying-text-with-a-string-catalog-3-add-translations",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about exporting and importing translations in Xcode, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/exporting-localizations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/importing-localizations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-pluralizations",
+          "level": 3,
+          "text": "Add pluralizations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Languages have different grammatical rules for handling plurals of nouns and units. For example, in English, you can return ",
+              "type": "text"
+            },
+            {
+              "code": "1 Book",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when the value of ",
+              "type": "text"
+            },
+            {
+              "code": "%lld",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". And you can return ",
+              "type": "text"
+            },
+            {
+              "code": "%lld Books",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for all other cases. Other languages can have fewer or more plural variants, depending on their region and locale.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Plural",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Text",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "One",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "%lld Book",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Other",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "%lld Books",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a plural variant, first localize the text using the value the string is dependent on, using string interpolation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@State private var itemCount = 0",
+            "Text(\"\\(itemCount) Books\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, in the string catalog editor, select the language you want to add pluralization for, Control-click the variant key, and select the Vary by Plural option.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "localizing-and-varying-text-with-a-string-catalog-4-add-pluralization",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you add a plural variant, the system does the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Adds all the plural forms for that language into the string catalog editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Determines which specifier to use for the interpolated string (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "%lld",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "representing a 64-bit integer in this case).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Prepopulates the variant fields with the value of that key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you add pluralization to the source language (English in this case), the system propagates the variation to the other languages, if possible. If you add pluralization to a nonsource language, that change affects only that language.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Click the text field in the Language column for each variation of that string key, and enter the text for the system to use when that plural displays.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you run the app, the pluralized variants update based on the value of the interpolated string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Vary-strings-by-device",
+          "level": 3,
+          "text": "Vary strings by device",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you need to alter the text that displays on a device due to the available space, or because it has a different interaction, use the Vary by Device option in the string catalog editor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, suppose you want to display two different messages depending on whether your app is running on iPhone or a Mac.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Operating system",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Message",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tap to learn more",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click to learn more",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To vary the text string based on device, select the string catalog file, along with the language and key representing the message you want to vary. Control-click the key, select Vary by Device, and then select the device you want to add a specific message for.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "localizing-and-varying-text-with-a-string-catalog-5-vary-by-device",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Enter the text you want to display for that selected device, while retaining the existing text for all other devices. Add more devices if you need more variations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app runs on the selected device, the system displays the new message for that device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-your-translations",
+          "level": 3,
+          "text": "Test your translations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test your translations in the simulator:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change the app language of your current scheme by choosing Product > Scheme > Edit Scheme.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the dialog that appears, select the Run action on the left and click the Options tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the App Language drop-down, select the language you want to test, and click Close.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "localizing-and-varying-text-with-a-string-catalog-6-testing",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also navigate to Settings on the simulated device and change the deviceʼs language there. When your app runs, the translations for the selected language appear in the simulator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/exporting-localizations": {
+      "abstract": [
+        {
+          "text": "Provide the localizable files from your project to localizers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/exporting-localizations",
+      "kind": "article",
+      "role": "article",
+      "title": "Exporting localizations",
+      "type": "topic",
+      "url": "/documentation/xcode/exporting-localizations"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/importing-localizations": {
+      "abstract": [
+        {
+          "text": "Import the files that you translate or adapt for a language and region into your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/importing-localizations",
+      "kind": "article",
+      "role": "article",
+      "title": "Importing localizations",
+      "type": "topic",
+      "url": "/documentation/xcode/importing-localizations"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/localization": {
+      "abstract": [
+        {
+          "text": "Expand the market for your app by supporting multiple languages and regions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/localization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Localization",
+      "type": "topic",
+      "url": "/documentation/xcode/localization"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/supporting-multiple-languages-in-your-app": {
+      "abstract": [
+        {
+          "text": "Internationalize your app’s strings, images, and other resource types to prepare for the translation process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/supporting-multiple-languages-in-your-app",
+      "images": [
+        {
+          "identifier": "supporting-multiple-languages-in-your-app-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting multiple languages in your app",
+      "type": "topic",
+      "url": "/documentation/xcode/supporting-multiple-languages-in-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10155": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10155",
+      "title": "Discover String Catalogs",
+      "titleInlineContent": [
+        {
+          "text": "Discover String Catalogs",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10155"
+    },
+    "localizing-and-varying-text-with-a-string-catalog-0-hero": {
+      "alt": null,
+      "identifier": "localizing-and-varying-text-with-a-string-catalog-0-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ca1cd2ff0166df7b3fb34dee9d839e39/localizing-and-varying-text-with-a-string-catalog-0-hero@2x.png"
+        }
+      ]
+    },
+    "localizing-and-varying-text-with-a-string-catalog-1-add-a-string-catalog": {
+      "alt": "An Xcode screenshot showing the new file template with a string catalog file selected and highlighted.",
+      "identifier": "localizing-and-varying-text-with-a-string-catalog-1-add-a-string-catalog",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6f463d0afd212879f7b1fa591e5311e2/localizing-and-varying-text-with-a-string-catalog-1-add-a-string-catalog@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ed0ecded3d224ad0d6db99bcdedb4676/localizing-and-varying-text-with-a-string-catalog-1-add-a-string-catalog~dark@2x.png"
+        }
+      ]
+    },
+    "localizing-and-varying-text-with-a-string-catalog-2-add-language": {
+      "alt": "An Xcode screenshot of the string catalog editor with a callout for the Add button near the bottom of the Language pane.",
+      "identifier": "localizing-and-varying-text-with-a-string-catalog-2-add-language",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d9b2dd71764863073381f716e731724f/localizing-and-varying-text-with-a-string-catalog-2-add-language@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bd07480062003a43de10dadfb63ba467/localizing-and-varying-text-with-a-string-catalog-2-add-language~dark@2x.png"
+        }
+      ]
+    },
+    "localizing-and-varying-text-with-a-string-catalog-2a-add-text": {
+      "alt": "An Xcode screenshot of the string catalog editor showing a newly added language setting with a 0 percent indicator beside it.",
+      "identifier": "localizing-and-varying-text-with-a-string-catalog-2a-add-text",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90c67fb32bc0afc57298f407f3c2b963/localizing-and-varying-text-with-a-string-catalog-2a-add-text@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b960d74e6d54f5a04c695da83ca2a5e1/localizing-and-varying-text-with-a-string-catalog-2a-add-text~dark@2x.png"
+        }
+      ]
+    },
+    "localizing-and-varying-text-with-a-string-catalog-3-add-translations": {
+      "alt": "An Xcode screenshot showing the Project navigator on the left with a string catalog selected. The string catalog editor on the right contains English strings with Swedish translations.",
+      "identifier": "localizing-and-varying-text-with-a-string-catalog-3-add-translations",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/29cc3c4fe487c6f2f40766b359841eba/localizing-and-varying-text-with-a-string-catalog-3-add-translations@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/72098b5018d5adf0e222be344a3a1d9b/localizing-and-varying-text-with-a-string-catalog-3-add-translations~dark@2x.png"
+        }
+      ]
+    },
+    "localizing-and-varying-text-with-a-string-catalog-4-add-pluralization": {
+      "alt": "An Xcode screenshot of the string catalog editor showing one of the localized strings selected with a contextual menu. The Vary by Plural option is selected.",
+      "identifier": "localizing-and-varying-text-with-a-string-catalog-4-add-pluralization",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/479cd9130764b79f80fe677fa5448e1f/localizing-and-varying-text-with-a-string-catalog-4-add-pluralization@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/29c63e74d32578c6810ccd1bf430534c/localizing-and-varying-text-with-a-string-catalog-4-add-pluralization~dark@2x.png"
+        }
+      ]
+    },
+    "localizing-and-varying-text-with-a-string-catalog-5-vary-by-device": {
+      "alt": "An Xcode screenshot showing the string catalog editor with one of the localized strings selected with a contextual menu. The Vary by Device option is selected with the Mac option highlighted.",
+      "identifier": "localizing-and-varying-text-with-a-string-catalog-5-vary-by-device",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0f9d14bc3f55b166e1e599db4568119c/localizing-and-varying-text-with-a-string-catalog-5-vary-by-device@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/457ad4ea81998e56a768477aa3919ddf/localizing-and-varying-text-with-a-string-catalog-5-vary-by-device~dark@2x.png"
+        }
+      ]
+    },
+    "localizing-and-varying-text-with-a-string-catalog-6-testing": {
+      "alt": "An Xcode screenshot showing an open scheme editor with the Swedish language selected in the App Language drop-down.",
+      "identifier": "localizing-and-varying-text-with-a-string-catalog-6-testing",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6161a4b408dc8e1233459fd277c55ad1/localizing-and-varying-text-with-a-string-catalog-6-testing@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/75109549f113aefd3bf311ac4e3e12a0/localizing-and-varying-text-with-a-string-catalog-6-testing~dark@2x.png"
+        }
+      ]
+    },
+    "supporting-multiple-languages-in-your-app-PageImage-card.png": {
+      "alt": "Two iPhones displayed side-by-side. The iPhone on the left displays the word Hello in English. The iPhone on the right displays the Chinese word for Hello in the display.",
+      "identifier": "supporting-multiple-languages-in-your-app-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6435d4bd1a0089892c22e32a0af69482/supporting-multiple-languages-in-your-app-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b83ed8b6f3e89b9c97aae4e676aef5b6/supporting-multiple-languages-in-your-app-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/supporting-multiple-languages-in-your-app"
+      ],
+      "title": "Essentials"
+    }
+  ]
+}

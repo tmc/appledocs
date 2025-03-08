@@ -1,0 +1,1903 @@
+{
+  "abstract": [
+    {
+      "text": "A structure that converts between URL instances and their textual representations.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+        "doc://com.apple.documentation/documentation/foundation/url"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting",
+        "doc://com.apple.documentation/documentation/foundation/formatstyle"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/url/formatstyle"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 4013390,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation3URLV11FormatStyleV",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "URL.FormatStyle"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "URL"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "9.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "URL.FormatStyle"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "FormatStyle"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " create localized, human-readable text from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances and parse string representations of URLs into instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4113542",
+          "level": 3,
+          "text": "Formatting URLs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url/4013497-formatted",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to create a string representation of a URL using the default ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " configuration. As seen in the following example, the default style creates a string with the scheme, host, and path, but not the port or query.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let url = URL(string:\"https://www.example.com:8080/path/to/endpoint?key=value\")!",
+            "let formatted = url.formatted() // \"https://www.example.com/path/to/endpoint\""
+          ],
+          "metadata": {
+            "anchor": "4113529",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can specify a format style by providing an argument to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013445-format",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. The following example uses the previous URL, but preserves only the host and path.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let url = URL(string:\"https://www.example.com:8080/path/to/endpoint?key=value\")!",
+            "let style = URL.FormatStyle(scheme: .never,",
+            "                            user: .never,",
+            "                            password: .never,",
+            "                            host: .always,",
+            "                            port: .never,",
+            "                            path: .always,",
+            "                            query: .never,",
+            "                            fragment: .never)",
+            "let formatted = style.format(url) // \"www.example.com/path/to/endpoint\""
+          ],
+          "metadata": {
+            "anchor": "4113541",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instantiate a style when you want to format multiple URL instances with the same style. For one-time access to a default style, you can use the static accessor ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013463-url",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " at call points that expect the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " type, such as the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013445-format",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method. This means you can write the example above as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let url = URL(string:\"https://www.example.com:8080/path/to/endpoint?key=value\")!",
+            "let formatted = url.formatted(.url",
+            "    .scheme(.never)",
+            "    .host(.always)",
+            "    .port(.never)",
+            "    .path(.always)",
+            "    .query(.never)) // \"www.example.com/path/to/endpoint\""
+          ],
+          "metadata": {
+            "anchor": "4113537",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example works by taking the default style provided by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013463-url",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", then customizing it with calls to the style modifiers in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle#4113540",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4113543",
+          "level": 3,
+          "text": "Parsing URLs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to parse strings into URL values. To do this, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from a format style, then call the strategy’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013489-parse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let style = URL.FormatStyle(scheme: .always,",
+            "                            user: .never,",
+            "                            password: .never,",
+            "                            host: .always,",
+            "                            port: .always,",
+            "                            path: .always,",
+            "                            query: .always,",
+            "                            fragment: .never)",
+            "let urlString = \"https://www.example.com:8080/path/to/endpoint?key=value\"",
+            "let url = try? style.parseStrategy.parse(urlString)"
+          ],
+          "metadata": {
+            "anchor": "4113552",
+            "title": "Listing 4"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4113548",
+          "level": 3,
+          "text": "Matching regular expressions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Along with parsing URL values in strings, you can use the regular expression domain-specific language provided by Swift to match and capture URL substrings. The following example scans source input that’s expected to contain a timestamp, some whitespace, and a URL.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import RegexBuilder",
+            "let source = \"7/31/2022, 5:15:12 AM  https://www.example.com/productList?query=slushie\"",
+            "let matcher = Regex {",
+            "    One(.dateTime(date: .numeric,",
+            "                  time: .standard,",
+            "                  locale: Locale(identifier: \"en_US\"),",
+            "                  timeZone: TimeZone(identifier: \"PST\")!))",
+            "    OneOrMore(.horizontalWhitespace)",
+            "    Capture {",
+            "        One(.url(scheme: .required,",
+            "                 user: .optional,",
+            "                 password: .optional,",
+            "                 host: .required,",
+            "                 port: .defaultValue(8088),",
+            "                 path: .optional,",
+            "                 query: .optional,",
+            "                 fragment: .optional))",
+            "    }",
+            "}",
+            "guard let match = source.firstMatch(of: matcher) else { return }",
+            "let url = match.1 // url = https://www.example.com:8088/productList?query=slushie"
+          ],
+          "metadata": {
+            "anchor": "4113551",
+            "title": "Listing 5"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Decodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Decodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/swift/decodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Encodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Encodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/swift/encodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Hashable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/swift/hashable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Formatting",
+      "type": "topic",
+      "url": "/documentation/foundation/data_formatting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Numbers, Data, and Basic Values",
+      "type": "topic",
+      "url": "/documentation/foundation/numbers_data_and_basic_values"
+    },
+    "doc://com.apple.documentation/documentation/foundation/parseableformatstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/parseableformatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ParseableFormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/parseableformatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL",
+      "type": "topic",
+      "url": "/documentation/foundation/url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/4013497-formatted": {
+      "abstract": [
+        {
+          "text": "Formats the URL using a default format style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatted"
+        },
+        {
+          "kind": "text",
+          "text": "() -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/4013497-formatted",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatted()",
+      "type": "topic",
+      "url": "/documentation/foundation/url/4013497-formatted"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/4013498-formatted": {
+      "abstract": [
+        {
+          "text": "Formats the URL, using the provided format style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatted"
+        },
+        {
+          "kind": "text",
+          "text": "<F>(F) -> F.FormatOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/4013498-formatted",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatted(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/4013498-formatted"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle": {
+      "abstract": [
+        {
+          "text": "A structure that converts between URL instances and their textual representations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL.FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle#4113529": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle#4113529",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/url/formatstyle#4113529"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle#4113537": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle#4113537",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/foundation/url/formatstyle#4113537"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle#4113540": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle#4113540",
+      "kind": "article",
+      "role": "task",
+      "title": "Customizing style behavior",
+      "type": "section",
+      "url": "/documentation/foundation/url/formatstyle#4113540"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle#4113541": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle#4113541",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/url/formatstyle#4113541"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle#4113551": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle#4113551",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/foundation/url/formatstyle#4113551"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle#4113552": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle#4113552",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/foundation/url/formatstyle#4113552"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013391": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are not equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "!= "
+        },
+        {
+          "kind": "text",
+          "text": "(URL.FormatStyle, URL.FormatStyle) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013391",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "!=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/4013391"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013392": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether two values are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "== "
+        },
+        {
+          "kind": "text",
+          "text": "(URL.FormatStyle, URL.FormatStyle) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013392",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/4013392"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013442-currency": {
+      "abstract": [
+        {
+          "text": "Returns a format style to use floating-point currency notation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "currency"
+        },
+        {
+          "kind": "text",
+          "text": "<Value>("
+        },
+        {
+          "kind": "identifier",
+          "text": "code"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> URL.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013442-currency",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currency(code:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/4013442-currency"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013443-currency": {
+      "abstract": [
+        {
+          "text": "Returns a format style to use integer currency notation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "currency"
+        },
+        {
+          "kind": "text",
+          "text": "<V>("
+        },
+        {
+          "kind": "identifier",
+          "text": "code"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> URL.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013443-currency",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currency(code:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/4013443-currency"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013444-encode": {
+      "abstract": [
+        {
+          "text": "Encodes the value into the given encoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any Encoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013444-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/4013444-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013445-format": {
+      "abstract": [
+        {
+          "text": "Formats a URL, using this style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": "(URL) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013445-format",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "format(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/4013445-format"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013446-fragment": {
+      "abstract": [
+        {
+          "text": "Modifies a format style to display a URL’s fragment component in accordance with the provided option.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fragment"
+        },
+        {
+          "kind": "text",
+          "text": "(URL.FormatStyle.ComponentDisplayOption) -> URL.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013446-fragment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fragment(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/4013446-fragment"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013447-hash": {
+      "abstract": [
+        {
+          "text": "Hashes the essential components of the value by feeding them into the given hasher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hash"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": inout Hasher)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013447-hash",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hash(into:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/4013447-hash"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013448-hashvalue": {
+      "abstract": [
+        {
+          "text": "The hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "hashValue"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013448-hashvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hashValue",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/4013448-hashvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013449-host": {
+      "abstract": [
+        {
+          "text": "Modifies a format style to display a URL’s host component in accordance with the provided option.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "host"
+        },
+        {
+          "kind": "text",
+          "text": "(URL.FormatStyle.HostDisplayOption) -> URL.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013449-host",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "host(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/4013449-host"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013450-init": {
+      "abstract": [
+        {
+          "text": "Creates a new instance by decoding from the given decoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any Decoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013450-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/4013450-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013451-init": {
+      "abstract": [
+        {
+          "text": "Creates a URL format style with the given display options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "scheme"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.FormatStyle.ComponentDisplayOption, "
+        },
+        {
+          "kind": "identifier",
+          "text": "user"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.FormatStyle.ComponentDisplayOption, "
+        },
+        {
+          "kind": "identifier",
+          "text": "password"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.FormatStyle.ComponentDisplayOption, "
+        },
+        {
+          "kind": "identifier",
+          "text": "host"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.FormatStyle.HostDisplayOption, "
+        },
+        {
+          "kind": "identifier",
+          "text": "port"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.FormatStyle.ComponentDisplayOption, "
+        },
+        {
+          "kind": "identifier",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.FormatStyle.ComponentDisplayOption, "
+        },
+        {
+          "kind": "identifier",
+          "text": "query"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.FormatStyle.ComponentDisplayOption, "
+        },
+        {
+          "kind": "identifier",
+          "text": "fragment"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.FormatStyle.ComponentDisplayOption)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013451-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(scheme:user:password:host:port:path:query:fragment:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/4013451-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013452-list": {
+      "abstract": [
+        {
+          "text": "Returns a format style to format a list of items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "list"
+        },
+        {
+          "kind": "text",
+          "text": "<MemberStyle, Base>("
+        },
+        {
+          "kind": "identifier",
+          "text": "memberStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": MemberStyle, "
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": ListFormatStyle<MemberStyle, Base>.ListType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": ListFormatStyle<MemberStyle, Base>.Width) -> URL.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013452-list",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "list(memberStyle:type:width:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/4013452-list"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013453-list": {
+      "abstract": [
+        {
+          "text": "Returns a format style to format a list of strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "list"
+        },
+        {
+          "kind": "text",
+          "text": "<Base>("
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": ListFormatStyle<StringStyle, Base>.ListType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": ListFormatStyle<StringStyle, Base>.Width) -> URL.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013453-list",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "list(type:width:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/4013453-list"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013454-locale": {
+      "abstract": [
+        {
+          "text": "Modifies the format style to use the specified locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": "(Locale) -> URL.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013454-locale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "locale(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/4013454-locale"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013455-measurement": {
+      "abstract": [
+        {
+          "text": "Returns a format style to format temperature units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "measurement"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": Measurement<UnitTemperature>.FormatStyle.UnitWidth, "
+        },
+        {
+          "kind": "identifier",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": MeasurementFormatUnitUsage<UnitTemperature>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "hidesScaleName"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": FloatingPointFormatStyle<Double>?) -> URL.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013455-measurement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "measurement(width:usage:hidesScaleName:numberFormatStyle:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/4013455-measurement"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013456-measurement": {
+      "abstract": [
+        {
+          "text": "Returns a format style to format measurement units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "measurement"
+        },
+        {
+          "kind": "text",
+          "text": "<UnitType>("
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": Measurement<UnitType>.FormatStyle.UnitWidth, "
+        },
+        {
+          "kind": "identifier",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": MeasurementFormatUnitUsage<UnitType>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": FloatingPointFormatStyle<Double>?) -> URL.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013456-measurement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "measurement(width:usage:numberFormatStyle:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/4013456-measurement"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013457-parsestrategy": {
+      "abstract": [
+        {
+          "text": "The parse strategy used by this format style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "parseStrategy"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.ParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013457-parsestrategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parseStrategy",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/4013457-parsestrategy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013458-password": {
+      "abstract": [
+        {
+          "text": "Modifies a format style to display a URL’s password component in accordance with the provided option.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "password"
+        },
+        {
+          "kind": "text",
+          "text": "(URL.FormatStyle.ComponentDisplayOption) -> URL.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013458-password",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "password(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/4013458-password"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013459-path": {
+      "abstract": [
+        {
+          "text": "Modifies a format style to display a URL’s path component in accordance with the provided option.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": "(URL.FormatStyle.ComponentDisplayOption) -> URL.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013459-path",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "path(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/4013459-path"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013460-port": {
+      "abstract": [
+        {
+          "text": "Modifies a format style to display a URL’s port component in accordance with the provided option.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "port"
+        },
+        {
+          "kind": "text",
+          "text": "(URL.FormatStyle.ComponentDisplayOption) -> URL.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013460-port",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "port(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/4013460-port"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013461-query": {
+      "abstract": [
+        {
+          "text": "Modifies a format style to display a URL’s query component in accordance with the provided option.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "query"
+        },
+        {
+          "kind": "text",
+          "text": "(URL.FormatStyle.ComponentDisplayOption) -> URL.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013461-query",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "query(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/4013461-query"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013462-scheme": {
+      "abstract": [
+        {
+          "text": "Modifies a format style to display a URL’s scheme component in accordance with the provided option.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheme"
+        },
+        {
+          "kind": "text",
+          "text": "(URL.FormatStyle.ComponentDisplayOption) -> URL.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013462-scheme",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scheme(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/4013462-scheme"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013463-url": {
+      "abstract": [
+        {
+          "text": "A default style for formatting a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013463-url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/4013463-url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013464-user": {
+      "abstract": [
+        {
+          "text": "Modifies a format style to display a URL’s user component in accordance with the provided option.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "user"
+        },
+        {
+          "kind": "text",
+          "text": "(URL.FormatStyle.ComponentDisplayOption) -> URL.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013464-user",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "user(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/4013464-user"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/componentdisplayoption": {
+      "abstract": [
+        {
+          "text": "A type that indicates whether a formatted URL should include a component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL.FormatStyle.ComponentDisplayOption"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/componentdisplayoption",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL.FormatStyle.ComponentDisplayOption",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/componentdisplayoption"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/formatinput": {
+      "abstract": [
+        {
+          "text": "The type of data to format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL.FormatStyle.FormatInput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/formatinput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL.FormatStyle.FormatInput",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/formatinput"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/formatoutput": {
+      "abstract": [
+        {
+          "text": "The type this format style produces as output from parsing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL.FormatStyle.FormatOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/formatoutput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL.FormatStyle.FormatOutput",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/formatoutput"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/hostdisplayoption": {
+      "abstract": [
+        {
+          "text": "A type that indicates whether a formatted URL should include the host component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL.FormatStyle.HostDisplayOption"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/hostdisplayoption",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL.FormatStyle.HostDisplayOption",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/hostdisplayoption"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle/strategy": {
+      "abstract": [
+        {
+          "text": "The strategy type used to parse URLs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL.FormatStyle.Strategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle/strategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL.FormatStyle.Strategy",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle/strategy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy": {
+      "abstract": [
+        {
+          "text": "A parse strategy for creating URLs from formatted strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL.ParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL.ParseStrategy",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013489-parse": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy/4013489-parse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parse(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy/4013489-parse"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Decodable",
+        "doc://com.apple.Swift/documentation/Swift/Encodable",
+        "doc://com.apple.documentation/documentation/foundation/formatstyle",
+        "doc://com.apple.Swift/documentation/Swift/Hashable",
+        "doc://com.apple.documentation/documentation/foundation/parseableformatstyle",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/4013497-formatted",
+        "doc://com.apple.documentation/documentation/foundation/url/4013498-formatted"
+      ],
+      "title": "Formatting a URL"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "4113536",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013451-init",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/componentdisplayoption",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/hostdisplayoption",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013463-url"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a URL format style"
+    },
+    {
+      "anchor": "4113530",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013445-format"
+      ],
+      "kind": "taskGroup",
+      "title": "Formatting URL values"
+    },
+    {
+      "anchor": "4113540",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013462-scheme",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013464-user",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013458-password",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013449-host",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/hostdisplayoption",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013460-port",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013459-path",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013461-query",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013446-fragment",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/componentdisplayoption",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013454-locale"
+      ],
+      "kind": "taskGroup",
+      "title": "Customizing style behavior"
+    },
+    {
+      "anchor": "4113545",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013443-currency",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013442-currency"
+      ],
+      "kind": "taskGroup",
+      "title": "Applying currency styles"
+    },
+    {
+      "anchor": "4113535",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013456-measurement",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013455-measurement"
+      ],
+      "kind": "taskGroup",
+      "title": "Applying measurement styles"
+    },
+    {
+      "anchor": "4113549",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013452-list",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013453-list"
+      ],
+      "kind": "taskGroup",
+      "title": "Applying list styles"
+    },
+    {
+      "anchor": "4113538",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013457-parsestrategy",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/strategy",
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy"
+      ],
+      "kind": "taskGroup",
+      "title": "Parsing URLs"
+    },
+    {
+      "anchor": "4113532",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013450-init",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013444-encode"
+      ],
+      "kind": "taskGroup",
+      "title": "Encoding and decoding"
+    },
+    {
+      "anchor": "4113527",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013447-hash",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013448-hashvalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Hashing"
+    },
+    {
+      "anchor": "4113547",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013392",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/4013391"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing URL format styles"
+    },
+    {
+      "anchor": "4113528",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/formatinput",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle/formatoutput"
+      ],
+      "kind": "taskGroup",
+      "title": "Supporting types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/url/formatstyle"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

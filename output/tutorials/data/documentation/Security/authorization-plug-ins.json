@@ -1,0 +1,622 @@
+{
+  "abstract": [
+    {
+      "text": "Extend the authorization services API by creating plug-ins that can participate in authorization decisions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/authorization-plug-ins"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Authorization Plug-ins"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use plug-ins to extend macOS authorization services to perform authorizations in a new way or to implement a new policy that is too complex to be implemented entirely with the authorization policy database.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must import this API explicitly:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "import Security.AuthorizationPlugin"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "#import <Security/AuthorizationPlugin.h>       "
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When your plug-in needs to interact with the user, subclass the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SecurityInterface/SFAuthorizationPluginView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " class to maintain the look and feel of the system authentication dialogs.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/SecurityInterface/SFAuthorizationPluginView": {
+      "abstract": [
+        {
+          "text": "Allows authorization plug-in developers to create a custom view their plug-in can display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFAuthorizationPluginView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SecurityInterface/SFAuthorizationPluginView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SFAuthorizationPluginView",
+      "type": "topic",
+      "url": "/documentation/SecurityInterface/SFAuthorizationPluginView"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCallbacks": {
+      "abstract": [
+        {
+          "text": "The interface implemented by the Security Server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCallbacks"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationCallbacks",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCallbacks-version": {
+      "abstract": [
+        {
+          "text": "The version of the interface implemented by the authorization engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks-version",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AuthorizationCallbacks Version",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks-version"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationContextFlags": {
+      "abstract": [
+        {
+          "text": "The flags that specify whether authentication data should be made available to the authorization client.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationContextFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationContextFlags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationContextFlags",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcontextflags"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationEngineRef": {
+      "abstract": [
+        {
+          "text": "Handle passed from the authorization engine to an instance of a mechanism in a plug-in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationEngineRef"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationEngineRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationEngineRef",
+      "type": "topic",
+      "url": "/documentation/security/authorizationengineref"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationMechanismId": {
+      "abstract": [
+        {
+          "text": "The mechanism ID specified in the authorization policy database is passed to the plug-in to create the appropriate mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationMechanismId"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationMechanismId",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationMechanismId",
+      "type": "topic",
+      "url": "/documentation/security/authorizationmechanismid"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationMechanismRef": {
+      "abstract": [
+        {
+          "text": "A handle passed by the plug-in to the authorization engine when creating an instance of a mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationMechanismRef"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationMechanismRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationMechanismRef",
+      "type": "topic",
+      "url": "/documentation/security/authorizationmechanismref"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationPluginCreate": {
+      "abstract": [
+        {
+          "text": "Initializes the plug-in and exchanges interfaces with the authorization engine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationPluginCreate"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginCreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationPluginCreate",
+      "type": "topic",
+      "url": "/documentation/security/authorizationplugincreate"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationPluginId": {
+      "abstract": [
+        {
+          "text": "An unused identifier for a plug-in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationPluginId"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginId",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationPluginId",
+      "type": "topic",
+      "url": "/documentation/security/authorizationpluginid"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface": {
+      "abstract": [
+        {
+          "text": "The interface that must be implemented by your plug-in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationPluginInterface"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationPluginInterface",
+      "type": "topic",
+      "url": "/documentation/security/authorizationplugininterface"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface-version": {
+      "abstract": [
+        {
+          "text": "The version of the interface implemented by the plug-in.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface-version",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AuthorizationPluginInterface Version",
+      "type": "topic",
+      "url": "/documentation/security/authorizationplugininterface-version"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationPluginRef": {
+      "abstract": [
+        {
+          "text": "A handle passed by the plug-in to the authorization engine when the plug-in is initiated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationPluginRef"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationPluginRef",
+      "type": "topic",
+      "url": "/documentation/security/authorizationpluginref"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationResult": {
+      "abstract": [
+        {
+          "text": "The permissible values for an authorization evaluation result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationResult"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationResult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationResult",
+      "type": "topic",
+      "url": "/documentation/security/authorizationresult"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationSessionId": {
+      "abstract": [
+        {
+          "text": "A unique value for an authorization session, provided by the authorization engine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationSessionId"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationSessionId",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationSessionId",
+      "type": "topic",
+      "url": "/documentation/security/authorizationsessionid"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationValue": {
+      "abstract": [
+        {
+          "text": "A structure used to pass data between the authorization engine and the plug-in mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationValue"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationValue",
+      "type": "topic",
+      "url": "/documentation/security/authorizationvalue"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationValueVector": {
+      "abstract": [
+        {
+          "text": "A structure used to pass arguments from the authorization policy database to the authorization mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationValueVector"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationValueVector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationValueVector",
+      "type": "topic",
+      "url": "/documentation/security/authorizationvaluevector"
+    },
+    "doc://com.apple.security/documentation/Security/extending-authorization-services-with-plug-ins": {
+      "abstract": [
+        {
+          "text": "Modify the system’s authorization policy with custom code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/extending-authorization-services-with-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Extending authorization services with plug-ins",
+      "type": "topic",
+      "url": "/documentation/security/extending-authorization-services-with-plug-ins"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "First-Steps",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/extending-authorization-services-with-plug-ins"
+      ],
+      "title": "First Steps"
+    },
+    {
+      "anchor": "Creating-a-Plug-in",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/AuthorizationCallbacks-version",
+        "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface-version"
+      ],
+      "title": "Creating a Plug-in"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "First-Steps",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/extending-authorization-services-with-plug-ins"
+              ],
+              "title": "First Steps"
+            },
+            {
+              "anchor": "Creating-a-Plug-in",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/AuthorizationPluginCreate",
+                "doc://com.apple.security/documentation/Security/AuthorizationPluginRef",
+                "doc://com.apple.security/documentation/Security/AuthorizationCallbacks",
+                "doc://com.apple.security/documentation/Security/AuthorizationCallbacks-version",
+                "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface",
+                "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface-version"
+              ],
+              "title": "Creating a Plug-in"
+            },
+            {
+              "anchor": "Supporting-Types-and-Constants",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/AuthorizationValue",
+                "doc://com.apple.security/documentation/Security/AuthorizationValueVector",
+                "doc://com.apple.security/documentation/Security/AuthorizationMechanismId",
+                "doc://com.apple.security/documentation/Security/AuthorizationPluginId",
+                "doc://com.apple.security/documentation/Security/AuthorizationMechanismRef",
+                "doc://com.apple.security/documentation/Security/AuthorizationEngineRef",
+                "doc://com.apple.security/documentation/Security/AuthorizationSessionId",
+                "doc://com.apple.security/documentation/Security/AuthorizationResult",
+                "doc://com.apple.security/documentation/Security/AuthorizationContextFlags"
+              ],
+              "title": "Supporting Types and Constants"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SecurityInterface~1SFAuthorizationPluginView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SFAuthorizationPluginView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/authorization-plug-ins"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/authorization-plug-ins"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

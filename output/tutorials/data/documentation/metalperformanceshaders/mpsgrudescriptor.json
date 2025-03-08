@@ -1,0 +1,1273 @@
+{
+  "abstract": [
+    {
+      "text": "A description of a gated recurrent unit block or layer.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/recurrent_neural_networks"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2865711,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MPSGRUDescriptor",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "MPSGRUDescriptor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal Performance Shaders"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "MPSGRUDescriptor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MPSGRUDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MPSRNNDescriptor",
+              "text": "MPSRNNDescriptor"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The recurrent neural network (RNN) layer initialized with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " transforms the input data (image or matrix) and previous output with a set of filters. Each produces one feature map in the output data according to the gated recurrent unit (GRU) unit formula detailed below. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may provide the GRU unit with a single input or a sequence of inputs. The layer also supports p-norm gating.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2888086",
+          "level": 3,
+          "text": "Description of Operation",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x_j",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the input data (at time index ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "t",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " of sequence, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "j",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " index containing quadruplet: batch index, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x,y",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and feature index (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x = y = 0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for matrices)).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "h0_",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "j be the recurrent input (previous output) data from previous time step (at time index ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "t-1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " of sequence).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "h_i",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the proposed new output.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "h1_i",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the output data produced at this time step.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Wz_ij",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Uz_ij",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the input gate weights for input and recurrent input data, respectively.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "bi_i",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the bias for the input gate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Wr_ij",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Ur_ij",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the recurrent gate weights for input and recurrent input data, respectively.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "br_i",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the bias for the recurrent gate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Wh_ij",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Uh_ij",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Vh_ij",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the output gate weights for input, recurrent gate, and input gate, respectively.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "bh_i",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the bias for the output gate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "gz(x",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "code": ")",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "gr(x)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "gh(x)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the neuron activation function for the input, recurrent, and output gates.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "p > 0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be a scalar variable (typical ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "p >= 1.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") that defines the p-norm gating norm value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The output of the GRU layer is computed as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "z_i = gz(  Wz_ij * x_j  +  Uz_ij * h0_j  +  bz_i  )",
+            "r_i = gr(  Wr_ij * x_j  +  Ur_ij * h0_j  +  br_i  )",
+            "c_i =      Uh_ij * (r_j h0_j)  +  Vh_ij * (z_j h0_j)",
+            "h_i = gh(  Wh_ij * x_j  + c_i + bh_i  )",
+            "",
+            "h1_i = ( 1 - z_i ^ p)^(1/p) h0_i + z_i h_i"
+          ],
+          "metadata": {
+            "anchor": "2888087",
+            "title": "Listing 1"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "*",
+              "type": "codeVoice"
+            },
+            {
+              "text": " stands for convolution (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") or matrix-vector/matrix multiplication (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Summation is over index ",
+              "type": "text"
+            },
+            {
+              "code": "j",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (except for the batch index), but there's no summation over repeated index ",
+              "type": "text"
+            },
+            {
+              "code": "i",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "code": " ",
+              "type": "codeVoice"
+            },
+            {
+              "text": "the output index.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that for validity, all intermediate images must be of same size, and all ",
+              "type": "text"
+            },
+            {
+              "code": "U",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "V",
+              "type": "codeVoice"
+            },
+            {
+              "text": " matrices must be square (that is, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor/2865702-outputfeaturechannels",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "code": " ==",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor/2865707-inputfeaturechannels",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). Also, the bias terms are scalars with regard to spatial dimensions. The conventional GRU block is achieved by setting ",
+              "type": "text"
+            },
+            {
+              "code": "Vh = 0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (nil), and the Minimal Gated Unit is achieved with ",
+              "type": "text"
+            },
+            {
+              "code": "Uh = 0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/metalperformanceshaders": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondatasource": {
+      "abstract": [
+        {
+          "text": "The protocol that provides convolution filter weights and bias terms.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNConvolutionDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondatasource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNConvolutionDataSource",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnconvolutiondatasource"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor": {
+      "abstract": [
+        {
+          "text": "A description of a gated recurrent unit block or layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSGRUDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSGRUDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsgrudescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor#2888087": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor#2888087",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/metalperformanceshaders/mpsgrudescriptor#2888087"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2865690-inputgateinputweights": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputGateInputWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MPSCNNConvolutionDataSource)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2865690-inputgateinputweights",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputGateInputWeights",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsgrudescriptor/2865690-inputgateinputweights"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2865695-recurrentgaterecurrentweights": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "recurrentGateRecurrentWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MPSCNNConvolutionDataSource)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2865695-recurrentgaterecurrentweights",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "recurrentGateRecurrentWeights",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsgrudescriptor/2865695-recurrentgaterecurrentweights"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2865699-outputgaterecurrentweights": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputGateRecurrentWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MPSCNNConvolutionDataSource)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2865699-outputgaterecurrentweights",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "outputGateRecurrentWeights",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsgrudescriptor/2865699-outputgaterecurrentweights"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2865715-creategrudescriptor": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "createGRUDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withInputFeatureChannels"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputFeatureChannels"
+        },
+        {
+          "kind": "text",
+          "text": ": Int) -> Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2865715-creategrudescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createGRUDescriptor(withInputFeatureChannels:outputFeatureChannels:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsgrudescriptor/2865715-creategrudescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2865719-recurrentgateinputweights": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "recurrentGateInputWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MPSCNNConvolutionDataSource)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2865719-recurrentgateinputweights",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "recurrentGateInputWeights",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsgrudescriptor/2865719-recurrentgateinputweights"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2865722-outputgateinputweights": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputGateInputWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MPSCNNConvolutionDataSource)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2865722-outputgateinputweights",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "outputGateInputWeights",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsgrudescriptor/2865722-outputgateinputweights"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2865724-inputgaterecurrentweights": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputGateRecurrentWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MPSCNNConvolutionDataSource)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2865724-inputgaterecurrentweights",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputGateRecurrentWeights",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsgrudescriptor/2865724-inputgaterecurrentweights"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2873332-gatepnormvalue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "gatePnormValue"
+        },
+        {
+          "kind": "text",
+          "text": ": Float"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2873332-gatepnormvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gatePnormValue",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsgrudescriptor/2873332-gatepnormvalue"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2878270-outputgateinputgateweights": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputGateInputGateWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MPSCNNConvolutionDataSource)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2878270-outputgateinputgateweights",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "outputGateInputGateWeights",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsgrudescriptor/2878270-outputgateinputgateweights"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2878271-flipoutputgates": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "flipOutputGates"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2878271-flipoutputgates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "flipOutputGates",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsgrudescriptor/2878271-flipoutputgates"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor": {
+      "abstract": [
+        {
+          "text": "A description of a long short-term memory block or layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSLSTMDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSLSTMDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpslstmdescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnndescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor/2865702-outputfeaturechannels": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor/2865702-outputfeaturechannels",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "outputFeatureChannels",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnndescriptor/2865702-outputfeaturechannels"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor/2865707-inputfeaturechannels": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor/2865707-inputfeaturechannels",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputFeatureChannels",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnndescriptor/2865707-inputfeaturechannels"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer": {
+      "abstract": [
+        {
+          "text": "A recurrent neural network layer for inference on Metal Performance Shaders images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNImageInferenceLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNImageInferenceLayer",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnimageinferencelayer"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer": {
+      "abstract": [
+        {
+          "text": "A recurrent neural network layer for inference on Metal Performance Shaders matrices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNMatrixInferenceLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNMatrixInferenceLayer",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer": {
+      "abstract": [
+        {
+          "text": "A layer for training recurrent neural networks on Metal Performance Shaders matrices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNMatrixTrainingLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNMatrixTrainingLayer",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixtrainingstate": {
+      "abstract": [
+        {
+          "text": "A class that holds data from a forward pass to be used in a backward pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNMatrixTrainingState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixtrainingstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNMatrixTrainingState",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnmatrixtrainingstate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsequencedirection": {
+      "abstract": [
+        {
+          "text": "Directions that a sequence of inputs can be processed by a recurrent neural network layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNSequenceDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsequencedirection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNSequenceDirection",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnsequencedirection"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor": {
+      "abstract": [
+        {
+          "text": "A description of a simple recurrent block or layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNSingleGateDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNSingleGateDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/recurrent_neural_networks": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/recurrent_neural_networks",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Recurrent Neural Networks",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/recurrent_neural_networks"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsequencedirection",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixtrainingstate"
+      ],
+      "title": "Recurrent Neural Networks"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2868905",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2878271-flipoutputgates",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2873332-gatepnormvalue",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2865690-inputgateinputweights",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2865724-inputgaterecurrentweights",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2878270-outputgateinputgateweights",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2865722-outputgateinputweights",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2865699-outputgaterecurrentweights",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2865719-recurrentgateinputweights",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2865695-recurrentgaterecurrentweights",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondatasource"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "2868906",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor/2865715-creategrudescriptor"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpsgrudescriptor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpsgrudescriptor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

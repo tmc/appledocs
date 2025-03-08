@@ -1,0 +1,1145 @@
+{
+  "abstract": [
+    {
+      "text": "The exposure value that you’ve already applied to your color texture input.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metalfx/documentation/MetalFX",
+        "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/preExposure"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MTLFXTemporalScaler(py)preExposure",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "preExposure"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sf",
+        "text": "Float"
+      }
+    ],
+    "modules": [
+      {
+        "name": "MetalFX"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "preExposure"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      }
+    ],
+    "required": true,
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "preExposure"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "macOS",
+            "tvOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "preExposure"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sf",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sf",
+              "text": "Float"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app applies an exposure adjustment to your color texture input, set this property to that adjustment value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Most apps don’t need to set this property, which defaults ",
+                  "type": "text"
+                },
+                {
+                  "code": "1.0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The temporal scaler divides each value in the color texture input by this pre-exposure value before it applies any regular exposure adjustments. The regular exposure adjustments either come from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/exposureTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property or the temporal scaler’s autoexposure feature (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScalerDescriptor/isAutoExposureEnabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metalfx/documentation/MetalFX": {
+      "abstract": [
+        {
+          "text": "Boost your Metal app’s performance by upscaling lower-resolution content to save GPU time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metalfx/documentation/MetalFX",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MetalFX",
+      "type": "topic",
+      "url": "/documentation/metalfx"
+    },
+    "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler": {
+      "abstract": [
+        {
+          "text": "An upscaling effect that generates a higher resolution texture in a render pass by analyzing multiple input textures over time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFXTemporalScaler"
+        }
+      ],
+      "identifier": "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFXTemporalScaler"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFXTemporalScaler",
+      "type": "topic",
+      "url": "/documentation/metalfx/mtlfxtemporalscaler"
+    },
+    "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/colorTexture": {
+      "abstract": [
+        {
+          "text": "An input color texture you set for the temporal scaler that supports the correct color texture usage options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorTexture"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/colorTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "colorTexture"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "colorTexture",
+      "type": "topic",
+      "url": "/documentation/metalfx/mtlfxtemporalscaler/colortexture"
+    },
+    "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/colorTextureUsage": {
+      "abstract": [
+        {
+          "text": "The minimal texture usage options that your app’s input color texture must set to apply the temporal scaler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorTextureUsage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLTextureUsage",
+          "text": "MTLTextureUsage"
+        }
+      ],
+      "identifier": "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/colorTextureUsage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "colorTextureUsage"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "colorTextureUsage",
+      "type": "topic",
+      "url": "/documentation/metalfx/mtlfxtemporalscaler/colortextureusage"
+    },
+    "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/exposureTexture": {
+      "abstract": [
+        {
+          "text": "A texture that sets the exposure level for the color texture input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "exposureTexture"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/exposureTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "exposureTexture"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "exposureTexture",
+      "type": "topic",
+      "url": "/documentation/metalfx/mtlfxtemporalscaler/exposuretexture"
+    },
+    "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/inputContentHeight": {
+      "abstract": [
+        {
+          "text": "The height, in pixels, of the region within the color texture the temporal scaler uses as its input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputContentHeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/inputContentHeight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inputContentHeight"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "inputContentHeight",
+      "type": "topic",
+      "url": "/documentation/metalfx/mtlfxtemporalscaler/inputcontentheight"
+    },
+    "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/inputContentWidth": {
+      "abstract": [
+        {
+          "text": "The width, in pixels, of the region within the color texture the temporal scaler uses as its input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputContentWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/inputContentWidth",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inputContentWidth"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "inputContentWidth",
+      "type": "topic",
+      "url": "/documentation/metalfx/mtlfxtemporalscaler/inputcontentwidth"
+    },
+    "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/jitterOffsetX": {
+      "abstract": [
+        {
+          "text": "The horizontal component of the subpixel sampling coordinate you use to generate the color texture input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "jitterOffsetX"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/jitterOffsetX",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "jitterOffsetX"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "jitterOffsetX",
+      "type": "topic",
+      "url": "/documentation/metalfx/mtlfxtemporalscaler/jitteroffsetx"
+    },
+    "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/jitterOffsetY": {
+      "abstract": [
+        {
+          "text": "The vertical component of the subpixel sampling coordinate you use to generate the color texture input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "jitterOffsetY"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/jitterOffsetY",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "jitterOffsetY"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "jitterOffsetY",
+      "type": "topic",
+      "url": "/documentation/metalfx/mtlfxtemporalscaler/jitteroffsety"
+    },
+    "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/preExposure": {
+      "abstract": [
+        {
+          "text": "The exposure value that you’ve already applied to your color texture input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preExposure"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/preExposure",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preExposure"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "preExposure",
+      "type": "topic",
+      "url": "/documentation/metalfx/mtlfxtemporalscaler/preexposure"
+    },
+    "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScalerDescriptor/isAutoExposureEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether MetalFX calculates the exposure for each frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAutoExposureEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScalerDescriptor/isAutoExposureEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autoExposureEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isAutoExposureEnabled",
+      "type": "topic",
+      "url": "/documentation/metalfx/mtlfxtemporalscalerdescriptor/isautoexposureenabled"
+    },
+    "doc://com.externally.resolved.symbol/s:Sf": {
+      "abstract": [
+        {
+          "text": "A single-precision, floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Float",
+      "type": "topic",
+      "url": "/documentation/Swift/Float"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-the-image-input",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/colorTextureUsage",
+        "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/colorTexture",
+        "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/inputContentWidth",
+        "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/inputContentHeight",
+        "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/jitterOffsetX",
+        "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/jitterOffsetY",
+        "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/exposureTexture"
+      ],
+      "title": "Configuring the image input"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "tvOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "preExposure"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preExposure"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.metalfx/documentation/MetalFX",
+                "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Configuring-the-image-input",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/colorTextureUsage",
+                "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/colorTexture",
+                "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/inputContentWidth",
+                "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/inputContentHeight",
+                "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/jitterOffsetX",
+                "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/jitterOffsetY",
+                "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler/exposureTexture"
+              ],
+              "title": "Configuring the image input"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "nonatomic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:f",
+                    "text": "float"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "preExposure"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScaler~1preExposure/title",
+          "value": "preExposure"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScaler~1preExposure/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preExposure"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScaler~1inputContentWidth/title",
+          "value": "inputContentWidth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScaler~1inputContentWidth/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "inputContentWidth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScaler~1inputContentHeight/title",
+          "value": "inputContentHeight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScaler~1inputContentHeight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "inputContentHeight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScalerDescriptor~1isAutoExposureEnabled/title",
+          "value": "autoExposureEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScalerDescriptor~1isAutoExposureEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "autoExposureEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScaler/title",
+          "value": "MTLFXTemporalScaler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScaler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFXTemporalScaler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScaler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFXTemporalScaler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScaler~1jitterOffsetX/title",
+          "value": "jitterOffsetX"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScaler~1jitterOffsetX/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "jitterOffsetX"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScaler~1jitterOffsetY/title",
+          "value": "jitterOffsetY"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScaler~1jitterOffsetY/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "jitterOffsetY"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScaler~1exposureTexture/title",
+          "value": "exposureTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScaler~1exposureTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "exposureTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScaler~1colorTextureUsage/title",
+          "value": "colorTextureUsage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScaler~1colorTextureUsage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "colorTextureUsage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScaler~1colorTexture/title",
+          "value": "colorTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScaler~1colorTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "colorTexture"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metalfx/mtlfxtemporalscaler/preexposure"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metalfx/mtlfxtemporalscaler/preexposure"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

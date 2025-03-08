@@ -1,0 +1,1347 @@
+{
+  "abstract": [
+    {
+      "text": "Display selectable, sortable data arranged in rows and columns.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Tables"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Tables"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a table to display multiple values across a collection of elements.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each element in the collection appears in a different row of the table, while",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "each value for a given element appears in a different column. Narrow displays",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "may adapt to show only the first column of the table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "tables-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a table, you provide a collection of elements, and then tell",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the table how to find the needed value for each column. In simple cases,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftUI infers the element for each row, but you can also specify the row",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "elements explicitly in more complex scenarios. With a small amount of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "additional configuration, you can also make the items in the table selectable,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the columns sortable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Like a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/List",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", a table includes implicit vertical scrolling that you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "configure using the view modifiers described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scroll-views",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For design guidance, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/lists-and-tables",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the Human Interface Guidelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "components-lists-and-tables-thumbnail.png": {
+      "alt": null,
+      "identifier": "components-lists-and-tables-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3a40dbc8b5f69bed051b7e8a504d8b51/components-lists-and-tables-thumbnail~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3ffeb44c270bb7e6d92963d73a30148d/components-lists-and-tables-thumbnail@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Custom-layout": {
+      "abstract": [
+        {
+          "text": "Place views in custom arrangements and create animated transitions between layout types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Custom-layout",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Custom layout",
+      "type": "topic",
+      "url": "/documentation/swiftui/custom-layout"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DisclosureTableRow": {
+      "abstract": [
+        {
+          "text": "A kind of table row that shows or hides additional rows based on the state",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of a disclosure control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DisclosureTableRow"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DisclosureTableRow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DisclosureTableRow"
+        }
+      ],
+      "role": "symbol",
+      "title": "DisclosureTableRow",
+      "type": "topic",
+      "url": "/documentation/swiftui/disclosuretablerow"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DynamicTableRowContent": {
+      "abstract": [
+        {
+          "text": "A type of table row content that generates table rows from an underlying",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "collection of data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DynamicTableRowContent"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DynamicTableRowContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DynamicTableRowContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "DynamicTableRowContent",
+      "type": "topic",
+      "url": "/documentation/swiftui/dynamictablerowcontent"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyTableRowContent": {
+      "abstract": [
+        {
+          "text": "A table row content that doesn’t produce any rows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EmptyTableRowContent"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyTableRowContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EmptyTableRowContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "EmptyTableRowContent",
+      "type": "topic",
+      "url": "/documentation/swiftui/emptytablerowcontent"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-adjustments": {
+      "abstract": [
+        {
+          "text": "Make fine adjustments to alignment, spacing, padding, and other layout parameters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-adjustments",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Layout adjustments",
+      "type": "topic",
+      "url": "/documentation/swiftui/layout-adjustments"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-fundamentals": {
+      "abstract": [
+        {
+          "text": "Arrange views inside built-in layout containers like stacks and grids.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Layout fundamentals",
+      "type": "topic",
+      "url": "/documentation/swiftui/layout-fundamentals"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/List": {
+      "abstract": [
+        {
+          "text": "A container that presents rows of data arranged in a single column,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "optionally providing the ability to select one or more members.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "List"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/List",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "List"
+        }
+      ],
+      "role": "symbol",
+      "title": "List",
+      "type": "topic",
+      "url": "/documentation/swiftui/list"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Lists": {
+      "abstract": [
+        {
+          "text": "Display a structured, scrollable column of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Lists",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Lists",
+      "type": "topic",
+      "url": "/documentation/swiftui/lists"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scroll-views": {
+      "abstract": [
+        {
+          "text": "Enable people to scroll to content that doesn’t fit in the current display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scroll-views",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scroll views",
+      "type": "topic",
+      "url": "/documentation/swiftui/scroll-views"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Table": {
+      "abstract": [
+        {
+          "text": "A container that presents rows of data arranged in one or more columns,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "optionally providing the ability to select one or more members.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Table"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Table",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Table"
+        }
+      ],
+      "role": "symbol",
+      "title": "Table",
+      "type": "topic",
+      "url": "/documentation/swiftui/table"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableColumn": {
+      "abstract": [
+        {
+          "text": "A column that displays a view for each row in a table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableColumn"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableColumn",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableColumn"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableColumn",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablecolumn"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableColumnAlignment": {
+      "abstract": [
+        {
+          "text": "Describes the alignment of the content of a table column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableColumnAlignment"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableColumnAlignment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableColumnAlignment"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableColumnAlignment",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablecolumnalignment"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableColumnBuilder": {
+      "abstract": [
+        {
+          "text": "A result builder that creates table column content from closures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableColumnBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableColumnBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableColumnBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableColumnBuilder",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablecolumnbuilder"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableColumnContent": {
+      "abstract": [
+        {
+          "text": "A type used to represent columns within a table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableColumnContent"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableColumnContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableColumnContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableColumnContent",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablecolumncontent"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableColumnCustomization": {
+      "abstract": [
+        {
+          "text": "A representation of the state of the columns in a table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableColumnCustomization"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableColumnCustomization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableColumnCustomization"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableColumnCustomization",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablecolumncustomization"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableColumnCustomizationBehavior": {
+      "abstract": [
+        {
+          "text": "A set of customization behaviors of a column that a table can offer to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableColumnCustomizationBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableColumnCustomizationBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableColumnCustomizationBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableColumnCustomizationBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablecolumncustomizationbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableColumnForEach": {
+      "abstract": [
+        {
+          "text": "A structure that computes columns on demand from an underlying collection of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identified data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableColumnForEach"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableColumnForEach",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableColumnForEach"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableColumnForEach",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablecolumnforeach"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableForEachContent": {
+      "abstract": [
+        {
+          "text": "A type of table row content that creates table rows created by iterating",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "over a collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableForEachContent"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableForEachContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableForEachContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableForEachContent",
+      "type": "topic",
+      "url": "/documentation/swiftui/tableforeachcontent"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableHeaderRowContent": {
+      "abstract": [
+        {
+          "text": "A table row that displays a single view instead of columned content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableHeaderRowContent"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableHeaderRowContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableHeaderRowContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableHeaderRowContent",
+      "type": "topic",
+      "url": "/documentation/swiftui/tableheaderrowcontent"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableOutlineGroupContent": {
+      "abstract": [
+        {
+          "text": "An opaque table row type created by a table’s hierarchical initializers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableOutlineGroupContent"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableOutlineGroupContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableOutlineGroupContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableOutlineGroupContent",
+      "type": "topic",
+      "url": "/documentation/swiftui/tableoutlinegroupcontent"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRow": {
+      "abstract": [
+        {
+          "text": "A row that represents a data value in a table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableRow"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableRow"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableRow",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablerow"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder": {
+      "abstract": [
+        {
+          "text": "A result builder that creates table row content from closures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableRowBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableRowBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableRowBuilder",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablerowbuilder"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowContent": {
+      "abstract": [
+        {
+          "text": "A type used to represent table rows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableRowContent"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableRowContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableRowContent",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablerowcontent"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TupleTableRowContent": {
+      "abstract": [
+        {
+          "text": "A type of table column content that creates table rows created from a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Swift tuple of table rows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TupleTableRowContent"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TupleTableRowContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TupleTableRowContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "TupleTableRowContent",
+      "type": "topic",
+      "url": "/documentation/swiftui/tupletablerowcontent"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View-groupings": {
+      "abstract": [
+        {
+          "text": "Present views in different kinds of purpose-driven containers, like forms or",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "control groups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-groupings",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View groupings",
+      "type": "topic",
+      "url": "/documentation/swiftui/view-groupings"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tableColumnHeaders(_:)": {
+      "abstract": [
+        {
+          "text": "Controls the visibility of a ",
+          "type": "text"
+        },
+        {
+          "code": "Table",
+          "type": "codeVoice"
+        },
+        {
+          "text": "’s column header views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tableColumnHeaders"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10VisibilityO",
+          "text": "Visibility"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tableColumnHeaders(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tableColumnHeaders(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/tablecolumnheaders(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tableStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for tables within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tableStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tableStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tableStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/tablestyle(_:)"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/lists-and-tables": {
+      "abstract": [
+        {
+          "text": "Lists and tables present data in one or more columns of rows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/lists-and-tables",
+      "images": [
+        {
+          "identifier": "components-lists-and-tables-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Lists and tables",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/lists-and-tables"
+    },
+    "doc://com.apple.documentation/documentation/swiftui/building_a_great_mac_app_with_swiftui": {
+      "abstract": [
+        {
+          "text": "Create engaging SwiftUI Mac apps by incorporating side bars, tables, toolbars, and several other popular user interface elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swiftui/building_a_great_mac_app_with_swiftui",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a Great Mac App with SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui/building_a_great_mac_app_with_swiftui"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "tables-hero": {
+      "alt": null,
+      "identifier": "tables-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a784f68f4e1b73d07143c7d57ae3f586/tables-hero@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "View-layout",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-fundamentals",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-adjustments",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Custom-layout",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Lists",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View-groupings",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scroll-views"
+      ],
+      "title": "View layout"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-table",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/swiftui/building_a_great_mac_app_with_swiftui",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Table",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tableStyle(_:)"
+      ],
+      "title": "Creating a table"
+    },
+    {
+      "anchor": "Creating-columns",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableColumn",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableColumnContent",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableColumnAlignment",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableColumnBuilder",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableColumnForEach"
+      ],
+      "title": "Creating columns"
+    },
+    {
+      "anchor": "Customizing-columns",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tableColumnHeaders(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableColumnCustomization",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableColumnCustomizationBehavior"
+      ],
+      "title": "Customizing columns"
+    },
+    {
+      "anchor": "Creating-rows",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRow",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowContent",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableHeaderRowContent",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TupleTableRowContent",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableForEachContent",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyTableRowContent",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DynamicTableRowContent",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder"
+      ],
+      "title": "Creating rows"
+    },
+    {
+      "anchor": "Adding-progressive-disclosure",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DisclosureTableRow",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableOutlineGroupContent"
+      ],
+      "title": "Adding progressive disclosure"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/tables"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

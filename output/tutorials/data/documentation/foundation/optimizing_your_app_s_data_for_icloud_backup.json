@@ -1,0 +1,542 @@
+{
+  "abstract": [
+    {
+      "text": "Minimize the space and time that backups take to create by excluding purgeable and nonpurgeable data from backups.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/optimizing_your_app_s_data_for_icloud_backup"
+  },
+  "kind": "article",
+  "legacy_identifier": 3405111,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Optimizing Your App’s Data for iCloud Backup"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When iCloud Backup is in an enabled state, it periodically creates a backup of the user’s device, including your app’s data. By storing purgeable data in specific directories and signaling to the system that backups can exclude certain nonpurgeable data, you can shorten the time it takes to create a backup and help reduce the amount of space that backup consumes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3928528",
+          "level": 3,
+          "text": "Exclude Purgeable Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Purgeable data",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is app data that the system can delete without affecting the app’s execution and that the app can re-create if it needs. For example, your app might generate thumbnails of larger images for display in a collection view. If the app saves the thumbnails to disk, consider them purgeable data because, if the system deletes those files, the app can create them again from source.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app container provides two directories for storing purgeable data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "/tmp",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "/Library/Caches",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system periodically purges these directories, so iCloud Backup excludes them by default. If your app creates purgeable data, store it in one of these directories; otherwise, iCloud Backup may include that data, needlessly increasing the physical size of the backup with no benefit to the user. Don’t use these directories to exclude nonpurgeable data from iCloud Backup.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To retrieve the location of these system-provided directories, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class, as the following example shows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let manager = FileManager.default",
+            "",
+            "// Get the URL to the app container's 'tmp' directory.",
+            "let tmpDirectoryURL = manager.temporaryDirectory",
+            "",
+            "// Get the URL to the app container's 'Caches' directory.",
+            "let cachesDirectoryURL = try manager.url(for: .cachesDirectory,",
+            "                                         in: .userDomainMask,",
+            "                                         appropriateFor: nil,",
+            "                                         create: false)"
+          ],
+          "metadata": {
+            "anchor": "3928537",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider deleting purgeable data as soon as your app is done with it so that it doesn’t continue to consume space on the user’s device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3928527",
+          "level": 3,
+          "text": "Mark Nonpurgeable Data as Excludable",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Nonpurgeable data",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is data the user creates, or data the app requires to function as the user expects. Some nonpurgeable data isn’t appropriate for backup. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if your app downloads high-definition movies for offline viewing, exclude those files because they’re typically large in size and the user can download them again on a restored device, if necessary. Conversely, if your app allows the user to import arbitrary files such as PDFs, ebooks, and digital comics, don’t exclude those files because it might be difficult, even impossible, for the user to re-create them on a restored device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app creates nonpurgeable data that isn’t appropriate for backup, you can indicate which files and directories the system can exclude by setting their ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780002-isexcludedfrombackup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " resource value to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", as the following example shows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func excludeItem(at url: URL) throws {",
+            "    // Create the resource values for the specified URL.",
+            "    var values = URLResourceValues()",
+            "    values.isExcludedFromBackup = true",
+            "",
+            "    // Apply those values to the URL.",
+            "    var url = url",
+            "    try url.setResourceValues(values)",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3928531",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Because certain file operations can reset resource values, make sure you set an excluded file’s resource values each time you save it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780002-isexcludedfrombackup",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " resource value exists only to provide guidance to the system about which files and directories it can exclude; it’s not a mechanism to guarantee those items never appear in a backup or on a restored device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To indicate the system can exclude a group of related files from iCloud Backup, move those files into a directory and update the directory’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780002-isexcludedfrombackup",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " resource value. If you create an excludable directory inside the app container’s ",
+              "type": "text"
+            },
+            {
+              "code": "Library",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory, consider naming the directory with the app’s bundle identifier to avoid potential conflicts with directories the system may create there in the future.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let manager = FileManager.default",
+            "",
+            "// Retrieve the app's bundle identifier.",
+            "if let bundleIdentifier = Bundle.main.bundleIdentifier {",
+            "    ",
+            "    // Get the URL to the app container's 'Library' directory.",
+            "    var url = try manager.url(for: .libraryDirectory,",
+            "                              in: .userDomainMask,",
+            "                              appropriateFor: nil,",
+            "                              create: false)",
+            "    ",
+            "    // Append the bundle identifier to the retrieved URL.",
+            "    url.appendPathComponent(bundleIdentifier, isDirectory: true)",
+            "    ",
+            "    // Use the URL to create the new directory.",
+            "    try manager.createDirectory(at: url,",
+            "                                withIntermediateDirectories: true,",
+            "                                attributes: nil)",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3928532",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization": {
+      "abstract": [
+        {
+          "text": "Convert objects and values to and from property list, JSON, and other flat binary representations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Archives and Serialization",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system": {
+      "abstract": [
+        {
+          "text": "Create, read, write, and examine files and folders in the file system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File System",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManager",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/icloud": {
+      "abstract": [
+        {
+          "text": "Manage files and key-value data that automatically synchronize among a user's iCloud devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/icloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "iCloud",
+      "type": "topic",
+      "url": "/documentation/foundation/icloud"
+    },
+    "doc://com.apple.documentation/documentation/foundation/optimizing_your_app_s_data_for_icloud_backup": {
+      "abstract": [
+        {
+          "text": "Minimize the space and time that backups take to create by excluding purgeable and nonpurgeable data from backups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/optimizing_your_app_s_data_for_icloud_backup",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing Your App’s Data for iCloud Backup",
+      "type": "topic",
+      "url": "/documentation/foundation/optimizing_your_app_s_data_for_icloud_backup"
+    },
+    "doc://com.apple.documentation/documentation/foundation/optimizing_your_app_s_data_for_icloud_backup#3928531": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/optimizing_your_app_s_data_for_icloud_backup#3928531",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/optimizing_your_app_s_data_for_icloud_backup#3928531"
+    },
+    "doc://com.apple.documentation/documentation/foundation/optimizing_your_app_s_data_for_icloud_backup#3928532": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/optimizing_your_app_s_data_for_icloud_backup#3928532",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/foundation/optimizing_your_app_s_data_for_icloud_backup#3928532"
+    },
+    "doc://com.apple.documentation/documentation/foundation/optimizing_your_app_s_data_for_icloud_backup#3928537": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/optimizing_your_app_s_data_for_icloud_backup#3928537",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/optimizing_your_app_s_data_for_icloud_backup#3928537"
+    },
+    "doc://com.apple.documentation/documentation/foundation/preferences": {
+      "abstract": [
+        {
+          "text": "Persistently store domain-scoped pieces of information for configuring your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/preferences",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preferences",
+      "type": "topic",
+      "url": "/documentation/foundation/preferences"
+    },
+    "doc://com.apple.documentation/documentation/foundation/spotlight": {
+      "abstract": [
+        {
+          "text": "Search for files and other items on the local device, and index your app's content for searching.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/spotlight",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Spotlight",
+      "type": "topic",
+      "url": "/documentation/foundation/spotlight"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780002-isexcludedfrombackup": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues/1780002-isexcludedfrombackup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isExcludedFromBackup",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues/1780002-isexcludedfrombackup"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/file_system",
+        "doc://com.apple.documentation/documentation/foundation/archives_and_serialization",
+        "doc://com.apple.documentation/documentation/foundation/preferences",
+        "doc://com.apple.documentation/documentation/foundation/spotlight",
+        "doc://com.apple.documentation/documentation/foundation/icloud"
+      ],
+      "title": "Files and Data Persistence"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/optimizing_your_app_s_data_for_icloud_backup"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/optimizing_your_app_s_data_for_icloud_backup"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

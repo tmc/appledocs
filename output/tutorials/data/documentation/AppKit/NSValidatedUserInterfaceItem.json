@@ -1,0 +1,1169 @@
+{
+  "abstract": [
+    {
+      "text": "A protocol that a custom class can adopt to manage the automatic enablement of a UI control.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSValidatedUserInterfaceItem"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)NSValidatedUserInterfaceItem",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSValidatedUserInterfaceItem"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSValidatedUserInterfaceItem"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "NSValidatedUserInterfaceItem"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSValidatedUserInterfaceItem"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSValidatedUserInterfaceItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol works with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol to enable or disable a control automatically, depending on whether any responder in the responder chain can handle the control’s action method. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " classes implement this protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By conforming to this protocol, your control can participate in this validation mechanism. To validate a control, the application calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations/validateUserInterfaceItem(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for each item in the responder chain, starting with the first responder. If no responder returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the item is disabled. For example, a menu item that sends the ",
+              "type": "text"
+            },
+            {
+              "code": "copy:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " action message would disable itself if no responder in the responder chain can be copied.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMenuItem": {
+      "abstract": [
+        {
+          "text": "A command item in an app menu.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMenuItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSMenuItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSMenuItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmenuitem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMenuToolbarItem": {
+      "abstract": [
+        {
+          "text": "A control that presents a menu in a window’s toolbar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMenuToolbarItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuToolbarItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSMenuToolbarItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSMenuToolbarItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmenutoolbaritem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSearchToolbarItem": {
+      "abstract": [
+        {
+          "text": "A toolbar item that contains a search field optimized for performing text-based searches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSearchToolbarItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSearchToolbarItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSearchToolbarItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSearchToolbarItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nssearchtoolbaritem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSharingServicePickerToolbarItem": {
+      "abstract": [
+        {
+          "text": "A toolbar item that displays the macOS share sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSharingServicePickerToolbarItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSharingServicePickerToolbarItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSharingServicePickerToolbarItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSharingServicePickerToolbarItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nssharingservicepickertoolbaritem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem": {
+      "abstract": [
+        {
+          "text": "A single item that appears in a window’s toolbar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSToolbarItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSToolbarItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSToolbarItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nstoolbaritem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSToolbarItemGroup": {
+      "abstract": [
+        {
+          "text": "A group of subitems in a toolbar item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSToolbarItemGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarItemGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSToolbarItemGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSToolbarItemGroup",
+      "type": "topic",
+      "url": "/documentation/appkit/nstoolbaritemgroup"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTrackingSeparatorToolbarItem": {
+      "abstract": [
+        {
+          "text": "A toolbar separator that aligns with the vertical split view in the same window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTrackingSeparatorToolbarItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingSeparatorToolbarItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTrackingSeparatorToolbarItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTrackingSeparatorToolbarItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nstrackingseparatortoolbaritem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations": {
+      "abstract": [
+        {
+          "text": "A protocol that a custom class can adopt to manage the enabled state of a UI element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceValidations"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceValidations"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserInterfaceValidations",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuserinterfacevalidations"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations/validateUserInterfaceItem(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the sender should be enabled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "validateUserInterfaceItem"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSValidatedUserInterfaceItem",
+          "text": "NSValidatedUserInterfaceItem"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations/validateUserInterfaceItem(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "validateUserInterfaceItem:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "validateUserInterfaceItem(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuserinterfacevalidations/validateuserinterfaceitem(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSValidatedUserInterfaceItem": {
+      "abstract": [
+        {
+          "text": "A protocol that a custom class can adopt to manage the automatic enablement of a UI control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSValidatedUserInterfaceItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSValidatedUserInterfaceItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSValidatedUserInterfaceItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSValidatedUserInterfaceItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nsvalidateduserinterfaceitem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSValidatedUserInterfaceItem/action": {
+      "abstract": [
+        {
+          "text": "Returns the selector of the receiver’s action method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSValidatedUserInterfaceItem/action",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "action"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "action",
+      "type": "topic",
+      "url": "/documentation/appkit/nsvalidateduserinterfaceitem/action"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSValidatedUserInterfaceItem/tag": {
+      "abstract": [
+        {
+          "text": "Returns the receiver’s tag integer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tag"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSValidatedUserInterfaceItem/tag",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tag"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "tag",
+      "type": "topic",
+      "url": "/documentation/appkit/nsvalidateduserinterfaceitem/tag"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSMenuItem",
+        "doc://com.apple.appkit/documentation/AppKit/NSMenuToolbarItem",
+        "doc://com.apple.appkit/documentation/AppKit/NSSearchToolbarItem",
+        "doc://com.apple.appkit/documentation/AppKit/NSSharingServicePickerToolbarItem",
+        "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem",
+        "doc://com.apple.appkit/documentation/AppKit/NSToolbarItemGroup",
+        "doc://com.apple.appkit/documentation/AppKit/NSTrackingSeparatorToolbarItem"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "UI-Validation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations"
+      ],
+      "title": "UI Validation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-information-about-a-user-interface-item",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSValidatedUserInterfaceItem/action",
+        "doc://com.apple.appkit/documentation/AppKit/NSValidatedUserInterfaceItem/tag"
+      ],
+      "title": "Getting information about a user interface item"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSValidatedUserInterfaceItem"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSValidatedUserInterfaceItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSValidatedUserInterfaceItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Getting-information-about-a-user-interface-item",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSValidatedUserInterfaceItem/action",
+                "doc://com.apple.appkit/documentation/AppKit/NSValidatedUserInterfaceItem/tag"
+              ],
+              "title": "Getting information about a user interface item"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSMenuItem",
+                "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem"
+              ],
+              "kind": "relationships",
+              "title": "Conforming Types",
+              "type": "conformingTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "UI-Validation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations"
+              ],
+              "title": "UI Validation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSValidatedUserInterfaceItem"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSearchToolbarItem/title",
+          "value": "NSSearchToolbarItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSearchToolbarItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSearchToolbarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSearchToolbarItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSearchToolbarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSValidatedUserInterfaceItem~1action/title",
+          "value": "action"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSValidatedUserInterfaceItem~1action/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "action"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarItemGroup/title",
+          "value": "NSToolbarItemGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarItemGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSToolbarItemGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarItemGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSToolbarItemGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingSeparatorToolbarItem/title",
+          "value": "NSTrackingSeparatorToolbarItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingSeparatorToolbarItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTrackingSeparatorToolbarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingSeparatorToolbarItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTrackingSeparatorToolbarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSValidatedUserInterfaceItem~1tag/title",
+          "value": "tag"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSValidatedUserInterfaceItem~1tag/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tag"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarItem/title",
+          "value": "NSToolbarItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSToolbarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSToolbarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSValidatedUserInterfaceItem/title",
+          "value": "NSValidatedUserInterfaceItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSValidatedUserInterfaceItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSValidatedUserInterfaceItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSValidatedUserInterfaceItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSValidatedUserInterfaceItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItem/title",
+          "value": "NSMenuItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMenuItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMenuItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceValidations~1validateUserInterfaceItem(_:)/title",
+          "value": "validateUserInterfaceItem:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceValidations~1validateUserInterfaceItem(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "validateUserInterfaceItem:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingServicePickerToolbarItem/title",
+          "value": "NSSharingServicePickerToolbarItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingServicePickerToolbarItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSharingServicePickerToolbarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingServicePickerToolbarItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSharingServicePickerToolbarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceValidations/title",
+          "value": "NSUserInterfaceValidations"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceValidations/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceValidations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceValidations/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceValidations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuToolbarItem/title",
+          "value": "NSMenuToolbarItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuToolbarItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMenuToolbarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuToolbarItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMenuToolbarItem"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsvalidateduserinterfaceitem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsvalidateduserinterfaceitem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

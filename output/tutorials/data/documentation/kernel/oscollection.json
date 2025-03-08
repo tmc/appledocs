@@ -1,0 +1,866 @@
+{
+  "abstract": [
+    {
+      "text": "The abstract superclass for Libkern collections.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/libkern",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/oscollection"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1542651,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@OSCollection",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "OSCollection"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "OSCollection"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSObject",
+              "text": "OSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "OSCollection is the abstract superclass for all Libkern C++ object collections. It defines the necessary interfaces for managing storage space and iterating through an arbitrary collection (see the OSIterator and OSCollectionIterator classes). It is up to concrete subclasses to define their specific content management functions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use Restrictions",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With very few exceptions in the I/O Kit, all Libkern-based C++ classes, functions, and macros are ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "unsafe",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " to use in a primary interrupt context. Consult the I/O Kit documentation related to primary interrupts for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "OSCollection provides no concurrency protection; it's up to the usage context to provide any protection necessary. Some portions of the I/O Kit, such as IORegistryEntry, handle synchronization via defined member functions for setting properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "libkern",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern/data_types": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern/data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Types",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern/data_types"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray": {
+      "abstract": [
+        {
+          "text": "OSArray provides an indexed store of objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSArray",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for Libkern collections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSCollection",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/1569367-copycollection": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/1569367-copycollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copyCollection",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/1569367-copycollection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/1569368-inititerator": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initIterator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/1569368-inititerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initIterator",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/1569368-inititerator"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/1569369-getcapacityincrement": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCapacityIncrement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/1569369-getcapacityincrement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCapacityIncrement",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/1569369-getcapacityincrement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/1569370-iteratorsize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "iteratorSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/1569370-iteratorsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "iteratorSize",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/1569370-iteratorsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/1569371-setcapacityincrement": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCapacityIncrement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/1569371-setcapacityincrement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCapacityIncrement",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/1569371-setcapacityincrement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/1569373-setoptions": {
+      "abstract": [
+        {
+          "text": "Recursively sets option bits in this collection and all child collections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/1569373-setoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setOptions",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/1569373-setoptions"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/1569374-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/1569374-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/1569374-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/1569375-getnextobjectforiterator": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNextObjectForIterator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/1569375-getnextobjectforiterator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getNextObjectForIterator",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/1569375-getnextobjectforiterator"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/1569376-haveupdated": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "haveUpdated"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/1569376-haveupdated",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "haveUpdated",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/1569376-haveupdated"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/1569378-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/1569378-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/1569378-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/1808206-copycollection": {
+      "abstract": [
+        {
+          "text": "Creates a deep copy of a collection.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/1808206-copycollection",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "copyCollection",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/1808206-copycollection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/1808212-ensurecapacity": {
+      "abstract": [
+        {
+          "text": "Ensures the collection has enough space to store the requested number of objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/1808212-ensurecapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "ensureCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/1808212-ensurecapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/1808219-flushcollection": {
+      "abstract": [
+        {
+          "text": "Empties the collection, releasing any objects retained.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/1808219-flushcollection",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "flushCollection",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/1808219-flushcollection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/1808225-getcapacity": {
+      "abstract": [
+        {
+          "text": "Returns the number of objects the collection can store without reallocating.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/1808225-getcapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/1808225-getcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/1808233-getcapacityincrement": {
+      "abstract": [
+        {
+          "text": "Returns the storage increment of the collection.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/1808233-getcapacityincrement",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCapacityIncrement",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/1808233-getcapacityincrement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/1808238-getcount": {
+      "abstract": [
+        {
+          "text": "Returns the number of objects in the collection.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/1808238-getcount",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCount",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/1808238-getcount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/1808244-getnextobjectforiterator": {
+      "abstract": [
+        {
+          "text": "Returns the next member of a collection.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/1808244-getnextobjectforiterator",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getNextObjectForIterator",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/1808244-getnextobjectforiterator"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/1808248-haveupdated": {
+      "abstract": [
+        {
+          "text": "Tracks updates to the collection.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/1808248-haveupdated",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "haveUpdated",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/1808248-haveupdated"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/1808252-init": {
+      "abstract": [
+        {
+          "text": "Initializes the OSCollection object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/1808252-init",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/1808252-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/1808258-inititerator": {
+      "abstract": [
+        {
+          "text": "Initializes the iteration context for a collection subclass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/1808258-inititerator",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initIterator",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/1808258-inititerator"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/1808262-iteratorsize": {
+      "abstract": [
+        {
+          "text": "Returns the size in bytes of a subclass's iteration context.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/1808262-iteratorsize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "iteratorSize",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/1808262-iteratorsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/1808267-setcapacityincrement": {
+      "abstract": [
+        {
+          "text": "Sets the storage increment of the collection.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/1808267-setcapacityincrement",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCapacityIncrement",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/1808267-setcapacityincrement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/2967351-iterateobjects": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "iterateObjects"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/2967351-iterateobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "iterateObjects",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/2967351-iterateobjects"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/3438145-ensurecapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ensureCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/3438145-ensurecapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ensureCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/3438145-ensurecapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/3438146-flushcollection": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "flushCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/3438146-flushcollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "flushCollection",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/3438146-flushcollection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/3438147-getcapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/3438147-getcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/3438147-getcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/3438148-getcount": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCount"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/3438148-getcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCount",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/3438148-getcount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/3516833-iterateobjects": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "iterateObjects"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/3516833-iterateobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "iterateObjects",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/3516833-iterateobjects"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection/oscollectionflags": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection/oscollectionflags",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "_OSCollectionFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection/oscollectionflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollectioniterator": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollectioniterator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSCollectionIterator",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollectioniterator"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdictionary": {
+      "abstract": [
+        {
+          "text": "OSDictionary provides an associative store using strings for keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSDictionary",
+      "type": "topic",
+      "url": "/documentation/kernel/osdictionary"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ositerator": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for Libkern iterators.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ositerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSIterator",
+      "type": "topic",
+      "url": "/documentation/kernel/ositerator"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osorderedset": {
+      "abstract": [
+        {
+          "text": "OSOrderedSet provides an ordered set store of objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osorderedset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSOrderedSet",
+      "type": "topic",
+      "url": "/documentation/kernel/osorderedset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset": {
+      "abstract": [
+        {
+          "text": "OSSet provides an unordered set store of objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSSet",
+      "type": "topic",
+      "url": "/documentation/kernel/osset"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osarray",
+        "doc://com.apple.documentation/documentation/kernel/osdictionary",
+        "doc://com.apple.documentation/documentation/kernel/osset",
+        "doc://com.apple.documentation/documentation/kernel/osorderedset",
+        "doc://com.apple.documentation/documentation/kernel/oscollectioniterator",
+        "doc://com.apple.documentation/documentation/kernel/ositerator"
+      ],
+      "title": "Collections"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1673634",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/oscollection/1808206-copycollection",
+        "doc://com.apple.documentation/documentation/kernel/oscollection/1808212-ensurecapacity",
+        "doc://com.apple.documentation/documentation/kernel/oscollection/1808219-flushcollection",
+        "doc://com.apple.documentation/documentation/kernel/oscollection/1808225-getcapacity",
+        "doc://com.apple.documentation/documentation/kernel/oscollection/1808233-getcapacityincrement",
+        "doc://com.apple.documentation/documentation/kernel/oscollection/1808238-getcount",
+        "doc://com.apple.documentation/documentation/kernel/oscollection/1808244-getnextobjectforiterator",
+        "doc://com.apple.documentation/documentation/kernel/oscollection/1808248-haveupdated",
+        "doc://com.apple.documentation/documentation/kernel/oscollection/1808252-init",
+        "doc://com.apple.documentation/documentation/kernel/oscollection/1808258-inititerator",
+        "doc://com.apple.documentation/documentation/kernel/oscollection/1808262-iteratorsize",
+        "doc://com.apple.documentation/documentation/kernel/oscollection/1808267-setcapacityincrement"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "1673721",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/oscollection/oscollectionflags"
+      ],
+      "kind": "taskGroup",
+      "title": "DataTypes"
+    },
+    {
+      "anchor": "2860268",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/oscollection/1569367-copycollection",
+        "doc://com.apple.documentation/documentation/kernel/oscollection/3438145-ensurecapacity",
+        "doc://com.apple.documentation/documentation/kernel/oscollection/3438146-flushcollection",
+        "doc://com.apple.documentation/documentation/kernel/oscollection/3438147-getcapacity",
+        "doc://com.apple.documentation/documentation/kernel/oscollection/1569369-getcapacityincrement",
+        "doc://com.apple.documentation/documentation/kernel/oscollection/3438148-getcount",
+        "doc://com.apple.documentation/documentation/kernel/oscollection/1569378-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/oscollection/1569375-getnextobjectforiterator",
+        "doc://com.apple.documentation/documentation/kernel/oscollection/1569376-haveupdated",
+        "doc://com.apple.documentation/documentation/kernel/oscollection/1569374-init",
+        "doc://com.apple.documentation/documentation/kernel/oscollection/1569368-inititerator",
+        "doc://com.apple.documentation/documentation/kernel/oscollection/2967351-iterateobjects",
+        "doc://com.apple.documentation/documentation/kernel/oscollection/3516833-iterateobjects",
+        "doc://com.apple.documentation/documentation/kernel/oscollection/1569370-iteratorsize",
+        "doc://com.apple.documentation/documentation/kernel/oscollection/1569371-setcapacityincrement",
+        "doc://com.apple.documentation/documentation/kernel/oscollection/1569373-setoptions"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/oscollection"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

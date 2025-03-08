@@ -1,0 +1,1187 @@
+{
+  "abstract": [
+    {
+      "text": "Show the output from a GPU’s rendering pass to the user in your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/onscreen-presentation"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Onscreen Presentation"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A texture contains visual data that you may want to display onscreen, such as a filtered image or a frame of animation in a game. To display a texture on a device’s screen, you need to create or acquire a drawable texture from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Metal, a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "drawable",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a texture that bridges the display subsystem within ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to Metal. You can use a drawable as the output of a render pass and then present it to a display with its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDrawable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can’t present a texture you directly create in Metal unless you copy its content to a drawable using a blit pass (see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/blit-passes",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ").",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display content on a device’s screen, add one of these to your Metal app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance within a custom view class",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance, your app can get drawable instances by calling its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer/nextDrawable()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Each drawable conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalDrawable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, which has a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalDrawable/texture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property that a render pass can use as its output. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/creating-a-custom-metal-view",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, your app can use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKView/currentDrawable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. This ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MetalKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class provides a default implementation of a Metal-aware view that uses an underlying ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance. A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MetalKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view provides a quick and easy way to present your app’s content, but gives you less control than using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " directly. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Whichever mechanism you choose, pay close attention to how your app handles drawables. Each drawable comes from a limited and reusable resource pool. A drawable may not always be available when your app requests one. When that happens, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " blocks the calling thread until a drawable becomes available — usually at the display’s next refresh interval.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/MetalKit": {
+      "abstract": [
+        {
+          "text": "Build Metal apps quicker and easier using a common set of utility classes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MetalKit",
+      "type": "topic",
+      "url": "/documentation/MetalKit"
+    },
+    "doc://com.apple.documentation/documentation/MetalKit/MTKView": {
+      "abstract": [
+        {
+          "text": "A specialized view that creates, configures, and displays Metal objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTKView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTKView",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKView"
+    },
+    "doc://com.apple.documentation/documentation/MetalKit/MTKView/currentDrawable": {
+      "abstract": [
+        {
+          "text": "The drawable to use for the current frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentDrawable"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)CAMetalDrawable",
+          "text": "CAMetalDrawable"
+        },
+        {
+          "kind": "text",
+          "text": ")? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKView/currentDrawable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentDrawable",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKView/currentDrawable"
+    },
+    "doc://com.apple.documentation/documentation/MetalKit/MTKViewDelegate": {
+      "abstract": [
+        {
+          "text": "Methods for responding to a MetalKit view’s drawing and resizing events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTKViewDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKViewDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTKViewDelegate",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKViewDelegate"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore": {
+      "abstract": [
+        {
+          "text": "Render, compose, and animate visual elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Animation",
+      "type": "topic",
+      "url": "/documentation/QuartzCore"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CAMetalDrawable": {
+      "abstract": [
+        {
+          "text": "A Metal drawable associated with a Core Animation layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAMetalDrawable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDrawable",
+          "text": "MTLDrawable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalDrawable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CAMetalDrawable",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CAMetalDrawable"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CAMetalDrawable/texture": {
+      "abstract": [
+        {
+          "text": "A Metal texture object that contains the drawable’s contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "texture"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalDrawable/texture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "texture",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CAMetalDrawable/texture"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer": {
+      "abstract": [
+        {
+          "text": "A Core Animation layer that Metal can render into, typically displayed onscreen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAMetalLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CAMetalLayer",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CAMetalLayer"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer/nextDrawable()": {
+      "abstract": [
+        {
+          "text": "Waits until a Metal drawable is available, and then returns it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nextDrawable"
+        },
+        {
+          "kind": "text",
+          "text": "() -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)CAMetalDrawable",
+          "text": "CAMetalDrawable"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer/nextDrawable()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nextDrawable()",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CAMetalLayer/nextDrawable()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDrawable": {
+      "abstract": [
+        {
+          "text": "A displayable resource that can be rendered or written to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDrawable"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDrawable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDrawable"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDrawable",
+      "type": "topic",
+      "url": "/documentation/metal/mtldrawable"
+    },
+    "doc://com.apple.metal/documentation/Metal/achieving-smooth-frame-rates-with-metal-s-display-link": {
+      "abstract": [
+        {
+          "text": "Pace rendering with minimal input latency while providing essential information to the operating system for power-efficient rendering, thermal mitigation, and the scheduling of sustainable workloads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/achieving-smooth-frame-rates-with-metal-s-display-link",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Achieving smooth frame rates with Metal’s display link",
+      "type": "topic",
+      "url": "/documentation/metal/achieving-smooth-frame-rates-with-metal-s-display-link"
+    },
+    "doc://com.apple.metal/documentation/Metal/blit-passes": {
+      "abstract": [
+        {
+          "text": "Encode a block information transfer pass to adjust and copy data to and from GPU resources, such as buffers and textures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/blit-passes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Blit Passes",
+      "type": "topic",
+      "url": "/documentation/metal/blit-passes"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-a-custom-metal-view": {
+      "abstract": [
+        {
+          "text": "Implement a lightweight view for Metal rendering that’s customized to your app’s needs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-a-custom-metal-view",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a Custom Metal View",
+      "type": "topic",
+      "url": "/documentation/metal/creating-a-custom-metal-view"
+    },
+    "doc://com.apple.metal/documentation/Metal/hdr-content": {
+      "abstract": [
+        {
+          "text": "Take advantage of high dynamic range to present more vibrant colors in your apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/hdr-content",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "HDR Content",
+      "type": "topic",
+      "url": "/documentation/metal/hdr-content"
+    },
+    "doc://com.apple.metal/documentation/Metal/reading-pixel-data-from-a-drawable-texture": {
+      "abstract": [
+        {
+          "text": "Access texture data from the CPU by copying it to a buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/reading-pixel-data-from-a-drawable-texture",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Reading Pixel Data from a Drawable Texture",
+      "type": "topic",
+      "url": "/documentation/metal/reading-pixel-data-from-a-drawable-texture"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents": {
+      "abstract": [
+        {
+          "text": "Create a MetalKit view and a render pass to draw the view’s contents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using Metal to Draw a View’s Contents",
+      "type": "topic",
+      "url": "/documentation/metal/using-metal-to-draw-a-view's-contents"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Presentation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/hdr-content"
+      ],
+      "title": "Presentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Presenting-with-Core-Animation",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/creating-a-custom-metal-view",
+        "doc://com.apple.metal/documentation/Metal/reading-pixel-data-from-a-drawable-texture",
+        "doc://com.apple.metal/documentation/Metal/achieving-smooth-frame-rates-with-metal-s-display-link",
+        "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+        "doc://com.apple.documentation/documentation/QuartzCore/CAMetalDrawable"
+      ],
+      "title": "Presenting with Core Animation"
+    },
+    {
+      "anchor": "Presenting-with-MetalKit",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents",
+        "doc://com.apple.documentation/documentation/MetalKit/MTKView",
+        "doc://com.apple.documentation/documentation/MetalKit/MTKViewDelegate"
+      ],
+      "title": "Presenting with MetalKit"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Presenting-with-Core-Animation",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/creating-a-custom-metal-view",
+                "doc://com.apple.metal/documentation/Metal/reading-pixel-data-from-a-drawable-texture",
+                "doc://com.apple.metal/documentation/Metal/achieving-smooth-frame-rates-with-metal-s-display-link",
+                "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+                "doc://com.apple.documentation/documentation/QuartzCore/CAMetalDrawable"
+              ],
+              "title": "Presenting with Core Animation"
+            },
+            {
+              "anchor": "Presenting-with-MetalKit",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents",
+                "doc://com.apple.documentation/documentation/MetalKit/MTKView",
+                "doc://com.apple.documentation/documentation/MetalKit/MTKViewDelegate"
+              ],
+              "title": "Presenting with MetalKit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Presentation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/hdr-content"
+              ],
+              "title": "Presentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKView~1currentDrawable/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)CAMetalDrawable",
+              "text": "id<CAMetalDrawable>"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "currentDrawable"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDrawable/title",
+          "value": "MTLDrawable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDrawable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDrawable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDrawable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDrawable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CAMetalLayer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CAMetalLayer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CALayer",
+              "text": "CALayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTKViewDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CAMetalLayer~1nextDrawable()/title",
+          "value": "nextDrawable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CAMetalLayer~1nextDrawable()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)CAMetalDrawable",
+              "text": "id<CAMetalDrawable>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "nextDrawable"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CAMetalDrawable~1texture/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)MTLTexture",
+              "text": "id<MTLTexture>"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "texture"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CAMetalDrawable/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CAMetalDrawable"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)MTLDrawable",
+              "text": "MTLDrawable"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTKView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/onscreen-presentation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/onscreen-presentation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

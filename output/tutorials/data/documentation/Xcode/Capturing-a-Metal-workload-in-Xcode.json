@@ -1,0 +1,935 @@
+{
+  "abstract": [
+    {
+      "text": "Analyze your app’s performance by configuring your project to use the Metal debugger.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-in-Xcode"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Capturing a Metal workload in Xcode"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use Xcode to capture your app’s Metal workload. First, ensure that the GPU Frame Capture option is enabled in the runtime diagnostics options. Then, when your app is running, click the Metal Capture button in the debug bar, select a scope, and click Capture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-GPU-Frame-Capture-options",
+          "level": 3,
+          "text": "Configure the GPU Frame Capture options",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode automatically enables the GPU Frame Capture option if your target links to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework, or any other framework that uses the Metal API. If you’re collaborating on a project, it’s possible that someone else may have disabled GPU Frame Capture. To ensure it’s enabled, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Xcode toolbar, choose Edit Scheme from the Scheme menu.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "gputools-metal-debugger-essentials-capture-edit-scheme.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Run scheme action.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Options tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose a GPU Frame Capture option and click Close.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "gputools-metal-debugger-essentials-capture-options.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The GPU Frame Capture options include the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Captures Metal or OpenGL ES API usage in your app. If your target doesn’t link to the Metal framework or the OpenGL ES framework, the Metal Capture button doesn’t appear in the debug bar. If your app uses both the Metal  API and the OpenGL ES API, you can click and hold the Capture GPU Frame icon to choose which API usage to capture.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Automatically",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Captures only Metal API usage in your app. If your app doesn’t use the Metal API, Xcode disables the Metal Capture button in the debug bar.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Metal",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Doesn’t capture Metal usage in your app. GPU Frame Capture has a tiny, but measurable, effect on your app’s CPU processing time, so choose this option when you want to test your app’s maximum performance level.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Disabled",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Capture-your-Metal-workload-while-debugging",
+          "level": 3,
+          "text": "Capture your Metal workload while debugging",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While debugging your app, you can capture a GPU trace by following these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Metal Capture button in the debug bar.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "gputools-metal-debugger-essentials-capture-popup.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the scope that you want to capture. This can be a frame, Metal layer, command queue, device, or any custom scopes that you set up previously. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Creating-and-using-custom-capture-scopes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the count. Depending on the scope, this might include the number of frames or command buffers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optionally, select Profile after Replay so that Xcode automatically profiles after capturing. Profiling has an initial performance impact on the Metal debugger, so only enable this option when debugging your app’s performance. You can always profile later as needed. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Replaying-a-GPU-trace-file",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Capture.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode automatically starts capturing a GPU trace when the scope triggers, and then finishes the capture based on the scope and count you select.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To manually stop the capture, you can click the Finish button at any time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In macOS, you can start a capture by selecting an option from the “Capture shortcut” menu, and then pressing that keyboard shortcut while the app is active.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Capture-your-Metal-workload-after-deployment",
+          "level": 3,
+          "text": "Capture your Metal workload after deployment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Capture a GPU trace after deploying your app by following these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, choose Debug > Debug Executable.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your app in Finder and click Choose. Xcode automatically brings up the scheme editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Options tab, choose a GPU Frame Capture option, and click Close.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "gputools-metal-debugger-essentials-capture-choose-options.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run your app by choosing Product > Run.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Metal Capture button in the debug bar.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "gputools-metal-debugger-essentials-capture-choose-capture.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the scope and count that you want to capture. You can optionally select Profile after Replay. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Replaying-a-GPU-trace-file",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Capture.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode automatically starts capturing a GPU trace when the scope triggers, and then finishes the capture based on the count you select.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To manually stop the capture, you can click the Finish button at any time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In macOS, you can start a capture by selecting an option from the “Capture shortcut” menu, and then pressing that keyboard shortcut while the app is active.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Save-the-capture-to-your-computer",
+          "level": 3,
+          "text": "Save the capture to your computer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To save your captured Metal workload as a GPU trace, choose File > Export. For more information on replaying GPU trace files, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Replaying-a-GPU-trace-file",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-programmatically": {
+      "abstract": [
+        {
+          "text": "Analyze your app’s performance by invoking Metal’s frame capture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-programmatically",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing a Metal workload programmatically",
+      "type": "topic",
+      "url": "/documentation/xcode/capturing-a-metal-workload-programmatically"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Creating-and-using-custom-capture-scopes": {
+      "abstract": [
+        {
+          "text": "Capture specific GPU commands by using custom capture scopes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Creating-and-using-custom-capture-scopes",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating and using custom capture scopes",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-and-using-custom-capture-scopes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Investigating-visual-artifacts": {
+      "abstract": [
+        {
+          "text": "Discover, diagnose, and fix visual artifacts in your app with the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Investigating-visual-artifacts",
+      "kind": "article",
+      "role": "article",
+      "title": "Investigating visual artifacts",
+      "type": "topic",
+      "url": "/documentation/xcode/investigating-visual-artifacts"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger": {
+      "abstract": [
+        {
+          "text": "Debug and profile your Metal workload with a GPU trace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal debugger",
+      "type": "topic",
+      "url": "/documentation/xcode/metal-debugger"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Optimizing-GPU-performance": {
+      "abstract": [
+        {
+          "text": "Find and address performance bottlenecks using the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Optimizing-GPU-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing GPU performance",
+      "type": "topic",
+      "url": "/documentation/xcode/optimizing-gpu-performance"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Replaying-a-GPU-trace-file": {
+      "abstract": [
+        {
+          "text": "Debug and profile your app’s performance using a GPU trace file in the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Replaying-a-GPU-trace-file",
+      "kind": "article",
+      "role": "article",
+      "title": "Replaying a GPU trace file",
+      "type": "topic",
+      "url": "/documentation/xcode/replaying-a-gpu-trace-file"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.documentation/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/Metal"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "gputools-metal-debugger-essentials-capture-choose-capture.png": {
+      "alt": "An Xcode screenshot of the Metal Capture popover, accessible from the Metal Capture button in the debug bar.",
+      "identifier": "gputools-metal-debugger-essentials-capture-choose-capture.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b85c0538e76225913f9dd77469a024f4/gputools-metal-debugger-essentials-capture-choose-capture.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2c7fc71b578a089d734d249b4e245d8d/gputools-metal-debugger-essentials-capture-choose-capture@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6f586c413fd6f712d09bf6d77df6920e/gputools-metal-debugger-essentials-capture-choose-capture~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b340893626073d0ebb30c22a0202f464/gputools-metal-debugger-essentials-capture-choose-capture~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-essentials-capture-choose-options.png": {
+      "alt": "A screenshot of the Xcode scheme editor highlighting the GPU Frame Capture option.",
+      "identifier": "gputools-metal-debugger-essentials-capture-choose-options.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7b46e40d22b512badbd915ef44a58957/gputools-metal-debugger-essentials-capture-choose-options.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7ef16897d680c1e5d44bf10306a0ee33/gputools-metal-debugger-essentials-capture-choose-options@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7860436e0e72ab3e52ea272d34fc37e6/gputools-metal-debugger-essentials-capture-choose-options~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8e31f1ae6de5ed5673384262ce72e178/gputools-metal-debugger-essentials-capture-choose-options~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-essentials-capture-edit-scheme.png": {
+      "alt": "An Xcode screenshot showing the Scheme menu with the Edit Scheme menu item highlighted.",
+      "identifier": "gputools-metal-debugger-essentials-capture-edit-scheme.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/af9a0035e83cea1ad28d6ac163ade9d4/gputools-metal-debugger-essentials-capture-edit-scheme.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/52f80993d6dca820d9e146ee65e533d2/gputools-metal-debugger-essentials-capture-edit-scheme@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f24b15b37267b09a86df94fcf40d5df1/gputools-metal-debugger-essentials-capture-edit-scheme~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d5ad1e3948f9f5743c3453f7f773ccc6/gputools-metal-debugger-essentials-capture-edit-scheme~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-essentials-capture-options.png": {
+      "alt": "A screenshot of the Xcode scheme editor highlighting the GPU Frame Capture option.",
+      "identifier": "gputools-metal-debugger-essentials-capture-options.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/28a0b9b489b221a650e25a154188a963/gputools-metal-debugger-essentials-capture-options.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/04a267f398a9b9ecd2a91c97369a6a77/gputools-metal-debugger-essentials-capture-options@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4c09b8b3243110e76f71a7234bbfc8f2/gputools-metal-debugger-essentials-capture-options~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1e74ac17b79c5a0b08c2189b703428bb/gputools-metal-debugger-essentials-capture-options~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-essentials-capture-popup.png": {
+      "alt": "A screenshot of the Metal Capture popover, accessible from the Metal Capture button in the debug bar.",
+      "identifier": "gputools-metal-debugger-essentials-capture-popup.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5ec4672b9cebbb100a8b6fab4506a1d8/gputools-metal-debugger-essentials-capture-popup.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0d9ef2422d5cb72d633bac5301693550/gputools-metal-debugger-essentials-capture-popup@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3f073cd72aed7311eb6bc1e3ace38788/gputools-metal-debugger-essentials-capture-popup~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/47ed7bdaf616539f1253feb87b36e3cd/gputools-metal-debugger-essentials-capture-popup~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-programmatically",
+        "doc://com.apple.Xcode/documentation/Xcode/Replaying-a-GPU-trace-file",
+        "doc://com.apple.Xcode/documentation/Xcode/Investigating-visual-artifacts",
+        "doc://com.apple.Xcode/documentation/Xcode/Optimizing-GPU-performance"
+      ],
+      "title": "Essentials"
+    }
+  ]
+}

@@ -1,0 +1,473 @@
+{
+  "abstract": [
+    {
+      "text": "Send HTTP status codes to indicate the success of a notification post.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/responding-to-app-store-server-notifications"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Store Server Notifications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Responding to App Store Server Notifications"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you set up the endpoints on your server to receive notifications, configure your server to send a response. Use HTTP status codes to indicate whether the App Store server notification post succeeded:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Send HTTP ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "200",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or any HTTP code between ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "200",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "206",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", if the post was successful.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Send HTTP ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "50x",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "40x",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to have the App Store retry the notification, if the post didn’t succeed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system considers all other HTTP codes an unsuccessful post. Your server isn’t required to return a data value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the App Store server doesn’t receive a success response from your server after the initial notification attempt, it retries as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For version 2 notifications, it retries five times, at 1, 12, 24, 48, and 72 hours after the previous attempt.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For version 1 notifications, it retries three times, at 6, 24, and 48 hours after the previous attempt.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Retry notifications are available only in the production environment. In the sandbox environment, the App Store server attempts to send the notification one time.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Recover-from-server-outages",
+          "level": 3,
+          "text": "Recover from server outages",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your server misses notifications due to an outage, you can always get up-to-date transaction information by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoints including ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/GET-v1-history-_transactionId_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/GET-v1-subscriptions-_transactionId_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use version 2 notifications (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), you can recover missed notifications by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/POST-v1-notifications-history",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can also test whether your server is receiving and responding to version 2 notifications correctly by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/POST-v1-notifications-test",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications": {
+      "abstract": [
+        {
+          "text": "Monitor In-App Purchase events in real time and learn of unreported external purchase tokens, with server notifications from the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2": {
+      "abstract": [
+        {
+          "text": "Specify your secure server’s URL in App Store Connect to receive version 2 notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "App Store Server Notifications V2"
+        }
+      ],
+      "role": "symbol",
+      "title": "App Store Server Notifications V2",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/app-store-server-notifications-v2"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/app-store-server-notifications-changelog": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the App Store Server Notifications service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/app-store-server-notifications-changelog",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Server Notifications changelog",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/app-store-server-notifications-changelog"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications": {
+      "abstract": [
+        {
+          "text": "Configure your server and provide an HTTPS URL to receive notifications about in-app purchase events and unreported external purchase tokens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/enabling-app-store-server-notifications"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/receiving-app-store-server-notifications": {
+      "abstract": [
+        {
+          "text": "Implement server-side code to receive and parse notification posts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/receiving-app-store-server-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Receiving App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/receiving-app-store-server-notifications"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerAPI": {
+      "abstract": [
+        {
+          "text": "Manage your customers’ App Store transactions from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server API",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerAPI"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerAPI/GET-v1-history-_transactionId_": {
+      "abstract": [
+        {
+          "text": "Get a customer’s in-app purchase transaction history for your app, except finished consumable in-app purchases.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/GET-v1-history-_transactionId_",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Get Transaction History V1",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerAPI/GET-v1-history-_transactionId_"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerAPI/GET-v1-subscriptions-_transactionId_": {
+      "abstract": [
+        {
+          "text": "Get the statuses for all of a customer’s auto-renewable subscriptions in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/GET-v1-subscriptions-_transactionId_",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Get All Subscription Statuses",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerAPI/GET-v1-subscriptions-_transactionId_"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerAPI/POST-v1-notifications-history": {
+      "abstract": [
+        {
+          "text": "Get a list of notifications that the App Store server attempted to send to your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/POST-v1-notifications-history",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Get Notification History",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerAPI/POST-v1-notifications-history"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerAPI/POST-v1-notifications-test": {
+      "abstract": [
+        {
+          "text": "Ask App Store Server Notifications to send a test notification to your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/POST-v1-notifications-test",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Request a Test Notification",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerAPI/POST-v1-notifications-test"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications",
+        "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/receiving-app-store-server-notifications",
+        "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/app-store-server-notifications-changelog"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreservernotifications/responding-to-app-store-server-notifications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

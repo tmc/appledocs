@@ -1,0 +1,282 @@
+{
+  "abstract": [
+    {
+      "text": "A key for the color space to use for image operations.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext",
+        "doc://com.apple.documentation/documentation/coreimage/cicontextoption"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreimage/cicontextoption/1437728-workingcolorspace"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1437728,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@kCIContextWorkingColorSpace",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "static let "
+      },
+      {
+        "kind": "identifier",
+        "text": "workingColorSpace"
+      },
+      {
+        "kind": "text",
+        "text": ": CIContextOption"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Image"
+      }
+    ],
+    "parent": {
+      "title": "CIContextOption"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "structdata",
+    "title": "workingColorSpace"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "let"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "workingColorSpace"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontextoption",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CIContextOption",
+              "text": "CIContextOption"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": " By default, Core Image assumes that processing nodes are 128 bits-per-pixel, linear light, premultiplied RGBA floating-point values that use the GenericRGB color space. You can specify a different working color space by providing a Quartz 2D CGColorSpace object  (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcolorspace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). Note that the working color space must be RGB based. If you have YUV data as input (or other data that is not RGB based), you can use ColorSync functions to convert to the working color space. (See ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1719815",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for information on creating and using CGColorSpace objects.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To request that Core Image perform no color management, specify the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnull",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object as the value for this key. Use this option for images that don’t contain color data (such as elevation maps, normal vector maps, and sampled function tables).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1719815": {
+      "identifier": "devLink-1719815",
+      "title": "Quartz 2D Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001066"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgcolorspace": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcolorspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGColorSpace",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgcolorspace"
+    },
+    "doc://com.apple.documentation/documentation/coreimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Image",
+      "type": "topic",
+      "url": "/documentation/coreimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIContext",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontextoption": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontextoption",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIContextOption",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontextoption"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnull": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnull",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNull",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnull"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreimage/kcicontextworkingcolorspace"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreimage/cicontextoption/1437728-workingcolorspace"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

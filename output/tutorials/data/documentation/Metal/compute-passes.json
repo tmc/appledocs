@@ -1,0 +1,2765 @@
+{
+  "abstract": [
+    {
+      "text": "Encode a compute pass that runs computations in parallel on a thread grid, processing and manipulating Metal resource data on multiple cores of a GPU.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/compute-passes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Compute Passes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can perform large-scale computation or prepare data for a subsequent GPU pass by encoding a compute pass that works on Metal resources in parallel. Compute passes are the part of your Metal pipeline meant for heavy parallelization of tasks requiring fast math, such as ray tracing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Encode commands for your compute pass by creating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and using it to create a new compute command encoder, using a method like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/makeComputeCommandEncoder()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/makeComputeCommandEncoder(descriptor:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Add individual dispatches for functions and their data to the compute pass by calling the command encoder’s methods. At the end of assigning data and dispatching a function call to the encoder, create a command that runs in your compute pass with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder/endEncoding()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Everything used to set up your compute pass is CPU thread-safe, except for ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". Synchronize ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instances you share between the CPU and GPU with an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLFence",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLEvent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", or a completion callback.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on dispatching commands to encode, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " reference. Compute passes also support indirect command buffers; for more information, see Dispatching from Indirect Command Buffers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following two samples demonstrate basic compute passes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/performing-calculations-on-a-gpu",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for an example of configuring and running a compute pass that performs basic parallel math.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/processing-a-texture-in-a-compute-function",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for an example of using a compute pass to modify data for a render pass.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Kernel-Arguments-and-Argument-Tables",
+          "level": 3,
+          "text": "Kernel Arguments and Argument Tables",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Compute commands that execute your code on GPU call ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "kernel functions",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " in your Metal shader, annotated with ",
+              "type": "text"
+            },
+            {
+              "code": "[[kernel]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Each kernel has associated argument tables, such as the buffer argument table ",
+              "type": "text"
+            },
+            {
+              "code": "[[buffer(n)]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", used to access data associated with kernel arguments. In addition to annotations describing any argument table, some kernel arguments need information on their address space. For more information, see the following sections of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For compute kernels, Section 5.1.3",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For function argument tables, Section 5.2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For address spaces, Section 4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition, kernels also use a function table to take advantage of function pointers, allowing them to call visible and intersection functions. Visible functions allow you to use function pointers in kernels, letting you use function stitching and link against Metal dynamic libraries at runtime. Ray tracers use intersection functions on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructure",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances to perform quick intersection checks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on function stitching, dynamic libraries, and ray tracing, see:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/customizing-shaders-using-function-pointers-and-stitching",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/creating-a-metal-dynamic-library",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/ray-tracing-with-acceleration-structures",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on per-architecture support for function tables in compute passes and other restrictions, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Argument-Buffers-and-Memory-Residency",
+          "level": 3,
+          "text": "Argument Buffers and Memory Residency",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Compute kernels can access argument data to populate a Metal structure, using an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " created by an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For an in-depth discussion of argument buffers, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Using a resource in an argument buffer requires that it’s resident in GPU memory for the duration of the pass. For a resource to be resident, allocate it with either the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/shared",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/managed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Resources become resident on a per-instance basis by calling methods like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useResource(_:usage:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and heaps become resident by calling methods like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useHeap(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For the duration of your compute pass, don’t access any resident resources on the CPU. Doing so in your app can cause GPU memory corruption, such as visual artifacts.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using resident resources, avoid data corruption by using an appropriate ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLHazardTrackingMode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or by manually managing memory barriers and fences for untracked resources with the methods in Synchronizing Across Command Execution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Using-Tile-Memory-in-a-Compute-Pass",
+          "level": 3,
+          "text": "Using Tile Memory in a Compute Pass",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple family GPUs offer fast, integrated graphics memory called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "tile memory",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " that’s shared between subsequent passes for fast access to data. Compute passes can reserve this memory space for threadgroup memory or imageblock memory, giving your compute functions the ability to access temporary data at low latency across your shaders.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information see the following sections of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf",
+              "isActive": true,
+              "overridingTitle": "Metal Shading Language Specification (PDF)",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Metal Shading Language Specification (PDF)",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Section 4.4 for information on the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "threadgroup",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " memory space",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Section 4.5 for information on the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "threadgroup_imageblock",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " memory space",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Section 2.11 for information on imageblocks",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Section 5.6 for information on ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "imageblock",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attributes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because tile memory resides on GPU only, you reserve memory on a tile block rather than copy data to it. Use the methods in Encoding Tile Memory Usage to prepare the appropriate block of memory for your kernel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For device support and other tile memory limitations, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf",
+              "isActive": true,
+              "overridingTitle": "Metal feature set tables (PDF)",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Metal feature set tables (PDF)",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructure": {
+      "abstract": [
+        {
+          "text": "A collection of model data for GPU-accelerated intersection of rays with the model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructure"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructure",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructure"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAccelerationStructure",
+      "type": "topic",
+      "url": "/documentation/metal/mtlaccelerationstructure"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder": {
+      "abstract": [
+        {
+          "text": "An object used to encode data into an argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLArgumentEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLArgumentEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLArgumentEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer": {
+      "abstract": [
+        {
+          "text": "A resource that stores data in a format defined by your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer": {
+      "abstract": [
+        {
+          "text": "A container that stores a sequence of GPU commands that you encode into it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/makeComputeCommandEncoder()": {
+      "abstract": [
+        {
+          "text": "Creates a compute command encoder that uses default settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeComputeCommandEncoder"
+        },
+        {
+          "kind": "text",
+          "text": "() -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLComputeCommandEncoder",
+          "text": "MTLComputeCommandEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/makeComputeCommandEncoder()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "computeCommandEncoder"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeComputeCommandEncoder()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/makecomputecommandencoder()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/makeComputeCommandEncoder(descriptor:)": {
+      "abstract": [
+        {
+          "text": "Creates a compute command encoder from a descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeComputeCommandEncoder"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLComputePassDescriptor",
+          "text": "MTLComputePassDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLComputeCommandEncoder",
+          "text": "MTLComputeCommandEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/makeComputeCommandEncoder(descriptor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "computeCommandEncoderWithDescriptor:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeComputeCommandEncoder(descriptor:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/makecomputecommandencoder(descriptor:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder/endEncoding()": {
+      "abstract": [
+        {
+          "text": "Declares that all command generation from the encoder is completed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endEncoding"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder/endEncoding()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "endEncoding"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "endEncoding()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandencoder/endencoding()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An interface for dispatching commands to encode in a compute pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLComputeCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLComputeCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLComputeCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useHeap(_:)": {
+      "abstract": [
+        {
+          "text": "Ensures the shaders in the render pass’s subsequent draw commands have access to all of the resources you allocate from a heap.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useHeap"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLHeap",
+          "text": "MTLHeap"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useHeap(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "useHeap:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "useHeap(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/useheap(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useResource(_:usage:)": {
+      "abstract": [
+        {
+          "text": "Ensures kernel calls that the system encodes in subsequent commands have access to a resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useResource"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLResource",
+          "text": "MTLResource"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLResourceUsage",
+          "text": "MTLResourceUsage"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useResource(_:usage:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "useResource:usage:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "useResource(_:usage:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/useresource(_:usage:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputePassDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of how to dispatch execution of pass commands and GPU performance sampling.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLComputePassDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputePassDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLComputePassDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLComputePassDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputepassdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputePassSampleBufferAttachmentDescriptor": {
+      "abstract": [
+        {
+          "text": "A configuration that instructs the GPU where to store counter data from the beginning and end of a compute pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLComputePassSampleBufferAttachmentDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputePassSampleBufferAttachmentDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLComputePassSampleBufferAttachmentDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLComputePassSampleBufferAttachmentDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputepasssamplebufferattachmentdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputePassSampleBufferAttachmentDescriptorArray": {
+      "abstract": [
+        {
+          "text": "A container that stores an array of sample buffer attachments for a compute pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLComputePassSampleBufferAttachmentDescriptorArray"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputePassSampleBufferAttachmentDescriptorArray",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLComputePassSampleBufferAttachmentDescriptorArray"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLComputePassSampleBufferAttachmentDescriptorArray",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputepasssamplebufferattachmentdescriptorarray"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputePipelineDescriptor": {
+      "abstract": [
+        {
+          "text": "An instance describing the desired GPU state for a kernel call in a compute pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLComputePipelineDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputePipelineDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLComputePipelineDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLComputePipelineDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputepipelinedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputePipelineState": {
+      "abstract": [
+        {
+          "text": "An interface that represents a GPU pipeline configuration for running kernels in a compute pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLComputePipelineState"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputePipelineState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLComputePipelineState"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLComputePipelineState",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputepipelinestate"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDispatchThreadgroupsIndirectArguments": {
+      "abstract": [
+        {
+          "text": "The data layout required for arguments needed to specify the size of threadgroups.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDispatchThreadgroupsIndirectArguments"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDispatchThreadgroupsIndirectArguments",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDispatchThreadgroupsIndirectArguments"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDispatchThreadgroupsIndirectArguments",
+      "type": "topic",
+      "url": "/documentation/metal/mtldispatchthreadgroupsindirectarguments"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDispatchType": {
+      "abstract": [
+        {
+          "text": "The type of dispatch method to use when calling encoded functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDispatchType"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDispatchType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDispatchType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDispatchType",
+      "type": "topic",
+      "url": "/documentation/metal/mtldispatchtype"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLEvent": {
+      "abstract": [
+        {
+          "text": "A simple semaphore to synchronize access to Metal resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLEvent",
+      "type": "topic",
+      "url": "/documentation/metal/mtlevent"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFence": {
+      "abstract": [
+        {
+          "text": "A memory fence to capture, track, and manage resource dependencies across command encoders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFence"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFence"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFence",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfence"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLHazardTrackingMode": {
+      "abstract": [
+        {
+          "text": "The options you use to specify the hazard tracking mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLHazardTrackingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLHazardTrackingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLHazardTrackingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLHazardTrackingMode",
+      "type": "topic",
+      "url": "/documentation/metal/mtlhazardtrackingmode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPipelineBufferDescriptor": {
+      "abstract": [
+        {
+          "text": "The mutability options for a buffer that a render or compute pipeline uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLPipelineBufferDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPipelineBufferDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPipelineBufferDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPipelineBufferDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpipelinebufferdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPipelineBufferDescriptorArray": {
+      "abstract": [
+        {
+          "text": "An array of pipeline buffer descriptors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLPipelineBufferDescriptorArray"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPipelineBufferDescriptorArray",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPipelineBufferDescriptorArray"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPipelineBufferDescriptorArray",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpipelinebufferdescriptorarray"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPipelineOption": {
+      "abstract": [
+        {
+          "text": "Options that determine how Metal prepares the pipeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLPipelineOption"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPipelineOption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPipelineOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPipelineOption",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpipelineoption"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResource": {
+      "abstract": [
+        {
+          "text": "An allocation of memory accessible to a GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLResource"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLResource",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresource"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStageInputOutputDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of the input and output data of a function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLStageInputOutputDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStageInputOutputDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStageInputOutputDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLStageInputOutputDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstageinputoutputdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStorageMode/managed": {
+      "abstract": [
+        {
+          "text": "The CPU and GPU may maintain separate copies of the resource, and any changes must be explicitly synchronized.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "managed"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/managed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStorageModeManaged"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLStorageMode.managed",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstoragemode/managed"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStorageMode/shared": {
+      "abstract": [
+        {
+          "text": "The CPU and GPU share access to the resource, allocated in system memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/shared",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStorageModeShared"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLStorageMode.shared",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstoragemode/shared"
+    },
+    "doc://com.apple.metal/documentation/Metal/blit-passes": {
+      "abstract": [
+        {
+          "text": "Encode a block information transfer pass to adjust and copy data to and from GPU resources, such as buffers and textures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/blit-passes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Blit Passes",
+      "type": "topic",
+      "url": "/documentation/metal/blit-passes"
+    },
+    "doc://com.apple.metal/documentation/Metal/calculating-threadgroup-and-grid-sizes": {
+      "abstract": [
+        {
+          "text": "Calculate the optimum sizes for threadgroups and grids when dispatching compute-processing workloads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/calculating-threadgroup-and-grid-sizes",
+      "kind": "article",
+      "role": "article",
+      "title": "Calculating Threadgroup and Grid Sizes",
+      "type": "topic",
+      "url": "/documentation/metal/calculating-threadgroup-and-grid-sizes"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-a-metal-dynamic-library": {
+      "abstract": [
+        {
+          "text": "Compile a library of shaders and write it to a file as a dynamically linked library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-a-metal-dynamic-library",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a Metal Dynamic Library",
+      "type": "topic",
+      "url": "/documentation/metal/creating-a-metal-dynamic-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-threads-and-threadgroups": {
+      "abstract": [
+        {
+          "text": "Learn how Metal organizes compute-processing workloads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-threads-and-threadgroups",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating Threads and Threadgroups",
+      "type": "topic",
+      "url": "/documentation/metal/creating-threads-and-threadgroups"
+    },
+    "doc://com.apple.metal/documentation/Metal/customizing-shaders-using-function-pointers-and-stitching": {
+      "abstract": [
+        {
+          "text": "Define custom shader behavior at runtime by creating functions from existing ones and preferentially linking to others in a dynamic library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/customizing-shaders-using-function-pointers-and-stitching",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Customizing shaders using function pointers and stitching",
+      "type": "topic",
+      "url": "/documentation/metal/customizing-shaders-using-function-pointers-and-stitching"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Optimize your app’s performance by grouping your resources into argument buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving CPU Performance by Using Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/improving-cpu-performance-by-using-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/indirect-command-encoding": {
+      "abstract": [
+        {
+          "text": "Store draw commands in Metal buffers and run them at a later time on the GPU, either once or repeatedly.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/indirect-command-encoding",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Indirect Command Encoding",
+      "type": "topic",
+      "url": "/documentation/metal/indirect-command-encoding"
+    },
+    "doc://com.apple.metal/documentation/Metal/performing-calculations-on-a-gpu": {
+      "abstract": [
+        {
+          "text": "Use Metal to find GPUs and perform calculations on them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/performing-calculations-on-a-gpu",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Performing Calculations on a GPU",
+      "type": "topic",
+      "url": "/documentation/metal/performing-calculations-on-a-gpu"
+    },
+    "doc://com.apple.metal/documentation/Metal/processing-a-texture-in-a-compute-function": {
+      "abstract": [
+        {
+          "text": "Perform parallel calculations on structured data by placing the data in textures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/processing-a-texture-in-a-compute-function",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Processing a Texture in a Compute Function",
+      "type": "topic",
+      "url": "/documentation/metal/processing-a-texture-in-a-compute-function"
+    },
+    "doc://com.apple.metal/documentation/Metal/ray-tracing-with-acceleration-structures": {
+      "abstract": [
+        {
+          "text": "Build a representation of your scene’s geometry using triangles and bounding volumes to quickly trace rays through the scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/ray-tracing-with-acceleration-structures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Ray Tracing with Acceleration Structures",
+      "type": "topic",
+      "url": "/documentation/metal/ray-tracing-with-acceleration-structures"
+    },
+    "doc://com.apple.metal/documentation/Metal/render-passes": {
+      "abstract": [
+        {
+          "text": "Encode a render pass to draw graphics into an image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/render-passes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Render Passes",
+      "type": "topic",
+      "url": "/documentation/metal/render-passes"
+    },
+    "https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf": {
+      "identifier": "https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf",
+      "title": "Metal feature set tables (PDF)",
+      "titleInlineContent": [
+        {
+          "text": "Metal feature set tables (PDF)",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf"
+    },
+    "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf": {
+      "identifier": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf",
+      "title": "Metal Shading Language Specification (PDF):",
+      "titleInlineContent": [
+        {
+          "text": "Metal Shading Language Specification (PDF):",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Command-Encoders",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/render-passes",
+        "doc://com.apple.metal/documentation/Metal/blit-passes",
+        "doc://com.apple.metal/documentation/Metal/indirect-command-encoding",
+        "doc://com.apple.metal/documentation/Metal/ray-tracing-with-acceleration-structures"
+      ],
+      "title": "Command Encoders"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/performing-calculations-on-a-gpu",
+        "doc://com.apple.metal/documentation/Metal/processing-a-texture-in-a-compute-function"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Encode commands to prepare data and run a kernel in a compute pass.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Encoding-a-Compute-Pass",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/creating-threads-and-threadgroups",
+        "doc://com.apple.metal/documentation/Metal/calculating-threadgroup-and-grid-sizes",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder"
+      ],
+      "title": "Encoding a Compute Pass"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Define the GPU state for a kernel function call in your compute pass.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Configuring-a-Compute-Pipeline-State",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLComputePipelineDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLComputePipelineState",
+        "doc://com.apple.metal/documentation/Metal/MTLStageInputOutputDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLPipelineBufferDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLPipelineBufferDescriptorArray",
+        "doc://com.apple.metal/documentation/Metal/MTLPipelineOption"
+      ],
+      "title": "Configuring a Compute Pipeline State"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Define how kernel functions get called throughout your compute pass, and any indirect command buffers to access.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Configuring-a-Compute-Pass",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLComputePassDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLDispatchType",
+        "doc://com.apple.metal/documentation/Metal/MTLDispatchThreadgroupsIndirectArguments",
+        "doc://com.apple.metal/documentation/Metal/MTLComputePassSampleBufferAttachmentDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLComputePassSampleBufferAttachmentDescriptorArray"
+      ],
+      "title": "Configuring a Compute Pass"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/performing-calculations-on-a-gpu",
+                "doc://com.apple.metal/documentation/Metal/processing-a-texture-in-a-compute-function"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Encode commands to prepare data and run a kernel in a compute pass.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Encoding-a-Compute-Pass",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/creating-threads-and-threadgroups",
+                "doc://com.apple.metal/documentation/Metal/calculating-threadgroup-and-grid-sizes",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder"
+              ],
+              "title": "Encoding a Compute Pass"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Define the GPU state for a kernel function call in your compute pass.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Configuring-a-Compute-Pipeline-State",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLComputePipelineDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLComputePipelineState",
+                "doc://com.apple.metal/documentation/Metal/MTLStageInputOutputDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLPipelineBufferDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLPipelineBufferDescriptorArray",
+                "doc://com.apple.metal/documentation/Metal/MTLPipelineOption"
+              ],
+              "title": "Configuring a Compute Pipeline State"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Define how kernel functions get called throughout your compute pass, and any indirect command buffers to access.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Configuring-a-Compute-Pass",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLComputePassDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLDispatchType",
+                "doc://com.apple.metal/documentation/Metal/MTLDispatchThreadgroupsIndirectArguments",
+                "doc://com.apple.metal/documentation/Metal/MTLComputePassSampleBufferAttachmentDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLComputePassSampleBufferAttachmentDescriptorArray"
+              ],
+              "title": "Configuring a Compute Pass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Command-Encoders",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/render-passes",
+                "doc://com.apple.metal/documentation/Metal/blit-passes",
+                "doc://com.apple.metal/documentation/Metal/indirect-command-encoding",
+                "doc://com.apple.metal/documentation/Metal/ray-tracing-with-acceleration-structures"
+              ],
+              "title": "Command Encoders"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandEncoder~1endEncoding()/title",
+          "value": "endEncoding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandEncoder~1endEncoding()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "endEncoding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder/title",
+          "value": "MTLArgumentEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLArgumentEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLArgumentEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePassSampleBufferAttachmentDescriptorArray/title",
+          "value": "MTLComputePassSampleBufferAttachmentDescriptorArray"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePassSampleBufferAttachmentDescriptorArray/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputePassSampleBufferAttachmentDescriptorArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePassSampleBufferAttachmentDescriptorArray/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputePassSampleBufferAttachmentDescriptorArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineDescriptor/title",
+          "value": "MTLComputePipelineDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputePipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputePipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDispatchThreadgroupsIndirectArguments/title",
+          "value": "MTLDispatchThreadgroupsIndirectArguments"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDispatchThreadgroupsIndirectArguments/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDispatchThreadgroupsIndirectArguments"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDispatchThreadgroupsIndirectArguments/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDispatchThreadgroupsIndirectArguments"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1makeComputeCommandEncoder()/title",
+          "value": "computeCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1makeComputeCommandEncoder()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "computeCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder/title",
+          "value": "MTLComputeCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputeCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputeCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructure/title",
+          "value": "MTLAccelerationStructure"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructure/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructure"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructure/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructure"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1useResource(_:usage:)/title",
+          "value": "useResource:usage:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1useResource(_:usage:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "useResource:usage:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPipelineOption/title",
+          "value": "MTLPipelineOption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPipelineOption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPipelineOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPipelineOption/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPipelineOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLEvent/title",
+          "value": "MTLEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePassDescriptor/title",
+          "value": "MTLComputePassDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePassDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputePassDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePassDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputePassDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStageInputOutputDescriptor/title",
+          "value": "MTLStageInputOutputDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStageInputOutputDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStageInputOutputDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStageInputOutputDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStageInputOutputDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineState/title",
+          "value": "MTLComputePipelineState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputePipelineState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputePipelineState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFence/title",
+          "value": "MTLFence"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFence/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFence/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDispatchType/title",
+          "value": "MTLDispatchType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDispatchType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDispatchType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDispatchType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDispatchType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPipelineBufferDescriptorArray/title",
+          "value": "MTLPipelineBufferDescriptorArray"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPipelineBufferDescriptorArray/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPipelineBufferDescriptorArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPipelineBufferDescriptorArray/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPipelineBufferDescriptorArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/title",
+          "value": "MTLBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHazardTrackingMode/title",
+          "value": "MTLHazardTrackingMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHazardTrackingMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHazardTrackingMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHazardTrackingMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHazardTrackingMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/title",
+          "value": "MTLCommandBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1managed/title",
+          "value": "MTLStorageModeManaged"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1managed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStorageModeManaged"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1makeComputeCommandEncoder(descriptor:)/title",
+          "value": "computeCommandEncoderWithDescriptor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1makeComputeCommandEncoder(descriptor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "computeCommandEncoderWithDescriptor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1shared/title",
+          "value": "MTLStorageModeShared"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1shared/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStorageModeShared"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource/title",
+          "value": "MTLResource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPipelineBufferDescriptor/title",
+          "value": "MTLPipelineBufferDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPipelineBufferDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPipelineBufferDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPipelineBufferDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPipelineBufferDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePassSampleBufferAttachmentDescriptor/title",
+          "value": "MTLComputePassSampleBufferAttachmentDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePassSampleBufferAttachmentDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputePassSampleBufferAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePassSampleBufferAttachmentDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputePassSampleBufferAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1useHeap(_:)/title",
+          "value": "useHeap:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1useHeap(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "useHeap:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/compute-passes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/compute-passes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

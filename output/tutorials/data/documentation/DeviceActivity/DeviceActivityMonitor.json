@@ -1,0 +1,918 @@
+{
+  "abstract": [
+    {
+      "text": "The object that monitors scheduled device activity.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.DeviceActivity/documentation/DeviceActivity"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityMonitor"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@M@DeviceActivity@objc(cs)DeviceActivityMonitor",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "DeviceActivityMonitor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "DeviceActivity"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "DeviceActivityMonitor"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "DeviceActivityMonitor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@objc"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "DeviceActivityMonitor"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "DeviceActivityMonitor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " provides the entry point into a device activity monitor extension.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You should subclass ",
+              "type": "text"
+            },
+            {
+              "code": "DeviceActivityMonitor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and designate your subclass as the principal class of your app extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code implements ",
+              "type": "text"
+            },
+            {
+              "code": "DeviceActivityMonitor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in an app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class MyMonitorExtension: DeviceActivityMonitor {",
+            "  let store = ManagedSettingsStore()",
+            "",
+            "  // You can use the `store` property to shield apps when an interval starts, ends, or meets a threshold.",
+            "  override func intervalDidStart(for activity: DeviceActivityName) {",
+            "      super.intervalDidStart(for: activity)",
+            "",
+            "      // Shield selected applications.",
+            "      let model = MyModel()",
+            "      let applications = model.selectionToShield.applications",
+            "      store.shield.applications = applications.isEmpty ? nil : applications",
+            "   }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Shielding an app dims the app’s icon on the homescreen and applies an hourglass symbol.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When the app launches, the system covers it with a view that your app can configure.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.DeviceActivity/documentation/DeviceActivity": {
+      "abstract": [
+        {
+          "text": "Monitor device activity with your app extension while maintaining user privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceActivity/documentation/DeviceActivity",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DeviceActivity",
+      "type": "topic",
+      "url": "/documentation/deviceactivity"
+    },
+    "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityMonitor": {
+      "abstract": [
+        {
+          "text": "The object that monitors scheduled device activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DeviceActivityMonitor"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityMonitor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DeviceActivityMonitor"
+        }
+      ],
+      "role": "symbol",
+      "title": "DeviceActivityMonitor",
+      "type": "topic",
+      "url": "/documentation/deviceactivity/deviceactivitymonitor"
+    },
+    "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityMonitor/eventDidReachThreshold(_:activity:)": {
+      "abstract": [
+        {
+          "text": "Indicates that the activity reached its threshold.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "eventDidReachThreshold"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14DeviceActivity0aB5EventV",
+          "text": "DeviceActivityEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14DeviceActivity0aB5EventV4NameV",
+          "text": "Name"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "activity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14DeviceActivity0aB4NameV",
+          "text": "DeviceActivityName"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityMonitor/eventDidReachThreshold(_:activity:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "eventDidReachThreshold(_:activity:)",
+      "type": "topic",
+      "url": "/documentation/deviceactivity/deviceactivitymonitor/eventdidreachthreshold(_:activity:)"
+    },
+    "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityMonitor/eventWillReachThresholdWarning(_:activity:)": {
+      "abstract": [
+        {
+          "text": "Warns your app that an activity is about to reach its threshold.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "eventWillReachThresholdWarning"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14DeviceActivity0aB5EventV",
+          "text": "DeviceActivityEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14DeviceActivity0aB5EventV4NameV",
+          "text": "Name"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "activity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14DeviceActivity0aB4NameV",
+          "text": "DeviceActivityName"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityMonitor/eventWillReachThresholdWarning(_:activity:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "eventWillReachThresholdWarning(_:activity:)",
+      "type": "topic",
+      "url": "/documentation/deviceactivity/deviceactivitymonitor/eventwillreachthresholdwarning(_:activity:)"
+    },
+    "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityMonitor/init()": {
+      "abstract": [
+        {
+          "text": "Creates a new monitor implemented by subclasses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityMonitor/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/deviceactivity/deviceactivitymonitor/init()"
+    },
+    "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityMonitor/intervalDidEnd(for:)": {
+      "abstract": [
+        {
+          "text": "Indicates that the device activity interval ended.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "intervalDidEnd"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14DeviceActivity0aB4NameV",
+          "text": "DeviceActivityName"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityMonitor/intervalDidEnd(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "intervalDidEnd(for:)",
+      "type": "topic",
+      "url": "/documentation/deviceactivity/deviceactivitymonitor/intervaldidend(for:)"
+    },
+    "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityMonitor/intervalDidStart(for:)": {
+      "abstract": [
+        {
+          "text": "Indicates that the device activity interval started.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "intervalDidStart"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14DeviceActivity0aB4NameV",
+          "text": "DeviceActivityName"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityMonitor/intervalDidStart(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "intervalDidStart(for:)",
+      "type": "topic",
+      "url": "/documentation/deviceactivity/deviceactivitymonitor/intervaldidstart(for:)"
+    },
+    "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityMonitor/intervalWillEndWarning(for:)": {
+      "abstract": [
+        {
+          "text": "Warns your app of an ongoing activity’s conclusion a specified time before the activity ends.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "intervalWillEndWarning"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14DeviceActivity0aB4NameV",
+          "text": "DeviceActivityName"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityMonitor/intervalWillEndWarning(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "intervalWillEndWarning(for:)",
+      "type": "topic",
+      "url": "/documentation/deviceactivity/deviceactivitymonitor/intervalwillendwarning(for:)"
+    },
+    "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityMonitor/intervalWillStartWarning(for:)": {
+      "abstract": [
+        {
+          "text": "Warns your app of an upcoming activity a specified time before the activity starts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "intervalWillStartWarning"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14DeviceActivity0aB4NameV",
+          "text": "DeviceActivityName"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityMonitor/intervalWillStartWarning(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "intervalWillStartWarning(for:)",
+      "type": "topic",
+      "url": "/documentation/deviceactivity/deviceactivitymonitor/intervalwillstartwarning(for:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Configuring-a-Monitor",
+      "identifiers": [
+        "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityMonitor/init()"
+      ],
+      "title": "Configuring a Monitor"
+    },
+    {
+      "anchor": "Monitoring-Scheduled-Intervals",
+      "identifiers": [
+        "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityMonitor/intervalDidEnd(for:)",
+        "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityMonitor/intervalDidStart(for:)",
+        "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityMonitor/intervalWillEndWarning(for:)",
+        "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityMonitor/intervalWillStartWarning(for:)"
+      ],
+      "title": "Monitoring Scheduled Intervals"
+    },
+    {
+      "anchor": "Monitoring-Event-Thresholds",
+      "identifiers": [
+        "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityMonitor/eventDidReachThreshold(_:activity:)",
+        "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityMonitor/eventWillReachThresholdWarning(_:activity:)"
+      ],
+      "title": "Monitoring Event Thresholds"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/deviceactivity/deviceactivitymonitor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

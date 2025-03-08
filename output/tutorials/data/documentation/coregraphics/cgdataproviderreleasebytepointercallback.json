@@ -1,0 +1,740 @@
+{
+  "abstract": [
+    {
+      "text": "A callback function that releases the pointer Core Graphics obtained by calling ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdataprovidergetbytepointercallback",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": ".",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coregraphics",
+        "doc://com.apple.documentation/documentation/coregraphics/cgdataprovider"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coregraphics/cgdataproviderreleasebytepointercallback"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1408278,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@CGDataProviderReleaseBytePointerCallback",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "typealias "
+      },
+      {
+        "kind": "identifier",
+        "text": "CGDataProviderReleaseBytePointerCallback"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Graphics"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.3",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "tdef",
+    "title": "CGDataProviderReleaseBytePointerCallback"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typealias"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CGDataProviderReleaseBytePointerCallback"
+            },
+            {
+              "kind": "text",
+              "text": " = ("
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sv",
+              "text": "UnsafeMutableRawPointer"
+            },
+            {
+              "kind": "text",
+              "text": "?"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeRawPointer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SV",
+              "text": "UnsafeRawPointer"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Void",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s4Voida",
+              "text": "Void"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A generic pointer to private data shared among your callback functions. This is the same pointer you supplied to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdataprovider/1805228-cgdataprovidercreatedirectaccess",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "info"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to your provider data. This is the same pointer you returned in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdataprovidergetbytepointercallback",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "pointer"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When Core Graphics no longer needs direct access to your provider data, your function is called. You may safely modify, move, or release your provider data at this time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on how to associate your function with a direct-access data provider, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdataprovider/1805228-cgdataprovidercreatedirectaccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdataprovider/cgdataproviderdirectaccesscallbacks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnsafeMutableRawPointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeRawPointer": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeRawPointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnsafeRawPointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsaferawpointer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Void": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Void",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Void",
+      "type": "topic",
+      "url": "/documentation/swift/void"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Graphics",
+      "type": "topic",
+      "url": "/documentation/coregraphics"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgdataprovider": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdataprovider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGDataProvider",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgdataprovider"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgdataprovider/1408282-init": {
+      "abstract": [
+        {
+          "text": "Creates a direct-access data provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "directInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": off_t, "
+        },
+        {
+          "kind": "identifier",
+          "text": "callbacks"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<CGDataProviderDirectCallbacks>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdataprovider/1408282-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(directInfo:size:callbacks:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgdataprovider/1408282-init"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgdataprovider/1408284-init": {
+      "abstract": [
+        {
+          "text": "Creates a data provider that reads from a CFData object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": CFData)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdataprovider/1408284-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(data:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgdataprovider/1408284-init"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgdataprovider/1408288-init": {
+      "abstract": [
+        {
+          "text": "Creates a direct-access data provider that uses data your program supplies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "dataInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeRawPointer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "releaseData"
+        },
+        {
+          "kind": "text",
+          "text": ": CGDataProviderReleaseDataCallback)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdataprovider/1408288-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(dataInfo:data:size:releaseData:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgdataprovider/1408288-init"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgdataprovider/1408294-init": {
+      "abstract": [
+        {
+          "text": "Creates a direct-access data provider that uses a file to supply data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "filename"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<CChar>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdataprovider/1408294-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(filename:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgdataprovider/1408294-init"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgdataprovider/1408327-init": {
+      "abstract": [
+        {
+          "text": "Creates a direct-access data provider that uses a URL to supply data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": CFURL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdataprovider/1408327-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(url:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgdataprovider/1408327-init"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgdataprovider/1805228-cgdataprovidercreatedirectaccess": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdataprovider/1805228-cgdataprovidercreatedirectaccess",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CGDataProviderCreateDirectAccess",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgdataprovider/1805228-cgdataprovidercreatedirectaccess"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgdataprovider/cgdataproviderdirectaccesscallbacks": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdataprovider/cgdataproviderdirectaccesscallbacks",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CGDataProviderDirectAccessCallbacks",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgdataprovider/cgdataproviderdirectaccesscallbacks"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgdataproviderdirectcallbacks": {
+      "abstract": [
+        {
+          "text": "Defines pointers to client-defined callback functions that manage the sending of data for a direct-access data provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGDataProviderDirectCallbacks"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdataproviderdirectcallbacks",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGDataProviderDirectCallbacks",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgdataproviderdirectcallbacks"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgdataprovidergetbytepointercallback": {
+      "abstract": [
+        {
+          "text": "A callback function that returns a generic pointer to the provider data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGDataProviderGetBytePointerCallback"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdataprovidergetbytepointercallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGDataProviderGetBytePointerCallback",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgdataprovidergetbytepointercallback"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgdataprovidergetbytesatpositioncallback": {
+      "abstract": [
+        {
+          "text": "A callback function that copies data from the provider into a Core Graphics buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGDataProviderGetBytesAtPositionCallback"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdataprovidergetbytesatpositioncallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGDataProviderGetBytesAtPositionCallback",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgdataprovidergetbytesatpositioncallback"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgdataproviderreleasebytepointercallback": {
+      "abstract": [
+        {
+          "text": "A callback function that releases the pointer Core Graphics obtained by calling ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdataprovidergetbytepointercallback",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGDataProviderReleaseBytePointerCallback"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdataproviderreleasebytepointercallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGDataProviderReleaseBytePointerCallback",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgdataproviderreleasebytepointercallback"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgdataproviderreleasedatacallback": {
+      "abstract": [
+        {
+          "text": "A callback function that releases data you supply to the function ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdataprovider/1408288-init",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGDataProviderReleaseDataCallback"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdataproviderreleasedatacallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGDataProviderReleaseDataCallback",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgdataproviderreleasedatacallback"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgdataproviderreleaseinfocallback": {
+      "abstract": [
+        {
+          "text": "A callback function that releases any private data or resources associated with the data provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGDataProviderReleaseInfoCallback"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdataproviderreleaseinfocallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGDataProviderReleaseInfoCallback",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgdataproviderreleaseinfocallback"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coregraphics/cgdataprovider/1408282-init",
+        "doc://com.apple.documentation/documentation/coregraphics/cgdataprovider/1408284-init",
+        "doc://com.apple.documentation/documentation/coregraphics/cgdataprovider/1408327-init",
+        "doc://com.apple.documentation/documentation/coregraphics/cgdataprovider/1408288-init",
+        "doc://com.apple.documentation/documentation/coregraphics/cgdataprovider/1408294-init",
+        "doc://com.apple.documentation/documentation/coregraphics/cgdataproviderdirectcallbacks",
+        "doc://com.apple.documentation/documentation/coregraphics/cgdataprovidergetbytepointercallback",
+        "doc://com.apple.documentation/documentation/coregraphics/cgdataprovidergetbytesatpositioncallback",
+        "doc://com.apple.documentation/documentation/coregraphics/cgdataproviderreleaseinfocallback",
+        "doc://com.apple.documentation/documentation/coregraphics/cgdataproviderreleasedatacallback"
+      ],
+      "title": "Creating Direct-Access Data Providers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coregraphics/cgdataproviderreleasebytepointercallback"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coregraphics/cgdataproviderreleasebytepointercallback"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

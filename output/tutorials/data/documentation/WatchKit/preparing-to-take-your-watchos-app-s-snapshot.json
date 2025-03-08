@@ -1,0 +1,1380 @@
+{
+  "abstract": [
+    {
+      "text": "Provide a timely, accurate snapshot of your app by using snapshot background tasks.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchkit/documentation/WatchKit",
+        "doc://com.apple.watchkit/documentation/WatchKit/background-execution"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchkit/documentation/WatchKit/preparing-to-take-your-watchos-app-s-snapshot"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WatchKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Preparing to take your watchOS app’s snapshot"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide a placeholder image for your app, watchOS periodically takes snapshots of your app’s user interface. Keeping your app’s snapshot up to date helps produce apps that feel responsive and current. The system uses snapshots in two ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To represent your app in the dock",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "As your app’s launch image",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system displays the dock when the user presses the watch’s side button. By default, the dock contains the 10 most-recently used apps, but users can configure the dock to always contain certain apps. If the user lets the dock settle on an app for a moment, the system replaces the snapshot with a running instance of the app. watchOS tries to keep these apps in memory so they can resume quickly. These apps also receive priority for background tasks, helping you keep their content up to date.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you launch an app, watchOS initially displays the latest snapshot for your app. As soon as the app is active, watchOS replaces the snapshot with the app’s live user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Schedule-snapshots",
+          "level": 3,
+          "text": "Schedule snapshots",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system automatically schedules snapshots for your app after significant state changes, for example when the app transitions from the foreground to the background, whenever the user interacts with the app’s complications or notifications, and one hour after the last user interaction. Your app can also invalidate its current snapshot and schedule a background snapshot refresh tasks by calling your extension’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKApplication/scheduleSnapshotRefresh(withPreferredDate:userInfo:scheduledCompletion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKRefreshBackgroundTask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " tasks, you can request a new snapshot whenever another background task ends, by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKRefreshBackgroundTask/setTaskCompletedWithSnapshot(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and passing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If your app uses the SwiftUI ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/BackgroundTask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " tasks, the system automatically detects any changes to the user interface and schedules the snapshot task.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system budgets the number of snapshots you can take per hour. For apps in the dock, you can safely request one snapshot per hour. For apps with an active complication, you can request up to four per hour. If you exceed the available budget, the system may delay your request until additional background execution time is available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Respond-to-snapshot-background-tasks",
+          "level": 3,
+          "text": "Respond to snapshot background tasks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To take a snapshot, the system resumes running your app in the background. It then executes your background task handler. If you’re using SwiftUI ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/BackgroundTask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " tasks, you can respond using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/BackgroundTask/snapshot",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " task. The closure must return a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/SnapshotResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Use the constructor’s ",
+              "type": "text"
+            },
+            {
+              "code": "estimatedSnapshotExpieration:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to set the preferred date and time for the next background snapshot refresh task. You can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1415385-distantfuture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if you don’t want to schedule the next refresh.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".backgroundTask(.snapshot) { snapshotData in",
+            "    // Update your UI for the snapshot.",
+            "",
+            "    return SnapshotResponse(estimatedSnapshotExpiration: .distantFuture)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKSnapshotRefreshBackgroundTask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " tasks, the system calls your app delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationDelegate/handle(_:)-4vdjo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and passes an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKSnapshotRefreshBackgroundTask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this task to update your user interface before the system takes a snapshot. You can push, pop, or present other interface controllers, and then update the content of the desired interface controller. The system automatically takes a snapshot of your user interface as soon as this task completes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/SwiftUI/BackgroundTask": {
+      "abstract": [
+        {
+          "text": "The kinds of background tasks that your app or extension can handle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BackgroundTask"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Request"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Response"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/BackgroundTask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BackgroundTask",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/BackgroundTask"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/BackgroundTask/snapshot": {
+      "abstract": [
+        {
+          "text": "A background task used to update your app’s user interface in preparation for a snapshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "snapshot"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI14BackgroundTaskV",
+          "text": "BackgroundTask"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12SnapshotDataV",
+          "text": "SnapshotData"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16SnapshotResponseV",
+          "text": "SnapshotResponse"
+        },
+        {
+          "kind": "text",
+          "text": "> { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/BackgroundTask/snapshot",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "snapshot",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/BackgroundTask/snapshot"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/SnapshotResponse": {
+      "abstract": [
+        {
+          "text": "Your appplication’s response to a snapshot background task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SnapshotResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/SnapshotResponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SnapshotResponse",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/SnapshotResponse"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1415385-distantfuture": {
+      "abstract": [
+        {
+          "text": "A date object representing a date in the distant future. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "distantFuture"
+        },
+        {
+          "kind": "text",
+          "text": ": Date"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1415385-distantfuture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "distantFuture",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1415385-distantfuture"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that use features the app delegate monitors or controls, such as background tasks and extended runtime sessions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WatchKit",
+      "type": "topic",
+      "url": "/documentation/watchkit"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKApplication/scheduleSnapshotRefresh(withPreferredDate:userInfo:scheduledCompletion:)": {
+      "abstract": [
+        {
+          "text": "Schedules a background task to refresh your app’s snapshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheduleSnapshotRefresh"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withPreferredDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSSecureCoding",
+          "text": "NSSecureCoding"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "scheduledCompletion"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKApplication/scheduleSnapshotRefresh(withPreferredDate:userInfo:scheduledCompletion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scheduleSnapshotRefreshWithPreferredDate:userInfo:scheduledCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "scheduleSnapshotRefresh(withPreferredDate:userInfo:scheduledCompletion:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkapplication/schedulesnapshotrefresh(withpreferreddate:userinfo:scheduledcompletion:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationDelegate/handle(_:)-4vdjo": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the app has received one or more background tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKRefreshBackgroundTask",
+          "text": "WKRefreshBackgroundTask"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationDelegate/handle(_:)-4vdjo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleBackgroundTasks:"
+        }
+      ],
+      "role": "symbol",
+      "title": "handle(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkapplicationdelegate/handle(_:)-4vdjo"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationRefreshBackgroundTask": {
+      "abstract": [
+        {
+          "text": "A task that updates your app’s state in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKApplicationRefreshBackgroundTask"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationRefreshBackgroundTask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKApplicationRefreshBackgroundTask"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKApplicationRefreshBackgroundTask",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkapplicationrefreshbackgroundtask"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKBluetoothAlertRefreshBackgroundTask": {
+      "abstract": [
+        {
+          "text": "A task for handling timely Bluetooth alerts in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKBluetoothAlertRefreshBackgroundTask"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKBluetoothAlertRefreshBackgroundTask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKBluetoothAlertRefreshBackgroundTask"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKBluetoothAlertRefreshBackgroundTask",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkbluetoothalertrefreshbackgroundtask"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKIntentDidRunRefreshBackgroundTask": {
+      "abstract": [
+        {
+          "text": "A background task used to update your app after a SiriKit intent runs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKIntentDidRunRefreshBackgroundTask"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKIntentDidRunRefreshBackgroundTask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKIntentDidRunRefreshBackgroundTask"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKIntentDidRunRefreshBackgroundTask",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkintentdidrunrefreshbackgroundtask"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKRefreshBackgroundTask": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for WatchKit’s background task classes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKRefreshBackgroundTask"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKRefreshBackgroundTask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKRefreshBackgroundTask"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKRefreshBackgroundTask",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkrefreshbackgroundtask"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKRefreshBackgroundTask/setTaskCompletedWithSnapshot(_:)": {
+      "abstract": [
+        {
+          "text": "Marks the task as complete and indicates whether the system should take a new snapshot of the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTaskCompletedWithSnapshot"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKRefreshBackgroundTask/setTaskCompletedWithSnapshot(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setTaskCompletedWithSnapshot:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setTaskCompletedWithSnapshot(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkrefreshbackgroundtask/settaskcompletedwithsnapshot(_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKRelevantShortcutRefreshBackgroundTask": {
+      "abstract": [
+        {
+          "text": "A background task used to periodically donate relevant Siri shortcuts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKRelevantShortcutRefreshBackgroundTask"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKRelevantShortcutRefreshBackgroundTask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKRelevantShortcutRefreshBackgroundTask"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKRelevantShortcutRefreshBackgroundTask",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkrelevantshortcutrefreshbackgroundtask"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKSnapshotRefreshBackgroundTask": {
+      "abstract": [
+        {
+          "text": "A background task used to update your app’s user interface in preparation for a snapshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKSnapshotRefreshBackgroundTask"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKSnapshotRefreshBackgroundTask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKSnapshotRefreshBackgroundTask"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKSnapshotRefreshBackgroundTask",
+      "type": "topic",
+      "url": "/documentation/watchkit/wksnapshotrefreshbackgroundtask"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKURLSessionRefreshBackgroundTask": {
+      "abstract": [
+        {
+          "text": "A task that responds to background URL sessions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKURLSessionRefreshBackgroundTask"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKURLSessionRefreshBackgroundTask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKURLSessionRefreshBackgroundTask"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKURLSessionRefreshBackgroundTask",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkurlsessionrefreshbackgroundtask"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKWatchConnectivityRefreshBackgroundTask": {
+      "abstract": [
+        {
+          "text": "A background task used to receive background updates from the Watch Connectivity framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKWatchConnectivityRefreshBackgroundTask"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKWatchConnectivityRefreshBackgroundTask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKWatchConnectivityRefreshBackgroundTask"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKWatchConnectivityRefreshBackgroundTask",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkwatchconnectivityrefreshbackgroundtask"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/background-execution": {
+      "abstract": [
+        {
+          "text": "Manage background sessions and tasks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/background-execution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Background execution",
+      "type": "topic",
+      "url": "/documentation/watchkit/background-execution"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/using-background-tasks": {
+      "abstract": [
+        {
+          "text": "Handle scheduled update tasks in the background, and respond to background system interactions including Siri intents and incoming Bluetooth messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/using-background-tasks",
+      "kind": "article",
+      "role": "article",
+      "title": "Using background tasks",
+      "type": "topic",
+      "url": "/documentation/watchkit/using-background-tasks"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Background-tasks",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/using-background-tasks",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationRefreshBackgroundTask",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKURLSessionRefreshBackgroundTask",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKWatchConnectivityRefreshBackgroundTask",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKBluetoothAlertRefreshBackgroundTask",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKIntentDidRunRefreshBackgroundTask",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKRelevantShortcutRefreshBackgroundTask",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKSnapshotRefreshBackgroundTask",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKRefreshBackgroundTask"
+      ],
+      "title": "Background tasks"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Background-tasks",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/using-background-tasks",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationRefreshBackgroundTask",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKURLSessionRefreshBackgroundTask",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKWatchConnectivityRefreshBackgroundTask",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKBluetoothAlertRefreshBackgroundTask",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKIntentDidRunRefreshBackgroundTask",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKRelevantShortcutRefreshBackgroundTask",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKSnapshotRefreshBackgroundTask",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKRefreshBackgroundTask"
+              ],
+              "title": "Background tasks"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKRefreshBackgroundTask/title",
+          "value": "WKRefreshBackgroundTask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKRefreshBackgroundTask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKRefreshBackgroundTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKRefreshBackgroundTask/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKRefreshBackgroundTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplicationRefreshBackgroundTask/title",
+          "value": "WKApplicationRefreshBackgroundTask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplicationRefreshBackgroundTask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKApplicationRefreshBackgroundTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplicationRefreshBackgroundTask/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKApplicationRefreshBackgroundTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKBluetoothAlertRefreshBackgroundTask/title",
+          "value": "WKBluetoothAlertRefreshBackgroundTask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKBluetoothAlertRefreshBackgroundTask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKBluetoothAlertRefreshBackgroundTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKBluetoothAlertRefreshBackgroundTask/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKBluetoothAlertRefreshBackgroundTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKIntentDidRunRefreshBackgroundTask/title",
+          "value": "WKIntentDidRunRefreshBackgroundTask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKIntentDidRunRefreshBackgroundTask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKIntentDidRunRefreshBackgroundTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKIntentDidRunRefreshBackgroundTask/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKIntentDidRunRefreshBackgroundTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKRefreshBackgroundTask~1setTaskCompletedWithSnapshot(_:)/title",
+          "value": "setTaskCompletedWithSnapshot:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKRefreshBackgroundTask~1setTaskCompletedWithSnapshot(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setTaskCompletedWithSnapshot:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKURLSessionRefreshBackgroundTask/title",
+          "value": "WKURLSessionRefreshBackgroundTask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKURLSessionRefreshBackgroundTask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKURLSessionRefreshBackgroundTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKURLSessionRefreshBackgroundTask/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKURLSessionRefreshBackgroundTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplicationDelegate~1handle(_:)-4vdjo/title",
+          "value": "handleBackgroundTasks:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplicationDelegate~1handle(_:)-4vdjo/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleBackgroundTasks:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKRelevantShortcutRefreshBackgroundTask/title",
+          "value": "WKRelevantShortcutRefreshBackgroundTask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKRelevantShortcutRefreshBackgroundTask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKRelevantShortcutRefreshBackgroundTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKRelevantShortcutRefreshBackgroundTask/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKRelevantShortcutRefreshBackgroundTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplication~1scheduleSnapshotRefresh(withPreferredDate:userInfo:scheduledCompletion:)/title",
+          "value": "scheduleSnapshotRefreshWithPreferredDate:userInfo:scheduledCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplication~1scheduleSnapshotRefresh(withPreferredDate:userInfo:scheduledCompletion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "scheduleSnapshotRefreshWithPreferredDate:userInfo:scheduledCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKWatchConnectivityRefreshBackgroundTask/title",
+          "value": "WKWatchConnectivityRefreshBackgroundTask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKWatchConnectivityRefreshBackgroundTask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKWatchConnectivityRefreshBackgroundTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKWatchConnectivityRefreshBackgroundTask/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKWatchConnectivityRefreshBackgroundTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKSnapshotRefreshBackgroundTask/title",
+          "value": "WKSnapshotRefreshBackgroundTask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKSnapshotRefreshBackgroundTask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKSnapshotRefreshBackgroundTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKSnapshotRefreshBackgroundTask/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKSnapshotRefreshBackgroundTask"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/watchkit/preparing-to-take-your-watchos-app-s-snapshot"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/watchkit/preparing-to-take-your-watchos-app-s-snapshot"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1666 @@
+{
+  "abstract": [
+    {
+      "text": "Create and manage OpenGL rendering contexts for use in macOS, and perform operations on drawable objects.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "added",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.agl/documentation/AGL"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.agl/documentation/AGL/AGL-collection"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AGL"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "AGL"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use AGL from the Carbon framework, your application must link to both the AGL and the OpenGL (",
+              "type": "text"
+            },
+            {
+              "code": "OpenGL/OpenGL.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") frameworks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This document was previously titled ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apple OpenGL Reference",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.agl/documentation/AGL": {
+      "abstract": [
+        {
+          "text": "Create and manage OpenGL rendering contexts for use in macOS, and perform operations on drawable objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AGL",
+      "type": "topic",
+      "url": "/documentation/agl"
+    },
+    "doc://com.apple.agl/documentation/AGL/AGLContext": {
+      "abstract": [
+        {
+          "text": "Represents a pointer to an opaque AGL context object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AGLContext"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/AGLContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AGLContext",
+      "type": "topic",
+      "url": "/documentation/agl/aglcontext"
+    },
+    "doc://com.apple.agl/documentation/AGL/AGLDevice": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AGLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/AGLDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AGLDevice",
+      "type": "topic",
+      "url": "/documentation/agl/agldevice"
+    },
+    "doc://com.apple.agl/documentation/AGL/AGLDrawable": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AGLDrawable"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/AGLDrawable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AGLDrawable",
+      "type": "topic",
+      "url": "/documentation/agl/agldrawable"
+    },
+    "doc://com.apple.agl/documentation/AGL/AGLPbuffer": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AGLPbuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/AGLPbuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AGLPbuffer",
+      "type": "topic",
+      "url": "/documentation/agl/aglpbuffer"
+    },
+    "doc://com.apple.agl/documentation/AGL/AGLPixelFormat": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AGLPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/AGLPixelFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AGLPixelFormat",
+      "type": "topic",
+      "url": "/documentation/agl/aglpixelformat"
+    },
+    "doc://com.apple.agl/documentation/AGL/AGLRendererInfo": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AGLRendererInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/AGLRendererInfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AGLRendererInfo",
+      "type": "topic",
+      "url": "/documentation/agl/aglrendererinfo"
+    },
+    "doc://com.apple.agl/documentation/AGL/agl-constants": {
+      "abstract": [],
+      "identifier": "doc://com.apple.agl/documentation/AGL/agl-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AGL Constants",
+      "type": "topic",
+      "url": "/documentation/agl/agl-constants"
+    },
+    "doc://com.apple.agl/documentation/AGL/agl-data-types": {
+      "abstract": [],
+      "identifier": "doc://com.apple.agl/documentation/AGL/agl-data-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AGL Data Types",
+      "type": "topic",
+      "url": "/documentation/agl/agl-data-types"
+    },
+    "doc://com.apple.agl/documentation/AGL/agl-functions": {
+      "abstract": [],
+      "identifier": "doc://com.apple.agl/documentation/AGL/agl-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AGL Functions",
+      "type": "topic",
+      "url": "/documentation/agl/agl-functions"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglChoosePixelFormat": {
+      "abstract": [
+        {
+          "text": "Creates a pixel format object that satisfies the constraints of the specified buffer and renderer attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglChoosePixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglChoosePixelFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglChoosePixelFormat",
+      "type": "topic",
+      "url": "/documentation/agl/aglchoosepixelformat"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglConfigure": {
+      "abstract": [
+        {
+          "text": "Sets the value of a global option.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglConfigure"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglConfigure",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglConfigure",
+      "type": "topic",
+      "url": "/documentation/agl/aglconfigure"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglCopyContext": {
+      "abstract": [
+        {
+          "text": "Copies the specified state variables from one rendering context to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglCopyContext"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglCopyContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglCopyContext",
+      "type": "topic",
+      "url": "/documentation/agl/aglcopycontext"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglCreateContext": {
+      "abstract": [
+        {
+          "text": "Creates an AGL rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglCreateContext"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglCreateContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglCreateContext",
+      "type": "topic",
+      "url": "/documentation/agl/aglcreatecontext"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglCreatePBuffer": {
+      "abstract": [
+        {
+          "text": "Creates a  pixel buffer of the specified size, compatible with the specified texture target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglCreatePBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglCreatePBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglCreatePBuffer",
+      "type": "topic",
+      "url": "/documentation/agl/aglcreatepbuffer"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglCreatePixelFormat": {
+      "abstract": [
+        {
+          "text": "Creates a pixel format with the provided attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglCreatePixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglCreatePixelFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglCreatePixelFormat",
+      "type": "topic",
+      "url": "/documentation/agl/aglcreatepixelformat"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglDescribePBuffer": {
+      "abstract": [
+        {
+          "text": "Retrieves information that describes the specified pixel buffer object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglDescribePBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglDescribePBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglDescribePBuffer",
+      "type": "topic",
+      "url": "/documentation/agl/agldescribepbuffer"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglDescribePixelFormat": {
+      "abstract": [
+        {
+          "text": "Retrieves the value of an attribute associated with a pixel format object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglDescribePixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglDescribePixelFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglDescribePixelFormat",
+      "type": "topic",
+      "url": "/documentation/agl/agldescribepixelformat"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglDescribeRenderer": {
+      "abstract": [
+        {
+          "text": "Obtains the value associated with a renderer property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglDescribeRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglDescribeRenderer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglDescribeRenderer",
+      "type": "topic",
+      "url": "/documentation/agl/agldescriberenderer"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglDestroyContext": {
+      "abstract": [
+        {
+          "text": "Frees the resources associated with a rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglDestroyContext"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglDestroyContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglDestroyContext",
+      "type": "topic",
+      "url": "/documentation/agl/agldestroycontext"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglDestroyPBuffer": {
+      "abstract": [
+        {
+          "text": "Releases the resources associated with a pixel buffer object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglDestroyPBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglDestroyPBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglDestroyPBuffer",
+      "type": "topic",
+      "url": "/documentation/agl/agldestroypbuffer"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglDestroyPixelFormat": {
+      "abstract": [
+        {
+          "text": "Frees the memory associated with a pixel format object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglDestroyPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglDestroyPixelFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglDestroyPixelFormat",
+      "type": "topic",
+      "url": "/documentation/agl/agldestroypixelformat"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglDestroyRendererInfo": {
+      "abstract": [
+        {
+          "text": "Frees resources associated with a renderer information object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglDestroyRendererInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglDestroyRendererInfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglDestroyRendererInfo",
+      "type": "topic",
+      "url": "/documentation/agl/agldestroyrendererinfo"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglDevicesOfPixelFormat": {
+      "abstract": [
+        {
+          "text": "Returns the graphics devices supported by a pixel format object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglDevicesOfPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglDevicesOfPixelFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglDevicesOfPixelFormat",
+      "type": "topic",
+      "url": "/documentation/agl/agldevicesofpixelformat"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglDisable": {
+      "abstract": [
+        {
+          "text": "Disables an option for a rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglDisable"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglDisable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglDisable",
+      "type": "topic",
+      "url": "/documentation/agl/agldisable"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglDisplaysOfPixelFormat": {
+      "abstract": [
+        {
+          "text": "Returns the graphics devices supported by a pixel format object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglDisplaysOfPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglDisplaysOfPixelFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglDisplaysOfPixelFormat",
+      "type": "topic",
+      "url": "/documentation/agl/agldisplaysofpixelformat"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglEnable": {
+      "abstract": [
+        {
+          "text": "Enables an option for a rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglEnable"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglEnable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglEnable",
+      "type": "topic",
+      "url": "/documentation/agl/aglenable"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglErrorString": {
+      "abstract": [
+        {
+          "text": "Returns a string that describes the specified AGL error code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglErrorString"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglErrorString",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglErrorString",
+      "type": "topic",
+      "url": "/documentation/agl/aglerrorstring"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglGetCGLContext": {
+      "abstract": [
+        {
+          "text": "Gets the CGL rendering context associated with an AGL rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglGetCGLContext"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglGetCGLContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglGetCGLContext",
+      "type": "topic",
+      "url": "/documentation/agl/aglgetcglcontext"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglGetCGLPixelFormat": {
+      "abstract": [
+        {
+          "text": "Gets the CGL pixel format object associated with an AGL pixel format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglGetCGLPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglGetCGLPixelFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglGetCGLPixelFormat",
+      "type": "topic",
+      "url": "/documentation/agl/aglgetcglpixelformat"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglGetCurrentContext": {
+      "abstract": [
+        {
+          "text": "Returns the current rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglGetCurrentContext"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglGetCurrentContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglGetCurrentContext",
+      "type": "topic",
+      "url": "/documentation/agl/aglgetcurrentcontext"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglGetDrawable": {
+      "abstract": [
+        {
+          "text": "Returns the drawable object attached to a rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglGetDrawable"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglGetDrawable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglGetDrawable",
+      "type": "topic",
+      "url": "/documentation/agl/aglgetdrawable"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglGetError": {
+      "abstract": [
+        {
+          "text": "Returns an AGL error code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglGetError"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglGetError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglGetError",
+      "type": "topic",
+      "url": "/documentation/agl/aglgeterror"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglGetHIViewRef": {
+      "abstract": [
+        {
+          "text": "Retrieves the HIView object associated with an AGL context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglGetHIViewRef"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglGetHIViewRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglGetHIViewRef",
+      "type": "topic",
+      "url": "/documentation/agl/aglgethiviewref"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglGetInteger": {
+      "abstract": [
+        {
+          "text": "Retrieves the integer setting of an AGL context option.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglGetInteger"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglGetInteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglGetInteger",
+      "type": "topic",
+      "url": "/documentation/agl/aglgetinteger"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglGetPBuffer": {
+      "abstract": [
+        {
+          "text": "Retrieves a pixel buffer and its parameters for a specified rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglGetPBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglGetPBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglGetPBuffer",
+      "type": "topic",
+      "url": "/documentation/agl/aglgetpbuffer"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglGetVersion": {
+      "abstract": [
+        {
+          "text": "Gets the major and minor version numbers of the AGL library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglGetVersion"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglGetVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglGetVersion",
+      "type": "topic",
+      "url": "/documentation/agl/aglgetversion"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglGetVirtualScreen": {
+      "abstract": [
+        {
+          "text": "Returns the current virtual screen number associated with a rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglGetVirtualScreen"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglGetVirtualScreen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglGetVirtualScreen",
+      "type": "topic",
+      "url": "/documentation/agl/aglgetvirtualscreen"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglGetWindowRef": {
+      "abstract": [
+        {
+          "text": "Retrieves the window associated with an AGL context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglGetWindowRef"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglGetWindowRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglGetWindowRef",
+      "type": "topic",
+      "url": "/documentation/agl/aglgetwindowref"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglIsEnabled": {
+      "abstract": [
+        {
+          "text": "Reports whether an option is enabled for a rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglIsEnabled"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglIsEnabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglIsEnabled",
+      "type": "topic",
+      "url": "/documentation/agl/aglisenabled"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglNextPixelFormat": {
+      "abstract": [
+        {
+          "text": "Returns the next pixel format object in a list of pixel format objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglNextPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglNextPixelFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglNextPixelFormat",
+      "type": "topic",
+      "url": "/documentation/agl/aglnextpixelformat"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglNextRendererInfo": {
+      "abstract": [
+        {
+          "text": "Returns the next renderer information object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglNextRendererInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglNextRendererInfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglNextRendererInfo",
+      "type": "topic",
+      "url": "/documentation/agl/aglnextrendererinfo"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglQueryRendererInfo": {
+      "abstract": [
+        {
+          "text": "Creates and returns a renderer information object that contains properties and values for all renderers driving the specified displays.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglQueryRendererInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglQueryRendererInfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglQueryRendererInfo",
+      "type": "topic",
+      "url": "/documentation/agl/aglqueryrendererinfo"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglQueryRendererInfoForCGDirectDisplayIDs": {
+      "abstract": [
+        {
+          "text": "Creates and returns a renderer information object that contains properties and values for all renderers driving the specified displays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglQueryRendererInfoForCGDirectDisplayIDs"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglQueryRendererInfoForCGDirectDisplayIDs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglQueryRendererInfoForCGDirectDisplayIDs",
+      "type": "topic",
+      "url": "/documentation/agl/aglqueryrendererinfoforcgdirectdisplayids"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglResetLibrary": {
+      "abstract": [
+        {
+          "text": "Resets the AGL library.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglResetLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglResetLibrary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglResetLibrary",
+      "type": "topic",
+      "url": "/documentation/agl/aglresetlibrary"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglSetCurrentContext": {
+      "abstract": [
+        {
+          "text": "Sets the specified rendering context as the current rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglSetCurrentContext"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglSetCurrentContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglSetCurrentContext",
+      "type": "topic",
+      "url": "/documentation/agl/aglsetcurrentcontext"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglSetDrawable": {
+      "abstract": [
+        {
+          "text": "Attaches a  rendering context to a Carbon window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglSetDrawable"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglSetDrawable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglSetDrawable",
+      "type": "topic",
+      "url": "/documentation/agl/aglsetdrawable"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglSetFullScreen": {
+      "abstract": [
+        {
+          "text": "Attaches a rendering context to a full screen graphics device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglSetFullScreen"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglSetFullScreen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglSetFullScreen",
+      "type": "topic",
+      "url": "/documentation/agl/aglsetfullscreen"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglSetHIViewRef": {
+      "abstract": [
+        {
+          "text": "Sets an AGL context to the specified HIView object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglSetHIViewRef"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglSetHIViewRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglSetHIViewRef",
+      "type": "topic",
+      "url": "/documentation/agl/aglsethiviewref"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglSetInteger": {
+      "abstract": [
+        {
+          "text": "Sets the value of an option for a rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglSetInteger"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglSetInteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglSetInteger",
+      "type": "topic",
+      "url": "/documentation/agl/aglsetinteger"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglSetOffScreen": {
+      "abstract": [
+        {
+          "text": "Attaches a rendering context to an offscreen memory area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglSetOffScreen"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglSetOffScreen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglSetOffScreen",
+      "type": "topic",
+      "url": "/documentation/agl/aglsetoffscreen"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglSetPBuffer": {
+      "abstract": [
+        {
+          "text": "Attaches a pixel buffer object to a rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglSetPBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglSetPBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglSetPBuffer",
+      "type": "topic",
+      "url": "/documentation/agl/aglsetpbuffer"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglSetVirtualScreen": {
+      "abstract": [
+        {
+          "text": "Forces subsequent OpenGL commands to the specified virtual screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglSetVirtualScreen"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglSetVirtualScreen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglSetVirtualScreen",
+      "type": "topic",
+      "url": "/documentation/agl/aglsetvirtualscreen"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglSetWindowRef": {
+      "abstract": [
+        {
+          "text": "Sets an AGL context to the specified window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglSetWindowRef"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglSetWindowRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglSetWindowRef",
+      "type": "topic",
+      "url": "/documentation/agl/aglsetwindowref"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglSurfaceTexture": {
+      "abstract": [
+        {
+          "text": "Allows texturing from a drawable object that has an attached rendering context, using the surface contents as the source data for the texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglSurfaceTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglSurfaceTexture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglSurfaceTexture",
+      "type": "topic",
+      "url": "/documentation/agl/aglsurfacetexture"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglSwapBuffers": {
+      "abstract": [
+        {
+          "text": "Exchanges the front and back buffers of the specified rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglSwapBuffers"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglSwapBuffers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglSwapBuffers",
+      "type": "topic",
+      "url": "/documentation/agl/aglswapbuffers"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglTexImagePBuffer": {
+      "abstract": [
+        {
+          "text": "Binds the contents of a pixel buffer to a data source for a texture object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglTexImagePBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglTexImagePBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglTexImagePBuffer",
+      "type": "topic",
+      "url": "/documentation/agl/aglteximagepbuffer"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglUpdateContext": {
+      "abstract": [
+        {
+          "text": "Notifies the rendering context that the window geometry has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglUpdateContext"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglUpdateContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglUpdateContext",
+      "type": "topic",
+      "url": "/documentation/agl/aglupdatecontext"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglUseFont": {
+      "abstract": [
+        {
+          "text": "Creates bitmap display lists from a  font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglUseFont"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglUseFont",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglUseFont",
+      "type": "topic",
+      "url": "/documentation/agl/aglusefont"
+    },
+    "doc://com.apple.agl/documentation/AGL/bit-depths": {
+      "abstract": [
+        {
+          "text": "Define resolutions for the depth and stencil buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/bit-depths",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Bit Depths",
+      "type": "topic",
+      "url": "/documentation/agl/bit-depths"
+    },
+    "doc://com.apple.agl/documentation/AGL/buffer-and-renderer-attributes": {
+      "abstract": [
+        {
+          "text": "Specify attributes used to create a pixel format object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/buffer-and-renderer-attributes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Buffer and Renderer Attributes",
+      "type": "topic",
+      "url": "/documentation/agl/buffer-and-renderer-attributes"
+    },
+    "doc://com.apple.agl/documentation/AGL/buffer-mode-flags": {
+      "abstract": [
+        {
+          "text": "Define constants used to set buffer modes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/buffer-mode-flags",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Buffer Mode Flags",
+      "type": "topic",
+      "url": "/documentation/agl/buffer-mode-flags"
+    },
+    "doc://com.apple.agl/documentation/AGL/color-modes": {
+      "abstract": [
+        {
+          "text": "Specify formats and color channel layout information for the color  buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/color-modes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Color Modes",
+      "type": "topic",
+      "url": "/documentation/agl/color-modes"
+    },
+    "doc://com.apple.agl/documentation/AGL/context-options-and-parameters": {
+      "abstract": [
+        {
+          "text": "Define options and parameters that apply to a specific rendering context.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/context-options-and-parameters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Context Options and Parameters",
+      "type": "topic",
+      "url": "/documentation/agl/context-options-and-parameters"
+    },
+    "doc://com.apple.agl/documentation/AGL/error-codes": {
+      "abstract": [
+        {
+          "text": "Defines the error codes that can be returned by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "https://developer.apple.com/library/archive/#id(F15037)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/error-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Error Codes",
+      "type": "topic",
+      "url": "/documentation/agl/error-codes"
+    },
+    "doc://com.apple.agl/documentation/AGL/globally-configured-options": {
+      "abstract": [
+        {
+          "text": "Specify options that apply globally.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/globally-configured-options",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Globally Configured Options",
+      "type": "topic",
+      "url": "/documentation/agl/globally-configured-options"
+    },
+    "doc://com.apple.agl/documentation/AGL/renderer-attributes": {
+      "abstract": [
+        {
+          "text": "Define options for managing renderers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/renderer-attributes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Renderer Attributes",
+      "type": "topic",
+      "url": "/documentation/agl/renderer-attributes"
+    },
+    "doc://com.apple.agl/documentation/AGL/renderer-ids": {
+      "abstract": [
+        {
+          "text": "Define constants that specify hardware and software renderers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/renderer-ids",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Renderer IDs",
+      "type": "topic",
+      "url": "/documentation/agl/renderer-ids"
+    },
+    "doc://com.apple.agl/documentation/AGL/renderer-properties": {
+      "abstract": [
+        {
+          "text": "Specify constants that you can use to query renderer properties.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/renderer-properties",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Renderer Properties",
+      "type": "topic",
+      "url": "/documentation/agl/renderer-properties"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/library/archive/#id(F15037)": {
+      "identifier": "https://developer.apple.com/library/archive/#id(F15037)",
+      "title": "aglGetError",
+      "titleInlineContent": [
+        {
+          "text": "aglGetError",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/#id(F15037)"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Reference",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.agl/documentation/AGL/agl-constants"
+      ],
+      "title": "Reference"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.agl/documentation/AGL/bit-depths",
+        "doc://com.apple.agl/documentation/AGL/buffer-and-renderer-attributes",
+        "doc://com.apple.agl/documentation/AGL/buffer-mode-flags",
+        "doc://com.apple.agl/documentation/AGL/color-modes",
+        "doc://com.apple.agl/documentation/AGL/context-options-and-parameters",
+        "doc://com.apple.agl/documentation/AGL/error-codes",
+        "doc://com.apple.agl/documentation/AGL/globally-configured-options",
+        "doc://com.apple.agl/documentation/AGL/renderer-attributes",
+        "doc://com.apple.agl/documentation/AGL/renderer-ids",
+        "doc://com.apple.agl/documentation/AGL/renderer-properties"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Managing-Pixel-Format-Objects",
+              "identifiers": [
+                "doc://com.apple.agl/documentation/AGL/aglCreatePixelFormat",
+                "doc://com.apple.agl/documentation/AGL/aglChoosePixelFormat",
+                "doc://com.apple.agl/documentation/AGL/aglDescribePixelFormat",
+                "doc://com.apple.agl/documentation/AGL/aglDestroyPixelFormat",
+                "doc://com.apple.agl/documentation/AGL/aglGetCGLPixelFormat",
+                "doc://com.apple.agl/documentation/AGL/aglDisplaysOfPixelFormat",
+                "doc://com.apple.agl/documentation/AGL/aglDevicesOfPixelFormat",
+                "doc://com.apple.agl/documentation/AGL/aglNextPixelFormat"
+              ],
+              "title": "Managing Pixel Format Objects"
+            },
+            {
+              "anchor": "Managing-Contexts",
+              "identifiers": [
+                "doc://com.apple.agl/documentation/AGL/aglCreateContext",
+                "doc://com.apple.agl/documentation/AGL/aglCopyContext",
+                "doc://com.apple.agl/documentation/AGL/aglDestroyContext",
+                "doc://com.apple.agl/documentation/AGL/aglGetCGLContext",
+                "doc://com.apple.agl/documentation/AGL/aglGetCurrentContext",
+                "doc://com.apple.agl/documentation/AGL/aglSetCurrentContext",
+                "doc://com.apple.agl/documentation/AGL/aglSwapBuffers",
+                "doc://com.apple.agl/documentation/AGL/aglUpdateContext"
+              ],
+              "title": "Managing Contexts"
+            },
+            {
+              "anchor": "Getting-and-Setting-Context-Options",
+              "identifiers": [
+                "doc://com.apple.agl/documentation/AGL/aglEnable",
+                "doc://com.apple.agl/documentation/AGL/aglDisable",
+                "doc://com.apple.agl/documentation/AGL/aglIsEnabled",
+                "doc://com.apple.agl/documentation/AGL/aglSetInteger",
+                "doc://com.apple.agl/documentation/AGL/aglGetInteger"
+              ],
+              "title": "Getting and Setting Context Options"
+            },
+            {
+              "anchor": "Managing-Drawable-Objects",
+              "identifiers": [
+                "doc://com.apple.agl/documentation/AGL/aglGetDrawable",
+                "doc://com.apple.agl/documentation/AGL/aglSetDrawable",
+                "doc://com.apple.agl/documentation/AGL/aglSetFullScreen",
+                "doc://com.apple.agl/documentation/AGL/aglSetOffScreen"
+              ],
+              "title": "Managing Drawable Objects"
+            },
+            {
+              "anchor": "Managing-Pixel-Buffers",
+              "identifiers": [
+                "doc://com.apple.agl/documentation/AGL/aglCreatePBuffer",
+                "doc://com.apple.agl/documentation/AGL/aglDestroyPBuffer",
+                "doc://com.apple.agl/documentation/AGL/aglDescribePBuffer",
+                "doc://com.apple.agl/documentation/AGL/aglGetPBuffer",
+                "doc://com.apple.agl/documentation/AGL/aglSetPBuffer",
+                "doc://com.apple.agl/documentation/AGL/aglTexImagePBuffer"
+              ],
+              "title": "Managing Pixel Buffers"
+            },
+            {
+              "anchor": "Using-a-Window-as-a-Texture-Source",
+              "identifiers": [
+                "doc://com.apple.agl/documentation/AGL/aglSurfaceTexture"
+              ],
+              "title": "Using a Window as a Texture Source"
+            },
+            {
+              "anchor": "Getting-Error-Information",
+              "identifiers": [
+                "doc://com.apple.agl/documentation/AGL/aglGetError",
+                "doc://com.apple.agl/documentation/AGL/aglErrorString"
+              ],
+              "title": "Getting Error Information"
+            },
+            {
+              "anchor": "Getting-and-Setting-Global-Information",
+              "identifiers": [
+                "doc://com.apple.agl/documentation/AGL/aglConfigure",
+                "doc://com.apple.agl/documentation/AGL/aglGetVersion",
+                "doc://com.apple.agl/documentation/AGL/aglResetLibrary"
+              ],
+              "title": "Getting and Setting Global Information"
+            },
+            {
+              "anchor": "Getting-Renderer-Information",
+              "identifiers": [
+                "doc://com.apple.agl/documentation/AGL/aglDescribeRenderer",
+                "doc://com.apple.agl/documentation/AGL/aglDestroyRendererInfo",
+                "doc://com.apple.agl/documentation/AGL/aglNextRendererInfo",
+                "doc://com.apple.agl/documentation/AGL/aglQueryRendererInfo",
+                "doc://com.apple.agl/documentation/AGL/aglQueryRendererInfoForCGDirectDisplayIDs"
+              ],
+              "title": "Getting Renderer Information"
+            },
+            {
+              "anchor": "Generating-Bitmap-Display-Lists",
+              "identifiers": [
+                "doc://com.apple.agl/documentation/AGL/aglUseFont"
+              ],
+              "title": "Generating Bitmap Display Lists"
+            },
+            {
+              "anchor": "Managing-Virtual-Screens",
+              "identifiers": [
+                "doc://com.apple.agl/documentation/AGL/aglGetVirtualScreen",
+                "doc://com.apple.agl/documentation/AGL/aglSetVirtualScreen"
+              ],
+              "title": "Managing Virtual Screens"
+            },
+            {
+              "anchor": "Getting-and-Setting-Windows",
+              "identifiers": [
+                "doc://com.apple.agl/documentation/AGL/aglSetWindowRef",
+                "doc://com.apple.agl/documentation/AGL/aglGetWindowRef"
+              ],
+              "title": "Getting and Setting Windows"
+            },
+            {
+              "anchor": "Getting-and-Setting-HIView-Objects",
+              "identifiers": [
+                "doc://com.apple.agl/documentation/AGL/aglSetHIViewRef",
+                "doc://com.apple.agl/documentation/AGL/aglGetHIViewRef"
+              ],
+              "title": "Getting and Setting HIView Objects"
+            },
+            {
+              "anchor": "Data-Types",
+              "identifiers": [
+                "doc://com.apple.agl/documentation/AGL/AGLContext",
+                "doc://com.apple.agl/documentation/AGL/AGLDevice",
+                "doc://com.apple.agl/documentation/AGL/AGLDrawable",
+                "doc://com.apple.agl/documentation/AGL/AGLPbuffer",
+                "doc://com.apple.agl/documentation/AGL/AGLPixelFormat",
+                "doc://com.apple.agl/documentation/AGL/AGLRendererInfo"
+              ],
+              "title": "Data Types"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.agl/documentation/AGL/bit-depths",
+                "doc://com.apple.agl/documentation/AGL/buffer-and-renderer-attributes",
+                "doc://com.apple.agl/documentation/AGL/buffer-mode-flags",
+                "doc://com.apple.agl/documentation/AGL/color-modes",
+                "doc://com.apple.agl/documentation/AGL/context-options-and-parameters",
+                "doc://com.apple.agl/documentation/AGL/error-codes",
+                "doc://com.apple.agl/documentation/AGL/globally-configured-options",
+                "doc://com.apple.agl/documentation/AGL/renderer-attributes",
+                "doc://com.apple.agl/documentation/AGL/renderer-ids",
+                "doc://com.apple.agl/documentation/AGL/renderer-properties"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Reference",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.agl/documentation/AGL/agl-constants",
+                "doc://com.apple.agl/documentation/AGL/agl-functions",
+                "doc://com.apple.agl/documentation/AGL/agl-data-types"
+              ],
+              "title": "Reference"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/agl/agl-collection"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/agl/agl-collection"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2239 @@
+{
+  "abstract": [
+    {
+      "text": "A specific electric vehicle that Maps uses during route planning and navigation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/Intents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/Intents/INCar"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)INCar",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "INCar"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "INCar"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "INCar"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INCar"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "INCar",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object provides information about a specific electric vehicle that belongs to the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When planning a route, Maps may use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INListCarsIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " intent to ask your app to provide a list of the user’s electric vehicles. In your handler, determine which of the user’s vehicles respond to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and create an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "INCar",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for each. You then assign these instances to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INListCarsIntentResponse/cars",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of your response object. When navigation begins using one of these vehicles, Maps regularly requests updates of the power level status using ",
+              "type": "text"
+            },
+            {
+              "code": "INGetCarPowerLevelStatusIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on handling ",
+              "type": "text"
+            },
+            {
+              "code": "INListCarsIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INListCarsIntentHandling",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCar": {
+      "abstract": [
+        {
+          "text": "A specific electric vehicle that Maps uses during route planning and navigation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCar"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCar"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCar",
+      "type": "topic",
+      "url": "/documentation/intents/incar"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCar/ChargingConnectorType": {
+      "abstract": [
+        {
+          "text": "Constants that describe the available charging connector types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChargingConnectorType"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCar/ChargingConnectorType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ChargingConnectorType"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCar.ChargingConnectorType",
+      "type": "topic",
+      "url": "/documentation/intents/incar/chargingconnectortype"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCar/HeadUnit-swift.class": {
+      "abstract": [
+        {
+          "text": "An object that contains the Bluetooth and iAP2 identifiers of the vehicle’s physical head unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HeadUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCar/HeadUnit-swift.class",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HeadUnit"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCar.HeadUnit",
+      "type": "topic",
+      "url": "/documentation/intents/incar/headunit-swift.class"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCar/carIdentifier": {
+      "abstract": [
+        {
+          "text": "The electric vehicle’s unique identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "carIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCar/carIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "carIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "carIdentifier",
+      "type": "topic",
+      "url": "/documentation/intents/incar/caridentifier"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCar/color": {
+      "abstract": [
+        {
+          "text": "The electric vehicle’s color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "color"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGColorRef",
+          "text": "CGColor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCar/color",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "color"
+        }
+      ],
+      "role": "symbol",
+      "title": "color",
+      "type": "topic",
+      "url": "/documentation/intents/incar/color"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCar/displayName": {
+      "abstract": [
+        {
+          "text": "The electric vehicle’s user-defined display name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCar/displayName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "displayName"
+        }
+      ],
+      "role": "symbol",
+      "title": "displayName",
+      "type": "topic",
+      "url": "/documentation/intents/incar/displayname"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCar/headUnit-swift.property": {
+      "abstract": [
+        {
+          "text": "The Bluetooth and iAP2 identifiers of the electric vehicle’s physical head unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "headUnit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INCar",
+          "text": "INCar"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INCarHeadUnit",
+          "text": "HeadUnit"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCar/headUnit-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "headUnit"
+        }
+      ],
+      "role": "symbol",
+      "title": "headUnit",
+      "type": "topic",
+      "url": "/documentation/intents/incar/headunit-swift.property"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCar/init(carIdentifier:displayName:year:make:model:color:headUnit:supportedChargingConnectors:)": {
+      "abstract": [
+        {
+          "text": "Creates a car object with the specified attributes, head unit, and supported charging connectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "carIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "displayName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "year"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "make"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "model"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "color"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGColorRef",
+          "text": "CGColor"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "headUnit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INCar",
+          "text": "INCar"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INCarHeadUnit",
+          "text": "HeadUnit"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "supportedChargingConnectors"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INCar",
+          "text": "INCar"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@INCarChargingConnectorType",
+          "text": "ChargingConnectorType"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCar/init(carIdentifier:displayName:year:make:model:color:headUnit:supportedChargingConnectors:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCarIdentifier:displayName:year:make:model:color:headUnit:supportedChargingConnectors:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(carIdentifier:displayName:year:make:model:color:headUnit:supportedChargingConnectors:)",
+      "type": "topic",
+      "url": "/documentation/intents/incar/init(caridentifier:displayname:year:make:model:color:headunit:supportedchargingconnectors:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCar/make": {
+      "abstract": [
+        {
+          "text": "The electric vehicle’s manufacturer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "make"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCar/make",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "make"
+        }
+      ],
+      "role": "symbol",
+      "title": "make",
+      "type": "topic",
+      "url": "/documentation/intents/incar/make"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCar/maximumPower(for:)": {
+      "abstract": [
+        {
+          "text": "Gets the maximum power for a specific type of charging connector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumPower"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INCar",
+          "text": "INCar"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@INCarChargingConnectorType",
+          "text": "ChargingConnectorType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation11MeasurementV",
+          "text": "Measurement"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUnitPower",
+          "text": "UnitPower"
+        },
+        {
+          "kind": "text",
+          "text": ">?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCar/maximumPower(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumPowerForChargingConnectorType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "maximumPower(for:)",
+      "type": "topic",
+      "url": "/documentation/intents/incar/maximumpower(for:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCar/model": {
+      "abstract": [
+        {
+          "text": "The manufacturer’s model name for the electric vehicle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "model"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCar/model",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "model"
+        }
+      ],
+      "role": "symbol",
+      "title": "model",
+      "type": "topic",
+      "url": "/documentation/intents/incar/model"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCar/setMaximumPower(_:for:)": {
+      "abstract": [
+        {
+          "text": "Sets the maximum power for a specific type of charging connector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMaximumPower"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation11MeasurementV",
+          "text": "Measurement"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUnitPower",
+          "text": "UnitPower"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INCar",
+          "text": "INCar"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@INCarChargingConnectorType",
+          "text": "ChargingConnectorType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCar/setMaximumPower(_:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setMaximumPower:forChargingConnectorType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setMaximumPower(_:for:)",
+      "type": "topic",
+      "url": "/documentation/intents/incar/setmaximumpower(_:for:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCar/supportedChargingConnectors": {
+      "abstract": [
+        {
+          "text": "The charging connectors that the electric vehicle supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportedChargingConnectors"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INCar",
+          "text": "INCar"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@INCarChargingConnectorType",
+          "text": "ChargingConnectorType"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCar/supportedChargingConnectors",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportedChargingConnectors"
+        }
+      ],
+      "role": "symbol",
+      "title": "supportedChargingConnectors",
+      "type": "topic",
+      "url": "/documentation/intents/incar/supportedchargingconnectors"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCar/year": {
+      "abstract": [
+        {
+          "text": "The electric vehicle’s year of manufacture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "year"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCar/year",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "year"
+        }
+      ],
+      "role": "symbol",
+      "title": "year",
+      "type": "topic",
+      "url": "/documentation/intents/incar/year"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntent": {
+      "abstract": [
+        {
+          "text": "A request for the current power level of the user’s car.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INGetCarPowerLevelStatusIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INGetCarPowerLevelStatusIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INGetCarPowerLevelStatusIntent",
+      "type": "topic",
+      "url": "/documentation/intents/ingetcarpowerlevelstatusintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INListCarsIntent": {
+      "abstract": [
+        {
+          "text": "An intent for retrieving a list of the user’s electric vehicles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INListCarsIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INListCarsIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INListCarsIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INListCarsIntent",
+      "type": "topic",
+      "url": "/documentation/intents/inlistcarsintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INListCarsIntentHandling": {
+      "abstract": [
+        {
+          "text": "The handler interface for requesting a list of the user’s electric vehicles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INListCarsIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INListCarsIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INListCarsIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INListCarsIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/inlistcarsintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INListCarsIntentResponse/cars": {
+      "abstract": [
+        {
+          "text": "An array of the user’s electric vehicles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cars"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INCar",
+          "text": "INCar"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INListCarsIntentResponse/cars",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cars"
+        }
+      ],
+      "role": "symbol",
+      "title": "cars",
+      "type": "topic",
+      "url": "/documentation/intents/inlistcarsintentresponse/cars"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Providing-a-List-of-Cars",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INListCarsIntentResponse/cars"
+      ],
+      "title": "Providing a List of Cars"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Car",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INCar/init(carIdentifier:displayName:year:make:model:color:headUnit:supportedChargingConnectors:)"
+      ],
+      "title": "Creating a Car"
+    },
+    {
+      "anchor": "Identifying-the-Car",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INCar/carIdentifier",
+        "doc://com.apple.sirikit/documentation/Intents/INCar/displayName"
+      ],
+      "title": "Identifying the Car"
+    },
+    {
+      "abstract": [
+        {
+          "text": "These attributes are all user-facing. Maps displays them when presenting information about an electric vehicle.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Getting-the-Cars-Attributes",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INCar/make",
+        "doc://com.apple.sirikit/documentation/Intents/INCar/model",
+        "doc://com.apple.sirikit/documentation/Intents/INCar/color",
+        "doc://com.apple.sirikit/documentation/Intents/INCar/year"
+      ],
+      "title": "Getting the Car’s Attributes"
+    },
+    {
+      "anchor": "Getting-the-Cars-Head-Unit",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INCar/headUnit-swift.property",
+        "doc://com.apple.sirikit/documentation/Intents/INCar/HeadUnit-swift.class"
+      ],
+      "title": "Getting the Car’s Head Unit"
+    },
+    {
+      "anchor": "Getting-the-Cars-Supported-Charging-Connectors",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INCar/supportedChargingConnectors",
+        "doc://com.apple.sirikit/documentation/Intents/INCar/ChargingConnectorType"
+      ],
+      "title": "Getting the Car’s Supported Charging Connectors"
+    },
+    {
+      "anchor": "Providing-a-Charging-Connectors-Maximum-Power",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INCar/maximumPower(for:)",
+        "doc://com.apple.sirikit/documentation/Intents/INCar/setMaximumPower(_:for:)"
+      ],
+      "title": "Providing a Charging Connector’s Maximum Power"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "INCar"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.sirikit/documentation/Intents"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Car",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INCar/init(carIdentifier:displayName:year:make:model:color:headUnit:supportedChargingConnectors:)"
+              ],
+              "title": "Creating a Car"
+            },
+            {
+              "anchor": "Identifying-the-Car",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INCar/carIdentifier",
+                "doc://com.apple.sirikit/documentation/Intents/INCar/displayName"
+              ],
+              "title": "Identifying the Car"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "These attributes are all user-facing. Maps displays them when presenting information about an electric vehicle.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Getting-the-Cars-Attributes",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INCar/make",
+                "doc://com.apple.sirikit/documentation/Intents/INCar/model",
+                "doc://com.apple.sirikit/documentation/Intents/INCar/color",
+                "doc://com.apple.sirikit/documentation/Intents/INCar/year"
+              ],
+              "title": "Getting the Car’s Attributes"
+            },
+            {
+              "anchor": "Getting-the-Cars-Head-Unit",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INCar/headUnit-swift.property",
+                "doc://com.apple.sirikit/documentation/Intents/INCar/HeadUnit-swift.class"
+              ],
+              "title": "Getting the Car’s Head Unit"
+            },
+            {
+              "anchor": "Getting-the-Cars-Supported-Charging-Connectors",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INCar/supportedChargingConnectors",
+                "doc://com.apple.sirikit/documentation/Intents/INCar/ChargingConnectorType"
+              ],
+              "title": "Getting the Car’s Supported Charging Connectors"
+            },
+            {
+              "anchor": "Providing-a-Charging-Connectors-Maximum-Power",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INCar/maximumPower(for:)",
+                "doc://com.apple.sirikit/documentation/Intents/INCar/setMaximumPower(_:for:)"
+              ],
+              "title": "Providing a Charging Connector’s Maximum Power"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Providing-a-List-of-Cars",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INListCarsIntentResponse/cars"
+              ],
+              "title": "Providing a List of Cars"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "INCar"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1displayName/title",
+          "value": "displayName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1displayName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "displayName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1make/title",
+          "value": "make"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1make/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "make"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1HeadUnit-swift.class/title",
+          "value": "INCarHeadUnit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1HeadUnit-swift.class/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCarHeadUnit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1HeadUnit-swift.class/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCarHeadUnit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1headUnit-swift.property/title",
+          "value": "headUnit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1headUnit-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "headUnit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1setMaximumPower(_:for:)/title",
+          "value": "setMaximumPower:forChargingConnectorType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1setMaximumPower(_:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setMaximumPower:forChargingConnectorType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetCarPowerLevelStatusIntent/title",
+          "value": "INGetCarPowerLevelStatusIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetCarPowerLevelStatusIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetCarPowerLevelStatusIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetCarPowerLevelStatusIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetCarPowerLevelStatusIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1color/title",
+          "value": "color"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1color/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "color"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1maximumPower(for:)/title",
+          "value": "maximumPowerForChargingConnectorType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1maximumPower(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "maximumPowerForChargingConnectorType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar/title",
+          "value": "INCar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INListCarsIntentResponse~1cars/title",
+          "value": "cars"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INListCarsIntentResponse~1cars/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cars"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INListCarsIntentHandling/title",
+          "value": "INListCarsIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INListCarsIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INListCarsIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INListCarsIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INListCarsIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INListCarsIntent/title",
+          "value": "INListCarsIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INListCarsIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INListCarsIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INListCarsIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INListCarsIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1ChargingConnectorType/title",
+          "value": "INCarChargingConnectorType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1ChargingConnectorType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCarChargingConnectorType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1ChargingConnectorType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCarChargingConnectorType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1supportedChargingConnectors/title",
+          "value": "supportedChargingConnectors"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1supportedChargingConnectors/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "supportedChargingConnectors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1year/title",
+          "value": "year"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1year/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "year"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1model/title",
+          "value": "model"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1model/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "model"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1init(carIdentifier:displayName:year:make:model:color:headUnit:supportedChargingConnectors:)/title",
+          "value": "initWithCarIdentifier:displayName:year:make:model:color:headUnit:supportedChargingConnectors:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1init(carIdentifier:displayName:year:make:model:color:headUnit:supportedChargingConnectors:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithCarIdentifier:displayName:year:make:model:color:headUnit:supportedChargingConnectors:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1carIdentifier/title",
+          "value": "carIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCar~1carIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "carIdentifier"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/intents/incar"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/intents/incar"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

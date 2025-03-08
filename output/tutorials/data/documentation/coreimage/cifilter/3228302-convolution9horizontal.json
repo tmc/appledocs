@@ -1,0 +1,918 @@
+{
+  "abstract": [
+    {
+      "text": "Applies a convolution-9 horizontal filter to the ",
+      "type": "text"
+    },
+    {
+      "code": "RGBA",
+      "type": "codeVoice"
+    },
+    {
+      "text": " components of an image.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage",
+        "doc://com.apple.documentation/documentation/coreimage/convolution_filters"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/convolution_filters"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/quartz"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/quartz",
+        "doc://com.apple.documentation/documentation/quartz/imagekit",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/convolution_filters"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228302-convolution9horizontal"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3228302,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CIFilter(cm)convolution9HorizontalFilter",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class func "
+      },
+      {
+        "kind": "identifier",
+        "text": "convolution9Horizontal"
+      },
+      {
+        "kind": "text",
+        "text": "() -> any CIFilter & CIConvolution"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Image"
+      }
+    ],
+    "parent": {
+      "title": "CIFilter"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.15",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "clm",
+    "title": "convolution9Horizontal()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "convolution9Horizontal"
+            },
+            {
+              "kind": "text",
+              "text": "() -> "
+            },
+            {
+              "kind": "text",
+              "text": "any "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CIFilter",
+              "text": "CIFilter"
+            },
+            {
+              "kind": "text",
+              "text": " & "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciconvolution",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)CIConvolution",
+              "text": "CIConvolution"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The modified image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method applies a 9 x 1 convolution to the ",
+              "type": "text"
+            },
+            {
+              "code": "RGBA",
+              "type": "codeVoice"
+            },
+            {
+              "text": " components of an image. The effect uses a 9 x 1 area surrounding an input pixel, the pixel itself, and those within a distance of 4 pixels horizontally. The effect repeats this for every pixel within the image. Unlike the convolution filters, which use square matrices, this filter can only produce effects along a horizontal axis. You can combine this filter with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228303-convolution9vertical",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to apply separable 9 x 9 convolutions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": " The convolution 9-horizontal filter uses the following properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "float",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " representing the value that’s added to each output pixel as a ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "bias",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/coreimage/civector",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " representing the convolution kernel.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "weights",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An image with the type ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "inputImage",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When using a nonzero ",
+                  "type": "text"
+                },
+                {
+                  "code": "bias",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " value, the output image has an infinite extent. You should crop the output image before attempting to render it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code creates a filter that detects edges in the input image:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func convolution9Horizontal(inputImage: CIImage) -> CIImage? {",
+            "    let convolutionFilter = CIFilter.convolution9Horizontal()",
+            "    convolutionFilter.inputImage = inputImage",
+            "    let weights: [CGFloat] = [1, 1, 1, 1, 1, 1, 1, 1, 1].map { $0/9.0 }",
+            "    let kernel = CIVector(values: weights, count: 9)",
+            "    convolutionFilter.weights = kernel",
+            "    convolutionFilter.bias = 0.0",
+            "    return convolutionFilter.outputImage!",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3546130",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4334870",
+              "metadata": {
+                "anchor": "4334870",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Image",
+      "type": "topic",
+      "url": "/documentation/coreimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciconvolution": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciconvolution",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIConvolution",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciconvolution"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIFilter",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228299-convolution3x3": {
+      "abstract": [
+        {
+          "text": "Applies a convolution 3 x 3 filter to the ",
+          "type": "text"
+        },
+        {
+          "code": "RGBA",
+          "type": "codeVoice"
+        },
+        {
+          "text": " components of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolution3X3"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIConvolution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228299-convolution3x3",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convolution3X3()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228299-convolution3x3"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228300-convolution5x5": {
+      "abstract": [
+        {
+          "text": "Applies a convolution 5 x 5 filter to the ",
+          "type": "text"
+        },
+        {
+          "code": "RGBA",
+          "type": "codeVoice"
+        },
+        {
+          "text": " components image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolution5X5"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIConvolution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228300-convolution5x5",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convolution5X5()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228300-convolution5x5"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228301-convolution7x7": {
+      "abstract": [
+        {
+          "text": "Applies a convolution 7 x 7 filter to the ",
+          "type": "text"
+        },
+        {
+          "code": "RGBA",
+          "type": "codeVoice"
+        },
+        {
+          "text": " color components of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolution7X7"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIConvolution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228301-convolution7x7",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convolution7X7()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228301-convolution7x7"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228302-convolution9horizontal": {
+      "abstract": [
+        {
+          "text": "Applies a convolution-9 horizontal filter to the ",
+          "type": "text"
+        },
+        {
+          "code": "RGBA",
+          "type": "codeVoice"
+        },
+        {
+          "text": " components of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolution9Horizontal"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIConvolution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228302-convolution9horizontal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convolution9Horizontal()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228302-convolution9horizontal"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228302-convolution9horizontal#3546130": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228302-convolution9horizontal#3546130",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/coreimage/cifilter/3228302-convolution9horizontal#3546130"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228303-convolution9vertical": {
+      "abstract": [
+        {
+          "text": "Applies a convolution-9 vertical filter to the ",
+          "type": "text"
+        },
+        {
+          "code": "RGBA",
+          "type": "codeVoice"
+        },
+        {
+          "text": " components of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolution9Vertical"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIConvolution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228303-convolution9vertical",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convolution9Vertical()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228303-convolution9vertical"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/4401858-convolutionrgb3x3": {
+      "abstract": [
+        {
+          "text": "Applies a convolution 3 x 3 filter to the ",
+          "type": "text"
+        },
+        {
+          "code": "RGB",
+          "type": "codeVoice"
+        },
+        {
+          "text": " components of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolutionRGB3X3"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIConvolution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/4401858-convolutionrgb3x3",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convolutionRGB3X3()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/4401858-convolutionrgb3x3"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/4401859-convolutionrgb5x5": {
+      "abstract": [
+        {
+          "text": "Applies a convolution 5 x 5 filter to the ",
+          "type": "text"
+        },
+        {
+          "code": "RGB",
+          "type": "codeVoice"
+        },
+        {
+          "text": " components of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolutionRGB5X5"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIConvolution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/4401859-convolutionrgb5x5",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convolutionRGB5X5()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/4401859-convolutionrgb5x5"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/4401860-convolutionrgb7x7": {
+      "abstract": [
+        {
+          "text": "Applies a convolution 7 x 7 filter to the RGB components of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolutionRGB7X7"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIConvolution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/4401860-convolutionrgb7x7",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convolutionRGB7X7()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/4401860-convolutionrgb7x7"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/4401861-convolutionrgb9horizontal": {
+      "abstract": [
+        {
+          "text": "Applies a convolution 9 x 1 filter to the RGB components of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolutionRGB9Horizontal"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIConvolution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/4401861-convolutionrgb9horizontal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convolutionRGB9Horizontal()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/4401861-convolutionrgb9horizontal"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/4401862-convolutionrgb9vertical": {
+      "abstract": [
+        {
+          "text": "Applies a convolution 1 x 9 filter to the RGB components of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolutionRGB9Vertical"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIConvolution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/4401862-convolutionrgb9vertical",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convolutionRGB9Vertical()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/4401862-convolutionrgb9vertical"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/convolution_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/convolution_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Convolution Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/convolution_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIImage",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/civector": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/civector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIVector",
+      "type": "topic",
+      "url": "/documentation/coreimage/civector"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/convolution_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/convolution_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Convolution Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/convolution_filters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumber": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNumber",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumber"
+    },
+    "doc://com.apple.documentation/documentation/quartz": {
+      "identifier": "doc://com.apple.documentation/documentation/quartz",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Quartz",
+      "type": "topic",
+      "url": "/documentation/quartz"
+    },
+    "doc://com.apple.documentation/documentation/quartz/imagekit": {
+      "identifier": "doc://com.apple.documentation/documentation/quartz/imagekit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ImageKit",
+      "type": "topic",
+      "url": "/documentation/quartz/imagekit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-media-4334870": {
+      "identifier": "link-media-4334870",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/coreimage/cifilter/3228302-convolution9horizontal#4334870"
+    },
+    "media-4334870": {
+      "alt": "Two images arranged horizontally. The left image contains a photo of the Golden Gate Bridge with a clear sky as the background. The right image shows the result of applying a horizontal convolution kernel that blurs the image. Fine detail in the horizontal direction is blurred.",
+      "identifier": "media-4334870",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ff32d26612/rendered2x-1708529230.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228299-convolution3x3",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228300-convolution5x5",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228301-convolution7x7",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228303-convolution9vertical",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/4401858-convolutionrgb3x3",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/4401859-convolutionrgb5x5",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/4401860-convolutionrgb7x7",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/4401861-convolutionrgb9horizontal",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/4401862-convolutionrgb9vertical"
+      ],
+      "title": "Filters"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreimage/cifilter/3228302-convolution9horizontalfilter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreimage/cifilter/3228302-convolution9horizontal"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

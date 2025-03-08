@@ -1,0 +1,978 @@
+{
+  "abstract": [
+    {
+      "text": "An abstract class that handles the loading of protocol-specific URL data.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1411029,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSURLProtocol",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.2",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSURLProtocol"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSURLProtocol"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don't instantiate an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass directly. Instead, create subclasses for any custom protocols or URL schemes that your app supports. When a download starts, the system creates the appropriate protocol object to handle the corresponding URL request. You define your protocol class and call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1407208-registerclass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method during your app’s launch time so that the system is aware of your protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You cannot use this class to define custom URL schemes and protocols in watchOS 2 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support the customization of protocol-specific requests, define categories on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with any custom API that you need. You can store and retrieve protocol-specific request data by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": "’s class methods ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1416521-propertyforkey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1407897-setproperty",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlresponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for each request your subclass processes successfully. You may want to create a custom, mutable ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlresponse",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class to provide protocol specific information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2994184",
+          "level": 3,
+          "text": "Subclassing notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When overriding methods of this class, be aware that methods that take a ",
+              "type": "text"
+            },
+            {
+              "code": "task",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter are preferred by the system to those that do not. Therefore, you should override the task-based methods when subclassing, as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Initialization — Override ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1416997-caninitwithtask",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1417672-initwithtask",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instead of or in addition to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1411389-caninitwithrequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1414366-initwithrequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableURLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableurlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocol": {
+      "abstract": [
+        {
+          "text": "An abstract class that handles the loading of protocol-specific URL data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLProtocol",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1407208-registerclass": {
+      "abstract": [
+        {
+          "text": "Attempts to register a subclass of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", making it visible to the URL loading system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerClass:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1407208-registerclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerClass:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocol/1407208-registerclass"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1407649-task": {
+      "abstract": [
+        {
+          "text": "The protocol’s task.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1407649-task",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "task",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocol/1407649-task"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1407740-removepropertyforkey": {
+      "abstract": [
+        {
+          "text": "Removes the property associated with the specified key in the specified request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "removePropertyForKey:inRequest:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1407740-removepropertyforkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removePropertyForKey:inRequest:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocol/1407740-removepropertyforkey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1407897-setproperty": {
+      "abstract": [
+        {
+          "text": "Sets the property associated with the specified key in the specified request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "setProperty:forKey:inRequest:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1407897-setproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setProperty:forKey:inRequest:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocol/1407897-setproperty"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1408650-canonicalrequestforrequest": {
+      "abstract": [
+        {
+          "text": "Returns a canonical version of the specified request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "canonicalRequestForRequest:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1408650-canonicalrequestforrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canonicalRequestForRequest:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocol/1408650-canonicalrequestforrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1408666-stoploading": {
+      "abstract": [
+        {
+          "text": "Stops protocol-specific loading of the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopLoading"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1408666-stoploading",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stopLoading",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocol/1408666-stoploading"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1408989-startloading": {
+      "abstract": [
+        {
+          "text": "Starts protocol-specific loading of the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "startLoading"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1408989-startloading",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startLoading",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocol/1408989-startloading"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1409131-unregisterclass": {
+      "abstract": [
+        {
+          "text": "Unregisters the specified subclass of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "unregisterClass:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1409131-unregisterclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unregisterClass:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocol/1409131-unregisterclass"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1410008-requestiscacheequivalent": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether two requests are equivalent for cache purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestIsCacheEquivalent:toRequest:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1410008-requestiscacheequivalent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestIsCacheEquivalent:toRequest:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocol/1410008-requestiscacheequivalent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1411389-caninitwithrequest": {
+      "abstract": [
+        {
+          "text": "Determines whether the protocol subclass can handle the specified request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "canInitWithRequest:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1411389-caninitwithrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canInitWithRequest:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocol/1411389-caninitwithrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1412383-request": {
+      "abstract": [
+        {
+          "text": "The protocol’s request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1412383-request",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "request",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocol/1412383-request"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1413722-client": {
+      "abstract": [
+        {
+          "text": "The object the protocol uses to communicate with the URL loading system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1413722-client",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "client",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocol/1413722-client"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1414366-initwithrequest": {
+      "abstract": [
+        {
+          "text": "Creates a URL protocol instance to handle the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithRequest:cachedResponse:client:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1414366-initwithrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithRequest:cachedResponse:client:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocol/1414366-initwithrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1416521-propertyforkey": {
+      "abstract": [
+        {
+          "text": "Fetches the property associated with the specified key in the specified request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "propertyForKey:inRequest:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1416521-propertyforkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "propertyForKey:inRequest:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocol/1416521-propertyforkey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1416997-caninitwithtask": {
+      "abstract": [
+        {
+          "text": "Determines whether the protocol subclass can handle the specified task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "canInitWithTask:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1416997-caninitwithtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canInitWithTask:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocol/1416997-caninitwithtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1417672-initwithtask": {
+      "abstract": [
+        {
+          "text": "Creates a URL protocol instance to handle the task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithTask:cachedResponse:client:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1417672-initwithtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithTask:cachedResponse:client:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocol/1417672-initwithtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1418409-cachedresponse": {
+      "abstract": [
+        {
+          "text": "The protocol’s cached response.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1418409-cachedresponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cachedResponse",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocol/1418409-cachedresponse"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocolclient": {
+      "abstract": [
+        {
+          "text": "The interface used by ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " subclasses to communicate with the URL Loading System.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocolclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLProtocolClient",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocolclient"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlresponse": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlresponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLResponse",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlresponse"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSessionConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411050-protocolclasses": {
+      "abstract": [
+        {
+          "text": "An array of extra protocol subclasses that handle requests in a session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411050-protocolclasses",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "protocolClasses",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1411050-protocolclasses"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418956-nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411050-protocolclasses"
+      ],
+      "title": "Supporting custom protocols"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1662691",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1414366-initwithrequest",
+        "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1417672-initwithtask"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating protocol objects"
+    },
+    {
+      "anchor": "1662722",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1407208-registerclass",
+        "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1409131-unregisterclass"
+      ],
+      "kind": "taskGroup",
+      "title": "Registering and unregistering protocol classes"
+    },
+    {
+      "anchor": "1662775",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1411389-caninitwithrequest",
+        "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1416997-caninitwithtask"
+      ],
+      "kind": "taskGroup",
+      "title": "Determining If a subclass can handle a request"
+    },
+    {
+      "anchor": "1662808",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1416521-propertyforkey",
+        "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1407897-setproperty",
+        "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1407740-removepropertyforkey"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting and setting request properties"
+    },
+    {
+      "anchor": "1662888",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1408650-canonicalrequestforrequest"
+      ],
+      "kind": "taskGroup",
+      "title": "Providing a canonical version of a request"
+    },
+    {
+      "anchor": "1662927",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1410008-requestiscacheequivalent"
+      ],
+      "kind": "taskGroup",
+      "title": "Determining if requests are cache equivalent"
+    },
+    {
+      "anchor": "1662971",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1408989-startloading",
+        "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1408666-stoploading"
+      ],
+      "kind": "taskGroup",
+      "title": "Starting and stopping downloads"
+    },
+    {
+      "anchor": "1663011",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1418409-cachedresponse",
+        "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1413722-client",
+        "doc://com.apple.documentation/documentation/foundation/nsurlprotocolclient",
+        "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1412383-request",
+        "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1407649-task"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting protocol attributes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsurlprotocol"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/urlprotocol"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

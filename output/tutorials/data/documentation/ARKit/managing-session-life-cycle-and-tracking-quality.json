@@ -1,0 +1,2060 @@
+{
+  "abstract": [
+    {
+      "text": "Keep the user informed on the current session state and recover from interruptions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/managing-session-life-cycle-and-tracking-quality"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Managing Session Life Cycle and Tracking Quality"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "World-tracking AR sessions use a technique called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "visual-inertial odometry.",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " This process combines motion sensor data with computer vision analysis of camera imagery to track the device’s position and orientation in real-world space, also known as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "pose",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which is expressed in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/transform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. For best results, world tracking needs consistent sensor data and camera imagery with visual complexity or recognizable features.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you start a session, it takes some time for ARKit to gather enough data to precisely model device pose. During a session, the conditions that affect world-tracking quality can change. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionObserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate methods and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties to follow these changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Basic-Lifecycle-of-an-AR-Session",
+          "level": 3,
+          "text": "Basic Lifecycle of an AR Session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The figure below shows the changes in tracking state when you start running an AR session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3000192",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Immediately after you run a new session, the tracking state for provided frames is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/notAvailable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", indicating that ARKit has not yet gathered enough information to estimate the device’s pose.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A few frames later, the tracking state changes to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/limited(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", indicating that a device pose is available but its accuracy is uncertain. A limited state always includes a reason for reduced tracking quality; in this case, the session is still ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/Reason/initializing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After a short time, the tracking state changes to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/normal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", indicating that the device pose is accurate and all ARKit features are available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-Feedback-for-Tracking-Quality-Changes",
+          "level": 3,
+          "text": "Provide Feedback for Tracking Quality Changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The figure below shows changes in tracking state that can occur due to user interaction or changes in the environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3000193",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When tracking quality is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/limited(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", features that depend on ARKit mapping the user’s local environment are not available:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Plane detection does not add or update plane anchors",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Hit-testing methods provide no results",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A session can enter a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/limited(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " tracking state at any time, based on changes in the user’s local environment or the user moving the device. For example, if the user points the device at a blank wall, or the lights in the room go out, tracking quality may be reduced due to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/Reason/insufficientFeatures",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the associated ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/Reason",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value to provide feedback that guides the user to resolving the situation so that the tracking state can return to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/normal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Recover-from-Session-Interruptions",
+          "level": 3,
+          "text": "Recover from Session Interruptions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit can’t track device pose without a running ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". By default, if your session is interrupted (for example, by switching to another app), any virtual content in that session is likely out of place relative to the real-world environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "relocalization",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to try to recover from an interruption. If you return true from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionObserver/sessionShouldAttemptRelocalization(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, ARKit attempts to reconcile its knowledge of the user’s environment from before the interruption with current camera and sensor data. During this process, the tracking state is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/limited(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/Reason/relocalizing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the reason). If successful, the tracking state returns to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/normal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " after a short time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3000194",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For relocalization to succeed, the device must be returned to a position and orientation near where it was when the session was interrupted. If these conditions never occur (for example, if the device has moved to an entirely different environment), the session remains in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/Reason/relocalizing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state indefinitely.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When your app is in the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/Reason/relocalizing",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " state, offer the user a way to reset the session (with ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/run(_:options:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/RunOptions/resetTracking",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ") in case relocalization never succeeds.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-a-Persistent-AR-Experience",
+          "level": 3,
+          "text": "Create a Persistent AR Experience",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 12.0 and later, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldMap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class stores the information that ARKit uses to resume a session. By saving a world map to a file, you can use the same relocalization process either to recover from a brief interruption or to resume from an earlier session, even if your app has relaunched. World maps include anchors, so you can also replace virtual content to match an earlier session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The reliability of using ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldMap",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to resume a session strongly depends on the real-world environment. For example, it’s easy to successfully relocalize to a map recorded indoors under consistent artificial lighting, or to a map captured only moments beforehand. Success is less likely when lighting conditions or features of the local environment have changed over time.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3000195",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To allow the user to come back to the same AR session after leaving your app, you might save the world map explicitly upon a user action, or automatically in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/applicationDidEnterBackground(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Save the world map only if your AR session has state worth saving—for example, if the user has placed virtual objects whose positions you want to remember, and the session is in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/WorldMappingStatus-swift.enum/mapped",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state (or has been in that state at least once during the session).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To relocalize to a saved world map, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/initialWorldMap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property when running a session. Like when resuming from an interruption, the session starts in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/limited(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/Reason/relocalizing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") tracking state. If ARKit can reconcile the world map with the current environment, the tracking state becomes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/normal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " after a short time, indicating that the session matches the recorded world map.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For relocalization to succeed, the device needs to visit areas of the local environment that it passed through before creating the map—you might assist the user with this task by saving a screenshot with the world map and displaying it as a placement guide when attempting to relocalize.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A session resumed from a world map includes all anchors saved in that world map. If you use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor/name",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to identify virtual objects you’ve placed anchors for, you can refer to the anchors in the resumed session to recreate that virtual content. To ensure that such content is placed correctly, display it only after the session’s tracking state changes to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/normal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If ARKit cannot reconcile the recorded world map with the current environment (for example, if the device is in an entirely different place from where the world map was recorded), the session remains in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/Reason/relocalizing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state indefinitely. Provide users with a way to restart the session in case they can’t resume it. To give up on world map relocalization, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/run(_:options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the session again, with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/RunOptions/resetTracking",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option and a configuration whose ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/initialWorldMap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARAnchor/name": {
+      "abstract": [
+        {
+          "text": "A descriptive name for the anchor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor/name",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "name"
+        }
+      ],
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/arkit/aranchor/name"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARCamera": {
+      "abstract": [
+        {
+          "text": "Information about the camera position and imaging characteristics for a given frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARCamera"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARCamera"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARCamera",
+      "type": "topic",
+      "url": "/documentation/arkit/arcamera"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/Reason": {
+      "abstract": [
+        {
+          "text": "Causes of limited position-tracking quality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Reason"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/Reason",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Reason"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARCamera.TrackingState.Reason",
+      "type": "topic",
+      "url": "/documentation/arkit/arcamera/trackingstate-swift.enum/reason"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/Reason/initializing": {
+      "abstract": [
+        {
+          "text": "The AR session has not gathered enough camera or motion data to provide tracking information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "initializing"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/Reason/initializing",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARCamera.TrackingState.Reason.initializing",
+      "type": "topic",
+      "url": "/documentation/arkit/arcamera/trackingstate-swift.enum/reason/initializing"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/Reason/insufficientFeatures": {
+      "abstract": [
+        {
+          "text": "The scene visible to the camera doesn’t contain enough distinguishable features for image-based position tracking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insufficientFeatures"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/Reason/insufficientFeatures",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARCamera.TrackingState.Reason.insufficientFeatures",
+      "type": "topic",
+      "url": "/documentation/arkit/arcamera/trackingstate-swift.enum/reason/insufficientfeatures"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/Reason/relocalizing": {
+      "abstract": [
+        {
+          "text": "The AR session is attempting to resume after an interruption.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "relocalizing"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/Reason/relocalizing",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARCamera.TrackingState.Reason.relocalizing",
+      "type": "topic",
+      "url": "/documentation/arkit/arcamera/trackingstate-swift.enum/reason/relocalizing"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/limited(_:)": {
+      "abstract": [
+        {
+          "text": "Tracking is available, but the quality of results is questionable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "limited"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARCamera",
+          "text": "ARCamera"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So8ARCameraC5ARKitE13TrackingStateO",
+          "text": "TrackingState"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So8ARCameraC5ARKitE13TrackingStateO6ReasonO",
+          "text": "Reason"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/limited(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARCamera.TrackingState.limited(_:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arcamera/trackingstate-swift.enum/limited(_:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/normal": {
+      "abstract": [
+        {
+          "text": "Camera position tracking is providing optimal results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "normal"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/normal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARCamera.TrackingState.normal",
+      "type": "topic",
+      "url": "/documentation/arkit/arcamera/trackingstate-swift.enum/normal"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/notAvailable": {
+      "abstract": [
+        {
+          "text": "Camera position tracking is not available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notAvailable"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/notAvailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARCamera.TrackingState.notAvailable",
+      "type": "topic",
+      "url": "/documentation/arkit/arcamera/trackingstate-swift.enum/notavailable"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARCamera/transform": {
+      "abstract": [
+        {
+          "text": "The position and orientation of the camera in world coordinate space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_float4x4",
+          "text": "simd_float4x4"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/transform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transform"
+        }
+      ],
+      "role": "symbol",
+      "title": "transform",
+      "type": "topic",
+      "url": "/documentation/arkit/arcamera/transform"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/WorldMappingStatus-swift.enum/mapped": {
+      "abstract": [
+        {
+          "text": "World tracking has adequately mapped the visible area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapped"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/WorldMappingStatus-swift.enum/mapped",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARWorldMappingStatusMapped"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARFrame.WorldMappingStatus.mapped",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/worldmappingstatus-swift.enum/mapped"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession": {
+      "abstract": [
+        {
+          "text": "The object that manages the major tasks associated with every AR experience, such as motion tracking, camera passthrough, and image analysis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSession"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSession",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession/RunOptions/resetTracking": {
+      "abstract": [
+        {
+          "text": "An option to reset the device’s position from the session’s previous run.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resetTracking"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARSessionRunOptions",
+          "text": "RunOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/RunOptions/resetTracking",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSessionRunOptionResetTracking"
+        }
+      ],
+      "role": "symbol",
+      "title": "resetTracking",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession/runoptions/resettracking"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession/run(_:options:)": {
+      "abstract": [
+        {
+          "text": "Starts AR processing for the session with the specified configuration and options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "run"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARConfiguration",
+          "text": "ARConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARSessionRunOptions",
+          "text": "RunOptions"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/run(_:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "runWithConfiguration:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "run(_:options:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession/run(_:options:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSessionObserver": {
+      "abstract": [
+        {
+          "text": "Methods you can implement to respond to changes in the state of an AR session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSessionObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionObserver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSessionObserver"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSessionObserver",
+      "type": "topic",
+      "url": "/documentation/arkit/arsessionobserver"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSessionObserver/sessionShouldAttemptRelocalization(_:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate whether to attempt recovery of world-tracking state after an interruption.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sessionShouldAttemptRelocalization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionObserver/sessionShouldAttemptRelocalization(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sessionShouldAttemptRelocalization:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sessionShouldAttemptRelocalization(_:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsessionobserver/sessionshouldattemptrelocalization(_:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldMap": {
+      "abstract": [
+        {
+          "text": "The state in a world-tracking AR session during which a device maps the user’s position in physical space and proximity to anchor objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARWorldMap"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARWorldMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARWorldMap",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldmap"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/initialWorldMap": {
+      "abstract": [
+        {
+          "text": "The state from a previous AR session to attempt to resume with this session configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "initialWorldMap"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARWorldMap",
+          "text": "ARWorldMap"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/initialWorldMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initialWorldMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "initialWorldMap",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/initialworldmap"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios": {
+      "abstract": [
+        {
+          "text": "Integrate iOS device camera and motion features to produce augmented reality experiences in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in iOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-ios"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/choosing-which-camera-feed-to-augment": {
+      "abstract": [
+        {
+          "text": "Add visual effects to the user’s environment in an AR experience through the front or rear camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/choosing-which-camera-feed-to-augment",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing Which Camera Feed to Augment",
+      "type": "topic",
+      "url": "/documentation/arkit/choosing-which-camera-feed-to-augment"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/configuration-objects": {
+      "abstract": [
+        {
+          "text": "Configure your augmented reality session to detect and track specific types of content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/configuration-objects",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Configuration Objects",
+      "type": "topic",
+      "url": "/documentation/arkit/configuration-objects"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/displaying-an-ar-experience-with-metal": {
+      "abstract": [
+        {
+          "text": "Control rendering of your app’s virtual content on top of a camera feed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/displaying-an-ar-experience-with-metal",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying an AR Experience with Metal",
+      "type": "topic",
+      "url": "/documentation/arkit/displaying-an-ar-experience-with-metal"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/applicationDidEnterBackground(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the app is now in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationDidEnterBackground"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/applicationDidEnterBackground(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applicationDidEnterBackground(_:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/applicationDidEnterBackground(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3000192": {
+      "alt": "Sequence diagram with ARKit tracking state proceeding from notAvailable to limited (initializing) to normal.",
+      "identifier": "media-3000192",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6c1b298c9841423519925b31f7548a52/media-3000192@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f817b390f9375bc31a6b509f3c9cb06c/media-3000192~dark@2x.png"
+        }
+      ]
+    },
+    "media-3000193": {
+      "alt": "Sequence diagram with ARKit tracking state proceeding from normal to limited (insufficient features) and back to normal.",
+      "identifier": "media-3000193",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/820df2638e0ca6eeb97b5b72d7afd9d8/media-3000193@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6c88be07b41ada54303955f581297b35/media-3000193~dark@2x.png"
+        }
+      ]
+    },
+    "media-3000194": {
+      "alt": "Sequence diagram with normal tracking state before the session is interrupted, then, after the interruption, proceeding from notAvailable to limited (initializing) to limited (relocalizing) to normal.",
+      "identifier": "media-3000194",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dcbfef6d91d046466a2b2384cb41efd7/media-3000194@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ec4ed8b8d241fa9e13738780974964af/media-3000194~dark@2x.png"
+        }
+      ]
+    },
+    "media-3000195": {
+      "alt": "Sequence diagram with normal tracking state, saving a world map before the app closes. Upon relaunching the app and loading the saved map, tracking state proceeds from notAvailable to limited (initializing) to limited (relocalizing).",
+      "identifier": "media-3000195",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d8356d1f883f97d38a6730faad22413b/media-3000195@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9da97c9ac51ad4ffb76e5fca53da7e40/media-3000195~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Setup",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/choosing-which-camera-feed-to-augment",
+        "doc://com.apple.arkit/documentation/ARKit/displaying-an-ar-experience-with-metal",
+        "doc://com.apple.arkit/documentation/ARKit/ARSession",
+        "doc://com.apple.arkit/documentation/ARKit/configuration-objects"
+      ],
+      "title": "Setup"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Setup",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/choosing-which-camera-feed-to-augment",
+                "doc://com.apple.arkit/documentation/ARKit/displaying-an-ar-experience-with-metal",
+                "doc://com.apple.arkit/documentation/ARKit/ARSession",
+                "doc://com.apple.arkit/documentation/ARKit/configuration-objects"
+              ],
+              "title": "Setup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1run(_:options:)/title",
+          "value": "runWithConfiguration:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1run(_:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "runWithConfiguration:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor~1name/title",
+          "value": "name"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor~1name/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "name"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1WorldMappingStatus-swift.enum~1mapped/title",
+          "value": "ARWorldMappingStatusMapped"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1WorldMappingStatus-swift.enum~1mapped/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldMappingStatusMapped"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1applicationDidEnterBackground(_:)/title",
+          "value": "applicationDidEnterBackground:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1applicationDidEnterBackground(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "applicationDidEnterBackground:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1RunOptions~1resetTracking/title",
+          "value": "ARSessionRunOptionResetTracking"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1RunOptions~1resetTracking/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSessionRunOptionResetTracking"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/title",
+          "value": "ARSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionObserver/title",
+          "value": "ARSessionObserver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionObserver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSessionObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionObserver/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSessionObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCamera/title",
+          "value": "ARCamera"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCamera/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARCamera"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCamera/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARCamera"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldMap/title",
+          "value": "ARWorldMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldMap/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1initialWorldMap/title",
+          "value": "initialWorldMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1initialWorldMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "initialWorldMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCamera~1transform/title",
+          "value": "transform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCamera~1transform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionObserver~1sessionShouldAttemptRelocalization(_:)/title",
+          "value": "sessionShouldAttemptRelocalization:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionObserver~1sessionShouldAttemptRelocalization(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sessionShouldAttemptRelocalization:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/managing-session-life-cycle-and-tracking-quality"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/managing-session-life-cycle-and-tracking-quality"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

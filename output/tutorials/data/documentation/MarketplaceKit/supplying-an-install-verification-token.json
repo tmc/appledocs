@@ -1,0 +1,1469 @@
+{
+  "abstract": [
+    {
+      "text": "Support the installation of alternative distribution apps by creating signed JSON web tokens.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/supplying-an-install-verification-token"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "MarketplaceKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Supplying an install verification token"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable app downloads from your website or alternative app marketplace using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", your web server supplies a special secure element, or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "install verification token",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", to the device’s operating system through the app installation process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An install verification token is a JSON web signature (JWS), or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "signed",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " JSON web token (JWT). The token contains data that the system needs to verify the installation, such as the marketplace that installs it, if applicable, and the time the installation occurs. Create the token and sign it with your alternative distribution key set up with App Store Connect. For more information about JWTs, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.rfc-editor.org/rfc/rfc7519",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following app download situations require you to create an install verification token:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit/MarketplaceKitURIScheme",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " requests on webpages that distribute an app; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/installing-your-app-from-your-website",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppLibrary",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " methods that install apps from within a marketplace app, for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppLibrary/requestAppInstallation(for:account:installVerificationToken:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/ActionButton",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", through an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/LAContext",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/installing-apps-from-an-alternative-marketplace",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Create-the-JSON-web-token",
+          "level": 2,
+          "text": "Create the JSON web token",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create the JWT, define a JWT header and provide key details in the payload.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the following table to complete the header details:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Header key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "alg",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The signing algorithm, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"ES256\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kid",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "key ID",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ". A UUID for the alternative distribution public key associated to the app being downloaded. An alternative app marketplace has a single set of alternative distribution keys. Other apps that install over the web require a set of alternative distribution keys per app. If the app being downloaded installs from an alternative app marketplace, use the marketplace’s distribution keys. Set this value to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "data.id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-alternativeDistributionKey",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint response. For more information on alternative distribution keys, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/alternative-distribution-keys",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "typ",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The communication type, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"JWT\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, define the JWT payload. Among the data to include are the issuer, bundle ID, expiration time, and nonce. Use the following table to fill in the payload:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Payload key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "iss",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "issuer",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ". A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "String",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " representation of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppleItemID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for the installing alternative marketplace, or other app that installs from a website.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "iat",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "issued at",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ". The time at which you generate the token, as the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Int",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " number of seconds since January 1, 1970 00:00:00 UTC.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "exp",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "expiration",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ". The time after which the token expires, as the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Int",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " number of seconds since January 1, 1970 00:00:00 UTC.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "aud",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "audience",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ". The token recipient. Enter ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AppleDownloadVerification-v1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "bid",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The bundle identifier of the app to install.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "dtype",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The record of previous downloads. Enter ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "download",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " the first time the app installs on a particular device and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "redownload",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for subsequent installs. Your web server needs to track the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "dtype",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " of every install and set an accurate value. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AdAttributionKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " makes this information available to advertisers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "nonce",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A randomly generated UUID as a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "String",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " that acts as an anti-replay value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "iid",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "item ID",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " (optional). The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppleItemID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " of the app the system is installing as a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "String",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This value enhances app installation performance, when present.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "vid",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "version ID",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": "  (optional). The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppleVersionID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " of the app the system is installing as a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "String",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This value enhances app installation performance, when present.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An example JWT follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "   \"alg\": \"ES256\",",
+            "   \"kid\": \"52c5cb04-1163-4a30-ad4f-a3433cd6a4f6\",",
+            "   \"typ\": \"JWT\"",
+            "}",
+            "{",
+            "   \"iss\": \"1234123412\",",
+            "   \"iat\": 1623085200,",
+            "   \"exp\": 1623086400,",
+            "   \"aud\": \"AppleDownloadVerification-v1\",",
+            "   \"bid\":  \"com.example.mytestapp\",",
+            "   \"dtype\" : \"download\",",
+            "   \"nonce\": \"9BC2C5CC-A1F8-4F93-9D6A-4D524685B67E\"",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For sample code and open source tools that assist with JWT creation, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://jwt.io",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Sign-the-token-and-return-it-in-response",
+          "level": 2,
+          "text": "Sign the token and return it in response",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To sign the token, use:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Elliptic Curve Digital Signature Algorithm (ECDSA) with the P-256 curve and the SHA-256 hash algorithm.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your alternative distribution private key. For more information about the alternative distribution keys, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/creating-keys-and-establishing-alternative-marketplace-connections",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can call an installation function either within an alternative app marketplace, or a webpage. Either way, your web server fields the JWT request by generating a token, signing it, and returning it to the call site.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit": {
+      "abstract": [
+        {
+          "text": "Create an alternative app marketplace, distribute your app on an alternative app marketplace, or distribute your app from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MarketplaceKit",
+      "type": "topic",
+      "url": "/documentation/marketplacekit"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/ActionButton": {
+      "abstract": [
+        {
+          "text": "A user-interface element that enables a person to install, update, or launch apps by tapping the element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActionButton"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/ActionButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActionButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "ActionButton",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/actionbutton"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppLibrary": {
+      "abstract": [
+        {
+          "text": "An object that manages search characteristics, licensing, and the installation of apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppLibrary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppLibrary",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/applibrary"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppLibrary/requestAppInstallation(for:account:installVerificationToken:)": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAppInstallation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "account"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "installVerificationToken"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppLibrary/requestAppInstallation(for:account:installVerificationToken:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestAppInstallation(for:account:installVerificationToken:)",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/applibrary/requestappinstallation(for:account:installverificationtoken:)"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppleItemID": {
+      "abstract": [
+        {
+          "text": "An identifier that represents an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppleItemID"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppleItemID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppleItemID"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppleItemID",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/appleitemid"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppleVersionID": {
+      "abstract": [
+        {
+          "text": "An identifier that represents a single app version.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppleVersionID"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppleVersionID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppleVersionID"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppleVersionID",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/appleversionid"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/marketplacekit/ingesting-an-alternative-distribution-package": {
+      "abstract": [
+        {
+          "text": "Process an available app version from App Store Connect and store it for download from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/ingesting-an-alternative-distribution-package",
+      "kind": "article",
+      "role": "article",
+      "title": "Ingesting an alternative distribution package",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/ingesting-an-alternative-distribution-package"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/marketplacekit/installing-apps-from-an-alternative-marketplace": {
+      "abstract": [
+        {
+          "text": "Manage the installation of apps that developers distribute from your marketplace app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/installing-apps-from-an-alternative-marketplace",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing apps from an alternative marketplace",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/installing-apps-from-an-alternative-marketplace"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/marketplacekit/installing-your-app-from-your-website": {
+      "abstract": [
+        {
+          "text": "Manage the installation of an app that you develop and distribute through your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/installing-your-app-from-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing your app from your website",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/installing-your-app-from-your-website"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/marketplacekit/processing-alternative-marketplace-notifications": {
+      "abstract": [
+        {
+          "text": "Manage the addition and removal of apps available on your alternative marketplace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/processing-alternative-marketplace-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Processing alternative app marketplace notifications",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/processing-alternative-marketplace-notifications"
+    },
+    "doc://com.apple.documentation/documentation/AdAttributionKit": {
+      "abstract": [
+        {
+          "text": "Present, process, and register postbacks for in-app ads in the App Store and alternative app marketplaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AdAttributionKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AdAttributionKit",
+      "type": "topic",
+      "url": "/documentation/AdAttributionKit"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-alternativeDistributionKey": {
+      "abstract": [
+        {
+          "text": "Get the alternative distribution keys for a specific app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-alternativeDistributionKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Read an app’s alternative distribution key",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-alternativeDistributionKey"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/alternative-distribution-keys": {
+      "abstract": [
+        {
+          "text": "Create and manage keys for an alternative app distribution.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/alternative-distribution-keys",
+      "kind": "article",
+      "role": "article",
+      "title": "Alternative Distribution Keys",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/alternative-distribution-keys"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/creating-keys-and-establishing-alternative-marketplace-connections": {
+      "abstract": [
+        {
+          "text": "Manage keys you use to sign JSON web tokens and connect marketplaces with apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/creating-keys-and-establishing-alternative-marketplace-connections",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating keys and establishing alternative marketplace connections",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/creating-keys-and-establishing-alternative-marketplace-connections"
+    },
+    "doc://com.apple.documentation/documentation/LocalAuthentication/LAContext": {
+      "abstract": [
+        {
+          "text": "A mechanism for evaluating authentication policies and access controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LAContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/LAContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAContext",
+      "type": "topic",
+      "url": "/documentation/LocalAuthentication/LAContext"
+    },
+    "doc://com.apple.documentation/documentation/MarketplaceKit": {
+      "abstract": [
+        {
+          "text": "Create an alternative app marketplace, distribute your app on an alternative app marketplace, or distribute your app from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MarketplaceKit",
+      "type": "topic",
+      "url": "/documentation/MarketplaceKit"
+    },
+    "doc://com.apple.documentation/documentation/MarketplaceKit/MarketplaceKitURIScheme": {
+      "abstract": [
+        {
+          "text": "A URI scheme that defines an alternative distribution app installation link.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MarketplaceKitURIScheme"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit/MarketplaceKitURIScheme",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MarketplaceKitURIScheme",
+      "type": "topic",
+      "url": "/documentation/MarketplaceKit/MarketplaceKitURIScheme"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://jwt.io": {
+      "identifier": "https://jwt.io",
+      "title": "JWT.io",
+      "titleInlineContent": [
+        {
+          "text": "JWT.io",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://jwt.io"
+    },
+    "https://www.rfc-editor.org/rfc/rfc7519": {
+      "identifier": "https://www.rfc-editor.org/rfc/rfc7519",
+      "title": "RFC 7519",
+      "titleInlineContent": [
+        {
+          "text": "RFC 7519",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.rfc-editor.org/rfc/rfc7519"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Web-services",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.MarketplaceKit/documentation/marketplacekit/processing-alternative-marketplace-notifications",
+        "doc://com.apple.MarketplaceKit/documentation/marketplacekit/ingesting-an-alternative-distribution-package",
+        "doc://com.apple.MarketplaceKit/documentation/marketplacekit/installing-your-app-from-your-website",
+        "doc://com.apple.MarketplaceKit/documentation/marketplacekit/installing-apps-from-an-alternative-marketplace"
+      ],
+      "title": "Web services"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1LocalAuthentication~1LAContext/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "LAContext"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/marketplacekit/supplying-an-install-verification-token"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

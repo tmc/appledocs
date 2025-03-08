@@ -1,0 +1,738 @@
+{
+  "abstract": [
+    {
+      "text": "Add menus to your user interface, with built-in button support and bar-button items, and create custom menu experiences.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/adopting-menus-and-uiactions-in-your-user-interface"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.6",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Adopting menus and UIActions in your user interface"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC20 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc20/10052/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "27cc7dd67349/AdoptingMenusAndUIActionsInYourUserInterface.zip": {
+      "checksum": "27cc7dd673494eff34925fa091dba87db540f9941c40dbdf30db0acf4077cb9d0c9d8a49549ecbf078180c45496ae949922c9d9567e2d9fc8269f616dd111ce7",
+      "identifier": "27cc7dd67349/AdoptingMenusAndUIActionsInYourUserInterface.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/27cc7dd67349/AdoptingMenusAndUIActionsInYourUserInterface.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAction": {
+      "abstract": [
+        {
+          "text": "A menu element that performs its action in a closure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAction",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICommand": {
+      "abstract": [
+        {
+          "text": "A menu element that performs its action in a selector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICommand"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICommand",
+      "type": "topic",
+      "url": "/documentation/uikit/uicommand"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDeferredMenuElement": {
+      "abstract": [
+        {
+          "text": "A placeholder menu element that the system replaces with the result of the block’s completion handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDeferredMenuElement"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDeferredMenuElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDeferredMenuElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDeferredMenuElement",
+      "type": "topic",
+      "url": "/documentation/uikit/uideferredmenuelement"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIKeyCommand": {
+      "abstract": [
+        {
+          "text": "An object that specifies a key press perform on a hardware keyboard and the resulting action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIKeyCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKeyCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIKeyCommand",
+      "type": "topic",
+      "url": "/documentation/uikit/uikeycommand"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenuElement": {
+      "abstract": [
+        {
+          "text": "An object representing a menu, action, or command.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIMenuElement"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIMenuElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIMenuElement",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenuelement"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenuElement/Attributes": {
+      "abstract": [
+        {
+          "text": "Attributes that determine the style of the menu element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Attributes"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuElement/Attributes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Attributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIMenuElement.Attributes",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenuelement/attributes"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenuElement/State": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the state of an action- or command-based menu element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuElement/State",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIMenuElement.State",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenuelement/state"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenuLeaf": {
+      "abstract": [
+        {
+          "text": "An interface for an object that represents a menu element without child elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIMenuLeaf"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuLeaf",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIMenuLeaf"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIMenuLeaf",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenuleaf"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/adding-menus-and-shortcuts-to-the-menu-bar-and-user-interface": {
+      "abstract": [
+        {
+          "text": "Provide quick access to useful actions by adding menus and keyboard shortcuts to your Mac app built with Mac Catalyst.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/adding-menus-and-shortcuts-to-the-menu-bar-and-user-interface",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adding menus and shortcuts to the menu bar and user interface",
+      "type": "topic",
+      "url": "/documentation/uikit/adding-menus-and-shortcuts-to-the-menu-bar-and-user-interface"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts": {
+      "abstract": [
+        {
+          "text": "Simplify interactions with your app using menu systems, contextual menus, Home Screen quick actions, and keyboard shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Menus and shortcuts",
+      "type": "topic",
+      "url": "/documentation/uikit/menus-and-shortcuts"
+    },
+    "https://developer.apple.com/wwdc20/10052/": {
+      "identifier": "https://developer.apple.com/wwdc20/10052/",
+      "title": "10052: Build with iOS Pickers, Menus and Actions",
+      "titleInlineContent": [
+        {
+          "text": "10052: Build with iOS Pickers, Menus and Actions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc20/10052/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "27cc7dd67349/AdoptingMenusAndUIActionsInYourUserInterface.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Menu-elements-and-keyboard-shortcuts",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/adding-menus-and-shortcuts-to-the-menu-bar-and-user-interface",
+        "doc://com.apple.uikit/documentation/UIKit/UIMenuElement",
+        "doc://com.apple.uikit/documentation/UIKit/UIAction",
+        "doc://com.apple.uikit/documentation/UIKit/UICommand",
+        "doc://com.apple.uikit/documentation/UIKit/UIKeyCommand",
+        "doc://com.apple.uikit/documentation/UIKit/UIDeferredMenuElement",
+        "doc://com.apple.uikit/documentation/UIKit/UIMenuElement/Attributes",
+        "doc://com.apple.uikit/documentation/UIKit/UIMenuElement/State",
+        "doc://com.apple.uikit/documentation/UIKit/UIMenuLeaf"
+      ],
+      "title": "Menu elements and keyboard shortcuts"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Menu-elements-and-keyboard-shortcuts",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/adding-menus-and-shortcuts-to-the-menu-bar-and-user-interface",
+                "doc://com.apple.uikit/documentation/UIKit/UIMenuElement",
+                "doc://com.apple.uikit/documentation/UIKit/UIAction",
+                "doc://com.apple.uikit/documentation/UIKit/UICommand",
+                "doc://com.apple.uikit/documentation/UIKit/UIKeyCommand",
+                "doc://com.apple.uikit/documentation/UIKit/UIDeferredMenuElement",
+                "doc://com.apple.uikit/documentation/UIKit/UIMenuElement/Attributes",
+                "doc://com.apple.uikit/documentation/UIKit/UIMenuElement/State",
+                "doc://com.apple.uikit/documentation/UIKit/UIMenuLeaf"
+              ],
+              "title": "Menu elements and keyboard shortcuts"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuElement~1Attributes/title",
+          "value": "UIMenuElementAttributes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuElement~1Attributes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuElementAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuElement~1Attributes/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuElementAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDeferredMenuElement/title",
+          "value": "UIDeferredMenuElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDeferredMenuElement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDeferredMenuElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDeferredMenuElement/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDeferredMenuElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICommand/title",
+          "value": "UICommand"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICommand/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICommand/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAction/title",
+          "value": "UIAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuLeaf/title",
+          "value": "UIMenuLeaf"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuLeaf/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuLeaf"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuLeaf/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuLeaf"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuElement/title",
+          "value": "UIMenuElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuElement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuElement/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyCommand/title",
+          "value": "UIKeyCommand"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyCommand/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyCommand/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuElement~1State/title",
+          "value": "UIMenuElementState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuElement~1State/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuElementState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuElement~1State/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuElementState"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/adopting-menus-and-uiactions-in-your-user-interface"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/adopting-menus-and-uiactions-in-your-user-interface"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

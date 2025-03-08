@@ -1,0 +1,2362 @@
+{
+  "abstract": [
+    {
+      "text": "Declare the data your app or third-party SDK collects in a privacy manifest.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.technotes/documentation/Technotes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "TN3184: Adding data collection details to your privacy manifest"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you build an app or third-party SDK that collects any data type, perform these steps in your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "privacy manifest (",
+              "type": "text"
+            },
+            {
+              "code": "PrivacyInfo.xcprivacy",
+              "type": "codeVoice"
+            },
+            {
+              "text": "):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyCollectedDataTypes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For each data type your app or third-party SDK collects, add a dictionary as a value for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyCollectedDataTypes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "The dictionary includes the data type, the data linked to the user and tracking status, and a list",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of reasons for collecting this data type. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest#Add-a-collected-data-type-and-reasons-dictionary",
+                      "isActive": true,
+                      "overridingTitle": "Add a collected data type and reasons dictionary",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Add a collected data type and reasons dictionary",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the privacy manifest and these keys, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/privacy-manifest-files",
+              "isActive": true,
+              "overridingTitle": "Privacy Manifest files",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Privacy Manifest files",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/describing-data-use-in-privacy-manifests",
+              "isActive": true,
+              "overridingTitle": "Describing data use in privacy manifests",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Describing data use in privacy manifests",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This document describes how to add the ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyCollectedDataType",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyCollectedDataTypeLinked",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyCollectedDataTypeTracking",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyCollectedDataTypePurposes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keys to your privacy manifest",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in Xcode. If you work outside of Xcode, review this document to learn about the expected structure of each key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Before you start adding the keys to your privacy manifest, enable raw keys and values in Xcode to view",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the raw keys and hide their human-readable names. Click anywhere in the privacy manifest, then choose Xcode > Editor > Raw Keys and Values.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Repeat the process to disable this feature.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-a-collected-data-type-key",
+          "level": 2,
+          "text": "Add a collected data type key",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyCollectedDataType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key uses the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>NSPrivacyCollectedDataType</key>",
+            "<string>NS_PRIVACY_COLLECTED_DATA_TYPE_VALUE</string>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NS_PRIVACY_COLLECTED_DATA_TYPE_VALUE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " string specifies the type of data your app or third-party",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SDK collects. For possible values, see “Report the categories of data your app or third-party SDK collects“ in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/describing-data-use-in-privacy-manifests",
+              "isActive": true,
+              "overridingTitle": "Describing data use in privacy manifests",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Describing data use in privacy manifests",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add the ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyCollectedDataType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to a privacy collected data type and reasons dictionary in your privacy manifest:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the dictionary in the property list editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the disclosure triangle to the left of the dictionary to reveal it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button (+) beside the dictionary to add a new item.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the pop-up menu, choose ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyCollectedDataType",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Type column, confirm that the value is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "String",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select a data type from the pop-up menu in the Value column. For possible values, see “Report the categories of data your app or third-party SDK collects“",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/describing-data-use-in-privacy-manifests",
+                      "isActive": true,
+                      "overridingTitle": "Describing data use in privacy manifests",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Describing data use in privacy manifests",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Confirm that the value exactly matches the type of data your app or third-party SDK collects.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Add-a-collected-data-type-linked-key",
+          "level": 2,
+          "text": "Add a collected data type linked key",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyCollectedDataTypeLinked",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key uses the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>NSPrivacyCollectedDataTypeLinked</key>",
+            "<!-- Use <true/> if your app or third-party SDK links this data type to the user’s identity; otherwise,",
+            "     use <false/>. -->",
+            "<true/>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add the ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyCollectedDataTypeLinked",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to a privacy collected data type and reasons dictionary in your privacy manifest:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the dictionary in the property list editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the disclosure triangle to the left of the dictionary to reveal it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button (+) beside the dictionary to add a new item.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the pop-up menu, choose ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyCollectedDataTypeLinked",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Type column, confirm that the value is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Boolean",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "YES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from the pop-up menu in the Value column if your app or third-party SDK links this data type to the user’s identity; otherwise, select ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NO",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Add-a-collected-data-type-tracking-key",
+          "level": 2,
+          "text": "Add a collected data type tracking key",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyCollectedDataTypeTracking",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key uses the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>NSPrivacyCollectedDataTypeTracking</key>",
+            "<!-- Use <true/> if your app or third-party SDK uses this data type to track; otherwise, use <false/>. -->",
+            "<true/>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add the ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyCollectedDataTypeTracking",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to a privacy collected data type and reasons dictionary in your privacy manifest:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the dictionary in the property list editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the disclosure triangle to the left of the dictionary to reveal it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button (+) beside the dictionary to add a new item.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the pop-up menu, choose ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyCollectedDataTypeTracking",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Type column, confirm that the value is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Boolean",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "YES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from the pop-up menu in the Value column if your app or third-party SDK uses this data type to track; otherwise, select ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NO",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Add-a-collected-data-type-purposes-key",
+          "level": 2,
+          "text": "Add a collected data type purposes key",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyCollectedDataTypePurposes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key uses the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>NSPrivacyCollectedDataTypePurposes</key>",
+            "<array>",
+            "    <string>NS_PRIVACY_COLLECTED_DATA_TYPE_PURPOSE_VALUE</string>",
+            "    ...",
+            "</array>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each ",
+              "type": "text"
+            },
+            {
+              "code": "NS_PRIVACY_COLLECTED_DATA_TYPE_PURPOSE_VALUE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " string in the array identifies a reason why your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app or third-party SDK collects a data type. For possible values, see “Report the reasons your app or third-party SDK collects data” in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/describing-data-use-in-privacy-manifests",
+              "isActive": true,
+              "overridingTitle": "Describing data use in privacy manifests",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Describing data use in privacy manifests",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add the ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyCollectedDataTypePurposes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to a privacy collected data type and reasons dictionary in your privacy manifest:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the dictionary in the property list editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the disclosure triangle to the left of the dictionary to reveal it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Confirm the dictionary contains a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyCollectedDataType",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key with a value as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest#Add-a-collected-data-type-key",
+                      "isActive": true,
+                      "overridingTitle": "Add a collected data type key",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Add a collected data type key",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button (+) beside the dictionary to add a new item.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the pop-up menu, choose ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyCollectedDataTypePurposes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Type column, confirm that the value is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Array",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the disclosure triangle to the left of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyCollectedDataTypePurposes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to reveal it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button (+) beside ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyCollectedDataTypePurposes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to add a reason.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose a reason from the pop-up menu in the Value column. For possible values, see “Report the reasons your app or third-party SDK collects data” in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/describing-data-use-in-privacy-manifests",
+                      "isActive": true,
+                      "overridingTitle": "Describing data use in privacy manifests",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Describing data use in privacy manifests",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Repeat the last two steps for each reason your app or third-party SDK collects this data type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-collected-data-type-and-reasons-dictionary",
+          "level": 2,
+          "text": "Add a collected data type and reasons dictionary",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A privacy collected data type and reasons dictionary includes a data type, a data linked to the user",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "status, a tracking status, and a list of reasons for collecting this data type. The dictionary contains",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "exactly four keys: ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyCollectedDataType",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyCollectedDataTypeLinked",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyCollectedDataTypeTracking",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyCollectedDataTypePurposes",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". It uses the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<dict>",
+            "    <!-- Add a privacy collected data type key. -->",
+            "    <key>NSPrivacyCollectedDataType</key>",
+            "    <string>NS_PRIVACY_COLLECTED_DATA_TYPE_VALUE</string>",
+            "",
+            "    <!-- Add a privacy collected data type linked key. -->",
+            "    <key>NSPrivacyCollectedDataTypeLinked</key>",
+            "    <false/>",
+            "",
+            "    <!-- Add a privacy collected data type tracking key. -->",
+            "    <key>NSPrivacyCollectedDataTypeTracking</key>",
+            "    <false/>",
+            "",
+            "    <!-- Add a privacy collected data type purposes key. -->",
+            "    <key>NSPrivacyCollectedDataTypePurposes</key>",
+            "    <array>",
+            "        <string>NS_PRIVACY_COLLECTED_DATA_TYPE_PURPOSE_VALUE</string>",
+            "        ...",
+            "    </array>",
+            "</dict>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a privacy collected data type and reasons dictionary to the ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyCollectedDataTypes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in your privacy manifest:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PrivacyInfo.xcprivacy",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the Project navigator in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Find the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyCollectedDataTypes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key in the property list editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the disclosure triangle to the left of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyCollectedDataTypes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to reveal it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button (+) beside ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyCollectedDataTypes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to insert a new item.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Confirm the value is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Dictionary",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the Type column.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the disclosure triangle to the left of the dictionary to reveal it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To add the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyCollectedDataType",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key to the dictionary, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest#Add-a-collected-data-type-key",
+                      "isActive": true,
+                      "overridingTitle": "Add a collected data type key",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Add a collected data type key",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To add the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyCollectedDataTypeLinked",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key to the dictionary, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest#Add-a-collected-data-type-linked-key",
+                      "isActive": true,
+                      "overridingTitle": "Add a collected data type linked key",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Add a collected data type linked key",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To add the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyCollectedDataTypeTracking",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key to the dictionary, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest#Add-a-collected-data-type-tracking-key",
+                      "isActive": true,
+                      "overridingTitle": "Add a collected data type tracking key",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Add a collected data type tracking key",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To add the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyCollectedDataTypePurposes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key to the dictionary, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest#Add-a-collected-data-type-purposes-key",
+                      "isActive": true,
+                      "overridingTitle": "Add a collected data type purposes key",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Add a collected data type purposes key",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Add-the-collected-data-types-key",
+          "level": 2,
+          "text": "Add the collected data types key",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyCollectedDataTypes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key is an array of privacy collected data type and reasons dictionaries.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest#Add-a-collected-data-type-and-reasons-dictionary",
+              "isActive": true,
+              "overridingTitle": "Add a collected data type and reasons dictionary",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Add a collected data type and reasons dictionary",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". The key uses",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>NSPrivacyCollectedDataTypes</key>",
+            "<array>",
+            "    <dict>",
+            "        <!-- Add a privacy collected data type key. -->",
+            "        <key>NSPrivacyCollectedDataType</key>",
+            "        <string>NS_PRIVACY_COLLECTED_DATA_TYPE_VALUE</string>",
+            "",
+            "        <!-- Add a privacy collected data type linked key. -->",
+            "        <key>NSPrivacyCollectedDataTypeLinked</key>",
+            "        <false/>",
+            "",
+            "        <!-- Add a privacy collected data type tracking key. -->",
+            "        <key>NSPrivacyCollectedDataTypeTracking</key>",
+            "        <false/>",
+            "",
+            "        <!-- Add a privacy collected data type purposes key. -->",
+            "        <key>NSPrivacyCollectedDataTypePurposes</key>",
+            "        <array>",
+            "            <string>NS_PRIVACY_COLLECTED_DATA_TYPE_PURPOSE_VALUE</string>",
+            "            ...",
+            "        </array>",
+            "    </dict>",
+            "    ...",
+            "</array>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add the ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyCollectedDataTypes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to your privacy manifest:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PrivacyInfo.xcprivacy",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the Project navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button (+) beside the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "App Privacy Configuration",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key in the property list editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the pop-up menu that appears, choose ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyCollectedDataTypes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Confirm the value is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Array",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the Type column.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To add a privacy collected data type and reasons dictionary, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest#Add-a-collected-data-type-and-reasons-dictionary",
+                      "isActive": true,
+                      "overridingTitle": "Add a collected data type and reasons dictionary",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Add a collected data type and reasons dictionary",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example declares the contacts information collected from the user in an app named ",
+              "type": "text"
+            },
+            {
+              "code": "Sample",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "<plist>",
+                    "<dict>",
+                    "    <key>NSPrivacyCollectedDataTypes</key>",
+                    "    <array>",
+                    "        <!-- Collects the user's contacts in the `Sample` app. -->",
+                    "        <dict>",
+                    "            <key>NSPrivacyCollectedDataType</key>",
+                    "            <string>NSPrivacyCollectedDataTypeContacts</string>",
+                    "            <key>NSPrivacyCollectedDataTypeLinked</key>",
+                    "            <true/>",
+                    "            <key>NSPrivacyCollectedDataTypeTracking</key>",
+                    "            <false/>",
+                    "            <key>NSPrivacyCollectedDataTypePurposes</key>",
+                    "            <array>",
+                    "                <string>NSPrivacyCollectedDataTypePurposeAppFunctionality</string>",
+                    "            </array>",
+                    "        </dict>",
+                    "    </array>",
+                    "</dict>",
+                    "</plist>"
+                  ],
+                  "syntax": "xml",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Source code"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "tn3184-privacy_collected_data_entry",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "Property list"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Repeat step 5 for each additional data type your app or third-party SDK collects.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the following example, ",
+              "type": "text"
+            },
+            {
+              "code": "Sample",
+              "type": "codeVoice"
+            },
+            {
+              "text": " additionally collects user ID information from the user:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "<plist>",
+                    "<dict>",
+                    "    <key>NSPrivacyCollectedDataTypes</key>",
+                    "    <array>",
+                    "        <!-- Collects the user's contacts in the `Sample` app. -->",
+                    "        <dict>",
+                    "            <key>NSPrivacyCollectedDataType</key>",
+                    "            <string>NSPrivacyCollectedDataTypeContacts</string>",
+                    "            <key>NSPrivacyCollectedDataTypeLinked</key>",
+                    "            <true/>",
+                    "            <key>NSPrivacyCollectedDataTypeTracking</key>",
+                    "            <false/>",
+                    "            <key>NSPrivacyCollectedDataTypePurposes</key>",
+                    "            <array>",
+                    "                <string>NSPrivacyCollectedDataTypePurposeAppFunctionality</string>",
+                    "            </array>",
+                    "        </dict>",
+                    "        <!-- Collects and tracks the user's user ID in the `Sample` app. -->",
+                    "        <dict>",
+                    "            <key>NSPrivacyCollectedDataType</key>",
+                    "            <string>NSPrivacyCollectedDataTypeUserID</string>",
+                    "            <key>NSPrivacyCollectedDataTypeLinked</key>",
+                    "            <false/>",
+                    "            <key>NSPrivacyCollectedDataTypeTracking</key>",
+                    "            <true/>",
+                    "            <key>NSPrivacyCollectedDataTypePurposes</key>",
+                    "            <array>",
+                    "                <string>NSPrivacyCollectedDataTypePurposeAnalytics</string>",
+                    "                <string>NSPrivacyCollectedDataTypePurposeOther</string>",
+                    "                <string>NSPrivacyCollectedDataTypePurposeProductPersonalization</string>",
+                    "            </array>",
+                    "        </dict>",
+                    "    </array>",
+                    "</dict>",
+                    "</plist>"
+                  ],
+                  "syntax": "xml",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Source code"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "tn3184-privacy_collected_data_entries",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "Property list"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Revision-History",
+          "level": 2,
+          "text": "Revision History",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2024-12-17",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " First published.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/describing-data-use-in-privacy-manifests": {
+      "abstract": [
+        {
+          "text": "Declare the data collected by your app or by third-party SDKs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/describing-data-use-in-privacy-manifests",
+      "kind": "article",
+      "role": "article",
+      "title": "Describing data use in privacy manifests",
+      "type": "topic",
+      "url": "/documentation/BundleResources/describing-data-use-in-privacy-manifests"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/privacy-manifest-files": {
+      "abstract": [
+        {
+          "text": "Describe the data your app or third-party SDK collects and the reasons required APIs it uses.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/privacy-manifest-files",
+      "kind": "article",
+      "role": "article",
+      "title": "Privacy manifest files",
+      "type": "topic",
+      "url": "/documentation/BundleResources/privacy-manifest-files"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.technotes/documentation/Technotes": {
+      "abstract": [
+        {
+          "text": "Learn about specific development topics through these in-depth technical articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Technotes",
+      "type": "topic",
+      "url": "/documentation/technotes"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview": {
+      "abstract": [
+        {
+          "text": "Explore the various Wi-Fi APIs available on iOS and their expected use cases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3111: iOS Wi-Fi API overview",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3111-ios-wifi-api-overview"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations": {
+      "abstract": [
+        {
+          "text": "Learn techniques to help debug any coordinate space issue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3124: Debugging coordinate space issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3124-debugging-coordinate-transformations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3158-resolving-xcode-15-device-connection-issues": {
+      "abstract": [
+        {
+          "text": "Identify software preventing Xcode 15 from connecting to Apple devices, and modify your configuration to allow these connections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3158-resolving-xcode-15-device-connection-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3158: Resolving Xcode 15 device connection issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3158-resolving-xcode-15-device-connection-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store": {
+      "abstract": [
+        {
+          "text": "Learn how to configure your App Clip to prevent it from being unavailable in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3168: Making your App Clip available in the App Store",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3168-making-your-app-clip-available-app-store"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration": {
+      "abstract": [
+        {
+          "text": "Diagnose errors due to invalid Apple Pay merchant identifier configurations by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifying the underlying causes of common errors and explore their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3173: Troubleshooting issues with your Apple Pay merchant identifier configuration",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose errors received while presenting the Apple Pay payment sheet on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your website by identifying the underlying causes of common errors and explore",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "their potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3174: Diagnosing issues with the Apple Pay payment sheet on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose common errors received while displaying the Apple Pay button on your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "website by identifying the underlying causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3175: Diagnosing issues with displaying the Apple Pay button on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues": {
+      "abstract": [
+        {
+          "text": "Diagnose errors that occur when processing Apple Pay payments,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identify common causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3176: Troubleshooting Apple Pay payment processing issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files": {
+      "abstract": [
+        {
+          "text": "Learn how alternate groups collect audio tracks, and how to choose which audio track to use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3177: Understanding alternate audio track groups in movie files",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems": {
+      "abstract": [
+        {
+          "text": "Ensure that every Mach-O image has a UUID, and that every distinct Mach-O image has its own unique UUID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3178: Checking for and resolving build UUID problems",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3178-checking-for-and-resolving-build-uuid-problems"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy": {
+      "abstract": [
+        {
+          "text": "Learn how local network privacy affects your software.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3179: Understanding local network privacy",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1": {
+      "abstract": [
+        {
+          "text": "Migrate from version 2 to version 1 of App Store Server Notifications using the Modify an App endpoint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3180: Reverting to App Store Server Notifications V1",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3180-reverting-app-store-server-notifications-v1"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Identify common configurations that cause unsuccessful privacy manifest validation with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3181: Debugging an invalid privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3181-debugging-invalid-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the tracking domains you use in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3182: Adding privacy tracking keys to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the APIs that can potentially fingerprint devices in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3183: Adding required reason API entries to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest#Add-a-collected-data-type-and-reasons-dictionary": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest#Add-a-collected-data-type-and-reasons-dictionary",
+      "kind": "section",
+      "title": "Add a collected data type and reasons dictionary",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest#Add-a-collected-data-type-and-reasons-dictionary"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest#Add-a-collected-data-type-key": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest#Add-a-collected-data-type-key",
+      "kind": "section",
+      "title": "Add a collected data type key",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest#Add-a-collected-data-type-key"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest#Add-a-collected-data-type-linked-key": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest#Add-a-collected-data-type-linked-key",
+      "kind": "section",
+      "title": "Add a collected data type linked key",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest#Add-a-collected-data-type-linked-key"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest#Add-a-collected-data-type-purposes-key": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest#Add-a-collected-data-type-purposes-key",
+      "kind": "section",
+      "title": "Add a collected data type purposes key",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest#Add-a-collected-data-type-purposes-key"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest#Add-a-collected-data-type-tracking-key": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest#Add-a-collected-data-type-tracking-key",
+      "kind": "section",
+      "title": "Add a collected data type tracking key",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest#Add-a-collected-data-type-tracking-key"
+    },
+    "tn3184-privacy_collected_data_entries": {
+      "alt": "A privacy manifest that declares the contacts and user ID information collected from the user.",
+      "identifier": "tn3184-privacy_collected_data_entries",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d834756af5aa5c7f636af610a68e5562/tn3184-privacy_collected_data_entries@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/80d24e880f80afce6f1cdd00f456e5e3/tn3184-privacy_collected_data_entries~dark@2x.png"
+        }
+      ]
+    },
+    "tn3184-privacy_collected_data_entry": {
+      "alt": "A privacy manifest that declares the contacts information collected from the user.",
+      "identifier": "tn3184-privacy_collected_data_entry",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0955bed912c666a76d2a8717d595fdff/tn3184-privacy_collected_data_entry@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e2bb82d49649804ec142cbed98443524/tn3184-privacy_collected_data_entry~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Latest",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+        "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+        "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+        "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+        "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+        "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+        "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+        "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+        "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+        "doc://com.apple.technotes/documentation/Technotes/tn3158-resolving-xcode-15-device-connection-issues"
+      ],
+      "title": "Latest"
+    }
+  ]
+}

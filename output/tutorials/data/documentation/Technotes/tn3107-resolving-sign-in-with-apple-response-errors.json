@@ -1,0 +1,2790 @@
+{
+  "abstract": [
+    {
+      "text": "Diagnose errors received by the Sign in with Apple client, or its server infrastructure,",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "by identifying the underlying causes of common error codes and explore their potential solutions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.technotes/documentation/Technotes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.technotes/documentation/Technotes/tn3107-resolving-sign-in-with-apple-response-errors"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "TN3107: Resolving Sign in with Apple response errors"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This document aids in debugging response errors relating to Sign in with Apple.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This information supplements the Sign in with Apple documentation —",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "including ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_rest_api",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as well as the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/authenticationservices",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework —",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so start with the documentation first to ensure the client is using the APIs properly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Authorization-response-errors",
+          "level": 2,
+          "text": "Authorization response errors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Errors can occur during Sign in with Apple authorization requests —",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as when the client asks permission for the user’s information after a successful Apple ID authentication.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, the provided ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js/incorporating_sign_in_with_apple_into_other_platforms",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is invalid or unauthorized,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js/incorporating_sign_in_with_apple_into_other_platforms",
+              "isActive": true,
+              "overridingTitle": "request parameters",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "request parameters",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " are incorrect,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/sign_in_with_apple/configuring_your_environment_for_sign_in_with_apple",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is invalid or misconfigured for the web service.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When errors occur, the authorizing server sends a standard OAuth error response with an error code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows a sample error response in JSON format received from the ",
+              "type": "text"
+            },
+            {
+              "code": "/auth/authorize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " endpoint:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "HTTP/1.1 400 Bad Request",
+            "Content-Type: application/json;charset=UTF-8",
+            "Cache-Control: no-store",
+            "Pragma: no-cache",
+            "",
+            "{",
+            "  \"error\": \"invalid_request\"",
+            "}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To help troubleshoot why an authorization error occurred, review the following error code descriptions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Error Code",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Solution",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "invalid_request",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The authorization request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check that all parameters are correct, the provided ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "client_id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " exists and is identical to the value registered to your developer account (case-sensitive), etc.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "invalid_client",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The authorization request is invalid because the primary app or web service with the provided ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "client_id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " could not be found.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check that all parameters are correct, the provided ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "client_id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " exists and is identical to the value registered to your developer account (case-sensitive), etc.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "unauthorized_client",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The client is not authorized to request an authorization code using this method: The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "redirect_uri",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " of the service either is incorrect or not provided.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make sure the provided ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "redirect_uri",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is valid, publicly accessible, and is identical to the value registered for the service.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "invalid_scope",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The requested ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "scope",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is invalid.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make sure the request is correct, and that the provided ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "scope",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is supported, etc.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about OAuth error responses, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/rfc6749#section-4.1.2.1",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Token-response-errors",
+          "level": 2,
+          "text": "Token response errors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Errors can occur during Sign in with Apple token requests —",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as token generation when ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/sign_in_with_apple/transferring_your_apps_and_users_to_another_team",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/sign_in_with_apple/bringing_new_apps_and_users_into_your_team",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " during user migration,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/sign_in_with_apple/generate_and_validate_tokens",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for a user’s credentials.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, the provided token is invalid or expired,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the client secret — a JSON Web Token (JWT) — is invalid or expired,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or the request parameters are incorrect, malformed, or not percent-encoded.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When errors occur, the token validation server sends a standard OAuth error response with an error code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows a sample error response in JSON format received from the ",
+              "type": "text"
+            },
+            {
+              "code": "/auth/token",
+              "type": "codeVoice"
+            },
+            {
+              "text": " endpoint:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "HTTP/1.1 400 Bad Request",
+            "Content-Type: application/json;charset=UTF-8",
+            "Cache-Control: no-store",
+            "Pragma: no-cache",
+            "",
+            "{",
+            "  \"error\": \"invalid_client\"",
+            "}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To help troubleshoot why a token generation or validation error occurred, review the following error code descriptions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Error Code",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Solution",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "invalid_request",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The token request is missing a required parameter, includes an invalid header or parameter value, includes a parameter more than once, or is otherwise malformed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check that the content type is valid, all parameters are correct, the form data is percent-encoded, etc. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3107-resolving-sign-in-with-apple-response-errors#Possible-reasons-for-invalid-request-errors",
+                      "isActive": true,
+                      "overridingTitle": "Possible Reasons for Invalid Request Errors",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Possible Reasons for Invalid Request Errors",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " below for details.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "invalid_client",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The token request is invalid because the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "client_secret",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is invalid or expired, is improperly signed, or is otherwise malformed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check that all parameters are correct, the form data is percent-encoded, the JWT header and claim values are correct and the signature is valid, etc. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3107-resolving-sign-in-with-apple-response-errors#Possible-reasons-for-invalid-client-errors",
+                      "isActive": true,
+                      "overridingTitle": "Possible Reasons for Invalid Client Errors",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Possible Reasons for Invalid Client Errors",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " below for details.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "invalid_grant",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The client is not authorized for the provided ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "code",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "refresh_token",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "code",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "refresh_token",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is invalid, previously consumed, or expired.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check that all parameters are correct, the provided token is valid, etc. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3107-resolving-sign-in-with-apple-response-errors#Possible-reasons-for-invalid-grant-errors",
+                      "isActive": true,
+                      "overridingTitle": "Possible Reasons for Invalid Grant Errors",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Possible Reasons for Invalid Grant Errors",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " below for details.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about JWTs and their errors, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/rfc7519",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/rfc7523#section-3",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Revoke-response-errors",
+          "level": 2,
+          "text": "Revoke response errors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Errors can occur during Sign in with Apple revoke requests —",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as token revocation after a user account deletion.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, the provided token does not match the token type hint,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the client secret — a JSON Web Token (JWT) — is invalid or expired,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or the request parameters are incorrect, malformed, or not percent-encoded.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When errors occur, the token revocation server sends a standard OAuth error response with an error code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows a sample error response in JSON format received from the ",
+              "type": "text"
+            },
+            {
+              "code": "/auth/revoke",
+              "type": "codeVoice"
+            },
+            {
+              "text": " endpoint:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "HTTP/1.1 400 Bad Request",
+            "Content-Type: application/json;charset=UTF-8",
+            "Cache-Control: no-store",
+            "Pragma: no-cache",
+            "",
+            "{",
+            "  \"error\": \"invalid_client\"",
+            "}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To help troubleshoot why a token generation or validation error occurred, review the following error code descriptions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Error Code",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Solution",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "invalid_request",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The token request is missing a required parameter, includes an invalid header or parameter value, includes a parameter more than once, or is otherwise malformed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check that the content type is valid, all parameters are correct, the form data is percent-encoded, etc. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3107-resolving-sign-in-with-apple-response-errors#Possible-reasons-for-invalid-request-errors",
+                      "isActive": true,
+                      "overridingTitle": "Possible Reasons for Invalid Request Errors",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Possible Reasons for Invalid Request Errors",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " below for details.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "invalid_client",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The token request is invalid because the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "client_secret",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is invalid or expired, is improperly signed, or is otherwise malformed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check that all parameters are correct, the form data is percent-encoded, the JWT header and claim values are correct and the signature is valid, etc. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3107-resolving-sign-in-with-apple-response-errors#Possible-reasons-for-invalid-client-errors",
+                      "isActive": true,
+                      "overridingTitle": "Possible Reasons for Invalid Client Errors",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Possible Reasons for Invalid Client Errors",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " below for details.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "invalid_grant",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The client is not authorized for the provided ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "code",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "refresh_token",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "code",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "refresh_token",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is invalid, previously consumed, or expired.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check that all parameters are correct, the provided token is valid, etc. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3107-resolving-sign-in-with-apple-response-errors#Possible-reasons-for-invalid-grant-errors",
+                      "isActive": true,
+                      "overridingTitle": "Possible Reasons for Invalid Grant Errors",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Possible Reasons for Invalid Grant Errors",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " below for details.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about JWTs and their errors, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/rfc7519",
+              "isActive": true,
+              "overridingTitle": "RFC 7519",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "RFC 7519",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/rfc7523#section-3",
+              "isActive": true,
+              "overridingTitle": "RFC 7523",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "RFC 7523",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "User-migration-info-response-errors",
+          "level": 2,
+          "text": "User migration info response errors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Errors can occur during Sign in with Apple user migration info requests —",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as access token generation, ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/sign_in_with_apple/transferring_your_apps_and_users_to_another_team",
+              "isActive": true,
+              "overridingTitle": "transfer identifier generation",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "transfer identifier generation",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/sign_in_with_apple/bringing_new_apps_and_users_into_your_team",
+              "isActive": true,
+              "overridingTitle": "exchanging transfer identifiers",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "exchanging transfer identifiers",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " for team-scoped user credentials.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, the provided access token is invalid or expired,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/sign_in_with_apple/generate_and_validate_tokens",
+              "isActive": true,
+              "overridingTitle": "client secret",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "client secret",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " is invalid or expired,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the request parameters are incorrect,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or the user has ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/en-us/HT210426",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the client.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When errors occur, the user migration info server sends a standard OAuth error response with an error code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows a sample error response in JSON format received from the ",
+              "type": "text"
+            },
+            {
+              "code": "/auth/usermigrationinfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " endpoint:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "HTTP/1.1 400 Bad Request",
+            "Content-Type: application/json;charset=UTF-8",
+            "Cache-Control: no-store",
+            "Pragma: no-cache",
+            "",
+            "{",
+            "  \"error\": \"invalid_request\"",
+            "}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To help troubleshoot why a user migration token generation or validation error occurred, review the following error code descriptions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Error Code",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Solution",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "invalid_request",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user migration info request is missing a required parameter, includes an invalid header or parameter value, includes a parameter more than once, or is otherwise malformed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check that the content type is valid, all parameters are correct, the form data is percent-encoded, etc. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3107-resolving-sign-in-with-apple-response-errors#Possible-reasons-for-invalid-request-errors",
+                      "isActive": true,
+                      "overridingTitle": "Possible Reasons for Invalid Request Errors",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Possible Reasons for Invalid Request Errors",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " below for details.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "invalid_client",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user migration info request is invalid because the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "client_secret",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is invalid or expired, is improperly signed, or is otherwise malformed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check that all parameters are correct, the form data is percent-encoded, the JWT header and claim values are correct and the signature is valid, etc. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3107-resolving-sign-in-with-apple-response-errors#Possible-reasons-for-invalid-client-errors",
+                      "isActive": true,
+                      "overridingTitle": "Possible Reasons for Invalid Client Errors",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Possible Reasons for Invalid Client Errors",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " below for details.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about OAuth error responses, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/rfc6749#section-4.1.2.1",
+              "isActive": true,
+              "overridingTitle": "RFC 6749",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "RFC 6749",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Possible-reasons-for-invalid-request-errors",
+          "level": 2,
+          "text": "Possible reasons for invalid request errors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "invalid_request",
+              "type": "codeVoice"
+            },
+            {
+              "text": " error can occur during a Sign in with Apple request for several reasons,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "but most commonly for the following scenarios:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The request has an invalid content type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The request is missing a required parameter.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The request contains an unsupported parameter.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The request includes multiple user credentials — a mismatched access token, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "client_id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "client_secret",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " subject (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sub",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") values, or duplicate parameters.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user has revoked authorization for the client.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Possible-reasons-for-invalid-client-errors",
+          "level": 2,
+          "text": "Possible reasons for invalid client errors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "invalid_client",
+              "type": "codeVoice"
+            },
+            {
+              "text": " error can occur during a Sign in with Apple request for several reasons,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "but most commonly while providing ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/sign_in_with_apple/generate_and_validate_tokens",
+              "isActive": true,
+              "overridingTitle": "client credentials",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "client credentials",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " for server validation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The request has form data that is not percent-encoded.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "client_secret",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is missing required headers or payload claims.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "client_secret",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " has a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sub",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " claim that is not identical to the value registered to your developer account.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "client_secret",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " has expired.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "client_secret",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " signature is invalid or in an unsupported byte format.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To validate the ",
+              "type": "text"
+            },
+            {
+              "code": "client_secret",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and its signature,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://jwt.io",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/rfc7515#page-45",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you use a third-party library to create, verify, and sign the JWT,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "make sure the library meets the following criteria for Sign in with Apple:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Supports ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "E256",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " digital signatures",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Supports the required headers and payload claims",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Does not decode using ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ASN.1 DER",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " byte format",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Possible-reasons-for-invalid-grant-errors",
+          "level": 2,
+          "text": "Possible reasons for invalid grant errors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "invalid_grant",
+              "type": "codeVoice"
+            },
+            {
+              "text": " error can occur during a Sign in with Apple request for several reasons,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "but most commonly for the following scenarios while performing ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/sign_in_with_apple/generate_and_validate_tokens",
+              "isActive": true,
+              "overridingTitle": "token validation",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "token validation",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For authorization code token validation requests:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "client_id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " does not match the client for which the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "code",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " was issued.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "code",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " has expired or has been previously consumed by the validation server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For refresh token validation requests:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "client_id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " does not match the client for which the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "refresh_token",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " was issued.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "refresh_token",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is invalid or has expired.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Revision-History",
+          "level": 2,
+          "text": "Revision History",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2024-01-16",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Updated content to include more underlying causes of response errors, and added token revoke endpoint.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2022-05-24",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Made minor editorial changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2022-02-15",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " First published.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.technotes/documentation/Technotes": {
+      "abstract": [
+        {
+          "text": "Learn about specific development topics through these in-depth technical articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Technotes",
+      "type": "topic",
+      "url": "/documentation/technotes"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3107-resolving-sign-in-with-apple-response-errors#Possible-reasons-for-invalid-client-errors": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3107-resolving-sign-in-with-apple-response-errors#Possible-reasons-for-invalid-client-errors",
+      "kind": "section",
+      "title": "Possible reasons for invalid client errors",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3107-resolving-sign-in-with-apple-response-errors#Possible-reasons-for-invalid-client-errors"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3107-resolving-sign-in-with-apple-response-errors#Possible-reasons-for-invalid-grant-errors": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3107-resolving-sign-in-with-apple-response-errors#Possible-reasons-for-invalid-grant-errors",
+      "kind": "section",
+      "title": "Possible reasons for invalid grant errors",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3107-resolving-sign-in-with-apple-response-errors#Possible-reasons-for-invalid-grant-errors"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3107-resolving-sign-in-with-apple-response-errors#Possible-reasons-for-invalid-request-errors": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3107-resolving-sign-in-with-apple-response-errors#Possible-reasons-for-invalid-request-errors",
+      "kind": "section",
+      "title": "Possible reasons for invalid request errors",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3107-resolving-sign-in-with-apple-response-errors#Possible-reasons-for-invalid-request-errors"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview": {
+      "abstract": [
+        {
+          "text": "Explore the various Wi-Fi APIs available on iOS and their expected use cases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3111: iOS Wi-Fi API overview",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3111-ios-wifi-api-overview"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations": {
+      "abstract": [
+        {
+          "text": "Learn techniques to help debug any coordinate space issue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3124: Debugging coordinate space issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3124-debugging-coordinate-transformations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store": {
+      "abstract": [
+        {
+          "text": "Learn how to configure your App Clip to prevent it from being unavailable in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3168: Making your App Clip available in the App Store",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3168-making-your-app-clip-available-app-store"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration": {
+      "abstract": [
+        {
+          "text": "Diagnose errors due to invalid Apple Pay merchant identifier configurations by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifying the underlying causes of common errors and explore their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3173: Troubleshooting issues with your Apple Pay merchant identifier configuration",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose errors received while presenting the Apple Pay payment sheet on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your website by identifying the underlying causes of common errors and explore",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "their potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3174: Diagnosing issues with the Apple Pay payment sheet on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose common errors received while displaying the Apple Pay button on your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "website by identifying the underlying causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3175: Diagnosing issues with displaying the Apple Pay button on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues": {
+      "abstract": [
+        {
+          "text": "Diagnose errors that occur when processing Apple Pay payments,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identify common causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3176: Troubleshooting Apple Pay payment processing issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files": {
+      "abstract": [
+        {
+          "text": "Learn how alternate groups collect audio tracks, and how to choose which audio track to use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3177: Understanding alternate audio track groups in movie files",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems": {
+      "abstract": [
+        {
+          "text": "Ensure that every Mach-O image has a UUID, and that every distinct Mach-O image has its own unique UUID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3178: Checking for and resolving build UUID problems",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3178-checking-for-and-resolving-build-uuid-problems"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy": {
+      "abstract": [
+        {
+          "text": "Learn how local network privacy affects your software.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3179: Understanding local network privacy",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1": {
+      "abstract": [
+        {
+          "text": "Migrate from version 2 to version 1 of App Store Server Notifications using the Modify an App endpoint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3180: Reverting to App Store Server Notifications V1",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3180-reverting-app-store-server-notifications-v1"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Identify common configurations that cause unsuccessful privacy manifest validation with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3181: Debugging an invalid privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3181-debugging-invalid-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the tracking domains you use in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3182: Adding privacy tracking keys to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the APIs that can potentially fingerprint devices in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3183: Adding required reason API entries to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the data your app or third-party SDK collects in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3184: Adding data collection details to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest"
+    },
+    "https://developer.apple.com/documentation/authenticationservices": {
+      "identifier": "https://developer.apple.com/documentation/authenticationservices",
+      "title": "Authentication Services",
+      "titleInlineContent": [
+        {
+          "text": "Authentication Services",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/authenticationservices"
+    },
+    "https://developer.apple.com/documentation/sign_in_with_apple/bringing_new_apps_and_users_into_your_team": {
+      "identifier": "https://developer.apple.com/documentation/sign_in_with_apple/bringing_new_apps_and_users_into_your_team",
+      "title": "exchanging transfer identifiers",
+      "titleInlineContent": [
+        {
+          "text": "exchanging transfer identifiers",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/sign_in_with_apple/bringing_new_apps_and_users_into_your_team"
+    },
+    "https://developer.apple.com/documentation/sign_in_with_apple/configuring_your_environment_for_sign_in_with_apple": {
+      "identifier": "https://developer.apple.com/documentation/sign_in_with_apple/configuring_your_environment_for_sign_in_with_apple",
+      "title": "redirect URI",
+      "titleInlineContent": [
+        {
+          "text": "redirect URI",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/sign_in_with_apple/configuring_your_environment_for_sign_in_with_apple"
+    },
+    "https://developer.apple.com/documentation/sign_in_with_apple/generate_and_validate_tokens": {
+      "identifier": "https://developer.apple.com/documentation/sign_in_with_apple/generate_and_validate_tokens",
+      "title": "token validation",
+      "titleInlineContent": [
+        {
+          "text": "token validation",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/sign_in_with_apple/generate_and_validate_tokens"
+    },
+    "https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js": {
+      "identifier": "https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js",
+      "title": "Sign in with Apple JS SDK",
+      "titleInlineContent": [
+        {
+          "text": "Sign in with Apple JS SDK",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js"
+    },
+    "https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js/incorporating_sign_in_with_apple_into_other_platforms": {
+      "identifier": "https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js/incorporating_sign_in_with_apple_into_other_platforms",
+      "title": "client ID",
+      "titleInlineContent": [
+        {
+          "text": "client ID",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js/incorporating_sign_in_with_apple_into_other_platforms"
+    },
+    "https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_rest_api": {
+      "identifier": "https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_rest_api",
+      "title": "Sign in with Apple REST API",
+      "titleInlineContent": [
+        {
+          "text": "Sign in with Apple REST API",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_rest_api"
+    },
+    "https://developer.apple.com/documentation/sign_in_with_apple/transferring_your_apps_and_users_to_another_team": {
+      "identifier": "https://developer.apple.com/documentation/sign_in_with_apple/transferring_your_apps_and_users_to_another_team",
+      "title": "creating transfer identifiers",
+      "titleInlineContent": [
+        {
+          "text": "creating transfer identifiers",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/sign_in_with_apple/transferring_your_apps_and_users_to_another_team"
+    },
+    "https://jwt.io": {
+      "identifier": "https://jwt.io",
+      "title": "JWT.io",
+      "titleInlineContent": [
+        {
+          "text": "JWT.io",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://jwt.io"
+    },
+    "https://support.apple.com/en-us/HT210426": {
+      "identifier": "https://support.apple.com/en-us/HT210426",
+      "title": "revoked access",
+      "titleInlineContent": [
+        {
+          "text": "revoked access",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/HT210426"
+    },
+    "https://tools.ietf.org/html/rfc6749#section-4.1.2.1": {
+      "identifier": "https://tools.ietf.org/html/rfc6749#section-4.1.2.1",
+      "title": "RFC 6749",
+      "titleInlineContent": [
+        {
+          "text": "RFC 6749",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/rfc6749#section-4.1.2.1"
+    },
+    "https://tools.ietf.org/html/rfc7515#page-45": {
+      "identifier": "https://tools.ietf.org/html/rfc7515#page-45",
+      "title": "RFC 7515",
+      "titleInlineContent": [
+        {
+          "text": "RFC 7515",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/rfc7515#page-45"
+    },
+    "https://tools.ietf.org/html/rfc7519": {
+      "identifier": "https://tools.ietf.org/html/rfc7519",
+      "title": "RFC 7519",
+      "titleInlineContent": [
+        {
+          "text": "RFC 7519",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/rfc7519"
+    },
+    "https://tools.ietf.org/html/rfc7523#section-3": {
+      "identifier": "https://tools.ietf.org/html/rfc7523#section-3",
+      "title": "RFC 7523",
+      "titleInlineContent": [
+        {
+          "text": "RFC 7523",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/rfc7523#section-3"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Latest",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+        "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+        "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+        "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+        "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+        "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+        "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+        "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+        "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations"
+      ],
+      "title": "Latest"
+    }
+  ]
+}

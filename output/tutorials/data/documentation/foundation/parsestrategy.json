@@ -1,0 +1,1070 @@
+{
+  "abstract": [
+    {
+      "text": "A type that parses an input representation, such as a formatted string, into a provided data type.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/parsestrategy"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3767204,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation13ParseStrategyP",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "protocol "
+      },
+      {
+        "kind": "identifier",
+        "text": "ParseStrategy"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "12.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "8.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "13.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "intf",
+    "title": "ParseStrategy"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ParseStrategy"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/parsestrategy",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " allows you to convert a formatted representation into a data type, using one of two approaches:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Initialize the data type by calling an initializer of that type that takes a formatted instance and a parse strategy as parameters. For example, you can create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/decimal",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " from a formatted string with the initializer ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/decimal/3796460-init",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a parse strategy and call its ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/parsestrategy/3767207-parse",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method on one or more formatted instances.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/parsestrategy",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is closely related to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which provides the opposite conversion: from data type to formatted representation. To use a parse strategy, you create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to define the representation you expect, then access the style’s ",
+              "type": "text"
+            },
+            {
+              "code": "parseStrategy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to get a strategy instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/decimal/formatstyle/currency",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " format style that uses US dollars and US English number-formatting conventions. It then creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/decimal",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " instance by providing a formatted string to parse and the format style’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/decimal/formatstyle/currency/3796356-parsestrategy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let style = Decimal.FormatStyle.Currency(code: \"USD\",",
+            "                                         locale: Locale(identifier: \"en_US\"))",
+            "let parsed = try? Decimal(\"$12,345.67\",",
+            "                           strategy: style.parseStrategy) // 12345.67"
+          ],
+          "metadata": {
+            "anchor": "4110232",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Decodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Decodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/swift/decodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Encodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Encodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/swift/encodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Hashable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/swift/hashable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Formatting",
+      "type": "topic",
+      "url": "/documentation/foundation/data_formatting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/formatstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date.FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/date/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/iso8601formatstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/iso8601formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date.ISO8601FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/date/iso8601formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/parsestrategy": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/parsestrategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date.ParseStrategy",
+      "type": "topic",
+      "url": "/documentation/foundation/date/parsestrategy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/decimal": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/decimal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decimal",
+      "type": "topic",
+      "url": "/documentation/foundation/decimal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/decimal/3796460-init": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/decimal/3796460-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:format:lenient:)",
+      "type": "topic",
+      "url": "/documentation/foundation/decimal/3796460-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/decimal/formatstyle/currency": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/decimal/formatstyle/currency",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decimal.FormatStyle.Currency",
+      "type": "topic",
+      "url": "/documentation/foundation/decimal/formatstyle/currency"
+    },
+    "doc://com.apple.documentation/documentation/foundation/decimal/formatstyle/currency/3796356-parsestrategy": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/decimal/formatstyle/currency/3796356-parsestrategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parseStrategy",
+      "type": "topic",
+      "url": "/documentation/foundation/decimal/formatstyle/currency/3796356-parsestrategy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/decimal/parsestrategy": {
+      "abstract": [
+        {
+          "text": "A parse strategy for creating decimal values from formatted strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decimal.ParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/decimal/parsestrategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decimal.ParseStrategy",
+      "type": "topic",
+      "url": "/documentation/foundation/decimal/parsestrategy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy": {
+      "abstract": [
+        {
+          "text": "A parse strategy for creating floating-point values from formatted strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "FloatingPointParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FloatingPointParseStrategy",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointparsestrategy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerparsestrategy": {
+      "abstract": [
+        {
+          "text": "A parse strategy for creating integer values from formatted strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntegerParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerparsestrategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IntegerParseStrategy",
+      "type": "topic",
+      "url": "/documentation/foundation/integerparsestrategy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/parseableformatstyle": {
+      "abstract": [
+        {
+          "text": "A type that can convert a given input data type into a representation in an output type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "ParseableFormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/parseableformatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ParseableFormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/parseableformatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/parsestrategy": {
+      "abstract": [
+        {
+          "text": "A type that parses an input representation, such as a formatted string, into a provided data type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "ParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/parsestrategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ParseStrategy",
+      "type": "topic",
+      "url": "/documentation/foundation/parsestrategy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/parsestrategy#4110232": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/parsestrategy#4110232",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/parsestrategy#4110232"
+    },
+    "doc://com.apple.documentation/documentation/foundation/parsestrategy/3767205-parseinput": {
+      "abstract": [
+        {
+          "text": "The input type parsed by this strategy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "associatedtype "
+        },
+        {
+          "kind": "identifier",
+          "text": "ParseInput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/parsestrategy/3767205-parseinput",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "ParseInput",
+      "type": "topic",
+      "url": "/documentation/foundation/parsestrategy/3767205-parseinput"
+    },
+    "doc://com.apple.documentation/documentation/foundation/parsestrategy/3767206-parseoutput": {
+      "abstract": [
+        {
+          "text": "The output type returned by this strategy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "associatedtype "
+        },
+        {
+          "kind": "identifier",
+          "text": "ParseOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/parsestrategy/3767206-parseoutput",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "ParseOutput",
+      "type": "topic",
+      "url": "/documentation/foundation/parsestrategy/3767206-parseoutput"
+    },
+    "doc://com.apple.documentation/documentation/foundation/parsestrategy/3767207-parse": {
+      "abstract": [
+        {
+          "text": "Parses a value, using this strategy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "parse"
+        },
+        {
+          "kind": "text",
+          "text": "(Self.ParseInput) -> Self.ParseOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/parsestrategy/3767207-parse",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "parse(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/parsestrategy/3767207-parse"
+    },
+    "doc://com.apple.documentation/documentation/foundation/parsestrategy/3798920-datetime": {
+      "abstract": [
+        {
+          "text": "A default format style for formatting dates.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Date",
+            "type": "codeVoice"
+          },
+          {
+            "code": ".",
+            "type": "codeVoice"
+          },
+          {
+            "code": "FormatStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "dateTime"
+        },
+        {
+          "kind": "text",
+          "text": ": Date.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/parsestrategy/3798920-datetime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dateTime",
+      "type": "topic",
+      "url": "/documentation/foundation/parsestrategy/3798920-datetime"
+    },
+    "doc://com.apple.documentation/documentation/foundation/parsestrategy/3798921-fixed": {
+      "abstract": [
+        {
+          "text": "A fixed-format date parse strategy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fixed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": Date.FormatString, "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeZone"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeZone, "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale?) -> Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/parsestrategy/3798921-fixed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fixed(format:timeZone:locale:)",
+      "type": "topic",
+      "url": "/documentation/foundation/parsestrategy/3798921-fixed"
+    },
+    "doc://com.apple.documentation/documentation/foundation/parsestrategy/3798922-iso8601": {
+      "abstract": [
+        {
+          "text": "A style for formatting a date in accordance with the ISO-8601 standard.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Date",
+            "type": "codeVoice"
+          },
+          {
+            "code": ".",
+            "type": "codeVoice"
+          },
+          {
+            "code": "ISO8601FormatStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "iso8601"
+        },
+        {
+          "kind": "text",
+          "text": ": Date.ISO8601FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/parsestrategy/3798922-iso8601",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "iso8601",
+      "type": "topic",
+      "url": "/documentation/foundation/parsestrategy/3798922-iso8601"
+    },
+    "doc://com.apple.documentation/documentation/foundation/parsestrategy/3798923-name": {
+      "abstract": [
+        {
+          "text": "A parse strategy for person name components.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "PersonNameComponents",
+            "type": "codeVoice"
+          },
+          {
+            "code": ".",
+            "type": "codeVoice"
+          },
+          {
+            "code": "ParseStrategy",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": PersonNameComponents.ParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/parsestrategy/3798923-name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/foundation/parsestrategy/3798923-name"
+    },
+    "doc://com.apple.documentation/documentation/foundation/parsestrategy/4013388-url": {
+      "abstract": [
+        {
+          "text": "A parse strategy for URLs.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "URL",
+            "type": "codeVoice"
+          },
+          {
+            "code": ".",
+            "type": "codeVoice"
+          },
+          {
+            "code": "ParseStrategy",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.ParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/parsestrategy/4013388-url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url",
+      "type": "topic",
+      "url": "/documentation/foundation/parsestrategy/4013388-url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/personnamecomponents/parsestrategy": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/personnamecomponents/parsestrategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PersonNameComponents.ParseStrategy",
+      "type": "topic",
+      "url": "/documentation/foundation/personnamecomponents/parsestrategy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/parsestrategy": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/parsestrategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL.ParseStrategy",
+      "type": "topic",
+      "url": "/documentation/foundation/url/parsestrategy"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Decodable",
+        "doc://com.apple.Swift/documentation/Swift/Encodable",
+        "doc://com.apple.Swift/documentation/Swift/Hashable"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/date/formatstyle",
+        "doc://com.apple.documentation/documentation/foundation/date/iso8601formatstyle",
+        "doc://com.apple.documentation/documentation/foundation/date/parsestrategy",
+        "doc://com.apple.documentation/documentation/foundation/decimal/parsestrategy",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy",
+        "doc://com.apple.documentation/documentation/foundation/integerparsestrategy",
+        "doc://com.apple.documentation/documentation/foundation/personnamecomponents/parsestrategy",
+        "doc://com.apple.documentation/documentation/foundation/url/parsestrategy"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/parseableformatstyle",
+        "doc://com.apple.documentation/documentation/foundation/integerparsestrategy",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy",
+        "doc://com.apple.documentation/documentation/foundation/decimal/parsestrategy"
+      ],
+      "title": "Data parsing in Swift"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3793452",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/parsestrategy/3767207-parse"
+      ],
+      "kind": "taskGroup",
+      "title": "Performing parsing"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Use the static accessors in this section to get parse strategies for common input types like dates and URLs.",
+          "type": "text"
+        }
+      ],
+      "anchor": "4113654",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/parsestrategy/3798921-fixed",
+        "doc://com.apple.documentation/documentation/foundation/parsestrategy/4013388-url",
+        "doc://com.apple.documentation/documentation/foundation/parsestrategy/3798923-name"
+      ],
+      "kind": "taskGroup",
+      "title": "Commonly-used parsers"
+    },
+    {
+      "anchor": "4113653",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/parsestrategy/3798920-datetime",
+        "doc://com.apple.documentation/documentation/foundation/parsestrategy/3798922-iso8601"
+      ],
+      "kind": "taskGroup",
+      "title": "Commonly-used format styles"
+    },
+    {
+      "anchor": "3793439",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/parsestrategy/3767205-parseinput",
+        "doc://com.apple.documentation/documentation/foundation/parsestrategy/3767206-parseoutput"
+      ],
+      "kind": "taskGroup",
+      "title": "Supporting types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/parsestrategy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

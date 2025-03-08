@@ -1,0 +1,1548 @@
+{
+  "abstract": [
+    {
+      "text": "An object representing a custom metric.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metrickit/documentation/MetricKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostMetric"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MXSignpostMetric",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MXSignpostMetric"
+      }
+    ],
+    "modules": [
+      {
+        "name": "MetricKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MXSignpostMetric"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "MXSignpostMetric"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MXSignpostMetric"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A custom metric is an event type with a developer-defined name and category. You can add custom metrics to daily reports to capture information specific to your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Custom metrics are a type of signpost saved to custom OS logs created using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metrickit/documentation/MetricKit/MXMetricManager/makeLogHandle(category:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The daily report contains information about the number and duration of custom events, as well as the power and performance impact of those events. Only custom metric events logged using MetricKit utility functions capture additional power and performance data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The system limits the number of custom signpost metrics saved to the log in order to reduce on-device memory overhead. Limit use of custom metrics to critical sections of code.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/os/logging": {
+      "abstract": [
+        {
+          "text": "Capture telemetry from your app for debugging and performance analysis using the unified logging system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/os/logging",
+      "kind": "article",
+      "role": "article",
+      "title": "Logging",
+      "type": "topic",
+      "url": "/documentation/os/logging"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metrickit/documentation/MetricKit": {
+      "abstract": [
+        {
+          "text": "Aggregate and analyze per-device reports on exception and crash diagnostics and on power and performance metrics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metrickit/documentation/MetricKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MetricKit",
+      "type": "topic",
+      "url": "/documentation/metrickit"
+    },
+    "doc://com.apple.metrickit/documentation/MetricKit/MXMetric": {
+      "abstract": [
+        {
+          "text": "An abstract data class for a metric.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MXMetric"
+        }
+      ],
+      "identifier": "doc://com.apple.metrickit/documentation/MetricKit/MXMetric",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MXMetric"
+        }
+      ],
+      "role": "symbol",
+      "title": "MXMetric",
+      "type": "topic",
+      "url": "/documentation/metrickit/mxmetric"
+    },
+    "doc://com.apple.metrickit/documentation/MetricKit/MXMetricManager/makeLogHandle(category:)": {
+      "abstract": [
+        {
+          "text": "Returns a log handle used for writing custom metric events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeLogHandle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "category"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)OS_os_log",
+          "text": "OSLog"
+        }
+      ],
+      "identifier": "doc://com.apple.metrickit/documentation/MetricKit/MXMetricManager/makeLogHandle(category:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "makeLogHandleWithCategory:"
+        }
+      ],
+      "role": "symbol",
+      "title": "makeLogHandle(category:)",
+      "type": "topic",
+      "url": "/documentation/metrickit/mxmetricmanager/makeloghandle(category:)"
+    },
+    "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostEventEmit": {
+      "abstract": [
+        {
+          "text": "Post a custom metric event to a metric kit log.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MXSignpostEventEmit"
+        }
+      ],
+      "identifier": "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostEventEmit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MXSignpostEventEmit",
+      "type": "topic",
+      "url": "/documentation/metrickit/mxsignposteventemit"
+    },
+    "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostIntervalBegin": {
+      "abstract": [
+        {
+          "text": "Post the start time of a custom metric event to a metric kit log.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MXSignpostIntervalBegin"
+        }
+      ],
+      "identifier": "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostIntervalBegin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MXSignpostIntervalBegin",
+      "type": "topic",
+      "url": "/documentation/metrickit/mxsignpostintervalbegin"
+    },
+    "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostIntervalData": {
+      "abstract": [
+        {
+          "text": "A data object representing the captured data for a custom metric.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MXSignpostIntervalData"
+        }
+      ],
+      "identifier": "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostIntervalData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MXSignpostIntervalData"
+        }
+      ],
+      "role": "symbol",
+      "title": "MXSignpostIntervalData",
+      "type": "topic",
+      "url": "/documentation/metrickit/mxsignpostintervaldata"
+    },
+    "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostIntervalEnd": {
+      "abstract": [
+        {
+          "text": "Post the end time of a custom metric event to a metric kit log.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MXSignpostIntervalEnd"
+        }
+      ],
+      "identifier": "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostIntervalEnd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MXSignpostIntervalEnd",
+      "type": "topic",
+      "url": "/documentation/metrickit/mxsignpostintervalend"
+    },
+    "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostMetric": {
+      "abstract": [
+        {
+          "text": "An object representing a custom metric.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MXSignpostMetric"
+        }
+      ],
+      "identifier": "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostMetric",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MXSignpostMetric"
+        }
+      ],
+      "role": "symbol",
+      "title": "MXSignpostMetric",
+      "type": "topic",
+      "url": "/documentation/metrickit/mxsignpostmetric"
+    },
+    "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostMetric/signpostCategory": {
+      "abstract": [
+        {
+          "text": "The developer-specified category of the custom metric represented by the object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "signpostCategory"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostMetric/signpostCategory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "signpostCategory"
+        }
+      ],
+      "role": "symbol",
+      "title": "signpostCategory",
+      "type": "topic",
+      "url": "/documentation/metrickit/mxsignpostmetric/signpostcategory"
+    },
+    "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostMetric/signpostIntervalData": {
+      "abstract": [
+        {
+          "text": "The data captured for a custom metric.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "signpostIntervalData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MXSignpostIntervalData",
+          "text": "MXSignpostIntervalData"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostMetric/signpostIntervalData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "signpostIntervalData"
+        }
+      ],
+      "role": "symbol",
+      "title": "signpostIntervalData",
+      "type": "topic",
+      "url": "/documentation/metrickit/mxsignpostmetric/signpostintervaldata"
+    },
+    "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostMetric/signpostName": {
+      "abstract": [
+        {
+          "text": "The developer-specified name of the custom metric represented by the object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "signpostName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostMetric/signpostName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "signpostName"
+        }
+      ],
+      "role": "symbol",
+      "title": "signpostName",
+      "type": "topic",
+      "url": "/documentation/metrickit/mxsignpostmetric/signpostname"
+    },
+    "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostMetric/totalCount": {
+      "abstract": [
+        {
+          "text": "The total number of occurrences of the captured custom metric.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "totalCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostMetric/totalCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "totalCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "totalCount",
+      "type": "topic",
+      "url": "/documentation/metrickit/mxsignpostmetric/totalcount"
+    },
+    "doc://com.apple.metrickit/documentation/MetricKit/mxSignpost(_:dso:log:name:signpostID:_:_:)": {
+      "abstract": [
+        {
+          "text": "Posts a single custom metric, the start time of a custom metric, or the end time of a custom metric to the log system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mxSignpost"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@os_signpost_type_t",
+          "text": "OSSignpostType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dso"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "log"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)OS_os_log",
+          "text": "OSLog"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "signpostID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSSignpostIDV",
+          "text": "OSSignpostID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": ", [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7CVarArgP",
+          "text": "CVarArg"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.metrickit/documentation/MetricKit/mxSignpost(_:dso:log:name:signpostID:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mxSignpost(_:dso:log:name:signpostID:_:_:)",
+      "type": "topic",
+      "url": "/documentation/metrickit/mxsignpost(_:dso:log:name:signpostid:_:_:)"
+    },
+    "doc://com.apple.metrickit/documentation/MetricKit/mxSignpostAnimationIntervalBegin(dso:log:name:signpostID:_:_:)": {
+      "abstract": [
+        {
+          "text": "Posts the start time of an animation interval to the log system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mxSignpostAnimationIntervalBegin"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "dso"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "log"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)OS_os_log",
+          "text": "OSLog"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "signpostID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSSignpostIDV",
+          "text": "OSSignpostID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": ", [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7CVarArgP",
+          "text": "CVarArg"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.metrickit/documentation/MetricKit/mxSignpostAnimationIntervalBegin(dso:log:name:signpostID:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mxSignpostAnimationIntervalBegin(dso:log:name:signpostID:_:_:)",
+      "type": "topic",
+      "url": "/documentation/metrickit/mxsignpostanimationintervalbegin(dso:log:name:signpostid:_:_:)"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.metrickit/documentation/MetricKit/MXMetric"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/os/logging"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Logging-custom-metrics",
+      "identifiers": [
+        "doc://com.apple.metrickit/documentation/MetricKit/mxSignpost(_:dso:log:name:signpostID:_:_:)",
+        "doc://com.apple.metrickit/documentation/MetricKit/mxSignpostAnimationIntervalBegin(dso:log:name:signpostID:_:_:)"
+      ],
+      "title": "Logging custom metrics"
+    },
+    {
+      "anchor": "Reading-custom-metric-data",
+      "identifiers": [
+        "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostMetric/signpostIntervalData",
+        "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostIntervalData"
+      ],
+      "title": "Reading custom metric data"
+    },
+    {
+      "anchor": "Reading-data-about-the-custom-metric",
+      "identifiers": [
+        "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostMetric/signpostName",
+        "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostMetric/signpostCategory",
+        "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostMetric/totalCount"
+      ],
+      "title": "Reading data about the custom metric"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MXSignpostMetric"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MXSignpostMetric"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MXSignpostMetric"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.metrickit/documentation/MetricKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Logging-custom-metrics",
+              "identifiers": [
+                "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostEventEmit",
+                "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostIntervalBegin",
+                "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostIntervalEnd"
+              ],
+              "title": "Logging custom metrics"
+            },
+            {
+              "anchor": "Reading-custom-metric-data",
+              "identifiers": [
+                "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostMetric/signpostIntervalData",
+                "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostIntervalData"
+              ],
+              "title": "Reading custom metric data"
+            },
+            {
+              "anchor": "Reading-data-about-the-custom-metric",
+              "identifiers": [
+                "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostMetric/signpostName",
+                "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostMetric/signpostCategory",
+                "doc://com.apple.metrickit/documentation/MetricKit/MXSignpostMetric/totalCount"
+              ],
+              "title": "Reading data about the custom metric"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.metrickit/documentation/MetricKit/MXMetric"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/os/logging"
+              ],
+              "title": "Related Documentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MXSignpostMetric"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.metrickit/documentation/MetricKit/MXMetric",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)MXMetric",
+                    "text": "MXMetric"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metrickit~1documentation~1MetricKit~1MXSignpostIntervalData/title",
+          "value": "MXSignpostIntervalData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metrickit~1documentation~1MetricKit~1MXSignpostIntervalData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MXSignpostIntervalData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metrickit~1documentation~1MetricKit~1MXSignpostIntervalData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MXSignpostIntervalData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metrickit~1documentation~1MetricKit~1MXSignpostMetric/title",
+          "value": "MXSignpostMetric"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metrickit~1documentation~1MetricKit~1MXSignpostMetric/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MXSignpostMetric"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metrickit~1documentation~1MetricKit~1MXSignpostMetric/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MXSignpostMetric"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metrickit~1documentation~1MetricKit~1MXSignpostMetric~1signpostCategory/title",
+          "value": "signpostCategory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metrickit~1documentation~1MetricKit~1MXSignpostMetric~1signpostCategory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "signpostCategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metrickit~1documentation~1MetricKit~1MXMetric/title",
+          "value": "MXMetric"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metrickit~1documentation~1MetricKit~1MXMetric/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MXMetric"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metrickit~1documentation~1MetricKit~1MXMetric/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MXMetric"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metrickit~1documentation~1MetricKit~1MXMetricManager~1makeLogHandle(category:)/title",
+          "value": "makeLogHandleWithCategory:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metrickit~1documentation~1MetricKit~1MXMetricManager~1makeLogHandle(category:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "makeLogHandleWithCategory:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metrickit~1documentation~1MetricKit~1MXSignpostMetric~1signpostName/title",
+          "value": "signpostName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metrickit~1documentation~1MetricKit~1MXSignpostMetric~1signpostName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "signpostName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metrickit~1documentation~1MetricKit~1MXSignpostMetric~1signpostIntervalData/title",
+          "value": "signpostIntervalData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metrickit~1documentation~1MetricKit~1MXSignpostMetric~1signpostIntervalData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "signpostIntervalData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metrickit~1documentation~1MetricKit~1MXSignpostMetric~1totalCount/title",
+          "value": "totalCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metrickit~1documentation~1MetricKit~1MXSignpostMetric~1totalCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "totalCount"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metrickit/mxsignpostmetric"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metrickit/mxsignpostmetric"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

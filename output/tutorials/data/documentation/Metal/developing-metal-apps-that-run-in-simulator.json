@@ -1,0 +1,1777 @@
+{
+  "abstract": [
+    {
+      "text": "Prototype and test your Metal apps in Simulator.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/developing-metal-apps-that-run-in-simulator"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Developing Metal apps that run in Simulator"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Xcode, you can write iOS, tvOS, and visionOS apps that use Metal and test them in Simulator, gaining the benefits of hardware acceleration on the Mac during development of your app. If you use frameworks built on top of Metal, such as SceneKit, Core Animation, and UIKit, you also experience improved performance when testing your apps in Simulator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use Simulator to rapidly prototype and test application behavior, and to develop the basic rendering or compute capabilities of your app. Use a hardware device instead of Simulator to design your final Metal workflow. Design your app to run on actual hardware, and test on real devices to tune its performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Get-the-default-device-instance-in-Simulator",
+          "level": 3,
+          "text": "Get the default device instance in Simulator",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Simulator, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCreateSystemDefaultDevice()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to get the default device instance, just as you do when running on device in iOS, tvOS, or visionOS. This returns a device instance that connects to Simulator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Treat-Simulator-as-a-special-device",
+          "level": 3,
+          "text": "Treat Simulator as a special device",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Simulator doesn’t try to exactly simulate the GPU from the iOS, tvOS, or visionOS device you’re simulating. For example, if you’re simulating iPhone 15, Simulator doesn’t try to emulate the capabilities of an A16 Bionic graphics chip. Instead, Simulator translates any calls you make and directs them to the selected GPU on the host Mac.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sometimes, this translation means that Simulator may support fewer features or different implementation limits than an actual Apple GPU. Simulator provides a device instance with capabilities similar to an Apple family 2 GPU (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/apple2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), as described in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Miscellaneous/Conceptual/MetalProgrammingGuide/MetalFeatureSetTables/MetalFeatureSetTables.html#//apple_ref/doc/uid/TP40014221-CH13",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Because Simulator doesn’t support many of the features in more recent Apple family GPUs, consider whether using Simulator is worth the effort for your app based on the Metal features you use. Test the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance at runtime to determine exactly which features it supports and what its limits are.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In some cases, like those described in the sections below, Metal doesn’t provide an API that you can use to detect the limitations at runtime. In those situations, conditionalize your app’s behavior for Simulator, as the following code shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "#if os(macOS) || targetEnvironment(simulator)",
+                    "    msaaTextureDescriptor.sampleCount = 4",
+                    "    msaaTextureDescriptor.storageMode = MTLStorageMode.private",
+                    "#else",
+                    "    msaaTextureDescriptor.sampleCount = 2",
+                    "    msaaTextureDescriptor.storageMode = MTLStorageMode.shared",
+                    "#endif"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "#if TARGET_MACOS || TARGET_OS_SIMULATOR",
+                    "    msaaTextureDescriptor.sampleCount = 4;",
+                    "    msaaTextureDescriptor.storageMode = MTLStorageModePrivate;",
+                    "#else",
+                    "    msaaTextureDescriptor.sampleCount = 2;",
+                    "    msaaTextureDescriptor.storageMode = MTLStorageModeShared;",
+                    "#endif"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more code examples, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/supporting-simulator-in-a-metal-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Texture-limitations",
+          "level": 4,
+          "text": "Texture limitations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When working with textures in Simulator, follow these recommendations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a texture that shares storage with a buffer that uses private storage (see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/private",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") with the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer/makeTexture(descriptor:offset:bytesPerRow:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method. Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/minimumLinearTextureAlignment(for:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to determine the alignment requirements for the texture data; the alignment requirements are different in Simulator. When setting the texture’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/usage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property, you can’t include ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureUsage/renderTarget",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " as one of the uses.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create depth, stencil, and MSAA textures only with private storage modes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Don’t use a sample count of 2 for MSAA textures.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use only unified depth and stencil texture formats. Simulator doesn’t support separate depth and stencil formats.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Don’t use the following pixel formats: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/r8Unorm_srgb",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/b5g6r5Unorm",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/a1bgr5Unorm",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/abgr4Unorm",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgr5A1Unorm",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", or any XR10 or YUV formats.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Don’t render to textures with an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rgb9e5Float",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " format.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Don’t write to sRGB textures in Simulator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Constant-buffer-limitations",
+          "level": 4,
+          "text": "Constant buffer limitations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use buffers that use the constant address space as arguments to your shaders, follow these recommendations when running in Simulator:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Don’t create constant buffers larger than 64 kilobytes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When you set arguments for the render or compute command, align constant buffer offsets to 256 bytes. Generally, iOS requires an alignment of 4 bytes. This difference may mean that you might need to arrange your data differently when running in Simulator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Don’t use more than 14 constant buffers as arguments to a render or compute pipeline.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Other-limitations",
+          "level": 4,
+          "text": "Other limitations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additional limitations that require you to do things differently when running in Simulator include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can create heaps only with private storage modes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Simulator doesn’t support programmable blending. When creating render pipelines, you can’t read from color attachments in your fragment shader’s arguments. This may mean, for example, that you may have to perform additional render passes when running in Simulator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can’t use Xcode to analyze the memory footprint or measure performance when running in Simulator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Prototype-your-app-with-Simulator",
+          "level": 3,
+          "text": "Prototype your app with Simulator",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider the following guiding principles to use Simulator effectively in your Metal app development process:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use Simulator to prototype and iterate on your app’s workflow and behavior.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " For example, when prototyping a game, you only care about how the game plays, not whether the pixels match what renders on device or if the game uses the same approach to render its content. Similarly, in other Metal apps, you might need to iterate on your app’s user experience. Simulator lets you test app behavior without needing a device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Don’t use Simulator to design your iOS, tvOS, or visionOS rendering engine.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Simulator’s features differ significantly from Apple GPUs. To get best performance and battery life on devices with Apple GPUs, you need to use Metal features that Simulator doesn’t support. To develop, test, and profile those code paths, you need to run on a device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Decide whether to provide long-term support for Simulator.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Maintaining a separate Metal path for Simulator takes time and effort. A large game development team can have many game designers and engine developers. Supporting Simulator lets designers work in Simulator to perfect gameplay while engineers work with devices to design the game engine and tune its performance. On a smaller team, you might find that your time is better spent focusing on device support rather than devoting resources to keep your game running in Simulator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about Simulator, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/devices-and-simulator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information about the differences between testing on device and testing in Simulator, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/testing-in-simulator-versus-testing-on-hardware-devices",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Metal-Developer-Workflow-PageImage-card.png": {
+      "alt": null,
+      "identifier": "Metal-Developer-Workflow-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/713b476e42e48070365a2abf70bc49b0/Metal-Developer-Workflow-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e226f618b21dde7899eba5de3bd4641a/Metal-Developer-Workflow-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/Xcode/Analyzing-the-memory-usage-of-your-Metal-app": {
+      "abstract": [
+        {
+          "text": "Keep your app alive in the background by managing its memory footprint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/Analyzing-the-memory-usage-of-your-Metal-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing the memory usage of your Metal app",
+      "type": "topic",
+      "url": "/documentation/Xcode/Analyzing-the-memory-usage-of-your-Metal-app"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app": {
+      "abstract": [
+        {
+          "text": "Ensure consistent, smooth rendering by profiling your app’s frame time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing the performance of your Metal app",
+      "type": "topic",
+      "url": "/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/Metal-debugger": {
+      "abstract": [
+        {
+          "text": "Debug and profile your Metal workload with a GPU trace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/Metal-debugger",
+      "kind": "article",
+      "role": "article",
+      "title": "Metal debugger",
+      "type": "topic",
+      "url": "/documentation/Xcode/Metal-debugger"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/Metal-developer-workflows": {
+      "abstract": [
+        {
+          "text": "Locate and fix issues related to your app’s use of the Metal API and GPU functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/Metal-developer-workflows",
+      "images": [
+        {
+          "identifier": "Metal-Developer-Workflow-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Metal developer workflows",
+      "type": "topic",
+      "url": "/documentation/Xcode/Metal-developer-workflows"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/devices-and-simulator": {
+      "abstract": [
+        {
+          "text": "Configure and manage devices connected to your Mac or devices in Simulator and use them to run your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/devices-and-simulator",
+      "kind": "article",
+      "role": "article",
+      "title": "Devices and Simulator",
+      "type": "topic",
+      "url": "/documentation/Xcode/devices-and-simulator"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/testing-in-simulator-versus-testing-on-hardware-devices": {
+      "abstract": [
+        {
+          "text": "Review the differences between Simulator and hardware devices to determine which you should choose to test a scenario.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/testing-in-simulator-versus-testing-on-hardware-devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing in Simulator versus testing on hardware devices",
+      "type": "topic",
+      "url": "/documentation/Xcode/testing-in-simulator-versus-testing-on-hardware-devices"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer/makeTexture(descriptor:offset:bytesPerRow:)": {
+      "abstract": [
+        {
+          "text": "Creates a texture that shares its storage with the buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeTexture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLTextureDescriptor",
+          "text": "MTLTextureDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bytesPerRow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer/makeTexture(descriptor:offset:bytesPerRow:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newTextureWithDescriptor:offset:bytesPerRow:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeTexture(descriptor:offset:bytesPerRow:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer/maketexture(descriptor:offset:bytesperrow:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCreateSystemDefaultDevice()": {
+      "abstract": [
+        {
+          "text": "Returns the device instance Metal selects as the default.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCreateSystemDefaultDevice"
+        },
+        {
+          "kind": "text",
+          "text": "() -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDevice",
+          "text": "MTLDevice"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCreateSystemDefaultDevice()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCreateSystemDefaultDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCreateSystemDefaultDevice()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcreatesystemdefaultdevice()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice": {
+      "abstract": [
+        {
+          "text": "The main Metal interface to a GPU that apps use to draw graphics and run computations in parallel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDevice",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/minimumLinearTextureAlignment(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the minimum alignment the GPU device requires to create a linear texture from a buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minimumLinearTextureAlignment"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPixelFormat",
+          "text": "MTLPixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/minimumLinearTextureAlignment(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "minimumLinearTextureAlignmentForPixelFormat:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "minimumLinearTextureAlignment(for:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/minimumlineartexturealignment(for:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/apple2": {
+      "abstract": [
+        {
+          "text": "Represents the Apple family 2 GPU features that correspond to the Apple A8 GPUs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "apple2"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/apple2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLGPUFamilyApple2"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLGPUFamily.apple2",
+      "type": "topic",
+      "url": "/documentation/metal/mtlgpufamily/apple2"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/a1bgr5Unorm": {
+      "abstract": [
+        {
+          "text": "Packed 16-bit format with normalized unsigned integer color components: 5 bits each for BGR and 1 for alpha, packed into 16 bits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "a1bgr5Unorm"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/a1bgr5Unorm",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormatA1BGR5Unorm"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPixelFormat.a1bgr5Unorm",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/a1bgr5unorm"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/abgr4Unorm": {
+      "abstract": [
+        {
+          "text": "Packed 16-bit format with normalized unsigned integer color components: 4 bits each for ABGR, packed into 16 bits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "abgr4Unorm"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/abgr4Unorm",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormatABGR4Unorm"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPixelFormat.abgr4Unorm",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/abgr4unorm"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/b5g6r5Unorm": {
+      "abstract": [
+        {
+          "text": "Packed 16-bit format with normalized unsigned integer color components: 5 bits for blue, 6 bits for green, 5 bits for red, packed into 16 bits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "b5g6r5Unorm"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/b5g6r5Unorm",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormatB5G6R5Unorm"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPixelFormat.b5g6r5Unorm",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/b5g6r5unorm"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgr5A1Unorm": {
+      "abstract": [
+        {
+          "text": "Packed 16-bit format with normalized unsigned integer color components: 5 bits each for BGR and 1 for alpha, packed into 16 bits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bgr5A1Unorm"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgr5A1Unorm",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormatBGR5A1Unorm"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPixelFormat.bgr5A1Unorm",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/bgr5a1unorm"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/r8Unorm_srgb": {
+      "abstract": [
+        {
+          "text": "Ordinary format with one 8-bit normalized unsigned integer component with conversion between sRGB and linear space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "r8Unorm_srgb"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/r8Unorm_srgb",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormatR8Unorm_sRGB"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPixelFormat.r8Unorm_srgb",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/r8unorm_srgb"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rgb9e5Float": {
+      "abstract": [
+        {
+          "text": "Packed 32-bit format with floating-point color components: 9 bits each for RGB and 5 bits for an exponent shared by RGB, packed into 32 bits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rgb9e5Float"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rgb9e5Float",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormatRGB9E5Float"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPixelFormat.rgb9e5Float",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/rgb9e5float"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStorageMode/private": {
+      "abstract": [
+        {
+          "text": "The resource is only available to the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "`private`"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/private",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStorageModePrivate"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLStorageMode.private",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstoragemode/private"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/usage": {
+      "abstract": [
+        {
+          "text": "Options that determine how you can use the texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLTextureUsage",
+          "text": "MTLTextureUsage"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/usage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "usage"
+        }
+      ],
+      "role": "symbol",
+      "title": "usage",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor/usage"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureUsage/renderTarget": {
+      "abstract": [
+        {
+          "text": "An option for rendering to the texture in a render pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderTarget"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLTextureUsage",
+          "text": "MTLTextureUsage"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureUsage/renderTarget",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLTextureUsageRenderTarget"
+        }
+      ],
+      "role": "symbol",
+      "title": "renderTarget",
+      "type": "topic",
+      "url": "/documentation/metal/mtltextureusage/rendertarget"
+    },
+    "doc://com.apple.metal/documentation/Metal/capturing-metal-commands-programmatically": {
+      "abstract": [
+        {
+          "text": "Invoke Metal’s frame capture from your app, then save the resulting GPU trace to a file or view it in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/capturing-metal-commands-programmatically",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Capturing Metal Commands Programmatically",
+      "type": "topic",
+      "url": "/documentation/metal/capturing-metal-commands-programmatically"
+    },
+    "doc://com.apple.metal/documentation/Metal/gpu-counters-and-counter-sample-buffers": {
+      "abstract": [
+        {
+          "text": "Retrieve runtime data from a GPU device by sampling one or more of its counters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/gpu-counters-and-counter-sample-buffers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GPU Counters and Counter Sample Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/gpu-counters-and-counter-sample-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-your-games-graphics-performance-and-settings": {
+      "abstract": [
+        {
+          "text": "Fix performance glitches and develop default settings for smooth experiences on Apple platforms using the powerful suite of Metal development tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-your-games-graphics-performance-and-settings",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving your game’s graphics performance and settings",
+      "type": "topic",
+      "url": "/documentation/metal/improving-your-games-graphics-performance-and-settings"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-debugging-types": {
+      "abstract": [
+        {
+          "text": "Create capture managers and capture scopes, and review a GPU device’s log after it runs a command buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-debugging-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Debugging Types",
+      "type": "topic",
+      "url": "/documentation/metal/metal-debugging-types"
+    },
+    "doc://com.apple.metal/documentation/Metal/supporting-simulator-in-a-metal-app": {
+      "abstract": [
+        {
+          "text": "Configure alternative render paths in your Metal app to enable running your app in Simulator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/supporting-simulator-in-a-metal-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting Simulator in a Metal app",
+      "type": "topic",
+      "url": "/documentation/metal/supporting-simulator-in-a-metal-app"
+    },
+    "https://developer.apple.com/library/archive/documentation/Miscellaneous/Conceptual/MetalProgrammingGuide/MetalFeatureSetTables/MetalFeatureSetTables.html#//apple_ref/doc/uid/TP40014221-CH13": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Miscellaneous/Conceptual/MetalProgrammingGuide/MetalFeatureSetTables/MetalFeatureSetTables.html#//apple_ref/doc/uid/TP40014221-CH13",
+      "title": "Metal Feature Set Tables",
+      "titleInlineContent": [
+        {
+          "text": "Metal Feature Set Tables",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Miscellaneous/Conceptual/MetalProgrammingGuide/MetalFeatureSetTables/MetalFeatureSetTables.html#//apple_ref/doc/uid/TP40014221-CH13"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Developer-Tools",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/Xcode/Metal-developer-workflows",
+        "doc://com.apple.documentation/documentation/Xcode/Metal-debugger",
+        "doc://com.apple.metal/documentation/Metal/improving-your-games-graphics-performance-and-settings",
+        "doc://com.apple.metal/documentation/Metal/capturing-metal-commands-programmatically",
+        "doc://com.apple.metal/documentation/Metal/supporting-simulator-in-a-metal-app",
+        "doc://com.apple.documentation/documentation/Xcode/Analyzing-the-memory-usage-of-your-Metal-app",
+        "doc://com.apple.documentation/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app",
+        "doc://com.apple.metal/documentation/Metal/gpu-counters-and-counter-sample-buffers",
+        "doc://com.apple.metal/documentation/Metal/metal-debugging-types"
+      ],
+      "title": "Developer Tools"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Developer-Tools",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/improving-your-games-graphics-performance-and-settings",
+                "doc://com.apple.metal/documentation/Metal/capturing-metal-commands-programmatically",
+                "doc://com.apple.metal/documentation/Metal/supporting-simulator-in-a-metal-app",
+                "doc://com.apple.metal/documentation/Metal/gpu-counters-and-counter-sample-buffers",
+                "doc://com.apple.metal/documentation/Metal/metal-debugging-types"
+              ],
+              "title": "Developer Tools"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1b5g6r5Unorm/title",
+          "value": "MTLPixelFormatB5G6R5Unorm"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1b5g6r5Unorm/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormatB5G6R5Unorm"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCreateSystemDefaultDevice()/title",
+          "value": "MTLCreateSystemDefaultDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCreateSystemDefaultDevice()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCreateSystemDefaultDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1r8Unorm_srgb/title",
+          "value": "MTLPixelFormatR8Unorm_sRGB"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1r8Unorm_srgb/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormatR8Unorm_sRGB"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1bgr5A1Unorm/title",
+          "value": "MTLPixelFormatBGR5A1Unorm"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1bgr5A1Unorm/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormatBGR5A1Unorm"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1private/title",
+          "value": "MTLStorageModePrivate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1private/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStorageModePrivate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureUsage~1renderTarget/title",
+          "value": "MTLTextureUsageRenderTarget"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureUsage~1renderTarget/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTextureUsageRenderTarget"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1rgb9e5Float/title",
+          "value": "MTLPixelFormatRGB9E5Float"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1rgb9e5Float/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormatRGB9E5Float"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/title",
+          "value": "MTLDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1abgr4Unorm/title",
+          "value": "MTLPixelFormatABGR4Unorm"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1abgr4Unorm/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormatABGR4Unorm"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1usage/title",
+          "value": "usage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1usage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "usage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer~1makeTexture(descriptor:offset:bytesPerRow:)/title",
+          "value": "newTextureWithDescriptor:offset:bytesPerRow:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer~1makeTexture(descriptor:offset:bytesPerRow:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newTextureWithDescriptor:offset:bytesPerRow:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLGPUFamily~1apple2/title",
+          "value": "MTLGPUFamilyApple2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLGPUFamily~1apple2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLGPUFamilyApple2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1minimumLinearTextureAlignment(for:)/title",
+          "value": "minimumLinearTextureAlignmentForPixelFormat:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1minimumLinearTextureAlignment(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "minimumLinearTextureAlignmentForPixelFormat:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1a1bgr5Unorm/title",
+          "value": "MTLPixelFormatA1BGR5Unorm"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1a1bgr5Unorm/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormatA1BGR5Unorm"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/developing-metal-apps-that-run-in-simulator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/developing-metal-apps-that-run-in-simulator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

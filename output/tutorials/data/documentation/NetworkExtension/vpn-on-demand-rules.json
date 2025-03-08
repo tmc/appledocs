@@ -1,0 +1,885 @@
+{
+  "abstract": [
+    {
+      "text": "Set up VPN On Demand.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkextension/documentation/NetworkExtension",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/app-proxy-provider"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkextension/documentation/NetworkExtension",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/packet-tunnel-provider"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkextension/documentation/NetworkExtension",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/personal-vpn"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.networkextension/documentation/NetworkExtension/vpn-on-demand-rules"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Network Extension"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "VPN On Demand Rules"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "VPN On Demand allows the system to automatically start or stop a VPN connection based on various criteria. For example, you can use VPN On Demand to configure an iPhone to start a VPN connection when it’s on Wi-Fi and stop the connection when it’s on cellular. Or, you can start the VPN connection when an app tries to connect to a specific service that’s only available via VPN.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see “VPN On Demand” in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/deployment/welcome/web",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension": {
+      "abstract": [
+        {
+          "text": "Customize and extend core networking features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network Extension",
+      "type": "topic",
+      "url": "/documentation/networkextension"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProviderManager": {
+      "abstract": [
+        {
+          "text": "An object to create and manage the app proxy provider’s VPN configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyProviderManager"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProviderManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyProviderManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppProxyProviderManager",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyprovidermanager"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppRule": {
+      "abstract": [
+        {
+          "text": "The identity of an app whose traffic is to be routed through the tunnel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppRule"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppRule",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppRule"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppRule",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapprule"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEOnDemandRule": {
+      "abstract": [
+        {
+          "text": "A base class shared by all VPN On Demand rules.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEOnDemandRule"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEOnDemandRule",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEOnDemandRule"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEOnDemandRule",
+      "type": "topic",
+      "url": "/documentation/networkextension/neondemandrule"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEOnDemandRuleConnect": {
+      "abstract": [
+        {
+          "text": "A VPN On Demand rule that connects the VPN.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEOnDemandRuleConnect"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEOnDemandRuleConnect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEOnDemandRuleConnect"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEOnDemandRuleConnect",
+      "type": "topic",
+      "url": "/documentation/networkextension/neondemandruleconnect"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEOnDemandRuleDisconnect": {
+      "abstract": [
+        {
+          "text": "A VPN On Demand rule that disconnects the VPN.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEOnDemandRuleDisconnect"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEOnDemandRuleDisconnect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEOnDemandRuleDisconnect"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEOnDemandRuleDisconnect",
+      "type": "topic",
+      "url": "/documentation/networkextension/neondemandruledisconnect"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEOnDemandRuleEvaluateConnection": {
+      "abstract": [
+        {
+          "text": "A VPN On Demand rule that evaluate the app’s connection to determine whether to run its action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEOnDemandRuleEvaluateConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEOnDemandRuleEvaluateConnection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEOnDemandRuleEvaluateConnection"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEOnDemandRuleEvaluateConnection",
+      "type": "topic",
+      "url": "/documentation/networkextension/neondemandruleevaluateconnection"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEOnDemandRuleIgnore": {
+      "abstract": [
+        {
+          "text": "A VPN On Demand rule that doesn’t change the status of the VPN.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEOnDemandRuleIgnore"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEOnDemandRuleIgnore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEOnDemandRuleIgnore"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEOnDemandRuleIgnore",
+      "type": "topic",
+      "url": "/documentation/networkextension/neondemandruleignore"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderManager": {
+      "abstract": [
+        {
+          "text": "An object to create and manage the tunnel provider’s VPN configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NETunnelProviderManager"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NETunnelProviderManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NETunnelProviderManager",
+      "type": "topic",
+      "url": "/documentation/networkextension/netunnelprovidermanager"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderProtocol": {
+      "abstract": [
+        {
+          "text": "Configuration parameters for a VPN tunnel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NETunnelProviderProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NETunnelProviderProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "NETunnelProviderProtocol",
+      "type": "topic",
+      "url": "/documentation/networkextension/netunnelproviderprotocol"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNManager": {
+      "abstract": [
+        {
+          "text": "An object to create and manage a Personal VPN configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEVPNManager"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEVPNManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEVPNManager",
+      "type": "topic",
+      "url": "/documentation/networkextension/nevpnmanager"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/app-proxy-provider": {
+      "abstract": [
+        {
+          "text": "Implement a VPN client for a flow-oriented, custom VPN protocol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/app-proxy-provider",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App proxy provider",
+      "type": "topic",
+      "url": "/documentation/networkextension/app-proxy-provider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/packet-tunnel-provider": {
+      "abstract": [
+        {
+          "text": "Implement a VPN client for a packet-oriented, custom VPN protocol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/packet-tunnel-provider",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Packet tunnel provider",
+      "type": "topic",
+      "url": "/documentation/networkextension/packet-tunnel-provider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/personal-vpn": {
+      "abstract": [
+        {
+          "text": "Create and manage a VPN configuration that uses one of the built-in VPN protocols (IPsec or IKEv2).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/personal-vpn",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Personal VPN",
+      "type": "topic",
+      "url": "/documentation/networkextension/personal-vpn"
+    },
+    "https://support.apple.com/guide/deployment/welcome/web": {
+      "identifier": "https://support.apple.com/guide/deployment/welcome/web",
+      "title": "Apple Platform Deployment Guide",
+      "titleInlineContent": [
+        {
+          "text": "Apple Platform Deployment Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/deployment/welcome/web"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/personal-vpn",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/packet-tunnel-provider",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/app-proxy-provider"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "VPN-configuration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProviderManager",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderManager",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNManager",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderProtocol",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppRule"
+      ],
+      "title": "VPN configuration"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Settings",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEOnDemandRuleConnect",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEOnDemandRuleDisconnect",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEOnDemandRuleIgnore",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEOnDemandRuleEvaluateConnection",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEOnDemandRule"
+      ],
+      "title": "Settings"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Settings",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEOnDemandRuleConnect",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEOnDemandRuleDisconnect",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEOnDemandRuleIgnore",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEOnDemandRuleEvaluateConnection",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEOnDemandRule"
+              ],
+              "title": "Settings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/personal-vpn",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/packet-tunnel-provider",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/app-proxy-provider"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "VPN-configuration",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProviderManager",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderManager",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNManager",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderProtocol",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppRule"
+              ],
+              "title": "VPN configuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEOnDemandRuleDisconnect/title",
+          "value": "NEOnDemandRuleDisconnect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEOnDemandRuleDisconnect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEOnDemandRuleDisconnect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEOnDemandRuleDisconnect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEOnDemandRuleDisconnect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProviderManager/title",
+          "value": "NEAppProxyProviderManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProviderManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyProviderManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProviderManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyProviderManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEOnDemandRuleIgnore/title",
+          "value": "NEOnDemandRuleIgnore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEOnDemandRuleIgnore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEOnDemandRuleIgnore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEOnDemandRuleIgnore/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEOnDemandRuleIgnore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProviderManager/title",
+          "value": "NETunnelProviderManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProviderManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETunnelProviderManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProviderManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETunnelProviderManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNManager/title",
+          "value": "NEVPNManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEVPNManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEVPNManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEOnDemandRule/title",
+          "value": "NEOnDemandRule"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEOnDemandRule/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEOnDemandRule"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEOnDemandRule/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEOnDemandRule"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEOnDemandRuleEvaluateConnection/title",
+          "value": "NEOnDemandRuleEvaluateConnection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEOnDemandRuleEvaluateConnection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEOnDemandRuleEvaluateConnection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEOnDemandRuleEvaluateConnection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEOnDemandRuleEvaluateConnection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEOnDemandRuleConnect/title",
+          "value": "NEOnDemandRuleConnect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEOnDemandRuleConnect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEOnDemandRuleConnect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEOnDemandRuleConnect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEOnDemandRuleConnect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppRule/title",
+          "value": "NEAppRule"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppRule/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppRule"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppRule/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppRule"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProviderProtocol/title",
+          "value": "NETunnelProviderProtocol"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProviderProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETunnelProviderProtocol"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProviderProtocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETunnelProviderProtocol"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/networkextension/vpn-on-demand-rules"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/networkextension/vpn-on-demand-rules"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

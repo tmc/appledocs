@@ -1,0 +1,696 @@
+{
+  "abstract": [
+    {
+      "text": "Configure custom 3D models so ARKit’s human body-tracking feature can control them.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+        "doc://com.apple.arkit/documentation/ARKit/content-anchors"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/rigging-a-model-for-motion-capture"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Rigging a Model for Motion Capture"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit recognizes and tracks a person’s movements using an iOS device’s rear camera. RealityKit applies the detected motion to a 3D character model in real time, allowing the person on camera to control the movement of the 3D model, much like a virtual puppet. You can try out this feature by downloading sample code in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/capturing-body-motion-in-3d",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-Your-Model",
+          "level": 3,
+          "text": "Configure Your Model",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can configure your own models so RealityKit’s puppeteering functionality can control them. Your character model must be a skeletal mesh exported as a USDZ file and must conform to a specific joint hierarchy and naming convention. Models that don’t conform may behave unexpectedly or fail to work at all. Learn more about the specific joint hierarchy and required names for puppeteering models at ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/validating-a-model-for-motion-capture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Download-the-Robot-Model",
+          "level": 3,
+          "text": "Download the Robot Model",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The easiest way to configure your model for puppeteering is to rig it to the skeleton from the robot model in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/capturing-body-motion-in-3d",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample. By using the robot model’s skeleton to rig your own model, you’ll start with the correct bone names and hierarchy. You can download a zip file containing both the USDZ and FBX versions of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/sample-code/ar/Biped-Robot.zip",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you already have a rigged humanoid model and prefer to modify your existing skeleton to match ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/RealityKit",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "‘s expected format instead of rebinding your model to the provided skeleton, you can find detailed information on the joint names and hierarchy required by ARKit’s motion capture functionality in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.arkit/documentation/ARKit/validating-a-model-for-motion-capture",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Import-the-Skeleton-into-Your-3D-Modeling-Program",
+          "level": 3,
+          "text": "Import the Skeleton into Your 3D-Modeling Program",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your 3D-modeling software package (such as Maya, Cinema4D, or Modo), import the provided skeleton and the custom mesh model that you want to use with ARKit’s Motion Capture functionality. You should model your mesh in a standard T-pose.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s very important that you configure your import settings so that they don’t change the orientation of the imported character or any of the skeleton’s individual joints. After import, the character should be oriented facing the +Z axis, with the top of its head oriented toward the +Y axis, and the character’s left hand pointing along the +X axis. Your scene should also be configured with +Y as the up axis. In some software packages, this orientation requires changing the default scene configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3588329",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Some 3D software packages predefine which axis runs the length of the bone. You may not be able to export a compatible model from these programs without additional scripting or conversion work.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you’ve imported the robot character file, unbind and delete the robot mesh. You only need the skeleton from the imported file, since you’ll be binding your own mesh to it. Make sure you don’t change the joint names or relationships, and hang your custom geometry to the same node as the he skeleton and your custom geometry must be parented in separate hierarchies in order to export a valid USDZ for puppeteering. There should be no geometry descending from joints, and no joints descending from geometry.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Match-the-T-Pose-Rest-Position",
+          "level": 3,
+          "text": "Match the T-Pose Rest Position",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, align your mesh to the imported skeleton, then scale, translate, and rotate it until it matches the imported skeleton as closely as you can get it. Finally, freeze transformations on the mesh.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3588331",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finish matching the mesh and armature by moving any joints of the armature that don’t line up correctly with the mesh, making sure that the X axis still points down the length of the bone after you’re done moving it. Many 3D software packages include tools to automatically re-orient joints based on the location of their children. If a re-orienting feature is available in your software package, use it when you’re done moving joints into new locations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The Motion Capture feature doesn’t retarget motion before applying it to your model. If your custom character’s proportions differ substantially from the provided skeleton, the puppeteering functionality may not perform as expected unless you adjust for the differences in your own code.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Bind-Your-Mesh-to-the-Imported-Skeleton",
+          "level": 3,
+          "text": "Bind Your Mesh to the Imported Skeleton",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you’ve aligned your mesh with the skeleton, bind your mesh to it. For best performance, you should use no more than four skin influences per vertex. You character should be modeled in a T-pose, your scene should contain only one bind pose, and the rotational values of each joint in your hierarchy should match the values in the provided example skeleton.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Export-the-Model",
+          "level": 3,
+          "text": "Export the Model",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you’ve tested your bound mesh and are happy with your vertex weights and joint deformations, export your model to a USDZ file. If your 3D package doesn’t support exporting directly to USDZ, you can export as a GLTF or USD file and then use Reality Converter to convert that file to USDZ. Reality Converter will also convert FBX files if you manually install the Autodesk FBX Python SDK available from Autodesk’s website.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode automatically configures USDZ files imported into an AR application target and adds them to your app bundle when building so they become available to load at runtime.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on loading and using the model once it’s in your Xcode project, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/capturing-body-motion-in-3d",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample code project, which demonstrates how to load and display a skeletal model contained in a USDZ file as a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/BodyTrackedEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARBodyAnchor": {
+      "abstract": [
+        {
+          "text": "An anchor that tracks the position and movement of a human body in the rear-facing camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARBodyAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARBodyAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARBodyAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARBodyAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/arbodyanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios": {
+      "abstract": [
+        {
+          "text": "Integrate iOS device camera and motion features to produce augmented reality experiences in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in iOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-ios"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/capturing-body-motion-in-3d": {
+      "abstract": [
+        {
+          "text": "Track a person in the physical environment and visualize their motion by applying the same body movements to a virtual character.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/capturing-body-motion-in-3d",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Capturing Body Motion in 3D",
+      "type": "topic",
+      "url": "/documentation/arkit/capturing-body-motion-in-3d"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/content-anchors": {
+      "abstract": [
+        {
+          "text": "Identify items in the physical environment, including planar surfaces, images, physical objects, body positions, and faces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/content-anchors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Content Anchors",
+      "type": "topic",
+      "url": "/documentation/arkit/content-anchors"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/validating-a-model-for-motion-capture": {
+      "abstract": [
+        {
+          "text": "Verify that your character model matches ARKit’s Motion Capture requirements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/validating-a-model-for-motion-capture",
+      "kind": "article",
+      "role": "article",
+      "title": "Validating a Model for Motion Capture",
+      "type": "topic",
+      "url": "/documentation/arkit/validating-a-model-for-motion-capture"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/RealityKit"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/BodyTrackedEntity": {
+      "abstract": [
+        {
+          "text": "An entity used to animate a virtual character in an AR scene by tracking a real person.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BodyTrackedEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/BodyTrackedEntity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BodyTrackedEntity",
+      "type": "topic",
+      "url": "/documentation/RealityKit/BodyTrackedEntity"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/sample-code/ar/Biped-Robot.zip": {
+      "identifier": "https://developer.apple.com/sample-code/ar/Biped-Robot.zip",
+      "title": "robot character",
+      "titleInlineContent": [
+        {
+          "text": "robot character",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/sample-code/ar/Biped-Robot.zip"
+    },
+    "media-3588329": {
+      "alt": "Illustration of two human-shaped robots, one facing forward in T-pose and the other in profile. For both images, the correct orientation is indicated with a right angle graph in which +Y represents up, +Z represents forward, and +X represents the character’s left.",
+      "identifier": "media-3588329",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a7a7f0c74c8b284ad33dbb3ccdbfb7a4/media-3588329@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/39647153d3ce791686cbd9f97fd3c317/media-3588329~dark@2x.png"
+        }
+      ]
+    },
+    "media-3588331": {
+      "alt": "Illustration showing a character in a T-pose configuration.",
+      "identifier": "media-3588331",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8374dd9a42cebd94032883bdf6651811/media-3588331@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8374dd9a42cebd94032883bdf6651811/media-3588331~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Body-Position-Tracking",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/capturing-body-motion-in-3d",
+        "doc://com.apple.arkit/documentation/ARKit/validating-a-model-for-motion-capture",
+        "doc://com.apple.arkit/documentation/ARKit/ARBodyAnchor"
+      ],
+      "title": "Body Position Tracking"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Body-Position-Tracking",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/capturing-body-motion-in-3d",
+                "doc://com.apple.arkit/documentation/ARKit/validating-a-model-for-motion-capture",
+                "doc://com.apple.arkit/documentation/ARKit/ARBodyAnchor"
+              ],
+              "title": "Body Position Tracking"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARBodyAnchor/title",
+          "value": "ARBodyAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARBodyAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARBodyAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARBodyAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARBodyAnchor"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/rigging-a-model-for-motion-capture"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/rigging-a-model-for-motion-capture"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

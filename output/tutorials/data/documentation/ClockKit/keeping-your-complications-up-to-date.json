@@ -1,0 +1,2637 @@
+{
+  "abstract": [
+    {
+      "text": "Replace or extend the data in your complication’s timeline.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.clockkit/documentation/ClockKit",
+        "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.clockkit/documentation/ClockKit/keeping-your-complications-up-to-date"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ClockKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Keeping your complications up to date"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you have new data for your watch app, you can replace or extend your complication’s timeline. Call one of the following complication server methods to update the timeline:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Deletes and replaces your entire timeline.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationServer/reloadTimeline(for:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Adds data to the end of your existing timeline.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationServer/extendTimeline(for:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In either case, ClockKit instantiates your complication’s data source and requests the new data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A watchOS app provides several opportunities to update your complication’s timeline. No matter what method you use, keep your watchOS app, appʼs snapshot, notifications, and complications in a consistent state. Also, make sure to update your complication when you update your app’s data. If you receive a push notification with new data, update the app and your complication, and schedule a new screenshot.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If the system launches your app in the background (for example, in response to a background download, task, or HealthKit observer query), your complication server’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationServer/activeComplications",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property may not contain a valid value. If this property is ",
+                  "type": "text"
+                },
+                {
+                  "code": "nil",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the server is still connecting to the active complications on the watch face. For more information on safely accessing the list of active complications, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationServer/activeComplications",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Update-When-Your-App-Runs",
+          "level": 3,
+          "text": "Update When Your App Runs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user’s actions affect your complications, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationServer/reloadTimeline(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationServer/extendTimeline(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to update them. You can also use active runtime as an opportunity to refresh the complications, even when the user is doing something else. For example, you could try to quickly download data or transfer data from the iOS device while your app is actively running.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t rely on this strategy as the primary way to update your data. You can’t predict when the user will launch your app, and any download, transfer, or update actions that don’t finish while the app is running will need to schedule background tasks. Still, taking advantage of these runtime opportunities can keep your app and complications refreshed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-Background-URL-Sessions",
+          "level": 3,
+          "text": "Use Background URL Sessions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use background URL sessions to download updated data from a server. The system triggers a background task after the download completes, and you can use this task to set up your next download, keeping your app up to date. The system automatically throttles the downloads as needed to preserve battery life. To schedule a background URL session, start by creating a background session configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let config = URLSessionConfiguration.background(withIdentifier: myRequestID)",
+            "config.isDiscretionary = true",
+            "config.sessionSendsLaunchEvents = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411552-isdiscretionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " tells the system to wait for optimal conditions to perform the transfer, such as when the device is plugged in or connected to Wi-Fi. Setting ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1617174-sessionsendslaunchevents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " tells the system to launch your app when the download task completes. This is the default for background configurations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, create the session and use the session to schedule a background download task.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let urlSession = URLSession(configuration: config,",
+            "                            delegate: self,",
+            "                            delegateQueue: nil)",
+            "",
+            "let backgroundTask = urlSession.downloadTask(with: url)",
+            "backgroundTask.earliestBeginDate = Date().addingTimeInterval(15 * 60)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Be sure to assign a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the session. Setting the ",
+              "type": "text"
+            },
+            {
+              "code": "delegateQueue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " causes the system to call the delegate methods on an anonymous background thread. Also, use the tasks’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/2873413-earliestbegindate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to schedule the download for the future. If your app’s data isn’t currently up to date, you can schedule the initial download to begin immediately, but subsequent updates should be scheduled for a future date.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system limits the number of background download tasks you can perform; however, if you have an active complication on the watch face, you can safely schedule four download tasks an hour.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/1411121-resume",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to schedule the download task.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "backgroundTask.resume()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The download continues, even if your app isn’t active. When the download completes, the system launches your app, if necessary. If your app terminated, you need to reconnect to the URL session to receive the download.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To reconnect, create a new URL session using the same configuration identifier. The system then calls that session delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate/1411575-urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app is running in the background, the system also calls your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKExtensionDelegate/handle(_:)-92ulv",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, passing a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKURLSessionRefreshBackgroundTask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.  It gives your app a maximum of 4 seconds of CPU time which you can use over 15 seconds of wall time. In general, your app should request the next background download task before it begins processing the downloaded data—just in case those tasks exceed the time limits.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the download delegate method to access the data and update your app and complication, then call the background task’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKRefreshBackgroundTask/setTaskCompletedWithSnapshot(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and pass true to update your app’s snapshot.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system calls the following delegate methods in this order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your app is running in the background, the system calls your extension delegate’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKExtensionDelegate/handle(_:)-92ulv",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method. Be sure to save the completion handler.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the download succeeds, the system calls your session delegate’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate/1411575-urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method. Process the downloaded data here.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Regardless, the system calls your URL session delegate’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1411610-urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method. If you are running in the background, be sure to call your background task’s completion handler here.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The system calls the URL session delegate method whether your app is running in the background or the foreground; however, the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKExtensionDelegate/handle(_:)-92ulv",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method is only called when your app is running in the background.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKURLSessionRefreshBackgroundTask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-Background-Observer-Queries",
+          "level": 3,
+          "text": "Use Background Observer Queries",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In watchOS 8 and later, HealthKit supports background observer queries. Background observer queries share a budget with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKApplicationRefreshBackgroundTask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " tasks. Your app can receive four updates (or background app refresh tasks) an hour, as long as it has a complication on the active watch face.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start by enabling the HealthKit capability’s background delivery.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3897474",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, register to recieve updates in the background by calling the HealthKit store’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/healthkit/hkhealthstore/1614175-enablebackgrounddelivery",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create the caffeine type.",
+            "let caffeineType = HKObjectType.quantityType(forIdentifier: .dietaryCaffeine)!",
+            "",
+            "// Set up the background delivery rate.",
+            "store.enableBackgroundDelivery(for: caffeineType,",
+            "                                  frequency: .immediate) { success, error in",
+            "    guard success else {",
+            "        self.logger.error(\"Unable to set up background delivery from HealthKit: \\(error!.localizedDescription)\")",
+            "        fatalError()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then create and execute an observer query.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set up the observer query.",
+            "backgroundObserver =",
+            "HKObserverQuery(sampleType: caffeineType, predicate: nil)",
+            "{ (query: HKObserverQuery, completionHandler: @escaping () -> Void, error: Error?) in",
+            "    // Query for actual updates here.",
+            "    // When you're done processing the changes, be sure to call the completion handler.",
+            "    completionHandler()",
+            "}",
+            "",
+            "// If you successfully created the query,  execute it.",
+            "if let query = backgroundObserver {",
+            "    store.execute(query)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you have an active observer query, HealthKit wakes your app when the store receives updates to samples matching the query. HealthKit notifies your app at most once per time period defined by the frequency you specified when registering.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure that your app recieves updates, create and execute the observer query soon after your app launches. For example, in your extension delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKExtensionDelegate/applicationDidFinishLaunching()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/HealthKit/executing-observer-queries",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Schedule-Background-Tasks",
+          "level": 3,
+          "text": "Schedule Background Tasks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can schedule background tasks to update your watchOS content periodically. This strategy works best when your data changes at predictable times. Call your extension’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKExtension/scheduleBackgroundRefresh(withPreferredDate:userInfo:scheduledCompletion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to trigger a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKApplicationRefreshBackgroundTask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", in which the system launches your app in the background and calls your extension delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKExtensionDelegate/handle(_:)-92ulv",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During the background task, you can gather updated data from the device. For example, you could perform a HealthKit query for new samples, or check the user’s current location using Core Location. When you’re done, call the background task’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKRefreshBackgroundTask/setTaskCompletedWithSnapshot(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and pass true to update your app’s snapshot.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system carefully budgets background refresh tasks. You can schedule only one refresh task at a time. If you have a complication on the active watch face, you can safely schedule four refresh tasks a hour.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Also, when the system call your extension delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKExtensionDelegate/handle(_:)-92ulv",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, it gives your app a maximum of 4 seconds of CPU processing time, which you can use over 15 seconds of elapsed real time. In general, set up your requests for the next background task before you begin requesting and processing data—just in case those tasks exceed the time limits.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Send-Push-Notifications",
+          "level": 3,
+          "text": "Send Push Notifications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Push notifications let you process data on your server, and update the watch as soon as the data is available. This update method allows you to perform complex, time-consuming data-gathering tasks that wouldn’t otherwise be practical on Apple Watch. It also lets you send an update as soon as the data is available, instead of waiting for a periodic refresh task.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To update your watchOS content from your server, send a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PushKit/PKPushType/complication",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " push notification. For watchOS 6 and later, send the push notification directly to Apple Watch. For watchOS 5 and earlier, you must send it to the iOS companion instead. The system limits you to 50 push notifications per day. For more information on setting up and sending push notifications, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PushKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Transfer-Data-from-iOS",
+          "level": 3,
+          "text": "Transfer Data from iOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, if your watchOS app has a companion iOS app, you can gather the data in the iOS app, and then transmit that data to Apple Watch. However, this update strategy tethers the watch to the companion iPhone. You can’t update the complication if the user ventures out without their phone, a circumstance that can result in out-of-date or inaccurate complications. Also, like push notifications, the system limits you to 50 complication transfers a day.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on sending updates from the phone, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession/transferCurrentComplicationUserInfo(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.clockkit/documentation/ClockKit": {
+      "abstract": [
+        {
+          "text": "Display app-specific data on the clock face.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClockKit",
+      "type": "topic",
+      "url": "/documentation/clockkit"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationServer/activeComplications": {
+      "abstract": [
+        {
+          "text": "The active complications for the current app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeComplications"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplication",
+          "text": "CLKComplication"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationServer/activeComplications",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activeComplications"
+        }
+      ],
+      "role": "symbol",
+      "title": "activeComplications",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationserver/activecomplications"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationServer/extendTimeline(for:)": {
+      "abstract": [
+        {
+          "text": "Asks the system to extend the data in your complication’s timeline.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "extendTimeline"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplication",
+          "text": "CLKComplication"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationServer/extendTimeline(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "extendTimelineForComplication:"
+        }
+      ],
+      "role": "symbol",
+      "title": "extendTimeline(for:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationserver/extendtimeline(for:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationServer/reloadTimeline(for:)": {
+      "abstract": [
+        {
+          "text": "Invalidates your existing timeline data and triggers an update session to reload it.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reloadTimeline"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplication",
+          "text": "CLKComplication"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationServer/reloadTimeline(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reloadTimelineForComplication:"
+        }
+      ],
+      "role": "symbol",
+      "title": "reloadTimeline(for:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationserver/reloadtimeline(for:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/adding-text-to-a-complication": {
+      "abstract": [
+        {
+          "text": "Use text in SwiftUI complications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/adding-text-to-a-complication",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding text to a complication",
+      "type": "topic",
+      "url": "/documentation/clockkit/adding-text-to-a-complication"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/building-complications-with-swiftui": {
+      "abstract": [
+        {
+          "text": "Design the appearance of a graphic complication using SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/building-complications-with-swiftui",
+      "kind": "article",
+      "role": "article",
+      "title": "Building complications with SwiftUI",
+      "type": "topic",
+      "url": "/documentation/clockkit/building-complications-with-swiftui"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry": {
+      "abstract": [
+        {
+          "text": "Package your app-specific data into a template and create a timeline entry for that template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a timeline entry",
+      "type": "topic",
+      "url": "/documentation/clockkit/creating-a-timeline-entry"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/creating-complications-for-your-watchos-app": {
+      "abstract": [
+        {
+          "text": "Set up and implement complications for your watchOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/creating-complications-for-your-watchos-app",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating complications for your watchOS app",
+      "type": "topic",
+      "url": "/documentation/clockkit/creating-complications-for-your-watchos-app"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/declaring-complications-for-your-app": {
+      "abstract": [
+        {
+          "text": "Define the complications that your app supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/declaring-complications-for-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Declaring complications for your app",
+      "type": "topic",
+      "url": "/documentation/clockkit/declaring-complications-for-your-app"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols": {
+      "abstract": [],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated articles and symbols",
+      "type": "topic",
+      "url": "/documentation/clockkit/deprecated-articles-and-symbols"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/displaying-progress-views-and-gauges": {
+      "abstract": [
+        {
+          "text": "Add rich visual data to your SwiftUI complications with progress views and gauges.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/displaying-progress-views-and-gauges",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying progress views and gauges",
+      "type": "topic",
+      "url": "/documentation/clockkit/displaying-progress-views-and-gauges"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/loading-future-timeline-events": {
+      "abstract": [
+        {
+          "text": "Preserve battery life and improve performance on the watch by providing a timeline with expected data and updates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/loading-future-timeline-events",
+      "kind": "article",
+      "role": "article",
+      "title": "Loading future timeline events",
+      "type": "topic",
+      "url": "/documentation/clockkit/loading-future-timeline-events"
+    },
+    "doc://com.apple.documentation/documentation/HealthKit/executing-observer-queries": {
+      "abstract": [
+        {
+          "text": "Create and run observer queries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HealthKit/executing-observer-queries",
+      "kind": "article",
+      "role": "article",
+      "title": "Executing Observer Queries",
+      "type": "topic",
+      "url": "/documentation/HealthKit/executing-observer-queries"
+    },
+    "doc://com.apple.documentation/documentation/PushKit": {
+      "abstract": [
+        {
+          "text": "Respond to push notifications related to your app’s complications, file providers, and VoIP services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PushKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PushKit",
+      "type": "topic",
+      "url": "/documentation/PushKit"
+    },
+    "doc://com.apple.documentation/documentation/PushKit/PKPushType/complication": {
+      "abstract": [
+        {
+          "text": "A push type for watchOS complications.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "complication"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@PKPushType",
+          "text": "PKPushType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PushKit/PKPushType/complication",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "complication",
+      "type": "topic",
+      "url": "/documentation/PushKit/PKPushType/complication"
+    },
+    "doc://com.apple.documentation/documentation/WatchConnectivity": {
+      "abstract": [
+        {
+          "text": "Implement two-way communication between an iOS app and its paired watchOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Watch Connectivity",
+      "type": "topic",
+      "url": "/documentation/WatchConnectivity"
+    },
+    "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession/transferCurrentComplicationUserInfo(_:)": {
+      "abstract": [
+        {
+          "text": "Sends complication-related data from the iOS app to the WatchKit extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transferCurrentComplicationUserInfo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "] = [:]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WCSessionUserInfoTransfer",
+          "text": "WCSessionUserInfoTransfer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession/transferCurrentComplicationUserInfo(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transferCurrentComplicationUserInfo(_:)",
+      "type": "topic",
+      "url": "/documentation/WatchConnectivity/WCSession/transferCurrentComplicationUserInfo(_:)"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKApplicationRefreshBackgroundTask": {
+      "abstract": [
+        {
+          "text": "A task that updates your app’s state in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKApplicationRefreshBackgroundTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKApplicationRefreshBackgroundTask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKApplicationRefreshBackgroundTask",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKApplicationRefreshBackgroundTask"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKExtension/scheduleBackgroundRefresh(withPreferredDate:userInfo:scheduledCompletion:)": {
+      "abstract": [
+        {
+          "text": "Schedules a background task to refresh the app’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheduleBackgroundRefresh"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withPreferredDate"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "preferredFireDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSSecureCoding",
+          "text": "NSSecureCoding"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "scheduledCompletion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKExtension/scheduleBackgroundRefresh(withPreferredDate:userInfo:scheduledCompletion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scheduleBackgroundRefresh(withPreferredDate:userInfo:scheduledCompletion:)",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKExtension/scheduleBackgroundRefresh(withPreferredDate:userInfo:scheduledCompletion:)"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKExtensionDelegate/applicationDidFinishLaunching()": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the launch process is almost done and the extension is almost ready to run.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationDidFinishLaunching"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKExtensionDelegate/applicationDidFinishLaunching()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applicationDidFinishLaunching()",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKExtensionDelegate/applicationDidFinishLaunching()"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKExtensionDelegate/handle(_:)-92ulv": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the app has received one or more background tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "backgroundTasks"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKRefreshBackgroundTask",
+          "text": "WKRefreshBackgroundTask"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKExtensionDelegate/handle(_:)-92ulv",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handle(_:)",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKExtensionDelegate/handle(_:)-92ulv"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKRefreshBackgroundTask/setTaskCompletedWithSnapshot(_:)": {
+      "abstract": [
+        {
+          "text": "Marks the task as complete and indicates whether the system should take a new snapshot of the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTaskCompletedWithSnapshot"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "refreshSnapshot"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKRefreshBackgroundTask/setTaskCompletedWithSnapshot(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setTaskCompletedWithSnapshot(_:)",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKRefreshBackgroundTask/setTaskCompletedWithSnapshot(_:)"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKURLSessionRefreshBackgroundTask": {
+      "abstract": [
+        {
+          "text": "A task that responds to background URL sessions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKURLSessionRefreshBackgroundTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKURLSessionRefreshBackgroundTask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKURLSessionRefreshBackgroundTask",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKURLSessionRefreshBackgroundTask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background": {
+      "abstract": [
+        {
+          "text": "Create tasks that download files while your app is inactive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background",
+      "kind": "article",
+      "role": "article",
+      "title": "Downloading files in the background",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/downloading_files_in_the_background"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411552-isdiscretionary": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether background tasks can be scheduled at the discretion of the system for optimal performance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDiscretionary"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411552-isdiscretionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isDiscretionary",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration/1411552-isdiscretionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1617174-sessionsendslaunchevents": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app should be resumed or launched in the background when transfers finish.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "sessionSendsLaunchEvents"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1617174-sessionsendslaunchevents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sessionSendsLaunchEvents",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration/1617174-sessionsendslaunchevents"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that defines methods that URL session instances call on their delegates to handle task-level events specific to download tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSessionDownloadDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionDownloadDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondownloaddelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate/1411575-urlsession": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a download task has finished downloading.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "urlSession"
+        },
+        {
+          "kind": "text",
+          "text": "(URLSession, "
+        },
+        {
+          "kind": "identifier",
+          "text": "downloadTask"
+        },
+        {
+          "kind": "text",
+          "text": ": URLSessionDownloadTask, "
+        },
+        {
+          "kind": "identifier",
+          "text": "didFinishDownloadingTo"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate/1411575-urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlSession(_:downloadTask:didFinishDownloadingTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondownloaddelegate/1411575-urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontask/1411121-resume": {
+      "abstract": [
+        {
+          "text": "Resumes the task, if it is suspended.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "resume"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/1411121-resume",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resume()",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontask/1411121-resume"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontask/2873413-earliestbegindate": {
+      "abstract": [
+        {
+          "text": "The earliest date at which the network load should begin.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "earliestBeginDate"
+        },
+        {
+          "kind": "text",
+          "text": ": Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/2873413-earliestbegindate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "earliestBeginDate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontask/2873413-earliestbegindate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1411610-urlsession": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the task finished transferring data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "urlSession"
+        },
+        {
+          "kind": "text",
+          "text": "(URLSession, "
+        },
+        {
+          "kind": "identifier",
+          "text": "task"
+        },
+        {
+          "kind": "text",
+          "text": ": URLSessionTask, "
+        },
+        {
+          "kind": "identifier",
+          "text": "didCompleteWithError"
+        },
+        {
+          "kind": "text",
+          "text": ": (any Error)?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1411610-urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlSession(_:task:didCompleteWithError:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontaskdelegate/1411610-urlsession"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/hkhealthstore/1614175-enablebackgrounddelivery": {
+      "abstract": [
+        {
+          "text": "Enables the delivery of updates to an app running in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "enableBackgroundDelivery"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": HKObjectType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "frequency"
+        },
+        {
+          "kind": "text",
+          "text": ": HKUpdateFrequency, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withCompletion"
+        },
+        {
+          "kind": "text",
+          "text": ": (Bool, (any Error)?) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/hkhealthstore/1614175-enablebackgrounddelivery",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enableBackgroundDelivery(for:frequency:withCompletion:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkhealthstore/1614175-enablebackgrounddelivery"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3897474": {
+      "alt": "A screenshot of the HealthKit capability with Background Delivery enabled.",
+      "identifier": "media-3897474",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/06d50f729dbf07ecdfa635f3d3fcb557/media-3897474@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c1dc3e6f72ab4e4e449107b11eada349/media-3897474~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Articles",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.clockkit/documentation/ClockKit/creating-complications-for-your-watchos-app",
+        "doc://com.apple.clockkit/documentation/ClockKit/declaring-complications-for-your-app",
+        "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry",
+        "doc://com.apple.clockkit/documentation/ClockKit/loading-future-timeline-events",
+        "doc://com.apple.clockkit/documentation/ClockKit/building-complications-with-swiftui",
+        "doc://com.apple.clockkit/documentation/ClockKit/displaying-progress-views-and-gauges",
+        "doc://com.apple.clockkit/documentation/ClockKit/adding-text-to-a-complication"
+      ],
+      "title": "Articles"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Articles",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.clockkit/documentation/ClockKit/creating-complications-for-your-watchos-app",
+                "doc://com.apple.clockkit/documentation/ClockKit/declaring-complications-for-your-app",
+                "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry",
+                "doc://com.apple.clockkit/documentation/ClockKit/loading-future-timeline-events",
+                "doc://com.apple.clockkit/documentation/ClockKit/building-complications-with-swiftui",
+                "doc://com.apple.clockkit/documentation/ClockKit/displaying-progress-views-and-gauges",
+                "doc://com.apple.clockkit/documentation/ClockKit/adding-text-to-a-complication"
+              ],
+              "title": "Articles"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchConnectivity~1WCSession~1transferCurrentComplicationUserInfo(_:)/title",
+          "value": "transferCurrentComplicationUserInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchConnectivity~1WCSession~1transferCurrentComplicationUserInfo(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)WCSessionUserInfoTransfer",
+              "text": "WCSessionUserInfoTransfer"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "transferCurrentComplicationUserInfo:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+              "text": "NSDictionary<NSString *,id>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "userInfo"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsessiontask~11411121-resume/title",
+          "value": "resume"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKExtension~1scheduleBackgroundRefresh(withPreferredDate:userInfo:scheduledCompletion:)/title",
+          "value": "scheduleBackgroundRefreshWithPreferredDate:userInfo:scheduledCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKExtension~1scheduleBackgroundRefresh(withPreferredDate:userInfo:scheduledCompletion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "scheduleBackgroundRefreshWithPreferredDate:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSDate",
+              "text": "NSDate"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "preferredFireDate"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "userInfo:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)NSObjectobjc(pl)NSSecureCoding",
+              "text": "id<NSObject,NSSecureCoding>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "userInfo"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "scheduledCompletion:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "scheduledCompletion"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationServer~1reloadTimeline(for:)/title",
+          "value": "reloadTimelineForComplication:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationServer~1reloadTimeline(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "reloadTimelineForComplication:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsessiondownloaddelegate~11411575-urlsession/title",
+          "value": "URLSession:downloadTask:didFinishDownloadingToURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationServer~1activeComplications/title",
+          "value": "activeComplications"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationServer~1activeComplications/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activeComplications"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKExtensionDelegate~1handle(_:)-92ulv/title",
+          "value": "handleBackgroundTasks:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKExtensionDelegate~1handle(_:)-92ulv/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleBackgroundTasks:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSSet",
+              "text": "NSSet<WKRefreshBackgroundTask *>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "backgroundTasks"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsessiondownloaddelegate/title",
+          "value": "NSURLSessionDownloadDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1healthkit~1hkhealthstore~11614175-enablebackgrounddelivery/title",
+          "value": "enableBackgroundDeliveryForType:frequency:withCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationServer~1extendTimeline(for:)/title",
+          "value": "extendTimelineForComplication:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationServer~1extendTimeline(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "extendTimelineForComplication:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKExtensionDelegate~1applicationDidFinishLaunching()/title",
+          "value": "applicationDidFinishLaunching"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKExtensionDelegate~1applicationDidFinishLaunching()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "applicationDidFinishLaunching"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1PushKit~1PKPushType~1complication/title",
+          "value": "PKPushTypeComplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1PushKit~1PKPushType~1complication/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@PKPushType",
+              "text": "PKPushType"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PKPushTypeComplication"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKURLSessionRefreshBackgroundTask/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKURLSessionRefreshBackgroundTask"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)WKRefreshBackgroundTask",
+              "text": "WKRefreshBackgroundTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKApplicationRefreshBackgroundTask/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKApplicationRefreshBackgroundTask"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)WKRefreshBackgroundTask",
+              "text": "WKRefreshBackgroundTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKRefreshBackgroundTask~1setTaskCompletedWithSnapshot(_:)/title",
+          "value": "setTaskCompletedWithSnapshot:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKRefreshBackgroundTask~1setTaskCompletedWithSnapshot(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "setTaskCompletedWithSnapshot:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "refreshSnapshot"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsessionconfiguration~11411552-isdiscretionary/title",
+          "value": "discretionary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsessiontaskdelegate~11411610-urlsession/title",
+          "value": "URLSession:task:didCompleteWithError:"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/clockkit/keeping-your-complications-up-to-date"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/clockkit/keeping-your-complications-up-to-date"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

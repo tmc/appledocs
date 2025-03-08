@@ -1,0 +1,938 @@
+{
+  "abstract": [
+    {
+      "text": "Returns the ideal size for an image, according to its particular shape and style.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "TVTopShelfImageSizeForShape has been replaced by [TVTopShelfSectionedContent imageSizeForImageShape:] and [TVTopShelfInsetContent imageSize]",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.tvservices/documentation/TVServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfImageSize(shape:style:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@TVTopShelfImageSizeForShape",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "TVTopShelfImageSize"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "shape"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@E@TVContentItemImageShape",
+        "text": "TVContentItemImageShape"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "externalParam",
+        "text": "style"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@E@TVTopShelfContentStyle",
+        "text": "TVTopShelfContentStyle"
+      },
+      {
+        "kind": "text",
+        "text": ") -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@S@CGSize",
+        "text": "CGSize"
+      }
+    ],
+    "modules": [
+      {
+        "name": "TV Services"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "TVTopShelfImageSizeForShape"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "13.0",
+        "introducedAt": "9.0",
+        "message": "TVTopShelfImageSizeForShape has been replaced by [TVTopShelfSectionedContent imageSizeForImageShape:] and [TVTopShelfInsetContent imageSize]",
+        "name": "tvOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "TVTopShelfImageSize(shape:style:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "tvOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "TVTopShelfImageSize"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "shape"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVContentItemImageShape",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@TVContentItemImageShape",
+              "text": "TVContentItemImageShape"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "style"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfContentStyle",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@TVTopShelfContentStyle",
+              "text": "TVTopShelfContentStyle"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@S@CGSize",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGSize",
+              "text": "CGSize"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The shape of the content item.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "shape"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The style of the TV Top Shelf user interface.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "style"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call this function to determine the ideal image size to use to avoid image scaling. Typically, if your app has access to multiple images for a given piece of content, you use this function to choose which image most closely matches the ideal size for the version of the operating system that your app is running on. An image provided in that size does not require any image scaling. If you request the size of a shape that is not allowed in the given style, the function returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgsizezero",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coregraphics/cgsizezero": {
+      "abstract": [
+        {
+          "text": "A size constant with width and height of `0`. The zero size is equivalent to `CGSizeMake(0,0)`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGSizeZero"
+        },
+        {
+          "kind": "text",
+          "text": ": CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgsizezero",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGSizeZero",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgsizezero"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices": {
+      "abstract": [
+        {
+          "text": "Display content and descriptions, provide channel guides, and support multiple users on Apple TV.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TV Services",
+      "type": "topic",
+      "url": "/documentation/tvservices"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/TVContentIdentifier": {
+      "abstract": [
+        {
+          "text": "An object that uniquely identifies media content in either a single piece or a collection.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TVContentIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVContentIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TVContentIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "TVContentIdentifier",
+      "type": "topic",
+      "url": "/documentation/tvservices/tvcontentidentifier"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/TVContentItem": {
+      "abstract": [
+        {
+          "text": "An object that describes either a piece of content or a container for other content items.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TVContentItem"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVContentItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TVContentItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "TVContentItem",
+      "type": "topic",
+      "url": "/documentation/tvservices/tvcontentitem"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/TVContentItemImageShape": {
+      "abstract": [
+        {
+          "text": "An enumerated type that identifies the shape in which the content item should be displayed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TVContentItemImageShape"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVContentItemImageShape",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TVContentItemImageShape"
+        }
+      ],
+      "role": "symbol",
+      "title": "TVContentItemImageShape",
+      "type": "topic",
+      "url": "/documentation/tvservices/tvcontentitemimageshape"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfContentStyle": {
+      "abstract": [
+        {
+          "text": "An enumerated type used to specify the style in which you want your content to be displayed.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TVTopShelfContentStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfContentStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TVTopShelfContentStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "TVTopShelfContentStyle",
+      "type": "topic",
+      "url": "/documentation/tvservices/tvtopshelfcontentstyle"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfImageSize(shape:style:)": {
+      "abstract": [
+        {
+          "text": "Returns the ideal size for an image, according to its particular shape and style.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TVTopShelfImageSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "shape"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@TVContentItemImageShape",
+          "text": "TVContentItemImageShape"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@TVTopShelfContentStyle",
+          "text": "TVTopShelfContentStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfImageSize(shape:style:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TVTopShelfImageSizeForShape"
+        }
+      ],
+      "role": "symbol",
+      "title": "TVTopShelfImageSize(shape:style:)",
+      "type": "topic",
+      "url": "/documentation/tvservices/tvtopshelfimagesize(shape:style:)"
+    },
+    "doc://com.externally.resolved.symbol/c:@S@CGSize": {
+      "abstract": [
+        {
+          "text": "A structure that contains width and height values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@S@CGSize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGSize",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgsize"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Content",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.tvservices/documentation/TVServices/TVContentItem",
+        "doc://com.apple.tvservices/documentation/TVServices/TVContentIdentifier"
+      ],
+      "title": "Content"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "13.0",
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Function"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "TVTopShelfImageSizeForShape"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "func"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVTopShelfImageSizeForShape"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.tvservices/documentation/TVServices"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Content",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.tvservices/documentation/TVServices/TVContentItem",
+                "doc://com.apple.tvservices/documentation/TVServices/TVContentIdentifier"
+              ],
+              "title": "Content"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "tvOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "extern"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@S@CGSize",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@S@CGSize",
+                    "text": "CGSize"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "TVTopShelfImageSizeForShape"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVContentItemImageShape",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@E@TVContentItemImageShape",
+                    "text": "TVContentItemImageShape"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "shape"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfContentStyle",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@E@TVTopShelfContentStyle",
+                    "text": "TVTopShelfContentStyle"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "style"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ");"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The shape of the content item.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "shape"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The style of the TV Top Shelf user interface.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "style"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "TVTopShelfImageSizeForShape has been replaced by [TVTopShelfSectionedContent imageSizeForImageShape:] and [TVTopShelfInsetContent imageSize]",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVContentIdentifier/title",
+          "value": "TVContentIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVContentIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVContentIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVContentIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVContentIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVContentItemImageShape/title",
+          "value": "TVContentItemImageShape"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVContentItemImageShape/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVContentItemImageShape"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVContentItemImageShape/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVContentItemImageShape"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVContentItem/title",
+          "value": "TVContentItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVContentItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVContentItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVContentItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVContentItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVTopShelfContentStyle/title",
+          "value": "TVTopShelfContentStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVTopShelfContentStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVTopShelfContentStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVTopShelfContentStyle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVTopShelfContentStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVTopShelfImageSize(shape:style:)/title",
+          "value": "TVTopShelfImageSizeForShape"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVTopShelfImageSize(shape:style:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVTopShelfImageSizeForShape"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/tvservices/tvtopshelfimagesize(shape:style:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/tvservices/tvtopshelfimagesize(shape:style:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,410 @@
+{
+  "abstract": [
+    {
+      "text": "Use Xcode’s Project navigator to find the identifiers of active CloudKit containers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cloudkit/documentation/CloudKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.cloudkit/documentation/CloudKit/identifying-an-app-s-containers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "CloudKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Identifying an App’s Containers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app’s Xcode project manages which CloudKit containers are available to that app. When you write code that needs to provide container identifiers for all of the containers your app uses, reference the list of active containers in Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-the-Containers-Your-App-Uses",
+          "level": 3,
+          "text": "Identify the Containers Your App Uses",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your app’s Xcode project, select Signing & Capabilities > iCloud in the Project navigator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3743337",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you identify the containers that your app uses, you can create instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKContainer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in your app and interact with CloudKit data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// These constants correspond to the containers you configure for your",
+            "// target in your project's Signing & Capabilities tab.",
+            "let app = CKContainer(identifier: \"iCloud.com.example.MyCloudKitApp.app\")",
+            "let docs = CKContainer(identifier: \"iCloud.com.example.MyCloudKitApp.docs\")",
+            "let settings = CKContainer(identifier: \"iCloud.com.example.MyCloudKitApp.settings\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cloudkit/documentation/CloudKit": {
+      "abstract": [
+        {
+          "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit",
+      "type": "topic",
+      "url": "/documentation/cloudkit"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKContainer": {
+      "abstract": [
+        {
+          "text": "A conduit to your app’s databases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKContainer",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckcontainer"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchWebAuthTokenOperation": {
+      "abstract": [
+        {
+          "text": "An operation that creates an authentication token for use with CloudKit web services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKFetchWebAuthTokenOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchWebAuthTokenOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKFetchWebAuthTokenOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKFetchWebAuthTokenOperation",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckfetchwebauthtokenoperation"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/changing-access-controls-on-user-data": {
+      "abstract": [
+        {
+          "text": "Restrict access to or remove restrictions from a user’s data at their request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/changing-access-controls-on-user-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Changing Access Controls on User Data",
+      "type": "topic",
+      "url": "/documentation/cloudkit/changing-access-controls-on-user-data"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/encrypting-user-data": {
+      "abstract": [
+        {
+          "text": "Deploy industry-standard security technologies using CloudKit encryption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/encrypting-user-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Encrypting User Data",
+      "type": "topic",
+      "url": "/documentation/cloudkit/encrypting-user-data"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/providing-user-access-to-cloudkit-data": {
+      "abstract": [
+        {
+          "text": "Provide users access to the data your app stores on their behalf.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/providing-user-access-to-cloudkit-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing User Access to CloudKit Data",
+      "type": "topic",
+      "url": "/documentation/cloudkit/providing-user-access-to-cloudkit-data"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/responding-to-requests-to-delete-data": {
+      "abstract": [
+        {
+          "text": "Provide options for users to delete their CloudKit data from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/responding-to-requests-to-delete-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to Requests to Delete Data",
+      "type": "topic",
+      "url": "/documentation/cloudkit/responding-to-requests-to-delete-data"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3743337": {
+      "alt": "A screenshot of an Xcode project’s Signing & Capabilities pane. The project contains the iCloud capability with the CloudKit option in a selected state. There are three custom CloudKit containers — app, docs, and settings — and each is in a selected state.",
+      "identifier": "media-3743337",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/834483e205503a63b239752195f2c377/media-3743337@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Privacy",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/encrypting-user-data",
+        "doc://com.apple.cloudkit/documentation/CloudKit/providing-user-access-to-cloudkit-data",
+        "doc://com.apple.cloudkit/documentation/CloudKit/changing-access-controls-on-user-data",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchWebAuthTokenOperation",
+        "doc://com.apple.cloudkit/documentation/CloudKit/responding-to-requests-to-delete-data"
+      ],
+      "title": "Privacy"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Privacy",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/encrypting-user-data",
+                "doc://com.apple.cloudkit/documentation/CloudKit/providing-user-access-to-cloudkit-data",
+                "doc://com.apple.cloudkit/documentation/CloudKit/changing-access-controls-on-user-data",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchWebAuthTokenOperation",
+                "doc://com.apple.cloudkit/documentation/CloudKit/responding-to-requests-to-delete-data"
+              ],
+              "title": "Privacy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKContainer/title",
+          "value": "CKContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchWebAuthTokenOperation/title",
+          "value": "CKFetchWebAuthTokenOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchWebAuthTokenOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKFetchWebAuthTokenOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchWebAuthTokenOperation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKFetchWebAuthTokenOperation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cloudkit/identifying-an-app-s-containers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/cloudkit/identifying-an-app-s-containers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

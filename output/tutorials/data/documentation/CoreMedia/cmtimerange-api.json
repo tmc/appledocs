@@ -1,0 +1,2187 @@
+{
+  "abstract": [
+    {
+      "text": "A structure that represents a range of time.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremedia/documentation/CoreMedia"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremedia/documentation/CoreMedia/cmtimerange-api"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Media"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "CMTimeRange APIs"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This document describes the API for creating and manipulating ",
+              "type": "text"
+            },
+            {
+              "code": "CMTimeRange",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system represents a ",
+              "type": "text"
+            },
+            {
+              "code": "CMTimeRange",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as a non-opaque, mutable structure by using two ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTime",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " values that specify the start time and duration of the range. A time range doesn’t include the end time because you calculate it by adding the duration to the start time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// An expression that evaluates to false.",
+            "CMTimeRangeContainsTime(range, CMTimeRangeGetEnd(range))"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Convert ",
+              "type": "text"
+            },
+            {
+              "code": "CMTimeRanges",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to and from ",
+              "type": "text"
+            },
+            {
+              "code": "CFDictionaries",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeCopyAsDictionary(_:allocator:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeMakeFromDictionary(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to use in annotations and various Core Foundation containers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The epoch in a ",
+              "type": "text"
+            },
+            {
+              "code": "CMTime",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that represents a duration must be ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the value must be nonnegative. The epoch in a ",
+              "type": "text"
+            },
+            {
+              "code": "CMTime",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that represents a timestamp can be nonzero, but functions (such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeGetUnion(_:otherRange:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") can only perform operations on ranges whose start fields have the same epoch. ",
+              "type": "text"
+            },
+            {
+              "code": "CMTimeRanges",
+              "type": "codeVoice"
+            },
+            {
+              "text": " can’t span different epochs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about additional functions for managing dates and times, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/time_utilities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremedia/documentation/CoreMedia": {
+      "abstract": [
+        {
+          "text": "Represent time-based audio-visual assets with essential data types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Media",
+      "type": "topic",
+      "url": "/documentation/coremedia"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTIMERANGE_IS_EMPTY": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a time range has a duration of zero.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CMTIMERANGE_IS_EMPTY"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTIMERANGE_IS_EMPTY",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTIMERANGE_IS_EMPTY",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimerange_is_empty"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTIMERANGE_IS_EMPTY(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a time range has a duration of zero.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTIMERANGE_IS_EMPTY"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTIMERANGE_IS_EMPTY(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTIMERANGE_IS_EMPTY(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimerange_is_empty(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTIMERANGE_IS_INDEFINITE": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a time range is indefinite.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CMTIMERANGE_IS_INDEFINITE"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTIMERANGE_IS_INDEFINITE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTIMERANGE_IS_INDEFINITE",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimerange_is_indefinite"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTIMERANGE_IS_INDEFINITE(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a time range is indefinite.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTIMERANGE_IS_INDEFINITE"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTIMERANGE_IS_INDEFINITE(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTIMERANGE_IS_INDEFINITE(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimerange_is_indefinite(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTIMERANGE_IS_INVALID": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a time range is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CMTIMERANGE_IS_INVALID"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTIMERANGE_IS_INVALID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTIMERANGE_IS_INVALID",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimerange_is_invalid"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTIMERANGE_IS_INVALID(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a time range is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTIMERANGE_IS_INVALID"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTIMERANGE_IS_INVALID(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTIMERANGE_IS_INVALID(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimerange_is_invalid(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTIMERANGE_IS_VALID": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a time range is valid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CMTIMERANGE_IS_VALID"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTIMERANGE_IS_VALID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTIMERANGE_IS_VALID",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimerange_is_valid"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTIMERANGE_IS_VALID(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a time range is valid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTIMERANGE_IS_VALID"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTIMERANGE_IS_VALID(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTIMERANGE_IS_VALID(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimerange_is_valid(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTime": {
+      "abstract": [
+        {
+          "text": "A structure that represents time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTime",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtime"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeClampToRange(_:range:)": {
+      "abstract": [
+        {
+          "text": "Returns the nearest time value inside the time range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeClampToRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeClampToRange(_:range:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeClampToRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeClampToRange(_:range:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimeclamptorange(_:range:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMapDurationFromRangeToRange(_:fromRange:toRange:)": {
+      "abstract": [
+        {
+          "text": "Translates a duration through a mapping from two time ranges.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeMapDurationFromRangeToRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMapDurationFromRangeToRange(_:fromRange:toRange:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeMapDurationFromRangeToRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeMapDurationFromRangeToRange(_:fromRange:toRange:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimemapdurationfromrangetorange(_:fromrange:torange:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMapTimeFromRangeToRange(_:fromRange:toRange:)": {
+      "abstract": [
+        {
+          "text": "Translates a time through a mapping from two time ranges.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeMapTimeFromRangeToRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMapTimeFromRangeToRange(_:fromRange:toRange:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeMapTimeFromRangeToRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeMapTimeFromRangeToRange(_:fromRange:toRange:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimemaptimefromrangetorange(_:fromrange:torange:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRange": {
+      "abstract": [
+        {
+          "text": "A structure that represents a time range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeRange"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeRange",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimerange"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeContainsTime(_:time:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a time range contains a time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeRangeContainsTime"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "time"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeContainsTime(_:time:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeRangeContainsTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeRangeContainsTime(_:time:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimerangecontainstime(_:time:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeContainsTimeRange(_:otherRange:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a time range contains another time range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeRangeContainsTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "otherRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeContainsTimeRange(_:otherRange:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeRangeContainsTimeRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeRangeContainsTimeRange(_:otherRange:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimerangecontainstimerange(_:otherrange:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeCopyAsDictionary(_:allocator:)": {
+      "abstract": [
+        {
+          "text": "Returns a dictionary representation of a time range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeRangeCopyAsDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "allocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeCopyAsDictionary(_:allocator:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeRangeCopyAsDictionary"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeRangeCopyAsDictionary(_:allocator:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimerangecopyasdictionary(_:allocator:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeCopyDescription(allocator:range:)": {
+      "abstract": [
+        {
+          "text": "Returns a string with a description of a time range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeRangeCopyDescription"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "allocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeCopyDescription(allocator:range:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeRangeCopyDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeRangeCopyDescription(allocator:range:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimerangecopydescription(allocator:range:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeEqual(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether two time ranges are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeRangeEqual"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeEqual(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeRangeEqual"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeRangeEqual(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimerangeequal(_:_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeFromTimeToTime(start:end:)": {
+      "abstract": [
+        {
+          "text": "Creates a valid time range from a start and end time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeRangeFromTimeToTime"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeFromTimeToTime(start:end:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeRangeFromTimeToTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeRangeFromTimeToTime(start:end:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimerangefromtimetotime(start:end:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeGetEnd(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a time value that represents the end of a time range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeRangeGetEnd"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeGetEnd(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeRangeGetEnd"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeRangeGetEnd(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimerangegetend(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeGetIntersection(_:otherRange:)": {
+      "abstract": [
+        {
+          "text": "Returns a new time range with the time elements that are common between the input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeRangeGetIntersection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "otherRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeGetIntersection(_:otherRange:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeRangeGetIntersection"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeRangeGetIntersection(_:otherRange:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimerangegetintersection(_:otherrange:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeGetUnion(_:otherRange:)": {
+      "abstract": [
+        {
+          "text": "Returns a new time range with the time elements of the input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeRangeGetUnion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "otherRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeGetUnion(_:otherRange:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeRangeGetUnion"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeRangeGetUnion(_:otherRange:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimerangegetunion(_:otherrange:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeMake(start:duration:)": {
+      "abstract": [
+        {
+          "text": "Creates a valid time range with a start time and duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeRangeMake"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeMake(start:duration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeRangeMake"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeRangeMake(start:duration:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimerangemake(start:duration:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeMakeFromDictionary(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a time range from a dictionary representation of its fields.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeRangeMakeFromDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeMakeFromDictionary(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeRangeMakeFromDictionary"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeRangeMakeFromDictionary(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimerangemakefromdictionary(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeShow(_:)": {
+      "abstract": [
+        {
+          "text": "Prints a description of the time range to standard error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeRangeShow"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeShow(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeRangeShow"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeRangeShow(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimerangeshow(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/cmtime-api": {
+      "abstract": [
+        {
+          "text": "A structure that represents time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/cmtime-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CMTime APIs",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtime-api"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/cmtimemapping-api": {
+      "abstract": [
+        {
+          "text": "A structure that maps a segment of a source time range to a target time range.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/cmtimemapping-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CMTimeMapping APIs",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimemapping-api"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/cmtimerange-dictionary-keys": {
+      "abstract": [
+        {
+          "text": "Keys to use when working with dictionary representations of a time range.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/cmtimerange-dictionary-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dictionary Keys",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimerange-dictionary-keys"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/pre-specified-time-ranges": {
+      "abstract": [
+        {
+          "text": "Constants that specify zero and invalid time ranges.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/pre-specified-time-ranges",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Pre-Specified Time Ranges",
+      "type": "topic",
+      "url": "/documentation/coremedia/pre-specified-time-ranges"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdictionary": {
+      "abstract": [
+        {
+          "text": "A reference to an immutable dictionary object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFDictionary",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdictionary"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/time_utilities": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/time_utilities",
+      "kind": "article",
+      "role": "article",
+      "title": "Time Utilities",
+      "type": "topic",
+      "url": "/documentation/corefoundation/time_utilities"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Time-Representation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/cmtime-api",
+        "doc://com.apple.coremedia/documentation/CoreMedia/cmtimemapping-api"
+      ],
+      "title": "Time Representation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-Time-Ranges",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeMake(start:duration:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeMakeFromDictionary(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeFromTimeToTime(start:end:)"
+      ],
+      "title": "Creating Time Ranges"
+    },
+    {
+      "anchor": "Comparing-Time-Ranges",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeEqual(_:_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeContainsTime(_:time:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeContainsTimeRange(_:otherRange:)"
+      ],
+      "title": "Comparing Time Ranges"
+    },
+    {
+      "anchor": "Inspecting-Time-Ranges",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTIMERANGE_IS_EMPTY(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTIMERANGE_IS_INDEFINITE(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTIMERANGE_IS_INVALID(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTIMERANGE_IS_VALID(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeGetEnd(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeGetIntersection(_:otherRange:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeGetUnion(_:otherRange:)"
+      ],
+      "title": "Inspecting Time Ranges"
+    },
+    {
+      "anchor": "Utility-Functions",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeClampToRange(_:range:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMapDurationFromRangeToRange(_:fromRange:toRange:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMapTimeFromRangeToRange(_:fromRange:toRange:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeCopyAsDictionary(_:allocator:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeCopyDescription(allocator:range:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeShow(_:)"
+      ],
+      "title": "Utility Functions"
+    },
+    {
+      "anchor": "Data-Types",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRange"
+      ],
+      "title": "Data Types"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/cmtimerange-dictionary-keys",
+        "doc://com.apple.coremedia/documentation/CoreMedia/pre-specified-time-ranges"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-Time-Ranges",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeMake(start:duration:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeMakeFromDictionary(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeFromTimeToTime(start:end:)"
+              ],
+              "title": "Creating Time Ranges"
+            },
+            {
+              "anchor": "Comparing-Time-Ranges",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeEqual(_:_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeContainsTime(_:time:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeContainsTimeRange(_:otherRange:)"
+              ],
+              "title": "Comparing Time Ranges"
+            },
+            {
+              "anchor": "Inspecting-Time-Ranges",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTIMERANGE_IS_EMPTY",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTIMERANGE_IS_INDEFINITE",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTIMERANGE_IS_INVALID",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTIMERANGE_IS_VALID",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeGetEnd(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeGetIntersection(_:otherRange:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeGetUnion(_:otherRange:)"
+              ],
+              "title": "Inspecting Time Ranges"
+            },
+            {
+              "anchor": "Utility-Functions",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeClampToRange(_:range:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMapDurationFromRangeToRange(_:fromRange:toRange:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMapTimeFromRangeToRange(_:fromRange:toRange:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeCopyAsDictionary(_:allocator:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeCopyDescription(allocator:range:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRangeShow(_:)"
+              ],
+              "title": "Utility Functions"
+            },
+            {
+              "anchor": "Data-Types",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRange"
+              ],
+              "title": "Data Types"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/cmtimerange-dictionary-keys",
+                "doc://com.apple.coremedia/documentation/CoreMedia/pre-specified-time-ranges"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Time-Representation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/cmtime-api",
+                "doc://com.apple.coremedia/documentation/CoreMedia/cmtimemapping-api"
+              ],
+              "title": "Time Representation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRangeCopyDescription(allocator:range:)/title",
+          "value": "CMTimeRangeCopyDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRangeCopyDescription(allocator:range:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeRangeCopyDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRangeCopyAsDictionary(_:allocator:)/title",
+          "value": "CMTimeRangeCopyAsDictionary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRangeCopyAsDictionary(_:allocator:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeRangeCopyAsDictionary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeClampToRange(_:range:)/title",
+          "value": "CMTimeClampToRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeClampToRange(_:range:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeClampToRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTime/title",
+          "value": "CMTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTime/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRange/title",
+          "value": "CMTimeRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRange/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRangeGetIntersection(_:otherRange:)/title",
+          "value": "CMTimeRangeGetIntersection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRangeGetIntersection(_:otherRange:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeRangeGetIntersection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRangeMake(start:duration:)/title",
+          "value": "CMTimeRangeMake"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRangeMake(start:duration:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeRangeMake"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRangeEqual(_:_:)/title",
+          "value": "CMTimeRangeEqual"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRangeEqual(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeRangeEqual"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1corefoundation~1cfdictionary/title",
+          "value": "CFDictionaryRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRangeContainsTimeRange(_:otherRange:)/title",
+          "value": "CMTimeRangeContainsTimeRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRangeContainsTimeRange(_:otherRange:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeRangeContainsTimeRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRangeGetUnion(_:otherRange:)/title",
+          "value": "CMTimeRangeGetUnion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRangeGetUnion(_:otherRange:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeRangeGetUnion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeMapTimeFromRangeToRange(_:fromRange:toRange:)/title",
+          "value": "CMTimeMapTimeFromRangeToRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeMapTimeFromRangeToRange(_:fromRange:toRange:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeMapTimeFromRangeToRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRangeMakeFromDictionary(_:)/title",
+          "value": "CMTimeRangeMakeFromDictionary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRangeMakeFromDictionary(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeRangeMakeFromDictionary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRangeShow(_:)/title",
+          "value": "CMTimeRangeShow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRangeShow(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeRangeShow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRangeContainsTime(_:time:)/title",
+          "value": "CMTimeRangeContainsTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRangeContainsTime(_:time:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeRangeContainsTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeMapDurationFromRangeToRange(_:fromRange:toRange:)/title",
+          "value": "CMTimeMapDurationFromRangeToRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeMapDurationFromRangeToRange(_:fromRange:toRange:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeMapDurationFromRangeToRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRangeGetEnd(_:)/title",
+          "value": "CMTimeRangeGetEnd"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRangeGetEnd(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeRangeGetEnd"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRangeFromTimeToTime(start:end:)/title",
+          "value": "CMTimeRangeFromTimeToTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRangeFromTimeToTime(start:end:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeRangeFromTimeToTime"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremedia/cmtimerange-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremedia/cmtimerange-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,241 @@
+{
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/metalperformanceshaders/tuning_hints"
+  },
+  "kind": "article",
+  "legacy_identifier": 3014707,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal Performance Shaders"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Tuning Hints"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Metal Performance Shaders framework has been tuned for excellent performance across a diversity of devices and kernel parameters. The tuning process focuses on minimizing both CPU and GPU latency for back to back calls on the same command buffer. It is possible, however, to inadvertently undo this optimization effort by introducing costly operations into the pipeline around the kernel, leading to disappointing overall results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here are some elements of good practice to avoid common pitfalls:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Don’t wait for results to complete before enqueuing more work. There can be a significant delay (up to 2.5 ms) just to get an empty command buffer through the pipeline to where the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/waitUntilCompleted()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method returns. Instead, start encoding the next command buffer(s) while you wait for the first one to complete. Enqueue them too, so they can start immediately after the previous one exits the GPU. Don’t wait for the CPU kernel to notice the first command buffer is done, start taking it apart, and eventually make a callback to the app before beginning work on encoding the next one. By allowing the CPU and GPU to work concurrently in this way, throughput can be enhanced by up to a factor of ten.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "There is a large cost to allocating buffers and textures. The cost can swamp the CPU, preventing you from keeping the GPU busy. Try to preallocate and reuse the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects as much as possible.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "There is a cost to switching between render and compute encoders. Each time a new render encoder is used, there can be a substantial GPU mode switch cost that may undermine your throughput. To avoid the cost, try to batch compute work together. Since making a new command buffer forces you to make a new command encoder too, try to do more work with fewer command buffers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For some image operations, particularly those involving multiple passes (e.g. chaining multiple image filters together), performance can be improved by up to a factor of two by breaking the work into tiles of ~512 KB in size. Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel/1618754-sourceregion",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method to find the region needed for each tile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/metalperformanceshaders": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel/1618754-sourceregion": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel/1618754-sourceregion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sourceRegion(destinationSize:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsunaryimagekernel/1618754-sourceregion"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/the_mpskernel_class": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/the_mpskernel_class",
+      "kind": "article",
+      "role": "article",
+      "title": "The MPSKernel Class",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/the_mpskernel_class"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/tuning_hints": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/tuning_hints",
+      "kind": "article",
+      "role": "article",
+      "title": "Tuning Hints",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/tuning_hints"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/waitUntilCompleted()": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/waitUntilCompleted()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "waitUntilCompleted()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/waituntilcompleted()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResource": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLResource",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresource"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/the_mpskernel_class"
+      ],
+      "title": "Fundamentals"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/tuning_hints"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/tuning_hints"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

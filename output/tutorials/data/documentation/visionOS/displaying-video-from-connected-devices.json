@@ -1,0 +1,1832 @@
+{
+  "abstract": [
+    {
+      "text": "Show video from devices connected with the Developer Strap in your visionOS app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/displaying-video-from-connected-devices"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.2",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Displaying video from connected devices"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple’s audiovisual frameworks allow your visionOS app to access video from USB video class (UVC) devices connected with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/visionos/developer-strap/purchase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for Apple Vision Pro.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can use this functionality to display realtime video in your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, a medical researcher can view the output from an endoscopic camera during a procedure.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This article outlines the requirements to access UVC devices in visionOS, while",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the sample code project shows a picker for every device connected to Vision Pro and displays the selected device’s video feed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Xcode project, replace ",
+              "type": "text"
+            },
+            {
+              "code": "Enterprise.license",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with your license file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample app requires a valid license file to display the selected video feed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Request-the-entitlement",
+          "level": 3,
+          "text": "Request the entitlement",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UVC device access is a part of enterprise APIs for visionOS, a collection of APIs that unlock capabilities for enterprise customers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To use UVC device access, apply for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.avfoundation.uvc-device-access",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " entitlement.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, including how to apply for this entitlement, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/visionOS/building-spatial-experiences-for-business-apps-with-enterprise-apis",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-usage-descriptions-for-camera-access",
+          "level": 3,
+          "text": "Add usage descriptions for camera access",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To help protect people’s privacy, visionOS limits app access to cameras and other sensors in Apple Vision Pro.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You need to add an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to your app’s information property list to provide a usage description that explains how your app uses the data these sensors provide.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "People see this description when your app prompts for access to camera data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-device-picker",
+          "level": 3,
+          "text": "Create the device picker",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/DiscoverySession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " obtain an array of connected devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// ConnectionManager",
+            "",
+            "private let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.external],",
+            "                                                                mediaType: .video,",
+            "                                                                position: .unspecified)",
+            "",
+            "private func updateDeviceList() {",
+            "        // Transform the `AVCaptureDevice` instances.",
+            "        let devices = discoverySession",
+            "            .devices",
+            "            .map { Device(id: $0.uniqueID, name: $0.localizedName) }",
+            "        ",
+            "        ...",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, observe ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/wasConnectedNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/wasDisconnectedNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to update the array when a device connects or disconnects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// ConnectionManager",
+            "",
+            "private func observeDeviceConnectionStates() {",
+            "    Task {",
+            "        // Await notification of the system connecting a new device.",
+            "        for await _ in NotificationCenter.default.notifications(named: AVCaptureDevice.wasConnectedNotification) {",
+            "            updateDeviceList()",
+            "        }",
+            "    }",
+            "    ",
+            "    Task {",
+            "        // Await notification of the system disconnecting a device.",
+            "        for await _ in NotificationCenter.default.notifications(named: AVCaptureDevice.wasDisconnectedNotification) {",
+            "            updateDeviceList()",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Render a picker with an option for each device:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// ContentView",
+            "",
+            "Picker(\"Device Picker\", selection: $previewManager.selectedDevice) {",
+            "    Text(\"Select Device\").tag(nil as Device?)",
+            "    ForEach(devices) {",
+            "        Text($0.name).tag($0)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Display-the-selected-devices-video-feed",
+          "level": 3,
+          "text": "Display the selected device’s video feed",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to capture ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDeviceInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from the selected device and output it to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoDataOutput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// CaptureManager",
+            "",
+            "private let captureSession = AVCaptureSession()",
+            "private let videoDataOutput = AVCaptureVideoDataOutput()",
+            "",
+            "...",
+            "",
+            "private func setUpSession() {",
+            "    // Bracket the following configuration in a begin/commit configuration pair.",
+            "    captureSession.beginConfiguration()",
+            "    defer { captureSession.commitConfiguration() }",
+            "    ",
+            "    // Drop frames that aren't rendered in a timely manner.",
+            "    videoDataOutput.alwaysDiscardsLateVideoFrames = true",
+            "    videoDataOutput.setSampleBufferDelegate(self, queue: sessionQueue)",
+            "    ",
+            "    if captureSession.canAddOutput(videoDataOutput) {",
+            "        captureSession.addOutput(videoDataOutput)",
+            "    } else {",
+            "        assertionFailure(\"Unable to add video data output to capture session.\")",
+            "    }",
+            "}",
+            "",
+            "/// Stops capture from the previously selected device and, if provided, begins capture from the from the provided device.",
+            "/// - Parameter device: The device to capture video from or nil to stop capture all together.",
+            "func select(device: Device?) {",
+            "    // Bracket the following configuration in a begin/commit configuration pair.",
+            "    captureSession.beginConfiguration()",
+            "    defer { captureSession.commitConfiguration() }",
+            "    ",
+            "    // Remove previous input, if one exists.",
+            "    for input in captureSession.inputs {",
+            "        captureSession.removeInput(input)",
+            "    }",
+            "    ",
+            "    // Prepare the renderer to receive content from a new device.",
+            "    videoRenderer.flush(removingDisplayedImage: true)",
+            "",
+            "    // Return early if the passed device is nil.",
+            "    guard let captureDevice = device?.captureDevice else { return }",
+            "    ",
+            "    do {",
+            "        let authorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)",
+            "        ",
+            "        /// In the context of this sample, this check should always pass because `ContentView`",
+            "        /// displays a message and terminates when the system denies access to the camera.",
+            "        precondition(authorizationStatus == .authorized,",
+            "                        \"Camera authorization is required to set up a device capture session.\")",
+            "        ",
+            "        let input = try AVCaptureDeviceInput(device: captureDevice)",
+            "        ",
+            "        // Add the new input, if possible.",
+            "        if captureSession.canAddInput(input) {",
+            "            captureSession.addInput(input)",
+            "        } else {",
+            "            assertionFailure(\"The input can't be added to the capture session.\")",
+            "        }",
+            "    } catch {",
+            "        fatalError(\"Unable to create input for device. \\(error)\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/startRunning()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the capture session to start the flow of data from the capture session’s inputs to its outputs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// CaptureManager",
+            "",
+            "/// Begin the flow of data from the capture session's inputs to its outputs.",
+            "func start() {",
+            "    captureSession.startRunning()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "AVCaptureSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " delivers a steady stream of updates to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoDataOutputSampleBufferDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " assigned to the ",
+              "type": "text"
+            },
+            {
+              "code": "AVCaptureVideoDataOutput",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each update includes a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMSampleBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that contains the latest video frame from the device.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Render the ",
+              "type": "text"
+            },
+            {
+              "code": "CMSampleBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVSampleBufferDisplayLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " using the layer’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVSampleBufferVideoRenderer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// CaptureManager",
+            "",
+            "/// The video renderer owned by the `AVSampleBufferDisplayLayer`",
+            "/// this app uses to display video to people.",
+            "nonisolated private let videoRenderer: AVSampleBufferVideoRenderer",
+            "",
+            "...",
+            "",
+            "extension CaptureManager: AVCaptureVideoDataOutputSampleBufferDelegate {",
+            "    nonisolated func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {",
+            "        ",
+            "        // If the renderer is ready for more data, queue the the sample buffer for presentation.",
+            "        if videoRenderer.isReadyForMoreMediaData {",
+            "            videoRenderer.enqueue(sampleBuffer)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the ",
+              "type": "text"
+            },
+            {
+              "code": "AVSampleBufferDisplayLayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/UIViewRepresentable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to display the ",
+              "type": "text"
+            },
+            {
+              "code": "UIView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in a SwiftUI view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct DevicePreview: UIViewRepresentable {",
+            "    /*",
+            "     In this sample, `preview` is an instance of `AVSampleBufferDisplayLayer`.",
+            "     `AVCaptureVideoDataOutputSampleBufferDelegate.captureOutput`",
+            "     uses the layer's `sampleBufferRenderer` to enqueue the provided",
+            "     `CMSampleBuffer` for rendering.",
+            "     */",
+            "    private let preview: CALayer",
+            "",
+            "    init(preview: CALayer) {",
+            "        self.preview = preview",
+            "    }",
+            "    ",
+            "    func makeUIView(context: Context) -> SampleBufferPreview {",
+            "        SampleBufferPreview(preview: preview)",
+            "    }",
+            "    ",
+            "    func updateUIView(_ previewView: SampleBufferPreview, context: Context) {",
+            "        // No-op.",
+            "    }",
+            "",
+            "    class SampleBufferPreview: UIView {",
+            "",
+            "        let preview: CALayer",
+            "",
+            "        init(preview: CALayer) {",
+            "            self.preview = preview",
+            "            super.init(frame: .zero)",
+            "            layer.addSublayer(preview)",
+            "        }",
+            "        ",
+            "        required init?(coder: NSCoder) {",
+            "            fatalError(\"init(coder:) has not been implemented\")",
+            "        }",
+            "",
+            "        override func layoutSubviews() {",
+            "            preview.frame = bounds",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Display-an-error-when-denying-access-to-the-camera",
+          "level": 3,
+          "text": "Display an error when denying access to the camera",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the person hasn’t granted camera access, the sample app prompts people to grant access in the Settings app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about providing camera access in your app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/requesting-authorization-to-capture-and-save-media",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "8d4dcfa14d79/DisplayingVideoFromConnectedDevices.zip": {
+      "checksum": "8d4dcfa14d79984d48417873804de138f4d647857d762c20a89fd8aec81cc96781898d78dd5efe9b6a486acdc411517d945015f79b671eafa88ff7993ac474a7",
+      "identifier": "8d4dcfa14d79/DisplayingVideoFromConnectedDevices.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/8d4dcfa14d79/DisplayingVideoFromConnectedDevices.zip"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/DiscoverySession": {
+      "abstract": [
+        {
+          "text": "An object that finds capture devices that match specific search criteria.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DiscoverySession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/DiscoverySession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureDevice.DiscoverySession",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureDevice/DiscoverySession"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/wasConnectedNotification": {
+      "abstract": [
+        {
+          "text": "A notification the system posts when a new capture device becomes available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wasConnectedNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/wasConnectedNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "wasConnectedNotification",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureDevice/wasConnectedNotification"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/wasDisconnectedNotification": {
+      "abstract": [
+        {
+          "text": "A notification the system posts when an existing device becomes unavailable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wasDisconnectedNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/wasDisconnectedNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "wasDisconnectedNotification",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureDevice/wasDisconnectedNotification"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDeviceInput": {
+      "abstract": [
+        {
+          "text": "An object that provides media input from a capture device to a capture session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDeviceInput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDeviceInput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureDeviceInput",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureDeviceInput"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession": {
+      "abstract": [
+        {
+          "text": "An object that configures capture behavior and coordinates the flow of data from input devices to capture outputs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureSession",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureSession"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/startRunning()": {
+      "abstract": [
+        {
+          "text": "Starts the flow of data through the capture pipeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startRunning"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/startRunning()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startRunning()",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureSession/startRunning()"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoDataOutput": {
+      "abstract": [
+        {
+          "text": "A capture output that records video and provides access to video frames for processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureVideoDataOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoDataOutput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureVideoDataOutput",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureVideoDataOutput"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoDataOutputSampleBufferDelegate": {
+      "abstract": [
+        {
+          "text": "Methods for receiving sample buffers from, and monitoring the status of, a video data output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureVideoDataOutputSampleBufferDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoDataOutputSampleBufferDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureVideoDataOutputSampleBufferDelegate",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureVideoDataOutputSampleBufferDelegate"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVSampleBufferDisplayLayer": {
+      "abstract": [
+        {
+          "text": "An object that displays compressed or uncompressed video frames.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVSampleBufferDisplayLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVSampleBufferDisplayLayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVSampleBufferDisplayLayer",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVSampleBufferDisplayLayer"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVSampleBufferVideoRenderer": {
+      "abstract": [
+        {
+          "text": "An object that enqueues video sample buffers for rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVSampleBufferVideoRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVSampleBufferVideoRenderer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVSampleBufferVideoRenderer",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVSampleBufferVideoRenderer"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/requesting-authorization-to-capture-and-save-media": {
+      "abstract": [
+        {
+          "text": "Prompt the user to authorize access to the camera, microphone, and photo library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/requesting-authorization-to-capture-and-save-media",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting authorization to capture and save media",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/requesting-authorization-to-capture-and-save-media"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.avfoundation.uvc-device-access": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app can stream USB UVC devices connected to the Developer strap.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.avfoundation.uvc-device-access",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UVC Device Access on visionOS",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.avfoundation.uvc-device-access"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the device’s camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCameraUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/CoreMedia/CMSampleBuffer": {
+      "abstract": [
+        {
+          "text": "A reference to a buffer of media data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSampleBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMSampleBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMSampleBuffer",
+      "type": "topic",
+      "url": "/documentation/CoreMedia/CMSampleBuffer"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/UIViewRepresentable": {
+      "abstract": [
+        {
+          "text": "A wrapper for a UIKit view that you use to integrate that view into your SwiftUI view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP4BodyQa",
+          "text": "Body"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5NeverO",
+          "text": "Never"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/UIViewRepresentable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIViewRepresentable",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/UIViewRepresentable"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIView": {
+      "abstract": [
+        {
+          "text": "An object that manages the content for a rectangular area on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIView",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIView"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/building-spatial-experiences-for-business-apps-with-enterprise-apis": {
+      "abstract": [
+        {
+          "text": "Grant enhanced sensor access and increased platform control to your visionOS app by using entitlements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/building-spatial-experiences-for-business-apps-with-enterprise-apis",
+      "kind": "article",
+      "role": "article",
+      "title": "Building spatial experiences for business apps with enterprise APIs for visionOS",
+      "type": "topic",
+      "url": "/documentation/visionOS/building-spatial-experiences-for-business-apps-with-enterprise-apis"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/accessing-the-main-camera": {
+      "abstract": [
+        {
+          "text": "Add camera-based features to enterprise apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/accessing-the-main-camera",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Accessing the main camera",
+      "type": "topic",
+      "url": "/documentation/visionos/accessing-the-main-camera"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/building-spatial-experiences-for-business-apps-with-enterprise-apis": {
+      "abstract": [
+        {
+          "text": "Grant enhanced sensor access and increased platform control to your visionOS app by using entitlements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/building-spatial-experiences-for-business-apps-with-enterprise-apis",
+      "kind": "article",
+      "role": "article",
+      "title": "Building spatial experiences for business apps with enterprise APIs for visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos/building-spatial-experiences-for-business-apps-with-enterprise-apis"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/locating-and-decoding-barcodes-in-3d-space": {
+      "abstract": [
+        {
+          "text": "Create engaging, hands-free experiences based on barcodes in a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/locating-and-decoding-barcodes-in-3d-space",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Locating and decoding barcodes in 3D space",
+      "type": "topic",
+      "url": "/documentation/visionos/locating-and-decoding-barcodes-in-3d-space"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "https://developer.apple.com/visionos/developer-strap/purchase": {
+      "identifier": "https://developer.apple.com/visionos/developer-strap/purchase",
+      "title": "Developer Strap",
+      "titleInlineContent": [
+        {
+          "text": "Developer Strap",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/visionos/developer-strap/purchase"
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "8d4dcfa14d79/DisplayingVideoFromConnectedDevices.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Enterprise-APIs-for-visionOS",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/accessing-the-main-camera",
+        "doc://com.apple.visionOS/documentation/visionOS/building-spatial-experiences-for-business-apps-with-enterprise-apis",
+        "doc://com.apple.visionOS/documentation/visionOS/locating-and-decoding-barcodes-in-3d-space"
+      ],
+      "title": "Enterprise APIs for visionOS"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureVideoDataOutputSampleBufferDelegate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureVideoDataOutputSampleBufferDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVSampleBufferVideoRenderer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVSampleBufferVideoRenderer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession~1startRunning()/title",
+          "value": "startRunning"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession~1startRunning()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "startRunning"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVSampleBufferDisplayLayer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVSampleBufferDisplayLayer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CALayer",
+              "text": "CALayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreMedia~1CMSampleBuffer/title",
+          "value": "CMSampleBufferRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreMedia~1CMSampleBuffer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@opaqueCMSampleBuffer",
+              "text": "opaqueCMSampleBuffer"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "CMSampleBufferRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureDevice~1DiscoverySession/title",
+          "value": "AVCaptureDeviceDiscoverySession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureDevice~1DiscoverySession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceDiscoverySession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureDeviceInput/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceInput"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVCaptureInput",
+              "text": "AVCaptureInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIResponder",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureDevice~1wasDisconnectedNotification/title",
+          "value": "AVCaptureDeviceWasDisconnectedNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureDevice~1wasDisconnectedNotification/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSNotificationName",
+              "text": "NSNotificationName"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceWasDisconnectedNotification"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureDevice~1wasConnectedNotification/title",
+          "value": "AVCaptureDeviceWasConnectedNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureDevice~1wasConnectedNotification/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSNotificationName",
+              "text": "NSNotificationName"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceWasConnectedNotification"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureVideoDataOutput/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureVideoDataOutput"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVCaptureOutput",
+              "text": "AVCaptureOutput"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

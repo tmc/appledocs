@@ -1,0 +1,647 @@
+{
+  "abstract": [
+    {
+      "text": "Learn about the default keys in the information property list file.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safariservices/documentation/SafariServices",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extension-information-property-list-keys"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safariservices/documentation/SafariServices/using-safari-app-extension-default-keys"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using Safari app extension default keys"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you create a Safari app extension target in Xcode, you need to modify the information property list file, ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist.",
+              "type": "codeVoice"
+            },
+            {
+              "text": " You make changes to identify your new Safari app extension, and specify its capabilities and access limits under the ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtension",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The keys under the ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtension",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key apply to the Safari app extension point, ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.Safari.extension",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for macOS. Place these keys as subordinates of the ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtension",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A Safari app extension includes these entries by default:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An identifier string to indicate a Safari extension: ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "com.apple.Safari.extension",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "NSExtensionPointIdentifier",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A string to indicate the class with the principal implementation for your extension, with a value of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "SafariExtensionHandler",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", which the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "SafariExtensionHandler.swift",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " file defines in Swift, and the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "SafariExtensionHandler.h",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "SafariExtensionHandler.m",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " files define in Objective-C.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "NSExtensionPrincipalClass",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An array of dictionaries with a single entry, containing a ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "Script",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " key that specifies the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "script.js",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " file in the template. When your extension loads, Safari automatically embeds this script file into every webpage that a user visits and the extension has access to. See ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.safariservices/documentation/SafariServices/injecting-a-script-into-a-webpage",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "SFSafariContentScript",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A dictionary describing a toolbar item that uses the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "ToolbarItemIcon.pdf",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " image from the template as the image for the button. See ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.safariservices/documentation/SafariServices/adjusting-settings-for-a-toolbar-item",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "SFSafariToolbarItem",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A dictionary with two keys: the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "Level",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " key to indicate the level of access (set to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "Some",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": "), and the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "Allowed Domains",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " key, which includes an array of strings to limit the web addresses that your extension works with. For more information, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.safariservices/documentation/SafariServices/adjusting-website-access-permissions",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "SFSafariWebsiteAccess",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although ",
+              "type": "text"
+            },
+            {
+              "code": "SFSafariContentScript",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "SFSafariToolbarItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "SFSafariWebsiteAccess",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are all default keys, they’re not required because they specify features that may or may not exist in your Safari app extension. To learn more about feature keys, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/setting-safari-app-extension-feature-keys",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Review-the-sample-information-property-list",
+          "level": 3,
+          "text": "Review the sample information property list",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code example below represents the overall structure of a typical ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtension",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary. Keep this structure in mind as you configure each element of your app extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<dict>",
+            "\t<key>NSExtensionPointIdentifier</key>",
+            "\t<string>com.apple.Safari.extension</string>",
+            "\t<key>NSExtensionPrincipalClass</key>",
+            "\t<string>SafariExtensionHandler</string>",
+            "\t<key>SFSafariToolbarItem</key>",
+            "\t<dict>",
+            "\t\t<key>Action</key>",
+            "\t\t<string>Command</string>",
+            "\t\t<key>Identifier</key>",
+            "\t\t<string>Button</string>",
+            "\t\t<key>Image</key>",
+            "\t\t<string>ToolbarItemIcon.pdf</string>",
+            "\t\t<key>Label</key>",
+            "\t\t<string>Your Button</string>",
+            "\t</dict>",
+            "\t<key>SFSafariContextMenu</key>",
+            "\t<array>",
+            "\t\t<dict>",
+            "\t\t\t<key>Text</key>",
+            "\t\t\t<string>Search for selected text in MyApplication.</string>",
+            "\t\t\t<key>Command</key>",
+            "\t\t\t<string>Search</string>",
+            "\t\t</dict>",
+            "\t\t<dict>",
+            "\t\t\t<key>Text</key>",
+            "\t\t\t<string>Add an entry for selected text in MyApplication.</string>",
+            "\t\t\t<key>Command</key>",
+            "\t\t\t<string>Add</string>",
+            "\t\t</dict>",
+            "\t</array>",
+            "\t<key>SFSafariContentScript</key>",
+            "\t<array>",
+            "\t\t<dict>",
+            "\t\t\t<key>Script</key>",
+            "\t\t\t<string>script.js</string>",
+            "\t\t</dict>",
+            "\t</array>",
+            "\t<key>SFSafariStyleSheet</key>",
+            "\t<array>",
+            "\t\t<dict>",
+            "\t\t\t<key>Style Sheet</key>",
+            "\t\t\t<string>style.css</string>",
+            "\t\t</dict>",
+            "\t</array>",
+            "\t<key>SFSafariWebsiteAccess</key>",
+            "\t<dict>",
+            "\t\t<key>Allowed Domains</key>",
+            "\t\t<array>",
+            "\t\t\t<string>*.webkit.org</string>",
+            "\t\t</array>",
+            "\t\t<key>Level</key>",
+            "\t\t<string>Some</string>",
+            "\t</dict>",
+            "</dict>"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices": {
+      "abstract": [
+        {
+          "text": "Enable web views and services in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Services",
+      "type": "topic",
+      "url": "/documentation/safariservices"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/adjusting-settings-for-a-toolbar-item": {
+      "abstract": [
+        {
+          "text": "Customize a toolbar item for your Safari app extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/adjusting-settings-for-a-toolbar-item",
+      "kind": "article",
+      "role": "article",
+      "title": "Adjusting settings for a toolbar item",
+      "type": "topic",
+      "url": "/documentation/safariservices/adjusting-settings-for-a-toolbar-item"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/adjusting-website-access-permissions": {
+      "abstract": [
+        {
+          "text": "Set website access permissions in a Safari app extension using information property list keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/adjusting-website-access-permissions",
+      "kind": "article",
+      "role": "article",
+      "title": "Adjusting website access permissions",
+      "type": "topic",
+      "url": "/documentation/safariservices/adjusting-website-access-permissions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/injecting-a-script-into-a-webpage": {
+      "abstract": [
+        {
+          "text": "Inject a script that you write for a Safari app extension into a webpage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/injecting-a-script-into-a-webpage",
+      "kind": "article",
+      "role": "article",
+      "title": "Injecting a script into a webpage",
+      "type": "topic",
+      "url": "/documentation/safariservices/injecting-a-script-into-a-webpage"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extension-information-property-list-keys": {
+      "abstract": [
+        {
+          "text": "Specify keys in your information property list file that provide information about your Safari app extension, UI, and permissions to the operating system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extension-information-property-list-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari app extension information property list keys",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-app-extension-information-property-list-keys"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions": {
+      "abstract": [
+        {
+          "text": "Learn how Safari app extensions extend the web-browsing experience in Safari by leveraging web technologies and native code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari app extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-app-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/setting-safari-app-extension-feature-keys": {
+      "abstract": [
+        {
+          "text": "Set keys for permissions, scripts, style sheets, contextual menu items, and toolbar items in the information property list file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/setting-safari-app-extension-feature-keys",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Safari app extension feature keys",
+      "type": "topic",
+      "url": "/documentation/safariservices/setting-safari-app-extension-feature-keys"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safariservices/using-safari-app-extension-default-keys"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safariservices/using-safari-app-extension-default-keys"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

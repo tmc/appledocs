@@ -1,0 +1,734 @@
+{
+  "abstract": [
+    {
+      "text": "Manage your payment model.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Search Ads",
+      "versions": [
+        "5.0",
+        "5.1"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/budget-orders"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Search Ads"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Budget Orders"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use budget orders, you need to receive approval from Apple. Search Ads payment model options include pay-as-you-go (",
+              "type": "text"
+            },
+            {
+              "code": "PAYG)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or standard monthly invoicing (",
+              "type": "text"
+            },
+            {
+              "code": "LOC",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). Use either ",
+              "type": "text"
+            },
+            {
+              "code": "PAYG",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "LOC",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", but not both. Refer to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://searchads.apple.com/help/billing/0031-monthly-invoicing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for billing details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the API, ",
+              "type": "text"
+            },
+            {
+              "code": "LOC",
+              "type": "codeVoice"
+            },
+            {
+              "text": " invoicing details  are in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/LOCInvoiceDetails",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. ",
+              "type": "text"
+            },
+            {
+              "code": "PAYG",
+              "type": "codeVoice"
+            },
+            {
+              "text": " invoicing details are in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/BudgetOrder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. To confirm your payment model, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-User-ACL",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and check the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/PaymentModel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " field in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/UserAcl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " response object. If you don’t have a payment model set up, you can still create campaigns, but you need to select a payment model before a campaign is eligible to run.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/ad-groups": {
+      "abstract": [
+        {
+          "text": "Create and manage ad groups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/ad-groups",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Ad Groups",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/ad-groups"
+    },
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/campaigns": {
+      "abstract": [
+        {
+          "text": "Create and manage Search Ads campaigns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/campaigns",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Campaigns",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/campaigns"
+    },
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/search-geolocations": {
+      "abstract": [
+        {
+          "text": "Search for apps and geocriteria for your campaigns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/search-geolocations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Search Geolocations",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/search-geolocations"
+    },
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/targeting-keywords-and-negative-keywords": {
+      "abstract": [
+        {
+          "text": "Apply relevant words or phrases that make your campaigns findable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/targeting-keywords-and-negative-keywords",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Targeting Keywords and Negative Keywords",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/targeting-keywords-and-negative-keywords"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads": {
+      "abstract": [
+        {
+          "text": "Drive app discovery by creating and managing campaigns with the Apple Search Ads Campaign Management API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Search Ads",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/BudgetOrder": {
+      "abstract": [
+        {
+          "text": "The response to requests for budget order details.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "BudgetOrder"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/BudgetOrder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BudgetOrder"
+        }
+      ],
+      "role": "symbol",
+      "title": "BudgetOrder",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/budgetorder"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/BudgetOrderCreate": {
+      "abstract": [
+        {
+          "text": "The parent object response to a request to create a budget order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "BudgetOrderCreate"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/BudgetOrderCreate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BudgetOrderCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "BudgetOrderCreate",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/budgetordercreate"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/BudgetOrderInfo": {
+      "abstract": [
+        {
+          "text": "The parent object response to a request for budget order details.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "BudgetOrderInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/BudgetOrderInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BudgetOrderInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "BudgetOrderInfo",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/budgetorderinfo"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/BudgetOrderInfoListResponse": {
+      "abstract": [
+        {
+          "text": "The response details to budget order requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "BudgetOrderInfoListResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/BudgetOrderInfoListResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BudgetOrderInfoListResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "BudgetOrderInfoListResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/budgetorderinfolistresponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/BudgetOrderInfoResponse": {
+      "abstract": [
+        {
+          "text": "A container for the budget order response body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "BudgetOrderInfoResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/BudgetOrderInfoResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BudgetOrderInfoResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "BudgetOrderInfoResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/budgetorderinforesponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/BudgetOrderUpdate": {
+      "abstract": [
+        {
+          "text": "The parent object response to a request to update a budget order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "BudgetOrderUpdate"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/BudgetOrderUpdate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BudgetOrderUpdate"
+        }
+      ],
+      "role": "symbol",
+      "title": "BudgetOrderUpdate",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/budgetorderupdate"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-a-Budget-Order": {
+      "abstract": [
+        {
+          "text": "Creates a budget order in the context of your org ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-a-Budget-Order",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Create a Budget Order"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create a Budget Order",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/create-a-budget-order"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-All-Budget-Orders": {
+      "abstract": [
+        {
+          "text": "Fetches all assigned budget orders for an organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-All-Budget-Orders",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get All Budget Orders"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get All Budget Orders",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-all-budget-orders"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-User-ACL": {
+      "abstract": [
+        {
+          "text": "Fetches roles and organizations that the API has access to.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-User-ACL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get User ACL"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get User ACL",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-user-acl"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-a-Budget-Order": {
+      "abstract": [
+        {
+          "text": "Fetches a specific budget order using a budget order identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-a-Budget-Order",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a Budget Order"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Budget Order",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-a-budget-order"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/LOCInvoiceDetails": {
+      "abstract": [
+        {
+          "text": "The response to a request to fetch details for a monthly invoicing payment model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LOCInvoiceDetails"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/LOCInvoiceDetails",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LOCInvoiceDetails"
+        }
+      ],
+      "role": "symbol",
+      "title": "LOCInvoiceDetails",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/locinvoicedetails"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Money": {
+      "abstract": [
+        {
+          "text": "The response to requests for budget amounts in campaigns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Money"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Money",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Money"
+        }
+      ],
+      "role": "symbol",
+      "title": "Money",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/money"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/PaymentModel": {
+      "abstract": [
+        {
+          "text": "The payment model that you set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaymentModel"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/PaymentModel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaymentModel"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentModel",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/paymentmodel"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-a-Budget-Order": {
+      "abstract": [
+        {
+          "text": "Updates an existing budget order.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-a-Budget-Order",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Update a Budget Order"
+        }
+      ],
+      "role": "symbol",
+      "title": "Update a Budget Order",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/update-a-budget-order"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/UserAcl": {
+      "abstract": [
+        {
+          "text": "The response to ACL requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserAcl"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/UserAcl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UserAcl"
+        }
+      ],
+      "role": "symbol",
+      "title": "UserAcl",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/useracl"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://searchads.apple.com/help/billing/0031-monthly-invoicing": {
+      "identifier": "https://searchads.apple.com/help/billing/0031-monthly-invoicing",
+      "title": "Search Ads help",
+      "titleInlineContent": [
+        {
+          "text": "Search Ads help",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://searchads.apple.com/help/billing/0031-monthly-invoicing"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Campaigns",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/campaigns",
+        "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/ad-groups",
+        "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/targeting-keywords-and-negative-keywords",
+        "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/search-geolocations"
+      ],
+      "title": "Campaigns"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Budget-Order-Endpoints",
+      "identifiers": [
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-a-Budget-Order",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-a-Budget-Order",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-a-Budget-Order",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-All-Budget-Orders"
+      ],
+      "title": "Budget Order Endpoints"
+    },
+    {
+      "anchor": "Budget-Order-Request-and-Response-Objects",
+      "identifiers": [
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/BudgetOrder",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/BudgetOrderInfo",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/BudgetOrderCreate",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/BudgetOrderUpdate",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/BudgetOrderInfoResponse",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/BudgetOrderInfoListResponse",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/LOCInvoiceDetails",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Money"
+      ],
+      "title": "Budget Order Request and Response Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/apple_search_ads/budget-orders"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

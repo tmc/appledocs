@@ -1,0 +1,1843 @@
+{
+  "abstract": [
+    {
+      "text": "Assemble assets into a dynamic 3D composition that you can add to a scene in your",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "app, or share with AR Quick Look.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Creating 3D Content with Reality Composer"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple’s Reality Composer app gives you an intuitive interface for constructing 3D",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "compositions and augmented reality (AR) experiences. You combine 3D models, audio,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and other assets—along with a description of how these objects behave—into a file",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that you add to your RealityKit-enabled app. You can also export your composition",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as a lightweight AR Quick Look experience that lets users place and preview content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You start by choosing the kind of real-world object that should anchor your scene,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "like a horizontal surface or the user’s face. Then position virtual elements within",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your scene. Choose from Reality Composer’s large collection of customizable assets,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or import your own in usdz format. Add animations and sound triggered by events like",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "user taps, as well as behaviors driven by physics simulation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you compose on a Mac, you can synchronize your composition with Reality Composer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on an iOS device to try it in an AR session. Alternatively, compose directly on the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "iOS device. Either way, you use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework in your app to load,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "simulate, and render the composition.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Get-the-reality-composer-app",
+          "level": 3,
+          "text": "Get the reality composer app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You automatically get Reality Composer for macOS when you install Xcode 11 or later.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app is one of the developer tools bundled with Xcode. From the menu, choose Xcode",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "> Open Developer Tool, and select Reality Composer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get Reality Composer for iOS, request access to the beta version from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/download",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Anchor-your-composition-to-something-in-the-real-world",
+          "level": 3,
+          "text": "Anchor your composition to something in the real world",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first time you open the app, or when you start a new project with the File >",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "New menu option, Reality Composer prompts you to choose an anchor:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-3d-content-with-reality-composer-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An anchor is the real-world reference around which you build your composition. When",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a user later interacts with a scene in an AR app, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "looks for a real-world item that matches your anchor, and attaches your scene to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pinning content to a particular point in space creates the illusion that your content",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is part of the real world. By choosing an appropriate anchor, you ensure that users",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "position your content in a sensible way. For example, to create a scene that’s meant",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to exist on a table top, like a collection of wooden blocks, choose a horizontal",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "plane. That way, the items that you add to the scene appear to rest on the table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about anchoring your scenes, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/selecting-an-anchor-for-a-reality-composer-scene",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-3d-content-with-reality-composer-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-content-to-your-composition",
+          "level": 3,
+          "text": "Add content to your composition",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You build a composition by adding, positioning, and configuring 3D objects. If you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "have assets from an artist in usdz format, you can drag them directly onto the project",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "canvas. Alternatively, Reality Composer offers a large selection of highly configurable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "objects that you can use freely in your projects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a built-in object, like the simple cube that appears by default in a new project",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as shown in the figure above, click the Objects button, and double-click or drag",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an item from the popup onto your canvas.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-3d-content-with-reality-composer-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In some cases, you may first need to download the group of objects by clicking the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "cloud icon that appears alongside the name of the group.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-3d-content-with-reality-composer-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure an object, select it, and if the settings pane isn’t already open, click",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Settings button in the Toolbar. The Look panel exposes the available parameters",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the selected object. For some objects, you choose a material, along with other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object-specific configuration. For example, you can change the default cube to be",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "aluminum with a 1-centimeter bevel radius.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-3d-content-with-reality-composer-5",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For other objects, you choose between styles like realistic, stylized, and iconic.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-3d-content-with-reality-composer-6",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Move objects by dragging them around the canvas with your mouse, or dragging them",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with your finger on an iOS device. You can similarly drag the entire canvas to reposition",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the view. To focus the view on a particular part of the scene, use the Frame button",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the Toolbar to focus on the selected object, or on the scene as a whole.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-3d-content-with-reality-composer-7",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Name the scene so that you can refer to it after you import the project into Xcode.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "As shown above, the Name field in the setting pane applies to the entire scene when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "no objects are selected. Optionally, you can also name individual objects to help",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you find them inside the scene. Select the object you want to name, and using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "same Name field, provide a string that’s unique within the composition to make it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "easy to find.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more detailed information about creating Reality Composer scenes, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/adding-elements-to-a-3d-scene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Trigger-movement-and-sound-with-behaviors",
+          "level": 3,
+          "text": "Trigger movement and sound with behaviors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add behaviors to your composition to enable animations and sound effects that react",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to events in the environment, like the user tapping an object or moving close to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it. Click the Behaviors button in the Toolbar to reveal the Behaviors pane at the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "bottom of the composition window, and then click the plus button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-3d-content-with-reality-composer-8",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "From the popup, choose a behavior like Tap & Flip.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-3d-content-with-reality-composer-9",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This adds a new tap trigger and flip action, both of which you can configure. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, you can change the object that reacts to the tap, or the object that does",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the flipping. You can also change aspects of the animation, like duration and style.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-3d-content-with-reality-composer-10",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To preview an individual action, click the Play button on that action. To preview",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the entire sequence, click the Play button on the action sequence.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-3d-content-with-reality-composer-11",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add more actions by clicking the action sequence Plus button. New actions occur sequentially",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by default, but you can make actions occur simultaneously by dragging one onto the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "other.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "See-your-content-in-the-real-world",
+          "level": 3,
+          "text": "See your content in the real world",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reality Composer lets you focus on your composition while you design it. You work",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on a blank canvas and move around the composition freely, viewing it from any angle",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as you place assets and add behaviors. But eventually, you need to see how your composition",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "looks in the real world.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To do this, run Reality Composer on an iPad or iPhone that supports ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you compose on a Mac, you can synchronize your session between the Mac and an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "iOS device over a local area network connection. Make sure Reality Composer is running",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on the device, and then click the Edit on iOS button in the Toolbar on your Mac.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Select the iOS device from the list of devices that appear.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-3d-content-with-reality-composer-12",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "From the iPad or iPhone, you can preview your composition in an augmented reality",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "session. Find an anchor in the real world that matches your composition’s anchor,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and attach your entity to it. You then physically move the device around the virtual",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object as you would in any AR session, observing how your composition looks in a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "real-world setting. You can also trigger behaviors from this mode to see how they",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "perform.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can even continue to edit your composition while running an AR session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-the-composition-to-your-app",
+          "level": 3,
+          "text": "Add the composition to your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you finish your composition, you can add it to your RealityKit-enabled app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Save the composition as an ",
+              "type": "text"
+            },
+            {
+              "code": ".rcproject",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file by clicking File > Save in the menu.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Drag this file directly into the navigation pane of your Xcode project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode automatically generates code that you use to manipulate the stored objects.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, Xcode generates a class for the scene based on the scene’s name (",
+              "type": "text"
+            },
+            {
+              "code": "MyGreatScene",
+              "type": "codeVoice"
+            },
+            {
+              "text": ")",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "inside an enumeration based on the name of the project file (",
+              "type": "text"
+            },
+            {
+              "code": "MyProject.rcproject",
+              "type": "codeVoice"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "As a convenience, it also provides a ",
+              "type": "text"
+            },
+            {
+              "code": "loadMyGreatScene()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "public enum MyProject {",
+            "    public class MyGreatScene: Entity, HasAnchoring { ... }",
+            "    public static func loadMyGreatScene() throws -> MyGreatScene { ... }",
+            "    ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your code, you call the load method to get the Reality Composer scene’s anchor.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You then add the anchor to your AR view (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") scene’s anchor collection.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "All of the objects and behaviors that you define in Reality Composer exist as children",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the anchor entity, and therefore appear in your app when you display the AR view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let anchor = try? MyProject.loadMyGreatScene() else { return }",
+            "arView.scene.anchors.append(anchor)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Export-the-composition-for-previewing",
+          "level": 3,
+          "text": "Export the composition for previewing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also save your composition to a ",
+              "type": "text"
+            },
+            {
+              "code": ".reality",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": ".usdz",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file for use as a lightweight",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "AR Quick Look experience in your app or on the web. This allows users to place and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "preview content in the real world to get a quick sense of what it’s like.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a Reality file, choose File > Export > Export Project in the Reality",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Composer menu, and provide a name for the file. You use the Reality file that gets",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "stored to disk just like you would use a usdz file, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/previewing-a-model-with-ar-quick-look",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a USDZ file, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/exporting-a-reality-composer-scene-to-usdz",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "creating-3d-content-with-reality-composer-1": {
+      "alt": "Screenshot showing a new Reality Composer window.",
+      "identifier": "creating-3d-content-with-reality-composer-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9069cc0570fe05db3036246de8c46822/creating-3d-content-with-reality-composer-1.png"
+        }
+      ]
+    },
+    "creating-3d-content-with-reality-composer-10": {
+      "alt": null,
+      "identifier": "creating-3d-content-with-reality-composer-10",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c5da853a18ebcce5dac4c0487c986277/creating-3d-content-with-reality-composer-10@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f7522bb4a5adc9e7757fda6242ffd4ff/creating-3d-content-with-reality-composer-10~dark@2x.png"
+        }
+      ]
+    },
+    "creating-3d-content-with-reality-composer-11": {
+      "alt": null,
+      "identifier": "creating-3d-content-with-reality-composer-11",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/096f1c7e77c94ba31499ca2619b4daa8/creating-3d-content-with-reality-composer-11@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e0c48d03e08b6f2793733fbdebfa40cc/creating-3d-content-with-reality-composer-11~dark@2x.png"
+        }
+      ]
+    },
+    "creating-3d-content-with-reality-composer-12": {
+      "alt": null,
+      "identifier": "creating-3d-content-with-reality-composer-12",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b52272a12427827cdcbea31c1244875d/creating-3d-content-with-reality-composer-12@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/44dec2b0a6cfa4799c9603e35b67b263/creating-3d-content-with-reality-composer-12~dark@2x.png"
+        }
+      ]
+    },
+    "creating-3d-content-with-reality-composer-2": {
+      "alt": null,
+      "identifier": "creating-3d-content-with-reality-composer-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dd4b0bce5f0393b2e62acd9aad8c4402/creating-3d-content-with-reality-composer-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/48a6ae0847deb4366075c3eb6664167a/creating-3d-content-with-reality-composer-2~dark@2x.png"
+        }
+      ]
+    },
+    "creating-3d-content-with-reality-composer-3": {
+      "alt": null,
+      "identifier": "creating-3d-content-with-reality-composer-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8aeef179328f71fd5d164d0a310bdff4/creating-3d-content-with-reality-composer-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/65003e5ee35f36230858045dcfae8dc4/creating-3d-content-with-reality-composer-3~dark@2x.png"
+        }
+      ]
+    },
+    "creating-3d-content-with-reality-composer-4": {
+      "alt": null,
+      "identifier": "creating-3d-content-with-reality-composer-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f4ed62e2855f3a794075559b2f924a11/creating-3d-content-with-reality-composer-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a75d7900cc7e7783e7a43aad9f4e4b9a/creating-3d-content-with-reality-composer-4~dark@2x.png"
+        }
+      ]
+    },
+    "creating-3d-content-with-reality-composer-5": {
+      "alt": null,
+      "identifier": "creating-3d-content-with-reality-composer-5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f515549a66b4937ce497bffec2bb5a87/creating-3d-content-with-reality-composer-5@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8182bcd1a0f8f887739592530ad96f77/creating-3d-content-with-reality-composer-5~dark@2x.png"
+        }
+      ]
+    },
+    "creating-3d-content-with-reality-composer-6": {
+      "alt": null,
+      "identifier": "creating-3d-content-with-reality-composer-6",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/916d3a1809529c5a8ccea39a9376880d/creating-3d-content-with-reality-composer-6@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/937cf570ffe2c5504ee3dbffe3e00851/creating-3d-content-with-reality-composer-6~dark@2x.png"
+        }
+      ]
+    },
+    "creating-3d-content-with-reality-composer-7": {
+      "alt": null,
+      "identifier": "creating-3d-content-with-reality-composer-7",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/76d3cbd157db3917d0893088ca3add0a/creating-3d-content-with-reality-composer-7@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1f93b45f652c873ba3a243865de45473/creating-3d-content-with-reality-composer-7~dark@2x.png"
+        }
+      ]
+    },
+    "creating-3d-content-with-reality-composer-8": {
+      "alt": null,
+      "identifier": "creating-3d-content-with-reality-composer-8",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/26512416b2f5fe64f92983b8a111fd4d/creating-3d-content-with-reality-composer-8@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b44c180717fd5c9a2b2c51cb7f1ec237/creating-3d-content-with-reality-composer-8~dark@2x.png"
+        }
+      ]
+    },
+    "creating-3d-content-with-reality-composer-9": {
+      "alt": null,
+      "identifier": "creating-3d-content-with-reality-composer-9",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e5add5939aec00fc7149479fcd2d7fc1/creating-3d-content-with-reality-composer-9@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/88e95d715422127e2f48ef2cfb177731/creating-3d-content-with-reality-composer-9~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ARView": {
+      "abstract": [
+        {
+          "text": "A view that enables you to display an AR experience with RealityKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARView"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARView",
+      "type": "topic",
+      "url": "/documentation/realitykit/arview"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/adding-elements-to-a-3d-scene": {
+      "abstract": [
+        {
+          "text": "Add assets to your scene from Reality Composer’s library, or import custom assets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/adding-elements-to-a-3d-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding elements to a 3D scene",
+      "type": "topic",
+      "url": "/documentation/realitykit/adding-elements-to-a-3d-scene"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/adding-procedural-assets-to-a-scene": {
+      "abstract": [
+        {
+          "text": "Create procedurally generated shape primitives to your Reality Composer scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/adding-procedural-assets-to-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding procedural assets to a scene",
+      "type": "topic",
+      "url": "/documentation/realitykit/adding-procedural-assets-to-a-scene"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/arranging-elements-in-a-scene": {
+      "abstract": [
+        {
+          "text": "Manipulate objects to complete your Reality Composer scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/arranging-elements-in-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Arranging elements in a scene",
+      "type": "topic",
+      "url": "/documentation/realitykit/arranging-elements-in-a-scene"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/bringing-a-reality-composer-scene-to-life": {
+      "abstract": [
+        {
+          "text": "Add animation and handle user input by using behaviors, triggers, and actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/bringing-a-reality-composer-scene-to-life",
+      "kind": "article",
+      "role": "article",
+      "title": "Bringing a Reality Composer scene to life",
+      "type": "topic",
+      "url": "/documentation/realitykit/bringing-a-reality-composer-scene-to-life"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/building-custom-behaviors": {
+      "abstract": [
+        {
+          "text": "Create custom behaviors to control objects in your scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/building-custom-behaviors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Building custom behaviors",
+      "type": "topic",
+      "url": "/documentation/realitykit/building-custom-behaviors"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/configuring-elements-in-a-scene": {
+      "abstract": [
+        {
+          "text": "Define the appearance and behavior of objects in a scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/configuring-elements-in-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring elements in a scene",
+      "type": "topic",
+      "url": "/documentation/realitykit/configuring-elements-in-a-scene"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/exporting-a-reality-composer-scene-to-usdz": {
+      "abstract": [
+        {
+          "text": "Save a scene or project as USDZ to read, collect, or display in an app or website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/exporting-a-reality-composer-scene-to-usdz",
+      "kind": "article",
+      "role": "article",
+      "title": "Exporting a Reality Composer Scene to USDZ",
+      "type": "topic",
+      "url": "/documentation/realitykit/exporting-a-reality-composer-scene-to-usdz"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-accessibility-of-realitykit-apps": {
+      "abstract": [
+        {
+          "text": "Incorporate assistive technologies in your augmented reality app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-accessibility-of-realitykit-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving the Accessibility of RealityKit Apps",
+      "type": "topic",
+      "url": "/documentation/realitykit/improving-the-accessibility-of-realitykit-apps"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-manually-without-generated-code": {
+      "abstract": [
+        {
+          "text": "Load Reality Composer files that aren’t part of your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-manually-without-generated-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Loading Reality Composer files manually without generated code",
+      "type": "topic",
+      "url": "/documentation/realitykit/loading-reality-composer-files-manually-without-generated-code"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-using-generated-code": {
+      "abstract": [
+        {
+          "text": "Leverage automatically generated code to load scenes from Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-using-generated-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Loading Reality Composer files using generated code",
+      "type": "topic",
+      "url": "/documentation/realitykit/loading-reality-composer-files-using-generated-code"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/manipulating-reality-composer-scenes-from-code": {
+      "abstract": [
+        {
+          "text": "Make programmatic changes to your scenes at runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/manipulating-reality-composer-scenes-from-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Manipulating Reality Composer scenes from code",
+      "type": "topic",
+      "url": "/documentation/realitykit/manipulating-reality-composer-scenes-from-code"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer": {
+      "abstract": [
+        {
+          "text": "A visual editor for RealityKit AR scenes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Reality Composer",
+      "type": "topic",
+      "url": "/documentation/realitykit/realitykit-reality-composer"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/selecting-an-anchor-for-a-reality-composer-scene": {
+      "abstract": [
+        {
+          "text": "Decide which anchor is right for your scenes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/selecting-an-anchor-for-a-reality-composer-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Selecting an anchor for a Reality Composer scene",
+      "type": "topic",
+      "url": "/documentation/realitykit/selecting-an-anchor-for-a-reality-composer-scene"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/taking-control-of-scene-anchoring": {
+      "abstract": [
+        {
+          "text": "Create a more interactive user experience by choosing exactly where to anchor Reality",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Composer scenes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/taking-control-of-scene-anchoring",
+      "kind": "article",
+      "role": "article",
+      "title": "Taking Control of Scene Anchoring",
+      "type": "topic",
+      "url": "/documentation/realitykit/taking-control-of-scene-anchoring"
+    },
+    "doc://com.apple.documentation/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/ARKit"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/previewing-a-model-with-ar-quick-look": {
+      "abstract": [
+        {
+          "text": "Display a model or scene that the user can move, scale, and share with others.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/previewing-a-model-with-ar-quick-look",
+      "kind": "article",
+      "role": "article",
+      "title": "Previewing a Model with AR Quick Look",
+      "type": "topic",
+      "url": "/documentation/ARKit/previewing-a-model-with-ar-quick-look"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/download": {
+      "identifier": "https://developer.apple.com/download",
+      "title": "Apple Developer download page",
+      "titleInlineContent": [
+        {
+          "text": "Apple",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Developer download page",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/download"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Scene-creation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-using-generated-code",
+        "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-manually-without-generated-code",
+        "doc://com.apple.RealityKit/documentation/RealityKit/adding-elements-to-a-3d-scene",
+        "doc://com.apple.RealityKit/documentation/RealityKit/configuring-elements-in-a-scene",
+        "doc://com.apple.RealityKit/documentation/RealityKit/arranging-elements-in-a-scene",
+        "doc://com.apple.RealityKit/documentation/RealityKit/manipulating-reality-composer-scenes-from-code",
+        "doc://com.apple.RealityKit/documentation/RealityKit/adding-procedural-assets-to-a-scene",
+        "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-accessibility-of-realitykit-apps"
+      ],
+      "title": "Scene creation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Scene-anchors",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/selecting-an-anchor-for-a-reality-composer-scene",
+        "doc://com.apple.RealityKit/documentation/RealityKit/taking-control-of-scene-anchoring"
+      ],
+      "title": "Scene anchors"
+    },
+    {
+      "anchor": "Scenes",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-using-generated-code",
+        "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-manually-without-generated-code"
+      ],
+      "title": "Scenes"
+    },
+    {
+      "anchor": "Scene-elements",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/adding-elements-to-a-3d-scene",
+        "doc://com.apple.RealityKit/documentation/RealityKit/configuring-elements-in-a-scene",
+        "doc://com.apple.RealityKit/documentation/RealityKit/arranging-elements-in-a-scene",
+        "doc://com.apple.RealityKit/documentation/RealityKit/manipulating-reality-composer-scenes-from-code",
+        "doc://com.apple.RealityKit/documentation/RealityKit/adding-procedural-assets-to-a-scene"
+      ],
+      "title": "Scene elements"
+    },
+    {
+      "anchor": "Behaviors",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/bringing-a-reality-composer-scene-to-life",
+        "doc://com.apple.RealityKit/documentation/RealityKit/building-custom-behaviors"
+      ],
+      "title": "Behaviors"
+    },
+    {
+      "anchor": "Exporting",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/exporting-a-reality-composer-scene-to-usdz"
+      ],
+      "title": "Exporting"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/creating-3d-content-with-reality-composer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

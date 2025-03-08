@@ -1,0 +1,384 @@
+{
+  "abstract": [
+    {
+      "text": "Reallocates collectable memory.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Garbage collection is deprecated in OS X v10.8; instead,you should use AutomaticReference Counting—see ",
+          "type": "text"
+        },
+        {
+          "identifier": "devLink-1746459",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime/objective-c_garbage_collection"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/1539802-nsreallocatecollectable"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1539802,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@NSReallocateCollectable",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "NSReallocateCollectable"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSReallocateCollectable"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " *ptr, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsuinteger",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": " size, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsuinteger",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": " options);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Changes the size of the block of memory pointed to by ",
+              "type": "text"
+            },
+            {
+              "code": "ptr",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "size",
+              "type": "codeVoice"
+            },
+            {
+              "text": " bytes. It may allocate new memory to replace the old, in which case it moves the contents of the old memory block to the new block, up to a maximum of ",
+              "type": "text"
+            },
+            {
+              "code": "size",
+              "type": "codeVoice"
+            },
+            {
+              "text": " bytes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "options",
+              "type": "codeVoice"
+            },
+            {
+              "text": " can be ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "NSScannedOption",
+              "type": "codeVoice"
+            },
+            {
+              "text": ": A value of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " allocates non-scanned memory; a value of ",
+              "type": "text"
+            },
+            {
+              "code": "NSScannedOption",
+              "type": "codeVoice"
+            },
+            {
+              "text": " allocates scanned memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function returns ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if it’s unable to allocate the requested memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1746459": {
+      "identifier": "devLink-1746459",
+      "title": "Transitioning to ARC Release Notes",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011226"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1539802-nsreallocatecollectable": {
+      "abstract": [
+        {
+          "text": "Reallocates collectable memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1539802-nsreallocatecollectable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSReallocateCollectable",
+      "type": "topic",
+      "url": "/documentation/foundation/1539802-nsreallocatecollectable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1539807-nsallocatecollectable": {
+      "abstract": [
+        {
+          "text": "Allocates collectable memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1539807-nsallocatecollectable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAllocateCollectable",
+      "type": "topic",
+      "url": "/documentation/foundation/1539807-nsallocatecollectable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1539822-nsmakecollectable": {
+      "abstract": [
+        {
+          "text": "Makes a newly allocated Core Foundation object eligible for collection.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1539822-nsmakecollectable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMakeCollectable",
+      "type": "topic",
+      "url": "/documentation/foundation/1539822-nsmakecollectable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1539826-memory_allocation_options": {
+      "abstract": [
+        {
+          "text": "Constants used to control behavior when allocating or reallocating collectible memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1539826-memory_allocation_options",
+      "kind": "symbol",
+      "role": "containerSymbol",
+      "title": "Memory Allocation Options",
+      "type": "topic",
+      "url": "/documentation/foundation/1539826-memory_allocation_options"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsgarbagecollector": {
+      "abstract": [
+        {
+          "text": "A convenient interface to the garbage collection system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsgarbagecollector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSGarbageCollector",
+      "type": "topic",
+      "url": "/documentation/foundation/nsgarbagecollector"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime/objective-c_garbage_collection": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime/objective-c_garbage_collection",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Objective-C Garbage Collection",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime/objective-c_garbage_collection"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsuinteger": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsuinteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUInteger",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsuinteger"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsgarbagecollector",
+        "doc://com.apple.documentation/documentation/foundation/1539807-nsallocatecollectable",
+        "doc://com.apple.documentation/documentation/foundation/1539822-nsmakecollectable",
+        "doc://com.apple.documentation/documentation/foundation/1539826-memory_allocation_options"
+      ],
+      "title": "Legacy"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/1539802-nsreallocatecollectable"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

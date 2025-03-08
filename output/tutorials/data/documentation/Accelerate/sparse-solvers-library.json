@@ -1,0 +1,2115 @@
+{
+  "abstract": [
+    {
+      "text": "Solve systems of equations where the coefficient matrix is sparse.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/sparse-solvers-library"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Sparse Solvers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Sparse Solvers library in the Accelerate framework handles the solution of systems of equations where the coefficient matrix is sparse. That is, most of the entries in the matrix are zero. The Sparse Solvers library provides a sparse counterpart to the dense factorizations and linear solvers that LAPACK provides.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many problems in science and technology require the solution of large systems of simultaneous equations. When these equations are linear, you usually represent them as the matrix equation ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Ax = b",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". Even when the equations are nonlinear, you often solve the problem as a sequence of linear approximations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2904627",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Sparse-matrices",
+          "level": 3,
+          "text": "Sparse matrices",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Routines from libraries such as BLAS and LAPACK work with matrices that you store as a 2D dense array of floating-point values. However, the algorithms you use to manipulate matrices and solve equations normally require ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "O(n_²",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ")_ data and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "O(n_³",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ")_ operations. As a result, scaling to a large ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "n",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is prohibitive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To avoid the expense of these algorithms, you can leverage the fact that in many real-world applications, matrices can contain many entries that are zero. Such matrices are called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "sparse",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (conversely, nonsparse matrices are called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "dense",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These zeros arise naturally in these types of situations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "For example, each user buys only a small fraction of the products from a retailer.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Sparse data sets",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "strong"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "For example, most people on social networks only connect to a tiny proportion of the entire user base.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Limited connectivity",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "strong"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "For example, points on structural meshes only connect to locally adjacent points.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Physical properties",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "strong"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By exploiting these zero entries, you can often reduce the storage and computational requirements to ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "O(𝜏*n)",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "O(𝜏*n_²",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "),_ respectively, where ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "𝜏",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is the average number of entries in each column. This reduction makes the solution of large problems (",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "n",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " in the millions or larger) tractable on most computers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the sparse benchmark matrix ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "ldoor",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which arises from structural modeling, has 952,200 x 952,200 entries with an average of 25 nonzero ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Double",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " entries per column. The following table shows the number of floating-point operations (1 Tflop is 10¹² floating-point operations) and the memory necessary to perform Cholesky factorization on that matrix:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Floating-point operations",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Memory",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dense",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "287,782 Tflop",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "6800 GB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sparse",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "0.0783 Tflop",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1.2 GB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Solution-approaches",
+          "level": 3,
+          "text": "Solution approaches",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Accelerate framework offers two solution approaches:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Direct methods",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " perform a factorization such as Cholesky (",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "A = LLᵀ",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ") or QR. These methods provide a fast and accurate opaque solution.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Iterative methods",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " find an approximate solution requiring only repeated multiplication by ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "A",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Aᵀ",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ". Although they require less memory than direct methods, and can be faster for very large problems, they typically require problem-specific preconditioners to be effective.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table summarizes the differences between direct methods and iterative methods:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Direct methods",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Iterative methods",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ease of use",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Simple",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Complex",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Accuracy",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Machine precision",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Square root of machine precision",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Speed",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fast for small problems ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " Quite fast for larger problems",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fastest for large problems, but only with a suitable problem-specific preconditioner",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Memory requirements",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "High",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Low",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In contrast to direct methods, iterative methods provide a way for expert users to find approximate solutions faster using less memory. You can also use iterative methods when forming the explicit matrix is prohibitively expensive, but performing matrix-vector multiplications is performant. However, to achieve these gains, you need to select an appropriate preconditioner (an operator that approximates the inverse of ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "A",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ") that’s specific to your problem. It’s best to try a direct method before trying to use iterative methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Iterative-refinement",
+          "level": 3,
+          "text": "Iterative refinement",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s sometimes possible to improve the accuracy of the solution to ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Ax = b",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " using ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "iterative refinement",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". After finding an initial solution, iterative refinement reuses the factorization to find a series of small corrections with the aim of reducing the backward error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows how to refine the values in the unknowns vector, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "x",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", over a fixed number of iterations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// The coefficient matrix, `A`.",
+            "let A: SparseMatrix_Double! = [ ... ]",
+            "",
+            "// The right-hand-side vector, `b`.",
+            "let b: DenseVector_Double! = [ ... ]",
+            "",
+            "// The factorization of `A` computed by `SparseFactor()`.",
+            "let factorization: SparseOpaqueFactorization_Double! = [ ... ]",
+            "",
+            "// The unknowns vector, `x` computed by `SparseSolve()`.",
+            "let x: DenseVector_Double! = [ ... ]",
+            "",
+            "let count = Int(x.count)",
+            "let n = vDSP_Length(count)",
+            "",
+            "let residualData = UnsafeMutableBufferPointer<Double>.allocate(capacity: count)",
+            "let residual = DenseVector_Double(count: Int32(count), data: residualData.baseAddress!)",
+            "",
+            "let correctionData = UnsafeMutableBufferPointer<Double>.allocate(capacity: count)",
+            "let correction = DenseVector_Double(count: Int32(count), data: correctionData.baseAddress!)",
+            "",
+            "defer {",
+            "    residualData.deallocate()",
+            "    correctionData.deallocate()",
+            "}",
+            "",
+            "let maximumIteratons = 3",
+            "",
+            "for _ in 0 ..< maximumIteratons {",
+            "    ",
+            "    // Calculate residual r = Ax - b.",
+            "    vDSP_vnegD(b.data, 1,",
+            "               residual.data, 1,",
+            "               n)",
+            "    SparseMultiplyAdd(A, x, residual);",
+            "    ",
+            "    // Solve for correction and update x.",
+            "    SparseSolve(factorization, residual, correction);",
+            "    ",
+            "    // vDSP operation that calculates `x[i] -= correction[i]` for",
+            "    // `i` in `0 ..< n`.",
+            "    vDSP_vsubD(correction.data, 1,",
+            "               x.data, 1,",
+            "               x.data, 1,",
+            "               n)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Sparse-Solvers-and-multithreading",
+          "level": 3,
+          "text": "Sparse Solvers and multithreading",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the Sparse Solvers library runs in multithreaded mode. Because multithreaded mode may sum child nodes and their ancestors in different orders, the solutions that the library provides may be different — although equally valid — across different runs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure that results are deterministic, set ",
+              "type": "text"
+            },
+            {
+              "code": "VECLIB_MAXIMUM_THREADS=1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to specify single-threaded mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/DenseMatrix_Double": {
+      "abstract": [
+        {
+          "text": "A structure that contains a dense matrix of double-precision, floating-point values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DenseMatrix_Double"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/DenseMatrix_Double",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DenseMatrix_Double"
+        }
+      ],
+      "role": "symbol",
+      "title": "DenseMatrix_Double",
+      "type": "topic",
+      "url": "/documentation/accelerate/densematrix_double"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/DenseMatrix_Float": {
+      "abstract": [
+        {
+          "text": "A structure that contains a dense matrix of single-precision, floating-point values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DenseMatrix_Float"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/DenseMatrix_Float",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DenseMatrix_Float"
+        }
+      ],
+      "role": "symbol",
+      "title": "DenseMatrix_Float",
+      "type": "topic",
+      "url": "/documentation/accelerate/densematrix_float"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/DenseVector_Double": {
+      "abstract": [
+        {
+          "text": "A structure that contains a dense vector of double-precision, floating-point values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DenseVector_Double"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/DenseVector_Double",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DenseVector_Double"
+        }
+      ],
+      "role": "symbol",
+      "title": "DenseVector_Double",
+      "type": "topic",
+      "url": "/documentation/accelerate/densevector_double"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/DenseVector_Float": {
+      "abstract": [
+        {
+          "text": "A structure that contains a dense vector of single-precision, floating-point values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DenseVector_Float"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/DenseVector_Float",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DenseVector_Float"
+        }
+      ],
+      "role": "symbol",
+      "title": "DenseVector_Float",
+      "type": "topic",
+      "url": "/documentation/accelerate/densevector_float"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_CONSISTENT_DS_MAT_IN_PLACE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SPARSE_CHECK_CONSISTENT_DS_MAT_IN_PLACE"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_CONSISTENT_DS_MAT_IN_PLACE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SPARSE_CHECK_CONSISTENT_DS_MAT_IN_PLACE",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse_check_consistent_ds_mat_in_place"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_CONSISTENT_DS_MAT_OUT_PLACE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SPARSE_CHECK_CONSISTENT_DS_MAT_OUT_PLACE"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_CONSISTENT_DS_MAT_OUT_PLACE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SPARSE_CHECK_CONSISTENT_DS_MAT_OUT_PLACE",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse_check_consistent_ds_mat_out_place"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_CONSISTENT_DS_VEC_IN_PLACE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SPARSE_CHECK_CONSISTENT_DS_VEC_IN_PLACE"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_CONSISTENT_DS_VEC_IN_PLACE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SPARSE_CHECK_CONSISTENT_DS_VEC_IN_PLACE",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse_check_consistent_ds_vec_in_place"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_CONSISTENT_DS_VEC_OUT_PLACE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SPARSE_CHECK_CONSISTENT_DS_VEC_OUT_PLACE"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_CONSISTENT_DS_VEC_OUT_PLACE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SPARSE_CHECK_CONSISTENT_DS_VEC_OUT_PLACE",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse_check_consistent_ds_vec_out_place"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_CONSISTENT_MAT_OUT_PLACE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SPARSE_CHECK_CONSISTENT_MAT_OUT_PLACE"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_CONSISTENT_MAT_OUT_PLACE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SPARSE_CHECK_CONSISTENT_MAT_OUT_PLACE",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse_check_consistent_mat_out_place"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_MATCH_SYMB_FACTOR": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SPARSE_CHECK_MATCH_SYMB_FACTOR"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_MATCH_SYMB_FACTOR",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SPARSE_CHECK_MATCH_SYMB_FACTOR",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse_check_match_symb_factor"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_VALID_MATRIX_STRUCTURE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SPARSE_CHECK_VALID_MATRIX_STRUCTURE"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_VALID_MATRIX_STRUCTURE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SPARSE_CHECK_VALID_MATRIX_STRUCTURE",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse_check_valid_matrix_structure"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_VALID_NUMERIC_FACTOR": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SPARSE_CHECK_VALID_NUMERIC_FACTOR"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_VALID_NUMERIC_FACTOR",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SPARSE_CHECK_VALID_NUMERIC_FACTOR",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse_check_valid_numeric_factor"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_VALID_SYMBOLIC_FACTOR": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SPARSE_CHECK_VALID_SYMBOLIC_FACTOR"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_VALID_SYMBOLIC_FACTOR",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SPARSE_CHECK_VALID_SYMBOLIC_FACTOR",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse_check_valid_symbolic_factor"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CLOSED_ENUM": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SPARSE_CLOSED_ENUM"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CLOSED_ENUM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SPARSE_CLOSED_ENUM",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse_closed_enum"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_ENUM": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SPARSE_ENUM"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_ENUM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SPARSE_ENUM",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse_enum"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_INCLUDED_VIA_ACCELERATE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SPARSE_INCLUDED_VIA_ACCELERATE"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_INCLUDED_VIA_ACCELERATE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SPARSE_INCLUDED_VIA_ACCELERATE",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse_included_via_accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_PARAMETER_CHECK": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SPARSE_PARAMETER_CHECK"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_PARAMETER_CHECK",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SPARSE_PARAMETER_CHECK",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse_parameter_check"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_PUBLIC_INTERFACE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SPARSE_PUBLIC_INTERFACE"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_PUBLIC_INTERFACE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SPARSE_PUBLIC_INTERFACE",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse_public_interface"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Double": {
+      "abstract": [
+        {
+          "text": "A structure that contains a sparse matrix of double-precision, floating-point values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseMatrix_Double"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Double",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseMatrix_Double"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseMatrix_Double",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsematrix_double"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Float": {
+      "abstract": [
+        {
+          "text": "A structure that contains a sparse matrix of single-precision, floating-point values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseMatrix_Float"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Float",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseMatrix_Float"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseMatrix_Float",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsematrix_float"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueFactorization_Double": {
+      "abstract": [
+        {
+          "text": "A structure that represents the factorization of a matrix of double-precision, floating-point values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseOpaqueFactorization_Double"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueFactorization_Double",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseOpaqueFactorization_Double"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseOpaqueFactorization_Double",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseopaquefactorization_double"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueFactorization_Float": {
+      "abstract": [
+        {
+          "text": "A structure that represents the factorization of a matrix of single-precision, floating-point values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseOpaqueFactorization_Float"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueFactorization_Float",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseOpaqueFactorization_Float"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseOpaqueFactorization_Float",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseopaquefactorization_float"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/conversion-from-other-formats": {
+      "abstract": [
+        {
+          "text": "Create sparse matrices from coordinate format arrays and BLAS opaque matrices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/conversion-from-other-formats",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Conversion from Other Formats",
+      "type": "topic",
+      "url": "/documentation/accelerate/conversion-from-other-formats"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/creating-a-sparse-matrix-from-coordinate-format-arrays": {
+      "abstract": [
+        {
+          "text": "Use separate coordinate format arrays to create sparse matrices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/creating-a-sparse-matrix-from-coordinate-format-arrays",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a sparse matrix from coordinate format arrays",
+      "type": "topic",
+      "url": "/documentation/accelerate/creating-a-sparse-matrix-from-coordinate-format-arrays"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/creating-sparse-matrices": {
+      "abstract": [
+        {
+          "text": "Create sparse matrices for factorization and solving systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/creating-sparse-matrices",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating sparse matrices",
+      "type": "topic",
+      "url": "/documentation/accelerate/creating-sparse-matrices"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/memory-management": {
+      "abstract": [
+        {
+          "text": "Retain and release sparse objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/memory-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory Management",
+      "type": "topic",
+      "url": "/documentation/accelerate/memory-management"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/preconditioners": {
+      "abstract": [
+        {
+          "text": "Create preconditioners for iterative solves.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/preconditioners",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preconditioners",
+      "type": "topic",
+      "url": "/documentation/accelerate/preconditioners"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-using-direct-methods": {
+      "abstract": [
+        {
+          "text": "Use direct methods to solve systems of equations where the coefficient matrix is sparse.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-using-direct-methods",
+      "kind": "article",
+      "role": "article",
+      "title": "Solving systems using direct methods",
+      "type": "topic",
+      "url": "/documentation/accelerate/solving-systems-using-direct-methods"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-using-iterative-methods": {
+      "abstract": [
+        {
+          "text": "Use iterative methods to solve systems of equations where the coefficient matrix is sparse.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-using-iterative-methods",
+      "kind": "article",
+      "role": "article",
+      "title": "Solving systems using iterative methods",
+      "type": "topic",
+      "url": "/documentation/accelerate/solving-systems-using-iterative-methods"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/sparse-direct-solving-functions-matrix-rhs": {
+      "abstract": [
+        {
+          "text": "Solve a system with a right-hand-side dense matrix using a factored sparse coefficient matrix.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/sparse-direct-solving-functions-matrix-rhs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sparse Direct Solving Functions (Matrix RHS)",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse-direct-solving-functions-matrix-rhs"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/sparse-direct-solving-functions-vector-rhs": {
+      "abstract": [
+        {
+          "text": "Solve a system with a right-hand-side dense vector using a factored sparse coefficient matrix.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/sparse-direct-solving-functions-vector-rhs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sparse Direct Solving Functions (Vector RHS)",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse-direct-solving-functions-vector-rhs"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/sparse-iterate-functions": {
+      "abstract": [
+        {
+          "text": "Perform a single iteration of the specified iterative method.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/sparse-iterate-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sparse Iterate Functions",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse-iterate-functions"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/sparse-iterative-methods": {
+      "abstract": [
+        {
+          "text": "Select a suitable iterative method to solve a system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/sparse-iterative-methods",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sparse Iterative Methods",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse-iterative-methods"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/sparse-iterative-solving-functions-matrix-rhs": {
+      "abstract": [
+        {
+          "text": "Solve a system with a right-hand-side dense matrix using iterative methods.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/sparse-iterative-solving-functions-matrix-rhs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sparse Iterative Solving Functions (Matrix RHS)",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse-iterative-solving-functions-matrix-rhs"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/sparse-iterative-solving-functions-vector-rhs": {
+      "abstract": [
+        {
+          "text": "Solve a system with a right-hand-side dense vector using iterative methods.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/sparse-iterative-solving-functions-vector-rhs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sparse Iterative Solving Functions (Vector RHS)",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse-iterative-solving-functions-vector-rhs"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/sparse-matrix-and-dense-matrix-multiplication": {
+      "abstract": [
+        {
+          "text": "Multiply sparse and dense matrices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/sparse-matrix-and-dense-matrix-multiplication",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sparse Matrix and Dense Matrix Multiplication",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse-matrix-and-dense-matrix-multiplication"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/sparse-matrix-and-dense-vector-multiplication": {
+      "abstract": [
+        {
+          "text": "Multiply sparse matrices and dense vectors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/sparse-matrix-and-dense-vector-multiplication",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sparse Matrix and Dense Vector Multiplication",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse-matrix-and-dense-vector-multiplication"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/sparse-matrix-factor-functions": {
+      "abstract": [
+        {
+          "text": "Compute the factorization of a matrix.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/sparse-matrix-factor-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sparse Matrix Factor Functions",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse-matrix-factor-functions"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/sparse-refactor-functions": {
+      "abstract": [
+        {
+          "text": "Recompute a factorization using the numerical data from a matrix.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/sparse-refactor-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sparse Refactor Functions",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse-refactor-functions"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/sparse-symbolic-factorization-functions": {
+      "abstract": [
+        {
+          "text": "Calculate the symbolic factorization of a matrix, and solve systems using precalculated symbolic factorizations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/sparse-symbolic-factorization-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sparse Symbolic Factorization Functions",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse-symbolic-factorization-functions"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/subfactor-functions": {
+      "abstract": [
+        {
+          "text": "Extract and work with subfactors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/subfactor-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Subfactor Functions",
+      "type": "topic",
+      "url": "/documentation/accelerate/subfactor-functions"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/transposition": {
+      "abstract": [
+        {
+          "text": "Transpose matrices, factorizations, and subfactors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/transposition",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Transposition",
+      "type": "topic",
+      "url": "/documentation/accelerate/transposition"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Double": {
+      "abstract": [
+        {
+          "text": "A double-precision, floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Double",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Double",
+      "type": "topic",
+      "url": "/documentation/Swift/Double"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-2904627": {
+      "alt": "A linear graph that depicts a plotted sparse matrix.",
+      "identifier": "media-2904627",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8eaf4f02865e6c2db2a545155b497158/media-2904627@2x.png"
+        }
+      ]
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sparse-Matrices",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/creating-sparse-matrices",
+        "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-using-direct-methods",
+        "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-using-iterative-methods",
+        "doc://com.apple.accelerate/documentation/Accelerate/creating-a-sparse-matrix-from-coordinate-format-arrays"
+      ],
+      "title": "Sparse Matrices"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-sparse-matrices",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/creating-sparse-matrices",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Double",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Float",
+        "doc://com.apple.accelerate/documentation/Accelerate/conversion-from-other-formats"
+      ],
+      "title": "Creating sparse matrices"
+    },
+    {
+      "anchor": "Creating-dense-matrices-and-dense-vectors",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/DenseMatrix_Double",
+        "doc://com.apple.accelerate/documentation/Accelerate/DenseMatrix_Float",
+        "doc://com.apple.accelerate/documentation/Accelerate/DenseVector_Double",
+        "doc://com.apple.accelerate/documentation/Accelerate/DenseVector_Float"
+      ],
+      "title": "Creating dense matrices and dense vectors"
+    },
+    {
+      "anchor": "Solving-systems-with-direct-sparse-methods",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-using-direct-methods",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueFactorization_Double",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueFactorization_Float",
+        "doc://com.apple.accelerate/documentation/Accelerate/sparse-matrix-factor-functions",
+        "doc://com.apple.accelerate/documentation/Accelerate/sparse-direct-solving-functions-matrix-rhs",
+        "doc://com.apple.accelerate/documentation/Accelerate/sparse-direct-solving-functions-vector-rhs",
+        "doc://com.apple.accelerate/documentation/Accelerate/sparse-symbolic-factorization-functions",
+        "doc://com.apple.accelerate/documentation/Accelerate/sparse-refactor-functions",
+        "doc://com.apple.accelerate/documentation/Accelerate/subfactor-functions"
+      ],
+      "title": "Solving systems with direct sparse methods"
+    },
+    {
+      "anchor": "Solving-systems-with-iterative-sparse-methods",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-using-iterative-methods",
+        "doc://com.apple.accelerate/documentation/Accelerate/sparse-iterative-solving-functions-matrix-rhs",
+        "doc://com.apple.accelerate/documentation/Accelerate/sparse-iterative-solving-functions-vector-rhs",
+        "doc://com.apple.accelerate/documentation/Accelerate/sparse-iterate-functions",
+        "doc://com.apple.accelerate/documentation/Accelerate/sparse-iterative-methods",
+        "doc://com.apple.accelerate/documentation/Accelerate/preconditioners"
+      ],
+      "title": "Solving systems with iterative sparse methods"
+    },
+    {
+      "anchor": "Multiplying-and-transposing-sparse-matrices",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/sparse-matrix-and-dense-matrix-multiplication",
+        "doc://com.apple.accelerate/documentation/Accelerate/sparse-matrix-and-dense-vector-multiplication",
+        "doc://com.apple.accelerate/documentation/Accelerate/transposition"
+      ],
+      "title": "Multiplying and transposing sparse matrices"
+    },
+    {
+      "anchor": "Retaining-and-releasing-resources",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/memory-management"
+      ],
+      "title": "Retaining and releasing resources"
+    },
+    {
+      "anchor": "Macros",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_CONSISTENT_DS_MAT_IN_PLACE",
+        "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_CONSISTENT_DS_MAT_OUT_PLACE",
+        "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_CONSISTENT_DS_VEC_IN_PLACE",
+        "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_CONSISTENT_DS_VEC_OUT_PLACE",
+        "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_CONSISTENT_MAT_OUT_PLACE",
+        "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_MATCH_SYMB_FACTOR",
+        "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_VALID_MATRIX_STRUCTURE",
+        "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_VALID_NUMERIC_FACTOR",
+        "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CHECK_VALID_SYMBOLIC_FACTOR",
+        "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_CLOSED_ENUM",
+        "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_ENUM",
+        "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_PARAMETER_CHECK",
+        "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_PUBLIC_INTERFACE",
+        "doc://com.apple.accelerate/documentation/Accelerate/SPARSE_INCLUDED_VIA_ACCELERATE"
+      ],
+      "title": "Macros"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DenseMatrix_Double/title",
+          "value": "DenseMatrix_Double"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DenseMatrix_Double/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DenseMatrix_Double"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DenseMatrix_Double/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DenseMatrix_Double"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueFactorization_Double/title",
+          "value": "SparseOpaqueFactorization_Double"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueFactorization_Double/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseOpaqueFactorization_Double"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueFactorization_Double/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseOpaqueFactorization_Double"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrix_Double/title",
+          "value": "SparseMatrix_Double"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrix_Double/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseMatrix_Double"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrix_Double/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseMatrix_Double"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrix_Float/title",
+          "value": "SparseMatrix_Float"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrix_Float/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseMatrix_Float"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrix_Float/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseMatrix_Float"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DenseMatrix_Float/title",
+          "value": "DenseMatrix_Float"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DenseMatrix_Float/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DenseMatrix_Float"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DenseMatrix_Float/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DenseMatrix_Float"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueFactorization_Float/title",
+          "value": "SparseOpaqueFactorization_Float"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueFactorization_Float/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseOpaqueFactorization_Float"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueFactorization_Float/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseOpaqueFactorization_Float"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DenseVector_Double/title",
+          "value": "DenseVector_Double"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DenseVector_Double/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DenseVector_Double"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DenseVector_Double/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DenseVector_Double"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DenseVector_Float/title",
+          "value": "DenseVector_Float"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DenseVector_Float/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DenseVector_Float"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DenseVector_Float/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DenseVector_Float"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

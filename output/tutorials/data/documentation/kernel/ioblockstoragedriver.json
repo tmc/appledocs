@@ -1,0 +1,2185 @@
+{
+  "abstract": [
+    {
+      "text": "The common base class for generic block storage drivers.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/mass_storage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1436341,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOBlockStorageDriver",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.6",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOBlockStorageDriver"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOBlockStorageDriver"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iostorage",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOStorage",
+              "text": "IOStorage"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The IOBlockStorageDriver class is the common base class for generic block storage drivers. It matches and communicates via an IOBlockStorageDevice interface, and connects to the remainder of the storage framework via the IOStorage protocol. It extends the IOStorage protocol by implementing the appropriate open and close semantics, deblocking for unaligned transfers, polling for ejectable media, locking and ejection policies, media object creation and tear-down, and statistics gathering and reporting.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Block storage drivers are split into two parts: the generic driver handles all generic device issues, independent of the lower-level transport mechanism (e.g. SCSI, ATA, USB, FireWire). All storage operations at the generic driver level are translated into a series of generic device operations. These operations are passed via the IOBlockStorageDevice nub to a transport driver, which implements the appropriate transport-dependent protocol to execute these operations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine the write-protect state of a device (or media), for example, the generic driver would issue a call to the Transport Driver's reportWriteProtection method. If this were a SCSI device, its transport driver would issue a Mode Sense command to extract the write-protection status bit. The transport driver then reports true or false to the generic driver.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The generic driver therefore has no knowledge of, or involvement with, the actual commands and mechanisms used to communicate with the device. It is expected that the generic driver will rarely, if ever, need to be subclassed to handle device idiosyncrasies; rather, the transport driver should be changed via overrides.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A generic driver could be subclassed to create a different type of generic device. The generic driver IOCDBlockStorageDriver class is a subclass of IOBlockStorageDriver, adding CD functions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/mass_storage": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/mass_storage",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Mass Storage",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/mass_storage"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobdblockstoragedriver": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobdblockstoragedriver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBDBlockStorageDriver",
+      "type": "topic",
+      "url": "/documentation/kernel/iobdblockstoragedriver"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver": {
+      "abstract": [
+        {
+          "text": "The common base class for generic block storage drivers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBlockStorageDriver",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436274-incrementretries": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "incrementRetries"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436274-incrementretries",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "incrementRetries",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436274-incrementretries"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436275-ismediapollrequired": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isMediaPollRequired"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436275-ismediapollrequired",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isMediaPollRequired",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436275-ismediapollrequired"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436279-addtobytestransferred": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addToBytesTransferred"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436279-addtobytestransferred",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addToBytesTransferred",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436279-addtobytestransferred"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436280-ismediawritable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isMediaWritable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436280-ismediawritable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isMediaWritable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436280-ismediawritable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436282-deblockrequestexecute": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "deblockRequestExecute"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436282-deblockrequestexecute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deblockRequestExecute",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436282-deblockrequestexecute"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436287-getdevicetypename": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getDeviceTypeName"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436287-getdevicetypename",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getDeviceTypeName",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436287-getdevicetypename"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436290-ismediaremovable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isMediaRemovable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436290-ismediaremovable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isMediaRemovable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436290-ismediaremovable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436291-ejectmedia": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ejectMedia"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436291-ejectmedia",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ejectMedia",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436291-ejectmedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436292-recordmediaparameters": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "recordMediaParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436292-recordmediaparameters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "recordMediaParameters",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436292-recordmediaparameters"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436293-read": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "read"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436293-read",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "read",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436293-read"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436294-yield": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "yield"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436294-yield",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "yield",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436294-yield"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436296-handleisopen": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleIsOpen"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436296-handleisopen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleIsOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436296-handleisopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436298-incrementerrors": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "incrementErrors"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436298-incrementerrors",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "incrementErrors",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436298-incrementerrors"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436299-checkformedia": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "checkForMedia"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436299-checkformedia",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "checkForMedia",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436299-checkformedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436300-getstatistics": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getStatistics"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436300-getstatistics",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getStatistics",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436300-getstatistics"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436301-deletecontext": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deleteContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436301-deletecontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deleteContext",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436301-deletecontext"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436303-instantiatedesiredmediaobject": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "instantiateDesiredMediaObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436303-instantiatedesiredmediaobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "instantiateDesiredMediaObject",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436303-instantiatedesiredmediaobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436304-write": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436304-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436304-write"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436305-synchronize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "synchronize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436305-synchronize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "synchronize",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436305-synchronize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436306-allocatecontext": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocateContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436306-allocatecontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocateContext",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436306-allocatecontext"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436307-decommissionmedia": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "decommissionMedia"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436307-decommissionmedia",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decommissionMedia",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436307-decommissionmedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436310-mediastatehaschanged": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaStateHasChanged"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436310-mediastatehaschanged",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mediaStateHasChanged",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436310-mediastatehaschanged"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436311-breakuprequestexecute": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "breakUpRequestExecute"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436311-breakuprequestexecute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "breakUpRequestExecute",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436311-breakuprequestexecute"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436312-validatenewmedia": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "validateNewMedia"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436312-validatenewmedia",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "validateNewMedia",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436312-validatenewmedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436313-didterminate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "didTerminate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436313-didterminate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didTerminate",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436313-didterminate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436315-ismediapollexpensive": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isMediaPollExpensive"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436315-ismediapollexpensive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isMediaPollExpensive",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436315-ismediapollexpensive"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436316-getformatcapacities": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getFormatCapacities"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436316-getformatcapacities",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getFormatCapacities",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436316-getformatcapacities"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436318-acceptnewmedia": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "acceptNewMedia"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436318-acceptnewmedia",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "acceptNewMedia",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436318-acceptnewmedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436320-initmediastate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initMediaState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436320-initmediastate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initMediaState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436320-initmediastate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436321-unmap": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "unmap"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436321-unmap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unmap",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436321-unmap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436322-handlepowerevent": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "handlePowerEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436322-handlepowerevent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handlePowerEvent",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436322-handlepowerevent"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436323-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436323-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436323-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436326-deblockrequest": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deblockRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436326-deblockrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deblockRequest",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436326-deblockrequest"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436330-copyphysicalextent": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyPhysicalExtent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436330-copyphysicalextent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copyPhysicalExtent",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436330-copyphysicalextent"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436332-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436332-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436332-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436333-preparerequestcompletion": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareRequestCompletion"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436333-preparerequestcompletion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepareRequestCompletion",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436333-preparerequestcompletion"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436334-getmediablocksize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMediaBlockSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436334-getmediablocksize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMediaBlockSize",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436334-getmediablocksize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436335-requestidle": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestIdle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436335-requestidle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestIdle",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436335-requestidle"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436336-constrainbytecount": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "constrainByteCount"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436336-constrainbytecount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "constrainByteCount",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436336-constrainbytecount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436337-executerequest": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436337-executerequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeRequest",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436337-executerequest"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436339-setpriority": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPriority"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436339-setpriority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPriority",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436339-setpriority"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436340-getprovider": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436340-getprovider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getProvider",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436340-getprovider"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436342-getstatistic": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getStatistic"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436342-getstatistic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getStatistic",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436342-getstatistic"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436343-deblockrequestcompletion": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "deblockRequestCompletion"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436343-deblockrequestcompletion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deblockRequestCompletion",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436343-deblockrequestcompletion"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436344-handlestart": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleStart"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436344-handlestart",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleStart",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436344-handlestart"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436345-preparerequest": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436345-preparerequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepareRequest",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436345-preparerequest"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436346-lockphysicalextents": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockPhysicalExtents"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436346-lockphysicalextents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lockPhysicalExtents",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436346-lockphysicalextents"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436347-handleyield": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleYield"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436347-handleyield",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleYield",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436347-handleyield"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436348-breakuprequest": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "breakUpRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436348-breakuprequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "breakUpRequest",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436348-breakuprequest"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436349-rejectmedia": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "rejectMedia"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436349-rejectmedia",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rejectMedia",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436349-rejectmedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436350-message": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "message"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436350-message",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "message",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436350-message"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436352-getmediastate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMediaState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436352-getmediastate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMediaState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436352-getmediastate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436355-lockmedia": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockMedia"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436355-lockmedia",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lockMedia",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436355-lockmedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436356-ismediaejectable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isMediaEjectable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436356-ismediaejectable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isMediaEjectable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436356-ismediaejectable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436357-unschedulepoller": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "unschedulePoller"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436357-unschedulepoller",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unschedulePoller",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436357-unschedulepoller"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436358-breakuprequestcompletion": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "breakUpRequestCompletion"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436358-breakuprequestcompletion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "breakUpRequestCompletion",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436358-breakuprequestcompletion"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436359-unlockphysicalextents": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "unlockPhysicalExtents"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436359-unlockphysicalextents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unlockPhysicalExtents",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436359-unlockphysicalextents"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436360-instantiatemediaobject": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "instantiateMediaObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436360-instantiatemediaobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "instantiateMediaObject",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436360-instantiatemediaobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436362-handleclose": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleClose"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436362-handleclose",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleClose",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436362-handleclose"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436363-handleopen": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleOpen"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436363-handleopen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436363-handleopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436364-pollmedia": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "pollMedia"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436364-pollmedia",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pollMedia",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436364-pollmedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436365-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436365-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436365-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436366-formatmedia": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatMedia"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436366-formatmedia",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatMedia",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436366-formatmedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436367-stop": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "stop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436367-stop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436367-stop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436368-start": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436368-start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "start",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436368-start"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436369-schedulepoller": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "schedulePoller"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436369-schedulepoller",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "schedulePoller",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1436369-schedulepoller"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1641853-getprovisionstatus": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getProvisionStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1641853-getprovisionstatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getProvisionStatus",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1641853-getprovisionstatus"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811574-acceptnewmedia": {
+      "abstract": [
+        {
+          "text": "React to new media insertion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811574-acceptnewmedia",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "acceptNewMedia",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1811574-acceptnewmedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811596-addtobytestransferred": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811596-addtobytestransferred",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "addToBytesTransferred",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1811596-addtobytestransferred"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811624-allocatecontext": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811624-allocatecontext",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "allocateContext",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1811624-allocatecontext"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811639-breakuprequest": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811639-breakuprequest",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "breakUpRequest",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1811639-breakuprequest"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811654-checkformedia": {
+      "abstract": [
+        {
+          "text": "Check if media has newly arrived or disappeared.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811654-checkformedia",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "checkForMedia",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1811654-checkformedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811669-constrainbytecount": {
+      "abstract": [
+        {
+          "text": "Constrain the byte count for this IO to device limits.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811669-constrainbytecount",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "constrainByteCount",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1811669-constrainbytecount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811687-copyphysicalextent": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811687-copyphysicalextent",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "copyPhysicalExtent",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1811687-copyphysicalextent"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811703-deblockrequest": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811703-deblockrequest",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "deblockRequest",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1811703-deblockrequest"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811732-decommissionmedia": {
+      "abstract": [
+        {
+          "text": "Decommission an existing piece of media that has gone away.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811732-decommissionmedia",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "decommissionMedia",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1811732-decommissionmedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811760-deletecontext": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811760-deletecontext",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "deleteContext",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1811760-deletecontext"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811792-ejectmedia": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811792-ejectmedia",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "ejectMedia",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1811792-ejectmedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811817-executerequest": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811817-executerequest",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "executeRequest",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1811817-executerequest"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811835-formatmedia": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811835-formatmedia",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "formatMedia",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1811835-formatmedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811863-getdevicetypename": {
+      "abstract": [
+        {
+          "text": "Return the desired device name.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811863-getdevicetypename",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getDeviceTypeName",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1811863-getdevicetypename"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811884-getformatcapacities": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811884-getformatcapacities",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getFormatCapacities",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1811884-getformatcapacities"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811916-getmediablocksize": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811916-getmediablocksize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getMediaBlockSize",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1811916-getmediablocksize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811940-getmediastate": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811940-getmediastate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getMediaState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1811940-getmediastate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811958-getstatistic": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811958-getstatistic",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getStatistic",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1811958-getstatistic"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811976-getstatistics": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811976-getstatistics",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getStatistics",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1811976-getstatistics"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811990-handleclose": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811990-handleclose",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleClose",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1811990-handleclose"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811999-handleisopen": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811999-handleisopen",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleIsOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1811999-handleisopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812007-handleopen": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812007-handleopen",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1812007-handleopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812019-handlestart": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812019-handlestart",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleStart",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1812019-handlestart"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812024-incrementerrors": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812024-incrementerrors",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "incrementErrors",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1812024-incrementerrors"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812030-incrementretries": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812030-incrementretries",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "incrementRetries",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1812030-incrementretries"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812034-initmediastate": {
+      "abstract": [
+        {
+          "text": "Initialize media-related instance variables.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812034-initmediastate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initMediaState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1812034-initmediastate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812038-instantiatedesiredmediaobject": {
+      "abstract": [
+        {
+          "text": "Create an IOMedia object for media.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812038-instantiatedesiredmediaobject",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "instantiateDesiredMediaObject",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1812038-instantiatedesiredmediaobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812042-instantiatemediaobject": {
+      "abstract": [
+        {
+          "text": "Create an IOMedia object for media.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812042-instantiatemediaobject",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "instantiateMediaObject",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1812042-instantiatemediaobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812044-ismediaejectable": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812044-ismediaejectable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isMediaEjectable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1812044-ismediaejectable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812049-ismediaremovable": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812049-ismediaremovable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isMediaRemovable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1812049-ismediaremovable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812052-ismediawritable": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812052-ismediawritable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isMediaWritable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1812052-ismediawritable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812055-lockphysicalextents": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812055-lockphysicalextents",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "lockPhysicalExtents",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1812055-lockphysicalextents"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812057-mediastatehaschanged": {
+      "abstract": [
+        {
+          "text": "React to a new media insertion or a media removal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812057-mediastatehaschanged",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "mediaStateHasChanged",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1812057-mediastatehaschanged"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812063-preparerequest": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812063-preparerequest",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "prepareRequest",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1812063-preparerequest"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812076-read": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812076-read",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "read",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1812076-read"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812090-recordmediaparameters": {
+      "abstract": [
+        {
+          "text": "Obtain media-related parameters on media insertion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812090-recordmediaparameters",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "recordMediaParameters",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1812090-recordmediaparameters"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812100-rejectmedia": {
+      "abstract": [
+        {
+          "text": "Reject new media.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812100-rejectmedia",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "rejectMedia",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1812100-rejectmedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812117-requestidle": {
+      "abstract": [
+        {
+          "text": "Request that the device enter an idle state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812117-requestidle",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "requestIdle",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1812117-requestidle"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812132-synchronizecache": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812132-synchronizecache",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "synchronizeCache",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1812132-synchronizecache"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812149-unlockphysicalextents": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812149-unlockphysicalextents",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "unlockPhysicalExtents",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1812149-unlockphysicalextents"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812179-unmap": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812179-unmap",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "unmap",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1812179-unmap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812204-validatenewmedia": {
+      "abstract": [
+        {
+          "text": "Verify that new media is acceptable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812204-validatenewmedia",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "validateNewMedia",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1812204-validatenewmedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812222-write": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812222-write",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "write",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/1812222-write"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/4116465-systemwillshutdown": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemWillShutdown"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/4116465-systemwillshutdown",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "systemWillShutdown",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/4116465-systemwillshutdown"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/ejectable": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/ejectable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "_ejectable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/ejectable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/maxblocknumber": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/maxblocknumber",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "_maxBlockNumber",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/maxblocknumber"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/maxreadbytetransfer": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/maxreadbytetransfer",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "_maxReadByteTransfer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/maxreadbytetransfer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/maxwritebytetransfer": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/maxwritebytetransfer",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "_maxWriteByteTransfer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/maxwritebytetransfer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/mediablocksize": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/mediablocksize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "_mediaBlockSize",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/mediablocksize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/mediaobject": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/mediaobject",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "_mediaObject",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/mediaobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/mediatype": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/mediatype",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "_mediaType",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/mediatype"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/removable": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/removable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "_removable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/removable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/writeprotected": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/writeprotected",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "_writeProtected",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedriver/writeprotected"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocdblockstoragedriver": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocdblockstoragedriver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOCDBlockStorageDriver",
+      "type": "topic",
+      "url": "/documentation/kernel/iocdblockstoragedriver"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodvdblockstoragedriver": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodvdblockstoragedriver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODVDBlockStorageDriver",
+      "type": "topic",
+      "url": "/documentation/kernel/iodvdblockstoragedriver"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostorage": {
+      "abstract": [
+        {
+          "text": "The common base class for mass storage objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOStorage",
+      "type": "topic",
+      "url": "/documentation/kernel/iostorage"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iostorage"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iobdblockstoragedriver",
+        "doc://com.apple.documentation/documentation/kernel/iodvdblockstoragedriver",
+        "doc://com.apple.documentation/documentation/kernel/iocdblockstoragedriver",
+        "doc://com.apple.documentation/documentation/kernel/iostorage"
+      ],
+      "title": "Drivers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1818839",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811574-acceptnewmedia",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811596-addtobytestransferred",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811624-allocatecontext",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811639-breakuprequest",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811654-checkformedia",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811669-constrainbytecount",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811687-copyphysicalextent",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811703-deblockrequest",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811732-decommissionmedia",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811760-deletecontext",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811792-ejectmedia",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811817-executerequest",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811835-formatmedia",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811863-getdevicetypename",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811884-getformatcapacities",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811916-getmediablocksize",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811940-getmediastate",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811958-getstatistic",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811976-getstatistics",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811990-handleclose",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1811999-handleisopen",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812007-handleopen",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812019-handlestart",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812024-incrementerrors",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812030-incrementretries",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812034-initmediastate",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812038-instantiatedesiredmediaobject",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812042-instantiatemediaobject",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812044-ismediaejectable",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812049-ismediaremovable",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812052-ismediawritable",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812055-lockphysicalextents",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812057-mediastatehaschanged",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812063-preparerequest",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812076-read",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812090-recordmediaparameters",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812100-rejectmedia",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812117-requestidle",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812132-synchronizecache",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812149-unlockphysicalextents",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812179-unmap",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812204-validatenewmedia",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1812222-write"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "1818881",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/writeprotected",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/removable",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/mediatype",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/mediaobject",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/mediablocksize",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/maxwritebytetransfer",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/maxreadbytetransfer",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/maxblocknumber",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/ejectable"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Variables"
+    },
+    {
+      "anchor": "2855949",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436318-acceptnewmedia",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436279-addtobytestransferred",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436306-allocatecontext",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436348-breakuprequest",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436299-checkformedia",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436336-constrainbytecount",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436330-copyphysicalextent",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436326-deblockrequest",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436307-decommissionmedia",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436301-deletecontext",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436313-didterminate",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436291-ejectmedia",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436337-executerequest",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436366-formatmedia",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436323-free",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436287-getdevicetypename",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436316-getformatcapacities",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436334-getmediablocksize",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436352-getmediastate",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436332-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436340-getprovider",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1641853-getprovisionstatus",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436342-getstatistic",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436300-getstatistics",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436362-handleclose",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436296-handleisopen",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436363-handleopen",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436344-handlestart",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436347-handleyield",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436298-incrementerrors",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436274-incrementretries",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436365-init",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436320-initmediastate",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436303-instantiatedesiredmediaobject",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436360-instantiatemediaobject",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436356-ismediaejectable",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436315-ismediapollexpensive",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436275-ismediapollrequired",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436290-ismediaremovable",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436280-ismediawritable",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436355-lockmedia",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436346-lockphysicalextents",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436310-mediastatehaschanged",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436350-message",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436364-pollmedia",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436345-preparerequest",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436293-read",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436292-recordmediaparameters",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436349-rejectmedia",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436335-requestidle",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436369-schedulepoller",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436339-setpriority",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436368-start",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436367-stop",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436305-synchronize",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/4116465-systemwillshutdown",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436359-unlockphysicalextents",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436321-unmap",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436357-unschedulepoller",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436312-validatenewmedia",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436304-write",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436294-yield"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "2855950",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436358-breakuprequestcompletion",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436311-breakuprequestexecute",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436343-deblockrequestcompletion",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436282-deblockrequestexecute",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436322-handlepowerevent",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedriver/1436333-preparerequestcompletion"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/ioblockstoragedriver"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

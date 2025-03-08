@@ -1,0 +1,1148 @@
+{
+  "abstract": [
+    {
+      "text": "Detect and respond to car crash events in your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safetykit/documentation/SafetyKit"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "SafetyKit",
+    "modules": [
+      {
+        "name": "SafetyKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.1",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "SafetyKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SafetyKit provides Crash Detection, a feature that sends a crash event to an authorized app if a person is in a severe vehicular crash as detected by their iPhone 14, iPhone 14 Pro, Apple Watch Series 8, Apple Watch SE (2nd generation), or Apple Watch Ultra. These devices provide a feature called Emergency SOS - Call After Severe Crash. If enabled, Emergency SOS dials a municipal emergency service such as 911 in the event of a vehicular crash. After Emergency SOS places its call, Crash Detection can assist someone by initiating a call to a contact designated by the app, such as a roadside assistance provider.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SafetyKit supports three crash scenarios. In each scenario, Apple is the first party, and your app is the third party.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first scenario has first-party Emergency SOS turned off and third-party sharing turned on. When the device detects a crash, a critical alert occurs and the third party receives the crash information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4257130",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the second scenario, first-party Emergency SOS and third-party sharing are turned on. When the device detects a crash, the first-party Emergency SOS runs automatically. After the first party completes its procedures, a critical alert occurs and the third party receives the crash information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4257129",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the third scenario, first-party Emergency SOS is turned on and there’s no third-party sharing. When the device detects a crash, the first-party Emergency SOS runs automatically.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4257131",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Crash Detection requires the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.severe-vehicular-crash-event",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " entitlement. To apply for this entitlement, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/contact/request/vehicular-crash-events/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support Crash Detection, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safetykit/documentation/SafetyKit/SACrashDetectionManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine whether it’s available and if so, ask permission to allow your app to receive crash events. Then set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safetykit/documentation/SafetyKit/SACrashDetectionManager/delegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the object that receives the events. Only one app on the device can receive Crash Detection events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app receives a Crash Detection event, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safetykit/documentation/SafetyKit/SAEmergencyResponseManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to provide assistance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.severe-vehicular-crash-event": {
+      "abstract": [
+        {
+          "text": "The entitlement for accessing Crash Detection events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.severe-vehicular-crash-event",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.severe-vehicular-crash-event",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.severe-vehicular-crash-event"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safetykit/documentation/SafetyKit": {
+      "abstract": [
+        {
+          "text": "Detect and respond to car crash events in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safetykit/documentation/SafetyKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SafetyKit",
+      "type": "topic",
+      "url": "/documentation/safetykit"
+    },
+    "doc://com.apple.safetykit/documentation/SafetyKit/SAAuthorizationStatus": {
+      "abstract": [
+        {
+          "text": "An enumeration that represents the current Crash Detection event authorization state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SAAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.safetykit/documentation/SafetyKit/SAAuthorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SAAuthorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "SAAuthorizationStatus",
+      "type": "topic",
+      "url": "/documentation/safetykit/saauthorizationstatus"
+    },
+    "doc://com.apple.safetykit/documentation/SafetyKit/SACrashDetectionDelegate": {
+      "abstract": [
+        {
+          "text": "The protocol that an object adopts to receive Crash Detection events and changes to the authorization status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SACrashDetectionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.safetykit/documentation/SafetyKit/SACrashDetectionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SACrashDetectionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SACrashDetectionDelegate",
+      "type": "topic",
+      "url": "/documentation/safetykit/sacrashdetectiondelegate"
+    },
+    "doc://com.apple.safetykit/documentation/SafetyKit/SACrashDetectionEvent": {
+      "abstract": [
+        {
+          "text": "Describes the information about a vehicular crash.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SACrashDetectionEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.safetykit/documentation/SafetyKit/SACrashDetectionEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SACrashDetectionEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SACrashDetectionEvent",
+      "type": "topic",
+      "url": "/documentation/safetykit/sacrashdetectionevent"
+    },
+    "doc://com.apple.safetykit/documentation/SafetyKit/SACrashDetectionEvent/Response-swift.enum": {
+      "abstract": [
+        {
+          "text": "An enumeration that defines possible emergency responses to a Crash Detection event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Response"
+        }
+      ],
+      "identifier": "doc://com.apple.safetykit/documentation/SafetyKit/SACrashDetectionEvent/Response-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Response"
+        }
+      ],
+      "role": "symbol",
+      "title": "SACrashDetectionEvent.Response",
+      "type": "topic",
+      "url": "/documentation/safetykit/sacrashdetectionevent/response-swift.enum"
+    },
+    "doc://com.apple.safetykit/documentation/SafetyKit/SACrashDetectionManager": {
+      "abstract": [
+        {
+          "text": "Provides registration and management of Crash Detection events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SACrashDetectionManager"
+        }
+      ],
+      "identifier": "doc://com.apple.safetykit/documentation/SafetyKit/SACrashDetectionManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SACrashDetectionManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "SACrashDetectionManager",
+      "type": "topic",
+      "url": "/documentation/safetykit/sacrashdetectionmanager"
+    },
+    "doc://com.apple.safetykit/documentation/SafetyKit/SACrashDetectionManager/delegate": {
+      "abstract": [
+        {
+          "text": "The object that receives Crash Detection events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SACrashDetectionDelegate",
+          "text": "SACrashDetectionDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.safetykit/documentation/SafetyKit/SACrashDetectionManager/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/safetykit/sacrashdetectionmanager/delegate"
+    },
+    "doc://com.apple.safetykit/documentation/SafetyKit/SAEmergencyResponseDelegate": {
+      "abstract": [
+        {
+          "text": "The interface for receiving updates about a requested emergency response action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SAEmergencyResponseDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.safetykit/documentation/SafetyKit/SAEmergencyResponseDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SAEmergencyResponseDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SAEmergencyResponseDelegate",
+      "type": "topic",
+      "url": "/documentation/safetykit/saemergencyresponsedelegate"
+    },
+    "doc://com.apple.safetykit/documentation/SafetyKit/SAEmergencyResponseManager": {
+      "abstract": [
+        {
+          "text": "Provides actions in response to a Crash Detection event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SAEmergencyResponseManager"
+        }
+      ],
+      "identifier": "doc://com.apple.safetykit/documentation/SafetyKit/SAEmergencyResponseManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SAEmergencyResponseManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "SAEmergencyResponseManager",
+      "type": "topic",
+      "url": "/documentation/safetykit/saemergencyresponsemanager"
+    },
+    "doc://com.apple.safetykit/documentation/SafetyKit/SAError": {
+      "abstract": [
+        {
+          "text": "An error reported by SafetyKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SAError"
+        }
+      ],
+      "identifier": "doc://com.apple.safetykit/documentation/SafetyKit/SAError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SAError"
+        }
+      ],
+      "role": "symbol",
+      "title": "SAError",
+      "type": "topic",
+      "url": "/documentation/safetykit/saerror"
+    },
+    "doc://com.apple.safetykit/documentation/SafetyKit/SAError/Code": {
+      "abstract": [
+        {
+          "text": "Codes for identifying errors in SafetyKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.safetykit/documentation/SafetyKit/SAError/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "SAError.Code",
+      "type": "topic",
+      "url": "/documentation/safetykit/saerror/code"
+    },
+    "doc://com.apple.safetykit/documentation/SafetyKit/SAErrorDomain": {
+      "abstract": [
+        {
+          "text": "The domain for error objects that SafetyKit produces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SAErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.safetykit/documentation/SafetyKit/SAErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SAErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "SAErrorDomain",
+      "type": "topic",
+      "url": "/documentation/safetykit/saerrordomain"
+    },
+    "doc://com.apple.safetykit/documentation/SafetyKit/SA_EXPORT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SA_EXPORT"
+        }
+      ],
+      "identifier": "doc://com.apple.safetykit/documentation/SafetyKit/SA_EXPORT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SA_EXPORT",
+      "type": "topic",
+      "url": "/documentation/safetykit/sa_export"
+    },
+    "doc://com.apple.safetykit/documentation/SafetyKit/SA_EXTERN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SA_EXTERN"
+        }
+      ],
+      "identifier": "doc://com.apple.safetykit/documentation/SafetyKit/SA_EXTERN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SA_EXTERN",
+      "type": "topic",
+      "url": "/documentation/safetykit/sa_extern"
+    },
+    "https://developer.apple.com/contact/request/vehicular-crash-events/": {
+      "identifier": "https://developer.apple.com/contact/request/vehicular-crash-events/",
+      "title": "Request Access to the Vehicular Crash Event Entitlement",
+      "titleInlineContent": [
+        {
+          "text": "Request Access to the Vehicular Crash Event Entitlement",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/contact/request/vehicular-crash-events/"
+    },
+    "media-4257129": {
+      "alt": "A timeline titled “first-party Emergency SOS turned on with third-party sharing” shows a sequence of events. When the device detects a crash, the first-party SOS runs automatically. A critical alert occurs and the third party receives the crash information.",
+      "identifier": "media-4257129",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1972da934fc92001f8ce7b9172fc4b6/media-4257129@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c6bb7b01fd630832465d1872e489592a/media-4257129~dark@2x.png"
+        }
+      ]
+    },
+    "media-4257130": {
+      "alt": "A timeline titled “first-party Emergency SOS turned off with third-party sharing” shows a sequence of events. When the device detects a crash, a critical alert occurs, and the third party receives the crash information.",
+      "identifier": "media-4257130",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bd4ea82d870aa79637f8de08241677a7/media-4257130@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fed7d8776b8edacbb9969bfb45df25ed/media-4257130~dark@2x.png"
+        }
+      ]
+    },
+    "media-4257131": {
+      "alt": "A timeline titled “first-party Emergency SOS only” shows a sequence of events. A device detects a crash, then the first-party SOS runs automatically.",
+      "identifier": "media-4257131",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/02e4364ac1bff4c8bcdb7e3f8a19ef22/media-4257131@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/445bb861bb3fcffa29ba735be0ef39b6/media-4257131~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Detecting-a-crash",
+      "identifiers": [
+        "doc://com.apple.safetykit/documentation/SafetyKit/SACrashDetectionManager",
+        "doc://com.apple.safetykit/documentation/SafetyKit/SAAuthorizationStatus",
+        "doc://com.apple.safetykit/documentation/SafetyKit/SACrashDetectionEvent",
+        "doc://com.apple.safetykit/documentation/SafetyKit/SACrashDetectionDelegate"
+      ],
+      "title": "Detecting a crash"
+    },
+    {
+      "anchor": "Responding-to-a-crash",
+      "identifiers": [
+        "doc://com.apple.safetykit/documentation/SafetyKit/SAEmergencyResponseManager",
+        "doc://com.apple.safetykit/documentation/SafetyKit/SAEmergencyResponseDelegate",
+        "doc://com.apple.safetykit/documentation/SafetyKit/SACrashDetectionEvent/Response-swift.enum"
+      ],
+      "title": "Responding to a crash"
+    },
+    {
+      "anchor": "Handling-errors",
+      "identifiers": [
+        "doc://com.apple.safetykit/documentation/SafetyKit/SAErrorDomain",
+        "doc://com.apple.safetykit/documentation/SafetyKit/SAError/Code",
+        "doc://com.apple.safetykit/documentation/SafetyKit/SAError"
+      ],
+      "title": "Handling errors"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Detecting-a-crash",
+              "identifiers": [
+                "doc://com.apple.safetykit/documentation/SafetyKit/SACrashDetectionManager",
+                "doc://com.apple.safetykit/documentation/SafetyKit/SAAuthorizationStatus",
+                "doc://com.apple.safetykit/documentation/SafetyKit/SACrashDetectionEvent",
+                "doc://com.apple.safetykit/documentation/SafetyKit/SACrashDetectionDelegate"
+              ],
+              "title": "Detecting a crash"
+            },
+            {
+              "anchor": "Responding-to-a-crash",
+              "identifiers": [
+                "doc://com.apple.safetykit/documentation/SafetyKit/SAEmergencyResponseManager",
+                "doc://com.apple.safetykit/documentation/SafetyKit/SAEmergencyResponseDelegate",
+                "doc://com.apple.safetykit/documentation/SafetyKit/SACrashDetectionEvent/Response-swift.enum"
+              ],
+              "title": "Responding to a crash"
+            },
+            {
+              "anchor": "Handling-errors",
+              "identifiers": [
+                "doc://com.apple.safetykit/documentation/SafetyKit/SAErrorDomain",
+                "doc://com.apple.safetykit/documentation/SafetyKit/SAError/Code"
+              ],
+              "title": "Handling errors"
+            },
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.safetykit/documentation/SafetyKit/SA_EXPORT",
+                "doc://com.apple.safetykit/documentation/SafetyKit/SA_EXTERN"
+              ],
+              "title": "Macros"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SACrashDetectionManager/title",
+          "value": "SACrashDetectionManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SACrashDetectionManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SACrashDetectionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SACrashDetectionManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SACrashDetectionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SAEmergencyResponseDelegate/title",
+          "value": "SAEmergencyResponseDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SAEmergencyResponseDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SAEmergencyResponseDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SAEmergencyResponseDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SAEmergencyResponseDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SACrashDetectionEvent/title",
+          "value": "SACrashDetectionEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SACrashDetectionEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SACrashDetectionEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SACrashDetectionEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SACrashDetectionEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SAEmergencyResponseManager/title",
+          "value": "SAEmergencyResponseManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SAEmergencyResponseManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SAEmergencyResponseManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SAEmergencyResponseManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SAEmergencyResponseManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SAError~1Code/title",
+          "value": "SAErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SAError~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SAErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SAError~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SAErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SAAuthorizationStatus/title",
+          "value": "SAAuthorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SAAuthorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SAAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SAAuthorizationStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SAAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SACrashDetectionDelegate/title",
+          "value": "SACrashDetectionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SACrashDetectionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SACrashDetectionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SACrashDetectionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SACrashDetectionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SACrashDetectionEvent~1Response-swift.enum/title",
+          "value": "SACrashDetectionEventResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SACrashDetectionEvent~1Response-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SACrashDetectionEventResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SACrashDetectionEvent~1Response-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SACrashDetectionEventResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SACrashDetectionManager~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SACrashDetectionManager~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SAErrorDomain/title",
+          "value": "SAErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safetykit~1documentation~1SafetyKit~1SAErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SAErrorDomain"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safetykit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safetykit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

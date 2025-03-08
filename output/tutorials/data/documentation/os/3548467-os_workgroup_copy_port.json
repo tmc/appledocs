@@ -1,0 +1,243 @@
+{
+  "abstract": [
+    {
+      "text": "Returns the Mach port associated with the workgroup.  ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/os"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/os/3548467-os_workgroup_copy_port"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3548467,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@os_workgroup_copy_port",
+    "modules": [
+      {
+        "name": "os"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "11.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "os_workgroup_copy_port"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "int"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "os_workgroup_copy_port"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/os/os_workgroup_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@os_workgroup_t",
+              "text": "os_workgroup_t"
+            },
+            {
+              "kind": "text",
+              "text": " wg, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/mach_port_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@mach_port_t",
+              "text": "mach_port_t"
+            },
+            {
+              "kind": "text",
+              "text": " *mach_port_out);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The workgroup whose Mach port you want. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "wg"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a Mach port variable. When the function returns, this parameter contains the specified workgroup’s Mach port reference. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "mach_port_out"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A value of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on success, or a nonzero error code if an error occurred. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function returns the send right for the workgroup’s Mach port in the kernel. Pass this port to other processes and use it to construct a reference to the same workgroup in those processes, which lets those processes coordinate their threads with the threads of the workgroup in the ",
+              "type": "text"
+            },
+            {
+              "code": "wg",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel/mach_port_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/mach_port_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mach_port_t",
+      "type": "topic",
+      "url": "/documentation/kernel/mach_port_t"
+    },
+    "doc://com.apple.documentation/documentation/os": {
+      "identifier": "doc://com.apple.documentation/documentation/os",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "os",
+      "type": "topic",
+      "url": "/documentation/os"
+    },
+    "doc://com.apple.documentation/documentation/os/os_workgroup_t": {
+      "identifier": "doc://com.apple.documentation/documentation/os/os_workgroup_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_workgroup_t",
+      "type": "topic",
+      "url": "/documentation/os/os_workgroup_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/os/3548467-os_workgroup_copy_port"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,657 @@
+{
+  "abstract": [
+    {
+      "text": "Creates a device link profile based on the specified set of profiles.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804915-cwnewlinkprofile"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1804915,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "role": "pseudoSymbol",
+    "symbolKind": "func",
+    "title": "CWNewLinkProfile"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "CMError CWNewLinkProfile ("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   CMProfileRef *prof,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   const CMProfileLocation *targetLocation,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   CMConcatProfileSet *profileSet"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to an uninitialized profile reference of type ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmprofileref",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". On return, points to the new device link profile reference. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "prof"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On return, a pointer to a location specification for the resulting profile. A device link profile cannot be a temporary profile: that is, it cannot have a location type of ",
+                  "type": "text"
+                },
+                {
+                  "code": "cmNoProfileBase",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "targetLocation"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On input, a pointer to an array of profiles describing the processing to carry out. The array is in processing order—source through destination. For a description of the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmconcatprofileset",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " data type, see ",
+                  "type": "text"
+                },
+                {
+                  "code": "CMHeader",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "profileSet"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "CMError",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This discussion is accurate for versions of ColorSync prior to 2.5. See the version notes below for changes starting with version 2.5.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use this function to create a new single profile containing a set of profiles and pass the device link profile to the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805087-cwconcatcolorworld",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead of specifying each profile in an array. A device link profile provides a means of storing in concatenated format a series of device profiles and non-device profiles that are used repeatedly in the same sequence.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The only way to use a device link profile is to pass it to the ",
+              "type": "text"
+            },
+            {
+              "code": "CWConcatColorWorld",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function as the sole profile specified by the array passed in the ",
+              "type": "text"
+            },
+            {
+              "code": "profileSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The zero-based ",
+              "type": "text"
+            },
+            {
+              "code": "keyIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field of the ",
+              "type": "text"
+            },
+            {
+              "code": "CMConcatProfileSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data structure specifies the index of the profile within the device link profile whose preferred CMM is used for the entire color-matching or color-checking session. The profile header’s ",
+              "type": "text"
+            },
+            {
+              "code": "CMMType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field specifies the preferred CMM for the specified profile. This CMM will fetch the profile elements necessary for the session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The quality flag setting—indicating normal mode, draft mode, or best mode—specified by the first profile prevails for the entire session the quality flags of profiles that follow in the sequence are ignored. The quality flag setting is stored in the ",
+              "type": "text"
+            },
+            {
+              "code": "flag",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field of the profile header. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/cm2header",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information on the use of flags.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The rendering intent specified by the first profile is used to color match to the second profile, the rendering intent specified by the second profile is used to color match to the third profile, and so on through the series of concatenated profiles. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following rules govern the content and use of a device link profile:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": " The first and last profiles you specify in the profiles array for a device link profile must be device profiles. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": " You cannot specify a named color profile. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": " You cannot include another device link profile in the series of profiles you specify in the profiles array. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": " The only way to use a device link profile is to pass it to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CWConcatColorWorld",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " function as the sole profile specified by the array passed in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "profileSet",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": " You cannot embed a device link profile in an image. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": " You cannot specify ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NULL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to indicate the system profile. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function privately maintains all the profile information required by the color world for color-matching and color-checking sessions. Therefore, after executing the ",
+              "type": "text"
+            },
+            {
+              "code": "CWNewLinkProfile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function, you should call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804861-cmcloseprofile",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function for each profile used to build a device link profile (to dispose of each profile reference). ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1819333",
+          "level": 3,
+          "text": "Version-Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that starting with version 2.5, use of the system profile has changed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cm2header": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cm2header",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CM2Header",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cm2header"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmconcatprofileset": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmconcatprofileset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMConcatProfileSet",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmconcatprofileset"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmprofileref": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmprofileref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMProfileRef",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmprofileref"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ColorSync Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/applicationservices/colorsync_manager#1670295"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804861-cmcloseprofile": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804861-cmcloseprofile",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMCloseProfile",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804861-cmcloseprofile"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804911-cmnewprofile": {
+      "abstract": [
+        {
+          "text": "Creates a new profile and associated backing copy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804911-cmnewprofile",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMNewProfile",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804911-cmnewprofile"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804915-cwnewlinkprofile": {
+      "abstract": [
+        {
+          "text": "Creates a device link profile based on the specified set of profiles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804915-cwnewlinkprofile",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CWNewLinkProfile",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804915-cwnewlinkprofile"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804918-ncwnewlinkprofile": {
+      "abstract": [
+        {
+          "text": "Obtains a profile reference for the specified by the profile location.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804918-ncwnewlinkprofile",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "NCWNewLinkProfile",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804918-ncwnewlinkprofile"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804920-cmmakeprofile": {
+      "abstract": [
+        {
+          "text": "Makes a display or abstract profile by modifying an existing one.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804920-cmmakeprofile",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMMakeProfile",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804920-cmmakeprofile"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805087-cwconcatcolorworld": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805087-cwconcatcolorworld",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CWConcatColorWorld",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805087-cwconcatcolorworld"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804911-cmnewprofile",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804918-ncwnewlinkprofile",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804920-cmmakeprofile"
+      ],
+      "title": "Creating Profiles"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/colorsync_manager/1804915-cwnewlinkprofile"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

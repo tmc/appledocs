@@ -1,0 +1,1435 @@
+{
+  "abstract": [
+    {
+      "text": "Use argument buffers to render terrain in real time with a GPU-driven pipeline.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/buffers"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/metal-sample-code-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/rendering-terrain-dynamically-with-argument-buffers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.1",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Rendering Terrain Dynamically with Argument Buffers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample demonstrates dynamic terrain generation on an outdoor landscape, using argument buffers to select terrain materials, vegetation geometry, and particle effects within a GPU-driven pipeline. The sample creates a landscape with visually distinct areas, called habitats, that differ based on the land’s elevation. These are the habitats in the sample, ordered from highest to lowest elevation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Snow",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Rock",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Grass",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sand",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "dynamic-terrain-with-argument-buffers-1-screenshot",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample reduces the overhead of encoding commands on the CPU by using argument buffers. For an introduction to argument buffers, see the samples listed in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/buffers",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Getting-Started",
+          "level": 3,
+          "text": "Getting Started",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Xcode project contains schemes for running the sample in macOS and iOS. Metal isn’t supported in the iOS Simulator, so the iOS scheme requires a physical device that supports GPU family 4 to run the sample. The default scheme is macOS, which runs the sample as is on your Mac.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS, use these controls to navigate the scene:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "W, S, A, and D keys.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Move the camera body.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Arrow keys.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Move the camera view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Mouse or trackpad drag.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Move the camera view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Mouse or trackpad primary click.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Raise the terrain.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Mouse or trackpad secondary click.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Lower the terrain.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS, use these controls to navigate the scene:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Pan gesture.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Move the camera view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "modify terrain",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " button.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Cycle through a predefined terrain manipulation sequence.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The particle effects in this sample require a Mac that supports Tier 2 argument buffers. Particle effects aren’t available on iOS devices.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Respond-to-Landscape-Alterations",
+          "level": 3,
+          "text": "Respond to Landscape Alterations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app determines the landscape’s initial topology from a static height map, ",
+              "type": "text"
+            },
+            {
+              "code": "TerrainHeightMap.png",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "_targetHeightmap = CreateTextureWithDevice (device, @\"Textures/TerrainHeightMap.png\", false, false);"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At runtime, as you alter the landscape with the provided controls, the sample evaluates the latest topology to determine whether it should apply a new habitat to the land based on its new elevation. If so, the sample updates the argument buffer corresponding to the land with the correct materials and vegetation geometry for the new habitat. The sample renders this new habitat by passing the land elevation value to the ",
+              "type": "text"
+            },
+            {
+              "code": "EvaluateTerrainAtLocation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static void EvaluateTerrainAtLocation(float2 uv,",
+            "                                      float3 worldPosition,",
+            "                                      texture2d<float> heightMap,",
+            "                                      texture2d<float> normalMap,",
+            "                                      texture2d<float> propertiesMap,",
+            "                                      constant const TerrainParams& terrainParams,",
+            "                                      thread float outHabitat[TerrainHabitatTypeCOUNT],",
+            "                                      thread float3 &outNormal)"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-an-Argument-Buffer-for-Terrain-Habitats",
+          "level": 3,
+          "text": "Define an Argument Buffer for Terrain Habitats",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample defines a custom argument buffer structure, ",
+              "type": "text"
+            },
+            {
+              "code": "TerrainHabitat",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", that defines the elements of a terrain habitat.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct TerrainHabitat",
+            "{",
+            "#ifndef __METAL_VERSION__",
+            "    // This struct should not be instantiated in C++ because it contains textures that aren't visible on the CPU",
+            "private:",
+            "    TerrainHabitat ();",
+            "public:",
+            "#endif",
+            "",
+            "    float slopeStrength      IAB_INDEX(TerrainHabitat_MemberIds::slopeStrength);",
+            "    float slopeThreshold     IAB_INDEX(TerrainHabitat_MemberIds::slopeThreshold);",
+            "    float elevationStrength  IAB_INDEX(TerrainHabitat_MemberIds::elevationStrength);",
+            "    float elevationThreshold IAB_INDEX(TerrainHabitat_MemberIds::elevationThreshold);",
+            "    float specularPower      IAB_INDEX(TerrainHabitat_MemberIds::specularPower);",
+            "    float textureScale       IAB_INDEX(TerrainHabitat_MemberIds::textureScale);",
+            "    bool  flipNormal         IAB_INDEX(TerrainHabitat_MemberIds::flipNormal);",
+            "",
+            "    struct ParticleProperties",
+            "    {",
+            "        // The fields of this struct must be reflected in TerrainHabitat_MemberIds",
+            "        simd::float4    keyTimePoints;",
+            "        simd::float4    scaleFactors;",
+            "        simd::float4    alphaFactors;",
+            "        simd::float4    gravity;",
+            "        simd::float4    lightingCoefficients;",
+            "        int             doesCollide;",
+            "        int             doesRotate;",
+            "        int             castShadows;",
+            "        int             distanceDependent;",
+            "    } particleProperties;",
+            "",
+            "#ifdef __METAL_VERSION__",
+            "    texture2d_array <float,access::sample> diffSpecTextureArray IAB_INDEX(TerrainHabitat_MemberIds::diffSpecTextureArray);",
+            "    texture2d_array <float,access::sample> normalTextureArray   IAB_INDEX(TerrainHabitat_MemberIds::normalTextureArray);",
+            "#endif",
+            "};"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Among these elements, ",
+              "type": "text"
+            },
+            {
+              "code": "elevationStrength",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "elevationThreshold",
+              "type": "codeVoice"
+            },
+            {
+              "text": " determine the elevation range in which the habitat is active. Additionally, ",
+              "type": "text"
+            },
+            {
+              "code": "diffSpecTextureArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "normalTextureArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " determine the textures used to render the habitat.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app nests ",
+              "type": "text"
+            },
+            {
+              "code": "TerrainHabitat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " within another argument buffer, ",
+              "type": "text"
+            },
+            {
+              "code": "TerrainParams",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", that provides many slight visual variations for added realism.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct TerrainParams",
+            "{",
+            "    TerrainHabitat habitats [TerrainHabitatTypeCOUNT];",
+            "    float ambientOcclusionScale    IAB_INDEX(TerrainParams_MemberIds::ambientOcclusionScale);",
+            "    float ambientOcclusionContrast IAB_INDEX(TerrainParams_MemberIds::ambientOcclusionContrast);",
+            "    float ambientLightScale        IAB_INDEX(TerrainParams_MemberIds::ambientLightScale);",
+            "    float atmosphereScale          IAB_INDEX(TerrainParams_MemberIds::atmosphereScale);",
+            "};"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "TerrainHabitat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the specific argument buffer definition for a terrain habitat. However, because the app nests its definition within ",
+              "type": "text"
+            },
+            {
+              "code": "TerrainParams",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the app sends the ",
+              "type": "text"
+            },
+            {
+              "code": "TerrainParams",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects to the GPU pipeline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Render-Terrain",
+          "level": 3,
+          "text": "Render Terrain",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample provides the GPU with the textures corresponding to various habitats. First, the sample calls the ",
+              "type": "text"
+            },
+            {
+              "code": "useResource:usage:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to indicate which textures the GPU uses.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for (int i = 0; i < _terrainTextures.size(); i++)",
+            "{",
+            "    [renderEncoder useResource: _terrainTextures[i].diffSpecTextureArray",
+            "                         usage: MTLResourceUsageSample | MTLResourceUsageRead];",
+            "    [renderEncoder useResource: _terrainTextures[i].normalTextureArray",
+            "                         usage: MTLResourceUsageSample | MTLResourceUsageRead];",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, the sample calls the ",
+              "type": "text"
+            },
+            {
+              "code": "setFragmentBuffer:offset:atIndex:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to set the argument buffer, ",
+              "type": "text"
+            },
+            {
+              "code": "terrainParamsBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", that contains those textures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[renderEncoder setFragmentBuffer:_terrainParamsBuffer offset:0 atIndex:_iabBufferIndex_PplTerrainMainView];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample accesses the argument buffer in the fragment function, ",
+              "type": "text"
+            },
+            {
+              "code": "terrain_fragment",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", to output the correct material for the terrain. First, the sample passes the ",
+              "type": "text"
+            },
+            {
+              "code": "mat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter into the fragment function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "fragment GBufferFragOut terrain_fragment(const TerrainVertexOut in [[stage_in]],",
+            "                                         constant TerrainParams & mat [[buffer(1)]],",
+            "                                         constant AAPLUniforms& globalUniforms [[buffer(2)]],",
+            "                                         texture2d<float> heightMap [[texture(0)]],",
+            "                                         texture2d<float> normalMap [[texture(1)]],",
+            "                                         texture2d<float> propertiesMap [[texture(2)]])"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, the sample passes the current land elevation into the ",
+              "type": "text"
+            },
+            {
+              "code": "EvaluateTerrainAtLocation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function, where the fragment samples the texture corresponding to that elevation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "BrdfProperties curSubLayerBrdf = sample_brdf(",
+            "                                             mat.habitats [curLayerIdx].diffSpecTextureArray,",
+            "                                             mat.habitats [curLayerIdx].normalTextureArray,",
+            "                                             curSubLayerIdx,",
+            "                                             mat.habitats [curLayerIdx].textureScale,",
+            "                                             mat.habitats [curLayerIdx].specularPower,",
+            "                                             mat.habitats [curLayerIdx].flipNormal,",
+            "                                             in.worldPosition,",
+            "                                             normal,",
+            "                                             tangent,",
+            "                                             bitangent);"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Render-Vegetation",
+          "level": 3,
+          "text": "Render Vegetation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample passes the ",
+              "type": "text"
+            },
+            {
+              "code": "terrainParamsBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument buffer to the vegetation render pass through an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLTerrainRenderer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This data determines which type of vegetation to render at a given location. First, the sample calls the ",
+              "type": "text"
+            },
+            {
+              "code": "setBuffer:offset:atIndex:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to set the argument buffer for the vegetation render pass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[computeEncoder setBuffer:terrain.terrainParamsBuffer offset:0 atIndex:3];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, the sample passes the argument buffer into the ",
+              "type": "text"
+            },
+            {
+              "code": "EvaluateTerrainAtLocation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function, which produces a ",
+              "type": "text"
+            },
+            {
+              "code": "habitatPercentages",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "EvaluateTerrainAtLocation(uv_pos, world_pos, heightMap,",
+            "                          normalMap, propertiesMap, terrainParams,",
+            "                          habitatPercentages,",
+            "                          worldNormal);"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The habitat percentages are processed to select a specific index into the vegetation geometries, determined by the value of ",
+              "type": "text"
+            },
+            {
+              "code": "pop_idx",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "pop_idx = rules[rule_index].populationStartIndex + uint((s / rules[rule_index].densityInHabitat * float(rules[rule_index].populationIndexCount)));"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, the sample uses this population index to render an instance of a particular vegetation geometry onto the landscape.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "vegetationSpawnInstance(pop_idx, world_matrix, float4(world_pos, radius), globalUniforms, instances, indirect);"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Render-Particles",
+          "level": 3,
+          "text": "Render Particles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample passes the ",
+              "type": "text"
+            },
+            {
+              "code": "terrainParamsBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument buffer to the particle render pass through an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLTerrainRenderer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This data determines which type of particles to render at a given location. First, the sample calls the ",
+              "type": "text"
+            },
+            {
+              "code": "setBuffer:offset:atIndex:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to set the argument buffer for the particle render pass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[enc setBuffer:[terrain terrainParamsBuffer] offset:0 atIndex:14];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, the sample checks the relative percentages of habitat coverage in the altered landscape with the ",
+              "type": "text"
+            },
+            {
+              "code": "EvaluateTerrainAtLocation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function, where the sample passes the 3D position of the particle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "EvaluateTerrainAtLocation(mouseUvPos, mouseWorldPos, heightMap,",
+            "                          normalMap, propsMap, terrainParams,",
+            "                          habitatPercentages,",
+            "                          worldNormal);"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample chooses the appropriate habitat by selecting the terrain with the highest percentage of habitat coverage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "float highestLevel = 0.f;",
+            "for (uint i = 0; i < TerrainHabitatTypeCOUNT; i++)",
+            "{",
+            "    if (habitatPercentages [i] > highestLevel)",
+            "    {",
+            "        highestLevel = habitatPercentages [i];",
+            "        habitatIndex = i;",
+            "    }",
+            "}"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, the app retrieves the particle’s corresponding habitat material from the argument buffer and sets it to the new particle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ParticleData data;",
+            "data.habitatIndex = habitatIndex;",
+            "data.texture = terrainParams.habitats [habitatIndex].diffSpecTextureArray;"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "99aa5af9cf1a/RenderingTerrainDynamicallyWithArgumentBuffers.zip": {
+      "checksum": "99aa5af9cf1a9408f451baf0670d51a26358d2052381c61394823d4c0172c25eb3303799f4110e0cfe408752e5898acddcd6eaeeddf83c633812d15d4ba7a2cf",
+      "identifier": "99aa5af9cf1a/RenderingTerrainDynamicallyWithArgumentBuffers.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/99aa5af9cf1a/RenderingTerrainDynamicallyWithArgumentBuffers.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentDescriptor": {
+      "abstract": [
+        {
+          "text": "A representation of an argument within an argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLArgumentDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLArgumentDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLArgumentDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder": {
+      "abstract": [
+        {
+          "text": "An object used to encode data into an argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLArgumentEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLArgumentEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLArgumentEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeStrideStatic": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeStrideStatic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeStrideStatic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeStrideStatic"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeStrideStatic",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributestridestatic"
+    },
+    "doc://com.apple.metal/documentation/Metal/buffers": {
+      "abstract": [
+        {
+          "text": "Create and manage untyped data your app uses to exchange information with its shader functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/buffers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/encoding-argument-buffers-on-the-gpu": {
+      "abstract": [
+        {
+          "text": "Use a compute pass to encode an argument buffer and access its arguments in a subsequent render pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/encoding-argument-buffers-on-the-gpu",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encoding Argument Buffers on the GPU",
+      "type": "topic",
+      "url": "/documentation/metal/encoding-argument-buffers-on-the-gpu"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Optimize your app’s performance by grouping your resources into argument buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving CPU Performance by Using Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/improving-cpu-performance-by-using-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/indexing-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Assign resource indices within an argument buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/indexing-argument-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Indexing Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/indexing-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/managing-groups-of-resources-with-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Create argument buffers to organize related resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/managing-groups-of-resources-with-argument-buffers",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Managing groups of resources with argument buffers",
+      "type": "topic",
+      "url": "/documentation/metal/managing-groups-of-resources-with-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-sample-code-library": {
+      "abstract": [
+        {
+          "text": "Explore the complete set of Metal samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-sample-code-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Sample Code Library",
+      "type": "topic",
+      "url": "/documentation/metal/metal-sample-code-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/tracking-the-resource-residency-of-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Optimize resource performance within an argument buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/tracking-the-resource-residency-of-argument-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Tracking the Resource Residency of Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/tracking-the-resource-residency-of-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-argument-buffers-with-resource-heaps": {
+      "abstract": [
+        {
+          "text": "Reduce CPU overhead by using arrays inside argument buffers and combining them with resource heaps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-argument-buffers-with-resource-heaps",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using Argument Buffers with Resource Heaps",
+      "type": "topic",
+      "url": "/documentation/metal/using-argument-buffers-with-resource-heaps"
+    },
+    "dynamic-terrain-with-argument-buffers-1-screenshot": {
+      "alt": "Screenshot of the sample app running to show the different habitats visually.",
+      "identifier": "dynamic-terrain-with-argument-buffers-1-screenshot",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/99d45f3f5b748f9b4ac9dfcc8e81e6ec/dynamic-terrain-with-argument-buffers-1-screenshot.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "99aa5af9cf1a/RenderingTerrainDynamicallyWithArgumentBuffers.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Argument-Buffers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/managing-groups-of-resources-with-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/tracking-the-resource-residency-of-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/indexing-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/encoding-argument-buffers-on-the-gpu",
+        "doc://com.apple.metal/documentation/Metal/using-argument-buffers-with-resource-heaps",
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeStrideStatic"
+      ],
+      "title": "Argument Buffers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Argument-Buffers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+                "doc://com.apple.metal/documentation/Metal/managing-groups-of-resources-with-argument-buffers",
+                "doc://com.apple.metal/documentation/Metal/tracking-the-resource-residency-of-argument-buffers",
+                "doc://com.apple.metal/documentation/Metal/indexing-argument-buffers",
+                "doc://com.apple.metal/documentation/Metal/encoding-argument-buffers-on-the-gpu",
+                "doc://com.apple.metal/documentation/Metal/using-argument-buffers-with-resource-heaps",
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeStrideStatic"
+              ],
+              "title": "Argument Buffers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder/title",
+          "value": "MTLArgumentEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLArgumentEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLArgumentEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeStrideStatic/title",
+          "value": "MTLAttributeStrideStatic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeStrideStatic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeStrideStatic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentDescriptor/title",
+          "value": "MTLArgumentDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLArgumentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLArgumentDescriptor"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/rendering-terrain-dynamically-with-argument-buffers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/rendering-terrain-dynamically-with-argument-buffers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

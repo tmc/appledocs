@@ -1,0 +1,496 @@
+{
+  "abstract": [
+    {
+      "text": "A value indicating that a requested item couldn’t be found or doesn’t exist.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/strings_and_text"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/collections"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+        "doc://com.apple.documentation/documentation/foundation/nsrange"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsnotfound"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1395239,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@NSNotFound",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "let "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSNotFound"
+      },
+      {
+        "kind": "text",
+        "text": ": Int"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.11",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Global Variable",
+    "symbolKind": "data",
+    "title": "NSNotFound"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "let"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSNotFound"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Int",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Si",
+              "text": "Int"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSNotFound",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is typically used by various methods and functions that search for items in serial data and return indices, such as characters in a string object or ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects in an ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1816990",
+          "level": 3,
+          "text": "Special Considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Prior to OS X v10.5, ",
+              "type": "text"
+            },
+            {
+              "code": "NSNotFound",
+              "type": "codeVoice"
+            },
+            {
+              "text": " was defined as ",
+              "type": "text"
+            },
+            {
+              "code": "0x7fffffff",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For 32-bit systems, this was effectively the same as ",
+              "type": "text"
+            },
+            {
+              "code": "NSIntegerMax",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". To support 64-bit environments, ",
+              "type": "text"
+            },
+            {
+              "code": "NSNotFound",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is now formally defined as ",
+              "type": "text"
+            },
+            {
+              "code": "NSIntegerMax",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This means, however, that the value is different in 32-bit and 64-bit environments. You should therefore not save the value directly in files or archives. Moreover, sending the value between 32-bit and 64-bit processes via Distributed Objects will not get you ",
+              "type": "text"
+            },
+            {
+              "code": "NSNotFound",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on the other side. This applies to any Cocoa methods invoked over Distributed Objects and which might return ",
+              "type": "text"
+            },
+            {
+              "code": "NSNotFound",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", such as the ",
+              "type": "text"
+            },
+            {
+              "code": "indexOfObject:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (if sent to a proxy for an array).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Int": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/swift/int"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/collections": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/collections",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collections",
+      "type": "topic",
+      "url": "/documentation/foundation/collections"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatadetector": {
+      "abstract": [
+        {
+          "text": "A specialized regular expression object that matches natural language text for predefined data patterns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDataDetector"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatadetector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDataDetector",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatadetector"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotfound": {
+      "abstract": [
+        {
+          "text": "A value indicating that a requested item couldn’t be found or doesn’t exist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSNotFound"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotfound",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotFound",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotfound"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsrange": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsrange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRange",
+      "type": "topic",
+      "url": "/documentation/foundation/nsrange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression": {
+      "abstract": [
+        {
+          "text": "An immutable representation of a compiled regular expression that you apply to Unicode strings.  ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRegularExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRegularExpression",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult": {
+      "abstract": [
+        {
+          "text": "An occurrence of textual content found during the analysis of a block of text, such as when matching a regular expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextCheckingResult"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTextCheckingResult",
+      "type": "topic",
+      "url": "/documentation/foundation/nstextcheckingresult"
+    },
+    "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Numbers, Data, and Basic Values",
+      "type": "topic",
+      "url": "/documentation/foundation/numbers_data_and_basic_values"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner": {
+      "abstract": [
+        {
+          "text": "A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Scanner"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Scanner",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner"
+    },
+    "doc://com.apple.documentation/documentation/foundation/strings_and_text": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Strings and Text",
+      "type": "topic",
+      "url": "/documentation/foundation/strings_and_text"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/scanner",
+        "doc://com.apple.documentation/documentation/foundation/nsregularexpression",
+        "doc://com.apple.documentation/documentation/foundation/nsdatadetector",
+        "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult"
+      ],
+      "title": "Pattern Matching"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsnotfound"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsnotfound"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

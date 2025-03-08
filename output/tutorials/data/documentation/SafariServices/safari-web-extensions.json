@@ -1,0 +1,964 @@
+{
+  "abstract": [
+    {
+      "text": "Create web extensions that work in Safari and other browsers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safariservices/documentation/SafariServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Safari web extensions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A Safari web extension adds custom functionality to Safari using JavaScript APIs and common file formats from extensions for Google Chrome, Mozilla Firefox, and Microsoft Edge browsers. While ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " are useful for sharing code between your native macOS app and Safari, you build Safari web extensions primarily on JavaScript, HTML, and CSS, and can repackage them to work in other browsers. You can also use Safari web extensions in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/en-us/104996",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You implement a Safari web extension as a macOS, visionOS, or iOS app extension to provide a safe and secure distribution and usage model. You can distribute a Safari web extension with a Mac app, a visionOS app, an iOS app, or a Mac app created using ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/UIKit/mac-catalyst",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". Use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/xcode/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to package your extension for testing and distribution, and join the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/programs/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to distribute Safari web extensions. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.safariservices/documentation/SafariServices/distributing-your-safari-web-extension",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get started with creating a Safari web extension, use one of the following options:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Convert your existing extension into a Safari web extension, so you can use it in Safari in macOS, visionOS, and iOS and distribute it. Xcode includes a command-line tool to simplify this process.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build a new Safari web extension in Xcode using the built-in template. You can then repackage the extension files for deployment in other browsers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Temporarily install your web extension in Safari for testing without converting it or setting up an Xcode project. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension#Temporarily-install-a-web-extension-folder-in-macOS-Safari",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Learn more about the capabilities of web extensions and the APIs you use to build them in Mozilla’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " documentation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Safari web extensions are available in macOS with Safari 14 and later, visionOS 1 and later, and iOS 15 and later. Safari web extensions are available in Mac web apps in macOS 15 and later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/UIKit/mac-catalyst": {
+      "abstract": [
+        {
+          "text": "Create a version of your iPad app that users can run on a Mac device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/mac-catalyst",
+      "kind": "article",
+      "role": "article",
+      "title": "Mac Catalyst",
+      "type": "topic",
+      "url": "/documentation/UIKit/mac-catalyst"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices": {
+      "abstract": [
+        {
+          "text": "Enable web views and services in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Services",
+      "type": "topic",
+      "url": "/documentation/safariservices"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionMessageKey": {
+      "abstract": [
+        {
+          "text": "A string the system uses as a key in a user info dictionary to identify a message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFExtensionMessageKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionMessageKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFExtensionMessageKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFExtensionMessageKey",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfextensionmessagekey"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionProfileKey": {
+      "abstract": [
+        {
+          "text": "A string the system uses as a key in a user info dictionary to identify a profile identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFExtensionProfileKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionProfileKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFExtensionProfileKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFExtensionProfileKey",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfextensionprofilekey"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/adding-a-web-development-tool-to-safari-web-inspector": {
+      "abstract": [
+        {
+          "text": "Expand the built-in Safari Web Inspector to include your custom tool, augmenting developers’ options for inspecting, testing, and debugging webpages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/adding-a-web-development-tool-to-safari-web-inspector",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a web development tool to Safari Web Inspector",
+      "type": "topic",
+      "url": "/documentation/safariservices/adding-a-web-development-tool-to-safari-web-inspector"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/adopting-declarative-content-blocking-in-safari-web-extensions": {
+      "abstract": [
+        {
+          "text": "Block web content with your web extension using the declarative net request API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/adopting-declarative-content-blocking-in-safari-web-extensions",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adopting Declarative Content Blocking in Safari Web Extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/adopting-declarative-content-blocking-in-safari-web-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/adopting-new-safari-web-extension-apis": {
+      "abstract": [
+        {
+          "text": "Improve your web extension in Safari with a non-persistent background page and new tab-override customization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/adopting-new-safari-web-extension-apis",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adopting New Safari Web Extension APIs",
+      "type": "topic",
+      "url": "/documentation/safariservices/adopting-new-safari-web-extension-apis"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/assessing-your-safari-web-extension-s-browser-compatibility": {
+      "abstract": [
+        {
+          "text": "Review your Safari web extension implementation plan, manifest keys, and JavaScript API usage for compatibility with other browsers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/assessing-your-safari-web-extension-s-browser-compatibility",
+      "kind": "article",
+      "role": "article",
+      "title": "Assessing your Safari web extension’s browser compatibility",
+      "type": "topic",
+      "url": "/documentation/safariservices/assessing-your-safari-web-extension-s-browser-compatibility"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/blocking-content-with-your-safari-web-extension": {
+      "abstract": [
+        {
+          "text": "Build content blocking with declarative net request into your Safari web extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/blocking-content-with-your-safari-web-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Blocking content with your Safari web extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/blocking-content-with-your-safari-web-extension"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/converting-a-safari-app-extension-to-a-safari-web-extension": {
+      "abstract": [
+        {
+          "text": "Unify your web extensions and simplify development by sharing code with a Safari web extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/converting-a-safari-app-extension-to-a-safari-web-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Converting a Safari app extension to a Safari web extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/converting-a-safari-app-extension-to-a-safari-web-extension"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/converting-a-web-extension-for-safari": {
+      "abstract": [
+        {
+          "text": "Convert your existing extension to a Safari web extension using Xcode’s command-line tool.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/converting-a-web-extension-for-safari",
+      "kind": "article",
+      "role": "article",
+      "title": "Converting a web extension for Safari",
+      "type": "topic",
+      "url": "/documentation/safariservices/converting-a-web-extension-for-safari"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/creating-a-safari-web-extension": {
+      "abstract": [
+        {
+          "text": "Build a Safari web extension in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/creating-a-safari-web-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Safari web extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/creating-a-safari-web-extension"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/creating-safari-web-inspector-extensions": {
+      "abstract": [
+        {
+          "text": "Learn how to make custom Safari Web Inspector extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/creating-safari-web-inspector-extensions",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating Safari Web Inspector extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/creating-safari-web-inspector-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/developing-a-safari-web-extension": {
+      "abstract": [
+        {
+          "text": "Customize and enhance web pages by building a Safari web extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/developing-a-safari-web-extension",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Developing a Safari Web Extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/developing-a-safari-web-extension"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/distributing-your-safari-web-extension": {
+      "abstract": [
+        {
+          "text": "Get feedback on your extension from beta testers, then share your extension with customers in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/distributing-your-safari-web-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing your Safari web extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/distributing-your-safari-web-extension"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/managing-safari-web-extension-permissions": {
+      "abstract": [
+        {
+          "text": "Respect user privacy by setting appropriate permissions for your Safari web extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/managing-safari-web-extension-permissions",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Safari web extension permissions",
+      "type": "topic",
+      "url": "/documentation/safariservices/managing-safari-web-extension-permissions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/messaging-a-web-extension-s-native-app": {
+      "abstract": [
+        {
+          "text": "Communicate between your Safari web extension and its containing app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/messaging-a-web-extension-s-native-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Messaging a Web Extension’s Native App",
+      "type": "topic",
+      "url": "/documentation/safariservices/messaging-a-web-extension-s-native-app"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/messaging-between-a-webpage-and-your-safari-web-extension": {
+      "abstract": [
+        {
+          "text": "Configure your extension to enable messaging from webpages, and then update your extension to handle messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/messaging-between-a-webpage-and-your-safari-web-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Messaging between a webpage and your Safari web extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/messaging-between-a-webpage-and-your-safari-web-extension"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/messaging-between-the-app-and-javascript-in-a-safari-web-extension": {
+      "abstract": [
+        {
+          "text": "Communicate about events and share data between the containing app and JavaScript by using native messaging and app groups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/messaging-between-the-app-and-javascript-in-a-safari-web-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Messaging between the app and JavaScript in a Safari web extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/messaging-between-the-app-and-javascript-in-a-safari-web-extension"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/modernizing-safari-web-extensions": {
+      "abstract": [
+        {
+          "text": "Learn about enhancements to Safari Web Extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/modernizing-safari-web-extensions",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Modernizing Safari Web Extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/modernizing-safari-web-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/optimizing-your-web-extension-for-safari": {
+      "abstract": [
+        {
+          "text": "Support Dark Mode, reduce memory and power usage, and ensure feature compatibility to improve your web extension experience in Safari and web apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/optimizing-your-web-extension-for-safari",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing your web extension for Safari",
+      "type": "topic",
+      "url": "/documentation/safariservices/optimizing-your-web-extension-for-safari"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/previewing-metadata-using-open-graph": {
+      "abstract": [
+        {
+          "text": "Build a Safari Extension that displays metadata using Open Graph.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/previewing-metadata-using-open-graph",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Previewing Metadata using Open Graph",
+      "type": "topic",
+      "url": "/documentation/safariservices/previewing-metadata-using-open-graph"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension": {
+      "abstract": [
+        {
+          "text": "Install and update your extension in Safari as you make changes in development.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Running your Safari web extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/running-your-safari-web-extension"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension#Temporarily-install-a-web-extension-folder-in-macOS-Safari": {
+      "abstract": [],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension#Temporarily-install-a-web-extension-folder-in-macOS-Safari",
+      "kind": "section",
+      "title": "Temporarily install a web extension folder in macOS Safari",
+      "type": "topic",
+      "url": "/documentation/safariservices/running-your-safari-web-extension#Temporarily-install-a-web-extension-folder-in-macOS-Safari"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions": {
+      "abstract": [
+        {
+          "text": "Learn how Safari app extensions extend the web-browsing experience in Safari by leveraging web technologies and native code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari app extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-app-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/syncing-safari-web-extensions-across-devices-and-platforms": {
+      "abstract": [
+        {
+          "text": "Let users install your extension on one device and then use and manage the extension on all their other iOS and macOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/syncing-safari-web-extensions-across-devices-and-platforms",
+      "kind": "article",
+      "role": "article",
+      "title": "Syncing Safari web extensions across devices and platforms",
+      "type": "topic",
+      "url": "/documentation/safariservices/syncing-safari-web-extensions-across-devices-and-platforms"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-web-extension": {
+      "abstract": [
+        {
+          "text": "Use developer resources to investigate and resolve common problems with Safari web extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-web-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Troubleshooting your Safari web extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/troubleshooting-your-safari-web-extension"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/updating-a-safari-web-extension": {
+      "abstract": [
+        {
+          "text": "Add new features and fix bugs in your Safari web extension using Xcode tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/updating-a-safari-web-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Updating a Safari web extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/updating-a-safari-web-extension"
+    },
+    "https://developer.apple.com/programs/": {
+      "identifier": "https://developer.apple.com/programs/",
+      "title": "Apple Developer Program",
+      "titleInlineContent": [
+        {
+          "text": "Apple Developer Program",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/programs/"
+    },
+    "https://developer.apple.com/xcode/": {
+      "identifier": "https://developer.apple.com/xcode/",
+      "title": "Xcode",
+      "titleInlineContent": [
+        {
+          "text": "Xcode",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/xcode/"
+    },
+    "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions": {
+      "identifier": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions",
+      "title": "Browser Extensions",
+      "titleInlineContent": [
+        {
+          "text": "Browser Extensions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions"
+    },
+    "https://support.apple.com/en-us/104996": {
+      "identifier": "https://support.apple.com/en-us/104996",
+      "title": "Mac web apps",
+      "titleInlineContent": [
+        {
+          "text": "Mac web apps",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/104996"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "New-extensions",
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/creating-a-safari-web-extension",
+        "doc://com.apple.safariservices/documentation/SafariServices/modernizing-safari-web-extensions",
+        "doc://com.apple.safariservices/documentation/SafariServices/developing-a-safari-web-extension"
+      ],
+      "title": "New extensions"
+    },
+    {
+      "anchor": "Extension-conversions",
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/converting-a-web-extension-for-safari",
+        "doc://com.apple.safariservices/documentation/SafariServices/converting-a-safari-app-extension-to-a-safari-web-extension"
+      ],
+      "title": "Extension conversions"
+    },
+    {
+      "anchor": "Extension-updates",
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/updating-a-safari-web-extension",
+        "doc://com.apple.safariservices/documentation/SafariServices/managing-safari-web-extension-permissions",
+        "doc://com.apple.safariservices/documentation/SafariServices/previewing-metadata-using-open-graph"
+      ],
+      "title": "Extension updates"
+    },
+    {
+      "anchor": "Messaging",
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/messaging-between-the-app-and-javascript-in-a-safari-web-extension",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionMessageKey",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionProfileKey",
+        "doc://com.apple.safariservices/documentation/SafariServices/messaging-a-web-extension-s-native-app",
+        "doc://com.apple.safariservices/documentation/SafariServices/messaging-between-a-webpage-and-your-safari-web-extension"
+      ],
+      "title": "Messaging"
+    },
+    {
+      "anchor": "Blocking-content",
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/blocking-content-with-your-safari-web-extension",
+        "doc://com.apple.safariservices/documentation/SafariServices/adopting-declarative-content-blocking-in-safari-web-extensions"
+      ],
+      "title": "Blocking content"
+    },
+    {
+      "anchor": "Adding-Web-Inspector-tools",
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/adding-a-web-development-tool-to-safari-web-inspector",
+        "doc://com.apple.safariservices/documentation/SafariServices/creating-safari-web-inspector-extensions"
+      ],
+      "title": "Adding Web Inspector tools"
+    },
+    {
+      "anchor": "Extension-improvements",
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/optimizing-your-web-extension-for-safari",
+        "doc://com.apple.safariservices/documentation/SafariServices/adopting-new-safari-web-extension-apis",
+        "doc://com.apple.safariservices/documentation/SafariServices/syncing-safari-web-extensions-across-devices-and-platforms",
+        "doc://com.apple.safariservices/documentation/SafariServices/assessing-your-safari-web-extension-s-browser-compatibility",
+        "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-web-extension"
+      ],
+      "title": "Extension improvements"
+    },
+    {
+      "anchor": "Installation-and-distribution",
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension",
+        "doc://com.apple.safariservices/documentation/SafariServices/distributing-your-safari-web-extension"
+      ],
+      "title": "Installation and distribution"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "New-extensions",
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/creating-a-safari-web-extension",
+                "doc://com.apple.safariservices/documentation/SafariServices/modernizing-safari-web-extensions",
+                "doc://com.apple.safariservices/documentation/SafariServices/developing-a-safari-web-extension"
+              ],
+              "title": "New extensions"
+            },
+            {
+              "anchor": "Extension-conversions",
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/converting-a-web-extension-for-safari",
+                "doc://com.apple.safariservices/documentation/SafariServices/converting-a-safari-app-extension-to-a-safari-web-extension"
+              ],
+              "title": "Extension conversions"
+            },
+            {
+              "anchor": "Extension-updates",
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/updating-a-safari-web-extension",
+                "doc://com.apple.safariservices/documentation/SafariServices/managing-safari-web-extension-permissions",
+                "doc://com.apple.safariservices/documentation/SafariServices/previewing-metadata-using-open-graph"
+              ],
+              "title": "Extension updates"
+            },
+            {
+              "anchor": "Messaging",
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/messaging-between-the-app-and-javascript-in-a-safari-web-extension",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionMessageKey",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionProfileKey",
+                "doc://com.apple.safariservices/documentation/SafariServices/messaging-a-web-extension-s-native-app",
+                "doc://com.apple.safariservices/documentation/SafariServices/messaging-between-a-webpage-and-your-safari-web-extension"
+              ],
+              "title": "Messaging"
+            },
+            {
+              "anchor": "Blocking-content",
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/blocking-content-with-your-safari-web-extension",
+                "doc://com.apple.safariservices/documentation/SafariServices/adopting-declarative-content-blocking-in-safari-web-extensions"
+              ],
+              "title": "Blocking content"
+            },
+            {
+              "anchor": "Adding-Web-Inspector-tools",
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/adding-a-web-development-tool-to-safari-web-inspector",
+                "doc://com.apple.safariservices/documentation/SafariServices/creating-safari-web-inspector-extensions"
+              ],
+              "title": "Adding Web Inspector tools"
+            },
+            {
+              "anchor": "Extension-improvements",
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/optimizing-your-web-extension-for-safari",
+                "doc://com.apple.safariservices/documentation/SafariServices/adopting-new-safari-web-extension-apis",
+                "doc://com.apple.safariservices/documentation/SafariServices/syncing-safari-web-extensions-across-devices-and-platforms",
+                "doc://com.apple.safariservices/documentation/SafariServices/assessing-your-safari-web-extension-s-browser-compatibility",
+                "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-web-extension"
+              ],
+              "title": "Extension improvements"
+            },
+            {
+              "anchor": "Installation-and-distribution",
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension",
+                "doc://com.apple.safariservices/documentation/SafariServices/distributing-your-safari-web-extension"
+              ],
+              "title": "Installation and distribution"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFExtensionMessageKey/title",
+          "value": "SFExtensionMessageKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFExtensionMessageKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFExtensionMessageKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFExtensionProfileKey/title",
+          "value": "SFExtensionProfileKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFExtensionProfileKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFExtensionProfileKey"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safariservices/safari-web-extensions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safariservices/safari-web-extensions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

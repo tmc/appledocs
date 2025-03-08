@@ -1,0 +1,932 @@
+{
+  "abstract": [
+    {
+      "text": "Decrypts message content and details about digital signatures.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mailkit/documentation/MailKit",
+        "doc://com.apple.mailkit/documentation/MailKit/MEMessageDecoder"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mailkit/documentation/MailKit/MEMessageDecoder/decodedMessage(forMessageData:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MEMessageDecoder(im)decodedMessageForMessageData:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "decodedMessage"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "forMessageData"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:10Foundation4DataV",
+        "text": "Data"
+      },
+      {
+        "kind": "text",
+        "text": ") -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)MEDecodedMessage",
+        "text": "MEDecodedMessage"
+      },
+      {
+        "kind": "text",
+        "text": "?"
+      }
+    ],
+    "modules": [
+      {
+        "name": "MailKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "decodedMessageForMessageData:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "required": true,
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "decodedMessage(forMessageData:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "decodedMessage"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "forMessageData"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "data"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:10Foundation4DataV",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation4DataV",
+              "text": "Data"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEDecodedMessage",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MEDecodedMessage",
+              "text": "MEDecodedMessage"
+            },
+            {
+              "kind": "text",
+              "text": "?"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The raw MIME message data, which may be encrypted or signed.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "data"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An object that represents the decoded message, or ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the message isn’t encrypted or signed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When MailKit needs the original unencoded data for a message, it invokes this method and passes the raw MIME data for the message. If you determine that the message isn’t encoded and your extension doesn’t need to do anything, return ",
+              "type": "text"
+            },
+            {
+              "code": "nil,",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and MailKit decodes the message data normally.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you inspect the message data and determine that you need to decode it, create an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEMessageSecurityInformation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that describes the message’s signed and encrypted status. If the message is signed, specify an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEMessageSigner",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects to indicate who signed the message. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEMessageSigner",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " includes additional context that the security handler’s view controller uses to display details to the user, such as the certificate a signer used.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide the decoded message content to MailKit, create an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEDecodedMessage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The decoded message contains the raw MIME content for the message, and the message security information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If decrypting the message fails, or the digital signature isn’t valid, include an error object with a localized description of the failure in the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEMessageSecurityInformation",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". Mail uses this description to inform the user of the issue.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit": {
+      "abstract": [
+        {
+          "text": "Secure, customize, and act on email messages that users send and receive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MailKit",
+      "type": "topic",
+      "url": "/documentation/mailkit"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit/MEDecodedMessage": {
+      "abstract": [
+        {
+          "text": "An object that contains the RFC 2822 data for a message, without encryption or digital signatures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEDecodedMessage"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEDecodedMessage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEDecodedMessage"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEDecodedMessage",
+      "type": "topic",
+      "url": "/documentation/mailkit/medecodedmessage"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit/MEMessageDecoder": {
+      "abstract": [
+        {
+          "text": "An object that decrypts messages and provides details about digital signatures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEMessageDecoder"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEMessageDecoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEMessageDecoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEMessageDecoder",
+      "type": "topic",
+      "url": "/documentation/mailkit/memessagedecoder"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit/MEMessageDecoder/decodedMessage(forMessageData:)": {
+      "abstract": [
+        {
+          "text": "Decrypts message content and details about digital signatures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodedMessage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forMessageData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MEDecodedMessage",
+          "text": "MEDecodedMessage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEMessageDecoder/decodedMessage(forMessageData:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "decodedMessageForMessageData:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "decodedMessage(forMessageData:)",
+      "type": "topic",
+      "url": "/documentation/mailkit/memessagedecoder/decodedmessage(formessagedata:)"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit/MEMessageSecurityInformation": {
+      "abstract": [
+        {
+          "text": "An object that contains details about a message’s content, such as if it’s encrypted and who digitally signed it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEMessageSecurityInformation"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEMessageSecurityInformation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEMessageSecurityInformation"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEMessageSecurityInformation",
+      "type": "topic",
+      "url": "/documentation/mailkit/memessagesecurityinformation"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit/MEMessageSigner": {
+      "abstract": [
+        {
+          "text": "An object that contains details about the person who signed a message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEMessageSigner"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEMessageSigner",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEMessageSigner"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEMessageSigner",
+      "type": "topic",
+      "url": "/documentation/mailkit/memessagesigner"
+    },
+    "doc://com.externally.resolved.symbol/s:10Foundation4DataV": {
+      "abstract": [
+        {
+          "text": "A byte buffer in memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:10Foundation4DataV",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Data",
+      "type": "topic",
+      "url": "/documentation/foundation/data"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "decodedMessageForMessageData:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "decodedMessageForMessageData:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.mailkit/documentation/MailKit",
+                "doc://com.apple.mailkit/documentation/MailKit/MEMessageDecoder"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEDecodedMessage",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)MEDecodedMessage",
+                    "text": "MEDecodedMessage"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "decodedMessageForMessageData:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSData",
+                    "text": "NSData"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "data"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The raw MIME message data, which may be encrypted or signed.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "data"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/2",
+          "value": {
+            "content": [
+              {
+                "anchor": "return-value",
+                "level": 2,
+                "text": "Return Value",
+                "type": "heading"
+              },
+              {
+                "inlineContent": [
+                  {
+                    "text": "An object that represents the decoded message, or ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "nil",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " if the message isn’t encrypted or signed.",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "kind": "content"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEDecodedMessage/title",
+          "value": "MEDecodedMessage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEDecodedMessage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEDecodedMessage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEDecodedMessage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEDecodedMessage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageDecoder~1decodedMessage(forMessageData:)/title",
+          "value": "decodedMessageForMessageData:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageDecoder~1decodedMessage(forMessageData:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "decodedMessageForMessageData:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageSecurityInformation/title",
+          "value": "MEMessageSecurityInformation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageSecurityInformation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEMessageSecurityInformation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageSecurityInformation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEMessageSecurityInformation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageDecoder/title",
+          "value": "MEMessageDecoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageDecoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEMessageDecoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageDecoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEMessageDecoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageSigner/title",
+          "value": "MEMessageSigner"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageSigner/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEMessageSigner"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEMessageSigner/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEMessageSigner"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mailkit/memessagedecoder/decodedmessage(formessagedata:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mailkit/memessagedecoder/decodedmessage(formessagedata:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

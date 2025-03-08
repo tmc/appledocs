@@ -1,0 +1,1791 @@
+{
+  "abstract": [
+    {
+      "text": "An object that encapsualtes the performance metrics collected by the URL Loading System during the execution of a session task.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/urlsession",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontaskmetrics"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontask",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontaskmetrics"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1642968,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSURLSessionTaskTransactionMetrics",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "URLSessionTaskTransactionMetrics"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.12",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "3.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "URLSessionTaskTransactionMetrics"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "URLSessionTaskTransactionMetrics"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object consists of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643144-request",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643172-response",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property, corresponding to the request and response of the corresponding task. It also contains temporal metrics, starting with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643009-fetchstartdate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ending with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643300-responseenddate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", as well as other characteristics like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643141-networkprotocolname",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1642919-resourcefetchtype",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3162615",
+          "level": 3,
+          "text": "Understanding temporal metrics",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "link-media-3162616",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " shows the sequence of events for a URL session task, which correspond to the temporal metrics captured by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3162616",
+              "metadata": {
+                "abstract": [
+                  {
+                    "text": "Timeline of temporal metrics for a URL session task",
+                    "type": "text"
+                  }
+                ],
+                "anchor": "3162616",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For all metrics with a start and end date, if an aspect of the task was not completed, then its corresponding end date metric is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This can happen if name lookup begins, but the operation either times out, fails, or the client cancels the task before the name can be resolved. In this case, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643173-domainlookupenddate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " property is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", along with all metrics for aspects that occurred afterwards.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3804922",
+          "level": 3,
+          "text": "Measuring tasks using iCloud Private Relay",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iCloud Private Relay can change the timing and sequence of events for your tasks by sending requests through a set of privacy proxies. All tasks that use iCloud Private Relay set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1642917-isproxyconnection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property in their transaction metrics. In this case, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240642-remoteaddress",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property contains the address of the proxy, and not the origin server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tasks to different hosts can reuse the same transport connection, just like how tasks can already share a connection when using HTTP/2. In these cases, a proxied task may not report any ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643219-secureconnectionstartdate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643255-secureconnectionenddate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionTask",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionTaskDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontaskdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontaskmetrics": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskmetrics",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionTaskMetrics",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontaskmetrics"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontaskmetrics/1642789-transactionmetrics": {
+      "abstract": [
+        {
+          "text": "An array of metrics for each individual request-response transaction made during the execution of the task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "transactionMetrics"
+        },
+        {
+          "kind": "text",
+          "text": ": [URLSessionTaskTransactionMetrics]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskmetrics/1642789-transactionmetrics",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transactionMetrics",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontaskmetrics/1642789-transactionmetrics"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontaskmetrics/1643136-redirectcount": {
+      "abstract": [
+        {
+          "text": "The number of redirects that occurred during the execution of the task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "redirectCount"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskmetrics/1643136-redirectcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "redirectCount",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontaskmetrics/1643136-redirectcount"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontaskmetrics/1643169-taskinterval": {
+      "abstract": [
+        {
+          "text": "The time interval between when a task is instantiated and when the task is completed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "taskInterval"
+        },
+        {
+          "kind": "text",
+          "text": ": DateInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskmetrics/1643169-taskinterval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "taskInterval",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontaskmetrics/1643169-taskinterval"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontaskmetrics/domainresolutionprotocol": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSessionTaskMetrics.DomainResolutionProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskmetrics/domainresolutionprotocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionTaskMetrics.DomainResolutionProtocol",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontaskmetrics/domainresolutionprotocol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontaskmetrics/resourcefetchtype": {
+      "abstract": [
+        {
+          "text": "The manner in which a resource is fetched.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSessionTaskMetrics.ResourceFetchType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskmetrics/resourcefetchtype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionTaskMetrics.ResourceFetchType",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontaskmetrics/resourcefetchtype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics": {
+      "abstract": [
+        {
+          "text": "An object that encapsualtes the performance metrics collected by the URL Loading System during the execution of a session task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSessionTaskTransactionMetrics"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionTaskTransactionMetrics",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1642815-connectstartdate": {
+      "abstract": [
+        {
+          "text": "The time immediately before the task started establishing a TCP connection to the server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "connectStartDate"
+        },
+        {
+          "kind": "text",
+          "text": ": Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1642815-connectstartdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "connectStartDate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/1642815-connectstartdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1642859-domainlookupstartdate": {
+      "abstract": [
+        {
+          "text": "The time immediately before the task started the name lookup for the resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "domainLookupStartDate"
+        },
+        {
+          "kind": "text",
+          "text": ": Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1642859-domainlookupstartdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "domainLookupStartDate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/1642859-domainlookupstartdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1642906-requeststartdate": {
+      "abstract": [
+        {
+          "text": "The time immediately before the task started requesting the resource, regardless of whether it is retrieved from the server or local resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestStartDate"
+        },
+        {
+          "kind": "text",
+          "text": ": Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1642906-requeststartdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestStartDate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/1642906-requeststartdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1642917-isproxyconnection": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicastes whether the task used a proxy connection to fetch the resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isProxyConnection"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1642917-isproxyconnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isProxyConnection",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/1642917-isproxyconnection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1642919-resourcefetchtype": {
+      "abstract": [
+        {
+          "text": "A value that indicates whether the resource was loaded, pushed, or retrieved from the local cache.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "resourceFetchType"
+        },
+        {
+          "kind": "text",
+          "text": ": URLSessionTaskMetrics.ResourceFetchType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1642919-resourcefetchtype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resourceFetchType",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/1642919-resourcefetchtype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1642954-init": {
+      "abstract": [
+        {
+          "text": "Creates a transaction metrics instance.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1642954-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/1642954-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1642966-responsestartdate": {
+      "abstract": [
+        {
+          "text": "The time immediately after the task received the first byte of the response from the server or from local resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "responseStartDate"
+        },
+        {
+          "kind": "text",
+          "text": ": Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1642966-responsestartdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "responseStartDate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/1642966-responsestartdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643009-fetchstartdate": {
+      "abstract": [
+        {
+          "text": "The time when the task started fetching the resource, from the server or locally. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchStartDate"
+        },
+        {
+          "kind": "text",
+          "text": ": Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643009-fetchstartdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fetchStartDate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/1643009-fetchstartdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643056-requestenddate": {
+      "abstract": [
+        {
+          "text": "The time immediately after the task finished requesting the resource, regardless of whether it was retrieved from the server or local resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestEndDate"
+        },
+        {
+          "kind": "text",
+          "text": ": Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643056-requestenddate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestEndDate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/1643056-requestenddate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643141-networkprotocolname": {
+      "abstract": [
+        {
+          "text": "The network protocol used to fetch the resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "networkProtocolName"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643141-networkprotocolname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "networkProtocolName",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/1643141-networkprotocolname"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643144-request": {
+      "abstract": [
+        {
+          "text": "The transaction request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "request"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643144-request",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "request",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/1643144-request"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643172-response": {
+      "abstract": [
+        {
+          "text": "The transaction response.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "response"
+        },
+        {
+          "kind": "text",
+          "text": ": URLResponse?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643172-response",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "response",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/1643172-response"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643173-domainlookupenddate": {
+      "abstract": [
+        {
+          "text": "The time after the name lookup was completed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "domainLookupEndDate"
+        },
+        {
+          "kind": "text",
+          "text": ": Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643173-domainlookupenddate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "domainLookupEndDate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/1643173-domainlookupenddate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643219-secureconnectionstartdate": {
+      "abstract": [
+        {
+          "text": "The time immediately before the task started the TLS security handshake to secure the current connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "secureConnectionStartDate"
+        },
+        {
+          "kind": "text",
+          "text": ": Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643219-secureconnectionstartdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "secureConnectionStartDate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/1643219-secureconnectionstartdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643233-isreusedconnection": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the task used a persistent connection to fetch the resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isReusedConnection"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643233-isreusedconnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isReusedConnection",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/1643233-isreusedconnection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643239-connectenddate": {
+      "abstract": [
+        {
+          "text": "The time immediately after the task finished establishing the connection to the server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "connectEndDate"
+        },
+        {
+          "kind": "text",
+          "text": ": Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643239-connectenddate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "connectEndDate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/1643239-connectenddate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643255-secureconnectionenddate": {
+      "abstract": [
+        {
+          "text": "The time immediately after the security handshake completed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "secureConnectionEndDate"
+        },
+        {
+          "kind": "text",
+          "text": ": Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643255-secureconnectionenddate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "secureConnectionEndDate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/1643255-secureconnectionenddate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643300-responseenddate": {
+      "abstract": [
+        {
+          "text": "The time immediately after the task received the last byte of the resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "responseEndDate"
+        },
+        {
+          "kind": "text",
+          "text": ": Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643300-responseenddate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "responseEndDate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/1643300-responseenddate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240627-iscellular": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the connection operates over a cellular interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isCellular"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240627-iscellular",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isCellular",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/3240627-iscellular"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240628-isconstrained": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the connection operates over an interface marked as constrained.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isConstrained"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240628-isconstrained",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isConstrained",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/3240628-isconstrained"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240629-countofrequestbodybytesbeforeenc": {
+      "abstract": [
+        {
+          "text": "The size of the upload body data, file, or stream, in bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "countOfRequestBodyBytesBeforeEncoding"
+        },
+        {
+          "kind": "text",
+          "text": ": Int64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240629-countofrequestbodybytesbeforeenc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "countOfRequestBodyBytesBeforeEncoding",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/3240629-countofrequestbodybytesbeforeenc"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240630-countofrequestbodybytessent": {
+      "abstract": [
+        {
+          "text": "The number of bytes transferred for the request body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "countOfRequestBodyBytesSent"
+        },
+        {
+          "kind": "text",
+          "text": ": Int64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240630-countofrequestbodybytessent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "countOfRequestBodyBytesSent",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/3240630-countofrequestbodybytessent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240631-countofrequestheaderbytessent": {
+      "abstract": [
+        {
+          "text": "The number of bytes transferred for the request header.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "countOfRequestHeaderBytesSent"
+        },
+        {
+          "kind": "text",
+          "text": ": Int64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240631-countofrequestheaderbytessent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "countOfRequestHeaderBytesSent",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/3240631-countofrequestheaderbytessent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240632-countofresponsebodybytesafterdec": {
+      "abstract": [
+        {
+          "text": "The size of data delivered to your delegate or completion handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "countOfResponseBodyBytesAfterDecoding"
+        },
+        {
+          "kind": "text",
+          "text": ": Int64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240632-countofresponsebodybytesafterdec",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "countOfResponseBodyBytesAfterDecoding",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/3240632-countofresponsebodybytesafterdec"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240633-countofresponsebodybytesreceived": {
+      "abstract": [
+        {
+          "text": "The number of bytes transferred for the response body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "countOfResponseBodyBytesReceived"
+        },
+        {
+          "kind": "text",
+          "text": ": Int64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240633-countofresponsebodybytesreceived",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "countOfResponseBodyBytesReceived",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/3240633-countofresponsebodybytesreceived"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240634-countofresponseheaderbytesreceiv": {
+      "abstract": [
+        {
+          "text": "The number of bytes transferred for the response header.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "countOfResponseHeaderBytesReceived"
+        },
+        {
+          "kind": "text",
+          "text": ": Int64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240634-countofresponseheaderbytesreceiv",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "countOfResponseHeaderBytesReceived",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/3240634-countofresponseheaderbytesreceiv"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240635-isexpensive": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the connection operates over an expensive interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isExpensive"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240635-isexpensive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isExpensive",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/3240635-isexpensive"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240636-localaddress": {
+      "abstract": [
+        {
+          "text": "The IP address string of the local interface for the connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "localAddress"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240636-localaddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localAddress",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/3240636-localaddress"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240638-ismultipath": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the connection uses a successfully negotiated multipath protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isMultipath"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240638-ismultipath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isMultipath",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/3240638-ismultipath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240641-new": {
+      "abstract": [
+        {
+          "text": "Creates a new transaction metrics instance.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "new"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240641-new",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "new()",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/3240641-new"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240642-remoteaddress": {
+      "abstract": [
+        {
+          "text": "The IP address string of the remote interface for the connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "remoteAddress"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240642-remoteaddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remoteAddress",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/3240642-remoteaddress"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3329709-localport": {
+      "abstract": [
+        {
+          "text": "The port number of the local interface for the connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "localPort"
+        },
+        {
+          "kind": "text",
+          "text": ": Int?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3329709-localport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localPort",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/3329709-localport"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3329710-negotiatedtlsciphersuite": {
+      "abstract": [
+        {
+          "text": "The TLS cipher suite the task negotiated with the endpoint for the connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "negotiatedTLSCipherSuite"
+        },
+        {
+          "kind": "text",
+          "text": ": tls_ciphersuite_t?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3329710-negotiatedtlsciphersuite",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "negotiatedTLSCipherSuite",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/3329710-negotiatedtlsciphersuite"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3329711-negotiatedtlsprotocolversion": {
+      "abstract": [
+        {
+          "text": "The TLS protocol version the task negotiated with the endpoint for the connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "negotiatedTLSProtocolVersion"
+        },
+        {
+          "kind": "text",
+          "text": ": tls_protocol_version_t?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3329711-negotiatedtlsprotocolversion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "negotiatedTLSProtocolVersion",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/3329711-negotiatedtlsprotocolversion"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3329712-remoteport": {
+      "abstract": [
+        {
+          "text": "The port number of the remote interface for the connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "remotePort"
+        },
+        {
+          "kind": "text",
+          "text": ": Int?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3329712-remoteport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remotePort",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/3329712-remoteport"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3674827-domainresolutionprotocol": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "domainResolutionProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ": URLSessionTaskMetrics.DomainResolutionProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3674827-domainresolutionprotocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "domainResolutionProtocol",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics/3674827-domainresolutionprotocol"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-media-3162616": {
+      "identifier": "link-media-3162616",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/foundation/urlsessiontasktransactionmetrics#3162616"
+    },
+    "media-3162616": {
+      "abstract": [
+        {
+          "text": "Timeline of temporal metrics for a URL session task",
+          "type": "text"
+        }
+      ],
+      "alt": "Diagram showing the temporal metrics for a URL session task. When a task starts, it performs a DNS lookup and then starts a connection. If the connection is encrypted, the user agent starts a TLS security handshake to secure the connection. After the connection to the server is established, the user agent requests the specified resource, and receives a response.",
+      "identifier": "media-3162616",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/611eff5ea6/Foundation-sessonTask-TransactionMetrics@2x.png"
+        },
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/44b8c82bbc/Foundation-sessionTask-TransactionMetrics~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontaskmetrics/1642789-transactionmetrics",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontaskmetrics/1643169-taskinterval",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontaskmetrics/1643136-redirectcount"
+      ],
+      "title": "Accessing task metrics"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1844928",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643144-request",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643172-response"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing request and response"
+    },
+    {
+      "anchor": "1844929",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643009-fetchstartdate",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1642859-domainlookupstartdate",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643173-domainlookupenddate",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1642815-connectstartdate",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643219-secureconnectionstartdate",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643255-secureconnectionenddate",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643239-connectenddate",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1642906-requeststartdate",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643056-requestenddate",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1642966-responsestartdate",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643300-responseenddate"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing temporal metrics"
+    },
+    {
+      "anchor": "3382697",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240629-countofrequestbodybytesbeforeenc",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240630-countofrequestbodybytessent",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240631-countofrequestheaderbytessent",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240632-countofresponsebodybytesafterdec",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240633-countofresponsebodybytesreceived",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240634-countofresponseheaderbytesreceiv"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing data transfer metrics"
+    },
+    {
+      "anchor": "1844931",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643141-networkprotocolname",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240642-remoteaddress",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3329712-remoteport",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240636-localaddress",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3329709-localport",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3329710-negotiatedtlsciphersuite",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3329711-negotiatedtlsprotocolversion",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240627-iscellular",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240635-isexpensive",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240628-isconstrained",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1642917-isproxyconnection",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1643233-isreusedconnection",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240638-ismultipath",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1642919-resourcefetchtype",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontaskmetrics/resourcefetchtype",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3674827-domainresolutionprotocol",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontaskmetrics/domainresolutionprotocol"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing transaction characteristics"
+    },
+    {
+      "anchor": "2940119",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/1642954-init",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontasktransactionmetrics/3240641-new"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating transaction metrics"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsurlsessiontasktransactionmetrics"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/urlsessiontasktransactionmetrics"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

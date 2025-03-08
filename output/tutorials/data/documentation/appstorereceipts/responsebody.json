@@ -1,0 +1,627 @@
+{
+  "abstract": [
+    {
+      "text": "The JSON data that returns in the response from the App Store.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " endpoint is deprecated. ",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "deprecated",
+      "platform": "App Store Receipts",
+      "versions": [
+        "1.0",
+        "1.7"
+      ]
+    },
+    "minor": {
+      "change": "deprecated",
+      "platform": "App Store Receipts",
+      "versions": [
+        "1.6",
+        "1.7"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/appstorereceipts"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/appstorereceipts/responsebody"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3178808,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:store_receipts:responseBody",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "responseBody"
+      }
+    ],
+    "modules": [
+      {
+        "name": "App Store Receipts"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "1.7",
+        "deprecated": true,
+        "deprecatedAt": "1.7",
+        "introducedAt": "1.0",
+        "name": "App Store Receipts"
+      }
+    ],
+    "role": "dictionarySymbol",
+    "roleHeading": "Object",
+    "symbolKind": "dict",
+    "title": "responseBody"
+  },
+  "primaryContentSections": [
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "title": "Possible values",
+              "values": [
+                "Sandbox",
+                "Production"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The environment the system generates the receipt for.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "deprecated": true,
+          "name": "environment",
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An indicator when an error occurs during the request. A value of ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " indicates a temporary issue; retry validation for this receipt at a later time. A value of ",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " indicates an unresolvable issue; don’t retry validation for this receipt. This is applicable only to status codes ",
+                  "type": "text"
+                },
+                {
+                  "code": "21100–21199",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "deprecated": true,
+          "name": "is_retryable",
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "boolean"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The latest Base64-encoded app receipt. This only returns for receipts that contain auto-renewable subscriptions. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "deprecated": true,
+          "name": "latest_receipt",
+          "type": [
+            {
+              "kind": "text",
+              "text": "byte"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "byte"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array that contains all in-app purchase transactions. This excludes transactions for consumable products that your app marks as finished. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "deprecated": true,
+          "name": "latest_receipt_info",
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/latest_receipt_info",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:store_receipts:responseBody.Latest_receipt_info",
+              "text": "responseBody.Latest_receipt_info"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ],
+          "typeDetails": [
+            {
+              "arrayMode": true,
+              "baseType": "dictionary"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In the JSON file, an array where each element contains the pending renewal information for each auto-renewable subscription the ",
+                  "type": "text"
+                },
+                {
+                  "code": "product_id",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " identifies. This only returns for app receipts that contain auto-renewable subscriptions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "deprecated": true,
+          "name": "pending_renewal_info",
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/pending_renewal_info",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:store_receipts:responseBody.Pending_renewal_info",
+              "text": "responseBody.Pending_renewal_info"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ],
+          "typeDetails": [
+            {
+              "arrayMode": true,
+              "baseType": "dictionary"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A JSON representation of the receipt that you send for verification. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "deprecated": true,
+          "name": "receipt",
+          "type": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/receipt",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:store_receipts:responseBody.Receipt",
+              "text": "responseBody.Receipt"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "dictionary"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Either ",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if the receipt is valid, or a status code if there’s an error. The status code reflects the status of the app receipt as a whole. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/status",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for possible status codes and descriptions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "deprecated": true,
+          "name": "status",
+          "type": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/status",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:store_receipts:status",
+              "text": "status"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint returns this response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/appstorereceipts": {
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Receipts",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/error": {
+      "abstract": [
+        {
+          "text": "Error information that returns in the response body when a request isn’t successful.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "error"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/error",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "error",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/error"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/requestbody": {
+      "abstract": [
+        {
+          "text": "The JSON contents you submit with the request to the App Store.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestBody"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/requestbody",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "requestBody",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/requestbody"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/responsebody": {
+      "abstract": [
+        {
+          "text": "The JSON data that returns in the response from the App Store.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "responseBody"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/responsebody",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "responseBody",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/responsebody"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/latest_receipt_info": {
+      "abstract": [
+        {
+          "text": "An array that contains all in-app purchase transactions.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "responseBody.Latest_receipt_info"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/latest_receipt_info",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "responseBody.Latest_receipt_info",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/responsebody/latest_receipt_info"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/pending_renewal_info": {
+      "abstract": [
+        {
+          "text": "An array of elements that refers to open or failed auto-renewable subscription renewals.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "responseBody.Pending_renewal_info"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/pending_renewal_info",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "responseBody.Pending_renewal_info",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/responsebody/pending_renewal_info"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/receipt": {
+      "abstract": [
+        {
+          "text": "The decoded version of the encoded receipt data that you send with the request to the App Store.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "responseBody.Receipt"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/receipt",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "responseBody.Receipt",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/responsebody/receipt"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/status": {
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/status",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "status",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/status"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt": {
+      "abstract": [
+        {
+          "text": "Send a receipt to the App Store for verification.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt",
+      "kind": "symbol",
+      "role": "restRequestSymbol",
+      "title": "verifyReceipt",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/verifyreceipt"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt",
+        "doc://com.apple.documentation/documentation/appstorereceipts/requestbody",
+        "doc://com.apple.documentation/documentation/appstorereceipts/error"
+      ],
+      "title": "Deprecated"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3222197",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/pending_renewal_info",
+        "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/latest_receipt_info",
+        "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/receipt"
+      ],
+      "kind": "taskGroup",
+      "title": "Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/appstorereceipts/responsebody"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

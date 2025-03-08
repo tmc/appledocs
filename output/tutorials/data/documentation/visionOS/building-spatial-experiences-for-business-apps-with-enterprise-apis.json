@@ -1,0 +1,885 @@
+{
+  "abstract": [
+    {
+      "text": "Grant enhanced sensor access and increased platform control to your visionOS app by using entitlements.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/building-spatial-experiences-for-business-apps-with-enterprise-apis"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Building spatial experiences for business apps with enterprise APIs for visionOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This article is associated with WWDC24 session 10139:",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc24/10139/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the entitlements that enterprise APIs for visionOS offer to create even more powerful enterprise solutions and spatial experiences for your visionOS app. The enterprise APIs for visionOS consist of two distinct categories.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first category of APIs provides enhanced sensor access and improves the visual capabilities of Apple Vision Pro, including access to the main camera, improved capture and streaming, and enhanced functionality through the camera that allows you to see what the wearer sees.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Capture input data from the forward-facing main camera.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.arkit.main-camera-access.allow",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Access a composite feed of what an Apple Vision Pro wearer is seeing (physical world and digital content).",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.screen-capture.include-passthrough",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Scan barcodes and QR codes with the ability to decode contents and locate spatial positions.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.arkit.barcode-detection.allow",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The second category focuses on platform control to help you get the most out of visionOS.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "These entitlements provide advanced machine learning (ML) capabilities using the Apple Neural Engine for your custom ML model, enhanced object-tracking capabilities for faster object detection, and the ability to tune the performance of your apps to achieve even more compute functionality for intensive workloads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Specifically target Apple Neural Engine (ANE) for machine learning tasks, similar to iOS.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.coreml.neural-engine-access",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Optimize known object detection and tracking using configurable parameters.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.arkit.object-tracking-parameter-adjustment.allow",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Use increased power of the CPU and GPU for high-compute needs, with a tradeoff of increased thermal usage and reduced battery life.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.app-compute-category",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Stream USB UVC devices connected to the Developer strap.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.avfoundation.uvc-device-access",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Each of these entitlements allows a device to operate outside the default configuration. When using these features, be aware that they may impact the performance of other apps.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Request-the-entitlements",
+          "level": 3,
+          "text": "Request the entitlements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re interested in using the enterprise APIs for visionOS in your app, the Account Holder of your Apple Developer Program and/or Apple Developer Enterprise Program can submit an ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/go/?id=69613ca716fe11ef8ec848df370857f4",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To be eligible, your app needs to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Be for use in a business setting only",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Meet specific criteria associated with usage for each API",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Enterprise APIs for visionOS are eligible for business use only. You can distribute apps that you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "develop with the enterprise APIs for visionOS privately as proprietary in-house apps or custom apps using Apple Business Manager. For more information on distributing custom apps, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/manage-your-apps-availability/set-distribution-methods",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also request access to the entitlements for ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Development Only",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " purposes. With this access, you can build and run apps on your registered test devices with development provisioning profiles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-your-apps-Xcode-project",
+          "level": 3,
+          "text": "Configure your app’s Xcode project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use entitlements, you need to include both the entitlement file and a corresponding license file in your app. After Apple approves your app for one or more entitlements, you receive a license file, along with additional instructions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You add the license file to your app’s Xcode project. Placing the license file within your project and adding it to your build target allows Xcode to compile it within your app and then validate it when checking your entitlements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The license file comes with an expiration date, so you need to renew it before then to",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "ensure your entitlements continue to function.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add an entitlement in Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your project in the Project navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the applicable target and then click the Signing & Capabilities tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add Capability button (+) and type the name of the entitlement you want to add, such as",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "main camera access",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Double-click the entitlement to add it to the Signing section. This creates a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".entitlements",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file with",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the relevant capability, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.apple.developer.arkit.main-camera-access.allow",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for “Main camera access”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you add the ",
+              "type": "text"
+            },
+            {
+              "code": ".license",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": ".entitlements",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files, you can implement and test the APIs you have approval to use. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/xcode/adding-capabilities-to-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.app-compute-category": {
+      "abstract": [
+        {
+          "text": "An entitlement that allows an app to adjust thresholds that balance thermal dissipation and performance against fan noise and other factors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.app-compute-category",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Increased performance headroom",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.app-compute-category"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.arkit.barcode-detection.allow": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an app can use ARKit to detect, position, and decode barcode and QR codes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.arkit.barcode-detection.allow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Spatial barcode and QR code scanning",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.arkit.barcode-detection.allow"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.arkit.main-camera-access.allow": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an app can use ARKit to access the main cameras on Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.arkit.main-camera-access.allow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Main camera access",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.arkit.main-camera-access.allow"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.arkit.object-tracking-parameter-adjustment.allow": {
+      "abstract": [
+        {
+          "text": "A Boolean value that allows an app to use ARKit to track more objects with a higher frequency.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.arkit.object-tracking-parameter-adjustment.allow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Object-tracking parameter adjustment",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.arkit.object-tracking-parameter-adjustment.allow"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.avfoundation.uvc-device-access": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app can stream USB UVC devices connected to the Developer strap.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.avfoundation.uvc-device-access",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UVC Device Access on visionOS",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.avfoundation.uvc-device-access"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.coreml.neural-engine-access": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an app can use the Apple Neural Engine to speed up CoreML.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.coreml.neural-engine-access",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Apple Neural Engine access",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.coreml.neural-engine-access"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.screen-capture.include-passthrough": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an app can include passthrough in screen capture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.screen-capture.include-passthrough",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Passthrough in screen capture",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.screen-capture.include-passthrough"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/accessing-the-main-camera": {
+      "abstract": [
+        {
+          "text": "Add camera-based features to enterprise apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/accessing-the-main-camera",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Accessing the main camera",
+      "type": "topic",
+      "url": "/documentation/visionos/accessing-the-main-camera"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/displaying-video-from-connected-devices": {
+      "abstract": [
+        {
+          "text": "Show video from devices connected with the Developer Strap in your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/displaying-video-from-connected-devices",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Displaying video from connected devices",
+      "type": "topic",
+      "url": "/documentation/visionos/displaying-video-from-connected-devices"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/locating-and-decoding-barcodes-in-3d-space": {
+      "abstract": [
+        {
+          "text": "Create engaging, hands-free experiences based on barcodes in a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/locating-and-decoding-barcodes-in-3d-space",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Locating and decoding barcodes in 3D space",
+      "type": "topic",
+      "url": "/documentation/visionos/locating-and-decoding-barcodes-in-3d-space"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "https://developer.apple.com/documentation/xcode/adding-capabilities-to-your-app": {
+      "identifier": "https://developer.apple.com/documentation/xcode/adding-capabilities-to-your-app",
+      "title": "Adding capabilities to your app",
+      "titleInlineContent": [
+        {
+          "text": "Adding capabilities to your app",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/xcode/adding-capabilities-to-your-app"
+    },
+    "https://developer.apple.com/go/?id=69613ca716fe11ef8ec848df370857f4": {
+      "identifier": "https://developer.apple.com/go/?id=69613ca716fe11ef8ec848df370857f4",
+      "title": "entitlement request",
+      "titleInlineContent": [
+        {
+          "text": "entitlement request",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/go/?id=69613ca716fe11ef8ec848df370857f4"
+    },
+    "https://developer.apple.com/help/app-store-connect/manage-your-apps-availability/set-distribution-methods": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/manage-your-apps-availability/set-distribution-methods",
+      "title": "Set distribution methods",
+      "titleInlineContent": [
+        {
+          "text": "Set distribution methods",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/manage-your-apps-availability/set-distribution-methods"
+    },
+    "https://developer.apple.com/wwdc24/10139/": {
+      "identifier": "https://developer.apple.com/wwdc24/10139/",
+      "title": "Introducing enterprise APIs for visionOS",
+      "titleInlineContent": [
+        {
+          "text": "Introducing enterprise APIs for visionOS",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc24/10139/"
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Enterprise-APIs-for-visionOS",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/accessing-the-main-camera",
+        "doc://com.apple.visionOS/documentation/visionOS/displaying-video-from-connected-devices",
+        "doc://com.apple.visionOS/documentation/visionOS/locating-and-decoding-barcodes-in-3d-space"
+      ],
+      "title": "Enterprise APIs for visionOS"
+    }
+  ]
+}

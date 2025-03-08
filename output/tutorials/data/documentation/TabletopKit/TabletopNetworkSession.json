@@ -1,0 +1,888 @@
+{
+  "abstract": [
+    {
+      "text": "An object that coordinates network-related tasks in multiplayer games.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:11TabletopKit0A14NetworkSessionC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "TabletopNetworkSession"
+      }
+    ],
+    "modules": [
+      {
+        "name": "TabletopKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "TabletopNetworkSession"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "TabletopNetworkSession"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "TabletopNetworkSession"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Coordinator"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Coordinator"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSessionCoordinator",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:11TabletopKit0A25NetworkSessionCoordinatorP",
+              "text": "TabletopNetworkSessionCoordinator"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To start a multiplayer game for a local player, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/start()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. TabletopKit syncs the current table state between all peers in the session, so update the table state before invoking this method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After invoking the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/start()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, the local player becomes the arbiter who ensures that TabletopKit applies actions in order for all players. To switch the arbiter role between players, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/becomeArbiter()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/followArbiter(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To join an existing game, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/join()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, and to pass incoming messages to the game, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/processIncomingMessage(_:from:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get all the people who join the session, not just the players, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/peers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit": {
+      "abstract": [
+        {
+          "text": "Create multiplayer spatial games on a virtual table surface and use FaceTime to invite players.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TabletopKit",
+      "type": "topic",
+      "url": "/documentation/tabletopkit"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates network-related tasks in multiplayer games.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabletopNetworkSession"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabletopNetworkSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopNetworkSession",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopnetworksession"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/Peer": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Peer"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/Peer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Peer"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopNetworkSession.Peer",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopnetworksession/peer"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/addPeer(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addPeer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A14NetworkSessionC",
+          "text": "TabletopNetworkSession"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Coordinator"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Peer"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/addPeer(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addPeer(_:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopnetworksession/addpeer(_:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/becomeArbiter()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "becomeArbiter"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/becomeArbiter()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "becomeArbiter()",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopnetworksession/becomearbiter()"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/followArbiter(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "followArbiter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A14NetworkSessionC",
+          "text": "TabletopNetworkSession"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Coordinator"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Peer"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/followArbiter(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "followArbiter(_:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopnetworksession/followarbiter(_:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/join()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "join"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/join()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "join()",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopnetworksession/join()"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/leave()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "leave"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/leave()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "leave()",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopnetworksession/leave()"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/peers": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "peers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A14NetworkSessionC",
+          "text": "TabletopNetworkSession"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Coordinator"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Peer"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/peers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "peers",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopnetworksession/peers"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/processIncomingMessage(_:from:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "processIncomingMessage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A14NetworkSessionC",
+          "text": "TabletopNetworkSession"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Coordinator"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Peer"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/processIncomingMessage(_:from:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "processIncomingMessage(_:from:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopnetworksession/processincomingmessage(_:from:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/removePeer(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removePeer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A14NetworkSessionC",
+          "text": "TabletopNetworkSession"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Coordinator"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Peer"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/removePeer(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removePeer(_:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopnetworksession/removepeer(_:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/start()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/start()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "start()",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopnetworksession/start()"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/terminate()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "terminate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/terminate()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "terminate()",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopnetworksession/terminate()"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSessionCoordinator": {
+      "abstract": [
+        {
+          "text": "A protocol for objects that manage network sessions between peers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabletopNetworkSessionCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSessionCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabletopNetworkSessionCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopNetworkSessionCoordinator",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopnetworksessioncoordinator"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopSendMessageResult": {
+      "abstract": [
+        {
+          "text": "The possible results of sending messages in a network session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabletopSendMessageResult"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopSendMessageResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabletopSendMessageResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopSendMessageResult",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopsendmessageresult"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Multiplayer-network-session",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSessionCoordinator",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopSendMessageResult"
+      ],
+      "title": "Multiplayer network session"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Joining-multiplayer-games",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/start()",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/join()",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/leave()",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/terminate()"
+      ],
+      "title": "Joining multiplayer games"
+    },
+    {
+      "anchor": "Changing-the-arbiter-role-between-players",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/becomeArbiter()",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/followArbiter(_:)"
+      ],
+      "title": "Changing the arbiter role between players"
+    },
+    {
+      "anchor": "Managing-network-session-peers",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/peers",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/addPeer(_:)",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/removePeer(_:)",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/Peer"
+      ],
+      "title": "Managing network session peers"
+    },
+    {
+      "anchor": "Receiving-messages-from-peers",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopNetworkSession/processIncomingMessage(_:from:)"
+      ],
+      "title": "Receiving messages from peers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/tabletopkit/tabletopnetworksession"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,487 @@
+{
+  "abstract": [
+    {
+      "text": "Runs the loop until the specified date, during which time it processes data from all attached input sources.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+        "doc://com.apple.documentation/documentation/foundation/runloop"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/runloop/1415778-run"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1415778,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSRunLoop(im)runUntilDate:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "run"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "identifier",
+        "text": "until"
+      },
+      {
+        "kind": "text",
+        "text": ": Date)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "RunLoop"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "run(until:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@_unavailableFromAsync"
+            },
+            {
+              "kind": "text",
+              "text": "(message: \"run(until:) cannot be used from async contexts.\")"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "run"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "until"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "limitDate"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation4DateV",
+              "text": "Date"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The date up until which to run.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "limitDate"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If no input sources or timers are attached to the run loop, this method exits immediately; otherwise, it runs the receiver in the ",
+              "type": "text"
+            },
+            {
+              "code": "NSDefaultRunLoopMode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by repeatedly invoking ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/1411525-run",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " until the specified expiration date. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Manually removing all known input sources and timers from the run loop is not a guarantee that the run loop will exit. macOS can install and remove additional input sources as needed to process requests targeted at the receiver’s thread. Those sources could therefore prevent the run loop from exiting. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date",
+      "type": "topic",
+      "url": "/documentation/foundation/date"
+    },
+    "doc://com.apple.documentation/documentation/foundation/processes_and_threads": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Processes and Threads",
+      "type": "topic",
+      "url": "/documentation/foundation/processes_and_threads"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop": {
+      "abstract": [
+        {
+          "text": "The programmatic interface to objects that manage input sources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RunLoop",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/1411525-run": {
+      "abstract": [
+        {
+          "text": "Runs the loop once, blocking for input in the specified mode until a given date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "run"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "mode"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.Mode, "
+        },
+        {
+          "kind": "identifier",
+          "text": "before"
+        },
+        {
+          "kind": "text",
+          "text": ": Date) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/1411525-run",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "run(mode:before:)",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/1411525-run"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/1412430-run": {
+      "abstract": [
+        {
+          "text": "Puts the receiver into a permanent loop, during which time it processes data from all attached input sources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "run"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/1412430-run",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "run()",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/1412430-run"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/1415778-run": {
+      "abstract": [
+        {
+          "text": "Runs the loop until the specified date, during which time it processes data from all attached input sources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "run"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "until"
+        },
+        {
+          "kind": "text",
+          "text": ": Date)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/1415778-run",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "run(until:)",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/1415778-run"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/1417143-acceptinput": {
+      "abstract": [
+        {
+          "text": "Runs the loop once or until the specified date, accepting input only for the specified mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "acceptInput"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forMode"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.Mode, "
+        },
+        {
+          "kind": "identifier",
+          "text": "before"
+        },
+        {
+          "kind": "text",
+          "text": ": Date)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/1417143-acceptinput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "acceptInput(forMode:before:)",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/1417143-acceptinput"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/runloop/1412430-run",
+        "doc://com.apple.documentation/documentation/foundation/runloop/1411525-run",
+        "doc://com.apple.documentation/documentation/foundation/runloop/1417143-acceptinput"
+      ],
+      "title": "Running a Loop"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsrunloop/1415778-rununtildate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/runloop/1415778-run"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

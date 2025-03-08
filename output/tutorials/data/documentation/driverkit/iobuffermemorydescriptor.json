@@ -1,0 +1,401 @@
+{
+  "abstract": [
+    {
+      "text": "A memory buffer allocated in the caller's address space.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/driverkit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/driverkit/iobuffermemorydescriptor"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3180449,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOBufferMemoryDescriptor",
+    "modules": [
+      {
+        "name": "DriverKit"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "24.4",
+        "introducedAt": "19.0",
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOBufferMemoryDescriptor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "DriverKit"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOBufferMemoryDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/iomemorydescriptor",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOMemoryDescriptor",
+              "text": "IOMemoryDescriptor"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/iobuffermemorydescriptor",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to share data between your driver and other processes, including the kernel. You create memory buffers in your driver's process space, but you can pass the buffer to any API that expects an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/iomemorydescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. Some DriverKit APIs pass your buffer to another process, which can then map the buffer to its own address space and access the contents.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Typically, you create memory buffer objects to store data moving in and out of your driver. For example, a network interface driver might create a buffer to store packet data it receives from the associated device. You are responsible for managing the contents of the buffer yourself, typically by mapping it to a known data type. Except where noted, you are also responsible for releasing buffers that you allocate.  ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/driverkit": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DriverKit",
+      "type": "topic",
+      "url": "/documentation/driverkit"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioaddresssegment": {
+      "abstract": [
+        {
+          "text": "A structure that describes the location and size of a block of memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioaddresssegment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOAddressSegment",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioaddresssegment"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iobuffermemorydescriptor": {
+      "abstract": [
+        {
+          "text": "A memory buffer allocated in the caller's address space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iobuffermemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBufferMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/driverkit/iobuffermemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iobuffermemorydescriptor/3180457-init": {
+      "abstract": [
+        {
+          "text": "Initializes the buffer memory descriptor object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iobuffermemorydescriptor/3180457-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/driverkit/iobuffermemorydescriptor/3180457-init"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iomemorydescriptor": {
+      "abstract": [
+        {
+          "text": "The base class for describing a location in memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iomemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/driverkit/iomemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iomemorymap": {
+      "abstract": [
+        {
+          "text": "A reference to an existing block of memory in the current process or in a different process. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iomemorymap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMemoryMap",
+      "type": "topic",
+      "url": "/documentation/driverkit/iomemorymap"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/memory_utilities": {
+      "abstract": [
+        {
+          "text": "Allocate and deallocate memory and manage memory pointers in different address spaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/memory_utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory Utilities",
+      "type": "topic",
+      "url": "/documentation/driverkit/memory_utilities"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180450-create": {
+      "abstract": [
+        {
+          "text": "Creates a new memory buffer descriptor object in the current process space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "Create"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180450-create",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Create",
+      "type": "topic",
+      "url": "/documentation/kernel/iobuffermemorydescriptor/3180450-create"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180453-getaddressrange": {
+      "abstract": [
+        {
+          "text": "Returns the address and length of the memory buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetAddressRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180453-getaddressrange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetAddressRange",
+      "type": "topic",
+      "url": "/documentation/kernel/iobuffermemorydescriptor/3180453-getaddressrange"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180454-setlength": {
+      "abstract": [
+        {
+          "text": "Changes the length of the memory buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetLength"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180454-setlength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetLength",
+      "type": "topic",
+      "url": "/documentation/kernel/iobuffermemorydescriptor/3180454-setlength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180456-free": {
+      "abstract": [
+        {
+          "text": "Performs any final cleanup for the memory buffer descriptor object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180456-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iobuffermemorydescriptor/3180456-free"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/iomemorydescriptor"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/iomemorydescriptor",
+        "doc://com.apple.documentation/documentation/driverkit/iomemorymap",
+        "doc://com.apple.documentation/documentation/driverkit/memory_utilities"
+      ],
+      "title": "Memory management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3458194",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180450-create",
+        "doc://com.apple.documentation/documentation/driverkit/iobuffermemorydescriptor/3180457-init",
+        "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180456-free"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Memory Buffer"
+    },
+    {
+      "anchor": "3458206",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180454-setlength",
+        "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180453-getaddressrange",
+        "doc://com.apple.documentation/documentation/driverkit/ioaddresssegment"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing the Buffer Contents"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/driverkit/iobuffermemorydescriptor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,538 @@
+{
+  "abstract": [
+    {
+      "text": "A closure that receives a message from a client and optionally provides a reply.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.xpc/documentation/XPC",
+        "doc://com.apple.xpc/documentation/XPC/XPCPeerHandler"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.xpc/documentation/XPC/XPCPeerHandler/handleIncomingRequest(_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:3XPC14XPCPeerHandlerP21handleIncomingRequesty6OutputQzSg5InputQzF",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "handleIncomingRequest"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "text": "Self"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:3XPC14XPCPeerHandlerP5InputQa",
+        "text": "Input"
+      },
+      {
+        "kind": "text",
+        "text": ") -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "text": "Self"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:3XPC14XPCPeerHandlerP6OutputQa",
+        "text": "Output"
+      },
+      {
+        "kind": "text",
+        "text": "?"
+      }
+    ],
+    "modules": [
+      {
+        "name": "XPC"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "required": true,
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "handleIncomingRequest(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleIncomingRequest"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Self"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/XPCPeerHandler/Input",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:3XPC14XPCPeerHandlerP5InputQa",
+              "text": "Input"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Self"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/XPCPeerHandler/Output",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:3XPC14XPCPeerHandlerP6OutputQa",
+              "text": "Output"
+            },
+            {
+              "kind": "text",
+              "text": "?"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A response message, if any, to send back to the client; otherwise ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nil",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the closure returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nil",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can still send use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/XPCSession/send(message:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to send an asynchronous reply after handling the message.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/objectivec/nil": {
+      "abstract": [
+        {
+          "text": "Defines the `id` of a null class.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nil",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Nil",
+      "type": "topic",
+      "url": "/documentation/objectivec/nil"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.xpc/documentation/XPC": {
+      "abstract": [
+        {
+          "text": "Access a low-level interprocess communication mechanism.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XPC",
+      "type": "topic",
+      "url": "/documentation/xpc"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPCPeerHandler": {
+      "abstract": [
+        {
+          "text": "A type that handles incoming messages from a client and session cancellation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XPCPeerHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPCPeerHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XPCPeerHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "XPCPeerHandler",
+      "type": "topic",
+      "url": "/documentation/xpc/xpcpeerhandler"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPCPeerHandler/Input": {
+      "abstract": [
+        {
+          "text": "A type that represents a message from a client.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Input"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPCPeerHandler/Input",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Input",
+      "type": "topic",
+      "url": "/documentation/xpc/xpcpeerhandler/input"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPCPeerHandler/Output": {
+      "abstract": [
+        {
+          "text": "A type that represents a response to an incoming request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Output"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPCPeerHandler/Output",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Output",
+      "type": "topic",
+      "url": "/documentation/xpc/xpcpeerhandler/output"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPCPeerHandler/handleIncomingRequest(_:)": {
+      "abstract": [
+        {
+          "text": "A closure that receives a message from a client and optionally provides a reply.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleIncomingRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:3XPC14XPCPeerHandlerP5InputQa",
+          "text": "Input"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:3XPC14XPCPeerHandlerP6OutputQa",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPCPeerHandler/handleIncomingRequest(_:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "handleIncomingRequest(_:)",
+      "type": "topic",
+      "url": "/documentation/xpc/xpcpeerhandler/handleincomingrequest(_:)"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPCSession/send(message:)": {
+      "abstract": [
+        {
+          "text": "Sends a dictionary message over the session to the destination service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "send"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "message"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:3XPC13XPCDictionaryV",
+          "text": "XPCDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPCSession/send(message:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "send(message:)",
+      "type": "topic",
+      "url": "/documentation/xpc/xpcsession/send(message:)"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Receiving-client-messages",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.xpc/documentation/XPC/XPCPeerHandler/Input",
+        "doc://com.apple.xpc/documentation/XPC/XPCPeerHandler/Output"
+      ],
+      "title": "Receiving client messages"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/xpc/xpcpeerhandler/handleincomingrequest(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

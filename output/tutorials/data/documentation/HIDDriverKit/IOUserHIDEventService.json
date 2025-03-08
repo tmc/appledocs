@@ -1,0 +1,1033 @@
+{
+  "abstract": [
+    {
+      "text": "A service that parses HID report data into elements that you can use to dispatch events.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOUserHIDEventService",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "IOUserHIDEventService"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HIDDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "IOUserHIDEventService"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "DriverKit"
+      },
+      {
+        "beta": false,
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "IOUserHIDEventService"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOUserHIDEventService"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Subclass ",
+              "type": "text"
+            },
+            {
+              "code": "IOUserHIDEventService",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when you want to process incoming data from a HID device before dispatching it to the system. An event service collects the report from a device, parses it into individual data elements, and dispatches events based on the information in those elements. Create a custom event service when you need to synthesize custom event data, or when you need to process the existing data before dispatching the corresponding events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To implement a custom event service, override the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/handleReport",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and use it to iterate over the report contents and dispatch any relevant events. To get the report data, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/getElements",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method each time a new report arrives. (Also call that method in your service’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/Start",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to create the elements initially.) The method returns a set of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects that contain a parsed version of the report data. Each time you call the method, the system updates the elements to incorporate the data from the latest report.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-the-Drivers-Personality-Information",
+          "level": 3,
+          "text": "Specify the Driver’s Personality Information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you subclass ",
+              "type": "text"
+            },
+            {
+              "code": "IOUserHIDEventService",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", update the ",
+              "type": "text"
+            },
+            {
+              "code": "IOKitPersonalities",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key of your driver extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file with information to match your driver to appropriate hardware. For this class, always include the keys and values in the following table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Discussion",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "IOClass",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AppleUserHIDEventService",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "IOProviderClass",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The provider class information. For HID interfaces, specify ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "IOUserClass",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name of your custom subclass.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The bundle identifier of your driver.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may add other keys to assist with the matching process. For example, you might include the ",
+              "type": "text"
+            },
+            {
+              "code": "VendorID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "ProductID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "PrimaryUsagePage",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "PrimaryUsage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keys to match against specific USB devices and HID usage types. The USB specification defines which keys to include when matching your driver to a USB device. For information about the specific key combinations, see ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Universal Serial Bus Common Class Specification",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " at ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.usb.org",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.eventservice": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the driver provides a HID-related event service to the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.eventservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.family.hid.eventservice",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.eventservice"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleIdentifier",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/CFBundleIdentifier"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for human-interface devices, such as keyboards, pointing devices, and digitizers like pens and touch pads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HIDDriverKit",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement": {
+      "abstract": [
+        {
+          "text": "An object that contains parsed information from a HID input report.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDElement"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDElement",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDEventService": {
+      "abstract": [
+        {
+          "text": "The base class for implementing a device or operating system service that dispatches events to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDEventService"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDEventService",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDEventService",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohideventservice"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface": {
+      "abstract": [
+        {
+          "text": "A provider object for a HID device’s interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDInterface"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDInterface",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidinterface"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver": {
+      "abstract": [
+        {
+          "text": "A complete driver object that dispatches keyboard, digitizer, scrolling, and pointer events originating from a HID device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserHIDEventDriver"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserHIDEventDriver",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService": {
+      "abstract": [
+        {
+          "text": "A service that parses HID report data into elements that you can use to dispatch events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserHIDEventService"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserHIDEventService",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/ReportAvailable": {
+      "abstract": [
+        {
+          "text": "Notifies the event service that an updated report is available from the HID device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ReportAvailable"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/ReportAvailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ReportAvailable",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice/reportavailable"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/SetLEDState": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetLEDState"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/SetLEDState",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetLEDState",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice/setledstate"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/SetProperties": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/SetProperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetProperties",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice/setproperties"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/Start": {
+      "abstract": [
+        {
+          "text": "Starts the current event service and associates it with the specified provider object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Start"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/Start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Start",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice/start"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/Stop": {
+      "abstract": [
+        {
+          "text": "Stops the event service associated with the specified provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Stop"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/Stop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Stop",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice/stop"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/conformsTo": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the service conforms to the specified HID usage and page information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "conformsTo"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/conformsTo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "conformsTo",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice/conformsto"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/createReportPool": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "createReportPool"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/createReportPool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createReportPool",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice/createreportpool"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/dispatchDigitizerStylusEvent": {
+      "abstract": [
+        {
+          "text": "Dispatches a digitizer stylus event to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatchDigitizerStylusEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/dispatchDigitizerStylusEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatchDigitizerStylusEvent",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice/dispatchdigitizerstylusevent"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/dispatchDigitizerTouchEvent": {
+      "abstract": [
+        {
+          "text": "Dispatches a digitizer touch event to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatchDigitizerTouchEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/dispatchDigitizerTouchEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatchDigitizerTouchEvent",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice/dispatchdigitizertouchevent"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/dispatchEvent": {
+      "abstract": [
+        {
+          "text": "Dispatches a HID event to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatchEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/dispatchEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatchEvent",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice/dispatchevent"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/dispatchExtendedGameControllerEvent": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatchExtendedGameControllerEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/dispatchExtendedGameControllerEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatchExtendedGameControllerEvent",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice/dispatchextendedgamecontrollerevent"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/dispatchExtendedGameControllerEventWithOptionalButtons": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatchExtendedGameControllerEventWithOptionalButtons"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/dispatchExtendedGameControllerEventWithOptionalButtons",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatchExtendedGameControllerEventWithOptionalButtons",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice/dispatchextendedgamecontrollereventwithoptionalbuttons"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/dispatchStandardGameControllerEvent": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatchStandardGameControllerEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/dispatchStandardGameControllerEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatchStandardGameControllerEvent",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice/dispatchstandardgamecontrollerevent"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/free": {
+      "abstract": [
+        {
+          "text": "Performs any final cleanup for the service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice/free"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/getElements": {
+      "abstract": [
+        {
+          "text": "Returns an array of elements that contain the parsed data from the HID device’s report.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getElements"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/getElements",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getElements",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice/getelements"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/handleReport": {
+      "abstract": [
+        {
+          "text": "Converts an incoming device report into dispatchable events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "handleReport"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/handleReport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleReport",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice/handlereport"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/handleStart": {
+      "abstract": [
+        {
+          "text": "Performs additional initialization during the startup of the event service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "handleStart"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/handleStart",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleStart",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice/handlestart"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/init": {
+      "abstract": [
+        {
+          "text": "Handles the basic initialization of the event service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice/init"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/processReport": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "processReport"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/processReport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "processReport",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice/processreport"
+    },
+    "https://www.usb.org": {
+      "identifier": "https://www.usb.org",
+      "title": "https://www.usb.org",
+      "titleInlineContent": [
+        {
+          "text": "https://www.usb.org",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.usb.org"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDEventService"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Driver-Interfaces",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.eventservice",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDEventService"
+      ],
+      "title": "Driver Interfaces"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Running-the-Service",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/init",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/Start",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/handleStart",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/Stop",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/free"
+      ],
+      "title": "Running the Service"
+    },
+    {
+      "anchor": "Responding-to-Input-Reports",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/getElements",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/handleReport",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/ReportAvailable"
+      ],
+      "title": "Responding to Input Reports"
+    },
+    {
+      "anchor": "Dispatching-Events-to-the-System",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/dispatchDigitizerStylusEvent",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/dispatchDigitizerTouchEvent"
+      ],
+      "title": "Dispatching Events to the System"
+    },
+    {
+      "anchor": "Checking-the-Supported-Usage",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/conformsTo"
+      ],
+      "title": "Checking the Supported Usage"
+    },
+    {
+      "anchor": "Performing-Private-Tasks",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/createReportPool",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/dispatchEvent"
+      ],
+      "title": "Performing Private Tasks"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/SetLEDState",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/SetProperties",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/dispatchExtendedGameControllerEvent",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/dispatchExtendedGameControllerEventWithOptionalButtons",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/dispatchStandardGameControllerEvent",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService/processReport"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/hiddriverkit/iouserhideventservice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

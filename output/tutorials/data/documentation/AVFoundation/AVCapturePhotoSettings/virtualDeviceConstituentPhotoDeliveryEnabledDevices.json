@@ -1,0 +1,1595 @@
+{
+  "abstract": [
+    {
+      "text": "The constituent devices for which the virtual device should deliver photos.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/virtualDeviceConstituentPhotoDeliveryEnabledDevices"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AVCapturePhotoSettings(py)virtualDeviceConstituentPhotoDeliveryEnabledDevices",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "virtualDeviceConstituentPhotoDeliveryEnabledDevices"
+      },
+      {
+        "kind": "text",
+        "text": ": ["
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+        "text": "AVCaptureDevice"
+      },
+      {
+        "kind": "text",
+        "text": "]"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "virtualDeviceConstituentPhotoDeliveryEnabledDevices"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "virtualDeviceConstituentPhotoDeliveryEnabledDevices"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "virtualDeviceConstituentPhotoDeliveryEnabledDevices"
+            },
+            {
+              "kind": "text",
+              "text": ": ["
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+              "text": "AVCaptureDevice"
+            },
+            {
+              "kind": "text",
+              "text": "] { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can opt in to constituent-device photo delivery by setting this property to any subset of the devices in the virtual device’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/constituentDevices",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array. The framework calls your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate/photoOutput(_:didFinishProcessingPhoto:error:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "callback once for each of the devices you include in the array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may only set this property to a non-",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array if you’ve set your photo output’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/isVirtualDeviceConstituentPhotoDeliveryEnabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and your delegate implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate/photoOutput(_:didFinishProcessingPhoto:error:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default value of this property is an empty array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice": {
+      "abstract": [
+        {
+          "text": "An object that represents a hardware or virtual capture device like a camera or microphone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/constituentDevices": {
+      "abstract": [
+        {
+          "text": "An array of physical devices that make up a virtual device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "constituentDevices"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/constituentDevices",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "constituentDevices"
+        }
+      ],
+      "role": "symbol",
+      "title": "constituentDevices",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/constituentdevices"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate/photoOutput(_:didFinishProcessingPhoto:error:)": {
+      "abstract": [
+        {
+          "text": "Provides the delegate with the captured image and associated metadata resulting from a photo capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "photoOutput"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCapturePhotoOutput",
+          "text": "AVCapturePhotoOutput"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFinishProcessingPhoto"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCapturePhoto",
+          "text": "AVCapturePhoto"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate/photoOutput(_:didFinishProcessingPhoto:error:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "captureOutput:didFinishProcessingPhoto:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "photoOutput(_:didFinishProcessingPhoto:error:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotocapturedelegate/photooutput(_:didfinishprocessingphoto:error:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/isVirtualDeviceConstituentPhotoDeliveryEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the photo output delivers photos from constituent cameras of a virtual device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isVirtualDeviceConstituentPhotoDeliveryEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/isVirtualDeviceConstituentPhotoDeliveryEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "virtualDeviceConstituentPhotoDeliveryEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isVirtualDeviceConstituentPhotoDeliveryEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotooutput/isvirtualdeviceconstituentphotodeliveryenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings": {
+      "abstract": [
+        {
+          "text": "A specification of the features and settings to use for a single photo capture request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhotoSettings",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotosettings"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/flashMode": {
+      "abstract": [
+        {
+          "text": "A setting for whether to fire the flash when capturing photos.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "flashMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVCaptureFlashMode",
+          "text": "FlashMode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/flashMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "flashMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "flashMode",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotosettings/flashmode"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isAutoContentAwareDistortionCorrectionEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that specifies whether the photo output, at its discretion, uses content-aware distortion correction on this photo request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAutoContentAwareDistortionCorrectionEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isAutoContentAwareDistortionCorrectionEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autoContentAwareDistortionCorrectionEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isAutoContentAwareDistortionCorrectionEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotosettings/isautocontentawaredistortioncorrectionenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isAutoDualCameraFusionEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that specifies whether captures automatically combine data from a dual camera device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAutoDualCameraFusionEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isAutoDualCameraFusionEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autoDualCameraFusionEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isAutoDualCameraFusionEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotosettings/isautodualcamerafusionenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isAutoRedEyeReductionEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to use auto red-eye reduction on flash captures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAutoRedEyeReductionEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isAutoRedEyeReductionEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autoRedEyeReductionEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isAutoRedEyeReductionEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotosettings/isautoredeyereductionenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isAutoStillImageStabilizationEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that specifies whether captures use automatic image stabilization.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAutoStillImageStabilizationEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isAutoStillImageStabilizationEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autoStillImageStabilizationEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isAutoStillImageStabilizationEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotosettings/isautostillimagestabilizationenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isAutoVirtualDeviceFusionEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that specifies whether to use automatic virtual-device image fusion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAutoVirtualDeviceFusionEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isAutoVirtualDeviceFusionEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autoVirtualDeviceFusionEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isAutoVirtualDeviceFusionEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotosettings/isautovirtualdevicefusionenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isCameraCalibrationDataDeliveryEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether a dual photo capture also delivers camera calibration data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isCameraCalibrationDataDeliveryEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isCameraCalibrationDataDeliveryEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cameraCalibrationDataDeliveryEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isCameraCalibrationDataDeliveryEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotosettings/iscameracalibrationdatadeliveryenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isDualCameraDualPhotoDeliveryEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether a dual camera device delivers images from both cameras.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDualCameraDualPhotoDeliveryEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isDualCameraDualPhotoDeliveryEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dualCameraDualPhotoDeliveryEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isDualCameraDualPhotoDeliveryEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotosettings/isdualcameradualphotodeliveryenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isHighResolutionPhotoEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that specifies whether to capture still images at the highest resolution supported by the active device and format.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isHighResolutionPhotoEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isHighResolutionPhotoEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "highResolutionPhotoEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isHighResolutionPhotoEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotosettings/ishighresolutionphotoenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/maxPhotoDimensions": {
+      "abstract": [
+        {
+          "text": "The maximum resolution of the photo to capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maxPhotoDimensions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMVideoDimensions",
+          "text": "CMVideoDimensions"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/maxPhotoDimensions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maxPhotoDimensions"
+        }
+      ],
+      "role": "symbol",
+      "title": "maxPhotoDimensions",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotosettings/maxphotodimensions"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/photoQualityPrioritization": {
+      "abstract": [
+        {
+          "text": "A setting that indicates how to prioritize photo quality against speed of photo delivery.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "photoQualityPrioritization"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCapturePhotoOutput",
+          "text": "AVCapturePhotoOutput"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVCapturePhotoQualityPrioritization",
+          "text": "QualityPrioritization"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/photoQualityPrioritization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "photoQualityPrioritization"
+        }
+      ],
+      "role": "symbol",
+      "title": "photoQualityPrioritization",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotosettings/photoqualityprioritization"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/virtualDeviceConstituentPhotoDeliveryEnabledDevices": {
+      "abstract": [
+        {
+          "text": "The constituent devices for which the virtual device should deliver photos.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "virtualDeviceConstituentPhotoDeliveryEnabledDevices"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/virtualDeviceConstituentPhotoDeliveryEnabledDevices",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "virtualDeviceConstituentPhotoDeliveryEnabledDevices"
+        }
+      ],
+      "role": "symbol",
+      "title": "virtualDeviceConstituentPhotoDeliveryEnabledDevices",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotosettings/virtualdeviceconstituentphotodeliveryenableddevices"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-photo-settings",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/flashMode",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isAutoRedEyeReductionEnabled",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/maxPhotoDimensions",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/photoQualityPrioritization",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isCameraCalibrationDataDeliveryEnabled",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isAutoContentAwareDistortionCorrectionEnabled",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isAutoVirtualDeviceFusionEnabled",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isDualCameraDualPhotoDeliveryEnabled",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isAutoDualCameraFusionEnabled",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isAutoStillImageStabilizationEnabled",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isHighResolutionPhotoEnabled"
+      ],
+      "title": "Configuring photo settings"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "tvOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "virtualDeviceConstituentPhotoDeliveryEnabledDevices"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "virtualDeviceConstituentPhotoDeliveryEnabledDevices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfoundation/documentation/AVFoundation",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Configuring-photo-settings",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/flashMode",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isAutoRedEyeReductionEnabled",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/maxPhotoDimensions",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/photoQualityPrioritization",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isCameraCalibrationDataDeliveryEnabled",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isAutoContentAwareDistortionCorrectionEnabled",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isAutoVirtualDeviceFusionEnabled",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isDualCameraDualPhotoDeliveryEnabled",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isAutoDualCameraFusionEnabled",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isAutoStillImageStabilizationEnabled",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isHighResolutionPhotoEnabled"
+              ],
+              "title": "Configuring photo settings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "nonatomic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "copy"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:Q$objc(cs)NSArray",
+                    "text": "NSArray<AVCaptureDevice *>"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "virtualDeviceConstituentPhotoDeliveryEnabledDevices"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoCaptureDelegate~1photoOutput(_:didFinishProcessingPhoto:error:)/title",
+          "value": "captureOutput:didFinishProcessingPhoto:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoCaptureDelegate~1photoOutput(_:didFinishProcessingPhoto:error:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "captureOutput:didFinishProcessingPhoto:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput~1isVirtualDeviceConstituentPhotoDeliveryEnabled/title",
+          "value": "virtualDeviceConstituentPhotoDeliveryEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput~1isVirtualDeviceConstituentPhotoDeliveryEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "virtualDeviceConstituentPhotoDeliveryEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1isAutoVirtualDeviceFusionEnabled/title",
+          "value": "autoVirtualDeviceFusionEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1isAutoVirtualDeviceFusionEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "autoVirtualDeviceFusionEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings/title",
+          "value": "AVCapturePhotoSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1isDualCameraDualPhotoDeliveryEnabled/title",
+          "value": "dualCameraDualPhotoDeliveryEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1isDualCameraDualPhotoDeliveryEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dualCameraDualPhotoDeliveryEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1isCameraCalibrationDataDeliveryEnabled/title",
+          "value": "cameraCalibrationDataDeliveryEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1isCameraCalibrationDataDeliveryEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cameraCalibrationDataDeliveryEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1isAutoContentAwareDistortionCorrectionEnabled/title",
+          "value": "autoContentAwareDistortionCorrectionEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1isAutoContentAwareDistortionCorrectionEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "autoContentAwareDistortionCorrectionEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1constituentDevices/title",
+          "value": "constituentDevices"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1constituentDevices/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "constituentDevices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1maxPhotoDimensions/title",
+          "value": "maxPhotoDimensions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1maxPhotoDimensions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maxPhotoDimensions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1flashMode/title",
+          "value": "flashMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1flashMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "flashMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1isHighResolutionPhotoEnabled/title",
+          "value": "highResolutionPhotoEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1isHighResolutionPhotoEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "highResolutionPhotoEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1virtualDeviceConstituentPhotoDeliveryEnabledDevices/title",
+          "value": "virtualDeviceConstituentPhotoDeliveryEnabledDevices"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1virtualDeviceConstituentPhotoDeliveryEnabledDevices/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "virtualDeviceConstituentPhotoDeliveryEnabledDevices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/title",
+          "value": "AVCaptureDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1isAutoDualCameraFusionEnabled/title",
+          "value": "autoDualCameraFusionEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1isAutoDualCameraFusionEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "autoDualCameraFusionEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1isAutoStillImageStabilizationEnabled/title",
+          "value": "autoStillImageStabilizationEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1isAutoStillImageStabilizationEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "autoStillImageStabilizationEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1isAutoRedEyeReductionEnabled/title",
+          "value": "autoRedEyeReductionEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1isAutoRedEyeReductionEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "autoRedEyeReductionEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1photoQualityPrioritization/title",
+          "value": "photoQualityPrioritization"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1photoQualityPrioritization/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "photoQualityPrioritization"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/avcapturephotosettings/virtualdeviceconstituentphotodeliveryenableddevices"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/avcapturephotosettings/virtualdeviceconstituentphotodeliveryenableddevices"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

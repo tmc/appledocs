@@ -1,0 +1,440 @@
+{
+  "abstract": [
+    {
+      "text": "Use EDR metadata to apply the default system tone mapping to a layer.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/hdr-content"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/using-system-tone-mapping-on-video-content"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using System Tone Mapping on Video Content"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When processing video content, you usually want to work in a linear color space. You also want to display content that’s consistent with how playback would appear in AVFoundation or other playback mechanisms. To create content in your app that is consistent with the system behavior, create a Metal layer with a linear color space and attach an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAEDRMetadata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object defining how the system should tone map the video content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code below creates a Metal layer with an extended linear BT.2020 color space and metadata that applies an HDR10 tone mapping based on the reference display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let metalLayer = CAMetalLayer()",
+                    "metalLayer.wantsExtendedDynamicRangeContent = true",
+                    "metalLayer.pixelFormat = .rgba16Float",
+                    "",
+                    "let name = CGColorSpace.extendedLinearITUR_2020",
+                    "metalLayer.colorspace = CGColorSpace(name: name)",
+                    "",
+                    "let edrMetadata = CAEDRMetadata(minLuminance: 0.5, maxLuminance: 1000, opticalOutputScale: 100)",
+                    "metalLayer.edrMetadata = edrMetadata"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "CAMetalLayer *metalLayer = [CAMetalLayer new];",
+                    "metalLayer.wantsExtendedDynamicRangeContent = YES;",
+                    "metalLayer.pixelFormat = MTLPixelFormatRGBA16Float;",
+                    "",
+                    "const CFStringRef name = kCGColorSpaceExtendedLinearITUR_2020;",
+                    "CGColorSpaceRef colorspace = CGColorSpaceCreateWithName(name);",
+                    "metalLayer.colorspace = colorspace;",
+                    "",
+                    "CGColorSpaceRelease(colorspace);",
+                    "CAEDRMetadata *edrMetaData = [CAEDRMetadata HDR10MetadataWithMinLuminance: 0.005 maxLuminance: 1000 opticalOutputScale: 100];",
+                    "metalLayer.EDRMetadata = edrMetaData;"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your rendering code needs to generate pixel values consistent with the EDR metadata object. For example, in the above code, the ",
+              "type": "text"
+            },
+            {
+              "code": "opticalOutputScale",
+              "type": "codeVoice"
+            },
+            {
+              "text": " was set to ",
+              "type": "text"
+            },
+            {
+              "code": "100",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", so a pixel value of ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " corresponds to ",
+              "type": "text"
+            },
+            {
+              "code": "100",
+              "type": "codeVoice"
+            },
+            {
+              "text": " nits. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAEDRMetadata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/QuartzCore/CAEDRMetadata": {
+      "abstract": [
+        {
+          "text": "Metadata describing how extended dynamic range (EDR) values should be tone mapped.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAEDRMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAEDRMetadata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CAEDRMetadata",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CAEDRMetadata"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/determining-support-for-edr-values": {
+      "abstract": [
+        {
+          "text": "Check whether a display supports EDR.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/determining-support-for-edr-values",
+      "kind": "article",
+      "role": "article",
+      "title": "Determining Support for EDR Values",
+      "type": "topic",
+      "url": "/documentation/metal/determining-support-for-edr-values"
+    },
+    "doc://com.apple.metal/documentation/Metal/displaying-hdr-content-in-a-metal-layer": {
+      "abstract": [
+        {
+          "text": "Bring your high dynamic range (HDR) content to compatible Mac displays.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/displaying-hdr-content-in-a-metal-layer",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying HDR Content in a Metal Layer",
+      "type": "topic",
+      "url": "/documentation/metal/displaying-hdr-content-in-a-metal-layer"
+    },
+    "doc://com.apple.metal/documentation/Metal/hdr-content": {
+      "abstract": [
+        {
+          "text": "Take advantage of high dynamic range to present more vibrant colors in your apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/hdr-content",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "HDR Content",
+      "type": "topic",
+      "url": "/documentation/metal/hdr-content"
+    },
+    "doc://com.apple.metal/documentation/Metal/implementing-tone-mapping-on-reference-displays": {
+      "abstract": [
+        {
+          "text": "Detect reference displays and keep your content within the capabilities of the display hardware.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/implementing-tone-mapping-on-reference-displays",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing Tone Mapping on Reference Displays",
+      "type": "topic",
+      "url": "/documentation/metal/implementing-tone-mapping-on-reference-displays"
+    },
+    "doc://com.apple.metal/documentation/Metal/performing-your-own-tone-mapping": {
+      "abstract": [
+        {
+          "text": "Apply your own tone mapping to get the exact behavior you want.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/performing-your-own-tone-mapping",
+      "kind": "article",
+      "role": "article",
+      "title": "Performing Your Own Tone Mapping",
+      "type": "topic",
+      "url": "/documentation/metal/performing-your-own-tone-mapping"
+    },
+    "doc://com.apple.metal/documentation/Metal/processing-hdr-images-with-metal": {
+      "abstract": [
+        {
+          "text": "Implement a post-processing pipeline using the latest features on Apple GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/processing-hdr-images-with-metal",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Processing HDR Images with Metal",
+      "type": "topic",
+      "url": "/documentation/metal/processing-hdr-images-with-metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-color-spaces-to-display-hdr-content": {
+      "abstract": [
+        {
+          "text": "Use a color space when you don’t need to edit or process the pixel data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-color-spaces-to-display-hdr-content",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Color Spaces to Display HDR Content",
+      "type": "topic",
+      "url": "/documentation/metal/using-color-spaces-to-display-hdr-content"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "High-Dynamic-Range-Content",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/processing-hdr-images-with-metal",
+        "doc://com.apple.metal/documentation/Metal/displaying-hdr-content-in-a-metal-layer",
+        "doc://com.apple.metal/documentation/Metal/determining-support-for-edr-values",
+        "doc://com.apple.metal/documentation/Metal/using-color-spaces-to-display-hdr-content",
+        "doc://com.apple.metal/documentation/Metal/performing-your-own-tone-mapping",
+        "doc://com.apple.metal/documentation/Metal/implementing-tone-mapping-on-reference-displays"
+      ],
+      "title": "High Dynamic Range Content"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "High-Dynamic-Range-Content",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/processing-hdr-images-with-metal",
+                "doc://com.apple.metal/documentation/Metal/displaying-hdr-content-in-a-metal-layer",
+                "doc://com.apple.metal/documentation/Metal/determining-support-for-edr-values",
+                "doc://com.apple.metal/documentation/Metal/using-color-spaces-to-display-hdr-content",
+                "doc://com.apple.metal/documentation/Metal/performing-your-own-tone-mapping",
+                "doc://com.apple.metal/documentation/Metal/implementing-tone-mapping-on-reference-displays"
+              ],
+              "title": "High Dynamic Range Content"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CAEDRMetadata/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CAEDRMetadata"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/using-system-tone-mapping-on-video-content"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/using-system-tone-mapping-on-video-content"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

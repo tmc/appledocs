@@ -1,0 +1,575 @@
+{
+  "abstract": [
+    {
+      "text": "Asks the user for permission to download translation languages without doing any translations.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Translation/documentation/Translation",
+        "doc://com.apple.Translation/documentation/Translation/TranslationSession"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Translation/documentation/Translation/TranslationSession/prepareTranslation()"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:11Translation0A7SessionC07prepareA0yyYaKF",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "prepareTranslation"
+      },
+      {
+        "kind": "text",
+        "text": "() "
+      },
+      {
+        "kind": "keyword",
+        "text": "async"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "throws"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Translation"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "prepareTranslation()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "prepareTranslation"
+            },
+            {
+              "kind": "text",
+              "text": "() "
+            },
+            {
+              "kind": "keyword",
+              "text": "async"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you know ahead of time which languages the user needs to translate,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you can prompt them to download those languages in advance by calling this method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you call this method the framework asks the user for permission to download the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/sourceLanguage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/targetLanguage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the languages are already installed or are in the middle of downloading, the function returns",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "without prompting the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you call this function when the ",
+              "type": "text"
+            },
+            {
+              "code": "sourceLanguage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", it throws",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationError/unableToIdentifyLanguage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " since there’s no sample text to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "identify which source language to use for translation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Translation/documentation/Translation": {
+      "abstract": [
+        {
+          "text": "Translate text in your app from one language to another.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Translation/documentation/Translation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Translation",
+      "type": "topic",
+      "url": "/documentation/translation"
+    },
+    "doc://com.apple.Translation/documentation/Translation/TranslationError/unableToIdentifyLanguage": {
+      "abstract": [
+        {
+          "text": "The framework can’t identify the source language automatically.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unableToIdentifyLanguage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Translation0A5ErrorV",
+          "text": "TranslationError"
+        }
+      ],
+      "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationError/unableToIdentifyLanguage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unableToIdentifyLanguage",
+      "type": "topic",
+      "url": "/documentation/translation/translationerror/unabletoidentifylanguage"
+    },
+    "doc://com.apple.Translation/documentation/Translation/TranslationSession": {
+      "abstract": [
+        {
+          "text": "A class that performs translations between a pair of languages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TranslationSession"
+        }
+      ],
+      "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TranslationSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "TranslationSession",
+      "type": "topic",
+      "url": "/documentation/translation/translationsession"
+    },
+    "doc://com.apple.Translation/documentation/Translation/TranslationSession/Configuration": {
+      "abstract": [
+        {
+          "text": "A type containing the information to use when performing a translation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/Configuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "TranslationSession.Configuration",
+      "type": "topic",
+      "url": "/documentation/translation/translationsession/configuration"
+    },
+    "doc://com.apple.Translation/documentation/Translation/TranslationSession/prepareTranslation()": {
+      "abstract": [
+        {
+          "text": "Asks the user for permission to download translation languages without doing any translations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareTranslation"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/prepareTranslation()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepareTranslation()",
+      "type": "topic",
+      "url": "/documentation/translation/translationsession/preparetranslation()"
+    },
+    "doc://com.apple.Translation/documentation/Translation/TranslationSession/sourceLanguage": {
+      "abstract": [
+        {
+          "text": "The input language to translate from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceLanguage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV",
+          "text": "Locale"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV8LanguageV",
+          "text": "Language"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/sourceLanguage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sourceLanguage",
+      "type": "topic",
+      "url": "/documentation/translation/translationsession/sourcelanguage"
+    },
+    "doc://com.apple.Translation/documentation/Translation/TranslationSession/targetLanguage": {
+      "abstract": [
+        {
+          "text": "The output language to translate into.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "targetLanguage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV",
+          "text": "Locale"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV8LanguageV",
+          "text": "Language"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/targetLanguage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "targetLanguage",
+      "type": "topic",
+      "url": "/documentation/translation/translationsession/targetlanguage"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Preparing-for-translation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Translation/documentation/Translation/TranslationSession/Configuration"
+      ],
+      "title": "Preparing for translation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/translation/translationsession/preparetranslation()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

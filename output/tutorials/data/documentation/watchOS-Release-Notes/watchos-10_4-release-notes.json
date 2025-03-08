@@ -1,0 +1,545 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchos-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-10_4-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "watchOS 10.4 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The watchOS 10.4 SDK provides support to develop watchOS apps for Apple Watch devices running watchOS 10.4. The SDK comes bundled with Xcode 15.3, available from the Mac App Store. For information on the compatibility requirements for Xcode 15.3, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "/documentation/Xcode-Release-Notes/xcode-15_3-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Movement-Disorder-API",
+          "level": 3,
+          "text": "Movement Disorder API",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: The MovementDisorder API will return a new error code if tremor and dyskinesia data was not saved to the user’s device between queries. This is to help identify data loss when tracking the availability of metrics.  (41729033)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "StoreKit",
+          "level": 3,
+          "text": "StoreKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "productDescriptionHidden(_:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " API can be used to configure the visibility of product descriptions in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ProductView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "StoreView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SubscriptionStoreView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instances within a view hierarchy. When building with Xcode 15.3, the view modifier can be used even if your app is running on iOS 17.0, iPadOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, visionOS 1.0, or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When implementing a product view style, it can support this new view modifier by checking the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "descriptionVisibility",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property on the configuration value.  (110414819) (FB12261973)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/subscriptionstoreview",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to present promotional offers by adding the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "subscriptionPromotionalOffer(offer:signature:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " modifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you’re already using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/swiftui/view/inapppurchaseoptions(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " modifier to support promotional offers for StoreKit views, you should adopt the new API instead when your app is running on iOS 17.4, iPadOS 17.4, macOS 14.4, tvOS 17.4, watchOS 10.4, visionOS 1.1 or later. Do not use both APIs to apply a promotional offer for the same view.  (115358806)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/product/subscriptioninfo/3803203-iseligibleforintrooffer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/product/subscriptioninfo/3791958-iseligibleforintrooffer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method now reflect ineligibility in cases where a customer would otherwise be eligible for the offer if they weren’t actively subscribed. This means a customer which is not currently eligible for an introductory offer may become eligible in the future.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Customers who redeem an introductory offer for a given subscription group will continue to never be eligible for another introductory offer in that subscription group. You can detect this case this by checking if any one transaction with a matching ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/transaction/3749718-subscriptiongroupid",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " has the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/transaction/offer/4307073-type",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property on ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/transaction/4307076-offer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " set to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/transaction/offertype/3822309-introductory",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".  (103604770) (FB11889732)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "/documentation/Xcode-Release-Notes/xcode-15_3-release-notes": {
+      "identifier": "/documentation/Xcode-Release-Notes/xcode-15_3-release-notes",
+      "title": "Xcode 15.3 Release Notes",
+      "titleInlineContent": [
+        {
+          "text": "Xcode 15.3 Release Notes",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "/documentation/Xcode-Release-Notes/xcode-15_3-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-10-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-10-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 10 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-10-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-10_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-10_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 10.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-10_1-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-10_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-10_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 10.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-10_2-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-10_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-10_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 10.3 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-10_3-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-10_5-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-10_5-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 10.5 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-10_5-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-10_6-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-10_6-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 10.6 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-10_6-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchos-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the watchOS SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchos-release-notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "watchOS Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes"
+    },
+    "https://developer.apple.com/documentation/storekit/product/subscriptioninfo/3791958-iseligibleforintrooffer": {
+      "identifier": "https://developer.apple.com/documentation/storekit/product/subscriptioninfo/3791958-iseligibleforintrooffer",
+      "title": "isEligibleForIntroOffer(for:)",
+      "titleInlineContent": [
+        {
+          "code": "isEligibleForIntroOffer(for:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/product/subscriptioninfo/3791958-iseligibleforintrooffer"
+    },
+    "https://developer.apple.com/documentation/storekit/product/subscriptioninfo/3803203-iseligibleforintrooffer": {
+      "identifier": "https://developer.apple.com/documentation/storekit/product/subscriptioninfo/3803203-iseligibleforintrooffer",
+      "title": "isEligibleForIntroOffer",
+      "titleInlineContent": [
+        {
+          "code": "isEligibleForIntroOffer",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/product/subscriptioninfo/3803203-iseligibleforintrooffer"
+    },
+    "https://developer.apple.com/documentation/storekit/subscriptionstoreview": {
+      "identifier": "https://developer.apple.com/documentation/storekit/subscriptionstoreview",
+      "title": "SubscriptionStoreView",
+      "titleInlineContent": [
+        {
+          "code": "SubscriptionStoreView",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/subscriptionstoreview"
+    },
+    "https://developer.apple.com/documentation/storekit/transaction/3749718-subscriptiongroupid": {
+      "identifier": "https://developer.apple.com/documentation/storekit/transaction/3749718-subscriptiongroupid",
+      "title": "subscriptionGroupID",
+      "titleInlineContent": [
+        {
+          "code": "subscriptionGroupID",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/transaction/3749718-subscriptiongroupid"
+    },
+    "https://developer.apple.com/documentation/storekit/transaction/4307076-offer": {
+      "identifier": "https://developer.apple.com/documentation/storekit/transaction/4307076-offer",
+      "title": "offer",
+      "titleInlineContent": [
+        {
+          "code": "offer",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/transaction/4307076-offer"
+    },
+    "https://developer.apple.com/documentation/storekit/transaction/offer/4307073-type": {
+      "identifier": "https://developer.apple.com/documentation/storekit/transaction/offer/4307073-type",
+      "title": "type",
+      "titleInlineContent": [
+        {
+          "code": "type",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/transaction/offer/4307073-type"
+    },
+    "https://developer.apple.com/documentation/storekit/transaction/offertype/3822309-introductory": {
+      "identifier": "https://developer.apple.com/documentation/storekit/transaction/offertype/3822309-introductory",
+      "title": "introductory",
+      "titleInlineContent": [
+        {
+          "code": "introductory",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/transaction/offertype/3822309-introductory"
+    },
+    "https://developer.apple.com/documentation/swiftui/view/inapppurchaseoptions(_:)": {
+      "identifier": "https://developer.apple.com/documentation/swiftui/view/inapppurchaseoptions(_:)",
+      "title": "inAppPurchaseOptions(_:)",
+      "titleInlineContent": [
+        {
+          "code": "inAppPurchaseOptions(_:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/swiftui/view/inapppurchaseoptions(_:)"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "watchOS-10",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-10_6-release-notes",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-10_5-release-notes",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-10_3-release-notes",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-10_2-release-notes",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-10_1-release-notes",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-10-release-notes"
+      ],
+      "title": "watchOS 10"
+    }
+  ]
+}

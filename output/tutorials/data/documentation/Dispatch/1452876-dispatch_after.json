@@ -1,0 +1,425 @@
+{
+  "abstract": [
+    {
+      "text": "Enqueues a block for execution at the specified time.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/dispatch"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/dispatch/1452876-dispatch_after"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1452876,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@dispatch_after",
+    "modules": [
+      {
+        "name": "Dispatch"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.6",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "dispatch_after"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "dispatch_after"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_time_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@dispatch_time_t",
+              "text": "dispatch_time_t"
+            },
+            {
+              "kind": "text",
+              "text": " when, "
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@dispatch_queue_t",
+              "text": "dispatch_queue_t"
+            },
+            {
+              "kind": "text",
+              "text": " queue, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/dispatch/dispatch_block_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@dispatch_block_t",
+              "text": "dispatch_block_t"
+            },
+            {
+              "kind": "text",
+              "text": " block);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The temporal milestone ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/dispatch/1420519-dispatch_time",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/dispatch/1420517-dispatch_walltime",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " returns.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "when"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The queue on which to submit the block. The system retains the queue until the block runs to completion. This parameter cannot be ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "queue"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The block to submit.  This function performs a ",
+                  "type": "text"
+                },
+                {
+                  "code": "Block_copy",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "Block_release",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " on behalf of the caller. This parameter cannot be ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "block"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function waits until the specified time and then asynchronously adds ",
+              "type": "text"
+            },
+            {
+              "code": "block",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the specified ",
+              "type": "text"
+            },
+            {
+              "code": "queue",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Passing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DISPATCH_TIME_NOW",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the ",
+              "type": "text"
+            },
+            {
+              "code": "when",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is supported, but is not as optimal as calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/dispatch/1453057-dispatch_async",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead. Passing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DISPATCH_TIME_FOREVER",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is undefined.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.dispatch/documentation/Dispatch/DISPATCH_TIME_FOREVER": {
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DISPATCH_TIME_FOREVER",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DISPATCH_TIME_FOREVER",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_time_forever"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DISPATCH_TIME_NOW": {
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DISPATCH_TIME_NOW",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DISPATCH_TIME_NOW",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_time_now"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_t": {
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_queue_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_queue_t"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_time_t": {
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_time_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_time_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_time_t"
+    },
+    "doc://com.apple.documentation/documentation/dispatch": {
+      "identifier": "doc://com.apple.documentation/documentation/dispatch",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Dispatch",
+      "type": "topic",
+      "url": "/documentation/dispatch"
+    },
+    "doc://com.apple.documentation/documentation/dispatch/1420517-dispatch_walltime": {
+      "identifier": "doc://com.apple.documentation/documentation/dispatch/1420517-dispatch_walltime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_walltime",
+      "type": "topic",
+      "url": "/documentation/dispatch/1420517-dispatch_walltime"
+    },
+    "doc://com.apple.documentation/documentation/dispatch/1420519-dispatch_time": {
+      "identifier": "doc://com.apple.documentation/documentation/dispatch/1420519-dispatch_time",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_time",
+      "type": "topic",
+      "url": "/documentation/dispatch/1420519-dispatch_time"
+    },
+    "doc://com.apple.documentation/documentation/dispatch/1453057-dispatch_async": {
+      "identifier": "doc://com.apple.documentation/documentation/dispatch/1453057-dispatch_async",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_async",
+      "type": "topic",
+      "url": "/documentation/dispatch/1453057-dispatch_async"
+    },
+    "doc://com.apple.documentation/documentation/dispatch/dispatch_block_t": {
+      "identifier": "doc://com.apple.documentation/documentation/dispatch/dispatch_block_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_block_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_block_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/dispatch/1452876-dispatch_after"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

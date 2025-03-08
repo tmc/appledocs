@@ -1,0 +1,2273 @@
+{
+  "abstract": [
+    {
+      "text": "Download a macOS restore image and install it in a new VM.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.virtualization/documentation/Virtualization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.virtualization/documentation/Virtualization/installing-macos-on-a-virtual-machine"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Virtualization"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Installing macOS on a Virtual Machine"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each new VM begins in an empty state. To boot and run macOS in a VM, you must first install a macOS image onto the new VM. Installing macOS in a new machine requires the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Obtain a restore image.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set up a compatible VM configuration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a VM, install the restore image, and start the VM.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Obtaining-the-Restore-Image",
+          "level": 3,
+          "text": "Obtaining the Restore Image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A macOS restore image is an installation media file for a specific version of macOS. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSRestoreImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to find restore images over the network and obtain information about their requirements. To obtain a new restore image use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSRestoreImage/latestSupported",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class function to download the latest supported macOS image over from Apple the network using the URL in the restore image’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSRestoreImage/url",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you already have a restore image on disk, you can reload the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSRestoreImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from a local URL instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Setting-up-the-VM-Configuration",
+          "level": 3,
+          "text": "Setting up the VM Configuration",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Running a macOS, VM requires a valid ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacPlatformConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSBootLoader",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and a configuration compatible with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSRestoreImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSRestoreImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " can contain installation media for multiple Mac hardware models (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacHardwareModel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") and the current host may not support some of these hardware models. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSRestoreImage/mostFeaturefulSupportedConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to determine the hardware model and configuration requirements that provides the most complete feature set compatible with the current host. If the current hosts supports none of the hardware models, this property is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacPlatformConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " configuration encapsulates all the necessary unique components for booting and running macOS on Apple silicon, these are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The hardware model — A Mac platform configuration must describe the specific virtual Mac hardware model it targets. During installation this should match the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "hardwareModel",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSRestoreImage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Auxiliary storage — Auxiliary storage contains data used by the macOS boot loader and operating system and is necessary to boot a macOS guest OS. During installation this can be a newly created auxiliary image that uses the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "hardwareModel",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSRestoreImage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A machine identifier — A machine identifier that macOS guests use to uniquely identify the virtual hardware.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacPlatformConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for installation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacPlatformConfiguration",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set its ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "VZMacPlatformConfiguration",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacPlatformConfiguration/hardwareModel",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "VZMacOSConfigurationRequirements",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSConfigurationRequirements/hardwareModel",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a new ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacAuxiliaryStorage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacAuxiliaryStorage/init(creatingStorageAt:hardwareModel:options:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " using the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "VZMacOSConfigurationRequirements",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacPlatformConfiguration/hardwareModel",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the new ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacAuxiliaryStorage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " on ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "VZMacPlatformConfiguration",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacPlatformConfiguration/auxiliaryStorage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Installing-and-Running-the-VM",
+          "level": 3,
+          "text": "Installing and Running the VM",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Install a macOS using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSInstaller",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a VM instance and an image on the local filesystem using the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineConfiguration",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " with a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacPlatformConfiguration",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " configured as described above.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a new ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " from the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineConfiguration",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSInstaller",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " with the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and the image that you downloaded, either as a new image from Apple servers or using a previously saved image. The URL must the refer to a local file on disk.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call the installer’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSInstaller/install()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to start the installation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A VM must be in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/State-swift.enum/stopped",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state to start installation. Pausing, or stopping the virtual machine during the installation process results in undefined behavior. You can monitor or cancel the installation progress by observing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSInstaller/progress",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSInstaller",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below shows the complete process for installing and running a macOS VM:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "    // Load the latest image.",
+                    "    guard let restoreImage = try? await VZMacOSRestoreImage.latestSupported",
+                    "    else {",
+                    "        fatalError(\"No restore image is supported.\")",
+                    "    }",
+                    "",
+                    "    // restoreImage came from latestSupported, its URL property refers",
+                    "    // to an image on the network.",
+                    "    // Download the image to the local filesystem.",
+                    "    guard let (location, _) = try? await",
+                    "            URLSession.shared.download(from: restoreImage.url) else {",
+                    "                fatalError(\"\"\"",
+                    "                           Failed to download the macOS image from the network.",
+                    "                           \"\"\")",
+                    "    }",
+                    "",
+                    "    // VZMacOSInstaller must be called with a URL corresponding to a local file.",
+                    "    let localRestoreImageDirectoryURL =",
+                    "    URL(fileURLWithPath: \"*set to the directory where the restore image\" ",
+                    "        \"should be stored*\")",
+                    "    let localRestoreImageURL = localRestoreImageDirectoryURL",
+                    "        .appendingPathComponent(restoreImage.url.lastPathComponent)",
+                    "",
+                    "    guard ((try? FileManager.default.moveItem(at: location, to:",
+                    "                                                localRestoreImageURL)) != nil)",
+                    "    else {",
+                    "        fatalError(\"Failed to move the macOS image to its destination.\")",
+                    "    }",
+                    "",
+                    "    // This image came from VZMacOSRestoreImage.latestSupported,",
+                    "    // mostFeaturefulSupportedConfiguration should not be nil.",
+                    "    let configurationRequirements =",
+                    "        restoreImage.mostFeaturefulSupportedConfiguration!",
+                    "",
+                    "    // Construct a VZVirtualMachineConfiguration that satisfies the",
+                    "    // configuration requirements.",
+                    "    let configuration = VZVirtualMachineConfiguration()",
+                    "",
+                    "    // The following are minimum values; you can use larger values.",
+                    "    configuration.cpuCount = configurationRequirements.minimumSupportedCPUCount",
+                    "    configuration.memorySize =",
+                    "        configurationRequirements.minimumSupportedMemorySize",
+                    "",
+                    "    configuration.bootLoader = VZMacOSBootLoader()",
+                    "",
+                    "    // Set up a valid Mac platform configuration for the restore image.",
+                    "    let hardwareModel = configurationRequirements.hardwareModel",
+                    "    let macPlatformConfiguration = VZMacPlatformConfiguration()",
+                    "    let auxiliaryStorageURL = URL(fileURLWithPath:",
+                    "        \"*set to the path where the auxiliary storage should be stored*\")",
+                    "    guard let auxiliaryStorage = try? VZMacAuxiliaryStorage(creatingStorageAt:",
+                    "                auxiliaryStorageURL,",
+                    "                hardwareModel: hardwareModel,",
+                    "                options: []) else {",
+                    "                fatalError(\"Failed to create auxiliary storage.\")",
+                    "    }",
+                    "    macPlatformConfiguration.auxiliaryStorage = auxiliaryStorage",
+                    "    macPlatformConfiguration.hardwareModel = hardwareModel",
+                    "    configuration.platform = macPlatformConfiguration",
+                    "",
+                    "    fatalError(",
+                    "        \"\"\"",
+                    "        *set up storageDevices, graphicsDevices, pointingDevices,",
+                    "        keyboards, etc. here*",
+                    "        \"\"\")",
+                    "",
+                    "    guard ((try? configuration.validate()) != nil) else {",
+                    "        fatalError(\"Virtual machine configuration is invalid.\")",
+                    "    }",
+                    "",
+                    "    let virtualMachine = VZVirtualMachine(configuration: configuration)",
+                    "    let installer = VZMacOSInstaller(virtualMachine: virtualMachine,",
+                    "                                     restoringFromImageAt: localRestoreImageURL)",
+                    "    installer.install(completionHandler: { (result: Result) in",
+                    "        if case let .failure(error) = result {",
+                    "            fatalError(\"Installation failure: \\(error)\")",
+                    "        } else {",
+                    "            // Installation was successful.",
+                    "        }",
+                    "    })",
+                    "",
+                    "    // Observe progress using installer.progress object.",
+                    "    installer.progress.observe(\\.fractionCompleted, options: [.initial, .new]) {",
+                    "        (progress, change) in",
+                    "        print(\"Installation progress: \\(change.newValue! * 100).\")",
+                    "    }",
+                    "",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Load the latest image.",
+                    "[VZMacOSRestoreImage fetchLatestSupportedWithCompletionHandler:^(VZMacOSRestoreImage *restoreImage, NSError *error) {",
+                    "    if (error) {",
+                    "        [NSException raise:NSGenericException format:@\"No restore image is supported.\"];",
+                    "    }",
+                    "    downloadAndInstallRestoreImage(restoreImage);",
+                    "}];",
+                    "",
+                    "void downloadAndInstallRestoreImage(VZMacOSRestoreImage *restoreImage) {",
+                    "    // Since restoreImage came from latestSupported, its URL property ",
+                    "    //refers to a restore image on the network.",
+                    "    // Download the restore image to the local filesystem.",
+                    "    [[NSURLSession sharedSession] downloadTaskWithURL:restoreImage.URL completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {",
+                    "        if (error) {",
+                    "            [NSException raise:NSGenericException format:",
+                    "               @\"Failed to download the restore image from the network.\"];",
+                    "        }",
+                    "",
+                    "        // VZMacOSInstaller must be called with a URL that corresponds to a ",
+                    "        // local file.",
+                    "        NSURL *localRestoreImageDirectoryURL = [NSURL fileURLWithPath:",
+                    "              @\"*set to the directory where the restore image should be stored*\"];",
+                    "        NSURL *localRestoreImageURL = [localRestoreImageDirectoryURL URLByAppendingPathComponent:restoreImage.URL.lastPathComponent];",
+                    "",
+                    "        if (![[NSFileManager defaultManager] moveItemAtURL:location ",
+                    "        toURL:localRestoreImageURL error:nil]) {",
+                    "            [NSException raise:NSGenericException format:@\"Failed to move the restore image to its destination.\"];",
+                    "        }",
+                    "        dispatch_async(dispatch_get_main_queue(), ^{",
+                    "            installLocalRestoreImage(restoreImage, localRestoreImageURL);",
+                    "        });",
+                    "    }];",
+                    "}",
+                    "",
+                    "void installLocalRestoreImage(VZMacOSRestoreImage *remoteRestoreImage, ",
+                    "        NSURL *localRestoreImageURL) {",
+                    "    // Since this restore image came from -[VZMacOSRestoreImage ",
+                    "    // fetchLatestSupportedWithCompletionHandler:], ",
+                    "    // mostFeaturefulSupportedConfiguration should not be nil.",
+                    "    VZMacOSConfigurationRequirements *configurationRequirements = remoteRestoreImage.mostFeaturefulSupportedConfiguration;",
+                    "",
+                    "    // Construct a VZVirtualMachineConfiguration that satisfies the configuration requirements.",
+                    "    VZVirtualMachineConfiguration *configuration = [[VZVirtualMachineConfiguration alloc] init];",
+                    "",
+                    "    // The following are minimum values; you can use larger values if desired.",
+                    "    configuration.CPUCount = configurationRequirements.minimumSupportedCPUCount;",
+                    "    configuration.memorySize = configurationRequirements.minimumSupportedMemorySize;",
+                    "",
+                    "    configuration.bootLoader = [[VZMacOSBootLoader alloc] init];",
+                    "",
+                    "    // Set up a valid Mac platform configuration for the restore image.",
+                    "    VZMacHardwareModel *hardwareModel = configurationRequirements.hardwareModel;",
+                    "    VZMacPlatformConfiguration *macPlatformConfiguration = [[VZMacPlatformConfiguration alloc] init];",
+                    "    NSURL *auxiliaryStorageURL = [NSURL fileURLWithPath:@\"*set to the path where \"",
+                    "                                  \"the auxiliary storage should be stored*\"];",
+                    "    VZMacAuxiliaryStorage *auxiliaryStorage = [[VZMacAuxiliaryStorage alloc] initCreatingStorageAtURL:auxiliaryStorageURL",
+                    "                                                                                        hardwareModel:hardwareModel",
+                    "                                                                                              options:0",
+                    "                                                                                                error:nil];",
+                    "    if (auxiliaryStorage == nil) {",
+                    "        [NSException raise:NSGenericException format:",
+                    "        @\"Failed to create auxiliary storage.\"];",
+                    "    }",
+                    "    macPlatformConfiguration.auxiliaryStorage = auxiliaryStorage;",
+                    "    macPlatformConfiguration.hardwareModel = hardwareModel;",
+                    "    configuration.platform = macPlatformConfiguration;",
+                    "",
+                    "    // Set other configuration properties as necessary.",
+                    "    [NSException raise:NSGenericException format:@\"*set up storageDevices,\"",
+                    "        \" graphicsDevices, pointingDevices, keyboards, etc. here*\"];",
+                    "",
+                    "    assert([configuration validateWithError:nil]);",
+                    "",
+                    "    VZVirtualMachine *virtualMachine = [[VZVirtualMachine alloc] initWithConfiguration:configuration];",
+                    "    VZMacOSInstaller *installer = [[VZMacOSInstaller alloc] initWithVirtualMachine:virtualMachine restoreImageURL:localRestoreImageURL];",
+                    "    [installer installWithCompletionHandler:^(NSError *error) {",
+                    "        if (error) {",
+                    "            [NSException raise:NSGenericException format:@\"Installation failure: %@\", error];",
+                    "        } else {",
+                    "            // Installation was successful.",
+                    "        }",
+                    "    }];",
+                    "",
+                    "    // Observe progress using installer.progress object.",
+                    "    [installer.progress addObserver:observer forKeyPath:@\"fractionCompleted\" ",
+                    "        options:NSKeyValueObservingOptionInitial | ",
+                    "        NSKeyValueObservingOptionNew context:nil];",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization": {
+      "abstract": [
+        {
+          "text": "Create virtual machines and run macOS and Linux-based operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Virtualization",
+      "type": "topic",
+      "url": "/documentation/virtualization"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZMacAuxiliaryStorage": {
+      "abstract": [
+        {
+          "text": "An object that contains information the boot loader needs for booting macOS as a guest operating system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZMacAuxiliaryStorage"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacAuxiliaryStorage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZMacAuxiliaryStorage"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZMacAuxiliaryStorage",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzmacauxiliarystorage"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZMacAuxiliaryStorage/init(creatingStorageAt:hardwareModel:options:)": {
+      "abstract": [
+        {
+          "text": "Creates an initialized Mac auxiliary storage instance that describes a specific hardware model at a URL you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "creatingStorageAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "hardwareModel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)VZMacHardwareModel",
+          "text": "VZMacHardwareModel"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)VZMacAuxiliaryStorage",
+          "text": "VZMacAuxiliaryStorage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@VZMacAuxiliaryStorageInitializationOptions",
+          "text": "InitializationOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacAuxiliaryStorage/init(creatingStorageAt:hardwareModel:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initCreatingStorageAtURL:hardwareModel:options:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(creatingStorageAt:hardwareModel:options:)",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzmacauxiliarystorage/init(creatingstorageat:hardwaremodel:options:)"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZMacHardwareModel": {
+      "abstract": [
+        {
+          "text": "A specification for the hardware elements and configurations present in a particular Mac hardware model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZMacHardwareModel"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacHardwareModel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZMacHardwareModel"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZMacHardwareModel",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzmachardwaremodel"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSBootLoader": {
+      "abstract": [
+        {
+          "text": "An object that loads and configures a boot loader for running macOS on Apple silicon as a guest system of your VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZMacOSBootLoader"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSBootLoader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZMacOSBootLoader"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZMacOSBootLoader",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzmacosbootloader"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSConfigurationRequirements/hardwareModel": {
+      "abstract": [
+        {
+          "text": "The hardware model for this configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hardwareModel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)VZMacHardwareModel",
+          "text": "VZMacHardwareModel"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSConfigurationRequirements/hardwareModel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hardwareModel"
+        }
+      ],
+      "role": "symbol",
+      "title": "hardwareModel",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzmacosconfigurationrequirements/hardwaremodel"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSInstaller": {
+      "abstract": [
+        {
+          "text": "An object you use to install macOS on the specified virtual machine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZMacOSInstaller"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSInstaller",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZMacOSInstaller"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZMacOSInstaller",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzmacosinstaller"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSInstaller/install()": {
+      "abstract": [
+        {
+          "text": "Start installing macOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "install"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSInstaller/install()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "installWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "install()",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzmacosinstaller/install()"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSInstaller/progress": {
+      "abstract": [
+        {
+          "text": "A progress object that you can use to observe or cancel an installation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "progress"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSProgress",
+          "text": "Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSInstaller/progress",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "progress"
+        }
+      ],
+      "role": "symbol",
+      "title": "progress",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzmacosinstaller/progress"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSRestoreImage": {
+      "abstract": [
+        {
+          "text": "An object that describes a version of macOS to install on to a virtual machine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZMacOSRestoreImage"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSRestoreImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZMacOSRestoreImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZMacOSRestoreImage",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzmacosrestoreimage"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSRestoreImage/latestSupported": {
+      "abstract": [
+        {
+          "text": "Fetches the latest restore image supported by this host from the network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "latestSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)VZMacOSRestoreImage",
+          "text": "VZMacOSRestoreImage"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSRestoreImage/latestSupported",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchLatestSupportedWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "latestSupported",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzmacosrestoreimage/latestsupported"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSRestoreImage/mostFeaturefulSupportedConfiguration": {
+      "abstract": [
+        {
+          "text": "This object represents the most fully featured configuration that’s supported by both the current host and by this restore image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mostFeaturefulSupportedConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)VZMacOSConfigurationRequirements",
+          "text": "VZMacOSConfigurationRequirements"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSRestoreImage/mostFeaturefulSupportedConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mostFeaturefulSupportedConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "mostFeaturefulSupportedConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzmacosrestoreimage/mostfeaturefulsupportedconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSRestoreImage/url": {
+      "abstract": [
+        {
+          "text": "The URL of this restore image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSRestoreImage/url",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "URL"
+        }
+      ],
+      "role": "symbol",
+      "title": "url",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzmacosrestoreimage/url"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZMacPlatformConfiguration": {
+      "abstract": [
+        {
+          "text": "The platform configuration for booting macOS on Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZMacPlatformConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacPlatformConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZMacPlatformConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZMacPlatformConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzmacplatformconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZMacPlatformConfiguration/auxiliaryStorage": {
+      "abstract": [
+        {
+          "text": "The Mac auxiliary storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "auxiliaryStorage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)VZMacAuxiliaryStorage",
+          "text": "VZMacAuxiliaryStorage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacPlatformConfiguration/auxiliaryStorage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "auxiliaryStorage"
+        }
+      ],
+      "role": "symbol",
+      "title": "auxiliaryStorage",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzmacplatformconfiguration/auxiliarystorage"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZMacPlatformConfiguration/hardwareModel": {
+      "abstract": [
+        {
+          "text": "The Mac hardware model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hardwareModel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)VZMacHardwareModel",
+          "text": "VZMacHardwareModel"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacPlatformConfiguration/hardwareModel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hardwareModel"
+        }
+      ],
+      "role": "symbol",
+      "title": "hardwareModel",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzmacplatformconfiguration/hardwaremodel"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine": {
+      "abstract": [
+        {
+          "text": "An object that manages the overall state and configuration of your VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachine"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachine"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtualMachine",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachine"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/State-swift.enum/stopped": {
+      "abstract": [
+        {
+          "text": "The VM isn’t running.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopped"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/State-swift.enum/stopped",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachineStateStopped"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtualMachine.State.stopped",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachine/state-swift.enum/stopped"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineConfiguration": {
+      "abstract": [
+        {
+          "text": "The environment attributes and list of devices to use during the configuration of macOS or Linux VMs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachineConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachineConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtualMachineConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachineconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/accelerating-the-performance-of-rosetta": {
+      "abstract": [
+        {
+          "text": "Improve Rosetta performance by adding support for the total store ordering (TSO) memory model to your Linux kernel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/accelerating-the-performance-of-rosetta",
+      "kind": "article",
+      "role": "article",
+      "title": "Accelerating the performance of Rosetta",
+      "type": "topic",
+      "url": "/documentation/virtualization/accelerating-the-performance-of-rosetta"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/creating-and-running-a-linux-virtual-machine": {
+      "abstract": [
+        {
+          "text": "Design and run custom Linux guests on Apple silicon or Intel-based Mac Computers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/creating-and-running-a-linux-virtual-machine",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating and Running a Linux Virtual Machine",
+      "type": "topic",
+      "url": "/documentation/virtualization/creating-and-running-a-linux-virtual-machine"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac": {
+      "abstract": [
+        {
+          "text": "Install and run GUI Linux in a virtual machine using the Virtualization framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Running GUI Linux in a virtual machine on a Mac",
+      "type": "topic",
+      "url": "/documentation/virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta": {
+      "abstract": [
+        {
+          "text": "Run x86_64 Linux binaries under ARM Linux on Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta",
+      "kind": "article",
+      "role": "article",
+      "title": "Running Intel Binaries in Linux VMs with Rosetta",
+      "type": "topic",
+      "url": "/documentation/virtualization/running-intel-binaries-in-linux-vms-with-rosetta"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/running-linux-in-a-virtual-machine": {
+      "abstract": [
+        {
+          "text": "Run a Linux operating system on your Mac using the Virtualization framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/running-linux-in-a-virtual-machine",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Running Linux in a Virtual Machine",
+      "type": "topic",
+      "url": "/documentation/virtualization/running-linux-in-a-virtual-machine"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/running-macos-in-a-virtual-machine-on-apple-silicon": {
+      "abstract": [
+        {
+          "text": "Install and run macOS in a virtual machine using the Virtualization framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/running-macos-in-a-virtual-machine-on-apple-silicon",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Running macOS in a virtual machine on Apple silicon",
+      "type": "topic",
+      "url": "/documentation/virtualization/running-macos-in-a-virtual-machine-on-apple-silicon"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/virtualize-linux-on-a-mac": {
+      "abstract": [
+        {
+          "text": "Configure and run Linux guests on Apple silicon and Intel-based Mac computers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/virtualize-linux-on-a-mac",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Virtualize Linux on a Mac",
+      "type": "topic",
+      "url": "/documentation/virtualization/virtualize-linux-on-a-mac"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/virtualize-macos-on-a-mac": {
+      "abstract": [
+        {
+          "text": "Configure and run macOS guests on Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/virtualize-macos-on-a-mac",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Virtualize macOS on a Mac",
+      "type": "topic",
+      "url": "/documentation/virtualization/virtualize-macos-on-a-mac"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Virtual-machine-setup",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/running-macos-in-a-virtual-machine-on-apple-silicon",
+        "doc://com.apple.virtualization/documentation/Virtualization/running-linux-in-a-virtual-machine",
+        "doc://com.apple.virtualization/documentation/Virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac",
+        "doc://com.apple.virtualization/documentation/Virtualization/creating-and-running-a-linux-virtual-machine",
+        "doc://com.apple.virtualization/documentation/Virtualization/virtualize-macos-on-a-mac",
+        "doc://com.apple.virtualization/documentation/Virtualization/virtualize-linux-on-a-mac",
+        "doc://com.apple.virtualization/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta",
+        "doc://com.apple.virtualization/documentation/Virtualization/accelerating-the-performance-of-rosetta"
+      ],
+      "title": "Virtual machine setup"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Virtual-machine-setup",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/running-macos-in-a-virtual-machine-on-apple-silicon",
+                "doc://com.apple.virtualization/documentation/Virtualization/running-linux-in-a-virtual-machine",
+                "doc://com.apple.virtualization/documentation/Virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac",
+                "doc://com.apple.virtualization/documentation/Virtualization/creating-and-running-a-linux-virtual-machine",
+                "doc://com.apple.virtualization/documentation/Virtualization/virtualize-macos-on-a-mac",
+                "doc://com.apple.virtualization/documentation/Virtualization/virtualize-linux-on-a-mac",
+                "doc://com.apple.virtualization/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta",
+                "doc://com.apple.virtualization/documentation/Virtualization/accelerating-the-performance-of-rosetta"
+              ],
+              "title": "Virtual machine setup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacOSInstaller~1progress/title",
+          "value": "progress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacOSInstaller~1progress/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "progress"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacPlatformConfiguration/title",
+          "value": "VZMacPlatformConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacPlatformConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZMacPlatformConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacPlatformConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZMacPlatformConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacOSRestoreImage/title",
+          "value": "VZMacOSRestoreImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacOSRestoreImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZMacOSRestoreImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacOSRestoreImage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZMacOSRestoreImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacHardwareModel/title",
+          "value": "VZMacHardwareModel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacHardwareModel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZMacHardwareModel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacHardwareModel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZMacHardwareModel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacOSRestoreImage~1url/title",
+          "value": "URL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacOSRestoreImage~1url/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "URL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine/title",
+          "value": "VZVirtualMachine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacOSRestoreImage~1latestSupported/title",
+          "value": "fetchLatestSupportedWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacOSRestoreImage~1latestSupported/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchLatestSupportedWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineConfiguration/title",
+          "value": "VZVirtualMachineConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachineConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachineConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacOSConfigurationRequirements~1hardwareModel/title",
+          "value": "hardwareModel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacOSConfigurationRequirements~1hardwareModel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hardwareModel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacPlatformConfiguration~1hardwareModel/title",
+          "value": "hardwareModel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacPlatformConfiguration~1hardwareModel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hardwareModel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacOSInstaller~1install()/title",
+          "value": "installWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacOSInstaller~1install()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "installWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacOSInstaller/title",
+          "value": "VZMacOSInstaller"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacOSInstaller/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZMacOSInstaller"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacOSInstaller/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZMacOSInstaller"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacAuxiliaryStorage~1init(creatingStorageAt:hardwareModel:options:)/title",
+          "value": "initCreatingStorageAtURL:hardwareModel:options:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacAuxiliaryStorage~1init(creatingStorageAt:hardwareModel:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initCreatingStorageAtURL:hardwareModel:options:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacAuxiliaryStorage/title",
+          "value": "VZMacAuxiliaryStorage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacAuxiliaryStorage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZMacAuxiliaryStorage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacAuxiliaryStorage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZMacAuxiliaryStorage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine~1State-swift.enum~1stopped/title",
+          "value": "VZVirtualMachineStateStopped"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine~1State-swift.enum~1stopped/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachineStateStopped"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacOSRestoreImage~1mostFeaturefulSupportedConfiguration/title",
+          "value": "mostFeaturefulSupportedConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacOSRestoreImage~1mostFeaturefulSupportedConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mostFeaturefulSupportedConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacOSBootLoader/title",
+          "value": "VZMacOSBootLoader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacOSBootLoader/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZMacOSBootLoader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacOSBootLoader/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZMacOSBootLoader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacPlatformConfiguration~1auxiliaryStorage/title",
+          "value": "auxiliaryStorage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacPlatformConfiguration~1auxiliaryStorage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "auxiliaryStorage"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/virtualization/installing-macos-on-a-virtual-machine"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/virtualization/installing-macos-on-a-virtual-machine"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

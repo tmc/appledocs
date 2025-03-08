@@ -1,0 +1,920 @@
+{
+  "abstract": [
+    {
+      "text": "Create and customize an information property list file for your app using Xcode.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.bundleresources/documentation/BundleResources",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.bundleresources/documentation/BundleResources/managing-your-app-s-information-property-list"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Bundle Resources"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Managing Your App’s Information Property List"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All bundles, which represent executables, must contain an information property list file describing the bundle. The details of what to include in the property list vary by executable type and by platform. It’s typically best to rely on Xcode to help create the information property list file for a given bundle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-New-Project",
+          "level": 3,
+          "text": "Create a New Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode supplies an information property list file when you create a project from a template, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/dev07db0e578",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". By default, Xcode names this file ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and adds it to your project as a source file that you can edit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3376275",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode creates one information property list for each target in the project folder. For example, watchOS apps that depend on an iOS app require a separate information property list for each of the watchOS and iOS targets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode sets some property list keys automatically when creating the file. For example, Xcode sets the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIMainStoryboardFile",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key to specify the main storyboard file in an iOS app that uses storyboards. Xcode sets certain other keys with variable values to be replaced at build time using build settings, like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a value of ",
+              "type": "text"
+            },
+            {
+              "code": "$(PRODUCT_BUNDLE_IDENTIFIER)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Target",
+          "level": 3,
+          "text": "Configure the Target",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can change some of the default settings and add others by configuring your project or target in Xcode. For example, changing the bundle identifier field in the target’s General pane affects the value of the ",
+              "type": "text"
+            },
+            {
+              "code": "PRODUCT_BUNDLE_IDENTIFIER",
+              "type": "codeVoice"
+            },
+            {
+              "text": " build setting.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3376276",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As noted in the previous section, this build setting controls the value of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key. For more information about configuring the target, go to ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/dev91fe7130a",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/dev88ff319e7",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Edit-the-Information-Property-List",
+          "level": 3,
+          "text": "Edit the Information Property List",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If necessary, you can edit the information property list directly in Xcode using the property list editor. You can add or remove keys, or change their values directly. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/dev3f399a2a6",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Localize-the-Information-Property-List",
+          "level": 3,
+          "text": "Localize the Information Property List",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many strings in the information property list are human-readable strings displayed to the user, so you should localize the file. For example, localize ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleDisplayName",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleName",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and all of the ",
+              "type": "text"
+            },
+            {
+              "code": "UsageDescription",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keys found in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/protected-resources",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information, go to ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/dev7c584bb2a",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-Platform-and-Device-Specific-Keys",
+          "level": 3,
+          "text": "Add Platform- and Device-Specific Keys",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can add platform- or device-specific keys to the information property list file by using this syntax for the key:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "[key name]-[platform]~[device]",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this syntax, ",
+              "type": "text"
+            },
+            {
+              "code": "platform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "device",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are optional qualifiers that restrict the value for the key to the platform or device. For example, use the ",
+              "type": "text"
+            },
+            {
+              "code": "UISupportedInterfaceOrientations~ipad",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to set different orientation values for iPad devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The possible values for ",
+              "type": "text"
+            },
+            {
+              "code": "platform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "iphoneos",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "macos",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The possible values for ",
+              "type": "text"
+            },
+            {
+              "code": "device",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "iphone",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ipod",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ipad",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Build-the-Apps-Information-Property-List",
+          "level": 3,
+          "text": "Build the App’s Information Property List",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you build your app, Xcode copies the source property list file from your project into the compiled bundle before code signing the bundle. It ensures that the final file has the correct name and resides in the correct location for the given bundle type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During the copy operation, Xcode uses build settings to perform variable substitution. It also inserts additional keys representing configuration that you specify in other ways. For example, you indicate the deployment target for an iOS app in Xcode’s project editor. Xcode translates that into the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/MinimumOSVersion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key that it adds during the copy. As a result of these changes, the information property list file that ships with your app isn’t identical to the source file in your project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources": {
+      "abstract": [
+        {
+          "text": "Resources located in an app, framework, or plugin bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Bundle Resources",
+      "type": "topic",
+      "url": "/documentation/bundleresources"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List": {
+      "abstract": [
+        {
+          "text": "A resource containing key-value pairs that identify and configure a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List",
+      "kind": "symbol",
+      "name": "Information Property List",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Information Property List"
+        }
+      ],
+      "role": "symbol",
+      "title": "Information Property List",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleDisplayName": {
+      "abstract": [
+        {
+          "text": "The user-visible name for the bundle, used by Siri and visible on the iOS Home screen.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Bundle display name",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleDisplayName",
+      "kind": "symbol",
+      "name": "CFBundleDisplayName",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CFBundleDisplayName"
+        }
+      ],
+      "role": "symbol",
+      "title": "CFBundleDisplayName",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/cfbundledisplayname"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a bundle.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Bundle identifier",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+      "kind": "symbol",
+      "name": "CFBundleIdentifier",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CFBundleIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "CFBundleIdentifier",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/cfbundleidentifier"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleName": {
+      "abstract": [
+        {
+          "text": "A user-visible short name for the bundle.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Bundle name",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleName",
+      "kind": "symbol",
+      "name": "CFBundleName",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CFBundleName"
+        }
+      ],
+      "role": "symbol",
+      "title": "CFBundleName",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/cfbundlename"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/MinimumOSVersion": {
+      "abstract": [
+        {
+          "text": "The minimum version of the operating system required for the app to run in iOS, iPadOS, tvOS, and watchOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/MinimumOSVersion",
+      "kind": "symbol",
+      "name": "MinimumOSVersion",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MinimumOSVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "MinimumOSVersion",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/minimumosversion"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIMainStoryboardFile": {
+      "abstract": [
+        {
+          "text": "The name of the app’s main storyboard file.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Main storyboard file base name",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIMainStoryboardFile",
+      "kind": "symbol",
+      "name": "UIMainStoryboardFile",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIMainStoryboardFile"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIMainStoryboardFile",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/uimainstoryboardfile"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/protected-resources": {
+      "abstract": [
+        {
+          "text": "Control an app’s access to protected system services and user data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/protected-resources",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Protected resources",
+      "type": "topic",
+      "url": "/documentation/bundleresources/protected-resources"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev07db0e578": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev07db0e578",
+      "title": "Create a project",
+      "titleInlineContent": [
+        {
+          "text": "Create a project",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev07db0e578"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev3f399a2a6": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev3f399a2a6",
+      "title": "Edit property lists",
+      "titleInlineContent": [
+        {
+          "text": "Edit property lists",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev3f399a2a6"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev7c584bb2a": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev7c584bb2a",
+      "title": "Make a resource localizable",
+      "titleInlineContent": [
+        {
+          "text": "Make a resource localizable",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev7c584bb2a"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev88ff319e7": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev88ff319e7",
+      "title": "Add a capability to a target",
+      "titleInlineContent": [
+        {
+          "text": "Add a capability to a target",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev88ff319e7"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev91fe7130a": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev91fe7130a",
+      "title": "Prepare for app distribution",
+      "titleInlineContent": [
+        {
+          "text": "Prepare for app distribution",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev91fe7130a"
+    },
+    "media-3376275": {
+      "alt": "Screenshot of Xcode showing the information property list file in a project.",
+      "identifier": "media-3376275",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5fd3df1bd87f5372483f3275a3b5f689/media-3376275@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1b782e2609d0b66565cb6e3736c7211c/media-3376275~dark@2x.png"
+        }
+      ]
+    },
+    "media-3376276": {
+      "alt": "Screenshot of Xcode highlighting the Bundle Identifier field in the General pane of an iOS app project.",
+      "identifier": "media-3376276",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0a6c43151151ee55f20b9441ff68f67d/media-3376276@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/987707b8da57fd1bb611ed2f9bc4d94c/media-3376276~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1CFBundleDisplayName/title",
+          "value": "CFBundleDisplayName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1CFBundleDisplayName/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CFBundleDisplayName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/title",
+          "value": "Information Property List"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Information Property List"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1CFBundleIdentifier/title",
+          "value": "CFBundleIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1CFBundleIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CFBundleIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1MinimumOSVersion/title",
+          "value": "MinimumOSVersion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1MinimumOSVersion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MinimumOSVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1UIMainStoryboardFile/title",
+          "value": "UIMainStoryboardFile"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1UIMainStoryboardFile/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMainStoryboardFile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1CFBundleName/title",
+          "value": "CFBundleName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1CFBundleName/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CFBundleName"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/bundleresources/managing-your-app-s-information-property-list"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/bundleresources/managing-your-app-s-information-property-list"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

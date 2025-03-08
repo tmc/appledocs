@@ -1,0 +1,501 @@
+{
+  "abstract": [
+    {
+      "text": "Creates a custom log object.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.os/documentation/os"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.os/documentation/os/os_log_create"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@os_log_create",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "os_log_create"
+      }
+    ],
+    "modules": [
+      {
+        "name": "os"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "os_log_create"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.12",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "os_log_create"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/os_log_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@os_log_t",
+              "text": "os_log_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "os_log_create"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:C",
+              "text": "char"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "subsystem"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:C",
+              "text": "char"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "category"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An identifier string, in reverse DNS notation, that represents the subsystem that’s performing logging, for example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "com.your_company.your_subsystem_name",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". The subsystem is used for categorization and filtering of related log messages, as well as for grouping related logging settings.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "subsystem"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A category within the specified subsystem. The system uses the category to categorize and filter related log messages, as well as to group related logging settings within the subsystem’s settings. A category’s logging settings override those of the parent subsystem.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "category"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A value of type ",
+              "type": "text"
+            },
+            {
+              "code": "os_log_t",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which can be passed to other logging functions to perform logging and to determine whether a specific level of logging is enabled. A value is always returned and should be released when no longer needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Typically, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/OS_LOG_DEFAULT",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " constant to perform logging using the system’s behavior. Create a custom log object only when you want to tag messages with a specific subsystem and category for the purpose of filtering, or to customize the logging behavior of your subsystem with a profile for debugging purposes. You only need to call this function once to initialize a custom log object. It doesn’t need to be called again when changing logging settings. The system automatically detects changes to logging settings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.os/documentation/os": {
+      "abstract": [
+        {
+          "text": "Coordinate the scheduling and synchronization of your app’s tasks, and log information to the console to diagnose issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "os",
+      "type": "topic",
+      "url": "/documentation/os"
+    },
+    "doc://com.apple.os/documentation/os/OSLog/isEnabled(type:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the log can write messages with the specified log type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@os_log_type_t",
+          "text": "OSLogType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLog/isEnabled(type:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "os_log_type_enabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isEnabled(type:)",
+      "type": "topic",
+      "url": "/documentation/os/oslog/isenabled(type:)"
+    },
+    "doc://com.apple.os/documentation/os/OS_LOG_DEFAULT": {
+      "abstract": [
+        {
+          "text": "The shared default log.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "OS_LOG_DEFAULT"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OS_LOG_DEFAULT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OS_LOG_DEFAULT",
+      "type": "topic",
+      "url": "/documentation/os/os_log_default"
+    },
+    "doc://com.apple.os/documentation/os/os_log_create": {
+      "abstract": [
+        {
+          "text": "Creates a custom log object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_log_create"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_log_create",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_log_create",
+      "type": "topic",
+      "url": "/documentation/os/os_log_create"
+    },
+    "doc://com.apple.os/documentation/os/os_log_t": {
+      "abstract": [
+        {
+          "text": "A log object that you pass to logging functions to send messages to that log.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_log_t"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_log_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_log_t",
+      "type": "topic",
+      "url": "/documentation/os/os_log_t"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/OSLog/isEnabled(type:)"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.os~1documentation~1os~1OSLog~1isEnabled(type:)/title",
+          "value": "os_log_type_enabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.os~1documentation~1os~1OSLog~1isEnabled(type:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "os_log_type_enabled"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/os/os_log_create"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,400 @@
+{
+  "abstract": [
+    {
+      "text": "Recognize and handle the rate limits that apply to Advanced Commerce API endpoints.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/ratelimits"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Advanced Commerce API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Identifying rate limits for Advanced Commerce APIs"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Advanced Commerce API limits the number of requests that you can submit to each endpoint within a specified timespan. The request limits apply per app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following table lists the rate limits in the production environment, expressed in requests per second. Limits are enforced on an hourly basis.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Endpoint",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Rate limit (per second)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/Change-Subscription-Price",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "50",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/Cancel-a-Subscription",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "5",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The rate limits in the sandbox environment are 10 percent of the limits in the table above.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Advanced Commerce server may make adjustments to reduce or increase these rate limits as needed at any time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-exceeded-rate-limits-gracefully",
+          "level": 3,
+          "text": "Handle exceeded rate limits gracefully",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you exceed a per-hour limit, the API rejects the request with an ",
+              "type": "text"
+            },
+            {
+              "code": "HTTP 429",
+              "type": "codeVoice"
+            },
+            {
+              "text": " response, with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/RateLimitExceededError",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the body. Consider the following as you integrate the API:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you periodically call the API, throttle your requests to avoid exceeding the per-hour limit for an endpoint.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Manage the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "HTTP 429 RateLimitExceededError",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in your error-handling process. For example, log the failure and queue the job to process it again at a later time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Retry-After",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " header if you receive the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "HTTP 429",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " error. This header contains a UNIX time, in milliseconds, that informs you when you can next send a request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases through the App Store for exceptionally large catalogs of custom one-time purchases, subscriptions, and subscriptions with optional add-ons.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Advanced Commerce API",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/Cancel-a-Subscription": {
+      "abstract": [
+        {
+          "text": "Turn off automatic renewal to cancel a customer’s auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/Cancel-a-Subscription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Cancel a Subscription"
+        }
+      ],
+      "role": "symbol",
+      "title": "Cancel a Subscription",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/cancel-a-subscription"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/Change-Subscription-Price": {
+      "abstract": [
+        {
+          "text": "Increase or decrease the price of an auto-renewable subscription, a bundle, or individual items within a subscription at the next renewal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/Change-Subscription-Price",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Change Subscription Price"
+        }
+      ],
+      "role": "symbol",
+      "title": "Change Subscription Price",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/change-subscription-price"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/RateLimitExceededError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RateLimitExceededError"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/RateLimitExceededError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RateLimitExceededError"
+        }
+      ],
+      "role": "symbol",
+      "title": "RateLimitExceededError",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/ratelimitexceedederror"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/authorizing-server-calls": {
+      "abstract": [
+        {
+          "text": "Create JSON Web Tokens (JWTs) to authorize Advanced Commerce requests from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/authorizing-server-calls",
+      "kind": "article",
+      "role": "article",
+      "title": "Authorizing API requests from your server",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/authorizing-server-calls"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "API-authorization-and-rate-limits",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/authorizing-server-calls"
+      ],
+      "title": "API authorization and rate limits"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/advancedcommerceapi/ratelimits"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

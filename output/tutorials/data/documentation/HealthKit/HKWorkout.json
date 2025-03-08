@@ -1,0 +1,4621 @@
+{
+  "abstract": [
+    {
+      "text": "A workout sample that stores information about a single physical activity.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)HKWorkout",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "HKWorkout"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "HKWorkout"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "HKWorkout"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "HKWorkout"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.healthkit/documentation/HealthKit/dividing-a-healthkit-workout-into-activities",
+        "doc://com.apple.healthkit/documentation/HealthKit/about-the-healthkit-framework",
+        "doc://com.apple.healthkit/documentation/HealthKit/creating-a-workout-route"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class is a concrete subclass of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class; however, they behave somewhat differently than other sample types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You don’t need a specific type identifier to create the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutType",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance. All workouts use the same type identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You must provide an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutActivityType",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " value for each workout. This value defines the type of activity performed during the workout.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "After saving the workout to the HealthKit store, you must associate additional samples with the workout (for example, active energy burned or distance samples). These samples provide fine-grained details. Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore/add(_:to:completion:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method to associate them with the workout.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3570087",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The workout records a summary of information about a single physical activity (for example, the duration, total distance, and total energy burned). It also acts as a container for other ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. You can associate any number of samples with a workout, adding details over the course of the workout. For example, you may want to break a single run into a number of shorter intervals, and then add samples to track the user’s heart rate, energy burned, distance traveled, and steps taken for each interval. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/adding-samples-to-a-workout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If a workout has summary information, it also needs a set of associated samples that add up to the summary’s total. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.healthkit/documentation/HealthKit/adding-samples-to-a-workout",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "HealthKit supports a wide range of activity types. For a complete list, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutActivityType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Workouts are mostly immutable. You set their properties when you instantiate the workout, and they can’t change. However, you can continue to add samples to the workouts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Fill-the-Activity-rings",
+          "level": 3,
+          "text": "Fill the Activity rings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Workouts can contribute to the Move and Exercise rings in the Activity app. To affect the rings, you must associate one or more active energy burned samples with the workout. Additionally:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In watchOS. Use a workout session to track the user’s activity. When the session has ended, create a workout object and the associated active energy burned samples. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system updates the Move ring based on the active energy burned samples. It updates the Exercise ring based on the amount of time the user spent actually exerting themselves during the workout session, as calculated by the watch’s sensors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In iOS. No additional work is necessary. Workout objects automatically contribute to both the Move and Exercise rings. The Exercise ring increases by the workout’s total duration, and the Move ring increases by the number of calories in the associated active energy burned samples. HealthKit also increases the Stand ring by one hour for each wall-clock hour that the workout overlaps.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create and save workouts on the device that makes the most sense for your application—typically the device processing the user’s workout.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Extend-workouts",
+          "level": 3,
+          "text": "Extend workouts",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Like many HealthKit classes, the ",
+              "type": "text"
+            },
+            {
+              "code": "HKWorkout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class should not be subclassed. You may extend workouts by adding metadata with custom keys as appropriate for your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see the methods ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:duration:totalEnergyBurned:totalDistance:metadata:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:metadata:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore/add(_:to:completion:)": {
+      "abstract": [
+        {
+          "text": "Associates the provided samples with the specified workout.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKSample",
+          "text": "HKSample"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKWorkout",
+          "text": "HKWorkout"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore/add(_:to:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addSamples:toWorkout:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "add(_:to:completion:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkhealthstore/add(_:to:completion:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutAverageQuantity": {
+      "abstract": [
+        {
+          "text": "The key path for accessing workouts with a matching average quantity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathWorkoutAverageQuantity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutAverageQuantity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathWorkoutAverageQuantity"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKPredicateKeyPathWorkoutAverageQuantity",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkpredicatekeypathworkoutaveragequantity"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutDuration": {
+      "abstract": [
+        {
+          "text": "The key path for accessing the workout’s duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathWorkoutDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutDuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathWorkoutDuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKPredicateKeyPathWorkoutDuration",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkpredicatekeypathworkoutduration"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutMaximumQuantity": {
+      "abstract": [
+        {
+          "text": "The key path for accessing workouts with a matching maximum quantity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathWorkoutMaximumQuantity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutMaximumQuantity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathWorkoutMaximumQuantity"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKPredicateKeyPathWorkoutMaximumQuantity",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkpredicatekeypathworkoutmaximumquantity"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutMinimumQuantity": {
+      "abstract": [
+        {
+          "text": "The key path for accessing workouts with a matching minimum quantity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathWorkoutMinimumQuantity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutMinimumQuantity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathWorkoutMinimumQuantity"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKPredicateKeyPathWorkoutMinimumQuantity",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkpredicatekeypathworkoutminimumquantity"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutSumQuantity": {
+      "abstract": [
+        {
+          "text": "The key path for accessing workouts with a matching sum.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathWorkoutSumQuantity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutSumQuantity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathWorkoutSumQuantity"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKPredicateKeyPathWorkoutSumQuantity",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkpredicatekeypathworkoutsumquantity"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutTotalDistance": {
+      "abstract": [
+        {
+          "text": "The key path for accessing the workout’s total distance.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathWorkoutTotalDistance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutTotalDistance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathWorkoutTotalDistance"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKPredicateKeyPathWorkoutTotalDistance",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkpredicatekeypathworkouttotaldistance"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutTotalEnergyBurned": {
+      "abstract": [
+        {
+          "text": "The key path for accessing the workout’s total energy burned.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathWorkoutTotalEnergyBurned"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutTotalEnergyBurned",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathWorkoutTotalEnergyBurned"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKPredicateKeyPathWorkoutTotalEnergyBurned",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkpredicatekeypathworkouttotalenergyburned"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutType": {
+      "abstract": [
+        {
+          "text": "The key path for accessing the workout’s type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathWorkoutType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathWorkoutType"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKPredicateKeyPathWorkoutType",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkpredicatekeypathworkouttype"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSample": {
+      "abstract": [
+        {
+          "text": "A HealthKit sample represents a piece of data associated with a start and end time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKSample"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKSample"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKSample",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksample"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout": {
+      "abstract": [
+        {
+          "text": "A workout sample that stores information about a single physical activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkout"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkout"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkout",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkout"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/allStatistics": {
+      "abstract": [
+        {
+          "text": "A dictionary that contains all the statistics for the workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allStatistics"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantityType",
+          "text": "HKQuantityType"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKStatistics",
+          "text": "HKStatistics"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/allStatistics",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allStatistics"
+        }
+      ],
+      "role": "symbol",
+      "title": "allStatistics",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkout/allstatistics"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/duration": {
+      "abstract": [
+        {
+          "text": "The workout’s duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/duration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "duration"
+        }
+      ],
+      "role": "symbol",
+      "title": "duration",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkout/duration"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:)": {
+      "abstract": [
+        {
+          "text": "Instantiates a new workout.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "activityType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKWorkoutActivityType",
+          "text": "HKWorkoutActivityType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "workoutWithActivityType:startDate:endDate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(activityType:start:end:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkout/init(activitytype:start:end:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:duration:totalEnergyBurned:totalDistance:device:metadata:)": {
+      "abstract": [
+        {
+          "text": "Instantiates a new workout activity that includes the device that produced the sample data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "activityType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKWorkoutActivityType",
+          "text": "HKWorkoutActivityType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "totalEnergyBurned"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "totalDistance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKDevice",
+          "text": "HKDevice"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "metadata"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:duration:totalEnergyBurned:totalDistance:device:metadata:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "workoutWithActivityType:startDate:endDate:duration:totalEnergyBurned:totalDistance:device:metadata:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(activityType:start:end:duration:totalEnergyBurned:totalDistance:device:metadata:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkout/init(activitytype:start:end:duration:totalenergyburned:totaldistance:device:metadata:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:duration:totalEnergyBurned:totalDistance:metadata:)": {
+      "abstract": [
+        {
+          "text": "Instantiates a new workout that includes the energy burned, distance, and metadata for the workout.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "activityType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKWorkoutActivityType",
+          "text": "HKWorkoutActivityType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "totalEnergyBurned"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "totalDistance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "metadata"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:duration:totalEnergyBurned:totalDistance:metadata:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "workoutWithActivityType:startDate:endDate:duration:totalEnergyBurned:totalDistance:metadata:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(activityType:start:end:duration:totalEnergyBurned:totalDistance:metadata:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkout/init(activitytype:start:end:duration:totalenergyburned:totaldistance:metadata:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:device:metadata:)": {
+      "abstract": [
+        {
+          "text": "Instantiates a workout that includes both workout events and the device that produced the sample data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "activityType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKWorkoutActivityType",
+          "text": "HKWorkoutActivityType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "workoutEvents"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKWorkoutEvent",
+          "text": "HKWorkoutEvent"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "totalEnergyBurned"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "totalDistance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKDevice",
+          "text": "HKDevice"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "metadata"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:device:metadata:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:device:metadata:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:device:metadata:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkout/init(activitytype:start:end:workoutevents:totalenergyburned:totaldistance:device:metadata:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:metadata:)": {
+      "abstract": [
+        {
+          "text": "Instantiates a new workout whose duration is calculated based on the start and end dates and the provided workout events.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "activityType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKWorkoutActivityType",
+          "text": "HKWorkoutActivityType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "workoutEvents"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKWorkoutEvent",
+          "text": "HKWorkoutEvent"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "totalEnergyBurned"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "totalDistance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "metadata"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:metadata:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:metadata:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:metadata:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkout/init(activitytype:start:end:workoutevents:totalenergyburned:totaldistance:metadata:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:totalFlightsClimbed:device:metadata:)": {
+      "abstract": [
+        {
+          "text": "Instantiates a workout using a variety of data, including the number of flights of stairs climbed.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "activityType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKWorkoutActivityType",
+          "text": "HKWorkoutActivityType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "workoutEvents"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKWorkoutEvent",
+          "text": "HKWorkoutEvent"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "totalEnergyBurned"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "totalDistance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "totalFlightsClimbed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKDevice",
+          "text": "HKDevice"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "metadata"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:totalFlightsClimbed:device:metadata:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:totalFlightsClimbed:device:metadata:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:totalFlightsClimbed:device:metadata:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkout/init(activitytype:start:end:workoutevents:totalenergyburned:totaldistance:totalflightsclimbed:device:metadata:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:totalSwimmingStrokeCount:device:metadata:)": {
+      "abstract": [
+        {
+          "text": "Instantiates a workout using a variety of data, including the number of strokes while swimming.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "activityType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKWorkoutActivityType",
+          "text": "HKWorkoutActivityType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "workoutEvents"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKWorkoutEvent",
+          "text": "HKWorkoutEvent"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "totalEnergyBurned"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "totalDistance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "totalSwimmingStrokeCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKDevice",
+          "text": "HKDevice"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "metadata"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:totalSwimmingStrokeCount:device:metadata:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:totalSwimmingStrokeCount:device:metadata:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:totalSwimmingStrokeCount:device:metadata:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkout/init(activitytype:start:end:workoutevents:totalenergyburned:totaldistance:totalswimmingstrokecount:device:metadata:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/statistics(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the workout’s statistics for the provided quantity type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "statistics"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantityType",
+          "text": "HKQuantityType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKStatistics",
+          "text": "HKStatistics"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/statistics(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "statisticsForType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "statistics(for:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkout/statistics(for:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/totalDistance": {
+      "abstract": [
+        {
+          "text": "The total distance traveled during the workout.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "totalDistance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/totalDistance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "totalDistance"
+        }
+      ],
+      "role": "symbol",
+      "title": "totalDistance",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkout/totaldistance"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/totalEnergyBurned": {
+      "abstract": [
+        {
+          "text": "The total active energy burned during the workout.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "totalEnergyBurned"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/totalEnergyBurned",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "totalEnergyBurned"
+        }
+      ],
+      "role": "symbol",
+      "title": "totalEnergyBurned",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkout/totalenergyburned"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/totalFlightsClimbed": {
+      "abstract": [
+        {
+          "text": "The total number of flights of stairs climbed during the workout.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "totalFlightsClimbed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/totalFlightsClimbed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "totalFlightsClimbed"
+        }
+      ],
+      "role": "symbol",
+      "title": "totalFlightsClimbed",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkout/totalflightsclimbed"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/totalSwimmingStrokeCount": {
+      "abstract": [
+        {
+          "text": "The total stroke count for the workout.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "totalSwimmingStrokeCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/totalSwimmingStrokeCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "totalSwimmingStrokeCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "totalSwimmingStrokeCount",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkout/totalswimmingstrokecount"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/workoutActivities": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "workoutActivities"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKWorkoutActivity",
+          "text": "HKWorkoutActivity"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/workoutActivities",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "workoutActivities"
+        }
+      ],
+      "role": "symbol",
+      "title": "workoutActivities",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkout/workoutactivities"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/workoutActivityType": {
+      "abstract": [
+        {
+          "text": "The type of activity performed during the workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "workoutActivityType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKWorkoutActivityType",
+          "text": "HKWorkoutActivityType"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/workoutActivityType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "workoutActivityType"
+        }
+      ],
+      "role": "symbol",
+      "title": "workoutActivityType",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkout/workoutactivitytype"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/workoutEvents": {
+      "abstract": [
+        {
+          "text": "An array of workout event objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "workoutEvents"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKWorkoutEvent",
+          "text": "HKWorkoutEvent"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/workoutEvents",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "workoutEvents"
+        }
+      ],
+      "role": "symbol",
+      "title": "workoutEvents",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkout/workoutevents"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/workoutPlan": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "workoutPlan"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10WorkoutKit0A4PlanV",
+          "text": "WorkoutPlan"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/workoutPlan",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "workoutPlan",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkout/workoutplan"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutActivity": {
+      "abstract": [
+        {
+          "text": "An object that describes an activity within a longer workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutActivity",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutactivity"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutActivityType": {
+      "abstract": [
+        {
+          "text": "The type of activity performed during a workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutActivityType"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutActivityType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutActivityType"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutActivityType",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutactivitytype"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutBuilder": {
+      "abstract": [
+        {
+          "text": "A builder object that incrementally constructs a workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutBuilder",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutbuilder"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutEvent": {
+      "abstract": [
+        {
+          "text": "An object representing an important event during a workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutEvent",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutevent"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession": {
+      "abstract": [
+        {
+          "text": "A session that tracks the user’s workout on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutSession"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutSession",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSessionType": {
+      "abstract": [
+        {
+          "text": "The type of session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutSessionType"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSessionType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutSessionType"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutSessionType",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsessiontype"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSortIdentifierDuration": {
+      "abstract": [
+        {
+          "text": "A constant for sorting workouts based on their duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutSortIdentifierDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSortIdentifierDuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutSortIdentifierDuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutSortIdentifierDuration",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsortidentifierduration"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSortIdentifierTotalDistance": {
+      "abstract": [
+        {
+          "text": "A constant for sorting workouts based on their total distance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutSortIdentifierTotalDistance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSortIdentifierTotalDistance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutSortIdentifierTotalDistance"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutSortIdentifierTotalDistance",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsortidentifiertotaldistance"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSortIdentifierTotalEnergyBurned": {
+      "abstract": [
+        {
+          "text": "A constant for sorting workouts based on the total energy burned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutSortIdentifierTotalEnergyBurned"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSortIdentifierTotalEnergyBurned",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutSortIdentifierTotalEnergyBurned"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutSortIdentifierTotalEnergyBurned",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsortidentifiertotalenergyburned"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutType": {
+      "abstract": [
+        {
+          "text": "A type that identifies samples that store information about a workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutType"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutType"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutType",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkouttype"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutTypeIdentifier": {
+      "abstract": [
+        {
+          "text": "The workout type identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutTypeIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutTypeIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutTypeIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutTypeIdentifier",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkouttypeidentifier"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/about-the-healthkit-framework": {
+      "abstract": [
+        {
+          "text": "Learn about the architecture and design of the HealthKit framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/about-the-healthkit-framework",
+      "kind": "article",
+      "role": "article",
+      "title": "About the HealthKit framework",
+      "type": "topic",
+      "url": "/documentation/healthkit/about-the-healthkit-framework"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/accessing-condensed-workout-samples": {
+      "abstract": [
+        {
+          "text": "Read series data from condensed workouts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/accessing-condensed-workout-samples",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing condensed workout samples",
+      "type": "topic",
+      "url": "/documentation/healthkit/accessing-condensed-workout-samples"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/adding-samples-to-a-workout": {
+      "abstract": [
+        {
+          "text": "Create associated samples that add details to a workout.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/adding-samples-to-a-workout",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding samples to a workout",
+      "type": "topic",
+      "url": "/documentation/healthkit/adding-samples-to-a-workout"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/creating-a-workout-route": {
+      "abstract": [
+        {
+          "text": "Record the user’s route during a workout.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/creating-a-workout-route",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a workout route",
+      "type": "topic",
+      "url": "/documentation/healthkit/creating-a-workout-route"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/dividing-a-healthkit-workout-into-activities": {
+      "abstract": [
+        {
+          "text": "Partition multisport and interval workouts into activities that represent the different parts of the workout.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/dividing-a-healthkit-workout-into-activities",
+      "kind": "article",
+      "role": "article",
+      "title": "Dividing a HealthKit workout into activities",
+      "type": "topic",
+      "url": "/documentation/healthkit/dividing-a-healthkit-workout-into-activities"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/workout-metadata-keys": {
+      "abstract": [
+        {
+          "text": "Constants that can be used to add metadata to workouts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/workout-metadata-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workout Metadata Keys",
+      "type": "topic",
+      "url": "/documentation/healthkit/workout-metadata-keys"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "media-3570087": {
+      "alt": "An illustration showing how a workout is created and added to the store.",
+      "identifier": "media-3570087",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3e2441ede3d4e430ec577a6823e2f76d/media-3570087@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSample"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Samples",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/adding-samples-to-a-workout",
+        "doc://com.apple.healthkit/documentation/HealthKit/accessing-condensed-workout-samples",
+        "doc://com.apple.healthkit/documentation/HealthKit/dividing-a-healthkit-workout-into-activities",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutActivity",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutBuilder",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutType",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutTypeIdentifier",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutActivityType",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSessionType",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutEvent"
+      ],
+      "title": "Samples"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-workouts",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:duration:totalEnergyBurned:totalDistance:metadata:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:metadata:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:duration:totalEnergyBurned:totalDistance:device:metadata:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:device:metadata:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:totalFlightsClimbed:device:metadata:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:totalSwimmingStrokeCount:device:metadata:)"
+      ],
+      "title": "Creating workouts"
+    },
+    {
+      "anchor": "Accessing-workout-data",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/duration",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/workoutActivityType",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/workoutActivities",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/workoutEvents",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/statistics(for:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/allStatistics",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/totalDistance",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/totalEnergyBurned",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/totalFlightsClimbed",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/totalSwimmingStrokeCount"
+      ],
+      "title": "Accessing workout data"
+    },
+    {
+      "anchor": "Specifying-sort-identifiers",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSortIdentifierDuration",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSortIdentifierTotalDistance",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSortIdentifierTotalEnergyBurned"
+      ],
+      "title": "Specifying sort identifiers"
+    },
+    {
+      "anchor": "Specifying-predicate-key-paths",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutType",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutDuration",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutTotalDistance",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutTotalEnergyBurned",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutAverageQuantity",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutMaximumQuantity",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutMinimumQuantity",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutSumQuantity"
+      ],
+      "title": "Specifying predicate key paths"
+    },
+    {
+      "anchor": "Specifying-metadata-keys",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/workout-metadata-keys"
+      ],
+      "title": "Specifying metadata keys"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/workoutPlan"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "HKWorkout"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.healthkit/documentation/HealthKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-workouts",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:duration:totalEnergyBurned:totalDistance:metadata:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:metadata:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:duration:totalEnergyBurned:totalDistance:device:metadata:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:device:metadata:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:totalFlightsClimbed:device:metadata:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:totalSwimmingStrokeCount:device:metadata:)"
+              ],
+              "title": "Creating workouts"
+            },
+            {
+              "anchor": "Accessing-workout-data",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/duration",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/workoutActivityType",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/workoutActivities",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/workoutEvents",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/statistics(for:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/allStatistics",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/totalDistance",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/totalEnergyBurned",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/totalFlightsClimbed",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout/totalSwimmingStrokeCount"
+              ],
+              "title": "Accessing workout data"
+            },
+            {
+              "anchor": "Specifying-sort-identifiers",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSortIdentifierDuration",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSortIdentifierTotalDistance",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSortIdentifierTotalEnergyBurned"
+              ],
+              "title": "Specifying sort identifiers"
+            },
+            {
+              "anchor": "Specifying-predicate-key-paths",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutType",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutDuration",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutTotalDistance",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutTotalEnergyBurned",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutAverageQuantity",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutMaximumQuantity",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutMinimumQuantity",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathWorkoutSumQuantity"
+              ],
+              "title": "Specifying predicate key paths"
+            },
+            {
+              "anchor": "Specifying-metadata-keys",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/workout-metadata-keys"
+              ],
+              "title": "Specifying metadata keys"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKSample"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Samples",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutActivity",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutBuilder",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutType",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutTypeIdentifier",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutActivityType",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSessionType",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutEvent"
+              ],
+              "title": "Samples"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "HKWorkout"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)HKSample",
+                    "text": "HKSample"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutActivity/title",
+          "value": "HKWorkoutActivity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutActivity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutActivity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutActivity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutActivity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1totalEnergyBurned/title",
+          "value": "totalEnergyBurned"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1totalEnergyBurned/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "totalEnergyBurned"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:totalFlightsClimbed:device:metadata:)/title",
+          "value": "workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:totalFlightsClimbed:device:metadata:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:totalFlightsClimbed:device:metadata:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:totalFlightsClimbed:device:metadata:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1totalFlightsClimbed/title",
+          "value": "totalFlightsClimbed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1totalFlightsClimbed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "totalFlightsClimbed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathWorkoutTotalDistance/title",
+          "value": "HKPredicateKeyPathWorkoutTotalDistance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathWorkoutTotalDistance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKPredicateKeyPathWorkoutTotalDistance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1duration/title",
+          "value": "duration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1duration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "duration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutActivityType/title",
+          "value": "HKWorkoutActivityType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutActivityType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutActivityType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutActivityType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutActivityType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1workoutEvents/title",
+          "value": "workoutEvents"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1workoutEvents/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "workoutEvents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathWorkoutSumQuantity/title",
+          "value": "HKPredicateKeyPathWorkoutSumQuantity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathWorkoutSumQuantity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKPredicateKeyPathWorkoutSumQuantity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSortIdentifierTotalEnergyBurned/title",
+          "value": "HKWorkoutSortIdentifierTotalEnergyBurned"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSortIdentifierTotalEnergyBurned/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutSortIdentifierTotalEnergyBurned"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1totalSwimmingStrokeCount/title",
+          "value": "totalSwimmingStrokeCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1totalSwimmingStrokeCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "totalSwimmingStrokeCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:totalSwimmingStrokeCount:device:metadata:)/title",
+          "value": "workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:totalSwimmingStrokeCount:device:metadata:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:totalSwimmingStrokeCount:device:metadata:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:totalSwimmingStrokeCount:device:metadata:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathWorkoutMaximumQuantity/title",
+          "value": "HKPredicateKeyPathWorkoutMaximumQuantity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathWorkoutMaximumQuantity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKPredicateKeyPathWorkoutMaximumQuantity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1workoutActivities/title",
+          "value": "workoutActivities"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1workoutActivities/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "workoutActivities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1workoutActivityType/title",
+          "value": "workoutActivityType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1workoutActivityType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "workoutActivityType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1totalDistance/title",
+          "value": "totalDistance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1totalDistance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "totalDistance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1allStatistics/title",
+          "value": "allStatistics"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1allStatistics/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allStatistics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:device:metadata:)/title",
+          "value": "workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:device:metadata:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:device:metadata:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:device:metadata:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutEvent/title",
+          "value": "HKWorkoutEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1statistics(for:)/title",
+          "value": "statisticsForType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1statistics(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "statisticsForType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1init(activityType:start:end:duration:totalEnergyBurned:totalDistance:device:metadata:)/title",
+          "value": "workoutWithActivityType:startDate:endDate:duration:totalEnergyBurned:totalDistance:device:metadata:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1init(activityType:start:end:duration:totalEnergyBurned:totalDistance:device:metadata:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "workoutWithActivityType:startDate:endDate:duration:totalEnergyBurned:totalDistance:device:metadata:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathWorkoutMinimumQuantity/title",
+          "value": "HKPredicateKeyPathWorkoutMinimumQuantity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathWorkoutMinimumQuantity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKPredicateKeyPathWorkoutMinimumQuantity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:metadata:)/title",
+          "value": "workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:metadata:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1init(activityType:start:end:workoutEvents:totalEnergyBurned:totalDistance:metadata:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:metadata:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout/title",
+          "value": "HKWorkout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutTypeIdentifier/title",
+          "value": "HKWorkoutTypeIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutTypeIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutTypeIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample/title",
+          "value": "HKSample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1init(activityType:start:end:duration:totalEnergyBurned:totalDistance:metadata:)/title",
+          "value": "workoutWithActivityType:startDate:endDate:duration:totalEnergyBurned:totalDistance:metadata:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1init(activityType:start:end:duration:totalEnergyBurned:totalDistance:metadata:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "workoutWithActivityType:startDate:endDate:duration:totalEnergyBurned:totalDistance:metadata:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1init(activityType:start:end:)/title",
+          "value": "workoutWithActivityType:startDate:endDate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout~1init(activityType:start:end:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "workoutWithActivityType:startDate:endDate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSessionType/title",
+          "value": "HKWorkoutSessionType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSessionType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutSessionType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSessionType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutSessionType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutType/title",
+          "value": "HKWorkoutType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathWorkoutAverageQuantity/title",
+          "value": "HKPredicateKeyPathWorkoutAverageQuantity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathWorkoutAverageQuantity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKPredicateKeyPathWorkoutAverageQuantity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutBuilder/title",
+          "value": "HKWorkoutBuilder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutBuilder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutBuilder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutBuilder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutBuilder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathWorkoutDuration/title",
+          "value": "HKPredicateKeyPathWorkoutDuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathWorkoutDuration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKPredicateKeyPathWorkoutDuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSortIdentifierDuration/title",
+          "value": "HKWorkoutSortIdentifierDuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSortIdentifierDuration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutSortIdentifierDuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSortIdentifierTotalDistance/title",
+          "value": "HKWorkoutSortIdentifierTotalDistance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSortIdentifierTotalDistance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutSortIdentifierTotalDistance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHealthStore~1add(_:to:completion:)/title",
+          "value": "addSamples:toWorkout:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHealthStore~1add(_:to:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addSamples:toWorkout:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathWorkoutTotalEnergyBurned/title",
+          "value": "HKPredicateKeyPathWorkoutTotalEnergyBurned"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathWorkoutTotalEnergyBurned/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKPredicateKeyPathWorkoutTotalEnergyBurned"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathWorkoutType/title",
+          "value": "HKPredicateKeyPathWorkoutType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathWorkoutType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKPredicateKeyPathWorkoutType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession/title",
+          "value": "HKWorkoutSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutSession"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/healthkit/hkworkout"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/healthkit/hkworkout"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

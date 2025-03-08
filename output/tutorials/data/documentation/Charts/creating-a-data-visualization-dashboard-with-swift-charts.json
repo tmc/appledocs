@@ -1,0 +1,773 @@
+{
+  "abstract": [
+    {
+      "text": "Visualize an entire data collection efficiently by instantiating a single vectorized plot in Swift Charts.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Charts/documentation/Charts"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Charts/documentation/Charts/creating-a-data-visualization-dashboard-with-swift-charts"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Swift Charts"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating a data visualization dashboard with Swift Charts"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC24 session 10155: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc24/10155/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows how to visualize a dataset using a variety of chart types including histograms, scatterplots, heatmaps, and more.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample takes advantage of vectorized plots to enable efficient plotting data of an entire ",
+              "type": "text"
+            },
+            {
+              "code": "RandomAccessCollection",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and function plotting to visualize meaningful trends in that data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app is a dashboard that visualizes large-scale solar photovoltaic facilities in the contiguous United States by consuming data from the U.S. Geological Survey and Lawrence Berkeley National Laboratory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Plot-entire-collections-with-vectorized-plots",
+          "level": 3,
+          "text": "Plot entire collections with vectorized plots",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Scatterplot",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view displays a scatterplot that maps the capacity density of each facility by its location. The sample app allows toggling between using longitude or latitude as the basis for location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "dashboard-sample-scatterplot",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The scatterplot uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/PointPlot",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type to plot the data efficiently, enabling a smooth animation in the chart as the underlying data changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "PointPlot(",
+            "    data,",
+            "    x: .value(\"Longitude\", xKeyPath),",
+            "    y: .value(\"Capacity density\", \\.capacityDensity)",
+            ")",
+            ".foregroundStyle(by: .value(\"Breakdown\", model.breakdownField.keyPath))",
+            ".symbolSize(4)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Visualize-data-trends-with-function-plotting",
+          "level": 3,
+          "text": "Visualize data trends with function plotting",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Scatterplot",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view displays a scatterplot that maps the capacity density (the ratio of power-generating capacity to the area) of each facility by its location.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample applies quadratic regression to the data to generate the regression equation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let regression = QuadraticRegression(data, x: xKeyPath, y: \\.capacityDensity)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The scatterplot uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/LinePlot",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type to draw the regression equation as a trend line on top of the datapoints:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "LinePlot(x: \"x\", y: \"y\") { x in",
+            "    regression(x)",
+            "}",
+            ".foregroundStyle(colorScheme == .dark ? .white : .black)",
+            ".lineStyle(.init(lineWidth: colorScheme == .dark ? 1.5 : 1))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-custom-shapes-to-a-chart",
+          "level": 3,
+          "text": "Add custom shapes to a chart",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "ThematicMap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view displays a chart that shows the datapoints in an outline of a map of the contiguous United States.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "dashboard-sample-map",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/LinePlot",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to draw the outline of a simple thematic map, connecting longitude and latitude points of the federal borders of the contiguous United States:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "LinePlot(",
+            "    contiguousUSABorderCoordinates,",
+            "    x: .value(\"Longitude\", \\.mapProjection.x),",
+            "    y: .value(\"Latitude\", \\.mapProjection.y)",
+            ")",
+            ".interpolationMethod(.catmullRom)",
+            ".lineStyle(.init(lineWidth: 1, lineCap: .round, lineJoin: .round))",
+            ".foregroundStyle(.gray)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/PointPlot",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to plot the location of each facility on the thematic map, using color to distinguish categorical data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The point size correlates with each facility’s capacity:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "PointPlot(",
+            "    model.filteredData,",
+            "    x: .value(\"Longitude\", \\.mapProjection.x),",
+            "    y: .value(\"Latitude\", \\.mapProjection.y)",
+            ")",
+            ".symbolSize(by: .value(\"Capacity\", \\.capacityDC))",
+            ".foregroundStyle(by: .value(\"Breakdown\", model.breakdownField.keyPath))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "9dc7606e4293/CreatingADataVisualizationDashboardWithSwiftCharts.zip": {
+      "checksum": "9dc7606e4293d95875a42caa434f5e4eff85d8673d7e0edd8d32c0e3ebae31af2bc11b346965d39095eb21e0f2cf99eee737e786c2e87e71e51dd8c3d69b2757",
+      "identifier": "9dc7606e4293/CreatingADataVisualizationDashboardWithSwiftCharts.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/9dc7606e4293/CreatingADataVisualizationDashboardWithSwiftCharts.zip"
+    },
+    "dashboard-sample-map": {
+      "alt": "A screenshot of the sample app that shows an outline map of the contiguous United States, showing many datapoints inside the map outline. The points on the map vary by size to represent a range of capacities for each installation.",
+      "identifier": "dashboard-sample-map",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/840720f6a9cd791d1949ef2e91f2c605/dashboard-sample-map@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/99bcfe84a7512641dccab61c6950fd98/dashboard-sample-map~dark@2x.png"
+        }
+      ]
+    },
+    "dashboard-sample-scatterplot": {
+      "alt": "A screenshot of the sample app that shows a scatterplot with many datapoints and a line representing a regression equation running through the data. A segmented control to choose longitude or latitude for the x-axis appears above the scatterplot.",
+      "identifier": "dashboard-sample-scatterplot",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9aec4265b4e5620939fbcc76686f4620/dashboard-sample-scatterplot@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77b0c992cd609cf9322cd670670a0ef9/dashboard-sample-scatterplot~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Charts/documentation/Charts": {
+      "abstract": [
+        {
+          "text": "Construct and customize charts on every Apple platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift Charts",
+      "type": "topic",
+      "url": "/documentation/charts"
+    },
+    "doc://com.apple.Charts/documentation/Charts/AreaPlot": {
+      "abstract": [
+        {
+          "text": "Chart content that represents a function or a collection of data using the area of one or more regions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AreaPlot"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/AreaPlot",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AreaPlot"
+        }
+      ],
+      "role": "symbol",
+      "title": "AreaPlot",
+      "type": "topic",
+      "url": "/documentation/charts/areaplot"
+    },
+    "doc://com.apple.Charts/documentation/Charts/BarPlot": {
+      "abstract": [
+        {
+          "text": "Chart content that represents a collection of data using bars.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BarPlot"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/BarPlot",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BarPlot"
+        }
+      ],
+      "role": "symbol",
+      "title": "BarPlot",
+      "type": "topic",
+      "url": "/documentation/charts/barplot"
+    },
+    "doc://com.apple.Charts/documentation/Charts/LinePlot": {
+      "abstract": [
+        {
+          "text": "Chart content that represents a function or a collection of data using a sequence of connected line segments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LinePlot"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/LinePlot",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LinePlot"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinePlot",
+      "type": "topic",
+      "url": "/documentation/charts/lineplot"
+    },
+    "doc://com.apple.Charts/documentation/Charts/PointPlot": {
+      "abstract": [
+        {
+          "text": "Chart content that represents a collection of data using points.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PointPlot"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/PointPlot",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PointPlot"
+        }
+      ],
+      "role": "symbol",
+      "title": "PointPlot",
+      "type": "topic",
+      "url": "/documentation/charts/pointplot"
+    },
+    "doc://com.apple.Charts/documentation/Charts/RectanglePlot": {
+      "abstract": [
+        {
+          "text": "Chart content that represents a collection of data using rectangles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RectanglePlot"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/RectanglePlot",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RectanglePlot"
+        }
+      ],
+      "role": "symbol",
+      "title": "RectanglePlot",
+      "type": "topic",
+      "url": "/documentation/charts/rectangleplot"
+    },
+    "doc://com.apple.Charts/documentation/Charts/RulePlot": {
+      "abstract": [
+        {
+          "text": "Chart content that represents a collection of data using a single horizontal or vertical rule.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RulePlot"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/RulePlot",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RulePlot"
+        }
+      ],
+      "role": "symbol",
+      "title": "RulePlot",
+      "type": "topic",
+      "url": "/documentation/charts/ruleplot"
+    },
+    "doc://com.apple.Charts/documentation/Charts/SectorPlot": {
+      "abstract": [
+        {
+          "text": "Chart content that represents a collection of data using a sector of a pie or donut chart, which shows how individual categories make up a meaningful total.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SectorPlot"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/SectorPlot",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SectorPlot"
+        }
+      ],
+      "role": "symbol",
+      "title": "SectorPlot",
+      "type": "topic",
+      "url": "/documentation/charts/sectorplot"
+    },
+    "doc://com.apple.Charts/documentation/Charts/VectorizedChartContent": {
+      "abstract": [
+        {
+          "text": "A generic type that represents content conveyed via a chart.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VectorizedChartContent"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/VectorizedChartContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VectorizedChartContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "VectorizedChartContent",
+      "type": "topic",
+      "url": "/documentation/charts/vectorizedchartcontent"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/wwdc24/10155/": {
+      "identifier": "https://developer.apple.com/wwdc24/10155/",
+      "title": "Swift Charts: Vectorized and function plots",
+      "titleInlineContent": [
+        {
+          "text": "Swift Charts: Vectorized and function plots",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc24/10155/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "9dc7606e4293/CreatingADataVisualizationDashboardWithSwiftCharts.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Vectorized-plots",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Charts/documentation/Charts/AreaPlot",
+        "doc://com.apple.Charts/documentation/Charts/LinePlot",
+        "doc://com.apple.Charts/documentation/Charts/PointPlot",
+        "doc://com.apple.Charts/documentation/Charts/RectanglePlot",
+        "doc://com.apple.Charts/documentation/Charts/RulePlot",
+        "doc://com.apple.Charts/documentation/Charts/BarPlot",
+        "doc://com.apple.Charts/documentation/Charts/SectorPlot",
+        "doc://com.apple.Charts/documentation/Charts/VectorizedChartContent"
+      ],
+      "title": "Vectorized plots"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/charts/creating-a-data-visualization-dashboard-with-swift-charts"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

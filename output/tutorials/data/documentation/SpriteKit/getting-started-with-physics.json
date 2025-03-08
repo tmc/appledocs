@@ -1,0 +1,823 @@
+{
+  "abstract": [
+    {
+      "text": "Simulate gravity, acceleration, collision detection, or joints.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-physics"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Getting Started with Physics"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although you can control the exact position of every node in a scene, often you want these nodes to interact with each other, colliding with each other and imparting velocity changes in the process. You might also want to do things that are not handled by the action system, such as simulating gravity and other forces. To do this, you create physics bodies (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") and attach them to nodes in your scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SpriteKit uses the International System of Units, also known as SI, or the meter-kilogram-second system. Where necessary, you may need to consult other reference materials online to learn more about the physics equations used by SpriteKit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Customize-Physics-by-Configuring-Bodies",
+          "level": 3,
+          "text": "Customize Physics by Configuring Bodies",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A physics body uses its node’s position and orientation to place itself in the simulation. Every physics body has other characteristics that define how the simulation operates on it. These include innate properties of the physical object, such as its mass and density, and properties imposed on it, such as its velocity. These characteristics define how a body moves, how it is affected by forces in the simulation, and how it responds to collisions with other physics bodies.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Interact-with-Position-and-Velocity",
+          "level": 3,
+          "text": "Interact with Position and Velocity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each time a scene computes a new frame of animation, it simulates the effects of forces and collisions on physics bodies connected to the node tree. It computes a final position, orientation, and velocity for each physics body. Then, the scene updates the position and rotation of each corresponding node. Other forces can be applied automatically to multiple physics bodies by adding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKFieldNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects to the scene. You can also directly affect a specific field body by modifying its velocity directly or by applying forces or impulses directly to it. The acceleration and velocity of each body is computed and the bodies collide with each other. Then, after the simulation is complete, the positions and rotations of the corresponding nodes are updated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Control-the-Behavior-of-Individual-Bodies",
+          "level": 3,
+          "text": "Control the Behavior of Individual Bodies",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You have precise control over which physics effects interact with each other. For example, you can specify that a particular physics field node only affects a subset of the physics bodies in the scene. You also decide which physics bodies can collide with each other and separately decide which interactions cause your app to be called. You use these callbacks to add game logic. For example, your game might destroy a node when its physics body is struck by another physics body.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Decide-on-Physics-Behaviors",
+          "level": 3,
+          "text": "Decide on Physics Behaviors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use physics in your game, you need to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attach physics bodies to nodes in the node tree and configure their physical properties. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Define global characteristics of the scene’s physics simulation, such as gravity. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsWorld",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Where necessary to support your gameplay, set the velocity of physics bodies in the scene or apply forces or impulses to them. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKFieldNode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Decide whether physics bodies in the scene should be connected with each other. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJoint",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/pinned",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property on ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Define how the physics bodies in the scene interact when they come in contact with each other. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsContactDelegate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optimize your physics simulation to limit the number of calculations it must perform.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKFieldNode": {
+      "abstract": [
+        {
+          "text": "A node that applies physics effects to nearby nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKFieldNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKFieldNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKFieldNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKFieldNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skfieldnode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody": {
+      "abstract": [
+        {
+          "text": "An object that adds physics simulation to a node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsBody"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsBody"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPhysicsBody",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/pinned": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the physics body’s node is pinned to its parent node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pinned"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/pinned",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pinned"
+        }
+      ],
+      "role": "symbol",
+      "title": "pinned",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/pinned"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsContact": {
+      "abstract": [
+        {
+          "text": "A description of the contact between two physics bodies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsContact"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsContact",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsContact"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPhysicsContact",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicscontact"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsContactDelegate": {
+      "abstract": [
+        {
+          "text": "Methods your app can implement to respond when physics bodies come into contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsContactDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsContactDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsContactDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPhysicsContactDelegate",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicscontactdelegate"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJoint": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for objects that connect physics bodies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsJoint"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsJoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPhysicsJoint",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsjoint"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsWorld": {
+      "abstract": [
+        {
+          "text": "The driver of the physics engine in a scene; it exposes the ability for you to configure and query the physics system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsWorld"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsWorld",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsWorld"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPhysicsWorld",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsworld"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Physics-Simulation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsWorld",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsContact",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsContactDelegate",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKFieldNode"
+      ],
+      "title": "Physics Simulation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Physics-Simulation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsWorld",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsContact",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsContactDelegate",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKFieldNode"
+              ],
+              "title": "Physics Simulation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsContactDelegate/title",
+          "value": "SKPhysicsContactDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsContactDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsContactDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsContactDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsContactDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody/title",
+          "value": "SKPhysicsBody"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsBody"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsBody"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1pinned/title",
+          "value": "pinned"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1pinned/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pinned"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJoint/title",
+          "value": "SKPhysicsJoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJoint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsJoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJoint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsJoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKFieldNode/title",
+          "value": "SKFieldNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKFieldNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKFieldNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKFieldNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKFieldNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsWorld/title",
+          "value": "SKPhysicsWorld"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsWorld/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsWorld"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsWorld/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsWorld"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsContact/title",
+          "value": "SKPhysicsContact"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsContact/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsContact"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsContact/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsContact"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/getting-started-with-physics"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/getting-started-with-physics"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

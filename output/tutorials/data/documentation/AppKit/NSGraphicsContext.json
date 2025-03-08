@@ -1,0 +1,2810 @@
+{
+  "abstract": [
+    {
+      "text": "An object that represents a graphics context.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSGraphicsContext",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSGraphicsContext"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSGraphicsContext"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSGraphicsContext"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSGraphicsContext"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can think of a graphics context as a destination to which drawing and graphics state operations are sent for execution. Each graphics context contains its own graphics environment and state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class is an abstract superclass for destination-specific graphics contexts. You obtain instances of concrete subclasses with the class methods ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/current",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/init(attributes:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/init(bitmapImageRep:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/init(cgContext:flipped:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/init(window:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At any time there is the notion of the current context. The current context for the current thread may be set using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/current",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Graphics contexts are maintained on a stack. You push a graphics context onto the stack by sending it a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/saveGraphicsState()-swift.method",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " message, and pop it off the stack by sending it a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/restoreGraphicsState()-swift.method",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " message. By sending ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/restoreGraphicsState()-swift.method",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to a graphics context object you remove it from the stack, and the next graphics context on the stack becomes the current graphics context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColorRenderingIntent": {
+      "abstract": [
+        {
+          "text": "Constants that specify how Cocoa should handle colors that are not located within the destination color space of a graphics context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSColorRenderingIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColorRenderingIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSColorRenderingIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSColorRenderingIntent",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolorrenderingintent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation": {
+      "abstract": [
+        {
+          "text": "Constants that describe compositing operators in terms of source and destination images, each having an opaque and transparent region.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext": {
+      "abstract": [
+        {
+          "text": "An object that represents a graphics context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSGraphicsContext"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSGraphicsContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSGraphicsContext",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/AttributeKey": {
+      "abstract": [
+        {
+          "text": "Constants that specify the dictionary keys for the attributes of the graphics context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AttributeKey"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/AttributeKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AttributeKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSGraphicsContext.AttributeKey",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/attributekey"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/RepresentationFormatName": {
+      "abstract": [
+        {
+          "text": "Constants that specify values for the representation format name key in a graphic context’s attributes dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RepresentationFormatName"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/RepresentationFormatName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RepresentationFormatName"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSGraphicsContext.RepresentationFormatName",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/representationformatname"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/attributes": {
+      "abstract": [
+        {
+          "text": "The attributes used to create this instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSGraphicsContext",
+          "text": "NSGraphicsContext"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSGraphicsContextAttributeKey",
+          "text": "AttributeKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/attributes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "attributes",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/attributes"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/cgContext": {
+      "abstract": [
+        {
+          "text": "The Core Graphics context, which is a low-level, platform-specific graphics context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cgContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGContextRef",
+          "text": "CGContext"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/cgContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CGContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "cgContext",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/cgcontext"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/ciContext": {
+      "abstract": [
+        {
+          "text": "A context for Core Image objects that you can use to render into the graphics context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ciContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CIContext",
+          "text": "CIContext"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/ciContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CIContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "ciContext",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/cicontext"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/colorRenderingIntent": {
+      "abstract": [
+        {
+          "text": "The color rendering intent in the graphics context’s graphics state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorRenderingIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSColorRenderingIntent",
+          "text": "NSColorRenderingIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/colorRenderingIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "colorRenderingIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "colorRenderingIntent",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/colorrenderingintent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/compositingOperation": {
+      "abstract": [
+        {
+          "text": "The graphics context’s global compositing operation setting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compositingOperation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSCompositingOperation",
+          "text": "NSCompositingOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/compositingOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compositingOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "compositingOperation",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/compositingoperation"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/current": {
+      "abstract": [
+        {
+          "text": "Returns the current graphics context of the current thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "current"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSGraphicsContext",
+          "text": "NSGraphicsContext"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/current",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "current",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/current"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/currentContextDrawingToScreen()": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the current context is drawing to the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentContextDrawingToScreen"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/currentContextDrawingToScreen()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentContextDrawingToScreen"
+        }
+      ],
+      "role": "symbol",
+      "title": "currentContextDrawingToScreen()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/currentcontextdrawingtoscreen()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/flushGraphics()": {
+      "abstract": [
+        {
+          "text": "Forces any buffered operations or data to be sent to the graphics context’s destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "flushGraphics"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/flushGraphics()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "flushGraphics"
+        }
+      ],
+      "role": "symbol",
+      "title": "flushGraphics()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/flushgraphics()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/focusStack": {
+      "abstract": [
+        {
+          "text": "Returns the object used by the context to track the hierarchy of views with locked focus.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "focusStack"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/focusStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "focusStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "focusStack",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/focusstack"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/graphicsPort": {
+      "abstract": [
+        {
+          "text": "The low-level, platform-specific graphics context represented by the graphic port.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "graphicsPort"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/graphicsPort",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "graphicsPort"
+        }
+      ],
+      "role": "symbol",
+      "title": "graphicsPort",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/graphicsport"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/imageInterpolation": {
+      "abstract": [
+        {
+          "text": "A constant that specifies the graphics context’s interpolation, or image smoothing, behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSImageInterpolation",
+          "text": "NSImageInterpolation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/imageInterpolation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageInterpolation"
+        }
+      ],
+      "role": "symbol",
+      "title": "imageInterpolation",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/imageinterpolation"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/init(attributes:)": {
+      "abstract": [
+        {
+          "text": "Creates a graphics context using the specified attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSGraphicsContext",
+          "text": "NSGraphicsContext"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSGraphicsContextAttributeKey",
+          "text": "AttributeKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/init(attributes:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "graphicsContextWithAttributes:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(attributes:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/init(attributes:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/init(bitmapImageRep:)": {
+      "abstract": [
+        {
+          "text": "Creates a new graphics context using the specified bitmap image representation object as the context destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "bitmapImageRep"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBitmapImageRep",
+          "text": "NSBitmapImageRep"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/init(bitmapImageRep:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "graphicsContextWithBitmapImageRep:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(bitmapImageRep:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/init(bitmapimagerep:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/init(cgContext:flipped:)": {
+      "abstract": [
+        {
+          "text": "Creates a new graphics context from the specified Core Graphics context and the initial flipped state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "cgContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGContextRef",
+          "text": "CGContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flipped"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/init(cgContext:flipped:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "graphicsContextWithCGContext:flipped:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(cgContext:flipped:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/init(cgcontext:flipped:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/init(graphicsPort:flipped:)": {
+      "abstract": [
+        {
+          "text": "Creates a new graphics context from the specified graphics port.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "graphicsPort"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flipped"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/init(graphicsPort:flipped:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "graphicsContextWithGraphicsPort:flipped:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(graphicsPort:flipped:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/init(graphicsport:flipped:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/init(window:)": {
+      "abstract": [
+        {
+          "text": "Creates a new graphics context for drawing into a window.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "window"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWindow",
+          "text": "NSWindow"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/init(window:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "graphicsContextWithWindow:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(window:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/init(window:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/isDrawingToScreen": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the drawing destination is the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDrawingToScreen"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/isDrawingToScreen",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "drawingToScreen"
+        }
+      ],
+      "role": "symbol",
+      "title": "isDrawingToScreen",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/isdrawingtoscreen"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/isFlipped": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates the graphics context’s flipped state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isFlipped"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/isFlipped",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "flipped"
+        }
+      ],
+      "role": "symbol",
+      "title": "isFlipped",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/isflipped"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/patternPhase": {
+      "abstract": [
+        {
+          "text": "The amount to offset the pattern color when filling the graphics context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "patternPhase"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/patternPhase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "patternPhase"
+        }
+      ],
+      "role": "symbol",
+      "title": "patternPhase",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/patternphase"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/restoreGraphicsState()-swift.method": {
+      "abstract": [
+        {
+          "text": "Removes the context’s graphics state from the top of the graphics state stack and makes the next graphics state the current graphics state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restoreGraphicsState"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/restoreGraphicsState()-swift.method",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "restoreGraphicsState"
+        }
+      ],
+      "role": "symbol",
+      "title": "restoreGraphicsState()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/restoregraphicsstate()-swift.method"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/restoreGraphicsState()-swift.type.method": {
+      "abstract": [
+        {
+          "text": "Pops a graphics context from the per-thread stack, makes it current, and sends the context a restore graphics state message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restoreGraphicsState"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/restoreGraphicsState()-swift.type.method",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "restoreGraphicsState"
+        }
+      ],
+      "role": "symbol",
+      "title": "restoreGraphicsState()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/restoregraphicsstate()-swift.type.method"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/saveGraphicsState()-swift.method": {
+      "abstract": [
+        {
+          "text": "Saves the current graphics state and creates a new graphics state on the top of the stack.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "saveGraphicsState"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/saveGraphicsState()-swift.method",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "saveGraphicsState"
+        }
+      ],
+      "role": "symbol",
+      "title": "saveGraphicsState()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/savegraphicsstate()-swift.method"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/saveGraphicsState()-swift.type.method": {
+      "abstract": [
+        {
+          "text": "Saves the graphics state of the current graphics context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "saveGraphicsState"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/saveGraphicsState()-swift.type.method",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "saveGraphicsState"
+        }
+      ],
+      "role": "symbol",
+      "title": "saveGraphicsState()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/savegraphicsstate()-swift.type.method"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/setFocusStack:": {
+      "abstract": [
+        {
+          "text": "Sets the object used by the receiver to track the hierarchy of views with locked focus.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFocusStack:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/setFocusStack:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setFocusStack:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setFocusStack:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/setfocusstack:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/setGraphicsState(_:)": {
+      "abstract": [
+        {
+          "text": "Makes the graphics context of the specified graphics state current, and resets graphics state.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setGraphicsState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/setGraphicsState(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setGraphicsState:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setGraphicsState(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/setgraphicsstate(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/shouldAntialias": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the graphics context uses antialiasing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldAntialias"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/shouldAntialias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shouldAntialias"
+        }
+      ],
+      "role": "symbol",
+      "title": "shouldAntialias",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/shouldantialias"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImageInterpolation": {
+      "abstract": [
+        {
+          "text": "Constants that specify the interpolation, or image smoothing, behavior used by the image interpolation property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSImageInterpolation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImageInterpolation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSImageInterpolation"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSImageInterpolation",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimageinterpolation"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Graphics-Context",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/init(attributes:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/init(bitmapImageRep:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/init(cgContext:flipped:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/init(window:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/init(graphicsPort:flipped:)"
+      ],
+      "title": "Creating a Graphics Context"
+    },
+    {
+      "anchor": "Managing-the-Current-Context",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/current",
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/cgContext",
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/graphicsPort"
+      ],
+      "title": "Managing the Current Context"
+    },
+    {
+      "anchor": "Managing-the-Graphics-State",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/restoreGraphicsState()-swift.type.method",
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/restoreGraphicsState()-swift.method",
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/saveGraphicsState()-swift.type.method",
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/saveGraphicsState()-swift.method",
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/setGraphicsState(_:)"
+      ],
+      "title": "Managing the Graphics State"
+    },
+    {
+      "anchor": "Testing-the-Drawing-Destination",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/currentContextDrawingToScreen()",
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/isDrawingToScreen"
+      ],
+      "title": "Testing the Drawing Destination"
+    },
+    {
+      "anchor": "Getting-Information-About-the-Context",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/attributes",
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/AttributeKey",
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/RepresentationFormatName",
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/isFlipped"
+      ],
+      "title": "Getting Information About the Context"
+    },
+    {
+      "anchor": "Flushing-Graphics-to-the-Context",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/flushGraphics()"
+      ],
+      "title": "Flushing Graphics to the Context"
+    },
+    {
+      "anchor": "Configuring-Rendering-Options",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/compositingOperation",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation",
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/imageInterpolation",
+        "doc://com.apple.appkit/documentation/AppKit/NSImageInterpolation",
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/shouldAntialias",
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/patternPhase"
+      ],
+      "title": "Configuring Rendering Options"
+    },
+    {
+      "anchor": "Getting-the-Context-for-Rendering-Core-Image-Objects",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/ciContext"
+      ],
+      "title": "Getting the Context for Rendering Core Image Objects"
+    },
+    {
+      "anchor": "Managing-Color-Rendering",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/colorRenderingIntent",
+        "doc://com.apple.appkit/documentation/AppKit/NSColorRenderingIntent"
+      ],
+      "title": "Managing Color Rendering"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSGraphicsContext"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGraphicsContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGraphicsContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Graphics-Context",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/init(attributes:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/init(bitmapImageRep:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/init(cgContext:flipped:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/init(window:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/init(graphicsPort:flipped:)"
+              ],
+              "title": "Creating a Graphics Context"
+            },
+            {
+              "anchor": "Managing-the-Current-Context",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/current",
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/cgContext",
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/graphicsPort"
+              ],
+              "title": "Managing the Current Context"
+            },
+            {
+              "anchor": "Managing-the-Graphics-State",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/restoreGraphicsState()-swift.type.method",
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/restoreGraphicsState()-swift.method",
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/saveGraphicsState()-swift.type.method",
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/saveGraphicsState()-swift.method",
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/setGraphicsState(_:)"
+              ],
+              "title": "Managing the Graphics State"
+            },
+            {
+              "anchor": "Testing-the-Drawing-Destination",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/currentContextDrawingToScreen()",
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/isDrawingToScreen"
+              ],
+              "title": "Testing the Drawing Destination"
+            },
+            {
+              "anchor": "Getting-Information-About-the-Context",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/attributes",
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/AttributeKey",
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/RepresentationFormatName",
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/isFlipped"
+              ],
+              "title": "Getting Information About the Context"
+            },
+            {
+              "anchor": "Flushing-Graphics-to-the-Context",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/flushGraphics()"
+              ],
+              "title": "Flushing Graphics to the Context"
+            },
+            {
+              "anchor": "Managing-the-Focus-Stack",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/focusStack",
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/setFocusStack:"
+              ],
+              "title": "Managing the Focus Stack"
+            },
+            {
+              "anchor": "Configuring-Rendering-Options",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/compositingOperation",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation",
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/imageInterpolation",
+                "doc://com.apple.appkit/documentation/AppKit/NSImageInterpolation",
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/shouldAntialias",
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/patternPhase"
+              ],
+              "title": "Configuring Rendering Options"
+            },
+            {
+              "anchor": "Getting-the-Context-for-Rendering-Core-Image-Objects",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/ciContext"
+              ],
+              "title": "Getting the Context for Rendering Core Image Objects"
+            },
+            {
+              "anchor": "Managing-Color-Rendering",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/colorRenderingIntent",
+                "doc://com.apple.appkit/documentation/AppKit/NSColorRenderingIntent"
+              ],
+              "title": "Managing Color Rendering"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSGraphicsContext"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1isDrawingToScreen/title",
+          "value": "drawingToScreen"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1isDrawingToScreen/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "drawingToScreen"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1ciContext/title",
+          "value": "CIContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1ciContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CIContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1saveGraphicsState()-swift.method/title",
+          "value": "saveGraphicsState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1saveGraphicsState()-swift.method/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "saveGraphicsState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1saveGraphicsState()-swift.type.method/title",
+          "value": "saveGraphicsState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1saveGraphicsState()-swift.type.method/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "saveGraphicsState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1init(graphicsPort:flipped:)/title",
+          "value": "graphicsContextWithGraphicsPort:flipped:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1init(graphicsPort:flipped:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "graphicsContextWithGraphicsPort:flipped:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1patternPhase/title",
+          "value": "patternPhase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1patternPhase/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "patternPhase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1init(window:)/title",
+          "value": "graphicsContextWithWindow:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1init(window:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "graphicsContextWithWindow:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1compositingOperation/title",
+          "value": "compositingOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1compositingOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compositingOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1AttributeKey/title",
+          "value": "NSGraphicsContextAttributeKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1AttributeKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGraphicsContextAttributeKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1AttributeKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGraphicsContextAttributeKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1init(attributes:)/title",
+          "value": "graphicsContextWithAttributes:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1init(attributes:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "graphicsContextWithAttributes:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1isFlipped/title",
+          "value": "flipped"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1isFlipped/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "flipped"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation/title",
+          "value": "NSCompositingOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageInterpolation/title",
+          "value": "NSImageInterpolation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageInterpolation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImageInterpolation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageInterpolation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImageInterpolation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1RepresentationFormatName/title",
+          "value": "NSGraphicsContextRepresentationFormatName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1RepresentationFormatName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGraphicsContextRepresentationFormatName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1RepresentationFormatName/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGraphicsContextRepresentationFormatName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1init(bitmapImageRep:)/title",
+          "value": "graphicsContextWithBitmapImageRep:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1init(bitmapImageRep:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "graphicsContextWithBitmapImageRep:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorRenderingIntent/title",
+          "value": "NSColorRenderingIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorRenderingIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSColorRenderingIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorRenderingIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSColorRenderingIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1cgContext/title",
+          "value": "CGContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1cgContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CGContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1imageInterpolation/title",
+          "value": "imageInterpolation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1imageInterpolation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "imageInterpolation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1shouldAntialias/title",
+          "value": "shouldAntialias"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1shouldAntialias/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shouldAntialias"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1restoreGraphicsState()-swift.type.method/title",
+          "value": "restoreGraphicsState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1restoreGraphicsState()-swift.type.method/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "restoreGraphicsState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1attributes/title",
+          "value": "attributes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1attributes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "attributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1colorRenderingIntent/title",
+          "value": "colorRenderingIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1colorRenderingIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "colorRenderingIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext/title",
+          "value": "NSGraphicsContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGraphicsContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGraphicsContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1current/title",
+          "value": "currentContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1current/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "currentContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1restoreGraphicsState()-swift.method/title",
+          "value": "restoreGraphicsState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1restoreGraphicsState()-swift.method/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "restoreGraphicsState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1currentContextDrawingToScreen()/title",
+          "value": "currentContextDrawingToScreen"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1currentContextDrawingToScreen()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "currentContextDrawingToScreen"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1graphicsPort/title",
+          "value": "graphicsPort"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1graphicsPort/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "graphicsPort"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1flushGraphics()/title",
+          "value": "flushGraphics"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1flushGraphics()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "flushGraphics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1init(cgContext:flipped:)/title",
+          "value": "graphicsContextWithCGContext:flipped:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1init(cgContext:flipped:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "graphicsContextWithCGContext:flipped:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1setGraphicsState(_:)/title",
+          "value": "setGraphicsState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1setGraphicsState(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "setGraphicsState:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsgraphicscontext"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsgraphicscontext"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2463 @@
+{
+  "abstract": [
+    {
+      "text": "Learn how to create and manage in-app purchases with the App Store Connect API.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/in-app-purchase"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/managing-in-app-purchases"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Managing in-app purchases"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Store Connect API lets you create and configure in-app purchases for your app. After you create an in-app purchase, you can add metadata, such as a display name and description, and choose your in-app purchase pricing. Once your app is fully configured, you’re able to submit your in-app purchase for review. After approval, you can also schedule pricing changes and edit some metadata for your in-app purchases.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Review-App-Store-Connect-API-usage",
+          "level": 3,
+          "text": "Review App Store Connect API usage",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To manage in-app purchases with the App Store Connect API, you need to understand key concepts for using the API. If you’re new to using the App Store Connect API, make sure to read the documentation in the Essentials section of ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/schedule-price-changes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and learn how to create API keys, generate JWTs, identify rate limits, and more.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create and manage in-app purchases, be sure you have one of the following user roles:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ACCOUNT_HOLDER",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ADMIN",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "APP_MANAGER",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the full list of App Store Connect user roles, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/UserRole",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/support/roles",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-your-in-app-purchase",
+          "level": 3,
+          "text": "Create your in-app purchase",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an in-app purchase, use ",
+              "type": "text"
+            },
+            {
+              "code": "POST /v2/inAppPurchases",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v2-inAppPurchases",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") with a payload that contains the required information, including an internal name, a product ID, the in-app purchase type, a review note, and territory availability. Additionally, supply the Apple ID of the app that contains this in-app purchase.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example payload:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"data\": {",
+            "    \"type\": \"inAppPurchases\",",
+            "    \"attributes\": {",
+            "      \"name\": \"Seattle Neighborhood Coffee Map\",",
+            "      \"productId\": \"MAPNEIGHBORHOODS\",",
+            "      \"inAppPurchaseType\": \"CONSUMABLE\",",
+            "      \"reviewNote\": \"This is a neighborhood map for helping to find awesome coffee shops.\",",
+            "      \"availableInAllTerritories\": true",
+            "    },",
+            "    \"relationships\": {",
+            "      \"app\": {",
+            "        \"data\": {",
+            "          \"type\": \"apps\",",
+            "          \"id\": \"6446148572\"",
+            "        }",
+            "      }",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example response, truncated for clarity:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"data\": {",
+            "        \"type\": \"inAppPurchases\",",
+            "        \"id\": \"6446452615\",",
+            "        \"attributes\": {",
+            "            \"name\": \"Neighborhood Coffee Map\",",
+            "            \"productId\": \"MAPNEIGHBORHOODS\",",
+            "            \"inAppPurchaseType\": \"CONSUMABLE\",",
+            "            \"state\": \"MISSING_METADATA\",",
+            "            \"isAppStoreReviewInProgress\": false,",
+            "            \"submitWithNextAppStoreVersion\": false,",
+            "            \"reviewNote\": \"This is a neighborhood map for helping to find awesome coffee shops.\",",
+            "            \"familySharable\": false,",
+            "            \"contentHosting\": null,",
+            "            \"clearedForSaleForAllTerritories\": true,",
+            "            \"availableInAllTerritories\": true",
+            "        }   "
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make note of the ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the response because you use this ID to look up or edit the in-app purchase in the future.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"id\": \"6446452615\""
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To look up a specific in-app purchase, use the ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "code": "GET /v2/inAppPurchases/{id}",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-inAppPurchases-_id_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). You can also look up all in-app purchases for an app using ",
+              "type": "text"
+            },
+            {
+              "code": "GET /v1/apps/{id}/inAppPurchasesV2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-inAppPurchases",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). Note that this is a ",
+              "type": "text"
+            },
+            {
+              "code": "v1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " endpoint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Editing an in-app purchase is similar, but you use ",
+              "type": "text"
+            },
+            {
+              "code": "PATCH /v2/inAppPurchases/{id}",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v2-inAppPurchases-_id_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). The editable fields are ",
+              "type": "text"
+            },
+            {
+              "code": "name",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "availableInAllTerritories",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "reviewNote",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "familySharable",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " field is editable only for auto-renewable subscriptions and non-consumable in-app purchases.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Localize-metadata-for-your-in-app-purchase",
+          "level": 3,
+          "text": "Localize metadata for your in-app purchase",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make your in-app purchase ready for consumption, add localized display names and descriptions. Use ",
+              "type": "text"
+            },
+            {
+              "code": "POST /v1/inAppPurchaseLocalizations",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v2-inAppPurchases-_id_-inAppPurchaseLocalizations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") with a payload that describes the locale, the localized display name, and the localized description for the in-app purchase.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example payload:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"data\": {",
+            "    \"type\": \"inAppPurchaseLocalizations\",",
+            "    \"attributes\": {",
+            "      \"locale\": \"en-US\",",
+            "      \"name\": \"Seattle Neighborhood Coffee Map\",",
+            "      \"description\": \"This is a neighborhood map for helping to find awesome coffee shops.\"",
+            "    },",
+            "    \"relationships\": {",
+            "      \"inAppPurchaseV2\": {",
+            "        \"data\": {",
+            "          \"type\": \"inAppPurchases\",",
+            "          \"id\": \"6446452615\"",
+            "        }",
+            "      }",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example response, truncated for clarity:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"data\": {",
+            "    \"type\": \"inAppPurchaseLocalizations\",",
+            "    \"id\": \"d7195d00-386d-4389-bef6-bdf196f30e3a\",",
+            "    \"attributes\": {",
+            "      \"name\": \"Seattle Neighborhood Coffee Map\",",
+            "      \"locale\": \"en-US\",",
+            "      \"description\": \"This is a neighborhood map for helping to find awesome coffee shops.\",",
+            "      \"state\": \"PROPOSED\",",
+            "      \"submitted\": false",
+            "    },"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Manage-pricing-for-your-in-app-purchase",
+          "level": 3,
+          "text": "Manage pricing for your in-app purchase",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set a price point for your in-app purchase, look up the ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of the price point you want to assign to the in-app purchase. The following example uses the price point ",
+              "type": "text"
+            },
+            {
+              "code": "4.99",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To look up the price point ID, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v2-inAppPurchases-_id_-pricePoints",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GET /v2/inAppPurchases/{id}/pricePoints?filter[territory]=USA&include=territory&limit=200"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Filter the API endpoint to reduce the amount of data you need to review.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example response, truncated for clarity:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    \"type\" : \"inAppPurchasePricePoints\",",
+            "    \"id\" : \"NjQ0NjQ1MjYxNV91c180\",",
+            "    \"attributes\" : {",
+            "      \"customerPrice\" : \"3.99\",",
+            "      \"proceeds\" : \"0.0\",",
+            "      \"priceTier\" : \"4\"",
+            "    },",
+            "    \"relationships\" : {",
+            "      \"territory\" : {",
+            "        \"data\" : {",
+            "          \"type\" : \"territories\",",
+            "          \"id\" : \"USA\"",
+            "        }",
+            "      },",
+            "      \"equalizations\" : {",
+            "        \"links\" : {",
+            "          \"self\" : \"https://api.appstoreconnect.apple.com/v1/inAppPurchasePricePoints/NjQ0NjQ1MjYxNV91c180/relationships/equalizations\",",
+            "          \"related\" : \"https://api.appstoreconnect.apple.com/v1/inAppPurchasePricePoints/NjQ0NjQ1MjYxNV91c180/equalizations\"",
+            "        }",
+            "      }",
+            "    },",
+            "    \"links\" : {",
+            "      \"self\" : \"https://api.appstoreconnect.apple.com/v1/inAppPurchasePricePoints/NjQ0NjQ1MjYxNV91c180\"",
+            "    }",
+            "  }, {",
+            "    \"type\" : \"inAppPurchasePricePoints\",",
+            "    \"id\" : \"NjQ0NjQ1MjYxNV91c181\",",
+            "    \"attributes\" : {",
+            "      \"customerPrice\" : \"4.99\",",
+            "      \"proceeds\" : \"0.0\",",
+            "      \"priceTier\" : \"5\"",
+            "    },",
+            "    \"relationships\" : {",
+            "      \"territory\" : {",
+            "        \"data\" : {",
+            "          \"type\" : \"territories\",",
+            "          \"id\" : \"USA\"",
+            "        }",
+            "      },",
+            "      \"equalizations\" : {",
+            "        \"links\" : {",
+            "          \"self\" : \"https://api.appstoreconnect.apple.com/v1/inAppPurchasePricePoints/NjQ0NjQ1MjYxNV91c181/relationships/equalizations\",",
+            "          \"related\" : \"https://api.appstoreconnect.apple.com/v1/inAppPurchasePricePoints/NjQ0NjQ1MjYxNV91c181/equalizations\"",
+            "        }",
+            "      }",
+            "    },"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that the ID for the ",
+              "type": "text"
+            },
+            {
+              "code": "4.99",
+              "type": "codeVoice"
+            },
+            {
+              "text": " price point is ",
+              "type": "text"
+            },
+            {
+              "code": "NjQ0NjQ1MjYxNV91c181",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You use this value in the following step.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a price point to an in-app purchase, use ",
+              "type": "text"
+            },
+            {
+              "code": "POST /v1/inAppPurchasePriceSchedules",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-inAppPurchasePriceSchedules",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). The first ID is the ID of the in-app purchase, and the final ID is that of the price point.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Review carefully because once a price increase goes into effect, your change can’t be reverted. Be sure to review information about price increases and changes at ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/help/app-store-connect/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example payload:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"data\": {",
+            "    \"type\": \"inAppPurchases\",",
+            "    \"id\": \"6446452615\",",
+            "    \"attributes\": {},",
+            "    \"relationships\": {",
+            "      \"prices\": {",
+            "        \"data\": [",
+            "          {",
+            "            \"type\": \"inAppPurchasePrices\",",
+            "            \"id\": \"${price1}\"",
+            "          }",
+            "        ]",
+            "      }",
+            "    }",
+            "  },",
+            "  \"included\": [",
+            "    {",
+            "      \"type\": \"inAppPurchasePrices\",",
+            "      \"id\": \"${price1}\",",
+            "      \"attributes\": {",
+            "        \"startDate\": null",
+            "      },",
+            "      \"relationships\": {",
+            "        \"inAppPurchaseV2\": {",
+            "          \"data\": {",
+            "            \"type\": \"inAppPurchasesV2\",",
+            "            \"id\": \"6446452615\"",
+            "          }",
+            "        },",
+            "        \"inAppPurchasePricePoint\": {",
+            "          \"data\": {",
+            "            \"type\": \"inAppPurchasePricePoints\",",
+            "            \"id\": \"NjQ0NjQ1MjYxNV91c181\"",
+            "          }",
+            "        }",
+            "      }",
+            "    }",
+            "  ]",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Submit-your-in-app-purchase",
+          "level": 3,
+          "text": "Submit your in-app purchase",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you configure an in-app purchase, you need to submit it to App Review for approval before it can be available to users. The first step in getting an in-app purchase ready for review is to upload a screenshot to App Review to show what the in-app puchase looks like to users.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You accomplish this task by using the ",
+              "type": "text"
+            },
+            {
+              "code": "/v1/inAppPurchaseAppStoreReviewScreenshots",
+              "type": "codeVoice"
+            },
+            {
+              "text": " endpoint. This workflow is similar to the existing image workflows for App Clip images and app screenshots.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the case of the in-app purchase screenshot, you submit a single image using the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make an image reservation with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "POST /v1/inAppPurchaseAppStoreReviewScreenshots",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-inAppPurchaseAppStoreReviewScreenshots",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Upload the image using the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PUT",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " URL provided in the response to the previous ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "POST",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "After your image uploads, use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PATCH /v1/inAppPurchaseAppStoreReviewScreenshots/{id}",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-inAppPurchaseAppStoreReviewScreenshots-_id_",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") to commit the image.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Finally, use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "GET /v1/inAppPurchaseAppStoreReviewScreenshots/{id}",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-inAppPurchaseAppStoreReviewScreenshots-_id_",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") to confirm that the image is in place.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/uploading-assets-to-app-store-connect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you upload your screenshot for App Review, the next step is submission.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You need to submit your first in-app purchase with an app binary submission. This must be done through ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://appstoreconnect.apple.com",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". For subsequent in-app purchases, you can submit using the following API endpoint without an associated app binary submission.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If this isn’t your first in-app purchase, use ",
+              "type": "text"
+            },
+            {
+              "code": "POST /v1/inAppPurchaseSubmissions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-inAppPurchaseSubmissions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") with a payload like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"data\": {",
+            "    \"type\": \"inAppPurchaseSubmissions\",",
+            "    \"relationships\": {",
+            "      \"inAppPurchaseV2\": {",
+            "        \"data\": {",
+            "          \"type\": \"inAppPurchases\",",
+            "          \"id\": \"6446452615\"",
+            "        }",
+            "      }",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Promote-your-in-app-purchase",
+          "level": 3,
+          "text": "Promote your in-app purchase",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After your in-app purchase gets approved, you can to promote it to users who visit your app listing in the App Store. To accomplish this task, use ",
+              "type": "text"
+            },
+            {
+              "code": "POST /v1/promotedPurchases",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-promotedPurchases",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") with a payload that includes your Apple ID and the ID for your in-app purchase. The response confirms the state is ",
+              "type": "text"
+            },
+            {
+              "code": "\"Waiting for Review\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You can also look up the state of a specific promoted purchase by using ",
+              "type": "text"
+            },
+            {
+              "code": "GET /v1/promotedPurchases",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v2-inAppPurchases-_id_-promotedPurchase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), or look up the status of all your promoted purchases by using ",
+              "type": "text"
+            },
+            {
+              "code": "GET /v1/apps/{id}/promotedPurchases",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-promotedPurchases",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example payload:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"data\": {",
+            "    \"type\": \"promotedPurchases\",",
+            "    \"attributes\": {",
+            "      \"visibleForAllUsers\": true,",
+            "      \"enabled\": true",
+            "    },",
+            "    \"relationships\": {",
+            "      \"app\": {",
+            "        \"data\": {",
+            "          \"type\": \"apps\",",
+            "          \"id\": \"6446148572\"",
+            "        }",
+            "      },",
+            "      \"inAppPurchaseV2\": {",
+            "        \"data\": {",
+            "          \"type\": \"inAppPurchases\",",
+            "          \"id\": \"6446452615\"",
+            "        }",
+            "      }",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Promoted purchase images are icons that are displayed in an App Store listing next to promoted purchase metadata. Each promoted purchase has a single image associated and displayed next to the name of the promoted purchase. The upload process is similar to the App Review screenshot process, but with the ",
+              "type": "text"
+            },
+            {
+              "code": "/v1/promotedPurchaseImages",
+              "type": "codeVoice"
+            },
+            {
+              "text": " endpoint. Use the same ",
+              "type": "text"
+            },
+            {
+              "code": "POST",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "PUT",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "PATCH",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "GET",
+              "type": "codeVoice"
+            },
+            {
+              "text": " steps. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/uploading-assets-to-app-store-connect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-in-app-purchase-prices",
+          "level": 3,
+          "text": "Update in-app purchase prices",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At some point, you might want to change the price of your in-app purchase. Use one of these two methods:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make an immediate change of price.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Schedule a price change for a future time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To perform either type of price change, you use a process similar to setting the initial price. First, look up your current price point using ",
+              "type": "text"
+            },
+            {
+              "code": "GET /v1/inAppPurchasePriceSchedules/{id}/manualPrices",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-inAppPurchasePriceSchedules-_id_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") — where ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the in-app purchase ID — to determine the desired price point. The following screenshot shows what the current pricing looks like in App Store Connect for the in-app purchase.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4054484",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example request includes several additional fields and filters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GET /v1/inAppPurchasePriceSchedules/6446148560/manualPrices?fields%5BinAppPurchasePricePoints%5D=priceTier&filter%5Bterritory%5D=USA&include=inAppPurchasePricePoint "
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example response that includes the information from the request above:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"data\" : [ {",
+            "    \"type\" : \"inAppPurchasePrices\",",
+            "    \"id\" : \"eyJpIjoiNjQ0NjE0ODU2MCIsImQiOjAsImMiOiJVU0EifQ\",",
+            "    \"attributes\" : {",
+            "      \"startDate\" : null",
+            "    },",
+            "    \"relationships\" : {",
+            "      \"inAppPurchasePricePoint\" : {",
+            "        \"data\" : {",
+            "          \"type\" : \"inAppPurchasePricePoints\",",
+            "          \"id\" : \"NjQ0NjE0ODU2MF91c18y\"",
+            "        }",
+            "      }",
+            "    },",
+            "    \"links\" : {",
+            "      \"self\" : \"https://api.appstoreconnect.apple.com/v1/inAppPurchasePrices/eyJpIjoiNjQ0NjE0ODU2MCIsImQiOjAsImMiOiJVU0EifQ\"",
+            "    }",
+            "  }, {",
+            "    \"type\" : \"inAppPurchasePrices\",",
+            "    \"id\" : \"eyJpIjoiNjQ0NjE0ODU2MCIsImQiOjE5MjAxLCJjIjoiVVNBIn0\",",
+            "    \"attributes\" : {",
+            "      \"startDate\" : \"2022-07-28\"",
+            "    },",
+            "    \"relationships\" : {",
+            "      \"inAppPurchasePricePoint\" : {",
+            "        \"data\" : {",
+            "          \"type\" : \"inAppPurchasePricePoints\",",
+            "          \"id\" : \"NjQ0NjE0ODU2MF91c18xMA\"",
+            "        }",
+            "      }",
+            "    },",
+            "    \"links\" : {",
+            "      \"self\" : \"https://api.appstoreconnect.apple.com/v1/inAppPurchasePrices/eyJpIjoiNjQ0NjE0ODU2MCIsImQiOjE5MjAxLCJjIjoiVVNBIn0\"",
+            "    }",
+            "  } ],",
+            "  \"included\" : [ {",
+            "    \"type\" : \"inAppPurchasePricePoints\",",
+            "    \"id\" : \"NjQ0NjE0ODU2MF91c18y\",",
+            "    \"attributes\" : {",
+            "      \"priceTier\" : \"2\"",
+            "    },",
+            "    \"links\" : {",
+            "      \"self\" : \"https://api.appstoreconnect.apple.com/v1/inAppPurchasePricePoints/NjQ0NjE0ODU2MF91c18y\"",
+            "    }",
+            "  }, {",
+            "    \"type\" : \"inAppPurchasePricePoints\",",
+            "    \"id\" : \"NjQ0NjE0ODU2MF91c18xMA\",",
+            "    \"attributes\" : {",
+            "      \"priceTier\" : \"10\"",
+            "    },",
+            "    \"links\" : {",
+            "      \"self\" : \"https://api.appstoreconnect.apple.com/v1/inAppPurchasePricePoints/NjQ0NjE0ODU2MF91c18xMA\"",
+            "    }",
+            "  } ],",
+            "  \"links\" : {",
+            "    \"self\" : \"https://api.appstoreconnect.apple.com/v1/inAppPurchasePriceSchedules/6446148560/manualPrices?include=inAppPurchasePricePoint&filter%5Bterritory%5D=USA&fields%5BinAppPurchasePricePoints%5D=priceTier\"",
+            "  },",
+            "  \"meta\" : {",
+            "    \"paging\" : {",
+            "      \"total\" : 2,",
+            "      \"limit\" : 50",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This first portion of the response is shown below. This portion shows an ",
+              "type": "text"
+            },
+            {
+              "code": "inAppPurchasePrices",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", but the ",
+              "type": "text"
+            },
+            {
+              "code": "startDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute is ",
+              "type": "text"
+            },
+            {
+              "code": "null",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which means this is the current price. You can look up the customer price for a particular territory by looking up the ",
+              "type": "text"
+            },
+            {
+              "code": "inAppPurchasePricePoints",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " using ",
+              "type": "text"
+            },
+            {
+              "code": "GET /v2/inAppPurchases/{id}/pricePoints",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v2-inAppPurchases-_id_-pricePoints",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") and searching the response for the ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"data\" : [ {",
+            "    \"type\" : \"inAppPurchasePrices\",",
+            "    \"id\" : \"eyJpIjoiNjQ0NjE0ODU2MCIsImQiOjAsImMiOiJVU0EifQ\",",
+            "    \"attributes\" : {",
+            "      \"startDate\" : null",
+            "    },",
+            "    \"relationships\" : {",
+            "      \"inAppPurchasePricePoint\" : {",
+            "        \"data\" : {",
+            "          \"type\" : \"inAppPurchasePricePoints\",",
+            "          \"id\" : \"NjQ0NjE0ODU2MF91c18y\"",
+            "        }",
+            "      }",
+            "    },"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The second portion of the response is shown below. This portion shows another ",
+              "type": "text"
+            },
+            {
+              "code": "inAppPurchasePrices",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", but the ",
+              "type": "text"
+            },
+            {
+              "code": "startDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute is an ISO 8601 formatted date that shows the date the price of the in-app purchase will change. This portion of the response also has a different ",
+              "type": "text"
+            },
+            {
+              "code": "inAppPurchasePricePoints",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", showing a change of price.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"included\" : [ {",
+            "    \"type\" : \"inAppPurchasePricePoints\",",
+            "    \"id\" : \"NjQ0NjE0ODU2MF91c18y\",",
+            "    \"attributes\" : {",
+            "      \"priceTier\" : \"2\"",
+            "    },",
+            "    \"links\" : {",
+            "      \"self\" : \"https://api.appstoreconnect.apple.com/v1/inAppPurchasePricePoints/NjQ0NjE0ODU2MF91c18y\"",
+            "    }",
+            "  }, {",
+            "    \"type\" : \"inAppPurchasePricePoints\",",
+            "    \"id\" : \"NjQ0NjE0ODU2MF91c18xMA\",",
+            "    \"attributes\" : {",
+            "      \"priceTier\" : \"10\"",
+            "    },",
+            "    \"links\" : {",
+            "      \"self\" : \"https://api.appstoreconnect.apple.com/v1/inAppPurchasePricePoints/NjQ0NjE0ODU2MF91c18xMA\"",
+            "    }",
+            "  } ],"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By using extra parameters and filters, you can also see the ",
+              "type": "text"
+            },
+            {
+              "code": "priceTier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the current and upcoming price change:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GET /v2/inAppPurchases/{id}/pricePoints?fields%5BinAppPurchasePricePoints%5D=priceTier&filter%5Bterritory%5D=USA&include=inAppPurchasePricePoint"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now that you know about the current price and the scheduled price change, you might want to schedule another price change, like reverting back to the original price. To accomplish this task, use ",
+              "type": "text"
+            },
+            {
+              "code": "POST /v1/inAppPurchasePriceSchedules",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-inAppPurchasePriceSchedules",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") with a payload like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"data\": {",
+            "    \"type\": \"inAppPurchasePriceSchedules\",",
+            "    \"relationships\": {",
+            "      \"inAppPurchase\": {",
+            "        \"data\": {",
+            "          \"type\": \"inAppPurchases\",",
+            "          \"id\": \"6446452615\"",
+            "        }",
+            "      },",
+            "      \"manualPrices\": {",
+            "        \"data\": [",
+            "          {",
+            "            \"type\": \"inAppPurchasePrices\",",
+            "            \"id\": \"${prices-id}\"",
+            "          },",
+            "          {",
+            "            \"type\": \"inAppPurchasePrices\",",
+            "            \"id\": \"${prices-id-1}\"",
+            "          }",
+            "        ]",
+            "      }",
+            "    }",
+            "  },",
+            "  \"included\": [",
+            "    {",
+            "      \"type\": \"inAppPurchasePrices\",",
+            "      \"id\": \"${prices-id}\",",
+            "      \"attributes\": {",
+            "        \"startDate\": \"2022-06-29\"",
+            "      },",
+            "      \"relationships\": {",
+            "        \"inAppPurchaseV2\": {",
+            "          \"data\": {",
+            "            \"type\": \"inAppPurchases\",",
+            "            \"id\": \"6446452615\"",
+            "          }",
+            "        },",
+            "        \"inAppPurchasePricePoint\": {",
+            "          \"data\": {",
+            "            \"type\": \"inAppPurchasePricePoints\",",
+            "            \"id\": \"NjQ0NjE0ODU2MF91c18x\"",
+            "          }",
+            "        }",
+            "      }",
+            "    },",
+            "    {",
+            "      \"type\": \"inAppPurchasePrices\",",
+            "      \"id\": \"${prices-id-1}\",",
+            "      \"attributes\": {",
+            "        \"startDate\": \"2022-07-28\"",
+            "      },",
+            "      \"relationships\": {",
+            "        \"inAppPurchaseV2\": {",
+            "          \"data\": {",
+            "            \"type\": \"inAppPurchases\",",
+            "            \"id\": \"6446452615\"",
+            "          }",
+            "        },",
+            "        \"inAppPurchasePricePoint\": {",
+            "          \"data\": {",
+            "            \"type\": \"inAppPurchasePricePoints\",",
+            "            \"id\": \"NjQ0NjE0ODU2MF91c18xMA\"",
+            "          }",
+            "        }",
+            "      }",
+            "    }",
+            "  ]",
+            "}",
+            ""
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This payload has two sections. The first section contains references to two ",
+              "type": "text"
+            },
+            {
+              "code": "manualPrices",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which are the current price and the scheduled future price.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"manualPrices\": {",
+            "        \"data\": [",
+            "          {",
+            "            \"type\": \"inAppPurchasePrices\",",
+            "            \"id\": \"${prices-id}\"",
+            "          },",
+            "          {",
+            "            \"type\": \"inAppPurchasePrices\",",
+            "            \"id\": \"${prices-id-1}\"",
+            "          }",
+            "",
+            "        ]",
+            "      }",
+            "    }"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "included",
+              "type": "codeVoice"
+            },
+            {
+              "text": " portion of the payload states the price points and change date for the current price and scheduled price.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " \"included\": [",
+            "    {",
+            "      \"type\": \"inAppPurchasePrices\",",
+            "      \"id\": \"${prices-id}\",",
+            "      \"attributes\": {",
+            "        \"startDate\": \"2022-06-29\"",
+            "      },",
+            "      \"relationships\": {",
+            "        \"inAppPurchaseV2\": {",
+            "          \"data\": {",
+            "            \"type\": \"inAppPurchases\",",
+            "            \"id\": \"6446452615\"",
+            "          }",
+            "        },",
+            "        \"inAppPurchasePricePoint\": {",
+            "          \"data\": {",
+            "            \"type\": \"inAppPurchasePricePoints\",",
+            "            \"id\": \"NjQ0NjE0ODU2MF91c18x\"",
+            "          }",
+            "        }",
+            "      }",
+            "    },",
+            "        {",
+            "      \"type\": \"inAppPurchasePrices\",",
+            "      \"id\": \"${prices-id-1}\",",
+            "      \"attributes\": {",
+            "        \"startDate\": \"2022-07-28\"",
+            "      },",
+            "      \"relationships\": {",
+            "        \"inAppPurchaseV2\": {",
+            "          \"data\": {",
+            "            \"type\": \"inAppPurchases\",",
+            "            \"id\": \"6446452615\"",
+            "          }",
+            "        },",
+            "        \"inAppPurchasePricePoint\": {",
+            "          \"data\": {",
+            "            \"type\": \"inAppPurchasePricePoints\",",
+            "            \"id\": \"NjQ0NjE0ODU2MF91c18xMA\"",
+            "          }",
+            "        }",
+            "      }",
+            "    }",
+            "  ]",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "POST",
+              "type": "codeVoice"
+            },
+            {
+              "text": " call with this payload results in a ",
+              "type": "text"
+            },
+            {
+              "code": "201",
+              "type": "codeVoice"
+            },
+            {
+              "text": " response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on creating and editing in-app purchases, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/overview-for-configuring-in-app-purchases",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/",
+              "isActive": true,
+              "overridingTitle": "App Store Connect for iPhone and iPad",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "App Store Connect for iPhone and iPad",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-inAppPurchases": {
+      "abstract": [
+        {
+          "text": "List the in-app purchases that are available for your app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-inAppPurchases",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/apps/{id}/inAppPurchases"
+        }
+      ],
+      "role": "symbol",
+      "title": "List All In-App Purchases for an App V1",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-apps-_id_-inapppurchases"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-promotedPurchases": {
+      "abstract": [
+        {
+          "text": "Get a list of promoted in-app purchases, including promoted auto-renewable subscriptions, for an app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-promotedPurchases",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/apps/{id}/promotedPurchases"
+        }
+      ],
+      "role": "symbol",
+      "title": "List All Promoted Purchases for an App",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-apps-_id_-promotedpurchases"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-inAppPurchaseAppStoreReviewScreenshots-_id_": {
+      "abstract": [
+        {
+          "text": "Get information about a specific review screenshot for an in-app purchase.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-inAppPurchaseAppStoreReviewScreenshots-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/inAppPurchaseAppStoreReviewScreenshots/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read In-App Purchase Review Screenshot Information",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-inapppurchaseappstorereviewscreenshots-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-inAppPurchasePriceSchedules-_id_": {
+      "abstract": [
+        {
+          "text": "Get information about a specific scheduled price change for an in-app purchase.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-inAppPurchasePriceSchedules-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/inAppPurchasePriceSchedules/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read in-app purchase price schedule information",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-inapppurchasepriceschedules-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-inAppPurchases-_id_": {
+      "abstract": [
+        {
+          "text": "Get information about an in-app purchase.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-inAppPurchases-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/inAppPurchases/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read In-App Purchase Information",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-inapppurchases-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v2-inAppPurchases-_id_-inAppPurchaseLocalizations": {
+      "abstract": [
+        {
+          "text": "Get a list of localized display names and descriptions for a specific in-app purchase.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v2-inAppPurchases-_id_-inAppPurchaseLocalizations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v2/inAppPurchases/{id}/inAppPurchaseLocalizations"
+        }
+      ],
+      "role": "symbol",
+      "title": "List All Localizations for an In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v2-inapppurchases-_id_-inapppurchaselocalizations"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v2-inAppPurchases-_id_-pricePoints": {
+      "abstract": [
+        {
+          "text": "Get a list of possible price points for an in-app purchase.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v2-inAppPurchases-_id_-pricePoints",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v2/inAppPurchases/{id}/pricePoints"
+        }
+      ],
+      "role": "symbol",
+      "title": "List All Price Points for an In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v2-inapppurchases-_id_-pricepoints"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v2-inAppPurchases-_id_-promotedPurchase": {
+      "abstract": [
+        {
+          "text": "Get details about the promoted purchase of an in-app purchase.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v2-inAppPurchases-_id_-promotedPurchase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v2/inAppPurchases/{id}/promotedPurchase"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read Promoted Purchase Information for an In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v2-inapppurchases-_id_-promotedpurchase"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-inAppPurchaseAppStoreReviewScreenshots-_id_": {
+      "abstract": [
+        {
+          "text": "Commit an uploaded image asset as a review screenshot for an in-app purchase.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-inAppPurchaseAppStoreReviewScreenshots-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PATCH /v1/inAppPurchaseAppStoreReviewScreenshots/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Commit a Review Screenshot for an In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/patch-v1-inapppurchaseappstorereviewscreenshots-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v2-inAppPurchases-_id_": {
+      "abstract": [
+        {
+          "text": "Update the reference name of a specific in-app purchase.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v2-inAppPurchases-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PATCH /v2/inAppPurchases/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Modify an In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/patch-v2-inapppurchases-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-inAppPurchaseAppStoreReviewScreenshots": {
+      "abstract": [
+        {
+          "text": "Reserve a review screenshot for an in-app purchase.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-inAppPurchaseAppStoreReviewScreenshots",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/inAppPurchaseAppStoreReviewScreenshots"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create an In-App Purchase Review Screenshot",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-inapppurchaseappstorereviewscreenshots"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-inAppPurchasePriceSchedules": {
+      "abstract": [
+        {
+          "text": "Create a scheduled price change for an in-app purchase.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-inAppPurchasePriceSchedules",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/inAppPurchasePriceSchedules"
+        }
+      ],
+      "role": "symbol",
+      "title": "Add a scheduled price change to an in-app purchase",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-inapppurchasepriceschedules"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-inAppPurchaseSubmissions": {
+      "abstract": [
+        {
+          "text": "Create an in-app purchase submission for review.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-inAppPurchaseSubmissions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/inAppPurchaseSubmissions"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create a Review Submission for an In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-inapppurchasesubmissions"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-promotedPurchases": {
+      "abstract": [
+        {
+          "text": "Add an existing in-app purchase or auto-renewable subscription to the promoted in-app purchases on an app listing in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-promotedPurchases",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/promotedPurchases"
+        }
+      ],
+      "role": "symbol",
+      "title": "Promote a Purchase",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-promotedpurchases"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v2-inAppPurchases": {
+      "abstract": [
+        {
+          "text": "Create an in-app purchase, including a consumable, non-consumable, or non-renewing subscription.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v2-inAppPurchases",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v2/inAppPurchases"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create an In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v2-inapppurchases"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/UserRole": {
+      "abstract": [
+        {
+          "text": "Strings that represent user roles and permissions in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserRole"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/UserRole",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UserRole"
+        }
+      ],
+      "role": "symbol",
+      "title": "UserRole",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/userrole"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store": {
+      "abstract": [
+        {
+          "text": "Manage all aspects of your app, App Clips, in-app purchases, and customer reviews in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App Store",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Create and manage in-app purchases, including localizations, price schedules, and submissions for review.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/in-app-purchase"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/in-app-purchase-availability": {
+      "abstract": [
+        {
+          "text": "Read and modify territory availability for an in-app purchase.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/in-app-purchase-availability",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-app purchase availability",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/in-app-purchase-availability"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/in-app-purchase-images": {
+      "abstract": [
+        {
+          "text": "Create, modify, and delete promotion images for your in-app purchases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/in-app-purchase-images",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-app purchase images",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/in-app-purchase-images"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/in-app-purchase-localizations": {
+      "abstract": [
+        {
+          "text": "Create, modify, and delete localized metadata for in-app purchases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/in-app-purchase-localizations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase Localizations",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/in-app-purchase-localizations"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/in-app-purchase-price-schedules": {
+      "abstract": [
+        {
+          "text": "Create a scheduled price change for an in-app purchase, and get information about scheduled price changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/in-app-purchase-price-schedules",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App purchase price schedules",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/in-app-purchase-price-schedules"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/in-app-purchases": {
+      "abstract": [
+        {
+          "text": "Create, modify, and delete in-app purchases for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/in-app-purchases",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchases",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/in-app-purchases"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/uploading-assets-to-app-store-connect": {
+      "abstract": [
+        {
+          "text": "Upload screenshots, app previews, attachments for App Review, and routing app coverage files to App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/uploading-assets-to-app-store-connect",
+      "kind": "article",
+      "role": "article",
+      "title": "Uploading Assets to App Store Connect",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/uploading-assets-to-app-store-connect"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://appstoreconnect.apple.com": {
+      "identifier": "https://appstoreconnect.apple.com",
+      "title": "appstoreconnect.apple.com",
+      "titleInlineContent": [
+        {
+          "text": "appstoreconnect.apple.com",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://appstoreconnect.apple.com"
+    },
+    "https://developer.apple.com/help/app-store-connect/": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/",
+      "title": "App Store Connect for iPhone and iPad",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect for iPhone and iPad",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/"
+    },
+    "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/overview-for-configuring-in-app-purchases": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/overview-for-configuring-in-app-purchases",
+      "title": "Overview for configuring in-app purchases",
+      "titleInlineContent": [
+        {
+          "text": "Overview for configuring in-app purchases",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/overview-for-configuring-in-app-purchases"
+    },
+    "https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/schedule-price-changes": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/schedule-price-changes",
+      "title": "Schedule price changes",
+      "titleInlineContent": [
+        {
+          "text": "Schedule price changes",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/schedule-price-changes"
+    },
+    "https://developer.apple.com/support/roles": {
+      "identifier": "https://developer.apple.com/support/roles",
+      "title": "Program Roles",
+      "titleInlineContent": [
+        {
+          "text": "Program Roles",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/roles"
+    },
+    "media-4054484": {
+      "alt": "Screenshot of a price schedule from appstoreconnect.apple.com.",
+      "identifier": "media-4054484",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b6a27ee1110af1eae7eba4fbc79faf6b/media-4054484@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-In-App-Purchases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/in-app-purchases",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/in-app-purchase-localizations",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/in-app-purchase-price-schedules",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/in-app-purchase-availability",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/in-app-purchase-images"
+      ],
+      "title": "Managing In-App Purchases"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/managing-in-app-purchases"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

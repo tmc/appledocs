@@ -1,0 +1,1626 @@
+{
+  "abstract": [
+    {
+      "text": "Execute code concurrently on multicore hardware by submitting work to dispatch queues managed by the system.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.dispatch/documentation/Dispatch"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "Dispatch",
+    "modules": [
+      {
+        "name": "Dispatch"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "8.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.10",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Dispatch"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Dispatch, also known as Grand Central Dispatch (GCD), contains language features, runtime libraries, and system enhancements that provide systemic, comprehensive improvements to the support for concurrent code execution on multicore hardware in macOS, iOS, watchOS, and tvOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The BSD subsystem, Core Foundation, and Cocoa APIs have all been extended to use these enhancements to help both the system and your application to run faster, more efficiently, and with improved responsiveness. Consider how difficult it is for a single application to use multiple cores effectively, let alone to do it on different computers with different numbers of computing cores or in an environment with multiple applications competing for those cores. GCD, operating at the system level, can better accommodate the needs of all running applications, matching them to the available system resources in a balanced fashion.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Dispatch-Objects-and-ARC",
+          "level": 3,
+          "text": "Dispatch Objects and ARC",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you build your app using the Objective-C compiler, all dispatch objects are Objective-C objects. As such, when automatic reference counting (ARC) is enabled, dispatch objects are retained and released automatically, just like any other Objective-C object. When ARC is not enabled, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_retain",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_release",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " functions (or Objective-C semantics) to retain and release your dispatch objects. You cannot use the Core Foundation retain and release functions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to use retain and release semantics in an ARC-enabled app with a later deployment target (for maintaining compatibility with existing code), you can disable Objective-C-based dispatch objects by adding ",
+              "type": "text"
+            },
+            {
+              "code": "-DOS_OBJECT_USE_OBJC=0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to your compiler flags.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.dispatch/documentation/Dispatch": {
+      "abstract": [
+        {
+          "text": "Execute code concurrently on multicore hardware by submitting work to dispatch queues managed by the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Dispatch",
+      "type": "topic",
+      "url": "/documentation/dispatch"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/2963138-wall-time-constants": {
+      "abstract": [
+        {
+          "text": "Constants for wall time values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/2963138-wall-time-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Wall Time Constants",
+      "type": "topic",
+      "url": "/documentation/dispatch/2963138-wall-time-constants"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DISPATCH_WALLTIME_NOW": {
+      "abstract": [
+        {
+          "text": "The current time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DISPATCH_WALLTIME_NOW"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DISPATCH_WALLTIME_NOW",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DISPATCH_WALLTIME_NOW"
+        }
+      ],
+      "role": "symbol",
+      "title": "DISPATCH_WALLTIME_NOW",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_walltime_now"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchData": {
+      "abstract": [
+        {
+          "text": "An object that manages a memory-based data buffer and exposes it as a contiguous block of memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchData"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DispatchData"
+        }
+      ],
+      "role": "symbol",
+      "title": "DispatchData",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchdata"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchDataIterator": {
+      "abstract": [
+        {
+          "text": "A byte-by-byte iterator over the contents of a dispatch data object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchDataIterator"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchDataIterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DispatchDataIterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "DispatchDataIterator",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchdataiterator"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchGroup": {
+      "abstract": [
+        {
+          "text": "A group of tasks that you monitor as a single unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DispatchGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "DispatchGroup",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchgroup"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchIO": {
+      "abstract": [
+        {
+          "text": "An object that manages operations on a file descriptor using either stream-based or random-access semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchIO"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchIO",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DispatchIO"
+        }
+      ],
+      "role": "symbol",
+      "title": "DispatchIO",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchio"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject": {
+      "abstract": [
+        {
+          "text": "The base class for most dispatch types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchObject"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DispatchObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "DispatchObject",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchobject"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchPredicate": {
+      "abstract": [
+        {
+          "text": "Logical conditions to evaluate within a given execution context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchPredicate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DispatchPredicate"
+        }
+      ],
+      "role": "symbol",
+      "title": "DispatchPredicate",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchpredicate"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchQoS": {
+      "abstract": [
+        {
+          "text": "The quality of service, or the execution priority, to apply to tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchQoS"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchQoS",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DispatchQoS"
+        }
+      ],
+      "role": "symbol",
+      "title": "DispatchQoS",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchqos"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchQueue": {
+      "abstract": [
+        {
+          "text": "An object that manages the execution of tasks serially or concurrently on your app’s main thread or on a background thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchQueue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DispatchQueue"
+        }
+      ],
+      "role": "symbol",
+      "title": "DispatchQueue",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchqueue"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchSemaphore": {
+      "abstract": [
+        {
+          "text": "An object that controls access to a resource across multiple execution contexts through use of a traditional counting semaphore.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchSemaphore"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchSemaphore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DispatchSemaphore"
+        }
+      ],
+      "role": "symbol",
+      "title": "DispatchSemaphore",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchsemaphore"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchSource": {
+      "abstract": [
+        {
+          "text": "An object that coordinates the processing of specific low-level system events, such as file-system events, timers, and UNIX signals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchSource"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DispatchSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "DispatchSource",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchsource"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchSourceProtocol": {
+      "abstract": [
+        {
+          "text": "Defines a common set of properties and methods that are shared with all dispatch source types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchSourceProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchSourceProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DispatchSourceProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "DispatchSourceProtocol",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchsourceprotocol"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchTime": {
+      "abstract": [
+        {
+          "text": "A point in time relative to the default clock, with nanosecond precision.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchTime"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DispatchTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "DispatchTime",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchtime"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchTimeInterval": {
+      "abstract": [
+        {
+          "text": "A number of seconds, millisconds, microseconds, or nanoseconds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchTimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchTimeInterval",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DispatchTimeInterval"
+        }
+      ],
+      "role": "symbol",
+      "title": "DispatchTimeInterval",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchtimeinterval"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchTimeoutResult": {
+      "abstract": [
+        {
+          "text": "A result value indicating whether a dispatch operation finished before a specified time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchTimeoutResult"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchTimeoutResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DispatchTimeoutResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "DispatchTimeoutResult",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchtimeoutresult"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchWallTime": {
+      "abstract": [
+        {
+          "text": "An absolute point in time according to the wall clock, with microsecond precision.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchWallTime"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchWallTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DispatchWallTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "DispatchWallTime",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchwalltime"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchWorkItem": {
+      "abstract": [
+        {
+          "text": "The work you want to perform, encapsulated in a way that lets you attach a completion handle or execution dependencies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchWorkItem"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchWorkItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DispatchWorkItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "DispatchWorkItem",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchworkitem"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchWorkloop": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchWorkloop"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchWorkloop",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DispatchWorkloop"
+        }
+      ],
+      "role": "symbol",
+      "title": "DispatchWorkloop",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchworkloop"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/OS_dispatch_queue_serial_executor": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "OS_dispatch_queue_serial_executor"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/OS_dispatch_queue_serial_executor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OS_dispatch_queue_serial_executor",
+      "type": "topic",
+      "url": "/documentation/dispatch/os_dispatch_queue_serial_executor"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/deprecated-symbols": {
+      "abstract": [],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/deprecated-symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated Symbols",
+      "type": "topic",
+      "url": "/documentation/dispatch/deprecated-symbols"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch-barrier": {
+      "abstract": [
+        {
+          "text": "A synchronization point for tasks executing in a concurrent dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch-barrier",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dispatch Barrier",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch-barrier"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch-constants": {
+      "abstract": [],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dispatch Constants",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch-constants"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch-data": {
+      "abstract": [
+        {
+          "text": "An object that manages a memory-based data buffer and exposes it as a contiguous block of memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch-data",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dispatch Data",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch-data"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch-data-types": {
+      "abstract": [],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch-data-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dispatch Data Types",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch-data-types"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch-functions": {
+      "abstract": [],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dispatch Functions",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch-functions"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch-group": {
+      "abstract": [
+        {
+          "text": "A group of tasks that you monitor as a single unit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch-group",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dispatch Group",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch-group"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch-i-o": {
+      "abstract": [
+        {
+          "text": "An object that manages operations on a file descriptor using either stream-based or random-access semantics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch-i-o",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dispatch I/O",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch-i-o"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch-objects": {
+      "abstract": [
+        {
+          "text": "The basic behaviors supported by all dispatch types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch-objects",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dispatch Objects",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch-objects"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch-queue": {
+      "abstract": [
+        {
+          "text": "An object that manages the execution of tasks serially or concurrently on your app’s main thread or on a background thread.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch-queue",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dispatch Queue",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch-queue"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch-semaphore": {
+      "abstract": [
+        {
+          "text": "An object that controls access to a resource across multiple execution contexts through use of a traditional counting semaphore.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch-semaphore",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dispatch Semaphore",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch-semaphore"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch-source": {
+      "abstract": [
+        {
+          "text": "An object that coordinates the processing of specific low-level system events, such as file-system events, timers, and UNIX signals.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch-source",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dispatch Source",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch-source"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch-work-item": {
+      "abstract": [
+        {
+          "text": "The work you want to perform, encapsulated in a way that lets you attach a completion handle or execution dependencies.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch-work-item",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dispatch Work Item",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch-work-item"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatchPrecondition(condition:)": {
+      "abstract": [
+        {
+          "text": "Checks a dispatch condition necessary for further execution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatchPrecondition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "condition"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8Dispatch0A9PredicateO",
+          "text": "DispatchPredicate"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatchPrecondition(condition:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatchPrecondition(condition:)",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchprecondition(condition:)"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_get_global_queue": {
+      "abstract": [
+        {
+          "text": "Returns a system-defined global concurrent queue with the specified quality-of-service class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_get_global_queue"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_get_global_queue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_get_global_queue",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_get_global_queue"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_get_main_queue": {
+      "abstract": [
+        {
+          "text": "Returns the serial dispatch queue associated with the application’s main thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_get_main_queue"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_get_main_queue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_get_main_queue",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_get_main_queue"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_qos_class_t": {
+      "abstract": [
+        {
+          "text": "Quality-of-service classes that specify the priorities for executing tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_qos_class_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_qos_class_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_qos_class_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_qos_class_t"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_priority_t": {
+      "abstract": [
+        {
+          "text": "The execution priority for tasks in a global concurrent queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_priority_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_priority_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_queue_priority_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_queue_priority_t"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_release": {
+      "abstract": [
+        {
+          "text": "Decrements the reference count (the retain count) of a dispatch object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_release"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_release",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_release",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_release"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_retain": {
+      "abstract": [
+        {
+          "text": "Increments the reference count (the retain count) of a dispatch object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_retain"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_retain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_retain",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_retain"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_set_qos_class_floor": {
+      "abstract": [
+        {
+          "text": "Specifies the minimum quality-of-service level for a dispatch queue, source, or workloop.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_set_qos_class_floor"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_set_qos_class_floor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_set_qos_class_floor",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_set_qos_class_floor"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_time": {
+      "abstract": [
+        {
+          "text": "Creates a ",
+          "type": "text"
+        },
+        {
+          "code": "dispatch_time_t",
+          "type": "codeVoice"
+        },
+        {
+          "text": " relative to the default clock or modifies an existing ",
+          "type": "text"
+        },
+        {
+          "code": "dispatch_time_t",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_time"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_time",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_time",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_time"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_time_t": {
+      "abstract": [
+        {
+          "text": "An abstract representation of time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatch_time_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_time_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_time_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "dispatch_time_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_time_t"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_walltime": {
+      "abstract": [
+        {
+          "text": "Creates a ",
+          "type": "text"
+        },
+        {
+          "code": "dispatch_time_t",
+          "type": "codeVoice"
+        },
+        {
+          "text": " using an absolute time according to the wall clock.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_walltime"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_walltime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_walltime",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_walltime"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/workloop": {
+      "abstract": [
+        {
+          "text": "A dispatch object that prioritizes the execution of tasks based on their quality-of-service (QoS) level.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/workloop",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workloop",
+      "type": "topic",
+      "url": "/documentation/dispatch/workloop"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Queues-and-Tasks",
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchQueue",
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchWorkItem",
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchGroup",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch-queue",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch-work-item",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch-group",
+        "doc://com.apple.dispatch/documentation/Dispatch/workloop"
+      ],
+      "title": "Queues and Tasks"
+    },
+    {
+      "anchor": "Thread-Scheduling",
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchQoS"
+      ],
+      "title": "Thread Scheduling"
+    },
+    {
+      "anchor": "System-Event-Monitoring",
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchSource",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch-source",
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchIO",
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchData",
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchDataIterator",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch-i-o",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch-data",
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchSourceProtocol"
+      ],
+      "title": "System Event Monitoring"
+    },
+    {
+      "anchor": "Task-Synchronization",
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchSemaphore",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch-semaphore",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch-barrier"
+      ],
+      "title": "Task Synchronization"
+    },
+    {
+      "anchor": "Time-Constructs",
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchTime",
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchWallTime",
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchTimeInterval",
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchTimeoutResult",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_time_t",
+        "doc://com.apple.dispatch/documentation/Dispatch/DISPATCH_WALLTIME_NOW",
+        "doc://com.apple.dispatch/documentation/Dispatch/2963138-wall-time-constants"
+      ],
+      "title": "Time Constructs"
+    },
+    {
+      "anchor": "Dispatch-Objects",
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject",
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchPredicate",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatchPrecondition(condition:)",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch-objects"
+      ],
+      "title": "Dispatch Objects"
+    },
+    {
+      "anchor": "Deprecated",
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/deprecated-symbols"
+      ],
+      "title": "Deprecated"
+    },
+    {
+      "anchor": "Classes",
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchWorkloop"
+      ],
+      "title": "Classes"
+    },
+    {
+      "anchor": "Reference",
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch-constants",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch-data-types",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch-functions"
+      ],
+      "title": "Reference"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Queues-and-Tasks",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_get_main_queue",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_get_global_queue",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch-queue",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch-work-item",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch-group",
+                "doc://com.apple.dispatch/documentation/Dispatch/workloop"
+              ],
+              "title": "Queues and Tasks"
+            },
+            {
+              "anchor": "Thread-Scheduling",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_qos_class_t",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_priority_t",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_set_qos_class_floor"
+              ],
+              "title": "Thread Scheduling"
+            },
+            {
+              "anchor": "System-Event-Monitoring",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch-source",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch-i-o",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch-data",
+                "doc://com.apple.dispatch/documentation/Dispatch/DispatchSourceProtocol"
+              ],
+              "title": "System Event Monitoring"
+            },
+            {
+              "anchor": "Task-Synchronization",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch-semaphore",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch-barrier"
+              ],
+              "title": "Task Synchronization"
+            },
+            {
+              "anchor": "Time-Constructs",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_time",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_walltime",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_time_t",
+                "doc://com.apple.dispatch/documentation/Dispatch/DISPATCH_WALLTIME_NOW",
+                "doc://com.apple.dispatch/documentation/Dispatch/2963138-wall-time-constants"
+              ],
+              "title": "Time Constructs"
+            },
+            {
+              "anchor": "Dispatch-Objects",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch-objects"
+              ],
+              "title": "Dispatch Objects"
+            },
+            {
+              "anchor": "Deprecated",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/deprecated-symbols"
+              ],
+              "title": "Deprecated"
+            },
+            {
+              "anchor": "Protocols",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/OS_dispatch_queue_serial_executor"
+              ],
+              "title": "Protocols"
+            },
+            {
+              "anchor": "Reference",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch-constants",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch-data-types",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch-functions"
+              ],
+              "title": "Reference"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DISPATCH_WALLTIME_NOW/title",
+          "value": "DISPATCH_WALLTIME_NOW"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DISPATCH_WALLTIME_NOW/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DISPATCH_WALLTIME_NOW"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_time_t/title",
+          "value": "dispatch_time_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_time_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_time_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_time_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_time_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchSourceProtocol/title",
+          "value": "OS_dispatch_source"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchSourceProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_dispatch_source"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchSourceProtocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_dispatch_source"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/dispatch"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/dispatch"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

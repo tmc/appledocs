@@ -1,0 +1,6557 @@
+{
+  "abstract": [
+    {
+      "text": "A collection that supports replacement of an arbitrary subrange of elements",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "with the elements of another collection.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:Sm",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "RangeReplaceableCollection"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "RangeReplaceableCollection"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "RangeReplaceableCollection"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "RangeReplaceableCollection"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Collection/Element",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sl7ElementQa",
+              "text": "Element"
+            },
+            {
+              "kind": "text",
+              "text": "> : "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Collection",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sl",
+              "text": "Collection"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Self"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Collection/SubSequence",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sl11SubSequenceQa",
+              "text": "SubSequence"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sm",
+              "text": "RangeReplaceableCollection"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Range-replaceable collections provide operations that insert and remove",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "elements. For example, you can add elements to an array of strings by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "calling any of the inserting or appending operations that the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "RangeReplaceableCollection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol defines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var bugs = [\"Aphid\", \"Damselfly\"]",
+            "bugs.append(\"Earwig\")",
+            "bugs.insert(contentsOf: [\"Bumblebee\", \"Cicada\"], at: 1)",
+            "print(bugs)",
+            "// Prints \"[\"Aphid\", \"Bumblebee\", \"Cicada\", \"Damselfly\", \"Earwig\"]\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Likewise, ",
+              "type": "text"
+            },
+            {
+              "code": "RangeReplaceableCollection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " types can remove one or more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "elements using a single operation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "bugs.removeLast()",
+            "bugs.removeSubrange(1...2)",
+            "print(bugs)",
+            "// Prints \"[\"Aphid\", \"Damselfly\"]\"",
+            "",
+            "bugs.removeAll()",
+            "print(bugs)",
+            "// Prints \"[]\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Lastly, use the eponymous ",
+              "type": "text"
+            },
+            {
+              "code": "replaceSubrange(_:with:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to replace",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a subrange of elements with the contents of another collection. Here,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "three elements in the middle of an array of integers are replaced by the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "five elements of a ",
+              "type": "text"
+            },
+            {
+              "code": "Repeated<Int>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " var nums = [10, 20, 30, 40, 50]",
+            " nums.replaceSubrange(1...3, with: repeatElement(1, count: 5))",
+            " print(nums)",
+            " // Prints \"[10, 1, 1, 1, 1, 1, 50]\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Conforming-to-the-RangeReplaceableCollection-Protocol",
+          "level": 1,
+          "text": "Conforming to the RangeReplaceableCollection Protocol",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add ",
+              "type": "text"
+            },
+            {
+              "code": "RangeReplaceableCollection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conformance to your custom collection,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "add an empty initializer and the ",
+              "type": "text"
+            },
+            {
+              "code": "replaceSubrange(_:with:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "custom type. ",
+              "type": "text"
+            },
+            {
+              "code": "RangeReplaceableCollection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " provides default implementations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of all its other methods using this initializer and method. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "removeSubrange(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method is implemented by calling",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "replaceSubrange(_:with:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with an empty collection for the ",
+              "type": "text"
+            },
+            {
+              "code": "newElements",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parameter. You can override any of the protocol’s required methods to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provide your own custom implementation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Array": {
+      "abstract": [
+        {
+          "text": "An ordered, random-access collection.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Array"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Array",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Array"
+        }
+      ],
+      "role": "symbol",
+      "title": "Array",
+      "type": "topic",
+      "url": "/documentation/swift/array"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ArraySlice": {
+      "abstract": [
+        {
+          "text": "A slice of an ",
+          "type": "text"
+        },
+        {
+          "code": "Array",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": "ContiguousArray",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", or ",
+          "type": "text"
+        },
+        {
+          "code": "ArraySlice",
+          "type": "codeVoice"
+        },
+        {
+          "text": " instance.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArraySlice"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ArraySlice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArraySlice"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArraySlice",
+      "type": "topic",
+      "url": "/documentation/swift/arrayslice"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Collection": {
+      "abstract": [
+        {
+          "text": "A sequence whose elements can be traversed multiple times,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "nondestructively, and accessed by an indexed subscript.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Collection"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Collection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Collection"
+        }
+      ],
+      "role": "symbol",
+      "title": "Collection",
+      "type": "topic",
+      "url": "/documentation/swift/collection"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Collection/Element": {
+      "abstract": [
+        {
+          "text": "A type representing the sequence’s elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Element"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Collection/Element",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Element",
+      "type": "topic",
+      "url": "/documentation/swift/collection/element"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Collection/SubSequence": {
+      "abstract": [
+        {
+          "text": "A collection representing a contiguous subrange of this collection’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "elements. The subsequence shares indices with the original collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubSequence"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl",
+          "text": "Collection"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SliceV",
+          "text": "Slice"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Collection/SubSequence",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "SubSequence",
+      "type": "topic",
+      "url": "/documentation/swift/collection/subsequence"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContiguousArray": {
+      "abstract": [
+        {
+          "text": "A contiguously stored array.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContiguousArray"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContiguousArray",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContiguousArray"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContiguousArray",
+      "type": "topic",
+      "url": "/documentation/swift/contiguousarray"
+    },
+    "doc://com.apple.Swift/documentation/Swift/MutableCollection": {
+      "abstract": [
+        {
+          "text": "A collection that supports subscript assignment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MutableCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/MutableCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MutableCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "MutableCollection",
+      "type": "topic",
+      "url": "/documentation/swift/mutablecollection"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection": {
+      "abstract": [
+        {
+          "text": "A collection that supports replacement of an arbitrary subrange of elements",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "with the elements of another collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RangeReplaceableCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RangeReplaceableCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "RangeReplaceableCollection",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/+(_:_:)-2n67q": {
+      "abstract": [
+        {
+          "text": "Creates a new collection by concatenating the elements of a collection and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "+"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Other"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Other"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/+(_:_:)-2n67q",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "+(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/+(_:_:)-2n67q"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/+(_:_:)-2t6em": {
+      "abstract": [
+        {
+          "text": "Creates a new collection by concatenating the elements of a sequence and a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "+"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Other"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Other"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/+(_:_:)-2t6em",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "+(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/+(_:_:)-2t6em"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/+(_:_:)-5rv8e": {
+      "abstract": [
+        {
+          "text": "Creates a new collection by concatenating the elements of two collections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "+"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Other"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Other"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/+(_:_:)-5rv8e",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "+(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/+(_:_:)-5rv8e"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/+=(_:_:)": {
+      "abstract": [
+        {
+          "text": "Appends the elements of a sequence to a range-replaceable collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "+="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Other"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Other"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/+=(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "+=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/+=(_:_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/SubSequence": {
+      "abstract": [
+        {
+          "text": "A collection representing a contiguous subrange of this collection’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "elements. The subsequence shares indices with the original collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubSequence"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/SubSequence",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "SubSequence",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/subsequence"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/append(_:)": {
+      "abstract": [
+        {
+          "text": "Adds an element to the end of the collection.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "append"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/append(_:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "append(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/append(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/append(contentsOf:)": {
+      "abstract": [
+        {
+          "text": "Adds the elements of a sequence or collection to the end of this",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "collection.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "append"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "contentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/append(contentsOf:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "append(contentsOf:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/append(contentsof:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/applying(_:)": {
+      "abstract": [
+        {
+          "text": "Applies the given difference to this collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applying"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s20CollectionDifferenceV",
+          "text": "CollectionDifference"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/applying(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applying(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/applying(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/filter(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new collection of the same type containing, in order, the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "elements of the original collection that satisfy the given predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "filter"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/filter(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "filter(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/filter(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/init()": {
+      "abstract": [
+        {
+          "text": "Creates a new, empty collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/init()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/init()"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/init(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new instance of a collection containing the elements of a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "sequence.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/init(_:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/init(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/init(repeating:count:)": {
+      "abstract": [
+        {
+          "text": "Creates a new collection containing the specified number of a single,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "repeated value.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "repeating"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/init(repeating:count:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "init(repeating:count:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/init(repeating:count:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/insert(_:at:)": {
+      "abstract": [
+        {
+          "text": "Inserts a new element into the collection at the specified position.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl5IndexQa",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/insert(_:at:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "insert(_:at:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/insert(_:at:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/insert(contentsOf:at:)": {
+      "abstract": [
+        {
+          "text": "Inserts the elements of a sequence into the collection at the specified",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "position.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insert"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "contentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl5IndexQa",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/insert(contentsOf:at:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "insert(contentsOf:at:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/insert(contentsof:at:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/popLast()-253jb": {
+      "abstract": [
+        {
+          "text": "Removes and returns the last element of the collection.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "BidirectionalCollection",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Self.SubSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "popLast"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/popLast()-253jb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "popLast()",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/poplast()-253jb"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/popLast()-7kbf5": {
+      "abstract": [
+        {
+          "text": "Removes and returns the last element of the collection.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "BidirectionalCollection",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "popLast"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/popLast()-7kbf5",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "popLast()",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/poplast()-7kbf5"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/remove(at:)": {
+      "abstract": [
+        {
+          "text": "Removes and returns the element at the specified position.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl5IndexQa",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/remove(at:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "remove(at:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/remove(at:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/remove(atOffsets:)": {
+      "abstract": [
+        {
+          "text": "Removes all the elements at the specified offsets from the collection.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "MutableCollection",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atOffsets"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation8IndexSetV",
+          "text": "IndexSet"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/remove(atOffsets:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remove(atOffsets:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/remove(atoffsets:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeAll(keepingCapacity:)": {
+      "abstract": [
+        {
+          "text": "Removes all elements from the collection.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAll"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "keepingCapacity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeAll(keepingCapacity:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "removeAll(keepingCapacity:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/removeall(keepingcapacity:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeAll(where:)": {
+      "abstract": [
+        {
+          "text": "Removes all the elements that satisfy the given predicate.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 2,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAll"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeAll(where:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "removeAll(where:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/removeall(where:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeFirst()": {
+      "abstract": [
+        {
+          "text": "Removes and returns the first element of the collection.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 2,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeFirst"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeFirst()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "removeFirst()",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/removefirst()"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeFirst(_:)": {
+      "abstract": [
+        {
+          "text": "Removes the specified number of elements from the beginning of the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "collection.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 2,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeFirst"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeFirst(_:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "removeFirst(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/removefirst(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeLast()-1tnw": {
+      "abstract": [
+        {
+          "text": "Removes and returns the last element of the collection.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "BidirectionalCollection",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeLast"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeLast()-1tnw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeLast()",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/removelast()-1tnw"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeLast()-6e2v1": {
+      "abstract": [
+        {
+          "text": "Removes and returns the last element of the collection.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "BidirectionalCollection",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Self.SubSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeLast"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeLast()-6e2v1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeLast()",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/removelast()-6e2v1"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeLast(_:)-66xv1": {
+      "abstract": [
+        {
+          "text": "Removes the specified number of elements from the end of the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "collection.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "BidirectionalCollection",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Self.SubSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeLast"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeLast(_:)-66xv1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeLast(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/removelast(_:)-66xv1"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeLast(_:)-n550": {
+      "abstract": [
+        {
+          "text": "Removes the specified number of elements from the end of the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "collection.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "BidirectionalCollection",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeLast"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeLast(_:)-n550",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeLast(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/removelast(_:)-n550"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeSubrange(_:)": {
+      "abstract": [
+        {
+          "text": "Removes the specified subrange of elements from the collection.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 2,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeSubrange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl5IndexQa",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeSubrange(_:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "removeSubrange(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/removesubrange(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeSubranges(_:)": {
+      "abstract": [
+        {
+          "text": "Removes the elements at the given indices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeSubranges"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8RangeSetV",
+          "text": "RangeSet"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl5IndexQa",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeSubranges(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeSubranges(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/removesubranges(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replace(_:maxReplacements:with:)": {
+      "abstract": [
+        {
+          "text": "Replaces all occurrences of the sequence matching the given regex with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a given collection.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "SubSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Substring",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replace"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing14RegexComponentP",
+          "text": "RegexComponent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxReplacements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV5MatchV",
+          "text": "Match"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replace(_:maxReplacements:with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replace(_:maxReplacements:with:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/replace(_:maxreplacements:with:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replace(_:with:maxReplacements:)-20ctz": {
+      "abstract": [
+        {
+          "text": "Replaces all occurrences of the sequence matching the given regex with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a given collection.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "SubSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Substring",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replace"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing14RegexComponentP",
+          "text": "RegexComponent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxReplacements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replace(_:with:maxReplacements:)-20ctz",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replace(_:with:maxReplacements:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/replace(_:with:maxreplacements:)-20ctz"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replace(_:with:maxReplacements:)-5u0yu": {
+      "abstract": [
+        {
+          "text": "Replaces all occurrences of a target sequence with a given collection",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Equatable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replace"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxReplacements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replace(_:with:maxReplacements:)-5u0yu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replace(_:with:maxReplacements:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/replace(_:with:maxreplacements:)-5u0yu"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replace(maxReplacements:content:with:)": {
+      "abstract": [
+        {
+          "text": "Replaces all matches for the regex in this collection, using the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "given closures to create the replacement and the regex.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "BidirectionalCollection",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "SubSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Substring",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replace"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxReplacements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing14RegexComponentP",
+          "text": "RegexComponent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV5MatchV",
+          "text": "Match"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replace(maxReplacements:content:with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replace(maxReplacements:content:with:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/replace(maxreplacements:content:with:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replace(with:maxReplacements:content:)": {
+      "abstract": [
+        {
+          "text": "Replaces all matches for the regex in this collection, using the given",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "closure to create the regex.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "BidirectionalCollection",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "SubSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Substring",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replace"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxReplacements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing14RegexComponentP",
+          "text": "RegexComponent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replace(with:maxReplacements:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replace(with:maxReplacements:content:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/replace(with:maxreplacements:content:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replaceSubrange(_:with:)": {
+      "abstract": [
+        {
+          "text": "Replaces the specified subrange of elements with the given collection.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replaceSubrange"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl5IndexQa",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replaceSubrange(_:with:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "replaceSubrange(_:with:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/replacesubrange(_:with:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(_:maxReplacements:with:)": {
+      "abstract": [
+        {
+          "text": "Returns a new collection in which all occurrences of a sequence matching",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the given regex are replaced by another collection.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "SubSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Substring",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replacing"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing14RegexComponentP",
+          "text": "RegexComponent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxReplacements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV5MatchV",
+          "text": "Match"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(_:maxReplacements:with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replacing(_:maxReplacements:with:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/replacing(_:maxreplacements:with:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(_:subrange:maxReplacements:with:)": {
+      "abstract": [
+        {
+          "text": "Returns a new collection in which all occurrences of a sequence matching",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the given regex are replaced by another regex match.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "SubSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Substring",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replacing"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing14RegexComponentP",
+          "text": "RegexComponent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "subrange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl5IndexQa",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxReplacements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV5MatchV",
+          "text": "Match"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(_:subrange:maxReplacements:with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replacing(_:subrange:maxReplacements:with:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/replacing(_:subrange:maxreplacements:with:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(_:with:maxReplacements:)-1tg5u": {
+      "abstract": [
+        {
+          "text": "Returns a new collection in which all occurrences of a sequence matching",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the given regex are replaced by another collection.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "SubSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Substring",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replacing"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing14RegexComponentP",
+          "text": "RegexComponent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxReplacements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(_:with:maxReplacements:)-1tg5u",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replacing(_:with:maxReplacements:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/replacing(_:with:maxreplacements:)-1tg5u"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(_:with:maxReplacements:)-6y22p": {
+      "abstract": [
+        {
+          "text": "Returns a new collection in which all occurrences of a target sequence",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "are replaced by another collection.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Equatable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replacing"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxReplacements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(_:with:maxReplacements:)-6y22p",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replacing(_:with:maxReplacements:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/replacing(_:with:maxreplacements:)-6y22p"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(_:with:subrange:maxReplacements:)-1uswm": {
+      "abstract": [
+        {
+          "text": "Returns a new collection in which all occurrences of a target sequence",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "are replaced by another collection.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Equatable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replacing"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "subrange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl5IndexQa",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxReplacements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(_:with:subrange:maxReplacements:)-1uswm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replacing(_:with:subrange:maxReplacements:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/replacing(_:with:subrange:maxreplacements:)-1uswm"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(_:with:subrange:maxReplacements:)-5mdsz": {
+      "abstract": [
+        {
+          "text": "Returns a new collection in which all occurrences of a sequence matching",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the given regex are replaced by another collection.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "SubSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Substring",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replacing"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing14RegexComponentP",
+          "text": "RegexComponent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "subrange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl5IndexQa",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxReplacements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(_:with:subrange:maxReplacements:)-5mdsz",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replacing(_:with:subrange:maxReplacements:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/replacing(_:with:subrange:maxreplacements:)-5mdsz"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(maxReplacements:content:with:)": {
+      "abstract": [
+        {
+          "text": "Returns a new collection in which all matches for the regex",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "are replaced, using the given closures to create the replacement",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and the regex.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "BidirectionalCollection",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "SubSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Substring",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replacing"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxReplacements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing14RegexComponentP",
+          "text": "RegexComponent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV5MatchV",
+          "text": "Match"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(maxReplacements:content:with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replacing(maxReplacements:content:with:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/replacing(maxreplacements:content:with:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(subrange:maxReplacements:content:with:)": {
+      "abstract": [
+        {
+          "text": "Returns a new collection in which all matches for the regex",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "are replaced, using the given closures to create the replacement",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and the regex.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "BidirectionalCollection",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "SubSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Substring",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replacing"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "subrange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl5IndexQa",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxReplacements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing14RegexComponentP",
+          "text": "RegexComponent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV5MatchV",
+          "text": "Match"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(subrange:maxReplacements:content:with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replacing(subrange:maxReplacements:content:with:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/replacing(subrange:maxreplacements:content:with:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(with:maxReplacements:content:)": {
+      "abstract": [
+        {
+          "text": "Returns a new collection in which all matches for the regex",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "are replaced, using the given closure to create the regex.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "BidirectionalCollection",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "SubSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Substring",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replacing"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxReplacements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing14RegexComponentP",
+          "text": "RegexComponent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(with:maxReplacements:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replacing(with:maxReplacements:content:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/replacing(with:maxreplacements:content:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(with:subrange:maxReplacements:content:)": {
+      "abstract": [
+        {
+          "text": "Returns a new collection in which all matches for the regex",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "are replaced, using the given closure to create the regex.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "BidirectionalCollection",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "SubSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Substring",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replacing"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Replacement"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "subrange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl5IndexQa",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxReplacements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing14RegexComponentP",
+          "text": "RegexComponent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(with:subrange:maxReplacements:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replacing(with:subrange:maxReplacements:content:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/replacing(with:subrange:maxreplacements:content:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/reserveCapacity(_:)": {
+      "abstract": [
+        {
+          "text": "Prepares the collection to store the specified number of elements, when",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "doing so is appropriate for the underlying type.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reserveCapacity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/reserveCapacity(_:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "reserveCapacity(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/reservecapacity(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/subscript(_:)-1x7vz": {
+      "abstract": [
+        {
+          "text": "Accesses the element at the specified position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl5IndexQa",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/subscript(_:)-1x7vz",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/subscript(_:)-1x7vz"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/subscript(_:)-3h0y3": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl5IndexQa",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl11SubSequenceQa",
+          "text": "SubSequence"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/subscript(_:)-3h0y3",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/subscript(_:)-3h0y3"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/trimPrefix(_:)-2hzf1": {
+      "abstract": [
+        {
+          "text": "Removes the initial elements matching the regex from the start of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "this collection, if the initial elements match, using the given closure",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to create the regex.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "BidirectionalCollection",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "SubSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Substring",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trimPrefix"
+        },
+        {
+          "kind": "text",
+          "text": "(() -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing14RegexComponentP",
+          "text": "RegexComponent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/trimPrefix(_:)-2hzf1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trimPrefix(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/trimprefix(_:)-2hzf1"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/trimPrefix(_:)-2s3lb": {
+      "abstract": [
+        {
+          "text": "Removes the initial elements that matches the given regex.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "BidirectionalCollection",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "SubSequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Substring",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trimPrefix"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing14RegexComponentP",
+          "text": "RegexComponent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/trimPrefix(_:)-2s3lb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trimPrefix(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/trimprefix(_:)-2s3lb"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/trimPrefix(_:)-3t4tj": {
+      "abstract": [
+        {
+          "text": "Removes ",
+          "type": "text"
+        },
+        {
+          "code": "prefix",
+          "type": "codeVoice"
+        },
+        {
+          "text": " from the start of the collection.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Equatable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trimPrefix"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Prefix"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Prefix"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/trimPrefix(_:)-3t4tj",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trimPrefix(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/trimprefix(_:)-3t4tj"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/trimPrefix(while:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trimPrefix"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "while"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/trimPrefix(while:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trimPrefix(while:)",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection/trimprefix(while:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sequence": {
+      "abstract": [
+        {
+          "text": "A type that provides sequential, iterated access to its elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sequence"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "Sequence",
+      "type": "topic",
+      "url": "/documentation/swift/sequence"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Slice": {
+      "abstract": [
+        {
+          "text": "A view into a subsequence of elements of another collection.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "RangeReplaceableCollection",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Slice"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Slice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Slice"
+        }
+      ],
+      "role": "symbol",
+      "title": "Slice",
+      "type": "topic",
+      "url": "/documentation/swift/slice"
+    },
+    "doc://com.apple.Swift/documentation/Swift/String": {
+      "abstract": [
+        {
+          "text": "A Unicode string value that is a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/String",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/swift/string"
+    },
+    "doc://com.apple.Swift/documentation/Swift/String/UnicodeScalarView": {
+      "abstract": [
+        {
+          "text": "A view of a string’s contents as a collection of Unicode scalar values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnicodeScalarView"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/String/UnicodeScalarView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnicodeScalarView"
+        }
+      ],
+      "role": "symbol",
+      "title": "String.UnicodeScalarView",
+      "type": "topic",
+      "url": "/documentation/swift/string/unicodescalarview"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Substring": {
+      "abstract": [
+        {
+          "text": "A slice of a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Substring"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Substring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Substring"
+        }
+      ],
+      "role": "symbol",
+      "title": "Substring",
+      "type": "topic",
+      "url": "/documentation/swift/substring"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Substring/UnicodeScalarView": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnicodeScalarView"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Substring/UnicodeScalarView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnicodeScalarView"
+        }
+      ],
+      "role": "symbol",
+      "title": "Substring.UnicodeScalarView",
+      "type": "topic",
+      "url": "/documentation/swift/substring/unicodescalarview"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Collection",
+        "doc://com.apple.Swift/documentation/Swift/Sequence"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Array",
+        "doc://com.apple.Swift/documentation/Swift/ArraySlice",
+        "doc://com.apple.Swift/documentation/Swift/ContiguousArray",
+        "doc://com.apple.Swift/documentation/Swift/Slice",
+        "doc://com.apple.Swift/documentation/Swift/String",
+        "doc://com.apple.Swift/documentation/Swift/String/UnicodeScalarView",
+        "doc://com.apple.Swift/documentation/Swift/Substring",
+        "doc://com.apple.Swift/documentation/Swift/Substring/UnicodeScalarView"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Collection-Mutability",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/MutableCollection"
+      ],
+      "title": "Collection Mutability"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-New-Collection",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/init()"
+      ],
+      "title": "Creating a New Collection"
+    },
+    {
+      "anchor": "Adding-Elements",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/insert(contentsOf:at:)"
+      ],
+      "title": "Adding Elements"
+    },
+    {
+      "anchor": "Operators",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/+(_:_:)-2n67q",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/+(_:_:)-2t6em",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/+(_:_:)-5rv8e",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/+=(_:_:)"
+      ],
+      "title": "Operators"
+    },
+    {
+      "anchor": "Associated-Types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/SubSequence"
+      ],
+      "title": "Associated Types"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/init(_:)",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/init(repeating:count:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/append(_:)",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/append(contentsOf:)",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/applying(_:)",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/filter(_:)",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/insert(_:at:)",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/popLast()-253jb",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/popLast()-7kbf5",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/remove(at:)",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/remove(atOffsets:)",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeAll(keepingCapacity:)",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeAll(where:)",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeFirst()",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeFirst(_:)",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeLast()-1tnw",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeLast()-6e2v1",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeLast(_:)-66xv1",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeLast(_:)-n550",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeSubrange(_:)",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/removeSubranges(_:)",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replace(_:maxReplacements:with:)",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replace(_:with:maxReplacements:)-20ctz",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replace(_:with:maxReplacements:)-5u0yu",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replace(maxReplacements:content:with:)",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replace(with:maxReplacements:content:)",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replaceSubrange(_:with:)",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(_:maxReplacements:with:)",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(_:subrange:maxReplacements:with:)",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(_:with:maxReplacements:)-1tg5u",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(_:with:maxReplacements:)-6y22p",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(_:with:subrange:maxReplacements:)-1uswm",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(_:with:subrange:maxReplacements:)-5mdsz",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(maxReplacements:content:with:)",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(subrange:maxReplacements:content:with:)",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(with:maxReplacements:content:)",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/replacing(with:subrange:maxReplacements:content:)",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/reserveCapacity(_:)",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/trimPrefix(_:)-2hzf1",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/trimPrefix(_:)-2s3lb",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/trimPrefix(_:)-3t4tj",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/trimPrefix(while:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Subscripts",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/subscript(_:)-1x7vz",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection/subscript(_:)-3h0y3"
+      ],
+      "title": "Subscripts"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/rangereplaceablecollection"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

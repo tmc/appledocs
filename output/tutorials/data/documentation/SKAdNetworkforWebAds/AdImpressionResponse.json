@@ -1,0 +1,780 @@
+{
+  "abstract": [
+    {
+      "text": "The response you provide that contains a signed payload for a clicked web ad.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/AdImpressionResponse"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:skadnetwork:AdImpressionResponse",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "AdImpressionResponse"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SKAdNetwork for Web Ads"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AdImpressionResponse"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "SKAdNetwork for Web Ads"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "AdImpressionResponse"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: SKAdNetwork for Web Ads"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "AdImpressionResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ad network ID.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "You receive an ad network ID when you register to use SKAdNetwork. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/StoreKit/registering-an-ad-network",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "ad_network_id",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The App Store app ID that the ad impression advertises. This is the same value the ad network provides in the attributable ad link. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/creating-an-attributable-ad-link",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "itunes_item_id",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This value needs to match the value of ",
+                  "type": "text"
+                },
+                {
+                  "code": "source_nonce",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/AdImpressionRequest",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". The value needs to be in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "UUID",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " string format.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Provide the dash-separated representation of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "source_nonce",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "nonce",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The cryptographic signature the ad network generates to sign the web ad. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/generating-a-signature-for-attributable-web-ads",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "signature",
+          "required": true,
+          "type": [
+            {
+              "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/signature",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:skadnetwork:signature",
+              "text": "signature"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The effective top-level domain and one more preceding path component (eTLD+1) representation of the ad network serving the ad. This value needs to match the ",
+                  "type": "text"
+                },
+                {
+                  "code": "source_domain",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " value you receive in the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/AdImpressionRequest",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "source_domain",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A four-digit value you use to measure the aspects of an advertising effort or campaign.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "source_identifier",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An integer that represents the UNIX time, in milliseconds, that you create this ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/AdImpressionResponse",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "timestamp",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The SKAdNetwork version. Use version ",
+                  "type": "text"
+                },
+                {
+                  "code": "\"4.0\"",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or later. For version information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/StoreKit/skadnetwork-release-notes",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "version",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "attributes": [
+        {
+          "kind": "allowedTypes",
+          "values": []
+        }
+      ],
+      "kind": "attributes",
+      "title": "Attributes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/creating-an-attributable-ad-link",
+        "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/generating-a-signature-for-attributable-web-ads"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This is a response that you provide to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/Get-a-signed-SKAdNetwork-ad-payload-for-a-web-ad.",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint. When you create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/AdImpressionResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", use the dash-separated string representation of the UUID, which you decode from the ",
+              "type": "text"
+            },
+            {
+              "code": "source_nonce",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/AdImpressionRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that you receive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "attributionSourceNonce",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in a web ad link, the ",
+                  "type": "text"
+                },
+                {
+                  "code": "source_nonce",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/AdImpressionRequest",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", and the ",
+                  "type": "text"
+                },
+                {
+                  "code": "nonce",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in this response all represent the same UUID, but the encoding varies.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/StoreKit/registering-an-ad-network": {
+      "abstract": [
+        {
+          "text": "Use the install-validation APIs for your ad campaigns after registering your ad network with Apple.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/registering-an-ad-network",
+      "kind": "article",
+      "role": "article",
+      "title": "Registering an ad network",
+      "type": "topic",
+      "url": "/documentation/StoreKit/registering-an-ad-network"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/skadnetwork-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about the features in each SKAdNetwork version.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/skadnetwork-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "SKAdNetwork release notes",
+      "type": "topic",
+      "url": "/documentation/StoreKit/skadnetwork-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds": {
+      "abstract": [
+        {
+          "text": "Attribute app-install campaigns that originate on the web.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SKAdNetwork for Web Ads",
+      "type": "topic",
+      "url": "/documentation/skadnetworkforwebads"
+    },
+    "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/AdImpressionRequest": {
+      "abstract": [
+        {
+          "text": "The request body that devices send to fetch the web ad impression from the ad network’s server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AdImpressionRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/AdImpressionRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AdImpressionRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "AdImpressionRequest",
+      "type": "topic",
+      "url": "/documentation/skadnetworkforwebads/adimpressionrequest"
+    },
+    "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/AdImpressionResponse": {
+      "abstract": [
+        {
+          "text": "The response you provide that contains a signed payload for a clicked web ad.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AdImpressionResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/AdImpressionResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AdImpressionResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "AdImpressionResponse",
+      "type": "topic",
+      "url": "/documentation/skadnetworkforwebads/adimpressionresponse"
+    },
+    "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/Get-a-signed-SKAdNetwork-ad-payload-for-a-web-ad.": {
+      "abstract": [
+        {
+          "text": "An endpoint you provide to receive requests from devices to serve signed ad interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/Get-a-signed-SKAdNetwork-ad-payload-for-a-web-ad.",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a signed SKAdNetwork ad payload for a web ad."
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Signed Web Ad Impression Payload",
+      "type": "topic",
+      "url": "/documentation/skadnetworkforwebads/get-a-signed-skadnetwork-ad-payload-for-a-web-ad."
+    },
+    "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/creating-an-attributable-ad-link": {
+      "abstract": [
+        {
+          "text": "Create click-through web ads that attribute App Store app installations to your ad network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/creating-an-attributable-ad-link",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an attributable ad link",
+      "type": "topic",
+      "url": "/documentation/skadnetworkforwebads/creating-an-attributable-ad-link"
+    },
+    "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/generating-a-signature-for-attributable-web-ads": {
+      "abstract": [
+        {
+          "text": "Initiate install-validation by providing the signed parameters for an attributable web ad.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/generating-a-signature-for-attributable-web-ads",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating a signature for attributable web ads",
+      "type": "topic",
+      "url": "/documentation/skadnetworkforwebads/generating-a-signature-for-attributable-web-ads"
+    },
+    "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/signature": {
+      "abstract": [
+        {
+          "text": "The key-value pairs that ad networks use to cryptographically sign a web ad.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "signature"
+        }
+      ],
+      "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/signature",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "signature"
+        }
+      ],
+      "role": "symbol",
+      "title": "signature",
+      "type": "topic",
+      "url": "/documentation/skadnetworkforwebads/signature"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Providing-the-web-ad-signature-and-response",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/generating-a-signature-for-attributable-web-ads",
+        "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/signature"
+      ],
+      "title": "Providing the web ad signature and response"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/skadnetworkforwebads/adimpressionresponse"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

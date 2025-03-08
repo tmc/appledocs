@@ -1,0 +1,1414 @@
+{
+  "abstract": [
+    {
+      "text": "Understand how different API calls to your closures can affect your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/preventing-timing-problems-when-using-closures"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Preventing Timing Problems When Using Closures"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many of the APIs you use in Swift take a closure—or a function passed as an instance—as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a parameter. Because closures can contain code that interacts with multiple parts",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of an app, it’s important to understand the different ways closures can be called",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by the APIs you pass them to. Closures you pass to APIs can be called synchronously",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(immediately) or asynchronously (sometime later). They may be called once, many times,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or never.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Making false assumptions about when a closure is called can lead to",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "data inconsistency and app crashes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Understand-the-Results-of-Synchronous-and-Asynchronous-Calls",
+          "level": 3,
+          "text": "Understand the Results of Synchronous and Asynchronous Calls",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you pass a closure to an API, consider ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "when",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " that closure will be called relative",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the other code in your app. In synchronous APIs, the result of calling the closure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "will be available immediately after you pass the closure. In asynchronous APIs, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "result won’t be available until sometime later; this difference affects how you write",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code both ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "in",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " your closure as well as the code ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "following",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " your closure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below defines two functions, ",
+              "type": "text"
+            },
+            {
+              "code": "now(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "later(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You can call",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "both functions the same way: with a trailing closure and no other arguments. Both",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "now(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "later(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " accept a closure and call it, but ",
+              "type": "text"
+            },
+            {
+              "code": "later(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " waits a couple",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "seconds before calling its closure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import Dispatch",
+            "let queue = DispatchQueue(label: \"com.example.queue\")",
+            "",
+            "func now(_ closure: () -> Void) {",
+            "    closure()",
+            "}",
+            "",
+            "func later(_ closure: @escaping () -> Void) {",
+            "    queue.asyncAfter(deadline: .now() + 2) {",
+            "        closure()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "now(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "later(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functions represent the two most common categories",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of APIs you’ll encounter in methods from app frameworks that take closures: synchronous",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "APIs like ",
+              "type": "text"
+            },
+            {
+              "code": "now(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and asynchronous APIs like ",
+              "type": "text"
+            },
+            {
+              "code": "later(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because calling a closure can change the local and global state of your app, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code you write on the lines after passing a closure needs to be written with a careful",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "consideration of ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "when",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " that closure is called. Even something as simple as printing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a sequence of letters can be affected by the timing of a closure call:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "later {",
+            "    print(\"A\") // Eventually prints \"A\"",
+            "}",
+            "print(\"B\") // Immediately prints \"B\"",
+            "",
+            "now {",
+            "    print(\"C\") // Immediately prints \"C\"",
+            "}",
+            "print(\"D\") // Immedately prints \"D\"",
+            "",
+            "// Prevent the program from exiting immediately if you're running this code in Terminal.",
+            "let semaphore = DispatchSemaphore(value: 0).wait(timeout: .now() + 10)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Running the code in the example above usually prints the letters in the order ",
+              "type": "text"
+            },
+            {
+              "code": "B",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "→ ",
+              "type": "text"
+            },
+            {
+              "code": "C",
+              "type": "codeVoice"
+            },
+            {
+              "text": " → ",
+              "type": "text"
+            },
+            {
+              "code": "D",
+              "type": "codeVoice"
+            },
+            {
+              "text": " → ",
+              "type": "text"
+            },
+            {
+              "code": "A",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Even though the line that prints ",
+              "type": "text"
+            },
+            {
+              "code": "A",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is first in the code, it’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ordered later in the output. The ordering difference happens due to the way the ",
+              "type": "text"
+            },
+            {
+              "code": "now(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "code": "later(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functions are defined. You need to know how each function calls its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "closure if you write code that relies on a specific execution order.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The order in which ",
+                  "type": "text"
+                },
+                {
+                  "code": "A",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is printed relative to the other letters isn’t guaranteed.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Under typical system conditions, it’s usually printed last, but you shouldn’t write",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "code that relies on the order of an asychronous call relative to synchronous code",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "without performing more careful synchronization between threads.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You’ll need to consider this kind of time-based execution problem frequently when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using APIs that take closures. In many cases, only one sequence of calls is correct",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for your app, so it’s important to think through what the state of your app will",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "be, given the APIs you’re using. Use API names and parameter names along with documentation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to determine whether an API is synchronous or asynchronous.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A common timing mistake is expecting the results of an asynchronous call to be available",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "within the calling synchronous code. For example, the ",
+              "type": "text"
+            },
+            {
+              "code": "later(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method above is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "comparable to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "class’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1410330-datatask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method, which is also asynchronous. A timing scenario you should avoid is calling",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1410330-datatask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method within your app’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewDidLoad()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method and attempting to use the results outside of the closure you pass as the completion",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "handler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Dont-Write-Code-That-Makes-a-One-Time-Change-in-a-Closure-Thats-Called-Multiple-Times",
+          "level": 3,
+          "text": "Don’t Write Code That Makes a One-Time Change in a Closure That’s Called Multiple Times",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re going to pass a closure to an API that might call it multiple times, omit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code that’s intended to make a one-time change to external state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and an array of data lines to write to the file that the handle refers to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import Foundation",
+            "",
+            "let file = FileHandle(forWritingAtPath: \"/dev/null\")!",
+            "let lines = [\"x,y\", \"1,1\", \"2,4\", \"3,9\", \"4,16\"]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To write each line to the file, pass a closure to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Array/forEach(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "lines.forEach { line in",
+            "    file.write(\"\\(line)\\n\".data(using: .utf8)!)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’re finished using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "close it using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1413393-closefile",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The correct placement of the call to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1413393-closefile",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is outside of the closure:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "lines.forEach { line in",
+            "    file.write(\"\\(line)\\n\".data(using: .utf8)!)",
+            "}",
+            "",
+            "file.closeFile()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you misunderstand the requirements of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1413393-closefile",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you might place the call inside the closure. Doing so crashes your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "lines.forEach { line in",
+            "    file.write(\"\\(line)\\n\".data(using: .utf8)!)",
+            "    file.closeFile() // Error",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Dont-Put-Critical-Code-in-a-Closure-That-Might-Not-Be-Called",
+          "level": 3,
+          "text": "Don’t Put Critical Code in a Closure That Might Not Be Called",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If there’s a chance that a closure you pass to an API won’t be called, don’t put",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code that’s critical to continuing your app in the closure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below defines a ",
+              "type": "text"
+            },
+            {
+              "code": "Lottery",
+              "type": "codeVoice"
+            },
+            {
+              "text": " enumeration that randomly picks a winning number",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and calls a completion handler if the right number is guessed:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "enum Lottery {",
+            "    static var lotteryWinHandler: (() -> Void)?",
+            "",
+            "    @discardableResult static func pickWinner(guess: Int) {",
+            "        print(\"Running the lottery.\")",
+            "        if guess == Int.random(in: 0 ..< 100_000_000), let winHandler = lotteryWinHandler {",
+            "            winHandler()",
+            "            return true",
+            "        }",
+            "",
+            "        return false",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Writing code that depends on the completion handler being called is dangerous. There’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "no guarantee that the random guess will be correct, so important actions like paying",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "bills—scheduled for after you win the lottery—might never happen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func payBills() {",
+            "    amountOwed = 0",
+            "}",
+            "",
+            "var amountOwed = 25",
+            "let myLuckyNumber = 42",
+            "",
+            "Lottery.lotteryWinHandler = {",
+            "    print(\"Congratulations!\")",
+            "    payBills()",
+            "}",
+            "",
+            "// You get 10 chances at winning.",
+            "for _ in 1..10 {",
+            "    Lottery.pickWinner(guess: myLuckyNumber)",
+            "}",
+            "",
+            "if amountOwed > 0 {",
+            "    fatalError(\"You need to pay your bills before proceeding.\")",
+            "}",
+            "",
+            "// Code placed below this line runs only if the lottery was won."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Array/forEach(_:)": {
+      "abstract": [
+        {
+          "text": "Calls the given closure on each element in the sequence in the same order",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "as a ",
+          "type": "text"
+        },
+        {
+          "code": "for",
+          "type": "codeVoice"
+        },
+        {
+          "text": "-",
+          "type": "text"
+        },
+        {
+          "code": "in",
+          "type": "codeVoice"
+        },
+        {
+          "text": " loop.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "forEach"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Array/forEach(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "forEach(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/array/foreach(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/maintaining-state-in-your-apps": {
+      "abstract": [
+        {
+          "text": "Use enumerations to capture and track the state of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/maintaining-state-in-your-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Maintaining State in Your Apps",
+      "type": "topic",
+      "url": "/documentation/swift/maintaining-state-in-your-apps"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewDidLoad()": {
+      "abstract": [
+        {
+          "text": "Called after the controller’s view is loaded into memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewDidLoad"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewDidLoad()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "viewDidLoad()",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController/viewDidLoad()"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle": {
+      "abstract": [
+        {
+          "text": "An object-oriented wrapper for a file descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileHandle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileHandle",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1413393-closefile": {
+      "abstract": [
+        {
+          "text": "Disallows further access to the represented file or communications channel and signals end of file on communications channels that permit writing.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "closeFile"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1413393-closefile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "closeFile()",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1413393-closefile"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/1410330-datatask": {
+      "abstract": [
+        {
+          "text": "Creates a task that retrieves the contents of the specified URL, then calls a handler upon completion. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (Data?, URLResponse?, (any Error)?) -> Void) -> URLSessionDataTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1410330-datatask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dataTask(with:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/1410330-datatask"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Data-Flow-and-Control-Flow",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/maintaining-state-in-your-apps"
+      ],
+      "title": "Data Flow and Control Flow"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1filehandle/title",
+          "value": "NSFileHandle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1viewDidLoad()/title",
+          "value": "viewDidLoad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1viewDidLoad()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewDidLoad"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsession/title",
+          "value": "NSURLSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsession~11410330-datatask/title",
+          "value": "dataTaskWithURL:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1filehandle~11413393-closefile/title",
+          "value": "closeFile"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

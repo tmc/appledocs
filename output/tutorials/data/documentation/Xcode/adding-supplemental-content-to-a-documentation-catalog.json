@@ -1,0 +1,679 @@
+{
+  "abstract": [
+    {
+      "text": "Include articles and extension files to extend your source documentation comments or provide supporting conceptual content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/writing-documentation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/adding-supplemental-content-to-a-documentation-catalog"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding supplemental content to a documentation catalog"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The process of crafting great documentation is an art. Your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content is unique; you know which elements, beyond source",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "documentation comments, provide the most value to your readers. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information about adding supplemental content to a documentation catalog with DocC, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.swift.org/documentation/docc/adding-supplemental-content-to-a-documentation-catalog",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-articles-to-explain-concepts-or-describe-tasks",
+          "level": 3,
+          "text": "Add articles to explain concepts or describe tasks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your documentation catalog includes an article file with the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "name ",
+              "type": "text"
+            },
+            {
+              "code": "GettingStarted.md",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", Xcode displays this article in the documentation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "viewer with a document icon.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "adding-supplemental-content-to-a-documentation-catalog-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The structure of an article is similar to symbol files or a top-level landing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "page, with the exception that the first level 1 header is regular content instead",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of a symbol reference. For example, the Getting Started with Sloths article",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contains the following title, single-sentence abstract or summary, and Overview section:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "# Getting started with sloths",
+            "",
+            "Create a sloth and assign personality traits and abilities.",
+            "",
+            "## Overview",
+            "",
+            "Sloths are complex creatures that require careful creation and a suitable",
+            "habitat.",
+            "..."
+          ],
+          "syntax": "markdown",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the Overview section, additional sections and subsections use a double",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "hash (##) for a level 2 header, and a triple hash (###) for a level 3 header.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Follow the hashes with a space, and then the title for that section or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "subsection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add an article to your documentation catalog in Xcode, do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your documentation catalog in the Project navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose File > New > File to open the file template chooser.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Article File template in the Documentation section and click",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter a filename and click Create. Xcode creates a new article file with a default name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Modify the first line of the file to specify its title.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Replace the summary and placeholders in the file with appropriate content.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "adding-supplemental-content-to-a-documentation-catalog-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-extension-files-to-append-to-or-override-source-documentation-comments",
+          "level": 3,
+          "text": "Add extension files to append to or override source documentation comments",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "DocC supports supplementing or completely replacing source",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "documentation comments with content in extension files. To add an extension file to your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "documentation catalog, do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, select your documentation catalog in the Project navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose File > New > File to open the file template chooser.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Extension File template in the Documentation section and click",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter the symbol name as the filename and click Create.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Modify the first line of the file to identify the symbol that the file",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "relates to.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the extension file, replace the ",
+              "type": "text"
+            },
+            {
+              "code": "Symbol",
+              "type": "codeVoice"
+            },
+            {
+              "text": " placeholder",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the absolute path to the symbol.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The absolute path is the target’s product module name followed by the symbol name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "adding-supplemental-content-to-a-documentation-catalog-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "adding-supplemental-content-to-a-documentation-catalog-1": {
+      "alt": "A screenshot of the Xcode documentation viewer that shows the Getting started with sloths article in a selected state in the Project navigator on the left. The pane on the right displays the article page with a document icon. ",
+      "identifier": "adding-supplemental-content-to-a-documentation-catalog-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/109d7b40f073542e0f9b6202a798c46a/adding-supplemental-content-to-a-documentation-catalog-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/eaf34a9c47b3af60376d8a79de51ae45/adding-supplemental-content-to-a-documentation-catalog-1~dark@2x.png"
+        }
+      ]
+    },
+    "adding-supplemental-content-to-a-documentation-catalog-2": {
+      "alt": "A screenshot that shows the Xcode file template chooser with the Article File template in a selected state.",
+      "identifier": "adding-supplemental-content-to-a-documentation-catalog-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6f5277c5bdf3c4dcb28fcd1baf63d041/adding-supplemental-content-to-a-documentation-catalog-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/246e59c501c0aacb37d49071db099b22/adding-supplemental-content-to-a-documentation-catalog-2~dark@2x.png"
+        }
+      ]
+    },
+    "adding-supplemental-content-to-a-documentation-catalog-3": {
+      "alt": "A screenshot that shows the Xcode file template chooser with the Extension File template in a selected state.",
+      "identifier": "adding-supplemental-content-to-a-documentation-catalog-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67a08fbc893ce8a92ff05e6c6896ab4a/adding-supplemental-content-to-a-documentation-catalog-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c6374c46e80199e4292a91fc3d3fa8e7/adding-supplemental-content-to-a-documentation-catalog-3~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/writing-documentation": {
+      "abstract": [
+        {
+          "text": "Produce rich and engaging developer documentation for your apps, frameworks, and packages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/writing-documentation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Writing documentation",
+      "type": "topic",
+      "url": "/documentation/xcode/writing-documentation"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/writing-symbol-documentation-in-your-source-files": {
+      "abstract": [
+        {
+          "text": "Add reference documentation to your symbols that explains how to use them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/writing-symbol-documentation-in-your-source-files",
+      "kind": "article",
+      "role": "article",
+      "title": "Writing symbol documentation in your source files",
+      "type": "topic",
+      "url": "/documentation/xcode/writing-symbol-documentation-in-your-source-files"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/xcode/slothcreator_building_docc_documentation_in_xcode": {
+      "abstract": [
+        {
+          "text": "Build DocC documentation for a Swift package that contains a DocC Catalog.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/xcode/slothcreator_building_docc_documentation_in_xcode",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "SlothCreator: Building DocC Documentation in Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode/slothcreator_building_docc_documentation_in_xcode"
+    },
+    "https://www.swift.org/documentation/docc/adding-supplemental-content-to-a-documentation-catalog": {
+      "identifier": "https://www.swift.org/documentation/docc/adding-supplemental-content-to-a-documentation-catalog",
+      "title": "Adding Supplemental Content to a Documentation Catalog Swift.Org",
+      "titleInlineContent": [
+        {
+          "text": "Adding Supplemental Content to a Documentation Catalog Swift.Org",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.swift.org/documentation/docc/adding-supplemental-content-to-a-documentation-catalog"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Documentation-content",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/writing-symbol-documentation-in-your-source-files",
+        "doc://com.apple.documentation/documentation/xcode/slothcreator_building_docc_documentation_in_xcode"
+      ],
+      "title": "Documentation content"
+    }
+  ]
+}

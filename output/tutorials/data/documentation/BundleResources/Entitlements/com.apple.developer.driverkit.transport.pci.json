@@ -1,0 +1,1000 @@
+{
+  "abstract": [
+    {
+      "text": "An array of PCI device descriptors that your custom driver supports.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.bundleresources/documentation/BundleResources",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "entitlements:Entitlements.com.apple.developer.driverkit.transport.pci",
+    "modules": [
+      {
+        "name": "Bundle Resources"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "com.apple.developer.driverkit.transport.pci"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15.4",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Property List Key",
+    "symbolKind": "dictionary",
+    "title": "com.apple.developer.driverkit.transport.pci"
+  },
+  "primaryContentSections": [
+    {
+      "details": {
+        "name": "com.apple.developer.driverkit.transport.pci",
+        "platforms": [],
+        "titleStyle": "symbol",
+        "value": [
+          {
+            "arrayMode": true,
+            "baseType": "dictionary "
+          }
+        ]
+      },
+      "kind": "details",
+      "title": "Details"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each element in the array is a dictionary whose keys identify a supported device. The values of these keys correspond to values stored in the PCI device’s configuration registers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can provide several matching values for a key, separated by spaces. You can also specify an optional mask for the configuration register value by putting the mask after the value, prepended with an ",
+              "type": "text"
+            },
+            {
+              "code": "&",
+              "type": "codeVoice"
+            },
+            {
+              "text": " character.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Examples:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Result",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "IOPCIMatch",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0x00261011",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Matches a device whose vendor ID is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0x1011",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and device ID is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0x0026",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", including subsystem IDs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "IOPCIMatch",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0x00789004&0x00ffffff 0x78009004&0x0xff00ffff",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Matches with any device with a vendor ID of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0x9004",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and a device ID of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0xzz78",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or 0x78zz, where ‘",
+                      "type": "text"
+                    },
+                    {
+                      "code": "z",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "’ is any hexadecimal digit.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "IOPCIClassMatch",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0x02000000&0xffff0000",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Matches a device whose class code is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0x0200zz",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (where ‘",
+                      "type": "text"
+                    },
+                    {
+                      "code": "z",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "’ is any hexadecimal digit), an ethernet device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You also use the keys defined by this entitlement in your app’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", to identify which devices your driver loads on.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources": {
+      "abstract": [
+        {
+          "text": "Resources located in an app, framework, or plugin bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Bundle Resources",
+      "type": "topic",
+      "url": "/documentation/bundleresources"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements": {
+      "abstract": [
+        {
+          "text": "Key-value pairs that grant an executable permission to use a service or technology.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements",
+      "kind": "symbol",
+      "name": "Entitlements",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Entitlements"
+        }
+      ],
+      "role": "symbol",
+      "title": "Entitlements",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.audio": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the device supports audio functionality.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "DriverKit Audio Family",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.audio",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.family.audio",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.driverkit.family.audio"
+        }
+      ],
+      "role": "symbol",
+      "title": "DriverKit Audio Family",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.family.audio"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.block-storage-device": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to match the driver against block storage devices that use custom drivers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.block-storage-device",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.family.block-storage-device",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.driverkit.family.block-storage-device"
+        }
+      ],
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.family.block-storage-device",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.family.block-storage-device"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.midi": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to match the driver against devices that support MIDI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.midi",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.family.midi",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.driverkit.family.midi"
+        }
+      ],
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.family.midi",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.family.midi"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.networking": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to match the driver against devices that communicate using networking protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.networking",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.family.networking",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.driverkit.family.networking"
+        }
+      ],
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.family.networking",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.family.networking"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.scsicontroller": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to match the driver against devices with SCSI controllers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.scsicontroller",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.family.scsicontroller",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.driverkit.family.scsicontroller"
+        }
+      ],
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.family.scsicontroller",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.family.scsicontroller"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.serial": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to match the driver against devices with serial communication interfaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.serial",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.family.serial",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.driverkit.family.serial"
+        }
+      ],
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.family.serial",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.family.serial"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci": {
+      "abstract": [
+        {
+          "text": "An array of PCI device descriptors that your custom driver supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.transport.pci",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.driverkit.transport.pci"
+        }
+      ],
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.transport.pci",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.transport.pci"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci/IOPCIClassMatch": {
+      "abstract": [
+        {
+          "text": "A key to match PCI devices by class code register.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci/IOPCIClassMatch",
+      "kind": "symbol",
+      "name": "IOPCIClassMatch",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOPCIClassMatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOPCIClassMatch",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.transport.pci/iopciclassmatch"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci/IOPCIMatch": {
+      "abstract": [
+        {
+          "text": "A key to match PCI devices by vendor and device ID registers or subsystem registers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci/IOPCIMatch",
+      "kind": "symbol",
+      "name": "IOPCIMatch",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOPCIMatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOPCIMatch",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.transport.pci/iopcimatch"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci/IOPCIPrimaryMatch": {
+      "abstract": [
+        {
+          "text": "A key to match PCI devices by vendor and device ID registers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci/IOPCIPrimaryMatch",
+      "kind": "symbol",
+      "name": "IOPCIPrimaryMatch",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOPCIPrimaryMatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOPCIPrimaryMatch",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.transport.pci/iopciprimarymatch"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci/IOPCISecondaryMatch": {
+      "abstract": [
+        {
+          "text": "A key to match PCI devices by subsystem vendor ID and device ID registers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci/IOPCISecondaryMatch",
+      "kind": "symbol",
+      "name": "IOPCISecondaryMatch",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOPCISecondaryMatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOPCISecondaryMatch",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.transport.pci/iopcisecondarymatch"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.usb": {
+      "abstract": [
+        {
+          "text": "An array of dictionaries that identify the USB devices the driver supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.usb",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.transport.usb",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.driverkit.transport.usb"
+        }
+      ],
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.transport.usb",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.transport.usb"
+    },
+    "doc://com.apple.documentation/documentation/PCIDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop device drivers for Peripheral Component Interconnect (PCI) accessories.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PCIDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PCIDriverKit",
+      "type": "topic",
+      "url": "/documentation/PCIDriverKit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "DriverKit-family-entitlements",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.audio",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.block-storage-device",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.midi",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.networking",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.scsicontroller",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.serial",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.usb"
+      ],
+      "title": "DriverKit family entitlements"
+    }
+  ],
+  "topicSections": [
+    {
+      "abstract": [
+        {
+          "text": "Keys used for identifying and matching PCI devices.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Identifying-PCI-Devices",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci/IOPCIMatch",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci/IOPCIPrimaryMatch",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci/IOPCISecondaryMatch",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci/IOPCIClassMatch"
+      ],
+      "title": "Identifying PCI Devices"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15.4",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Property List Key"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "com.apple.developer.driverkit.transport.pci"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "dictionary"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.driverkit.transport.pci"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.bundleresources/documentation/BundleResources",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "abstract": [
+                {
+                  "text": "Keys used for identifying and matching PCI devices.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Identifying-PCI-Devices",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci/IOPCIMatch",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci/IOPCIPrimaryMatch",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci/IOPCISecondaryMatch",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci/IOPCIClassMatch"
+              ],
+              "title": "Identifying PCI Devices"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/PCIDriverKit"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "DriverKit-family-entitlements",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.audio",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.block-storage-device",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.midi",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.networking",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.scsicontroller",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.serial",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.usb"
+              ],
+              "title": "DriverKit family entitlements"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.driverkit.family.block-storage-device/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.driverkit.family.block-storage-device"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.driverkit.family.audio/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.driverkit.family.audio"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.driverkit.transport.pci/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.driverkit.transport.pci"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.driverkit.family.networking/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.driverkit.family.networking"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.driverkit.transport.usb/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.driverkit.transport.usb"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.driverkit.transport.pci~1IOPCIPrimaryMatch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOPCIPrimaryMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.driverkit.transport.pci~1IOPCISecondaryMatch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOPCISecondaryMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements/title",
+          "value": "Entitlements"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Entitlements"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.driverkit.transport.pci~1IOPCIMatch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOPCIMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.driverkit.family.serial/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.driverkit.family.serial"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.driverkit.family.scsicontroller/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.driverkit.family.scsicontroller"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.driverkit.transport.pci~1IOPCIClassMatch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOPCIClassMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.driverkit.family.midi/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.driverkit.family.midi"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.transport.pci"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.transport.pci"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

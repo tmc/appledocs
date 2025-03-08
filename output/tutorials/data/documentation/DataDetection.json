@@ -1,0 +1,2189 @@
+{
+  "abstract": [
+    {
+      "text": "Access and utilize common types of data that the data detection system matches.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.datadetection/documentation/DataDetection"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "DataDetection",
+    "modules": [
+      {
+        "name": "DataDetection"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "8.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "DataDetection"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Data detection methods in other frameworks detect common types of data represented in text, and return  DataDetection framework classes that provide semantic meaning for matches. Get relevant, domain-specific information from matches of the following types:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Calendar events",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Email addresses",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Flight numbers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Web links",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Amounts of money, with currencies",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Phone numbers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Postal addresses",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Shipment tracking numbers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use functions, such as those in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPasteboard",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to detect the types of data that you specify in a particular context. For example, find email addresses in a pasteboard using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPasteboard/detectValues(for:completionHandler:)-6adre",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as this example shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "UIPasteboard.general.detectValues(for: [\\.emailAddresses]) { [self] result in",
+            "    switch result {",
+            "    case .success(let detectedValues):",
+            "        guard let firstEmailAddressMatch = detectedValues.emailAddresses.first else {",
+            "            return",
+            "        }",
+            "        let newEmailAddress = firstEmailAddressMatch.emailAddress",
+            "        let newLabel = firstEmailAddressMatch.label",
+            "        addNewEmail(for: contact, address: newEmailAddress, label: newLabel)",
+            "    case .failure(let error):",
+            "        print(\"Error detecting email addresses: \\(error.localizedDescription)\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, inspect and use the data from objects that the data detection system returns.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.datadetection/documentation/DataDetection": {
+      "abstract": [
+        {
+          "text": "Access and utilize common types of data that the data detection system matches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.datadetection/documentation/DataDetection",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DataDetection",
+      "type": "topic",
+      "url": "/documentation/datadetection"
+    },
+    "doc://com.apple.datadetection/documentation/DataDetection/DDMatch": {
+      "abstract": [
+        {
+          "text": "A base class for common types of data that the data detection system matches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDMatch"
+        }
+      ],
+      "identifier": "doc://com.apple.datadetection/documentation/DataDetection/DDMatch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDMatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDMatch",
+      "type": "topic",
+      "url": "/documentation/datadetection/ddmatch"
+    },
+    "doc://com.apple.datadetection/documentation/DataDetection/DDMatchCalendarEvent": {
+      "abstract": [
+        {
+          "text": "An object that represents a calendar date or date range that the data detection system matches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDMatchCalendarEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.datadetection/documentation/DataDetection/DDMatchCalendarEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDMatchCalendarEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDMatchCalendarEvent",
+      "type": "topic",
+      "url": "/documentation/datadetection/ddmatchcalendarevent"
+    },
+    "doc://com.apple.datadetection/documentation/DataDetection/DDMatchEmailAddress": {
+      "abstract": [
+        {
+          "text": "An object that contains an email address that the data detection system matches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDMatchEmailAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.datadetection/documentation/DataDetection/DDMatchEmailAddress",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDMatchEmailAddress"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDMatchEmailAddress",
+      "type": "topic",
+      "url": "/documentation/datadetection/ddmatchemailaddress"
+    },
+    "doc://com.apple.datadetection/documentation/DataDetection/DDMatchFlightNumber": {
+      "abstract": [
+        {
+          "text": "An object that contains a flight number that the data detection system matches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDMatchFlightNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.datadetection/documentation/DataDetection/DDMatchFlightNumber",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDMatchFlightNumber"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDMatchFlightNumber",
+      "type": "topic",
+      "url": "/documentation/datadetection/ddmatchflightnumber"
+    },
+    "doc://com.apple.datadetection/documentation/DataDetection/DDMatchLink": {
+      "abstract": [
+        {
+          "text": "An object that contains a web link that the data detection system matches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDMatchLink"
+        }
+      ],
+      "identifier": "doc://com.apple.datadetection/documentation/DataDetection/DDMatchLink",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDMatchLink"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDMatchLink",
+      "type": "topic",
+      "url": "/documentation/datadetection/ddmatchlink"
+    },
+    "doc://com.apple.datadetection/documentation/DataDetection/DDMatchMoneyAmount": {
+      "abstract": [
+        {
+          "text": "An object that contains an amount of money that the data detection system matches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDMatchMoneyAmount"
+        }
+      ],
+      "identifier": "doc://com.apple.datadetection/documentation/DataDetection/DDMatchMoneyAmount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDMatchMoneyAmount"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDMatchMoneyAmount",
+      "type": "topic",
+      "url": "/documentation/datadetection/ddmatchmoneyamount"
+    },
+    "doc://com.apple.datadetection/documentation/DataDetection/DDMatchPhoneNumber": {
+      "abstract": [
+        {
+          "text": "An object that contains a phone number that the data detection system matches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDMatchPhoneNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.datadetection/documentation/DataDetection/DDMatchPhoneNumber",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDMatchPhoneNumber"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDMatchPhoneNumber",
+      "type": "topic",
+      "url": "/documentation/datadetection/ddmatchphonenumber"
+    },
+    "doc://com.apple.datadetection/documentation/DataDetection/DDMatchPostalAddress": {
+      "abstract": [
+        {
+          "text": "An object that contains a postal address that the data detection system matches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDMatchPostalAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.datadetection/documentation/DataDetection/DDMatchPostalAddress",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDMatchPostalAddress"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDMatchPostalAddress",
+      "type": "topic",
+      "url": "/documentation/datadetection/ddmatchpostaladdress"
+    },
+    "doc://com.apple.datadetection/documentation/DataDetection/DDMatchShipmentTrackingNumber": {
+      "abstract": [
+        {
+          "text": "An object that contains parcel tracking information that the data detection system matches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDMatchShipmentTrackingNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.datadetection/documentation/DataDetection/DDMatchShipmentTrackingNumber",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDMatchShipmentTrackingNumber"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDMatchShipmentTrackingNumber",
+      "type": "topic",
+      "url": "/documentation/datadetection/ddmatchshipmenttrackingnumber"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIPasteboard": {
+      "abstract": [
+        {
+          "text": "An object that helps a user share data from one place to another within your app, and from your app to other apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPasteboard"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPasteboard",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIPasteboard",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPasteboard"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIPasteboard/detectPatterns(for:completionHandler:)-23vwn": {
+      "abstract": [
+        {
+          "text": "Requests that the data detection system identify the patterns that you specify for the pasteboard, and provide the patterns that it matches to your closure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detectPatterns"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "keyPaths"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s14PartialKeyPathC",
+          "text": "PartialKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPasteboard",
+          "text": "UIPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So12UIPasteboardC5UIKitE14DetectedValuesV",
+          "text": "DetectedValues"
+        },
+        {
+          "kind": "text",
+          "text": ">>, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s14PartialKeyPathC",
+          "text": "PartialKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPasteboard",
+          "text": "UIPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So12UIPasteboardC5UIKitE14DetectedValuesV",
+          "text": "DetectedValues"
+        },
+        {
+          "kind": "text",
+          "text": ">>, any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> ())"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPasteboard/detectPatterns(for:completionHandler:)-23vwn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detectPatterns(for:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPasteboard/detectPatterns(for:completionHandler:)-23vwn"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIPasteboard/detectPatterns(for:inItemSet:completionHandler:)-7ubl1": {
+      "abstract": [
+        {
+          "text": "Requests that the data detection system identify the patterns that you specify for the pasteboard items, and provide the patterns that it matches to your closure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detectPatterns"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "keyPaths"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s14PartialKeyPathC",
+          "text": "PartialKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPasteboard",
+          "text": "UIPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So12UIPasteboardC5UIKitE14DetectedValuesV",
+          "text": "DetectedValues"
+        },
+        {
+          "kind": "text",
+          "text": ">>, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inItemSet"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "itemSet"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation8IndexSetV",
+          "text": "IndexSet"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s14PartialKeyPathC",
+          "text": "PartialKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPasteboard",
+          "text": "UIPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So12UIPasteboardC5UIKitE14DetectedValuesV",
+          "text": "DetectedValues"
+        },
+        {
+          "kind": "text",
+          "text": ">>], any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> ())"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPasteboard/detectPatterns(for:inItemSet:completionHandler:)-7ubl1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detectPatterns(for:inItemSet:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPasteboard/detectPatterns(for:inItemSet:completionHandler:)-7ubl1"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIPasteboard/detectValues(for:completionHandler:)-6adre": {
+      "abstract": [
+        {
+          "text": "Requests that the data detection system identify the types of data that you specify for the pasteboard, and provide the values that it matches to your closure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detectValues"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "keyPaths"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s14PartialKeyPathC",
+          "text": "PartialKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPasteboard",
+          "text": "UIPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So12UIPasteboardC5UIKitE14DetectedValuesV",
+          "text": "DetectedValues"
+        },
+        {
+          "kind": "text",
+          "text": ">>, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPasteboard",
+          "text": "UIPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So12UIPasteboardC5UIKitE14DetectedValuesV",
+          "text": "DetectedValues"
+        },
+        {
+          "kind": "text",
+          "text": ", any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> ())"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPasteboard/detectValues(for:completionHandler:)-6adre",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detectValues(for:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPasteboard/detectValues(for:completionHandler:)-6adre"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIPasteboard/detectValues(for:inItemSet:completionHandler:)-pm9l": {
+      "abstract": [
+        {
+          "text": "Requests that the data detection system identify the types of data that you specify for the pasteboard items, and provide the values that it matches to your closure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detectValues"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "keyPaths"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s14PartialKeyPathC",
+          "text": "PartialKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPasteboard",
+          "text": "UIPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So12UIPasteboardC5UIKitE14DetectedValuesV",
+          "text": "DetectedValues"
+        },
+        {
+          "kind": "text",
+          "text": ">>, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inItemSet"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "itemSet"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation8IndexSetV",
+          "text": "IndexSet"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPasteboard",
+          "text": "UIPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So12UIPasteboardC5UIKitE14DetectedValuesV",
+          "text": "DetectedValues"
+        },
+        {
+          "kind": "text",
+          "text": "], any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> ())"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPasteboard/detectValues(for:inItemSet:completionHandler:)-pm9l",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detectValues(for:inItemSet:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPasteboard/detectValues(for:inItemSet:completionHandler:)-pm9l"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIPasteboard/detectedPatterns(for:)": {
+      "abstract": [
+        {
+          "text": "Requests that the data detection system asynchronously identify the patterns that you specify for the pasteboard, and return the patterns that it matches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detectedPatterns"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "keyPaths"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s14PartialKeyPathC",
+          "text": "PartialKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPasteboard",
+          "text": "UIPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So12UIPasteboardC5UIKitE14DetectedValuesV",
+          "text": "DetectedValues"
+        },
+        {
+          "kind": "text",
+          "text": ">>) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s14PartialKeyPathC",
+          "text": "PartialKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPasteboard",
+          "text": "UIPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So12UIPasteboardC5UIKitE14DetectedValuesV",
+          "text": "DetectedValues"
+        },
+        {
+          "kind": "text",
+          "text": ">>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPasteboard/detectedPatterns(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detectedPatterns(for:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPasteboard/detectedPatterns(for:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIPasteboard/detectedPatterns(for:inItemSet:)": {
+      "abstract": [
+        {
+          "text": "Requests that the data detection system asynchronously identify the patterns that you specify for the pasteboard items, and return the patterns that it matches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detectedPatterns"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "keyPaths"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s14PartialKeyPathC",
+          "text": "PartialKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPasteboard",
+          "text": "UIPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So12UIPasteboardC5UIKitE14DetectedValuesV",
+          "text": "DetectedValues"
+        },
+        {
+          "kind": "text",
+          "text": ">>, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inItemSet"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "itemSet"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation8IndexSetV",
+          "text": "IndexSet"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s14PartialKeyPathC",
+          "text": "PartialKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPasteboard",
+          "text": "UIPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So12UIPasteboardC5UIKitE14DetectedValuesV",
+          "text": "DetectedValues"
+        },
+        {
+          "kind": "text",
+          "text": ">>]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPasteboard/detectedPatterns(for:inItemSet:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detectedPatterns(for:inItemSet:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPasteboard/detectedPatterns(for:inItemSet:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIPasteboard/detectedValues(for:)": {
+      "abstract": [
+        {
+          "text": "Requests that the data detection system asynchronously identify the types of values that you specify for the pasteboard, and return the values that it matches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detectedValues"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "keyPaths"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s14PartialKeyPathC",
+          "text": "PartialKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPasteboard",
+          "text": "UIPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So12UIPasteboardC5UIKitE14DetectedValuesV",
+          "text": "DetectedValues"
+        },
+        {
+          "kind": "text",
+          "text": ">>) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPasteboard",
+          "text": "UIPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So12UIPasteboardC5UIKitE14DetectedValuesV",
+          "text": "DetectedValues"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPasteboard/detectedValues(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detectedValues(for:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPasteboard/detectedValues(for:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIPasteboard/detectedValues(for:inItemSet:)": {
+      "abstract": [
+        {
+          "text": "Requests that the data detection system asynchronously identify the types of values that you specify for the pasteboard item, and return the values that it matches for each pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detectedValues"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "keyPaths"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s14PartialKeyPathC",
+          "text": "PartialKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPasteboard",
+          "text": "UIPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So12UIPasteboardC5UIKitE14DetectedValuesV",
+          "text": "DetectedValues"
+        },
+        {
+          "kind": "text",
+          "text": ">>, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inItemSet"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "itemSet"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation8IndexSetV",
+          "text": "IndexSet"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPasteboard",
+          "text": "UIPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So12UIPasteboardC5UIKitE14DetectedValuesV",
+          "text": "DetectedValues"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPasteboard/detectedValues(for:inItemSet:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detectedValues(for:inItemSet:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPasteboard/detectedValues(for:inItemSet:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Matched-strings",
+      "identifiers": [
+        "doc://com.apple.datadetection/documentation/DataDetection/DDMatch"
+      ],
+      "title": "Matched strings"
+    },
+    {
+      "anchor": "Matched-data-types",
+      "identifiers": [
+        "doc://com.apple.datadetection/documentation/DataDetection/DDMatchCalendarEvent",
+        "doc://com.apple.datadetection/documentation/DataDetection/DDMatchEmailAddress",
+        "doc://com.apple.datadetection/documentation/DataDetection/DDMatchFlightNumber",
+        "doc://com.apple.datadetection/documentation/DataDetection/DDMatchLink",
+        "doc://com.apple.datadetection/documentation/DataDetection/DDMatchMoneyAmount",
+        "doc://com.apple.datadetection/documentation/DataDetection/DDMatchPhoneNumber",
+        "doc://com.apple.datadetection/documentation/DataDetection/DDMatchPostalAddress",
+        "doc://com.apple.datadetection/documentation/DataDetection/DDMatchShipmentTrackingNumber"
+      ],
+      "title": "Matched data types"
+    },
+    {
+      "anchor": "Pasteboard-detectors",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/UIKit/UIPasteboard/detectPatterns(for:completionHandler:)-23vwn",
+        "doc://com.apple.documentation/documentation/UIKit/UIPasteboard/detectedPatterns(for:)",
+        "doc://com.apple.documentation/documentation/UIKit/UIPasteboard/detectPatterns(for:inItemSet:completionHandler:)-7ubl1",
+        "doc://com.apple.documentation/documentation/UIKit/UIPasteboard/detectedPatterns(for:inItemSet:)",
+        "doc://com.apple.documentation/documentation/UIKit/UIPasteboard/detectValues(for:completionHandler:)-6adre",
+        "doc://com.apple.documentation/documentation/UIKit/UIPasteboard/detectedValues(for:)",
+        "doc://com.apple.documentation/documentation/UIKit/UIPasteboard/detectValues(for:inItemSet:completionHandler:)-pm9l",
+        "doc://com.apple.documentation/documentation/UIKit/UIPasteboard/detectedValues(for:inItemSet:)"
+      ],
+      "title": "Pasteboard detectors"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Matched-strings",
+              "identifiers": [
+                "doc://com.apple.datadetection/documentation/DataDetection/DDMatch"
+              ],
+              "title": "Matched strings"
+            },
+            {
+              "anchor": "Matched-data-types",
+              "identifiers": [
+                "doc://com.apple.datadetection/documentation/DataDetection/DDMatchCalendarEvent",
+                "doc://com.apple.datadetection/documentation/DataDetection/DDMatchEmailAddress",
+                "doc://com.apple.datadetection/documentation/DataDetection/DDMatchFlightNumber",
+                "doc://com.apple.datadetection/documentation/DataDetection/DDMatchLink",
+                "doc://com.apple.datadetection/documentation/DataDetection/DDMatchMoneyAmount",
+                "doc://com.apple.datadetection/documentation/DataDetection/DDMatchPhoneNumber",
+                "doc://com.apple.datadetection/documentation/DataDetection/DDMatchPostalAddress",
+                "doc://com.apple.datadetection/documentation/DataDetection/DDMatchShipmentTrackingNumber"
+              ],
+              "title": "Matched data types"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatchFlightNumber/title",
+          "value": "DDMatchFlightNumber"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatchFlightNumber/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDMatchFlightNumber"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatchFlightNumber/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDMatchFlightNumber"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatchLink/title",
+          "value": "DDMatchLink"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatchLink/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDMatchLink"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatchLink/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDMatchLink"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatchEmailAddress/title",
+          "value": "DDMatchEmailAddress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatchEmailAddress/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDMatchEmailAddress"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatchEmailAddress/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDMatchEmailAddress"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatch/title",
+          "value": "DDMatch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIPasteboard/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIPasteboard"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatchShipmentTrackingNumber/title",
+          "value": "DDMatchShipmentTrackingNumber"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatchShipmentTrackingNumber/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDMatchShipmentTrackingNumber"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatchShipmentTrackingNumber/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDMatchShipmentTrackingNumber"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatchMoneyAmount/title",
+          "value": "DDMatchMoneyAmount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatchMoneyAmount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDMatchMoneyAmount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatchMoneyAmount/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDMatchMoneyAmount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatchPhoneNumber/title",
+          "value": "DDMatchPhoneNumber"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatchPhoneNumber/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDMatchPhoneNumber"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatchPhoneNumber/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDMatchPhoneNumber"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatchCalendarEvent/title",
+          "value": "DDMatchCalendarEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatchCalendarEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDMatchCalendarEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatchCalendarEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDMatchCalendarEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatchPostalAddress/title",
+          "value": "DDMatchPostalAddress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatchPostalAddress/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDMatchPostalAddress"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.datadetection~1documentation~1DataDetection~1DDMatchPostalAddress/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDMatchPostalAddress"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/datadetection"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/datadetection"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

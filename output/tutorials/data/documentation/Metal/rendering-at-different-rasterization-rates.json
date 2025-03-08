@@ -1,0 +1,641 @@
+{
+  "abstract": [
+    {
+      "text": "Configure a rasterization rate map to vary rasterization rates depending on the amount of detail needed.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/render-passes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/rendering-at-different-rasterization-rates"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Rendering at Different Rasterization Rates"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In complex 3D applications, you perform many calculations to render each pixel in the output image, generating a high-quality result. However, as your render targets get larger and screen resolutions increase, the cost to render so many pixels at high quality becomes too great.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "One common solution is to render intermediate images at a lower resolution and then stretch them to generate the final result. Although this solution incurs an additional cost to scale the image, it can greatly reduce the memory and performance costs to render it. This solution is most useful when lower image quality is acceptable or not noticeable, and the render savings are larger than the scaling cost.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Another way to reduce rendering cost is to avoid complex calculations in parts of the rendered image when detail in those parts is unnecessary or will be lost later in the rendering process. For example, if you plan to apply a blur effect to part of your image as a postprocessing step, you don’t need to incur the cost of rendering those pixels with great detail, because the blur effect removes the details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Implement-Variable-Rasterization-Rates",
+          "level": 3,
+          "text": "Implement Variable Rasterization Rates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Metal, you can combine these two solutions by using variable rasterization rates (VRR). You specify different rasterization rates for different parts of the render target. When you need detail, you render those areas of the target at full resolution. In areas that don’t need detail, you specify a lower resolution rate, which means that you need fewer pixels in those areas and fewer invocations of your fragment shader.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use VRR when:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You want to render different parts of your render target at different quality levels.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The cost to render each pixel is high enough that reducing rasterization rates produces substantial savings in rendering time, and the savings are greater than the additional cost of scaling the image to a full-rate image.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use VRR, you create a rasterization map to divide the render target into zones and specify a horizontal and vertical rasterization rate for each zone. After you create the rate map, you allocate textures to hold intermediate images. These textures are smaller than the final render target image, because you allocate only the memory you need to hold the rendered pixels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you’ve finished rendering intermediate data using the rate map, you execute additional draw commands to stretch the intermediate data and copy it to another texture at the higher resolution, such as a texture provided by a Metal drawable for display. This final target is called a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "full-rate image",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", because it uses the normal rasterization uniformly across the image. After you generate the full-rate image, you can apply additional processing to it. For example, you usually want to render user interface elements on top of the full-rate image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-for-VRR-Support",
+          "level": 3,
+          "text": "Check for VRR Support",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Not all GPUs support VRR. Before attempting to use it, check for support on the device object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func supportsVariableRasterizationRateOn(_ device: MTLDevice) -> Bool {",
+                    "    device.supportsRasterizationRateMap(layerCount: 1)",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (BOOL)supportsVariableRasterizationRateOn:(id<MTLDevice>)device {",
+                    "    return [device supportsRasterizationRateMapWithLayerCount:1];",
+                    "}",
+                    "",
+                    "// Metal-CPP",
+                    "bool supportsVariableRasterizationRate(MTL::Device* pDevice)",
+                    "{",
+                    "    return pDevice->supportsRasterizationRateMap(1);",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCoordinate2D": {
+      "abstract": [
+        {
+          "text": "A coordinate in the viewport.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCoordinate2D"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCoordinate2D",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCoordinate2D"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCoordinate2D",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcoordinate2d"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCoordinate2DMake(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new 2D point with the specified coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCoordinate2DMake"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLCoordinate2D",
+          "text": "MTLCoordinate2D"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCoordinate2DMake(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCoordinate2DMake"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCoordinate2DMake(_:_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcoordinate2dmake(_:_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap": {
+      "abstract": [
+        {
+          "text": "A compiled read-only object that determines how to apply variable rasterization rates when rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRasterizationRateMap"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRasterizationRateMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRasterizationRateMap",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratemap"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMapDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that you use to configure new rasterization rate maps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRasterizationRateMapDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMapDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRasterizationRateMapDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRasterizationRateMapDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratemapdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-a-rasterization-rate-map": {
+      "abstract": [
+        {
+          "text": "Define the rasterization rates for each part of your render target.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-a-rasterization-rate-map",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Rasterization Rate Map",
+      "type": "topic",
+      "url": "/documentation/metal/creating-a-rasterization-rate-map"
+    },
+    "doc://com.apple.metal/documentation/Metal/render-passes": {
+      "abstract": [
+        {
+          "text": "Encode a render pass to draw graphics into an image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/render-passes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Render Passes",
+      "type": "topic",
+      "url": "/documentation/metal/render-passes"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-with-a-rasterization-rate-map": {
+      "abstract": [
+        {
+          "text": "Create offscreen textures to hold intermediate rasterized data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-with-a-rasterization-rate-map",
+      "kind": "article",
+      "role": "article",
+      "title": "Rendering with a Rasterization Rate Map",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-with-a-rasterization-rate-map"
+    },
+    "doc://com.apple.metal/documentation/Metal/scaling-variable-rasterization-rate-content": {
+      "abstract": [
+        {
+          "text": "Use the rate map data to scale the content to fill your destination texture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/scaling-variable-rasterization-rate-content",
+      "kind": "article",
+      "role": "article",
+      "title": "Scaling Variable Rasterization Rate Content",
+      "type": "topic",
+      "url": "/documentation/metal/scaling-variable-rasterization-rate-content"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Rasterization-Settings",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/creating-a-rasterization-rate-map",
+        "doc://com.apple.metal/documentation/Metal/rendering-with-a-rasterization-rate-map",
+        "doc://com.apple.metal/documentation/Metal/scaling-variable-rasterization-rate-content",
+        "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMapDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap",
+        "doc://com.apple.metal/documentation/Metal/MTLCoordinate2D",
+        "doc://com.apple.metal/documentation/Metal/MTLCoordinate2DMake(_:_:)"
+      ],
+      "title": "Rasterization Settings"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Rasterization-Settings",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/creating-a-rasterization-rate-map",
+                "doc://com.apple.metal/documentation/Metal/rendering-with-a-rasterization-rate-map",
+                "doc://com.apple.metal/documentation/Metal/scaling-variable-rasterization-rate-content",
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMapDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap",
+                "doc://com.apple.metal/documentation/Metal/MTLCoordinate2D",
+                "doc://com.apple.metal/documentation/Metal/MTLCoordinate2DMake(_:_:)"
+              ],
+              "title": "Rasterization Settings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCoordinate2D/title",
+          "value": "MTLCoordinate2D"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCoordinate2D/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCoordinate2D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCoordinate2D/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCoordinate2D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCoordinate2DMake(_:_:)/title",
+          "value": "MTLCoordinate2DMake"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCoordinate2DMake(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCoordinate2DMake"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMapDescriptor/title",
+          "value": "MTLRasterizationRateMapDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMapDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRasterizationRateMapDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMapDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRasterizationRateMapDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap/title",
+          "value": "MTLRasterizationRateMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRasterizationRateMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRasterizationRateMap"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/rendering-at-different-rasterization-rates"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/rendering-at-different-rasterization-rates"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

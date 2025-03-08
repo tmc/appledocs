@@ -1,0 +1,706 @@
+{
+  "abstract": [
+    {
+      "text": "Filtering varient of the $link IOInterruptEventSource.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1515899,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOFilterInterruptEventSource",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOFilterInterruptEventSource"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOFilterInterruptEventSource"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iointerrupteventsource",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOInterruptEventSource",
+              "text": "IOInterruptEventSource"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An interrupt event source that calls the client to determine if a interrupt event needs to be scheduled on the work loop. A filter interrupt event source call's the client in the primary interrupt context, the client can then interrogate its hardware and determine if the interrupt needs to be processed yet.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As the routine is called in the primary interrupt context great care must be taken in the writing of this routine. In general none of the generic IOKit environment is safe to call in this context. We intend this routine to be used by hardware that can interrogate its registers without destroying state. Primarily this variant of event sources will be used by drivers that share interrupts. The filter routine will determine if the interrupt is a real interrupt or a ghost and thus optimise the work thread context switch away.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you are implementing 'SoftDMA' (or pseudo-DMA), you may not want the I/O Kit to automatically start your interrupt handler routine on your work loop when your filter routine returns true. In this case, you may choose to have your filter routine schedule the work on the work loop itself and then return false. If you do this, the interrupt will not be disabled in hardware and you could receive additional primary interrupts before your work loop–level service routine completes. Because this scheme has implications for synchronization between your filter routine and your interrupt service routine, you should avoid doing this unless your driver requires SoftDMA.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CAUTION: Called in primary interrupt context, if you need to disable interrupt to guard you registers against an unexpected call then it is better to use a straight IOInterruptEventSource and its secondary interrupt delivery mechanism.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource": {
+      "abstract": [
+        {
+          "text": "Filtering varient of the $link IOInterruptEventSource.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFilterInterruptEventSource",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterinterrupteventsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1515895-filterinterrupteventsource": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "filterInterruptEventSource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1515895-filterinterrupteventsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "filterInterruptEventSource",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterinterrupteventsource/1515895-filterinterrupteventsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1515897-interrupteventsource": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "interruptEventSource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1515897-interrupteventsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interruptEventSource",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterinterrupteventsource/1515897-interrupteventsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1515901-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1515901-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterinterrupteventsource/1515901-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1515902-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1515902-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterinterrupteventsource/1515902-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1515903-signalinterrupt": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "signalInterrupt"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1515903-signalinterrupt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "signalInterrupt",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterinterrupteventsource/1515903-signalinterrupt"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1515904-normalinterruptoccurred": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "normalInterruptOccurred"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1515904-normalinterruptoccurred",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "normalInterruptOccurred",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterinterrupteventsource/1515904-normalinterruptoccurred"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1515906-disableinterruptoccurred": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "disableInterruptOccurred"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1515906-disableinterruptoccurred",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "disableInterruptOccurred",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterinterrupteventsource/1515906-disableinterruptoccurred"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1515908-getfilteraction": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getFilterAction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1515908-getfilteraction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getFilterAction",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterinterrupteventsource/1515908-getfilteraction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1810540-disableinterruptoccurred": {
+      "abstract": [
+        {
+          "text": "Override $link IOInterruptEventSource::disableInterruptOccurred to make a filter callout.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1810540-disableinterruptoccurred",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "disableInterruptOccurred",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterinterrupteventsource/1810540-disableinterruptoccurred"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1810599-filterinterrupteventsource": {
+      "abstract": [
+        {
+          "text": "Factor method to create and initialise an IOFilterInterruptEventSource. See $link init.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1810599-filterinterrupteventsource",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "filterInterruptEventSource",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterinterrupteventsource/1810599-filterinterrupteventsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1810653-getfilteraction": {
+      "abstract": [
+        {
+          "text": "Get'ter for filterAction variable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1810653-getfilteraction",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getFilterAction",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterinterrupteventsource/1810653-getfilteraction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1810702-init": {
+      "abstract": [
+        {
+          "text": "Primary initialiser for the IOFilterInterruptEventSource class.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1810702-init",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterinterrupteventsource/1810702-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1810739-normalinterruptoccurred": {
+      "abstract": [
+        {
+          "text": "Override $link IOInterruptEventSource::normalInterruptOccured to make a filter callout.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1810739-normalinterruptoccurred",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "normalInterruptOccurred",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterinterrupteventsource/1810739-normalinterruptoccurred"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1810772-signalinterrupt": {
+      "abstract": [
+        {
+          "text": "Cause the work loop to schedule the action.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1810772-signalinterrupt",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "signalInterrupt",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterinterrupteventsource/1810772-signalinterrupt"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/2967271-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/2967271-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterinterrupteventsource/2967271-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/2967272-getfilteractionblock": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getFilterActionBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/2967272-getfilteractionblock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getFilterActionBlock",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterinterrupteventsource/2967272-getfilteractionblock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/3516454-filterinterrupteventsource": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "filterInterruptEventSource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/3516454-filterinterrupteventsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "filterInterruptEventSource",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterinterrupteventsource/3516454-filterinterrupteventsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/3516455-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/3516455-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterinterrupteventsource/3516455-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/filter": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/filter",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "Filter",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterinterrupteventsource/filter"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/filteraction": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/filteraction",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "filterAction",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterinterrupteventsource/filteraction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/miscellaneous_defines": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/miscellaneous_defines",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Miscellaneous Defines",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterinterrupteventsource/miscellaneous_defines"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/reserved": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/reserved",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "reserved",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterinterrupteventsource/reserved"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iointerruptcontroller": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iointerruptcontroller",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOInterruptController",
+      "type": "topic",
+      "url": "/documentation/kernel/iointerruptcontroller"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iointerruptdispatchsource": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iointerruptdispatchsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOInterruptDispatchSource",
+      "type": "topic",
+      "url": "/documentation/kernel/iointerruptdispatchsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iointerruptdispatchsourceinterface": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iointerruptdispatchsourceinterface",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOInterruptDispatchSourceInterface",
+      "type": "topic",
+      "url": "/documentation/kernel/iointerruptdispatchsourceinterface"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iointerrupteventsource": {
+      "abstract": [
+        {
+          "text": "Event source for interrupt delivery to work-loop based drivers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iointerrupteventsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOInterruptEventSource",
+      "type": "topic",
+      "url": "/documentation/kernel/iointerrupteventsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iointerruptsource": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iointerruptsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOInterruptSource",
+      "type": "topic",
+      "url": "/documentation/kernel/iointerruptsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iointerruptvector": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iointerruptvector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOInterruptVector",
+      "type": "topic",
+      "url": "/documentation/kernel/iointerruptvector"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workflow and Control",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/workflow_and_control"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "ExpansionData",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/expansiondata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/passthruinterruptcontroller": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/passthruinterruptcontroller",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PassthruInterruptController",
+      "type": "topic",
+      "url": "/documentation/kernel/passthruinterruptcontroller"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iointerrupteventsource"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iointerruptdispatchsource",
+        "doc://com.apple.documentation/documentation/kernel/iointerruptdispatchsourceinterface",
+        "doc://com.apple.documentation/documentation/kernel/iointerrupteventsource",
+        "doc://com.apple.documentation/documentation/kernel/iointerruptcontroller",
+        "doc://com.apple.documentation/documentation/kernel/passthruinterruptcontroller",
+        "doc://com.apple.documentation/documentation/kernel/iointerruptsource",
+        "doc://com.apple.documentation/documentation/kernel/iointerruptvector"
+      ],
+      "title": "Interrupts"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1819344",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1810540-disableinterruptoccurred",
+        "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1810599-filterinterrupteventsource",
+        "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1810653-getfilteraction",
+        "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1810702-init",
+        "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1810739-normalinterruptoccurred",
+        "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1810772-signalinterrupt"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "1819350",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/filter"
+      ],
+      "kind": "taskGroup",
+      "title": "Callbacks"
+    },
+    {
+      "anchor": "1819353",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/miscellaneous_defines"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "1819356",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata"
+      ],
+      "kind": "taskGroup",
+      "title": "DataTypes"
+    },
+    {
+      "anchor": "1819361",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/reserved",
+        "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/filteraction"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Variables"
+    },
+    {
+      "anchor": "2857167",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1515906-disableinterruptoccurred",
+        "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/2967271-free",
+        "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1515908-getfilteraction",
+        "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/2967272-getfilteractionblock",
+        "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1515902-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1515901-init",
+        "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/3516455-init",
+        "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1515904-normalinterruptoccurred",
+        "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1515903-signalinterrupt"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "2857168",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1515895-filterinterrupteventsource",
+        "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/3516454-filterinterrupteventsource",
+        "doc://com.apple.documentation/documentation/kernel/iofilterinterrupteventsource/1515897-interrupteventsource"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iofilterinterrupteventsource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

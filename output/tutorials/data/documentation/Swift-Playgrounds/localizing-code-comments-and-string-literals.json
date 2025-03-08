@@ -1,0 +1,484 @@
+{
+  "abstract": [
+    {
+      "text": "In Swift Playgrounds 3.0 and later, mark up code zones to replace them with code that’s localized for the current user.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/localizing-code-comments-and-string-literals"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Localizing Code Comments and String Literals"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re writing a playground book for distribution in multiple locales, you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "localize the comments and string literals on each page using a comment syntax that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "delimits a zone for localization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-Localization-Delimiters",
+          "level": 3,
+          "text": "Add Localization Delimiters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify the code you want to make localizable by wrapping it within a delimiter;",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/*",
+            "//#-localizable-zone(welcome1)",
+            "Welcome!",
+            "//#-end-localizable-zone",
+            "*/"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each delimiter carries a unique ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "zone identifier",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (for example, ",
+              "type": "text"
+            },
+            {
+              "code": "welcome1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "welcome2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and so forth) that matches an entry in the ",
+              "type": "text"
+            },
+            {
+              "code": "LocalizableCode.strings",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file you define",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for each page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also use inline comment delimiters to make string literals localizable; for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let message = \"/*#-localizable-zone(welcome2)*/Hello!/*#-end-localizable-zone*/\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Only use localization delimiters to surround code comments and string",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "literals. Doing so helps ensure that you don’t introduce locale-sensitive compilation",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "errors.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-a-Localization-Strings-File",
+          "level": 3,
+          "text": "Create a Localization Strings File",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a user opens a page in your book, the system looks in the appropriate language",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "directory (for example, the page’s ",
+              "type": "text"
+            },
+            {
+              "code": "PrivateResources/de.lproj",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory for strings",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "localized in German) for the ",
+              "type": "text"
+            },
+            {
+              "code": "LocalizableCode.strings",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. It then matches the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "delimeters with their corresponding zone ID, and substitutes the text string in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "page with the localized text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Format localization strings files as a list of localization identifiers followed",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by the localized string. The following example defines localized forms of the content",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "identified by ",
+              "type": "text"
+            },
+            {
+              "code": "welcome1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "welcome2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/* Initial greeting. */",
+            "\"welcome1\" = \"Willkommen!\";",
+            "",
+            "/* Second greeting. */",
+            "\"welcome2\" = \"Guten Tag!\";"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Localized versions of comments and strings appear on devices set to the appropriate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "locale:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/*",
+            "Willkommen!",
+            "*/",
+            "",
+            "let message = \"Guten Tag!\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/customizing-the-completions-in-the-shortcut-bar": {
+      "abstract": [
+        {
+          "text": "Guide learners toward a solution by hiding some symbols and showing others.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/customizing-the-completions-in-the-shortcut-bar",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the Completions in the Shortcut Bar",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/customizing-the-completions-in-the-shortcut-bar"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/hiding-code-from-a-playground-page": {
+      "abstract": [
+        {
+          "text": "Use special Swift comments to hide code from display but continue to run it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/hiding-code-from-a-playground-page",
+      "kind": "article",
+      "role": "article",
+      "title": "Hiding Code from a Playground Page",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/hiding-code-from-a-playground-page"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books": {
+      "abstract": [
+        {
+          "text": "Create interactive Playground Book based learning experiences for the Swift Playgrounds app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Playground Books",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/playground-books"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/specifying-editable-regions-in-a-playground-page": {
+      "abstract": [
+        {
+          "text": "Guide learning by marking code that learners can change or copy forward.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/specifying-editable-regions-in-a-playground-page",
+      "kind": "article",
+      "role": "article",
+      "title": "Specifying Editable Regions in a Playground Page",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/specifying-editable-regions-in-a-playground-page"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/writing-prose-for-a-playground-page": {
+      "abstract": [
+        {
+          "text": "Add comment markers in your Swift code to mark text as prose.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/writing-prose-for-a-playground-page",
+      "kind": "article",
+      "role": "article",
+      "title": "Writing Prose for a Playground Page",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/writing-prose-for-a-playground-page"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds": {
+      "abstract": [
+        {
+          "text": "Learn to write apps, repurpose sample code, create, and share learning experiences in Swift Playgrounds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+      "kind": "article",
+      "role": "collection",
+      "title": "Swift Playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Annotations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/writing-prose-for-a-playground-page",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/specifying-editable-regions-in-a-playground-page",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/hiding-code-from-a-playground-page",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/customizing-the-completions-in-the-shortcut-bar"
+      ],
+      "title": "Annotations"
+    }
+  ]
+}

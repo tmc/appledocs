@@ -1,0 +1,276 @@
+{
+  "abstract": [
+    {
+      "text": "Predefined ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdictionarykeycallbacks",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": " structure containing a set of callbacks appropriate for use when the keys of a CFDictionary are all CFString objects, which may be mutable and need to be copied in order to serve as constant keys for the values in the dictionary.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/corefoundation",
+        "doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum",
+        "doc://com.apple.documentation/documentation/corefoundation/cfdictionary/predefined_callback_structures"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/corefoundation/kcfcopystringdictionarykeycallbacks"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1516811,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@kCFCopyStringDictionaryKeyCallBacks",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "let "
+      },
+      {
+        "kind": "identifier",
+        "text": "kCFCopyStringDictionaryKeyCallBacks"
+      },
+      {
+        "kind": "text",
+        "text": ": CFDictionaryKeyCallBacks"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Global Variable",
+    "symbolKind": "data",
+    "title": "kCFCopyStringDictionaryKeyCallBacks"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "let"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCFCopyStringDictionaryKeyCallBacks"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdictionarykeycallbacks",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@CFDictionaryKeyCallBacks",
+              "text": "CFDictionaryKeyCallBacks"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You typically use a pointer to this constant when creating a new dictionary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For performance reasons, the default ",
+                  "type": "text"
+                },
+                {
+                  "code": "kCFCopyStringDictionaryKeyCallBacks",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " behavior uses ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521287-cfequal",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " which does not normalize the strings. This means that, for example, it does not consider CFStrings to be equal when they are the same but one is in pre-composed form (say, originating from a UTF-16 text file) and the other in decomposed form (say, originating from a file name). In cases where you use strings from different sources, you may want to pre-normalize the keys or else use a different set of functions to perform the comparison.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Foundation",
+      "type": "topic",
+      "url": "/documentation/corefoundation"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1521287-cfequal": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521287-cfequal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFEqual(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1521287-cfequal"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFDictionary",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdictionary-rum"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdictionary/predefined_callback_structures": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdictionary/predefined_callback_structures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Predefined Callback Structures",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdictionary/predefined_callback_structures"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdictionarykeycallbacks": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdictionarykeycallbacks",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFDictionaryKeyCallBacks",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdictionarykeycallbacks"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/corefoundation/kcfcopystringdictionarykeycallbacks"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/corefoundation/kcfcopystringdictionarykeycallbacks"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

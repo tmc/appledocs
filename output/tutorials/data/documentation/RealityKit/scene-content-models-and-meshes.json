@@ -1,0 +1,2642 @@
+{
+  "abstract": [
+    {
+      "text": "Display virtual objects in your scene with mesh-based models.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-models-and-meshes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Models and meshes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Meshes are the building blocks for every visible geometric shape and model in RealityKit,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "including those that come from a USDZ file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Create primitive shapes by calling a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " factory method, such as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/generateBox(size:cornerRadius:)-8em0v",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or define your own mesh",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by creating and configuring a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Display meshes in your scene by creating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for each mesh,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and add that component to an entity.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can also add ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Material",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your mesh by adding them to the same ",
+              "type": "text"
+            },
+            {
+              "code": "ModelComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Hello-World-intro.png": {
+      "alt": null,
+      "identifier": "Hello-World-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/770e1d0451ba3b86de3b05eb0ce728b7/Hello-World-intro@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AdaptiveResolutionComponent": {
+      "abstract": [
+        {
+          "text": "A component that provides the suggested pixels per meter necessary to render an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AdaptiveResolutionComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AdaptiveResolutionComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AdaptiveResolutionComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AdaptiveResolutionComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/adaptiveresolutioncomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnyMeshBuffer": {
+      "abstract": [
+        {
+          "text": "Mesh buffer stored in the container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnyMeshBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnyMeshBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnyMeshBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnyMeshBuffer",
+      "type": "topic",
+      "url": "/documentation/realitykit/anymeshbuffer"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendShapeWeights": {
+      "abstract": [
+        {
+          "text": "A set of animatable weight values that collectively represent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the blending amounts for all the blend shapes’ blend targets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BlendShapeWeights"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendShapeWeights",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BlendShapeWeights"
+        }
+      ],
+      "role": "symbol",
+      "title": "BlendShapeWeights",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendshapeweights"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendShapeWeightsComponent": {
+      "abstract": [
+        {
+          "text": "A component that provides access to the current weights associated with all blend shape meshes on an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BlendShapeWeightsComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendShapeWeightsComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BlendShapeWeightsComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "BlendShapeWeightsComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendshapeweightscomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendShapeWeightsData": {
+      "abstract": [
+        {
+          "text": "A structure that encapsulates the blend shape name, blend shape weights and the names",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of those weights to be stored by the blend shape weights set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BlendShapeWeightsData"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendShapeWeightsData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BlendShapeWeightsData"
+        }
+      ],
+      "role": "symbol",
+      "title": "BlendShapeWeightsData",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendshapeweightsdata"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendShapeWeightsMapping": {
+      "abstract": [
+        {
+          "text": "A mapping of blend weights to the target meshes that those weights affect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BlendShapeWeightsMapping"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendShapeWeightsMapping",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BlendShapeWeightsMapping"
+        }
+      ],
+      "role": "symbol",
+      "title": "BlendShapeWeightsMapping",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendshapeweightsmapping"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendShapeWeightsSet": {
+      "abstract": [
+        {
+          "text": "A custom collection of named blend shape weights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BlendShapeWeightsSet"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendShapeWeightsSet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BlendShapeWeightsSet"
+        }
+      ],
+      "role": "symbol",
+      "title": "BlendShapeWeightsSet",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendshapeweightsset"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BoundingBox": {
+      "abstract": [
+        {
+          "text": "An axis-aligned bounding box (AABB).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BoundingBox"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BoundingBox",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BoundingBox"
+        }
+      ],
+      "role": "symbol",
+      "title": "BoundingBox",
+      "type": "topic",
+      "url": "/documentation/realitykit/boundingbox"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HasModel": {
+      "abstract": [
+        {
+          "text": "An interface that provides meshes and materials to define the visual",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "appearance of an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HasModel"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HasModel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HasModel"
+        }
+      ],
+      "role": "symbol",
+      "title": "HasModel",
+      "type": "topic",
+      "url": "/documentation/realitykit/hasmodel"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh": {
+      "abstract": [
+        {
+          "text": "A container for vertex data that you can use to create and update meshes using your own format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LowLevelMesh"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LowLevelMesh"
+        }
+      ],
+      "role": "symbol",
+      "title": "LowLevelMesh",
+      "type": "topic",
+      "url": "/documentation/realitykit/lowlevelmesh"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/Attribute": {
+      "abstract": [
+        {
+          "text": "An object that determines how to store vertex attribute data in memory and map it to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "RealityKit shader attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Attribute"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/Attribute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Attribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "LowLevelMesh.Attribute",
+      "type": "topic",
+      "url": "/documentation/realitykit/lowlevelmesh/attribute"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/Descriptor-swift.struct": {
+      "abstract": [
+        {
+          "text": "An object that describes the data format and layout of the buffers in a low-level mesh.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Descriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/Descriptor-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Descriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "LowLevelMesh.Descriptor",
+      "type": "topic",
+      "url": "/documentation/realitykit/lowlevelmesh/descriptor-swift.struct"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/Layout": {
+      "abstract": [
+        {
+          "text": "An object that describes a set of attributes that share a buffer index, offset,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and stride.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Layout"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/Layout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Layout"
+        }
+      ],
+      "role": "symbol",
+      "title": "LowLevelMesh.Layout",
+      "type": "topic",
+      "url": "/documentation/realitykit/lowlevelmesh/layout"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/Part": {
+      "abstract": [
+        {
+          "text": "An object that describes a range of primitives to display, and their material index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Part"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/Part",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Part"
+        }
+      ],
+      "role": "symbol",
+      "title": "LowLevelMesh.Part",
+      "type": "topic",
+      "url": "/documentation/realitykit/lowlevelmesh/part"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/PartsCollection": {
+      "abstract": [
+        {
+          "text": "An object that holds a mutable collection low-level mesh parts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PartsCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/PartsCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PartsCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "LowLevelMesh.PartsCollection",
+      "type": "topic",
+      "url": "/documentation/realitykit/lowlevelmesh/partscollection"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/VertexSemantic": {
+      "abstract": [
+        {
+          "text": "Designates the intended usage of a vertex attribute.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VertexSemantic"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/VertexSemantic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VertexSemantic"
+        }
+      ],
+      "role": "symbol",
+      "title": "LowLevelMesh.VertexSemantic",
+      "type": "topic",
+      "url": "/documentation/realitykit/lowlevelmesh/vertexsemantic"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Material": {
+      "abstract": [
+        {
+          "text": "A type that describes the material aspects of a mesh, like color and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Material"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Material",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Material"
+        }
+      ],
+      "role": "symbol",
+      "title": "Material",
+      "type": "topic",
+      "url": "/documentation/realitykit/material"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshBuffer": {
+      "abstract": [
+        {
+          "text": "Mesh buffer containing elements of any type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MeshBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MeshBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshBuffer",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshbuffer"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshBufferContainer": {
+      "abstract": [
+        {
+          "text": "Conforming objects contain a table of mesh buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MeshBufferContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshBufferContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MeshBufferContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshBufferContainer",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshbuffercontainer"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshBufferSemantic": {
+      "abstract": [
+        {
+          "text": "A protocol that holds an identifier value for mesh buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MeshBufferSemantic"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshBufferSemantic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MeshBufferSemantic"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshBufferSemantic",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshbuffersemantic"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshBuffers": {
+      "abstract": [
+        {
+          "text": "An object that holds the data for an model entity’s mesh.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MeshBuffers"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshBuffers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MeshBuffers"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshBuffers",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshbuffers"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshDescriptor": {
+      "abstract": [
+        {
+          "text": "Defines a 3D mesh’s structure and data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MeshDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MeshDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshDescriptor",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshdescriptor"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshDescriptor/Materials-swift.enum": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Materials"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshDescriptor/Materials-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Materials"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshDescriptor.Materials",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshdescriptor/materials-swift.enum"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshDescriptor/Primitives-swift.enum": {
+      "abstract": [
+        {
+          "text": "Indicates which primitive shape type a mesh applies to its vertex indices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Primitives"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshDescriptor/Primitives-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Primitives"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshDescriptor.Primitives",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshdescriptor/primitives-swift.enum"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshInstanceCollection": {
+      "abstract": [
+        {
+          "text": "An object that holds a collection of mesh resource instances.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MeshInstanceCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshInstanceCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MeshInstanceCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshInstanceCollection",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshinstancecollection"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshJointInfluence": {
+      "abstract": [
+        {
+          "text": "A binding to a joint, which consists of the joint’s index and the weight of that joint’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "influence on a vertex.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MeshJointInfluence"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshJointInfluence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MeshJointInfluence"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshJointInfluence",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshjointinfluence"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshModelCollection": {
+      "abstract": [
+        {
+          "text": "An object that holds a collection of mesh models.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MeshModelCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshModelCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MeshModelCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshModelCollection",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshmodelcollection"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshPartCollection": {
+      "abstract": [
+        {
+          "text": "An object that holds a collection of mesh parts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MeshPartCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshPartCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MeshPartCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshPartCollection",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshpartcollection"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource": {
+      "abstract": [
+        {
+          "text": "A high-level representation of a collection of vertices and edges that",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "define a shape.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MeshResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MeshResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshResource",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Contents-swift.struct": {
+      "abstract": [
+        {
+          "text": "Value of the contents of the resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Contents"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Contents-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Contents"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshResource.Contents",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource/contents-swift.struct"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Font": {
+      "abstract": [
+        {
+          "text": "A platform-specific type that represents a font for use in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "generating a text mesh.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Font"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Font",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Font"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshResource.Font",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource/font"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/GenerateTextOptions": {
+      "abstract": [
+        {
+          "text": "A type that determines the configuration for rendering text in 2D,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "before it is extruded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GenerateTextOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/GenerateTextOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GenerateTextOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshResource.GenerateTextOptions",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource/generatetextoptions"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Instance": {
+      "abstract": [
+        {
+          "text": "An object that transforms a model to a location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Instance"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Instance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Instance"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshResource.Instance",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource/instance"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/JointInfluences": {
+      "abstract": [
+        {
+          "text": "A buffer of vertex-joint influences which bind the mesh part’s vertices to a skeleton via a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "skinning deformation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "JointInfluences"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/JointInfluences",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JointInfluences"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshResource.JointInfluences",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource/jointinfluences"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Model": {
+      "abstract": [
+        {
+          "text": "A model consists of a list of parts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Model"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Model",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Model"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshResource.Model",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource/model"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Part": {
+      "abstract": [
+        {
+          "text": "A part of a model consisting of a single material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Part"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Part",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Part"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshResource.Part",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource/part"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/ShapeExtrusionOptions": {
+      "abstract": [
+        {
+          "text": "A type that determines the extrusion, chamfering,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and material assignment of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "an extruded shape.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShapeExtrusionOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/ShapeExtrusionOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShapeExtrusionOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshResource.ShapeExtrusionOptions",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource/shapeextrusionoptions"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/ShapeExtrusionOptions/ChamferMode-swift.enum": {
+      "abstract": [
+        {
+          "text": "Determines which part of the extrusion to chamfer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChamferMode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/ShapeExtrusionOptions/ChamferMode-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ChamferMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshResource.ShapeExtrusionOptions.ChamferMode",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource/shapeextrusionoptions/chamfermode-swift.enum"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/ShapeExtrusionOptions/CurveStrokeResolution": {
+      "abstract": [
+        {
+          "text": "Designates the resolution at which a smooth curve is discretized.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CurveStrokeResolution"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/ShapeExtrusionOptions/CurveStrokeResolution",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CurveStrokeResolution"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshResource.ShapeExtrusionOptions.CurveStrokeResolution",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource/shapeextrusionoptions/curvestrokeresolution"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/ShapeExtrusionOptions/ExtrusionMethod-swift.enum": {
+      "abstract": [
+        {
+          "text": "The options that determine the way in which to extrude a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "swept shape in 3D.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtrusionMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/ShapeExtrusionOptions/ExtrusionMethod-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtrusionMethod"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshResource.ShapeExtrusionOptions.ExtrusionMethod",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource/shapeextrusionoptions/extrusionmethod-swift.enum"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/ShapeExtrusionOptions/MaterialAssignment-swift.struct": {
+      "abstract": [
+        {
+          "text": "A type that determines the material assignments",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for each part of an extruded shape.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MaterialAssignment"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/ShapeExtrusionOptions/MaterialAssignment-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MaterialAssignment"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshResource.ShapeExtrusionOptions.MaterialAssignment",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource/shapeextrusionoptions/materialassignment-swift.struct"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton": {
+      "abstract": [
+        {
+          "text": "A skeleton consists of a hierarchy of joints. Each joint defines a coordinate space.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Portions of a model may be thought of as having a position in a joint’s local space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Skeleton"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Skeleton"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshResource.Skeleton",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource/skeleton"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton/ID-swift.typealias": {
+      "abstract": [
+        {
+          "text": "A type representing the stable identity of the entity associated with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "an instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ID"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton/ID-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ID"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshResource.Skeleton.ID",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource/skeleton/id-swift.typealias"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton/Joint": {
+      "abstract": [
+        {
+          "text": "A named joint in a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Joint"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton/Joint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Joint"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshResource.Skeleton.Joint",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource/skeleton/joint"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/generateBox(size:cornerRadius:)-8em0v": {
+      "abstract": [
+        {
+          "text": "Creates a box mesh from a length for the box’s width, height, and depth,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and a radius for the corners.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "generateBox"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "cornerRadius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation12MeshResourceC",
+          "text": "MeshResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/generateBox(size:cornerRadius:)-8em0v",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "generateBox(size:cornerRadius:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource/generatebox(size:cornerradius:)-8em0v"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshSkeletonCollection": {
+      "abstract": [
+        {
+          "text": "An object that holds a collection of skeletons used by a mesh resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MeshSkeletonCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshSkeletonCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MeshSkeletonCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshSkeletonCollection",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshskeletoncollection"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent": {
+      "abstract": [
+        {
+          "text": "A component that contains a mesh and materials for the visual appearance of an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent": {
+      "abstract": [
+        {
+          "text": "A component that changes how RealityKit renders its entity to help with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "debugging.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelDebugOptionsComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelDebugOptionsComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelDebugOptionsComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/modeldebugoptionscomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity": {
+      "abstract": [
+        {
+          "text": "A representation of a physical object that RealityKit renders and optionally",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "simulates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelEntity",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelentity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup": {
+      "abstract": [
+        {
+          "text": "A group that you assign to multiple entities to tell the renderer what",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "order and how to render the entities in the group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelSortGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelSortGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelSortGroup",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelsortgroup"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent": {
+      "abstract": [
+        {
+          "text": "A component that configures the rendering order for an entity’s model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelSortGroupComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelSortGroupComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelSortGroupComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelsortgroupcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OpacityComponent": {
+      "abstract": [
+        {
+          "text": "A component that controls the opacity of an entity and its descendants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OpacityComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OpacityComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OpacityComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "OpacityComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/opacitycomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OrientedBoundingBox": {
+      "abstract": [
+        {
+          "text": "Representation for an oriented bounding box.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Uses a combination of an axis-aligned bounding box and a rotation vector around",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the centroid of the said axis-aligned bounding box to represent an oriented bounding box.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OrientedBoundingBox"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OrientedBoundingBox",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OrientedBoundingBox"
+        }
+      ],
+      "role": "symbol",
+      "title": "OrientedBoundingBox",
+      "type": "topic",
+      "url": "/documentation/realitykit/orientedboundingbox"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app": {
+      "abstract": [
+        {
+          "text": "Use attachments to place 2D content relative to 3D content in your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Combining 2D and 3D views in an immersive app",
+      "type": "topic",
+      "url": "/documentation/realitykit/combining-2d-and-3d-views-in-an-immersive-app"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-plane-with-low-level-mesh": {
+      "abstract": [
+        {
+          "text": "Create a low-level mesh and set its vertex positions and normals to form a plane.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-plane-with-low-level-mesh",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a plane with low-level mesh",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-a-plane-with-low-level-mesh"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spatial-drawing-app-with-realitykit": {
+      "abstract": [
+        {
+          "text": "Use low-level mesh and texture APIs to achieve fast updates to a person’s brush",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "strokes by integrating RealityKit with ARKit and SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spatial-drawing-app-with-realitykit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a spatial drawing app with RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-a-spatial-drawing-app-with-realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/generating-interactive-geometry-with-realitykit": {
+      "abstract": [
+        {
+          "text": "Create an interactive mesh with low-level mesh and low-level texture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/generating-interactive-geometry-with-realitykit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Generating interactive geometry with RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit/generating-interactive-geometry-with-realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-anchors": {
+      "abstract": [
+        {
+          "text": "Lock virtual content to the real world.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-anchors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Anchors",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-anchors"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-audio": {
+      "abstract": [
+        {
+          "text": "Create personalized and realistic spatial audio experiences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-audio",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-audio"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-content-synchronization": {
+      "abstract": [
+        {
+          "text": "Synchronize the contents of entities locally or across the network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-content-synchronization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Content synchronization",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-content-synchronization"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-lights-and-cameras": {
+      "abstract": [
+        {
+          "text": "Control the lighting and point of view for a scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-lights-and-cameras",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Lights and cameras",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-lights-and-cameras"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-materials-and-shaders": {
+      "abstract": [
+        {
+          "text": "Apply textures to the surface of your scene’s 3D objects to give each object a unique appearance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-materials-and-shaders",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Materials, textures, and shaders",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-materials-and-shaders"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-videos": {
+      "abstract": [
+        {
+          "text": "Present videos in your RealityKit experiences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-videos",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Videos",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-videos"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/transforming-realitykit-entities-with-gestures": {
+      "abstract": [
+        {
+          "text": "Build a RealityKit component to support standard visionOS gestures on any entity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/transforming-realitykit-entities-with-gestures",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Transforming RealityKit entities using gestures",
+      "type": "topic",
+      "url": "/documentation/realitykit/transforming-realitykit-entities-with-gestures"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/World": {
+      "abstract": [
+        {
+          "text": "Use windows, volumes, and immersive spaces to teach people about the Earth.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/World",
+      "images": [
+        {
+          "identifier": "Hello-World-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Hello World",
+      "type": "topic",
+      "url": "/documentation/visionOS/World"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment": {
+      "abstract": [
+        {
+          "text": "Create a more immersive experience by adding video reflections in a custom environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment",
+      "images": [
+        {
+          "identifier": "lightspill-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Enabling video reflections in an immersive environment",
+      "type": "topic",
+      "url": "/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment"
+    },
+    "lightspill-PageImage-card.png": {
+      "alt": null,
+      "identifier": "lightspill-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/87e397de07459c756d21eb0c441569f7/lightspill-PageImage-card@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Scene-content",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/visionOS/World",
+        "doc://com.apple.documentation/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment",
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spatial-drawing-app-with-realitykit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/generating-interactive-geometry-with-realitykit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app",
+        "doc://com.apple.RealityKit/documentation/RealityKit/transforming-realitykit-entities-with-gestures",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-materials-and-shaders",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-anchors",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-lights-and-cameras",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-content-synchronization",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-audio",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-videos"
+      ],
+      "title": "Scene content"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Model-display",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity"
+      ],
+      "title": "Model display"
+    },
+    {
+      "anchor": "Render-configuration",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup",
+        "doc://com.apple.RealityKit/documentation/RealityKit/OpacityComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AdaptiveResolutionComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent"
+      ],
+      "title": "Render configuration"
+    },
+    {
+      "anchor": "Static-meshes",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshDescriptor",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshDescriptor/Primitives-swift.enum",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshDescriptor/Materials-swift.enum"
+      ],
+      "title": "Static meshes"
+    },
+    {
+      "anchor": "Updatable-meshes",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spatial-drawing-app-with-realitykit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-plane-with-low-level-mesh",
+        "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh",
+        "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/Descriptor-swift.struct",
+        "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/Part",
+        "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/Layout",
+        "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/Attribute",
+        "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/VertexSemantic",
+        "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/PartsCollection"
+      ],
+      "title": "Updatable meshes"
+    },
+    {
+      "anchor": "Bounding-box-retrieval",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/BoundingBox",
+        "doc://com.apple.RealityKit/documentation/RealityKit/OrientedBoundingBox"
+      ],
+      "title": "Bounding box retrieval"
+    },
+    {
+      "anchor": "Text-generation-options",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/GenerateTextOptions",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Font"
+      ],
+      "title": "Text generation options"
+    },
+    {
+      "anchor": "2D-path-extrusion-for-3D-mesh-creation",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/ShapeExtrusionOptions",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/ShapeExtrusionOptions/MaterialAssignment-swift.struct",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/ShapeExtrusionOptions/ChamferMode-swift.enum",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/ShapeExtrusionOptions/CurveStrokeResolution",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/ShapeExtrusionOptions/ExtrusionMethod-swift.enum"
+      ],
+      "title": "2D path extrusion for 3D mesh creation"
+    },
+    {
+      "anchor": "Mesh-description",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshBuffer",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshBufferContainer",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshBufferSemantic",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshBuffers",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnyMeshBuffer",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshInstanceCollection",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshModelCollection",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshPartCollection"
+      ],
+      "title": "Mesh description"
+    },
+    {
+      "anchor": "Mesh-skeletons",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton/Joint",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton/ID-swift.typealias",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshSkeletonCollection",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshJointInfluence",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/JointInfluences"
+      ],
+      "title": "Mesh skeletons"
+    },
+    {
+      "anchor": "Mesh-resource-data",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Contents-swift.struct",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Instance",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Model",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Part"
+      ],
+      "title": "Mesh resource data"
+    },
+    {
+      "anchor": "Blend-shape-management",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendShapeWeightsComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendShapeWeightsMapping",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendShapeWeights",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendShapeWeightsData",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendShapeWeightsSet"
+      ],
+      "title": "Blend shape management"
+    },
+    {
+      "anchor": "Entity-compliance",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/HasModel"
+      ],
+      "title": "Entity compliance"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/scene-content-models-and-meshes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

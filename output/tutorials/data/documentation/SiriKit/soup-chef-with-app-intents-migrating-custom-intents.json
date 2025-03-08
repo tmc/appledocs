@@ -1,0 +1,795 @@
+{
+  "abstract": [
+    {
+      "text": "Integrating App Intents to provide your appʼs actions to Siri and Shortcuts.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/SiriKit"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/SiriKit",
+        "doc://com.apple.sirikit/documentation/Intents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-with-app-intents-migrating-custom-intents"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.3",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.3",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.3",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Soup Chef with App Intents: Migrating custom intents"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This version of Soup Chef highlights the changes required to migrate from a custom intent to App Intents.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It modifies the existing Soup Chef sample to add support for AppIntents, AppEntities, and App Shortcuts as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/tech-talks/10168/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can run Soup Chef, you need to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the app group name for the SoupChef, SoupChefIntents, SoupChefWatchExtension, and SoupChefIntentsWatch targets to a valid name. For more information on App Groups, see Configure App Groups.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change the value of AppGroup in UserDefaults+DataSource.swift to match your app group name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Share-code-between-the-app-and-app-extension",
+          "level": 3,
+          "text": "Share code between the app and app extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Soup Chef project contains targets for an app and an Intents app extension, which the system uses to handle shortcuts that run in the background. To avoid duplicating code that is common across the two targets, the project includes a shared framework called SoupKit. This framework provides a central location for shared code responsible for tasks such as data management and donating shortcuts. For more information about structuring code, see Structuring Your Code to Support App Extensions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Convert-the-intent-definition",
+          "level": 3,
+          "text": "Convert the intent definition",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The intent definitions, which define the custom intents, are recreated as their respective AppIntent representation using the “Convert to AppIntents” button",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the intent definition file. The new intent files, located in the App Intent Group of the project, each have an autogenerated structure and implement",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/CustomIntentMigratedAppIntent",
+              "isActive": true,
+              "overridingTitle": "CustomIntentMigratedAppIntent",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "CustomIntentMigratedAppIntent",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " protocol. Each parameter of the custom intent represents an ",
+              "type": "text"
+            },
+            {
+              "code": "AppEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct OrderSoup: AppIntent, CustomIntentMigratedAppIntent {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Implement-queries",
+          "level": 3,
+          "text": "Implement queries",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each of the four parameters for the ",
+              "type": "text"
+            },
+            {
+              "code": "OrderSoupIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " have their respective AppEntity representation. The ",
+              "type": "text"
+            },
+            {
+              "code": "SoupAppEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "ToppingAppEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " use the existing data manager to resolve the entity values.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Additionally, apps can also resolve entities by string or UUID. The full list of entities the person sees when they tap the parameter in the Shortcuts app can also show by returning a collection of entities in the ",
+              "type": "text"
+            },
+            {
+              "code": "suggestedEntities()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implementation.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "OrderType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has a representation as ",
+              "type": "text"
+            },
+            {
+              "code": "AppEnum",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "OrderDetails",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is represented as a ",
+              "type": "text"
+            },
+            {
+              "code": "TransientAppEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " because it doesn’t have unique identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func suggestedEntities() async throws -> IntentItemCollection<SoupAppEntity> {",
+            "            let soupMenuManager = SoupMenuManager()",
+            "            ",
+            "            // Only adopt `EntityStringQuery` for searching large catalogs, not for small static collections.",
+            "            // The Shortcuts app supports filtering of small collections by default.",
+            "            let availableRegularItems = soupMenuManager.findItems(exactlyMatching: [.available, .regularItem])",
+            "            let availableDailySpecialItems = soupMenuManager.findItems(exactlyMatching: [.available, .dailySpecialItem])",
+            "            ",
+            "            return ItemCollection {",
+            "                ItemSection<SoupAppEntity>(",
+            "                    items:",
+            "                        availableRegularItems .map {",
+            "                            IntentItem<SoupAppEntity>(",
+            "                                SoupAppEntity($0),",
+            "                                title: SoupAppEntity($0).localizedStringResource,",
+            "                                image: SoupAppEntity($0).displayRepresentation.image)",
+            "                        }",
+            "                )",
+            "                ItemSection<SoupAppEntity>(",
+            "                    title: \"Specials\",",
+            "                    items: availableDailySpecialItems .map {",
+            "                        IntentItem<SoupAppEntity>(",
+            "                            SoupAppEntity($0),",
+            "                            title: SoupAppEntity($0).localizedStringResource,",
+            "                            image: SoupAppEntity($0).displayRepresentation.image)",
+            "                    }",
+            "                )",
+            "            }",
+            "        }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Replace-custom-intents-with-App-Intents",
+          "level": 3,
+          "text": "Replace custom intents with App Intents",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Perform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method in AppIntents subsumes the resolve, confirm, and handle functionality that was required with custom Intents. Entities declared in an App Intent can be optional or required. The entity type and query implementation help to resolve their values automatically in App Intents.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Handling cases where user input requires confirmation or needs new value are handled explicitly within the ",
+              "type": "text"
+            },
+            {
+              "code": "Perform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function. For example, confirming the order before placing it, or requesting a delivery location aren’t provided. The ",
+              "type": "text"
+            },
+            {
+              "code": "Perform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method handles the final execution and returns an intent result which can be the dialog that needs to be spoken as well as the snippet that is shown onscreen to the person.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following is an example of how to resolve ",
+              "type": "text"
+            },
+            {
+              "code": "Topping",
+              "type": "codeVoice"
+            },
+            {
+              "text": " using an Entity Query:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "  func entities(matching string: String) async throws -> [ToppingAppEntity] {",
+            "            let menuItemTopping = Order.MenuItemTopping.allCases.filter { $0.rawValue == string }",
+            "            let result = menuItemTopping.map { (topping) -> ToppingAppEntity in",
+            "                return ToppingAppEntity(",
+            "                    id: topping.rawValue, displayString: topping.localizedName(useDeferredIntentLocalization: true))",
+            "            }",
+            "            return result",
+            "        }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following is an example of how to validate quantity values and returning results in perform method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    func perform() async throws -> some ProvidesDialog & ShowsSnippetView {",
+            "        if quantity > menuItem[0].itemsInStock {",
+            "                let errorPrompt = OrderSoupError.notEnoughInStock(quantity ).localizedStringResource",
+            "                            return .result(value: OrderDetailsAppEntity(), dialog: IntentDialog(errorPrompt))",
+            "        }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Provide-dynamic-options",
+          "level": 3,
+          "text": "Provide dynamic options",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "storeLocations",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter has a backing by a ",
+              "type": "text"
+            },
+            {
+              "code": "DynamicOptionsProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that returns all store locations directly in results method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@available(iOS 16.0, macOS 13.0, watchOS 9.0, tvOS 16.0, *)",
+            "struct SoupChefAppShortcutsProvider: AppShortcutsProvider {",
+            "    static var appShortcuts: [AppShortcut] {",
+            "        AppShortcut(",
+            "            intent: OrderSoup(),",
+            "            phrases: [",
+            "                \"Order \\(.applicationName)\",",
+            "                \"Order \\(\\.$soup) from \\(.applicationName)\"",
+            "            ],",
+            "            shortTitle: \"Order Soup\"",
+            "        )",
+            "    }",
+            "    static var shortcutTileColor: ShortcutTileColor = .orange",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "App-Shortcut-provider-and-localization",
+          "level": 3,
+          "text": "App Shortcut provider and localization",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make the Intent easier to discover, this version of Soup Chef implement AppShortcuts that allow the Intent to automatically appear in the Shortcut app. To aid with localization of AppShortcuts, use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "AppShortcuts.strings",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to add support for other locales.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"TOMATO_SOUP\" = \"Tomato Soup\";",
+            "\"NE_CLAM_CHOWDER\" = \"New England Clam Chowder\";",
+            "\"CHICKEN_NOODLE_SOUP\" = \"Chicken Noodle Soup\";"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppIntents/CustomIntentMigratedAppIntent": {
+      "abstract": [
+        {
+          "text": "An interface for replacing a custom SiriKit intent that allows existing shortcuts and donations to continue working.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomIntentMigratedAppIntent"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP",
+          "text": "AppIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/CustomIntentMigratedAppIntent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomIntentMigratedAppIntent",
+      "type": "topic",
+      "url": "/documentation/AppIntents/CustomIntentMigratedAppIntent"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit": {
+      "abstract": [
+        {
+          "text": "Empower users to interact with their devices through voice, intelligent suggestions, and personalized workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/adding-shortcuts-for-wind-down": {
+      "abstract": [
+        {
+          "text": "Reveal your app’s shortcuts inside the Health app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/adding-shortcuts-for-wind-down",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adding Shortcuts for Wind Down",
+      "type": "topic",
+      "url": "/documentation/sirikit/adding-shortcuts-for-wind-down"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/booking-rides-with-sirikit": {
+      "abstract": [
+        {
+          "text": "Add Intents extensions to your app to handle requests to book rides using Siri and Maps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/booking-rides-with-sirikit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Booking Rides with SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit/booking-rides-with-sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/handling-payment-requests-with-sirikit": {
+      "abstract": [
+        {
+          "text": "Add an Intent Extension to your app to handle money transfer requests with Siri.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/handling-payment-requests-with-sirikit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Handling Payment Requests with SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit/handling-payment-requests-with-sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/handling-workout-requests-with-sirikit": {
+      "abstract": [
+        {
+          "text": "Add an Intent Extension to your app that handles requests to control workouts with Siri.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/handling-workout-requests-with-sirikit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Handling Workout Requests with SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit/handling-workout-requests-with-sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/integrating-your-app-with-siri-event-suggestions": {
+      "abstract": [
+        {
+          "text": "Donate reservations and provide quick access to event details throughout the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/integrating-your-app-with-siri-event-suggestions",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Integrating Your App with Siri Event Suggestions",
+      "type": "topic",
+      "url": "/documentation/sirikit/integrating-your-app-with-siri-event-suggestions"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/managing-audio-with-sirikit": {
+      "abstract": [
+        {
+          "text": "Control audio playback and handle requests to add media using SiriKit Media Intents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/managing-audio-with-sirikit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Managing Audio with SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit/managing-audio-with-sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/providing-hands-free-app-control-with-intents": {
+      "abstract": [
+        {
+          "text": "Resolve, confirm, and handle intents without an extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/providing-hands-free-app-control-with-intents",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Providing Hands-Free App Control with Intents",
+      "type": "topic",
+      "url": "/documentation/sirikit/providing-hands-free-app-control-with-intents"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-accelerating-app-interactions-with-shortcuts": {
+      "abstract": [
+        {
+          "text": "Make it easy for people to use Siri with your app by providing shortcuts to your app’s actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-accelerating-app-interactions-with-shortcuts",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Soup Chef: Accelerating App Interactions with Shortcuts",
+      "type": "topic",
+      "url": "/documentation/sirikit/soup-chef-accelerating-app-interactions-with-shortcuts"
+    },
+    "f321dc54a150/SoupChefWithAppIntentsMigratingCustomIntents.zip": {
+      "checksum": "f321dc54a1506ba00823c6b65c64445ada4a3fb8ccc07e452275546495e4188079a8fb58ffbd7281324db07a9818b3dd71515e9d987d14c42dfa08023edd1cb0",
+      "identifier": "f321dc54a150/SoupChefWithAppIntentsMigratingCustomIntents.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/f321dc54a150/SoupChefWithAppIntentsMigratingCustomIntents.zip"
+    },
+    "https://developer.apple.com/videos/play/tech-talks/10168/": {
+      "identifier": "https://developer.apple.com/videos/play/tech-talks/10168/",
+      "title": "Migrate Custom Intents to App Intents",
+      "titleInlineContent": [
+        {
+          "text": "Migrate Custom Intents to App Intents",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/tech-talks/10168/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "f321dc54a150/SoupChefWithAppIntentsMigratingCustomIntents.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sample-code",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/adding-shortcuts-for-wind-down",
+        "doc://com.apple.sirikit/documentation/SiriKit/booking-rides-with-sirikit",
+        "doc://com.apple.sirikit/documentation/SiriKit/handling-payment-requests-with-sirikit",
+        "doc://com.apple.sirikit/documentation/SiriKit/handling-workout-requests-with-sirikit",
+        "doc://com.apple.sirikit/documentation/SiriKit/integrating-your-app-with-siri-event-suggestions",
+        "doc://com.apple.sirikit/documentation/SiriKit/managing-audio-with-sirikit",
+        "doc://com.apple.sirikit/documentation/SiriKit/providing-hands-free-app-control-with-intents",
+        "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-accelerating-app-interactions-with-shortcuts"
+      ],
+      "title": "Sample code"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

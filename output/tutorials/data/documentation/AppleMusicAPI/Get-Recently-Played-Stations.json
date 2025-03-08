@@ -1,0 +1,962 @@
+{
+  "abstract": [
+    {
+      "text": "Fetch recently played radio stations for the user.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Apple Music",
+      "versions": [
+        "1.0",
+        "1.2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Played-Stations"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:music_api:get:v1-me-recent-radio-stations#all",
+    "modules": [
+      {
+        "name": "Apple Music API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Get Recently Played Stations"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "Apple Music"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get Recently Played Stations"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.music.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/me/recent/radio-stations"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The localization to use, specified by a language tag. The possible values are in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "supportedLanguageTags",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " array belonging to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object specified by ",
+                  "type": "text"
+                },
+                {
+                  "code": "storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Otherwise, the default is ",
+                  "type": "text"
+                },
+                {
+                  "code": "defaultLanguageTag",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "l",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of objects or number of objects in the specified relationship returned.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "limit",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The offset to use for a paginated request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "offset",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Additional relationships to include in the fetch.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "include",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of attribute extensions to apply to resources in the response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "extend",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/PaginatedResourceCollectionResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:PaginatedResourceCollectionResponse",
+              "text": "PaginatedResourceCollectionResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an incorrect ",
+                  "type": "text"
+                },
+                {
+                  "code": "Authorization",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " header.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:UnauthorizedResponse",
+              "text": "UnauthorizedResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating invalid or insufficient authentication.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ForbiddenResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:ForbiddenResponse",
+              "text": "ForbiddenResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an error occurred on the server.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:ErrorsResponse",
+              "text": "ErrorsResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If successful, the HTTP status code is 200 (OK) and the ",
+              "type": "text"
+            },
+            {
+              "code": "data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array contains an array of ",
+              "type": "text"
+            },
+            {
+              "code": "Station",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects. If unsuccessful, the HTTP status code indicates the error and the details are in the ",
+              "type": "text"
+            },
+            {
+              "code": "errors",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This endpoint requires a music user token. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "https://api.music.apple.com/v1/me/recent/radio-stations"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{    ",
+                    "    \"next\": \"/v1/me/recent/radio-stations?offset=10\",",
+                    "    \"data\": [",
+                    "        {",
+                    "            \"id\": \"ra.1498157166\",",
+                    "            \"type\": \"stations\",",
+                    "            \"href\": \"/v1/catalog/us/stations/ra.1498157166\",",
+                    "            \"attributes\": {",
+                    "                \"isLive\": true,",
+                    "                \"mediaKind\": \"audio\",",
+                    "                \"name\": \"Apple Music Country\",",
+                    "                \"editorialNotes\": {",
+                    "                    \"name\": \"Apple Music Country\",",
+                    "                    \"short\": \"Where it sounds like home.\",",
+                    "                    \"tagline\": \"Where it sounds like home.\"",
+                    "                },",
+                    "                \"artwork\": {",
+                    "                    \"width\": 4320,",
+                    "                    \"height\": 1080,",
+                    "                    \"url\": \"https://is5-ssl.mzstatic.com/image/thumb/Features114/v4/89/e2/66/89e266ee-454e-87e7-e108-dea53c54da6a/U0MtTVMtV1ctQU1fQ291bnRyeS5wbmc.png/{w}x{h}sr.jpg\",",
+                    "                    \"bgColor\": \"f4f4f4\",",
+                    "                    \"textColor1\": \"000000\",",
+                    "                    \"textColor2\": \"142234\",",
+                    "                    \"textColor3\": \"3a412d\",",
+                    "                    \"textColor4\": \"364354\"",
+                    "                },",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"ra.1498157166\",",
+                    "                    \"kind\": \"radioStation\",",
+                    "                    \"format\": \"stream\",",
+                    "                    \"stationHash\": \"CgkIBRoF7qCwygUQBA\",",
+                    "                    \"hasDrm\": true,",
+                    "                    \"mediaType\": 0",
+                    "                },",
+                    "                \"supportedDrms\": [",
+                    "                    \"fairplay\",",
+                    "                    \"playready\",",
+                    "                    \"widevine\"",
+                    "                ],",
+                    "                \"url\": \"https://music.apple.com/us/station/apple-music-country/ra.1498157166\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"ra.1498155548\",",
+                    "            \"type\": \"stations\",",
+                    "            \"href\": \"/v1/catalog/us/stations/ra.1498155548\",",
+                    "            \"attributes\": {",
+                    "                \"isLive\": true,",
+                    "                \"mediaKind\": \"audio\",",
+                    "                \"name\": \"Apple Music Hits\",",
+                    "                \"editorialNotes\": {",
+                    "                    \"name\": \"Apple Music Hits\",",
+                    "                    \"short\": \"Songs you know and love.\",",
+                    "                    \"tagline\": \"Songs you know and love.\"",
+                    "                },",
+                    "                \"artwork\": {",
+                    "                    \"width\": 4320,",
+                    "                    \"height\": 1080,",
+                    "                    \"url\": \"https://is4-ssl.mzstatic.com/image/thumb/Features114/v4/af/5f/6c/af5f6c79-5784-e57c-5202-531ece00e73b/U0MtTVMtV1ctQU1fSGl0cy5wbmc.png/{w}x{h}sr.jpg\",",
+                    "                    \"bgColor\": \"f4f4f4\",",
+                    "                    \"textColor1\": \"000000\",",
+                    "                    \"textColor2\": \"10185f\",",
+                    "                    \"textColor3\": \"292b34\",",
+                    "                    \"textColor4\": \"323b7a\"",
+                    "                },",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"ra.1498155548\",",
+                    "                    \"kind\": \"radioStation\",",
+                    "                    \"format\": \"stream\",",
+                    "                    \"stationHash\": \"CgkIBRoFnJSwygUQBA\",",
+                    "                    \"hasDrm\": true,",
+                    "                    \"mediaType\": 0",
+                    "                },",
+                    "                \"supportedDrms\": [",
+                    "                    \"fairplay\",",
+                    "                    \"playready\",",
+                    "                    \"widevine\"",
+                    "                ],",
+                    "                \"url\": \"https://music.apple.com/us/station/apple-music-hits/ra.1498155548\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"ra.978194965\",",
+                    "            \"type\": \"stations\",",
+                    "            \"href\": \"/v1/catalog/us/stations/ra.978194965\",",
+                    "            \"attributes\": {",
+                    "                \"isLive\": true,",
+                    "                \"name\": \"Apple Music 1\",",
+                    "                \"mediaKind\": \"audio\",",
+                    "                \"editorialNotes\": {",
+                    "                    \"name\": \"Apple Music 1\",",
+                    "                    \"short\": \"The new music that matters.\",",
+                    "                    \"tagline\": \"The new music that matters.\"",
+                    "                },",
+                    "                \"artwork\": {",
+                    "                    \"width\": 4320,",
+                    "                    \"height\": 1080,",
+                    "                    \"url\": \"https://is2-ssl.mzstatic.com/image/thumb/Features114/v4/bd/c4/aa/bdc4aa17-bbe4-ccb0-c005-1514160727d2/U0MtTVMtV1ctQU1fMS5wbmc.png/{w}x{h}sr.jpg\",",
+                    "                    \"bgColor\": \"f4f4f4\",",
+                    "                    \"textColor1\": \"000000\",",
+                    "                    \"textColor2\": \"120509\",",
+                    "                    \"textColor3\": \"332628\",",
+                    "                    \"textColor4\": \"33272a\"",
+                    "                },",
+                    "                \"url\": \"https://music.apple.com/us/station/apple-music-1/ra.978194965\",",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"ra.978194965\",",
+                    "                    \"kind\": \"radioStation\",",
+                    "                    \"format\": \"stream\",",
+                    "                    \"stationHash\": \"CgkIBRoFlaS40gMQBA\",",
+                    "                    \"hasDrm\": true,",
+                    "                    \"mediaType\": 0",
+                    "                },",
+                    "                \"supportedDrms\": [",
+                    "                    \"fairplay\",",
+                    "                    \"playready\",",
+                    "                    \"widevine\"",
+                    "                ]",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"ra.985484166\",",
+                    "            \"type\": \"stations\",",
+                    "            \"href\": \"/v1/catalog/us/stations/ra.985484166\",",
+                    "            \"attributes\": {",
+                    "                \"isLive\": false,",
+                    "                \"name\": \"Alternative Station\",",
+                    "                \"mediaKind\": \"audio\",",
+                    "                \"editorialNotes\": {",
+                    "                    \"name\": \"Alternative Station\",",
+                    "                    \"standard\": \"The margins to mainstream.\",",
+                    "                    \"short\": \"Apple Music Alternative\",",
+                    "                    \"tagline\": \"Apple Music Alternative\"",
+                    "                },",
+                    "                \"artwork\": {",
+                    "                    \"width\": 4320,",
+                    "                    \"height\": 1080,",
+                    "                    \"url\": \"https://is5-ssl.mzstatic.com/image/thumb/Features125/v4/e6/bc/a8/e6bca8e2-29f1-2337-26f7-1b970994f45a/U0MtTVMtV1ctQWx0ZXJuYXRpdmUtQURBTV9JRD05ODU0ODQxNjYucG5n.png/{w}x{h}sr.jpg\",",
+                    "                    \"bgColor\": \"4190f0\",",
+                    "                    \"textColor1\": \"000000\",",
+                    "                    \"textColor2\": \"0c0f12\",",
+                    "                    \"textColor3\": \"152333\",",
+                    "                    \"textColor4\": \"152333\"",
+                    "                },",
+                    "                \"url\": \"https://music.apple.com/us/station/alternative-station/ra.985484166\",",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"ra.985484166\",",
+                    "                    \"kind\": \"radioStation\",",
+                    "                    \"format\": \"tracks\",",
+                    "                    \"stationHash\": \"CgkIBBoFhpf11QMQAg\",",
+                    "                    \"hasDrm\": false,",
+                    "                    \"mediaType\": 0",
+                    "                }",
+                    "            }",
+                    "        }",
+                    "    ]",
+                    "}",
+                    "",
+                    ""
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI": {
+      "abstract": [
+        {
+          "text": "Integrate streaming music with catalog and personal content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Music API",
+      "type": "topic",
+      "url": "/documentation/applemusicapi"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that an error occurred while processing the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorsResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/errorsresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ForbiddenResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that the request wasn’t accepted due to an issue with the authentication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ForbiddenResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ForbiddenResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ForbiddenResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ForbiddenResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/forbiddenresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/GET-v1-me-recent-played-tracks": {
+      "abstract": [
+        {
+          "text": "Fetch the recently played tracks for the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/GET-v1-me-recent-played-tracks",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/me/recent/played/tracks"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Recently Played Tracks",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-v1-me-recent-played-tracks"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Heavy-Rotation-Content": {
+      "abstract": [
+        {
+          "text": "Fetch the resources in heavy rotation for the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Heavy-Rotation-Content",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Heavy Rotation Content"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Heavy Rotation Content",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-heavy-rotation-content"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Added-Resources": {
+      "abstract": [
+        {
+          "text": "Fetch the resources recently added to the library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Added-Resources",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Recently Added Resources"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Recently Added Resources",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-recently-added-resources"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Played-Resources": {
+      "abstract": [
+        {
+          "text": "Fetch the recently played resources for the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Played-Resources",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Recently Played Resources"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Recently Played Resources",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-recently-played-resources"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Played-Stations": {
+      "abstract": [
+        {
+          "text": "Fetch recently played radio stations for the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Played-Stations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Recently Played Stations"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Recently Played Stations",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-recently-played-stations"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/PaginatedResourceCollectionResponse": {
+      "abstract": [
+        {
+          "text": "A response object composed of paginated resource objects for the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaginatedResourceCollectionResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/PaginatedResourceCollectionResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaginatedResourceCollectionResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaginatedResourceCollectionResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/paginatedresourcecollectionresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Resource": {
+      "abstract": [
+        {
+          "text": "A resource—such as an album, song, or playlist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Resource"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Resource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Resource"
+        }
+      ],
+      "role": "symbol",
+      "title": "Resource",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/resource"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that the request’s authorization is missing or invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnauthorizedResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/unauthorizedresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses": {
+      "abstract": [
+        {
+          "text": "Write a request and handle responses from the API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Requests and Responses",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/handling-requests-and-responses"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit": {
+      "abstract": [
+        {
+          "text": "Authenticate requests for user data using the Music User Token.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit",
+      "kind": "article",
+      "role": "article",
+      "title": "User Authentication for MusicKit",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/user-authentication-for-musickit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Resource"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Requesting-Historical-Information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Heavy-Rotation-Content",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Played-Resources",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/GET-v1-me-recent-played-tracks",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Added-Resources"
+      ],
+      "title": "Requesting Historical Information"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemusicapi/get-recently-played-stations"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

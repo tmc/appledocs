@@ -1,0 +1,2419 @@
+{
+  "abstract": [
+    {
+      "text": "An allocation of memory accessible to a GPU.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/MTLResource"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MTLResource",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MTLResource"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MTLResource"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "MTLResource"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLResource"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLAllocation",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)MTLAllocation",
+              "text": "MTLAllocation"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.metal/documentation/Metal/choosing-a-resource-storage-mode-for-intel-and-amd-gpus",
+        "doc://com.apple.metal/documentation/Metal/synchronizing-a-managed-resource-in-macos"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Don’t implement this protocol yourself. Create resources by calling methods on ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you execute commands on the GPU, those commands can only affect memory allocated as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. Only the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that created these resources can modify them. Different resource types have different uses. The most common resource types are buffers (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), which are linear allocations of memory, and textures (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), which hold structured image data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructure": {
+      "abstract": [
+        {
+          "text": "A collection of model data for GPU-accelerated intersection of rays with the model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructure"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructure",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructure"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAccelerationStructure",
+      "type": "topic",
+      "url": "/documentation/metal/mtlaccelerationstructure"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAllocation": {
+      "abstract": [
+        {
+          "text": "A memory allocation from a Metal GPU device, such as a memory heap, texture, or data buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAllocation"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAllocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAllocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAllocation",
+      "type": "topic",
+      "url": "/documentation/metal/mtlallocation"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer": {
+      "abstract": [
+        {
+          "text": "A resource that stores data in a format defined by your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCPUCacheMode": {
+      "abstract": [
+        {
+          "text": "Options for the CPU cache mode that define the CPU mapping of the resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCPUCacheMode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCPUCacheMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCPUCacheMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCPUCacheMode",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcpucachemode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice": {
+      "abstract": [
+        {
+          "text": "The main Metal interface to a GPU that apps use to draw graphics and run computations in parallel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDevice",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLHazardTrackingMode": {
+      "abstract": [
+        {
+          "text": "The options you use to specify the hazard tracking mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLHazardTrackingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLHazardTrackingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLHazardTrackingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLHazardTrackingMode",
+      "type": "topic",
+      "url": "/documentation/metal/mtlhazardtrackingmode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer": {
+      "abstract": [
+        {
+          "text": "A command buffer containing reusable commands, encoded either on the CPU or GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectCommandBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectCommandBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIndirectCommandBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlindirectcommandbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable": {
+      "abstract": [
+        {
+          "text": "A table of intersection functions that Metal calls to perform ray-tracing intersection tests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIntersectionFunctionTable"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIntersectionFunctionTable"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIntersectionFunctionTable",
+      "type": "topic",
+      "url": "/documentation/metal/mtlintersectionfunctiontable"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPurgeableState": {
+      "abstract": [
+        {
+          "text": "The purgeable state of the resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLPurgeableState"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPurgeableState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPurgeableState"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPurgeableState",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpurgeablestate"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResource": {
+      "abstract": [
+        {
+          "text": "An allocation of memory accessible to a GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLResource"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLResource",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresource"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResource/allocatedSize": {
+      "abstract": [
+        {
+          "text": "The size of the resource, in bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocatedSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource/allocatedSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allocatedSize"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "allocatedSize",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresource/allocatedsize"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResource/cpuCacheMode": {
+      "abstract": [
+        {
+          "text": "The CPU cache mode that defines the CPU mapping of the resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cpuCacheMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLCPUCacheMode",
+          "text": "MTLCPUCacheMode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource/cpuCacheMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cpuCacheMode"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "cpuCacheMode",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresource/cpucachemode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResource/device": {
+      "abstract": [
+        {
+          "text": "The device object that created the resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDevice",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource/device",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "device"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "device",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresource/device"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResource/hazardTrackingMode": {
+      "abstract": [
+        {
+          "text": "A mode that determines whether Metal tracks and synchronizes resource access.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hazardTrackingMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLHazardTrackingMode",
+          "text": "MTLHazardTrackingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource/hazardTrackingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hazardTrackingMode"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "hazardTrackingMode",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresource/hazardtrackingmode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResource/heap": {
+      "abstract": [
+        {
+          "text": "The heap on which the resource is allocated, if any.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "heap"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLHeap",
+          "text": "MTLHeap"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource/heap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "heap"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "heap",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresource/heap"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResource/heapOffset": {
+      "abstract": [
+        {
+          "text": "The distance, in bytes, from the beginning of the heap to the first byte of the resource, if you allocated the resource on a heap.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "heapOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource/heapOffset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "heapOffset"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "heapOffset",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresource/heapoffset"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResource/isAliasable()": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether future heap resource allocations may alias against the resource’s memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAliasable"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource/isAliasable()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isAliasable"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "isAliasable()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresource/isaliasable()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResource/label": {
+      "abstract": [
+        {
+          "text": "A string that identifies the resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "label"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource/label",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "label"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "label",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresource/label"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResource/makeAliasable()": {
+      "abstract": [
+        {
+          "text": "Allows future heap resource allocations to alias against the resource’s memory, reusing it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeAliasable"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource/makeAliasable()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "makeAliasable"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeAliasable()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresource/makealiasable()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResource/resourceOptions": {
+      "abstract": [
+        {
+          "text": "The storage mode, CPU cache mode, and hazard tracking mode of the resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resourceOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLResourceOptions",
+          "text": "MTLResourceOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource/resourceOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resourceOptions"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "resourceOptions",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresource/resourceoptions"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResource/setOwnerWithIdentity:": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOwnerWithIdentity:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource/setOwnerWithIdentity:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setOwnerWithIdentity:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setOwnerWithIdentity:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresource/setownerwithidentity:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResource/setPurgeableState(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies or queries the resource’s purgeable state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPurgeableState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPurgeableState",
+          "text": "MTLPurgeableState"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPurgeableState",
+          "text": "MTLPurgeableState"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource/setPurgeableState(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setPurgeableState:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setPurgeableState(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresource/setpurgeablestate(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResource/storageMode": {
+      "abstract": [
+        {
+          "text": "The location and access permissions of the resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storageMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLStorageMode",
+          "text": "MTLStorageMode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource/storageMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "storageMode"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "storageMode",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresource/storagemode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResourceID": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLResourceID"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResourceID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLResourceID"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLResourceID",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresourceid"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResourceOptions": {
+      "abstract": [
+        {
+          "text": "Optional arguments used to set the behavior of a resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLResourceOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResourceOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLResourceOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLResourceOptions",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresourceoptions"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResourceUsage": {
+      "abstract": [
+        {
+          "text": "Options that describe how a graphics or compute function uses an argument buffer’s resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLResourceUsage"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResourceUsage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLResourceUsage"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLResourceUsage",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresourceusage"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStorageMode": {
+      "abstract": [
+        {
+          "text": "Options for the memory location and access permissions for a resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLStorageMode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStorageMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLStorageMode",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstoragemode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTexture": {
+      "abstract": [
+        {
+          "text": "A resource that holds formatted image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLTexture",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexture"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLVisibleFunctionTable": {
+      "abstract": [
+        {
+          "text": "A table of shader functions visible to your app that you can pass into compute commands to customize the behavior of a shader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLVisibleFunctionTable"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLVisibleFunctionTable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLVisibleFunctionTable"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLVisibleFunctionTable",
+      "type": "topic",
+      "url": "/documentation/metal/mtlvisiblefunctiontable"
+    },
+    "doc://com.apple.metal/documentation/Metal/choosing-a-resource-storage-mode-for-intel-and-amd-gpus": {
+      "abstract": [
+        {
+          "text": "Select an appropriate storage mode for your textures and buffers on AMD and Intel GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/choosing-a-resource-storage-mode-for-intel-and-amd-gpus",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing a Resource Storage Mode for Intel and AMD GPUs",
+      "type": "topic",
+      "url": "/documentation/metal/choosing-a-resource-storage-mode-for-intel-and-amd-gpus"
+    },
+    "doc://com.apple.metal/documentation/Metal/synchronizing-a-managed-resource-in-macos": {
+      "abstract": [
+        {
+          "text": "Manually synchronize memory for a Metal resource in apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/synchronizing-a-managed-resource-in-macos",
+      "kind": "article",
+      "role": "article",
+      "title": "Synchronizing a Managed Resource in macOS",
+      "type": "topic",
+      "url": "/documentation/metal/synchronizing-a-managed-resource-in-macos"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLAllocation",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructure",
+        "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+        "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer",
+        "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable",
+        "doc://com.apple.metal/documentation/Metal/MTLTexture",
+        "doc://com.apple.metal/documentation/Metal/MTLVisibleFunctionTable"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Common-Resource-Functionality",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLAllocation",
+        "doc://com.apple.metal/documentation/Metal/MTLResourceOptions",
+        "doc://com.apple.metal/documentation/Metal/MTLResourceUsage",
+        "doc://com.apple.metal/documentation/Metal/MTLResourceID"
+      ],
+      "title": "Common Resource Functionality"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Identifying-the-Resource",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLResource/device",
+        "doc://com.apple.metal/documentation/Metal/MTLResource/label"
+      ],
+      "title": "Identifying the Resource"
+    },
+    {
+      "anchor": "Reading-Memory-and-Storage-Properties",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLResource/cpuCacheMode",
+        "doc://com.apple.metal/documentation/Metal/MTLResource/storageMode",
+        "doc://com.apple.metal/documentation/Metal/MTLResource/hazardTrackingMode",
+        "doc://com.apple.metal/documentation/Metal/MTLResource/resourceOptions",
+        "doc://com.apple.metal/documentation/Metal/MTLCPUCacheMode",
+        "doc://com.apple.metal/documentation/Metal/MTLStorageMode",
+        "doc://com.apple.metal/documentation/Metal/MTLHazardTrackingMode"
+      ],
+      "title": "Reading Memory and Storage Properties"
+    },
+    {
+      "anchor": "Setting-the-Purgeable-State-of-the-Resource",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLResource/setPurgeableState(_:)",
+        "doc://com.apple.metal/documentation/Metal/MTLPurgeableState"
+      ],
+      "title": "Setting the Purgeable State of the Resource"
+    },
+    {
+      "anchor": "Managing-Heap-Resources",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLResource/heapOffset",
+        "doc://com.apple.metal/documentation/Metal/MTLResource/heap",
+        "doc://com.apple.metal/documentation/Metal/MTLResource/makeAliasable()",
+        "doc://com.apple.metal/documentation/Metal/MTLResource/isAliasable()"
+      ],
+      "title": "Managing Heap Resources"
+    },
+    {
+      "anchor": "Querying-the-Allocated-Size",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLResource/allocatedSize"
+      ],
+      "title": "Querying the Allocated Size"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MTLResource"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.metal/documentation/Metal"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Identifying-the-Resource",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLResource/device",
+                "doc://com.apple.metal/documentation/Metal/MTLResource/label"
+              ],
+              "title": "Identifying the Resource"
+            },
+            {
+              "anchor": "Reading-Memory-and-Storage-Properties",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLResource/cpuCacheMode",
+                "doc://com.apple.metal/documentation/Metal/MTLResource/storageMode",
+                "doc://com.apple.metal/documentation/Metal/MTLResource/hazardTrackingMode",
+                "doc://com.apple.metal/documentation/Metal/MTLResource/resourceOptions",
+                "doc://com.apple.metal/documentation/Metal/MTLCPUCacheMode",
+                "doc://com.apple.metal/documentation/Metal/MTLStorageMode",
+                "doc://com.apple.metal/documentation/Metal/MTLHazardTrackingMode"
+              ],
+              "title": "Reading Memory and Storage Properties"
+            },
+            {
+              "anchor": "Setting-the-Purgeable-State-of-the-Resource",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLResource/setPurgeableState(_:)",
+                "doc://com.apple.metal/documentation/Metal/MTLPurgeableState"
+              ],
+              "title": "Setting the Purgeable State of the Resource"
+            },
+            {
+              "anchor": "Managing-Heap-Resources",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLResource/heapOffset",
+                "doc://com.apple.metal/documentation/Metal/MTLResource/heap",
+                "doc://com.apple.metal/documentation/Metal/MTLResource/makeAliasable()",
+                "doc://com.apple.metal/documentation/Metal/MTLResource/isAliasable()"
+              ],
+              "title": "Managing Heap Resources"
+            },
+            {
+              "anchor": "Querying-the-Allocated-Size",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLResource/allocatedSize"
+              ],
+              "title": "Querying the Allocated Size"
+            },
+            {
+              "anchor": "Instance-Methods",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLResource/setOwnerWithIdentity:"
+              ],
+              "title": "Instance Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLAllocation"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructure",
+                "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+                "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer",
+                "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable",
+                "doc://com.apple.metal/documentation/Metal/MTLTexture",
+                "doc://com.apple.metal/documentation/Metal/MTLVisibleFunctionTable"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Common-Resource-Functionality",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLAllocation",
+                "doc://com.apple.metal/documentation/Metal/MTLResourceOptions",
+                "doc://com.apple.metal/documentation/Metal/MTLResourceUsage",
+                "doc://com.apple.metal/documentation/Metal/MTLResourceID"
+              ],
+              "title": "Common Resource Functionality"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MTLResource"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.apple.metal/documentation/Metal/MTLAllocation",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)MTLAllocation",
+                    "text": "MTLAllocation"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource~1hazardTrackingMode/title",
+          "value": "hazardTrackingMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource~1hazardTrackingMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hazardTrackingMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceUsage/title",
+          "value": "MTLResourceUsage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceUsage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResourceUsage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceUsage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResourceUsage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCPUCacheMode/title",
+          "value": "MTLCPUCacheMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCPUCacheMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCPUCacheMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCPUCacheMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCPUCacheMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHazardTrackingMode/title",
+          "value": "MTLHazardTrackingMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHazardTrackingMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHazardTrackingMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHazardTrackingMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHazardTrackingMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource~1resourceOptions/title",
+          "value": "resourceOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource~1resourceOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "resourceOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource~1heap/title",
+          "value": "heap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource~1heap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "heap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAllocation/title",
+          "value": "MTLAllocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAllocation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAllocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAllocation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAllocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable/title",
+          "value": "MTLIntersectionFunctionTable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionTable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionTable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode/title",
+          "value": "MTLStorageMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStorageMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStorageMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource~1storageMode/title",
+          "value": "storageMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource~1storageMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "storageMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource~1cpuCacheMode/title",
+          "value": "cpuCacheMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource~1cpuCacheMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cpuCacheMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBuffer/title",
+          "value": "MTLIndirectCommandBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceOptions/title",
+          "value": "MTLResourceOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResourceOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResourceOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource~1isAliasable()/title",
+          "value": "isAliasable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource~1isAliasable()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "isAliasable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceID/title",
+          "value": "MTLResourceID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResourceID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResourceID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource~1allocatedSize/title",
+          "value": "allocatedSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource~1allocatedSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allocatedSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/title",
+          "value": "MTLBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource~1makeAliasable()/title",
+          "value": "makeAliasable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource~1makeAliasable()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "makeAliasable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructure/title",
+          "value": "MTLAccelerationStructure"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructure/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructure"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructure/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructure"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource~1setPurgeableState(_:)/title",
+          "value": "setPurgeableState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource~1setPurgeableState(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setPurgeableState:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource~1heapOffset/title",
+          "value": "heapOffset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource~1heapOffset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "heapOffset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/title",
+          "value": "MTLDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource~1device/title",
+          "value": "device"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource~1device/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "device"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource~1label/title",
+          "value": "label"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource~1label/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "label"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVisibleFunctionTable/title",
+          "value": "MTLVisibleFunctionTable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVisibleFunctionTable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVisibleFunctionTable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVisibleFunctionTable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVisibleFunctionTable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPurgeableState/title",
+          "value": "MTLPurgeableState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPurgeableState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPurgeableState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPurgeableState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPurgeableState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture/title",
+          "value": "MTLTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource/title",
+          "value": "MTLResource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResource"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mtlresource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/mtlresource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

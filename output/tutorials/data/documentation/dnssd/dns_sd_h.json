@@ -1,0 +1,544 @@
+{
+  "abstract": [
+    {
+      "text": "API version number.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.dnssd/documentation/dnssd",
+        "doc://com.apple.dnssd/documentation/dnssd/dns-service-discovery-c",
+        "doc://com.apple.dnssd/documentation/dnssd/miscellaneous-defines"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.dnssd/documentation/dnssd/dns_sd_h"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "dnssd"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "_DNS_SD_H"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "_DNS_SD_H contains the mDNSResponder version number for this header file, formatted as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Major part of the build number * 10000 +",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "minor part of the build number * 100",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, OS X 10.4.9 has mDNSResponder-108.4, which would be represented as version 1080400. This allows C code to do simple greater-than and less-than comparisons: e.g. an application that requires the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceGetProperty(_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " call (new in mDNSResponder-126) can check:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " ",
+            "   #if _DNS_SD_H+0 >= 1260000",
+            "   ... some C code that calls DNSServiceGetProperty() ...",
+            "   #endif",
+            " "
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The version defined in this header file symbol allows for compile-time checking, so that C code building with earlier versions of the header file can avoid compile errors trying to use functions that aren’t even defined in those earlier versions. Similar checks may also be performed at run-time:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "weak linking – to avoid link failures if run with an earlier version of the library that’s missing some desired symbol, or",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "DNSServiceGetProperty(DaemonVersion) – to verify whether the running daemon (“system service” on Windows) meets some required minimum functionality level.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.dnssd/documentation/dnssd": {
+      "abstract": [
+        {
+          "text": "Discover, publish, and resolve network services on a local area or wide area network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "dnssd",
+      "type": "topic",
+      "url": "/documentation/dnssd"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/DNSServiceGetProperty(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Gets the specified property of a service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DNSServiceGetProperty"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceErrorType",
+          "text": "DNSServiceErrorType"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceGetProperty(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DNSServiceGetProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "DNSServiceGetProperty(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/dnssd/dnsservicegetproperty(_:_:_:)"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/dns-service-discovery-c": {
+      "abstract": [
+        {
+          "text": "See the Overview section above for header-level documentation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/dns-service-discovery-c",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "DNS Service Discovery C",
+      "type": "topic",
+      "url": "/documentation/dnssd/dns-service-discovery-c"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceMaxDomainName": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceMaxDomainName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceMaxDomainName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceMaxDomainName"
+        }
+      ],
+      "role": "symbol",
+      "title": "kDNSServiceMaxDomainName",
+      "type": "topic",
+      "url": "/documentation/dnssd/kdnsservicemaxdomainname"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceMaxServiceName": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceMaxServiceName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceMaxServiceName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceMaxServiceName"
+        }
+      ],
+      "role": "symbol",
+      "title": "kDNSServiceMaxServiceName",
+      "type": "topic",
+      "url": "/documentation/dnssd/kdnsservicemaxservicename"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceProperty_DaemonVersion": {
+      "abstract": [
+        {
+          "text": "The daemon version property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceProperty_DaemonVersion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceProperty_DaemonVersion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceProperty_DaemonVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "kDNSServiceProperty_DaemonVersion",
+      "type": "topic",
+      "url": "/documentation/dnssd/kdnsserviceproperty_daemonversion"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/miscellaneous-defines": {
+      "abstract": [],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/miscellaneous-defines",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Miscellaneous Defines",
+      "type": "topic",
+      "url": "/documentation/dnssd/miscellaneous-defines"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Constants",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceMaxDomainName",
+        "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceMaxServiceName",
+        "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceProperty_DaemonVersion"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Constants",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceMaxDomainName",
+                "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceMaxServiceName",
+                "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceProperty_DaemonVersion"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceMaxServiceName/title",
+          "value": "kDNSServiceMaxServiceName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceMaxServiceName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kDNSServiceMaxServiceName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNSServiceGetProperty(_:_:_:)/title",
+          "value": "DNSServiceGetProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNSServiceGetProperty(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DNSServiceGetProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceProperty_DaemonVersion/title",
+          "value": "kDNSServiceProperty_DaemonVersion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceProperty_DaemonVersion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kDNSServiceProperty_DaemonVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceMaxDomainName/title",
+          "value": "kDNSServiceMaxDomainName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceMaxDomainName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kDNSServiceMaxDomainName"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/dnssd/dns_sd_h"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/dnssd/dns_sd_h"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

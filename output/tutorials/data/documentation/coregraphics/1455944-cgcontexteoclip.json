@@ -1,0 +1,361 @@
+{
+  "abstract": [
+    {
+      "text": "Modifies the current clipping path, using the even-odd rule.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coregraphics",
+        "doc://com.apple.documentation/documentation/coregraphics/cgcontext"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coregraphics/1455944-cgcontexteoclip"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1455944,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@CGContextEOClip",
+    "modules": [
+      {
+        "name": "Core Graphics"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "CGContextEOClip"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CGContextEOClip"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcontextref",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGContextRef",
+              "text": "CGContextRef"
+            },
+            {
+              "kind": "text",
+              "text": " c);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A graphics context containing a path. If the context does not have a current path, the function does nothing.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "c"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The function uses the even-odd rule to calculate the intersection of the current path with the current clipping path. The path resulting from the intersection is used as the new current clipping path for subsequent painting operations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the current path includes any open subpaths, the paths are treated as if they were closed by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/1454508-cgcontextclosepath",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike the current path, the current clipping path is part of the graphics state. Therefore, to re-enlarge the paintable area by restoring the clipping path to a prior state, you must save the graphics state before you clip and restore the graphics state after you’ve completed any clipped drawing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After determining the new clipping path, the function resets the context’s current path to an empty path.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coregraphics": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Graphics",
+      "type": "topic",
+      "url": "/documentation/coregraphics"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1454508-cgcontextclosepath": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1454508-cgcontextclosepath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGContextClosePath",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1454508-cgcontextclosepath"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1454626-cgcontextcliptorects": {
+      "abstract": [
+        {
+          "text": "Sets the clipping path to the intersection of the current clipping path with the region defined by an array of rectangles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1454626-cgcontextcliptorects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGContextClipToRects",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1454626-cgcontextcliptorects"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1454716-cgcontextcliptorect": {
+      "abstract": [
+        {
+          "text": "Sets the clipping path to the intersection of the current clipping path with the area defined by the specified rectangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1454716-cgcontextcliptorect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGContextClipToRect",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1454716-cgcontextcliptorect"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455262-cgcontextclip": {
+      "abstract": [
+        {
+          "text": "Modifies the current clipping path, using the nonzero winding number rule.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455262-cgcontextclip",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGContextClip",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455262-cgcontextclip"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455387-cgcontextgetclipboundingbox": {
+      "abstract": [
+        {
+          "text": "Returns the bounding box of a clipping path.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455387-cgcontextgetclipboundingbox",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGContextGetClipBoundingBox",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455387-cgcontextgetclipboundingbox"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455944-cgcontexteoclip": {
+      "abstract": [
+        {
+          "text": "Modifies the current clipping path, using the even-odd rule.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455944-cgcontexteoclip",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGContextEOClip",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455944-cgcontexteoclip"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1456497-cgcontextcliptomask": {
+      "abstract": [
+        {
+          "text": "Maps a mask into the specified rectangle and intersects it with the current clipping area of the graphics context.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1456497-cgcontextcliptomask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGContextClipToMask",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1456497-cgcontextcliptomask"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgcontext": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcontext",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CGContext",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgcontext"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgcontextref": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcontextref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGContextRef",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgcontextref"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coregraphics/1455262-cgcontextclip",
+        "doc://com.apple.documentation/documentation/coregraphics/1454716-cgcontextcliptorect",
+        "doc://com.apple.documentation/documentation/coregraphics/1454626-cgcontextcliptorects",
+        "doc://com.apple.documentation/documentation/coregraphics/1455387-cgcontextgetclipboundingbox",
+        "doc://com.apple.documentation/documentation/coregraphics/1456497-cgcontextcliptomask"
+      ],
+      "title": "Modifying Clipping Paths"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coregraphics/1455944-cgcontexteoclip"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

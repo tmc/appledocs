@@ -1,0 +1,383 @@
+{
+  "abstract": [
+    {
+      "text": "Fetch the assets your app requires before its first launch using an app extension and the Background Assets framework.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/downloading-essential-assets-in-the-background"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Background Assets"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.4",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.4",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.3",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Downloading essential assets in the background"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC23 session 10108: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc23/10108/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you run the sample code project in Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configure the WWDC Sessions and WWDC Sessions Background Assets Extension targets to use your Developer team for signing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://help.apple.com/xcode/mac/current/#/dev23aab79b4",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets": {
+      "abstract": [
+        {
+          "text": "Schedule background downloads of large assets after app installation, when the app updates, and periodically while the app remains on-device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Background Assets",
+      "type": "topic",
+      "url": "/documentation/backgroundassets"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager": {
+      "abstract": [
+        {
+          "text": "An object that manages the queue of scheduled asset downloads.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BADownloadManager"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BADownloadManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "BADownloadManager",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/badownloadmanager"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloaderExtension-qwaw": {
+      "abstract": [
+        {
+          "text": "An interface for reacting to app life-cycle events and processing concluded asset downloads while your app isn’t running.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BADownloaderExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloaderExtension-qwaw",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BADownloaderExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "BADownloaderExtension",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/badownloaderextension-qwaw"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloaderExtensionConfiguration": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BADownloaderExtensionConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloaderExtensionConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BADownloaderExtensionConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "BADownloaderExtensionConfiguration",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/badownloaderextensionconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "f7178ed706d5/DownloadingEssentialAssetsInTheBackground.zip": {
+      "checksum": "f7178ed706d596525beb31500652c8d1cfa931449659e5ed038ecebed30b73638f94093f20cd2ce413775c113b0e102456b56cbd985f708d0ff315cb7c91191f",
+      "identifier": "f7178ed706d5/DownloadingEssentialAssetsInTheBackground.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/f7178ed706d5/DownloadingEssentialAssetsInTheBackground.zip"
+    },
+    "https://developer.apple.com/wwdc23/10108/": {
+      "identifier": "https://developer.apple.com/wwdc23/10108/",
+      "title": "What’s new in Background Assets",
+      "titleInlineContent": [
+        {
+          "text": "What’s new in Background Assets",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc23/10108/"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev23aab79b4": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev23aab79b4",
+      "title": "Assign a project to a team",
+      "titleInlineContent": [
+        {
+          "text": "Assign a project to a team",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev23aab79b4"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "f7178ed706d5/DownloadingEssentialAssetsInTheBackground.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Asset-download-management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager",
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloaderExtension-qwaw",
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloaderExtensionConfiguration"
+      ],
+      "title": "Asset download management"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager/title",
+          "value": "BADownloadManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BADownloadManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BADownloadManager"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/backgroundassets/downloading-essential-assets-in-the-background"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

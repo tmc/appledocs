@@ -1,0 +1,252 @@
+{
+  "abstract": [
+    {
+      "text": "Reduce the storage used by the Core ML model inside your app bundle.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coreml/documentation/CoreML",
+        "doc://com.apple.coreml/documentation/CoreML/model-customization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coreml/documentation/CoreML/reducing-the-size-of-your-core-ml-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core ML"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Reducing the Size of Your Core ML App"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Bundling your machine learning model in your app is the easiest way to get started with Core ML. As models get more advanced, they can become large and take up significant storage space. For a neural-network based model, consider reducing its footprint by using a lower precision representation for its weight parameters. If your model isn’t a neural network that can use lower precision or you need to further reduce your app’s size, add functionality to download and compile your models on the user’s device instead of bundling the models with your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Convert-to-a-Lower-Precision-Model",
+          "level": 3,
+          "text": "Convert to a Lower Precision Model",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://coremltools.readme.io/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provide utilities to convert a neural network model’s floating point weights from full-precision into half-precision values — reducing the number of bits used in the representation from 32 down to 16 — or lower precisions of 1 to 8 bits. For more information about using these utilities, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://coremltools.readme.io/docs/quantization",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Download-and-Compile-a-Model",
+          "level": 3,
+          "text": "Download and Compile a Model",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Another option to reduce the size of your app is to have the app download the model onto the user’s device and compile it in the background. For example, if users use only a subset of the models your app supports, you don’t need to bundle all the possible models with your app. Instead, the models can be downloaded later based on user behavior. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreml/documentation/CoreML/downloading-and-compiling-a-model-on-the-user-s-device",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coreml/documentation/CoreML": {
+      "abstract": [
+        {
+          "text": "Integrate machine learning models into your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core ML",
+      "type": "topic",
+      "url": "/documentation/coreml"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/downloading-and-compiling-a-model-on-the-user-s-device": {
+      "abstract": [
+        {
+          "text": "Install Core ML models on the user’s device dynamically at runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/downloading-and-compiling-a-model-on-the-user-s-device",
+      "kind": "article",
+      "role": "article",
+      "title": "Downloading and Compiling a Model on the User’s Device",
+      "type": "topic",
+      "url": "/documentation/coreml/downloading-and-compiling-a-model-on-the-user-s-device"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/model-customization": {
+      "abstract": [
+        {
+          "text": "Expand and modify your model with new layers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/model-customization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Model Customization",
+      "type": "topic",
+      "url": "/documentation/coreml/model-customization"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://coremltools.readme.io/": {
+      "identifier": "https://coremltools.readme.io/",
+      "title": "Core ML Tools",
+      "titleInlineContent": [
+        {
+          "text": "Core ML Tools",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://coremltools.readme.io/"
+    },
+    "https://coremltools.readme.io/docs/quantization": {
+      "identifier": "https://coremltools.readme.io/docs/quantization",
+      "title": "Core ML Tools Neural Network Quantization documentation",
+      "titleInlineContent": [
+        {
+          "text": "Core ML Tools Neural Network Quantization documentation",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://coremltools.readme.io/docs/quantization"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coreml/reducing-the-size-of-your-core-ml-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coreml/reducing-the-size-of-your-core-ml-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

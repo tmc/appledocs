@@ -1,0 +1,2556 @@
+{
+  "abstract": [
+    {
+      "text": "Manage channels that your application uses for broadcast push notifications.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.usernotifications/documentation/UserNotifications",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-channel-management-requests-to-apns"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "User Notifications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Sending channel management requests to APNs"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Broadcast push notifications use channels to reach a large number of people with Live Activities. To send updates with a Live Activity for an event such a sports game using broadcast push notifications, associate your event with a channel, identified by creating a unique channel ID. Store the association for each Live Activity event with a unique channel ID, and then share the channel ID with the devices. Devices use this channel identifier to subscribe to push notifications for each Live Activity event. Devices on iOS 18 and iPadOS 18 can subscribe to receive updates on channels using ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/activitykit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information on using ActivityKit to subscribe for updates on a channel, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/activitykit/starting-and-updating-live-activities-with-activitykit-push-notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The figure below describes how your server communicates with Apple Push Notification service (APNs) when you create a channel. APNs returns a channel ID which your server shares with the people interested in receiving Live Activity updates. The device uses the channel ID to subscribe for broadcast push notifications on the channel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "sending-channel-management-requests",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The lifecycles of the channel ID and Live Activity on device are independent. Specifically, a channel ID exists even if there are no active subscribers, or all subscribers remove the Live Activity. In order to support several simultaneous events, you can maintain up to 10,000 channels for your app in the development and production environment, respectively. Once the Live Activity event is complete, and you no longer plan to use the channel for any subsequent updates, delete the channel to avoid going over the allocated channel limit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Establish-a-connection-to-APNs",
+          "level": 3,
+          "text": "Establish a connection to APNs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use HTTP/2 and TLS 1.2 or later to establish a connection between your provider server and one of the following servers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Development/Sandbox Environment: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://api-manage-broadcast.sandbox.push.apple.com:2195",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Production Environment: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://api-manage-broadcast.push.apple.com:2196",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more details on establishing a connection to the APNs server to send requests, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-connection-to-apns",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-channel",
+          "level": 3,
+          "text": "Create a channel",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a new channel, create and send a POST request to APNs with the appropriate configuration. Channel IDs generate randomly when you create them, and you can’t request a channel with a specific ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Message storage policy configured as part of the request can’t be modified later. The message storage policy of the channel determines if the channel stores deferred messages for offline devices. There are two available options: No Message Storage and Most Recent Message Stored. For activities with frequent updates like sports scores, use No Message Storage, which allows a higher publishing budget. For activities with infrequent updates, such as event tracking and flight updates, use Most Recent Message Stored. Messages in Most Recent Message store for a maximum duration of 8 hours. You can specify an earlier expiration of messages by setting an ",
+              "type": "text"
+            },
+            {
+              "code": "apns-expiration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header when you send push notification on the channel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The table below describes the HTTP/2 request fields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Header field",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": ":method",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "POST",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": ":path",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "/1/apps/<bundleId>/channels",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "authorization",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required, if mTLS authentication is omitted",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value of this header is bearer ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "provider_token",
+                      "type": "text"
+                    },
+                    {
+                      "code": ">",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", where ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "provider_token",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is the encrypted token that authorizes you to send notifications for the specified topic. APNs ignores this header if you use certificate-based authentication. For more information, refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-token-based-connection-to-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apns-request-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optional",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A canonical UUID that’s the unique ID for this request. If an error occurs when processing the request, APNs includes this value when reporting the error to your server. Canonical UUIDs are 32 lowercase hexadecimal digits, displayed in five groups separated by hyphens in the form ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "8-4-4-4-12",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; for example: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "123e4567-e89b-12d3-a456-4266554400a0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". If you omit this header, APNs creates a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UUID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for you and returns it in its response.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The table below describes the JSON dictionary request body fields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Body field",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "message-storage-policy",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "There are two available options: No Message Stored and Most Recent Message Stored. Specify ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for No Message Stored. Specify ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for Most Recent Message Stored.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "push-type",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The push type configured for the channel. Allowed value is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "LiveActivity",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code snippet below shows a sample to request a channel using a JWT.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "curl -v -X POST \\",
+            "-H \"authorization: bearer <token>\" \\",
+            "-H \"apns-request-id: 2288cf3f-70d8-46a6-97d7-dd5d00867127\" \\",
+            "-d '{\"message-storage-policy\": 1, \"push-type\": \"LiveActivity\"}' \\",
+            "--http2 \\",
+            "https://api-manage-broadcast.sandbox.push.apple.com:2195/1/apps/com.example.MyApp/channels ",
+            "",
+            "HEADERS",
+            "  - END_STREAM",
+            "  + END_HEADERS",
+            "  :method = POST",
+            "  :scheme = https",
+            "  :path = /1/apps/com.example.MyApp/channels",
+            "  host = api-manage-broadcast.sandbox.push.apple.com",
+            "  authorization = bearer <token>",
+            "  apns-request-id = 2288cf3f-70d8-46a6-97d7-dd5d00867127",
+            "DATA",
+            "  + END_STREAM",
+            "  { \"message-storage-policy\": 1, \"push-type\": \"LiveActivity\" }"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The response to a successful request contains the header fields described below, with the body of the response empty. On failure, the response body contains a JSON dictionary describing the error. For more information on how to handle error responses, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/handling-error-responses-from-apns",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The table below describes the HTTP/2 response fields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Header",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": ":status",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The HTTP status code for a successul request is 201. For a failed request and a list of all possible status codes, refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/handling-error-responses-from-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apns-request-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The request identifier specified in the corresponding request. If not specified, the server generates the identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apns-channel-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A base64-encoded string that identifies the newly created channel.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Channels can’t be shared across environments: a channel created in the development environment can’t be used in the production environment. Also, don’t make assumptions on the channel ID size.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Read-a-channel",
+          "level": 3,
+          "text": "Read a channel",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To read the configuration for a channel, construct and send a request over the connection you created using HTTP/2 and TLS. The table below describes the HTTP/2 request header fields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Header field",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": ":method",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "GET",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": ":path",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "/1/apps/<bundleId>/channels",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "authorization",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required, if mTLS authentication is omitted.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value of this header is bearer ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "provider_token",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", where ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "provider_token",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is the encrypted token that authorizes you to send notifications for the specified topic. APNs ignores this header if you use certificate-based authentication. For more information, refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-token-based-connection-to-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apns-request-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optional",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A canonical UUID that’s the unique ID for this request. If an error occurs when processing the request, APNs includes this value when reporting the error to your server. Canonical UUIDs are 32 lowercase hexadecimal digits, displayed in five groups separated by hyphens in the form ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "8-4-4-4-12",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; for example: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "123e4567-e89b-12d3-a456-4266554400a0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". If you omit this header, APNs creates a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UUID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for you and returns it in its response.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apns-channel-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A base64-encoded string that identifies the channel. Your server receives the channel ID as part of the channel creation response.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code snippet below shows a sample request constructed for reading the configuration for a channel using a JWT.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "curl -v -X GET \\",
+            "-H \"authorization: bearer <token>\" \\",
+            "-H \"apns-request-id: 2288cf3f-70d8-46a6-97d7-dd5d00867127\" \\",
+            "-H \"apns-channel-id: dHN0LXNyY2gtY2hubA==\" \\ ",
+            "--http2 \\",
+            "https://api-manage-broadcast.sandbox.push.apple.com:2195/1/apps/com.example.MyApp/channels ",
+            "",
+            "HEADERS",
+            "  - END_STREAM",
+            "  + END_HEADERS",
+            "  :method = GET",
+            "  :scheme = https",
+            "  :path = /1/apps/com.example.MyApp/channels",
+            "  host = api-manage-broadcast.sandbox.push.apple.com",
+            "  authorization = bearer <token>",
+            "  apns-request-id = 2288cf3f-70d8-46a6-97d7-dd5d00867127",
+            "  apns-channel-id = dHN0LXNyY2gtY2hubA==",
+            "DATA",
+            "  + END_STREAM"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The response to a successful request contains the header fields, and the body of the response is a JSON dictionary, as described below. On failure, the response body contains a JSON dictionary describing the error. For more information on how to handle error responses, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/handling-error-responses-from-apns",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The table below describes the HTTP/2 response fields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Header",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": ":status",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The HTTP status code for a successul request is 200. For a failed request and a list of all possible status codes, refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/handling-error-responses-from-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apns-request-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The request identifier specified in the corresponding request. If the request doesn’t specify an identifier, the server generates one.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The table below describes the HTTP/2 response body:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Body field",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "message-storage-policy",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The storage policy configured at channel creation. Indicates if APNs stores deferred messages for offline devices. Value ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " indicates No Message Stored. Value ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " indicates Most Recent Message Stored.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "push-type",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The push type configured for the channel. Allowed value is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "LiveActivity",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Delete-a-channel",
+          "level": 3,
+          "text": "Delete a channel",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To delete an existing channel, construct and send a request that includes the channel ID over the connection with APNs. Deleting a channel doesn’t discard pending messages immediately. APNs may still deliver stored messages after you delete the channel. Deleting a channel is an irreversible action. Once you delete the channel, it’s no longer valid; don’t send any pushes to the channel. As channel IDs are randomly generated for channel creation requests, the same channel ID can’t be created again. The table below describes the HTTP/2 request header fields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Header field",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": ":method",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DELETE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": ":path",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "/1/apps/<bundleId>/channels",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "authorization",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required for token-based authentication.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value of this header is bearer ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "provider_token",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", where ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "provider_token",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is the encrypted token that authorizes you to send notifications for the specified topic. APNs ignores this header if you use certificate-based authentication. For more information, refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-token-based-connection-to-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apns-request-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optional",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A canonical UUID that’s the unique ID for this request. If an error occurs when processing the request, APNs includes this value when reporting the error to your server. Canonical UUIDs are 32 lowercase hexadecimal digits, displayed in five groups separated by hyphens in the form ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "8-4-4-4-12",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; for example: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "123e4567-e89b-12d3-a456-4266554400a0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". If you omit this header, APNs creates a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UUID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for you and returns it in its response.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apns-channel-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The base64 bytes that identify the channel. Your server receives the channel ID as part of the channel creation response.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code snippet below shows a sample request constructed for deleting a channel JWT.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "curl -v -X DELETE \\",
+            "-H \"authorization: bearer <token>\" \\",
+            "-H \"apns-request-id: 2288cf3f-70d8-46a6-97d7-dd5d00867127\" \\",
+            "-H \"apns-channel-id: dHN0LXNyY2gtY2hubA==\" \\ ",
+            "--http2 \\",
+            "https://api-manage-broadcast.sandbox.push.apple.com:2195/1/apps/com.example.MyApp/channels",
+            "",
+            "HEADERS",
+            "  - END_STREAM",
+            "  + END_HEADERS",
+            "  :method = DELETE",
+            "  :scheme = https",
+            "  :path = /1/apps/com.example.MyApp/channels",
+            "  host = api-manage-broadcast.sandbox.push.apple.com",
+            "  authorization = bearer <token>",
+            "  apns-request-id = 2288cf3f-70d8-46a6-97d7-dd5d00867127",
+            "  apns-channel-id = dHN0LXNyY2gtY2hubA==",
+            "DATA",
+            "  + END_STREAM"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The response to a successful request contains the header fields described below, with the body of the response empty. On failure, the response body contains a JSON dictionary describing the error. For more information on how to handle error responses, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/handling-error-responses-from-apns",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The table below describes the HTTP/2 response fields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Header",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": ":status",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The HTTP status code for a successul request is 204. For a failed request and a list of all possible status codes, refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/handling-error-responses-from-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apns-request-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The request identifier the corresponding request specifies. If the request doesn’t specify an identifier, the server generates one.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Read-all-channel-IDs-for-a-bundle-ID",
+          "level": 3,
+          "text": "Read all channel IDs for a bundle ID",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get the list all the current active channels for your app, you can send a GET request over the connection with APNs. The table below describes the HTTP/2 request fields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Header field",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": ":method",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "GET",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": ":path",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "/1/apps/<bundleId>/all-channels",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "authorization",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required for token-based authentication.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value of this header is bearer ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "provider_token",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", where ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "provider_token",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is the encrypted token that authorizes you to send notifications for the specified topic. APNs ignores this header if you use certificate-based authentication. For more information, refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-token-based-connection-to-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apns-request-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optional",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A canonical UUID that’s the unique ID for this request. If an error occurs when processing the request, APNs includes this value when reporting the error to your server. Canonical UUIDs are 32 lowercase hexadecimal digits, displayed in five groups separated by hyphens in the form ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "8-4-4-4-12",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; For example: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "123e4567-e89b-12d3-a456-4266554400a0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". If you omit this header, APNs creates a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UUID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for you and returns it in its response.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code snippet below shows a sample request constructed for listing all the channels belonging to a bundle ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "curl -v -X GET \\",
+            "-H \"authorization: bearer <token>\" \\",
+            "-H \"apns-request-id: 2288cf3f-70d8-46a6-97d7-dd5d00867127\" \\",
+            "--http2 \\",
+            "https://api-manage-broadcast.sandbox.push.apple.com:2195/1/apps/com.example.MyApp/all-channels ",
+            "",
+            "HEADERS",
+            "  - END_STREAM",
+            "  + END_HEADERS",
+            "  :method = GET",
+            "  :scheme = https",
+            "  :path = /1/apps/com.example.MyApp/all-channels",
+            "  host = api-manage-broadcast.sandbox.push.apple.com",
+            "  authorization = bearer <token>",
+            "  apns-request-id = 2288cf3f-70d8-46a6-97d7-dd5d00867127",
+            "DATA",
+            "  + END_STREAM"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The response of a successful request contains the header fields described below, with the body of the response empty. On failure, the response body contains a JSON dictionary describing the error. For more information on how to handle error responses, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/handling-error-responses-from-apns",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The table below describes the HTTP/2 response fields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Header",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": ":status",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The HTTP status code for a successul request is 200. For a failed request and a list of all possible status codes, refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/handling-error-responses-from-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apns-request-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The request identifier the corresponding request specifies. If the request doesn’t specify an identifier, the server generates one.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The key below describes the HTTP/2 response body for a successful request:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "channels",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "List of all the base64-encoded channel identifiers for the topic.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Settingup-broadcast-PageImage-card.png": {
+      "alt": "A Live Activity with two teams displayed on the lock screen of an iOS device.",
+      "identifier": "Settingup-broadcast-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d1a4297582c3e863f33c879994cb4360/Settingup-broadcast-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/167c2ee164ee75ad9ca79dfaa0f938f9/Settingup-broadcast-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "UserNotifications-PageImage-card.png": {
+      "alt": "[A notification interface displayed on the lock screen of an iOS device.]",
+      "identifier": "UserNotifications-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/074de9a9213bf2905d67fae5eb46e4f8/UserNotifications-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5733742e1c084fc202b3c92df9083686/UserNotifications-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications": {
+      "abstract": [
+        {
+          "text": "Push user-facing notifications to the user’s device from a server, or generate them locally from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications",
+      "images": [
+        {
+          "identifier": "UserNotifications-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "User Notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-connection-to-apns": {
+      "abstract": [
+        {
+          "text": "Secure your communications with APNs to send API requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-connection-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Establishing a connection to Apple Push Notification service (APNs)",
+      "type": "topic",
+      "url": "/documentation/usernotifications/establishing-a-connection-to-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-token-based-connection-to-apns": {
+      "abstract": [
+        {
+          "text": "Secure your communications with Apple Push Notification service (APNs) by using stateless authentication tokens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-token-based-connection-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Establishing a token-based connection to APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/establishing-a-token-based-connection-to-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/handling-error-responses-from-apns": {
+      "abstract": [
+        {
+          "text": "Respond to the status codes returned by APNs servers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/handling-error-responses-from-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling error responses from Apple Push Notification service",
+      "type": "topic",
+      "url": "/documentation/usernotifications/handling-error-responses-from-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/sending-broadcast-push-notification-requests-to-apns": {
+      "abstract": [
+        {
+          "text": "Transmit your broadcast notification payload to Apple Push Notifications service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-broadcast-push-notification-requests-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending broadcast push notification requests to APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/sending-broadcast-push-notification-requests-to-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server": {
+      "abstract": [
+        {
+          "text": "Generate notifications and push them to user devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Setting up a remote notification server",
+      "type": "topic",
+      "url": "/documentation/usernotifications/setting-up-a-remote-notification-server"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-broadcast-push-notifications": {
+      "abstract": [
+        {
+          "text": "Enable broadcast capability for Apple Push Notifications service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-broadcast-push-notifications",
+      "images": [
+        {
+          "identifier": "Settingup-broadcast-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up broadcast push notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications/setting-up-broadcast-push-notifications"
+    },
+    "https://api-manage-broadcast.push.apple.com:2196": {
+      "identifier": "https://api-manage-broadcast.push.apple.com:2196",
+      "title": "api-manage-broadcast.push.apple.com:2196",
+      "titleInlineContent": [
+        {
+          "text": "api-manage-broadcast.push.apple.com:2196",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://api-manage-broadcast.push.apple.com:2196"
+    },
+    "https://api-manage-broadcast.sandbox.push.apple.com:2195": {
+      "identifier": "https://api-manage-broadcast.sandbox.push.apple.com:2195",
+      "title": "api-manage-broadcast.sandbox.push.apple.com:2195",
+      "titleInlineContent": [
+        {
+          "text": "api-manage-broadcast.sandbox.push.apple.com:2195",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://api-manage-broadcast.sandbox.push.apple.com:2195"
+    },
+    "https://developer.apple.com/documentation/activitykit": {
+      "identifier": "https://developer.apple.com/documentation/activitykit",
+      "title": "ActivityKit",
+      "titleInlineContent": [
+        {
+          "text": "ActivityKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/activitykit"
+    },
+    "https://developer.apple.com/documentation/activitykit/starting-and-updating-live-activities-with-activitykit-push-notifications": {
+      "identifier": "https://developer.apple.com/documentation/activitykit/starting-and-updating-live-activities-with-activitykit-push-notifications",
+      "title": "Starting and updating Live Activities with ActivityKit push notifications",
+      "titleInlineContent": [
+        {
+          "text": "Starting and updating Live Activities with ActivityKit push notifications",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/activitykit/starting-and-updating-live-activities-with-activitykit-push-notifications"
+    },
+    "sending-channel-management-requests": {
+      "alt": "A diagram that illustrates the process of using a channel ID to start a Live Activity. Three boxes are at the top: a server graphic labeled Server on the left, a box labeled APNs in the middle, and a box with an iPhone in the center representing an App on the right. Below that is another box labeled Use channel ID to start Live Activity. An arrow labeled Channel creation points from the server to APNs, indicating that the server requests a unique channel ID. APNs returns a unique channel ID, as indicated by an arrow labeled Channel ID pointing from APNs to the server. The server then uses the unique channel ID to initiate a Live Activity, as shown by an arrow labeled Channel ID pointing from the server to the App.",
+      "identifier": "sending-channel-management-requests",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/70f58e935090dc46e5fcece0736912ca/sending-channel-management-requests@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7a2f2b09007131072ea61a45f4e0f246/sending-channel-management-requests~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Broadcast-push-notifications",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-broadcast-push-notifications",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/sending-broadcast-push-notification-requests-to-apns",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/handling-error-responses-from-apns"
+      ],
+      "title": "Broadcast push notifications"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Broadcast-push-notifications",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-broadcast-push-notifications",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/sending-broadcast-push-notification-requests-to-apns",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/handling-error-responses-from-apns"
+              ],
+              "title": "Broadcast push notifications"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/usernotifications/sending-channel-management-requests-to-apns"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/usernotifications/sending-channel-management-requests-to-apns"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

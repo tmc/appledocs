@@ -1,0 +1,971 @@
+{
+  "abstract": [
+    {
+      "text": "Add dynamic behaviors to scene elements; detect contacts and collisions; simulate realistic effects like gravity, springs, and vehicles.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.scenekit/documentation/SceneKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.scenekit/documentation/SceneKit/physics-simulation"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SceneKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Physics Simulation"
+  },
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit": {
+      "abstract": [
+        {
+          "text": "Create 3D games and add 3D content to apps using high-level scene descriptions, and easily add animations, physics simulation, particle effects, and realistic physically based rendering.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SceneKit",
+      "type": "topic",
+      "url": "/documentation/scenekit"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsBallSocketJoint": {
+      "abstract": [
+        {
+          "text": "A physics behavior that connects two physics bodies and allows them to pivot around each other in any direction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsBallSocketJoint"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsBallSocketJoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsBallSocketJoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNPhysicsBallSocketJoint",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnphysicsballsocketjoint"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsBehavior": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for joints, vehicle simulations, and other high-level behaviors that incorporate multiple physics bodies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNPhysicsBehavior",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnphysicsbehavior"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsBody": {
+      "abstract": [
+        {
+          "text": "The physics simulation attributes attached to a scene graph node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsBody"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsBody",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsBody"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNPhysicsBody",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnphysicsbody"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsConeTwistJoint": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsConeTwistJoint"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsConeTwistJoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsConeTwistJoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNPhysicsConeTwistJoint",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnphysicsconetwistjoint"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsContact": {
+      "abstract": [
+        {
+          "text": "Detailed information about a contact between two physics bodies in a scene’s physics simulation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsContact"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsContact",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsContact"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNPhysicsContact",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnphysicscontact"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsContactDelegate": {
+      "abstract": [
+        {
+          "text": "Methods you can implement to respond when a contact or collision occurs between two physics bodies in a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsContactDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsContactDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsContactDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNPhysicsContactDelegate",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnphysicscontactdelegate"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsField": {
+      "abstract": [
+        {
+          "text": "An object that applies forces, such as gravitation, electromagnetism, and turbulence, to physics bodies within a certain area of effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsField"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsField",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsField"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNPhysicsField",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnphysicsfield"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsHingeJoint": {
+      "abstract": [
+        {
+          "text": "A physics behavior that connects two bodies and allows them to pivot around each other on a single axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsHingeJoint"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsHingeJoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsHingeJoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNPhysicsHingeJoint",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnphysicshingejoint"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsShape": {
+      "abstract": [
+        {
+          "text": "An abstraction of a physics body’s solid volume for tuning collision detection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsShape"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsShape",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsShape"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNPhysicsShape",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnphysicsshape"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsSliderJoint": {
+      "abstract": [
+        {
+          "text": "A physics behavior that connects two bodies and allows them to slide against each other and rotate around their connecting points.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsSliderJoint"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsSliderJoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsSliderJoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNPhysicsSliderJoint",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnphysicssliderjoint"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsVehicle": {
+      "abstract": [
+        {
+          "text": "A physics behavior that modifies a physics body to behave like a car, motorcycle, or other wheeled vehicle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsVehicle"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsVehicle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsVehicle"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNPhysicsVehicle",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnphysicsvehicle"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsVehicleWheel": {
+      "abstract": [
+        {
+          "text": "The appearance and physical characteristics of an individual wheel associated with an physics vehicle behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsVehicleWheel"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsVehicleWheel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsVehicleWheel"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNPhysicsVehicleWheel",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnphysicsvehiclewheel"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsWorld": {
+      "abstract": [
+        {
+          "text": "The global simulation of collisions, gravity, joints, and other physics effects in a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsWorld"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsWorld",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsWorld"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNPhysicsWorld",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnphysicsworld"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Physics-Bodies",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsBody",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsShape"
+      ],
+      "title": "Physics Bodies"
+    },
+    {
+      "anchor": "Collision-and-Contact-Detection",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsContactDelegate",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsContact"
+      ],
+      "title": "Collision and Contact Detection"
+    },
+    {
+      "anchor": "Physics-in-a-Scene",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsWorld",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsField",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsBehavior"
+      ],
+      "title": "Physics in a Scene"
+    },
+    {
+      "anchor": "Joints",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsHingeJoint",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsSliderJoint",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsBallSocketJoint",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsConeTwistJoint"
+      ],
+      "title": "Joints"
+    },
+    {
+      "anchor": "Vehicle-Simulation",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsVehicle",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsVehicleWheel"
+      ],
+      "title": "Vehicle Simulation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Physics-Bodies",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsBody",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsShape"
+              ],
+              "title": "Physics Bodies"
+            },
+            {
+              "anchor": "Collision-and-Contact-Detection",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsContactDelegate",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsContact"
+              ],
+              "title": "Collision and Contact Detection"
+            },
+            {
+              "anchor": "Physics-in-a-Scene",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsWorld",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsField",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsBehavior"
+              ],
+              "title": "Physics in a Scene"
+            },
+            {
+              "anchor": "Joints",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsHingeJoint",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsSliderJoint",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsBallSocketJoint",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsConeTwistJoint"
+              ],
+              "title": "Joints"
+            },
+            {
+              "anchor": "Vehicle-Simulation",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsVehicle",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsVehicleWheel"
+              ],
+              "title": "Vehicle Simulation"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsWorld/title",
+          "value": "SCNPhysicsWorld"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsWorld/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsWorld"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsWorld/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsWorld"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsHingeJoint/title",
+          "value": "SCNPhysicsHingeJoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsHingeJoint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsHingeJoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsHingeJoint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsHingeJoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsBallSocketJoint/title",
+          "value": "SCNPhysicsBallSocketJoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsBallSocketJoint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsBallSocketJoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsBallSocketJoint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsBallSocketJoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsContact/title",
+          "value": "SCNPhysicsContact"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsContact/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsContact"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsContact/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsContact"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsSliderJoint/title",
+          "value": "SCNPhysicsSliderJoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsSliderJoint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsSliderJoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsSliderJoint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsSliderJoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsBody/title",
+          "value": "SCNPhysicsBody"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsBody/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsBody"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsBody/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsBody"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsConeTwistJoint/title",
+          "value": "SCNPhysicsConeTwistJoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsConeTwistJoint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsConeTwistJoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsConeTwistJoint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsConeTwistJoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsShape/title",
+          "value": "SCNPhysicsShape"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsShape/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsShape"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsShape/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsShape"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsBehavior/title",
+          "value": "SCNPhysicsBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsBehavior/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsBehavior/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsField/title",
+          "value": "SCNPhysicsField"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsField/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsField/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsVehicle/title",
+          "value": "SCNPhysicsVehicle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsVehicle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsVehicle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsVehicle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsVehicle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsContactDelegate/title",
+          "value": "SCNPhysicsContactDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsContactDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsContactDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsContactDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsContactDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsVehicleWheel/title",
+          "value": "SCNPhysicsVehicleWheel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsVehicleWheel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsVehicleWheel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsVehicleWheel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsVehicleWheel"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/scenekit/physics-simulation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/scenekit/physics-simulation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

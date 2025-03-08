@@ -1,0 +1,817 @@
+{
+  "abstract": [
+    {
+      "text": "An object that delivers notifications from apps to the user.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " framework instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/task_management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1413822,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSUserNotificationCenter",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSUserNotificationCenter"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "11.0",
+        "introducedAt": "10.8",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSUserNotificationCenter"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSUserNotificationCenter"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a user notification’s delivery date has been reached, or it’s manually delivered, the notification center may display the notification to the user. The user notification center reserves the right to decide if a delivered user notification is presented to the user. For example, it may suppress the notification if the application is already frontmost (the delegate can override this action). The application can check the result of this decision by examining the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsusernotification/1409281-ispresented",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of a delivered user notification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsusernotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances the ",
+              "type": "text"
+            },
+            {
+              "code": "NSUserNotificationCenter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are tracking will be in one of two states: scheduled or delivered. A scheduled user notification has a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsusernotification/1407781-deliverydate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". On that delivery date, the notification will move from being scheduled to being delivered. Note that the user notification may be displayed later than the delivery date depending on many factors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A delivered user notification has an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsusernotification/1416009-actualdeliverydate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". That’s the date when it moved from being scheduled to delivered, or when it was manually delivered using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1414633-deliver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The application and the user notification center are both ultimately subject to the user’s preferences. If the user decides to hide all alerts from your application, the ",
+              "type": "text"
+            },
+            {
+              "code": "presented",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property will still behave as above, but the user won’t see any animation or hear any sound.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenterdelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides more information about the delivered user notification and allows forcing the display of a user notification even if the application is frontmost. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "It the user wakes more than 15 minutes after a scheduled notification is scheduled to fire, it’s discarded. If the notification repeats with an interval less than 15 minutes, then it expires in 1 minute. Expired notifications are just discarded, unless they repeat, in which case, they stay in the scheduled list and just fire again later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Many of the NSUserNotificationCenter class’s methods involve talking to a server process, so calling them repeatedly can have a negative effect on performance.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "1662071",
+          "level": 3,
+          "text": "Threading Information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSUserNotificationCenter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsusernotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class are both thread safe.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsusernotification": {
+      "abstract": [
+        {
+          "text": "A notification that can be scheduled for display in the notification center.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsusernotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nsusernotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsusernotification/1407781-deliverydate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsusernotification/1407781-deliverydate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deliveryDate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsusernotification/1407781-deliverydate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsusernotification/1409281-ispresented": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsusernotification/1409281-ispresented",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isPresented",
+      "type": "topic",
+      "url": "/documentation/foundation/nsusernotification/1409281-ispresented"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsusernotification/1416009-actualdeliverydate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsusernotification/1416009-actualdeliverydate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "actualDeliveryDate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsusernotification/1416009-actualdeliverydate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsusernotificationaction": {
+      "abstract": [
+        {
+          "text": "An action that the user can take in response to receiving a notification.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserNotificationAction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsusernotificationaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserNotificationAction",
+      "type": "topic",
+      "url": "/documentation/foundation/nsusernotificationaction"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter": {
+      "abstract": [
+        {
+          "text": "An object that delivers notifications from apps to the user.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserNotificationCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserNotificationCenter",
+      "type": "topic",
+      "url": "/documentation/foundation/nsusernotificationcenter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1407647-schedulenotification": {
+      "abstract": [
+        {
+          "text": "Schedules the specified user notification.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheduleNotification"
+        },
+        {
+          "kind": "text",
+          "text": "(NSUserNotification)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1407647-schedulenotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scheduleNotification(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsusernotificationcenter/1407647-schedulenotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1407791-deliverednotifications": {
+      "abstract": [
+        {
+          "text": "An array of all user notifications delivered to the notification center.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "deliveredNotifications"
+        },
+        {
+          "kind": "text",
+          "text": ": [NSUserNotification]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1407791-deliverednotifications",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deliveredNotifications",
+      "type": "topic",
+      "url": "/documentation/foundation/nsusernotificationcenter/1407791-deliverednotifications"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1410385-delegate": {
+      "abstract": [
+        {
+          "text": "Specifies the notification center delegate.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any NSUserNotificationCenterDelegate)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1410385-delegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsusernotificationcenter/1410385-delegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1411832-schedulednotifications": {
+      "abstract": [
+        {
+          "text": "Specifies an array of scheduled user notifications that have not yet been delivered.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheduledNotifications"
+        },
+        {
+          "kind": "text",
+          "text": ": [NSUserNotification]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1411832-schedulednotifications",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scheduledNotifications",
+      "type": "topic",
+      "url": "/documentation/foundation/nsusernotificationcenter/1411832-schedulednotifications"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1414633-deliver": {
+      "abstract": [
+        {
+          "text": "Deliver the specified user notification.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "deliver"
+        },
+        {
+          "kind": "text",
+          "text": "(NSUserNotification)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1414633-deliver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deliver(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsusernotificationcenter/1414633-deliver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1415613-removeschedulednotification": {
+      "abstract": [
+        {
+          "text": "Removes the specified user notification for the scheduled notifications.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeScheduledNotification"
+        },
+        {
+          "kind": "text",
+          "text": "(NSUserNotification)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1415613-removeschedulednotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeScheduledNotification(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsusernotificationcenter/1415613-removeschedulednotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1416057-removedeliverednotification": {
+      "abstract": [
+        {
+          "text": "Remove a delivered user notification from the user notification center.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeDeliveredNotification"
+        },
+        {
+          "kind": "text",
+          "text": "(NSUserNotification)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1416057-removedeliverednotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeDeliveredNotification(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsusernotificationcenter/1416057-removedeliverednotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1416204-removealldeliverednotifications": {
+      "abstract": [
+        {
+          "text": "Remove all delivered user notifications from the user notification center.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllDeliveredNotifications"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1416204-removealldeliverednotifications",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeAllDeliveredNotifications()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsusernotificationcenter/1416204-removealldeliverednotifications"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1416403-default": {
+      "abstract": [
+        {
+          "text": "Returns the default user notification center.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "`default`"
+        },
+        {
+          "kind": "text",
+          "text": ": NSUserNotificationCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1416403-default",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "default",
+      "type": "topic",
+      "url": "/documentation/foundation/nsusernotificationcenter/1416403-default"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenterdelegate": {
+      "abstract": [
+        {
+          "text": "An interface that enables customizing the behavior of the default notification center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserNotificationCenterDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenterdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserNotificationCenterDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsusernotificationcenterdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/task_management": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/task_management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Task Management",
+      "type": "topic",
+      "url": "/documentation/foundation/task_management"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications": {
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications",
+      "kind": "article",
+      "role": "collection",
+      "title": "User Notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsusernotification",
+        "doc://com.apple.documentation/documentation/foundation/nsusernotificationaction",
+        "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenterdelegate"
+      ],
+      "title": "User Notifications"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1662084",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1416403-default"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating the Default User Notification Center"
+    },
+    {
+      "anchor": "1662104",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1407647-schedulenotification",
+        "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1411832-schedulednotifications",
+        "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1415613-removeschedulednotification"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing the Scheduled Notification Queue"
+    },
+    {
+      "anchor": "1662161",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1414633-deliver",
+        "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1407791-deliverednotifications",
+        "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1416057-removedeliverednotification",
+        "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1416204-removealldeliverednotifications"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing the Delivered Notifications"
+    },
+    {
+      "anchor": "1662257",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsusernotificationcenter/1410385-delegate"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting and Setting the Delegate"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsusernotificationcenter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsusernotificationcenter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

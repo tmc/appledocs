@@ -1,0 +1,378 @@
+{
+  "abstract": [
+    {
+      "text": "The type this format style accepts as input.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting",
+        "doc://com.apple.documentation/documentation/foundation/formatstyle"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/formatstyle/3766781-formatinput"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3766781,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation11FormatStyleP0B5InputQa",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "associatedtype "
+      },
+      {
+        "kind": "identifier",
+        "text": "FormatInput"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "FormatStyle"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "12.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "8.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "13.0",
+        "name": "Xcode"
+      }
+    ],
+    "required": true,
+    "role": "symbol",
+    "symbolKind": "intftdef",
+    "title": "FormatInput"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "associatedtype"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "FormatInput"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift type inference uses this value to determine which static accessors are available at a given call point. For example, when you format an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Int32",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can use the static ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle/3870104-number",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property that provies a ",
+              "type": "text"
+            },
+            {
+              "code": "IntegerFormatStyle<Int32>",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as seen in the following example. This works because the style’s input type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/formatinput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryInteger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " generically constrained to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Int32",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let perihelionDistanceToSunInKm: Int32 = 147098291",
+            "perihelionDistanceToSunInKm.formatted(.number",
+            "    .notation(.scientific)) // \"1.470983E8\""
+          ],
+          "metadata": {
+            "anchor": "4113487",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/BinaryInteger": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryInteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BinaryInteger",
+      "type": "topic",
+      "url": "/documentation/swift/binaryinteger"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Int32": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int32",
+      "type": "topic",
+      "url": "/documentation/swift/int32"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Formatting",
+      "type": "topic",
+      "url": "/documentation/foundation/data_formatting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatstyle": {
+      "abstract": [
+        {
+          "text": "A type that converts a given data type into a representation in another type, such as a string.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatstyle/3766781-formatinput": {
+      "abstract": [
+        {
+          "text": "The type this format style accepts as input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "associatedtype "
+        },
+        {
+          "kind": "identifier",
+          "text": "FormatInput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle/3766781-formatinput",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "FormatInput",
+      "type": "topic",
+      "url": "/documentation/foundation/formatstyle/3766781-formatinput"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatstyle/3766781-formatinput#4113487": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle/3766781-formatinput#4113487",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/formatstyle/3766781-formatinput#4113487"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatstyle/3766782-formatoutput": {
+      "abstract": [
+        {
+          "text": "The type this format style produces as output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "associatedtype "
+        },
+        {
+          "kind": "identifier",
+          "text": "FormatOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle/3766782-formatoutput",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "FormatOutput",
+      "type": "topic",
+      "url": "/documentation/foundation/formatstyle/3766782-formatoutput"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatstyle/3870104-number": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle/3870104-number",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "number",
+      "type": "topic",
+      "url": "/documentation/foundation/formatstyle/3870104-number"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/formatinput": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/formatinput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IntegerFormatStyle.FormatInput",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/formatinput"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/formatstyle/3766782-formatoutput"
+      ],
+      "title": "Declaring input and output types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/formatstyle/3766781-formatinput"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,807 @@
+{
+  "abstract": [
+    {
+      "text": "Recreate the byte array for versions 2.2 or earlier.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/ad-network-attribution",
+        "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork",
+        "doc://com.apple.storekit/documentation/StoreKit/verifying-an-install-validation-postback"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/combining-parameters-for-previous-skadnetwork-postback-versions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Combining parameters for previous SKAdNetwork postback versions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Combine postback parameters to recreate a byte array that you use to verify Apple’s signature. To recreate the byte array, create a UTF-8 string by combining the parameter values in an exact order, with an invisible separator (",
+              "type": "text"
+            },
+            {
+              "code": "‘\\u2063’",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") between them. You must combine the parameters in the exact orders as show in the examples. For more information about the parameters and verifying the signature, and an example using newer versions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/verifying-an-install-validation-postback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Combine-postback-parameters-for-version-22",
+          "level": 3,
+          "text": "Combine postback parameters for version 2.2",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following JSON shows an example of a version 2.2 install-validation postback that contains all possible parameters and a valid signature:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"version\" : \"2.2\",",
+            "  \"ad-network-id\" : \"com.example\",",
+            "  \"campaign-id\" : 42,",
+            "  \"transaction-id\" : \"6aafb7a5-0170-41b5-bbe4-fe71dedf1e28\",",
+            "  \"app-id\" : 525463029,",
+            "  \"attribution-signature\" : \"MEYCIQDTuQ1Z4Tpy9D3aEKbxLl5J5iKiTumcqZikuY/AOD2U7QIhAJAaiAv89AoquHXJffcieEQXdWHpcV8ZgbKN0EwV9/sY\",",
+            "  \"redownload\": true,",
+            "  \"source-app-id\": 1234567891,",
+            "  \"fidelity-type\": 1,",
+            "  \"conversion-value\": 20",
+            "}  "
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To verify the signature, combine version 2.2 postback parameters in this order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "version",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ad-network-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "campaign-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "app-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "transaction-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "redownload",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " Note: use the strings ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "“true”",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "“false”",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to represent the Boolean value of the redownload parameter.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "source-app-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "fidelity-type",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Include ",
+              "type": "text"
+            },
+            {
+              "code": "source-app-id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " only if you received it in the postback. Note that the signature never includes a conversion value, even if it’s present in the postback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following is an example of the UTF-8 string for a postback with ",
+              "type": "text"
+            },
+            {
+              "code": "source-app-id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " present in the postback:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "version + '\\u2063' + ad-network-id + '\\u2063' + campaign-id + '\\u2063' + app-id + '\\u2063' + transaction-id + '\\u2063' + redownload + '\\u2063' + source-app-id",
+            "+ '\\u2063' + fidelity-type",
+            " "
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following is an example of the UTF-8 string for a postback without ",
+              "type": "text"
+            },
+            {
+              "code": "source-app-id",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "version + '\\u2063' + ad-network-id + '\\u2063' + campaign-id + '\\u2063' + app-id + '\\u2063' + transaction-id + '\\u2063' + redownload + '\\u2063' + fidelity-type",
+            ""
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Combine-postback-parameters-for-versions-2-and-21",
+          "level": 3,
+          "text": "Combine postback parameters for versions 2  and 2.1",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Version 2 and 2.1 postbacks contain the following parameters. Combine their values in this order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "version",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ad-network-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "campaign-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "app-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "transaction-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "redownload",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " Note: use the strings ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "“true”",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "“false”",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to represent the Boolean value of the redownload parameter.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "source-app-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Include ",
+              "type": "text"
+            },
+            {
+              "code": "source-app-id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " only if you receive it in the postback. Note that the signature never includes a conversion value, even if it’s present in the postback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following is an example of the UTF-8 string for a postback with ",
+              "type": "text"
+            },
+            {
+              "code": "source-app-id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " present in the postback:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "version + '\\u2063' + ad-network-id + '\\u2063' + campaign-id + '\\u2063' + app-id + '\\u2063' + transaction-id + '\\u2063' + redownload + '\\u2063' + source-app-id",
+            " "
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following is an example of the UTF-8 string for a postback without ",
+              "type": "text"
+            },
+            {
+              "code": "source-app-id",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "version + '\\u2063' + ad-network-id + '\\u2063' + campaign-id + '\\u2063' + app-id + '\\u2063' + transaction-id + '\\u2063' + redownload",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Combine-postback-parameters-for-version-1",
+          "level": 3,
+          "text": "Combine postback parameters for version 1",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Version 1 postbacks contain the following parameters. Combine their values in this order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ad-network-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "campaign-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "app-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "transaction-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following is an example of the UTF-8 string for a version 1.0 postback:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ad-network-id + '\\u2063' + campaign-id + '\\u2063' + app-id + '\\u2063' + transaction-id "
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork": {
+      "abstract": [
+        {
+          "text": "A class that validates advertisement-driven app installations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKAdNetwork"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKAdNetwork"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKAdNetwork",
+      "type": "topic",
+      "url": "/documentation/storekit/skadnetwork"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ad-network-attribution": {
+      "abstract": [
+        {
+          "text": "Validate advertisement-driven app installations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ad-network-attribution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Ad network attribution",
+      "type": "topic",
+      "url": "/documentation/storekit/ad-network-attribution"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/combining-parameters-for-skadnetwork-3-postbacks": {
+      "abstract": [
+        {
+          "text": "Recreate the byte array for version 3 postbacks that win and don’t win attribution.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/combining-parameters-for-skadnetwork-3-postbacks",
+      "kind": "article",
+      "role": "article",
+      "title": "Combining parameters for SKAdNetwork 3 postbacks",
+      "type": "topic",
+      "url": "/documentation/storekit/combining-parameters-for-skadnetwork-3-postbacks"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/verifying-an-install-validation-postback": {
+      "abstract": [
+        {
+          "text": "Ensure the validity of a postback you receive after an ad conversion by verifying its cryptographic signature.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/verifying-an-install-validation-postback",
+      "kind": "article",
+      "role": "article",
+      "title": "Verifying an install-validation postback",
+      "type": "topic",
+      "url": "/documentation/storekit/verifying-an-install-validation-postback"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "SKAdNetworks-3-and-earlier-postbacks",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/combining-parameters-for-skadnetwork-3-postbacks"
+      ],
+      "title": "SKAdNetworks 3 and earlier postbacks"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "SKAdNetworks-3-and-earlier-postbacks",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/combining-parameters-for-skadnetwork-3-postbacks"
+              ],
+              "title": "SKAdNetworks 3 and earlier postbacks"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork/title",
+          "value": "SKAdNetwork"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdNetwork"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdNetwork"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/combining-parameters-for-previous-skadnetwork-postback-versions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/combining-parameters-for-previous-skadnetwork-postback-versions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,851 @@
+{
+  "abstract": [
+    {
+      "text": "Sets the action and action data for a trust management object.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.security/documentation/Security/SecTrustSetParameters"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@SecTrustSetParameters",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "SecTrustSetParameters"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SecTrustSetParameters"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.7",
+        "introducedAt": "10.2",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "SecTrustSetParameters"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SecTrustSetParameters"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecTrust",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SecTrustRef",
+              "text": "SecTrustRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "trustRef"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/CSSM_TP_ACTION",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CSSM_TP_ACTION",
+              "text": "CSSM_TP_ACTION"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "action"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@CFDataRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFDataRef",
+              "text": "CFDataRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "actionData"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The trust management object to which you want to add an action or set action data. A trust management object includes one or more certificates plus the policy or policies to be used in evaluating trust. Use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/SecTrustCreateWithCertificates(_:_:_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function to create a trust management object.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "trustRef"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A CSSM trust action. Pass ",
+                  "type": "text"
+                },
+                {
+                  "code": "CSSM_TP_ACTION_DEFAULT",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for the default action. Other actions available, if any, are described in the documentation for the trust policy module. For the AppleX509TP module, see the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/library/archive/documentation/Security/Reference/SecAppleTrustPolicyModuleSpec/Apple_Trust_Policy_Module_Functional_Specification.pdf",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "action"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A reference to action data. ",
+                  "type": "text"
+                },
+                {
+                  "code": "CSSM_APPLE_TP_ACTION_FLAGS",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " lists possible values for this parameter for the AppleX509TP trust policy module’s default action. For other actions (if any), the possible values for the action data are specified in the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/library/archive/documentation/Security/Reference/SecAppleTrustPolicyModuleSpec/Apple_Trust_Policy_Module_Functional_Specification.pdf",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "actionData"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/security-framework-result-codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecTrustEvaluate(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can optionally use this function to set one or more action flags or to set action data. Actions, where available, affect the trust evaluation for all policies being evaluated. For example, if you set the action data for the default action to ",
+              "type": "text"
+            },
+            {
+              "code": "CSSM_TP_ACTION_ALLOW_EXPIRED",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", then the ",
+              "type": "text"
+            },
+            {
+              "code": "SecTrustEvaluate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function ignores the certificate’s expiration date and time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It is safe to call this function concurrently on two or more threads as long as it is not used to change the value of a trust management object that is simultaneously being used by another function. For example, you cannot call this function on one thread at the same time as you are calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecTrustEvaluate(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function for the same trust management object on another thread, but you can call this function and simultaneously evaluate a different trust management object on another thread. Similarly, calls to functions that return information about a trust management object (such as the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecTrustCopyCustomAnchorCertificates(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function) may fail or return an unexpected result if this function is simultaneously changing the same trust management object on another thread.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/CSSM_TP_ACTION": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSSM_TP_ACTION"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CSSM_TP_ACTION",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSSM_TP_ACTION"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSSM_TP_ACTION",
+      "type": "topic",
+      "url": "/documentation/security/cssm_tp_action"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrust": {
+      "abstract": [
+        {
+          "text": "An object used to evaluate trust.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrust"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrust",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrust"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrust",
+      "type": "topic",
+      "url": "/documentation/security/sectrust"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustCopyCustomAnchorCertificates(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the custom anchor certificates, if any, used by a given trust.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrustCopyCustomAnchorCertificates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTrustRef",
+          "text": "SecTrust"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustCopyCustomAnchorCertificates(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustCopyCustomAnchorCertificates"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustCopyCustomAnchorCertificates(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectrustcopycustomanchorcertificates(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustCreateWithCertificates(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a trust management object based on certificates and policies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrustCreateWithCertificates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTrustRef",
+          "text": "SecTrust"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustCreateWithCertificates(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustCreateWithCertificates"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustCreateWithCertificates(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectrustcreatewithcertificates(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustEvaluate(_:_:)": {
+      "abstract": [
+        {
+          "text": "Evaluates trust for the specified certificate and policies.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrustEvaluate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTrustRef",
+          "text": "SecTrust"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecTrustResultType",
+          "text": "SecTrustResultType"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustEvaluate(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustEvaluate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustEvaluate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectrustevaluate(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustSetParameters": {
+      "abstract": [
+        {
+          "text": "Sets the action and action data for a trust management object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustSetParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustSetParameters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecTrustSetParameters",
+      "type": "topic",
+      "url": "/documentation/security/sectrustsetparameters"
+    },
+    "doc://com.apple.security/documentation/Security/security-framework-result-codes": {
+      "abstract": [
+        {
+          "text": "Evaluate result codes common to many Security framework functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/security-framework-result-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Security Framework Result Codes",
+      "type": "topic",
+      "url": "/documentation/security/security-framework-result-codes"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@CFDataRef": {
+      "abstract": [
+        {
+          "text": "A reference to an immutable CFData object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFData"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@CFDataRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFData",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdata"
+    },
+    "https://developer.apple.com/library/archive/documentation/Security/Reference/SecAppleTrustPolicyModuleSpec/Apple_Trust_Policy_Module_Functional_Specification.pdf": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Security/Reference/SecAppleTrustPolicyModuleSpec/Apple_Trust_Policy_Module_Functional_Specification.pdf",
+      "title": "Apple Trust Policy Module Functional Specification",
+      "titleInlineContent": [
+        {
+          "text": "Apple Trust Policy Module Functional Specification",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Security/Reference/SecAppleTrustPolicyModuleSpec/Apple_Trust_Policy_Module_Functional_Specification.pdf"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustCreateWithCertificates(_:_:_:)/title",
+          "value": "SecTrustCreateWithCertificates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustCreateWithCertificates(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustCreateWithCertificates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CSSM_TP_ACTION/title",
+          "value": "CSSM_TP_ACTION"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CSSM_TP_ACTION/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSM_TP_ACTION"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CSSM_TP_ACTION/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSM_TP_ACTION"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustCopyCustomAnchorCertificates(_:_:)/title",
+          "value": "SecTrustCopyCustomAnchorCertificates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustCopyCustomAnchorCertificates(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustCopyCustomAnchorCertificates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrust/title",
+          "value": "SecTrustRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrust/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrust/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@CFDataRef/title",
+          "value": "CFDataRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustEvaluate(_:_:)/title",
+          "value": "SecTrustEvaluate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustEvaluate(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustEvaluate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/sectrustsetparameters"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

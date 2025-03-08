@@ -1,0 +1,922 @@
+{
+  "abstract": [
+    {
+      "text": "Learn about implicit animations, explicit animations, and actions, and when to choose each in your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.scenekit/documentation/SceneKit",
+        "doc://com.apple.scenekit/documentation/SceneKit/animation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.scenekit/documentation/SceneKit/animating-scenekit-content"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SceneKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Animating SceneKit Content"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SceneKit animation support is based on the Core Animation framework. (For more about Core Animation, read ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CoreAnimation_guide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40004514",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".) Several SceneKit classes define ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "animatable",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " properties, meaning that in addition to simply assigning a new value to the property, you can create animations that transition smoothly between two values of the property. For example, animating a node’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNNode/opacity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property fades the node’s visible content in or out. You can animate content ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "implicitly",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "explicitly",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Animate-Content-Changes-Implicitly",
+          "level": 3,
+          "text": "Animate Content Changes Implicitly",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create an animation implicitly by changing the value of an animatable property. Implicit animation is useful when you want to quickly animate a one-time change or animate several property changes together without writing a lot of animation code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTransaction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class defines SceneKit’s architecture for scene content changes, including implicit animations: A transaction is a single atomic operation that combines multiple changes to nodes, geometries, materials, or other scene content. By default, SceneKit automatically creates a default transaction for all changes you make to a scene during one pass through the run loop.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default transaction’s duration is zero, so the changes you make to animatable properties occur immediately. However, if you increase the transaction’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTransaction/animationDuration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", all changes to animatable properties automatically animate. For example, changing the animation duration in an ",
+              "type": "text"
+            },
+            {
+              "code": "IBAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method causes both the position and opacity changes in that method to animate together.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 1. Implicit animation that makes a block of text fall out of the scene while fading away",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "@IBAction func fallAndFade(_ sender: Any) {",
+                    "    SCNTransaction.animationDuration = 1.0",
+                    "    textNode.position.y = -10",
+                    "    textNode.opacity = 0",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (IBAction)fallAndFade:(id)sender {",
+                    "    [SCNTransaction setAnimationDuration:1.0];",
+                    "    _textNode.position = SCNVector3Make(0.0, -10.0, 0.0);",
+                    "    _textNode.opacity = 0.0;",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Explicitly-Create-an-Animation",
+          "level": 3,
+          "text": "Explicitly Create an Animation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more complex animations, you can explicitly create an animation object and attach it to the scene element being animated. Creating an animation object also makes an animation reusable, so you can play the same animation at any time on demand or apply it to different elements of your scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Choose a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAAnimation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass for the type of animation you want to create, specify the property to be animated using key-value coding, and set animation parameters. You then set the animation in motion by attaching it to one or more elements of your scene, as shown in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/animating-scenekit-content",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By using different Core Animation classes, you can combine or sequence several animations or create animations that interpolate a property’s value between several keyframe values. For more about creating animation objects, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CoreAnimation_guide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40004514",
+              "isActive": true,
+              "overridingTitle": "Core Animation Programming Guide",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Core Animation Programming Guide",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". For more about attaching animations to SceneKit objects, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 2. Explicit animation to vary the 3D extrusion depth of a block of text",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let animation = CABasicAnimation(keyPath: \"geometry.extrusionDepth\")",
+                    "animation.fromValue = 0.0",
+                    "animation.toValue = 100.0",
+                    "animation.duration = 1.0",
+                    "animation.autoreverses = true",
+                    "animation.repeatCount = .infinity",
+                    "textNode.addAnimation(animation, forKey: \"extrude\")"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@\"geometry.extrusionDepth\"];",
+                    "animation.fromValue = @0.0;",
+                    "animation.toValue = @100.0;",
+                    "animation.duration = 1.0;",
+                    "animation.autoreverses = YES;",
+                    "animation.repeatCount = INFINITY;",
+                    "[_textNode addAnimation:animation forKey:@\"extrude\"];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SceneKit also uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAAnimation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects for animations created using external 3D authoring tools and saved in scene files. For example, an artist might create a game character with animations for walking, jumping, and other actions. You incorporate these animations into your game by loading animation objects from the scene file using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class and attaching them to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that represents the game character.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/QuartzCore/CAAnimation": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for animations in Core Animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAAnimation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CAAnimation",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CAAnimation"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit": {
+      "abstract": [
+        {
+          "text": "Create 3D games and add 3D content to apps using high-level scene descriptions, and easily add animations, physics simulation, particle effects, and realistic physically based rendering.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SceneKit",
+      "type": "topic",
+      "url": "/documentation/scenekit"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable": {
+      "abstract": [
+        {
+          "text": "The common interface for attaching animations to nodes, geometries, materials, and other SceneKit objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNAnimatable"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNAnimatable"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNAnimatable",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnanimatable"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNNode": {
+      "abstract": [
+        {
+          "text": "A structural element of a scene graph, representing a position and transform in a 3D coordinate space, to which you can attach geometry, lights, cameras, or other displayable content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNNode"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNNode",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnnode"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNNode/opacity": {
+      "abstract": [
+        {
+          "text": "The opacity value of the node. Animatable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "opacity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNNode/opacity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "opacity"
+        }
+      ],
+      "role": "symbol",
+      "title": "opacity",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnnode/opacity"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource": {
+      "abstract": [
+        {
+          "text": "An object that manages the data-reading tasks associated with loading scene contents from a file or data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNSceneSource"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNSceneSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNSceneSource",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenesource"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNTransaction": {
+      "abstract": [
+        {
+          "text": "A mechanism for creating implicit animations and combining scene graph changes into atomic updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTransaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNTransaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNTransaction",
+      "type": "topic",
+      "url": "/documentation/scenekit/scntransaction"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNTransaction/animationDuration": {
+      "abstract": [
+        {
+          "text": "Returns the duration, in seconds, of all animations within the current transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "animationDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTimeInterval",
+          "text": "CFTimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTransaction/animationDuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "animationDuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "animationDuration",
+      "type": "topic",
+      "url": "/documentation/scenekit/scntransaction/animationduration"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/animating-scenekit-content": {
+      "abstract": [
+        {
+          "text": "Learn about implicit animations, explicit animations, and actions, and when to choose each in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/animating-scenekit-content",
+      "kind": "article",
+      "role": "article",
+      "title": "Animating SceneKit Content",
+      "type": "topic",
+      "url": "/documentation/scenekit/animating-scenekit-content"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/animation": {
+      "abstract": [
+        {
+          "text": "Create declarative animations that move elements of a scene in predetermined ways, or manage animations imported with external authoring tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/animation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Animation",
+      "type": "topic",
+      "url": "/documentation/scenekit/animation"
+    },
+    "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CoreAnimation_guide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40004514": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CoreAnimation_guide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40004514",
+      "title": "Core Animation Programming Guide",
+      "titleInlineContent": [
+        {
+          "text": "Core Animation Programming Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CoreAnimation_guide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40004514"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTransaction/title",
+          "value": "SCNTransaction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTransaction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNTransaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTransaction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNTransaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTransaction~1animationDuration/title",
+          "value": "animationDuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTransaction~1animationDuration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "animationDuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNode/title",
+          "value": "SCNNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable/title",
+          "value": "SCNAnimatable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAnimatable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAnimatable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CAAnimation/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CAAnimation"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNode~1opacity/title",
+          "value": "opacity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNode~1opacity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "opacity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource/title",
+          "value": "SCNSceneSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSceneSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSceneSource"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/scenekit/animating-scenekit-content"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/scenekit/animating-scenekit-content"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

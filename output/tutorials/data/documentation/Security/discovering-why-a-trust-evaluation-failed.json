@@ -1,0 +1,581 @@
+{
+  "abstract": [
+    {
+      "text": "Determine whether you can recover from a failed trust evaluation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+        "doc://com.apple.security/documentation/Security/trust"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/discovering-why-a-trust-evaluation-failed"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Discovering Why a Trust Evaluation Failed"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many factors affect the outcome of a trust evaluation. These include whether the system can locate all of the intermediate certificates, the validity of the certificates in the chain, and the characteristics of the certificates. Some issues, like a revoked certificate, result in an absolute failure and should ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "not",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " be circumvented. In other cases, you might get a different result by changing the conditions of the evaluation. For example, an expired certificate might have been valid when the corresponding identity was used to sign a document.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get the specific reason for trust failure, examine the error parameter provided in the evaluation callback described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/evaluating-a-trust-and-parsing-the-result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The error’s code indicates the reason, or in the case of multiple errors, the most serious reason for the failure. For example, a revoked certificate results in an error with the code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/errSecCertificateRevoked",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", while an expired certificate produces ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/errSecCertificateExpired",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine whether the system considers the failure recoverable, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecTrustGetTrustResult(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "var trustResult = SecTrustResultType.invalid",
+                    "SecTrustGetTrustResult(trust, &trustResult)",
+                    "if trustResult == .recoverableTrustFailure {",
+                    "    // Make changes and try again.",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "SecTrustResultType trustResult;",
+                    "SecTrustGetTrustResult(trust, &trustResult);",
+                    "if (trustResult == kSecTrustResultRecoverableTrustFailure) {",
+                    "    // Make changes and try again.",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a result of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecTrustResultType/recoverableTrustFailure",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and based on the error you receive, you may be able to remedy problems by reconfiguring and reevaluating the trust, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/configuring-a-trust",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustGetTrustResult(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the result code from the most recent trust evaluation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrustGetTrustResult"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTrustRef",
+          "text": "SecTrust"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecTrustResultType",
+          "text": "SecTrustResultType"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustGetTrustResult(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustGetTrustResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustGetTrustResult(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectrustgettrustresult(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustResultType/recoverableTrustFailure": {
+      "abstract": [
+        {
+          "text": "Trust is denied, but recovery may be possible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recoverableTrustFailure"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustResultType/recoverableTrustFailure",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecTrustResultRecoverableTrustFailure"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustResultType.recoverableTrustFailure",
+      "type": "topic",
+      "url": "/documentation/security/sectrustresulttype/recoverabletrustfailure"
+    },
+    "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services": {
+      "abstract": [
+        {
+          "text": "Establish trust using certificates and cryptographic keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Certificate, Key, and Trust Services",
+      "type": "topic",
+      "url": "/documentation/security/certificate-key-and-trust-services"
+    },
+    "doc://com.apple.security/documentation/Security/configuring-a-trust": {
+      "abstract": [
+        {
+          "text": "Work around a recoverable trust failure.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/configuring-a-trust",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring a Trust",
+      "type": "topic",
+      "url": "/documentation/security/configuring-a-trust"
+    },
+    "doc://com.apple.security/documentation/Security/errSecCertificateExpired": {
+      "abstract": [
+        {
+          "text": "An expired certificate was detected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errSecCertificateExpired"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/errSecCertificateExpired",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "errSecCertificateExpired"
+        }
+      ],
+      "role": "symbol",
+      "title": "errSecCertificateExpired",
+      "type": "topic",
+      "url": "/documentation/security/errseccertificateexpired"
+    },
+    "doc://com.apple.security/documentation/Security/errSecCertificateRevoked": {
+      "abstract": [
+        {
+          "text": "The certificate was revoked.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errSecCertificateRevoked"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/errSecCertificateRevoked",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "errSecCertificateRevoked"
+        }
+      ],
+      "role": "symbol",
+      "title": "errSecCertificateRevoked",
+      "type": "topic",
+      "url": "/documentation/security/errseccertificaterevoked"
+    },
+    "doc://com.apple.security/documentation/Security/evaluating-a-trust-and-parsing-the-result": {
+      "abstract": [
+        {
+          "text": "Learn what to expect when evaluating a trust object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/evaluating-a-trust-and-parsing-the-result",
+      "kind": "article",
+      "role": "article",
+      "title": "Evaluating a Trust and Parsing the Result",
+      "type": "topic",
+      "url": "/documentation/security/evaluating-a-trust-and-parsing-the-result"
+    },
+    "doc://com.apple.security/documentation/Security/trust": {
+      "abstract": [
+        {
+          "text": "Evaluate trust based on a given policy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/trust",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Trust",
+      "type": "topic",
+      "url": "/documentation/security/trust"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errSecCertificateRevoked/title",
+          "value": "errSecCertificateRevoked"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errSecCertificateRevoked/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "errSecCertificateRevoked"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustGetTrustResult(_:_:)/title",
+          "value": "SecTrustGetTrustResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustGetTrustResult(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustGetTrustResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustResultType~1recoverableTrustFailure/title",
+          "value": "kSecTrustResultRecoverableTrustFailure"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustResultType~1recoverableTrustFailure/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecTrustResultRecoverableTrustFailure"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errSecCertificateExpired/title",
+          "value": "errSecCertificateExpired"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errSecCertificateExpired/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "errSecCertificateExpired"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/discovering-why-a-trust-evaluation-failed"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/discovering-why-a-trust-evaluation-failed"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

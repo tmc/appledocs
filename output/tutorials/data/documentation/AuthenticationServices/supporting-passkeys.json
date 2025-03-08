@@ -1,0 +1,1782 @@
+{
+  "abstract": [
+    {
+      "text": "Eliminate passwords for your users when they sign in to apps and websites.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/public-private-key-authentication"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-passkeys"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Authentication Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Supporting passkeys"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Passkeys use iCloud Keychain public key credentials, eliminating the need for passwords. Instead, they rely on biometric identification, such as Touch ID and Face ID in iOS, or a specific confirmation in macOS for generating and authenticating accounts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "authenticator",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", your Apple device generates a unique public-private key pair for every account it creates on a service. The authenticator retains the private key and shares its public key with the server, known as the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "relying party.",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You need to have an associated domain with the ",
+                  "type": "text"
+                },
+                {
+                  "code": "webcredentials",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " service type when making a registration or assertion request; otherwise, the request returns an error. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for more information.__",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Register-a-new-account-on-a-service",
+          "level": 3,
+          "text": "Register a new account on a service",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To onboard users to a new service, such as an online bank or grocery delivery app, without passwords, you need to obtain a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "challenge",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " from the server. A challenge is data that the server generates to prove that you, as the authenticator, own the account.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code sets up the process of registration. Create an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and pass it your relying party identifier, which is usually the service’s domain name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let challenge: Data // Obtain this from the server.",
+            "let userID: Data // Obtain this from the server.",
+            "let platformProvider = ASAuthorizationPlatformPublicKeyCredentialProvider(relyingPartyIdentifier: \"example.com\")",
+            "let platformKeyRequest = platformProvider.createCredentialRegistrationRequest(challenge: challenge, name: \"Anne Johnson\", userID: userID)",
+            "let authController = ASAuthorizationController(authorizationRequests: [platformKeyRequest])",
+            "authController.delegate = self",
+            "authController.presentationContextProvider = self",
+            "authController.performRequests()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a platform key registration request by instantiating ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Pass the challenge, the user name, and the user ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then create an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationControllerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and pass an array that contains the platform key request object. Set the authorization controller’s delegate and presentation context provider to the object that responds to the request, and then direct the controller to perform the registration request with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController/performRequests()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because this is a registration request, the device displays a sheet asking the user to create a new credential.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Connect-to-a-service-with-an-existing-account",
+          "level": 3,
+          "text": "Connect to a service with an existing account",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the user establishes an account with a relying party, they can connect to that service and authenticate using an assertion request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To start the assertion request, obtain the challenge from the server, then create an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and set its provider to the service URL. Create the assertion request, passing in the challenge to receive an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialAssertionRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create the authorization controller by encapsulating the platform key request in an array. You can pass additional assertion requests in the array, such as passwords and the Sign in with Apple service. The sheet displays whatever credentials the device has for those types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the controller’s delegate and presentation context provider, and direct the authorization controller to perform the request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let challenge: Data // Obtain this from the server.",
+            "let platformProvider = ASAuthorizationPlatformPublicKeyCredentialProvider(relyingPartyIdentifier: \"example.com\")",
+            "let platformKeyRequest = platformProvider.createCredentialAssertionRequest(challenge: challenge)",
+            "let authController = ASAuthorizationController(authorizationRequests: [platformKeyRequest])",
+            "authController.delegate = self",
+            "authController.presentationContextProvider = self",
+            "authController.performRequests()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you provide an assertion request to the controller and the user has one or more credentials on the device, the device displays a sheet with the list of credentials to choose from. An error returns if there aren’t any credentials on the device. In this case, ask the user to register for the service.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Respond-to-the-request",
+          "level": 3,
+          "text": "Respond to the request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationControllerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides information about the outcome of a registration or authentication request. Adopt this protocol to determine how to react to authorization success or errors. The following code defines ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationControllerDelegate/authorizationController(controller:didCompleteWithAuthorization:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to handle registration and assertion, as well as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationControllerDelegate/authorizationController(controller:didCompleteWithError:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to handle any errors:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func authorizationController(controller: controller, didCompleteWithAuthorization: authorization) {",
+            "  if let credential = authorization.credential as? ASAuthorizationPlatformPublicKeyCredentialRegistration {",
+            "    // Take steps to handle the registration.",
+            " } else if let credential = authorization.credential as? ASAuthorizationPlatformPublicKeyCredentialAssertion {",
+            "    // Take steps to verify the challenge.",
+            "  } else {",
+            "    // Handle other authentication cases, such as Sign in with Apple.",
+            "}",
+            "",
+            "func authorizationController(controller: controller, didCompleteWithError: error) {",
+            "  // Handle the error.",
+            "} "
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the authorization succeeds, obtain the credential from the authoriziation controller and determine whether it’s an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialRegistration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or an ` ```ASAuthorizationPlatformPublicKeyCredentialAssertion``, then take appropriate steps to verify the credential and complete the operation with the server. If your app uses other authorization cases, such as Sign in with Apple, handle those in this delegate method, as well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If an error occurs during the authorization, the framework calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationControllerDelegate/authorizationController(controller:didCompleteWithError:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and provides the specific error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Support-AutoFill",
+          "level": 3,
+          "text": "Support AutoFill",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Password AutoFill is a familiar authentication workflow for logging into apps and services. Using AutoFill, you can use passkeys alongside passwords while maintaining the same familiar user experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To prepare your iOS app to use AutoFill, first set your text field’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextInputTraits/textContentType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextContentType/username",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This property lets the system know where to show the passkey suggestion. Next, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController/performAutoFillAssistedRequests()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When the user taps the user name field, the system can suggest passkeys that the user saved for the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Change-or-reset-a-passkey",
+          "level": 3,
+          "text": "Change or reset a passkey",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There may be times when a user needs a new passkey, for example, to recover an account or to revoke access to a passkey shared with someone else.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To change or reset a passkey, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialProvider/createCredentialRegistrationRequest(challenge:displayName:name:userID:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The device generates a new public-private key pair. Provide the new public key to the server so that it uses the new passkey. Discard the previous public key from your server and replace it with the newly generated one.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Registering a passkey with the same user ID as an existing one overwrites the existing passkey on the user’s devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-passkeys-in-a-web-view",
+          "level": 3,
+          "text": "Use passkeys in a web view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To authenticate using passkeys in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " web view, configure your service’s relying party identifier as an associated domain in your app. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Your app can’t use passkeys to authenticate for services that you haven’t configured as the app’s associated domains.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 16.4 and later, and macOS 13.3 and later, use Javascript APIs in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to test whether passkey authentication is available. If the person has a passkey available for the relying party, ",
+              "type": "text"
+            },
+            {
+              "code": "isUserVerifyingPlatformAuthenticatorAvailable()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " returns ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If passkey AutoFill is available, ",
+              "type": "text"
+            },
+            {
+              "code": "isConditionalMediationAvailable()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " returns ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices": {
+      "abstract": [
+        {
+          "text": "Make it easy for users to log into apps and services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Authentication Services",
+      "type": "topic",
+      "url": "/documentation/authenticationservices"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController/performAutoFillAssistedRequests()": {
+      "abstract": [
+        {
+          "text": "Initiates the authorization flows for requests that support AutoFill presentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performAutoFillAssistedRequests"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController/performAutoFillAssistedRequests()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "performAutoFillAssistedRequests"
+        }
+      ],
+      "role": "symbol",
+      "title": "performAutoFillAssistedRequests()",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationcontroller/performautofillassistedrequests()"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController/performRequests()": {
+      "abstract": [
+        {
+          "text": "Starts the specified authorization flows during controller initialization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performRequests"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController/performRequests()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "performRequests"
+        }
+      ],
+      "role": "symbol",
+      "title": "performRequests()",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationcontroller/performrequests()"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationControllerDelegate": {
+      "abstract": [
+        {
+          "text": "An interface for providing information about the outcome of an authorization request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationcontrollerdelegate"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationControllerDelegate/authorizationController(controller:didCompleteWithAuthorization:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when authorization completes successfully.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "controller"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationController",
+          "text": "ASAuthorizationController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didCompleteWithAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorization",
+          "text": "ASAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationControllerDelegate/authorizationController(controller:didCompleteWithAuthorization:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationController:didCompleteWithAuthorization:"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationController(controller:didCompleteWithAuthorization:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationcontrollerdelegate/authorizationcontroller(controller:didcompletewithauthorization:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationControllerDelegate/authorizationController(controller:didCompleteWithError:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when authorization fails, and provides an error explaining why.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "controller"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationController",
+          "text": "ASAuthorizationController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didCompleteWithError"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationControllerDelegate/authorizationController(controller:didCompleteWithError:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationController:didCompleteWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationController(controller:didCompleteWithError:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationcontrollerdelegate/authorizationcontroller(controller:didcompletewitherror:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialAssertionRequest": {
+      "abstract": [
+        {
+          "text": "The concrete assertion request type for platform credentials.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialAssertionRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationPlatformPublicKeyCredentialAssertionRequest",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationplatformpublickeycredentialassertionrequest"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialProvider": {
+      "abstract": [
+        {
+          "text": "A mechanism for providing public key credential requests to an app or service with iCloud Keychain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPlatformPublicKeyCredentialProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPlatformPublicKeyCredentialProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationPlatformPublicKeyCredentialProvider",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationplatformpublickeycredentialprovider"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialRegistration": {
+      "abstract": [
+        {
+          "text": "A newly created platform credential that results from a credential registration request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPlatformPublicKeyCredentialRegistration"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialRegistration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPlatformPublicKeyCredentialRegistration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationPlatformPublicKeyCredentialRegistration",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationplatformpublickeycredentialregistration"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest": {
+      "abstract": [
+        {
+          "text": "The object for registering a new platform public key credential.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationplatformpublickeycredentialregistrationrequest"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialProvider/createCredentialRegistrationRequest(challenge:displayName:name:userID:)": {
+      "abstract": [
+        {
+          "text": "Creates an assertion request with a challenge, display name, and user ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "createCredentialRegistrationRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "challenge"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "displayName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest",
+          "text": "ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialProvider/createCredentialRegistrationRequest(challenge:displayName:name:userID:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "createCredentialRegistrationRequestWithChallenge:displayName:name:userID:"
+        }
+      ],
+      "role": "symbol",
+      "title": "createCredentialRegistrationRequest(challenge:displayName:name:userID:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialprovider/createcredentialregistrationrequest(challenge:displayname:name:userid:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/connecting-to-a-service-with-passkeys": {
+      "abstract": [
+        {
+          "text": "Allow users to sign in to a service without typing a password.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/connecting-to-a-service-with-passkeys",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Connecting to a service with passkeys",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/connecting-to-a-service-with-passkeys"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/public-private-key-authentication": {
+      "abstract": [
+        {
+          "text": "Register and authenticate users with passkeys and security keys, without using passwords.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/public-private-key-authentication",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Public-Private Key Authentication",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/public-private-key-authentication"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-security-key-authentication-using-physical-keys": {
+      "abstract": [
+        {
+          "text": "Allow users to authenticate using NFC, USB, and Lightning security keys in your app or service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-security-key-authentication-using-physical-keys",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Security Key Authentication Using Physical Keys",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/supporting-security-key-authentication-using-physical-keys"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UITextContentType/username": {
+      "abstract": [
+        {
+          "text": "A property that defines the content in a text input area as an account or login name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "username"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UITextContentType",
+          "text": "UITextContentType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextContentType/username",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "username",
+      "type": "topic",
+      "url": "/documentation/UIKit/UITextContentType/username"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UITextInputTraits/textContentType": {
+      "abstract": [
+        {
+          "text": "The semantic meaning for a text input area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textContentType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UITextContentType",
+          "text": "UITextContentType"
+        },
+        {
+          "kind": "text",
+          "text": "! { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextInputTraits/textContentType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textContentType",
+      "type": "topic",
+      "url": "/documentation/UIKit/UITextInputTraits/textContentType"
+    },
+    "doc://com.apple.documentation/documentation/WebKit/WKWebView": {
+      "abstract": [
+        {
+          "text": "An object that displays interactive web content, such as for an in-app browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKWebView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKWebView",
+      "type": "topic",
+      "url": "/documentation/WebKit/WKWebView"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains": {
+      "abstract": [
+        {
+          "text": "Connect your app and a website to provide both a native app and a browser experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting associated domains",
+      "type": "topic",
+      "url": "/documentation/Xcode/supporting-associated-domains"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Fundamentals",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/connecting-to-a-service-with-passkeys",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-security-key-authentication-using-physical-keys"
+      ],
+      "title": "Fundamentals"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Fundamentals",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-security-key-authentication-using-physical-keys"
+              ],
+              "title": "Fundamentals"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationControllerDelegate~1authorizationController(controller:didCompleteWithAuthorization:)/title",
+          "value": "authorizationController:didCompleteWithAuthorization:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationControllerDelegate~1authorizationController(controller:didCompleteWithAuthorization:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "authorizationController:didCompleteWithAuthorization:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UITextContentType~1username/title",
+          "value": "UITextContentTypeUsername"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UITextContentType~1username/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@UITextContentType",
+              "text": "UITextContentType"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UITextContentTypeUsername"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKWebView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKWebView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSView",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest/title",
+          "value": "ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialRegistration/title",
+          "value": "ASAuthorizationPlatformPublicKeyCredentialRegistration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialRegistration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPlatformPublicKeyCredentialRegistration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialRegistration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPlatformPublicKeyCredentialRegistration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationSecurityKeyPublicKeyCredentialProvider~1createCredentialRegistrationRequest(challenge:displayName:name:userID:)/title",
+          "value": "createCredentialRegistrationRequestWithChallenge:displayName:name:userID:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationSecurityKeyPublicKeyCredentialProvider~1createCredentialRegistrationRequest(challenge:displayName:name:userID:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "createCredentialRegistrationRequestWithChallenge:displayName:name:userID:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationControllerDelegate/title",
+          "value": "ASAuthorizationControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialAssertionRequest/title",
+          "value": "ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialAssertionRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialAssertionRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationController~1performRequests()/title",
+          "value": "performRequests"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationController~1performRequests()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "performRequests"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationControllerDelegate~1authorizationController(controller:didCompleteWithError:)/title",
+          "value": "authorizationController:didCompleteWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationControllerDelegate~1authorizationController(controller:didCompleteWithError:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "authorizationController:didCompleteWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialProvider/title",
+          "value": "ASAuthorizationPlatformPublicKeyCredentialProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPlatformPublicKeyCredentialProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPlatformPublicKeyCredentialProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UITextInputTraits~1textContentType/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@UITextContentType",
+              "text": "UITextContentType"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "textContentType"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationController~1performAutoFillAssistedRequests()/title",
+          "value": "performAutoFillAssistedRequests"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationController~1performAutoFillAssistedRequests()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "performAutoFillAssistedRequests"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/authenticationservices/supporting-passkeys"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/authenticationservices/supporting-passkeys"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

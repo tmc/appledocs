@@ -1,0 +1,1877 @@
+{
+  "abstract": [
+    {
+      "text": "Build a structured user interface that simplifies navigation in your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/cocoa-bindings"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/views-and-controls",
+        "doc://com.apple.appkit/documentation/AppKit/outline-view"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/navigating-hierarchical-data-using-outline-and-split-views"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "10.15",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.1",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Navigating Hierarchical Data Using Outline and Split Views"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Just as a table view organizes a list of objects linearly, an outline view organizes objects hierarchically. When an app’s user interface becomes more complex, an outline format helps to organize it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows how to use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to navigate hierarchical data. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a Cocoa view that uses a row-and-column format. Rows expand and collapse to control the amount of information that your app presents.  The outline is a hierarchical list of images within container groups. The ",
+              "type": "text"
+            },
+            {
+              "code": "DataSource.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file predefines the hierarchy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The outline view uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableView/SelectionHighlightStyle-swift.enum/sourceList",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Indicate row selection with a light blue highlight.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Group nodes that look similar to the Finder sidebar.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Blur background content to add depth to your interface.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It does this by setting the highlight appearance in the storyboard, but you can also configure it in code using ",
+              "type": "text"
+            },
+            {
+              "code": "outlineView.selectionHighlightStyle = .sourceList",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you use ",
+              "type": "text"
+            },
+            {
+              "code": "NSOutlineView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", your app presents data in a primary-detail format similar to that of the Xcode Project navigator or the Finder.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Split-View-Controller",
+          "level": 3,
+          "text": "Configure the Split-View Controller",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An outline view works well as part of a primary-detail user interface. When the user selects an item from the outline view on the left, the detail view shows the results of the selection. For a primary-detail configuration, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which arranges two or more views in a linear stack running horizontally. The system embeds each view in its own ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitViewItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In this sample project, the left split-view item is a view controller called ",
+              "type": "text"
+            },
+            {
+              "code": "OutlineViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the right split-view item is called ",
+              "type": "text"
+            },
+            {
+              "code": "DetailViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "code": "OutlineViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class focuses on how to use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "sourceview-diagram",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a primary-detail user interface, the list view on the left must remain the same size when the split view grows or shrinks, while the detail view on the right changes size. To implement this behavior, the app uses the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "holding priority",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " on the split-view items. The view with the lowest holding priority is the first to increase its width as the split view grows or shrinks. To keep the left split-view item from growing, set its holding priority to ",
+              "type": "text"
+            },
+            {
+              "code": "200",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and set the item on the right to ",
+              "type": "text"
+            },
+            {
+              "code": "199",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "sourceview-diagram2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-Hierarchical-Content-with-a-Tree-Controller",
+          "level": 3,
+          "text": "Define Hierarchical Content with a Tree Controller",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class is the data source for the outline view. It acts as the controller when binding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to its hierarchical collection of objects. These objects represent ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "nodes",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which the ",
+              "type": "text"
+            },
+            {
+              "code": "Node",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class implements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A node represents either a container or a document. A container node groups other nodes together. Each container node has its own unique identifier, whereas document nodes have an empty identifier with no children.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample uses two kinds of nodes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "URL-based, representing a container or document on disk.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Non-URL-based, representing a container or document in memory only.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample declares the ",
+              "type": "text"
+            },
+            {
+              "code": "Node",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class as follows, defining the type, title, identifier, URL, and children nodes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class Node: NSObject, Codable {",
+            "    var type: NodeType = .unknown",
+            "    var title: String = \"\"",
+            "    var identifier: String = \"\"",
+            "    var url: URL?",
+            "    @objc dynamic var children = [Node]()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The hierarchy consists of nodes that the system reads from the ",
+              "type": "text"
+            },
+            {
+              "code": "DataSource.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. Node objects adopt the ",
+              "type": "text"
+            },
+            {
+              "code": "Decodable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol and the system automatically creates them directly from the property list file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let newPlistURL = Bundle.main.url(forResource: \"DataSource\", withExtension: \"plist\") else {",
+            "    fatalError(\"Failed to resolve URL for `DataSource.plist` in bundle.\")",
+            "}",
+            "do {",
+            "    // Populate the outline view with the .plist file content.",
+            "    struct OutlineData: Decodable {",
+            "        let children: [Node]",
+            "    }",
+            "    // Decode the top-level children of the outline.",
+            "    let plistDecoder = PropertyListDecoder()",
+            "    let data = try Data(contentsOf: newPlistURL)",
+            "    let decodedData = try plistDecoder.decode(OutlineData.self, from: data)",
+            "    for node in decodedData.children {",
+            "        // Recursively add further content from the specified node.",
+            "        addNode(node)",
+            "        if node.type == .container {",
+            "            selectParentFromSelection()",
+            "        }",
+            "    }",
+            "} catch {",
+            "    fatalError(\"Failed to load `DataSource.plist` in bundle.\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-Drag-and-Drop",
+          "level": 3,
+          "text": "Handle Drag and Drop",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users drag and drop nodes from within the outline view to rearrange them, or drag nodes that represent images out to other apps. Users can also drag image files from the Finder, Photos, Mail, or Safari. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/drag-and-drop",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This sample shows how to create promise drags by dragging a copy of an image file using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-Contextual-Menu",
+          "level": 3,
+          "text": "Add a Contextual Menu",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The outline view uses contextual menus, or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "shortcut menus",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", that provide access to frequently used commands. Control-clicking an outline view node opens its contextual menu. The ",
+              "type": "text"
+            },
+            {
+              "code": "NSOutlineView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/menu(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function creates these contextual menus. Override this function with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass to return a contextual menu. The contextual menu operations are: add, remove, and rename.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Integrate-with-the-Edit-Menu",
+          "level": 3,
+          "text": "Integrate with the Edit Menu",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the Edit menu to directly affect the contents of the outline view. This sample adds a Delete menu item for deleting items from the outline view. ",
+              "type": "text"
+            },
+            {
+              "code": "OutlineViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implements the ",
+              "type": "text"
+            },
+            {
+              "code": "IBAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " delete function. The user chooses the menu item or presses the Delete key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// The user chose the Delete menu item or pressed the Delete key.",
+            "@IBAction func delete(_ sender: AnyObject) {",
+            "    removeItems()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol to enable or disable the Delete menu item according to the selection in the outline view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {",
+            "    if item.action == #selector(delete(_:)) {",
+            "        return !treeController.selectedObjects.isEmpty",
+            "    }",
+            "    return true",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Restore-the-Outline-View",
+          "level": 3,
+          "text": "Restore the Outline View",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample saves and restores:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The disclosure state of each container node.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The outline view’s selection.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the window restoration system’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/encodeRestorableState(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to save the outline view’s node selection. The next time the app launches, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/restoreState(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to restore that selection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When the user selects “Close windows when quitting an app” in the System Preferences General pane, selection restoration works if they choose Option-Command-Quit (Quit and Keep Windows).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the outline view saves the disclosure states, it encodes each container as an archived object by using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:persistentObjectForItem:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func outlineView(_ outlineView: NSOutlineView, persistentObjectForItem item: Any?) -> Any? {",
+            "    let node = OutlineViewController.node(from: item!)",
+            "    return node?.identifier // The outgoing object is the identifier.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the outline view restores the disclosure states, it calls this function for each to translate the archived object to an outline view item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func outlineView(_ outlineView: NSOutlineView, itemForPersistentObject object: Any) -> Any? {",
+            "    let node = nodeFromIdentifier(anObject: object)  // The incoming object is the identifier.",
+            "    return node",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "39a6b1114be3/NavigatingHierarchicalDataUsingOutlineAndSplitViews.zip": {
+      "checksum": "39a6b1114be3c1a4bd6fa1dc06f6d25d2e6251d01d0c9ef2599084f08178cd806a67a42032dbdf16397c8a94708d2cbb0ffd3e49519a5bd96998aa626643c416",
+      "identifier": "39a6b1114be3/NavigatingHierarchicalDataUsingOutlineAndSplitViews.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/39a6b1114be3/NavigatingHierarchicalDataUsingOutlineAndSplitViews.zip"
+    },
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProvider": {
+      "abstract": [
+        {
+          "text": "An object that provides a promise for the pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFilePromiseProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFilePromiseProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFilePromiseProvider",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfilepromiseprovider"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOutlineView": {
+      "abstract": [
+        {
+          "text": "A view that uses a row-and-column format to display hierarchical data like directories and files that can be expanded and collapsed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSOutlineView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSOutlineView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSOutlineView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsoutlineview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:persistentObjectForItem:)": {
+      "abstract": [
+        {
+          "text": "Invoked by ",
+          "type": "text"
+        },
+        {
+          "code": "outlineView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to return an archived object for ",
+          "type": "text"
+        },
+        {
+          "code": "item",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outlineView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOutlineView",
+          "text": "NSOutlineView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "persistentObjectForItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource/outlineView(_:persistentObjectForItem:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outlineView:persistentObjectForItem:"
+        }
+      ],
+      "role": "symbol",
+      "title": "outlineView(_:persistentObjectForItem:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsoutlineviewdatasource/outlineview(_:persistentobjectforitem:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSResponder/encodeRestorableState(with:)": {
+      "abstract": [
+        {
+          "text": "Saves the interface-related state of the responder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeRestorableState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/encodeRestorableState(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "encodeRestorableStateWithCoder:"
+        }
+      ],
+      "role": "symbol",
+      "title": "encodeRestorableState(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsresponder/encoderestorablestate(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSResponder/restoreState(with:)": {
+      "abstract": [
+        {
+          "text": "Restores the interface-related state of the responder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restoreState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/restoreState(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "restoreStateWithCoder:"
+        }
+      ],
+      "role": "symbol",
+      "title": "restoreState(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsresponder/restorestate(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSplitView": {
+      "abstract": [
+        {
+          "text": "A view that arranges two or more views in a linear stack running horizontally or vertically.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSplitView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSplitView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSplitView",
+      "type": "topic",
+      "url": "/documentation/appkit/nssplitview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController": {
+      "abstract": [
+        {
+          "text": "An object that manages an array of adjacent child views, and has a split view object for managing dividers between those views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSplitViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSplitViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSplitViewController",
+      "type": "topic",
+      "url": "/documentation/appkit/nssplitviewcontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSplitViewItem": {
+      "abstract": [
+        {
+          "text": "An item in a split view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSplitViewItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitViewItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSplitViewItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSplitViewItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nssplitviewitem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableView/SelectionHighlightStyle-swift.enum/sourceList": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceList"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableView/SelectionHighlightStyle-swift.enum/sourceList",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTableViewSelectionHighlightStyleSourceList"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTableView.SelectionHighlightStyle.sourceList",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableview/selectionhighlightstyle-swift.enum/sourcelist"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeController": {
+      "abstract": [
+        {
+          "text": "A bindings-compatible controller that manages a tree of objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTreeController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTreeController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTreeController",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreecontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTreeNode": {
+      "abstract": [
+        {
+          "text": "A node in a tree of nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTreeNode"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTreeNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTreeNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTreeNode",
+      "type": "topic",
+      "url": "/documentation/appkit/nstreenode"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations": {
+      "abstract": [
+        {
+          "text": "A protocol that a custom class can adopt to manage the enabled state of a UI element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceValidations"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceValidations"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserInterfaceValidations",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuserinterfacevalidations"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/menu(for:)": {
+      "abstract": [
+        {
+          "text": "Overridden by subclasses to return a context-sensitive pop-up menu for a given mouse-down event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "menu"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSMenu",
+          "text": "NSMenu"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/menu(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "menuForEvent:"
+        }
+      ],
+      "role": "symbol",
+      "title": "menu(for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/menu(for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/cocoa-bindings": {
+      "abstract": [
+        {
+          "text": "Automatically synchronize your data model with your app’s interface using Cocoa Bindings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/cocoa-bindings",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Cocoa Bindings",
+      "type": "topic",
+      "url": "/documentation/appkit/cocoa-bindings"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/drag-and-drop": {
+      "abstract": [
+        {
+          "text": "Support the direct manipulation of your app’s content using drag and drop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/drag-and-drop",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Drag and Drop",
+      "type": "topic",
+      "url": "/documentation/appkit/drag-and-drop"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/outline-view": {
+      "abstract": [
+        {
+          "text": "Display a list-based interface for hierarchical data, where each level of hierarchy is indented from the previous one.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/outline-view",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Outline View",
+      "type": "topic",
+      "url": "/documentation/appkit/outline-view"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/views-and-controls": {
+      "abstract": [
+        {
+          "text": "Present your content onscreen and handle user input and events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/views-and-controls",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Views and Controls",
+      "type": "topic",
+      "url": "/documentation/appkit/views-and-controls"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "sourceview-diagram": {
+      "alt": "A diagram depicting the two split-view items on each side of the sample’s user interface for NSSplitViewController. The OutlineViewController on the left shows a hierarchal outline representation, and the DetailViewController on the right shows a blank box.",
+      "identifier": "sourceview-diagram",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/eb5a7a6bccaecff9d5c25bbea46f036d/sourceview-diagram@2x.png"
+        }
+      ]
+    },
+    "sourceview-diagram2": {
+      "alt": "A diagram depicting the two split view items on each side of the sample’s user interface for NSSplitViewController. The split-view item on the right has a lower holding priority than the one on the left.",
+      "identifier": "sourceview-diagram2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1f28555eeee8353d160b81c01da087a0/sourceview-diagram2@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "39a6b1114be3/NavigatingHierarchicalDataUsingOutlineAndSplitViews.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Tree-Based-Data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeController",
+        "doc://com.apple.appkit/documentation/AppKit/NSTreeNode"
+      ],
+      "title": "Tree-Based Data"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Tree-Based-Data",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeController",
+                "doc://com.apple.appkit/documentation/AppKit/NSTreeNode"
+              ],
+              "title": "Tree-Based Data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitView/title",
+          "value": "NSSplitView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSplitView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSplitView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeNode/title",
+          "value": "NSTreeNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTreeNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTreeNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1encodeRestorableState(with:)/title",
+          "value": "encodeRestorableStateWithCoder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1encodeRestorableState(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "encodeRestorableStateWithCoder:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1menu(for:)/title",
+          "value": "menuForEvent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1menu(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "menuForEvent:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1SelectionHighlightStyle-swift.enum~1sourceList/title",
+          "value": "NSTableViewSelectionHighlightStyleSourceList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1SelectionHighlightStyle-swift.enum~1sourceList/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTableViewSelectionHighlightStyleSourceList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewItem/title",
+          "value": "NSSplitViewItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSplitViewItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSplitViewItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController/title",
+          "value": "NSSplitViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSplitViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSplitViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceValidations/title",
+          "value": "NSUserInterfaceValidations"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceValidations/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceValidations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceValidations/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceValidations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController/title",
+          "value": "NSTreeController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTreeController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTreeController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTreeController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1restoreState(with:)/title",
+          "value": "restoreStateWithCoder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1restoreState(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "restoreStateWithCoder:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineView/title",
+          "value": "NSOutlineView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSOutlineView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSOutlineView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseProvider/title",
+          "value": "NSFilePromiseProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFilePromiseProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFilePromiseProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:persistentObjectForItem:)/title",
+          "value": "outlineView:persistentObjectForItem:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineViewDataSource~1outlineView(_:persistentObjectForItem:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "outlineView:persistentObjectForItem:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/navigating-hierarchical-data-using-outline-and-split-views"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/navigating-hierarchical-data-using-outline-and-split-views"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

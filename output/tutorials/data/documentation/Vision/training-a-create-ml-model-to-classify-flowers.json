@@ -1,0 +1,1355 @@
+{
+  "abstract": [
+    {
+      "text": "Train a flower classifier using Create ML in Swift Playgrounds, and apply the resulting model to real-time image classification using Vision.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.vision/documentation/Vision",
+        "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.vision/documentation/Vision/training-a-create-ml-model-to-classify-flowers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Vision"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Training a Create ML Model to Classify Flowers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To classify images in real time, you need a classification model with the categories you’d like identified, and a way to capture images to feed to the classifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "VisionCreateML_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project contains two components: a Create ML model you train in Swift Playgrounds, and the iOS app, FlowerShop, which you use to classify different flower types. This project uses the same code as the robot shop demo in the WWDC 2018 session ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2018/717/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Getting-Started",
+          "level": 3,
+          "text": "Getting Started",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To see Create ML in action, run the Swift Playground ",
+              "type": "text"
+            },
+            {
+              "code": "Training/ImageClassifierPlayground.playground",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in Xcode 10 on a Mac running macOS 10.14 or later. This Swift Playground performs classification on the training set and generates the Create ML model ",
+              "type": "text"
+            },
+            {
+              "code": "ImageClassifier.mlmodel",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app, FlowerShop, requires the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode 10.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An iOS device running iOS 12 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because Xcode can’t access the camera, FlowerShop won’t work in Simulator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Train-a-Custom-Classifier-on-an-Organized-Image-Set",
+          "level": 3,
+          "text": "Train a Custom Classifier on an Organized Image Set",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample images that Create ML uses to train the custom classifier were taken with a set of categories in mind. For your own app, decide on a set of classification labels before preparing images. Take the following measures to improve your data set:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Aim for a minimum of 10 images per category—the more, the better.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Avoid highly unbalanced datasets by preparing a roughly equal number between categories.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make your model more robust by enabling the Create ML UI’s Augmentation options: Crop, Rotate, Blur, Expose, Noise, and Flip.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Include redundancy in your training set: Take lots of images at different angles, on different backgrounds, and in different lighting conditions. Simulate real-world camera capture, including noise and motion blur.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Photograph sample objects in your hand to simulate real-world users that try to classify objects in their hands.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Remove other objects, especially ones that you’d like to classify differently, from view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re using photos taken on an iOS device to train your model, you can use the macOS utility, Image Capture, to import the images onto your computer, and do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, open ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ImageClassifierPlayground.playground",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and display the Assistant Editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Run on the last line of the Swift Playground; this opens the Create ML training environment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Place the training images you’d like to use into named folders (such as ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Agapanthus",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag the set of folders into the Assistant Editor to perform image training.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about configuring the resultant model, as well as screenshots of the Create ML UI, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/createml/creating-an-image-classifier-model",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create ML exports its trained results as a ",
+              "type": "text"
+            },
+            {
+              "code": ".mlmodel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, which you can import into your app in Xcode. After importing the model, you can examine  the prototypical image size by opening the model file in Xcode’s navigation menu. For example, a parameter such as “Color 299 x 299” indicates the size of the training image. You can also confirm the size of the model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-an-iOS-App-Around-the-Classifier",
+          "level": 3,
+          "text": "Build an iOS App Around the Classifier",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app leverages the trained model and uses Vision for both registration and classification:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It performs registration on subsequent video frame buffers to deem when the user is still enough for image capture.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the user is holding the camera sufficiently still, it performs image classification on the frame, attempting to identify the focused object as one of the categories in the Create ML classifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the confidence score associated with a classifier exceeds a high confidence threshold of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0.9",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the app shows its most confident classification through an overlay.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Use-Registration-for-Scene-Stability",
+          "level": 3,
+          "text": "Use Registration for Scene Stability",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Registration takes and aligns two images to determine the relative difference. Vision’s registration operation uses an inexpensive, fast algorithm that tells the app if the subject is still and stable. Theoretically, the app could make a classification request on every frame buffer, but classification is a computationally expensive operation—so attempting to classify every frame could result in delays and poor performance with the UI. Classify the scene in a frame only if the registration algorithm determines that the scene and camera are still, indicating the user’s intent to classify an object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The FlowerShop app uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vnsequencerequesthandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vntranslationalimageregistrationrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects to compare consecutive frames, keeping a history of 15 frames. This amount of history amounts to half a second of capture at 30 frames per second and carries no special significance beyond empirical tuning. It takes the result of a request as ",
+              "type": "text"
+            },
+            {
+              "code": "alignmentObservation.alignmentTransform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to determine if the scene is stable enough to perform classification. Check for scene stability by performing a request on the sequence request handler:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let registrationRequest = VNTranslationalImageRegistrationRequest(targetedCVPixelBuffer: pixelBuffer)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This algorithm deems a scene to be stable if the Manhattan distance between frames is less than 20:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "fileprivate func sceneStabilityAchieved() -> Bool {",
+            "    // Determine if we have enough evidence of stability.",
+            "    if transpositionHistoryPoints.count == maximumHistoryLength {",
+            "        // Calculate the moving average.",
+            "        var movingAverage: CGPoint = CGPoint.zero",
+            "        for currentPoint in transpositionHistoryPoints {",
+            "            movingAverage.x += currentPoint.x",
+            "            movingAverage.y += currentPoint.y",
+            "        }",
+            "        let distance = abs(movingAverage.x) + abs(movingAverage.y)",
+            "        if distance < 20 {",
+            "            return true",
+            "        }",
+            "    }",
+            "    return false",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After registration has determined that the scene is longer varying, the app sends the stable frame to Vision for Core ML classification:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if self.sceneStabilityAchieved() {",
+            "    showDetectionOverlay(true)",
+            "    if currentlyAnalyzedPixelBuffer == nil {",
+            "        // Retain the image buffer for Vision processing.",
+            "        currentlyAnalyzedPixelBuffer = pixelBuffer",
+            "        analyzeCurrentImage()",
+            "    }",
+            "} else {",
+            "    showDetectionOverlay(false)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Perform-Image-Classification",
+          "level": 3,
+          "text": "Perform Image Classification",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app wraps two request objects—a barcode detection request and an image classification request—in a single request execution so Vision can perform them together. Performing the combined request is faster than performing separate requests, since Vision can share the same visual data between both.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Classification contains a setup stage and a performance stage. The setup stage involves initializing requests for the types of objects you’d like Vision to detect and defining completion handlers to tell the app how to handle detection results after the requests finish their work.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code sets up both a classification request and a barcode detection request. FlowerShop uses barcode identification to label an object—fertilizer—for which it has no training data. For example, the curator of a museum exhibit or owner of a flower shop can place the barcode beside or in place of an actual item, so that scanning the barcode classifies the item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By using it as a proxy for the actual item, the app can still provide a confident classification even if the user doesn’t scan the actual item. This kind of proxy works particularly well for items that Create ML may have trouble training through images, such as fertilizer, gasoline, transparent gases, and clear liquids. Set up this kind of barcode detection using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vndetectbarcodesrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let barcodeDetection = VNDetectBarcodesRequest(completionHandler: { (request, error) in",
+            "    if let results = request.results as? [VNBarcodeObservation] {",
+            "        if let mainBarcode = results.first {",
+            "            if let payloadString = mainBarcode.payloadStringValue {",
+            "                self.showProductInfo(payloadString)",
+            "            }",
+            "        }",
+            "    }",
+            "})",
+            "self.analysisRequests = ([barcodeDetection])",
+            "",
+            "// Setup a classification request.",
+            "guard let modelURL = Bundle.main.url(forResource: \"FlowerShop\", withExtension: \"mlmodelc\") else {",
+            "    return NSError(domain: \"VisionViewController\", code: -1, userInfo: [NSLocalizedDescriptionKey: \"The model file is missing.\"])",
+            "}",
+            "guard let objectRecognition = createClassificationRequest(modelURL: modelURL) else {",
+            "    return NSError(domain: \"VisionViewController\", code: -1, userInfo: [NSLocalizedDescriptionKey: \"The classification request failed.\"])",
+            "}",
+            "self.analysisRequests.append(objectRecognition)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample appends the normal model-based classification request to the same array. You can create both requests at once, but the sample code staggers the classification request to guard against failure to load the Core ML model. The classification request loads the Core ML classifier into a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vncoremlrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let objectClassifier = try VNCoreMLModel(for: MLModel(contentsOf: modelURL))",
+            "let classificationRequest = VNCoreMLRequest(model: objectClassifier, completionHandler: { (request, error) in"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Defining the requests and completion handlers concludes the setup stage; the second stage performs identification in real time. The sample sends the stable frame to the classifier and tells Vision to perform classification by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vnimagerequesthandler/2880297-perform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func analyzeCurrentImage() {",
+            "    // Most computer vision tasks are not rotation-agnostic, so it is important to pass in the orientation of the image with respect to device.",
+            "    let orientation = exifOrientationFromDeviceOrientation()",
+            "    ",
+            "    let requestHandler = VNImageRequestHandler(cvPixelBuffer: currentlyAnalyzedPixelBuffer!, orientation: orientation)",
+            "    visionQueue.async {",
+            "        do {",
+            "            // Release the pixel buffer when done, allowing the next buffer to be processed.",
+            "            defer { self.currentlyAnalyzedPixelBuffer = nil }",
+            "            try requestHandler.perform(self.analysisRequests)",
+            "        } catch {",
+            "            print(\"Error: Vision request failed with error \\\"\\(error)\\\"\")",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Perform tasks asynchronously on a background queue, so the camera and user interface can keep running unhindered. Don’t continuously queue up every buffer that the camera provides; instead, drop buffers to keep the pipeline moving. The app works with a queue of one buffer, skipping subsequent frames so long as it is still processing that buffer. When one request finishes, it queues the next buffer and submits a classification request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private let visionQueue = DispatchQueue(label: \"com.example.apple-samplecode.FlowerShop.serialVisionQueue\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Even if captured frames don’t match the size of the image under which you trained the Create ML model (299 × 299), the Vision framework crops and scales down its input images to match the model’s expected size on your behalf.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Interpret-Classification-Results",
+          "level": 3,
+          "text": "Interpret Classification Results",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Check the results in the request’s completion handler. When you create and pass in a request, you handle results and errors and show the classification results in your app’s UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let results = request.results as? [VNClassificationObservation] {",
+            "    print(\"\\(results.first!.identifier) : \\(results.first!.confidence)\")",
+            "    if results.first!.confidence > 0.9 {",
+            "        self.showProductInfo(results.first!.identifier)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app sets a confidence threshold of ",
+              "type": "text"
+            },
+            {
+              "code": "0.9",
+              "type": "codeVoice"
+            },
+            {
+              "text": "—empirically tuned—to filter out false classifications. A score of ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " means only that the photo submitted for request satisfies the algorithm and trained classifier. The algorithm could output a score of ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " even when the classfication is wrong. When tuning your application for the optimal confidence threshold, use the output streamed to Xcode’s debugger window to gauge typical confidence values, making sure to note how far the confidence spikes on typical correct classifications. A white background with no object can still yield a confidence score of ",
+              "type": "text"
+            },
+            {
+              "code": "0.6",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample shows the top result, but in a search app, you can rank the labels by confidence, from most confident classification to least. The array of confidence scores and classifications is available, so use more than the top result if it fits your app’s context. Try different thresholds to determine the best balance of reducing false positives and surfacing real-world results when they are correct; a result can be correct at a lower confidence score, like ",
+              "type": "text"
+            },
+            {
+              "code": "0.8",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Even though this app’s threshold is ",
+              "type": "text"
+            },
+            {
+              "code": "0.9",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the ideal threshold may vary from model to model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Release-Your-Buffers",
+          "level": 3,
+          "text": "Release Your Buffers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After processing your buffers, be sure to release them to prevent them from queuing up. Because the input is a capture device that is constantly streaming frames, your app will run out of memory quickly if you don’t discard extra frames. The sample app limits the number of queued frame buffers to only one, which prevents overflow from happening and clears the buffer by setting it to ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "self.currentlyAnalyzedPixelBuffer = nil"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "9050e3bd4a2b/TrainingACreateMLModelToClassifyFlowers.zip": {
+      "checksum": "9050e3bd4a2bc45f68cbe82c2159606ebeb394e13feb91373783ddf765ff622927ab02adcbbecbe7b99d3141643cc3046c1e8242bd846289331f2fe92e5d4fb6",
+      "identifier": "9050e3bd4a2b/TrainingACreateMLModelToClassifyFlowers.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/9050e3bd4a2b/TrainingACreateMLModelToClassifyFlowers.zip"
+    },
+    "VisionCreateML_2x.png": {
+      "alt": "Block diagram showing how images used to train a Create ML model help classify images in a Vision app.",
+      "identifier": "VisionCreateML_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/238bc494aa24f13354a68e7dda2a1b4a/VisionCreateML_2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml": {
+      "abstract": [
+        {
+          "text": "Crop and scale photos using the Vision framework and classify them with a Core ML model.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Classifying Images with Vision and Core ML",
+      "type": "topic",
+      "url": "/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.vision/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNClassificationObservation": {
+      "abstract": [
+        {
+          "text": "An object that represents classification information that an image-analysis request produces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNClassificationObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNClassificationObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNClassificationObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNClassificationObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vnclassificationobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNCoreMLFeatureValueObservation": {
+      "abstract": [
+        {
+          "text": "An object that represents a collection of key-value information that a Core ML image-analysis request produces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNCoreMLFeatureValueObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNCoreMLFeatureValueObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNCoreMLFeatureValueObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNCoreMLFeatureValueObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vncoremlfeaturevalueobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNCoreMLRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request that uses a Core ML model to process images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNCoreMLRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNCoreMLRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNCoreMLRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNCoreMLRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vncoremlrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNPixelBufferObservation": {
+      "abstract": [
+        {
+          "text": "An object that represents an image that an image-analysis request produces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNPixelBufferObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNPixelBufferObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNPixelBufferObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNPixelBufferObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vnpixelbufferobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api": {
+      "abstract": [],
+      "identifier": "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original Objective-C and Swift API",
+      "type": "topic",
+      "url": "/documentation/vision/original-objective-c-and-swift-api"
+    },
+    "https://developer.apple.com/documentation/createml/creating-an-image-classifier-model": {
+      "identifier": "https://developer.apple.com/documentation/createml/creating-an-image-classifier-model",
+      "title": "Creating an Image Classifier Model",
+      "titleInlineContent": [
+        {
+          "code": "Creating an Image Classifier Model",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/createml/creating-an-image-classifier-model"
+    },
+    "https://developer.apple.com/documentation/vision/vncoremlrequest": {
+      "identifier": "https://developer.apple.com/documentation/vision/vncoremlrequest",
+      "title": "VNCoreMLRequest",
+      "titleInlineContent": [
+        {
+          "code": "VNCoreMLRequest",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vncoremlrequest"
+    },
+    "https://developer.apple.com/documentation/vision/vndetectbarcodesrequest": {
+      "identifier": "https://developer.apple.com/documentation/vision/vndetectbarcodesrequest",
+      "title": "VNDetectBarcodesRequest",
+      "titleInlineContent": [
+        {
+          "code": "VNDetectBarcodesRequest",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vndetectbarcodesrequest"
+    },
+    "https://developer.apple.com/documentation/vision/vnimagerequesthandler/2880297-perform": {
+      "identifier": "https://developer.apple.com/documentation/vision/vnimagerequesthandler/2880297-perform",
+      "title": "perform",
+      "titleInlineContent": [
+        {
+          "code": "perform",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vnimagerequesthandler/2880297-perform"
+    },
+    "https://developer.apple.com/documentation/vision/vnsequencerequesthandler": {
+      "identifier": "https://developer.apple.com/documentation/vision/vnsequencerequesthandler",
+      "title": "VNSequenceRequestHandler",
+      "titleInlineContent": [
+        {
+          "code": "VNSequenceRequestHandler",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vnsequencerequesthandler"
+    },
+    "https://developer.apple.com/documentation/vision/vntranslationalimageregistrationrequest": {
+      "identifier": "https://developer.apple.com/documentation/vision/vntranslationalimageregistrationrequest",
+      "title": "VNTranslationalImageRegistrationRequest",
+      "titleInlineContent": [
+        {
+          "code": "VNTranslationalImageRegistrationRequest",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vntranslationalimageregistrationrequest"
+    },
+    "https://developer.apple.com/videos/play/wwdc2018/717/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2018/717/",
+      "title": "Vision with Core ML",
+      "titleInlineContent": [
+        {
+          "text": "Vision with Core ML",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2018/717/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "9050e3bd4a2b/TrainingACreateMLModelToClassifyFlowers.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Machine-learning-image-analysis",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml",
+        "doc://com.apple.vision/documentation/Vision/VNCoreMLRequest",
+        "doc://com.apple.vision/documentation/Vision/VNClassificationObservation",
+        "doc://com.apple.vision/documentation/Vision/VNPixelBufferObservation",
+        "doc://com.apple.vision/documentation/Vision/VNCoreMLFeatureValueObservation"
+      ],
+      "title": "Machine learning image analysis"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Machine-learning-image-analysis",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml",
+                "doc://com.apple.vision/documentation/Vision/VNCoreMLRequest",
+                "doc://com.apple.vision/documentation/Vision/VNClassificationObservation",
+                "doc://com.apple.vision/documentation/Vision/VNPixelBufferObservation",
+                "doc://com.apple.vision/documentation/Vision/VNCoreMLFeatureValueObservation"
+              ],
+              "title": "Machine learning image analysis"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNClassificationObservation/title",
+          "value": "VNClassificationObservation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNClassificationObservation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNClassificationObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNClassificationObservation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNClassificationObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNCoreMLRequest/title",
+          "value": "VNCoreMLRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNCoreMLRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNCoreMLRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNCoreMLRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNCoreMLRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNCoreMLFeatureValueObservation/title",
+          "value": "VNCoreMLFeatureValueObservation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNCoreMLFeatureValueObservation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNCoreMLFeatureValueObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNCoreMLFeatureValueObservation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNCoreMLFeatureValueObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNPixelBufferObservation/title",
+          "value": "VNPixelBufferObservation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNPixelBufferObservation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNPixelBufferObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNPixelBufferObservation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNPixelBufferObservation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/vision/training-a-create-ml-model-to-classify-flowers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/vision/training-a-create-ml-model-to-classify-flowers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

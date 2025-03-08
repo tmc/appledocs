@@ -1,0 +1,518 @@
+{
+  "abstract": [
+    {
+      "text": "Detect, mitigate, and inform people about flashing lights in media content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/flashing-lights"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Media Accessibility"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Flashing lights"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People might want to avoid bright, frequent flashes of light in the media they consume. The Dim Flashing Lights setting allows the system to calculate, mitigate, and inform people about flashing lights in a piece of media.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your app, respond to changes in the Dim Flashing Lights setting to create an enjoyable media-viewing experience for people who choose to reduce flashing lights on their devices. To respond to changes in this setting, register for the notification ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/kMADimFlashingLightsChangedNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import MediaAccessibility",
+            "",
+            "NotificationCenter.default.addObserver(self,     ",
+            "    selector: #selector(dimFlashingLightsChanged),     ",
+            "    name: kMADimFlashingLightsChangedNotification as NSNotification.Name,     ",
+            "    object: nil)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the Dim Flashing Lights setting changes, update your UI accordingly. For example, when a person enables this setting on the device:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you have a custom media-timeline viewer, update the timeline viewer to indicate the strength of the flashing lights in the media content.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you have separate media assets for content without flashing lights, play the content without flashing lights and inform the viewer when the content starts.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you have an animation sequence with flashing lights in a game or app that you can control programmatically, adjust the animation accordingly.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Check the value of the Dim Flashing Lights setting at any time by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MADimFlashingLightsEnabled()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@objc ",
+            "func dimFlashingLightsChanged(_ notification: Notification) {",
+            "    if MADimFlashingLightsEnabled() {",
+            "        // Play media without flashing lights and inform the viewer.",
+            "    } else {",
+            "        // Play standard media.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility": {
+      "abstract": [
+        {
+          "text": "Make your app’s media more accessible by supporting people’s systemwide preferences for video and audio content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Media Accessibility",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MADimFlashingLightsEnabled()": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the flashing lights setting is enabled on the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MADimFlashingLightsEnabled"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MADimFlashingLightsEnabled()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MADimFlashingLightsEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "MADimFlashingLightsEnabled()",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/madimflashinglightsenabled()"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessor": {
+      "abstract": [
+        {
+          "text": "A class that processes a framebuffer object to detect and dim sequences of flashing lights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MAFlashingLightsProcessor"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MAFlashingLightsProcessor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MAFlashingLightsProcessor",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/maflashinglightsprocessor"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/captions": {
+      "abstract": [
+        {
+          "text": "Coordinate the presentation of closed-captioned data for your app’s media files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/captions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Captions",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/captions"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/kMADimFlashingLightsChangedNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts when a person changes the flashing lights setting on the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kMADimFlashingLightsChangedNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/kMADimFlashingLightsChangedNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kMADimFlashingLightsChangedNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "kMADimFlashingLightsChangedNotification",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/kmadimflashinglightschangednotification"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/music-haptics": {
+      "abstract": [
+        {
+          "text": "Play haptic tracks along with known music tracks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/music-haptics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Music Haptics",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/music-haptics"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/responding-to-changes-in-the-flashing-lights-setting": {
+      "abstract": [
+        {
+          "text": "Adjust your UI when a person chooses to dim flashing lights on their Apple device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/responding-to-changes-in-the-flashing-lights-setting",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Responding to changes in the flashing lights setting",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/responding-to-changes-in-the-flashing-lights-setting"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Features",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/captions",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/music-haptics"
+      ],
+      "title": "Features"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Dim-flashing-lights",
+      "identifiers": [
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/responding-to-changes-in-the-flashing-lights-setting",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MADimFlashingLightsEnabled()",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/kMADimFlashingLightsChangedNotification",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessor"
+      ],
+      "title": "Dim flashing lights"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Dim-flashing-lights",
+              "identifiers": [
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/responding-to-changes-in-the-flashing-lights-setting",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MADimFlashingLightsEnabled()",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/kMADimFlashingLightsChangedNotification",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessor"
+              ],
+              "title": "Dim flashing lights"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Features",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/captions",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/music-haptics"
+              ],
+              "title": "Features"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MADimFlashingLightsEnabled()/title",
+          "value": "MADimFlashingLightsEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MADimFlashingLightsEnabled()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MADimFlashingLightsEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAFlashingLightsProcessor/title",
+          "value": "MAFlashingLightsProcessor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAFlashingLightsProcessor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MAFlashingLightsProcessor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAFlashingLightsProcessor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MAFlashingLightsProcessor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1kMADimFlashingLightsChangedNotification/title",
+          "value": "kMADimFlashingLightsChangedNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1kMADimFlashingLightsChangedNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kMADimFlashingLightsChangedNotification"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mediaaccessibility/flashing-lights"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mediaaccessibility/flashing-lights"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,694 @@
+{
+  "abstract": [
+    {
+      "text": "Creates a memory buffer with memory descriptor for that buffer.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory",
+        "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3074961-withcopy"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3074961,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOBufferMemoryDescriptor@F@withCopy#*$@S@task#i#*$@S@ipc_port#k#k#S",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "parent": {
+      "title": "IOBufferMemoryDescriptor"
+    },
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.15",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "clm",
+    "title": "withCopy"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "OSPtr"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOBufferMemoryDescriptor",
+              "text": "IOBufferMemoryDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "identifier",
+              "text": "withCopy"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/task_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@task_t",
+              "text": "task_t"
+            },
+            {
+              "kind": "text",
+              "text": " inTask, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iooptionbits",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@IOOptionBits",
+              "text": "IOOptionBits"
+            },
+            {
+              "kind": "text",
+              "text": " options, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/vm_map_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vm_map_t",
+              "text": "vm_map_t"
+            },
+            {
+              "kind": "text",
+              "text": " sourceMap, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/mach_vm_address_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@mach_vm_address_t",
+              "text": "mach_vm_address_t"
+            },
+            {
+              "kind": "text",
+              "text": " source, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/mach_vm_size_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@mach_vm_size_t",
+              "text": "mach_vm_size_t"
+            },
+            {
+              "kind": "text",
+              "text": " size);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The task the buffer will be allocated in.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "inTask"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Options for the allocation:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "kIODirectionOut, kIODirectionIn - set the direction of the I/O transfer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "kIOMemoryPhysicallyContiguous - pass to request memory be physically contiguous. This option is heavily discouraged. The request may fail if memory is fragmented, may cause large amounts of paging activity, and may take a very long time to execute.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "kIOMemoryPageable - pass to request memory be non-wired - the default for kernel allocated memory is wired.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "kIOMemoryPurgeable - pass to request memory that may later have its purgeable state set with IOMemoryDescriptor::setPurgeable. Only supported for kIOMemoryPageable allocations.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "kIOMemoryKernelUserShared - pass to request memory that will be mapped into both the kernel and client applications.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "kIOMapInhibitCache - allocate memory with inhibited cache setting.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "kIOMapWriteThruCache - allocate memory with writethru cache setting.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "kIOMapCopybackCache - allocate memory with copyback cache setting.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "kIOMapWriteCombineCache - allocate memory with writecombined cache setting.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "options"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The memory map to copy from.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "sourceMap"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The address at which to start copying.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "source"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of bytes to copy.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "size"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Returns an instance of class IOBufferMemoryDescriptor to be released by the caller, which will free the memory desriptor and associated buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBufferMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iobuffermemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/1574833-initwithphysicalmask": {
+      "abstract": [
+        {
+          "text": "Creates a memory buffer with memory descriptor for that buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithPhysicalMask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/1574833-initwithphysicalmask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithPhysicalMask",
+      "type": "topic",
+      "url": "/documentation/kernel/iobuffermemorydescriptor/1574833-initwithphysicalmask"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/1574834-withbytes": {
+      "abstract": [
+        {
+          "text": "Creates a buffer memory descriptor and fills it with the specified bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withBytes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/1574834-withbytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withBytes",
+      "type": "topic",
+      "url": "/documentation/kernel/iobuffermemorydescriptor/1574834-withbytes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/1574835-withoptions": {
+      "abstract": [
+        {
+          "text": "Creates a memory buffer with memory descriptor for that buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/1574835-withoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withOptions",
+      "type": "topic",
+      "url": "/documentation/kernel/iobuffermemorydescriptor/1574835-withoptions"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/1574841-withcapacity": {
+      "abstract": [
+        {
+          "text": "Creates a buffer memory descriptor and allocates enough bytes to meet the specified capacity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/1574841-withcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/iobuffermemorydescriptor/1574841-withcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/1574843-intaskwithphysicalmask": {
+      "abstract": [
+        {
+          "text": "Creates a memory buffer with memory descriptor for that buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "inTaskWithPhysicalMask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/1574843-intaskwithphysicalmask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inTaskWithPhysicalMask",
+      "type": "topic",
+      "url": "/documentation/kernel/iobuffermemorydescriptor/1574843-intaskwithphysicalmask"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/1574847-intaskwithoptions": {
+      "abstract": [
+        {
+          "text": "Creates a memory buffer with memory descriptor for that buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "inTaskWithOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/1574847-intaskwithoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inTaskWithOptions",
+      "type": "topic",
+      "url": "/documentation/kernel/iobuffermemorydescriptor/1574847-intaskwithoptions"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/1813824-intaskwithoptions": {
+      "abstract": [
+        {
+          "text": "Creates a memory buffer with memory descriptor for that buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/1813824-intaskwithoptions",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "inTaskWithOptions",
+      "type": "topic",
+      "url": "/documentation/kernel/iobuffermemorydescriptor/1813824-intaskwithoptions"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/1813825-intaskwithphysicalmask": {
+      "abstract": [
+        {
+          "text": "Creates a memory buffer with memory descriptor for that buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/1813825-intaskwithphysicalmask",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "inTaskWithPhysicalMask",
+      "type": "topic",
+      "url": "/documentation/kernel/iobuffermemorydescriptor/1813825-intaskwithphysicalmask"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3074961-withcopy": {
+      "abstract": [
+        {
+          "text": "Creates a memory buffer with memory descriptor for that buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withCopy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3074961-withcopy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withCopy",
+      "type": "topic",
+      "url": "/documentation/kernel/iobuffermemorydescriptor/3074961-withcopy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180456-free": {
+      "abstract": [
+        {
+          "text": "Performs any final cleanup for the memory buffer descriptor object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180456-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iobuffermemorydescriptor/3180456-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3516446-intaskwithoptions": {
+      "abstract": [
+        {
+          "text": "Creates a memory buffer with memory descriptor for that buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "inTaskWithOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3516446-intaskwithoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inTaskWithOptions",
+      "type": "topic",
+      "url": "/documentation/kernel/iobuffermemorydescriptor/3516446-intaskwithoptions"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/memory"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iooptionbits": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iooptionbits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOOptionBits",
+      "type": "topic",
+      "url": "/documentation/kernel/iooptionbits"
+    },
+    "doc://com.apple.documentation/documentation/kernel/mach_vm_address_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/mach_vm_address_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mach_vm_address_t",
+      "type": "topic",
+      "url": "/documentation/kernel/mach_vm_address_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/mach_vm_size_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/mach_vm_size_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mach_vm_size_t",
+      "type": "topic",
+      "url": "/documentation/kernel/mach_vm_size_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/task_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/task_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "task_t",
+      "type": "topic",
+      "url": "/documentation/kernel/task_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm_map_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm_map_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vm_map_t",
+      "type": "topic",
+      "url": "/documentation/kernel/vm_map_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/1813824-intaskwithoptions",
+        "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/1574847-intaskwithoptions",
+        "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3516446-intaskwithoptions",
+        "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/1813825-intaskwithphysicalmask",
+        "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/1574843-intaskwithphysicalmask",
+        "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/1574833-initwithphysicalmask",
+        "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/1574835-withoptions",
+        "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/1574834-withbytes",
+        "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/1574841-withcapacity",
+        "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180456-free"
+      ],
+      "title": "Creating a Memory Buffer Descriptor"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iobuffermemorydescriptor/3074961-withcopy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,572 @@
+{
+  "abstract": [
+    {
+      "text": "Returns a string object encapsulating the receiver’s XML in canonical form.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/archives_and_serialization",
+        "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/xml_processing_and_modeling",
+        "doc://com.apple.documentation/documentation/foundation/nsxmlnode"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409817-canonicalxmlstringpreservingcomm"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1409817,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSXMLNode(im)canonicalXMLStringPreservingComments:",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSXMLNode"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "canonicalXMLStringPreservingComments:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "identifier",
+              "text": "canonicalXMLStringPreservingComments:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "comments"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " to preserve comments, ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " otherwise.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "comments"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Be sure to set the input option ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmlnodeoptions/nsxmlnodepreservewhitespace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for true canonical form. The canonical form of an XML document is defined by the World Wide Web Consortium at ",
+              "type": "text"
+            },
+            {
+              "code": "http://www.w3.org/TR/xml-c14n",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Generally, if two documents with varying physical representations have the same canonical form, then they are considered logically equivalent within the given application context. The following list summarizes most key aspects of canonical form as defined by the W3C recommendation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Encodes the document in UTF-8.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Normalizes line breaks to “#xA” on input before parsing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Normalizes attribute values in the manner of a validating processor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Replaces character and parsed entity references with their character content.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Replaces CDATA sections with their character content.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Removes the XML declaration and the document type declaration (DTD).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Converts empty elements to start-end tag pairs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Normalizes whitespace outside of the document element and within start and end tags.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Retains all whitespace characters in content (excluding characters removed during line-feed normalization).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sets attribute value delimiters to quotation marks (double quotes).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Replaces special characters in attribute values and character content with character references.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Removes superfluous namespace declarations from each element.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Adds default attributes to each element.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Imposes lexicographic order on the namespace declarations and attributes of each element. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Archives and Serialization",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/xml_processing_and_modeling": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/xml_processing_and_modeling",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "XML Processing and Modeling",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization/xml_processing_and_modeling"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmlnode": {
+      "abstract": [
+        {
+          "text": "The nodes in the abstract, logical tree structure that represents an XML document. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmlnode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSXMLNode",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmlnode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409772-xmlstring": {
+      "abstract": [
+        {
+          "text": "Returns the string representation of the receiver as it would appear in an XML document.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409772-xmlstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XMLString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmlnode/1409772-xmlstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409778-xmlstringwithoptions": {
+      "abstract": [
+        {
+          "text": "Returns the string representation of the receiver as it would appear in an XML document, with one or more output options specified.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "XMLStringWithOptions:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409778-xmlstringwithoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XMLStringWithOptions:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmlnode/1409778-xmlstringwithoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409788-description": {
+      "abstract": [
+        {
+          "text": "Returns a description of the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409788-description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmlnode/1409788-description"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409817-canonicalxmlstringpreservingcomm": {
+      "abstract": [
+        {
+          "text": "Returns a string object encapsulating the receiver’s XML in canonical form.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "canonicalXMLStringPreservingComments:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409817-canonicalxmlstringpreservingcomm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canonicalXMLStringPreservingComments:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmlnode/1409817-canonicalxmlstringpreservingcomm"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmlnodeoptions/nsxmlnodepreservewhitespace": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmlnodeoptions/nsxmlnodepreservewhitespace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSXMLNodePreserveWhitespace",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmlnodeoptions/nsxmlnodepreservewhitespace"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/no": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NO",
+      "type": "topic",
+      "url": "/documentation/objectivec/no"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/yes": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "YES",
+      "type": "topic",
+      "url": "/documentation/objectivec/yes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409772-xmlstring",
+        "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409778-xmlstringwithoptions",
+        "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409788-description"
+      ],
+      "title": "Emitting Node Content"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsxmlnode/1409817-canonicalxmlstringpreservingcomm"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/xmlnode/1409817-canonicalxmlstringpreservingcomm"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

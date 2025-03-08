@@ -1,0 +1,747 @@
+{
+  "abstract": [
+    {
+      "text": "Use CFNetwork diagnostic logging to investigate HTTP and HTTPS problems.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.network/documentation/Network"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.network/documentation/Network/debugging-https-problems-with-cfnetwork-diagnostic-logging"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Network"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Debugging HTTPS Problems with CFNetwork Diagnostic Logging"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and need to debug a complex networking issue, you can enable CFNetwork diagnostic logging to get detailed information about the progress of your network requests. CFNetwork diagnostic logging has unique advantages relative to other network debugging tools, including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Minimal setup",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ability to look at network traffic that’s protected by Transport Layer Security (TLS)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Information about CFNetwork’s internal state, like which cookies get saved and applied",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about other network debugging tools, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/choosing-a-network-debugging-tool",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Xcode 13 includes the HTTP Tracing instrument to aid in debugging HTTP issues. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Understand-the-Security-Implications",
+          "level": 3,
+          "text": "Understand the Security Implications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CFNetwork diagnostic logs may contain decrypted TLS data and other security-sensitive information. Take these precautions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Restrict access to any logs you capture.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you build an app that enables this logging programmatically, make sure that anyone who receives that app understands the security implications of using it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you send a log to Apple, redact any security-sensitive information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "CFNetwork diagnostic logs may contain information that’s ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "extremely",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " security-sensitive. Protect these logs accordingly.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Enable-Logging-In-Xcode",
+          "level": 3,
+          "text": "Enable Logging In Xcode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable CFNetwork diagnostic logging, edit the current scheme (choose Product > Scheme > Edit Scheme), navigate to the Arguments tab, and add a ",
+              "type": "text"
+            },
+            {
+              "code": "CFNETWORK_DIAGNOSTICS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " item to the Environment Variables list. The value of this item can range from 0 to 3, where 0 turns logging off, and higher numbers give you progressively more logging. When you next run your app and use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", CFNetwork diagnostic log entries appear in Xcode’s debug console area. If the console area isn’t visible, choose View > Debug Area > Show Debug Area to show it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-Logging-Programmatically-to-See-Problems-Outside-of-Xcode",
+          "level": 3,
+          "text": "Enable Logging Programmatically to See Problems Outside of Xcode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To investigate problems outside of Xcode, programmatically enable CFNetwork diagnostic logging by setting the environment variable directly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "setenv(\"CFNETWORK_DIAGNOSTICS\", \"3\", 1);"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Do this right at the beginning of the app’s launch sequence:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you’re programming in Objective-C, put the code at the start of your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "main",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " function.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your program has a C++ component, make sure this code runs before any C++ static initializers that use CFNetwork or any APIs, like ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", that use CFNetwork.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you’re programming in Swift, put this code in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "main.swift",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "By default, Swift apps don’t have a ",
+                  "type": "text"
+                },
+                {
+                  "code": "main.swift",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "; ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://docs.swift.org/swift-book/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " explains how to add one.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "View-Log-Entries",
+          "level": 3,
+          "text": "View Log Entries",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "How you view the resulting log entries depends on your specific situation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In macOS, if you can reproduce the problem locally, run the Console utility on your Mac and view log entries there.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In iOS, if you can reproduce the problem locally, and you’re able to connect the device to your Mac through USB, run the Console utility on your Mac and view log entries there. Make sure you select your iOS device from the source list on the left of the main Console window (choose View > Show Sources if the source list isn’t visible).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If neither of the above work for you — for example, if you’re trying to debug a problem that can only be reproduced by one of your users in the field — get a sysdiagnose log from the machine exhibiting the problem and then extract the log entries from that. See the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/bug-reporting/profiles-and-logs/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " page on the developer website for details on how to get a sysdiagnose log.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments": {
+      "abstract": [
+        {
+          "text": "Measure HTTP-based network performance and usage of your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing HTTP traffic with Instruments",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.network/documentation/Network": {
+      "abstract": [
+        {
+          "text": "Create network connections to send and receive data using transport and security protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/network"
+    },
+    "doc://com.apple.network/documentation/Network/choosing-a-network-debugging-tool": {
+      "abstract": [
+        {
+          "text": "Decide which tool works best for your network debugging problem.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/choosing-a-network-debugging-tool",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing a Network Debugging Tool",
+      "type": "topic",
+      "url": "/documentation/network/choosing-a-network-debugging-tool"
+    },
+    "doc://com.apple.network/documentation/Network/debugging-http-server-side-errors": {
+      "abstract": [
+        {
+          "text": "Understand HTTP server-side errors and how to debug them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/debugging-http-server-side-errors",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging HTTP Server-Side Errors",
+      "type": "topic",
+      "url": "/documentation/network/debugging-http-server-side-errors"
+    },
+    "doc://com.apple.network/documentation/Network/recording-a-packet-trace": {
+      "abstract": [
+        {
+          "text": "Learn how to record a low-level trace of network traffic.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/recording-a-packet-trace",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Recording a Packet Trace",
+      "type": "topic",
+      "url": "/documentation/network/recording-a-packet-trace"
+    },
+    "doc://com.apple.network/documentation/Network/taking-advantage-of-third-party-network-debugging-tools": {
+      "abstract": [
+        {
+          "text": "Learn about the available third-party network debugging tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/taking-advantage-of-third-party-network-debugging-tools",
+      "kind": "article",
+      "role": "article",
+      "title": "Taking Advantage of Third-Party Network Debugging Tools",
+      "type": "topic",
+      "url": "/documentation/network/taking-advantage-of-third-party-network-debugging-tools"
+    },
+    "doc://com.apple.network/documentation/Network/testing-and-debugging-l4s-in-your-app": {
+      "abstract": [
+        {
+          "text": "Learn how to verify your app on an L4S-capable host and network to improve your app’s responsiveness.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/testing-and-debugging-l4s-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing and Debugging L4S in Your App",
+      "type": "topic",
+      "url": "/documentation/network/testing-and-debugging-l4s-in-your-app"
+    },
+    "https://developer.apple.com/bug-reporting/profiles-and-logs/": {
+      "identifier": "https://developer.apple.com/bug-reporting/profiles-and-logs/",
+      "title": "Bug Reporting > Profiles and Logs",
+      "titleInlineContent": [
+        {
+          "text": "Bug Reporting > Profiles and Logs",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/bug-reporting/profiles-and-logs/"
+    },
+    "https://docs.swift.org/swift-book/": {
+      "identifier": "https://docs.swift.org/swift-book/",
+      "title": "The Swift Programming Language",
+      "titleInlineContent": [
+        {
+          "text": "The Swift Programming Language",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Network-Debugging",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/choosing-a-network-debugging-tool",
+        "doc://com.apple.network/documentation/Network/debugging-http-server-side-errors",
+        "doc://com.apple.network/documentation/Network/recording-a-packet-trace",
+        "doc://com.apple.network/documentation/Network/taking-advantage-of-third-party-network-debugging-tools",
+        "doc://com.apple.network/documentation/Network/testing-and-debugging-l4s-in-your-app"
+      ],
+      "title": "Network Debugging"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Network-Debugging",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.network/documentation/Network/choosing-a-network-debugging-tool",
+                "doc://com.apple.network/documentation/Network/debugging-http-server-side-errors",
+                "doc://com.apple.network/documentation/Network/recording-a-packet-trace",
+                "doc://com.apple.network/documentation/Network/taking-advantage-of-third-party-network-debugging-tools",
+                "doc://com.apple.network/documentation/Network/testing-and-debugging-l4s-in-your-app"
+              ],
+              "title": "Network Debugging"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsession/title",
+          "value": "NSURLSession"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/network/debugging-https-problems-with-cfnetwork-diagnostic-logging"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/network/debugging-https-problems-with-cfnetwork-diagnostic-logging"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

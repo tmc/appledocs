@@ -1,0 +1,2084 @@
+{
+  "abstract": [
+    {
+      "text": "Create a team-based guessing game for visionOS using Group Activities.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.GroupActivities/documentation/GroupActivities/building-a-guessing-game-for-visionos"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Group Activities"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Building a guessing game for visionOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows how to build a guessing game for two competing teams.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Participants, using an Apple Vision Pro during a FaceTime call, can play as members of the red or blue team or watch from the audience.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "At each stage of the game, the sample positions participants according to their role as a team member or spectator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the initial welcome screen for the game, the participants select categories and divide into two teams.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "During the team-selection process, all participants start in the audience section.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If a participant chooses to join a team, they move to the appropriate team area.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "During the game itself, the teams take turns guessing a word or phrase in a window that only one team member can see.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The team member that sees the word or phrase can use any gestures or phrases to elicit a correct guess, but can’t say the word or phrase itself.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the team correctly guesses the word or phrase, the team scores a point.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The team with the most points at the end of the game wins.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC24 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2024/10201",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "SharePlay requires the  ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.group-session",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " entitlement.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For instructions on configuring this entitlement, see “Configure the SharePlay entitlements” section of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/defining-your-apps-shareplay-activities#Configure-the-SharePlay-entitlements",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Define-the-group-activity",
+          "level": 3,
+          "text": "Define the group activity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupActivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol provides the system with the context and metadata to start an activity-related session.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample defines a single ",
+              "type": "text"
+            },
+            {
+              "code": "GroupActivity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to represent the game:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct GuessTogetherActivity: GroupActivity, Transferable, Sendable {",
+            "    var metadata: GroupActivityMetadata = {",
+            "        var metadata = GroupActivityMetadata()",
+            "        metadata.title = \"Guess Together\"",
+            "        return metadata",
+            "    }()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/defining-your-apps-shareplay-activities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Encourage-people-to-start-a-game",
+          "level": 3,
+          "text": "Encourage people to start a game",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The welcome screen displays a custom ",
+              "type": "text"
+            },
+            {
+              "code": "SharePlayButton",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; tapping it starts the game.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the player is already in a FaceTime call, the ",
+              "type": "text"
+            },
+            {
+              "code": "GuessTogetherActivity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " activates.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Otherwise, a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GroupActivities/GroupActivitySharingController-ybcy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " displays a sheet inviting the player to start the FaceTime call.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When a recipient accepts the FaceTime call, the system prompts them to join the ",
+              "type": "text"
+            },
+            {
+              "code": "GuessTogetherActivity",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct SharePlayButton<ActivityType: GroupActivity & Transferable & Sendable>: View {",
+            "    @ObservedObject",
+            "    private var groupStateObserver = GroupStateObserver()",
+            "    ",
+            "    @State",
+            "    private var isActivitySharingViewPresented = false",
+            "    ",
+            "    @State",
+            "    private var isActivationErrorViewPresented = false",
+            "    ",
+            "    private let activitySharingView: ActivitySharingView<ActivityType>",
+            "    ",
+            "    let text: any StringProtocol",
+            "    let activity: ActivityType",
+            "    ",
+            "    init(_ text: any StringProtocol, activity: ActivityType) {",
+            "        self.text = text",
+            "        self.activity = activity",
+            "        self.activitySharingView = ActivitySharingView {",
+            "            activity",
+            "        }",
+            "    }",
+            "    ",
+            "    var body: some View {",
+            "        ZStack {",
+            "            ShareLink(item: activity, preview: SharePreview(text)).hidden()",
+            "            ",
+            "            Button(text, systemImage: \"shareplay\") {",
+            "                if groupStateObserver.isEligibleForGroupSession {",
+            "                    Task.detached {",
+            "                        do {",
+            "                            _ = try await activity.activate()",
+            "                        } catch {",
+            "                            print(\"Error activating activity: \\(error)\")",
+            "                            ",
+            "                            Task { @MainActor in",
+            "                                isActivationErrorViewPresented = true",
+            "                            }",
+            "                        }",
+            "                    }",
+            "                } else {",
+            "                    isActivitySharingViewPresented = true",
+            "                }",
+            "            }",
+            "            .tint(.green)",
+            "            .sheet(isPresented: $isActivitySharingViewPresented) {",
+            "                activitySharingView",
+            "            }",
+            "            .alert(\"Unable to start game\", isPresented: $isActivationErrorViewPresented) {",
+            "                Button(\"Ok\", role: .cancel) { }",
+            "            } message: {",
+            "                Text(\"Please try again later.\")",
+            "            }",
+            "        }",
+            "    }",
+            "}",
+            "",
+            "struct ActivitySharingView<ActivityType: GroupActivity & Sendable>: UIViewControllerRepresentable {",
+            "    let preparationHandler: () async throws -> ActivityType",
+            "",
+            "    func makeUIViewController(context: Context) -> GroupActivitySharingController {",
+            "        GroupActivitySharingController(preparationHandler: preparationHandler)",
+            "    }",
+            "",
+            "    func updateUIViewController(_: GroupActivitySharingController, context: Context) {}",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/promoting-shareplay-activities-from-your-apps-ui",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Join-and-manage-the-activity",
+          "level": 3,
+          "text": "Join and manage the activity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when a player activates an activity.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Players can activate an activity in several ways, at any time.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This sample uses an asynchronous task in ",
+              "type": "text"
+            },
+            {
+              "code": "MainView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to monitor the creation of new ",
+              "type": "text"
+            },
+            {
+              "code": "GroupSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instances for ",
+              "type": "text"
+            },
+            {
+              "code": "GuessTogetherActivity",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This task calls the ",
+              "type": "text"
+            },
+            {
+              "code": "observeGroupSessions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, which receives new sessions and creates a ",
+              "type": "text"
+            },
+            {
+              "code": "SessionController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to manage gameplay.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A separate task detects when the session ends and cleans up the ",
+              "type": "text"
+            },
+            {
+              "code": "SessionController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// MainView",
+            "",
+            "struct MainView: View {",
+            "    ...",
+            "",
+            "    var body: some View {",
+            "        Group {",
+            "            ...",
+            "        }",
+            "        .task(observeGroupSessions)",
+            "    }",
+            "    ",
+            "    /// Monitor for new Guess Together group activity sessions.",
+            "    @Sendable",
+            "    func observeGroupSessions() async {",
+            "        for await session in GuessTogetherActivity.sessions() {",
+            "            let sessionController = await SessionController(session, appModel: appModel)",
+            "            guard let sessionController else {",
+            "                continue",
+            "            }",
+            "            appModel.sessionController = sessionController",
+            "",
+            "            // Create a task to observe the group session state and clear the",
+            "            // session controller when the group session invalidates.",
+            "            Task {",
+            "                for await state in session.$state.values {",
+            "                    guard appModel.sessionController?.session.id == session.id else {",
+            "                        return",
+            "                    }",
+            "",
+            "                    if case .invalidated = state {",
+            "                        appModel.sessionController = nil",
+            "                        return",
+            "                    }",
+            "                }",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/joining-and-managing-a-shared-activity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Synchronize-game-state-by-sending-and-receiving-messages",
+          "level": 3,
+          "text": "Synchronize game state by sending and receiving messages",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a player’s action changes the game state, ",
+              "type": "text"
+            },
+            {
+              "code": "SessionController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GroupActivities/GroupSessionMessenger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to send an update to the other players.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, when player X joins the red team, ",
+              "type": "text"
+            },
+            {
+              "code": "TeamSelectionView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " calls ",
+              "type": "text"
+            },
+            {
+              "code": "SessionController.joinTeam",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This sets ",
+              "type": "text"
+            },
+            {
+              "code": "SessionController.localPlayer.team",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", sending a call to ",
+              "type": "text"
+            },
+            {
+              "code": "SessionController.shareLocalPlayerState",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// SessionController",
+            "",
+            "func joinTeam(_ team: PlayerModel.Team?) {",
+            "    localPlayer.team = team",
+            "}",
+            "",
+            "...",
+            "",
+            "var localPlayer: PlayerModel {",
+            "    get {",
+            "        players[session.localParticipant]!",
+            "    }",
+            "    set {",
+            "        if newValue != players[session.localParticipant] {",
+            "            players[session.localParticipant] = newValue",
+            "            shareLocalPlayerState(newValue)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "SessionController.shareLocalPlayerState",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses ",
+              "type": "text"
+            },
+            {
+              "code": "GroupSessionMessenger",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to send player X’s new state to other players.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// SessionController+RemoteParticipantSynchronization",
+            "",
+            "func shareLocalPlayerState(_ newValue: PlayerModel) {",
+            "    Task {",
+            "        do {",
+            "            try await messenger.send(newValue)",
+            "        } catch {",
+            "            // Failed to send the message.",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At the same time, ",
+              "type": "text"
+            },
+            {
+              "code": "SessionController.observeRemotePlayerModelUpdates",
+              "type": "codeVoice"
+            },
+            {
+              "text": " receives and processes player state updates.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each update modifies ",
+              "type": "text"
+            },
+            {
+              "code": "SessionController.players",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to reflect the synchronized player state.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, when player X joins the red team, other players are notified and update their local representation of player X’s state accordingly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// SessionController",
+            "",
+            "...",
+            "",
+            "private func observeRemotePlayerModelUpdates() {",
+            "    Task {",
+            "        for await (player, context) in messenger.messages(of: PlayerModel.self) {",
+            "            players[context.source] = player",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/synchronizing-data-during-a-shareplay-activity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-spatial-personas-in-an-immersive-space",
+          "level": 3,
+          "text": "Enable spatial personas in an immersive space",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display spatial Personas when an immersive space is open, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GroupActivities/SystemCoordinator/Configuration-swift.struct/supportsGroupImmersiveSpace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GroupActivities/SystemCoordinator/Configuration-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// SessionController",
+            "",
+            "func configureSystemCoordinator() {",
+            "    systemCoordinator.configuration.supportsGroupImmersiveSpace = true",
+            "    ",
+            "    ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In an immersive space, the system provides a shared coordinate system for participants and content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This allows you to position entities consistently across all participants’ perspectives.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, an entity positioned 0.5 meters in front of player X appears 0.5 meters in front of player X from player Y’s perspective.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/adding-spatial-persona-support-to-an-activity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-custom-positions-for-participants",
+          "level": 3,
+          "text": "Specify custom positions for participants",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The game has three distinct stages:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Category-selection stage, where players choose the words and phrases they want to try to elicit from their teammates.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Team-selection stage, where players join one of the teams.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Game stage, where the teams take turns playing the game.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each time the current stage changes, the ",
+              "type": "text"
+            },
+            {
+              "code": "SessionController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object updates the position of the participants in the space.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When selecting a category, the participants appear side by side in front of the game window.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "During team selection and gameplay, the game arranges players using custom spatial templates.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The game specifies each arrangement of participants by changing the configuration of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// SessionController",
+            "",
+            "func updateSpatialTemplatePreference() {",
+            "    switch game.stage {",
+            "    case .categorySelection:",
+            "        systemCoordinator.configuration.spatialTemplatePreference = .sideBySide",
+            "    case .teamSelection:",
+            "        systemCoordinator.configuration.spatialTemplatePreference = .custom(TeamSelectionTemplate())",
+            "    case .inGame:",
+            "        systemCoordinator.configuration.spatialTemplatePreference = .custom(GameTemplate())",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the game moves to the team-selection stage, the session rearranges the participants according to which team they choose.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "All participants start in the audience initially facing the app window, which displays buttons to join either the red team or blue team.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "team-selection.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "TeamSelectionTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " specifies the positions of seats during the team-selection process.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Participants don’t have an assigned role initially, so the system places them in the audience seats.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "As participants join a team, the system moves them to the assigned seating area for their chosen team.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The spatial template specifies all seat positions up front, including seats for the blue and red teams, and the audience.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Seat positions reflect the distance in meters from the app’s main window along the x and z axes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Seat roles reflect the role that a participant must have to occupy that seat.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When a participant asks to join a team, the sample app assigns them the corresponding role.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If a seat with that role is available, the participant receives the role and their spatial Persona moves to the next available seat.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct TeamSelectionTemplate: SpatialTemplate {",
+            "    enum Role: String, SpatialTemplateRole {",
+            "        case blueTeam",
+            "        case redTeam",
+            "    }",
+            "    ",
+            "    /// An array of seating positions the game uses to position spatial Personas during the team-selection stage.",
+            "    ///",
+            "    /// The game fills the seats with participants based on the order of the array's elements.",
+            "    let elements: [any SpatialTemplateElement] = [",
+            "        // Blue team:",
+            "        .seat(position: .app.offsetBy(x: -2.5, z: 3.5), role: Role.blueTeam),",
+            "        .seat(position: .app.offsetBy(x: -3.0, z: 3.0), role: Role.blueTeam),",
+            "        .seat(position: .app.offsetBy(x: -3.5, z: 2.5), role: Role.blueTeam),",
+            "        ",
+            "        // Starting positions:",
+            "        .seat(position: .app.offsetBy(x: 0, z: 4)),",
+            "        .seat(position: .app.offsetBy(x: 1, z: 4)),",
+            "        .seat(position: .app.offsetBy(x: -1, z: 4)),",
+            "        .seat(position: .app.offsetBy(x: 2, z: 4)),",
+            "        .seat(position: .app.offsetBy(x: -2, z: 4)),",
+            "        ",
+            "        // Red team:",
+            "        .seat(position: .app.offsetBy(x: 2.5, z: 3.5), role: Role.redTeam),",
+            "        .seat(position: .app.offsetBy(x: 3.0, z: 3.0), role: Role.redTeam),",
+            "        .seat(position: .app.offsetBy(x: 3.5, z: 2.5), role: Role.redTeam)",
+            "    ]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During gameplay, teams take turns playing the game while the audience watches.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Audience members face the main window while the active team sits on either side of that window.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The team member giving clues sits on one side of the window, while their teammates sit opposite.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The template orients the active team members so that they face each other at the start of the game, with audience members facing the main window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "game.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "GameTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure defines separate roles for the current player and the active team members.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Members of the opposing team don’t receive a role until it’s their turn to play, so they initially sit in the audience positions.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because the active team members face each other, and not the app window, their seat positions include a ",
+              "type": "text"
+            },
+            {
+              "code": "direction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to specify where they look initially.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct GameTemplate: SpatialTemplate {",
+            "    enum Role: String, SpatialTemplateRole {",
+            "        case player",
+            "        case activeTeam",
+            "    }",
+            "    ",
+            "    static let playerPosition = Point3D(x: -2, z: 3)",
+            "    ",
+            "    /// An array that represents the order in which the game adds participants to spatial template positions.",
+            "    var elements: [any SpatialTemplateElement] {",
+            "        let activeTeamCenterPosition = SpatialTemplateElementPosition.app.offsetBy(x: 2, z: 3)",
+            "",
+            "        let playerSeat = SpatialTemplateSeatElement(",
+            "            position: .app.offsetBy(x: Self.playerPosition.x, z: Self.playerPosition.z),",
+            "            direction: .lookingAt(activeTeamCenterPosition),",
+            "            role: Role.player",
+            "        )",
+            "        ",
+            "        let activeTeamSeats: [any SpatialTemplateElement] = [",
+            "            .seat(",
+            "                position: activeTeamCenterPosition.offsetBy(x: 0, z: -0.5),",
+            "                direction: .lookingAt(playerSeat),",
+            "                role: Role.activeTeam",
+            "            ),",
+            "            .seat(",
+            "                position: activeTeamCenterPosition.offsetBy(x: 0, z: 0.5),",
+            "                direction: .lookingAt(playerSeat),",
+            "                role: Role.activeTeam",
+            "            )",
+            "        ]",
+            "        ",
+            "        let audienceSeats: [any SpatialTemplateElement] = [",
+            "            .seat(position: .app.offsetBy(x: 0, z: 5)),",
+            "            .seat(position: .app.offsetBy(x: 1, z: 5)),",
+            "            .seat(position: .app.offsetBy(x: -1, z: 5)),",
+            "            .seat(position: .app.offsetBy(x: 2, z: 5)),",
+            "            .seat(position: .app.offsetBy(x: -2, z: 5))",
+            "        ]",
+            "        ",
+            "        return audienceSeats + [playerSeat] + activeTeamSeats",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about building custom spatial templates, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "8baa890170f0/BuildingAGuessingGameForVisionOS.zip": {
+      "checksum": "8baa890170f02571f51ac6360546ad3408c92596f4876ae6d7312f2819a79d92dd27468e925116966eac965acd64b6197b31eadfc1a4479e8bf695a5d7024abf",
+      "identifier": "8baa890170f0/BuildingAGuessingGameForVisionOS.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/8baa890170f0/BuildingAGuessingGameForVisionOS.zip"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities": {
+      "abstract": [
+        {
+          "text": "Create app-specific activities your users can share and experience together.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Group Activities",
+      "type": "topic",
+      "url": "/documentation/groupactivities"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupActivity": {
+      "abstract": [
+        {
+          "text": "A type that can advertise your app’s activities to other participants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroupActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GroupActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupActivity",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupactivity"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession": {
+      "abstract": [
+        {
+          "text": "A session for an in-progress activity that synchronizes content among participant devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroupSession"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GroupSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupSession",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplate": {
+      "abstract": [
+        {
+          "text": "An interface you use to create custom arrangements of spatial Personas",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialTemplate",
+      "type": "topic",
+      "url": "/documentation/groupactivities/spatialtemplate"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElement": {
+      "abstract": [
+        {
+          "text": "An interface that defines an element in your spatial template.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplateElement"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplateElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialTemplateElement",
+      "type": "topic",
+      "url": "/documentation/groupactivities/spatialtemplateelement"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElementDirection": {
+      "abstract": [
+        {
+          "text": "The initial direction a participant faces when an activity starts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplateElementDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElementDirection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplateElementDirection"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialTemplateElementDirection",
+      "type": "topic",
+      "url": "/documentation/groupactivities/spatialtemplateelementdirection"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElementPosition": {
+      "abstract": [
+        {
+          "text": "A type that defines the position of an element in a spatial template.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplateElementPosition"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElementPosition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplateElementPosition"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialTemplateElementPosition",
+      "type": "topic",
+      "url": "/documentation/groupactivities/spatialtemplateelementposition"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateRole": {
+      "abstract": [
+        {
+          "text": "An interface for defining roles that you assign to the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "participants of a group activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplateRole"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateRole",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplateRole"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialTemplateRole",
+      "type": "topic",
+      "url": "/documentation/groupactivities/spatialtemplaterole"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateSeatElement": {
+      "abstract": [
+        {
+          "text": "A spatial template element that represents a seat for a participant",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in the activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplateSeatElement"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateSeatElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplateSeatElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialTemplateSeatElement",
+      "type": "topic",
+      "url": "/documentation/groupactivities/spatialtemplateseatelement"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator": {
+      "abstract": [
+        {
+          "text": "A type you use to coordinate your interface’s behavior when an",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "active SharePlay session supports spatial placement of content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SystemCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SystemCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "SystemCoordinator",
+      "type": "topic",
+      "url": "/documentation/groupactivities/systemcoordinator"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/adding-spatial-persona-support-to-an-activity": {
+      "abstract": [
+        {
+          "text": "Update your SharePlay activities to support spatial Personas and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the shared context when running in visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/adding-spatial-persona-support-to-an-activity",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding spatial Persona support to an activity",
+      "type": "topic",
+      "url": "/documentation/groupactivities/adding-spatial-persona-support-to-an-activity"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/defining-your-apps-shareplay-activities": {
+      "abstract": [
+        {
+          "text": "Configure your app’s SharePlay support and define the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "activities that people can perform from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/defining-your-apps-shareplay-activities",
+      "kind": "article",
+      "role": "article",
+      "title": "Defining your app’s SharePlay activities",
+      "type": "topic",
+      "url": "/documentation/groupactivities/defining-your-apps-shareplay-activities"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/defining-your-apps-shareplay-activities#Configure-the-SharePlay-entitlements": {
+      "abstract": [],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/defining-your-apps-shareplay-activities#Configure-the-SharePlay-entitlements",
+      "kind": "section",
+      "title": "Configure the SharePlay entitlements",
+      "type": "topic",
+      "url": "/documentation/groupactivities/defining-your-apps-shareplay-activities#Configure-the-SharePlay-entitlements"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/joining-and-managing-a-shared-activity": {
+      "abstract": [
+        {
+          "text": "Configure the session when a SharePlay activity starts, and handle events",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that occur during the lifetime of the activity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/joining-and-managing-a-shared-activity",
+      "kind": "article",
+      "role": "article",
+      "title": "Joining and managing a shared activity",
+      "type": "topic",
+      "url": "/documentation/groupactivities/joining-and-managing-a-shared-activity"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/promoting-shareplay-activities-from-your-apps-ui": {
+      "abstract": [
+        {
+          "text": "Make it easy for people to start activities from your app’s UI, from",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the system share sheet, or using AirPlay over AirDrop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/promoting-shareplay-activities-from-your-apps-ui",
+      "kind": "article",
+      "role": "article",
+      "title": "Presenting SharePlay activities from your app’s UI",
+      "type": "topic",
+      "url": "/documentation/groupactivities/promoting-shareplay-activities-from-your-apps-ui"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/synchronizing-data-during-a-shareplay-activity": {
+      "abstract": [
+        {
+          "text": "Send custom messages and data between devices to synchronize content for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your activity, and incorporate messages your app receives from other",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "participants.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/synchronizing-data-during-a-shareplay-activity",
+      "kind": "article",
+      "role": "article",
+      "title": "Synchronizing data during a SharePlay activity",
+      "type": "topic",
+      "url": "/documentation/groupactivities/synchronizing-data-during-a-shareplay-activity"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.group-session": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may implement shared group experiences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.group-session",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.group-session",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.group-session"
+    },
+    "doc://com.apple.documentation/documentation/GroupActivities/GroupActivitySharingController-ybcy": {
+      "abstract": [
+        {
+          "text": "An iOS view controller that displays the system interface for starting an activity, and optionally starts a FaceTime call for that activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@objc"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroupActivitySharingController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GroupActivities/GroupActivitySharingController-ybcy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GroupActivitySharingController",
+      "type": "topic",
+      "url": "/documentation/GroupActivities/GroupActivitySharingController-ybcy"
+    },
+    "doc://com.apple.documentation/documentation/GroupActivities/GroupSessionMessenger": {
+      "abstract": [
+        {
+          "text": "An object that transfers app-specific data between the devices joined in a group session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroupSessionMessenger"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GroupActivities/GroupSessionMessenger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GroupSessionMessenger",
+      "type": "topic",
+      "url": "/documentation/GroupActivities/GroupSessionMessenger"
+    },
+    "doc://com.apple.documentation/documentation/GroupActivities/SystemCoordinator/Configuration-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure that specifies your app’s support for activities that take place in a shared simulation space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GroupActivities/SystemCoordinator/Configuration-swift.struct",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SystemCoordinator.Configuration",
+      "type": "topic",
+      "url": "/documentation/GroupActivities/SystemCoordinator/Configuration-swift.struct"
+    },
+    "doc://com.apple.documentation/documentation/GroupActivities/SystemCoordinator/Configuration-swift.struct/supportsGroupImmersiveSpace": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether your app supports a shared context when an immersive space is open.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportsGroupImmersiveSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GroupActivities/SystemCoordinator/Configuration-swift.struct/supportsGroupImmersiveSpace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "supportsGroupImmersiveSpace",
+      "type": "topic",
+      "url": "/documentation/GroupActivities/SystemCoordinator/Configuration-swift.struct/supportsGroupImmersiveSpace"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "game.png": {
+      "alt": "An illustration of the arrangement of participants during the game. The active team members sit on opposite sides of the app’s window, while the rest of the players sit in the audience facing the window.",
+      "identifier": "game.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3ec2dd95daa5c384608b8a8819add199/game@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/33c174022b063ac4236974cfa29e2e5d/game~dark@2x.png"
+        }
+      ]
+    },
+    "https://developer.apple.com/videos/play/wwdc2024/10201": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2024/10201",
+      "title": "10201: Customize spatial Persona templates in SharePlay",
+      "titleInlineContent": [
+        {
+          "text": "10201: Customize spatial Persona templates in SharePlay",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2024/10201"
+    },
+    "team-selection.png": {
+      "alt": "An illustration of the arrangement of participants during the team selection process. Participants start facing the screen. When they select a team, they move to the side of the screen associated with their chosen team.",
+      "identifier": "team-selection.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f192cc4494c399431be94d47d729882e/team-selection@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b543d1cf39d129cab3fd901042a9d08e/team-selection~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "8baa890170f0/BuildingAGuessingGameForVisionOS.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Custom-spatial-templates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplate",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateSeatElement",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElement",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElementPosition",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElementDirection",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateRole"
+      ],
+      "title": "Custom spatial templates"
+    }
+  ]
+}

@@ -1,0 +1,1503 @@
+{
+  "abstract": [
+    {
+      "text": "Create engaging, hands-free experiences based on barcodes in a person’s surroundings.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/locating-and-decoding-barcodes-in-3d-space"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Locating and decoding barcodes in 3D space"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project demonstrates how to use barcode detection in ARKit to detect, decode, and place content near barcodes in your visionOS app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ARKit enables your visionOS app to detect barcodes (including QR codes), locate their positions in a person’s surroundings, and decode their contents.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, a warehouse worker can use your app to retrieve an item by looking at a package’s barcode to confirm its contents.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-your-sample-code-project",
+          "level": 3,
+          "text": "Configure your sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Replace ",
+              "type": "text"
+            },
+            {
+              "code": "Enterprise.license",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with your license file. The sample app requires a valid license file to detect barcodes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Request-the-entitlement",
+          "level": 3,
+          "text": "Request the entitlement",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Barcode detection is a part of enterprise APIs for visionOS, a collection of APIs that unlock capabilities for enterprise customers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To use barcode detection, you need to apply for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.arkit.barcode-detection.allow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " entitlement.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, including how to apply for this entitlement, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/visionOS/building-spatial-experiences-for-business-apps-with-enterprise-apis",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-usage-descriptions-for-ARKit-data-access",
+          "level": 3,
+          "text": "Add usage descriptions for ARKit data access",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To help protect people’s privacy, visionOS limits app access to cameras and other sensors in Apple Vision Pro.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You need to add an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSWorldSensingUsageDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to your app’s information property list to provide a usage description that explains how your app uses the data those sensors provide.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "People see this description when your app prompts for access to world-sensing data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In visionOS, ARKit is only available in an immersive space.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/visionOS/setting-up-access-to-arkit-data",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to learn more about opening an immersive space and requesting authorization for ARKit data access. To learn more about best practices for privacy, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/visionOS/adopting-best-practices-for-privacy",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Detect-decode-and-highlight-barcodes",
+          "level": 3,
+          "text": "Detect, decode, and highlight barcodes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your visionOS app can detect barcodes in a person’s surroundings and highlight the barcode the person is looking for.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following code example detects and highlights every Code 128 or QR Code symbology in a person’s surroundings.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The code example includes three steps: detecting the barcode, printing its decoded content, and creating the highlight animation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To start detecting barcodes, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/BarcodeDetectionProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to get the positions of barcodes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Next, specify the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/BarcodeAnchor/Symbology-swift.enum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to indicate the types of barcodes you want ARKit to detect in the person’s surroundings.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then, start an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/ARKitSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "code": "BarcodeDetectionProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "import RealityKit",
+            "import ARKit",
+            "import Combine",
+            "",
+            "struct ImmersiveView: View {",
+            "    @State private var arkitSession = ARKitSession()",
+            "    @State private var root = Entity()",
+            "    @State private var fadeCompleteSubscriptions: Set<AnyCancellable> = []",
+            "    ",
+            "    var body: some View {",
+            "        RealityView { content in",
+            "            content.add(root)",
+            "        }",
+            "        .task {",
+            "            // Check whether there's support for barcode detection; otherwise, handle this case.",
+            "            guard BarcodeDetectionProvider.isSupported else { return }",
+            "",
+            "            // Specify the symbologies you want to detect.",
+            "            let barcodeDetection = BarcodeDetectionProvider(symbologies: [.code128, .qr])",
+            "",
+            "            do {",
+            "                try await arkitSession.run([barcodeDetection])",
+            "",
+            "                for await update in barcodeDetection.anchorUpdates where update.event == .added {",
+            "                    let anchor = update.anchor",
+            "                    ",
+            "                    // Play an animation to indicate when the system detects a barcode.  ",
+            "                    playAnimation(for: anchor)",
+            "                    ",
+            "                    // Use the anchor's decoded contents and symbology to take action.",
+            "                    print(",
+            "                         \"\"\"",
+            "",
+            "                         Payload: \\(anchor.payloadString ?? \"\")",
+            "                         Symbology: \\(anchor.symbology)",
+            "                         \"\"\")",
+            "                }",
+            "            } catch {",
+            "                // Handle the error.",
+            "                print(error)",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit delivers an asynchronous stream of updates as it detects changes in the scene.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each update includes a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/BarcodeAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " containing the barcode’s payload, extent, and transform.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To implement the highlight animation, create a plane that you size and position to match that of the barcode, then fade it in and out.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You define a barcode’s extents in the x-z plane. They have a width (x-axis), depth (z-axis), and zero height (y-axis).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "code": [
+            "// Define this function in `ImmersiveView`.",
+            "func playAnimation(for anchor: BarcodeAnchor) {",
+            "    guard let scene = root.scene else { return }",
+            "    ",
+            "    // Create a plane and size it to match the barcode.",
+            "    let extent = anchor.extent",
+            "    let entity = ModelEntity(mesh: .generatePlane(width: extent.x, depth: extent.z), materials: [UnlitMaterial(color: .green)])",
+            "    entity.components.set(OpacityComponent(opacity: 0))",
+            "    ",
+            "    // Position the plane over the barcode.",
+            "    entity.transform = Transform(matrix: anchor.originFromAnchorTransform)",
+            "    root.addChild(entity)",
+            "    ",
+            "    // Fade the plane in and out.",
+            "    do {",
+            "        let duration = 0.5",
+            "        let fadeIn = try AnimationResource.generate(with: FromToByAnimation<Float>(",
+            "            from: 0,",
+            "            to: 1.0,",
+            "            duration: duration,",
+            "            isAdditive: true,",
+            "            bindTarget: .opacity)",
+            "        )",
+            "        let fadeOut = try AnimationResource.generate(with: FromToByAnimation<Float>(",
+            "            from: 1.0,",
+            "            to: 0,",
+            "            duration: duration,",
+            "            isAdditive: true,",
+            "            bindTarget: .opacity))",
+            "        ",
+            "        let fadeAnimation = try AnimationResource.sequence(with: [fadeIn, fadeOut])",
+            "        ",
+            "        _ = scene.subscribe(to: AnimationEvents.PlaybackCompleted.self, on: entity, { _ in",
+            "            // Remove the plane after the animation completes.",
+            "            entity.removeFromParent()",
+            "        }).store(in: &fadeCompleteSubscriptions)",
+            "        ",
+            "        entity.playAnimation(fadeAnimation)",
+            "    } catch {",
+            "        // Handle the error.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Because ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/ARKit/BarcodeDetectionProvider",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " has a low refresh rate, use its transform to initialize the position of content relative to a stationary barcode.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Determine-the-ideal-barcode-width",
+          "level": 3,
+          "text": "Determine the ideal barcode width",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code project can’t read barcodes that are too small to appear clearly in a person’s field of view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Larger barcodes generally improve readability, providing that they remain within the field of view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The minimum barcode size depends on its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/BarcodeAnchor/Symbology-swift.enum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Refer to the table below to determine the minimum width required for a barcode to be readable under nominal lighting conditions (100 lux) at an arm’s length distance (~40 cm).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Symbology",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Minimum width (in cm)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Aztec\tCode",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Codabar",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "5.5",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Code 39",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "6.5",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Code 39 Checksum",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "6.5",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Code 39 Full ASCII",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "3.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Code 39 Full ASCII Checksum",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4.5",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Code 93",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "5.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Code 93i",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "5.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Code 128",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2.5",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Data Matrix",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "EAN-8",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "3.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "EAN-13",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "GS1 DataBar",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "3.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "GS1 DataBar Expanded",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "6.5",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "GS1 DataBar Limited",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "3.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ITF",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "3.5",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ITF-14",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "5.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ITF Checksum",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "3.5",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "MicroPDF417",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "6.5",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Micro QR Code",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "MSI Plessey",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4.5",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "PDF417",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "6.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "QR Code",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1.5",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "UPC-E",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2.5",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "58e0de4d2b6e/LocatingAndDecodingBarcodesIn3DSpace.zip": {
+      "checksum": "58e0de4d2b6e51a33a6b466d0705ebd9a9cf3be86635922d4f4be383c089df6aeaa2acda23843dd26592e4515790b996798bea62bb19482d89335143cffba9b0",
+      "identifier": "58e0de4d2b6e/LocatingAndDecodingBarcodesIn3DSpace.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/58e0de4d2b6e/LocatingAndDecodingBarcodesIn3DSpace.zip"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/ARKitSession": {
+      "abstract": [
+        {
+          "text": "The main entry point for receiving data from ARKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARKitSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/ARKitSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARKitSession",
+      "type": "topic",
+      "url": "/documentation/ARKit/ARKitSession"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/BarcodeAnchor": {
+      "abstract": [
+        {
+          "text": "A barcode’s position in a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BarcodeAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/BarcodeAnchor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BarcodeAnchor",
+      "type": "topic",
+      "url": "/documentation/ARKit/BarcodeAnchor"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/BarcodeAnchor/Symbology-swift.enum": {
+      "abstract": [
+        {
+          "text": "Values that describe specific kinds of barcodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Symbology"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/BarcodeAnchor/Symbology-swift.enum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BarcodeAnchor.Symbology",
+      "type": "topic",
+      "url": "/documentation/ARKit/BarcodeAnchor/Symbology-swift.enum"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/BarcodeDetectionProvider": {
+      "abstract": [
+        {
+          "text": "An object that provides the real-time position of barcodes the framework detects in a person’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BarcodeDetectionProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/BarcodeDetectionProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BarcodeDetectionProvider",
+      "type": "topic",
+      "url": "/documentation/ARKit/BarcodeDetectionProvider"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.arkit.barcode-detection.allow": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an app can use ARKit to detect, position, and decode barcode and QR codes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.arkit.barcode-detection.allow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Spatial barcode and QR code scanning",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.arkit.barcode-detection.allow"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSWorldSensingUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to image tracking, plane detection, or scene reconstruction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSWorldSensingUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSWorldSensingUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSWorldSensingUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/adopting-best-practices-for-privacy": {
+      "abstract": [
+        {
+          "text": "Minimize your use of sensitive information and provide a clear statement of what information you do use and how you use it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/adopting-best-practices-for-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "Adopting best practices for privacy and user preferences",
+      "type": "topic",
+      "url": "/documentation/visionOS/adopting-best-practices-for-privacy"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/building-spatial-experiences-for-business-apps-with-enterprise-apis": {
+      "abstract": [
+        {
+          "text": "Grant enhanced sensor access and increased platform control to your visionOS app by using entitlements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/building-spatial-experiences-for-business-apps-with-enterprise-apis",
+      "kind": "article",
+      "role": "article",
+      "title": "Building spatial experiences for business apps with enterprise APIs for visionOS",
+      "type": "topic",
+      "url": "/documentation/visionOS/building-spatial-experiences-for-business-apps-with-enterprise-apis"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/setting-up-access-to-arkit-data": {
+      "abstract": [
+        {
+          "text": "Check whether your app can use ARKit and respect people’s privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/setting-up-access-to-arkit-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up access to ARKit data",
+      "type": "topic",
+      "url": "/documentation/visionOS/setting-up-access-to-arkit-data"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/accessing-the-main-camera": {
+      "abstract": [
+        {
+          "text": "Add camera-based features to enterprise apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/accessing-the-main-camera",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Accessing the main camera",
+      "type": "topic",
+      "url": "/documentation/visionos/accessing-the-main-camera"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/building-spatial-experiences-for-business-apps-with-enterprise-apis": {
+      "abstract": [
+        {
+          "text": "Grant enhanced sensor access and increased platform control to your visionOS app by using entitlements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/building-spatial-experiences-for-business-apps-with-enterprise-apis",
+      "kind": "article",
+      "role": "article",
+      "title": "Building spatial experiences for business apps with enterprise APIs for visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos/building-spatial-experiences-for-business-apps-with-enterprise-apis"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/displaying-video-from-connected-devices": {
+      "abstract": [
+        {
+          "text": "Show video from devices connected with the Developer Strap in your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/displaying-video-from-connected-devices",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Displaying video from connected devices",
+      "type": "topic",
+      "url": "/documentation/visionos/displaying-video-from-connected-devices"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "58e0de4d2b6e/LocatingAndDecodingBarcodesIn3DSpace.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Enterprise-APIs-for-visionOS",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/accessing-the-main-camera",
+        "doc://com.apple.visionOS/documentation/visionOS/building-spatial-experiences-for-business-apps-with-enterprise-apis",
+        "doc://com.apple.visionOS/documentation/visionOS/displaying-video-from-connected-devices"
+      ],
+      "title": "Enterprise APIs for visionOS"
+    }
+  ]
+}

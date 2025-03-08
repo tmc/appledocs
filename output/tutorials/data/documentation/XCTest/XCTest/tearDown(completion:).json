@@ -1,0 +1,1292 @@
+{
+  "abstract": [
+    {
+      "text": "Provides an opportunity to perform cleanup asynchronously and handle errors after each test method in a test case ends.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.xctest/documentation/XCTest",
+        "doc://com.apple.xctest/documentation/XCTest/XCTest"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDown(completion:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)XCTest(im)tearDownWithCompletionHandler:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "tearDown"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "completion"
+      },
+      {
+        "kind": "text",
+        "text": ": ((any "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:s5ErrorP",
+        "text": "Error"
+      },
+      {
+        "kind": "text",
+        "text": ")?) -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:s4Voida",
+        "text": "Void"
+      },
+      {
+        "kind": "text",
+        "text": ")"
+      }
+    ],
+    "modules": [
+      {
+        "name": "XCTest"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "tearDownWithCompletionHandler:"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "tearDown(completion:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "tearDown"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "completion"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "keyword",
+              "text": "@escaping"
+            },
+            {
+              "kind": "text",
+              "text": " ((any "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s5ErrorP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s5ErrorP",
+              "text": "Error"
+            },
+            {
+              "kind": "text",
+              "text": ")?) -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s4Voida",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s4Voida",
+              "text": "Void"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        },
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "tearDown"
+            },
+            {
+              "kind": "text",
+              "text": "() "
+            },
+            {
+              "kind": "keyword",
+              "text": "async"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In Swift, reserved for system usage. Do not use. In Objective-C, a completion block you must call after you have completed cleaning up your state asynchronously.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "completion"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In Swift, ",
+                  "type": "text"
+                },
+                {
+                  "code": "XCTest",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " does not support overriding this method with a completion handler. Override this method for asynchronous test tear down with the following declaration:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "code": [
+                "func tearDown() async throws"
+              ],
+              "syntax": "swift",
+              "type": "codeListing"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "For information about concurrency and asynchronous code in Swift, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Swift/calling-objective-c-apis-asynchronously",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Concurrency Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Swift, override ",
+              "type": "text"
+            },
+            {
+              "code": "tearDown() async throws",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for asynchronous state cleanup with error handling after each test. Do not override ",
+              "type": "text"
+            },
+            {
+              "code": "tearDown(completion:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for synchronous state cleanup.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Objective-C, override this method for asynchronous state cleanup with error handling after each test. Call the completion handler after you have cleaned up your state to notify the test system it can proceed with the next task.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After each test completes, ",
+              "type": "text"
+            },
+            {
+              "code": "XCTest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " calls:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDown()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for synchronous state cleanup without error handling,",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDownWithError()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for synchronous state cleanup and error handling,",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Then this method for asynchronous state preparation and error handling.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For tear down methods that provide error handling, ",
+              "type": "text"
+            },
+            {
+              "code": "XCTest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " marks the test failed when it catches errors, or skipped when it catches ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTSkip-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Based on your state cleanup requirements, choose one of these methods to override in your test case.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Swift/calling-objective-c-apis-asynchronously": {
+      "abstract": [
+        {
+          "text": "Learn how functions and methods that take a completion handler are converted to Swift asynchronous functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/calling-objective-c-apis-asynchronously",
+      "kind": "article",
+      "role": "article",
+      "title": "Calling Objective-C APIs Asynchronously",
+      "type": "topic",
+      "url": "/documentation/Swift/calling-objective-c-apis-asynchronously"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.xctest/documentation/XCTest": {
+      "abstract": [
+        {
+          "text": "Create and run unit tests, performance tests, and UI tests for your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XCTest",
+      "type": "topic",
+      "url": "/documentation/xctest"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTSkip-swift.struct": {
+      "abstract": [
+        {
+          "text": "An error that causes the current test to cease executing and the test runner to mark the test as skipped when the test throws the error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTSkip"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTSkip-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCTSkip"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCTSkip",
+      "type": "topic",
+      "url": "/documentation/xctest/xctskip-swift.struct"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTest": {
+      "abstract": [
+        {
+          "text": "An abstract base class for creating, managing, and executing tests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTest"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCTest"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCTest",
+      "type": "topic",
+      "url": "/documentation/xctest/xctest"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTest/setUp()": {
+      "abstract": [
+        {
+          "text": "Provides an opportunity to reset state before calling each test method in a test case.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setUp"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/setUp()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setUp"
+        }
+      ],
+      "role": "symbol",
+      "title": "setUp()",
+      "type": "topic",
+      "url": "/documentation/xctest/xctest/setup()"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTest/setUp(completion:)": {
+      "abstract": [
+        {
+          "text": "Provides an opportunity to reset state asynchronously and handle errors before calling each test method in a test case.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setUp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/setUp(completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setUpWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setUp(completion:)",
+      "type": "topic",
+      "url": "/documentation/xctest/xctest/setup(completion:)"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTest/setUpWithError()": {
+      "abstract": [
+        {
+          "text": "Provides an opportunity to reset state and to throw errors before calling each test method in a test case.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setUpWithError"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/setUpWithError()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setUpWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setUpWithError()",
+      "type": "topic",
+      "url": "/documentation/xctest/xctest/setupwitherror()"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDown()": {
+      "abstract": [
+        {
+          "text": "Provides an opportunity to perform cleanup after each test method in a test case ends.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tearDown"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDown()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tearDown"
+        }
+      ],
+      "role": "symbol",
+      "title": "tearDown()",
+      "type": "topic",
+      "url": "/documentation/xctest/xctest/teardown()"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDown(completion:)": {
+      "abstract": [
+        {
+          "text": "Provides an opportunity to perform cleanup asynchronously and handle errors after each test method in a test case ends.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tearDown"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDown(completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tearDownWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tearDown(completion:)",
+      "type": "topic",
+      "url": "/documentation/xctest/xctest/teardown(completion:)"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDownWithError()": {
+      "abstract": [
+        {
+          "text": "Provides an opportunity to perform cleanup and to throw errors after each test method in a test case ends.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tearDownWithError"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDownWithError()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tearDownWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tearDownWithError()",
+      "type": "topic",
+      "url": "/documentation/xctest/xctest/teardownwitherror()"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSError": {
+      "abstract": [
+        {
+          "text": "Information about an error condition including a domain, a domain-specific error code, and application-specific information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSError"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSError",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror"
+    },
+    "doc://com.externally.resolved.symbol/s:s4Voida": {
+      "abstract": [
+        {
+          "text": "The return type of functions that don’t explicitly specify a return type, that is, an empty tuple `()`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": " = ()"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s4Voida",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Void",
+      "type": "topic",
+      "url": "/documentation/Swift/Void"
+    },
+    "doc://com.externally.resolved.symbol/s:s5ErrorP": {
+      "abstract": [
+        {
+          "text": "A type representing an error value that can be thrown.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s5ErrorP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Error",
+      "type": "topic",
+      "url": "/documentation/Swift/Error"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Setting-Up-and-Tearing-Down",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.xctest/documentation/XCTest/XCTest/setUp(completion:)",
+        "doc://com.apple.xctest/documentation/XCTest/XCTest/setUpWithError()",
+        "doc://com.apple.xctest/documentation/XCTest/XCTest/setUp()",
+        "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDownWithError()",
+        "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDown()"
+      ],
+      "title": "Setting Up and Tearing Down"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/metadata/platforms",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "tearDownWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tearDownWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.xctest/documentation/XCTest",
+                "doc://com.apple.xctest/documentation/XCTest/XCTest"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Setting-Up-and-Tearing-Down",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.xctest/documentation/XCTest/XCTest/setUp(completion:)",
+                "doc://com.apple.xctest/documentation/XCTest/XCTest/setUpWithError()",
+                "doc://com.apple.xctest/documentation/XCTest/XCTest/setUp()",
+                "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDownWithError()",
+                "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDown()"
+              ],
+              "title": "Setting Up and Tearing Down"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "tearDownWithCompletionHandler:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " (^)("
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSError",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSError",
+                    "text": "NSError"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "error"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ")) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "completion"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "In Swift, reserved for system usage. Do not use. In Objective-C, a completion block you must call after you have completed cleaning up your state asynchronously.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "completion"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1setUpWithError()/title",
+          "value": "setUpWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1setUpWithError()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setUpWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1tearDownWithError()/title",
+          "value": "tearDownWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1tearDownWithError()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tearDownWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1setUp()/title",
+          "value": "setUp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1setUp()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setUp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1setUp(completion:)/title",
+          "value": "setUpWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1setUp(completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setUpWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest/title",
+          "value": "XCTest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1tearDown(completion:)/title",
+          "value": "tearDownWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1tearDown(completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tearDownWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1tearDown()/title",
+          "value": "tearDown"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1tearDown()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tearDown"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/xctest/xctest/teardown(completion:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/xctest/xctest/teardown(completion:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

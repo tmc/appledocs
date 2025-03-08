@@ -1,0 +1,524 @@
+{
+  "abstract": [
+    {
+      "text": "Provides the full list of web service URLs and a list of possible error numbers.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "This legacy API is currently in maintenance mode. Apple won’t add any new functionality to it.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Service-Configuration"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:vpp:post:VPPServiceConfigSrv",
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Service Configuration"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "Device Assignment Services"
+      },
+      {
+        "beta": false,
+        "name": "VPP License Management"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Service Configuration"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://vpp.itunes.apple.com/mdm/"
+        },
+        {
+          "kind": "path",
+          "text": "VPPServiceConfigSrv"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppServiceConfigResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:VppServiceConfigResponse",
+              "text": "VppServiceConfigResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Clients should use this endpoint every 5 minutes to retrieve the list of service URLs, because the URLs may change. This endpoint exists to provide a level-of-service discovery, so service URLs can be changed in a transparent way.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example-Response",
+          "level": 3,
+          "text": "Example Response",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "{}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"clientConfigSrvUrl\": \"https://vpp.itunes.apple.com/mdm/VPPClientConfigSrv\",",
+                    "  \"contentMetadataLookupUrl\": \"https://uclient-api.itunes.apple.com/WebObjects/MZStorePlatform.woa/wa/lookup\",",
+                    "  \"editUserSrvUrl\": \"https://vpp.itunes.apple.com/mdm/editVPPUserSrv\",",
+                    "  \"errorCodes\": [",
+                    "    {",
+                    "      \"errorMessage\": \"Missing required argument\",",
+                    "      \"errorNumber\": 9600",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"Login required\",",
+                    "      \"errorNumber\": 9601",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"Invalid argument\",",
+                    "      \"errorNumber\": 9602",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"Internal error\",",
+                    "      \"errorNumber\": 9603",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"Result not found\",",
+                    "      \"errorNumber\": 9604",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"Account storefront incorrect\",",
+                    "      \"errorNumber\": 9605",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"Error constructing token\",",
+                    "      \"errorNumber\": 9606",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"License is irrevocable\",",
+                    "      \"errorNumber\": 9607",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"Empty response from SharedData service\",",
+                    "      \"errorNumber\": 9608",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"Registered user not found\",",
+                    "      \"errorNumber\": 9609",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"License not found\",",
+                    "      \"errorNumber\": 9610",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"Admin user not found\",",
+                    "      \"errorNumber\": 9611",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"Failed to create claim job\",",
+                    "      \"errorNumber\": 9612",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"Failed to create unclaim job\",",
+                    "      \"errorNumber\": 9613",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"Invalid date format\",",
+                    "      \"errorNumber\": 9614",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"OrgCountry not found\",",
+                    "      \"errorNumber\": 9615",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"License already assigned\",",
+                    "      \"errorNumber\": 9616",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"The URL has been moved. Please call VPPServiceConfigSrv to find the new URL.\",",
+                    "      \"errorNumber\": 9617",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"The user has already been retired.\",",
+                    "      \"errorNumber\": 9618",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"License not associated\",",
+                    "      \"errorNumber\": 9619",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"The user has already been deleted.\",",
+                    "      \"errorNumber\": 9620",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"The token has expired. You need to generate a new token online using your organization's account at https://vpp.itunes.apple.com.\",",
+                    "      \"errorNumber\": 9621",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"Invalid authentication token\",",
+                    "      \"errorNumber\": 9622",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"Invalid APN token\",",
+                    "      \"errorNumber\": 9623",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"License was refunded and is no longer valid.\",",
+                    "      \"errorNumber\": 9624",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"The sToken has been revoked\",",
+                    "      \"errorNumber\": 9625",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"License already assigned to other user\",",
+                    "      \"errorNumber\": 9626",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"License disassociation fail due to frequent reassociation\",",
+                    "      \"errorNumber\": 9627",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"License not eligible for device assignment.\",",
+                    "      \"errorNumber\": 9628",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"The sToken is inapplicable to batchToken\",",
+                    "      \"errorNumber\": 9629",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"Too many recent identical calls were made to assign a license that failed due to license being already assigned to the user or device\",",
+                    "      \"errorNumber\": 9630",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"Too many recent identical calls were made to assign a license that failed due to no license being being available.\",",
+                    "      \"errorNumber\": 9631",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"Too many recent calls to manage licenses with identical requests\",",
+                    "      \"errorNumber\": 9632",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"No batch data recovered for token.\",",
+                    "      \"errorNumber\": 9633",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"Service removed.\",",
+                    "      \"errorNumber\": 9634",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"Apple ID can't be associated with registered user.\",",
+                    "      \"errorNumber\": 9635",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"No registered user found.\",",
+                    "      \"errorNumber\": 9636",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"Facilitator operation not allowed.\",",
+                    "      \"errorNumber\": 9637",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"Apple ID already associated to registered user.\",",
+                    "      \"errorNumber\": 9641",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"Apple ID passed cannot be used at this time because it's a VPP manager and the iTunes Store account not yet created and such creation requires user to agree to Terms.\",",
+                    "      \"errorNumber\": 9642",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"The license is currently locked for a pending transfer. Please try again.\",",
+                    "      \"errorNumber\": 9643",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"Volume Purchase Program is currently in maintenance mode. Please try again later.\",",
+                    "      \"errorNumber\": 9644",
+                    "    },",
+                    "    {",
+                    "      \"errorMessage\": \"Too many recent requests. Please try again momentarily\",",
+                    "      \"errorNumber\": 9646",
+                    "    }",
+                    "  ],",
+                    "  \"getLicensesSrvUrl\": \"https://vpp.itunes.apple.com/mdm/getVPPLicensesSrv\",",
+                    "  \"getUserSrvUrl\": \"https://vpp.itunes.apple.com/mdm/getVPPUserSrv\",",
+                    "  \"getUsersSrvUrl\": \"https://vpp.itunes.apple.com/mdm/getVPPUsersSrv\",",
+                    "  \"getVPPAssetsSrvUrl\": \"https://vpp.itunes.apple.com/mdm/getVPPAssetsSrv\",",
+                    "  \"invitationEmailUrl\": \"https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/associateVPPUserWithITSAccount?cc=us&inviteCode=%25inviteCode%25&mt=8\",",
+                    "  \"manageVPPLicensesByAdamIdSrvUrl\": \"https://vpp.itunes.apple.com/mdm/manageVPPLicensesByAdamIdSrv\",",
+                    "  \"maxBatchAssociateLicenseCount\": 10,",
+                    "  \"maxBatchDisassociateLicenseCount\": 10,",
+                    "  \"registerUserSrvUrl\": \"https://vpp.itunes.apple.com/mdm/registerVPPUserSrv\",",
+                    "  \"retireUserSrvUrl\": \"https://vpp.itunes.apple.com/mdm/retireVPPUserSrv\",",
+                    "  \"status\": 0,",
+                    "  \"vppWebsiteUrl\": \"https://vpp.itunes.apple.com/\"",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Client-Configuration": {
+      "abstract": [
+        {
+          "text": "Store client-specific information on the server.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Client-Configuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Client Configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "Client Configuration",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/client-configuration"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Service-Configuration": {
+      "abstract": [
+        {
+          "text": "Provides the full list of web service URLs and a list of possible error numbers.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Service-Configuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Service Configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "Service Configuration",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/service-configuration"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppServiceConfigResponse": {
+      "abstract": [
+        {
+          "text": "The response with the service configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VppServiceConfigResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppServiceConfigResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VppServiceConfigResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "VppServiceConfigResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vppserviceconfigresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/getting-app-and-book-information-legacy": {
+      "abstract": [
+        {
+          "text": "Use a web service to find details about apps and books to show to your users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/getting-app-and-book-information-legacy",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting App and Book Information (Legacy)",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/getting-app-and-book-information-legacy"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuration-Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Client-Configuration"
+      ],
+      "title": "Configuration Management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Response",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppServiceConfigResponse"
+      ],
+      "title": "Response"
+    },
+    {
+      "anchor": "Product-Metadata",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/getting-app-and-book-information-legacy"
+      ],
+      "title": "Product Metadata"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/service-configuration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

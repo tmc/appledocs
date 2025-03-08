@@ -1,0 +1,3097 @@
+{
+  "abstract": [
+    {
+      "text": "A template that displays and manages a list of items.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.carplay/documentation/CarPlay"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CPListTemplate",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CPListTemplate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "CarPlay"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CPListTemplate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CPListTemplate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CPListTemplate"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the list template to display a list of items, grouped into one or more sections. When the user selects an item, CarPlay invokes Siri or a custom handler that you provide, depending on the type of list item. If your list displays hierarchical data, use the handler to add templates to the navigation hierarchy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a list template, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/init(title:sections:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and provide an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListSection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. At runtime, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/maximumSectionCount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine the maximum number of sections your list can display. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/maximumItemCount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine the maximum number of items across all sections that your list can display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each section contains an array of list items — objects that conform to either the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListTemplateItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPSelectableListItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. CarPlay provides three concrete implementations of these protocols:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A generic, selectable list item.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListItem",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A list item that displays a series of images.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListImageRowItem",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A list item that represents a conversation or contact.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPMessageListItem",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The depth of a hierarchical list in CarPlay depends on your app’s entitlements. Food-ordering apps must not exceed two levels. The framework restricts all other categories of apps to five levels. Also, some vehicles limit the number of items that the list displays. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPSessionConfiguration",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for more information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display the list, call your interface controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPInterfaceController/pushTemplate(_:animated:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, passing in the list template to add it to your navigation hierarchy. Alternatively, add the template as a tab in your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTabBarTemplate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Integrating-Siri-Into-Your-Template-App",
+          "level": 3,
+          "text": "Integrating Siri Into Your Template App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For audio and communication apps, CarPlay provides an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "assistant cell",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to let users interact with your app using Siri_._",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3786976",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable the assistant cell, your app must support specific Siri intents:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To play audio, audio apps must support ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "doc://com.apple.documentation/documentation/sirikit/inplaymediaintent",
+                      "type": "text"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To make phone calls, communication apps must support ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "doc://com.apple.documentation/documentation/sirikit/instartcallintent",
+                      "type": "text"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable the assistant cell in your list template, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/init(title:sections:assistantCellConfiguration:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and provide the required configuration. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPAssistantCellConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". CarPlay automatically updates your app’s interface if you change the template’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/assistantCellConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.carplay/documentation/CarPlay": {
+      "abstract": [
+        {
+          "text": "Integrate CarPlay in apps related to audio, communication, navigation, parking, EV charging, food ordering, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CarPlay",
+      "type": "topic",
+      "url": "/documentation/carplay"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPAssistantCellConfiguration": {
+      "abstract": [
+        {
+          "text": "An object that provides the configuration attributes for the assistant cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPAssistantCellConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPAssistantCellConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPAssistantCellConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPAssistantCellConfiguration",
+      "type": "topic",
+      "url": "/documentation/carplay/cpassistantcellconfiguration"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPBarButtonProviding": {
+      "abstract": [
+        {
+          "text": "The methods that templates use to provide buttons for the navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPBarButtonProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPBarButtonProviding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPBarButtonProviding"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPBarButtonProviding",
+      "type": "topic",
+      "url": "/documentation/carplay/cpbarbuttonproviding"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPGridTemplate": {
+      "abstract": [
+        {
+          "text": "A template that displays and manages a grid of items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPGridTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPGridTemplate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPGridTemplate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPGridTemplate",
+      "type": "topic",
+      "url": "/documentation/carplay/cpgridtemplate"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPInterfaceController/pushTemplate(_:animated:completion:)": {
+      "abstract": [
+        {
+          "text": "Adds the specified template to the navigation hierarchy and displays it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pushTemplate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CPTemplate",
+          "text": "CPTemplate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPInterfaceController/pushTemplate(_:animated:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pushTemplate:animated:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "pushTemplate(_:animated:completion:)",
+      "type": "topic",
+      "url": "/documentation/carplay/cpinterfacecontroller/pushtemplate(_:animated:completion:)"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListImageRowItem": {
+      "abstract": [
+        {
+          "text": "A list template row that displays a series of images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPListImageRowItem"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListImageRowItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPListImageRowItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPListImageRowItem",
+      "type": "topic",
+      "url": "/documentation/carplay/cplistimagerowitem"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListItem": {
+      "abstract": [
+        {
+          "text": "A selectable row in a list template.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPListItem"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPListItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPListItem",
+      "type": "topic",
+      "url": "/documentation/carplay/cplistitem"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListSection": {
+      "abstract": [
+        {
+          "text": "A container that groups your list items into sections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPListSection"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListSection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPListSection"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPListSection",
+      "type": "topic",
+      "url": "/documentation/carplay/cplistsection"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate": {
+      "abstract": [
+        {
+          "text": "A template that displays and manages a list of items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPListTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPListTemplate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPListTemplate",
+      "type": "topic",
+      "url": "/documentation/carplay/cplisttemplate"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/assistantCellConfiguration": {
+      "abstract": [
+        {
+          "text": "The object that provides the configuration attributes for the assistant cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "assistantCellConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CPAssistantCellConfiguration",
+          "text": "CPAssistantCellConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/assistantCellConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "assistantCellConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "assistantCellConfiguration",
+      "type": "topic",
+      "url": "/documentation/carplay/cplisttemplate/assistantcellconfiguration"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/delegate": {
+      "abstract": [
+        {
+          "text": "The object that serves as the delegate to the list template.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)CPListTemplateDelegate",
+          "text": "CPListTemplateDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/carplay/cplisttemplate/delegate"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/emptyViewSubtitleVariants": {
+      "abstract": [
+        {
+          "text": "An array of subtitle variants for the template’s empty view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "emptyViewSubtitleVariants"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/emptyViewSubtitleVariants",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "emptyViewSubtitleVariants"
+        }
+      ],
+      "role": "symbol",
+      "title": "emptyViewSubtitleVariants",
+      "type": "topic",
+      "url": "/documentation/carplay/cplisttemplate/emptyviewsubtitlevariants"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/emptyViewTitleVariants": {
+      "abstract": [
+        {
+          "text": "An array of title variants for the template’s empty view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "emptyViewTitleVariants"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/emptyViewTitleVariants",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "emptyViewTitleVariants"
+        }
+      ],
+      "role": "symbol",
+      "title": "emptyViewTitleVariants",
+      "type": "topic",
+      "url": "/documentation/carplay/cplisttemplate/emptyviewtitlevariants"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/indexPath(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the index path for the specified item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "indexPath"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)CPListTemplateItem",
+          "text": "CPListTemplateItem"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/indexPath(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "indexPathForItem:"
+        }
+      ],
+      "role": "symbol",
+      "title": "indexPath(for:)",
+      "type": "topic",
+      "url": "/documentation/carplay/cplisttemplate/indexpath(for:)"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/init(title:sections:)": {
+      "abstract": [
+        {
+          "text": "Creates a list template with an array of list sections and optional title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sections"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CPListSection",
+          "text": "CPListSection"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/init(title:sections:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithTitle:sections:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(title:sections:)",
+      "type": "topic",
+      "url": "/documentation/carplay/cplisttemplate/init(title:sections:)"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/init(title:sections:assistantCellConfiguration:)": {
+      "abstract": [
+        {
+          "text": "Creates a sectioned list template that optionally displays the assistant cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sections"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CPListSection",
+          "text": "CPListSection"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "assistantCellConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CPAssistantCellConfiguration",
+          "text": "CPAssistantCellConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/init(title:sections:assistantCellConfiguration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithTitle:sections:assistantCellConfiguration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(title:sections:assistantCellConfiguration:)",
+      "type": "topic",
+      "url": "/documentation/carplay/cplisttemplate/init(title:sections:assistantcellconfiguration:)"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/itemCount": {
+      "abstract": [
+        {
+          "text": "The total number of items, across all sections, in the list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "itemCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/itemCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "itemCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "itemCount",
+      "type": "topic",
+      "url": "/documentation/carplay/cplisttemplate/itemcount"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/maximumItemCount": {
+      "abstract": [
+        {
+          "text": "The maximum number of items, across all sections, that the template can display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumItemCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/maximumItemCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumItemCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "maximumItemCount",
+      "type": "topic",
+      "url": "/documentation/carplay/cplisttemplate/maximumitemcount"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/maximumSectionCount": {
+      "abstract": [
+        {
+          "text": "The maximum number of sections that the template can display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumSectionCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/maximumSectionCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumSectionCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "maximumSectionCount",
+      "type": "topic",
+      "url": "/documentation/carplay/cplisttemplate/maximumsectioncount"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/sectionCount": {
+      "abstract": [
+        {
+          "text": "The number of sections in the list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sectionCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/sectionCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sectionCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "sectionCount",
+      "type": "topic",
+      "url": "/documentation/carplay/cplisttemplate/sectioncount"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/sections": {
+      "abstract": [
+        {
+          "text": "The sections that the list displays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sections"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CPListSection",
+          "text": "CPListSection"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/sections",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sections"
+        }
+      ],
+      "role": "symbol",
+      "title": "sections",
+      "type": "topic",
+      "url": "/documentation/carplay/cplisttemplate/sections"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/showsSpinnerWhileEmpty": {
+      "abstract": [
+        {
+          "text": "If YES, a spinning activity indicator will be displayed while the list template contains no items.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "The activity indicator will be displayed in addition to any @c emptyViewTitleVariants or",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showsSpinnerWhileEmpty"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/showsSpinnerWhileEmpty",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showsSpinnerWhileEmpty"
+        }
+      ],
+      "role": "symbol",
+      "title": "showsSpinnerWhileEmpty",
+      "type": "topic",
+      "url": "/documentation/carplay/cplisttemplate/showsspinnerwhileempty"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/title": {
+      "abstract": [
+        {
+          "text": "The title that the navigation bar displays when the template is visible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/title",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "title"
+        }
+      ],
+      "role": "symbol",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/carplay/cplisttemplate/title"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/updateSections(_:)": {
+      "abstract": [
+        {
+          "text": "Adds, removes, reorders, or updates the list’s sections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateSections"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CPListSection",
+          "text": "CPListSection"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/updateSections(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateSections:"
+        }
+      ],
+      "role": "symbol",
+      "title": "updateSections(_:)",
+      "type": "topic",
+      "url": "/documentation/carplay/cplisttemplate/updatesections(_:)"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListTemplateDelegate": {
+      "abstract": [
+        {
+          "text": "The interface an object implements to serve as the delegate for a list template.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPListTemplateDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListTemplateDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPListTemplateDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPListTemplateDelegate",
+      "type": "topic",
+      "url": "/documentation/carplay/cplisttemplatedelegate"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListTemplateItem": {
+      "abstract": [
+        {
+          "text": "A description of the common properties of all list item types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPListTemplateItem"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListTemplateItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPListTemplateItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPListTemplateItem",
+      "type": "topic",
+      "url": "/documentation/carplay/cplisttemplateitem"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPMessageListItem": {
+      "abstract": [
+        {
+          "text": "A list template row that represents a conversation or contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPMessageListItem"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPMessageListItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPMessageListItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPMessageListItem",
+      "type": "topic",
+      "url": "/documentation/carplay/cpmessagelistitem"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPSelectableListItem": {
+      "abstract": [
+        {
+          "text": "A description of a selectable list item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPSelectableListItem"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPSelectableListItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPSelectableListItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPSelectableListItem",
+      "type": "topic",
+      "url": "/documentation/carplay/cpselectablelistitem"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPSessionConfiguration": {
+      "abstract": [
+        {
+          "text": "An object that provides vehicle properties and configuration for the CarPlay environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPSessionConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPSessionConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPSessionConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPSessionConfiguration",
+      "type": "topic",
+      "url": "/documentation/carplay/cpsessionconfiguration"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTabBarTemplate": {
+      "abstract": [
+        {
+          "text": "A container template that displays and manages other templates, presenting them as tabs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPTabBarTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTabBarTemplate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPTabBarTemplate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPTabBarTemplate",
+      "type": "topic",
+      "url": "/documentation/carplay/cptabbartemplate"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTemplate": {
+      "abstract": [
+        {
+          "text": "An abstract base class for interface templates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPTemplate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPTemplate",
+      "type": "topic",
+      "url": "/documentation/carplay/cptemplate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "media-3786976": {
+      "alt": "Screenshot that shows the assistant cell at the top of a list template.",
+      "identifier": "media-3786976",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ddb3b9bcc13948f8ba4c7ceeb86fdef5/media-3786976@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ddb3b9bcc13948f8ba4c7ceeb86fdef5/media-3786976~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.carplay/documentation/CarPlay/CPTemplate"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.carplay/documentation/CarPlay/CPBarButtonProviding",
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "General-Purpose-Templates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.carplay/documentation/CarPlay/CPGridTemplate",
+        "doc://com.apple.carplay/documentation/CarPlay/CPTabBarTemplate",
+        "doc://com.apple.carplay/documentation/CarPlay/CPTemplate",
+        "doc://com.apple.carplay/documentation/CarPlay/CPBarButtonProviding"
+      ],
+      "title": "General Purpose Templates"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-List-Template",
+      "identifiers": [
+        "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/init(title:sections:)",
+        "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/init(title:sections:assistantCellConfiguration:)"
+      ],
+      "title": "Creating a List Template"
+    },
+    {
+      "anchor": "Managing-Sections",
+      "identifiers": [
+        "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/maximumSectionCount",
+        "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/sectionCount",
+        "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/sections",
+        "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/updateSections(_:)",
+        "doc://com.apple.carplay/documentation/CarPlay/CPListSection"
+      ],
+      "title": "Managing Sections"
+    },
+    {
+      "anchor": "Managing-the-Assistant-Cell",
+      "identifiers": [
+        "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/assistantCellConfiguration",
+        "doc://com.apple.carplay/documentation/CarPlay/CPAssistantCellConfiguration"
+      ],
+      "title": "Managing the Assistant Cell"
+    },
+    {
+      "anchor": "Managing-an-Empty-List",
+      "identifiers": [
+        "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/emptyViewTitleVariants",
+        "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/emptyViewSubtitleVariants"
+      ],
+      "title": "Managing an Empty List"
+    },
+    {
+      "anchor": "Getting-Supplementary-Information",
+      "identifiers": [
+        "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/maximumItemCount",
+        "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/itemCount",
+        "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/indexPath(for:)",
+        "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/title"
+      ],
+      "title": "Getting Supplementary Information"
+    },
+    {
+      "anchor": "Responding-to-List-Events",
+      "identifiers": [
+        "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/delegate",
+        "doc://com.apple.carplay/documentation/CarPlay/CPListTemplateDelegate"
+      ],
+      "title": "Responding to List Events"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/showsSpinnerWhileEmpty"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CPListTemplate"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPListTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPListTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.carplay/documentation/CarPlay"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-List-Template",
+              "identifiers": [
+                "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/init(title:sections:)",
+                "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/init(title:sections:assistantCellConfiguration:)"
+              ],
+              "title": "Creating a List Template"
+            },
+            {
+              "anchor": "Managing-Sections",
+              "identifiers": [
+                "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/maximumSectionCount",
+                "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/sectionCount",
+                "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/sections",
+                "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/updateSections(_:)",
+                "doc://com.apple.carplay/documentation/CarPlay/CPListSection"
+              ],
+              "title": "Managing Sections"
+            },
+            {
+              "anchor": "Managing-the-Assistant-Cell",
+              "identifiers": [
+                "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/assistantCellConfiguration",
+                "doc://com.apple.carplay/documentation/CarPlay/CPAssistantCellConfiguration"
+              ],
+              "title": "Managing the Assistant Cell"
+            },
+            {
+              "anchor": "Managing-an-Empty-List",
+              "identifiers": [
+                "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/emptyViewTitleVariants",
+                "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/emptyViewSubtitleVariants"
+              ],
+              "title": "Managing an Empty List"
+            },
+            {
+              "anchor": "Getting-Supplementary-Information",
+              "identifiers": [
+                "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/maximumItemCount",
+                "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/itemCount",
+                "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/indexPath(for:)",
+                "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/title"
+              ],
+              "title": "Getting Supplementary Information"
+            },
+            {
+              "anchor": "Responding-to-List-Events",
+              "identifiers": [
+                "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/delegate",
+                "doc://com.apple.carplay/documentation/CarPlay/CPListTemplateDelegate"
+              ],
+              "title": "Responding to List Events"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.carplay/documentation/CarPlay/CPListTemplate/showsSpinnerWhileEmpty"
+              ],
+              "title": "Instance Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.carplay/documentation/CarPlay/CPTemplate"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.carplay/documentation/CarPlay/CPBarButtonProviding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "General-Purpose-Templates",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.carplay/documentation/CarPlay/CPGridTemplate",
+                "doc://com.apple.carplay/documentation/CarPlay/CPTabBarTemplate",
+                "doc://com.apple.carplay/documentation/CarPlay/CPTemplate",
+                "doc://com.apple.carplay/documentation/CarPlay/CPBarButtonProviding"
+              ],
+              "title": "General Purpose Templates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "Mac Catalyst"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CPListTemplate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplate",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)CPTemplate",
+                    "text": "CPTemplate"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1maximumItemCount/title",
+          "value": "maximumItemCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1maximumItemCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maximumItemCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1assistantCellConfiguration/title",
+          "value": "assistantCellConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1assistantCellConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "assistantCellConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1sections/title",
+          "value": "sections"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1sections/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sections"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPSelectableListItem/title",
+          "value": "CPSelectableListItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPSelectableListItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPSelectableListItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPSelectableListItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPSelectableListItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1init(title:sections:)/title",
+          "value": "initWithTitle:sections:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1init(title:sections:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithTitle:sections:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPInterfaceController~1pushTemplate(_:animated:completion:)/title",
+          "value": "pushTemplate:animated:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPInterfaceController~1pushTemplate(_:animated:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pushTemplate:animated:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPAssistantCellConfiguration/title",
+          "value": "CPAssistantCellConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPAssistantCellConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPAssistantCellConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPAssistantCellConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPAssistantCellConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPGridTemplate/title",
+          "value": "CPGridTemplate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPGridTemplate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPGridTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPGridTemplate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPGridTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListItem/title",
+          "value": "CPListItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPListItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPListItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1emptyViewTitleVariants/title",
+          "value": "emptyViewTitleVariants"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1emptyViewTitleVariants/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "emptyViewTitleVariants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTabBarTemplate/title",
+          "value": "CPTabBarTemplate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTabBarTemplate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTabBarTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTabBarTemplate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTabBarTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1sectionCount/title",
+          "value": "sectionCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1sectionCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sectionCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListSection/title",
+          "value": "CPListSection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListSection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPListSection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListSection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPListSection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1indexPath(for:)/title",
+          "value": "indexPathForItem:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1indexPath(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "indexPathForItem:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPBarButtonProviding/title",
+          "value": "CPBarButtonProviding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPBarButtonProviding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPBarButtonProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPBarButtonProviding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPBarButtonProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1init(title:sections:assistantCellConfiguration:)/title",
+          "value": "initWithTitle:sections:assistantCellConfiguration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1init(title:sections:assistantCellConfiguration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithTitle:sections:assistantCellConfiguration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1updateSections(_:)/title",
+          "value": "updateSections:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1updateSections(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateSections:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1itemCount/title",
+          "value": "itemCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1itemCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "itemCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1showsSpinnerWhileEmpty/title",
+          "value": "showsSpinnerWhileEmpty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1showsSpinnerWhileEmpty/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "showsSpinnerWhileEmpty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplate/title",
+          "value": "CPTemplate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate/title",
+          "value": "CPListTemplate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPListTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPListTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplateItem/title",
+          "value": "CPListTemplateItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplateItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPListTemplateItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplateItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPListTemplateItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1emptyViewSubtitleVariants/title",
+          "value": "emptyViewSubtitleVariants"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1emptyViewSubtitleVariants/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "emptyViewSubtitleVariants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListImageRowItem/title",
+          "value": "CPListImageRowItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListImageRowItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPListImageRowItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListImageRowItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPListImageRowItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPMessageListItem/title",
+          "value": "CPMessageListItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPMessageListItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPMessageListItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPMessageListItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPMessageListItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1title/title",
+          "value": "title"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1title/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "title"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPSessionConfiguration/title",
+          "value": "CPSessionConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPSessionConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPSessionConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPSessionConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPSessionConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1maximumSectionCount/title",
+          "value": "maximumSectionCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplate~1maximumSectionCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maximumSectionCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplateDelegate/title",
+          "value": "CPListTemplateDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplateDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPListTemplateDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListTemplateDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPListTemplateDelegate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/carplay/cplisttemplate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/carplay/cplisttemplate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

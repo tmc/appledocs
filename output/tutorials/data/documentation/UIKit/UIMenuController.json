@@ -1,0 +1,3449 @@
+{
+  "abstract": [
+    {
+      "text": "The menu interface for the Cut, Copy, Paste, Select, Select All, and Delete commands.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.uikit/documentation/UIKit/UIEditMenuInteraction",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIMenuController"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UIMenuController",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UIMenuController"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIMenuController"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "16.0",
+        "introducedAt": "3.0",
+        "message": "UIMenuController is deprecated. Use UIEditMenuInteraction instead.",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "16.0",
+        "introducedAt": "3.0",
+        "message": "UIMenuController is deprecated. Use UIEditMenuInteraction instead.",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "16.0",
+        "introducedAt": "13.1",
+        "message": "UIMenuController is deprecated. Use UIEditMenuInteraction instead.",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "1.0",
+        "introducedAt": "1.0",
+        "message": "UIMenuController is deprecated. Use UIEditMenuInteraction instead.",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UIMenuController"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIMenuController"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The singleton ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance is referred to as the editing menu. When you make this menu visible, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " positions it relative to a target rectangle on the screen; this rectangle usually defines a selection. The menu appears above the target rectangle or, if there isn’t enough space for it, below it. The menu’s pointer is placed at the center of the top or bottom of the target rectangle, as appropriate. Be sure to set the tracking rectangle before you make the menu visible. You’re also responsible for detecting, tracking, and displaying selections.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " informal protocol declares methods that are invoked when the user taps a menu command. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/canPerformAction(_:withSender:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is also related to the editing menu. A responder implements this method to enable and disable commands of the editing menu just before the menu is displayed. You can force the menu commands enabled state to update by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuController/update()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also provide your own menu items via the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuController/menuItems",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. When you modify the menu items, you can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuController/update()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to force the menu to update its display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAcceleration": {
+      "abstract": [
+        {
+          "text": "An acceleration event that represents immediate, three-dimensional acceleration data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UIAcceleration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAcceleration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIAcceleration",
+      "type": "topic",
+      "url": "/documentation/uikit/uiacceleration"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccelerometer": {
+      "abstract": [
+        {
+          "text": "An object that lets you register to receive acceleration-related data from the onboard hardware.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UIAccelerometer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccelerometer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIAccelerometer",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccelerometer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActionSheet": {
+      "abstract": [
+        {
+          "text": "A view that presents a set of alternatives for how to proceed with a task.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActionSheet"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActionSheet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIActionSheet"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActionSheet",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactionsheet"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAlertView": {
+      "abstract": [
+        {
+          "text": "A view that displays an alert message.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAlertView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAlertView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAlertView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAlertView",
+      "type": "topic",
+      "url": "/documentation/uikit/uialertview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentMenuViewController": {
+      "abstract": [
+        {
+          "text": "A list of all the available document providers for a given file type and mode, in addition to custom menu items that you add.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocumentMenuViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentMenuViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocumentMenuViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentMenuViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentmenuviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIEditMenuInteraction": {
+      "abstract": [
+        {
+          "text": "An interaction that provides edit operations using a menu.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIEditMenuInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIEditMenuInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIEditMenuInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIEditMenuInteraction",
+      "type": "topic",
+      "url": "/documentation/uikit/uieditmenuinteraction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILocalNotification": {
+      "abstract": [
+        {
+          "text": "A notification that an app can schedule for presentation at a specific date and time.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILocalNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILocalNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UILocalNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "UILocalNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uilocalnotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenuController": {
+      "abstract": [
+        {
+          "text": "The menu interface for the Cut, Copy, Paste, Select, Select All, and Delete commands.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIMenuController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIMenuController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIMenuController",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenucontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenuController/ArrowDirection-swift.enum": {
+      "abstract": [
+        {
+          "text": "The direction the arrow of the editing menu is pointing.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArrowDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuController/ArrowDirection-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArrowDirection"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIMenuController.ArrowDirection",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenucontroller/arrowdirection-swift.enum"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenuController/arrowDirection-swift.property": {
+      "abstract": [
+        {
+          "text": "The direction the arrow of the editing menu is pointing.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "arrowDirection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIMenuController",
+          "text": "UIMenuController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIMenuControllerArrowDirection",
+          "text": "ArrowDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuController/arrowDirection-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "arrowDirection"
+        }
+      ],
+      "role": "symbol",
+      "title": "arrowDirection",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenucontroller/arrowdirection-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenuController/didHideMenuNotification": {
+      "abstract": [
+        {
+          "text": "Posted by the menu controller just after it hides the menu.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didHideMenuNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuController/didHideMenuNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIMenuControllerDidHideMenuNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "didHideMenuNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenucontroller/didhidemenunotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenuController/didShowMenuNotification": {
+      "abstract": [
+        {
+          "text": "Posted by the menu controller just after it shows the menu.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didShowMenuNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuController/didShowMenuNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIMenuControllerDidShowMenuNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "didShowMenuNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenucontroller/didshowmenunotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenuController/hideMenu()": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hideMenu"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuController/hideMenu()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hideMenu"
+        }
+      ],
+      "role": "symbol",
+      "title": "hideMenu()",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenucontroller/hidemenu()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenuController/hideMenu(from:)": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hideMenu"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuController/hideMenu(from:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hideMenuFromView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "hideMenu(from:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenucontroller/hidemenu(from:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenuController/isMenuVisible": {
+      "abstract": [
+        {
+          "text": "The visibility of the editing menu.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isMenuVisible"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuController/isMenuVisible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "menuVisible"
+        }
+      ],
+      "role": "symbol",
+      "title": "isMenuVisible",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenucontroller/ismenuvisible"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenuController/menuFrame": {
+      "abstract": [
+        {
+          "text": "Returns the frame of the editing menu.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "menuFrame"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuController/menuFrame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "menuFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "menuFrame",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenucontroller/menuframe"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenuController/menuFrameDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "Posted when the frame of a visible menu changes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "menuFrameDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuController/menuFrameDidChangeNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIMenuControllerMenuFrameDidChangeNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "menuFrameDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenucontroller/menuframedidchangenotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenuController/menuItems": {
+      "abstract": [
+        {
+          "text": "The custom menu items for the editing menu.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "menuItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIMenuItem",
+          "text": "UIMenuItem"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuController/menuItems",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "menuItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "menuItems",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenucontroller/menuitems"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenuController/setMenuVisible(_:animated:)": {
+      "abstract": [
+        {
+          "text": "Shows or hides the editing menu, optionally animating the action.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMenuVisible"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuController/setMenuVisible(_:animated:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setMenuVisible:animated:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setMenuVisible(_:animated:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenucontroller/setmenuvisible(_:animated:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenuController/setTargetRect(_:in:)": {
+      "abstract": [
+        {
+          "text": "Sets the area in a view above or below which the editing menu is positioned.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTargetRect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuController/setTargetRect(_:in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setTargetRect:inView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setTargetRect(_:in:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenucontroller/settargetrect(_:in:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenuController/shared": {
+      "abstract": [
+        {
+          "text": "Returns the menu controller.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIMenuController",
+          "text": "UIMenuController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuController/shared",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sharedMenuController"
+        }
+      ],
+      "role": "symbol",
+      "title": "shared",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenucontroller/shared"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenuController/showMenu(from:rect:)": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showMenu"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "rect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuController/showMenu(from:rect:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showMenuFromView:rect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "showMenu(from:rect:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenucontroller/showmenu(from:rect:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenuController/update()": {
+      "abstract": [
+        {
+          "text": "Updates the appearance and enabled state of menu commands.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuController/update()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "update"
+        }
+      ],
+      "role": "symbol",
+      "title": "update()",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenucontroller/update()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenuController/willHideMenuNotification": {
+      "abstract": [
+        {
+          "text": "Posted by the menu controller just before it hides the menu.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "willHideMenuNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuController/willHideMenuNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIMenuControllerWillHideMenuNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "willHideMenuNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenucontroller/willhidemenunotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenuController/willShowMenuNotification": {
+      "abstract": [
+        {
+          "text": "Posted by the menu controller just before it shows the menu.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "willShowMenuNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuController/willShowMenuNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIMenuControllerWillShowMenuNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "willShowMenuNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenucontroller/willshowmenunotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenuItem": {
+      "abstract": [
+        {
+          "text": "A custom item in the editing menu managed by the menu controller.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIMenuItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIMenuItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIMenuItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenuitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableUserNotificationAction": {
+      "abstract": [
+        {
+          "text": "A modifiable version of the user notification action class.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIMutableUserNotificationAction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableUserNotificationAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIMutableUserNotificationAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIMutableUserNotificationAction",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutableusernotificationaction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableUserNotificationCategory": {
+      "abstract": [
+        {
+          "text": "Information about custom actions that your app can perform in response to a local or push notification.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIMutableUserNotificationCategory"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableUserNotificationCategory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIMutableUserNotificationCategory"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIMutableUserNotificationCategory",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutableusernotificationcategory"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPopoverController": {
+      "abstract": [
+        {
+          "text": "An object that manages the presentation of content in a popover.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPopoverController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPopoverController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPopoverController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPopoverController",
+      "type": "topic",
+      "url": "/documentation/uikit/uipopovercontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPreviewAction": {
+      "abstract": [
+        {
+          "text": "A preview action, or ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "peek quick action",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": ", that displays below a peek when a user swipes the peek upward.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPreviewAction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPreviewAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPreviewAction",
+      "type": "topic",
+      "url": "/documentation/uikit/uipreviewaction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPreviewActionGroup": {
+      "abstract": [
+        {
+          "text": "A group of one or more child quick actions, each an instance of the preview action class.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPreviewActionGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewActionGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPreviewActionGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPreviewActionGroup",
+      "type": "topic",
+      "url": "/documentation/uikit/uipreviewactiongroup"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder": {
+      "abstract": [
+        {
+          "text": "An abstract interface for responding to and handling events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIResponder"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIResponder"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIResponder",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder/canPerformAction(_:withSender:)": {
+      "abstract": [
+        {
+          "text": "Requests the receiving responder to enable or disable the specified command in the user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canPerformAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withSender"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/canPerformAction(_:withSender:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canPerformAction:withSender:"
+        }
+      ],
+      "role": "symbol",
+      "title": "canPerformAction(_:withSender:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder/canperformaction(_:withsender:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions": {
+      "abstract": [
+        {
+          "text": "A set of standard methods that apps can adopt to support editing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIResponderStandardEditActions"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIResponderStandardEditActions"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIResponderStandardEditActions",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponderstandardeditactions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchDisplayController": {
+      "abstract": [
+        {
+          "text": "An object that manages the display of a search bar, along with a table view that displays search results.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchDisplayController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchDisplayController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchDisplayController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchDisplayController",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchdisplaycontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIStoryboardPopoverSegue": {
+      "abstract": [
+        {
+          "text": "A specific type of segue for presenting content in a popover.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIStoryboardPopoverSegue"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStoryboardPopoverSegue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIStoryboardPopoverSegue"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIStoryboardPopoverSegue",
+      "type": "topic",
+      "url": "/documentation/uikit/uistoryboardpopoversegue"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUserNotificationAction": {
+      "abstract": [
+        {
+          "text": "A custom action that your app can perform in response to a remote or local notification.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIUserNotificationAction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserNotificationAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIUserNotificationAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIUserNotificationAction",
+      "type": "topic",
+      "url": "/documentation/uikit/uiusernotificationaction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUserNotificationCategory": {
+      "abstract": [
+        {
+          "text": "Information about custom actions that your app can perform in response to a local or push notification.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIUserNotificationCategory"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserNotificationCategory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIUserNotificationCategory"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIUserNotificationCategory",
+      "type": "topic",
+      "url": "/documentation/uikit/uiusernotificationcategory"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUserNotificationSettings": {
+      "abstract": [
+        {
+          "text": "The types of notifications that can be displayed to the user by your app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIUserNotificationSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserNotificationSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIUserNotificationSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIUserNotificationSettings",
+      "type": "topic",
+      "url": "/documentation/uikit/uiusernotificationsettings"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Deprecated-classes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIActionSheet",
+        "doc://com.apple.uikit/documentation/UIKit/UIAlertView",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentMenuViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UILocalNotification",
+        "doc://com.apple.uikit/documentation/UIKit/UIMenuItem",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableUserNotificationAction",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableUserNotificationCategory",
+        "doc://com.apple.uikit/documentation/UIKit/UIPopoverController",
+        "doc://com.apple.uikit/documentation/UIKit/UIPreviewAction",
+        "doc://com.apple.uikit/documentation/UIKit/UIPreviewActionGroup",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchDisplayController",
+        "doc://com.apple.uikit/documentation/UIKit/UIStoryboardPopoverSegue",
+        "doc://com.apple.uikit/documentation/UIKit/UIUserNotificationAction",
+        "doc://com.apple.uikit/documentation/UIKit/UIUserNotificationCategory",
+        "doc://com.apple.uikit/documentation/UIKit/UIUserNotificationSettings"
+      ],
+      "title": "Deprecated classes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-the-menu-controller-instance",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIMenuController/shared"
+      ],
+      "title": "Getting the menu controller instance"
+    },
+    {
+      "anchor": "Showing-and-hiding-the-menu",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIMenuController/showMenu(from:rect:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIMenuController/hideMenu(from:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIMenuController/hideMenu()",
+        "doc://com.apple.uikit/documentation/UIKit/UIMenuController/isMenuVisible",
+        "doc://com.apple.uikit/documentation/UIKit/UIMenuController/setMenuVisible(_:animated:)"
+      ],
+      "title": "Showing and hiding the menu"
+    },
+    {
+      "anchor": "Positioning-the-menu",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIMenuController/menuFrame",
+        "doc://com.apple.uikit/documentation/UIKit/UIMenuController/arrowDirection-swift.property",
+        "doc://com.apple.uikit/documentation/UIKit/UIMenuController/ArrowDirection-swift.enum",
+        "doc://com.apple.uikit/documentation/UIKit/UIMenuController/setTargetRect(_:in:)"
+      ],
+      "title": "Positioning the menu"
+    },
+    {
+      "anchor": "Updating-the-menu",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIMenuController/update()"
+      ],
+      "title": "Updating the menu"
+    },
+    {
+      "anchor": "Customizing-menu-items",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIMenuController/menuItems"
+      ],
+      "title": "Customizing menu items"
+    },
+    {
+      "anchor": "Notifications",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIMenuController/willShowMenuNotification",
+        "doc://com.apple.uikit/documentation/UIKit/UIMenuController/didShowMenuNotification",
+        "doc://com.apple.uikit/documentation/UIKit/UIMenuController/willHideMenuNotification",
+        "doc://com.apple.uikit/documentation/UIKit/UIMenuController/didHideMenuNotification",
+        "doc://com.apple.uikit/documentation/UIKit/UIMenuController/menuFrameDidChangeNotification"
+      ],
+      "title": "Notifications"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "16.0",
+              "introducedAt": "3.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "16.0",
+              "introducedAt": "3.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "16.0",
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "1.0",
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UIMenuController"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Getting-the-menu-controller-instance",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIMenuController/shared"
+              ],
+              "title": "Getting the menu controller instance"
+            },
+            {
+              "anchor": "Showing-and-hiding-the-menu",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIMenuController/showMenu(from:rect:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIMenuController/hideMenu(from:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIMenuController/hideMenu()",
+                "doc://com.apple.uikit/documentation/UIKit/UIMenuController/isMenuVisible",
+                "doc://com.apple.uikit/documentation/UIKit/UIMenuController/setMenuVisible(_:animated:)"
+              ],
+              "title": "Showing and hiding the menu"
+            },
+            {
+              "anchor": "Positioning-the-menu",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIMenuController/menuFrame",
+                "doc://com.apple.uikit/documentation/UIKit/UIMenuController/arrowDirection-swift.property",
+                "doc://com.apple.uikit/documentation/UIKit/UIMenuController/ArrowDirection-swift.enum",
+                "doc://com.apple.uikit/documentation/UIKit/UIMenuController/setTargetRect(_:in:)"
+              ],
+              "title": "Positioning the menu"
+            },
+            {
+              "anchor": "Updating-the-menu",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIMenuController/update()"
+              ],
+              "title": "Updating the menu"
+            },
+            {
+              "anchor": "Customizing-menu-items",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIMenuController/menuItems"
+              ],
+              "title": "Customizing menu items"
+            },
+            {
+              "anchor": "Notifications",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIMenuController/willShowMenuNotification",
+                "doc://com.apple.uikit/documentation/UIKit/UIMenuController/didShowMenuNotification",
+                "doc://com.apple.uikit/documentation/UIKit/UIMenuController/willHideMenuNotification",
+                "doc://com.apple.uikit/documentation/UIKit/UIMenuController/didHideMenuNotification",
+                "doc://com.apple.uikit/documentation/UIKit/UIMenuController/menuFrameDidChangeNotification"
+              ],
+              "title": "Notifications"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Deprecated-classes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIAcceleration",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccelerometer",
+                "doc://com.apple.uikit/documentation/UIKit/UIActionSheet",
+                "doc://com.apple.uikit/documentation/UIKit/UIAlertView",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentMenuViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UILocalNotification",
+                "doc://com.apple.uikit/documentation/UIKit/UIMenuItem",
+                "doc://com.apple.uikit/documentation/UIKit/UIMutableUserNotificationAction",
+                "doc://com.apple.uikit/documentation/UIKit/UIMutableUserNotificationCategory",
+                "doc://com.apple.uikit/documentation/UIKit/UIPopoverController",
+                "doc://com.apple.uikit/documentation/UIKit/UIPreviewAction",
+                "doc://com.apple.uikit/documentation/UIKit/UIPreviewActionGroup",
+                "doc://com.apple.uikit/documentation/UIKit/UISearchDisplayController",
+                "doc://com.apple.uikit/documentation/UIKit/UIStoryboardPopoverSegue",
+                "doc://com.apple.uikit/documentation/UIKit/UIUserNotificationAction"
+              ],
+              "title": "Deprecated classes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UIMenuController"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIEditMenuInteraction",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1menuFrame/title",
+          "value": "menuFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1menuFrame/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "menuFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILocalNotification/title",
+          "value": "UILocalNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILocalNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILocalNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILocalNotification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILocalNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1menuFrameDidChangeNotification/title",
+          "value": "UIMenuControllerMenuFrameDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1menuFrameDidChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuControllerMenuFrameDidChangeNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions/title",
+          "value": "UIResponderStandardEditActions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIResponderStandardEditActions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIResponderStandardEditActions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1ArrowDirection-swift.enum/title",
+          "value": "UIMenuControllerArrowDirection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1ArrowDirection-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuControllerArrowDirection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1ArrowDirection-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuControllerArrowDirection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController/title",
+          "value": "UIMenuController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActionSheet/title",
+          "value": "UIActionSheet"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActionSheet/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActionSheet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActionSheet/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActionSheet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1hideMenu(from:)/title",
+          "value": "hideMenuFromView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1hideMenu(from:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "hideMenuFromView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1canPerformAction(_:withSender:)/title",
+          "value": "canPerformAction:withSender:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1canPerformAction(_:withSender:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "canPerformAction:withSender:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1isMenuVisible/title",
+          "value": "menuVisible"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1isMenuVisible/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "menuVisible"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1arrowDirection-swift.property/title",
+          "value": "arrowDirection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1arrowDirection-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "arrowDirection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1menuItems/title",
+          "value": "menuItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1menuItems/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "menuItems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserNotificationAction/title",
+          "value": "UIUserNotificationAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserNotificationAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUserNotificationAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserNotificationAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUserNotificationAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1didHideMenuNotification/title",
+          "value": "UIMenuControllerDidHideMenuNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1didHideMenuNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuControllerDidHideMenuNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentMenuViewController/title",
+          "value": "UIDocumentMenuViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentMenuViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentMenuViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentMenuViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentMenuViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewActionGroup/title",
+          "value": "UIPreviewActionGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewActionGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPreviewActionGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewActionGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPreviewActionGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1setMenuVisible(_:animated:)/title",
+          "value": "setMenuVisible:animated:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1setMenuVisible(_:animated:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setMenuVisible:animated:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuItem/title",
+          "value": "UIMenuItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1didShowMenuNotification/title",
+          "value": "UIMenuControllerDidShowMenuNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1didShowMenuNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuControllerDidShowMenuNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1setTargetRect(_:in:)/title",
+          "value": "setTargetRect:inView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1setTargetRect(_:in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setTargetRect:inView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1shared/title",
+          "value": "sharedMenuController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1shared/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sharedMenuController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEditMenuInteraction/title",
+          "value": "UIEditMenuInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEditMenuInteraction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIEditMenuInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEditMenuInteraction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIEditMenuInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1hideMenu()/title",
+          "value": "hideMenu"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1hideMenu()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "hideMenu"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStoryboardPopoverSegue/title",
+          "value": "UIStoryboardPopoverSegue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStoryboardPopoverSegue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStoryboardPopoverSegue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStoryboardPopoverSegue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStoryboardPopoverSegue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewAction/title",
+          "value": "UIPreviewAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPreviewAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPreviewAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1update()/title",
+          "value": "update"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1update()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "update"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1willHideMenuNotification/title",
+          "value": "UIMenuControllerWillHideMenuNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1willHideMenuNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuControllerWillHideMenuNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMutableUserNotificationAction/title",
+          "value": "UIMutableUserNotificationAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMutableUserNotificationAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMutableUserNotificationAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMutableUserNotificationAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMutableUserNotificationAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMutableUserNotificationCategory/title",
+          "value": "UIMutableUserNotificationCategory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMutableUserNotificationCategory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMutableUserNotificationCategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMutableUserNotificationCategory/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMutableUserNotificationCategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserNotificationSettings/title",
+          "value": "UIUserNotificationSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserNotificationSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUserNotificationSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserNotificationSettings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUserNotificationSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1willShowMenuNotification/title",
+          "value": "UIMenuControllerWillShowMenuNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1willShowMenuNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuControllerWillShowMenuNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPopoverController/title",
+          "value": "UIPopoverController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPopoverController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPopoverController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPopoverController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPopoverController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserNotificationCategory/title",
+          "value": "UIUserNotificationCategory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserNotificationCategory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUserNotificationCategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserNotificationCategory/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUserNotificationCategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAlertView/title",
+          "value": "UIAlertView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAlertView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAlertView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAlertView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAlertView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1showMenu(from:rect:)/title",
+          "value": "showMenuFromView:rect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController~1showMenu(from:rect:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "showMenuFromView:rect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder/title",
+          "value": "UIResponder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchDisplayController/title",
+          "value": "UISearchDisplayController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchDisplayController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchDisplayController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchDisplayController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchDisplayController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uimenucontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uimenucontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

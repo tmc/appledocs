@@ -1,0 +1,615 @@
+{
+  "abstract": [
+    {
+      "text": "An opaque token that represents the current user’s iCloud Drive Documents identity.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/file_system",
+        "doc://com.apple.documentation/documentation/foundation/nsfilemanager"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/icloud",
+        "doc://com.apple.documentation/documentation/foundation/nsfilemanager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1408036-ubiquityidentitytoken"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1408036,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSFileManager(py)ubiquityIdentityToken",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSFileManager"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "6.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "6.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.8",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "ubiquityIdentityToken"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": "(nullable, readonly, copy) "
+            },
+            {
+              "kind": "keyword",
+              "text": "id"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSCopying",
+              "text": "NSCopying"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSCoding",
+              "text": "NSCoding"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "identifier",
+              "text": "ubiquityIdentityToken"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iCloud Drive Documents, when iCloud is available, this property contains an opaque object representing the identity of the current user. If iCloud is unavailable or there is no logged-in user, the value of this property is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Accessing the value of this property is relatively fast, so you can check the value at launch time from your app’s main thread.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the token in this property, together with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquityidentitydidchangenotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notification, to detect when the user logs in or out of iCloud and to detect changes to the active iCloud account. When the user logs in with a different iCloud account, the identity token changes, and the system posts the notification. If you stored or archived the previous token, compare that token to the newly obtained one using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject/1418795-isequal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to determine if the users are the same or different. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Accessing the token in this property doesn’t connect your app to its ubiquity containers. To establish access to a ubiquity container, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1411653-urlforubiquitycontaineridentifie",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. In macOS, you can instead use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, which establishes access automatically.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CloudKit clients should not use this token as a way to identify whether the iCloud account is logged in. Instead, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKContainer/accountStatus(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKContainer/fetchUserRecordID(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDocument",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKContainer/accountStatus(completionHandler:)": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "accountStatus(completionHandler:)"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKContainer/accountStatus(completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accountStatus(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckcontainer/accountstatus(completionhandler:)"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKContainer/fetchUserRecordID(completionHandler:)": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchUserRecordID(completionHandler:)"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKContainer/fetchUserRecordID(completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fetchUserRecordID(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckcontainer/fetchuserrecordid(completionhandler:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File System",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/icloud": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/icloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "iCloud",
+      "type": "topic",
+      "url": "/documentation/foundation/icloud"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilemanager": {
+      "abstract": [
+        {
+          "text": "A convenient interface to the contents of the file system, and the primary means of interacting with it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileManager",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1408036-ubiquityidentitytoken": {
+      "abstract": [
+        {
+          "text": "An opaque token that represents the current user’s iCloud Drive Documents identity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1408036-ubiquityidentitytoken",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ubiquityIdentityToken",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilemanager/1408036-ubiquityidentitytoken"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1409696-evictubiquitousitematurl": {
+      "abstract": [
+        {
+          "text": "Removes the local copy of the specified item that’s stored in iCloud.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "evictUbiquitousItemAtURL:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1409696-evictubiquitousitematurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "evictUbiquitousItemAtURL:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilemanager/1409696-evictubiquitousitematurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1410218-isubiquitousitematurl": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean indicating whether the item is targeted for storage in iCloud.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isUbiquitousItemAtURL:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1410218-isubiquitousitematurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isUbiquitousItemAtURL:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilemanager/1410218-isubiquitousitematurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1410377-startdownloadingubiquitousitemat": {
+      "abstract": [
+        {
+          "text": "Starts downloading (if necessary) the specified item to the local system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "startDownloadingUbiquitousItemAtURL:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1410377-startdownloadingubiquitousitemat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startDownloadingUbiquitousItemAtURL:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilemanager/1410377-startdownloadingubiquitousitemat"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1411577-urlforpublishingubiquitousitemat": {
+      "abstract": [
+        {
+          "text": "Returns a URL that can be emailed to users to allow them to download a copy of a flat file item from iCloud.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLForPublishingUbiquitousItemAtURL:expirationDate:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1411577-urlforpublishingubiquitousitemat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLForPublishingUbiquitousItemAtURL:expirationDate:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilemanager/1411577-urlforpublishingubiquitousitemat"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1411653-urlforubiquitycontaineridentifie": {
+      "abstract": [
+        {
+          "text": "Returns the URL for the iCloud container associated with the specified identifier and establishes access to that container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLForUbiquityContainerIdentifier:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1411653-urlforubiquitycontaineridentifie",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLForUbiquityContainerIdentifier:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilemanager/1411653-urlforubiquitycontaineridentifie"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1413989-setubiquitous": {
+      "abstract": [
+        {
+          "text": "Indicates whether the item at the specified URL should be stored in iCloud.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setUbiquitous:itemAtURL:destinationURL:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1413989-setubiquitous",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setUbiquitous:itemAtURL:destinationURL:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilemanager/1413989-setubiquitous"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquityidentitydidchangenotification": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquityidentitydidchangenotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUbiquityIdentityDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquityidentitydidchangenotification"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418956-nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject/1418795-isequal": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqual:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject/1418795-isequal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqual:",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418956-nsobject/1418795-isequal"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1411653-urlforubiquitycontaineridentifie",
+        "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1410218-isubiquitousitematurl",
+        "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1413989-setubiquitous",
+        "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1410377-startdownloadingubiquitousitemat",
+        "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1409696-evictubiquitousitematurl",
+        "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1411577-urlforpublishingubiquitousitemat"
+      ],
+      "title": "Managing iCloud-Based Items"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsfilemanager/1408036-ubiquityidentitytoken"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/filemanager/1408036-ubiquityidentitytoken"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

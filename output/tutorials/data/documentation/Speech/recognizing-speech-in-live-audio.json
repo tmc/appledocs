@@ -1,0 +1,2027 @@
+{
+  "abstract": [
+    {
+      "text": "Perform speech recognition on audio coming from the microphone of an iOS device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.speech/documentation/Speech"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.speech/documentation/Speech/recognizing-speech-in-live-audio"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Speech"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Recognizing speech in live audio"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample project demonstrates how to use the Speech framework to recognize words from captured audio. When the user taps the Start Recording button, the SpokenWord app begins capturing audio from the device’s microphone. It routes that audio to the APIs of the Speech framework, which process the audio and send back any recognized text. The app displays the recognized text in its text view, continuously updating that text until you tap the Stop Recording button. The sample app doesn’t run in Simulator, so you need to run it on a physical device with iOS 17 or later, or iPadOS 17 or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "sample-screens_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Apps need to include the ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSSpeechRecognitionUsageDescription",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key in their ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file and request authorization to perform speech recognition. For information about requesting authorization, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.speech/documentation/Speech/asking-permission-to-use-speech-recognition",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Customize-the-language-model",
+          "level": 3,
+          "text": "Customize the language model",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Developers can enhance the ",
+              "type": "text"
+            },
+            {
+              "code": "SFSpeechRecognizer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for specific use cases and applications by customizing its language model. The SpokenWord app uses language model customization to improve accuracy when recognizing certain chess moves. The high-level steps in this process are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Training data generation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Training data preparation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Request configuration",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project includes a command-line utility named ",
+              "type": "text"
+            },
+            {
+              "code": "datagenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that produces a training data file. The project includes a sample output file in the SpokenWord app bundle at ",
+              "type": "text"
+            },
+            {
+              "code": "customlm/en_US/CustomLMData.bin",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "code": "datagenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " utility uses classes that the Speech framework defines to generate data, starting with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.speech/documentation/Speech/SFCustomLanguageModelData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which the ",
+              "type": "text"
+            },
+            {
+              "code": "ResultBuilder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " DSL builds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let data = SFCustomLanguageModelData(locale: Locale(identifier: \"en_US\"), identifier: \"com.apple.SpokenWord\", version: \"1.0\") {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Training data samples can include exact phrases that the app is likely to encounter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "SFCustomLanguageModelData.PhraseCount(phrase: \"Play the Albin counter gambit\", count: 10)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app can also define phrases using templates, which expand automatically to generate large amounts of data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "SFCustomLanguageModelData.PhraseCountsFromTemplates(classes: [",
+            "    \"piece\": [\"pawn\", \"rook\", \"knight\", \"bishop\", \"queen\", \"king\"],",
+            "    \"royal\": [\"queen\", \"king\"],",
+            "    \"rank\": Array(1...8).map({ String($0) })",
+            "]) {",
+            "    SFCustomLanguageModelData.TemplatePhraseCountGenerator.Template(",
+            "        \"<piece> to <royal> <piece> <rank>\",",
+            "        count: 10_000",
+            "    )",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app that uses specialized terminology can also define custom vocabulary, complete with pronunciation information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "SFCustomLanguageModelData.CustomPronunciation(grapheme: \"Winawer\", phonemes: [\"w I n aU @r\"])",
+            "SFCustomLanguageModelData.CustomPronunciation(grapheme: \"Tartakower\", phonemes: [\"t A r t @ k aU @r\"])",
+            "",
+            "SFCustomLanguageModelData.PhraseCount(phrase: \"Play the Winawer variation\", count: 10)",
+            "SFCustomLanguageModelData.PhraseCount(phrase: \"Play the Tartakower\", count: 10)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Configure-the-microphone-using-AVFoundation",
+          "level": 3,
+          "text": "Configure the microphone using AVFoundation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The SpokenWord app uses AVFoundation to communicate with the device’s microphone. Specifically, the app configures the shared ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to manage the app’s audio interactions with the rest of the system, and it configures an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioEngine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to retrieve the microphone input.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private let audioEngine = AVAudioEngine()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tapping the app’s Start Recording button retrieves the shared ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, configures it for recording, and makes it the active session. Activating the session lets the system know that the app needs the microphone resource. If that resource is unavailable — perhaps because the user is talking on the phone — the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession/setActive(_:options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method throws an exception.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Configure the audio session for the app.",
+            "let audioSession = AVAudioSession.sharedInstance()",
+            "try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)",
+            "try audioSession.setActive(true, options: .notifyOthersOnDeactivation)",
+            "let inputNode = audioEngine.inputNode"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the session is active, the app retrieves the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioInputNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object from its audio engine and stores it in the local ",
+              "type": "text"
+            },
+            {
+              "code": "inputNode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable. The input node represents the current audio input path, which can be the device’s built-in microphone or a microphone connected to a set of headphones.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To begin recording, the app installs a tap on the input node and starts up the audio engine, which begins collecting samples into an internal buffer. When a buffer is full, the audio engine calls the provided block. The app’s implementation of that block passes the samples directly to the request object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechAudioBufferRecognitionRequest/append(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, which accumulates the audio samples and delivers them to the speech recognition system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Configure the microphone input.",
+            "let recordingFormat = inputNode.outputFormat(forBus: 0)",
+            "inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in",
+            "    self.recognitionRequest?.append(buffer)",
+            "}",
+            "",
+            "audioEngine.prepare()",
+            "try audioEngine.start()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The SpokenWord app processes the training data that the ",
+              "type": "text"
+            },
+            {
+              "code": "datagenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " utility produces by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechLanguageModel/prepareCustomLanguageModel(for:clientIdentifier:configuration:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This method can have a large amount of associated latency, so the system calls it off the main thread.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Task.detached {",
+            "    do {",
+            "        let assetPath = Bundle.main.path(forResource: \"CustomLMData\", ofType: \"bin\", inDirectory: \"customlm/en_US\")!",
+            "        let assetUrl = URL(fileURLWithPath: assetPath)",
+            "        try await SFSpeechLanguageModel.prepareCustomLanguageModel(for: assetUrl,",
+            "                                                                   clientIdentifier: \"com.apple.SpokenWord\",",
+            "                                                                   configuration: self.lmConfiguration)",
+            "    } catch {",
+            "        NSLog(\"Failed to prepare custom LM: \\(error.localizedDescription)\")",
+            "    }",
+            "    await MainActor.run { self.recordButton.isEnabled = true }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-speech-recognition-request",
+          "level": 3,
+          "text": "Create the speech recognition request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To recognize speech from live audio, SpokenWord creates and configures an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechAudioBufferRecognitionRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. When it receives recognition results, the app updates its text view accordingly. The app sets the request object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechRecognitionRequest/shouldReportPartialResults",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which causes the speech recognition system to return intermediate results as they are recognized.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create and configure the speech recognition request.",
+            "recognitionRequest = SFSpeechAudioBufferRecognitionRequest()",
+            "guard let recognitionRequest = recognitionRequest else { fatalError(\"Unable to created a SFSpeechAudioBufferRecognitionRequest object\") }",
+            "recognitionRequest.shouldReportPartialResults = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The SpokenWord app then configures the request to use language model customization, using the same configuration object that the system provides earlier to ",
+              "type": "text"
+            },
+            {
+              "code": "prepareCustomLanguageModel",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The system needs to service customized requests on the device, which it enforces using the ",
+              "type": "text"
+            },
+            {
+              "code": "requiresOnDeviceRecognition",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Keep speech recognition data on device",
+            "if #available(iOS 13, *) {",
+            "    recognitionRequest.requiresOnDeviceRecognition = true",
+            "    if #available(iOS 17, *) {",
+            "        recognitionRequest.customizedLanguageModel = self.lmConfiguration",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To begin the speech recognition process, the app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechRecognizer/recognitionTask(with:resultHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. That method uses the information in the provided request object to configure the speech recognition system and to begin processing audio asynchronously. Shortly after calling it, the app begins appending audio samples to the request object. When you tap the Stop Recording button, the app stops adding samples and ends the speech recognition process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the request’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechRecognitionRequest/shouldReportPartialResults",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechRecognizer/recognitionTask(with:resultHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method executes its block periodically to deliver partial results. The app uses that block to update its text view with the text in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechRecognitionResult/bestTranscription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the result object. If it receives an error instead of a result, the app stops the recognition process altogether.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a recognition task for the speech recognition session.",
+            "// Keep a reference to the task so that it can be canceled.",
+            "recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { result, error in",
+            "    var isFinal = false",
+            "    ",
+            "    if let result = result {",
+            "        // Update the text view with the results.",
+            "        self.textView.text = result.bestTranscription.formattedString",
+            "        isFinal = result.isFinal",
+            "    }",
+            "    ",
+            "    if error != nil || isFinal {",
+            "        // Stop recognizing speech if there is a problem.",
+            "        self.audioEngine.stop()",
+            "        inputNode.removeTap(onBus: 0)",
+            "        ",
+            "        self.recognitionRequest = nil",
+            "        self.recognitionTask = nil",
+            "        ",
+            "        self.recordButton.isEnabled = true",
+            "        self.recordButton.setTitle(\"Start Recording\", for: [])",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Respond-to-availability-changes-for-speech-recognition",
+          "level": 3,
+          "text": "Respond to availability changes for speech recognition",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The availability of speech recognition services can change at any time. For some languages, speech recognition relies on Apple servers, which requires an active Internet connection. If that Internet connection is lost, an app must be ready to handle the disruption of service that can occur.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Whenever the availability of speech recognition services changes, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object notifies its delegate. SpokenWord provides a delegate object and implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechRecognizerDelegate/speechRecognizer(_:availabilityDidChange:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to respond to availability changes. When services become unavailable, the method disables the Start Recording button and updates its title. When services become available, the method reenables the button and restores its original title.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "public func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {",
+            "    if available {",
+            "        recordButton.isEnabled = true",
+            "        recordButton.setTitle(\"Start Recording\", for: [])",
+            "    } else {",
+            "        recordButton.isEnabled = false",
+            "        recordButton.setTitle(\"Recognition Not Available\", for: .disabled)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "418153d914d8/RecognizingSpeechInLiveAudio.zip": {
+      "checksum": "418153d914d85fda3b38f2e9ffffcb04078c75853a9053d7a935eecbb2e3d835a9b984d6a0fd35237e57ec30569a6b023558c825ce0b8473d8640fa8eab38170",
+      "identifier": "418153d914d8/RecognizingSpeechInLiveAudio.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/418153d914d8/RecognizingSpeechInLiveAudio.zip"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioEngine": {
+      "abstract": [
+        {
+          "text": "An object that manages a graph of audio nodes, controls playback, and configures real-time rendering constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioEngine",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioEngine",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioEngine"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioInputNode": {
+      "abstract": [
+        {
+          "text": "An object that connects to the system’s audio input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioInputNode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioInputNode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioInputNode",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioInputNode"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession": {
+      "abstract": [
+        {
+          "text": "An object that communicates to the system how you intend to use audio in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioSession",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioSession"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession/setActive(_:options:)": {
+      "abstract": [
+        {
+          "text": "Activates or deactivates your app’s audio session using the specified options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setActive"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "active"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioSession",
+          "text": "AVAudioSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVAudioSessionSetActiveOptions",
+          "text": "SetActiveOptions"
+        },
+        {
+          "kind": "text",
+          "text": " = []) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession/setActive(_:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setActive(_:options:)",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioSession/setActive(_:options:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.speech/documentation/Speech": {
+      "abstract": [
+        {
+          "text": "Perform speech recognition on live or prerecorded audio, and receive transcriptions, alternative interpretations, and confidence levels of the results.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Speech",
+      "type": "topic",
+      "url": "/documentation/speech"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFCustomLanguageModelData": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFCustomLanguageModelData"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFCustomLanguageModelData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFCustomLanguageModelData"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFCustomLanguageModelData",
+      "type": "topic",
+      "url": "/documentation/speech/sfcustomlanguagemodeldata"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFSpeechAudioBufferRecognitionRequest": {
+      "abstract": [
+        {
+          "text": "A request to recognize speech from captured audio content, such as audio from the device’s microphone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSpeechAudioBufferRecognitionRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechAudioBufferRecognitionRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSpeechAudioBufferRecognitionRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSpeechAudioBufferRecognitionRequest",
+      "type": "topic",
+      "url": "/documentation/speech/sfspeechaudiobufferrecognitionrequest"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFSpeechAudioBufferRecognitionRequest/append(_:)": {
+      "abstract": [
+        {
+          "text": "Appends audio in the PCM format to the end of the recognition request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "append"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioPCMBuffer",
+          "text": "AVAudioPCMBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechAudioBufferRecognitionRequest/append(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "appendAudioPCMBuffer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "append(_:)",
+      "type": "topic",
+      "url": "/documentation/speech/sfspeechaudiobufferrecognitionrequest/append(_:)"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFSpeechLanguageModel/prepareCustomLanguageModel(for:clientIdentifier:configuration:completion:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareCustomLanguageModel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "clientIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SFSpeechLanguageModel",
+          "text": "SFSpeechLanguageModel"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SFSpeechLanguageModelConfiguration",
+          "text": "Configuration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechLanguageModel/prepareCustomLanguageModel(for:clientIdentifier:configuration:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "prepareCustomLanguageModelForUrl:clientIdentifier:configuration:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "prepareCustomLanguageModel(for:clientIdentifier:configuration:completion:)",
+      "type": "topic",
+      "url": "/documentation/speech/sfspeechlanguagemodel/preparecustomlanguagemodel(for:clientidentifier:configuration:completion:)"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFSpeechRecognitionRequest": {
+      "abstract": [
+        {
+          "text": "An abstract class that represents a request to recognize speech from an audio source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSpeechRecognitionRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechRecognitionRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSpeechRecognitionRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSpeechRecognitionRequest",
+      "type": "topic",
+      "url": "/documentation/speech/sfspeechrecognitionrequest"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFSpeechRecognitionRequest/shouldReportPartialResults": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether you want intermediate results returned for each utterance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldReportPartialResults"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechRecognitionRequest/shouldReportPartialResults",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shouldReportPartialResults"
+        }
+      ],
+      "role": "symbol",
+      "title": "shouldReportPartialResults",
+      "type": "topic",
+      "url": "/documentation/speech/sfspeechrecognitionrequest/shouldreportpartialresults"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFSpeechRecognitionResult/bestTranscription": {
+      "abstract": [
+        {
+          "text": "The transcription with the highest confidence level.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bestTranscription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SFTranscription",
+          "text": "SFTranscription"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechRecognitionResult/bestTranscription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bestTranscription"
+        }
+      ],
+      "role": "symbol",
+      "title": "bestTranscription",
+      "type": "topic",
+      "url": "/documentation/speech/sfspeechrecognitionresult/besttranscription"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFSpeechRecognizer": {
+      "abstract": [
+        {
+          "text": "An object you use to check for the availability of the speech recognition service, and to initiate the speech recognition process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSpeechRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSpeechRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSpeechRecognizer",
+      "type": "topic",
+      "url": "/documentation/speech/sfspeechrecognizer"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFSpeechRecognizer/recognitionTask(with:resultHandler:)": {
+      "abstract": [
+        {
+          "text": "Executes the speech recognition request and delivers the results to the specified handler block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recognitionTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SFSpeechRecognitionRequest",
+          "text": "SFSpeechRecognitionRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "resultHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SFSpeechRecognitionResult",
+          "text": "SFSpeechRecognitionResult"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SFSpeechRecognitionTask",
+          "text": "SFSpeechRecognitionTask"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechRecognizer/recognitionTask(with:resultHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "recognitionTaskWithRequest:resultHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "recognitionTask(with:resultHandler:)",
+      "type": "topic",
+      "url": "/documentation/speech/sfspeechrecognizer/recognitiontask(with:resulthandler:)"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFSpeechRecognizerDelegate/speechRecognizer(_:availabilityDidChange:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the availability of its associated speech recognizer changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "speechRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SFSpeechRecognizer",
+          "text": "SFSpeechRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "availabilityDidChange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechRecognizerDelegate/speechRecognizer(_:availabilityDidChange:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "speechRecognizer:availabilityDidChange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "speechRecognizer(_:availabilityDidChange:)",
+      "type": "topic",
+      "url": "/documentation/speech/sfspeechrecognizerdelegate/speechrecognizer(_:availabilitydidchange:)"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFSpeechURLRecognitionRequest": {
+      "abstract": [
+        {
+          "text": "A request to recognize speech in a recorded audio file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSpeechURLRecognitionRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechURLRecognitionRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSpeechURLRecognitionRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSpeechURLRecognitionRequest",
+      "type": "topic",
+      "url": "/documentation/speech/sfspeechurlrecognitionrequest"
+    },
+    "doc://com.apple.speech/documentation/Speech/asking-permission-to-use-speech-recognition": {
+      "abstract": [
+        {
+          "text": "Ask the user’s permission to perform speech recognition using Apple’s servers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/asking-permission-to-use-speech-recognition",
+      "kind": "article",
+      "role": "article",
+      "title": "Asking Permission to Use Speech Recognition",
+      "type": "topic",
+      "url": "/documentation/speech/asking-permission-to-use-speech-recognition"
+    },
+    "sample-screens_2x.png": {
+      "alt": "On the left, the app lets the user know that it is ready to begin speech recognition. On the right, the app uses speech recognition to display what the user said.",
+      "identifier": "sample-screens_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/80121b411c383a95362ba7b5dd10d658/sample-screens_2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "418153d914d8/RecognizingSpeechInLiveAudio.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Audio-sources",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.speech/documentation/Speech/SFSpeechURLRecognitionRequest",
+        "doc://com.apple.speech/documentation/Speech/SFSpeechAudioBufferRecognitionRequest",
+        "doc://com.apple.speech/documentation/Speech/SFSpeechRecognitionRequest"
+      ],
+      "title": "Audio sources"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Audio-sources",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.speech/documentation/Speech/SFSpeechURLRecognitionRequest",
+                "doc://com.apple.speech/documentation/Speech/SFSpeechAudioBufferRecognitionRequest",
+                "doc://com.apple.speech/documentation/Speech/SFSpeechRecognitionRequest"
+              ],
+              "title": "Audio sources"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognizer~1recognitionTask(with:resultHandler:)/title",
+          "value": "recognitionTaskWithRequest:resultHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognizer~1recognitionTask(with:resultHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "recognitionTaskWithRequest:resultHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechURLRecognitionRequest/title",
+          "value": "SFSpeechURLRecognitionRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechURLRecognitionRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSpeechURLRecognitionRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechURLRecognitionRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSpeechURLRecognitionRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognitionResult~1bestTranscription/title",
+          "value": "bestTranscription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognitionResult~1bestTranscription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bestTranscription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechLanguageModel~1prepareCustomLanguageModel(for:clientIdentifier:configuration:completion:)/title",
+          "value": "prepareCustomLanguageModelForUrl:clientIdentifier:configuration:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechLanguageModel~1prepareCustomLanguageModel(for:clientIdentifier:configuration:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "prepareCustomLanguageModelForUrl:clientIdentifier:configuration:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognitionRequest/title",
+          "value": "SFSpeechRecognitionRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognitionRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSpeechRecognitionRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognitionRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSpeechRecognitionRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioSession~1setActive(_:options:)/title",
+          "value": "setActive:withOptions:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioSession~1setActive(_:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "setActive:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "active"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "withOptions:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@AVAudioSessionSetActiveOptions",
+              "text": "AVAudioSessionSetActiveOptions"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "options"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "error:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "outError"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioEngine/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioEngine"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechAudioBufferRecognitionRequest/title",
+          "value": "SFSpeechAudioBufferRecognitionRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechAudioBufferRecognitionRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSpeechAudioBufferRecognitionRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechAudioBufferRecognitionRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSpeechAudioBufferRecognitionRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognizer/title",
+          "value": "SFSpeechRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSpeechRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSpeechRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechAudioBufferRecognitionRequest~1append(_:)/title",
+          "value": "appendAudioPCMBuffer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechAudioBufferRecognitionRequest~1append(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "appendAudioPCMBuffer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioInputNode/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioInputNode"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVAudioIONode",
+              "text": "AVAudioIONode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognizerDelegate~1speechRecognizer(_:availabilityDidChange:)/title",
+          "value": "speechRecognizer:availabilityDidChange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognizerDelegate~1speechRecognizer(_:availabilityDidChange:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "speechRecognizer:availabilityDidChange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognitionRequest~1shouldReportPartialResults/title",
+          "value": "shouldReportPartialResults"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognitionRequest~1shouldReportPartialResults/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shouldReportPartialResults"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/speech/recognizing-speech-in-live-audio"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/speech/recognizing-speech-in-live-audio"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

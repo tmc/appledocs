@@ -1,0 +1,4743 @@
+{
+  "abstract": [
+    {
+      "text": "Use context services to manage secure operations between endpoints.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gss/documentation/GSS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gss/documentation/GSS/context-services"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "GSS"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Context Services"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use these flags as input to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gss/documentation/GSS/gss_init_sec_context(_:_:_:_:_:_:_:_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to request certain context services. You also receive them as output from both that function and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gss/documentation/GSS/gss_accept_sec_context(_:_:_:_:_:_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", indicating which services are actually engaged. Requesting a service does not guarantee its availability.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because these flags represent the bits of an integer, you combine them with a bitwise ",
+              "type": "text"
+            },
+            {
+              "code": "OR",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and pull them apart using bitwise ",
+              "type": "text"
+            },
+            {
+              "code": "AND",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "OM_uint32 req_flags = GSS_C_DELEG_FLAG | GSS_C_MUTUAL_FLAG;",
+            "OM_uint32 ret_flags = 0;",
+            "//",
+            "// Call gss_init_sec_context() with req_flags; get ret_flags back",
+            "//",
+            "BOOL deleg  = (ret_flags & GSS_C_DELEG_FLAG)  ? YES : NO;",
+            "BOOL mutual = (ret_flags & GSS_C_MUTUAL_FLAG) ? YES : NO;"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gss/documentation/GSS": {
+      "abstract": [
+        {
+          "text": "Conduct secure, authenticated network transactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GSS",
+      "type": "topic",
+      "url": "/documentation/gss"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_AF_APPLETALK": {
+      "abstract": [
+        {
+          "text": "The AppleTalk address type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_APPLETALK"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_AF_APPLETALK",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_APPLETALK"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_AF_APPLETALK",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_af_appletalk"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_AF_BSC": {
+      "abstract": [
+        {
+          "text": "The BISYNC 2780/3780 address type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_BSC"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_AF_BSC",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_BSC"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_AF_BSC",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_af_bsc"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_AF_CCITT": {
+      "abstract": [
+        {
+          "text": "The CCITT protocols address type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_CCITT"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_AF_CCITT",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_CCITT"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_AF_CCITT",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_af_ccitt"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_AF_CHAOS": {
+      "abstract": [
+        {
+          "text": "The MIT CHAOS protocol address type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_CHAOS"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_AF_CHAOS",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_CHAOS"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_AF_CHAOS",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_af_chaos"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_AF_DATAKIT": {
+      "abstract": [
+        {
+          "text": "The datakit protocols address type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_DATAKIT"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_AF_DATAKIT",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_DATAKIT"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_AF_DATAKIT",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_af_datakit"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_AF_DECnet": {
+      "abstract": [
+        {
+          "text": "The DECnet address type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_DECnet"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_AF_DECnet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_DECnet"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_AF_DECnet",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_af_decnet"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_AF_DLI": {
+      "abstract": [
+        {
+          "text": "The direct data link interface address type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_DLI"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_AF_DLI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_DLI"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_AF_DLI",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_af_dli"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_AF_DSS": {
+      "abstract": [
+        {
+          "text": "The distributed system services address type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_DSS"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_AF_DSS",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_DSS"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_AF_DSS",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_af_dss"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_AF_ECMA": {
+      "abstract": [
+        {
+          "text": "The ECMA address type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_ECMA"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_AF_ECMA",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_ECMA"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_AF_ECMA",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_af_ecma"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_AF_HYLINK": {
+      "abstract": [
+        {
+          "text": "The NSC Hyperchannel address type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_HYLINK"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_AF_HYLINK",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_HYLINK"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_AF_HYLINK",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_af_hylink"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_AF_IMPLINK": {
+      "abstract": [
+        {
+          "text": "ARPAnet IMP address type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_IMPLINK"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_AF_IMPLINK",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_IMPLINK"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_AF_IMPLINK",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_af_implink"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_AF_INET": {
+      "abstract": [
+        {
+          "text": "The Internet (for example, IP) address type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_INET"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_AF_INET",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_INET"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_AF_INET",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_af_inet"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_AF_INET6": {
+      "abstract": [
+        {
+          "text": "The IPv6 address type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_INET6"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_AF_INET6",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_INET6"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_AF_INET6",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_af_inet6"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_AF_LAT": {
+      "abstract": [
+        {
+          "text": "The LAT address type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_LAT"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_AF_LAT",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_LAT"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_AF_LAT",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_af_lat"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_AF_LOCAL": {
+      "abstract": [
+        {
+          "text": "The host-local address type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_LOCAL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_AF_LOCAL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_LOCAL"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_AF_LOCAL",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_af_local"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_AF_NBS": {
+      "abstract": [
+        {
+          "text": "The nbs address type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_NBS"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_AF_NBS",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_NBS"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_AF_NBS",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_af_nbs"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_AF_NS": {
+      "abstract": [
+        {
+          "text": "The Xerox NS address type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_NS"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_AF_NS",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_NS"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_AF_NS",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_af_ns"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_AF_NULLADDR": {
+      "abstract": [
+        {
+          "text": "No address specified.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_NULLADDR"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_AF_NULLADDR",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_NULLADDR"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_AF_NULLADDR",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_af_nulladdr"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_AF_OSI": {
+      "abstract": [
+        {
+          "text": "The OSI TP4 address type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_OSI"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_AF_OSI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_OSI"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_AF_OSI",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_af_osi"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_AF_PUP": {
+      "abstract": [
+        {
+          "text": "The PUP protocols (for example, BSP) address type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_PUP"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_AF_PUP",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_PUP"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_AF_PUP",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_af_pup"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_AF_SNA": {
+      "abstract": [
+        {
+          "text": "The IBM SNA address type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_SNA"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_AF_SNA",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_SNA"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_AF_SNA",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_af_sna"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_AF_UNSPEC": {
+      "abstract": [
+        {
+          "text": "The unspecified address type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_UNSPEC"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_AF_UNSPEC",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_UNSPEC"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_AF_UNSPEC",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_af_unspec"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_AF_X25": {
+      "abstract": [
+        {
+          "text": "The X.25 address type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_X25"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_AF_X25",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_AF_X25"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_AF_X25",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_af_x25"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_ANON_FLAG": {
+      "abstract": [
+        {
+          "text": "A flag that ensures the initiator remains anonymous to the acceptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_ANON_FLAG"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_ANON_FLAG",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_ANON_FLAG"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_ANON_FLAG",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_anon_flag"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_CONF_FLAG": {
+      "abstract": [
+        {
+          "text": "A flag that makes confidentiality services (that is, encryption) available for transferred messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_CONF_FLAG"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_CONF_FLAG",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_CONF_FLAG"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_CONF_FLAG",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_conf_flag"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_DCE_STYLE": {
+      "abstract": [
+        {
+          "text": "A flag that causes an extra AP reply to be sent from the client back to the server after receiving the server’s AP reply.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_DCE_STYLE"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_DCE_STYLE",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_DCE_STYLE"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_DCE_STYLE",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_dce_style"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_DELEG_FLAG": {
+      "abstract": [
+        {
+          "text": "A flag that permits delegation of the initiator’s credentials by the acceptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_DELEG_FLAG"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_DELEG_FLAG",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_DELEG_FLAG"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_DELEG_FLAG",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_deleg_flag"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_DELEG_POLICY_FLAG": {
+      "abstract": [
+        {
+          "text": "A flag that indicates delegation is permissible if the mechanism policy allows it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_DELEG_POLICY_FLAG"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_DELEG_POLICY_FLAG",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_DELEG_POLICY_FLAG"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_DELEG_POLICY_FLAG",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_deleg_policy_flag"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_EXTENDED_ERROR_FLAG": {
+      "abstract": [
+        {
+          "text": "A flag that indicates that the client wants to be informed of extended error information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_EXTENDED_ERROR_FLAG"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_EXTENDED_ERROR_FLAG",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_EXTENDED_ERROR_FLAG"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_EXTENDED_ERROR_FLAG",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_extended_error_flag"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_IDENTIFY_FLAG": {
+      "abstract": [
+        {
+          "text": "A flag that indicates identification of the client by name and ID only.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_IDENTIFY_FLAG"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_IDENTIFY_FLAG",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_IDENTIFY_FLAG"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_IDENTIFY_FLAG",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_identify_flag"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_INTEG_FLAG": {
+      "abstract": [
+        {
+          "text": "A flag that makes integrity services (that is, cryptographic signatures) available for transferred messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_INTEG_FLAG"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_INTEG_FLAG",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_INTEG_FLAG"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_INTEG_FLAG",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_integ_flag"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_MUTUAL_FLAG": {
+      "abstract": [
+        {
+          "text": "A flag that authenticates the credentials of both initiator and acceptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_MUTUAL_FLAG"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_MUTUAL_FLAG",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_MUTUAL_FLAG"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_MUTUAL_FLAG",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_mutual_flag"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_NO_CHANNEL_BINDINGS": {
+      "abstract": [
+        {
+          "text": "Indicates a ",
+          "type": "text"
+        },
+        {
+          "code": "NULL",
+          "type": "codeVoice"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.gss/documentation/GSS/gss_channel_bindings_t",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_NO_CHANNEL_BINDINGS"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_NO_CHANNEL_BINDINGS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GSS_C_NO_CHANNEL_BINDINGS",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_no_channel_bindings"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_NO_CONTEXT": {
+      "abstract": [
+        {
+          "text": "A macro that indicates an empty context id object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_NO_CONTEXT"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_NO_CONTEXT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GSS_C_NO_CONTEXT",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_no_context"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_PROT_READY_FLAG": {
+      "abstract": [
+        {
+          "text": "A flag that provides an early indication of the availability of confidentiality and integrity services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_PROT_READY_FLAG"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_PROT_READY_FLAG",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_PROT_READY_FLAG"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_PROT_READY_FLAG",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_prot_ready_flag"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_REPLAY_FLAG": {
+      "abstract": [
+        {
+          "text": "A flag that detects repeated messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_REPLAY_FLAG"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_REPLAY_FLAG",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_REPLAY_FLAG"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_REPLAY_FLAG",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_replay_flag"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_SEQUENCE_FLAG": {
+      "abstract": [
+        {
+          "text": "A flag that detects out of sequence messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_SEQUENCE_FLAG"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_SEQUENCE_FLAG",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_SEQUENCE_FLAG"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_SEQUENCE_FLAG",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_sequence_flag"
+    },
+    "doc://com.apple.gss/documentation/GSS/GSS_C_TRANS_FLAG": {
+      "abstract": [
+        {
+          "text": "A flag that indicates that a context can is exportable, for example to transfer it to another process on the same machine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GSS_C_TRANS_FLAG"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/GSS_C_TRANS_FLAG",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GSS_C_TRANS_FLAG"
+        }
+      ],
+      "role": "symbol",
+      "title": "GSS_C_TRANS_FLAG",
+      "type": "topic",
+      "url": "/documentation/gss/gss_c_trans_flag"
+    },
+    "doc://com.apple.gss/documentation/GSS/allocating-and-releasing-objects": {
+      "abstract": [
+        {
+          "text": "Manage memory and object lifetimes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/allocating-and-releasing-objects",
+      "kind": "article",
+      "role": "article",
+      "title": "Allocating and Releasing Objects",
+      "type": "topic",
+      "url": "/documentation/gss/allocating-and-releasing-objects"
+    },
+    "doc://com.apple.gss/documentation/GSS/buffer-management": {
+      "abstract": [
+        {
+          "text": "Allocate and deallocate buffers with structures that hold a variety of data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/buffer-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Buffer Management",
+      "type": "topic",
+      "url": "/documentation/gss/buffer-management"
+    },
+    "doc://com.apple.gss/documentation/GSS/function-status": {
+      "abstract": [
+        {
+          "text": "Evaluate return values that most GSS-API functions use to indicate the outcome of an operation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/function-status",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Function Status",
+      "type": "topic",
+      "url": "/documentation/gss/function-status"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_accept_sec_context(_:_:_:_:_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Accepts a security context initiated by a peer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_accept_sec_context"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_ctx_id_t",
+          "text": "gss_ctx_id_t"
+        },
+        {
+          "kind": "text",
+          "text": "?>, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_cred_id_t",
+          "text": "gss_cred_id_t"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_buffer_t",
+          "text": "gss_buffer_t"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_channel_bindings_t",
+          "text": "gss_channel_bindings_t"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_name_t",
+          "text": "gss_name_t"
+        },
+        {
+          "kind": "text",
+          "text": "?>?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_OID",
+          "text": "gss_OID"
+        },
+        {
+          "kind": "text",
+          "text": "?>?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_buffer_t",
+          "text": "gss_buffer_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_cred_id_t",
+          "text": "gss_cred_id_t"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_accept_sec_context(_:_:_:_:_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_accept_sec_context"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_accept_sec_context(_:_:_:_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/gss/gss_accept_sec_context(_:_:_:_:_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_channel_bindings_struct": {
+      "abstract": [
+        {
+          "text": "The structure defining a channel bindings descriptor that specifies the communications channel used to carry a context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_channel_bindings_struct"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_channel_bindings_struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_channel_bindings_struct"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_channel_bindings_struct",
+      "type": "topic",
+      "url": "/documentation/gss/gss_channel_bindings_struct"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_channel_bindings_t": {
+      "abstract": [
+        {
+          "text": "A pointer to a channel bindings descriptor that specifies the communications channel used to carry a context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_channel_bindings_t"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_channel_bindings_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_channel_bindings_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_channel_bindings_t",
+      "type": "topic",
+      "url": "/documentation/gss/gss_channel_bindings_t"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_const_channel_bindings_t": {
+      "abstract": [
+        {
+          "text": "A pointer to an immutable channel bindings descriptor that you use to specify the communications channel used to carry a context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_const_channel_bindings_t"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_const_channel_bindings_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_const_channel_bindings_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_const_channel_bindings_t",
+      "type": "topic",
+      "url": "/documentation/gss/gss_const_channel_bindings_t"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_const_ctx_id_t": {
+      "abstract": [
+        {
+          "text": "A pointer to an immutable opaque type that you use to communicate context pointers with GSS-API functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "gss_const_ctx_id_t"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_const_ctx_id_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gss_const_ctx_id_t",
+      "type": "topic",
+      "url": "/documentation/gss/gss_const_ctx_id_t"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_context_time(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the amount of time remaining before a context expires.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_context_time"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_ctx_id_t",
+          "text": "gss_ctx_id_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_context_time(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_context_time"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_context_time(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/gss/gss_context_time(_:_:_:)"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_ctx_id_t": {
+      "abstract": [
+        {
+          "text": "A pointer to an opaque type that you use to communicate context pointers with GSS-API functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_ctx_id_t"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_ctx_id_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_ctx_id_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_ctx_id_t",
+      "type": "topic",
+      "url": "/documentation/gss/gss_ctx_id_t"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_delete_sec_context(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Deletes a security context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_delete_sec_context"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_ctx_id_t",
+          "text": "gss_ctx_id_t"
+        },
+        {
+          "kind": "text",
+          "text": "?>, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_buffer_t",
+          "text": "gss_buffer_t"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_delete_sec_context(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_delete_sec_context"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_delete_sec_context(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/gss/gss_delete_sec_context(_:_:_:)"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_export_sec_context(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Transfers a security context to another process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_export_sec_context"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_ctx_id_t",
+          "text": "gss_ctx_id_t"
+        },
+        {
+          "kind": "text",
+          "text": "?>, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_buffer_t",
+          "text": "gss_buffer_t"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_export_sec_context(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_export_sec_context"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_export_sec_context(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/gss/gss_export_sec_context(_:_:_:)"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_import_sec_context(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Imports a security context from another process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_import_sec_context"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_buffer_t",
+          "text": "gss_buffer_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_ctx_id_t",
+          "text": "gss_ctx_id_t"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_import_sec_context(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_import_sec_context"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_import_sec_context(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/gss/gss_import_sec_context(_:_:_:)"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_init_sec_context(_:_:_:_:_:_:_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Initiates a security context with a peer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_init_sec_context"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_cred_id_t",
+          "text": "gss_cred_id_t"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_ctx_id_t",
+          "text": "gss_ctx_id_t"
+        },
+        {
+          "kind": "text",
+          "text": "?>, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_name_t",
+          "text": "gss_name_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_OID",
+          "text": "gss_OID"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_channel_bindings_t",
+          "text": "gss_channel_bindings_t"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_buffer_t",
+          "text": "gss_buffer_t"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_OID",
+          "text": "gss_OID"
+        },
+        {
+          "kind": "text",
+          "text": "?>?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_buffer_t",
+          "text": "gss_buffer_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_init_sec_context(_:_:_:_:_:_:_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_init_sec_context"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_init_sec_context(_:_:_:_:_:_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/gss/gss_init_sec_context(_:_:_:_:_:_:_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_inquire_context(_:_:_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns information about a security context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_inquire_context"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_ctx_id_t",
+          "text": "gss_ctx_id_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_name_t",
+          "text": "gss_name_t"
+        },
+        {
+          "kind": "text",
+          "text": "?>?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_name_t",
+          "text": "gss_name_t"
+        },
+        {
+          "kind": "text",
+          "text": "?>?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_OID",
+          "text": "gss_OID"
+        },
+        {
+          "kind": "text",
+          "text": "?>?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_inquire_context(_:_:_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_inquire_context"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_inquire_context(_:_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/gss/gss_inquire_context(_:_:_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_inquire_sec_context_by_oid(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns information about a particular part of a context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_inquire_sec_context_by_oid"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_ctx_id_t",
+          "text": "gss_ctx_id_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_OID",
+          "text": "gss_OID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_buffer_set_t",
+          "text": "gss_buffer_set_t"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_inquire_sec_context_by_oid(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_inquire_sec_context_by_oid"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_inquire_sec_context_by_oid(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/gss/gss_inquire_sec_context_by_oid(_:_:_:_:)"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_process_context_token(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Processes a token from a peer asynchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_process_context_token"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_ctx_id_t",
+          "text": "gss_ctx_id_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_buffer_t",
+          "text": "gss_buffer_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_process_context_token(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_process_context_token"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_process_context_token(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/gss/gss_process_context_token(_:_:_:)"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_release_cred(_:_:)": {
+      "abstract": [
+        {
+          "text": "Releases the memory of a credential.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_release_cred"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_cred_id_t",
+          "text": "gss_cred_id_t"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_release_cred(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_release_cred"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_release_cred(_:_:)",
+      "type": "topic",
+      "url": "/documentation/gss/gss_release_cred(_:_:)"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_set_sec_context_option(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets an option on a context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_set_sec_context_option"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_ctx_id_t",
+          "text": "gss_ctx_id_t"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_OID",
+          "text": "gss_OID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_buffer_t",
+          "text": "gss_buffer_t"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_set_sec_context_option(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_set_sec_context_option"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_set_sec_context_option(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/gss/gss_set_sec_context_option(_:_:_:_:)"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_wrap_size_limit(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the largest allowable wrap size for a given set of constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_wrap_size_limit"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_ctx_id_t",
+          "text": "gss_ctx_id_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_qop_t",
+          "text": "gss_qop_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_wrap_size_limit(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_wrap_size_limit"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_wrap_size_limit(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/gss/gss_wrap_size_limit(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.gss/documentation/GSS/kGSSICAppleSourceApp": {
+      "abstract": [
+        {
+          "text": "The value is a dictionary indicating attributes of the app that the credential is for (only applies to AppVPN).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kGSSICAppleSourceApp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/kGSSICAppleSourceApp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kGSSICAppleSourceApp"
+        }
+      ],
+      "role": "symbol",
+      "title": "kGSSICAppleSourceApp",
+      "type": "topic",
+      "url": "/documentation/gss/kgssicapplesourceapp"
+    },
+    "doc://com.apple.gss/documentation/GSS/kGSSICAppleSourceAppAuditToken": {
+      "abstract": [
+        {
+          "text": "The audit token of the app’s process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kGSSICAppleSourceAppAuditToken"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/kGSSICAppleSourceAppAuditToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kGSSICAppleSourceAppAuditToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "kGSSICAppleSourceAppAuditToken",
+      "type": "topic",
+      "url": "/documentation/gss/kgssicapplesourceappaudittoken"
+    },
+    "doc://com.apple.gss/documentation/GSS/kGSSICAppleSourceAppPID": {
+      "abstract": [
+        {
+          "text": "A number that indicates the process ID of the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kGSSICAppleSourceAppPID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/kGSSICAppleSourceAppPID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kGSSICAppleSourceAppPID"
+        }
+      ],
+      "role": "symbol",
+      "title": "kGSSICAppleSourceAppPID",
+      "type": "topic",
+      "url": "/documentation/gss/kgssicapplesourceapppid"
+    },
+    "doc://com.apple.gss/documentation/GSS/kGSSICAppleSourceAppSigningIdentity": {
+      "abstract": [
+        {
+          "text": "The bundle signing identity of the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kGSSICAppleSourceAppSigningIdentity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/kGSSICAppleSourceAppSigningIdentity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kGSSICAppleSourceAppSigningIdentity"
+        }
+      ],
+      "role": "symbol",
+      "title": "kGSSICAppleSourceAppSigningIdentity",
+      "type": "topic",
+      "url": "/documentation/gss/kgssicapplesourceappsigningidentity"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Memory-and-Context",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gss/documentation/GSS/allocating-and-releasing-objects",
+        "doc://com.apple.gss/documentation/GSS/function-status",
+        "doc://com.apple.gss/documentation/GSS/buffer-management"
+      ],
+      "title": "Memory and Context"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Flags",
+      "identifiers": [
+        "doc://com.apple.gss/documentation/GSS/GSS_C_DELEG_FLAG",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_MUTUAL_FLAG",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_REPLAY_FLAG",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_SEQUENCE_FLAG",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_CONF_FLAG",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_INTEG_FLAG",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_ANON_FLAG",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_PROT_READY_FLAG",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_TRANS_FLAG",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_DCE_STYLE",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_IDENTIFY_FLAG",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_EXTENDED_ERROR_FLAG",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_DELEG_POLICY_FLAG"
+      ],
+      "title": "Flags"
+    },
+    {
+      "abstract": [
+        {
+          "text": "The constant definitions for channel-binding address families.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Address-Families",
+      "identifiers": [
+        "doc://com.apple.gss/documentation/GSS/GSS_C_AF_NS",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_AF_BSC",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_AF_DLI",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_AF_DSS",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_AF_LAT",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_AF_NBS",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_AF_OSI",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_AF_PUP",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_AF_SNA",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_AF_X25",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_AF_ECMA",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_AF_INET",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_AF_CCITT",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_AF_CHAOS",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_AF_INET6",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_AF_LOCAL",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_AF_DECnet",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_AF_HYLINK",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_AF_UNSPEC",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_AF_DATAKIT",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_AF_IMPLINK",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_AF_NULLADDR",
+        "doc://com.apple.gss/documentation/GSS/GSS_C_AF_APPLETALK"
+      ],
+      "title": "Address Families"
+    },
+    {
+      "abstract": [
+        {
+          "text": "The keys used in the dictionary specified by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.gss/documentation/GSS/kGSSICAppleSourceApp",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " key.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Apple-Source-App-Keys",
+      "identifiers": [
+        "doc://com.apple.gss/documentation/GSS/kGSSICAppleSourceAppPID",
+        "doc://com.apple.gss/documentation/GSS/kGSSICAppleSourceAppAuditToken",
+        "doc://com.apple.gss/documentation/GSS/kGSSICAppleSourceAppSigningIdentity"
+      ],
+      "title": "Apple Source App Keys"
+    },
+    {
+      "anchor": "Channel-Bindings",
+      "identifiers": [
+        "doc://com.apple.gss/documentation/GSS/gss_ctx_id_t",
+        "doc://com.apple.gss/documentation/GSS/gss_channel_bindings_struct",
+        "doc://com.apple.gss/documentation/GSS/gss_channel_bindings_t",
+        "doc://com.apple.gss/documentation/GSS/gss_const_channel_bindings_t"
+      ],
+      "title": "Channel Bindings"
+    },
+    {
+      "anchor": "Creation-and-Deletion",
+      "identifiers": [
+        "doc://com.apple.gss/documentation/GSS/gss_init_sec_context(_:_:_:_:_:_:_:_:_:_:_:_:_:)",
+        "doc://com.apple.gss/documentation/GSS/gss_accept_sec_context(_:_:_:_:_:_:_:_:_:_:_:)",
+        "doc://com.apple.gss/documentation/GSS/gss_delete_sec_context(_:_:_:)",
+        "doc://com.apple.gss/documentation/GSS/gss_release_cred(_:_:)",
+        "doc://com.apple.gss/documentation/GSS/gss_process_context_token(_:_:_:)",
+        "doc://com.apple.gss/documentation/GSS/gss_set_sec_context_option(_:_:_:_:)"
+      ],
+      "title": "Creation and Deletion"
+    },
+    {
+      "anchor": "Inquiry-and-Limits",
+      "identifiers": [
+        "doc://com.apple.gss/documentation/GSS/gss_context_time(_:_:_:)",
+        "doc://com.apple.gss/documentation/GSS/gss_inquire_context(_:_:_:_:_:_:_:_:_:)",
+        "doc://com.apple.gss/documentation/GSS/gss_inquire_sec_context_by_oid(_:_:_:_:)",
+        "doc://com.apple.gss/documentation/GSS/gss_wrap_size_limit(_:_:_:_:_:_:)"
+      ],
+      "title": "Inquiry and Limits"
+    },
+    {
+      "anchor": "Import-and-Export",
+      "identifiers": [
+        "doc://com.apple.gss/documentation/GSS/gss_export_sec_context(_:_:_:)",
+        "doc://com.apple.gss/documentation/GSS/gss_import_sec_context(_:_:_:)"
+      ],
+      "title": "Import and Export"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Flags",
+              "identifiers": [
+                "doc://com.apple.gss/documentation/GSS/GSS_C_DELEG_FLAG",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_MUTUAL_FLAG",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_REPLAY_FLAG",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_SEQUENCE_FLAG",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_CONF_FLAG",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_INTEG_FLAG",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_ANON_FLAG",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_PROT_READY_FLAG",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_TRANS_FLAG",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_DCE_STYLE",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_IDENTIFY_FLAG",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_EXTENDED_ERROR_FLAG",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_DELEG_POLICY_FLAG"
+              ],
+              "title": "Flags"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "The constant definitions for channel-binding address families.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Address-Families",
+              "identifiers": [
+                "doc://com.apple.gss/documentation/GSS/GSS_C_AF_NS",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_AF_BSC",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_AF_DLI",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_AF_DSS",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_AF_LAT",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_AF_NBS",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_AF_OSI",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_AF_PUP",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_AF_SNA",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_AF_X25",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_AF_ECMA",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_AF_INET",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_AF_CCITT",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_AF_CHAOS",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_AF_INET6",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_AF_LOCAL",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_AF_DECnet",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_AF_HYLINK",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_AF_UNSPEC",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_AF_DATAKIT",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_AF_IMPLINK",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_AF_NULLADDR",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_AF_APPLETALK"
+              ],
+              "title": "Address Families"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "The keys used in the dictionary specified by the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.gss/documentation/GSS/kGSSICAppleSourceApp",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " key.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Apple-Source-App-Keys",
+              "identifiers": [
+                "doc://com.apple.gss/documentation/GSS/kGSSICAppleSourceAppPID",
+                "doc://com.apple.gss/documentation/GSS/kGSSICAppleSourceAppAuditToken",
+                "doc://com.apple.gss/documentation/GSS/kGSSICAppleSourceAppSigningIdentity"
+              ],
+              "title": "Apple Source App Keys"
+            },
+            {
+              "anchor": "Channel-Bindings",
+              "identifiers": [
+                "doc://com.apple.gss/documentation/GSS/GSS_C_NO_CHANNEL_BINDINGS",
+                "doc://com.apple.gss/documentation/GSS/GSS_C_NO_CONTEXT",
+                "doc://com.apple.gss/documentation/GSS/gss_const_ctx_id_t",
+                "doc://com.apple.gss/documentation/GSS/gss_ctx_id_t",
+                "doc://com.apple.gss/documentation/GSS/gss_channel_bindings_struct",
+                "doc://com.apple.gss/documentation/GSS/gss_channel_bindings_t",
+                "doc://com.apple.gss/documentation/GSS/gss_const_channel_bindings_t"
+              ],
+              "title": "Channel Bindings"
+            },
+            {
+              "anchor": "Creation-and-Deletion",
+              "identifiers": [
+                "doc://com.apple.gss/documentation/GSS/gss_init_sec_context(_:_:_:_:_:_:_:_:_:_:_:_:_:)",
+                "doc://com.apple.gss/documentation/GSS/gss_accept_sec_context(_:_:_:_:_:_:_:_:_:_:_:)",
+                "doc://com.apple.gss/documentation/GSS/gss_delete_sec_context(_:_:_:)",
+                "doc://com.apple.gss/documentation/GSS/gss_release_cred(_:_:)",
+                "doc://com.apple.gss/documentation/GSS/gss_process_context_token(_:_:_:)",
+                "doc://com.apple.gss/documentation/GSS/gss_set_sec_context_option(_:_:_:_:)"
+              ],
+              "title": "Creation and Deletion"
+            },
+            {
+              "anchor": "Inquiry-and-Limits",
+              "identifiers": [
+                "doc://com.apple.gss/documentation/GSS/gss_context_time(_:_:_:)",
+                "doc://com.apple.gss/documentation/GSS/gss_inquire_context(_:_:_:_:_:_:_:_:_:)",
+                "doc://com.apple.gss/documentation/GSS/gss_inquire_sec_context_by_oid(_:_:_:_:)",
+                "doc://com.apple.gss/documentation/GSS/gss_wrap_size_limit(_:_:_:_:_:_:)"
+              ],
+              "title": "Inquiry and Limits"
+            },
+            {
+              "anchor": "Import-and-Export",
+              "identifiers": [
+                "doc://com.apple.gss/documentation/GSS/gss_export_sec_context(_:_:_:)",
+                "doc://com.apple.gss/documentation/GSS/gss_import_sec_context(_:_:_:)"
+              ],
+              "title": "Import and Export"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Memory-and-Context",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gss/documentation/GSS/allocating-and-releasing-objects",
+                "doc://com.apple.gss/documentation/GSS/function-status",
+                "doc://com.apple.gss/documentation/GSS/buffer-management"
+              ],
+              "title": "Memory and Context"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_APPLETALK/title",
+          "value": "GSS_C_AF_APPLETALK"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_APPLETALK/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_AF_APPLETALK"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_MUTUAL_FLAG/title",
+          "value": "GSS_C_MUTUAL_FLAG"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_MUTUAL_FLAG/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_MUTUAL_FLAG"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_EXTENDED_ERROR_FLAG/title",
+          "value": "GSS_C_EXTENDED_ERROR_FLAG"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_EXTENDED_ERROR_FLAG/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_EXTENDED_ERROR_FLAG"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_OSI/title",
+          "value": "GSS_C_AF_OSI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_OSI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_AF_OSI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_BSC/title",
+          "value": "GSS_C_AF_BSC"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_BSC/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_AF_BSC"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_channel_bindings_struct/title",
+          "value": "gss_channel_bindings_struct"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_channel_bindings_struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_channel_bindings_struct"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_channel_bindings_struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_channel_bindings_struct"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_inquire_sec_context_by_oid(_:_:_:_:)/title",
+          "value": "gss_inquire_sec_context_by_oid"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_inquire_sec_context_by_oid(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_inquire_sec_context_by_oid"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_SNA/title",
+          "value": "GSS_C_AF_SNA"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_SNA/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_AF_SNA"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_REPLAY_FLAG/title",
+          "value": "GSS_C_REPLAY_FLAG"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_REPLAY_FLAG/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_REPLAY_FLAG"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_export_sec_context(_:_:_:)/title",
+          "value": "gss_export_sec_context"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_export_sec_context(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_export_sec_context"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1kGSSICAppleSourceAppSigningIdentity/title",
+          "value": "kGSSICAppleSourceAppSigningIdentity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1kGSSICAppleSourceAppSigningIdentity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kGSSICAppleSourceAppSigningIdentity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_TRANS_FLAG/title",
+          "value": "GSS_C_TRANS_FLAG"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_TRANS_FLAG/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_TRANS_FLAG"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_PUP/title",
+          "value": "GSS_C_AF_PUP"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_PUP/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_AF_PUP"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_INET6/title",
+          "value": "GSS_C_AF_INET6"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_INET6/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_AF_INET6"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_ECMA/title",
+          "value": "GSS_C_AF_ECMA"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_ECMA/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_AF_ECMA"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_HYLINK/title",
+          "value": "GSS_C_AF_HYLINK"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_HYLINK/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_AF_HYLINK"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_const_channel_bindings_t/title",
+          "value": "gss_const_channel_bindings_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_const_channel_bindings_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_const_channel_bindings_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_const_channel_bindings_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_const_channel_bindings_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_SEQUENCE_FLAG/title",
+          "value": "GSS_C_SEQUENCE_FLAG"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_SEQUENCE_FLAG/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_SEQUENCE_FLAG"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_NS/title",
+          "value": "GSS_C_AF_NS"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_NS/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_AF_NS"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_DELEG_POLICY_FLAG/title",
+          "value": "GSS_C_DELEG_POLICY_FLAG"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_DELEG_POLICY_FLAG/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_DELEG_POLICY_FLAG"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_CHAOS/title",
+          "value": "GSS_C_AF_CHAOS"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_CHAOS/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_AF_CHAOS"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_import_sec_context(_:_:_:)/title",
+          "value": "gss_import_sec_context"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_import_sec_context(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_import_sec_context"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_LOCAL/title",
+          "value": "GSS_C_AF_LOCAL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_LOCAL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_AF_LOCAL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_ctx_id_t/title",
+          "value": "gss_ctx_id_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_ctx_id_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_ctx_id_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_ctx_id_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_ctx_id_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_DSS/title",
+          "value": "GSS_C_AF_DSS"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_DSS/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_AF_DSS"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_CCITT/title",
+          "value": "GSS_C_AF_CCITT"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_CCITT/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_AF_CCITT"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_UNSPEC/title",
+          "value": "GSS_C_AF_UNSPEC"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_UNSPEC/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_AF_UNSPEC"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_INTEG_FLAG/title",
+          "value": "GSS_C_INTEG_FLAG"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_INTEG_FLAG/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_INTEG_FLAG"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_INET/title",
+          "value": "GSS_C_AF_INET"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_INET/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_AF_INET"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_PROT_READY_FLAG/title",
+          "value": "GSS_C_PROT_READY_FLAG"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_PROT_READY_FLAG/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_PROT_READY_FLAG"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_IMPLINK/title",
+          "value": "GSS_C_AF_IMPLINK"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_IMPLINK/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_AF_IMPLINK"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_X25/title",
+          "value": "GSS_C_AF_X25"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_X25/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_AF_X25"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_context_time(_:_:_:)/title",
+          "value": "gss_context_time"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_context_time(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_context_time"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_NULLADDR/title",
+          "value": "GSS_C_AF_NULLADDR"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_NULLADDR/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_AF_NULLADDR"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_DCE_STYLE/title",
+          "value": "GSS_C_DCE_STYLE"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_DCE_STYLE/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_DCE_STYLE"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1kGSSICAppleSourceAppPID/title",
+          "value": "kGSSICAppleSourceAppPID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1kGSSICAppleSourceAppPID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kGSSICAppleSourceAppPID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_LAT/title",
+          "value": "GSS_C_AF_LAT"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_LAT/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_AF_LAT"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_delete_sec_context(_:_:_:)/title",
+          "value": "gss_delete_sec_context"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_delete_sec_context(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_delete_sec_context"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_process_context_token(_:_:_:)/title",
+          "value": "gss_process_context_token"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_process_context_token(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_process_context_token"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_accept_sec_context(_:_:_:_:_:_:_:_:_:_:_:)/title",
+          "value": "gss_accept_sec_context"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_accept_sec_context(_:_:_:_:_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_accept_sec_context"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_wrap_size_limit(_:_:_:_:_:_:)/title",
+          "value": "gss_wrap_size_limit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_wrap_size_limit(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_wrap_size_limit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_init_sec_context(_:_:_:_:_:_:_:_:_:_:_:_:_:)/title",
+          "value": "gss_init_sec_context"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_init_sec_context(_:_:_:_:_:_:_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_init_sec_context"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_CONF_FLAG/title",
+          "value": "GSS_C_CONF_FLAG"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_CONF_FLAG/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_CONF_FLAG"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_set_sec_context_option(_:_:_:_:)/title",
+          "value": "gss_set_sec_context_option"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_set_sec_context_option(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_set_sec_context_option"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_DLI/title",
+          "value": "GSS_C_AF_DLI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_DLI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_AF_DLI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_channel_bindings_t/title",
+          "value": "gss_channel_bindings_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_channel_bindings_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_channel_bindings_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_channel_bindings_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_channel_bindings_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_ANON_FLAG/title",
+          "value": "GSS_C_ANON_FLAG"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_ANON_FLAG/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_ANON_FLAG"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_NBS/title",
+          "value": "GSS_C_AF_NBS"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_NBS/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_AF_NBS"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_DATAKIT/title",
+          "value": "GSS_C_AF_DATAKIT"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_DATAKIT/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_AF_DATAKIT"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_release_cred(_:_:)/title",
+          "value": "gss_release_cred"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_release_cred(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_release_cred"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1kGSSICAppleSourceAppAuditToken/title",
+          "value": "kGSSICAppleSourceAppAuditToken"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1kGSSICAppleSourceAppAuditToken/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kGSSICAppleSourceAppAuditToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_DECnet/title",
+          "value": "GSS_C_AF_DECnet"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_AF_DECnet/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_AF_DECnet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1kGSSICAppleSourceApp/title",
+          "value": "kGSSICAppleSourceApp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1kGSSICAppleSourceApp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kGSSICAppleSourceApp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_inquire_context(_:_:_:_:_:_:_:_:_:)/title",
+          "value": "gss_inquire_context"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_inquire_context(_:_:_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_inquire_context"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_DELEG_FLAG/title",
+          "value": "GSS_C_DELEG_FLAG"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_DELEG_FLAG/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_DELEG_FLAG"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_IDENTIFY_FLAG/title",
+          "value": "GSS_C_IDENTIFY_FLAG"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1GSS_C_IDENTIFY_FLAG/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GSS_C_IDENTIFY_FLAG"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gss/context-services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gss/context-services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

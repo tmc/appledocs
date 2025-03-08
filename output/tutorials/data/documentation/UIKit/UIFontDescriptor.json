@@ -1,0 +1,3423 @@
+{
+  "abstract": [
+    {
+      "text": "A collection of attributes that describes a font.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UIFontDescriptor",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UIFontDescriptor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIFontDescriptor"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UIFontDescriptor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIFontDescriptor"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A font descriptor can be used to create or modify a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. Font descriptors have a font matching capability, so that you can partially describe a font by creating a font descriptor with, for example, just a family name. You can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/matchingFontDescriptors(withMandatoryKeys:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to find all the available fonts in the system with a matching family name. Font descriptors can also be archived and unarchived.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are several ways to create a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. To take advantage of text styles and respect the user’s current content size category, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/preferredFontDescriptor(withTextStyle:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can also use ",
+              "type": "text"
+            },
+            {
+              "code": "alloc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/init(fontAttributes:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/fontDescriptorWithFontAttributes:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/init(name:matrix:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/init(name:size:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create a font descriptor based on your custom attributes dictionary or on a specific font’s name and size. Alternatively you can use one of the ",
+              "type": "text"
+            },
+            {
+              "code": "fontDescriptor…",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance methods (such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/withFace(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") to create a modified version of an existing descriptor. The latter methods are useful if you have an existing descriptor and simply want to change one aspect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All attributes in the attributes dictionary are optional.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/typography/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFont": {
+      "abstract": [
+        {
+          "text": "An object that provides access to the font’s characteristics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFont"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFont"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFont",
+      "type": "topic",
+      "url": "/documentation/uikit/uifont"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFont/TextStyle": {
+      "abstract": [
+        {
+          "text": "Constants that describe the preferred styles for fonts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont/TextStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFont.TextStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uifont/textstyle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFont/Weight": {
+      "abstract": [
+        {
+          "text": "Constants that represent standard typeface styles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Weight"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont/Weight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Weight"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFont.Weight",
+      "type": "topic",
+      "url": "/documentation/uikit/uifont/weight"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFont/Width": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Width"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont/Width",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Width"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFont.Width",
+      "type": "topic",
+      "url": "/documentation/uikit/uifont/width"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor": {
+      "abstract": [
+        {
+          "text": "A collection of attributes that describes a font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFontDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFontDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFontDescriptor",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/AttributeName": {
+      "abstract": [
+        {
+          "text": "Constants that describe font attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AttributeName"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/AttributeName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AttributeName"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFontDescriptor.AttributeName",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/attributename"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/Class": {
+      "abstract": [
+        {
+          "text": "Constants that classify certain stylistic qualities of the font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Class"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/Class",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Class"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFontDescriptor.Class",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/class"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/FeatureKey": {
+      "abstract": [
+        {
+          "text": "Keys for retrieving feature settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FeatureKey"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/FeatureKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FeatureKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFontDescriptor.FeatureKey",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/featurekey"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/SymbolicTraits-swift.struct": {
+      "abstract": [
+        {
+          "text": "Constants that describe the stylistic aspects of a font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SymbolicTraits"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/SymbolicTraits-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SymbolicTraits"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFontDescriptor.SymbolicTraits",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/symbolictraits-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/SystemDesign": {
+      "abstract": [
+        {
+          "text": "Constants that describe the system-defined typeface designs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SystemDesign"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/SystemDesign",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SystemDesign"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFontDescriptor.SystemDesign",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/systemdesign"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/TraitKey": {
+      "abstract": [
+        {
+          "text": "Keys for retrieving the font descriptor’s trait information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TraitKey"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/TraitKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TraitKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFontDescriptor.TraitKey",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/traitkey"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/addingAttributes(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new font descriptor that’s the same as the existing descriptor, but with the specified attributes taking precedence over the existing ones.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addingAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFontDescriptor",
+          "text": "UIFontDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIFontDescriptorAttributeName",
+          "text": "AttributeName"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFontDescriptor",
+          "text": "UIFontDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/addingAttributes(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fontDescriptorByAddingAttributes:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addingAttributes(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/addingattributes(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/fontAttributes": {
+      "abstract": [
+        {
+          "text": "The font descriptor’s dictionary of attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fontAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFontDescriptor",
+          "text": "UIFontDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIFontDescriptorAttributeName",
+          "text": "AttributeName"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/fontAttributes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fontAttributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "fontAttributes",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/fontattributes"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/fontDescriptorWithFontAttributes:": {
+      "abstract": [
+        {
+          "text": "Returns a font descriptor with a dictionary of attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "fontDescriptorWithFontAttributes:"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/fontDescriptorWithFontAttributes:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fontDescriptorWithFontAttributes:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fontDescriptorWithFontAttributes:",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/fontdescriptorwithfontattributes:"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/init()": {
+      "abstract": [
+        {
+          "text": "Creates a font descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/init()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/init()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/init(coder:)": {
+      "abstract": [
+        {
+          "text": "Creates a font descriptor from data in an unarchiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/init(coder:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCoder:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/init(coder:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/init(fontAttributes:)": {
+      "abstract": [
+        {
+          "text": "Creates a font descriptor with the specified attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fontAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFontDescriptor",
+          "text": "UIFontDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIFontDescriptorAttributeName",
+          "text": "AttributeName"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/init(fontAttributes:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithFontAttributes:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(fontAttributes:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/init(fontattributes:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/init(name:matrix:)": {
+      "abstract": [
+        {
+          "text": "Returns a font descriptor with the specified values for the name and matrix dictionary attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "matrix"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGAffineTransform",
+          "text": "CGAffineTransform"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/init(name:matrix:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fontDescriptorWithName:matrix:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(name:matrix:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/init(name:matrix:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/init(name:size:)": {
+      "abstract": [
+        {
+          "text": "Returns a font descriptor with the specified values for the name and size dictionary attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/init(name:size:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fontDescriptorWithName:size:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(name:size:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/init(name:size:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/matchingFontDescriptors(withMandatoryKeys:)": {
+      "abstract": [
+        {
+          "text": "Returns all the fonts available in the system with specified attributes that match those of the font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "matchingFontDescriptors"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withMandatoryKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFontDescriptor",
+          "text": "UIFontDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIFontDescriptorAttributeName",
+          "text": "AttributeName"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFontDescriptor",
+          "text": "UIFontDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/matchingFontDescriptors(withMandatoryKeys:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "matchingFontDescriptorsWithMandatoryKeys:"
+        }
+      ],
+      "role": "symbol",
+      "title": "matchingFontDescriptors(withMandatoryKeys:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/matchingfontdescriptors(withmandatorykeys:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/matrix": {
+      "abstract": [
+        {
+          "text": "The current transform matrix of the font descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "matrix"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGAffineTransform",
+          "text": "CGAffineTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/matrix",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "matrix"
+        }
+      ],
+      "role": "symbol",
+      "title": "matrix",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/matrix"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/object(forKey:)": {
+      "abstract": [
+        {
+          "text": "Returns the font attribute that the corresponding key specifies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFontDescriptor",
+          "text": "UIFontDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIFontDescriptorAttributeName",
+          "text": "AttributeName"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/object(forKey:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "objectForKey:"
+        }
+      ],
+      "role": "symbol",
+      "title": "object(forKey:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/object(forkey:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/pointSize": {
+      "abstract": [
+        {
+          "text": "The point size of the font descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pointSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/pointSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pointSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "pointSize",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/pointsize"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/postscriptName": {
+      "abstract": [
+        {
+          "text": "The PostScript name of the font descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "postscriptName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/postscriptName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "postscriptName"
+        }
+      ],
+      "role": "symbol",
+      "title": "postscriptName",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/postscriptname"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/preferredFontDescriptor(withTextStyle:)": {
+      "abstract": [
+        {
+          "text": "Returns a font descriptor that contains the specified text style and the user’s selected content size category.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredFontDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withTextStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFont",
+          "text": "UIFont"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIFontTextStyle",
+          "text": "TextStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFontDescriptor",
+          "text": "UIFontDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/preferredFontDescriptor(withTextStyle:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredFontDescriptorWithTextStyle:"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredFontDescriptor(withTextStyle:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/preferredfontdescriptor(withtextstyle:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/preferredFontDescriptor(withTextStyle:compatibleWith:)": {
+      "abstract": [
+        {
+          "text": "Returns a font descriptor that contains the text style and the content size category that the provided trait collection specifies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredFontDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withTextStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFont",
+          "text": "UIFont"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIFontTextStyle",
+          "text": "TextStyle"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "compatibleWith"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITraitCollection",
+          "text": "UITraitCollection"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFontDescriptor",
+          "text": "UIFontDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/preferredFontDescriptor(withTextStyle:compatibleWith:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredFontDescriptorWithTextStyle:compatibleWithTraitCollection:"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredFontDescriptor(withTextStyle:compatibleWith:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/preferredfontdescriptor(withtextstyle:compatiblewith:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/symbolicTraits-swift.property": {
+      "abstract": [
+        {
+          "text": "The traits of the font descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "symbolicTraits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFontDescriptor",
+          "text": "UIFontDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIFontDescriptorSymbolicTraits",
+          "text": "SymbolicTraits"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/symbolicTraits-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "symbolicTraits"
+        }
+      ],
+      "role": "symbol",
+      "title": "symbolicTraits",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/symbolictraits-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/withDesign(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new font descriptor that’s the same as the existing descriptor, but with the specified design.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withDesign"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFontDescriptor",
+          "text": "UIFontDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIFontDescriptorSystemDesign",
+          "text": "SystemDesign"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFontDescriptor",
+          "text": "UIFontDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/withDesign(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fontDescriptorWithDesign:"
+        }
+      ],
+      "role": "symbol",
+      "title": "withDesign(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/withdesign(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/withFace(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new font descriptor that’s the same as the existing font descriptor, but with the specified face.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withFace"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFontDescriptor",
+          "text": "UIFontDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/withFace(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fontDescriptorWithFace:"
+        }
+      ],
+      "role": "symbol",
+      "title": "withFace(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/withface(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/withFamily(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new font descriptor whose attributes are the same as the existing font descriptor, but from the specified family.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withFamily"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFontDescriptor",
+          "text": "UIFontDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/withFamily(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fontDescriptorWithFamily:"
+        }
+      ],
+      "role": "symbol",
+      "title": "withFamily(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/withfamily(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/withMatrix(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new font descriptor that’s the same as the existing font descriptor, but with the specified matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withMatrix"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGAffineTransform",
+          "text": "CGAffineTransform"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFontDescriptor",
+          "text": "UIFontDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/withMatrix(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fontDescriptorWithMatrix:"
+        }
+      ],
+      "role": "symbol",
+      "title": "withMatrix(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/withmatrix(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/withSize(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new font descriptor that’s the same as the existing font descriptor, but with the specified point size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFontDescriptor",
+          "text": "UIFontDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/withSize(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fontDescriptorWithSize:"
+        }
+      ],
+      "role": "symbol",
+      "title": "withSize(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/withsize(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/withSymbolicTraits(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new font descriptor that’s the same as the existing font descriptor, but with the specified symbolic traits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withSymbolicTraits"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFontDescriptor",
+          "text": "UIFontDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIFontDescriptorSymbolicTraits",
+          "text": "SymbolicTraits"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFontDescriptor",
+          "text": "UIFontDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/withSymbolicTraits(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fontDescriptorWithSymbolicTraits:"
+        }
+      ],
+      "role": "symbol",
+      "title": "withSymbolicTraits(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/withsymbolictraits(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontMetrics": {
+      "abstract": [
+        {
+          "text": "A utility object for obtaining custom fonts that scale to support Dynamic Type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFontMetrics"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontMetrics",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFontMetrics"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFontMetrics",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontmetrics"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/adding-a-custom-font-to-your-app": {
+      "abstract": [
+        {
+          "text": "Add a custom font to your app and use it in your app’s interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/adding-a-custom-font-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Custom Font to Your App",
+      "type": "topic",
+      "url": "/documentation/uikit/adding-a-custom-font-to-your-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/scaling-fonts-automatically": {
+      "abstract": [
+        {
+          "text": "Scale text in your interface automatically using Dynamic Type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/scaling-fonts-automatically",
+      "kind": "article",
+      "role": "article",
+      "title": "Scaling Fonts Automatically",
+      "type": "topic",
+      "url": "/documentation/uikit/scaling-fonts-automatically"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/typography/": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/typography/",
+      "title": "Human Interface Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/typography/"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Fonts",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/scaling-fonts-automatically",
+        "doc://com.apple.uikit/documentation/UIKit/adding-a-custom-font-to-your-app",
+        "doc://com.apple.uikit/documentation/UIKit/UIFont",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/SymbolicTraits-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontMetrics"
+      ],
+      "title": "Fonts"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-font-descriptor",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/preferredFontDescriptor(withTextStyle:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/preferredFontDescriptor(withTextStyle:compatibleWith:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/init(name:matrix:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/init(name:size:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/addingAttributes(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/withDesign(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/withFamily(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/withFace(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/withMatrix(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/withSize(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/withSymbolicTraits(_:)"
+      ],
+      "title": "Creating a font descriptor"
+    },
+    {
+      "anchor": "Initializing-a-font-descriptor",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/init(fontAttributes:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/init()",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/init(coder:)"
+      ],
+      "title": "Initializing a font descriptor"
+    },
+    {
+      "anchor": "Finding-fonts",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/matchingFontDescriptors(withMandatoryKeys:)"
+      ],
+      "title": "Finding fonts"
+    },
+    {
+      "anchor": "Querying-a-font-descriptor",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/fontAttributes",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/matrix",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/object(forKey:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/pointSize",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/postscriptName",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/symbolicTraits-swift.property",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/SymbolicTraits-swift.struct"
+      ],
+      "title": "Querying a font descriptor"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIFont/TextStyle",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/SystemDesign",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/SymbolicTraits-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/Class",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/AttributeName",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/FeatureKey",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/TraitKey",
+        "doc://com.apple.uikit/documentation/UIKit/UIFont/Weight",
+        "doc://com.apple.uikit/documentation/UIKit/UIFont/Width"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UIFontDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-font-descriptor",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/preferredFontDescriptor(withTextStyle:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/preferredFontDescriptor(withTextStyle:compatibleWith:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/fontDescriptorWithFontAttributes:",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/init(name:matrix:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/init(name:size:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/addingAttributes(_:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/withDesign(_:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/withFamily(_:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/withFace(_:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/withMatrix(_:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/withSize(_:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/withSymbolicTraits(_:)"
+              ],
+              "title": "Creating a font descriptor"
+            },
+            {
+              "anchor": "Initializing-a-font-descriptor",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/init(fontAttributes:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/init()",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/init(coder:)"
+              ],
+              "title": "Initializing a font descriptor"
+            },
+            {
+              "anchor": "Finding-fonts",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/matchingFontDescriptors(withMandatoryKeys:)"
+              ],
+              "title": "Finding fonts"
+            },
+            {
+              "anchor": "Querying-a-font-descriptor",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/fontAttributes",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/matrix",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/object(forKey:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/pointSize",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/postscriptName",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/symbolicTraits-swift.property",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/SymbolicTraits-swift.struct"
+              ],
+              "title": "Querying a font descriptor"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIFont/TextStyle",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/SystemDesign",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/SymbolicTraits-swift.struct",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/Class",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/AttributeName",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/FeatureKey",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/TraitKey",
+                "doc://com.apple.uikit/documentation/UIKit/UIFont/Weight",
+                "doc://com.apple.uikit/documentation/UIKit/UIFont/Width"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Fonts",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/scaling-fonts-automatically",
+                "doc://com.apple.uikit/documentation/UIKit/adding-a-custom-font-to-your-app",
+                "doc://com.apple.uikit/documentation/UIKit/UIFont",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/SymbolicTraits-swift.struct",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontMetrics"
+              ],
+              "title": "Fonts"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UIFontDescriptor"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1matrix/title",
+          "value": "matrix"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1matrix/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "matrix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1postscriptName/title",
+          "value": "postscriptName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1postscriptName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "postscriptName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1init(name:size:)/title",
+          "value": "fontDescriptorWithName:size:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1init(name:size:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "fontDescriptorWithName:size:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1Class/title",
+          "value": "UIFontDescriptorClass"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1Class/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontDescriptorClass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1Class/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontDescriptorClass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1withSize(_:)/title",
+          "value": "fontDescriptorWithSize:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1withSize(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fontDescriptorWithSize:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1withDesign(_:)/title",
+          "value": "fontDescriptorWithDesign:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1withDesign(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fontDescriptorWithDesign:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1withMatrix(_:)/title",
+          "value": "fontDescriptorWithMatrix:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1withMatrix(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fontDescriptorWithMatrix:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1init(coder:)/title",
+          "value": "initWithCoder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1init(coder:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithCoder:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1pointSize/title",
+          "value": "pointSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1pointSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pointSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1preferredFontDescriptor(withTextStyle:compatibleWith:)/title",
+          "value": "preferredFontDescriptorWithTextStyle:compatibleWithTraitCollection:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1preferredFontDescriptor(withTextStyle:compatibleWith:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "preferredFontDescriptorWithTextStyle:compatibleWithTraitCollection:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1SystemDesign/title",
+          "value": "UIFontDescriptorSystemDesign"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1SystemDesign/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontDescriptorSystemDesign"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1SystemDesign/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontDescriptorSystemDesign"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont/title",
+          "value": "UIFont"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFont"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFont"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontMetrics/title",
+          "value": "UIFontMetrics"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontMetrics/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontMetrics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontMetrics/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontMetrics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1object(forKey:)/title",
+          "value": "objectForKey:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1object(forKey:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "objectForKey:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1init(name:matrix:)/title",
+          "value": "fontDescriptorWithName:matrix:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1init(name:matrix:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "fontDescriptorWithName:matrix:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1Width/title",
+          "value": "UIFontWidth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1Width/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontWidth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1Width/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontWidth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1AttributeName/title",
+          "value": "UIFontDescriptorAttributeName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1AttributeName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontDescriptorAttributeName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1AttributeName/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontDescriptorAttributeName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1FeatureKey/title",
+          "value": "UIFontDescriptorFeatureKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1FeatureKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontDescriptorFeatureKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1FeatureKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontDescriptorFeatureKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1SymbolicTraits-swift.struct/title",
+          "value": "UIFontDescriptorSymbolicTraits"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1SymbolicTraits-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontDescriptorSymbolicTraits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1SymbolicTraits-swift.struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontDescriptorSymbolicTraits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1fontAttributes/title",
+          "value": "fontAttributes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1fontAttributes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fontAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1symbolicTraits-swift.property/title",
+          "value": "symbolicTraits"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1symbolicTraits-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "symbolicTraits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1Weight/title",
+          "value": "UIFontWeight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1Weight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontWeight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1Weight/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontWeight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1addingAttributes(_:)/title",
+          "value": "fontDescriptorByAddingAttributes:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1addingAttributes(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fontDescriptorByAddingAttributes:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1TextStyle/title",
+          "value": "UIFontTextStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1TextStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontTextStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1TextStyle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontTextStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1withSymbolicTraits(_:)/title",
+          "value": "fontDescriptorWithSymbolicTraits:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1withSymbolicTraits(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fontDescriptorWithSymbolicTraits:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1preferredFontDescriptor(withTextStyle:)/title",
+          "value": "preferredFontDescriptorWithTextStyle:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1preferredFontDescriptor(withTextStyle:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "preferredFontDescriptorWithTextStyle:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1withFace(_:)/title",
+          "value": "fontDescriptorWithFace:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1withFace(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fontDescriptorWithFace:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1init(fontAttributes:)/title",
+          "value": "initWithFontAttributes:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1init(fontAttributes:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithFontAttributes:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1matchingFontDescriptors(withMandatoryKeys:)/title",
+          "value": "matchingFontDescriptorsWithMandatoryKeys:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1matchingFontDescriptors(withMandatoryKeys:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "matchingFontDescriptorsWithMandatoryKeys:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1TraitKey/title",
+          "value": "UIFontDescriptorTraitKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1TraitKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontDescriptorTraitKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1TraitKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontDescriptorTraitKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor/title",
+          "value": "UIFontDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1init()/title",
+          "value": "init"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1init()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "init"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1withFamily(_:)/title",
+          "value": "fontDescriptorWithFamily:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1withFamily(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fontDescriptorWithFamily:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uifontdescriptor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uifontdescriptor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

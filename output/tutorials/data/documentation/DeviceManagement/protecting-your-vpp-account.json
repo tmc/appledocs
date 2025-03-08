@@ -1,0 +1,422 @@
+{
+  "abstract": [
+    {
+      "text": "Ensure a Volume Purchase Program (VPP) account is not managed or reset by another product.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management-legacy",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services-legacy"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/protecting-your-vpp-account"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Protecting Your VPP Account"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When first configuring a VPP account, the account might be reset by retiring all users and revoking all app assignments. Therefore, it is very important that your product always sets the ",
+              "type": "text"
+            },
+            {
+              "code": "clientContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data as documented below, so other products that manage VPP accounts can see that the VPP account is being managed by another product and not reset the VPP account without warning.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "VPP-Account-Protection",
+          "level": 3,
+          "text": "VPP Account Protection",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure that a VPP account is not being managed by another product, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "During initial setup, check the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clientContext",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value returned from the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Client-Configuration",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "If clientContext is empty:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a JSON string with these keys and values:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "code": "{\"hostname\":<my.servername.com>, \"guid\":<random_uuid>}",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "guid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " should be a standard 8-4-4-4-12 formatted UUID string and must be unique for each installation of your product.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Write this JSON string to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clientContext",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to claim this VPP account for your product.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "If clientContext is not empty:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clientContext",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is not empty and does not match the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "guid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value of your product, report the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "hostname",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " returned by ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clientContext",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and confirm that your product should take over from it. Do not rely on ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "hostname",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to confirm that your product still has a proper claim on the VPP account.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "At the start of ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "every",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " subsequent VPP session, check ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clientContext",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ensure that it still represents the correct installation of your product.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clientContext",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " no longer refers to your product, do not make any further requests to the VPP service for that VPP account until the account has been reactivated by administrator commands. Your product should report this isolation action to an administrator, giving the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "hostname",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " of the server that now claims to manage the VPP account.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Client-Configuration": {
+      "abstract": [
+        {
+          "text": "Store client-specific information on the server.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Client-Configuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Client Configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "Client Configuration",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/client-configuration"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management": {
+      "abstract": [
+        {
+          "text": "Manage apps and books for your students and employees.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and Book Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/app-and-book-management"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management-legacy": {
+      "abstract": [
+        {
+          "text": "Manage apps and books for your students and employees.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management-legacy",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and Book Management (Legacy)",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/app-and-book-management-legacy"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services-legacy": {
+      "abstract": [
+        {
+          "text": "Associate volume purchases with users or devices using endpoints for Mobile Device Management (MDM), provided by the Volume Purchase Program (VPP).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services-legacy",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Managing Apps and Books Through Web Services",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managing-apps-and-books-through-web-services-legacy"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/protecting-your-vpp-account"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

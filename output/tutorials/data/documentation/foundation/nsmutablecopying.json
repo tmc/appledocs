@@ -1,0 +1,844 @@
+{
+  "abstract": [
+    {
+      "text": "A protocol that mutable objects adopt to provide functional copies of themselves.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsmutablecopying"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1412639,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)NSMutableCopying",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "protocol "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSMutableCopying"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "intf",
+    "title": "NSMutableCopying"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSMutableCopying"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecopying",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " protocol declares a method for providing mutable copies of an object. Only classes that define an “immutable vs. mutable” distinction should adopt this protocol. Classes that don’t define such a distinction should adopt ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecopying",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " declares one method, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecopying/1414175-mutablecopy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", but mutable copying is commonly invoked with the convenience method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418978-mutablecopy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418978-mutablecopy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method is defined for all NSObjects and simply invokes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecopying/1414175-mutablecopy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the default zone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a subclass inherits ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecopying",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " from its superclass and declares additional instance variables, the subclass has to override ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecopying/1414175-mutablecopy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to properly handle its own instance variables, invoking the superclass’s implementation first.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.addressbook/documentation/AddressBook/ABMultiValue": {
+      "identifier": "doc://com.apple.addressbook/documentation/AddressBook/ABMultiValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ABMultiValue",
+      "type": "topic",
+      "url": "/documentation/addressbook/abmultivalue"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontCollection": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontCollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFontCollection",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontcollection"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSParagraphStyle": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSParagraphStyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSParagraphStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/nsparagraphstyle"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioBuffer": {
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioBuffer",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiobuffer"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetDownloadStorageManagementPolicy": {
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetDownloadStorageManagementPolicy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAssetDownloadStorageManagementPolicy",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetdownloadstoragemanagementpolicy"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioMix": {
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioMix",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioMix",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avaudiomix"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioMixInputParameters": {
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioMixInputParameters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioMixInputParameters",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avaudiomixinputparameters"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaption": {
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaption",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaption",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaption"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptionRegion": {
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptionRegion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptionRegion",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptionregion"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVComposition": {
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVComposition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVComposition",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcomposition"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDateRangeMetadataGroup": {
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDateRangeMetadataGroup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVDateRangeMetadataGroup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdaterangemetadatagroup"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaSelection": {
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaSelection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVMediaSelection",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmediaselection"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem": {
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVMetadataItem",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMovie": {
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMovie",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVMovie",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmovie"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVTimedMetadataGroup": {
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVTimedMetadataGroup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVTimedMetadataGroup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avtimedmetadatagroup"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition": {
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVVideoComposition",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideocomposition"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCompositionInstruction-swift.class": {
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCompositionInstruction-swift.class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVVideoCompositionInstruction",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideocompositioninstruction-swift.class"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCompositionLayerInstruction": {
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCompositionLayerInstruction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVVideoCompositionLayerInstruction",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideocompositionlayerinstruction"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNContact": {
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNContact",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CNContact",
+      "type": "topic",
+      "url": "/documentation/contacts/cncontact"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNGroup": {
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNGroup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CNGroup",
+      "type": "topic",
+      "url": "/documentation/contacts/cngroup"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNPostalAddress": {
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNPostalAddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CNPostalAddress",
+      "type": "topic",
+      "url": "/documentation/contacts/cnpostaladdress"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWConfiguration": {
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWConfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CWConfiguration",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwconfiguration"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWNetworkProfile": {
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWNetworkProfile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CWNetworkProfile",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwnetworkprofile"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsattributedstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsattributedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscharacterset": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscharacterset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCharacterSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nscharacterset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsindexset": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsindexset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSIndexSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nsindexset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableCharacterSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecopying": {
+      "abstract": [
+        {
+          "text": "A protocol that mutable objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableCopying"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecopying/1414175-mutablecopy": {
+      "abstract": [
+        {
+          "text": "Returns a new instance that’s a mutable copy of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "mutableCopy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": NSZone?) -> Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecopying/1414175-mutablecopy",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "mutableCopy(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecopying/1414175-mutablecopy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsorderedset": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsorderedset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSOrderedSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nsorderedset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1418978-mutablecopy": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418978-mutablecopy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mutableCopy()",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1418978-mutablecopy"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMCalendarEvent": {
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMCalendarEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HMCalendarEvent",
+      "type": "topic",
+      "url": "/documentation/homekit/hmcalendarevent"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristicEvent": {
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristicEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HMCharacteristicEvent",
+      "type": "topic",
+      "url": "/documentation/homekit/hmcharacteristicevent"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristicThresholdRangeEvent": {
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristicThresholdRangeEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HMCharacteristicThresholdRangeEvent",
+      "type": "topic",
+      "url": "/documentation/homekit/hmcharacteristicthresholdrangeevent"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMDurationEvent": {
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMDurationEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HMDurationEvent",
+      "type": "topic",
+      "url": "/documentation/homekit/hmdurationevent"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMLocationEvent": {
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMLocationEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HMLocationEvent",
+      "type": "topic",
+      "url": "/documentation/homekit/hmlocationevent"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMPresenceEvent": {
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMPresenceEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HMPresenceEvent",
+      "type": "topic",
+      "url": "/documentation/homekit/hmpresenceevent"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMSignificantTimeEvent": {
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMSignificantTimeEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HMSignificantTimeEvent",
+      "type": "topic",
+      "url": "/documentation/homekit/hmsignificanttimeevent"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationMetadata": {
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationMetadata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SWCollaborationMetadata",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swcollaborationmetadata"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPayment": {
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPayment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKPayment",
+      "type": "topic",
+      "url": "/documentation/storekit/skpayment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIApplicationShortcutItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationshortcutitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUserNotificationAction": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserNotificationAction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIUserNotificationAction",
+      "type": "topic",
+      "url": "/documentation/uikit/uiusernotificationaction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUserNotificationCategory": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserNotificationCategory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIUserNotificationCategory",
+      "type": "topic",
+      "url": "/documentation/uikit/uiusernotificationcategory"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationContent": {
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationContent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UNNotificationContent",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationcontent"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTIssueReference": {
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTIssueReference",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTIssueReference",
+      "type": "topic",
+      "url": "/documentation/xctest/xctissuereference"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.addressbook/documentation/AddressBook/ABMultiValue",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetDownloadStorageManagementPolicy",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioBuffer",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioMix",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAudioMixInputParameters",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaption",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptionRegion",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVComposition",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDateRangeMetadataGroup",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaSelection",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMovie",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVTimedMetadataGroup",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCompositionInstruction-swift.class",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCompositionLayerInstruction",
+        "doc://com.apple.contacts/documentation/Contacts/CNContact",
+        "doc://com.apple.contacts/documentation/Contacts/CNGroup",
+        "doc://com.apple.contacts/documentation/Contacts/CNPostalAddress",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWConfiguration",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWNetworkProfile",
+        "doc://com.apple.homekit/documentation/HomeKit/HMCalendarEvent",
+        "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristicEvent",
+        "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristicThresholdRangeEvent",
+        "doc://com.apple.homekit/documentation/HomeKit/HMDurationEvent",
+        "doc://com.apple.homekit/documentation/HomeKit/HMLocationEvent",
+        "doc://com.apple.homekit/documentation/HomeKit/HMPresenceEvent",
+        "doc://com.apple.homekit/documentation/HomeKit/HMSignificantTimeEvent",
+        "doc://com.apple.documentation/documentation/foundation/nsarray",
+        "doc://com.apple.documentation/documentation/foundation/nsattributedstring",
+        "doc://com.apple.documentation/documentation/foundation/nscharacterset",
+        "doc://com.apple.documentation/documentation/foundation/nsdata",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontCollection",
+        "doc://com.apple.documentation/documentation/foundation/nsindexset",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset",
+        "doc://com.apple.documentation/documentation/foundation/nsorderedset",
+        "doc://com.apple.appkit/documentation/AppKit/NSParagraphStyle",
+        "doc://com.apple.documentation/documentation/foundation/nsset",
+        "doc://com.apple.documentation/documentation/foundation/nsstring",
+        "doc://com.apple.documentation/documentation/foundation/nsurlrequest",
+        "doc://com.apple.storekit/documentation/StoreKit/SKPayment",
+        "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationMetadata",
+        "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem",
+        "doc://com.apple.uikit/documentation/UIKit/UIUserNotificationAction",
+        "doc://com.apple.uikit/documentation/UIKit/UIUserNotificationCategory",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationContent",
+        "doc://com.apple.xctest/documentation/XCTest/XCTIssueReference"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying"
+      ],
+      "title": "Copying"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1679881",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecopying/1414175-mutablecopy"
+      ],
+      "kind": "taskGroup",
+      "title": "Copying"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsmutablecopying"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsmutablecopying"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

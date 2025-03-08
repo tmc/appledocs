@@ -1,0 +1,2195 @@
+{
+  "abstract": [
+    {
+      "text": "Update your code to ensure everyone can access your app’s content in",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "visionOS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/improving-accessibility-support-in-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Improving accessibility support in your visionOS app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "visionOS is an immersive platform that supports people of all abilities.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Even though experiences incorporate stunning visual content and hand-",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and eye-tracking technologies, people can engage with content",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in other ways. In fact, the platform supports people in many",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "different situations, including those who are blind, have low vision,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "have limited mobility, or have limb differences. With the help of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "assistive technologies, people can interact with all of your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app’s content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "VoiceOver-demo.mp4",
+          "type": "video"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During development, enable VoiceOver and other assistive features",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and test your app’s accessibility support. Make sure people can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "navigate your app’s interface intuitively, and that all of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "necessary elements are present. Improve the descriptive information",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for those elements to communicate their intended purpose. And make",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sure your app adapts to changing conditions, such as changes to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Dynamic Type setting while your app is running.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "dynamic-type-off.png",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Default font size",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "dynamic-type-on.png",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Increased font size",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For general information about supporting accessibility, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accessibility",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For design",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "guidance, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/accessibility",
+              "isActive": true,
+              "overridingTitle": "Human Interface Guidelines > Accessibility",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Human Interface Guidelines > Accessibility",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-accessibility-traits-to-RealityKit-entities",
+          "level": 3,
+          "text": "Add accessibility traits to RealityKit entities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "VoiceOver and other assistive technologies rely on the accessibility",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information that your app’s views and content provide. SwiftUI and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "UIKit provide default information for the standard system views,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "but RealityKit doesn’t provide default information for the entities",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in your scenes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the accessibility information for a RealityKit entity,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "add an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/AccessibilityComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the entity. Use this component to specify the same values",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you specify for the rest of your app’s views. The following example shows",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "how to create this component and add it to an entity:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var accessibilityComponent = AccessibilityComponent()",
+            "accessibilityComponent.isAccessibilityElement = true",
+            "accessibilityComponent.traits = [.button]",
+            "accessibilityComponent.label = \"Sports car\"",
+            "accessibilityComponent.value = \"Parked\"",
+            "accessibilityComponent.systemActions = [.activate]",
+            "myEntity.components[AccessibilityComponent.self] = accessibilityComponent"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People can use VoiceOver to initiate specific types of actions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on your entities. Assign a value to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/AccessibilityComponent/systemActions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property of your component if your entity supports the incrementing or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "decrementing of its value, or supports activation with a gesture other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "than a standard tap. You don’t need to set a system action if you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "let people interact with the entity using a standard single-tap gesture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example uses the content of a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/RealityView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when activation events occur on the view’s entities. After subscribing to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the view’s activation events, the code sets up an asynchronous task",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to handle incoming events. When a new event occurs, the task",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "executes the custom code to handle a collision.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "activationSubscription = content.subscribe(to: AccessibilityEvents.Activate.self, ",
+            "                            on: nil, componentType: nil) { activation in",
+            "    Task {",
+            "        try handleCollision(for: activation.entity, gameModel: gameModel)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-support-for-Direct-Gesture-mode",
+          "level": 3,
+          "text": "Add support for Direct Gesture mode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When VoiceOver is active in visionOS, people use hand gestures to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "navigate your app’s interface and inspect elements. To prevent",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app’s code from interfering with VoiceOver interactions, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system doesn’t deliver hand input to your app during this time.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, a person can perform a special VoiceOver gesture to enable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Direct Gesture mode, which leaves VoiceOver enabled but restores",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "hand input to your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add VoiceOver announcements to your code to communicate the results",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of meaningful events. VoiceOver speaks these announcements at all",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "times, but they are particularly useful when Direct Gesture mode is on.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following example posts an announcement when a custom gesture",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "causes an interaction with a game piece:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "AccessibilityNotification.Announcement(\"Game piece hit\").post()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Provide-alternatives-to-input-that-involves-physical-movement",
+          "level": 3,
+          "text": "Provide alternatives to input that involves physical movement",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reduced mobility can affect a person’s ability to interact with your app’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content. When designing your app’s input model, avoid experiences",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that require specific body movements or positions. For example, if your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app supports custom hand gestures, add menu commands for each gesture so",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "someone can enter them using a keyboard or assistive device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some assistive technologies let people interact with your app using only",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "their eyes. Using these technologies they can select, scroll, long press,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or drag items in your interface. Even if you support other types of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interactions, give people a way to access all of your app’s behavior",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using only these interactions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Avoid-head-anchored-content",
+          "level": 3,
+          "text": "Avoid head-anchored content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some assistive technologies allow people to navigate or view your app’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interface using head movements. As the person’s head moves, the assistive",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "technology focuses on the item directly in front of them. Content that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "follows the movements of the person’s head interferes with the behavior",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of these assistive technologies.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When designing your interface, place content in windows or anchor it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to locations other than the virtual camera. If you do need head-anchored",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content, provide an alternative solution when relevant assistive technologies",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are in use. For example, you might move head-anchored content to an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "anchor point that doesn’t follow the person’s head movements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine when to change the anchoring approach for your content,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "check the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/accessibilityPrefersHeadAnchorAlternative",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "environment variable in SwiftUI, or get the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accessibility/AccessibilitySettings/prefersHeadAnchorAlternative",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property. This environment variable is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when an assistive technology",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is in use that conflicts with head-anchored content. Adapt your content",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to use alternate anchoring mechanisms at that time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Limit-motion-effects-in-your-content",
+          "level": 3,
+          "text": "Limit motion effects in your content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Motion effects on any immersive device can be jarring, even for people who aren’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sensitive to motion. Limit the use of motion effects that incorporate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "rapid movement, bouncing or wave-like movement, zooming animations,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "multi-axis movement, spinning, or rotations. When the person wearing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the device is sensitive to motion effects, eliminate the use of these",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "effects altogether.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Reduce Motion system setting lets you know when to provide alternatives",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for all of your app’s motion effects. Access this setting using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/accessibilityReduceMotion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "environment variable in SwiftUI or with the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIAccessibility/isReduceMotionEnabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property in UIKit. When the setting is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", provide",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "suitable alternatives for motion effects or eliminate them altogether. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, show a static snapshot of the ocean instead of a video.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/motion#visionOS",
+              "isActive": true,
+              "overridingTitle": "Human Interface Guidelines > Motion",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Human Interface Guidelines > Motion",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Include-captions-for-audio-content",
+          "level": 3,
+          "text": "Include captions for audio content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For people who are deaf or hard of hearing, provide high-quality captions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for your app’s content. Captions are a necessity to some, but are practical",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for everyone in certain situations. For example, captions are useful to someone",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "watching a video in a noisy environment. Remember to include captions not just",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for text and dialogue, but also for music and sound effects in your content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For Spatial Audio content, include information in your captions that indicates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the direction of various sounds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provide built-in support",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for displaying captioned content. These frameworks configure the font, size,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "color, and style of the captions automatically according to the person’s accessibility",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "settings. For example, the frameworks adopt the current Dynamic Type setting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when displaying text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have a custom video engine, check the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIAccessibility/isClosedCaptioningEnabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " accessibility",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "setting to determine when to display captions. To get the correct appearance",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information for your captioned content, adopt",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MediaAccessibility",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in your project.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This framework provides you with the optimal font, color, and opacity information",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to apply to captioned text and images.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Accessibility-PageImage-card.png": {
+      "alt": "",
+      "identifier": "Accessibility-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/718b8a161d77a3423dde2dd53ac35ffb/Accessibility-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ed433f19cfa41ebf0c9f495a066b6bbd/Accessibility-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "VoiceOver-demo-poster.png": {
+      "alt": null,
+      "identifier": "VoiceOver-demo-poster.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/884621a196cc4edfacbff392d4a8d0a0/VoiceOver-demo-poster@2x.png"
+        }
+      ]
+    },
+    "VoiceOver-demo.mp4": {
+      "alt": "A recording of gameplay in the Happy Beam app. The audio track demonstrates the experience of using VoiceOver with the app. VoiceOver is providing important information about what’s happening in the game to create an accessible gaming experience.",
+      "identifier": "VoiceOver-demo.mp4",
+      "poster": "VoiceOver-demo-poster.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7a7d5c61aa25072baede1f25ba8a665b/VoiceOver-demo.mp4"
+        }
+      ]
+    },
+    "accessibility.svg": {
+      "alt": null,
+      "identifier": "accessibility.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "accessibility",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/83c941607786e0ba1f582082f4e94361/accessibility.svg"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/accessibility": {
+      "abstract": [
+        {
+          "text": "Accessible user interfaces empower everyone to have a great experience with your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/accessibility",
+      "images": [
+        {
+          "identifier": "accessibility.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "foundations-accessibility-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Accessibility",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/accessibility"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/designing-for-visionos": {
+      "abstract": [
+        {
+          "text": "When people wear Apple Vision Pro, they enter an infinite 3D space where they can engage with your app or game while staying connected to their surroundings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/designing-for-visionos",
+      "images": [
+        {
+          "identifier": "visionos.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "platforms-designing-for-visionos-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Designing for visionOS",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/designing-for-visionos"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/motion#visionOS": {
+      "abstract": [
+        {
+          "text": "Beautiful, fluid motions bring the interface to life, conveying status, providing feedback and instruction, and enriching the visual experience of your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/motion#visionOS",
+      "images": [
+        {
+          "identifier": "motion.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "foundations-motion-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Motion",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/motion"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/AVFoundation"
+    },
+    "doc://com.apple.documentation/documentation/AVKit": {
+      "abstract": [
+        {
+          "text": "Create user interfaces for media playback, complete with transport controls, chapter navigation, picture-in-picture support, and display of subtitles and closed captions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVKit",
+      "type": "topic",
+      "url": "/documentation/AVKit"
+    },
+    "doc://com.apple.documentation/documentation/Accessibility": {
+      "abstract": [
+        {
+          "text": "Make your apps accessible to everyone who uses Apple devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accessibility",
+      "images": [
+        {
+          "identifier": "Accessibility-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accessibility",
+      "type": "topic",
+      "url": "/documentation/Accessibility"
+    },
+    "doc://com.apple.documentation/documentation/Accessibility/AccessibilitySettings/prefersHeadAnchorAlternative": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates the person’s preference for content that follows their head position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prefersHeadAnchorAlternative"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accessibility/AccessibilitySettings/prefersHeadAnchorAlternative",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prefersHeadAnchorAlternative",
+      "type": "topic",
+      "url": "/documentation/Accessibility/AccessibilitySettings/prefersHeadAnchorAlternative"
+    },
+    "doc://com.apple.documentation/documentation/MediaAccessibility": {
+      "abstract": [
+        {
+          "text": "Make your app’s media more accessible by supporting people’s systemwide preferences for video and audio content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MediaAccessibility",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Media Accessibility",
+      "type": "topic",
+      "url": "/documentation/MediaAccessibility"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/AccessibilityComponent": {
+      "abstract": [
+        {
+          "text": "A component that stores accessibility information for an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessibilityComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/AccessibilityComponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AccessibilityComponent",
+      "type": "topic",
+      "url": "/documentation/RealityKit/AccessibilityComponent"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/AccessibilityComponent/systemActions": {
+      "abstract": [
+        {
+          "text": "The set of supported accessibility actions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemActions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation22AccessibilityComponentV",
+          "text": "AccessibilityComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation22AccessibilityComponentV16SupportedActionsV",
+          "text": "SupportedActions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/AccessibilityComponent/systemActions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "systemActions",
+      "type": "topic",
+      "url": "/documentation/RealityKit/AccessibilityComponent/systemActions"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/RealityView": {
+      "abstract": [
+        {
+          "text": "A view that contains RealityKit content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RealityView"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/RealityView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RealityView",
+      "type": "topic",
+      "url": "/documentation/RealityKit/RealityView"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/accessibilityPrefersHeadAnchorAlternative": {
+      "abstract": [
+        {
+          "text": "Whether the system setting to prefer alternatives to head-anchored content is on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityPrefersHeadAnchorAlternative"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/accessibilityPrefersHeadAnchorAlternative",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityPrefersHeadAnchorAlternative",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/accessibilityPrefersHeadAnchorAlternative"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/accessibilityReduceMotion": {
+      "abstract": [
+        {
+          "text": "Whether the system preference for Reduce Motion is enabled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityReduceMotion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/accessibilityReduceMotion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityReduceMotion",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/accessibilityReduceMotion"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIAccessibility/isClosedCaptioningEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the Closed Captions + SDH setting is in an enabled state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isClosedCaptioningEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIAccessibility/isClosedCaptioningEnabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isClosedCaptioningEnabled",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIAccessibility/isClosedCaptioningEnabled"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIAccessibility/isReduceMotionEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the Reduce Motion setting is in an enabled state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isReduceMotionEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIAccessibility/isReduceMotionEnabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isReduceMotionEnabled",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIAccessibility/isReduceMotionEnabled"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/adopting-best-practices-for-privacy": {
+      "abstract": [
+        {
+          "text": "Minimize your use of sensitive information and provide a clear",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "statement of what information you do use and how you use it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/adopting-best-practices-for-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "Adopting best practices for privacy and user preferences",
+      "type": "topic",
+      "url": "/documentation/visionos/adopting-best-practices-for-privacy"
+    },
+    "dynamic-type-off.png": {
+      "alt": "A screenshot of the Happy Beam app running in visionOS, showing the window that lets a player choose the type of input gesture they want to use. The text that provides instructions and describes the kinds of gestures appears at the system default font size, with two of the labels taking up a single line and one label wrapping to a second line.",
+      "identifier": "dynamic-type-off.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ab16e10f61f3303fc759040c2e2013ef/dynamic-type-off@2x.png"
+        }
+      ]
+    },
+    "dynamic-type-on.png": {
+      "alt": "A screenshot of the Happy Beam app running in visionOS, showing the window that lets a player choose the type of input gesture they want to use. The text appears at a larger font size than the previous image, with one of the labels wrapping to a third line. Even at the larger font size, the labels continue to fit well within the UI without any clipping or truncation.",
+      "identifier": "dynamic-type-on.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/668b545761521bd2676f1a17753f074a/dynamic-type-on@2x.png"
+        }
+      ]
+    },
+    "foundations-accessibility-thumbnail.png": {
+      "alt": null,
+      "identifier": "foundations-accessibility-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8b7b11d06dd958f4e9449f0a5acdadbd/foundations-accessibility-thumbnail@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fea544b1ff706c10ba3a1d06f528da46/foundations-accessibility-thumbnail~dark@2x.png"
+        }
+      ]
+    },
+    "foundations-motion-thumbnail.png": {
+      "alt": null,
+      "identifier": "foundations-motion-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/50f7eff4297cccaa9eb3838f3fca3deb/foundations-motion-thumbnail~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/63cb019452ab3aa53d1607bd80c03442/foundations-motion-thumbnail@2x.png"
+        }
+      ]
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "motion.svg": {
+      "alt": null,
+      "identifier": "motion.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "motion",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1a90a8ffd801429564df725c0c62fd51/motion.svg"
+        }
+      ]
+    },
+    "platforms-designing-for-visionos-thumbnail.png": {
+      "alt": null,
+      "identifier": "platforms-designing-for-visionos-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/303496febc1c50d59009e0606ae8cd30/platforms-designing-for-visionos-thumbnail@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6d6f2ae421c8366fdceba83e33a93085/platforms-designing-for-visionos-thumbnail~dark@2x.png"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "visionos.svg": {
+      "alt": null,
+      "identifier": "visionos.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "Design-Spec",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b88bc6c95b1a9950ef2b9f1495288a5b/visionos.svg"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Design",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/design/Human-Interface-Guidelines/designing-for-visionos",
+        "doc://com.apple.visionOS/documentation/visionOS/adopting-best-practices-for-privacy"
+      ],
+      "title": "Design"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIAccessibility~1isReduceMotionEnabled/title",
+          "value": "UIAccessibilityIsReduceMotionEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIAccessibility~1isReduceMotionEnabled/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityIsReduceMotionEnabled"
+            },
+            {
+              "kind": "text",
+              "text": "();"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIAccessibility~1isClosedCaptioningEnabled/title",
+          "value": "UIAccessibilityIsClosedCaptioningEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIAccessibility~1isClosedCaptioningEnabled/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityIsClosedCaptioningEnabled"
+            },
+            {
+              "kind": "text",
+              "text": "();"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

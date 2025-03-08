@@ -1,0 +1,1239 @@
+{
+  "abstract": [
+    {
+      "text": "Create and initialize missing contexts.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.classkit/documentation/ClassKit",
+        "doc://com.apple.classkit/documentation/ClassKit/CLSDataStore"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.classkit/documentation/ClassKit",
+        "doc://com.apple.classkit/documentation/ClassKit/advertising-your-app-s-assignable-content"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.classkit/documentation/ClassKit/building-missing-contexts"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ClassKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Building missing contexts"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you request a context with a call to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext/descendant(matchingIdentifierPath:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, whether because you are declaring it or because you want to do something with it, the data store returns the context indicated by the identifier path. But if that context or any of its ancestors doesn’t already exist, the data store asks its delegate to create new ones.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Adopt-the-data-store-delegate-protocol",
+          "level": 3,
+          "text": "Adopt the data store delegate protocol",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable the delegate to create a context, you adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSDataStoreDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Extension to MyClass for adopting the data store delegate protocol.",
+            "extension MyClass: CLSDataStoreDelegate {",
+            "",
+            "    // Call this once at app launch.",
+            "    func setupClassKit() {",
+            "        CLSDataStore.shared.delegate = self",
+            "    }",
+            "",
+            "    // The delegate callback for creating new contexts.",
+            "    func createContext(forIdentifier identifier: String, parentContext: CLSContext, parentIdentifierPath: [String]) -> CLSContext? {",
+            "        let identifierPath = parentIdentifierPath + [identifier]",
+            "        ",
+            "        let object = <# A model object based on identifierPath #>",
+            "        let context = CLSContext(type: object.contextType, identifier: identifier, title: object.title)",
+            "        ",
+            "        return context",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The data store uses the delegate callback to ask for each new context it encounters. You use the identifier path to determine exactly what the new context should look like. A good way to do this is to map the identifier path to a model object you already have and use its properties to inform context creation. For example, your model objects might represent books, chapters, sections, and quizzes, all of which implement a ",
+              "type": "text"
+            },
+            {
+              "code": "title",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter suitable for use on the context. By also storing a ",
+              "type": "text"
+            },
+            {
+              "code": "contextType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter on each model instance, with values like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContextType/book",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContextType/chapter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContextType/section",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContextType/quiz",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can create contexts based entirely on model instances, as shown above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-descriptive-titles",
+          "level": 3,
+          "text": "Provide descriptive titles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The title you provide at context initialization is what teachers see when browsing your content in the Schoolwork app. Make it easy for teachers to understand what your app offers by choosing good context titles and localizing them, as appropriate. Because titles are the most visible aspect of your hierarchy, it’s important that you make them both clear and descriptive. The title “Thermodynamics Quiz” is much more self-explanatory than “Quiz 8” for example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Optionally-indicate-display-order",
+          "level": 3,
+          "text": "Optionally, indicate display order",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If appropriate, provide guidance for ordering your contexts using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext/displayOrder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. For example, immediately after instantiating a context that represents a chapter, you might indicate its position as the chapter number:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let chapter = object as? Chapter {",
+            "    context.displayOrder = chapter.number",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Classify-contexts-by-subject",
+          "level": 3,
+          "text": "Classify contexts by subject",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can further classify a context with an optional topic using one of the values from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContextTopic",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContextTopic/math",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContextTopic/socialScience",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For apps covering a variety of different subject matters, topics help teachers differentiate between the various parts of your app. An app that has a singular focus can simply set its top-level context to the topic that best matches that subject. For example, for a book reader:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "dataStore.mainAppContext.topic = .literacyAndWriting"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Return-the-context",
+          "level": 3,
+          "text": "Return the context",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you create and configure the context, you simply return it to the data store. The data store associates the context with the appropriate parent and keeps it in memory. The next time you ask the data store for that context, it returns the previously generated one instead of requesting a new one from the delegate. Additionally, for a user logged in as a teacher, the data store saves the changes to an internal database that’s shared with the Schoolwork app and synchronized over iCloud. This allows the context to persist even across launches of your app, but only for teachers. For privacy reasons, other users don’t record contexts in the database.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "It’s possible to build a context hierarchy without using the delegate protocol by initializing ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instances and manually assigning them as children of other contexts, starting with the app’s main context at the root. But a context hierarchy might already exist in the local data store from a previous launch of your app. Rebuilding generates needless network traffic while the updates are synchronized through iCloud. By using a data store delegate, you only create new contexts when they aren’t already in the data store.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.classkit/documentation/ClassKit": {
+      "abstract": [
+        {
+          "text": "Enable teachers to assign activities from your app’s content and to view student progress.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClassKit",
+      "type": "topic",
+      "url": "/documentation/classkit"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSContext": {
+      "abstract": [
+        {
+          "text": "An area of your app that represents an assignable task, like a quiz or a chapter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLSContext"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLSContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLSContext",
+      "type": "topic",
+      "url": "/documentation/classkit/clscontext"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSContext/descendant(matchingIdentifierPath:completion:)": {
+      "abstract": [
+        {
+          "text": "Finds the context with the given identifier path relative to this context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "descendant"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "matchingIdentifierPath"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLSContext",
+          "text": "CLSContext"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext/descendant(matchingIdentifierPath:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "descendantMatchingIdentifierPath:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "descendant(matchingIdentifierPath:completion:)",
+      "type": "topic",
+      "url": "/documentation/classkit/clscontext/descendant(matchingidentifierpath:completion:)"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSContext/displayOrder": {
+      "abstract": [
+        {
+          "text": "The position of a context relative to its siblings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayOrder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext/displayOrder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "displayOrder"
+        }
+      ],
+      "role": "symbol",
+      "title": "displayOrder",
+      "type": "topic",
+      "url": "/documentation/classkit/clscontext/displayorder"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSContextTopic": {
+      "abstract": [
+        {
+          "text": "The areas of study to which contexts may relate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLSContextTopic"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContextTopic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLSContextTopic"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLSContextTopic",
+      "type": "topic",
+      "url": "/documentation/classkit/clscontexttopic"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSContextTopic/math": {
+      "abstract": [
+        {
+          "text": "Mathematics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "math"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLSContextTopic",
+          "text": "CLSContextTopic"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContextTopic/math",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLSContextTopicMath"
+        }
+      ],
+      "role": "symbol",
+      "title": "math",
+      "type": "topic",
+      "url": "/documentation/classkit/clscontexttopic/math"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSContextTopic/socialScience": {
+      "abstract": [
+        {
+          "text": "Social science.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "socialScience"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLSContextTopic",
+          "text": "CLSContextTopic"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContextTopic/socialScience",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLSContextTopicSocialScience"
+        }
+      ],
+      "role": "symbol",
+      "title": "socialScience",
+      "type": "topic",
+      "url": "/documentation/classkit/clscontexttopic/socialscience"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSContextType/book": {
+      "abstract": [
+        {
+          "text": "A book context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "book"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContextType/book",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLSContextTypeBook"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLSContextType.book",
+      "type": "topic",
+      "url": "/documentation/classkit/clscontexttype/book"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSContextType/chapter": {
+      "abstract": [
+        {
+          "text": "A chapter context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "chapter"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContextType/chapter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLSContextTypeChapter"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLSContextType.chapter",
+      "type": "topic",
+      "url": "/documentation/classkit/clscontexttype/chapter"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSContextType/quiz": {
+      "abstract": [
+        {
+          "text": "A quiz context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "quiz"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContextType/quiz",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLSContextTypeQuiz"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLSContextType.quiz",
+      "type": "topic",
+      "url": "/documentation/classkit/clscontexttype/quiz"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSContextType/section": {
+      "abstract": [
+        {
+          "text": "A section context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "section"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContextType/section",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLSContextTypeSection"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLSContextType.section",
+      "type": "topic",
+      "url": "/documentation/classkit/clscontexttype/section"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSDataStore": {
+      "abstract": [
+        {
+          "text": "A container for all the ClassKit data in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLSDataStore"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSDataStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLSDataStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLSDataStore",
+      "type": "topic",
+      "url": "/documentation/classkit/clsdatastore"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSDataStore/delegate": {
+      "abstract": [
+        {
+          "text": "The data store delegate instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)CLSDataStoreDelegate",
+          "text": "CLSDataStoreDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSDataStore/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/classkit/clsdatastore/delegate"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSDataStoreDelegate": {
+      "abstract": [
+        {
+          "text": "An interface the data store uses to request new contexts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLSDataStoreDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSDataStoreDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLSDataStoreDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLSDataStoreDelegate",
+      "type": "topic",
+      "url": "/documentation/classkit/clsdatastoredelegate"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/advertising-your-app-s-assignable-content": {
+      "abstract": [
+        {
+          "text": "Assemble a hierarchy of contexts and declare your app’s assignable content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/advertising-your-app-s-assignable-content",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Advertising your app’s assignable content",
+      "type": "topic",
+      "url": "/documentation/classkit/advertising-your-app-s-assignable-content"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-the-delegate",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.classkit/documentation/ClassKit/CLSDataStore/delegate",
+        "doc://com.apple.classkit/documentation/ClassKit/CLSDataStoreDelegate"
+      ],
+      "title": "Managing the delegate"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Managing-the-delegate",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.classkit/documentation/ClassKit/CLSDataStore/delegate",
+                "doc://com.apple.classkit/documentation/ClassKit/CLSDataStoreDelegate"
+              ],
+              "title": "Managing the delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext/title",
+          "value": "CLSContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLSContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLSContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSDataStore/title",
+          "value": "CLSDataStore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSDataStore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLSDataStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSDataStore/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLSDataStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContextTopic~1socialScience/title",
+          "value": "CLSContextTopicSocialScience"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContextTopic~1socialScience/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLSContextTopicSocialScience"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSDataStoreDelegate/title",
+          "value": "CLSDataStoreDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSDataStoreDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLSDataStoreDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSDataStoreDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLSDataStoreDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContextType~1quiz/title",
+          "value": "CLSContextTypeQuiz"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContextType~1quiz/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLSContextTypeQuiz"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContextType~1chapter/title",
+          "value": "CLSContextTypeChapter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContextType~1chapter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLSContextTypeChapter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContextTopic~1math/title",
+          "value": "CLSContextTopicMath"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContextTopic~1math/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLSContextTopicMath"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext~1displayOrder/title",
+          "value": "displayOrder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext~1displayOrder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "displayOrder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContextType~1book/title",
+          "value": "CLSContextTypeBook"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContextType~1book/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLSContextTypeBook"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext~1descendant(matchingIdentifierPath:completion:)/title",
+          "value": "descendantMatchingIdentifierPath:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext~1descendant(matchingIdentifierPath:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "descendantMatchingIdentifierPath:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContextTopic/title",
+          "value": "CLSContextTopic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContextTopic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLSContextTopic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContextTopic/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLSContextTopic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSDataStore~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSDataStore~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContextType~1section/title",
+          "value": "CLSContextTypeSection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContextType~1section/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLSContextTypeSection"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/classkit/building-missing-contexts"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/classkit/building-missing-contexts"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

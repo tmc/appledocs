@@ -1,0 +1,946 @@
+{
+  "abstract": [
+    {
+      "text": "The possible states of Camera Assistance.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fnve"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17NearbyInteraction28NIAlgorithmConvergenceStatusO",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "enum"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NIAlgorithmConvergenceStatus"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Nearby Interaction"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NIAlgorithmConvergenceStatus"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration",
+    "symbolKind": "enum",
+    "title": "NIAlgorithmConvergenceStatus"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NIAlgorithmConvergenceStatus"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app enables Camera Assistance by setting ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration/isCameraAssistanceEnabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the framework provides the app one of these values in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergence/status-j61c",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " field of the convergence object provided by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NISessionDelegate/session(_:didUpdateAlgorithmConvergence:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " callback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The framework may require user action before Camera Assistance is fully operational at runtime. This enumeration indicates whether Camera Assistance currently functions as expected on device (convergence state ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fnve/converged",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), and otherwise, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fnve/Reason",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " defines the recommended user actions when status is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fnve/notConverged(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Objective-C version of this enumeration is ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/algorithm-convergence-status",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction": {
+      "abstract": [
+        {
+          "text": "Locate and interact with nearby devices using identifiers, distance, and direction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Nearby Interaction",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergence": {
+      "abstract": [
+        {
+          "text": "An object that provides the state and reason for user coaching recommendations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NIAlgorithmConvergence"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NIAlgorithmConvergence"
+        }
+      ],
+      "role": "symbol",
+      "title": "NIAlgorithmConvergence",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/nialgorithmconvergence"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergence/status-j61c": {
+      "abstract": [
+        {
+          "text": "The current state of the framework’s Camera Assistance feature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "status"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergence/status-j61c",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "status",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/nialgorithmconvergence/status-j61c"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fbmj/NIAlgorithmConvergenceStatusConverged": {
+      "abstract": [
+        {
+          "text": "A status that indicates the framework’s Camera Assistance feature is operational.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NIAlgorithmConvergenceStatusConverged"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fbmj/NIAlgorithmConvergenceStatusConverged",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NIAlgorithmConvergenceStatusConverged",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/nialgorithmconvergencestatus-2fbmj/nialgorithmconvergencestatusconverged"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fbmj/NIAlgorithmConvergenceStatusNotConverged": {
+      "abstract": [
+        {
+          "text": "A status that indicates the framework’s Camera Assistance feature requires action from the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NIAlgorithmConvergenceStatusNotConverged"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fbmj/NIAlgorithmConvergenceStatusNotConverged",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NIAlgorithmConvergenceStatusNotConverged",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/nialgorithmconvergencestatus-2fbmj/nialgorithmconvergencestatusnotconverged"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fbmj/NIAlgorithmConvergenceStatusUnknown": {
+      "abstract": [
+        {
+          "text": "An indication that the framework is unsure of the Camera Assistance status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NIAlgorithmConvergenceStatusUnknown"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fbmj/NIAlgorithmConvergenceStatusUnknown",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NIAlgorithmConvergenceStatusUnknown",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/nialgorithmconvergencestatus-2fbmj/nialgorithmconvergencestatusunknown"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fnve": {
+      "abstract": [
+        {
+          "text": "The possible states of Camera Assistance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NIAlgorithmConvergenceStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fnve",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NIAlgorithmConvergenceStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "NIAlgorithmConvergenceStatus",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/nialgorithmconvergencestatus-2fnve"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fnve/==(_:_:)": {
+      "abstract": [
+        {
+          "text": "Determines whether two convergence statuses are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "=="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17NearbyInteraction28NIAlgorithmConvergenceStatusO",
+          "text": "NIAlgorithmConvergenceStatus"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17NearbyInteraction28NIAlgorithmConvergenceStatusO",
+          "text": "NIAlgorithmConvergenceStatus"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fnve/==(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/nialgorithmconvergencestatus-2fnve/==(_:_:)"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fnve/Reason": {
+      "abstract": [
+        {
+          "text": "The possible reasons for the Camera Assistance status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Reason"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fnve/Reason",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Reason"
+        }
+      ],
+      "role": "symbol",
+      "title": "NIAlgorithmConvergenceStatus.Reason",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/nialgorithmconvergencestatus-2fnve/reason"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fnve/converged": {
+      "abstract": [
+        {
+          "text": "A status that indicates the framework’s Camera Assistance feature is operational.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "converged"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fnve/converged",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NIAlgorithmConvergenceStatus.converged",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/nialgorithmconvergencestatus-2fnve/converged"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fnve/notConverged(_:)": {
+      "abstract": [
+        {
+          "text": "A status that indicates the framework’s Camera Assistance feature requires action from the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notConverged"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17NearbyInteraction28NIAlgorithmConvergenceStatusO",
+          "text": "NIAlgorithmConvergenceStatus"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17NearbyInteraction28NIAlgorithmConvergenceStatusO6ReasonV",
+          "text": "Reason"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fnve/notConverged(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NIAlgorithmConvergenceStatus.notConverged(_:)",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/nialgorithmconvergencestatus-2fnve/notconverged(_:)"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fnve/unknown": {
+      "abstract": [
+        {
+          "text": "An indication that the framework is unsure of the Camera Assistance status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unknown"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fnve/unknown",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NIAlgorithmConvergenceStatus.unknown",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/nialgorithmconvergencestatus-2fnve/unknown"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration/isCameraAssistanceEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that combines the spatial awareness of ARKit with Nearby Interaction to improve the accuracy of a nearby object’s position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isCameraAssistanceEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration/isCameraAssistanceEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cameraAssistanceEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isCameraAssistanceEnabled",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/ninearbypeerconfiguration/iscameraassistanceenabled"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NISessionDelegate/session(_:didUpdateAlgorithmConvergence:for:)": {
+      "abstract": [
+        {
+          "text": "Provides recommended actions the user can take to facilitate the framework’s Camera Assistance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NISession",
+          "text": "NISession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdateAlgorithmConvergence"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NIAlgorithmConvergence",
+          "text": "NIAlgorithmConvergence"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NINearbyObject",
+          "text": "NINearbyObject"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NISessionDelegate/session(_:didUpdateAlgorithmConvergence:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didUpdateAlgorithmConvergence:forObject:"
+        }
+      ],
+      "role": "symbol",
+      "title": "session(_:didUpdateAlgorithmConvergence:for:)",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/nisessiondelegate/session(_:didupdatealgorithmconvergence:for:)"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/algorithm-convergence-status": {
+      "abstract": [
+        {
+          "text": "The possible Objective-C states of Camera Assistance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/algorithm-convergence-status",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Algorithm Convergence Status",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/algorithm-convergence-status"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/finding-devices-with-precision": {
+      "abstract": [
+        {
+          "text": "Leverage the spatial awareness of ARKit and Apple Ultra Wideband Chips in your app to guide users to a nearby device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/finding-devices-with-precision",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Finding devices with precision",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/finding-devices-with-precision"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:SQ"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Camera-assistance",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/finding-devices-with-precision",
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergence",
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/algorithm-convergence-status"
+      ],
+      "title": "Camera assistance"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Interpreting-the-convergence-state",
+      "identifiers": [
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fnve/converged",
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fnve/notConverged(_:)",
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fnve/unknown"
+      ],
+      "title": "Interpreting the convergence state"
+    },
+    {
+      "anchor": "Comparing-convergence-states",
+      "identifiers": [
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fnve/==(_:_:)"
+      ],
+      "title": "Comparing convergence states"
+    },
+    {
+      "anchor": "Inspecting-the-convergence-state-reason",
+      "identifiers": [
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fnve/Reason",
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fbmj/NIAlgorithmConvergenceStatusConverged",
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fbmj/NIAlgorithmConvergenceStatusNotConverged",
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fbmj/NIAlgorithmConvergenceStatusUnknown"
+      ],
+      "title": "Inspecting the convergence state reason"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NISessionDelegate~1session(_:didUpdateAlgorithmConvergence:for:)/title",
+          "value": "session:didUpdateAlgorithmConvergence:forObject:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NISessionDelegate~1session(_:didUpdateAlgorithmConvergence:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didUpdateAlgorithmConvergence:forObject:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NIAlgorithmConvergence/title",
+          "value": "NIAlgorithmConvergence"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NIAlgorithmConvergence/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NIAlgorithmConvergence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NIAlgorithmConvergence/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NIAlgorithmConvergence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NINearbyPeerConfiguration~1isCameraAssistanceEnabled/title",
+          "value": "cameraAssistanceEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NINearbyPeerConfiguration~1isCameraAssistanceEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cameraAssistanceEnabled"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/nearbyinteraction/nialgorithmconvergencestatus-2fnve"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,589 @@
+{
+  "abstract": [
+    {
+      "text": "Migrate complex data models containing changes that are incompatible with lightweight migrations.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coredata/documentation/CoreData"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coredata/documentation/CoreData/staged-migrations"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Data"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Staged migrations"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core Data uses lightweight migrations to keep the data in your app’s persistent store consistent with the app’s managed object model. A lightweight migration automatically determines the differences between two model versions and generates a mapping model that Core Data then uses to make the necessary changes to the persistent store. Lightweight migrations support a number of common operations, such as adding an entity, removing a relationship, changing a nonoptional attribute to an optional attribute, renaming an entity, and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As your object model evolves, you may find that the aggregate changes between two model versions exceed the capabilities of lightweight migrations. For example, if you change an optional attribute to be nonoptional, there’s no way for a lightweight migration to infer the default value it needs to assign to any instances of that attribute with a ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Staged lightweight migrations",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " solve this problem by reducing an incompatible migration into a series of compatible stages. A migration manager runs these stages in a specific order, providing opportunities for you to prepare the persistent store before each stage runs, and perform any cleanup afterward. This enables you to handle scenarios like changing an optional attribute to be nonoptional because you have an opportunity to set any ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values to a concrete value before the stage runs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Successful Core Data migrations depend on properly versioned object models, and staged lightweight migrations require a distinct migration stage for each model version.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coredata/documentation/CoreData": {
+      "abstract": [
+        {
+          "text": "Persist or cache data on a single device, or sync data to multiple devices with CloudKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Data",
+      "type": "topic",
+      "url": "/documentation/coredata"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage": {
+      "abstract": [
+        {
+          "text": "An object that enables you to participate in the migration between two versions of the same model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCustomMigrationStage"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCustomMigrationStage"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCustomMigrationStage",
+      "type": "topic",
+      "url": "/documentation/coredata/nscustommigrationstage"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSLightweightMigrationStage": {
+      "abstract": [
+        {
+          "text": "An object that describes a series of models suitable for lightweight migration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLightweightMigrationStage"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSLightweightMigrationStage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLightweightMigrationStage"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLightweightMigrationStage",
+      "type": "topic",
+      "url": "/documentation/coredata/nslightweightmigrationstage"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSMigrationStage": {
+      "abstract": [
+        {
+          "text": "An abstract base class for describing an individual stage of a migration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMigrationStage"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSMigrationStage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSMigrationStage"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSMigrationStage",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmigrationstage"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentStoreStagedMigrationManagerOptionKey": {
+      "abstract": [
+        {
+          "text": "The key for specifying your staged migration manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPersistentStoreStagedMigrationManagerOptionKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentStoreStagedMigrationManagerOptionKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPersistentStoreStagedMigrationManagerOptionKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPersistentStoreStagedMigrationManagerOptionKey",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistentstorestagedmigrationmanageroptionkey"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSStagedMigrationManager": {
+      "abstract": [
+        {
+          "text": "An object that handles the migration event loop and provides access to the migrating persistent store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStagedMigrationManager"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSStagedMigrationManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSStagedMigrationManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSStagedMigrationManager",
+      "type": "topic",
+      "url": "/documentation/coredata/nsstagedmigrationmanager"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/manual-migrations": {
+      "abstract": [
+        {
+          "text": "Migrate elaborate data models with changes that go beyond the capabilities of both lightweight and staged migrations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/manual-migrations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Manual migrations",
+      "type": "topic",
+      "url": "/documentation/coredata/manual-migrations"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/migrating-your-data-model-automatically": {
+      "abstract": [
+        {
+          "text": "Enable lightweight migrations to keep your data model and the underlying data in a consistent state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/migrating-your-data-model-automatically",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating your data model automatically",
+      "type": "topic",
+      "url": "/documentation/coredata/migrating-your-data-model-automatically"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Data-model-migration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/migrating-your-data-model-automatically",
+        "doc://com.apple.coredata/documentation/CoreData/manual-migrations"
+      ],
+      "title": "Data model migration"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Migration-staging",
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/NSPersistentStoreStagedMigrationManagerOptionKey",
+        "doc://com.apple.coredata/documentation/CoreData/NSStagedMigrationManager"
+      ],
+      "title": "Migration staging"
+    },
+    {
+      "anchor": "Migration-stages",
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/NSLightweightMigrationStage",
+        "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage",
+        "doc://com.apple.coredata/documentation/CoreData/NSMigrationStage"
+      ],
+      "title": "Migration stages"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Migration-staging",
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/NSPersistentStoreStagedMigrationManagerOptionKey",
+                "doc://com.apple.coredata/documentation/CoreData/NSStagedMigrationManager"
+              ],
+              "title": "Migration staging"
+            },
+            {
+              "anchor": "Migration-stages",
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/NSLightweightMigrationStage",
+                "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage",
+                "doc://com.apple.coredata/documentation/CoreData/NSMigrationStage"
+              ],
+              "title": "Migration stages"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Data-model-migration",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/migrating-your-data-model-automatically",
+                "doc://com.apple.coredata/documentation/CoreData/manual-migrations"
+              ],
+              "title": "Data model migration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSLightweightMigrationStage/title",
+          "value": "NSLightweightMigrationStage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSLightweightMigrationStage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLightweightMigrationStage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSLightweightMigrationStage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLightweightMigrationStage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSStagedMigrationManager/title",
+          "value": "NSStagedMigrationManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSStagedMigrationManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStagedMigrationManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSStagedMigrationManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStagedMigrationManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSCustomMigrationStage/title",
+          "value": "NSCustomMigrationStage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSCustomMigrationStage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCustomMigrationStage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSCustomMigrationStage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCustomMigrationStage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentStoreStagedMigrationManagerOptionKey/title",
+          "value": "NSPersistentStoreStagedMigrationManagerOptionKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentStoreStagedMigrationManagerOptionKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentStoreStagedMigrationManagerOptionKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSMigrationStage/title",
+          "value": "NSMigrationStage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSMigrationStage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMigrationStage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSMigrationStage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMigrationStage"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coredata/staged-migrations"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coredata/staged-migrations"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

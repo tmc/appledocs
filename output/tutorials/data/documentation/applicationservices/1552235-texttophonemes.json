@@ -1,0 +1,508 @@
+{
+  "abstract": [
+    {
+      "text": "Converts a buffer of textual data into phonemic data.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/1552235-texttophonemes"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1552235,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@TextToPhonemes",
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "10.8",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "TextToPhonemes"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSErr",
+              "text": "OSErr"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "TextToPhonemes"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechchannel",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SpeechChannel",
+              "text": "SpeechChannel"
+            },
+            {
+              "kind": "text",
+              "text": " chan, "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " *textBuf, "
+            },
+            {
+              "kind": "keyword",
+              "text": "unsigned"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "long"
+            },
+            {
+              "kind": "text",
+              "text": " textBytes, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/handle",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@Handle",
+              "text": "Handle"
+            },
+            {
+              "kind": "text",
+              "text": " phonemeBuf, "
+            },
+            {
+              "kind": "keyword",
+              "text": "long"
+            },
+            {
+              "kind": "text",
+              "text": " *phonemeBytes);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A speech channel whose associated synthesizer and voice are to be used for the conversion process.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "chan"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a buffer of text to be converted. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "textBuf"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of bytes of text to be converted. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "textBytes"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A handle to a buffer to be used to store the phonemic data. The ",
+                  "type": "text"
+                },
+                {
+                  "code": "TextToPhonemes",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " function may resize the relocatable block referenced by this handle.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "phonemeBuf"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On return, a pointer to the number of bytes of phonemic data written to the handle. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "phonemeBytes"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A resultcode. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager#1659745",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Converting textual data into phonemic data is particularlyuseful during application development, when you might wish to adjustphrases that your application generates to produce smoother speech.By first converting the target phrase into phonemes, you can see whatthe synthesizer will try to speak. Then you need correct only theparts that would not have been spoken the way you want.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "TextToPhonemes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functionconverts the ",
+              "type": "text"
+            },
+            {
+              "code": "textBytes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " bytesof textual data pointed to by the ",
+              "type": "text"
+            },
+            {
+              "code": "textBuf",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameterto phonemic data, which it writes into the relocatable block specifiedby the ",
+              "type": "text"
+            },
+            {
+              "code": "phonemeBuf",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.If necessary, ",
+              "type": "text"
+            },
+            {
+              "code": "TextToPhonemes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " resizesthis relocatable block. The ",
+              "type": "text"
+            },
+            {
+              "code": "TextToPhonemes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functionsets the ",
+              "type": "text"
+            },
+            {
+              "code": "phonemeBytes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameterto the number of bytes of phonemic data actually written.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the textual data is contained in a relocatable block, ahandle to that block must be locked before the ",
+              "type": "text"
+            },
+            {
+              "code": "TextToPhonemes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functionis called. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The data returned by ",
+              "type": "text"
+            },
+            {
+              "code": "TextToPhonemes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " correspondsprecisely to the phonemes that would be spoken had the input textbeen sent to ",
+              "type": "text"
+            },
+            {
+              "code": "SpeakText",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instead.All current mode settings for the speech channel specified by ",
+              "type": "text"
+            },
+            {
+              "code": "chan",
+              "type": "codeVoice"
+            },
+            {
+              "text": " areapplied to the converted speech. No callbacks are generated whilethe ",
+              "type": "text"
+            },
+            {
+              "code": "TextToPhonemes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functionis generating its output. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460918-copyphonemesfromtext": {
+      "abstract": [
+        {
+          "text": "Converts the specified text string into its equivalent phonemic representation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460918-copyphonemesfromtext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CopyPhonemesFromText",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460918-copyphonemesfromtext"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1552235-texttophonemes": {
+      "abstract": [
+        {
+          "text": "Converts a buffer of textual data into phonemic data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1552235-texttophonemes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TextToPhonemes",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1552235-texttophonemes"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Speech Synthesis Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager#1659745": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager#1659745",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/applicationservices/speech_synthesis_manager#1659745"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechchannel": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechchannel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechChannel",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechchannel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/handle": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/handle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Handle",
+      "type": "topic",
+      "url": "/documentation/kernel/handle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1460918-copyphonemesfromtext"
+      ],
+      "title": "Converting Text To Phonemes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/1552235-texttophonemes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1705 @@
+{
+  "abstract": [
+    {
+      "text": "A set of methods that provides information about an in-progress view controller transition.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)UIViewControllerTransitionCoordinatorContext",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UIViewControllerTransitionCoordinatorContext"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIViewControllerTransitionCoordinatorContext"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "UIViewControllerTransitionCoordinatorContext"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerTransitionCoordinatorContext"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t adopt this protocol in your own classes. UIKit creates an object that adopts this protocol and makes it available to your code when you animate changes using a transition coordinator object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A transition coordinator context provides most of the same information as an object that adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerContextTransitioning",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. You use this contextual information to determine the animation parameters, such as the view in which the animations take place, whether the transition is interactive, or whether the transition was the result of an interface orientation change. You then apply that information to the animations you create.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most animations take place in the view returned by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/containerView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. And at the time your animation blocks are executed, the view hierarchy already contains the view of the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "from",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " view controller. You can use your animation blocks to animate additional content in that same container view or you can animate content in an entirely different view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerContextTransitioning": {
+      "abstract": [
+        {
+          "text": "A set of methods that provide contextual information for transition animations between view controllers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerContextTransitioning"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerContextTransitioning",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerContextTransitioning"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewControllerContextTransitioning",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollercontexttransitioning"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinator": {
+      "abstract": [
+        {
+          "text": "A set of methods that provides support for animations associated with a view controller transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerTransitionCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerTransitionCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewControllerTransitionCoordinator",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollertransitioncoordinator"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext": {
+      "abstract": [
+        {
+          "text": "A set of methods that provides information about an in-progress view controller transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerTransitionCoordinatorContext"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerTransitionCoordinatorContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewControllerTransitionCoordinatorContext",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollertransitioncoordinatorcontext"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/completionCurve": {
+      "abstract": [
+        {
+          "text": "Returns the completion curve associated with the transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionCurve"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIViewAnimationCurve",
+          "text": "AnimationCurve"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/completionCurve",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "completionCurve"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "completionCurve",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollertransitioncoordinatorcontext/completioncurve"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/completionVelocity": {
+      "abstract": [
+        {
+          "text": "Returns the starting velocity to use for any final animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionVelocity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/completionVelocity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "completionVelocity"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "completionVelocity",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollertransitioncoordinatorcontext/completionvelocity"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/containerView": {
+      "abstract": [
+        {
+          "text": "Returns the view in which the transition takes place.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "containerView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/containerView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "containerView"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "containerView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollertransitioncoordinatorcontext/containerview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/initiallyInteractive": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the transition started as an interactive transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "initiallyInteractive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/initiallyInteractive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initiallyInteractive"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "initiallyInteractive",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollertransitioncoordinatorcontext/initiallyinteractive"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/isAnimated": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the transition is explicitly animated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAnimated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/isAnimated",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "animated"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "isAnimated",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollertransitioncoordinatorcontext/isanimated"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/isCancelled": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether an interactive transition was canceled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isCancelled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/isCancelled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cancelled"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "isCancelled",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollertransitioncoordinatorcontext/iscancelled"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/isInteractive": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the transition is currently interactive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isInteractive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/isInteractive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "interactive"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "isInteractive",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollertransitioncoordinatorcontext/isinteractive"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/isInterruptible": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the transition animations can be interrupted.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isInterruptible"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/isInterruptible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isInterruptible"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "isInterruptible",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollertransitioncoordinatorcontext/isinterruptible"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/percentComplete": {
+      "abstract": [
+        {
+          "text": "Returns the percentage of completion for an interactive transition when it moves to its noninteractive phase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "percentComplete"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/percentComplete",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "percentComplete"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "percentComplete",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollertransitioncoordinatorcontext/percentcomplete"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/presentationStyle": {
+      "abstract": [
+        {
+          "text": "The presentation style to use for the transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentationStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIModalPresentationStyle",
+          "text": "UIModalPresentationStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/presentationStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentationStyle"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "presentationStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollertransitioncoordinatorcontext/presentationstyle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/targetTransform": {
+      "abstract": [
+        {
+          "text": "Returns a transform indicating the amount of rotation being applied during the transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "targetTransform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGAffineTransform",
+          "text": "CGAffineTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/targetTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "targetTransform"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "targetTransform",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollertransitioncoordinatorcontext/targettransform"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/transitionDuration": {
+      "abstract": [
+        {
+          "text": "Returns the noninteractive duration of a transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transitionDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/transitionDuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transitionDuration"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "transitionDuration",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollertransitioncoordinatorcontext/transitionduration"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/view(forKey:)": {
+      "abstract": [
+        {
+          "text": "Returns the specified view involved in the transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UITransitionContextViewKey",
+          "text": "UITransitionContextViewKey"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/view(forKey:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewForKey:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "view(forKey:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollertransitioncoordinatorcontext/view(forkey:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/viewController(forKey:)": {
+      "abstract": [
+        {
+          "text": "Returns the view controllers involved in the transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UITransitionContextViewControllerKey",
+          "text": "UITransitionContextViewControllerKey"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/viewController(forKey:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewControllerForKey:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "viewController(forKey:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollertransitioncoordinatorcontext/viewcontroller(forkey:)"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinator"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Transition-coordinators",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinator"
+      ],
+      "title": "Transition coordinators"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-the-views-and-view-controllers",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/viewController(forKey:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/view(forKey:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/containerView"
+      ],
+      "title": "Getting the views and view controllers"
+    },
+    {
+      "anchor": "Getting-the-behavior-attributes",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/presentationStyle",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/transitionDuration",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/completionCurve",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/completionVelocity",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/percentComplete"
+      ],
+      "title": "Getting the behavior attributes"
+    },
+    {
+      "anchor": "Getting-the-transition-state",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/initiallyInteractive",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/isInteractive",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/isAnimated",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/isCancelled",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/isInterruptible"
+      ],
+      "title": "Getting the transition state"
+    },
+    {
+      "anchor": "Getting-the-rotation-factor",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/targetTransform"
+      ],
+      "title": "Getting the rotation factor"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UIViewControllerTransitionCoordinatorContext"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerTransitionCoordinatorContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerTransitionCoordinatorContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Getting-the-views-and-view-controllers",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/viewController(forKey:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/view(forKey:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/containerView"
+              ],
+              "title": "Getting the views and view controllers"
+            },
+            {
+              "anchor": "Getting-the-behavior-attributes",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/presentationStyle",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/transitionDuration",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/completionCurve",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/completionVelocity",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/percentComplete"
+              ],
+              "title": "Getting the behavior attributes"
+            },
+            {
+              "anchor": "Getting-the-transition-state",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/initiallyInteractive",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/isInteractive",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/isAnimated",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/isCancelled",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/isInterruptible"
+              ],
+              "title": "Getting the transition state"
+            },
+            {
+              "anchor": "Getting-the-rotation-factor",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinatorContext/targetTransform"
+              ],
+              "title": "Getting the rotation factor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinator"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Transition-coordinators",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitionCoordinator"
+              ],
+              "title": "Transition coordinators"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UIViewControllerTransitionCoordinatorContext"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1containerView/title",
+          "value": "containerView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1containerView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "containerView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1targetTransform/title",
+          "value": "targetTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1targetTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "targetTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1completionCurve/title",
+          "value": "completionCurve"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1completionCurve/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "completionCurve"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1initiallyInteractive/title",
+          "value": "initiallyInteractive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1initiallyInteractive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "initiallyInteractive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1isAnimated/title",
+          "value": "animated"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1isAnimated/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "animated"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext/title",
+          "value": "UIViewControllerTransitionCoordinatorContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerTransitionCoordinatorContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerTransitionCoordinatorContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1isCancelled/title",
+          "value": "cancelled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1isCancelled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cancelled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1view(forKey:)/title",
+          "value": "viewForKey:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1view(forKey:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewForKey:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1isInterruptible/title",
+          "value": "isInterruptible"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1isInterruptible/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "isInterruptible"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerContextTransitioning/title",
+          "value": "UIViewControllerContextTransitioning"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerContextTransitioning/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerContextTransitioning"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerContextTransitioning/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerContextTransitioning"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1completionVelocity/title",
+          "value": "completionVelocity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1completionVelocity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "completionVelocity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1presentationStyle/title",
+          "value": "presentationStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1presentationStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "presentationStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1percentComplete/title",
+          "value": "percentComplete"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1percentComplete/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "percentComplete"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1isInteractive/title",
+          "value": "interactive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1isInteractive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "interactive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinator/title",
+          "value": "UIViewControllerTransitionCoordinator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerTransitionCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerTransitionCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1transitionDuration/title",
+          "value": "transitionDuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1transitionDuration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transitionDuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1viewController(forKey:)/title",
+          "value": "viewControllerForKey:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitionCoordinatorContext~1viewController(forKey:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewControllerForKey:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uiviewcontrollertransitioncoordinatorcontext"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uiviewcontrollertransitioncoordinatorcontext"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

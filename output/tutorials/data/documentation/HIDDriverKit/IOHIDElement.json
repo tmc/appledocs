@@ -1,0 +1,1107 @@
+{
+  "abstract": [
+    {
+      "text": "An object that contains parsed information from a HID input report.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOHIDElement",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "IOHIDElement"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HIDDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "IOHIDElement"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "DriverKit"
+      },
+      {
+        "beta": false,
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "IOHIDElement"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOHIDElement"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "IOHIDElement",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object contains details about a particular aspect of a HID-related input report. After receiving an input report from a HID device, ",
+              "type": "text"
+            },
+            {
+              "code": "IOUserHIDEventService",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "IOHIDInterface",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects divide the report details into ",
+              "type": "text"
+            },
+            {
+              "code": "IOHIDElement",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects for easier management. You use these element objects to obtain details about the report, such as the current value reported by the device, how that value is meant to be used, and the minimum and maximum values. For example, a report from a mouse usually contains separate elements for the mouse’s x and y positions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t create ",
+              "type": "text"
+            },
+            {
+              "code": "IOHIDElement",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects directly. Instead, use the ",
+              "type": "text"
+            },
+            {
+              "code": "getElements",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method of your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to fetch the elements associated with the latest report. Each time you call that method, the corresponding object updates the element data using the most recent report.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.hid.virtual.device": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the driver creates a virtual HID device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.hid.virtual.device",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.hid.virtual.device",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.hid.virtual.device"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for human-interface devices, such as keyboards, pointing devices, and digitizers like pens and touch pads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HIDDriverKit",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/HID-Element-Flags-enum": {
+      "abstract": [],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/HID-Element-Flags-enum",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "HID Element Flags",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/hid-element-flags-enum"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDDigitizerCollection": {
+      "abstract": [
+        {
+          "text": "A collection of elements that contain digitizer-related data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDDigitizerCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDDigitizerCollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDDigitizerCollection",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohiddigitizercollection"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement": {
+      "abstract": [
+        {
+          "text": "An object that contains parsed information from a HID input report.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDElement"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDElement",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/commit": {
+      "abstract": [
+        {
+          "text": "Commits the element value to and from the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "commit"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/commit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commit",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement/commit"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/conformsTo": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "conformsTo"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/conformsTo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "conformsTo",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement/conformsto"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getChildElements": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getChildElements"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getChildElements",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getChildElements",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement/getchildelements"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getCollectionType": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getCollectionType"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getCollectionType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCollectionType",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement/getcollectiontype"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getCookie": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getCookie"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getCookie",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCookie",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement/getcookie"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getDataValue": {
+      "abstract": [
+        {
+          "text": "Gets the data value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getDataValue"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getDataValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getDataValue",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement/getdatavalue"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getFlags": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getFlags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getFlags",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement/getflags"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getLogicalMax": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getLogicalMax"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getLogicalMax",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getLogicalMax",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement/getlogicalmax"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getLogicalMin": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getLogicalMin"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getLogicalMin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getLogicalMin",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement/getlogicalmin"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getParentElement": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getParentElement"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getParentElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getParentElement",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement/getparentelement"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getPhysicalMax": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getPhysicalMax"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getPhysicalMax",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getPhysicalMax",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement/getphysicalmax"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getPhysicalMin": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getPhysicalMin"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getPhysicalMin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getPhysicalMin",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement/getphysicalmin"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getReportCount": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getReportCount"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getReportCount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getReportCount",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement/getreportcount"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getReportID": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getReportID"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getReportID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getReportID",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement/getreportid"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getReportSize": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getReportSize"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getReportSize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getReportSize",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement/getreportsize"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getScaledFixedValue": {
+      "abstract": [
+        {
+          "text": "Returns a fixed number that represents the scaled version of the element’s logical value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getScaledFixedValue"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getScaledFixedValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getScaledFixedValue",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement/getscaledfixedvalue"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getScaledValue": {
+      "abstract": [
+        {
+          "text": "Returns a scaled version of the logical value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getScaledValue"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getScaledValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getScaledValue",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement/getscaledvalue"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getTimeStamp": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getTimeStamp"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getTimeStamp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getTimeStamp",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement/gettimestamp"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getType": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getType"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getType",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement/gettype"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getUnit": {
+      "abstract": [
+        {
+          "text": "Returns the units that you use to interpret the element’s value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getUnit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getUnit",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement/getunit"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getUnitExponent": {
+      "abstract": [
+        {
+          "text": "Returns the exponent that you use to interpret the element’s value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getUnitExponent"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getUnitExponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getUnitExponent",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement/getunitexponent"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getUsage": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getUsage"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getUsage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getUsage",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement/getusage"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getUsagePage": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getUsagePage"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getUsagePage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getUsagePage",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement/getusagepage"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getValue": {
+      "abstract": [
+        {
+          "text": "Gets the logical value that the device reported.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getValue"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getValue",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement/getvalue"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/setDataValue": {
+      "abstract": [
+        {
+          "text": "Sets the data value of the element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setDataValue"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/setDataValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDataValue",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement/setdatavalue"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/setValue": {
+      "abstract": [
+        {
+          "text": "Sets the value of the element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setValue"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/setValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setValue",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement/setvalue"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElementCollectionType": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the types of relationships that exist between two or more elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDElementCollectionType"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElementCollectionType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDElementCollectionType",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelementcollectiontype"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElementCommitDirection": {
+      "abstract": [
+        {
+          "text": "The commit direction for an HID element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDElementCommitDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElementCommitDirection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDElementCommitDirection",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelementcommitdirection"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElementCookie": {
+      "abstract": [
+        {
+          "text": "A type that an element uses to distinguish itself from other elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDElementCookie"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElementCookie",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDElementCookie",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelementcookie"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElementFlags": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDElementFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElementFlags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDElementFlags",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelementflags"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElementType": {
+      "abstract": [
+        {
+          "text": "The types of HID elements that you can examine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDElementType"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElementType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDElementType",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelementtype"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface": {
+      "abstract": [
+        {
+          "text": "A provider object for a HID device’s interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDInterface"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDInterface",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidinterface"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDReportType": {
+      "abstract": [
+        {
+          "text": "Describes the different types of HID reports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDReportType"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDReportType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDReportType",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidreporttype"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDValueOptions": {
+      "abstract": [
+        {
+          "text": "A type for specifying value-related options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDValueOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDValueOptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDValueOptions",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidvalueoptions"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDValueScaleType": {
+      "abstract": [
+        {
+          "text": "The type of scaling to use for an element’s value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDValueScaleType"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDValueScaleType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDValueScaleType",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidvaluescaletype"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService": {
+      "abstract": [
+        {
+          "text": "A service that parses HID report data into elements that you can use to dispatch events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserHIDEventService"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserHIDEventService",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/Value-Options-enum": {
+      "abstract": [
+        {
+          "text": "Options for how to retrieve an element’s values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/Value-Options-enum",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Value Options",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/value-options-enum"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/Value-Scale-Types-enum": {
+      "abstract": [
+        {
+          "text": "The different types of scaling that you can perform on element values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/Value-Scale-Types-enum",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Value Scale Types",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/value-scale-types-enum"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/low-level-information": {
+      "abstract": [
+        {
+          "text": "Understand the underlying structures that support HID drivers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/low-level-information",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Low-Level Information",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/low-level-information"
+    },
+    "doc://com.externally.resolved.symbol/c:@S@OSContainer": {
+      "abstract": [
+        {
+          "text": "The base class for DriverKit data objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@S@OSContainer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSContainer",
+      "type": "topic",
+      "url": "/documentation/driverkit/oscontainer"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:@S@OSContainer"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "HID-Device-Data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDDigitizerCollection",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.hid.virtual.device",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/low-level-information"
+      ],
+      "title": "HID Device Data"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-an-Elements-Usage-Information",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getUsagePage",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getUsage"
+      ],
+      "title": "Getting an Element’s Usage Information"
+    },
+    {
+      "anchor": "Accessing-the-Elements-Value",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getValue",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getDataValue",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getScaledValue",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getScaledFixedValue",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/setValue",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/setDataValue",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getUnit",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getUnitExponent",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDValueOptions",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/Value-Options-enum",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDValueScaleType",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/Value-Scale-Types-enum"
+      ],
+      "title": "Accessing the Element’s Value"
+    },
+    {
+      "anchor": "Getting-Minimum-and-Maximum-Values",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getLogicalMin",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getLogicalMax",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getPhysicalMin",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getPhysicalMax"
+      ],
+      "title": "Getting Minimum and Maximum Values"
+    },
+    {
+      "anchor": "Getting-the-Elements-Timestamp",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getTimeStamp"
+      ],
+      "title": "Getting the Element’s Timestamp"
+    },
+    {
+      "anchor": "Managing-the-Element-Hierarchy",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getType",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getCollectionType",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getChildElements",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getParentElement",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElementType",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElementCollectionType"
+      ],
+      "title": "Managing the Element Hierarchy"
+    },
+    {
+      "anchor": "Getting-Report-Information",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getReportID",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getReportCount",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getReportSize",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDReportType"
+      ],
+      "title": "Getting Report Information"
+    },
+    {
+      "anchor": "Identifying-the-Element",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getCookie",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElementCookie"
+      ],
+      "title": "Identifying the Element"
+    },
+    {
+      "anchor": "Getting-the-Element-Flags",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/getFlags",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElementFlags",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/HID-Element-Flags-enum"
+      ],
+      "title": "Getting the Element Flags"
+    },
+    {
+      "anchor": "Committing-Changes-to-Elements",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/commit",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElementCommitDirection"
+      ],
+      "title": "Committing Changes to Elements"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement/conformsTo"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/hiddriverkit/iohidelement"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

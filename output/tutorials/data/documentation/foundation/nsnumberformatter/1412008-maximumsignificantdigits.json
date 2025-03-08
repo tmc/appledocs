@@ -1,0 +1,363 @@
+{
+  "abstract": [
+    {
+      "text": "The maximum number of significant digits for the number formatter.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412008-maximumsignificantdigits"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1412008,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSNumberFormatter(py)maximumSignificantDigits",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSNumberFormatter"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.5",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "maximumSignificantDigits"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsuinteger",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "maximumSignificantDigits"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1417793-usessignificantdigits",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " in order for this property to affect formatting behavior.  By default, the maximum number of significant digits is 6. Values less than 1 are ignored.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code demonstrates the effect of setting ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412008-maximumsignificantdigits",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " when formatting various numbers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var numberFormatter = NumberFormatter()",
+            "numberFormatter.usesSignificantDigits = true",
+            "numberFormatter.maximumSignificantDigits = 4",
+            "",
+            "numberFormatter.string(from: 12345) // 12340",
+            "numberFormatter.string(from: 123.456) // 123.5",
+            "numberFormatter.string(from: 100.234) // 100.2",
+            "numberFormatter.string(from: 1.230) // 1.23",
+            "numberFormatter.string(from: 0.00012345) // 0.0001234"
+          ],
+          "metadata": {
+            "anchor": "2924191",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Formatting",
+      "type": "topic",
+      "url": "/documentation/foundation/data_formatting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter": {
+      "abstract": [
+        {
+          "text": "A formatter that converts between numeric values and their textual representations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNumberFormatter",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410174-minimumsignificantdigits": {
+      "abstract": [
+        {
+          "text": "The minimum number of significant digits for the number formatter.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410174-minimumsignificantdigits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "minimumSignificantDigits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1410174-minimumsignificantdigits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412008-maximumsignificantdigits": {
+      "abstract": [
+        {
+          "text": "The maximum number of significant digits for the number formatter.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412008-maximumsignificantdigits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "maximumSignificantDigits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1412008-maximumsignificantdigits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412008-maximumsignificantdigits#2924191": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412008-maximumsignificantdigits#2924191",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/nsnumberformatter/1412008-maximumsignificantdigits#2924191"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1417793-usessignificantdigits": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the formatter uses minimum and maximum significant digits when formatting numbers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1417793-usessignificantdigits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "usesSignificantDigits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1417793-usessignificantdigits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Numbers, Data, and Basic Values",
+      "type": "topic",
+      "url": "/documentation/foundation/numbers_data_and_basic_values"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsuinteger": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsuinteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUInteger",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsuinteger"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/yes": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "YES",
+      "type": "topic",
+      "url": "/documentation/objectivec/yes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1417793-usessignificantdigits",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410174-minimumsignificantdigits"
+      ],
+      "title": "Configuring Significant Digits"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsnumberformatter/1412008-maximumsignificantdigits"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/numberformatter/1412008-maximumsignificantdigits"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

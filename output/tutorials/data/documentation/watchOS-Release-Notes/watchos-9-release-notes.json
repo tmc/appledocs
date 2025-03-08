@@ -1,0 +1,1518 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchos-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-9-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "watchOS 9 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The watchOS 9 SDK provides support to develop watchOS apps for Apple Watch devices running watchOS 9. The SDK comes bundled with Xcode 14, available from the Mac App Store. For information on the compatibility requirements for Xcode 14, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-14-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "General",
+          "level": 3,
+          "text": "General",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "After updating to watchOS 9, your Apple Watch Series 4 or Series 5 will recalibrate and then estimate its maximum battery capacity more accurately. (93206868)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "CallKit",
+          "level": 3,
+          "text": "CallKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Compilation of apps integrated with CallKit might result in an error: “Value of type ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CXProviderConfiguration",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " has no member ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "supportedHandleTypes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " on watchOS 9”. (97582165)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "__supportedHandleTypes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instead of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "supportedHandleTypes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "CoreGraphics",
+          "level": 3,
+          "text": "CoreGraphics",
+          "type": "heading"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To improve security, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CGImageCreate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " enforces parameter correctness on macOS 13 Ventura, iOS 16, iPadOS 16, watchOS 9, and tvOS 16. Passing an incorrect ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CGImageByteOrderInfo",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is no longer supported, and will result in images failing to load. (94855401)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "DeviceDiscoveryUI",
+          "level": 3,
+          "text": "DeviceDiscoveryUI",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Devices running beta 4 or later aren’t backwards compatible with devices running earlier beta versions. (95233878)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Health",
+          "level": 3,
+          "text": "Health",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AFib History is now available in the United States. (95627199)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "HealthKit",
+          "level": 3,
+          "text": "HealthKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "HealthKit workout APIs now support multisport workouts with activities of swimming, cycling, and running. (82588168)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "New data types for running workout metrics like running power, ground contact time, vertical oscillation, running speed, and stride length. (82974514)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Networking",
+          "level": 3,
+          "text": "Networking",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSURLSession",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " support for client-certificate based authentication. (24523955)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "URLSession",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " support for Private Access Tokens. (82937526)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "FTP is deprecated for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "URLSession",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and related APIs. Please adopt modern secure networking protocols such as HTTPS. (92623659)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "StoreKit",
+          "level": 3,
+          "text": "StoreKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "recentSubscriptionStartDate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property is included in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". It represents the date that marks the start of the most recent period of continuous subscription. A period is considered a continuous subscription if there’s no more than a 60-day gap between any two subscribed periods. (86599570)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Present the offer code redemption sheet with the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/offerCodeRedemption(isPresented:onCompletion:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " view modifier in your SwiftUI apps. (85321941)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The StoreKit Messages API allows you to control when App Store messages are displayed in your app. (85321880)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Product",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " has new properties for localizing prices and subscription periods. For iOS 15, iPadOS 15, macOS 12, tvOS 15, and watchOS 8 or later use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "priceFormatStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to format numbers derived from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "price",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "subscriptionPeriodFormatStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to format durations of time relating to a subscription period. On iOS 16, iPadOS 16, macOS 13, tvOS 16, and watchOS 9 or later use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "subscriptionPeriodUnitFormatStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to format single units of a subscription period. (93780442)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A property environment is included in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". It represents the server environment in which the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "RenewalInfo",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Transaction",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " occurred, respectively. (85988753)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/AppTransaction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " allows developers to cryptographically verify that the app was purchased on the App Store. (86739279)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "All ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " APIs are now annotated for sendability and main actor isolation. (84157048)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Deprecated the SKDownload API and removed the option to upload nonconsumable in-app purchase assets for Apple to host. In addition, support for managing these assets in App Store Connect is no longer available as of April 2022. (89764253)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "SwiftUI",
+          "level": 3,
+          "text": "SwiftUI",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Custom types conforming to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ToolbarContent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " now support dynamic properties like ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@Environment",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (94117842)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "control",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Section",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", or other views that have a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Label",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ViewBuilder",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " content now automatically arranges and styles multiple views as hierarchical elements, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "title",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "subtitle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". If the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "label",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " views are intended to be arranged horizontally rather than hierarchically, wrap the views within an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/HStack",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (85184563)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Voice-Shortcuts",
+          "level": 3,
+          "text": "Voice Shortcuts",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When saying an App Shortcut phrase to Siri, Siri launches the app or ends up with an unexpected result. (93611920)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Wallet",
+          "level": 3,
+          "text": "Wallet",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "American Express cards might need to be removed and re-added to Wallet after updating to watchOS 9 beta 6 or later. (97990752)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/StoreKit"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/AppTransaction": {
+      "abstract": [
+        {
+          "text": "Information that represents the customer’s purchase of the app, cryptographically signed by the App Store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/AppTransaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppTransaction",
+      "type": "topic",
+      "url": "/documentation/StoreKit/AppTransaction"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo": {
+      "abstract": [
+        {
+          "text": "The renewal information for an auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RenewalInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Product.SubscriptionInfo.RenewalInfo",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Transaction": {
+      "abstract": [
+        {
+          "text": "Information that represents the customer’s purchase of a product in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transaction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Transaction",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Transaction"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/HStack": {
+      "abstract": [
+        {
+          "text": "A view that arranges its subviews in a horizontal line.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HStack"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/HStack",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HStack",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/HStack"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Label": {
+      "abstract": [
+        {
+          "text": "A standard label for user interface items, consisting of an icon with a title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Title"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Icon"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Title"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Icon"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Label",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Label",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Label"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Section": {
+      "abstract": [
+        {
+          "text": "A container view that you can use to add hierarchy within certain views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Section"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Parent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Footer"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Section",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Section",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Section"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/offerCodeRedemption(isPresented:onCompletion:)": {
+      "abstract": [
+        {
+          "text": "Presents a sheet that enables users to redeem subscription offer codes that you configure in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "offerCodeRedemption"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "isPresented"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "onCompletion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " @"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": " = { _ in }) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/offerCodeRedemption(isPresented:onCompletion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offerCodeRedemption(isPresented:onCompletion:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/offerCodeRedemption(isPresented:onCompletion:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ViewBuilder": {
+      "abstract": [
+        {
+          "text": "A custom parameter attribute that constructs views from closures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@resultBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ViewBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ViewBuilder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ViewBuilder",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ViewBuilder"
+    },
+    "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-14-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-14-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 14 Release Notes",
+      "type": "topic",
+      "url": "/documentation/Xcode-Release-Notes/xcode-14-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-9_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-9_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 9.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-9_1-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-9_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-9_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 9.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-9_2-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-9_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-9_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 9.3 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-9_3-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-9_4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-9_4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 9.4 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-9_4-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-9_5-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-9_5-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 9.5 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-9_5-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-9_6-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-9_6-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 9.6 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-9_6-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchos-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the watchOS SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchos-release-notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "watchOS Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "watchOS-9",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-9_6-release-notes",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-9_5-release-notes",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-9_4-release-notes",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-9_3-release-notes",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-9_2-release-notes",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-9_1-release-notes"
+      ],
+      "title": "watchOS 9"
+    }
+  ]
+}

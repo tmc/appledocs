@@ -1,0 +1,1019 @@
+{
+  "abstract": [
+    {
+      "text": "Detect when someone presses and releases keys on a physical keyboard.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/keyboards-and-input"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/mac-catalyst"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/handling-key-presses-made-on-a-physical-keyboard"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Handling key presses made on a physical keyboard"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS apps and Mac apps built with Mac Catalyst, the system reports key presses that a person makes on a physical keyboard by sending press events to responder objects in the responder chain of the active app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A responder chain is a linked series of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/releasenotes/General/RN-iPhoneSDK-3/index.html#//apple_ref/doc/uid/TP40008407-CH1-SW19",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", that either handle an event or transfer responsibility for handling the event to other responders in the app. To learn more about responders and the responder chain, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/using-responders-and-the-responder-chain-to-handle-events",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Detect-a-key-press",
+          "level": 3,
+          "text": "Detect a key press",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To detect a key press that a person makes on a physical keyboard, override ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/pressesBegan(_:with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in a responder object of your app such as the app delegate or main view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine what key they pressed, iterate through the set of presses, inspecting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPress/key",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of each press. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKey/charactersIgnoringModifiers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine the text value of key, and whether the responder should handle the key press or not. If the responder doesn’t handle the key press, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/pressesBegan(_:with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the superclass to send the press event to the next responder in the active responder chain.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the following code listing handles someone pressing either the left or right arrow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Handle someone pressing a key on a physical keyboard.",
+            "override func pressesBegan(_ presses: Set<UIPress>, ",
+            "                           with event: UIPressesEvent?) {",
+            "    ",
+            "    var didHandleEvent = false",
+            "    ",
+            "    for press in presses {",
+            "        ",
+            "        // Get the pressed key.",
+            "        guard let key = press.key else { continue }",
+            "        ",
+            "        if key.charactersIgnoringModifiers == UIKeyCommand.inputLeftArrow {",
+            "            // Someone pressed the left arrow key.",
+            "            // Respond to the key-press event.",
+            "            didHandleEvent = true",
+            "        }",
+            "        if key.charactersIgnoringModifiers == UIKeyCommand.inputRightArrow {",
+            "            // Someone pressed the right arrow key.",
+            "            // Respond to the key-press event.",
+            "            didHandleEvent = true",
+            "        }",
+            "    }",
+            "    ",
+            "    if didHandleEvent == false {",
+            "        // If someone presses a key that you're not handling,",
+            "        // pass the event to the next responder.",
+            "        super.pressesBegan(presses, with: event)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Detect-a-key-release",
+          "level": 3,
+          "text": "Detect a key release",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Override the responder’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/pressesEnded(_:with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to detect when someone releases a key. To get information about the key, do the same as you did when detecting a key press; inspect the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPress/key",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of each press in the ",
+              "type": "text"
+            },
+            {
+              "code": "presses",
+              "type": "codeVoice"
+            },
+            {
+              "text": " set. For example, the following code listing handles someone releasing either the left or right arrow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Handle someone releasing a key on a physical keyboard.",
+            "override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {",
+            "    ",
+            "    var didHandleEvent = false",
+            "    ",
+            "    ",
+            "    for press in presses {",
+            "        ",
+            "        // Get the released key.",
+            "        guard let key = press.key else { continue }",
+            "        ",
+            "        ",
+            "        if key.charactersIgnoringModifiers == UIKeyCommand.inputLeftArrow {",
+            "            // Someone released the left arrow key.",
+            "            // Respond to the event.",
+            "            didHandleEvent = true",
+            "        }",
+            "        if key.charactersIgnoringModifiers == UIKeyCommand.inputRightArrow {",
+            "            // Someone released the right arrow key.",
+            "            // Respond to the event.",
+            "            didHandleEvent = true",
+            "        }",
+            "    }",
+            "    ",
+            "    if didHandleEvent == false {",
+            "        // If someone releases a key that you're not handling,",
+            "        // pass the event to the next responder.",
+            "        super.pressesEnded(presses, with: event)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplication": {
+      "abstract": [
+        {
+          "text": "The centralized point of control and coordination for apps running in iOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIApplication",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplication"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIKey": {
+      "abstract": [
+        {
+          "text": "An object that provides information about the state of a keyboard key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIKey"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIKey",
+      "type": "topic",
+      "url": "/documentation/uikit/uikey"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIKey/charactersIgnoringModifiers": {
+      "abstract": [
+        {
+          "text": "A string that represents the text value of the key without modifier keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "charactersIgnoringModifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKey/charactersIgnoringModifiers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "charactersIgnoringModifiers"
+        }
+      ],
+      "role": "symbol",
+      "title": "charactersIgnoringModifiers",
+      "type": "topic",
+      "url": "/documentation/uikit/uikey/charactersignoringmodifiers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIKeyboardHIDUsage": {
+      "abstract": [
+        {
+          "text": "A set of HID usage codes that identify the keys of a USB keyboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIKeyboardHIDUsage"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKeyboardHIDUsage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyboardHIDUsage"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIKeyboardHIDUsage",
+      "type": "topic",
+      "url": "/documentation/uikit/uikeyboardhidusage"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPress/key": {
+      "abstract": [
+        {
+          "text": "The key pressed or released on a physical keyboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIKey",
+          "text": "UIKey"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPress/key",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "key"
+        }
+      ],
+      "role": "symbol",
+      "title": "key",
+      "type": "topic",
+      "url": "/documentation/uikit/uipress/key"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder": {
+      "abstract": [
+        {
+          "text": "An abstract interface for responding to and handling events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIResponder"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIResponder"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIResponder",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder/pressesBegan(_:with:)": {
+      "abstract": [
+        {
+          "text": "Tells this object when a physical button is first pressed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pressesBegan"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPress",
+          "text": "UIPress"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPressesEvent",
+          "text": "UIPressesEvent"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/pressesBegan(_:with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pressesBegan:withEvent:"
+        }
+      ],
+      "role": "symbol",
+      "title": "pressesBegan(_:with:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder/pressesbegan(_:with:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder/pressesEnded(_:with:)": {
+      "abstract": [
+        {
+          "text": "Tells the object when a button is released.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pressesEnded"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPress",
+          "text": "UIPress"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPressesEvent",
+          "text": "UIPressesEvent"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/pressesEnded(_:with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pressesEnded:withEvent:"
+        }
+      ],
+      "role": "symbol",
+      "title": "pressesEnded(_:with:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder/pressesended(_:with:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/adding-hardware-keyboard-support-to-your-app": {
+      "abstract": [
+        {
+          "text": "Enhance interactions with your app by handling raw keyboard events, writing custom keyboard shortcuts, and working with gesture recognizers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/adding-hardware-keyboard-support-to-your-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adding hardware keyboard support to your app",
+      "type": "topic",
+      "url": "/documentation/uikit/adding-hardware-keyboard-support-to-your-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/keyboards-and-input": {
+      "abstract": [
+        {
+          "text": "Configure the system keyboard, create your own keyboards to handle input, or detect key presses on a physical keyboard.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/keyboards-and-input",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keyboards and input",
+      "type": "topic",
+      "url": "/documentation/uikit/keyboards-and-input"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/mac-catalyst": {
+      "abstract": [
+        {
+          "text": "Create a version of your iPad app that users can run on a Mac device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/mac-catalyst",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Mac Catalyst",
+      "type": "topic",
+      "url": "/documentation/uikit/mac-catalyst"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/navigating-an-app-s-user-interface-using-a-keyboard": {
+      "abstract": [
+        {
+          "text": "Navigate between user interface elements using a keyboard and focusable UI elements in iPad apps and apps built with Mac Catalyst.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/navigating-an-app-s-user-interface-using-a-keyboard",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Navigating an app’s user interface using a keyboard",
+      "type": "topic",
+      "url": "/documentation/uikit/navigating-an-app-s-user-interface-using-a-keyboard"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/using-responders-and-the-responder-chain-to-handle-events": {
+      "abstract": [
+        {
+          "text": "Learn how to handle events that propagate through your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/using-responders-and-the-responder-chain-to-handle-events",
+      "kind": "article",
+      "role": "article",
+      "title": "Using responders and the responder chain to handle events",
+      "type": "topic",
+      "url": "/documentation/uikit/using-responders-and-the-responder-chain-to-handle-events"
+    },
+    "https://developer.apple.com/library/archive/releasenotes/General/RN-iPhoneSDK-3/index.html#//apple_ref/doc/uid/TP40008407-CH1-SW19": {
+      "identifier": "https://developer.apple.com/library/archive/releasenotes/General/RN-iPhoneSDK-3/index.html#//apple_ref/doc/uid/TP40008407-CH1-SW19",
+      "title": "UIViewController",
+      "titleInlineContent": [
+        {
+          "text": "UIViewController",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/releasenotes/General/RN-iPhoneSDK-3/index.html#//apple_ref/doc/uid/TP40008407-CH1-SW19"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Physical-keyboards",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/navigating-an-app-s-user-interface-using-a-keyboard",
+        "doc://com.apple.uikit/documentation/UIKit/adding-hardware-keyboard-support-to-your-app",
+        "doc://com.apple.uikit/documentation/UIKit/UIKey",
+        "doc://com.apple.uikit/documentation/UIKit/UIKeyboardHIDUsage"
+      ],
+      "title": "Physical keyboards"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Physical-keyboards",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIKey",
+                "doc://com.apple.uikit/documentation/UIKit/UIKeyboardHIDUsage"
+              ],
+              "title": "Physical keyboards"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKey/title",
+          "value": "UIKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPress~1key/title",
+          "value": "key"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPress~1key/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "key"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder/title",
+          "value": "UIResponder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKey~1charactersIgnoringModifiers/title",
+          "value": "charactersIgnoringModifiers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKey~1charactersIgnoringModifiers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "charactersIgnoringModifiers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyboardHIDUsage/title",
+          "value": "UIKeyboardHIDUsage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyboardHIDUsage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyboardHIDUsage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyboardHIDUsage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyboardHIDUsage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1pressesBegan(_:with:)/title",
+          "value": "pressesBegan:withEvent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1pressesBegan(_:with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pressesBegan:withEvent:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication/title",
+          "value": "UIApplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1pressesEnded(_:with:)/title",
+          "value": "pressesEnded:withEvent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1pressesEnded(_:with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pressesEnded:withEvent:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/handling-key-presses-made-on-a-physical-keyboard"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/handling-key-presses-made-on-a-physical-keyboard"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

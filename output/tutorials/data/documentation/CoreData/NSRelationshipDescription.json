@@ -1,0 +1,1637 @@
+{
+  "abstract": [
+    {
+      "text": "A description of a relationship between two entities.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coredata/documentation/CoreData"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSRelationshipDescription",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSRelationshipDescription"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Data"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSRelationshipDescription"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.4",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSRelationshipDescription"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSRelationshipDescription"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides additional attributes that are specific to modeling a relationship between two entities. For the common attributes of all property types, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, use this class to define a relationship’s ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "cardinality",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " — the number of managed objects the relationship can reference.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For a to-one relationship, set ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/maxCount",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For a to-many relationship, set ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/maxCount",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to a number greater than ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to impose an upper limit; otherwise, use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to allow an unlimited number of referenced objects.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At runtime, you can modify a relationship description until you associate its owning managed object model with a persistent store coordinator.  If you attempt to modify the model after you associate it, Core Data throws an exception. To modify a model that’s in use, create and modify a copy and then discard any objects that belong to the original model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coredata/documentation/CoreData": {
+      "abstract": [
+        {
+          "text": "Persist or cache data on a single device, or sync data to multiple devices with CloudKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Data",
+      "type": "topic",
+      "url": "/documentation/coredata"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSAttributeDescription": {
+      "abstract": [
+        {
+          "text": "A description of a single attribute belonging to an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAttributeDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSAttributeDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAttributeDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAttributeDescription",
+      "type": "topic",
+      "url": "/documentation/coredata/nsattributedescription"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSAttributeType": {
+      "abstract": [
+        {
+          "text": "The types of attribute that Core Data supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAttributeType"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSAttributeType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAttributeType"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAttributeType",
+      "type": "topic",
+      "url": "/documentation/coredata/nsattributetype"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSDeleteRule": {
+      "abstract": [
+        {
+          "text": "Constants that determine what happens when you delete a relationship’s owning managed object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDeleteRule"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSDeleteRule",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDeleteRule"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDeleteRule",
+      "type": "topic",
+      "url": "/documentation/coredata/nsdeleterule"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription": {
+      "abstract": [
+        {
+          "text": "A description of a single property belonging to an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPropertyDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPropertyDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPropertyDescription",
+      "type": "topic",
+      "url": "/documentation/coredata/nspropertydescription"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription": {
+      "abstract": [
+        {
+          "text": "A description of a relationship between two entities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRelationshipDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSRelationshipDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSRelationshipDescription",
+      "type": "topic",
+      "url": "/documentation/coredata/nsrelationshipdescription"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/deleteRule": {
+      "abstract": [
+        {
+          "text": "The rule to apply when you delete the relationship’s owning managed object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deleteRule"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSDeleteRule",
+          "text": "NSDeleteRule"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/deleteRule",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deleteRule"
+        }
+      ],
+      "role": "symbol",
+      "title": "deleteRule",
+      "type": "topic",
+      "url": "/documentation/coredata/nsrelationshipdescription/deleterule"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/destinationEntity": {
+      "abstract": [
+        {
+          "text": "The type of object the relationship contains.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "destinationEntity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEntityDescription",
+          "text": "NSEntityDescription"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/destinationEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "destinationEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "destinationEntity",
+      "type": "topic",
+      "url": "/documentation/coredata/nsrelationshipdescription/destinationentity"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/inverseRelationship": {
+      "abstract": [
+        {
+          "text": "The relationship that represents the inverse of the current relationship.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inverseRelationship"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSRelationshipDescription",
+          "text": "NSRelationshipDescription"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/inverseRelationship",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inverseRelationship"
+        }
+      ],
+      "role": "symbol",
+      "title": "inverseRelationship",
+      "type": "topic",
+      "url": "/documentation/coredata/nsrelationshipdescription/inverserelationship"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/isOrdered": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the relationship preserves the order of the referenced managed objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isOrdered"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/isOrdered",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ordered"
+        }
+      ],
+      "role": "symbol",
+      "title": "isOrdered",
+      "type": "topic",
+      "url": "/documentation/coredata/nsrelationshipdescription/isordered"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/isToMany": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the relationship can contain many managed objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isToMany"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/isToMany",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "toMany"
+        }
+      ],
+      "role": "symbol",
+      "title": "isToMany",
+      "type": "topic",
+      "url": "/documentation/coredata/nsrelationshipdescription/istomany"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/maxCount": {
+      "abstract": [
+        {
+          "text": "The maximum number of managed objects the relationship can reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maxCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/maxCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maxCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "maxCount",
+      "type": "topic",
+      "url": "/documentation/coredata/nsrelationshipdescription/maxcount"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/minCount": {
+      "abstract": [
+        {
+          "text": "The minimum number of managed objects the relationship can reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/minCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "minCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "minCount",
+      "type": "topic",
+      "url": "/documentation/coredata/nsrelationshipdescription/mincount"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/versionHash": {
+      "abstract": [
+        {
+          "text": "The relationship’s unique identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "versionHash"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/versionHash",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "versionHash"
+        }
+      ],
+      "role": "symbol",
+      "title": "versionHash",
+      "type": "topic",
+      "url": "/documentation/coredata/nsrelationshipdescription/versionhash"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Standard-attributes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription",
+        "doc://com.apple.coredata/documentation/CoreData/NSAttributeDescription",
+        "doc://com.apple.coredata/documentation/CoreData/NSAttributeType"
+      ],
+      "title": "Standard attributes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Configuring-the-Destination",
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/inverseRelationship",
+        "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/destinationEntity",
+        "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/isOrdered"
+      ],
+      "title": "Configuring the Destination"
+    },
+    {
+      "anchor": "Configuring-Cardinality",
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/isToMany",
+        "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/minCount",
+        "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/maxCount"
+      ],
+      "title": "Configuring Cardinality"
+    },
+    {
+      "anchor": "Configuring-Delete-Behavior",
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/deleteRule",
+        "doc://com.apple.coredata/documentation/CoreData/NSDeleteRule"
+      ],
+      "title": "Configuring Delete Behavior"
+    },
+    {
+      "anchor": "Getting-Version-Data",
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/versionHash"
+      ],
+      "title": "Getting Version Data"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.4",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSRelationshipDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSRelationshipDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSRelationshipDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.coredata/documentation/CoreData"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Configuring-the-Destination",
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/inverseRelationship",
+                "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/destinationEntity",
+                "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/isOrdered"
+              ],
+              "title": "Configuring the Destination"
+            },
+            {
+              "anchor": "Configuring-Cardinality",
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/isToMany",
+                "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/minCount",
+                "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/maxCount"
+              ],
+              "title": "Configuring Cardinality"
+            },
+            {
+              "anchor": "Configuring-Delete-Behavior",
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/deleteRule",
+                "doc://com.apple.coredata/documentation/CoreData/NSDeleteRule"
+              ],
+              "title": "Configuring Delete Behavior"
+            },
+            {
+              "anchor": "Getting-Version-Data",
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription/versionHash"
+              ],
+              "title": "Getting Version Data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Standard-attributes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription",
+                "doc://com.apple.coredata/documentation/CoreData/NSAttributeDescription",
+                "doc://com.apple.coredata/documentation/CoreData/NSAttributeType"
+              ],
+              "title": "Standard attributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSRelationshipDescription"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSPropertyDescription",
+                    "text": "NSPropertyDescription"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSAttributeType/title",
+          "value": "NSAttributeType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSAttributeType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAttributeType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSAttributeType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAttributeType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSRelationshipDescription~1deleteRule/title",
+          "value": "deleteRule"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSRelationshipDescription~1deleteRule/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "deleteRule"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSRelationshipDescription/title",
+          "value": "NSRelationshipDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSRelationshipDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSRelationshipDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSRelationshipDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSRelationshipDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSRelationshipDescription~1inverseRelationship/title",
+          "value": "inverseRelationship"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSRelationshipDescription~1inverseRelationship/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "inverseRelationship"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription/title",
+          "value": "NSPropertyDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPropertyDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPropertyDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSRelationshipDescription~1isToMany/title",
+          "value": "toMany"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSRelationshipDescription~1isToMany/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "toMany"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSRelationshipDescription~1minCount/title",
+          "value": "minCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSRelationshipDescription~1minCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "minCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSRelationshipDescription~1isOrdered/title",
+          "value": "ordered"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSRelationshipDescription~1isOrdered/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ordered"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSAttributeDescription/title",
+          "value": "NSAttributeDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSAttributeDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAttributeDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSAttributeDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAttributeDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSRelationshipDescription~1destinationEntity/title",
+          "value": "destinationEntity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSRelationshipDescription~1destinationEntity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "destinationEntity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSDeleteRule/title",
+          "value": "NSDeleteRule"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSDeleteRule/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDeleteRule"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSDeleteRule/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDeleteRule"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSRelationshipDescription~1maxCount/title",
+          "value": "maxCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSRelationshipDescription~1maxCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maxCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSRelationshipDescription~1versionHash/title",
+          "value": "versionHash"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSRelationshipDescription~1versionHash/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "versionHash"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coredata/nsrelationshipdescription"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coredata/nsrelationshipdescription"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

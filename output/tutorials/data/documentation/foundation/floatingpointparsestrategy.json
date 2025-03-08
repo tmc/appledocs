@@ -1,0 +1,1188 @@
+{
+  "abstract": [
+    {
+      "text": "A parse strategy for creating floating-point values from formatted strings.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting",
+        "doc://com.apple.documentation/documentation/foundation/formatstyle",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3766762,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation26FloatingPointParseStrategyV",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "FloatingPointParseStrategy"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "12.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "8.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "13.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Generic Structure",
+    "symbolKind": "struct",
+    "title": "FloatingPointParseStrategy"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "FloatingPointParseStrategy"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation26FloatingPointParseStrategyV6Formatxmfp",
+              "text": "Format"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation26FloatingPointParseStrategyV6Formatxmfp",
+              "text": "Format"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation11FormatStyleP",
+              "text": "FormatStyle"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation26FloatingPointParseStrategyV6Formatxmfp",
+              "text": "Format"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle/3766781-formatinput",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation11FormatStyleP0B5InputQa",
+              "text": "FormatInput"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryFloatingPoint",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SB",
+              "text": "BinaryFloatingPoint"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an explicit ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to parse multiple strings according to the same parse strategy. In the following example, ",
+              "type": "text"
+            },
+            {
+              "code": "usCurrencyStrategy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " that uses US dollars and the ",
+              "type": "text"
+            },
+            {
+              "code": "en_US",
+              "type": "codeVoice"
+            },
+            {
+              "text": " locale’s conventions for number formatting. The example then uses this strategy to parse an array of strings, some of which represent valid US currency values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let usCurrencyStrategy: FloatingPointParseStrategy =",
+            "FloatingPointFormatStyle<Double>.Currency(code: \"USD\",",
+            "                                          locale: Locale(identifier: \"en_US\"))",
+            "    .parseStrategy",
+            "let currencyValues = [\"$100.11\", \"$1,000.22\", \"$10,000.33\", \"€100.44\"]",
+            "let parsedValues = currencyValues.map { try? usCurrencyStrategy.parse($0) } // [Optional(100.11), Optional(1000.22), Optional(10000.33), nil]"
+          ],
+          "metadata": {
+            "anchor": "4115890",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t need to instantiate a parse strategy variable to parse a single string. Instead, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryFloatingPoint",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializers that take a source ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/String",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and a ",
+              "type": "text"
+            },
+            {
+              "code": "format",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to parse the string according to the provided ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The following example parses a string that represents a currency value in US dollars.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let formattedUSDollars = \"$1,234.56\"",
+            "let parsedUSDollars = try? Double(formattedUSDollars, format: .currency(code: \"USD\")",
+            "    .locale(Locale(identifier: \"en_US\"))) // 1234.56"
+          ],
+          "metadata": {
+            "anchor": "4115892",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/BinaryFloatingPoint": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryFloatingPoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BinaryFloatingPoint",
+      "type": "topic",
+      "url": "/documentation/swift/binaryfloatingpoint"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Decodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Decodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/swift/decodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Encodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Encodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/swift/encodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Hashable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/swift/hashable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/String": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/String",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/swift/string"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Formatting",
+      "type": "topic",
+      "url": "/documentation/foundation/data_formatting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/decimal/parsestrategy": {
+      "abstract": [
+        {
+          "text": "A parse strategy for creating decimal values from formatted strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decimal.ParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/decimal/parsestrategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decimal.ParseStrategy",
+      "type": "topic",
+      "url": "/documentation/foundation/decimal/parsestrategy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FloatingPointFormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy": {
+      "abstract": [
+        {
+          "text": "A parse strategy for creating floating-point values from formatted strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "FloatingPointParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FloatingPointParseStrategy",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointparsestrategy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy#4115890": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy#4115890",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/floatingpointparsestrategy#4115890"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy#4115892": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy#4115892",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/floatingpointparsestrategy#4115892"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766763": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are not equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "!= "
+        },
+        {
+          "kind": "text",
+          "text": "(FloatingPointParseStrategy<Format>, FloatingPointParseStrategy<Format>) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766763",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "!=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointparsestrategy/3766763"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766764": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether two values are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "== "
+        },
+        {
+          "kind": "text",
+          "text": "(FloatingPointParseStrategy<Format>, FloatingPointParseStrategy<Format>) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766764",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointparsestrategy/3766764"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766769-encode": {
+      "abstract": [
+        {
+          "text": "Encodes the value into the given encoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any Encoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766769-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointparsestrategy/3766769-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766770-formatstyle": {
+      "abstract": [
+        {
+          "text": "The format style this strategy uses when parsing strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": Format"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766770-formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointparsestrategy/3766770-formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766771-hash": {
+      "abstract": [
+        {
+          "text": "Hashes the essential components of the value by feeding them into the given hasher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hash"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": inout Hasher)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766771-hash",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hash(into:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointparsestrategy/3766771-hash"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766772-hashvalue": {
+      "abstract": [
+        {
+          "text": "The hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "hashValue"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766772-hashvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hashValue",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointparsestrategy/3766772-hashvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766773-init": {
+      "abstract": [
+        {
+          "text": "Creates a new instance by decoding from the given decoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any Decoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766773-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointparsestrategy/3766773-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766774-lenient": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether parsing allows any discrepencies in the expected format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "lenient"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766774-lenient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lenient",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointparsestrategy/3766774-lenient"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766776-parse": {
+      "abstract": [
+        {
+          "text": "Parses a floating-point string in accordance with this strategy and returns the parsed value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "parse"
+        },
+        {
+          "kind": "text",
+          "text": "(String) -> Format.FormatInput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766776-parse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parse(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointparsestrategy/3766776-parse"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3798902-fixed": {
+      "abstract": [
+        {
+          "text": "Returns a strategy that parses dates from fixed-format strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fixed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": Date.FormatString, "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeZone"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeZone, "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale?) -> FloatingPointParseStrategy<Format>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3798902-fixed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fixed(format:timeZone:locale:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointparsestrategy/3798902-fixed"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3870090-init": {
+      "abstract": [
+        {
+          "text": "Creates a parse strategy instance using the specified floating-point percentage format style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<Value>("
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": Format, "
+        },
+        {
+          "kind": "identifier",
+          "text": "lenient"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3870090-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(format:lenient:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointparsestrategy/3870090-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3870091-init": {
+      "abstract": [
+        {
+          "text": "Creates a parse strategy instance using the specified floating-point currency format style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<Value>("
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": Format, "
+        },
+        {
+          "kind": "identifier",
+          "text": "lenient"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3870091-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(format:lenient:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointparsestrategy/3870091-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3870092-init": {
+      "abstract": [
+        {
+          "text": "Creates a parse strategy instance using the specified floating-point format style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<Value>("
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": Format, "
+        },
+        {
+          "kind": "identifier",
+          "text": "lenient"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3870092-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(format:lenient:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointparsestrategy/3870092-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/parseinput": {
+      "abstract": [
+        {
+          "text": "The type this parse strategy uses as input when parsing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "FloatingPointParseStrategy.ParseInput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/parseinput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FloatingPointParseStrategy.ParseInput",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointparsestrategy/parseinput"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/parseoutput": {
+      "abstract": [
+        {
+          "text": "The type this format style produces as output from parsing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "FloatingPointParseStrategy.ParseOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/parseoutput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FloatingPointParseStrategy.ParseOutput",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointparsestrategy/parseoutput"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatstyle/3766781-formatinput": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle/3766781-formatinput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FormatInput",
+      "type": "topic",
+      "url": "/documentation/foundation/formatstyle/3766781-formatinput"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerparsestrategy": {
+      "abstract": [
+        {
+          "text": "A parse strategy for creating integer values from formatted strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntegerParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerparsestrategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IntegerParseStrategy",
+      "type": "topic",
+      "url": "/documentation/foundation/integerparsestrategy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/parseableformatstyle": {
+      "abstract": [
+        {
+          "text": "A type that can convert a given input data type into a representation in an output type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "ParseableFormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/parseableformatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ParseableFormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/parseableformatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/parsestrategy": {
+      "abstract": [
+        {
+          "text": "A type that parses an input representation, such as a formatted string, into a provided data type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "ParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/parsestrategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ParseStrategy",
+      "type": "topic",
+      "url": "/documentation/foundation/parsestrategy"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Decodable",
+        "doc://com.apple.Swift/documentation/Swift/Encodable",
+        "doc://com.apple.Swift/documentation/Swift/Hashable",
+        "doc://com.apple.documentation/documentation/foundation/parsestrategy"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/parseableformatstyle",
+        "doc://com.apple.documentation/documentation/foundation/parsestrategy",
+        "doc://com.apple.documentation/documentation/foundation/integerparsestrategy",
+        "doc://com.apple.documentation/documentation/foundation/decimal/parsestrategy"
+      ],
+      "title": "Data parsing in Swift"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "4099124",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3870092-init",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3870091-init",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3870090-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a floating-point parse strategy"
+    },
+    {
+      "anchor": "3793441",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766776-parse"
+      ],
+      "kind": "taskGroup",
+      "title": "Parsing strings"
+    },
+    {
+      "anchor": "3793437",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766770-formatstyle",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766774-lenient"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing strategy properties"
+    },
+    {
+      "anchor": "4099126",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3798902-fixed"
+      ],
+      "kind": "taskGroup",
+      "title": "Applying date-parsing strategies"
+    },
+    {
+      "anchor": "3793447",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766773-init",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766769-encode"
+      ],
+      "kind": "taskGroup",
+      "title": "Encoding and decoding"
+    },
+    {
+      "anchor": "3793450",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766771-hash",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766772-hashvalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Hashing"
+    },
+    {
+      "anchor": "3793442",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766764",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/3766763"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing floating-point parse strategies"
+    },
+    {
+      "anchor": "3793440",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/parseinput",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy/parseoutput"
+      ],
+      "kind": "taskGroup",
+      "title": "Supporting types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/floatingpointparsestrategy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

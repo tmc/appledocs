@@ -1,0 +1,844 @@
+{
+  "abstract": [
+    {
+      "text": "A stream that provides read-only stream functionality.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsinputstream"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1414582,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSInputStream",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.3",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSInputStream"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSInputStream"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstream",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSStream",
+              "text": "NSStream"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsinputstream",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is “toll-free bridged” with its Core Foundation counterpart, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfreadstreamref",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information on toll-free bridging, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1745091",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1651093",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSInputStream",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is an abstract superclass of a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "class cluster",
+                  "type": "text"
+                }
+              ],
+              "type": "newTerm"
+            },
+            {
+              "text": " consisting of concrete subclasses of ",
+              "type": "text"
+            },
+            {
+              "code": "NSStream",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that provide standard read-only access to stream data. Although ",
+              "type": "text"
+            },
+            {
+              "code": "NSInputStream",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is probably sufficient for most situations requiring access to stream data, you can create a subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSInputStream",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if you want more specialized behavior (for example, you want to record statistics on the data in a stream).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1651097",
+          "level": 4,
+          "text": "Methods to Override",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSInputStream",
+              "type": "codeVoice"
+            },
+            {
+              "text": " you may have to implement initializers for the type of stream data supported and suitably re-implement existing initializers. You must also provide complete implementations of the following methods:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinputstream/1411544-read",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From the current read index, take up to the number of bytes specified in the second parameter from the stream and place them in the client-supplied buffer (first parameter). The buffer must be of the size specified by the second parameter. Return the actual number of bytes placed in the buffer; if there is nothing left in the stream, return ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Reset the index into the stream for the next read operation. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinputstream/1416811-getbuffer",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Return in 0(1) a pointer to the subclass-allocated buffer (first parameter). Return by reference in the second parameter the number of bytes actually put into the buffer. The buffer’s contents are valid only until the next stream operation. Return ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " if you cannot access data in the buffer; otherwise, return ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". If this method is not appropriate for your type of stream, you may return ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinputstream/1409410-hasbytesavailable",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Return ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " if there is more data to read in the stream, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " if there is not. If you want to be semantically compatible with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSInputStream",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", return ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " if a read must be attempted to determine if bytes are available.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1745091": {
+      "identifier": "devLink-1745091",
+      "title": "Toll-Free Bridging",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfreadstreamref": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfreadstreamref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFReadStreamRef",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfreadstreamref"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinputstream": {
+      "abstract": [
+        {
+          "text": "A stream that provides read-only stream functionality.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinputstream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSInputStream",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinputstream"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinputstream/1408976-initwithfileatpath": {
+      "abstract": [
+        {
+          "text": "Initializes and returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSInputStream",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object that reads data from the file at a given path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithFileAtPath:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinputstream/1408976-initwithfileatpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithFileAtPath:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinputstream/1408976-initwithfileatpath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinputstream/1409410-hasbytesavailable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the receiver has bytes available to read.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinputstream/1409410-hasbytesavailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasBytesAvailable",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinputstream/1409410-hasbytesavailable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinputstream/1411544-read": {
+      "abstract": [
+        {
+          "text": "Reads up to a given number of bytes into a given buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "read:maxLength:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinputstream/1411544-read",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "read:maxLength:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinputstream/1411544-read"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinputstream/1412470-initwithdata": {
+      "abstract": [
+        {
+          "text": "Initializes and returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSInputStream",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object for reading from a given ",
+          "type": "text"
+        },
+        {
+          "code": "NSData",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithData:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinputstream/1412470-initwithdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithData:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinputstream/1412470-initwithdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinputstream/1416811-getbuffer": {
+      "abstract": [
+        {
+          "text": "Returns by reference a pointer to a read buffer and, by reference, the number of bytes available, and returns a Boolean value that indicates whether the buffer is available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getBuffer:length:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinputstream/1416811-getbuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getBuffer:length:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinputstream/1416811-getbuffer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinputstream/1417891-initwithurl": {
+      "abstract": [
+        {
+          "text": "Initializes and returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSInputStream",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object that reads data from the file at a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithURL:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinputstream/1417891-initwithurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithURL:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinputstream/1417891-initwithurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinputstream/1564838-inputstreamwithurl": {
+      "abstract": [
+        {
+          "text": "Creates and returns an initialized ",
+          "type": "text"
+        },
+        {
+          "code": "NSInputStream",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object that reads data from the file at a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputStreamWithURL:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinputstream/1564838-inputstreamwithurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputStreamWithURL:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinputstream/1564838-inputstreamwithurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinputstream/1564839-inputstreamwithfileatpath": {
+      "abstract": [
+        {
+          "text": "Creates and returns an initialized ",
+          "type": "text"
+        },
+        {
+          "code": "NSInputStream",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object that reads data from the file at a given path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputStreamWithFileAtPath:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinputstream/1564839-inputstreamwithfileatpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputStreamWithFileAtPath:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinputstream/1564839-inputstreamwithfileatpath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinputstream/1564842-inputstreamwithdata": {
+      "abstract": [
+        {
+          "text": "Creates and returns an initialized ",
+          "type": "text"
+        },
+        {
+          "code": "NSInputStream",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object for reading from a given ",
+          "type": "text"
+        },
+        {
+          "code": "NSData",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputStreamWithData:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinputstream/1564842-inputstreamwithdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputStreamWithData:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinputstream/1564842-inputstreamwithdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsoutputstream": {
+      "abstract": [
+        {
+          "text": "A stream that provides write-only stream functionality.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsoutputstream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSOutputStream",
+      "type": "topic",
+      "url": "/documentation/foundation/nsoutputstream"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstream": {
+      "abstract": [
+        {
+          "text": "An abstract class representing a stream.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSStream",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstream"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstreamdelegate": {
+      "abstract": [
+        {
+          "text": "An interface that delegates of a stream instance use to handle events on the stream.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstreamdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSStreamDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstreamdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Streams, Sockets, and Ports",
+      "type": "topic",
+      "url": "/documentation/foundation/streams_sockets_and_ports"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/no": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NO",
+      "type": "topic",
+      "url": "/documentation/objectivec/no"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/yes": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "YES",
+      "type": "topic",
+      "url": "/documentation/objectivec/yes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsstream"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsstream",
+        "doc://com.apple.documentation/documentation/foundation/nsoutputstream",
+        "doc://com.apple.documentation/documentation/foundation/nsstreamdelegate"
+      ],
+      "title": "Streams"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1651103",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsinputstream/1564842-inputstreamwithdata",
+        "doc://com.apple.documentation/documentation/foundation/nsinputstream/1564839-inputstreamwithfileatpath",
+        "doc://com.apple.documentation/documentation/foundation/nsinputstream/1564838-inputstreamwithurl",
+        "doc://com.apple.documentation/documentation/foundation/nsinputstream/1412470-initwithdata",
+        "doc://com.apple.documentation/documentation/foundation/nsinputstream/1408976-initwithfileatpath",
+        "doc://com.apple.documentation/documentation/foundation/nsinputstream/1417891-initwithurl"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Streams"
+    },
+    {
+      "anchor": "1651159",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsinputstream/1411544-read",
+        "doc://com.apple.documentation/documentation/foundation/nsinputstream/1416811-getbuffer",
+        "doc://com.apple.documentation/documentation/foundation/nsinputstream/1409410-hasbytesavailable"
+      ],
+      "kind": "taskGroup",
+      "title": "Using Streams"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsinputstream"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/inputstream"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

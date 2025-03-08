@@ -1,0 +1,1059 @@
+{
+  "abstract": [
+    {
+      "text": "The basic behaviors supported by all dispatch types.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.dispatch/documentation/Dispatch"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.dispatch/documentation/Dispatch/dispatch-objects"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Dispatch"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Dispatch Objects"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are many types of dispatch objects, including ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_t",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_group_t",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_t",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The base dispatch object interfaces allow you to manage memory, pause and resume execution, define object context, log task data, and more.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, dispatch objects are declared as Objective-C types when you build them with an Objective-C compiler. This behavior lets you adopt ARC and enable memory leak checks by the static analyzer. It also lets you add your objects to Cocoa collections.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.dispatch/documentation/Dispatch": {
+      "abstract": [
+        {
+          "text": "Execute code concurrently on multicore hardware by submitting work to dispatch queues managed by the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Dispatch",
+      "type": "topic",
+      "url": "/documentation/dispatch"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject": {
+      "abstract": [
+        {
+          "text": "The base class for most dispatch types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchObject"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DispatchObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "DispatchObject",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchobject"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject/activate()": {
+      "abstract": [
+        {
+          "text": "Activates the dispatch object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject/activate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_activate"
+        }
+      ],
+      "role": "symbol",
+      "title": "activate()",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchobject/activate()"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject/resume()": {
+      "abstract": [
+        {
+          "text": "Resumes the invocation of block objects on a dispatch object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resume"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject/resume()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_resume"
+        }
+      ],
+      "role": "symbol",
+      "title": "resume()",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchobject/resume()"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject/setTarget(queue:)": {
+      "abstract": [
+        {
+          "text": "Specifies the dispatch queue on which to perform work associated with the current object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTarget"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "queue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject/setTarget(queue:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_set_target_queue"
+        }
+      ],
+      "role": "symbol",
+      "title": "setTarget(queue:)",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchobject/settarget(queue:)"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject/suspend()": {
+      "abstract": [
+        {
+          "text": "Suspends the invocation of block objects on a dispatch object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "suspend"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject/suspend()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_suspend"
+        }
+      ],
+      "role": "symbol",
+      "title": "suspend()",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchobject/suspend()"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchPredicate": {
+      "abstract": [
+        {
+          "text": "Logical conditions to evaluate within a given execution context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchPredicate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DispatchPredicate"
+        }
+      ],
+      "role": "symbol",
+      "title": "DispatchPredicate",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchpredicate"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatchPrecondition(condition:)": {
+      "abstract": [
+        {
+          "text": "Checks a dispatch condition necessary for further execution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatchPrecondition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "condition"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8Dispatch0A9PredicateO",
+          "text": "DispatchPredicate"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatchPrecondition(condition:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatchPrecondition(condition:)",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchprecondition(condition:)"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_get_context": {
+      "abstract": [
+        {
+          "text": "Returns the application-defined context of an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_get_context"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_get_context",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_get_context",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_get_context"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_group_t": {
+      "abstract": [
+        {
+          "text": "A group of block objects submitted to a queue for asynchronous invocation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatch_group_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_group_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_group_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "dispatch_group_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_group_t"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_introspection_hook_queue_callout_begin": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_introspection_hook_queue_callout_begin"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_introspection_hook_queue_callout_begin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_introspection_hook_queue_callout_begin",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_introspection_hook_queue_callout_begin"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_introspection_hook_queue_callout_end": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_introspection_hook_queue_callout_end"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_introspection_hook_queue_callout_end",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_introspection_hook_queue_callout_end",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_introspection_hook_queue_callout_end"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_introspection_hook_queue_create": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_introspection_hook_queue_create"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_introspection_hook_queue_create",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_introspection_hook_queue_create",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_introspection_hook_queue_create"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_introspection_hook_queue_destroy": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_introspection_hook_queue_destroy"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_introspection_hook_queue_destroy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_introspection_hook_queue_destroy",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_introspection_hook_queue_destroy"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_introspection_hook_queue_item_complete": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_introspection_hook_queue_item_complete"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_introspection_hook_queue_item_complete",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_introspection_hook_queue_item_complete",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_introspection_hook_queue_item_complete"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_introspection_hook_queue_item_dequeue": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_introspection_hook_queue_item_dequeue"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_introspection_hook_queue_item_dequeue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_introspection_hook_queue_item_dequeue",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_introspection_hook_queue_item_dequeue"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_introspection_hook_queue_item_enqueue": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_introspection_hook_queue_item_enqueue"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_introspection_hook_queue_item_enqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_introspection_hook_queue_item_enqueue",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_introspection_hook_queue_item_enqueue"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_object_t": {
+      "abstract": [
+        {
+          "text": "A dispatch object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatch_object_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_object_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_object_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "dispatch_object_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_object_t"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_t": {
+      "abstract": [
+        {
+          "text": "A lightweight object to which your application submits blocks for subsequent execution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "dispatch_queue_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_queue_t"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_release": {
+      "abstract": [
+        {
+          "text": "Decrements the reference count (the retain count) of a dispatch object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_release"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_release",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_release",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_release"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_retain": {
+      "abstract": [
+        {
+          "text": "Increments the reference count (the retain count) of a dispatch object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_retain"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_retain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_retain",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_retain"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_set_context": {
+      "abstract": [
+        {
+          "text": "Associates an application-defined context with the object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_set_context"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_set_context",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_set_context",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_set_context"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_set_finalizer_f": {
+      "abstract": [
+        {
+          "text": "Sets the finalizer function for a dispatch object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_set_finalizer_f"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_set_finalizer_f",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_set_finalizer_f",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_set_finalizer_f"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_t": {
+      "abstract": [
+        {
+          "text": "An object that coordinates the processing of specific low-level system events, such as file-system events, timers, and UNIX signals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatch_source_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_source_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_source_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "dispatch_source_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_source_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Dispatch-Objects",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject",
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchPredicate",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatchPrecondition(condition:)"
+      ],
+      "title": "Dispatch Objects"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Activating-Suspending-and-Resuming-the-Object",
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject/activate()",
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject/suspend()",
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject/resume()",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_object_t"
+      ],
+      "title": "Activating, Suspending, and Resuming the Object"
+    },
+    {
+      "anchor": "Changing-the-Assigned-Target-Queue",
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject/setTarget(queue:)"
+      ],
+      "title": "Changing the Assigned Target Queue"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Activating-Suspending-and-Resuming-the-Object",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject/activate()",
+                "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject/suspend()",
+                "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject/resume()",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_object_t"
+              ],
+              "title": "Activating, Suspending, and Resuming the Object"
+            },
+            {
+              "anchor": "Changing-the-Assigned-Target-Queue",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject/setTarget(queue:)"
+              ],
+              "title": "Changing the Assigned Target Queue"
+            },
+            {
+              "anchor": "Updating-Contextual-Data",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_get_context",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_set_context"
+              ],
+              "title": "Updating Contextual Data"
+            },
+            {
+              "anchor": "Managing-Memory",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_retain",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_release",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_set_finalizer_f"
+              ],
+              "title": "Managing Memory"
+            },
+            {
+              "anchor": "Introspecting-a-Dispatch-Object",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_introspection_hook_queue_create",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_introspection_hook_queue_destroy",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_introspection_hook_queue_item_enqueue",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_introspection_hook_queue_item_dequeue",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_introspection_hook_queue_callout_begin",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_introspection_hook_queue_callout_end",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_introspection_hook_queue_item_complete"
+              ],
+              "title": "Introspecting a Dispatch Object"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Dispatch-Objects",
+              "generated": true,
+              "identifiers": [],
+              "title": "Dispatch Objects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_queue_t/title",
+          "value": "dispatch_queue_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_queue_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_queue_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_queue_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_queue_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchObject~1resume()/title",
+          "value": "dispatch_resume"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchObject~1resume()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_resume"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_group_t/title",
+          "value": "dispatch_group_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_group_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_group_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_group_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_group_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchObject~1activate()/title",
+          "value": "dispatch_activate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchObject~1activate()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_activate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_object_t/title",
+          "value": "dispatch_object_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_object_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_object_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_object_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_object_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_source_t/title",
+          "value": "dispatch_source_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_source_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_source_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_source_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_source_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchObject~1suspend()/title",
+          "value": "dispatch_suspend"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchObject~1suspend()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_suspend"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchObject~1setTarget(queue:)/title",
+          "value": "dispatch_set_target_queue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchObject~1setTarget(queue:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_set_target_queue"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/dispatch/dispatch-objects"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/dispatch/dispatch-objects"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

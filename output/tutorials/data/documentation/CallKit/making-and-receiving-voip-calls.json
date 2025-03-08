@@ -1,0 +1,1655 @@
+{
+  "abstract": [
+    {
+      "text": "Initiate outgoing calls with VoIP and configure your app to receive incoming calls.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.callkit/documentation/CallKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.callkit/documentation/CallKit/making-and-receiving-voip-calls"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "CallKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Making and receiving VoIP calls"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can handle outgoing calls in your app by providing information about the recipient",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and initiating the call. To receive incoming calls, you can configure your app to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "respond to an external VoIP notification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Make-outgoing-calls",
+          "level": 3,
+          "text": "Make outgoing calls",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Initiate an outgoing call with a VoIP app in any of the following ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Perform an interaction within the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open a link with a supported custom URL scheme.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Begin a VoIP call using Siri.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about registering and handling URLs, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/defining-a-custom-url-scheme-for-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information about initiating a call using Siri, see the ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/sirikit/instartcallintenthandling",
+              "type": "text"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make an outgoing call, an app requests a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.callkit/documentation/CallKit/CXStartCallAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object from its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. The action consists of a UUID to uniquely identify the call and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.callkit/documentation/CallKit/CXHandle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to specify the recipient, as the following code example shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let uuid = UUID()",
+            "let handle = CXHandle(type: .emailAddress, value: \"mruiz2@icloud.com\")",
+            " ",
+            "let startCallAction = CXStartCallAction(call: uuid)",
+            "startCallAction.destination = handle",
+            " ",
+            "let transaction = CXTransaction(action: startCallAction)",
+            "callController.request(transaction) { error in",
+            "    if let error = error {",
+            "        print(\"Error requesting transaction: \\(error)\")",
+            "    } else {",
+            "        print(\"Requested transaction successfully\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "CXHandle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object specifies metadata for the outgoing call. In the example above, it uses an email address. The system on the receiving device uses this metadata to display caller information in the CallKit interface by looking for a matching contact in the recipient’s Contacts app. If the system finds a match, the CallKit interface uses the matching contact data to display the name and a photo as a poster or contact icon. If the recipient’s system can’t find a matching contact in the Contacts app and you provide a Call Directory app extension, it uses the extension to identify the caller and display rich contact information in the CallKit interface. For more information about creating a Call Directory app extension, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.callkit/documentation/CallKit/identifying-and-blocking-calls",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the recipient answers the call, the system calls the provider delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.callkit/documentation/CallKit/CXProviderDelegate/provider(_:perform:)-2lem5",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. In your implementation of that method, configure an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.callkit/documentation/CallKit/CXAction/fulfill()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method on the action object when it finishes, as in the code example below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func provider(_ provider: CXProvider, perform action: CXAnswerCallAction) {",
+            "    // Configure the audio session.",
+            "    // ...",
+            "    action.fulfill()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Receive-incoming-calls",
+          "level": 3,
+          "text": "Receive incoming calls",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure your app to receive incoming calls, first create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.callkit/documentation/CallKit/CXProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and store it for global access. An app reports an incoming call to the provider in response to an external notification, such as a VoIP push notification from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PushKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PushKit/PKPushRegistryDelegate/pushRegistry(_:didReceiveIncomingPushWith:for:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PushKit/PKPushRegistryDelegate/pushRegistry(_:didReceiveIncomingPushWith:for:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " callbacks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For more information about VoIP push notifications and PushKit, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/PushKit/supporting-pushkit-notifications-in-your-app",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the information from the external notification in the callback, the app creates a UUID and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallUpdate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to uniquely identify the call and the caller. Then it passes them both to the provider using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.callkit/documentation/CallKit/CXProvider/reportNewIncomingCall(with:update:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to report the incoming call.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let uuidString = payload.dictionaryPayload[\"UUID\"] as? String,",
+            "    let identifier = payload.dictionaryPayload[\"identifier\"] as? String,",
+            "    let uuid = UUID(uuidString: uuidString)",
+            "{",
+            "    let update = CXCallUpdate()    ",
+            "    update.callerIdentifier = identifier",
+            "    ",
+            "    provider.reportNewIncomingCall(with: uuid, update: update) { error in",
+            "        // Add your implementation to report the call.",
+            "        // ...",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the call connects, the system calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.callkit/documentation/CallKit/CXProviderDelegate/provider(_:perform:)-2lem5",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of the provider delegate. In your implementation, the delegate is responsible for configuring an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to initiate the audio for a call and calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.callkit/documentation/CallKit/CXAction/fulfill()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the action when it finishes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func provider(_ provider: CXProvider, perform action: CXAnswerCallAction) {",
+            "    // Configure the audio session.",
+            "    // ...",
+            "    action.fulfill()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.callkit/documentation/CallKit": {
+      "abstract": [
+        {
+          "text": "Display the system-calling UI for your app’s VoIP services, and coordinate your calling services with other apps and the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CallKit",
+      "type": "topic",
+      "url": "/documentation/callkit"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXAction/fulfill()": {
+      "abstract": [
+        {
+          "text": "Reports the successful execution of the action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fulfill"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXAction/fulfill()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fulfill"
+        }
+      ],
+      "role": "symbol",
+      "title": "fulfill()",
+      "type": "topic",
+      "url": "/documentation/callkit/cxaction/fulfill()"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXCallController": {
+      "abstract": [
+        {
+          "text": "A programmatic interface for interacting with and observing calls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CXCallController"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CXCallController"
+        }
+      ],
+      "role": "symbol",
+      "title": "CXCallController",
+      "type": "topic",
+      "url": "/documentation/callkit/cxcallcontroller"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXCallUpdate": {
+      "abstract": [
+        {
+          "text": "An encapsulation of new and changed information about a call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CXCallUpdate"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallUpdate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CXCallUpdate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CXCallUpdate",
+      "type": "topic",
+      "url": "/documentation/callkit/cxcallupdate"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXHandle": {
+      "abstract": [
+        {
+          "text": "A way to reach a call recipient, such as a phone number or email address.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CXHandle"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXHandle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CXHandle"
+        }
+      ],
+      "role": "symbol",
+      "title": "CXHandle",
+      "type": "topic",
+      "url": "/documentation/callkit/cxhandle"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXProvider": {
+      "abstract": [
+        {
+          "text": "An object that represents a telephony provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CXProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CXProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "CXProvider",
+      "type": "topic",
+      "url": "/documentation/callkit/cxprovider"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXProvider/reportNewIncomingCall(with:update:completion:)": {
+      "abstract": [
+        {
+          "text": "Reports a new incoming call with the specified unique identifier to the provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reportNewIncomingCall"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CXCallUpdate",
+          "text": "CXCallUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXProvider/reportNewIncomingCall(with:update:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reportNewIncomingCallWithUUID:update:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "reportNewIncomingCall(with:update:completion:)",
+      "type": "topic",
+      "url": "/documentation/callkit/cxprovider/reportnewincomingcall(with:update:completion:)"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXProviderConfiguration": {
+      "abstract": [
+        {
+          "text": "An encapsulation of the configuration of a provider object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CXProviderConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXProviderConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CXProviderConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "CXProviderConfiguration",
+      "type": "topic",
+      "url": "/documentation/callkit/cxproviderconfiguration"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXProviderDelegate": {
+      "abstract": [
+        {
+          "text": "A collection of methods that a telephony provider object calls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CXProviderDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXProviderDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CXProviderDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CXProviderDelegate",
+      "type": "topic",
+      "url": "/documentation/callkit/cxproviderdelegate"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXProviderDelegate/provider(_:perform:)-2lem5": {
+      "abstract": [
+        {
+          "text": "Called when the provider performs the specified start call action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "provider"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CXProvider",
+          "text": "CXProvider"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CXStartCallAction",
+          "text": "CXStartCallAction"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXProviderDelegate/provider(_:perform:)-2lem5",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "provider:performStartCallAction:"
+        }
+      ],
+      "role": "symbol",
+      "title": "provider(_:perform:)",
+      "type": "topic",
+      "url": "/documentation/callkit/cxproviderdelegate/provider(_:perform:)-2lem5"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXStartCallAction": {
+      "abstract": [
+        {
+          "text": "An encapsulation of the act of initiating an outgoing call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CXStartCallAction"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXStartCallAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CXStartCallAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "CXStartCallAction",
+      "type": "topic",
+      "url": "/documentation/callkit/cxstartcallaction"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/Preparing-your-app-to-be-the-default-calling-app": {
+      "abstract": [
+        {
+          "text": "Configure your CallKit or LiveCommunicationKit app so people can set it as the default calling app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/Preparing-your-app-to-be-the-default-calling-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing your app to be the default calling app",
+      "type": "topic",
+      "url": "/documentation/callkit/preparing-your-app-to-be-the-default-calling-app"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/identifying-and-blocking-calls": {
+      "abstract": [
+        {
+          "text": "Create a Call Directory app extension to identify and block incoming callers",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "by their phone number.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/identifying-and-blocking-calls",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying and blocking calls",
+      "type": "topic",
+      "url": "/documentation/callkit/identifying-and-blocking-calls"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/voip-calling-with-callkit": {
+      "abstract": [
+        {
+          "text": "Use the CallKit framework to integrate native VoIP calling.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/voip-calling-with-callkit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "VoIP calling with CallKit",
+      "type": "topic",
+      "url": "/documentation/callkit/voip-calling-with-callkit"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession": {
+      "abstract": [
+        {
+          "text": "An object that communicates to the system how you intend to use audio in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioSession",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioSession"
+    },
+    "doc://com.apple.documentation/documentation/PushKit": {
+      "abstract": [
+        {
+          "text": "Respond to push notifications related to your app’s complications, file providers, and VoIP services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PushKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PushKit",
+      "type": "topic",
+      "url": "/documentation/PushKit"
+    },
+    "doc://com.apple.documentation/documentation/PushKit/PKPushRegistryDelegate/pushRegistry(_:didReceiveIncomingPushWith:for:completion:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a remote push notification arrived.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pushRegistry"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "registry"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPushRegistry",
+          "text": "PKPushRegistry"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didReceiveIncomingPushWith"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "payload"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPushPayload",
+          "text": "PKPushPayload"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@PKPushType",
+          "text": "PKPushType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PushKit/PKPushRegistryDelegate/pushRegistry(_:didReceiveIncomingPushWith:for:completion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pushRegistry(_:didReceiveIncomingPushWith:for:completion:)",
+      "type": "topic",
+      "url": "/documentation/PushKit/PKPushRegistryDelegate/pushRegistry(_:didReceiveIncomingPushWith:for:completion:)"
+    },
+    "doc://com.apple.documentation/documentation/PushKit/supporting-pushkit-notifications-in-your-app": {
+      "abstract": [
+        {
+          "text": "Declare the types of PushKit notifications your app supports and configure objects to respond to them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PushKit/supporting-pushkit-notifications-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting PushKit Notifications in Your App",
+      "type": "topic",
+      "url": "/documentation/PushKit/supporting-pushkit-notifications-in-your-app"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/defining-a-custom-url-scheme-for-your-app": {
+      "abstract": [
+        {
+          "text": "Use specially formatted URLs to link to content within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/defining-a-custom-url-scheme-for-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Defining a custom URL scheme for your app",
+      "type": "topic",
+      "url": "/documentation/Xcode/defining-a-custom-url-scheme-for-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.callkit/documentation/CallKit/CXProvider",
+        "doc://com.apple.callkit/documentation/CallKit/CXProviderDelegate",
+        "doc://com.apple.callkit/documentation/CallKit/CXProviderConfiguration",
+        "doc://com.apple.callkit/documentation/CallKit/voip-calling-with-callkit",
+        "doc://com.apple.callkit/documentation/CallKit/Preparing-your-app-to-be-the-default-calling-app"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.callkit/documentation/CallKit/CXProvider",
+                "doc://com.apple.callkit/documentation/CallKit/CXProviderDelegate",
+                "doc://com.apple.callkit/documentation/CallKit/CXProviderConfiguration",
+                "doc://com.apple.callkit/documentation/CallKit/Preparing-your-app-to-be-the-default-calling-app"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1PushKit~1PKPushRegistryDelegate~1pushRegistry(_:didReceiveIncomingPushWith:for:completion:)/title",
+          "value": "pushRegistry:didReceiveIncomingPushWithPayload:forType:withCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1PushKit~1PKPushRegistryDelegate~1pushRegistry(_:didReceiveIncomingPushWith:for:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "pushRegistry:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)PKPushRegistry",
+              "text": "PKPushRegistry"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "registry"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didReceiveIncomingPushWithPayload:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)PKPushPayload",
+              "text": "PKPushPayload"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "payload"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "forType:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@PKPushType",
+              "text": "PKPushType"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "type"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "withCompletionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)()) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completion"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallController/title",
+          "value": "CXCallController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXCallController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXCallController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXProvider~1reportNewIncomingCall(with:update:completion:)/title",
+          "value": "reportNewIncomingCallWithUUID:update:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXProvider~1reportNewIncomingCall(with:update:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "reportNewIncomingCallWithUUID:update:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXProviderConfiguration/title",
+          "value": "CXProviderConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXProviderConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXProviderConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXProviderConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXProviderConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXHandle/title",
+          "value": "CXHandle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXHandle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXHandle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXHandle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXHandle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXStartCallAction/title",
+          "value": "CXStartCallAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXStartCallAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXStartCallAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXStartCallAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXStartCallAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXProviderDelegate~1provider(_:perform:)-2lem5/title",
+          "value": "provider:performStartCallAction:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXProviderDelegate~1provider(_:perform:)-2lem5/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "provider:performStartCallAction:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXAction~1fulfill()/title",
+          "value": "fulfill"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXAction~1fulfill()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fulfill"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallUpdate/title",
+          "value": "CXCallUpdate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallUpdate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXCallUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallUpdate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXCallUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXProvider/title",
+          "value": "CXProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXProviderDelegate/title",
+          "value": "CXProviderDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXProviderDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXProviderDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXProviderDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXProviderDelegate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/callkit/making-and-receiving-voip-calls"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/callkit/making-and-receiving-voip-calls"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

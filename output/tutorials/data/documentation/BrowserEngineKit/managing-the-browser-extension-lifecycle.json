@@ -1,0 +1,820 @@
+{
+  "abstract": [
+    {
+      "text": "Coordinate helper processes to efficiently support your browser app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-lifecycle"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/managing-the-browser-extension-lifecycle"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "BrowserEngineKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Managing the browser extension life cycle"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your browser app uses an alternative browser engine, it relies on helper processes to access operating-system resources and work with untrusted resources, following the security principle of least privilege.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BrowserEngineKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework to manage these processes, and notify the operating system of the status of each process as it supports your browser app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Launch-browser-extensions",
+          "level": 3,
+          "text": "Launch browser extensions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your browser app acts as the “host” for each of the extensions that support your browser engine.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You need to include the code to launch each extension in your browser app; one extension can’t load another extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To launch an extension, your browser app creates and initializes an instance of the structure that represents the running extension process. Pass an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "interruption handler",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to the initializer, to execute cleanup code if the operating system interrupts the extension process or the extension crashes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, to launch a web content extension:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let contentProcess = WebContentProcess() {",
+            "  // Handle the web content extension getting interrupted.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To launch the GPU extension, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RenderingProcess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/WebContentProcess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To launch the networking extension, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/NetworkingProcess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Communicate-between-your-browser-app-and-its-extensions",
+          "level": 3,
+          "text": "Communicate between your browser app and its extensions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/WebContentProcess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RenderingProcess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/NetworkingProcess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects to create inter-process communication (IPC) channels between your host app and the extensions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/using-xpc-to-communicate-with-browser-extensions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Put-the-content-extension-in-a-restricted-sandbox",
+          "level": 3,
+          "text": "Put the content extension in a restricted sandbox",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The operating system creates a temporary sandbox when it starts your content extension process, which gives the extension access to resources it uses during initialization.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information: see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/limiting-resource-access-in-content-extensions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Grant-and-invalidate-extension-capabilities",
+          "level": 3,
+          "text": "Grant and invalidate extension capabilities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As your extensions participate in your browser app’s workflow, grant them capabilities that tell the operating system what your browser is using the extensions for.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Capabilities act as assertions to the operating system that it needs to schedule the extension to support particular tasks, for example preparing media content to display in a tab that’s in the foreground on the person’s screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You identify the capability to grant to the extension by selecting the appropriate value from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/ProcessCapability",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " enumeration.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In your browser app, pass the capability  to the extension process’s ",
+              "type": "text"
+            },
+            {
+              "code": "grantCapability()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to receive a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "grant",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " object of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/ProcessCapability/Grant",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", indicating that the operating system granted the capability to your extension.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you finish the task that requires the capability, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/ProcessCapability/Grant/invalidate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the grant object to relinquish the capability.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to request and use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/ProcessCapability/foreground",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " capability for the networking process:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let grant = try? networkingProcess.grant(.foreground) {",
+            "  // Use XPC to send messages to the networking extension while it has the capability.",
+            "  grant.invalidate()",
+            "} else {",
+            "  // The operating system didn't grant the capability to the extension.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Stop-extension-processes",
+          "level": 3,
+          "text": "Stop extension processes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you no longer need an extension process, call its ",
+              "type": "text"
+            },
+            {
+              "code": "invalidate()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to indicate to the operating system that it can stop the process.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Once you have invalidated a process, it’s an error to call other methods on the process object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit": {
+      "abstract": [
+        {
+          "text": "Create a browser that renders content using an alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BrowserEngineKit",
+      "type": "topic",
+      "url": "/documentation/browserenginekit"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/NetworkingProcess": {
+      "abstract": [
+        {
+          "text": "An object that represents a running browser networking extension process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NetworkingProcess"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/NetworkingProcess",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NetworkingProcess"
+        }
+      ],
+      "role": "symbol",
+      "title": "NetworkingProcess",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/networkingprocess"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/ProcessCapability": {
+      "abstract": [
+        {
+          "text": "An enumeration that identifies capabilities that a browser app can grant to its extension processes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProcessCapability"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/ProcessCapability",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProcessCapability"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProcessCapability",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/processcapability"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/ProcessCapability/Grant": {
+      "abstract": [
+        {
+          "text": "An object that represents a granted capability.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Grant"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/ProcessCapability/Grant",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Grant"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProcessCapability.Grant",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/processcapability/grant"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/ProcessCapability/Grant/invalidate()": {
+      "abstract": [
+        {
+          "text": "Invalidates the grant, removing the capability from the process it was granted to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/ProcessCapability/Grant/invalidate()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invalidate()",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/processcapability/grant/invalidate()"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/ProcessCapability/foreground": {
+      "abstract": [
+        {
+          "text": "The operating system permits the helper extension process to run at foreground priority to work on behalf of the browser app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "foreground"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/ProcessCapability/foreground",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ProcessCapability.foreground",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/processcapability/foreground"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RenderingProcess": {
+      "abstract": [
+        {
+          "text": "An object that represents a running browser rendering extension process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RenderingProcess"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RenderingProcess",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RenderingProcess"
+        }
+      ],
+      "role": "symbol",
+      "title": "RenderingProcess",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/renderingprocess"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/WebContentProcess": {
+      "abstract": [
+        {
+          "text": "An object that represents a running web content extension process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WebContentProcess"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/WebContentProcess",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WebContentProcess"
+        }
+      ],
+      "role": "symbol",
+      "title": "WebContentProcess",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/webcontentprocess"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-lifecycle": {
+      "abstract": [
+        {
+          "text": "Launch, communicate with, and invalidate browser extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-lifecycle",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Extension lifecycle",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/extension-lifecycle"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/limiting-resource-access-in-content-extensions": {
+      "abstract": [
+        {
+          "text": "Reduce the impact of vulnerabilities in web content extensions by limiting privileges.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/limiting-resource-access-in-content-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Limiting resource access in web content extensions",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/limiting-resource-access-in-content-extensions"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/using-xpc-to-communicate-with-browser-extensions": {
+      "abstract": [
+        {
+          "text": "Build interprocess communication between your host app and extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/using-xpc-to-communicate-with-browser-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Using XPC to communicate with browser extensions",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/using-xpc-to-communicate-with-browser-extensions"
+    },
+    "doc://com.apple.documentation/documentation/BrowserEngineKit": {
+      "abstract": [
+        {
+          "text": "Create a browser that renders content using an alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BrowserEngineKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BrowserEngineKit",
+      "type": "topic",
+      "url": "/documentation/BrowserEngineKit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/using-xpc-to-communicate-with-browser-extensions"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/using-xpc-to-communicate-with-browser-extensions"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/browserenginekit/managing-the-browser-extension-lifecycle"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/browserenginekit/managing-the-browser-extension-lifecycle"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

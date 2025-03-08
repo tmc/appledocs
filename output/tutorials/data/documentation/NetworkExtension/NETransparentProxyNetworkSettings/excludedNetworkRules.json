@@ -1,0 +1,950 @@
+{
+  "abstract": [
+    {
+      "text": "An array of rules that collectively specify what traffic to not route through the transparent proxy.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkextension/documentation/NetworkExtension",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyNetworkSettings"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyNetworkSettings/excludedNetworkRules"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NETransparentProxyNetworkSettings(py)excludedNetworkRules",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "excludedNetworkRules"
+      },
+      {
+        "kind": "text",
+        "text": ": ["
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)NENetworkRule",
+        "text": "NENetworkRule"
+      },
+      {
+        "kind": "text",
+        "text": "]?"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Network Extension"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "excludedNetworkRules"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "excludedNetworkRules"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "excludedNetworkRules"
+            },
+            {
+              "kind": "text",
+              "text": ": ["
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NENetworkRule",
+              "text": "NENetworkRule"
+            },
+            {
+              "kind": "text",
+              "text": "]? { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following restrictions apply to each rule in the array:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the port string of the endpoint is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or is the empty string, then the address of the endpoint must be a non-wildcard address, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0.0.0.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "::",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the address is a wildcard address (such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0.0.0.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "::)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", then the port string of the endpoint must be non-empty and must not be ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A port string of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "53",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is not allowed. Use Destination Domain-based rules to match DNS traffic.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule/matchLocalNetwork",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property must be ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule/matchDirection",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property must be ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETrafficDirection/outbound",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension": {
+      "abstract": [
+        {
+          "text": "Customize and extend core networking features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network Extension",
+      "type": "topic",
+      "url": "/documentation/networkextension"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule": {
+      "abstract": [
+        {
+          "text": "A rule to match attributes of network traffic.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NENetworkRule"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NENetworkRule"
+        }
+      ],
+      "role": "symbol",
+      "title": "NENetworkRule",
+      "type": "topic",
+      "url": "/documentation/networkextension/nenetworkrule"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule/matchDirection": {
+      "abstract": [
+        {
+          "text": "The direction of network traffic that the rule matches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "matchDirection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NETrafficDirection",
+          "text": "NETrafficDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule/matchDirection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "matchDirection"
+        }
+      ],
+      "role": "symbol",
+      "title": "matchDirection",
+      "type": "topic",
+      "url": "/documentation/networkextension/nenetworkrule/matchdirection"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule/matchLocalNetwork": {
+      "abstract": [
+        {
+          "text": "The local network that the rule matches.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "matchLocalNetwork"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NWHostEndpoint",
+          "text": "NWHostEndpoint"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule/matchLocalNetwork",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "matchLocalNetwork"
+        }
+      ],
+      "role": "symbol",
+      "title": "matchLocalNetwork",
+      "type": "topic",
+      "url": "/documentation/networkextension/nenetworkrule/matchlocalnetwork"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETrafficDirection/outbound": {
+      "abstract": [
+        {
+          "text": "The outbound traffic direction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outbound"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETrafficDirection/outbound",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NETrafficDirectionOutbound"
+        }
+      ],
+      "role": "symbol",
+      "title": "NETrafficDirection.outbound",
+      "type": "topic",
+      "url": "/documentation/networkextension/netrafficdirection/outbound"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyNetworkSettings": {
+      "abstract": [
+        {
+          "text": "A specification of what traffic to route through a transparent proxy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NETransparentProxyNetworkSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyNetworkSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NETransparentProxyNetworkSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "NETransparentProxyNetworkSettings",
+      "type": "topic",
+      "url": "/documentation/networkextension/netransparentproxynetworksettings"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyNetworkSettings/excludedNetworkRules": {
+      "abstract": [
+        {
+          "text": "An array of rules that collectively specify what traffic to not route through the transparent proxy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "excludedNetworkRules"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NENetworkRule",
+          "text": "NENetworkRule"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyNetworkSettings/excludedNetworkRules",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "excludedNetworkRules"
+        }
+      ],
+      "role": "symbol",
+      "title": "excludedNetworkRules",
+      "type": "topic",
+      "url": "/documentation/networkextension/netransparentproxynetworksettings/excludednetworkrules"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyNetworkSettings/includedNetworkRules": {
+      "abstract": [
+        {
+          "text": "An array of rules that collectively specify what traffic to route through the transparent proxy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "includedNetworkRules"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NENetworkRule",
+          "text": "NENetworkRule"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyNetworkSettings/includedNetworkRules",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "includedNetworkRules"
+        }
+      ],
+      "role": "symbol",
+      "title": "includedNetworkRules",
+      "type": "topic",
+      "url": "/documentation/networkextension/netransparentproxynetworksettings/includednetworkrules"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Traffic-routing-rules",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyNetworkSettings/includedNetworkRules"
+      ],
+      "title": "Traffic routing rules"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "excludedNetworkRules"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "excludedNetworkRules"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.networkextension/documentation/NetworkExtension",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyNetworkSettings"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Traffic-routing-rules",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyNetworkSettings/includedNetworkRules"
+              ],
+              "title": "Traffic routing rules"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "copy"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:Q$objc(cs)NSArray",
+                    "text": "NSArray<NENetworkRule *>"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "excludedNetworkRules"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETransparentProxyNetworkSettings~1excludedNetworkRules/title",
+          "value": "excludedNetworkRules"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETransparentProxyNetworkSettings~1excludedNetworkRules/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "excludedNetworkRules"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETransparentProxyNetworkSettings~1includedNetworkRules/title",
+          "value": "includedNetworkRules"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETransparentProxyNetworkSettings~1includedNetworkRules/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "includedNetworkRules"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NENetworkRule~1matchLocalNetwork/title",
+          "value": "matchLocalNetwork"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NENetworkRule~1matchLocalNetwork/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "matchLocalNetwork"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETransparentProxyNetworkSettings/title",
+          "value": "NETransparentProxyNetworkSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETransparentProxyNetworkSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETransparentProxyNetworkSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETransparentProxyNetworkSettings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETransparentProxyNetworkSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NENetworkRule~1matchDirection/title",
+          "value": "matchDirection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NENetworkRule~1matchDirection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "matchDirection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NENetworkRule/title",
+          "value": "NENetworkRule"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NENetworkRule/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NENetworkRule"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NENetworkRule/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NENetworkRule"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETrafficDirection~1outbound/title",
+          "value": "NETrafficDirectionOutbound"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETrafficDirection~1outbound/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETrafficDirectionOutbound"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/networkextension/netransparentproxynetworksettings/excludednetworkrules"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/networkextension/netransparentproxynetworksettings/excludednetworkrules"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1573 @@
+{
+  "abstract": [
+    {
+      "text": "Respond dynamically to keyboard movement by using the tracking features of the keyboard layout guide.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/keyboards-and-input"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/adjusting-your-layout-with-keyboard-layout-guide"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Adjusting your layout with keyboard layout guide"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app presents a keyboard, you want it to integrate well into your layout. This sample code project demonstrates how to configure constraints when you set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKeyboardLayoutGuide/followsUndockedKeyboard",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/keyboardLayoutGuide",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property in ",
+              "type": "text"
+            },
+            {
+              "code": "UIView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to adapt your layout to the movement of the floating keyboard onscreen. The sample illustrates several concepts, such as handling when the keyboard is close to the top of the screen, and adapting the layout when the additional views don’t have constraints with a direct relationship to the ",
+              "type": "text"
+            },
+            {
+              "code": "keyboardLayoutGuide",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you use ",
+              "type": "text"
+            },
+            {
+              "code": "keyboardLayoutGuide",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and leave ",
+              "type": "text"
+            },
+            {
+              "code": "followsUndockedKeyboard",
+              "type": "codeVoice"
+            },
+            {
+              "text": " set to the default value of ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the guide matches the keyboard when it docks. When the keyboard isn’t onscreen, the guide is at the bottom of the window and has a height equal to the bottom of the current ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/safeAreaInsets",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". By default, when the keyboard undocks, the guide behaves the same as when you dismiss the keyboard or the keyboard isn’t visible. You can use the guide like any other layout guide.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "view.keyboardLayoutGuide.topAnchor.constraint(",
+            "    equalToSystemSpacingBelow: textView.bottomAnchor, multiplier: 1.0).isActive = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UILayoutGuide",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information about layout guides.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Follow-the-undocked-keyboard",
+          "level": 3,
+          "text": "Follow the undocked keyboard",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more precise layout responses to the undocked keyboard, the sample sets ",
+              "type": "text"
+            },
+            {
+              "code": "followsUndockedKeyboard",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and then creates tracking constraints that activate and deactivate when the keyboard approaches or leaves an edge. Tracking constraints only apply when ",
+              "type": "text"
+            },
+            {
+              "code": "followsUndockedKeyboard",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// This is necessary to allow the various edge constraints to engage.",
+            "view.keyboardLayoutGuide.followsUndockedKeyboard = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Enable-tracking-constraints",
+          "level": 3,
+          "text": "Enable tracking constraints",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample shows how the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITrackingLayoutGuide",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " activates or deactivates constraints when the ",
+              "type": "text"
+            },
+            {
+              "code": "keyboardLayoutGuide",
+              "type": "codeVoice"
+            },
+            {
+              "text": " approaches or leaves an edge. The sample code passes an array of constraints to the ",
+              "type": "text"
+            },
+            {
+              "code": "keyboardLayoutGuide",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and indicates which edges trigger the change. The sample configures an array of constraints to activate when ",
+              "type": "text"
+            },
+            {
+              "code": "awayFrom",
+              "type": "codeVoice"
+            },
+            {
+              "text": " the leading and trailing edges, so the constraints activate when the keyboard docks or when the floating keyboard is in the middle area of the screen. Conversely, the constraints deactivate when the floating keyboard approaches either the leading or trailing edge.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Constraints that use the keyboard layout guide’s anchors directly don’t activate and deactivate automatically. To get the full tracking behavior, the sample sets constraints using the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UITrackingLayoutGuide/setConstraints(_:activeWhenNearEdge:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UITrackingLayoutGuide/setConstraints(_:activeWhenAwayFrom:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " methods on ",
+                  "type": "text"
+                },
+                {
+                  "code": "UITrackingLayoutGuide",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows how to pin a view to the top of the ",
+              "type": "text"
+            },
+            {
+              "code": "keyboardLayoutGuide",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when the guide is ",
+              "type": "text"
+            },
+            {
+              "code": "awayFrom",
+              "type": "codeVoice"
+            },
+            {
+              "text": " the top edge, and to the bottom of the view’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/safeAreaLayoutGuide",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when it’s ",
+              "type": "text"
+            },
+            {
+              "code": "near",
+              "type": "codeVoice"
+            },
+            {
+              "text": " the top edge:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// When the keyboard isn't near the top, tie the edit view to the keyboard layout guide (it",
+            "// deactivates when near the top).",
+            "let editViewOnKeyboard = view.keyboardLayoutGuide.topAnchor.constraint(equalTo: editView.bottomAnchor)",
+            "editViewOnKeyboard.identifier = \"editViewOnKeyboard\"",
+            "view.keyboardLayoutGuide.setConstraints([editViewOnKeyboard], activeWhenAwayFrom: .top)",
+            "",
+            "// When the keyboard is near the top, tie the edit view to the bottom anchor of the safeAreaLayoutGuide, so that it doesn't go offscreen.",
+            "let editViewOnBottom = view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: editView.bottomAnchor)",
+            "editViewOnBottom.identifier = \"editViewOnBottom\"",
+            "view.keyboardLayoutGuide.setConstraints([editViewOnBottom], activeWhenNearEdge: .top)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample demonstrates that it isn’t necessary to pin views to the ",
+              "type": "text"
+            },
+            {
+              "code": "keyboardLayoutGuide",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to affect their constraints when the keyboard approaches an edge. The guide can take any array of constraints in the layout and activate and deactivate them when necessary. For example, the following code shows an ",
+              "type": "text"
+            },
+            {
+              "code": "imageView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with no constraint relationships to the ",
+              "type": "text"
+            },
+            {
+              "code": "keyboardLayoutGuide",
+              "type": "codeVoice"
+            },
+            {
+              "text": " itself, but the image moves to the opposite side of the screen from the keyboard to stay visible as the keyboard moves around:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let centeredImage = imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)",
+            "centeredImage.identifier = \"centeredImage\"",
+            "view.keyboardLayoutGuide.setConstraints([centeredImage], activeWhenAwayFrom: [.leading, .trailing])",
+            "",
+            "let imageViewToLeading = imageView.leadingAnchor.constraint(",
+            "    equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor, multiplier: 1.0)",
+            "imageViewToLeading.identifier = \"imageViewToLeading\"",
+            "",
+            "let nearTrailingConstraints = [ editViewToUndockedKeyboardTrailing, imageViewToLeading ]",
+            "view.keyboardLayoutGuide.setConstraints(nearTrailingConstraints, activeWhenNearEdge: .trailing)",
+            "",
+            "let imageViewToTrailing = view.safeAreaLayoutGuide.trailingAnchor.constraint(",
+            "    equalToSystemSpacingAfter: imageView.trailingAnchor, multiplier: 1.0)",
+            "imageViewToTrailing.identifier = \"imageViewToTrailing\"",
+            "",
+            "let nearLeadingConstraints = [ editViewToKeyboardLeading, imageViewToTrailing ]",
+            "view.keyboardLayoutGuide.setConstraints(nearLeadingConstraints, activeWhenNearEdge: .leading)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Account-for-keyboard-types",
+          "level": 3,
+          "text": "Account for keyboard types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following list describes which edges the system reports the ",
+              "type": "text"
+            },
+            {
+              "code": "keyboardLayoutGuide",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "near",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "awayFrom",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when different types of keyboards are active:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Docked keyboards:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Are always ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "awayFrom",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " leading, trailing, and top edges",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Are always ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "near",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " the bottom edge",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Split and undocked keyboards:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Are always ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "awayFrom",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " leading, trailing, and bottom edges",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Can be ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "near",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " the top edge",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Floating keyboards:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Can be ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "awayFrom",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " all edges",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Can be ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "near",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " any edge or any two adjacent edges",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The shortcuts bar (available with an external attached keyboard):",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Is always ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "awayFrom",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " the top edge and ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "near",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " the bottom edge",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Can be ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "near",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " the leading or trailing edge when in a collapsed state",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Although the floating keyboard can be ",
+                  "type": "text"
+                },
+                {
+                  "code": "near",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " two adjacent edges at once, the keyboard doesn’t support any scenarios where it is ",
+                  "type": "text"
+                },
+                {
+                  "code": "near",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " more than two edges, and is most frequently ",
+                  "type": "text"
+                },
+                {
+                  "code": "near",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " only one. It can be ",
+                  "type": "text"
+                },
+                {
+                  "code": "awayFrom",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " any combination of edges, however. If the floating keyboard is available, but not over the app, the ",
+                  "type": "text"
+                },
+                {
+                  "code": "keyboardLayoutGuide",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " behaves as if the keyboard is in a dismissed state.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app is in 1/3 split view mode, the ",
+              "type": "text"
+            },
+            {
+              "code": "keyboardLayoutGuide",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "awayFrom",
+              "type": "codeVoice"
+            },
+            {
+              "text": " leading and trailing edges, ",
+              "type": "text"
+            },
+            {
+              "code": "near",
+              "type": "codeVoice"
+            },
+            {
+              "text": " the bottom edge if docked, and can be ",
+              "type": "text"
+            },
+            {
+              "code": "near",
+              "type": "codeVoice"
+            },
+            {
+              "text": " the top edge if floating or undocked.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-edge-combinations",
+          "level": 3,
+          "text": "Handle edge combinations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample shows constraints that are active when ",
+              "type": "text"
+            },
+            {
+              "code": "near",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "awayFrom",
+              "type": "codeVoice"
+            },
+            {
+              "text": " multiple edges. The system activates or deactivates the constraints only when the position of the keyboard meets all edge requirements. Because a docked keyboard is ",
+              "type": "text"
+            },
+            {
+              "code": "awayFrom",
+              "type": "codeVoice"
+            },
+            {
+              "text": " leading and trailing edges, but ",
+              "type": "text"
+            },
+            {
+              "code": "near",
+              "type": "codeVoice"
+            },
+            {
+              "text": " the bottom edge, the constraint in the example below only activates when the keyboard undocks and is ",
+              "type": "text"
+            },
+            {
+              "code": "awayFrom",
+              "type": "codeVoice"
+            },
+            {
+              "text": " the leading and trailing edges. This situation happens with undocked full or split keyboards, and with a floating keyboard in the horizontal middle of the screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let editCenterXToKeyboard = view.keyboardLayoutGuide.centerXAnchor.constraint(equalTo: editView.centerXAnchor)",
+            "editCenterXToKeyboard.identifier = \"editCenterXToKeyboard\"",
+            "",
+            "view.keyboardLayoutGuide.setConstraints([editCenterXToKeyboard], activeWhenAwayFrom: [.leading, .trailing, .bottom])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "51351f27fd2e/AdjustingYourLayoutWithKeyboardLayoutGuide.zip": {
+      "checksum": "51351f27fd2e3dfa2c4afa4d42e814bef56ed2406d1bf24ea677992cb57d2229365d31bd0ec2e7e8ebe6cbb74e982eed35feda0ab9342e9327ae4d4ccad54b5d",
+      "identifier": "51351f27fd2e/AdjustingYourLayoutWithKeyboardLayoutGuide.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/51351f27fd2e/AdjustingYourLayoutWithKeyboardLayoutGuide.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIKeyboardLayoutGuide": {
+      "abstract": [
+        {
+          "text": "A layout guide that represents the space the keyboard occupies in your app’s layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIKeyboardLayoutGuide"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKeyboardLayoutGuide",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyboardLayoutGuide"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIKeyboardLayoutGuide",
+      "type": "topic",
+      "url": "/documentation/uikit/uikeyboardlayoutguide"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIKeyboardLayoutGuide/followsUndockedKeyboard": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines if the layout guide tracks the keyboard when it’s undocked from the bottom of the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "followsUndockedKeyboard"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKeyboardLayoutGuide/followsUndockedKeyboard",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "followsUndockedKeyboard"
+        }
+      ],
+      "role": "symbol",
+      "title": "followsUndockedKeyboard",
+      "type": "topic",
+      "url": "/documentation/uikit/uikeyboardlayoutguide/followsundockedkeyboard"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILayoutGuide": {
+      "abstract": [
+        {
+          "text": "A rectangular area that can interact with Auto Layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILayoutGuide"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILayoutGuide",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UILayoutGuide"
+        }
+      ],
+      "role": "symbol",
+      "title": "UILayoutGuide",
+      "type": "topic",
+      "url": "/documentation/uikit/uilayoutguide"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITrackingLayoutGuide": {
+      "abstract": [
+        {
+          "text": "A layout guide that automatically activates and deactivates layout constraints depending on its proximity to edges.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITrackingLayoutGuide"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITrackingLayoutGuide",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITrackingLayoutGuide"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITrackingLayoutGuide",
+      "type": "topic",
+      "url": "/documentation/uikit/uitrackinglayoutguide"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITrackingLayoutGuide/setConstraints(_:activeWhenAwayFrom:)": {
+      "abstract": [
+        {
+          "text": "Configures the tracking layout guide to automatically activate and deactivate constraints when the guide is away from the given edge.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setConstraints"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "activeWhenAwayFrom"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSDirectionalRectEdge",
+          "text": "NSDirectionalRectEdge"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITrackingLayoutGuide/setConstraints(_:activeWhenAwayFrom:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setConstraints:activeWhenAwayFromEdge:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setConstraints(_:activeWhenAwayFrom:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitrackinglayoutguide/setconstraints(_:activewhenawayfrom:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITrackingLayoutGuide/setConstraints(_:activeWhenNearEdge:)": {
+      "abstract": [
+        {
+          "text": "Configures the tracking layout guide to automatically activate and deactivate constraints when the guide is close to the given edge.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setConstraints"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "activeWhenNearEdge"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSDirectionalRectEdge",
+          "text": "NSDirectionalRectEdge"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITrackingLayoutGuide/setConstraints(_:activeWhenNearEdge:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setConstraints:activeWhenNearEdge:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setConstraints(_:activeWhenNearEdge:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitrackinglayoutguide/setconstraints(_:activewhennearedge:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/keyboardLayoutGuide": {
+      "abstract": [
+        {
+          "text": "A layout guide that tracks the keyboard’s position in your app’s layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardLayoutGuide"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIKeyboardLayoutGuide",
+          "text": "UIKeyboardLayoutGuide"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/keyboardLayoutGuide",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "keyboardLayoutGuide"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyboardLayoutGuide",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/keyboardlayoutguide"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/safeAreaInsets": {
+      "abstract": [
+        {
+          "text": "The insets that you use to determine the safe area for this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "safeAreaInsets"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@UIEdgeInsets",
+          "text": "UIEdgeInsets"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/safeAreaInsets",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "safeAreaInsets"
+        }
+      ],
+      "role": "symbol",
+      "title": "safeAreaInsets",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/safeareainsets"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/safeAreaLayoutGuide": {
+      "abstract": [
+        {
+          "text": "The layout guide representing the portion of your view that is unobscured by bars and other content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "safeAreaLayoutGuide"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UILayoutGuide",
+          "text": "UILayoutGuide"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/safeAreaLayoutGuide",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "safeAreaLayoutGuide"
+        }
+      ],
+      "role": "symbol",
+      "title": "safeAreaLayoutGuide",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/safearealayoutguide"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/keyboards-and-input": {
+      "abstract": [
+        {
+          "text": "Configure the system keyboard, create your own keyboards to handle input, or detect key presses on a physical keyboard.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/keyboards-and-input",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keyboards and input",
+      "type": "topic",
+      "url": "/documentation/uikit/keyboards-and-input"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "51351f27fd2e/AdjustingYourLayoutWithKeyboardLayoutGuide.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Keyboard-layout",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIKeyboardLayoutGuide",
+        "doc://com.apple.uikit/documentation/UIKit/UITrackingLayoutGuide"
+      ],
+      "title": "Keyboard layout"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITrackingLayoutGuide~1setConstraints(_:activeWhenNearEdge:)/title",
+          "value": "setConstraints:activeWhenNearEdge:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITrackingLayoutGuide~1setConstraints(_:activeWhenNearEdge:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setConstraints:activeWhenNearEdge:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITrackingLayoutGuide/title",
+          "value": "UITrackingLayoutGuide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITrackingLayoutGuide/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITrackingLayoutGuide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITrackingLayoutGuide/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITrackingLayoutGuide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1safeAreaInsets/title",
+          "value": "safeAreaInsets"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1safeAreaInsets/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "safeAreaInsets"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITrackingLayoutGuide~1setConstraints(_:activeWhenAwayFrom:)/title",
+          "value": "setConstraints:activeWhenAwayFromEdge:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITrackingLayoutGuide~1setConstraints(_:activeWhenAwayFrom:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setConstraints:activeWhenAwayFromEdge:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1safeAreaLayoutGuide/title",
+          "value": "safeAreaLayoutGuide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1safeAreaLayoutGuide/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "safeAreaLayoutGuide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyboardLayoutGuide~1followsUndockedKeyboard/title",
+          "value": "followsUndockedKeyboard"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyboardLayoutGuide~1followsUndockedKeyboard/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "followsUndockedKeyboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1keyboardLayoutGuide/title",
+          "value": "keyboardLayoutGuide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1keyboardLayoutGuide/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "keyboardLayoutGuide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILayoutGuide/title",
+          "value": "UILayoutGuide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILayoutGuide/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILayoutGuide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILayoutGuide/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILayoutGuide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyboardLayoutGuide/title",
+          "value": "UIKeyboardLayoutGuide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyboardLayoutGuide/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyboardLayoutGuide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyboardLayoutGuide/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyboardLayoutGuide"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/adjusting-your-layout-with-keyboard-layout-guide"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

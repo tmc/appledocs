@@ -1,0 +1,590 @@
+{
+  "abstract": [
+    {
+      "text": "A check for language support and status.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Translation/documentation/Translation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Translation/documentation/Translation/LanguageAvailability"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:11Translation20LanguageAvailabilityC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "LanguageAvailability"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Translation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "LanguageAvailability"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "LanguageAvailability"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "LanguageAvailability"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this class to check and see whether the framework supports the language or language pairing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you want to offer as a translation. For example, to check if someone’s device supports a translation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you can do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func translationIsSupported(from source: Locale.Language, to target: Locale.Language) async -> Bool {",
+            "    let availability = LanguageAvailability()",
+            "    let status = await availability.status(from: source, to: target)",
+            "    switch status {",
+            "    case .installed, .supported:",
+            "        return true",
+            "    case .unsupported",
+            "        return false",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Translation/documentation/Translation": {
+      "abstract": [
+        {
+          "text": "Translate text in your app from one language to another.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Translation/documentation/Translation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Translation",
+      "type": "topic",
+      "url": "/documentation/translation"
+    },
+    "doc://com.apple.Translation/documentation/Translation/LanguageAvailability": {
+      "abstract": [
+        {
+          "text": "A check for language support and status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LanguageAvailability"
+        }
+      ],
+      "identifier": "doc://com.apple.Translation/documentation/Translation/LanguageAvailability",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LanguageAvailability"
+        }
+      ],
+      "role": "symbol",
+      "title": "LanguageAvailability",
+      "type": "topic",
+      "url": "/documentation/translation/languageavailability"
+    },
+    "doc://com.apple.Translation/documentation/Translation/LanguageAvailability/Status": {
+      "abstract": [
+        {
+          "text": "The availability status for a language or language pairing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Status"
+        }
+      ],
+      "identifier": "doc://com.apple.Translation/documentation/Translation/LanguageAvailability/Status",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Status"
+        }
+      ],
+      "role": "symbol",
+      "title": "LanguageAvailability.Status",
+      "type": "topic",
+      "url": "/documentation/translation/languageavailability/status"
+    },
+    "doc://com.apple.Translation/documentation/Translation/LanguageAvailability/init()": {
+      "abstract": [
+        {
+          "text": "Creates a language availability.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.Translation/documentation/Translation/LanguageAvailability/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/translation/languageavailability/init()"
+    },
+    "doc://com.apple.Translation/documentation/Translation/LanguageAvailability/status(for:to:)": {
+      "abstract": [
+        {
+          "text": "Checks to see if a language pairing is supported based off a string of sample text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "status"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV",
+          "text": "Locale"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV8LanguageV",
+          "text": "Language"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Translation20LanguageAvailabilityC",
+          "text": "LanguageAvailability"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Translation20LanguageAvailabilityC6StatusO",
+          "text": "Status"
+        }
+      ],
+      "identifier": "doc://com.apple.Translation/documentation/Translation/LanguageAvailability/status(for:to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "status(for:to:)",
+      "type": "topic",
+      "url": "/documentation/translation/languageavailability/status(for:to:)"
+    },
+    "doc://com.apple.Translation/documentation/Translation/LanguageAvailability/status(from:to:)": {
+      "abstract": [
+        {
+          "text": "Checks to see if a specific language pairing is installed and ready for translation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "status"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV",
+          "text": "Locale"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV8LanguageV",
+          "text": "Language"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV",
+          "text": "Locale"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV8LanguageV",
+          "text": "Language"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Translation20LanguageAvailabilityC",
+          "text": "LanguageAvailability"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Translation20LanguageAvailabilityC6StatusO",
+          "text": "Status"
+        }
+      ],
+      "identifier": "doc://com.apple.Translation/documentation/Translation/LanguageAvailability/status(from:to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "status(from:to:)",
+      "type": "topic",
+      "url": "/documentation/translation/languageavailability/status(from:to:)"
+    },
+    "doc://com.apple.Translation/documentation/Translation/LanguageAvailability/supportedLanguages": {
+      "abstract": [
+        {
+          "text": "A list of translation languages the framework supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportedLanguages"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV",
+          "text": "Locale"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV8LanguageV",
+          "text": "Language"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.Translation/documentation/Translation/LanguageAvailability/supportedLanguages",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "supportedLanguages",
+      "type": "topic",
+      "url": "/documentation/translation/languageavailability/supportedlanguages"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-language-availability",
+      "identifiers": [
+        "doc://com.apple.Translation/documentation/Translation/LanguageAvailability/init()"
+      ],
+      "title": "Creating a language availability"
+    },
+    {
+      "anchor": "Getting-supported-languages",
+      "identifiers": [
+        "doc://com.apple.Translation/documentation/Translation/LanguageAvailability/supportedLanguages"
+      ],
+      "title": "Getting supported languages"
+    },
+    {
+      "anchor": "Checking-availability",
+      "identifiers": [
+        "doc://com.apple.Translation/documentation/Translation/LanguageAvailability/status(from:to:)",
+        "doc://com.apple.Translation/documentation/Translation/LanguageAvailability/status(for:to:)",
+        "doc://com.apple.Translation/documentation/Translation/LanguageAvailability/Status"
+      ],
+      "title": "Checking availability"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/translation/languageavailability"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

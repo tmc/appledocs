@@ -1,0 +1,612 @@
+{
+  "abstract": [
+    {
+      "text": "An object that checks if a video contains sensitive content and provides status updates.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis",
+        "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer/VideoAnalysisHandler"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "SensitiveContentAnalysis",
+    "externalID": "s:So21SCSensitivityAnalyzerC24SensitiveContentAnalysisE05VideoE7HandlerC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "VideoAnalysisHandler"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SensitiveContentAnalysis"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "VideoAnalysisHandler"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SCSensitivityAnalyzer.VideoAnalysisHandler"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "final"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "VideoAnalysisHandler"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Checking video for sensitive content can take longer than checking images. This class",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "enables an app to stay informed on the framework’s progress while it checks a video",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for sensitive content. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer/videoAnalysis(forFileAt:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an instance of this class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To analyze a video file for sensitive content, pass a video URL into the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer/videoAnalysis(forFileAt:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "function. While waiting on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer/VideoAnalysisHandler/hasSensitiveContent()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method, check ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer/VideoAnalysisHandler/progress",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the completion status:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let handler = analyzer.videoAnalysis(forFileAt: videoFileUrl)",
+            "",
+            "let progress = handler.progress",
+            "// Do something with the `progress` property, such as dispatch a UI update thread.",
+            "",
+            "// Wait here until the video check for sensitive content completes.",
+            "let response = try await handler.hasSensitiveContent()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis": {
+      "abstract": [
+        {
+          "text": "Provide a safer experience in your app by detecting and alerting users to nudity",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in images and videos before displaying them onscreen.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SensitiveContentAnalysis",
+      "type": "topic",
+      "url": "/documentation/sensitivecontentanalysis"
+    },
+    "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer": {
+      "abstract": [
+        {
+          "text": "An object that analyzes media for sensitive content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCSensitivityAnalyzer"
+        }
+      ],
+      "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCSensitivityAnalyzer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCSensitivityAnalyzer",
+      "type": "topic",
+      "url": "/documentation/sensitivecontentanalysis/scsensitivityanalyzer"
+    },
+    "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer/VideoAnalysisHandler": {
+      "abstract": [
+        {
+          "text": "An object that checks if a video contains sensitive content and provides status updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VideoAnalysisHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer/VideoAnalysisHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VideoAnalysisHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCSensitivityAnalyzer.VideoAnalysisHandler",
+      "type": "topic",
+      "url": "/documentation/sensitivecontentanalysis/scsensitivityanalyzer/videoanalysishandler"
+    },
+    "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer/VideoAnalysisHandler/hasSensitiveContent()": {
+      "abstract": [
+        {
+          "text": "Provides a result that indicates if the video file contains sensitive content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasSensitiveContent"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCSensitivityAnalysis",
+          "text": "SCSensitivityAnalysis"
+        }
+      ],
+      "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer/VideoAnalysisHandler/hasSensitiveContent()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasSensitiveContent()",
+      "type": "topic",
+      "url": "/documentation/sensitivecontentanalysis/scsensitivityanalyzer/videoanalysishandler/hassensitivecontent()"
+    },
+    "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer/VideoAnalysisHandler/progress": {
+      "abstract": [
+        {
+          "text": "An object that provides the app with status updates while a sensitive content check",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "occurs for a video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "progress"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSProgress",
+          "text": "Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer/VideoAnalysisHandler/progress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "progress",
+      "type": "topic",
+      "url": "/documentation/sensitivecontentanalysis/scsensitivityanalyzer/videoanalysishandler/progress"
+    },
+    "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer/videoAnalysis(forFileAt:)": {
+      "abstract": [
+        {
+          "text": "Analyzes a video file on disk at a URL for sensitive content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoAnalysis"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forFileAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCSensitivityAnalyzer",
+          "text": "SCSensitivityAnalyzer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So21SCSensitivityAnalyzerC24SensitiveContentAnalysisE05VideoE7HandlerC",
+          "text": "VideoAnalysisHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer/videoAnalysis(forFileAt:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "videoAnalysis(forFileAt:)",
+      "type": "topic",
+      "url": "/documentation/sensitivecontentanalysis/scsensitivityanalyzer/videoanalysis(forfileat:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Analyzing-video",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer/videoAnalysis(forFileAt:)"
+      ],
+      "title": "Analyzing video"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Checking-progress",
+      "identifiers": [
+        "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer/VideoAnalysisHandler/progress"
+      ],
+      "title": "Checking progress"
+    },
+    {
+      "anchor": "Determining-sensitivity",
+      "identifiers": [
+        "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer/VideoAnalysisHandler/hasSensitiveContent()"
+      ],
+      "title": "Determining sensitivity"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.SensitiveContentAnalysis~1documentation~1SensitiveContentAnalysis~1SCSensitivityAnalyzer/title",
+          "value": "SCSensitivityAnalyzer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.SensitiveContentAnalysis~1documentation~1SensitiveContentAnalysis~1SCSensitivityAnalyzer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCSensitivityAnalyzer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.SensitiveContentAnalysis~1documentation~1SensitiveContentAnalysis~1SCSensitivityAnalyzer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCSensitivityAnalyzer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/sensitivecontentanalysis/scsensitivityanalyzer/videoanalysishandler"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

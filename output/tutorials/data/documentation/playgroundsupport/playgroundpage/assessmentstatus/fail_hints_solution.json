@@ -1,0 +1,378 @@
+{
+  "abstract": [
+    {
+      "text": "An assessment that communicates that a learner hasn't successfully completed a task.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/playgroundsupport",
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage",
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/assessmentstatus"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/assessmentstatus/fail_hints_solution"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3029551,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17PlaygroundSupport0A4PageC16AssessmentStatusO4failyAESaySSG_SSSgtcAEmF",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "case "
+      },
+      {
+        "kind": "identifier",
+        "text": "fail"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "identifier",
+        "text": "hints"
+      },
+      {
+        "kind": "text",
+        "text": ": [String], "
+      },
+      {
+        "kind": "identifier",
+        "text": "solution"
+      },
+      {
+        "kind": "text",
+        "text": ": String?)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Playground Support"
+      }
+    ],
+    "parent": {
+      "title": "PlaygroundPage.AssessmentStatus"
+    },
+    "platforms": [
+      {
+        "current": "13.2",
+        "introducedAt": "10.2",
+        "name": "Xcode"
+      },
+      {
+        "current": "4.0",
+        "introducedAt": "2.0",
+        "name": "Swift Playgrounds"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration Case",
+    "symbolKind": "enumelt",
+    "title": "PlaygroundPage.AssessmentStatus.fail(hints:solution:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Swift Playgrounds"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "case"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "fail"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "hints"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SS",
+              "text": "String"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "solution"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SS",
+              "text": "String"
+            },
+            {
+              "kind": "text",
+              "text": "?"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of hints that might help a learner pass the assessment.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "hints"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An explicit solution to the assessment that a learner can use to get unstuck.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "solution"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If no solution is provided, there must be at least one string in the ",
+              "type": "text"
+            },
+            {
+              "code": "hints",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The strings for the solution and for hints can contain markup. For more information on markup, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1764424",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The example below sets one hint for the page. The markup in the hint string displays the word “for” in code voice.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "PlaygroundPage.current.assessmentStatus = .fail(hints: [\"Try using a `for` loop\"], solution: nil)"
+          ],
+          "metadata": {
+            "anchor": "3034538",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1764424": {
+      "identifier": "devLink-1764424",
+      "title": "Markup Formatting Reference",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Xcode/Reference/xcode_markup_formatting_ref/index.html#//apple_ref/doc/uid/TP40016497"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport": {
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Playground Support",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage": {
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PlaygroundPage",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/assessmentstatus": {
+      "abstract": [
+        {
+          "text": "The values you use to communicate whether a learner has passed, failed, or not yet finished the task on a page.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/assessmentstatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PlaygroundPage.AssessmentStatus",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage/assessmentstatus"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/assessmentstatus/fail_hints_solution": {
+      "abstract": [
+        {
+          "text": "An assessment that communicates that a learner hasn't successfully completed a task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "fail"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "hints"
+        },
+        {
+          "kind": "text",
+          "text": ": [String], "
+        },
+        {
+          "kind": "identifier",
+          "text": "solution"
+        },
+        {
+          "kind": "text",
+          "text": ": String?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/assessmentstatus/fail_hints_solution",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PlaygroundPage.AssessmentStatus.fail(hints:solution:)",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage/assessmentstatus/fail_hints_solution"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/assessmentstatus/fail_hints_solution#3034538": {
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/assessmentstatus/fail_hints_solution#3034538",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/playgroundsupport/playgroundpage/assessmentstatus/fail_hints_solution#3034538"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/playgroundsupport/playgroundpage/assessmentstatus/fail_hints_solution"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1220 @@
+{
+  "abstract": [
+    {
+      "text": "A structure that approximates the definite integral of a function over a finite interval.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/Quadrature"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Accelerate10QuadratureV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Quadrature"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Quadrature"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Quadrature"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Quadrature"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code illustrates using a Quadrature structure to calculate the area under a curve, defined by ",
+              "type": "text"
+            },
+            {
+              "code": "y = sqrt(radius * radius - pow(x - radius, 2))",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let quadrature = Quadrature(integrator: .qags(maxIntervals: 10),",
+            "                            absoluteTolerance: 1.0e-8,",
+            "                            relativeTolerance: 1.0e-2)",
+            "",
+            "let result = quadrature.integrate(over: 0.0 ... 25.0) { x in",
+            "    let radius: Double = 12.5",
+            "    return sqrt(radius * radius - pow(x - radius, 2))",
+            "}",
+            "",
+            "switch result {",
+            "case .success(let integralResult, let estimatedAbsoluteError):",
+            "    print(\"quadrature success:\", integralResult,",
+            "          estimatedAbsoluteError)",
+            "case .failure(let error):",
+            "    print(\"quadrature error:\", error.errorDescription)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can integrate over a function that uses vectors for its source and destination. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func vectorExp(x: UnsafeBufferPointer<Double>,",
+            "               y: UnsafeMutableBufferPointer<Double>) {",
+            "    let radius: Double = 12.5",
+            "    for i in 0 ..< x.count {",
+            "        y[i] = sqrt(radius * radius - pow(x[i] - radius, 2))",
+            "    }",
+            "}",
+            "",
+            "let vRresult = quadrature.integrate(over: 0.0 ... diameter,",
+            "                                    integrand: vectorExp)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/Quadrature": {
+      "abstract": [
+        {
+          "text": "A structure that approximates the definite integral of a function over a finite interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Quadrature"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/Quadrature",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Quadrature"
+        }
+      ],
+      "role": "symbol",
+      "title": "Quadrature",
+      "type": "topic",
+      "url": "/documentation/accelerate/quadrature"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/Quadrature/Error": {
+      "abstract": [
+        {
+          "text": "Errors thrown by the Quadrature structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/Quadrature/Error",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "role": "symbol",
+      "title": "Quadrature.Error",
+      "type": "topic",
+      "url": "/documentation/accelerate/quadrature/error"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/Quadrature/Integrator": {
+      "abstract": [
+        {
+          "text": "Constants that define different integrators.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Integrator"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/Quadrature/Integrator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Integrator"
+        }
+      ],
+      "role": "symbol",
+      "title": "Quadrature.Integrator",
+      "type": "topic",
+      "url": "/documentation/accelerate/quadrature/integrator"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/Quadrature/QAGPointsPerInterval": {
+      "abstract": [
+        {
+          "text": "Constants that specify the number of points per interval for the globally adaptive integrator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QAGPointsPerInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/Quadrature/QAGPointsPerInterval",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QAGPointsPerInterval"
+        }
+      ],
+      "role": "symbol",
+      "title": "Quadrature.QAGPointsPerInterval",
+      "type": "topic",
+      "url": "/documentation/accelerate/quadrature/qagpointsperinterval"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/Quadrature/absoluteTolerance": {
+      "abstract": [
+        {
+          "text": "The requested absolute tolerance on the result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "absoluteTolerance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/Quadrature/absoluteTolerance",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "absoluteTolerance",
+      "type": "topic",
+      "url": "/documentation/accelerate/quadrature/absolutetolerance"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/Quadrature/init(integrator:absoluteTolerance:relativeTolerance:)": {
+      "abstract": [
+        {
+          "text": "Initializes and returns a quadrature instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "integrator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate10QuadratureV",
+          "text": "Quadrature"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate10QuadratureV10IntegratorO",
+          "text": "Integrator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "absoluteTolerance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "relativeTolerance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/Quadrature/init(integrator:absoluteTolerance:relativeTolerance:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(integrator:absoluteTolerance:relativeTolerance:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/quadrature/init(integrator:absolutetolerance:relativetolerance:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/Quadrature/integrate(over:integrand:)-2d2y2": {
+      "abstract": [
+        {
+          "text": "Performs the integration over the supplied scalar function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "integrate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "over"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SN",
+          "text": "ClosedRange"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "integrand"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<(integralResult"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", estimatedAbsoluteError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "), "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate10QuadratureV",
+          "text": "Quadrature"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate10QuadratureV5ErrorO",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/Quadrature/integrate(over:integrand:)-2d2y2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "integrate(over:integrand:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/quadrature/integrate(over:integrand:)-2d2y2"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/Quadrature/integrate(over:integrand:)-56h8b": {
+      "abstract": [
+        {
+          "text": "Performs the integration over the supplied vector function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "integrate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "over"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SN",
+          "text": "ClosedRange"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "integrand"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SR",
+          "text": "UnsafeBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sr",
+          "text": "UnsafeMutableBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> ()) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<(integralResult"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", estimatedAbsoluteError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "), "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate10QuadratureV",
+          "text": "Quadrature"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate10QuadratureV5ErrorO",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/Quadrature/integrate(over:integrand:)-56h8b",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "integrate(over:integrand:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/quadrature/integrate(over:integrand:)-56h8b"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/Quadrature/relativeTolerance": {
+      "abstract": [
+        {
+          "text": "The requested relative tolerance on the result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "relativeTolerance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/Quadrature/relativeTolerance",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "relativeTolerance",
+      "type": "topic",
+      "url": "/documentation/accelerate/quadrature/relativetolerance"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/quadrature_function_array": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "quadrature_function_array"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/quadrature_function_array",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "quadrature_function_array"
+        }
+      ],
+      "role": "symbol",
+      "title": "quadrature_function_array",
+      "type": "topic",
+      "url": "/documentation/accelerate/quadrature_function_array"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/quadrature_integrate_function": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "quadrature_integrate_function"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/quadrature_integrate_function",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "quadrature_integrate_function"
+        }
+      ],
+      "role": "symbol",
+      "title": "quadrature_integrate_function",
+      "type": "topic",
+      "url": "/documentation/accelerate/quadrature_integrate_function"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/quadrature_integrate_options": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "quadrature_integrate_options"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/quadrature_integrate_options",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "quadrature_integrate_options"
+        }
+      ],
+      "role": "symbol",
+      "title": "quadrature_integrate_options",
+      "type": "topic",
+      "url": "/documentation/accelerate/quadrature_integrate_options"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/quadrature_integrator": {
+      "abstract": [
+        {
+          "text": "Constants that specify integration algorithms.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "quadrature_integrator"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/quadrature_integrator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "quadrature_integrator"
+        }
+      ],
+      "role": "symbol",
+      "title": "quadrature_integrator",
+      "type": "topic",
+      "url": "/documentation/accelerate/quadrature_integrator"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/quadrature_status": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the status of a quadrature operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "quadrature_status"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/quadrature_status",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "quadrature_status"
+        }
+      ],
+      "role": "symbol",
+      "title": "quadrature_status",
+      "type": "topic",
+      "url": "/documentation/accelerate/quadrature_status"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Quadrature",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/quadrature_integrator",
+        "doc://com.apple.accelerate/documentation/Accelerate/quadrature_status"
+      ],
+      "title": "Quadrature"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/Quadrature/init(integrator:absoluteTolerance:relativeTolerance:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/Quadrature/absoluteTolerance",
+        "doc://com.apple.accelerate/documentation/Accelerate/Quadrature/relativeTolerance"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/Quadrature/integrate(over:integrand:)-2d2y2",
+        "doc://com.apple.accelerate/documentation/Accelerate/Quadrature/integrate(over:integrand:)-56h8b"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Structures",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/Quadrature/QAGPointsPerInterval"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Enumerations",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/Quadrature/Error",
+        "doc://com.apple.accelerate/documentation/Accelerate/Quadrature/Integrator"
+      ],
+      "title": "Enumerations"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/quadrature_function_array",
+        "doc://com.apple.accelerate/documentation/Accelerate/quadrature_integrate_function",
+        "doc://com.apple.accelerate/documentation/Accelerate/quadrature_integrate_options"
+      ],
+      "title": "Type Aliases"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1quadrature_integrator/title",
+          "value": "quadrature_integrator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1quadrature_integrator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "quadrature_integrator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1quadrature_integrator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "quadrature_integrator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1quadrature_function_array/title",
+          "value": "quadrature_function_array"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1quadrature_function_array/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "quadrature_function_array"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1quadrature_function_array/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "quadrature_function_array"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1quadrature_integrate_function/title",
+          "value": "quadrature_integrate_function"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1quadrature_integrate_function/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "quadrature_integrate_function"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1quadrature_integrate_function/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "quadrature_integrate_function"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1quadrature_status/title",
+          "value": "quadrature_status"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1quadrature_status/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "quadrature_status"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1quadrature_status/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "quadrature_status"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1quadrature_integrate_options/title",
+          "value": "quadrature_integrate_options"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1quadrature_integrate_options/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "quadrature_integrate_options"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1quadrature_integrate_options/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "quadrature_integrate_options"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accelerate/quadrature"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

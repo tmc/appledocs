@@ -1,0 +1,1670 @@
+{
+  "abstract": [
+    {
+      "text": "Create a more immersive experience by adding video reflections in a custom environment.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "lightspill-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Enabling video reflections in an immersive environment"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RealityKit and Reality Composer Pro provide the tools to build immersive media viewing environments in visionOS. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.visionOS/documentation/visionOS/destination-video",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample uses these features to build a realistic custom environment called Studio. The environment adds to its realism and makes the video player feel grounded in the space by applying reflections of the player’s content onto the surfaces of the scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RealityKit and Reality Composer Pro support two types of video reflections:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specular reflections provide a direct reflection of the video content, and are typically useful to apply to glossy surfaces like metals and water.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Diffuse reflections provide a softer falloff of video content, and are useful to apply to rougher, more organic surfaces.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This article describes how to adopt reflections in your own environment, and shows how Destination Video’s Studio environment supports these effects to create a compelling media viewing experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-a-video-docking-location",
+          "level": 2,
+          "text": "Define a video docking location",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps that use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to present video participate in system docking behavior. When you play a full-window video inside an immersive space, the system docks the video screen into a fixed location and presents streamlined playback controls. By default, the system determines the docking location for the scene, but starting in visionOS 2, you can customize this location by specifying a custom docking region.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Studio environment defines a custom docking region that anchors the player to the walkway at the top of the staircase like shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "docking-region",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create the docking region, the project defines a ",
+              "type": "text"
+            },
+            {
+              "code": "Player",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entity that contains a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/DockingRegionComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This component defines the bounding region for the player, which has a depth of 0 and uses a fixed 2.4:1 aspect ratio. You configure the docking region’s size through its ",
+              "type": "text"
+            },
+            {
+              "code": "width",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property, and you can optionally specify a preview video to display in the docking region’s space within Reality Composer Pro.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "docking-region-component",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide an optimal viewing experience, the Studio environment minimizes objects between the viewer and the video. Additionally, it provides a comfortable viewing angle to avoid causing strain or discomfort during longer viewing sessions. Using Reality Composer Pro to define the docking region is a great way to visualize how it looks in context, but always review your environment on Apple Vision Pro to get a true sense of layout and scale.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Reality Composer Pro provides a template to set up a docking region and default video reflection configuration. You can access this template from the Insert menu by selecting Insert > Environment > Video Dock.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Display-specular-video-reflections",
+          "level": 2,
+          "text": "Display specular video reflections",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specular reflections, like shown below, provide a direct reflection of the video’s content onto surrounding surfaces. You typically apply this type of reflection to glossy surfaces such as metals, mirrors, and water.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "specular-example",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable this type of reflection, you define a material with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ShaderGraph/Other/Reflection-Specular-(RealityKit)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " node connected and apply it to a surface in your scene. The system automatically calculates the appropriate reflection based on your viewing angle relative to the docking region.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "specular-shader-graph",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The output of this node contains the reflected color in the RGB channels, and a blend factor in the alpha channel, which you can use to composite the reflection with your existing material.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Destination Video uses subtle specular reflections in its custom environment like shown below. Applying specular reflections helps to add depth and space to the experience. To learn more about how the environment uses specular reflections, open the Studio project in Reality Composer Pro to view its configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "specular-example-dv",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-diffuse-video-reflections",
+          "level": 2,
+          "text": "Provide diffuse video reflections",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Diffuse reflections provide a softer falloff of media content, which can be useful to apply to rougher, more organic surfaces like a concrete or wood floor. The image below shows a diffuse reflection from a video screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "diffuse-example",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You enable diffuse reflections by adding a material on a surface with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ShaderGraph/Other/Reflection-Diffuse-(RealityKit)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " node connected.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "diffuse-shader-graph",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This node requires the following inputs:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "This UV samples the system-generated emitter texture that contains low-frequency light and color information from the docked video. The diffuse reflection node uses the UV to calculate where to show the soft light reflection.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Emitter UV",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "This UV samples the provided attenuation mask texture. An attenuation texture contains a soft falloff mask that’s used to shape the light from the emitter. Use a higher bit-depth texture format, such as ",
+                        "type": "text"
+                      },
+                      {
+                        "code": ".exr,",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " to reduce any possible banding artifacts.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Attenuation UV",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Destination Video’s custom environment applies diffuse reflections to the surfaces immediately surrounding the docked video screen as shown below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "diffuse-example-dv",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Enabling diffuse reflections enhances the level of immersion by making the video player feel grounded in the experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To calculate Emitter UVs, iterate over each vertex of the surface mesh, and sample a set number of random points on the docking region. The u-value and v-value of each of the random sample points on the docking region are weighted by measuring both the distance and the angle to the mesh vertex. The resulting emitter UV set is the average of the weighted docking region UV values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "emitter-uv-visual.png",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "A visualization of the emitter UVs generated from the docking region.",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "emitter-uv-debug.png",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "An example that uses a debug texture to show how different colors from the docking region map on to the surface mesh.",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of random points sampled from the docking region can have a large impact on the overall computation time when generating emitter UVs. You can configure how many samples to use when calculating emitter UVs with the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/sample-code/ar/WWDC_2024_Diffuse_Reflection_UV_Computation_Tool.zip",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " python script.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Attenuation UVs are a top-down projection of the attenuation texture onto the input geometry (UV-coordinate system). An attenuation texture contains a soft falloff mask that shapes the light from the emitter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "attenuation-uv-visual.png",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "A visualization of the attenuation UVs generated from the docking region.",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "attenuation-uv-default.png",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Reality Composer Pro’s default attenuation texture on the visualization.",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The attenuation texture contains a falloff pattern that shapes the the diffuse reflection on to the surface mesh. The image below shows the default Reality Composer Pro attenuation texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "attenuation-uv-default-texture.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default falloff pattern doesn’t extend all the way to the edges of the texture. In order to generate the attenuation UV set, calculate the edges of the falloff pattern from the texture. The image below shows the default falloff pattern in a standard UV-coordinate system, with the top-left point equal to ",
+              "type": "text"
+            },
+            {
+              "code": "(0,0)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the bottom-right point equal to ",
+              "type": "text"
+            },
+            {
+              "code": "(1,1)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "attenuation-uv-texture-calculations.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following four values define the attenuation UV set:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The UV-space value where the sharp line of the falloff pattern starts horizontally.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "uStart",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The UV-space value where the sharp line of the falloff pattern ends horizontally.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "uEnd",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The UV-space value where the sharp line starts vertically.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "vStart",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The UV-space value where the falloff pattern ends in black.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "vEnd",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After calculating the attenuation texture, map it to the geometry. To visualize the attenuation texture mapping, the image below shows a square red mesh as the custom surface mesh that extends towards the user with sides that are equal to the width of the docking region.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "attenuation-sample-scene.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The attenuation UVs are calculated from mapping the surface mesh, in world space, to the area defined by the ",
+              "type": "text"
+            },
+            {
+              "code": "uStart",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "uEnd",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "vStart",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "vEnd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values, in the UV-coordinate space. The image below shows the surface mesh with the attenuation texture applied.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "attenuation-uv-mapping.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When using the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/sample-code/ar/WWDC_2024_Diffuse_Reflection_UV_Computation_Tool.zip",
+                  "isActive": true,
+                  "overridingTitle": "ComputeDiffuseReflectionUVs",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "ComputeDiffuseReflectionUVs",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": " python script for mapping using a custom attenuation texture, you only need to measure the the ",
+                  "type": "text"
+                },
+                {
+                  "code": "uStart",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "uEnd",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "vStart",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", and ",
+                  "type": "text"
+                },
+                {
+                  "code": "vEnd",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " values of your attenuation texture. If you’re using the default attenuation texture in Reality Composer Pro, the script uses the default values.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about how the environment sets up and applies diffuse reflections, open the Studio project in Reality Composer Pro to view its configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "anchor": "See-Also",
+                  "level": 2,
+                  "text": "See Also",
+                  "type": "heading"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 1,
+          "type": "row"
+        },
+        {
+          "anchor": "Related-samples",
+          "level": 4,
+          "text": "Related samples",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.visionOS/documentation/visionOS/destination-video"
+          ],
+          "style": "list",
+          "type": "links"
+        },
+        {
+          "anchor": "Related-articles",
+          "level": 4,
+          "text": "Related articles",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.visionOS/documentation/visionOS/building-an-immersive-media-viewing-experience"
+          ],
+          "style": "list",
+          "type": "links"
+        },
+        {
+          "anchor": "Related-videos",
+          "level": 4,
+          "text": "Related videos",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.documentation/videos/play/wwdc2024/10115",
+            "doc://com.apple.documentation/videos/play/wwdc2024/10087"
+          ],
+          "style": "compactGrid",
+          "type": "links"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "08bd3c5ea0b3/DestinationVideo.zip": {
+      "checksum": "08bd3c5ea0b38e44d56c175dc21897a9d25c1bea5065796a942516c7f09ea771d19f713382b4bcb0a9bf88ccef44bb3c7ea7776cb4c43951eaf0a8639eba107c",
+      "identifier": "08bd3c5ea0b3/DestinationVideo.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/08bd3c5ea0b3/DestinationVideo.zip"
+    },
+    "BE45225C-F8DE-4EAD-9C54-37FAB539DF94": {
+      "alt": null,
+      "identifier": "BE45225C-F8DE-4EAD-9C54-37FAB539DF94",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/BE45225C-F8DE-4EAD-9C54-37FAB539DF94/9242_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/BE45225C-F8DE-4EAD-9C54-37FAB539DF94/9242_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/BE45225C-F8DE-4EAD-9C54-37FAB539DF94/9242_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "BEBF6FDD-D987-4A45-AF6F-6D4C4575E69F": {
+      "alt": null,
+      "identifier": "BEBF6FDD-D987-4A45-AF6F-6D4C4575E69F",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/BEBF6FDD-D987-4A45-AF6F-6D4C4575E69F/9198_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/BEBF6FDD-D987-4A45-AF6F-6D4C4575E69F/9198_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/BEBF6FDD-D987-4A45-AF6F-6D4C4575E69F/9198_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "Destination-Video-intro.png": {
+      "alt": "An image showing Destination Video on visionOS.",
+      "identifier": "Destination-Video-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/648c665254129674ce04bbc64dbeeb2d/Destination-Video-intro@2x.png"
+        }
+      ]
+    },
+    "attenuation-sample-scene.png": {
+      "alt": "A illustration of a simple scene setup that has a grey square to represent the docking reigon, a red square with sides equal to the width of the docking region that extends towards a representation of the user.",
+      "identifier": "attenuation-sample-scene.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b77e0e9753206ad08d5fbd5bc06d2d32/attenuation-sample-scene@2x.png"
+        }
+      ]
+    },
+    "attenuation-uv-default-texture.png": {
+      "alt": "The default Reality Composer Pro attenuation texture.",
+      "identifier": "attenuation-uv-default-texture.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d3d5a8bb938c3b15baf21c98805b9536/attenuation-uv-default-texture@2x.png"
+        }
+      ]
+    },
+    "attenuation-uv-default.png": {
+      "alt": "The default Reality Composer Pro attenuation texture applied to the attenuation UVs.",
+      "identifier": "attenuation-uv-default.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/154e6eb8f501919ec958f4000c3b93f4/attenuation-uv-default@2x.png"
+        }
+      ]
+    },
+    "attenuation-uv-mapping.png": {
+      "alt": "An illustration of a simple scene setup that has a grey square to represent the docking reigon, a dotted-line outlines a square that extends towards a representation of the user. A line extends to the left from each corner of the outline of the square which connects to the corner of a rectangle that's on top of the default attenuation pattern.",
+      "identifier": "attenuation-uv-mapping.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ddedab266bd956caabc86b1ae9a327cb/attenuation-uv-mapping@2x.png"
+        }
+      ]
+    },
+    "attenuation-uv-texture-calculations.png": {
+      "alt": "A visualization of the values used to calculate the attenuation UV set from the default Reality Composer Pro attenuation texture.",
+      "identifier": "attenuation-uv-texture-calculations.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6df1627df0e30884cd82409b64ddf595/attenuation-uv-texture-calculations@2x.png"
+        }
+      ]
+    },
+    "attenuation-uv-visual.png": {
+      "alt": "A visualization of the attenuation UVs generated from the docking region.",
+      "identifier": "attenuation-uv-visual.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f034ad89700aaadf50d41ac427152222/attenuation-uv-visual@2x.png"
+        }
+      ]
+    },
+    "building-an-immersive-media-viewing-experience-PageImage-card.png": {
+      "alt": "A screenshot of destination video's custom studio environment.",
+      "identifier": "building-an-immersive-media-viewing-experience-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bbc286b58cd06b23756a1cb51a493360/building-an-immersive-media-viewing-experience-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b110534afd700b8b77992bd7f4184ae6/building-an-immersive-media-viewing-experience-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "diffuse-example": {
+      "alt": "An image that shows an example of a diffuse reflection. The image shows a multicolored bounding rectangle that represents a docked video screen. Below the video screen is a soft glow of the video content’s color and light reflected on onto the ground plane.",
+      "identifier": "diffuse-example",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a8ca9357b8fc1b65d22337b75cee0a39/diffuse-example@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f40a15c1b16f0d92c0578a5ba3d93d5e/diffuse-example~dark@2x.png"
+        }
+      ]
+    },
+    "diffuse-example-dv": {
+      "alt": "An image that shows an example of a diffuse reflection. The image shows a multicolored bounding rectangle that represents a docked video screen. Below the video screen is a soft glow of the video content’s color and light reflected onto the ground plane.",
+      "identifier": "diffuse-example-dv",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1b725833f0413adea7a6c41d9389dc88/diffuse-example-dv.jpg"
+        }
+      ]
+    },
+    "diffuse-shader-graph": {
+      "alt": "An image that shows the Reflection Diffuse node in Reality Composer Pro’s Shader Graph. The image shows two Primvar Reader nodes connected to inputs of the reflection node. The configuration connects one node to the Emitter UV input of the reflection node and the other to the Attenuation UV input. The output of the Reflection Diffuse node connects to an undetermined destination.",
+      "identifier": "diffuse-shader-graph",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4dfa7f4477e06cfa2b5595995104c560/diffuse-shader-graph@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2a27647c416dea1737fafba381897f75/diffuse-shader-graph~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/AVKit/AVPlayerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that displays content from a player and presents a native user interface to control playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVKit/AVPlayerViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayerViewController",
+      "type": "topic",
+      "url": "/documentation/AVKit/AVPlayerViewController"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/DockingRegionComponent": {
+      "abstract": [
+        {
+          "text": "A component that docks a scene within a region of an immersive space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DockingRegionComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/DockingRegionComponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DockingRegionComponent",
+      "type": "topic",
+      "url": "/documentation/RealityKit/DockingRegionComponent"
+    },
+    "doc://com.apple.documentation/documentation/ShaderGraph/Other/Reflection-Diffuse-(RealityKit)": {
+      "abstract": [
+        {
+          "text": "Diffuse component of reflection.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ShaderGraph/Other/Reflection-Diffuse-(RealityKit)",
+      "images": [
+        {
+          "identifier": "purple.tv.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Reflection Diffuse (RealityKit)",
+      "type": "topic",
+      "url": "/documentation/ShaderGraph/Other/Reflection-Diffuse-(RealityKit)"
+    },
+    "doc://com.apple.documentation/documentation/ShaderGraph/Other/Reflection-Specular-(RealityKit)": {
+      "abstract": [
+        {
+          "text": "Specular component of reflection.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ShaderGraph/Other/Reflection-Specular-(RealityKit)",
+      "images": [
+        {
+          "identifier": "purple.tv.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Reflection Specular (RealityKit)",
+      "type": "topic",
+      "url": "/documentation/ShaderGraph/Other/Reflection-Specular-(RealityKit)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2024/10087": {
+      "abstract": [
+        {
+          "text": "Discover how to create visually rich and performant customized app environments for Apple Vision Pro. Learn design guidelines, get expert recommendations, and explore techniques you can use in any digital content creation tool to begin building your immersive environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2024/10087",
+      "images": [
+        {
+          "identifier": "BEBF6FDD-D987-4A45-AF6F-6D4C4575E69F",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Create custom environments for your immersive apps in visionOS",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2024/10087"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2024/10115": {
+      "abstract": [
+        {
+          "text": "Extend your media viewing experience using Reality Composer Pro components like Docking Region, Reverb, and Virtual Environment Probe. Find out how to further enhance immersion using Reflections, Tint Surroundings Effect, SharePlay, and the Immersive Environment Picker.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2024/10115",
+      "images": [
+        {
+          "identifier": "BE45225C-F8DE-4EAD-9C54-37FAB539DF94",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Enhance the immersion of media viewing in custom environments",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2024/10115"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/building-an-immersive-media-viewing-experience": {
+      "abstract": [
+        {
+          "text": "Add a deeper level of immersion to media playback in your app with RealityKit and Reality Composer Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/building-an-immersive-media-viewing-experience",
+      "images": [
+        {
+          "identifier": "building-an-immersive-media-viewing-experience-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building an immersive media viewing experience",
+      "type": "topic",
+      "url": "/documentation/visionos/building-an-immersive-media-viewing-experience"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/destination-video": {
+      "abstract": [
+        {
+          "text": "Leverage SwiftUI to build an immersive media experience in a multiplatform app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/destination-video",
+      "images": [
+        {
+          "identifier": "Destination-Video-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Destination Video",
+      "type": "topic",
+      "url": "/documentation/visionos/destination-video"
+    },
+    "docking-region": {
+      "alt": "An image that shows a bounding rectangle that represents the docked location of the video screen. The scene anchors the video screen to the walkway that runs horizontally across the immersive environment.",
+      "identifier": "docking-region",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0031e4d0a7d2af1bec510593134e6f32/docking-region.jpg"
+        }
+      ]
+    },
+    "docking-region-component": {
+      "alt": "An image that shows a docking region component in Reality Composer Pro’s Inspector pane. The component has the title Docking Region at the top. Below the title is a width field with the value of 850 centimeters. Below the width configuration is a button to select a preview video to display within Reality Composer Pro.",
+      "identifier": "docking-region-component",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fbcb1da42d7b60a5a419c358def079a0/docking-region-component@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ce07bb87465e69c1043c35034c644894/docking-region-component~dark@2x.png"
+        }
+      ]
+    },
+    "emitter-uv-debug.png": {
+      "alt": "A debug texture applied to the emitters UVs.",
+      "identifier": "emitter-uv-debug.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/625a292140e12ff7b4ab6e6f19e41195/emitter-uv-debug@2x.png"
+        }
+      ]
+    },
+    "emitter-uv-visual.png": {
+      "alt": "A visualization of the emitter UVs generated from the docking region.",
+      "identifier": "emitter-uv-visual.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/848a4cabe7aa9c03ca8baa1312badfb4/emitter-uv-visual@2x.png"
+        }
+      ]
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "https://developer.apple.com/sample-code/ar/WWDC_2024_Diffuse_Reflection_UV_Computation_Tool.zip": {
+      "identifier": "https://developer.apple.com/sample-code/ar/WWDC_2024_Diffuse_Reflection_UV_Computation_Tool.zip",
+      "title": "ComputeDiffuseReflectionUVs",
+      "titleInlineContent": [
+        {
+          "text": "ComputeDiffuseReflectionUVs",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/sample-code/ar/WWDC_2024_Diffuse_Reflection_UV_Computation_Tool.zip"
+    },
+    "lightspill-PageImage-card.png": {
+      "alt": null,
+      "identifier": "lightspill-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/87e397de07459c756d21eb0c441569f7/lightspill-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "purple.tv.png": {
+      "alt": "nil",
+      "identifier": "purple.tv.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a44c214f53001d9a2dcba6c3236f7d9b/purple.tv.png"
+        }
+      ]
+    },
+    "specular-example": {
+      "alt": "An image that shows an example of a specular reflection. The image displays a multicolored bounding rectangle that represents a docked video screen. Below the video screen is a mirror image reflection of it on the ground plane.",
+      "identifier": "specular-example",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/50e416ed9a99d74e6ad7fa1f091d7ef0/specular-example@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7c601376ee23073d5ece4f1d34529b7d/specular-example~dark@2x.png"
+        }
+      ]
+    },
+    "specular-example-dv": {
+      "alt": "An image of Destination Video’s Studio environment. The image shows the docked video screen casting a subtle specular reflection of the video content onto the floor of the environment.",
+      "identifier": "specular-example-dv",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8cf84fa7d1d72c9af58913d80f0418f9/specular-example-dv.jpg"
+        }
+      ]
+    },
+    "specular-shader-graph": {
+      "alt": "An image that shows the Reflection Specular node in Reality Composer Pro’s Shader Graph. The image shows a View Direction node connected to the Unreflected Direction input of the reflection node, and the output of the reflection node connected to an undetermined destination.",
+      "identifier": "specular-shader-graph",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f76f8e1519599bb125e4a628cddaf47f/specular-shader-graph@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c5064d85499a8a9dff23d00e78500d5f/specular-shader-graph~dark@2x.png"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "08bd3c5ea0b3/DestinationVideo.zip",
+      "isActive": true,
+      "overridingTitle": "Download (1.2 GB)",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVKit~1AVPlayerViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

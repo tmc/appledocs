@@ -1,0 +1,621 @@
+{
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/metalperformanceshaders/the_mpskernel_class"
+  },
+  "kind": "article",
+  "legacy_identifier": 3014706,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal Performance Shaders"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "The MPSKernel Class"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is the base class for all Metal Performance Shaders kernels. It defines the baseline behavior for all kernels, declaring the device to run the kernel on, some debugging options, and a user-friendly label, should one be required. Derived from this class are the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsbinaryimagekernel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclasses, which define shared behavior for most image processing kernels (filters) such as edging modes, clipping, and tiling support for image operations that consume one or two source textures. Neither these nor the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class are meant to be used directly. They just provide API abstraction and in some cases may allow some level of polymorphic manipulation of image kernel objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Subclasses of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsbinaryimagekernel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " classes provide specialized initialization and encoding methods to encode various image processing primitives into a command buffer, and may also provide additional configurable properties on their own. Many such image filters are available, such as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Convolution filters (Sobel, Gaussian)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Morphological operators (dilate, erode)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Histogram operators (equalization, specification)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All of these run on the GPU directly on texture and buffer objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsbinaryimagekernel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " classes serve to unify a diversity of image operations into a simple consistent interface and calling sequence to apply image filters, subclasses implement details that diverge from the norm. For example, some filters may take a small set of parameters (for example, a convolution kernel) to govern how they function. However, the overall sequence for using kernel subclasses remains the same:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Determine whether the Metal Performance Shaders framework supports your device by querying the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/1618849-mpssupportsmtldevice",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " function.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allocate the usual Metal objects to drive a Metal compute pipeline: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandQueue",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". If your app has already written to any command buffers, Metal Performance Shaders can encode onto them inline with your own workload.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an appropriate kernel—for example, a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagegaussianblur",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object if you want to do a Gaussian blur. Kernels are generally lightweight but can be reused to save some setup time. They cannot be used by multiple threads concurrently, so if your app uses Metal from many threads concurrently, make extra kernels. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects conform to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call the kernel’s encoding method. Parameters for the encoding call vary by kernel type, but operate similarly. They create a command encoder, write commands to run the kernel into the command buffer, and then end the command encoder. This means you must call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder/endEncoding()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method on your current command encoder before calling a kernel’s encode method. At this point, you can either release the kernel or keep it for later use to save some setup cost.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you wish to encode further commands of your own on the command buffer, you must create a new command encoder to do so.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When you are done with the command buffer, submit it to the device using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/commit()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method. The kernel will then begin running on the GPU. You can either use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/waitUntilCompleted()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/addCompletedHandler(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " methods to be notified when the work is done.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each kernel is allocated against a particular device; a single kernel may not be used with multiple devices. This is necessary because the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel/1618763-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods sometimes allocate buffers and textures to hold data passed in as parameters to the initialization method, and a device is required to allocate them. Kernels provide a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel/1618912-copy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method that allows them to be copied for a new device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Kernel objects are not entirely thread safe. While they may be used in a multithreaded context, you should not attempt to have multiple kernel objects writing to the same command buffer at the same time. They share restrictions with the command encoder in this regard. In limited circumstances, the same kernel can be used to write to multiple command buffers concurrently. However, that only works if the kernel is treated as an immutable object. That is, if subclass properties of a shared kernel are changed, then the change can be reflected on the other thread while the other thread is encoding its work, leading to undefined behavior. It is generally safest to just make copies of kernel objects, one for each thread.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/1618849-mpssupportsmtldevice": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/1618849-mpssupportsmtldevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSSupportsMTLDevice(_:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/1618849-mpssupportsmtldevice"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsbinaryimagekernel": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsbinaryimagekernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSBinaryImageKernel",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsbinaryimagekernel"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagegaussianblur": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagegaussianblur",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageGaussianBlur",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagegaussianblur"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSKernel",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpskernel"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel/1618763-init": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel/1618763-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(device:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpskernel/1618763-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel/1618912-copy": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel/1618912-copy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copy(with:device:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpskernel/1618912-copy"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSUnaryImageKernel",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsunaryimagekernel"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/the_mpskernel_class": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/the_mpskernel_class",
+      "kind": "article",
+      "role": "article",
+      "title": "The MPSKernel Class",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/the_mpskernel_class"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/tuning_hints": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/tuning_hints",
+      "kind": "article",
+      "role": "article",
+      "title": "Tuning Hints",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/tuning_hints"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLCommandBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/addCompletedHandler(_:)": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/addCompletedHandler(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addCompletedHandler(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/addcompletedhandler(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/commit()": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/commit()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commit()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/commit()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/waitUntilCompleted()": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/waitUntilCompleted()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "waitUntilCompleted()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/waituntilcompleted()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder/endEncoding()": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder/endEncoding()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "endEncoding()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandencoder/endencoding()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandQueue": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandQueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLCommandQueue",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandqueue"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLDevice",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/tuning_hints"
+      ],
+      "title": "Fundamentals"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/the_mpskernel_class"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/the_mpskernel_class"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

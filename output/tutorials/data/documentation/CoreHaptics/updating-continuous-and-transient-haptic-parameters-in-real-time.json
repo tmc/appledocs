@@ -1,0 +1,1025 @@
+{
+  "abstract": [
+    {
+      "text": "Generate continuous and transient haptic patterns in response to user touch.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corehaptics/documentation/CoreHaptics/updating-continuous-and-transient-haptic-parameters-in-real-time"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Haptics"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Updating Continuous and Transient Haptic Parameters in Real Time"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample, HapticPalette, defines a two-dimensional touch area, where the x-axis varies the haptic pattern’s sharpness, and the y-axis maps to haptic intensity. Use this interface to explore the range of haptic patterns that you can create with Core Haptics. By sliding your finger inside the bounded area, you can vary the parameters of the generated haptic pattern.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "HapticPaletteAxes.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "HapticPalette requires Xcode 11 or later. Simulator doesn’t support a haptic interface, so build and run this sample on an iPhone 8, 8 Plus, X, XR, XS, or XS Max running iOS 13 or later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-App-to-Play-Haptics",
+          "level": 3,
+          "text": "Configure the App to Play Haptics",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample checks for device compatibility and sets up an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEngine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on launch. Before proceeding, start the engine, so it can begin accepting haptics requests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Start the haptic engine for the first time.",
+            "do {",
+            "    try self.engine.start()",
+            "} catch {",
+            "    print(\"Failed to start the engine: \\(error)\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/preparing-your-app-to-play-haptics",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information about setting up the engine.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-Continuous-Haptic-Pattern",
+          "level": 3,
+          "text": "Create a Continuous Haptic Pattern",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As the app demonstrates, you can create a sustained vibration by generating a continuous haptic pattern of nonzero duration. When you first create the pattern, on app launch, set the intensity and sharpness through an event parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create an intensity parameter:",
+            "let intensity = CHHapticEventParameter(parameterID: .hapticIntensity,",
+            "                                       value: initialIntensity)",
+            "",
+            "// Create a sharpness parameter:",
+            "let sharpness = CHHapticEventParameter(parameterID: .hapticSharpness,",
+            "                                       value: initialSharpness)",
+            "",
+            "// Create a continuous event with a long duration from the parameters.",
+            "let continuousEvent = CHHapticEvent(eventType: .hapticContinuous,",
+            "                                    parameters: [intensity, sharpness],",
+            "                                    relativeTime: 0,",
+            "                                    duration: 100)",
+            "",
+            "do {",
+            "    // Create a pattern from the continuous haptic event.",
+            "    let pattern = try CHHapticPattern(events: [continuousEvent], parameters: [])",
+            "    ",
+            "    // Create a player from the continuous haptic pattern.",
+            "    continuousPlayer = try engine.makeAdvancedPlayer(with: pattern)",
+            "    ",
+            "} catch let error {",
+            "    print(\"Pattern Player Creation Error: \\(error)\")",
+            "}",
+            "",
+            "continuousPlayer.completionHandler = { _ in",
+            "    DispatchQueue.main.async {",
+            "        // Restore original color.",
+            "        self.continuousPalette.backgroundColor = self.padColor",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app allows you to change the continuous pattern’s intensity and sharpness by dragging your finger inside the region labeled Continuous. This region is a view that translates the touch coordinates into normalized intensity and sharpness values. To enable this behavior, the code attaches a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UILongPressGestureRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to each palette view. When the user begins to drag a finger in the view, the gesture handler maps the touch coordinates to intensity and sharpness values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Normalize coordinates to a [0, 1] spectrum.",
+            "let normalizedLocation = normalizeCoordinates(clippedLocation, toView: view)",
+            "",
+            "// The intensity should be highest at the top, opposite of the iOS y-axis direction, so subtract.",
+            "let eventIntensity: Float = 1 - Float(normalizedLocation.y)",
+            "",
+            "// The sharpness spectrum is 0 to 1. Map the x-coordinate to that range.",
+            "let eventSharpness: Float = Float(normalizedLocation.x)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The normalized mapping converts the user’s finger location to the available spectrum. Using these normalized values, you can create intensity and sharpness events that determine how the haptic pattern feels to the user. In this example, touching the palette area in the upper-right corner generates a crisp haptic vibration at full strength.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app retains the original pattern player instead of creating a new one with each change. To tell the continuous haptic pattern player to change or modulate its haptic as it’s playing, send dynamic parameters to the player.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Alter-the-Continuous-Haptic-Pattern-by-Sending-Dynamic-Parameters",
+          "level": 3,
+          "text": "Alter the Continuous Haptic Pattern by Sending Dynamic Parameters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To vary a continuous haptic pattern, send dynamic parameters of class ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticDynamicParameter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the original pattern. This modifies the haptic pattern as it’s playing. In this example, the dynamic parameters for intensity and sharpness immediately change the haptic pattern’s strength and character to follow the user’s finger.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create dynamic parameters for the updated intensity & sharpness.",
+            "let intensityParameter = CHHapticDynamicParameter(parameterID: .hapticIntensityControl,",
+            "                                                  value: dynamicIntensity,",
+            "                                                  relativeTime: 0)",
+            "",
+            "let sharpnessParameter = CHHapticDynamicParameter(parameterID: .hapticSharpnessControl,",
+            "                                                  value: dynamicSharpness,",
+            "                                                  relativeTime: 0)",
+            "",
+            "// Send dynamic parameters to the haptic player.",
+            "do {",
+            "    try continuousPlayer.sendParameters([intensityParameter, sharpnessParameter],",
+            "                                        atTime: 0)",
+            "} catch let error {",
+            "    print(\"Dynamic Parameter Error: \\(error)\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Sending a dynamic parameter for intensity ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "multiplies",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " the original pattern’s event intensity by the dynamic parameter value. Sending a dynamic parameter for sharpness ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "adds",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " the dynamic parameter value to the original pattern’s event sharpness.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Only when the gesture ends does the app stop the pattern player.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Stop playing the haptic pattern.",
+            "do {",
+            "    try continuousPlayer.stop(atTime: CHHapticTimeImmediate)",
+            "} catch let error {",
+            "    print(\"Error stopping the continuous haptic player: \\(error)\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app sends the continuous pattern player a dynamic parameter, the value of that parameter changes immediately, resulting in a viscerally different haptic pattern on the device. If your app needs to change the parameter value gradually, consider scheduling a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticParameterCurve",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-Transient-Haptic-Pattern",
+          "level": 3,
+          "text": "Create a Transient Haptic Pattern",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The bottom half of the screen generates transient haptic experiences. A transient haptic event is momentary. This sample generates a transient haptic pattern when the gesture begins. It’s also helpful to generate subsequent transient haptic patterns if the user continues to interact with the interface. As long as the user’s finger remains inside the transient zone, the app continues to create a new transient haptic pattern based on the latest sharpness and intensity values. To accomplish this spacing, you use a dispatch timer to separate the transient haptic patterns by a time interval of 600 milliseconds, so they feel distinct.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "timer.schedule(deadline: .now() + .milliseconds(750), repeating: .milliseconds(600))",
+            "timer.setEventHandler() { [unowned self] in",
+            "    ",
+            "    // Recalibrate sharpness and intensity each time the timer fires.",
+            "    let newLocation = press.location(in: self.transientPalette)",
+            "    let (sharpness, intensity) = self.sharpnessAndIntensityAt(location: newLocation, in: self.transientPalette)",
+            "    ",
+            "    self.playHapticTransient(time: CHHapticTimeImmediate,",
+            "                             intensity: intensity,",
+            "                             sharpness: sharpness)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ask the engine to create a player from the transient pattern when the timer fires, and then play it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create an event (static) parameter to represent the haptic's intensity.",
+            "let intensityParameter = CHHapticEventParameter(parameterID: .hapticIntensity,",
+            "                                                value: intensity)",
+            "",
+            "// Create an event (static) parameter to represent the haptic's sharpness.",
+            "let sharpnessParameter = CHHapticEventParameter(parameterID: .hapticSharpness,",
+            "                                                value: sharpness)",
+            "",
+            "// Create an event to represent the transient haptic pattern.",
+            "let event = CHHapticEvent(eventType: .hapticTransient,",
+            "                          parameters: [intensityParameter, sharpnessParameter],",
+            "                          relativeTime: 0)",
+            "",
+            "// Create a pattern from the haptic event.",
+            "do {",
+            "    let pattern = try CHHapticPattern(events: [event], parameters: [])",
+            "    ",
+            "    // Create a player to play the haptic pattern.",
+            "    let player = try engine.makePlayer(with: pattern)",
+            "    try player.start(atTime: CHHapticTimeImmediate) // Play now.",
+            "} catch let error {",
+            "    print(\"Error creating a haptic transient pattern: \\(error)\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Creating haptic pattern players is inexpensive, so you don’t need to keep them around. Even if the user slides rapidly across the touch zone, the engine creates players, plays them, and discards them without lag.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "While haptic pattern players are lightweight and inexpensive to create and start, starting the haptic engine is expensive, as is stopping it, so start and stop the engine sparingly. This sample starts the engine only once, on app launch.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "HapticPaletteAxes.png": {
+      "alt": "A screenshot of the HapticPalette interface, showing a labeled circle and the meaning of coordinate axes controlling intensity and sharpness.",
+      "identifier": "HapticPaletteAxes.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f2b28fefb582143ef6ad6407305de8f1/HapticPaletteAxes@2x.png"
+        }
+      ]
+    },
+    "b45ba5211f73/UpdatingContinuousAndTransientHapticParametersInRealTime.zip": {
+      "checksum": "b45ba5211f73fad21a673efb9b37f409077857cb68cfe232309b08dd181eeb72984122eea7945773c461b3bcf4950e204ca20bd2f9deeabde673868521c29394",
+      "identifier": "b45ba5211f73/UpdatingContinuousAndTransientHapticParametersInRealTime.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/b45ba5211f73/UpdatingContinuousAndTransientHapticParametersInRealTime.zip"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics": {
+      "abstract": [
+        {
+          "text": "Compose and play haptic patterns to customize your iOS app’s haptic feedback.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Haptics",
+      "type": "topic",
+      "url": "/documentation/corehaptics"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticDynamicParameter": {
+      "abstract": [
+        {
+          "text": "A value that you send to a haptic pattern player to alter a property value during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CHHapticDynamicParameter"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticDynamicParameter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticDynamicParameter"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticDynamicParameter",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticdynamicparameter"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEngine": {
+      "abstract": [
+        {
+          "text": "An object that represents the connection to the haptic server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CHHapticEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEngine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticEngine"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticEngine",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticengine"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent": {
+      "abstract": [
+        {
+          "text": "An object that describes a single haptic or audio event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CHHapticEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticEvent",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticevent"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEventParameter": {
+      "abstract": [
+        {
+          "text": "A static parameter value that represents a single property of the haptic pattern.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CHHapticEventParameter"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEventParameter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticEventParameter"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticEventParameter",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticeventparameter"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticParameterCurve": {
+      "abstract": [
+        {
+          "text": "A curve that you send to a haptic pattern player to alter a property value gradually during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CHHapticParameterCurve"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticParameterCurve",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticParameterCurve"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticParameterCurve",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticparametercurve"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/delivering-rich-app-experiences-with-haptics": {
+      "abstract": [
+        {
+          "text": "Enhance your app’s experience by incorporating haptic and sound feedback into key interactive moments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/delivering-rich-app-experiences-with-haptics",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Delivering Rich App Experiences with Haptics",
+      "type": "topic",
+      "url": "/documentation/corehaptics/delivering-rich-app-experiences-with-haptics"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/playing-collision-based-haptic-patterns": {
+      "abstract": [
+        {
+          "text": "Play a custom haptic pattern whose strength depends on an object’s collision speed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/playing-collision-based-haptic-patterns",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Playing Collision-Based Haptic Patterns",
+      "type": "topic",
+      "url": "/documentation/corehaptics/playing-collision-based-haptic-patterns"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/preparing-your-app-to-play-haptics": {
+      "abstract": [
+        {
+          "text": "Set up your app to play haptics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/preparing-your-app-to-play-haptics",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing your app to play haptics",
+      "type": "topic",
+      "url": "/documentation/corehaptics/preparing-your-app-to-play-haptics"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UILongPressGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets long-press gestures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILongPressGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UILongPressGestureRecognizer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UILongPressGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/UIKit/UILongPressGestureRecognizer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "b45ba5211f73/UpdatingContinuousAndTransientHapticParametersInRealTime.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Programmatic-haptics",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/delivering-rich-app-experiences-with-haptics",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/playing-collision-based-haptic-patterns",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEventParameter",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticDynamicParameter",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticParameterCurve"
+      ],
+      "title": "Programmatic haptics"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Programmatic-haptics",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/delivering-rich-app-experiences-with-haptics",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/playing-collision-based-haptic-patterns",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEventParameter",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticDynamicParameter",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticParameterCurve"
+              ],
+              "title": "Programmatic haptics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent/title",
+          "value": "CHHapticEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticParameterCurve/title",
+          "value": "CHHapticParameterCurve"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticParameterCurve/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticParameterCurve"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticParameterCurve/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticParameterCurve"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEngine/title",
+          "value": "CHHapticEngine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEngine/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEngine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEngine/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEngine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEventParameter/title",
+          "value": "CHHapticEventParameter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEventParameter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEventParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEventParameter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEventParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UILongPressGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UILongPressGestureRecognizer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIGestureRecognizer",
+              "text": "UIGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticDynamicParameter/title",
+          "value": "CHHapticDynamicParameter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticDynamicParameter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticDynamicParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticDynamicParameter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticDynamicParameter"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corehaptics/updating-continuous-and-transient-haptic-parameters-in-real-time"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corehaptics/updating-continuous-and-transient-haptic-parameters-in-real-time"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

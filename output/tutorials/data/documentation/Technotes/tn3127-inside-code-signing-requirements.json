@@ -1,0 +1,2804 @@
+{
+  "abstract": [
+    {
+      "text": "Explore how macOS uses code signing requirements to reason about code identity.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.technotes/documentation/Technotes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.technotes/documentation/Technotes/tn3127-inside-code-signing-requirements"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "TN3127: Inside Code Signing: Requirements"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Code signing requirements are an obscure and dusty corner of the code signing castle.  Most developers don’t need to worry about them.  They sign their code using Xcode, or the ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool, and those automatically do the right thing when it comes to requirements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, in some cases requirements are important, especially on macOS.  For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you’re building an XPC service, you might want to restrict it to specific clients.  The best way to do this is by setting a code signing requirement on the connection with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxpcconnection/3943309-setcodesigningrequirement",
+                      "isActive": true,
+                      "overridingTitle": "setCodeSigningRequirement(_:)",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "setCodeSigningRequirement(_:)",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".  But what requirement to use?",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When working with privacy-protected resources on macOS, like the microphone, you might find that the system fails to remember your choices during development.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You might find that the keychain presents unexpected authorization alerts when you deploy your app through a new channel, like TestFlight.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "macOS 14 added a new way to express limits on code.  For the details, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Security/applying-launch-environment-and-library-constraints",
+                  "isActive": true,
+                  "overridingTitle": "Applying launch environment and library constraints",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Applying launch environment and library constraints",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "About-this-technote-series",
+          "level": 3,
+          "text": "About this technote series",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Code signing is a foundational technology on all Apple platforms.  Many documents that discuss code signing focus on solving a specific problem.  The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Inside Code Signing",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " technotes peek behind the code signing curtain, to give you a better understanding of how it works.  For a list of all the technotes in this series, see the introduction in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles",
+              "isActive": true,
+              "overridingTitle": "TN3125: Inside Code Signing: Provisioning Profiles",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "TN3125: Inside Code Signing: Provisioning Profiles",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Inside Code Signing",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " technotes discuss code signing details that aren’t considered API.  The structure of a code signature has changed numerous times in the past and may well change again in the future.  Don’t encode this information in your product.  When signing code, use Xcode (all platforms) or the ",
+                  "type": "text"
+                },
+                {
+                  "code": "codesign",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " tool (macOS only).  To get information or validate a code signature, use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "codesign",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " tool or the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Security/code-signing-services",
+                  "isActive": true,
+                  "overridingTitle": "Code Signing Services",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Code Signing Services",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": " API.  Apple updates these facilities to accommodate any changes to the code signature structure as they roll out.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Basics",
+          "level": 2,
+          "text": "Basics",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A code signing requirement is a function that, given a code signature, returns a Boolean value.  This function uses traditional expression syntax.  For example ",
+              "type": "text"
+            },
+            {
+              "code": "anchor apple and identifier = \"com.apple.TextEdit\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a requirement that returns true if:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The code was signed by Apple as Apple code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The code’s signing identifier is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.apple.TextEdit",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In short, this requirement identifies the TextEdit app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "code signing identifier",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " is a string chosen by the signer to uniquely identify their code. For bundled code this is typically the bundle identifier.  Don’t confuse this with a ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "code signing identity",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": ", which is a digital identity used for code signing.  This digital identity includes a ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "code signing certificate",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " and its associated private key.  Finally, ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "code identity",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " is an abstract user-level concept of the ‘same code’.  For example, a user might consider the TextEdit app in macOS 12 to be the same as the TextEdit app in macOS 11 but not the same as the Calculator app.  macOS uses code signing requirements to establish code identity.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to evaluate a requirement:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --verify -v -R '=anchor apple and identifier = \"com.apple.TextEdit\"' \"/System/Applications/TextEdit.app\"",
+            "…",
+            "/System/Applications/TextEdit.app: explicit requirement satisfied",
+            "",
+            "% codesign --verify -v -R '=anchor apple and identifier = \"com.apple.TextEdit\"' \"/System/Applications/Calculator.app\"",
+            "…",
+            "test-requirement: code failed to satisfy specified code requirement(s)"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "So TextEdit satisfies this requirement but Calculator does not.  You can also check requirements programmatically.  The following example calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/SecStaticCodeCheckValidityWithErrors(_:_:_:_:)",
+              "isActive": true,
+              "overridingTitle": "SecStaticCodeCheckValidityWithErrors(::::)",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "SecStaticCodeCheckValidityWithErrors(",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": ":",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": ":",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": ":",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": ":)",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to check whether the given file satisfies the ",
+              "type": "text"
+            },
+            {
+              "code": "anchor apple and identifier = \"com.apple.TextEdit\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " requirement:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func isTextEdit(_ url: URL) throws -> Bool {",
+            "    let req = try secCall { SecRequirementCreateWithString(#\"anchor apple and identifier = \"com.apple.TextEdit\"\"# as NSString, [], $0) }",
+            "    let code = try secCall { SecStaticCodeCreateWithPath(url as NSURL, [], $0) }",
+            "    var errorQ: Unmanaged<CFError>? = nil",
+            "    let err = SecStaticCodeCheckValidityWithErrors(code, [], req, &errorQ)",
+            "    if err == errSecSuccess {",
+            "        return true",
+            "    } else {",
+            "        let error = errorQ!.takeRetainedValue() as Error",
+            "        guard err == errSecCSReqFailed else {",
+            "            throw error",
+            "        }",
+            "        return false",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This code uses the ",
+                  "type": "text"
+                },
+                {
+                  "code": "secCall(_:)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " helper from ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Xcode/signing-a-daemon-with-a-restricted-entitlement",
+                  "isActive": true,
+                  "overridingTitle": "Signing a daemon with a restricted entitlement",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Signing a daemon with a restricted entitlement",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Compiling requirements is relatively expensive so, if you do this a lot, cache the requirement object you get back from ",
+              "type": "text"
+            },
+            {
+              "code": "SecRequirementCreateWithString",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  Alternatively, use the ",
+              "type": "text"
+            },
+            {
+              "code": "csreq",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command-line tool to compile the requirement in advance, embed that data within your program, and then create a requirement by passing that data to ",
+              "type": "text"
+            },
+            {
+              "code": "SecRequirementCreateWithData",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code signing requirement language is very flexible.  It can express a very specific requirement or a very general one.  For example, the requirement ",
+              "type": "text"
+            },
+            {
+              "code": "cdhash H\"ff19a91b272a49d1a0f16ee54c672da60f0e116f\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is satisfied only by code with a specific cdhash value.  On the other hand, the requirement ",
+              "type": "text"
+            },
+            {
+              "code": "anchor apple generic",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is satisfied by any code signed with any code signing identity issued by Apple.  When you craft a custom requirement, think carefully about how specific you want it to be.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a detailed explanation of the code signing requirement language, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/RequirementLang/RequirementLang.html#//apple_ref/doc/uid/TP40005929-CH5-SW1",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".  For more on cdhash values, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3126-inside-code-signing-hashes",
+              "isActive": true,
+              "overridingTitle": "TN3126: Inside Code Signing: Hashes",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "TN3126: Inside Code Signing: Hashes",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".  For more information about the tools used in these examples, read their man pages.  If you’re unfamiliar with that process, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+              "isActive": true,
+              "overridingTitle": "Reading UNIX Manual Pages",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Reading UNIX Manual Pages",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".  Specifically, the ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " man page is the key reference if you’re working at this level.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Designated-requirement",
+          "level": 2,
+          "text": "Designated requirement",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most code has a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "designated requirement",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (DR) which is how the code identifies itself: It’s the code’s way of saying “If you see me again, here’s how you tell it’s really me.”  The DR is critical on macOS, an open platform where code impersonation is a cause for concern.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Other Apple platforms allow for a DR, but it doesn’t represent the primary means of tracking code identity.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Imagine you have an app that accesses the microphone.  At that point macOS prompts the user to authorize that.  A few days later your app’s software update mechanism runs and replaces version 1.2 with version 1.3.  Then the user runs the new version of your app and it again accesses the microphone.  How can macOS tell that version 1.3 of your app is the ‘same code’ as version 1.2?",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "macOS solves this problem by recording your app’s DR in its database of apps authorized to access the microphone.  Each time your app tries to access the microphone, macOS checks that this version of the app satisfies the original DR.  In short, the DR is all about code identity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unsigned code has no DR.  Ad hoc signed code, called Sign to Run Locally by Xcode, has a DR but it’s tied to that specific version of the code.  In both cases macOS can’t reliably track the identity of the code.  You often see this problem when you create a simple test project in Xcode and don’t bother to enable code signing.  If the app accesses the microphone, macOS prompts you to authorize that access.  If you tweak the code and run it again, macOS repeats that prompt.  Without a DR, macOS can’t track this authorization across versions of your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The DR is part of the code signature.  To view it, run ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --display -r - \"/System/Applications/TextEdit.app\"",
+            "…",
+            "designated => identifier \"com.apple.TextEdit\" and anchor apple"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "TextEdit’s DR shows a pattern common to virtually all DRs:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Most of the DR checks who signed the code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " term identifies the code within the scope of that signer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " term checks the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "code signing identifier",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", a string chosen by the signer to uniquely identify their code.  For bundled code this is typically the bundle identifier but that’s not required; the signer can set the code signing identifier to whatever value they want.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a new app, Xcode or the ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool sets the DR to a default value based on your code signing identity.  For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --display -r - \"AppWithTool.app\"",
+            "…",
+            "designated => anchor apple generic and identifier \"com.example.apple-samplecode.AppWithTool\" and …details omitted… SKMME9E2Y8",
+            "% codesign --display -r - \"AppWithTool.app/Contents/MacOS/ToolX\"      ",
+            "…",
+            "designated => anchor apple generic and identifier \"com.example.apple-samplecode.AppWithTool.ToolX\" and …details omitted… SKMME9E2Y8"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To build the AppWithTool app used in this example, follow the instructions in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Xcode/embedding-a-helper-tool-in-a-sandboxed-app",
+                  "isActive": true,
+                  "overridingTitle": "Embedding a command-line tool in a sandboxed app",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Embedding a command-line tool in a sandboxed app",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The DRs in this example are heavily abbreviated lest you get lost in the details.  The critical things to note here are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "anchor apple generic",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " term, which requires that the code be signed by a code signing identity issued by Apple.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Contrast this to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "anchor apple",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " term used in TextEdit’s DR.  The latter requires that the code be signed by Apple as Apple code, whereas the former only requires that the code signing identity was issued by Apple.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The check for Team ID ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SKMME9E2Y8",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", most of which has been omitted in this example.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " term, which requires that the app has a code signing identifier of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.example.apple-samplecode.AppWithTool",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and the tool has a code signing identifier of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.example.apple-samplecode.AppWithTool.ToolX",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Note that the code signing identifier is different for the app and its embedded command-line tool.  This is best practice, as it allows the system to identify the app and the tool as separate items of code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example above omits a large fraction of the DRs, with those omitted parts checking who signed the code.  The mechanics of this vary based on the code signing identity.  For a full explanation of these omitted terms, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3127-inside-code-signing-requirements#Default-and-Xcode-designated-requirements",
+              "isActive": true,
+              "overridingTitle": "Default and Xcode designated requirements",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Default and Xcode designated requirements",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The DR is part of the code signature, making it an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "internal requirement",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".  A signature can have other internal requirements but that feature isn’t used in practice.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Mutually-compatible-designated-requirements",
+          "level": 2,
+          "text": "Mutually compatible designated requirements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Two apps, A and B, have ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "mutually compatible designated requirements",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " if app A satisifies app B’s DR and app B satisfies app A’s DR.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This property is important when you ship two different variants of the same app, one that you distribute on the Mac App Store and another that you distribute directly using Developer ID signing.  If these apps have mutually compatible DRs then they share access to privacy-protected resources.  For example, if the user grants the Mac App Store app access to the microphone, the Developer ID app gains access as well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To check if two apps have mutually compatible DRs, first dump the DR of app A:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --display -r \"MAS.req.txt\" \"MyApp-MAS.app\"",
+            "…",
+            "% sed -e 's/designated => //' -i .bu \"MAS.req.txt\"                 "
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Note The ",
+                  "type": "text"
+                },
+                {
+                  "code": "codesign",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " command writes the DR with its type prefix, ",
+                  "type": "text"
+                },
+                {
+                  "code": "designated =>",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".  The ",
+                  "type": "text"
+                },
+                {
+                  "code": "sed",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " command removes that because its presence causes problems for the next step.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, check that app B satisfies app A’s DR:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --verify -vv -R \"MAS.req.txt\" \"MyApp-DevID.app\"",
+            "…",
+            "…/MyApp-DevID.app: explicit requirement satisfied"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, repeat this process in reverse:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --display -r \"DevID.req.txt\" \"MyApp-DevID.app\"",
+            "…",
+            "% sed -e 's/designated => //' -i .bu \"DevID.req.txt\"                                     ",
+            "% codesign --verify -vv -R \"DevID.req.txt\" \"MyApp-MAS.app\"                ",
+            "…",
+            "…/MyApp-MAS.app: explicit requirement satisfied"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There’s no requirement for different variants of your app to have mutually compatible DRs.  You might, for example, want each variant to have its own independent access to privacy-protected resources.  However, it’s very common for Mac App Store and Developer ID apps to have mutually compatible DRs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Default-and-Xcode-designated-requirements",
+          "level": 2,
+          "text": "Default and Xcode designated requirements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you sign code with ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", it applies a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "default designated requirement",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " based on the code signing identity you supply.  For example, if you sign a development build with your Apple Development code signing identity it gets a different DR than a distribution build signed with your Developer ID code signing identity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These default DRs strike a balance between generality and specificity.  They ensure that:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A privilege, like microphone access, acquired by an existing version of your app is still available to a new version.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Other teams can’t sign an app that impersonates your app, that is, an app that satisfies your app’s DR.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These default DRs have one important limitation: Mac App Store and Developer ID variants of your app aren’t mutually compatible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode avoids this limitation by signing code with custom DRs that support mutual compatibility.  If you want mutual compatibility but don’t use Xcode to sign your code, supply a custom DR just like Xcode does.  For information on how to sign with a custom DR, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/creating-distribution-signed-code-for-the-mac",
+              "isActive": true,
+              "overridingTitle": "Creating distribution-signed code for macOS",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Creating distribution-signed code for macOS",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As code signing requirements have a textual representation, you might be tempted to write your custom DR by hand.  Don’t do that.  Code signing requirements are tricky to get right.  Rather, use Xcode to sign some code for the intended distribution channel, dump the DR of that signed code to a file, and then edit the file to change the code signing identifier and Team ID embedded in the DR.  For example, if ",
+              "type": "text"
+            },
+            {
+              "code": "TestApp-MAS.app",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is an app signed by Xcode for Mac App Store distribution, use this command to dump its DR:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --display -r \"TestApp-MAS.req.txt\" \"TestApp-MAS.app\"",
+            "% cat \"TestApp-MAS.req.txt\" ",
+            "designated => (anchor apple generic …details ommitted… \"SKMME9E2Y8\") and identifier \"com.example.apple-samplecode.TestApp\""
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following sections explain the Xcode DRs for the three common types of macOS code signing identity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Xcode-designated-requirement-for-Developer-ID-code",
+          "level": 3,
+          "text": "Xcode designated requirement for Developer ID code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use Xcode to sign the AppWithTool app with a Developer ID code signing identity, the DR looks like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --display -r - \"AppWithTool.app\"         ",
+            "…",
+            "designated => ",
+            "anchor apple generic ",
+            "and identifier \"com.example.apple-samplecode.AppWithTool\" ",
+            "and (",
+            "    certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ ",
+            "    or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ ",
+            "        and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ ",
+            "        and certificate leaf[subject.OU] = SKMME9E2Y8",
+            "    )"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While this is reformatted to make it easier to read, it’s still quite hard to read.  To help with that, let’s replace some terms with shorter identifiers.  The ",
+              "type": "text"
+            },
+            {
+              "code": "certificate leaf[field.1.2.840.113635.100.6.1.9]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " term requires that the leaf certificate, the certificate that’s part of the code signing identity that actually signed the code, includes an extension with the OID 1.2.840.113635.100.6.1.9.  This OID is present in the Apple Mac OS Application Signing certificate used by Apple to sign Mac App Store apps.  Let’s shorten this to ",
+              "type": "text"
+            },
+            {
+              "code": "LeafIsMacAppStore",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The OID checks shown here only make sense in the scope established by ",
+                  "type": "text"
+                },
+                {
+                  "code": "anchor apple generic",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", that is, for certificates issued by Apple.  There’s nothing to stop a malicious CA from issuing certificates with these OIDs.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "certificate 1[field.1.2.840.113635.100.6.2.6]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " term requires that the certificate that issued the leaf certificate include an extension with the OID 1.2.840.113635.100.6.2.6.  This OID is present in the Developer ID Certification Authority certificate used by Apple to issue Developer ID signing certificates.  Let’s shorten this to ",
+              "type": "text"
+            },
+            {
+              "code": "IssuerIsDeveloperID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "certificate leaf[field.1.2.840.113635.100.6.1.13]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " term requires that the certificate that issued the signing certificate include an extension with the OID 1.2.840.113635.100.6.1.13.  This OID is present in the Developer ID Application signing certificates issued by Apple.  Let’s shorten this to ",
+              "type": "text"
+            },
+            {
+              "code": "LeafIsDeveloperIDApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Developer ID Installer certificates have a different OID, 1.2.840.113635.100.6.1.14.  That’s why you can’t use those for signing apps, or vice versa.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "certificate leaf[subject.OU] = SKMME9E2Y8",
+              "type": "codeVoice"
+            },
+            {
+              "text": " term requires that the leaf certificate’s Organization Unit field be SKMME9E2Y8.  In a Developer ID certificate, this is where you’ll find the Team ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Applying the shortcuts above reveals this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "anchor apple generic ",
+            "and identifier \"com.example.apple-samplecode.AppWithTool\" ",
+            "and (",
+            "    LeafIsMacAppStore ",
+            "    or IssuerIsDeveloperID ",
+            "        and LeafIsDeveloperIDApp ",
+            "        and certificate leaf[subject.OU] = SKMME9E2Y8",
+            "    )"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Or, in English, the requirement states that the code must be signed:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "With a code signing identity whose certificate was issued by Apple",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "And with a code signing identifier of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.example.apple-samplecode.AppWithTool",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Either by the Mac App Store",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Or using a Developer ID Application code signing identity for Team ID SKMME9E2Y8",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the Apple-specific OIDs referenced in this technote, see the documents published on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.apple.com/certificateauthority/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Xcode-designated-requirement-for-Mac-App-Store-code",
+          "level": 3,
+          "text": "Xcode designated requirement for Mac App Store code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AppWithTool isn’t on the Mac App Store, so you can’t look at its Xcode DR.  You can, however, look at the DR for Numbers, which is typical of a Mac App Store app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --display -r - \"/Applications/Numbers.app\"",
+            "…",
+            "designated =>",
+            "(",
+            "    anchor apple generic ",
+            "    and certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ ",
+            "        or anchor apple generic",
+            "            and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ ",
+            "            and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ ",
+            "            and certificate leaf[subject.OU] = K36BKF7T3D",
+            ")",
+            "and identifier \"com.apple.iWork.Numbers\""
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This looks very different from the Developer ID DR but, surprisingly, it’s actually the same.  To see this, apply the shortcuts defined earlier:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "(",
+            "    anchor apple generic ",
+            "    and LeafIsMacAppStore ",
+            "        or anchor apple generic",
+            "            and IssuerIsDeveloperID ",
+            "            and LeafIsDeveloperIDApp ",
+            "            and certificate leaf[subject.OU] = K36BKF7T3D",
+            ")",
+            "and identifier \"com.apple.iWork.Numbers\""
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now factor the ",
+              "type": "text"
+            },
+            {
+              "code": "anchor apple generic",
+              "type": "codeVoice"
+            },
+            {
+              "text": " out from both sides of the ",
+              "type": "text"
+            },
+            {
+              "code": "or",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and move the ",
+              "type": "text"
+            },
+            {
+              "code": "identifier \"com.apple.iWork.Numbers\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " up:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "anchor apple generic ",
+            "and identifier \"com.apple.iWork.Numbers\"",
+            "and (",
+            "    LeafIsMacAppStore ",
+            "        or IssuerIsDeveloperID ",
+            "            and LeafIsDeveloperIDApp ",
+            "            and certificate leaf[subject.OU] = K36BKF7T3D",
+            ")"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This is exactly the same as the Developer ID DR, except for the Team ID and code signing identifier, and those necessarily change because this is a different app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The upshot of this is that a Mac App Store app and its Developer ID variant have mutually compatible DRs.  If, to continue the microphone example from earlier, you access the microphone from the Mac App Store variant of your app and then, later on, try to access it from the Developer ID variant, the system allows that access without an additional prompt.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Xcode-designated-requirement-for-Apple-Development-code",
+          "level": 3,
+          "text": "Xcode designated requirement for Apple Development code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s the DR of the AppWithTool app signed by Xcode with an Apple Development code signing identity:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --display -r - \"AppWithTool Dev.app\"      ",
+            "…",
+            "designated => ",
+            "identifier \"com.example.apple-samplecode.AppWithTool\" ",
+            "and anchor apple generic ",
+            "and certificate leaf[subject.CN] = \"Apple Development: …\" ",
+            "and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This is much easier to read.  The ",
+              "type": "text"
+            },
+            {
+              "code": "anchor apple generic",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "identifier \"com.example.apple-samplecode.AppWithTool\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " terms were discussed in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3127-inside-code-signing-requirements#Designated-requirement",
+              "isActive": true,
+              "overridingTitle": "Designated requirement",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Designated requirement",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "certificate leaf[subject.CN] = \"Apple Development: …\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " requires that the Common Name field of the leaf certificate be ",
+              "type": "text"
+            },
+            {
+              "code": "Apple Development: …",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "certificate 1[field.1.2.840.113635.100.6.2.1]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " term requires that the certificate that issued the leaf certificate include an extension with the OID 1.2.840.113635.100.6.2.1.  This OID is present in the Apple Worldwide Developer Relations Certification Authority signing certificate used by Apple to issue Apple Development signing certificates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This Apple Development DR is very different from the DR used by Developer ID and Mac App Store apps.  A Mac App Store app won’t satisfy this DR and vice versa.  Returning to the microphone example, if you run an Apple Development variant of your app and use that to access the microphone, and then run a Developer ID or Mac App Store variant of your app, the system ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "will",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " display a prompt when the new app accesses the microphone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Revision-History",
+          "level": 2,
+          "text": "Revision History",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2024-04-02",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Added the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3127-inside-code-signing-requirements#Mutually-compatible-designated-requirements",
+                      "isActive": true,
+                      "overridingTitle": "Mutually compatible designated requirements",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Mutually compatible designated requirements",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " section.  Updated the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3127-inside-code-signing-requirements#Default-and-Xcode-designated-requirements",
+                      "isActive": true,
+                      "overridingTitle": "discussion of default designated requirements",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "discussion of default designated requirements",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to account for the differences between ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "codesign",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and Xcode (r. 124692958).  Made other editorial changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2024-02-06",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Made minor editorial changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2022-05-24",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Made minor editorial changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2022-05-03",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " First published.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Security/SecStaticCodeCheckValidityWithErrors(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Performs static validation of static signed code and returns detailed error information in the case of failure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecStaticCodeCheckValidityWithErrors"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "staticCode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecStaticCodeRef",
+          "text": "SecStaticCode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecCSFlags",
+          "text": "SecCSFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "requirement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecRequirementRef",
+          "text": "SecRequirement"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "errors"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/SecStaticCodeCheckValidityWithErrors(_:_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecStaticCodeCheckValidityWithErrors(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/Security/SecStaticCodeCheckValidityWithErrors(_:_:_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/Security/applying-launch-environment-and-library-constraints": {
+      "abstract": [
+        {
+          "text": "Limit the libraries your process loads, and the situations where it runs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/applying-launch-environment-and-library-constraints",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying launch environment and library constraints",
+      "type": "topic",
+      "url": "/documentation/Security/applying-launch-environment-and-library-constraints"
+    },
+    "doc://com.apple.documentation/documentation/Security/code-signing-services": {
+      "abstract": [
+        {
+          "text": "Examine and validate signed code running on the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/code-signing-services",
+      "kind": "article",
+      "role": "article",
+      "title": "Code Signing Services",
+      "type": "topic",
+      "url": "/documentation/Security/code-signing-services"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/creating-distribution-signed-code-for-the-mac": {
+      "abstract": [
+        {
+          "text": "Sign Mac code for distribution using either Xcode or command-line tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/creating-distribution-signed-code-for-the-mac",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating distribution-signed code for macOS",
+      "type": "topic",
+      "url": "/documentation/Xcode/creating-distribution-signed-code-for-the-mac"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/embedding-a-helper-tool-in-a-sandboxed-app": {
+      "abstract": [
+        {
+          "text": "Add a command-line tool to a sandboxed app’s Xcode project so the resulting app can run it as a helper tool.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/embedding-a-helper-tool-in-a-sandboxed-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Embedding a command-line tool in a sandboxed app",
+      "type": "topic",
+      "url": "/documentation/Xcode/embedding-a-helper-tool-in-a-sandboxed-app"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/signing-a-daemon-with-a-restricted-entitlement": {
+      "abstract": [
+        {
+          "text": "Wrap a daemon in an app-like structure to use an entitlement thatʼs authorized by a provisioning profile.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/signing-a-daemon-with-a-restricted-entitlement",
+      "kind": "article",
+      "role": "article",
+      "title": "Signing a daemon with a restricted entitlement",
+      "type": "topic",
+      "url": "/documentation/Xcode/signing-a-daemon-with-a-restricted-entitlement"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxpcconnection/3943309-setcodesigningrequirement": {
+      "abstract": [
+        {
+          "text": "Sets the code signing requirement for this connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCodeSigningRequirement"
+        },
+        {
+          "kind": "text",
+          "text": "(String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxpcconnection/3943309-setcodesigningrequirement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCodeSigningRequirement(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxpcconnection/3943309-setcodesigningrequirement"
+    },
+    "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages": {
+      "abstract": [
+        {
+          "text": "Use the Terminal app to read the documentation for low-level UNIX tools and APIs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+      "kind": "article",
+      "role": "article",
+      "title": "Reading UNIX Manual Pages",
+      "type": "topic",
+      "url": "/documentation/os/reading-unix-manual-pages"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.technotes/documentation/Technotes": {
+      "abstract": [
+        {
+          "text": "Learn about specific development topics through these in-depth technical articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Technotes",
+      "type": "topic",
+      "url": "/documentation/technotes"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview": {
+      "abstract": [
+        {
+          "text": "Explore the various Wi-Fi APIs available on iOS and their expected use cases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3111: iOS Wi-Fi API overview",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3111-ios-wifi-api-overview"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations": {
+      "abstract": [
+        {
+          "text": "Learn techniques to help debug any coordinate space issue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3124: Debugging coordinate space issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3124-debugging-coordinate-transformations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles": {
+      "abstract": [
+        {
+          "text": "Learn how provisioning profiles enable third-party code to run on Apple platforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3125: Inside Code Signing: Provisioning Profiles",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3125-inside-code-signing-provisioning-profiles"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3126-inside-code-signing-hashes": {
+      "abstract": [
+        {
+          "text": "Look inside a code signature to see how it uses hashes to protect the code’s executable pages, resources, and metadata from tampering.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3126-inside-code-signing-hashes",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3126: Inside Code Signing: Hashes",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3126-inside-code-signing-hashes"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3127-inside-code-signing-requirements#Default-and-Xcode-designated-requirements": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3127-inside-code-signing-requirements#Default-and-Xcode-designated-requirements",
+      "kind": "section",
+      "title": "Default and Xcode designated requirements",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3127-inside-code-signing-requirements#Default-and-Xcode-designated-requirements"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3127-inside-code-signing-requirements#Designated-requirement": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3127-inside-code-signing-requirements#Designated-requirement",
+      "kind": "section",
+      "title": "Designated requirement",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3127-inside-code-signing-requirements#Designated-requirement"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3127-inside-code-signing-requirements#Mutually-compatible-designated-requirements": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3127-inside-code-signing-requirements#Mutually-compatible-designated-requirements",
+      "kind": "section",
+      "title": "Mutually compatible designated requirements",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3127-inside-code-signing-requirements#Mutually-compatible-designated-requirements"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store": {
+      "abstract": [
+        {
+          "text": "Learn how to configure your App Clip to prevent it from being unavailable in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3168: Making your App Clip available in the App Store",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3168-making-your-app-clip-available-app-store"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration": {
+      "abstract": [
+        {
+          "text": "Diagnose errors due to invalid Apple Pay merchant identifier configurations by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifying the underlying causes of common errors and explore their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3173: Troubleshooting issues with your Apple Pay merchant identifier configuration",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose errors received while presenting the Apple Pay payment sheet on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your website by identifying the underlying causes of common errors and explore",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "their potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3174: Diagnosing issues with the Apple Pay payment sheet on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose common errors received while displaying the Apple Pay button on your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "website by identifying the underlying causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3175: Diagnosing issues with displaying the Apple Pay button on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues": {
+      "abstract": [
+        {
+          "text": "Diagnose errors that occur when processing Apple Pay payments,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identify common causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3176: Troubleshooting Apple Pay payment processing issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files": {
+      "abstract": [
+        {
+          "text": "Learn how alternate groups collect audio tracks, and how to choose which audio track to use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3177: Understanding alternate audio track groups in movie files",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems": {
+      "abstract": [
+        {
+          "text": "Ensure that every Mach-O image has a UUID, and that every distinct Mach-O image has its own unique UUID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3178: Checking for and resolving build UUID problems",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3178-checking-for-and-resolving-build-uuid-problems"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy": {
+      "abstract": [
+        {
+          "text": "Learn how local network privacy affects your software.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3179: Understanding local network privacy",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1": {
+      "abstract": [
+        {
+          "text": "Migrate from version 2 to version 1 of App Store Server Notifications using the Modify an App endpoint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3180: Reverting to App Store Server Notifications V1",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3180-reverting-app-store-server-notifications-v1"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Identify common configurations that cause unsuccessful privacy manifest validation with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3181: Debugging an invalid privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3181-debugging-invalid-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the tracking domains you use in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3182: Adding privacy tracking keys to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the APIs that can potentially fingerprint devices in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3183: Adding required reason API entries to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the data your app or third-party SDK collects in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3184: Adding data collection details to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest"
+    },
+    "https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/RequirementLang/RequirementLang.html#//apple_ref/doc/uid/TP40005929-CH5-SW1": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/RequirementLang/RequirementLang.html#//apple_ref/doc/uid/TP40005929-CH5-SW1",
+      "title": "Code Signing Requirement Language",
+      "titleInlineContent": [
+        {
+          "text": "Code Signing Requirement Language",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/RequirementLang/RequirementLang.html#//apple_ref/doc/uid/TP40005929-CH5-SW1"
+    },
+    "https://www.apple.com/certificateauthority/": {
+      "identifier": "https://www.apple.com/certificateauthority/",
+      "title": "Apple PKI",
+      "titleInlineContent": [
+        {
+          "text": "Apple PKI",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.apple.com/certificateauthority/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Latest",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+        "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+        "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+        "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+        "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+        "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+        "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+        "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+        "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations"
+      ],
+      "title": "Latest"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1SecStaticCodeCheckValidityWithErrors(_:_:_:_:)/title",
+          "value": "SecStaticCodeCheckValidityWithErrors"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1SecStaticCodeCheckValidityWithErrors(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SecStaticCodeCheckValidityWithErrors"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SecStaticCodeRef",
+              "text": "SecStaticCodeRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "staticCode"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@SecCSFlags",
+              "text": "SecCSFlags"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "flags"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SecRequirementRef",
+              "text": "SecRequirementRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "requirement"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFErrorRef",
+              "text": "CFErrorRef"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "errors"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsxpcconnection~13943309-setcodesigningrequirement/title",
+          "value": "setCodeSigningRequirement:"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

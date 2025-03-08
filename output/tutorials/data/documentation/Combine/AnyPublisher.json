@@ -1,0 +1,1156 @@
+{
+  "abstract": [
+    {
+      "text": "A publisher that performs type erasure by wrapping another publisher.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Combine/documentation/Combine"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Combine/documentation/Combine/AnyPublisher"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7Combine12AnyPublisherV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AnyPublisher"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Combine"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AnyPublisher"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "AnyPublisher"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@frozen"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AnyPublisher"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Output"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Failure"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Failure"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s5ErrorP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s5ErrorP",
+              "text": "Error"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.Combine/documentation/Combine/using-combine-for-your-app-s-asynchronous-code"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/AnyPublisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a concrete implementation of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that has no significant properties of its own, and passes through elements and completion values from its upstream publisher.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/AnyPublisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to wrap a publisher whose type has details you don’t want to expose across API boundaries, such as different modules. Wrapping a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Subject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/AnyPublisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " also prevents callers from accessing its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Subject/send(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. When you use type erasure this way, you can change the underlying publisher implementation over time without affecting existing clients.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use Combine’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/eraseToAnyPublisher()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " operator to wrap a publisher with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/AnyPublisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Combine-PageImage-card.png": {
+      "alt": "The Swift language logo, overlaid by a graph of interconnected lines and points.",
+      "identifier": "Combine-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ba2aa5f2e9d9ae5b196c642a6cf121dd/Combine-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8df9b2bdcd94118827dd29f28f3915d7/Combine-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Combine/documentation/Combine": {
+      "abstract": [
+        {
+          "text": "Customize handling of asynchronous events by combining event-processing operators.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine",
+      "images": [
+        {
+          "identifier": "Combine-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Combine",
+      "type": "topic",
+      "url": "/documentation/combine"
+    },
+    "doc://com.apple.Combine/documentation/Combine/AnyCancellable": {
+      "abstract": [
+        {
+          "text": "A type-erasing cancellable object that executes a provided closure when canceled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnyCancellable"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/AnyCancellable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnyCancellable"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnyCancellable",
+      "type": "topic",
+      "url": "/documentation/combine/anycancellable"
+    },
+    "doc://com.apple.Combine/documentation/Combine/AnyPublisher": {
+      "abstract": [
+        {
+          "text": "A publisher that performs type erasure by wrapping another publisher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnyPublisher"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/AnyPublisher",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnyPublisher"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnyPublisher",
+      "type": "topic",
+      "url": "/documentation/combine/anypublisher"
+    },
+    "doc://com.apple.Combine/documentation/Combine/AnyPublisher-Publisher-Operators": {
+      "abstract": [
+        {
+          "text": "Methods that create downstream publishers or subscribers to act on the elements they receive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/AnyPublisher-Publisher-Operators",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Publisher Operators",
+      "type": "topic",
+      "url": "/documentation/combine/anypublisher-publisher-operators"
+    },
+    "doc://com.apple.Combine/documentation/Combine/AnyPublisher/Publisher-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/AnyPublisher/Publisher-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Publisher Implementations",
+      "type": "topic",
+      "url": "/documentation/combine/anypublisher/publisher-implementations"
+    },
+    "doc://com.apple.Combine/documentation/Combine/AnyPublisher/description": {
+      "abstract": [
+        {
+          "text": "A textual representation of this instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/AnyPublisher/description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/combine/anypublisher/description"
+    },
+    "doc://com.apple.Combine/documentation/Combine/AnyPublisher/init(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a type-erasing publisher to wrap the provided publisher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "P"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "P"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/AnyPublisher/init(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/combine/anypublisher/init(_:)"
+    },
+    "doc://com.apple.Combine/documentation/Combine/AnyPublisher/playgroundDescription": {
+      "abstract": [
+        {
+          "text": "A custom playground description for this instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playgroundDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/AnyPublisher/playgroundDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "playgroundDescription",
+      "type": "topic",
+      "url": "/documentation/combine/anypublisher/playgrounddescription"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Cancellable": {
+      "abstract": [
+        {
+          "text": "A protocol indicating that an activity or action supports cancellation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Cancellable"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Cancellable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Cancellable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Cancellable",
+      "type": "topic",
+      "url": "/documentation/combine/cancellable"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Published": {
+      "abstract": [
+        {
+          "text": "A type that publishes a property marked with an attribute.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Published"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Published",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Published"
+        }
+      ],
+      "role": "symbol",
+      "title": "Published",
+      "type": "topic",
+      "url": "/documentation/combine/published"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher": {
+      "abstract": [
+        {
+          "text": "Declares that a type can transmit a sequence of values over time.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Output",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", ",
+            "type": "text"
+          },
+          {
+            "code": "Output",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", and ",
+            "type": "text"
+          },
+          {
+            "code": "Failure",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Error",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Publisher"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Publisher"
+        }
+      ],
+      "role": "symbol",
+      "title": "Publisher",
+      "type": "topic",
+      "url": "/documentation/combine/publisher"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/eraseToAnyPublisher()": {
+      "abstract": [
+        {
+          "text": "Wraps this publisher with a type eraser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "eraseToAnyPublisher"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine12AnyPublisherV",
+          "text": "AnyPublisher"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublisherP6OutputQa",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublisherP7FailureQa",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/eraseToAnyPublisher()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "eraseToAnyPublisher()",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/erasetoanypublisher()"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publishers": {
+      "abstract": [
+        {
+          "text": "A namespace for types that serve as publishers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Publishers"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publishers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Publishers"
+        }
+      ],
+      "role": "symbol",
+      "title": "Publishers",
+      "type": "topic",
+      "url": "/documentation/combine/publishers"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Subject": {
+      "abstract": [
+        {
+          "text": "A publisher that exposes a method for outside callers to publish elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Subject"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Subject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Subject"
+        }
+      ],
+      "role": "symbol",
+      "title": "Subject",
+      "type": "topic",
+      "url": "/documentation/combine/subject"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Subject/send(_:)": {
+      "abstract": [
+        {
+          "text": "Sends a value to the subscriber.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "send"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublisherP6OutputQa",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Subject/send(_:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "send(_:)",
+      "type": "topic",
+      "url": "/documentation/combine/subject/send(_:)"
+    },
+    "doc://com.apple.Combine/documentation/Combine/using-combine-for-your-app-s-asynchronous-code": {
+      "abstract": [
+        {
+          "text": "Apply common patterns to migrate your closure-based, event-handling code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/using-combine-for-your-app-s-asynchronous-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Combine for Your App’s Asynchronous Code",
+      "type": "topic",
+      "url": "/documentation/combine/using-combine-for-your-app-s-asynchronous-code"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s34CustomPlaygroundDisplayConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type that supplies a custom description for playground logging.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomPlaygroundDisplayConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s34CustomPlaygroundDisplayConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomPlaygroundDisplayConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomPlaygroundDisplayConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s5ErrorP": {
+      "abstract": [
+        {
+          "text": "A type representing an error value that can be thrown.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s5ErrorP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Error",
+      "type": "topic",
+      "url": "/documentation/Swift/Error"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s34CustomPlaygroundDisplayConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.apple.Combine/documentation/Combine/Publisher"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Publishers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Combine/documentation/Combine/Publisher",
+        "doc://com.apple.Combine/documentation/Combine/Publishers",
+        "doc://com.apple.Combine/documentation/Combine/Published",
+        "doc://com.apple.Combine/documentation/Combine/Cancellable",
+        "doc://com.apple.Combine/documentation/Combine/AnyCancellable"
+      ],
+      "title": "Publishers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Type-Erased-Publisher",
+      "identifiers": [
+        "doc://com.apple.Combine/documentation/Combine/AnyPublisher/init(_:)"
+      ],
+      "title": "Creating a Type-Erased Publisher"
+    },
+    {
+      "anchor": "Inspecting-Publisher-Properties",
+      "identifiers": [
+        "doc://com.apple.Combine/documentation/Combine/AnyPublisher/description",
+        "doc://com.apple.Combine/documentation/Combine/AnyPublisher/playgroundDescription"
+      ],
+      "title": "Inspecting Publisher Properties"
+    },
+    {
+      "anchor": "Applying-Operators",
+      "identifiers": [
+        "doc://com.apple.Combine/documentation/Combine/AnyPublisher-Publisher-Operators"
+      ],
+      "title": "Applying Operators"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Combine/documentation/Combine/AnyPublisher/Publisher-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/combine/anypublisher"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

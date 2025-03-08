@@ -1,0 +1,1674 @@
+{
+  "abstract": [
+    {
+      "text": "A type that represents a container’s status.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "added",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://FSKit/documentation/FSKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://FSKit/documentation/FSKit/FSContainerStatus"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)FSContainerStatus",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "FSContainerStatus"
+      }
+    ],
+    "modules": [
+      {
+        "name": "FSKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "FSContainerStatus"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "FSContainerStatus"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "FSContainerStatus"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This type contains two properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://FSKit/documentation/FSKit/FSContainerStatus/state",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " value that indicates the state of the container, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://FSKit/documentation/FSKit/FSContainerState/ready",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://FSKit/documentation/FSKit/FSContainerState/blocked",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://FSKit/documentation/FSKit/FSContainerStatus/status",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is an error (optional in Swift, nullable in Objective-C) that provides further information about the state, such as why the container is blocked.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Examples of statuses that require intervention include errors that indicate the container isn’t ready (POSIX ",
+              "type": "text"
+            },
+            {
+              "code": "EAGAIN",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "ENOTCONN",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), the container needs authentication (",
+              "type": "text"
+            },
+            {
+              "code": "ENEEDAUTH",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), or that authentication failed (",
+              "type": "text"
+            },
+            {
+              "code": "EAUTH",
+              "type": "codeVoice"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The status can also be an informative error, such as the FSKit error ",
+              "type": "text"
+            },
+            {
+              "code": "FSErrorStatusOperationInProgress",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", possibly with the variant information of ",
+              "type": "text"
+            },
+            {
+              "code": "FSKitErrorVariantCheckStatus",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "FSKitErrorVariantFormatStatus",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://FSKit/documentation/FSKit": {
+      "abstract": [
+        {
+          "text": "Implement a file system that runs in user space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "FSKit",
+      "type": "topic",
+      "url": "/documentation/fskit"
+    },
+    "doc://FSKit/documentation/FSKit/FSContainerIdentifier": {
+      "abstract": [
+        {
+          "text": "A type that identifies a container.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSContainerIdentifier"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSContainerIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSContainerIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSContainerIdentifier",
+      "type": "topic",
+      "url": "/documentation/fskit/fscontaineridentifier"
+    },
+    "doc://FSKit/documentation/FSKit/FSContainerState": {
+      "abstract": [
+        {
+          "text": "An enumeration of container state values.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSContainerState"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSContainerState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSContainerState"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSContainerState",
+      "type": "topic",
+      "url": "/documentation/fskit/fscontainerstate"
+    },
+    "doc://FSKit/documentation/FSKit/FSContainerState/blocked": {
+      "abstract": [
+        {
+          "text": "The container is blocked from transitioning from the not-ready state to the ready state by a potentially-recoverable error.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blocked"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSContainerState/blocked",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSContainerStateBlocked"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSContainerState.blocked",
+      "type": "topic",
+      "url": "/documentation/fskit/fscontainerstate/blocked"
+    },
+    "doc://FSKit/documentation/FSKit/FSContainerState/ready": {
+      "abstract": [
+        {
+          "text": "The container is ready, but inactive.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ready"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSContainerState/ready",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSContainerStateReady"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSContainerState.ready",
+      "type": "topic",
+      "url": "/documentation/fskit/fscontainerstate/ready"
+    },
+    "doc://FSKit/documentation/FSKit/FSContainerStatus": {
+      "abstract": [
+        {
+          "text": "A type that represents a container’s status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSContainerStatus"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSContainerStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSContainerStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSContainerStatus",
+      "type": "topic",
+      "url": "/documentation/fskit/fscontainerstatus"
+    },
+    "doc://FSKit/documentation/FSKit/FSContainerStatus/active": {
+      "abstract": [
+        {
+          "text": "A status that represents an active container with no error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "active"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FSContainerStatus",
+          "text": "FSContainerStatus"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSContainerStatus/active",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "active"
+        }
+      ],
+      "role": "symbol",
+      "title": "active",
+      "type": "topic",
+      "url": "/documentation/fskit/fscontainerstatus/active"
+    },
+    "doc://FSKit/documentation/FSKit/FSContainerStatus/active(status:)": {
+      "abstract": [
+        {
+          "text": "Returns a active container status instance with the provided error status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "active"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "status"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSContainerStatus/active(status:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activeWithStatus:"
+        }
+      ],
+      "role": "symbol",
+      "title": "active(status:)",
+      "type": "topic",
+      "url": "/documentation/fskit/fscontainerstatus/active(status:)"
+    },
+    "doc://FSKit/documentation/FSKit/FSContainerStatus/blocked(status:)": {
+      "abstract": [
+        {
+          "text": "Returns a blocked container status instance with the provided error status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blocked"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "status"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSContainerStatus/blocked(status:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "blockedWithStatus:"
+        }
+      ],
+      "role": "symbol",
+      "title": "blocked(status:)",
+      "type": "topic",
+      "url": "/documentation/fskit/fscontainerstatus/blocked(status:)"
+    },
+    "doc://FSKit/documentation/FSKit/FSContainerStatus/notReady(status:)": {
+      "abstract": [
+        {
+          "text": "Returns a not-ready container status instance with the provided error status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notReady"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "status"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSContainerStatus/notReady(status:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "notReadyWithStatus:"
+        }
+      ],
+      "role": "symbol",
+      "title": "notReady(status:)",
+      "type": "topic",
+      "url": "/documentation/fskit/fscontainerstatus/notready(status:)"
+    },
+    "doc://FSKit/documentation/FSKit/FSContainerStatus/ready": {
+      "abstract": [
+        {
+          "text": "A status that represents a ready container with no error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ready"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FSContainerStatus",
+          "text": "FSContainerStatus"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSContainerStatus/ready",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ready"
+        }
+      ],
+      "role": "symbol",
+      "title": "ready",
+      "type": "topic",
+      "url": "/documentation/fskit/fscontainerstatus/ready"
+    },
+    "doc://FSKit/documentation/FSKit/FSContainerStatus/ready(status:)": {
+      "abstract": [
+        {
+          "text": "Returns a ready container status instance with the provided error status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ready"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "status"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSContainerStatus/ready(status:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "readyWithStatus:"
+        }
+      ],
+      "role": "symbol",
+      "title": "ready(status:)",
+      "type": "topic",
+      "url": "/documentation/fskit/fscontainerstatus/ready(status:)"
+    },
+    "doc://FSKit/documentation/FSKit/FSContainerStatus/state": {
+      "abstract": [
+        {
+          "text": "A value that represents the container state, such as ready, active, or blocked.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@FSContainerState",
+          "text": "FSContainerState"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSContainerStatus/state",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "state"
+        }
+      ],
+      "role": "symbol",
+      "title": "state",
+      "type": "topic",
+      "url": "/documentation/fskit/fscontainerstatus/state"
+    },
+    "doc://FSKit/documentation/FSKit/FSContainerStatus/status": {
+      "abstract": [
+        {
+          "text": "An optional error that provides further information about the state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "status"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSContainerStatus/status",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "status"
+        }
+      ],
+      "role": "symbol",
+      "title": "status",
+      "type": "topic",
+      "url": "/documentation/fskit/fscontainerstatus/status"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Containers",
+      "generated": true,
+      "identifiers": [
+        "doc://FSKit/documentation/FSKit/FSContainerIdentifier"
+      ],
+      "title": "Containers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-container-status-instance",
+      "identifiers": [
+        "doc://FSKit/documentation/FSKit/FSContainerStatus/active(status:)",
+        "doc://FSKit/documentation/FSKit/FSContainerStatus/blocked(status:)",
+        "doc://FSKit/documentation/FSKit/FSContainerStatus/notReady(status:)",
+        "doc://FSKit/documentation/FSKit/FSContainerStatus/ready(status:)"
+      ],
+      "title": "Creating a container status instance"
+    },
+    {
+      "anchor": "Inspecting-status-properties",
+      "identifiers": [
+        "doc://FSKit/documentation/FSKit/FSContainerStatus/state",
+        "doc://FSKit/documentation/FSKit/FSContainerState",
+        "doc://FSKit/documentation/FSKit/FSContainerStatus/status"
+      ],
+      "title": "Inspecting status properties"
+    },
+    {
+      "anchor": "Using-common-status-values",
+      "identifiers": [
+        "doc://FSKit/documentation/FSKit/FSContainerStatus/active",
+        "doc://FSKit/documentation/FSKit/FSContainerStatus/ready"
+      ],
+      "title": "Using common status values"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "FSContainerStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSContainerStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSContainerStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://FSKit/documentation/FSKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-container-status-instance",
+              "identifiers": [
+                "doc://FSKit/documentation/FSKit/FSContainerStatus/active(status:)",
+                "doc://FSKit/documentation/FSKit/FSContainerStatus/blocked(status:)",
+                "doc://FSKit/documentation/FSKit/FSContainerStatus/notReady(status:)",
+                "doc://FSKit/documentation/FSKit/FSContainerStatus/ready(status:)"
+              ],
+              "title": "Creating a container status instance"
+            },
+            {
+              "anchor": "Inspecting-status-properties",
+              "identifiers": [
+                "doc://FSKit/documentation/FSKit/FSContainerStatus/state",
+                "doc://FSKit/documentation/FSKit/FSContainerState",
+                "doc://FSKit/documentation/FSKit/FSContainerStatus/status"
+              ],
+              "title": "Inspecting status properties"
+            },
+            {
+              "anchor": "Using-common-status-values",
+              "identifiers": [
+                "doc://FSKit/documentation/FSKit/FSContainerStatus/active",
+                "doc://FSKit/documentation/FSKit/FSContainerStatus/ready"
+              ],
+              "title": "Using common status values"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Containers",
+              "generated": true,
+              "identifiers": [
+                "doc://FSKit/documentation/FSKit/FSContainerIdentifier"
+              ],
+              "title": "Containers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "FSContainerStatus"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerStatus/title",
+          "value": "FSContainerStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSContainerStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSContainerStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerStatus~1state/title",
+          "value": "state"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerStatus~1state/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "state"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerStatus~1ready(status:)/title",
+          "value": "readyWithStatus:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerStatus~1ready(status:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "readyWithStatus:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerStatus~1active(status:)/title",
+          "value": "activeWithStatus:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerStatus~1active(status:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "activeWithStatus:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerState~1ready/title",
+          "value": "FSContainerStateReady"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerState~1ready/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSContainerStateReady"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerStatus~1ready/title",
+          "value": "ready"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerStatus~1ready/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ready"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerStatus~1blocked(status:)/title",
+          "value": "blockedWithStatus:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerStatus~1blocked(status:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "blockedWithStatus:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerState/title",
+          "value": "FSContainerState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSContainerState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSContainerState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerStatus~1notReady(status:)/title",
+          "value": "notReadyWithStatus:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerStatus~1notReady(status:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "notReadyWithStatus:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerState~1blocked/title",
+          "value": "FSContainerStateBlocked"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerState~1blocked/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSContainerStateBlocked"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerStatus~1status/title",
+          "value": "status"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerStatus~1status/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "status"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerStatus~1active/title",
+          "value": "active"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerStatus~1active/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "active"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerIdentifier/title",
+          "value": "FSContainerIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSContainerIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSContainerIdentifier"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/fskit/fscontainerstatus"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/fskit/fscontainerstatus"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

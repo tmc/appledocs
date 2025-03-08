@@ -1,0 +1,946 @@
+{
+  "abstract": [
+    {
+      "text": "Wrap a daemon in an app-like structure to use an entitlement thatʼs authorized by a provisioning profile.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/distribution"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/signing-a-daemon-with-a-restricted-entitlement"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Signing a daemon with a restricted entitlement"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some APIs are usable from a daemon but require that the daemon claim a restricted entitlement thatʼs authorized by a provisioning profile. For example, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EndpointSecurity",
+              "isActive": true,
+              "overridingTitle": "Endpoint Security",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Endpoint Security",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " API is usable from a daemon but requires that the daemon has the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.endpoint-security.client",
+              "isActive": true,
+              "overridingTitle": "com.apple.developer.endpoint-security.client",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "com.apple.developer.endpoint-security.client",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " entitlement, and that it’s authorized by a provisioning profile. This is problematic because a daemon is a standalone executable, so you canʼt embed a provisioning profile in it. To get around this limitation, wrap your daemon in an app-like structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the API youʼre using supports system extensions, avoid this issue by switching from a daemon to a system extension. System extensions readily support provisioning profiles, and Xcode automatically creates and embeds the profile in that case.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-a-minimal-daemon-project",
+          "level": 3,
+          "text": "Create a minimal daemon project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The basic idea is to create an app target, rather than a command-line tool target, and then remove all of the app-specific content and replace it with your daemon code. To start, create a new project with an app target by choosing File > New > Project and selecting the macOS > App template. Set the Interface popup to Storyboard, the Life Cycle popup (if present) to AppKit App Delegate, and the Language popup to Swift.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This example uses Swift but this approach works just fine if you choose Objective-C.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the General tab of the target editor, ensure that the Bundle Identifier field has the right value.  This is important because your provisioning profile is tied to your App ID, and the bundle identifier is a key part of that App ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Also, clear the Deployment Info > Main Interface field and set the App Icons > Source popup to “Donʼt use asset catalogs”.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Switch to the Signing & Capabilities tab and configure it as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure that “Automatically manage signing” is set.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your team in the Team popup.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Remove the App Sandbox capability (if present).  The App Sandbox is, as the name suggests, not appropriate for daemons.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the Hardened Runtime capability, which youʼll need to notarize your daemon.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the Custom Network Protocol capability, which enables the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.apple.developer.networking.custom-protocol",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " entitlement that must be authorized by a provisioning profile. Adding it to your target triggers Xcodeʼs automatic code-signing machinery to register your App ID, create a provisioning profile for that App ID, and embed that provisioning profile in the built product.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If your ultimate goal is to use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.endpoint-security.client",
+                  "isActive": true,
+                  "overridingTitle": "com.apple.developer.endpoint-security.client",
+                  "overridingTitleInlineContent": [
+                    {
+                      "code": "com.apple.developer.endpoint-security.client",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": " entitlement, first add the Custom Network Protocol capability to force Xcode to register your App ID and generate an initial provisioning profile. Then follow the instructions on ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/help/account/reference/provisioning-with-managed-capabilities",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to add the Endpoint Security additional capability to your App ID.  Finally, remove the Custom Network Protocol capability, assuming your daemon doesn’t need it for other reasons.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Switch to the Build Settings tab and remove the Enable App Sandbox (",
+              "type": "text"
+            },
+            {
+              "code": "ENABLE_APP_SANDBOX",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") build setting, if present.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Switch to the Info tab and delete all the app-specific items (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPrincipalClass",
+              "isActive": true,
+              "overridingTitle": "NSPrincipalClass",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSPrincipalClass",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMainStoryboardFile",
+              "isActive": true,
+              "overridingTitle": "NSMainStoryboardFile",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSMainStoryboardFile",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsSuddenTermination",
+              "isActive": true,
+              "overridingTitle": "NSSupportsSuddenTermination",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSSupportsSuddenTermination",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "NSSupportsAutomaticTermination",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIconFile",
+              "isActive": true,
+              "overridingTitle": "CFBundleIconFile",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CFBundleIconFile",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ").  Some of these items may not be present, depending on the exact version of Xcode youʼre using.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Project navigator, remove the ",
+              "type": "text"
+            },
+            {
+              "code": "AppDelegate.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "ViewController.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "Assets.xcassets",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "Main.storyboard",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a ",
+              "type": "text"
+            },
+            {
+              "code": "main.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file and populate it with your daemon code.  For a minimal daemon, use this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import Foundation",
+            "",
+            "/// A helper for calling the Security framework from Swift.",
+            "",
+            "func secCall<Result>(_ body: (_ resultPtr: UnsafeMutablePointer<Result?>) -> OSStatus  ) throws -> Result {",
+            "    var result: Result? = nil",
+            "    let err = body(&result)",
+            "    guard err == errSecSuccess else {",
+            "        throw NSError(domain: NSOSStatusErrorDomain, code: Int(err), userInfo: nil)",
+            "    }",
+            "    return result!",
+            "}",
+            "",
+            "func main() throws {",
+            "    let me = try secCall { SecCodeCopySelf([], $0) }",
+            "    let meStatic = try secCall { SecCodeCopyStaticCode(me, [], $0) }",
+            "    let infoCF = try secCall { SecCodeCopySigningInformation(meStatic, [], $0) }",
+            "    let info = infoCF as NSDictionary",
+            "    let entitlements = info[kSecCodeInfoEntitlementsDict] as? NSDictionary",
+            "    NSLog(\"entitlements: %@\", entitlements ?? [:])",
+            "}",
+            "",
+            "try! main()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This code logs the current processʼs entitlements, which is a good way to confirm that youʼre set up correctly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Build and run the daemon from Xcode.  The program logs its entitlements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "2021-08-04 16:24:10.979941+0100 DaemonInAppsClothing[50219:4886989] entitlements: {",
+            "    \"com.apple.application-identifier\" = \"SKMME9E2Y8.com.example.apple-samplecode.DaemonInAppsClothing\";",
+            "    \"com.apple.developer.networking.custom-protocol\" = 1;",
+            "    \"com.apple.developer.team-identifier\" = SKMME9E2Y8;",
+            "    \"com.apple.security.get-task-allow\" = 1;",
+            "}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The final structure of your daemon should look like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "DaemonInAppsClothing.app/",
+            "  Contents/",
+            "    Info.plist",
+            "    MacOS/",
+            "      DaemonInAppsClothing",
+            "    PkgInfo",
+            "    _CodeSignature/",
+            "      CodeResources",
+            "    embedded.provisionprofile"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note the presence of the embedded provisioning profile; itʼs this profile that authorizes your daemon to use the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.developer.networking.custom-protocol",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-your-daemon",
+          "level": 3,
+          "text": "Test your daemon",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To properly test your daemon, run it in a daemon context.  First, copy the built daemon to a secure location:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% sudo mkdir \"/Library/Application Support/DaemonInAppsClothing\"",
+            "% sudo cp -R \"DaemonInAppsClothing.app\" \"/Library/Application Support/DaemonInAppsClothing/\""
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now create a ",
+              "type": "text"
+            },
+            {
+              "code": "launchd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property list file that points to the daemonʼs main executable:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% /usr/libexec/PlistBuddy -c \"Add :Label string com.example.apple-samplecode.DaemonInAppsClothing\" \"com.example.apple-samplecode.DaemonInAppsClothing.plist\"",
+            "File Doesn't Exist, Will Create: com.example.apple-samplecode.DaemonInAppsClothing.plist",
+            "% /usr/libexec/PlistBuddy -c 'Add :Program string \"/Library/Application Support/DaemonInAppsClothing/DaemonInAppsClothing.app/Contents/MacOS/DaemonInAppsClothing\"' \"com.example.apple-samplecode.DaemonInAppsClothing.plist\"",
+            "% cat com.example.apple-samplecode.DaemonInAppsClothing.plist ",
+            "…",
+            "<dict>",
+            "    <key>Label</key>",
+            "    <string>com.example.apple-samplecode.DaemonInAppsClothing</string>",
+            "    <key>Program</key>",
+            "    <string>/Library/Application Support/DaemonInAppsClothing/DaemonInAppsClothing.app/Contents/MacOS/DaemonInAppsClothing</string>",
+            "</dict>",
+            "</plist>"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Copy that to ",
+              "type": "text"
+            },
+            {
+              "code": "/Library/LaunchDaemons",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and then load and start your daemon:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% sudo cp com.example.apple-samplecode.DaemonInAppsClothing.plist /Library/LaunchDaemons ",
+            "% sudo launchctl load /Library/LaunchDaemons/com.example.apple-samplecode.DaemonInAppsClothing.plist ",
+            "% sudo launchctl start com.example.apple-samplecode.DaemonInAppsClothing                      "
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Run the Console app and look in the system log.  At the point when you started the daemon, youʼll see a log entry like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "entitlements: {",
+            "    \"com.apple.application-identifier\" = \"SKMME9E2Y8.com.example.apple-samplecode.DaemonInAppsClothing\";",
+            "    \"com.apple.developer.networking.custom-protocol\" = 1;",
+            "    \"com.apple.developer.team-identifier\" = SKMME9E2Y8;",
+            "    \"com.apple.security.get-task-allow\" = 1;",
+            "}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you miss it, run the ",
+              "type": "text"
+            },
+            {
+              "code": "launchctl start",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command to start your daemon again.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Integrate-your-daemon-code",
+          "level": 3,
+          "text": "Integrate your daemon code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now that you have a working minimal daemon, itʼs time to integrate your real daemon code into the project.  Add your code to the project as you would with any other Xcode project.  If necessary, replace ",
+              "type": "text"
+            },
+            {
+              "code": "main.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with a C, C++, Objective-C, or Objective-C++ main entry point.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Or, if youʼre using an alternative build system, like a makefile, update it to create a structure that matches the one created by Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/creating-distribution-signed-code-for-the-mac": {
+      "abstract": [
+        {
+          "text": "Sign Mac code for distribution using either Xcode or command-line tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-distribution-signed-code-for-the-mac",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating distribution-signed code for macOS",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-distribution-signed-code-for-the-mac"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/distribution": {
+      "abstract": [
+        {
+          "text": "Prepare your app and share it with your team, beta testers, and customers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/distribution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Distribution",
+      "type": "topic",
+      "url": "/documentation/xcode/distribution"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/sharing-your-teams-signing-certificates": {
+      "abstract": [
+        {
+          "text": "Ensure you and other team members can sign your organization’s code and installer packages in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/sharing-your-teams-signing-certificates",
+      "kind": "article",
+      "role": "article",
+      "title": "Synchronizing code signing identities with your developer account",
+      "type": "topic",
+      "url": "/documentation/xcode/sharing-your-teams-signing-certificates"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/using-the-latest-code-signature-format": {
+      "abstract": [
+        {
+          "text": "Update legacy app code signatures so your app runs on current OS releases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/using-the-latest-code-signature-format",
+      "kind": "article",
+      "role": "article",
+      "title": "Using the latest code signature format",
+      "type": "topic",
+      "url": "/documentation/xcode/using-the-latest-code-signature-format"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.endpoint-security.client": {
+      "abstract": [
+        {
+          "text": "The entitlement required to monitor system events for potentially malicious activity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.endpoint-security.client",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.endpoint-security.client",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.endpoint-security.client"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIconFile": {
+      "abstract": [
+        {
+          "text": "The file containing the bundle’s icon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIconFile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleIconFile",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/CFBundleIconFile"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMainStoryboardFile": {
+      "abstract": [
+        {
+          "text": "The name of an app’s storyboard resource file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMainStoryboardFile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMainStoryboardFile",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSMainStoryboardFile"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPrincipalClass": {
+      "abstract": [
+        {
+          "text": "The name of the bundle’s main executable class.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPrincipalClass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPrincipalClass",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSPrincipalClass"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsSuddenTermination": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the system may terminate the app to log out or shut down more quickly.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsSuddenTermination",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSupportsSuddenTermination",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSSupportsSuddenTermination"
+    },
+    "doc://com.apple.documentation/documentation/EndpointSecurity": {
+      "abstract": [
+        {
+          "text": "Develop system extensions that enhance user security.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EndpointSecurity",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Endpoint Security",
+      "type": "topic",
+      "url": "/documentation/EndpointSecurity"
+    },
+    "doc://com.apple.documentation/documentation/Security/notarizing-macos-software-before-distribution": {
+      "abstract": [
+        {
+          "text": "Give users even more confidence in your macOS software by submitting it to Apple for notarization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/notarizing-macos-software-before-distribution",
+      "kind": "article",
+      "role": "article",
+      "title": "Notarizing macOS software before distribution",
+      "type": "topic",
+      "url": "/documentation/Security/notarizing-macos-software-before-distribution"
+    },
+    "doc://com.apple.documentation/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles": {
+      "abstract": [
+        {
+          "text": "Learn how provisioning profiles enable third-party code to run on Apple platforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3125: Inside Code Signing: Provisioning Profiles",
+      "type": "topic",
+      "url": "/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/help/account/reference/provisioning-with-managed-capabilities": {
+      "identifier": "https://developer.apple.com/help/account/reference/provisioning-with-managed-capabilities",
+      "title": "Provisioning with managed capabilities",
+      "titleInlineContent": [
+        {
+          "text": "Provisioning with managed capabilities",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/reference/provisioning-with-managed-capabilities"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Code-signing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/creating-distribution-signed-code-for-the-mac",
+        "doc://com.apple.Xcode/documentation/Xcode/using-the-latest-code-signature-format",
+        "doc://com.apple.documentation/documentation/Security/notarizing-macos-software-before-distribution",
+        "doc://com.apple.Xcode/documentation/Xcode/sharing-your-teams-signing-certificates",
+        "doc://com.apple.documentation/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles"
+      ],
+      "title": "Code signing"
+    }
+  ]
+}

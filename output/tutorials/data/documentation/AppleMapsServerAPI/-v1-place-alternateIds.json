@@ -1,0 +1,668 @@
+{
+  "abstract": [
+    {
+      "text": "Get a list of alternate Place IDs given one or more Place IDs.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "added",
+      "platform": "Apple Maps Server API",
+      "versions": [
+        "1.0 beta 1",
+        "1.2"
+      ]
+    },
+    "minor": {
+      "change": "added",
+      "platform": "Apple Maps Server API",
+      "versions": [
+        "1.1",
+        "1.2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place-alternateIds"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:maps_web_api:get:v1-place-alternateIds",
+    "modules": [
+      {
+        "name": "Apple Maps Server API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "/v1/place/alternateIds"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.2",
+        "name": "Apple Maps Server API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Obtain a list of alternate place identifiers"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://maps-api.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/place/alternateIds"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of alternate Place IDs.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "ids",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AlternateIdsResponse",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " results.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AlternateIdsResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:AlternateIdsResponse",
+              "text": "AlternateIdsResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object that contains an error message and an array of strings that contain additional details about the error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object that contains an error message that indicates the Maps access token is missing or invalid, and an array of strings that contains additional details about the error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object that contains a server error message and an array of strings that describe additional details about the error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI": {
+      "abstract": [
+        {
+          "text": "Reduce API calls and conserve device power by streamlining your app’s georelated searches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Maps Server API",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place": {
+      "abstract": [
+        {
+          "text": "Obtain a set of Place objects for a given set of Place IDs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "/v1/place"
+        }
+      ],
+      "role": "symbol",
+      "title": "Search for places using mulitple identifiers",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/-v1-place"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place-:id": {
+      "abstract": [
+        {
+          "text": "Obtain a Place object for a given Place ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place-:id",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "/v1/place/:id"
+        }
+      ],
+      "role": "symbol",
+      "title": "Search for a place using an identifier",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/-v1-place-:id"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place-alternateIds": {
+      "abstract": [
+        {
+          "text": "Get a list of alternate Place IDs given one or more Place IDs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place-alternateIds",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "/v1/place/alternateIds"
+        }
+      ],
+      "role": "symbol",
+      "title": "Obtain a list of alternate place identifiers",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/-v1-place-alternateids"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-search": {
+      "abstract": [
+        {
+          "text": "Find places by name or by specific search criteria.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-search",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "/v1/search"
+        }
+      ],
+      "role": "symbol",
+      "title": "Search for places that match specific criteria",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/-v1-search"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-searchAutocomplete": {
+      "abstract": [
+        {
+          "text": "Find results that you can use to autocomplete searches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-searchAutocomplete",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "/v1/searchAutocomplete"
+        }
+      ],
+      "role": "symbol",
+      "title": "Search for places that meet specific criteria to autocomplete a place search",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/-v1-searchautocomplete"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AddressCategory": {
+      "abstract": [
+        {
+          "text": "Search categories related to political geographical boundaries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "AddressCategory"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AddressCategory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AddressCategory"
+        }
+      ],
+      "role": "symbol",
+      "title": "AddressCategory",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/addresscategory"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AlternateIdsResponse": {
+      "abstract": [
+        {
+          "text": "A list of alternate Place IDs and associated errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AlternateIdsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AlternateIdsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AlternateIdsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "AlternateIdsResponse",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/alternateidsresponse"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AlternateIdsResponse/AlternateIds": {
+      "abstract": [
+        {
+          "text": "Contains a list of alternate Place IDs for a given Place ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AlternateIdsResponse.AlternateIds"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AlternateIdsResponse/AlternateIds",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AlternateIdsResponse.AlternateIds"
+        }
+      ],
+      "role": "symbol",
+      "title": "AlternateIdsResponse.AlternateIds",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/alternateidsresponse/alternateids"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse": {
+      "abstract": [
+        {
+          "text": "Information about an error that occurs while processing a request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorResponse",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/errorresponse"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/PlacesResponse": {
+      "abstract": [
+        {
+          "text": "A list of Place IDs and errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlacesResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/PlacesResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlacesResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlacesResponse",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/placesresponse"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/PlacesResponse/PlaceLookupError": {
+      "abstract": [
+        {
+          "text": "An error associated with a lookup call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlacesResponse.PlaceLookupError"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/PlacesResponse/PlaceLookupError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlacesResponse.PlaceLookupError"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlacesResponse.PlaceLookupError",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/placesresponse/placelookuperror"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchACResultType": {
+      "abstract": [
+        {
+          "text": "An enumerated string that indicates the result type for the search request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "SearchACResultType"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchACResultType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SearchACResultType"
+        }
+      ],
+      "role": "symbol",
+      "title": "SearchACResultType",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/searchacresulttype"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchResultType": {
+      "abstract": [
+        {
+          "text": "An enumerated string that indicates the result type for the search autocomplete request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "SearchResultType"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchResultType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SearchResultType"
+        }
+      ],
+      "role": "symbol",
+      "title": "SearchResultType",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/searchresulttype"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Searching",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AddressCategory",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchACResultType",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchResultType",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AlternateIdsResponse",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AlternateIdsResponse/AlternateIds",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/PlacesResponse",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/PlacesResponse/PlaceLookupError",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-search",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-searchAutocomplete",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place-:id",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place"
+      ],
+      "title": "Searching"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemapsserverapi/-v1-place-alternateids"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

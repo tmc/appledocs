@@ -1,0 +1,1193 @@
+{
+  "abstract": [
+    {
+      "text": "Configure your RealityKit scenes to avoid performance bottlenecks.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/physics-simulations-and-motion"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/designing-scene-hierarchies-for-efficient-physics-simulation"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Designing scene hierarchies for efficient physics simulation"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " simulates physical interactions between the virtual objects in your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scene, as well as between virtual objects and detected surfaces in the real world,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as floors, walls, or tabletops. On iOS devices with a LiDAR Scanner, RealityKit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can even simulate interactions between virtual objects and scanned real-world geometry.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Simulating real-world physics can be computationally expensive, however, so set up",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your project to maximize performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Design-scenes-with-flat-hierarchies",
+          "level": 3,
+          "text": "Design scenes with flat hierarchies",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make sure every entity in your scene that participates in the physics simulation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is a child of the scene root, if possible, and avoid having unnecessary entities",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in your scene hierarchy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For scenes created in Reality Composer, minimize the use of groups for objects that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "participate in the physics simulation. Grouping objects creates implicit parent-child",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "relationships and invisible parent entities, both of which can negatively impact",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Although RealityKit performs better with shallow scene hierarchies,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "don’t flatten or otherwise modify the hierarchy of Reality Composer scenes. Reality",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Composer stores references to entities based on their location in the scene hierarchy.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Flattening the hierarchy at runtime breaks those references.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Assign-a-physics-origin",
+          "level": 3,
+          "text": "Assign a physics origin",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, RealityKit uses the scene’s root entity as the origin of the physics",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "simulation and simulates objects at their actual size. You can alternatively designate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a different entity in your scene to be the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "physics origin",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " by using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView/physicsOrigin",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property of your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Designating an entity as the physics origin",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "means that all physics calculations are relative to the specified entity rather than",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the scene’s root entity. For more information about when to specify a separate physics",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "origin, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/handling-different-sized-objects-in-physics-simulations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "arView.physicsOrigin = entity"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you set the physics origin, you can modify the scale, position, and orientation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the scene in the view without affecting the physics simulation. You can also use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "transform values that are different from the values used in the visible scene. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, you can create a tabletop AR experience with characters that are a few inches",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tall but behave as if they’re much larger.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Set the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView/physicsOrigin",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " before you add entities",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "to your scene. Unpredictable behavior can occur if you change the physics origin",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "in a scene after the simulation begins.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can’t specify a different physics origin using Reality Composer. Instead, designate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an entity in a loaded Reality Composer scene as the physics entity or add a new entity",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the loaded scene to act as the physics origin.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example shows how to retrieve a named entity from your Reality Composer scene",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and specify it as the physics origin:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    let boxAnchor = try! Experience.loadBox()",
+            "    arView.scene.anchors.append(boxAnchor)",
+            "    if let physicsRoot = boxAnchor.findEntity(named: \"Physics Root\") {",
+            "        self.arView.physicsOrigin = physicsRoot",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Prefer-impulses-over-forces",
+          "level": 3,
+          "text": "Prefer impulses over forces",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RealityKit provides two different mechanisms for applying force to an entity: ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "forces",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "impulses",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". An impulse represents a constant amount of force applied over a specific",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "unit of time. RealityKit applies forces for the entire duration of the current frame,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "but it applies an impulse all at once. Using forces gives different results depending",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on the current rendering framerate, while applying an impulse gives consistent results",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "regardless of the framerate. Using impulses results in consistent, predictable behavior",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on any device at any frame rate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, the effect of adding a force isn’t visible until after the next simulation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "update occurs, while the result of applying an impulse is visible immediately.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-forces-and-impulses-relative-to-the-physics-origin",
+          "level": 3,
+          "text": "Apply forces and impulses relative to the physics origin",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When changing velocities or applying forces or impulses to simulated objects, apply",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the changes relative to the physics origin. Specifying units relative to the physics",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "origin eliminates the need to account for scale changes made to the rendered scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsMotionComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " internally stores velocity values relative",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the physics origin. Specifying forces and impulses relative to the physics origin",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "eliminates the need for the physics engine to convert or translate values and therefore",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "results in better performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Apply impulse to shoot the object up.",
+            "let impulseStrength = 10",
+            "let impulseDirection = SIMD3<Float>(0, 1, 0)",
+            "model.applyLinearImpulse(impulseStrength * impulseDirection, relativeTo: arView.physicsOrigin)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Avoid-extreme-differences-in-size-and-mass",
+          "level": 3,
+          "text": "Avoid extreme differences in size and mass",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RealityKit’s physics simulations work best if the size and mass ratios don’t exceed",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "one order of magnitude.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The largest object in your scene should be no more than 10 times the size of the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "smallest object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The heaviest object in your scene should be no more than 10 times the mass of your",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "lightest object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, the physics simulation works best if the smallest dimension of each",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object is at least ",
+              "type": "text"
+            },
+            {
+              "code": "0.05",
+              "type": "codeVoice"
+            },
+            {
+              "text": " units in size and the largest dimension of each object",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is no more than ",
+              "type": "text"
+            },
+            {
+              "code": "10",
+              "type": "codeVoice"
+            },
+            {
+              "text": " units in size. If you need objects outside of this range, create",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "objects that are inside this range and then scale the physics origin at runtime.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Increase-density-instead-of-mass",
+          "level": 3,
+          "text": "Increase density instead of mass",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For best results, keep the mass of your scene’s objects at their calculated mass.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Entities with substantially increased mass result in a proportional increase in momentum,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which can make the physics simulation unstable. To simulate heavy, dense objects",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "like gold or lead, leave the mass at its calculated value and increase the entity’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "density property. The pre-defined physics materials available in Reality Composer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use density to simulate heavy materials.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Use the initializer with density instead of mass.",
+            "model.physicsBody = .init(shapes: [boxShape], density: 200)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsBodyComponent/init(shapes:density:material:mode:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "automatically computes mass based on volume and density, Water has a density of about",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "1000 kg/m³ and steel has a density of 7800 kg/m³. When setting the mass of an object,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "keep in mind that real-world objects aren’t always completely solid, and can be hollow.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Densities of less than 1000 kg/m³ work well in most scenarios.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ARView": {
+      "abstract": [
+        {
+          "text": "A view that enables you to display an AR experience with RealityKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARView"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARView",
+      "type": "topic",
+      "url": "/documentation/realitykit/arview"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ARView/physicsOrigin": {
+      "abstract": [
+        {
+          "text": "The entity that defines the origin of the scene’s physics simulation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "physicsOrigin"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView/physicsOrigin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "physicsOrigin",
+      "type": "topic",
+      "url": "/documentation/realitykit/arview/physicsorigin"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsBodyComponent/init(shapes:density:material:mode:)": {
+      "abstract": [
+        {
+          "text": "Creates a physics body component deriving mass properties from shape and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "density.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "shapes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation13ShapeResourceC",
+          "text": "ShapeResource"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "density"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "material"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23PhysicsMaterialResourceC",
+          "text": "PhysicsMaterialResource"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15PhysicsBodyModeO",
+          "text": "PhysicsBodyMode"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsBodyComponent/init(shapes:density:material:mode:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(shapes:density:material:mode:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicsbodycomponent/init(shapes:density:material:mode:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsMotionComponent": {
+      "abstract": [
+        {
+          "text": "A component that controls the motion of the body in physics simulations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhysicsMotionComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsMotionComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PhysicsMotionComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicsMotionComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicsmotioncomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsSimulationComponent": {
+      "abstract": [
+        {
+          "text": "A component that controls localized physics simulations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhysicsSimulationComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsSimulationComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PhysicsSimulationComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicsSimulationComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicssimulationcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/handling-different-sized-objects-in-physics-simulations": {
+      "abstract": [
+        {
+          "text": "Set up a scene hierarchy for accurate physics simulations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/handling-different-sized-objects-in-physics-simulations",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling different-sized objects in physics simulations",
+      "type": "topic",
+      "url": "/documentation/realitykit/handling-different-sized-objects-in-physics-simulations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/physics-simulations-and-motion": {
+      "abstract": [
+        {
+          "text": "Simulate physical interactions between entities or systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/physics-simulations-and-motion",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Simulations and motion",
+      "type": "topic",
+      "url": "/documentation/realitykit/physics-simulations-and-motion"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Simulation-setup",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/handling-different-sized-objects-in-physics-simulations",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsSimulationComponent"
+      ],
+      "title": "Simulation setup"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/designing-scene-hierarchies-for-efficient-physics-simulation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

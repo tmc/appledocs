@@ -1,0 +1,1391 @@
+{
+  "abstract": [
+    {
+      "text": "An object that provides a device or communicates its change in status.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)DDDeviceEvent",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "DDDeviceEvent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "DeviceDiscoveryExtension"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "DDDeviceEvent"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "DDDeviceEvent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "DDDeviceEvent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The extension creates and configures an instance of this class to represent a moment of interest in the device discovery life cycle. The event’s ",
+              "type": "text"
+            },
+            {
+              "code": "eventType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent/EventType-swift.enum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") describes a particular status.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, when the extension discovers a device of interest, it instantiates an instance of this class with the type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent/EventType-swift.enum/deviceFound",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var session: DDDiscoverySession?",
+            "...",
+            "var deviceEvent = DDDeviceEvent(eventType: .deviceFound, device: ddDevice)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, the extension provides the discovered device to the system using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDiscoverySession/report(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for eventual display in the route picker view (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVKit/AVRoutePickerView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "session?.report(deviceEvent)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension": {
+      "abstract": [
+        {
+          "text": "Stream media to a third-party device that a user selects in a system menu.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DeviceDiscoveryExtension",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent": {
+      "abstract": [
+        {
+          "text": "An object that provides a device or communicates its change in status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDDeviceEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDDeviceEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDDeviceEvent",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dddeviceevent"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent/EventType-swift.enum": {
+      "abstract": [
+        {
+          "text": "Identifiers for the types of events that occur in the device discovery life cycle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EventType"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent/EventType-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EventType"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDDeviceEvent.EventType",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dddeviceevent/eventtype-swift.enum"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent/EventType-swift.enum/deviceFound": {
+      "abstract": [
+        {
+          "text": "A status that indicates when the extension finds the device of interest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceFound"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent/EventType-swift.enum/deviceFound",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDEventTypeDeviceFound"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDDeviceEvent.EventType.deviceFound",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dddeviceevent/eventtype-swift.enum/devicefound"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent/device": {
+      "abstract": [
+        {
+          "text": "An object that describes a third-party media receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)DDDevice",
+          "text": "DDDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent/device",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "device"
+        }
+      ],
+      "role": "symbol",
+      "title": "device",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dddeviceevent/device"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent/eventType-swift.property": {
+      "abstract": [
+        {
+          "text": "A type for the event that describes the discovery status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "eventType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)DDDeviceEvent",
+          "text": "DDDeviceEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@DDEventType",
+          "text": "EventType"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent/eventType-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "eventType"
+        }
+      ],
+      "role": "symbol",
+      "title": "eventType",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dddeviceevent/eventtype-swift.property"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent/init(eventType:device:)": {
+      "abstract": [
+        {
+          "text": "Creates an event object that conveys status for a discovered device of interest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "eventType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)DDDeviceEvent",
+          "text": "DDDeviceEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@DDEventType",
+          "text": "EventType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)DDDevice",
+          "text": "DDDevice"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent/init(eventType:device:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithEventType:device:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(eventType:device:)",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dddeviceevent/init(eventtype:device:)"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDiscoverySession/report(_:)": {
+      "abstract": [
+        {
+          "text": "Reports an event to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "report"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)DDDeviceEvent",
+          "text": "DDDeviceEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDiscoverySession/report(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reportEvent:"
+        }
+      ],
+      "role": "symbol",
+      "title": "report(_:)",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dddiscoverysession/report(_:)"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDEventHandler": {
+      "abstract": [
+        {
+          "text": "A function that the extension invokes to signal an event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDEventHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDEventHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDEventHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDEventHandler",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/ddeventhandler"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDEventTypeToString(_:)": {
+      "abstract": [
+        {
+          "text": "Returns human-readable text for the specified event identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDEventTypeToString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)DDDeviceEvent",
+          "text": "DDDeviceEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@DDEventType",
+          "text": "EventType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDEventTypeToString(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDEventTypeToString"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDEventTypeToString(_:)",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/ddeventtypetostring(_:)"
+    },
+    "doc://com.apple.documentation/documentation/AVKit/AVRoutePickerView": {
+      "abstract": [
+        {
+          "text": "A view that presents a list of nearby media receivers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVRoutePickerView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVKit/AVRoutePickerView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVRoutePickerView",
+      "type": "topic",
+      "url": "/documentation/AVKit/AVRoutePickerView"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Life-cycle",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent/EventType-swift.enum",
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDEventTypeToString(_:)",
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDEventHandler"
+      ],
+      "title": "Life cycle"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-device-event",
+      "identifiers": [
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent/init(eventType:device:)"
+      ],
+      "title": "Creating a device event"
+    },
+    {
+      "anchor": "Configuring-a-device-event",
+      "identifiers": [
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent/eventType-swift.property",
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent/EventType-swift.enum",
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent/device"
+      ],
+      "title": "Configuring a device event"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "DDDeviceEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDeviceEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDeviceEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-device-event",
+              "identifiers": [
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent/init(eventType:device:)"
+              ],
+              "title": "Creating a device event"
+            },
+            {
+              "anchor": "Configuring-a-device-event",
+              "identifiers": [
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent/eventType-swift.property",
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent/EventType-swift.enum",
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent/device"
+              ],
+              "title": "Configuring a device event"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Life-cycle",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent/EventType-swift.enum",
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDEventTypeToString(_:)",
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDEventHandler"
+              ],
+              "title": "Life cycle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "DDDeviceEvent"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceEvent/title",
+          "value": "DDDeviceEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDeviceEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDeviceEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceEvent~1EventType-swift.enum/title",
+          "value": "DDEventType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceEvent~1EventType-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDEventType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceEvent~1EventType-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDEventType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceEvent~1EventType-swift.enum~1deviceFound/title",
+          "value": "DDEventTypeDeviceFound"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceEvent~1EventType-swift.enum~1deviceFound/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDEventTypeDeviceFound"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceEvent~1eventType-swift.property/title",
+          "value": "eventType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceEvent~1eventType-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "eventType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVKit~1AVRoutePickerView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVRoutePickerView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceEvent~1device/title",
+          "value": "device"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceEvent~1device/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "device"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDEventHandler/title",
+          "value": "DDEventHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDEventHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDEventHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDEventHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDEventHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDiscoverySession~1report(_:)/title",
+          "value": "reportEvent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDiscoverySession~1report(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "reportEvent:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDEventTypeToString(_:)/title",
+          "value": "DDEventTypeToString"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDEventTypeToString(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDEventTypeToString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceEvent~1init(eventType:device:)/title",
+          "value": "initWithEventType:device:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceEvent~1init(eventType:device:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithEventType:device:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicediscoveryextension/dddeviceevent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/devicediscoveryextension/dddeviceevent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

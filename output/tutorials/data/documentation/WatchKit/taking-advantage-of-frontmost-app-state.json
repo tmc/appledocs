@@ -1,0 +1,866 @@
+{
+  "abstract": [
+    {
+      "text": "Understand the frontmost app state, and the features it provides to your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchkit/documentation/WatchKit",
+        "doc://com.apple.watchkit/documentation/WatchKit/life-cycles"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchkit/documentation/WatchKit/taking-advantage-of-frontmost-app-state"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WatchKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Taking Advantage of Frontmost App State"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps running in watchOS quickly become inactive when the user stops interacting with the watch or lowers their wrist. On Apple Watch SE and Apple Watch Series 4 and earlier, the screen turns off when the app becomes inactive. On Apple Watch Series 5 and later, the system blurs the app’s user interface and displays the time over it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Transition-to-an-Inactive-State",
+          "level": 3,
+          "text": "Transition to an Inactive State",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Whether the screen is off or blurred, the app transitions to an inactive state. Its user interface is no longer shown, and it doesn’t receive actions from controls or gestures. However, the app is still in the foreground, and may respond to other events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app in this extended, inactive state is the frontmost app. The system can have at most one frontmost app at a time. When the user raises their wrist, the system automatically activates and displays the frontmost app. The frontmost app can perform the following tasks:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Play haptic feedback.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Receive notifications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Respond immediately to the completion of a background transfer from a task or Watch Connectivity session.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Receive up to four background app refresh tasks per hour—similar to an app with a complication on the active watch face.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Respond-to-a-Notification",
+          "level": 3,
+          "text": "Respond to a Notification",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, when the frontmost app receives a notification, the system calls your notification delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications/UNUserNotificationCenterDelegate/userNotificationCenter(_:willPresent:withCompletionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, rather than displaying the notification alert. Your app can then respond by playing a haptic feedback or custom sound, and updating the user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If the user explicitly closes the app by pressing the digital crown or covering the screen, the app doesn’t become the frontmost app and doesn’t remain in the inactive state, but transitions quickly to the background instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Transition-to-the-Background",
+          "level": 3,
+          "text": "Transition to the Background",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the frontmost app remains in the foreground for two minutes before transitioning to the background and then becoming suspended. If the user dismisses the app (for example, by pressing the crown or by covering the screen), the app transitions immediately to the background, and doesn’t become the frontmost app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users can configure how long apps remain as the frontmost app using Settings > General > Wake Screen. The Return to Clock setting sets the default duration for all apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3732051",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users can also set a custom duration for a specific app by scrolling down to the list of apps and selecting the app to customize.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3732047",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In watchOS 6 and earlier, apps could request additional frontmost app time by setting the extension’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtension/isFrontmostTimeoutExtended",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "; however, starting with watchOS 7, the user controls the duration of an app’s frontmost state.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Workout, location, background audio, and audio-recording apps appear to behave similarly to the frontmost app. However, these apps continue to run in the background throughout the entire workout, location, or audio session. If the user navigates to the watch face during a session, the system displays a glyph at the top of the watch face. If the user taps the glyph, the associated app resumes running in the foreground. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/HealthKit/HKWorkoutSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/HealthKit/HKWorkoutSession": {
+      "abstract": [
+        {
+          "text": "A session that tracks the user’s workout on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HealthKit/HKWorkoutSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HKWorkoutSession",
+      "type": "topic",
+      "url": "/documentation/HealthKit/HKWorkoutSession"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/UNUserNotificationCenterDelegate/userNotificationCenter(_:willPresent:withCompletionHandler:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate how to handle a notification that arrived while the app was running in the foreground.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userNotificationCenter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "center"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UNUserNotificationCenter",
+          "text": "UNUserNotificationCenter"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "willPresent"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "notification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UNNotification",
+          "text": "UNNotification"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UNNotificationPresentationOptions",
+          "text": "UNNotificationPresentationOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/UNUserNotificationCenterDelegate/userNotificationCenter(_:willPresent:withCompletionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "userNotificationCenter(_:willPresent:withCompletionHandler:)",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/UNUserNotificationCenterDelegate/userNotificationCenter(_:willPresent:withCompletionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that use features the app delegate monitors or controls, such as background tasks and extended runtime sessions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WatchKit",
+      "type": "topic",
+      "url": "/documentation/watchkit"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtension/isFrontmostTimeoutExtended": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the app extends its time as the frontmost app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isFrontmostTimeoutExtended"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtension/isFrontmostTimeoutExtended",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "frontmostTimeoutExtended"
+        }
+      ],
+      "role": "symbol",
+      "title": "isFrontmostTimeoutExtended",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextension/isfrontmosttimeoutextended"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/handling-common-state-transitions": {
+      "abstract": [
+        {
+          "text": "Detect and respond to common state transitions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/handling-common-state-transitions",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Common State Transitions",
+      "type": "topic",
+      "url": "/documentation/watchkit/handling-common-state-transitions"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/handling-user-activity": {
+      "abstract": [
+        {
+          "text": "Detect and respond to user activity information from Handoff or a complication.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/handling-user-activity",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling User Activity",
+      "type": "topic",
+      "url": "/documentation/watchkit/handling-user-activity"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/life-cycles": {
+      "abstract": [
+        {
+          "text": "Receive and respond to life-cycle notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/life-cycles",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Life cycles",
+      "type": "topic",
+      "url": "/documentation/watchkit/life-cycles"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/working-with-the-watchos-app-life-cycle": {
+      "abstract": [
+        {
+          "text": "Learn how the watchOS app life cycle operates and responds to life cycle notification methods.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/working-with-the-watchos-app-life-cycle",
+      "kind": "article",
+      "role": "article",
+      "title": "Working with the watchOS app life cycle",
+      "type": "topic",
+      "url": "/documentation/watchkit/working-with-the-watchos-app-life-cycle"
+    },
+    "media-3732047": {
+      "alt": "A screenshot of the settings that customize the amount of time the Now Playing app is allowed to remain the frontmost app.",
+      "identifier": "media-3732047",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/47cb5ca2e9a09898fed9416aa14e27f7/media-3732047@2x.png"
+        }
+      ]
+    },
+    "media-3732051": {
+      "alt": "A screenshot of the settings that determine how long a watchOS app is allowed to remain the frontmost app.",
+      "identifier": "media-3732051",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8b115a024eafb02968695fbebb32649e/media-3732051@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Responding-to-life-cycle-events",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/handling-common-state-transitions",
+        "doc://com.apple.watchkit/documentation/WatchKit/working-with-the-watchos-app-life-cycle",
+        "doc://com.apple.watchkit/documentation/WatchKit/handling-user-activity"
+      ],
+      "title": "Responding to life cycle events"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Responding-to-life-cycle-events",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/handling-common-state-transitions",
+                "doc://com.apple.watchkit/documentation/WatchKit/working-with-the-watchos-app-life-cycle",
+                "doc://com.apple.watchkit/documentation/WatchKit/handling-user-activity"
+              ],
+              "title": "Responding to life cycle events"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1HealthKit~1HKWorkoutSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UserNotifications~1UNUserNotificationCenterDelegate~1userNotificationCenter(_:willPresent:withCompletionHandler:)/title",
+          "value": "userNotificationCenter:willPresentNotification:withCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UserNotifications~1UNUserNotificationCenterDelegate~1userNotificationCenter(_:willPresent:withCompletionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "userNotificationCenter:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UNUserNotificationCenter",
+              "text": "UNUserNotificationCenter"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "center"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "willPresentNotification:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UNNotification",
+              "text": "UNNotification"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "notification"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "withCompletionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@UNNotificationPresentationOptions",
+              "text": "UNNotificationPresentationOptions"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "options"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtension~1isFrontmostTimeoutExtended/title",
+          "value": "frontmostTimeoutExtended"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtension~1isFrontmostTimeoutExtended/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "frontmostTimeoutExtended"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/watchkit/taking-advantage-of-frontmost-app-state"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/watchkit/taking-advantage-of-frontmost-app-state"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

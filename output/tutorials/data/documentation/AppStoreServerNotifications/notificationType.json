@@ -1,0 +1,3595 @@
+{
+  "abstract": [
+    {
+      "text": "The type that describes the in-app purchase or external purchase event for which the App Store sends the version 2 notification.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "App Store Server Notifications",
+      "versions": [
+        "2.0",
+        "2.13"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/notificationType"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:store_s2s:notificationType",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "type "
+      },
+      {
+        "kind": "identifier",
+        "text": "notificationType"
+      }
+    ],
+    "modules": [
+      {
+        "name": "App Store Server Notifications"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "notificationType"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "App Store Server Notifications"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type",
+    "symbolKind": "typealias",
+    "title": "notificationType"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: App Store Server Notifications"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "string "
+            },
+            {
+              "kind": "identifier",
+              "text": "notificationType"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "possibleValues",
+      "title": "Possible Values",
+      "values": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A notification type that indicates that the customer initiated a refund request for a consumable in-app purchase or auto-renewable subscription, and the App Store is requesting that you provide consumption data. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/PUT-v1-transactions-consumption-_transactionId_",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "CONSUMPTION_REQUEST"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A notification type that, along with its ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/subtype",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", indicates that the customer made a change to their subscription plan. If the ",
+                  "type": "text"
+                },
+                {
+                  "code": "subtype",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "UPGRADE",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the user upgraded their subscription. The upgrade goes into effect immediately, starting a new billing period, and the user receives a prorated refund for the unused portion of the previous period. If the ",
+                  "type": "text"
+                },
+                {
+                  "code": "subtype",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "DOWNGRADE",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the customer downgraded their subscription. Downgrades take effect at the next renewal date and don’t affect the currently active plan.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If the ",
+                  "type": "text"
+                },
+                {
+                  "code": "subtype",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is empty, the user changed their renewal preference back to the current subscription, effectively canceling a downgrade.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "For more information on subscription levels, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/app-store/subscriptions/#ranking",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "DID_CHANGE_RENEWAL_PREF"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A notification type that, along with its ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/subtype",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", indicates that the customer made a change to the subscription renewal status. If the ",
+                  "type": "text"
+                },
+                {
+                  "code": "subtype",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "AUTO_RENEW_ENABLED",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the customer reenabled subscription auto-renewal. If the ",
+                  "type": "text"
+                },
+                {
+                  "code": "subtype",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "AUTO_RENEW_DISABLED",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the customer disabled subscription auto-renewal, or the App Store disabled subscription auto-renewal after the customer requested a refund.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "DID_CHANGE_RENEWAL_STATUS"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A notification type that, along with its ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/subtype",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", indicates that the subscription failed to renew due to a billing issue. The subscription enters the billing retry period. If the ",
+                  "type": "text"
+                },
+                {
+                  "code": "subtype",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "GRACE_PERIOD",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", continue to provide service through the grace period. If the ",
+                  "type": "text"
+                },
+                {
+                  "code": "subtype",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is empty, the subscription isn’t in a grace period and you can stop providing the subscription service.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Inform the customer that there may be an issue with their billing information. The App Store continues to retry billing for 60 days, or until the customer resolves their billing issue or cancels their subscription, whichever comes first. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/StoreKit/reducing-involuntary-subscriber-churn",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "DID_FAIL_TO_RENEW"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A notification type that, along with its ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/subtype",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", indicates that the subscription successfully renewed. If the ",
+                  "type": "text"
+                },
+                {
+                  "code": "subtype",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "BILLING_RECOVERY",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the expired subscription that previously failed to renew has successfully renewed. If the ",
+                  "type": "text"
+                },
+                {
+                  "code": "subtype",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is empty, the active subscription has successfully auto-renewed for a new transaction period. Provide the customer with access to the subscription’s content or service.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "DID_RENEW"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A notification type that, along with its ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/subtype",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", indicates that a subscription expired. If the ",
+                  "type": "text"
+                },
+                {
+                  "code": "subtype",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "VOLUNTARY",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the subscription expired after the user disabled subscription renewal. If the ",
+                  "type": "text"
+                },
+                {
+                  "code": "subtype",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "BILLING_RETRY",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the subscription expired because the billing retry period ended without a successful billing transaction. If the ",
+                  "type": "text"
+                },
+                {
+                  "code": "subtype",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "PRICE_INCREASE",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the subscription expired because the customer didn’t consent to a price increase that requires customer consent. If the ",
+                  "type": "text"
+                },
+                {
+                  "code": "subtype",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "PRODUCT_NOT_FOR_SALE",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the subscription expired because the product wasn’t available for purchase at the time the subscription attempted to renew.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "A notification without a subtype indicates that the subscription expired for some other reason.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "EXPIRED"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A notification type that, along with its subtype UNREPORTED, indicates that Apple created an external purchase token for your app, but didn’t receive a report. For more information about reporting the token, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/externalPurchaseToken",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "This notification applies only to apps that use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/StoreKit/external-purchase",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to provide alternative payment options.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "EXTERNAL_PURCHASE_TOKEN"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A notification type that indicates that the billing grace period has ended without renewing the subscription, so you can turn off access to the service or content. Inform the customer that there may be an issue with their billing information. The App Store continues to retry billing for 60 days, or until the customer resolves their billing issue or cancels their subscription, whichever comes first. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/StoreKit/reducing-involuntary-subscriber-churn",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "GRACE_PERIOD_EXPIRED"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A notification type that, along with its ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/subtype",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", indicates that a customer with an active subscription redeemed a subscription offer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If the ",
+                  "type": "text"
+                },
+                {
+                  "code": "subtype",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is  ",
+                  "type": "text"
+                },
+                {
+                  "code": "UPGRADE",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the customer redeemed an offer to upgrade their active subscription, which goes into effect immediately. If the subtype is ",
+                  "type": "text"
+                },
+                {
+                  "code": "DOWNGRADE",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the customer redeemed an offer to downgrade their active subscription, which goes into effect at the next renewal date. If the customer redeemed an offer for their active subscription, you receive an ",
+                  "type": "text"
+                },
+                {
+                  "code": "OFFER_REDEEMED",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " notification type without a ",
+                  "type": "text"
+                },
+                {
+                  "code": "subtype",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "For more information about subscription offer codes, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/StoreKit/supporting-subscription-offer-codes-in-your-app",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". For more information about promotional offers, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/StoreKit/implementing-promotional-offers-in-your-app",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "OFFER_REDEEMED"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "ONE_TIME_CHARGE",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " notification is currently available only in the sandbox environment.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "A notification type that indicates the customer purchased a consumable, non-consumable, or non-renewing subscription. The App Store also sends this notification when the customer receives access to a non-consumable product through Family Sharing.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "For notifications about auto-renewable subscription purchases, see the ",
+                  "type": "text"
+                },
+                {
+                  "code": "SUBSCRIBED",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " notification type.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "ONE_TIME_CHARGE"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A notification type that, along with its ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/subtype",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", indicates that the system has informed the customer of an auto-renewable subscription price increase.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If the price increase requires customer consent, the ",
+                  "type": "text"
+                },
+                {
+                  "code": "subtype",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "PENDING",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if the customer hasn’t responded to the price increase, or ",
+                  "type": "text"
+                },
+                {
+                  "code": "ACCEPTED",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if the customer has consented to the price increase.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If the price increase doesn’t require customer consent, the ",
+                  "type": "text"
+                },
+                {
+                  "code": "subtype",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "ACCEPTED",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "For information about how the system calls your app before it displays the price consent sheet for subscription price increases that require customer consent, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKPaymentQueueDelegate/paymentQueueShouldShowPriceConsent(_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". For information about managing subscription prices, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/StoreKit/managing-price-increases-for-auto-renewable-subscriptions",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/app-store/subscriptions/#managing-prices-for-existing-subscribers",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "PRICE_INCREASE"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A notification type that indicates that the App Store successfully refunded a transaction for a consumable in-app purchase, a non-consumable in-app purchase, an auto-renewable subscription, or a non-renewing subscription.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/revocationDate",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " contains the timestamp of the refunded transaction. The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/originalTransactionId",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/productId",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " identify the original transaction and product. The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/revocationReason",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " contains the reason.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "To request a list of all refunded transactions for a customer, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/GET-v2-refund-lookup-_transactionId_",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "REFUND"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A notification type that indicates the App Store declined a refund request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "REFUND_DECLINED"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A notification type that indicates the App Store reversed a previously granted refund due to a dispute that the customer raised. If your app revoked content or services as a result of the related refund, it needs to reinstate them.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "This notification type can apply to any in-app purchase type: consumable, non-consumable, non-renewing subscription, and auto-renewable subscription. For auto-renewable subscriptions, the renewal date remains unchanged when the App Store reverses a refund.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "REFUND_REVERSED"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A notification type that indicates the App Store extended the subscription renewal date for a specific subscription. You request subscription-renewal-date extensions by calling Extend a Subscription Renewal Date or Extend Subscription Renewal Dates for All Active Subscribers in the App Store Server API.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "RENEWAL_EXTENDED"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A notification type that, along with its subtype, indicates that the App Store is attempting to extend the subscription renewal date that you request by calling Extend Subscription Renewal Dates for All Active Subscribers.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If the subtype is ",
+                  "type": "text"
+                },
+                {
+                  "code": "SUMMARY",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the App Store completed extending the renewal date for all eligible subscribers. See the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/summary",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/responseBodyV2DecodedPayload",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for details. If the subtype is ",
+                  "type": "text"
+                },
+                {
+                  "code": "FAILURE",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the renewal date extension didn’t succeed for a specific subscription. See the data in the responseBodyV2DecodedPayload for details.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "RENEWAL_EXTENSION"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A notification type that indicates that an in-app purchase the customer was entitled to through Family Sharing is no longer available through sharing. The App Store sends this notification when a purchaser disables Family Sharing for their purchase, the purchaser (or family member) leaves the family group, or the purchaser receives a refund. Your app also receives a paymentQueue(_:didRevokeEntitlementsForProductIdentifiers:) call. Family Sharing applies to non-consumable in-app purchases and auto-renewable subscriptions. For more information about Family Sharing, see Supporting Family Sharing in your app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "REVOKE"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A notification type that, along with its subtype, indicates that the customer subscribed to an auto-renewable subscription. If the subtype is ",
+                  "type": "text"
+                },
+                {
+                  "code": "INITIAL_BUY",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the customer either purchased or received access through Family Sharing to the subscription for the first time. If the subtype is ",
+                  "type": "text"
+                },
+                {
+                  "code": "RESUBSCRIBE",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the user resubscribed or received access through Family Sharing to the same subscription or to another subscription within the same subscription group.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "For notifications about other product type purchases, see the ",
+                  "type": "text"
+                },
+                {
+                  "code": "ONE_TIME_CHARGE",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " notification type.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "SUBSCRIBED"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A notification type that the App Store server sends when you request it by calling the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/POST-v1-notifications-test",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " endpoint. Call that endpoint to test whether your server is receiving notifications. You receive this notification only at your request. For troubleshooting information, see the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/GET-v1-notifications-test-_testNotificationToken_",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " endpoint.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "TEST"
+        },
+        {
+          "content": [],
+          "name": "PRICE_CHANGE"
+        }
+      ]
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/app-store-server-notifications-changelog",
+        "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "notificationType appears",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the notification payload, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/responseBodyV2DecodedPayload",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". It describes the event that leads to the notification. Some notifications also have a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/subtype",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that further describes the event. See the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/responseBodyV2DecodedPayload",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information about the notification in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/summary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/externalPurchaseToken",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-use-cases-for-in-app-purchase-life-cycle-events",
+          "level": 3,
+          "text": "Handle use cases for in-app purchase life-cycle events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When events occur that affect the customer’s in-app purchase and subscription life cycle, the App Store server sends you notifications. The following tables list the notifications by life-cycle events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Events that enable service for a consumable, non-consumable, or non-renewing subscription in-app purchase result in the following notifications, currently available in the sandbox environment only:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Event",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notification type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notification subtype",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Customer purchases a consumable, non-consumable, or non-renewing subscription.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ONE_TIME_CHARGE",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Customer receives access to a non-consumable in-app purchase through Family Sharing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ONE_TIME_CHARGE",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Events that enable service for subscriptions, including initial subscriptions, resubscribing, and successful auto-renewals, result in the following notifications:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Event",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notification type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notification subtype",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Customer subscribes for the first time to any subscription within a subscription group.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SUBSCRIBED",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "INITIAL_BUY",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Customer resubscribes to any subscription from the same subscription group as their expired subscription.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SUBSCRIBED",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "RESUBSCRIBE",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The subscription successfully auto-renews.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "DID_RENEW",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A family member gains access to the subscription through Family Sharing after the purchaser subscribes for the first time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SUBSCRIBED",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "INITIAL_BUY",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A family member gains access to the subscription through Family Sharing after the purchaser resubscribes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SUBSCRIBED",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "RESUBSCRIBE",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Customers changing their subscription options, including upgrading, downgrading, or canceling, result in the following notifications:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Event",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notification type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notification subtype",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Customer downgrades a subscription within the same subscription group.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "DID_CHANGE_RENEWAL_PREF",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "DOWNGRADE",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Customer reverts to the previous subscription, effectively canceling their downgrade.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "DID_CHANGE_RENEWAL_PREF",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Customer upgrades a subscription within the same subscription group.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "DID_CHANGE_RENEWAL_PREF",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "UPGRADE",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Customer cancels the subscription from the App Store Subscriptions settings page.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "DID_CHANGE_RENEWAL_STATUS",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "AUTO_RENEW_DISABLED",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Customer subscribes again after canceling a subscription, which reenables auto-renew.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "DID_CHANGE_RENEWAL_STATUS",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "AUTO_RENEW_ENABLED",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The system disabled auto-renew because the customer initiated a refund through your app using the refund request API.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "DID_CHANGE_RENEWAL_STATUS",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "AUTO_RENEW_DISABLED",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Customers redeeming subscription offers, such as promotional offers, offer codes, or win-back offers, result in the following notifications:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Event",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notification type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notification subtype",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Customer redeems a promotional offer or offer code for an active subscription.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "OFFER_REDEEMED",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Customer redeems an offer code to subscribe for the first time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SUBSCRIBED",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "INITIAL_BUY",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Customer redeems a promotional offer, offer code, or win-back offer after their subscription expired.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SUBSCRIBED",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "RESUBSCRIBE",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Customer redeems a promotional offer or offer code to upgrade their subscription.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "OFFER_REDEEMED",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "UPGRADE",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Customer redeems a promotional offer and downgrades their subscription.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "OFFER_REDEEMED",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "DOWNGRADE",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Billing events, including billing retries, entering and exiting the billing grace period, and expiring subscriptions, result in the following notifications:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Event",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notification type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notification subtype",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The subscription expires because the customer chose to cancel it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "EXPIRED",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "VOLUNTARY",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The subscription expires because the developer removed the subscription from sale and the renewal fails.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "EXPIRED",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "PRODUCT_NOT_FOR_SALE",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The subscription expires because the billing retry period ends without recovering the subscription.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "EXPIRED",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "BILLING_RETRY",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The subscription fails to renew and enters the billing retry period.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "DID_FAIL_TO_RENEW",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The subscription fails to renew and enters the billing retry period with Billing Grace Period enabled.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "DID_FAIL_TO_RENEW",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "GRACE_PERIOD",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The billing retry successfully recovers the subscription.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "DID_RENEW",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "BILLING_RECOVERY",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The subscription exits the billing grace period (and continues in billing retry).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "GRACE_PERIOD_EXPIRED",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Events or notifications that occur when you increase the price of an auto-renewable subscription include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Event",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notification type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notification subtype",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The system informs the customer of the auto-renewable subscription price increase that requires customer consent, and the customer doesn’t respond.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "PRICE_INCREASE",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "PENDING",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The auto-renewable subscription expires because the customer didn’t consent to the price increase that requires consent.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "EXPIRED",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "PRICE_INCREASE",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Customer consents to an auto-renewable subscription price increase that requires consent.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "PRICE_INCREASE",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ACCEPTED",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The system notifies the customer of the auto-renewable subscription price increase that doesn’t require customer consent.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "PRICE_INCREASE",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ACCEPTED",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Customer canceled the subscription after receiving a price increase notice or a request to consent to a price increase.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "DID_CHANGE_RENEWAL_STATUS",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Customers requesting refunds or canceling Family Sharing result in the following notifications:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Event",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notification type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notification subtype",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apple refunds the transaction for a consumable or non-consumable in-app purchase, a non-renewing subscription, or an auto-renewable subscription.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "REFUND",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apple reverses a previously granted refund due to a dispute that the customer raised.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "REFUND_REVERSED",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apple declines a refund that the customer initiated in the app, using the request refund API.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "REFUND_DECLINED",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apple requests consumption information for a refund request that a customer initiates.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "CONSUMPTION_REQUEST",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A family member loses access to the subscription through Family Sharing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "REVOKE",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Developers requesting subscription-renewal-date extensions result in the following notifications:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Event",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notification type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notification subtype",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The App Store successfully extends a subscription renewal date for a specific subscription.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "RENEWAL_EXTENDED",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The App Store successfully completes extending the subscription renewal date for all eligible subscribers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "RENEWAL_EXTENSION",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SUMMARY",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The App Store failed to extend the subscription renewal date for a specific subscriber.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "RENEWAL_EXTENSION",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "FAILURE",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications": {
+      "abstract": [
+        {
+          "text": "Monitor In-App Purchase events in real time and learn of unreported external purchase tokens, with server notifications from the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2": {
+      "abstract": [
+        {
+          "text": "Specify your secure server’s URL in App Store Connect to receive version 2 notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "App Store Server Notifications V2"
+        }
+      ],
+      "role": "symbol",
+      "title": "App Store Server Notifications V2",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/app-store-server-notifications-v2"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/app-store-server-notifications-changelog": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the App Store Server Notifications service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/app-store-server-notifications-changelog",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Server Notifications changelog",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/app-store-server-notifications-changelog"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/data": {
+      "abstract": [
+        {
+          "text": "The payload data that contains app metadata and the signed renewal and transaction information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/data",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "data"
+        }
+      ],
+      "role": "symbol",
+      "title": "data",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/data"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications": {
+      "abstract": [
+        {
+          "text": "Configure your server and provide an HTTPS URL to receive notifications about in-app purchase events and unreported external purchase tokens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/enabling-app-store-server-notifications"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/externalPurchaseToken": {
+      "abstract": [
+        {
+          "text": "The payload data that contains an external purchase token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "externalPurchaseToken"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/externalPurchaseToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "externalPurchaseToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "externalPurchaseToken",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/externalpurchasetoken"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/notificationType": {
+      "abstract": [
+        {
+          "text": "The type that describes the in-app purchase or external purchase event for which the App Store sends the version 2 notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "notificationType"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/notificationType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "notificationType"
+        }
+      ],
+      "role": "symbol",
+      "title": "notificationType",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/notificationtype"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/originalTransactionId": {
+      "abstract": [
+        {
+          "text": "The original transaction identifier of a purchase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "originalTransactionId"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/originalTransactionId",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "originalTransactionId"
+        }
+      ],
+      "role": "symbol",
+      "title": "originalTransactionId",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/originaltransactionid"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/productId": {
+      "abstract": [
+        {
+          "text": "The product identifier of the In-App Purchase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "productId"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/productId",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "productId"
+        }
+      ],
+      "role": "symbol",
+      "title": "productId",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/productid"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/responseBodyV2": {
+      "abstract": [
+        {
+          "text": "The response body the App Store sends in a version 2 server notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "responseBodyV2"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/responseBodyV2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "responseBodyV2"
+        }
+      ],
+      "role": "symbol",
+      "title": "responseBodyV2",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/responsebodyv2"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/responseBodyV2DecodedPayload": {
+      "abstract": [
+        {
+          "text": "A decoded payload that contains the version 2 notification data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "responseBodyV2DecodedPayload"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/responseBodyV2DecodedPayload",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "responseBodyV2DecodedPayload"
+        }
+      ],
+      "role": "symbol",
+      "title": "responseBodyV2DecodedPayload",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/responsebodyv2decodedpayload"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/revocationDate": {
+      "abstract": [
+        {
+          "text": "The UNIX time, in milliseconds, that the App Store refunded the transaction or revoked it from Family Sharing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "revocationDate"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/revocationDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "revocationDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "revocationDate",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/revocationdate"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/revocationReason": {
+      "abstract": [
+        {
+          "text": "The reason for a refunded transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "revocationReason"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/revocationReason",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "revocationReason"
+        }
+      ],
+      "role": "symbol",
+      "title": "revocationReason",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/revocationreason"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/subtype": {
+      "abstract": [
+        {
+          "text": "A string that provides details about select notification types in version 2.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "subtype"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/subtype",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "subtype"
+        }
+      ],
+      "role": "symbol",
+      "title": "subtype",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/subtype"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/summary": {
+      "abstract": [
+        {
+          "text": "The payload data for a subscription-renewal-date extension notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "summary"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/summary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "summary"
+        }
+      ],
+      "role": "symbol",
+      "title": "summary",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/summary"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerAPI": {
+      "abstract": [
+        {
+          "text": "Manage your customers’ App Store transactions from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server API",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerAPI"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerAPI/GET-v1-notifications-test-_testNotificationToken_": {
+      "abstract": [
+        {
+          "text": "Check the status of the test App Store server notification sent to your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/GET-v1-notifications-test-_testNotificationToken_",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Get Test Notification Status",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerAPI/GET-v1-notifications-test-_testNotificationToken_"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerAPI/GET-v2-refund-lookup-_transactionId_": {
+      "abstract": [
+        {
+          "text": "Get a paginated list of all of a customer’s refunded in-app purchases for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/GET-v2-refund-lookup-_transactionId_",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Get Refund History",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerAPI/GET-v2-refund-lookup-_transactionId_"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerAPI/POST-v1-notifications-test": {
+      "abstract": [
+        {
+          "text": "Ask App Store Server Notifications to send a test notification to your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/POST-v1-notifications-test",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Request a Test Notification",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerAPI/POST-v1-notifications-test"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerAPI/PUT-v1-transactions-consumption-_transactionId_": {
+      "abstract": [
+        {
+          "text": "Send consumption information about a consumable in-app purchase or auto-renewable subscription to the App Store after your server receives a consumption request notification.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/PUT-v1-transactions-consumption-_transactionId_",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Send Consumption Information",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerAPI/PUT-v1-transactions-consumption-_transactionId_"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/SKPaymentQueueDelegate/paymentQueueShouldShowPriceConsent(_:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate whether to immediately display a price consent sheet.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentQueueShouldShowPriceConsent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "paymentQueue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKPaymentQueue",
+          "text": "SKPaymentQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKPaymentQueueDelegate/paymentQueueShouldShowPriceConsent(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "paymentQueueShouldShowPriceConsent(_:)",
+      "type": "topic",
+      "url": "/documentation/StoreKit/SKPaymentQueueDelegate/paymentQueueShouldShowPriceConsent(_:)"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/external-purchase": {
+      "abstract": [
+        {
+          "text": "Enable qualifying apps to offer external purchases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/external-purchase",
+      "kind": "article",
+      "role": "article",
+      "title": "External Purchase",
+      "type": "topic",
+      "url": "/documentation/StoreKit/external-purchase"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/implementing-promotional-offers-in-your-app": {
+      "abstract": [
+        {
+          "text": "Offer discounted pricing for auto-renewable subscription products to eligible subscribers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/implementing-promotional-offers-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing promotional offers in your app",
+      "type": "topic",
+      "url": "/documentation/StoreKit/implementing-promotional-offers-in-your-app"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/managing-price-increases-for-auto-renewable-subscriptions": {
+      "abstract": [
+        {
+          "text": "Identify the price increase status for auto-renewable subscriptions in your app and on your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/managing-price-increases-for-auto-renewable-subscriptions",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Price Increases for Auto-Renewable Subscriptions",
+      "type": "topic",
+      "url": "/documentation/StoreKit/managing-price-increases-for-auto-renewable-subscriptions"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/reducing-involuntary-subscriber-churn": {
+      "abstract": [
+        {
+          "text": "Prevent unintentional loss of subscribers due to billing issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/reducing-involuntary-subscriber-churn",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing Involuntary Subscriber Churn",
+      "type": "topic",
+      "url": "/documentation/StoreKit/reducing-involuntary-subscriber-churn"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/supporting-subscription-offer-codes-in-your-app": {
+      "abstract": [
+        {
+          "text": "Provide subscription service for customers who redeem offer codes through the App Store or within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/supporting-subscription-offer-codes-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting subscription offer codes in your app",
+      "type": "topic",
+      "url": "/documentation/StoreKit/supporting-subscription-offer-codes-in-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/app-store/subscriptions/#managing-prices-for-existing-subscribers": {
+      "identifier": "https://developer.apple.com/app-store/subscriptions/#managing-prices-for-existing-subscribers",
+      "title": "Managing Prices",
+      "titleInlineContent": [
+        {
+          "text": "Managing Prices",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/subscriptions/#managing-prices-for-existing-subscribers"
+    },
+    "https://developer.apple.com/app-store/subscriptions/#ranking": {
+      "identifier": "https://developer.apple.com/app-store/subscriptions/#ranking",
+      "title": "Ranking subscriptions within the group",
+      "titleInlineContent": [
+        {
+          "text": "Ranking subscriptions within the group",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/subscriptions/#ranking"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Server-notifications-version-2",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+        "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/responseBodyV2",
+        "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/responseBodyV2DecodedPayload",
+        "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/subtype"
+      ],
+      "title": "Server notifications version 2"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1StoreKit~1SKPaymentQueueDelegate~1paymentQueueShouldShowPriceConsent(_:)/title",
+          "value": "paymentQueueShouldShowPriceConsent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1StoreKit~1SKPaymentQueueDelegate~1paymentQueueShouldShowPriceConsent(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentQueueShouldShowPriceConsent:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)SKPaymentQueue",
+              "text": "SKPaymentQueue"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "paymentQueue"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreservernotifications/notificationtype"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

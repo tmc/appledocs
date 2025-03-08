@@ -1,0 +1,563 @@
+{
+  "abstract": [
+    {
+      "text": "A Boolean value that indicates whether the element is an accessibility element that an assistive app can access.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/uikit",
+        "doc://com.apple.documentation/documentation/uikit/accessibility-for-uikit",
+        "doc://com.apple.documentation/documentation/uikit/uiaccessibility-protocol"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/accessibility"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/objectivec",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject",
+        "doc://com.apple.documentation/documentation/uikit/uiaccessibility-protocol"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject",
+        "doc://com.apple.documentation/documentation/uikit/uiaccessibility-protocol"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/objectivec/nsobject/1615141-isaccessibilityelement"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1615141,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSObject(py)isAccessibilityElement",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "var "
+      },
+      {
+        "kind": "identifier",
+        "text": "isAccessibilityElement"
+      },
+      {
+        "kind": "text",
+        "text": ": Bool"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "parent": {
+      "title": "NSObject"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "isAccessibilityElement"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "isAccessibilityElement"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Bool",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sb",
+              "text": "Bool"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default value for this property is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " unless the element is a standard UIKit control, in which case, the value is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Assistive apps can get information only about objects that accessibility elements represent. Therefore, if you implement a custom control or view that you want to be accessible to users with disabilities, set this property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ". The only exception to this practice is a view that merely serves as a container for other items that you want to be accessible. Implement the ",
+              "type": "text"
+            },
+            {
+              "code": "UIAccessibilityContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol and set this property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Bool": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Bool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/swift/bool"
+    },
+    "doc://com.apple.Swift/documentation/Swift/MainActor": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/MainActor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/swift/mainactor"
+    },
+    "doc://com.apple.documentation/documentation/accessibility": {
+      "identifier": "doc://com.apple.documentation/documentation/accessibility",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accessibility",
+      "type": "topic",
+      "url": "/documentation/accessibility"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/objectivec": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Objective-C Runtime",
+      "type": "topic",
+      "url": "/documentation/objectivec"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1615093-accessibilityhint": {
+      "abstract": [
+        {
+          "text": "A localized string that contains a brief description of the result of performing an action on the accessibility element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityHint"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1615093-accessibilityhint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityHint",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1615093-accessibilityhint"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1615117-accessibilityvalue": {
+      "abstract": [
+        {
+          "text": "A localized string that contains the value of the accessibility element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityValue"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1615117-accessibilityvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityValue",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1615117-accessibilityvalue"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1615141-isaccessibilityelement": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the element is an accessibility element that an assistive app can access.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAccessibilityElement"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1615141-isaccessibilityelement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isAccessibilityElement",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1615141-isaccessibilityelement"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1615181-accessibilitylabel": {
+      "abstract": [
+        {
+          "text": "A succinct label in a localized string that identifies the accessibility element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityLabel"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1615181-accessibilitylabel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityLabel",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1615181-accessibilitylabel"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1615202-accessibilitytraits": {
+      "abstract": [
+        {
+          "text": "The combination of accessibility traits that best characterizes the accessibility element. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityTraits"
+        },
+        {
+          "kind": "text",
+          "text": ": UIAccessibilityTraits"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1615202-accessibilitytraits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityTraits",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1615202-accessibilitytraits"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/uikit": {
+      "identifier": "doc://com.apple.documentation/documentation/uikit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.documentation/documentation/uikit/accessibility-for-uikit": {
+      "identifier": "doc://com.apple.documentation/documentation/uikit/accessibility-for-uikit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessibility for UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit/accessibility-for-uikit"
+    },
+    "doc://com.apple.documentation/documentation/uikit/uiaccessibility-protocol": {
+      "identifier": "doc://com.apple.documentation/documentation/uikit/uiaccessibility-protocol",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "UIAccessibility",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility-protocol"
+    },
+    "doc://com.apple.documentation/documentation/uikit/uiaccessibilitytraits": {
+      "abstract": [
+        {
+          "text": "Constants that describe how an accessibility element behaves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityTraits"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/uikit/uiaccessibilitytraits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIAccessibilityTraits",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibilitytraits"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/uikit/uiaccessibilitytraits",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1615181-accessibilitylabel",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1615117-accessibilityvalue",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1615093-accessibilityhint",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1615202-accessibilitytraits"
+      ],
+      "title": "Supporting basic accessibility"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/objectivec/nsobject/1615141-isaccessibilityelement"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/objectivec/nsobject/1615141-isaccessibilityelement"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

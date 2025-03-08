@@ -1,0 +1,730 @@
+{
+  "abstract": [
+    {
+      "text": "Enables use of bounding logic in shapes (may inhibit aliasing optimizations)",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/BNNSGraphCompileOptionsSetShapeBounding(_:_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@BNNSGraphCompileOptionsSetShapeBounding",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "BNNSGraphCompileOptionsSetShapeBounding"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@SA@bnns_graph_compile_options_t",
+        "text": "bnns_graph_compile_options_t"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sb",
+        "text": "Bool"
+      },
+      {
+        "kind": "text",
+        "text": ")"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "BNNSGraphCompileOptionsSetShapeBounding"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": true,
+        "deprecated": false,
+        "introducedAt": "18.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": true,
+        "deprecated": false,
+        "introducedAt": "18.4",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": true,
+        "deprecated": false,
+        "introducedAt": "18.4",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": true,
+        "deprecated": false,
+        "introducedAt": "15.4",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": true,
+        "deprecated": false,
+        "introducedAt": "18.4",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": true,
+        "deprecated": false,
+        "introducedAt": "2.4",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": true,
+        "deprecated": false,
+        "introducedAt": "11.4",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "BNNSGraphCompileOptionsSetShapeBounding(_:_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "BNNSGraphCompileOptionsSetShapeBounding"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "options"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/bnns_graph_compile_options_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@bnns_graph_compile_options_t",
+              "text": "bnns_graph_compile_options_t"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "enabled"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sb",
+              "text": "Bool"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some operations such as slice may not be able to determine the exact size of their output shapes, but can produce an upper bound.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Doing so allows BNNS to reduce the number of allocations required by data-dependent dynamic shapes for some models. However,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it comes at the cost of potentially inhibiting some aliasing optimizations used to avoid unnecessary copy operations. As such, this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "option is disabled by default.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "options",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": graph compile options",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "enabled",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": if true, enables the use of bounding logic, otherwise disables it. Disabled by default.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSGraphCompileOptionsSetShapeBounding(_:_:)": {
+      "abstract": [
+        {
+          "text": "Enables use of bounding logic in shapes (may inhibit aliasing optimizations)",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSGraphCompileOptionsSetShapeBounding"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@bnns_graph_compile_options_t",
+          "text": "bnns_graph_compile_options_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSGraphCompileOptionsSetShapeBounding(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSGraphCompileOptionsSetShapeBounding"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSGraphCompileOptionsSetShapeBounding(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsgraphcompileoptionssetshapebounding(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/bnns_graph_compile_options_t": {
+      "abstract": [
+        {
+          "text": "The compilation options that BNNS uses when compiling a source mlmodelc file to a graph object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bnns_graph_compile_options_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/bnns_graph_compile_options_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bnns_graph_compile_options_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "bnns_graph_compile_options_t",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns_graph_compile_options_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:Sb": {
+      "abstract": [
+        {
+          "text": "A value type whose instances are either `true` or `false`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/Swift/Bool"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": true,
+              "deprecated": false,
+              "introducedAt": "18.4",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": true,
+              "deprecated": false,
+              "introducedAt": "18.4",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": true,
+              "deprecated": false,
+              "introducedAt": "18.4",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": true,
+              "deprecated": false,
+              "introducedAt": "15.4",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": true,
+              "deprecated": false,
+              "introducedAt": "18.4",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": true,
+              "deprecated": false,
+              "introducedAt": "2.4",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": true,
+              "deprecated": false,
+              "introducedAt": "11.4",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Function"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "BNNSGraphCompileOptionsSetShapeBounding"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "func"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSGraphCompileOptionsSetShapeBounding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.accelerate/documentation/Accelerate"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "BNNSGraphCompileOptionsSetShapeBounding"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.accelerate/documentation/Accelerate/bnns_graph_compile_options_t",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@SA@bnns_graph_compile_options_t",
+                    "text": "bnns_graph_compile_options_t"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "options"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:b",
+                    "text": "bool"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "enabled"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ");"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSGraphCompileOptionsSetShapeBounding(_:_:)/title",
+          "value": "BNNSGraphCompileOptionsSetShapeBounding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSGraphCompileOptionsSetShapeBounding(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSGraphCompileOptionsSetShapeBounding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1bnns_graph_compile_options_t/title",
+          "value": "bnns_graph_compile_options_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1bnns_graph_compile_options_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bnns_graph_compile_options_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1bnns_graph_compile_options_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bnns_graph_compile_options_t"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accelerate/bnnsgraphcompileoptionssetshapebounding(_:_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/accelerate/bnnsgraphcompileoptionssetshapebounding(_:_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

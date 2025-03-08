@@ -1,0 +1,835 @@
+{
+  "abstract": [
+    {
+      "text": "Appends a path component to the URL.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+        "doc://com.apple.documentation/documentation/foundation/url"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/url/1780397-appendpathcomponent"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1780397,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation3URLV19appendPathComponentyySSF",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "appendPathComponent"
+      },
+      {
+        "kind": "text",
+        "text": "(String)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "URL"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "18.4",
+        "introducedAt": "8.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "18.4",
+        "introducedAt": "8.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "15.4",
+        "introducedAt": "10.10",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "deprecated": true,
+        "deprecatedAt": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "deprecated": true,
+        "deprecatedAt": "14.0",
+        "introducedAt": "8.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "structm",
+    "title": "appendPathComponent(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "mutating"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "appendPathComponent"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "pathComponent"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/String",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SS",
+              "text": "String"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The path component to add.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "pathComponent"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This function performs a file system operation to determine if the path component is a directory. If so, it will append a trailing ",
+                  "type": "text"
+                },
+                {
+                  "code": "/",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". If you know in advance that the path component is a directory or not, then use ",
+                  "type": "text"
+                },
+                {
+                  "code": "func appendingPathComponent(_:isDirectory:)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "New code should use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988445-append",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead of this method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/String": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/String",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/swift/string"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Numbers, Data, and Basic Values",
+      "type": "topic",
+      "url": "/documentation/foundation/numbers_data_and_basic_values"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url": {
+      "abstract": [
+        {
+          "text": "A value that identifies the location of a resource, such as an item on a remote server or the path to a local file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL",
+      "type": "topic",
+      "url": "/documentation/foundation/url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1779992-appendingpathcomponent": {
+      "abstract": [
+        {
+          "text": "Returns a URL by appending the specified path component to self, specifying whether the resulting path is a directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendingPathComponent"
+        },
+        {
+          "kind": "text",
+          "text": "(String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool) -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1779992-appendingpathcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendingPathComponent(_:isDirectory:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1779992-appendingpathcomponent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780239-appendingpathcomponent": {
+      "abstract": [
+        {
+          "text": "Returns a URL by appending the specified path component to self.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendingPathComponent"
+        },
+        {
+          "kind": "text",
+          "text": "(String) -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780239-appendingpathcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendingPathComponent(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780239-appendingpathcomponent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780397-appendpathcomponent": {
+      "abstract": [
+        {
+          "text": "Appends a path component to the URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendPathComponent"
+        },
+        {
+          "kind": "text",
+          "text": "(String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780397-appendpathcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendPathComponent(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780397-appendpathcomponent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780403-appendpathcomponent": {
+      "abstract": [
+        {
+          "text": "Appends a path component to the URL, specifying whether the resulting path is a directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendPathComponent"
+        },
+        {
+          "kind": "text",
+          "text": "(String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780403-appendpathcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendPathComponent(_:isDirectory:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780403-appendpathcomponent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3566234-appendpathcomponent": {
+      "abstract": [
+        {
+          "text": "Appends a path component to the URL that conforms to a uniform type identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendPathComponent"
+        },
+        {
+          "kind": "text",
+          "text": "(String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "conformingTo"
+        },
+        {
+          "kind": "text",
+          "text": ": UTType)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3566234-appendpathcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendPathComponent(_:conformingTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3566234-appendpathcomponent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3566235-appendingpathcomponent": {
+      "abstract": [
+        {
+          "text": "Returns a URL by appending the specified path component that conforms to a uniform type identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendingPathComponent"
+        },
+        {
+          "kind": "text",
+          "text": "(String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "conformingTo"
+        },
+        {
+          "kind": "text",
+          "text": ": UTType) -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3566235-appendingpathcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendingPathComponent(_:conformingTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3566235-appendingpathcomponent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988443-append": {
+      "abstract": [
+        {
+          "text": "Appends a path component to the URL, with a hint for handling directory awareness.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "append"
+        },
+        {
+          "kind": "text",
+          "text": "<S>("
+        },
+        {
+          "kind": "identifier",
+          "text": "component"
+        },
+        {
+          "kind": "text",
+          "text": ": S, "
+        },
+        {
+          "kind": "identifier",
+          "text": "directoryHint"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.DirectoryHint)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988443-append",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "append(component:directoryHint:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988443-append"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988444-append": {
+      "abstract": [
+        {
+          "text": "Appends multiple path components to the URL, with a hint for handling directory awareness.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "append"
+        },
+        {
+          "kind": "text",
+          "text": "<S>("
+        },
+        {
+          "kind": "identifier",
+          "text": "components"
+        },
+        {
+          "kind": "text",
+          "text": ": S..., "
+        },
+        {
+          "kind": "identifier",
+          "text": "directoryHint"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.DirectoryHint)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988444-append",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "append(components:directoryHint:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988444-append"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988445-append": {
+      "abstract": [
+        {
+          "text": "Appends a path to the URL, with a hint for handling directory awareness.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "append"
+        },
+        {
+          "kind": "text",
+          "text": "<S>("
+        },
+        {
+          "kind": "identifier",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": ": S, "
+        },
+        {
+          "kind": "identifier",
+          "text": "directoryHint"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.DirectoryHint)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988445-append",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "append(path:directoryHint:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988445-append"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988447-appending": {
+      "abstract": [
+        {
+          "text": "Returns a URL by appending the specified path component to the URL, with a hint for handling directory awareness.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appending"
+        },
+        {
+          "kind": "text",
+          "text": "<S>("
+        },
+        {
+          "kind": "identifier",
+          "text": "component"
+        },
+        {
+          "kind": "text",
+          "text": ": S, "
+        },
+        {
+          "kind": "identifier",
+          "text": "directoryHint"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.DirectoryHint) -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988447-appending",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appending(component:directoryHint:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988447-appending"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988448-appending": {
+      "abstract": [
+        {
+          "text": "Returns a new URL by appending multiple path components to the URL, with a hint for handling directory awareness.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appending"
+        },
+        {
+          "kind": "text",
+          "text": "<S>("
+        },
+        {
+          "kind": "identifier",
+          "text": "components"
+        },
+        {
+          "kind": "text",
+          "text": ": S..., "
+        },
+        {
+          "kind": "identifier",
+          "text": "directoryHint"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.DirectoryHint) -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988448-appending",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appending(components:directoryHint:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988448-appending"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988449-appending": {
+      "abstract": [
+        {
+          "text": "Returns a URL by appending the specified path to the URL, with a hint for handling directory awareness.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appending"
+        },
+        {
+          "kind": "text",
+          "text": "<S>("
+        },
+        {
+          "kind": "identifier",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": ": S, "
+        },
+        {
+          "kind": "identifier",
+          "text": "directoryHint"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.DirectoryHint) -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988449-appending",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appending(path:directoryHint:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988449-appending"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/3988445-append",
+        "doc://com.apple.documentation/documentation/foundation/url/3988443-append",
+        "doc://com.apple.documentation/documentation/foundation/url/1780403-appendpathcomponent",
+        "doc://com.apple.documentation/documentation/foundation/url/3988449-appending",
+        "doc://com.apple.documentation/documentation/foundation/url/3988447-appending",
+        "doc://com.apple.documentation/documentation/foundation/url/1780239-appendingpathcomponent",
+        "doc://com.apple.documentation/documentation/foundation/url/1779992-appendingpathcomponent",
+        "doc://com.apple.documentation/documentation/foundation/url/3988444-append",
+        "doc://com.apple.documentation/documentation/foundation/url/3988448-appending",
+        "doc://com.apple.documentation/documentation/foundation/url/3566234-appendpathcomponent",
+        "doc://com.apple.documentation/documentation/foundation/url/3566235-appendingpathcomponent"
+      ],
+      "title": "Adding path components"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/url/1780397-appendpathcomponent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

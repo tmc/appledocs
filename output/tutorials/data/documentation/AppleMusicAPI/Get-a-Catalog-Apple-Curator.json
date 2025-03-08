@@ -1,0 +1,796 @@
+{
+  "abstract": [
+    {
+      "text": "Fetch an Apple curator by using the curator’s identifier.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Apple Music",
+      "versions": [
+        "1.0",
+        "1.2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Catalog-Apple-Curator"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:music_api:get:v1-catalog-{}-apple-curators-{}",
+    "modules": [
+      {
+        "name": "Apple Music API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Get a Catalog Apple Curator"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "Apple Music"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get a Catalog Apple Curator"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.music.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/catalog/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{storefront}"
+        },
+        {
+          "kind": "path",
+          "text": "/apple-curators/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{id}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The unique identifier for the Apple curator.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "id",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An iTunes Store territory, specified by an ISO 3166 alpha-2 country code. The possible values are the ",
+                  "type": "text"
+                },
+                {
+                  "code": "id",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " attributes of ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " objects.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "storefront",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The localization to use, specified by a language tag. The possible values are in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "supportedLanguageTags",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " array belonging to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object specified by ",
+                  "type": "text"
+                },
+                {
+                  "code": "storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Otherwise, the default is ",
+                  "type": "text"
+                },
+                {
+                  "code": "defaultLanguageTag",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "l",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Additional relationships to include in the fetch.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "include",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of attribute extensions to apply to resources in the response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "extend",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/AppleCuratorsResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:AppleCuratorsResponse",
+              "text": "AppleCuratorsResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an incorrect ",
+                  "type": "text"
+                },
+                {
+                  "code": "Authorization",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " header.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:UnauthorizedResponse",
+              "text": "UnauthorizedResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an error occurred on the server.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:ErrorsResponse",
+              "text": "ErrorsResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If successful, the HTTP status code is 200 (OK) and the ",
+              "type": "text"
+            },
+            {
+              "code": "data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array contains a single ",
+              "type": "text"
+            },
+            {
+              "code": "AppleCurator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. If unsuccessful, the HTTP status code indicates the error and the details are in the ",
+              "type": "text"
+            },
+            {
+              "code": "errors",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "https://api.music.apple.com/v1/catalog/us/apple-curators/976439526"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "    \"data\": [",
+                    "        {",
+                    "            \"attributes\": {",
+                    "                \"artwork\": {",
+                    "                    \"bgColor\": \"181f2e\",",
+                    "                    \"height\": 1080,",
+                    "                    \"textColor1\": \"ecc6bc\",",
+                    "                    \"textColor2\": \"e1bdb5\",",
+                    "                    \"textColor3\": \"c1a59f\",",
+                    "                    \"textColor4\": \"b99e9a\",",
+                    "                    \"url\": \"https://example.mzstatic.com/image/thumb/Features5/v4/16/e3/e7/16e3e76f-c06e-8479-c8ea-b2df32661ef4/source/{w}x{h}bb.jpeg\",",
+                    "                    \"width\": 1080",
+                    "                },",
+                    "                \"editorialNotes\": {",
+                    "                    \"short\": \"This is a Short Note.\",",
+                    "                    \"standard\": \"In an age where alternative rock bands fill stadiums and ascend the pop charts, it begs the question: alternative to what? Early on, the alternative movement was a reaction to the commercial excesses of mainstream rock. Alt-rock instead brought quirky hooks, a do-it-yourself ethos, deeply personal songwriting, and genre-bending adventures to audiences hungry for something different. Although it truly exploded in the early \\u201990s, the roots of alternative rock started with the punk revolt of the late \\u201970s, when bands like the Ramones and the Sex Pistols proved that just about anyone could get up onstage or make a record. Throughout the \\u201980s, an international network of under-the-radar bands developed, nurtured by college radio DJs and small clubs. While hardcore kept the traditional loud-and-fast sound of punk alive, many newer bands had their own distinctive styles: R.E.M.'s jangling folk-influenced rock, Sonic Youth's dissonant noise, The Cure's epic gloom, Pixies' whisper-to-a-scream dynamics, New Order's electronic grooves. \\n<br /><br />\\nEventually, these bands were dubbed \\\"alternative rock,\\\" thanks to their left-of-center sounds and attitudes. By the early \\u201990s, though, grunge bands like Nirvana and Pearl Jam were combining punk\\u2019s raw energy with classic hard-rock hooks and invading the pop charts. Suddenly, other alternative heroes like Red Hot Chili Peppers and Soundgarden found massive audiences. Over the next decade, alternative bands of various subgenres introduced a whole generation of young rockers to punk (Green Day), hip-hop (Rage Against the Machine), industrial (Nine Inch Nails), art rock (Radiohead), power pop (Weezer), psychedelia (The Flaming Lips), metal (Tool), the British Invasion (Oasis), electronic music (The Prodigy), and much more. By the 21st century, alternative rock had grown popular enough to allow bands like Foo Fighters and Coldplay to sell out stadiums in minutes. At the same time, the anything-goes spirit of alternative rock remained alive and well, with newer bands embracing garage rock (The White Stripes), emo (Paramore), and New Wave (The Killers).\"",
+                    "                },",
+                    "                \"name\": \"Apple Music Alternative\",",
+                    "                \"url\": \"https://itunes.apple.com/us/curator/apple-music-alternative/id976439526\"",
+                    "            },",
+                    "            \"href\": \"/v1/catalog/us/apple-curators/976439526\",",
+                    "            \"id\": \"976439526\",",
+                    "            \"relationships\": {",
+                    "                \"playlists\": {",
+                    "                    \"data\": [",
+                    "                        {",
+                    "                            \"href\": \"/v1/catalog/us/playlists/pl.a56f0f75ff3b4e3286bfca783f31cacb\",",
+                    "                            \"id\": \"pl.a56f0f75ff3b4e3286bfca783f31cacb\",",
+                    "                            \"type\": \"playlists\"",
+                    "                        },",
+                    "                        {",
+                    "                            \"href\": \"/v1/catalog/us/playlists/pl.a56f0f75ff3b4e3286bfca783f31cacb\",",
+                    "                            \"id\": \"pl.a56f0f75ff3b4e3286bfca783f31cacb\",",
+                    "                            \"type\": \"playlists\"",
+                    "                        },",
+                    "                        {",
+                    "                            \"href\": \"/v1/catalog/us/playlists/pl.eee650f71b354e30a42531889ca5de25\",",
+                    "                            \"id\": \"pl.eee650f71b354e30a42531889ca5de25\",",
+                    "                            \"type\": \"playlists\"",
+                    "                        },",
+                    "                        {",
+                    "                            \"href\": \"/v1/catalog/us/playlists/pl.54650bcc7b3f44069f33cb78ef025e80\",",
+                    "                            \"id\": \"pl.54650bcc7b3f44069f33cb78ef025e80\",",
+                    "                            \"type\": \"playlists\"",
+                    "                        },",
+                    "                        {",
+                    "                            \"href\": \"/v1/catalog/us/playlists/pl.c3b0b6f95633433ba64a76f76af5d44d\",",
+                    "                            \"id\": \"pl.c3b0b6f95633433ba64a76f76af5d44d\",",
+                    "                            \"type\": \"playlists\"",
+                    "                        },",
+                    "                        {",
+                    "                            \"href\": \"/v1/catalog/us/playlists/pl.1aee747a7e644aa9b0ecce0145c565b9\",",
+                    "                            \"id\": \"pl.1aee747a7e644aa9b0ecce0145c565b9\",",
+                    "                            \"type\": \"playlists\"",
+                    "                        },",
+                    "                        {",
+                    "                            \"href\": \"/v1/catalog/us/playlists/pl.4d6e7c62a4ed49a797036daf1d6b94e1\",",
+                    "                            \"id\": \"pl.4d6e7c62a4ed49a797036daf1d6b94e1\",",
+                    "                            \"type\": \"playlists\"",
+                    "                        },",
+                    "                        {",
+                    "                            \"href\": \"/v1/catalog/us/playlists/pl.c3da505974c34eeba802f37c87d5bd81\",",
+                    "                            \"id\": \"pl.c3da505974c34eeba802f37c87d5bd81\",",
+                    "                            \"type\": \"playlists\"",
+                    "                        },",
+                    "                        {",
+                    "                            \"href\": \"/v1/catalog/us/playlists/pl.45512ae473d44ec3b1879f31621d406a\",",
+                    "                            \"id\": \"pl.45512ae473d44ec3b1879f31621d406a\",",
+                    "                            \"type\": \"playlists\"",
+                    "                        },",
+                    "                        {",
+                    "                            \"href\": \"/v1/catalog/us/playlists/pl.493ec39d5ca04d6b9d1d122a2a565e80\",",
+                    "                            \"id\": \"pl.493ec39d5ca04d6b9d1d122a2a565e80\",",
+                    "                            \"type\": \"playlists\"",
+                    "                        }",
+                    "                    ],",
+                    "                    \"href\": \"/v1/catalog/us/apple-curators/976439526/playlists\",",
+                    "                    \"next\": \"/v1/catalog/us/apple-curators/976439526/playlists?offset=10\"",
+                    "                }",
+                    "            },",
+                    "            \"type\": \"apple-curators\"",
+                    "        }",
+                    "    ]",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI": {
+      "abstract": [
+        {
+          "text": "Integrate streaming music with catalog and personal content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Music API",
+      "type": "topic",
+      "url": "/documentation/applemusicapi"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/AppleCurators": {
+      "abstract": [
+        {
+          "text": "A resource object that represents an Apple curator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppleCurators"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/AppleCurators",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppleCurators"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppleCurators",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/applecurators"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/AppleCuratorsResponse": {
+      "abstract": [
+        {
+          "text": "The response to a request for Apple curators.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppleCuratorsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/AppleCuratorsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppleCuratorsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppleCuratorsResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/applecuratorsresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that an error occurred while processing the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorsResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/errorsresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-9aupk": {
+      "abstract": [
+        {
+          "text": "Fetch an Apple curator’s relationship by using its identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-9aupk",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Fetch a relationship on this resource by name"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Catalog Apple Curator's Relationship Directly by Name",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/fetch-a-relationship-on-this-resource-by-name-9aupk"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Catalog-Apple-Curators": {
+      "abstract": [
+        {
+          "text": "Fetch one or more Apple curators by using their identifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Catalog-Apple-Curators",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Multiple Catalog Apple Curators"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Multiple Catalog Apple Curators",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-multiple-catalog-apple-curators"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Catalog-Apple-Curator": {
+      "abstract": [
+        {
+          "text": "Fetch an Apple curator by using the curator’s identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Catalog-Apple-Curator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a Catalog Apple Curator"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Catalog Apple Curator",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-a-catalog-apple-curator"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that the request’s authorization is missing or invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnauthorizedResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/unauthorizedresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses": {
+      "abstract": [
+        {
+          "text": "Write a request and handle responses from the API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Requests and Responses",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/handling-requests-and-responses"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/AppleCurators",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/AppleCuratorsResponse"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Requesting-Apple-Curators",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-9aupk",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Catalog-Apple-Curators"
+      ],
+      "title": "Requesting Apple Curators"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemusicapi/get-a-catalog-apple-curator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

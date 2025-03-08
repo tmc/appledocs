@@ -1,0 +1,1328 @@
+{
+  "abstract": [
+    {
+      "text": "Improve your app’s performance by refactoring your code to take advantage of asynchronous functions in Swift.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/swift/updating_an_app_to_use_swift_concurrency"
+  },
+  "kind": "article",
+  "legacy_identifier": 3830041,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "8.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Updating an App to Use Swift Concurrency"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC21 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-3848742",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift concurrency provides a standard set of language tools and techniques for concurrent programming. However, you may already have an existing project built with concurrency that uses other frameworks and techniques. You don’t have to convert all of your code all at once; instead, you can use specific refactoring techniques to convert your code one piece at time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample provides two separate versions of the Coffee Tracker app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The original version uses completion handlers to query the HealthKit SDK and to respond to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CLKComplicationDataSource",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " calls, and dispatch queues to isolate concurrent access to memory. For more information on the original version, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/creating-and-updating-a-complication-s-timeline",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The updated version uses Swift’s concurrency features to provide clearer code with better error checking at compile time. It replaces the completion handlers with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "async",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " functions, and uses actors to guarantee safe access to data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Watch the session to see the process step by step, and then compare the two projects to see the differences.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4099728",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add the complication to an active watch face, start by building and running the sample code project in the simulator, and follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Digital Crown to exit the app and return to the watch face.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Using the trackpad, firmly press the watch face to put the face in edit mode, then tap Customize.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Swipe left until the configuration screen highlights the complications. Select the complication to modify.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Scroll to the Coffee Tracker complication, and then click the Digital Crown again to save your changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tap the Coffee Tracker complication to go back to the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on setting up watch faces, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-3578854",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After configuring and running the Coffee Tracker app, you can test the background updates. Make sure the Coffee Tracker complication appears on the active watch face. Then build and run the app in Simulator, and follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add one or more drinks using the app’s main view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Digital Crown to send the app to the background.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open Settings, and scroll down to Health > Health Data > Nutrition > Caffeine to see all of the drinks you added to the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Delete Caffeine Data to clear all of the caffeine samples from HealthKit.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Navigate back to the watch face.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Coffee Tracker updates the complication within 15 minutes; however, the update may be delayed based on the system’s current state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4099729",
+          "level": 3,
+          "text": "Convert Completion Handlers to Use Asynchronous Methods",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "HealthKitController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type contains several calls to the HealthKit SDK. In SDKs that support Swift concurrency, frameworks add ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": "-",
+              "type": "text"
+            },
+            {
+              "code": "await",
+              "type": "codeVoice"
+            },
+            {
+              "text": " versions of most functions that previously took completion handlers. You can remove completion handlers by updating these calls to use the ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": "-",
+              "type": "text"
+            },
+            {
+              "code": "await",
+              "type": "codeVoice"
+            },
+            {
+              "text": " versions. You suspend the ",
+              "type": "text"
+            },
+            {
+              "code": "store.save()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " operation by adding the ",
+              "type": "text"
+            },
+            {
+              "code": "await",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keyword. Execution resumes after the ",
+              "type": "text"
+            },
+            {
+              "code": "await",
+              "type": "codeVoice"
+            },
+            {
+              "text": " completes. An ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function can also be a throwing function, which you call by prepending ",
+              "type": "text"
+            },
+            {
+              "code": "try await",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the function call. Wrap the call in a ",
+              "type": "text"
+            },
+            {
+              "code": "do-catch",
+              "type": "codeVoice"
+            },
+            {
+              "text": " statement instead of using an ",
+              "type": "text"
+            },
+            {
+              "code": "Error?",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type as a parameter to the completion handler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Save the sample to the HealthKit store.",
+            "do {",
+            "    try await store.save(caffeineSample)",
+            "    self.logger.debug(\"\\(mgCaffeine) mg Drink saved to HealthKit\")",
+            "} catch {",
+            "    self.logger.error(\"Unable to save \\(caffeineSample) to the HealthKit store: \\(error.localizedDescription)\")",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4099717",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In some cases an SDK call requires using a completion handler. For example, a call to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/healthkit/hkanchoredobjectquery/1615071-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " takes a completion handler, but the call that needs to ",
+              "type": "text"
+            },
+            {
+              "code": "await",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the call to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/healthkit/hkhealthstore/1614179-execute",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ",
+              "type": "text"
+            },
+            {
+              "code": "await",
+              "type": "codeVoice"
+            },
+            {
+              "text": " the results of a completion handler in these cases, add a ",
+              "type": "text"
+            },
+            {
+              "code": "continuation",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func queryHealthKit() async throws -> ([HKSample]?, [HKDeletedObject]?, HKQueryAnchor?) {",
+            "    return try await withCheckedThrowingContinuation { continuation in",
+            "        // Create a predicate that only returns samples created within the last 24 hours.",
+            "        let endDate = Date()",
+            "        let startDate = endDate.addingTimeInterval(-24.0 * 60.0 * 60.0)",
+            "        let datePredicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: [.strictStartDate, .strictEndDate])",
+            "        ",
+            "        // Create the query.",
+            "        let query = HKAnchoredObjectQuery(",
+            "            type: caffeineType,",
+            "            predicate: datePredicate,",
+            "            anchor: anchor,",
+            "            limit: HKObjectQueryNoLimit) { (_, samples, deletedSamples, newAnchor, error) in",
+            "            ",
+            "            // When the query ends, check for errors.",
+            "            if let error = error {",
+            "                continuation.resume(throwing: error)",
+            "            } else {",
+            "                continuation.resume(returning: (samples, deletedSamples, newAnchor))",
+            "            }",
+            "            ",
+            "        }",
+            "        store.execute(query)",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4099718",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To protect the stored properties on the controller when accessed asynchronously, change ",
+              "type": "text"
+            },
+            {
+              "code": "HealthKitController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from a ",
+              "type": "text"
+            },
+            {
+              "code": "class",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type to an ",
+              "type": "text"
+            },
+            {
+              "code": "actor",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "actor HealthKitController {"
+          ],
+          "metadata": {
+            "anchor": "4099719",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Calls to ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functions from synchronous functions are made by creating new asynchronous tasks, which can use ",
+              "type": "text"
+            },
+            {
+              "code": "await",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to wait for completion:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Handle background refresh tasks.",
+            "case let backgroundTask as WKApplicationRefreshBackgroundTask:",
+            "    ",
+            "    Task {",
+            "        // Check for updates from HealthKit.",
+            "        let model = CoffeeData.shared",
+            "        ",
+            "        let success = await model.healthKitController.loadNewDataFromHealthKit()",
+            "            ",
+            "        if success {",
+            "            // Schedule the next background update.",
+            "            scheduleBackgroundRefreshTasks()",
+            "            self.logger.debug(\"Background Task Completed Successfully!\")",
+            "        }",
+            "        ",
+            "        // Mark the task as ended, and request an updated snapshot, if necessary.",
+            "        backgroundTask.setTaskCompletedWithSnapshot(success)",
+            "    }"
+          ],
+          "metadata": {
+            "anchor": "4099720",
+            "title": "Listing 4"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "4099730",
+          "level": 3,
+          "text": "Put the Coffee Data Class on the Main Actor",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "CoffeeData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class implements ",
+              "type": "text"
+            },
+            {
+              "code": "ObservableObject",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and has an ",
+              "type": "text"
+            },
+            {
+              "code": "@Published",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to feed the SwiftUI views. To ensure that all updates to this property are made on the main thread, place the type on the main actor:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@MainActor",
+            "class CoffeeData: ObservableObject {"
+          ],
+          "metadata": {
+            "anchor": "4099722",
+            "title": "Listing 5"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Two methods that perform synchronous IO — the ",
+              "type": "text"
+            },
+            {
+              "code": "load",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "save",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods — are factored out into a separate ",
+              "type": "text"
+            },
+            {
+              "code": "CoffeeDataStore",
+              "type": "codeVoice"
+            },
+            {
+              "text": " actor, which performs these activities away from the main thread. The model type on the main actor must use ",
+              "type": "text"
+            },
+            {
+              "code": "await",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to call methods on the ",
+              "type": "text"
+            },
+            {
+              "code": "CoffeeDataStore",
+              "type": "codeVoice"
+            },
+            {
+              "text": " actor, which allows other work to run on the main thread during the synchronous IO operations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The two types communicate by passing an array of ",
+              "type": "text"
+            },
+            {
+              "code": "Drink",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values, which is a value type because ",
+              "type": "text"
+            },
+            {
+              "code": "Drink",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a structure. Loading returns an array of drinks, and saving takes an array of drinks as an argument.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To perform all methods asynchronously, replace the ",
+              "type": "text"
+            },
+            {
+              "code": "currentDrinks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property’s ",
+              "type": "text"
+            },
+            {
+              "code": "didSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " operation with ",
+              "type": "text"
+            },
+            {
+              "code": "private(set)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and add a new ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method named ",
+              "type": "text"
+            },
+            {
+              "code": "drinksUpdated",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Move the code from the setter into the new method. Call the ",
+              "type": "text"
+            },
+            {
+              "code": "drinksUpdated",
+              "type": "codeVoice"
+            },
+            {
+              "text": " after any code that sets the ",
+              "type": "text"
+            },
+            {
+              "code": "currentDrinks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property, using an ",
+              "type": "text"
+            },
+            {
+              "code": "await",
+              "type": "codeVoice"
+            },
+            {
+              "text": " call.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Update the ",
+              "type": "text"
+            },
+            {
+              "code": "drinksUpdated()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to call the ",
+              "type": "text"
+            },
+            {
+              "code": "CoffeeDataStore",
+              "type": "codeVoice"
+            },
+            {
+              "text": " actor using an ",
+              "type": "text"
+            },
+            {
+              "code": "await",
+              "type": "codeVoice"
+            },
+            {
+              "text": " call. The ",
+              "type": "text"
+            },
+            {
+              "code": "CoffeeDataStore",
+              "type": "codeVoice"
+            },
+            {
+              "text": " actor saves the data on a background thread.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Calls to the ",
+              "type": "text"
+            },
+            {
+              "code": "CoffeeData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object from SwiftUI views don’t require any use of ",
+              "type": "text"
+            },
+            {
+              "code": "await",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as these views are also on the main actor due to their use of ",
+              "type": "text"
+            },
+            {
+              "code": "@EnvironmentObject",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4099731",
+          "level": 3,
+          "text": "Replace Delegates and Completion Handlers with Async Methods",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Several methods on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol used to configure the app’s timeline take completion handlers, which you can replace with their ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": " equivalents:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Define whether the complication is visible when the watch is unlocked.",
+            "func privacyBehavior(for complication: CLKComplication) async -> CLKComplicationPrivacyBehavior {",
+            "    // This is potentially sensitive data. Hide it on the lock screen.",
+            "    .hideOnLockScreen",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4099724",
+            "title": "Listing 6"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/swift-standard-library": {
+      "abstract": [
+        {
+          "text": "Solve complex problems and write high-performance, readable code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/swift-standard-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Swift Standard Library",
+      "type": "topic",
+      "url": "/documentation/swift/swift-standard-library"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource": {
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLKComplicationDataSource",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/creating-and-updating-a-complication-s-timeline": {
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/creating-and-updating-a-complication-s-timeline",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating and updating a complication’s timeline",
+      "type": "topic",
+      "url": "/documentation/clockkit/creating-and-updating-a-complication-s-timeline"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/hkanchoredobjectquery/1615071-init": {
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/hkanchoredobjectquery/1615071-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(type:predicate:anchor:limit:resultsHandler:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkanchoredobjectquery/1615071-init"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/hkhealthstore/1614179-execute": {
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/hkhealthstore/1614179-execute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "execute(_:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkhealthstore/1614179-execute"
+    },
+    "doc://com.apple.documentation/documentation/swift": {
+      "identifier": "doc://com.apple.documentation/documentation/swift",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.documentation/documentation/swift/array": {
+      "abstract": [
+        {
+          "text": "An ordered, random-access collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Array"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/array",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Array",
+      "type": "topic",
+      "url": "/documentation/swift/array"
+    },
+    "doc://com.apple.documentation/documentation/swift/dictionary": {
+      "abstract": [
+        {
+          "text": "A collection whose elements are key-value pairs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Dictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/dictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Dictionary",
+      "type": "topic",
+      "url": "/documentation/swift/dictionary"
+    },
+    "doc://com.apple.documentation/documentation/swift/double": {
+      "abstract": [
+        {
+          "text": "A double-precision, floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/double",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Double",
+      "type": "topic",
+      "url": "/documentation/swift/double"
+    },
+    "doc://com.apple.documentation/documentation/swift/int": {
+      "abstract": [
+        {
+          "text": "A signed integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/int",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/swift/int"
+    },
+    "doc://com.apple.documentation/documentation/swift/string": {
+      "abstract": [
+        {
+          "text": "A Unicode string value that is a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/string",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/swift/string"
+    },
+    "doc://com.apple.documentation/documentation/swift/tictacfish_implementing_a_game_using_distributed_actors": {
+      "abstract": [
+        {
+          "text": "Use distributed actors to take your Swift concurrency and actor-based apps beyond a single process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/tictacfish_implementing_a_game_using_distributed_actors",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "TicTacFish: Implementing a game using distributed actors",
+      "type": "topic",
+      "url": "/documentation/swift/tictacfish_implementing_a_game_using_distributed_actors"
+    },
+    "doc://com.apple.documentation/documentation/swift/updating_an_app_to_use_swift_concurrency": {
+      "abstract": [
+        {
+          "text": "Improve your app’s performance by refactoring your code to take advantage of asynchronous functions in Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/updating_an_app_to_use_swift_concurrency",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Updating an App to Use Swift Concurrency",
+      "type": "topic",
+      "url": "/documentation/swift/updating_an_app_to_use_swift_concurrency"
+    },
+    "doc://com.apple.documentation/documentation/swift/updating_an_app_to_use_swift_concurrency#4099717": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/updating_an_app_to_use_swift_concurrency#4099717",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/swift/updating_an_app_to_use_swift_concurrency#4099717"
+    },
+    "doc://com.apple.documentation/documentation/swift/updating_an_app_to_use_swift_concurrency#4099718": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/updating_an_app_to_use_swift_concurrency#4099718",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/swift/updating_an_app_to_use_swift_concurrency#4099718"
+    },
+    "doc://com.apple.documentation/documentation/swift/updating_an_app_to_use_swift_concurrency#4099719": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/updating_an_app_to_use_swift_concurrency#4099719",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/swift/updating_an_app_to_use_swift_concurrency#4099719"
+    },
+    "doc://com.apple.documentation/documentation/swift/updating_an_app_to_use_swift_concurrency#4099720": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/updating_an_app_to_use_swift_concurrency#4099720",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/swift/updating_an_app_to_use_swift_concurrency#4099720"
+    },
+    "doc://com.apple.documentation/documentation/swift/updating_an_app_to_use_swift_concurrency#4099722": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/updating_an_app_to_use_swift_concurrency#4099722",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/swift/updating_an_app_to_use_swift_concurrency#4099722"
+    },
+    "doc://com.apple.documentation/documentation/swift/updating_an_app_to_use_swift_concurrency#4099724": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/updating_an_app_to_use_swift_concurrency#4099724",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 6",
+      "type": "section",
+      "url": "/documentation/swift/updating_an_app_to_use_swift_concurrency#4099724"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs-assets.developer.apple.com/published/0196478241/UpdatingAnAppToUseSwiftConcurrency.zip": {
+      "checksum": "b0f86dcebfccfc2034b4acbff8cb1cfbc58b792f7f5acd32df641dff5814c5e49f2b36205e7dcc3d2863e2ffca52c9f4dff96c8832d8bad5c67b4790a010353e",
+      "identifier": "https://docs-assets.developer.apple.com/published/0196478241/UpdatingAnAppToUseSwiftConcurrency.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/0196478241/UpdatingAnAppToUseSwiftConcurrency.zip"
+    },
+    "link-3578854": {
+      "identifier": "link-3578854",
+      "kind": "article",
+      "role": "link",
+      "title": "Change the watch face on your Apple Watch",
+      "type": "topic",
+      "url": "https://support.apple.com/en-us/HT205536"
+    },
+    "link-3848742": {
+      "identifier": "link-3848742",
+      "kind": "article",
+      "role": "link",
+      "title": "10194: Swift Concurrency: Update a Sample App",
+      "type": "topic",
+      "url": "https://developer.apple.com/wwdc21/10194"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/0196478241/UpdatingAnAppToUseSwiftConcurrency.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/swift/int",
+        "doc://com.apple.documentation/documentation/swift/double",
+        "doc://com.apple.documentation/documentation/swift/string",
+        "doc://com.apple.documentation/documentation/swift/array",
+        "doc://com.apple.documentation/documentation/swift/dictionary",
+        "doc://com.apple.Swift/documentation/Swift/swift-standard-library",
+        "doc://com.apple.documentation/documentation/swift/tictacfish_implementing_a_game_using_distributed_actors"
+      ],
+      "title": "Standard Library"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/swift/updating_an_app_to_use_swift_concurrency"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

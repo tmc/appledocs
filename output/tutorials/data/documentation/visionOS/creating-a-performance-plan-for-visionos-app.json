@@ -1,0 +1,1091 @@
+{
+  "abstract": [
+    {
+      "text": "Identify your app’s performance and power goals and create a plan to measure and assess them.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/creating-a-performance-plan-for-visionos-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a performance plan for your visionOS app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Performance tuning is an important part of the development process, regardless of platform. Performance tuning means making your app run as efficiently as possible, so it does more work in less time and with fewer system resources. Efficiency is especially important on devices that can support multiple apps in an immersive experience. Apps that consume too many resources, can push the device beyond thermal limits. When this occurs, the system takes steps to cool down to a more acceptable level. This can have a noticeable visual impact and be disorienting for the wearer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As you start development, set aggressive goals and evaluate progress throughout the development cycle. Automate the collection of performance metrics as much as possible and look at data over time to see if performance is improving or declining. When you detect a significant decrease in performance, take immediate steps to correct it. When you start fine-tuning early in development, you have more time to make needed changes to algorithms and approaches.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on performance tuning, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/improving-your-app-s-performance",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-performance-and-power-targets",
+          "level": 3,
+          "text": "Set performance and power targets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Performance isn’t a single metric that you measure and improve.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Typically, you choose several metrics and set goals for each of them. For example, consider:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Make sure your app launches quickly; this is your first chance to make a good impression.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "App launch and load times",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Your interface needs to respond quickly to interactions, even while doing other work. Minimize the time it takes to start tasks. For example, make sure audio and video start without noticeable delays.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Responsiveness and latency",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "For an immersive experience with realtime rendering, it’s important to maintain consistently high frame rates. Help maintain these rates by avoiding unnecessary changes that result in more frequent updates to the shared render server. Measure things like update rates, stalls, and hangs in both the render server and your app. Only render the content you need, and optimize the textures and other resources you use during drawing.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Graphics rendering",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "When the device begins to reach thermal limits, the system reduces CPU or GPU usage and performance degrades over time. Avoid this thermal ceiling by prioritizing and spreading out work, limiting the number of simultaneous threads your app maintains, and turning off hardware-related features like ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/CoreLocation",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " when you don’t need them.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Power Usage",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Make the app do as much as possible using the smallest amount of hardware resources. Minimize task-based overhead.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Task efficiency",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Use as little free memory as possible. Don’t allocate or deallocate memory during critical operations, which might make your app appear slow.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Memory footprint and bandwidth",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you choose the metrics you want, set realistic goals and prioritize them, so you know which ones matter the most. Performance tuning often involves making tradeoffs between competing goals. For example, if you reduce CPU usage by caching computed data or pre-load assets to improve responsiveness, you increase your app’s memory usage. Make these kinds of tradeoffs carefully, and always measure the results of any changes to learn whether they were successful. In some cases, you might find the sacrifice isn’t worthwhile.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider how people will use your app. If your app runs in the Shared Space, consider more conservative targets and goals for system resources. If you expect people to use your app for longer periods of time, factor this extended use into your targets and goals when choosing metrics.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-the-code-flows-and-user-scenarios-to-test",
+          "level": 3,
+          "text": "Identify the code flows and user scenarios to test",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you choose the metrics to collect, decide which portions of your app to test. Choose features that are repeatable, measurable, and reliable to test. Repeatable automated tests allow you to compare the results and know the comparisons represent the exact same task. Focus on places where your app executes code, but don’t ignore places where your app hands off data to the system and waits. If your app spends a significant amount of time waiting for information, consider eliminating the requests altogether or batching them to achieve better performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Focus your tuning efforts on the parts of your app that people use the most, or that have the most impact on overall system performance, including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "User-facing workflows",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key algorithms",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Task that allocate or deallocate memory",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Background and network-based tasks",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Custom Metal shaders",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Choose actions that people perform frequently or that correspond to important features. For example, if your app lets someone add a new contact, test the workflow for creating the contact, editing the contact, and saving the results. Test your app with a particular feature enabled and disabled to determine whether the feature is solely responsible for any performance impacts. Choose lightweight workflows such as how your app performs at idle time, and also heavyweight workflows, for example, ones that involve user interactions and your app’s responses. For launch times, gather metrics for both hot and cold launches — that is, when the app is already resident in memory and when it is not.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Consider-thermal-and-environmental-factors",
+          "level": 3,
+          "text": "Consider thermal and environmental factors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider how environmental factors impact your app. The characteristics of your physical environment can affect system load and thermals of the device. Consider the effect that ambient room temperature, the presence of other people, and the number and type of real-world objects can have on the your app‘s algorithms. Try to test in different settings to get an idea of whether you need to optimize for these scenarios or not.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use Xcode’s thermal inducers to mimic the device hitting its thermal limits and consider how your app responds to fair, serious, and critical thermal notifications. You might need to have different performance goals when under thermal pressure, and prioritize optimizing for power or find ways to dynamically lower your app‘s complexity in response to thermal pressure to give a smoother experience, even if latency is a bit higher.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Choose-tools-to-collect-performance-data",
+          "level": 3,
+          "text": "Choose tools to collect performance data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are many tools and APIs you can use to collect performance-related data for your visionOS app. Use a variety of tools to make sure you have the data you need:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Monitor the CPU, memory, disk and network gauges in the Debug navigator to track system resources utilization.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Debug gauges",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Profile your app to gather performance data on most metrics. Instruments lets you profile your app’s code execution, find memory leaks, track memory allocations, analyze file-system or graphics performance, SwiftUI performance, and much more. Use the RealityKit Trace template to monitoring and investigate render server stalls and bottlenecks on visionOS.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Instruments",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Use ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/XCTest",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " APIs to collect performance data.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "XCTest",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Use ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/MetricKit",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " to gather on-device app diagnostics and generate reports.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "MetricKit",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Review diagnostic logs for hangs, disk and energy usage, and crashes in the Xcode Organizer.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Organizer",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Review statistics on the contents of your RealityKit scenes. Use this information to optimize your 3D models and textures.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Reality Composer Pro",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Add signposts to your code to generate timing information you can view in Instruments. For more information, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/os/recording-performance-data",
+                        "isActive": true,
+                        "overridingTitle": "Recording performance data",
+                        "overridingTitleInlineContent": [
+                          {
+                            "text": "Recording performance data",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Signposts",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Include log messages to report significant events and relevant data for those events. For more information, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/os/generating-log-messages-from-your-code",
+                        "isActive": true,
+                        "overridingTitle": "Generating log messages from your code",
+                        "overridingTitleInlineContent": [
+                          {
+                            "text": "Generating log messages from your code",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Log messages",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Get feedback from testers about their experiences with beta versions of your app. Fill out the Test Information page for your beta version, and request that testers provide feedback about the performance of your app.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "TestFlight",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Profile-on-a-physical-device",
+          "level": 3,
+          "text": "Profile on a physical device",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In general, profile and analyze performance on a physical device rather than in Simulator. Even if something works well in Simulator, it might not perform as well on devices for all use cases. Simulator doesn’t support some hardware features and APIs. There are differences in the rendering pipeline for Simulator running on macOS, so rendering performance characteristics will be different. Other pipelines such as input delivery and audio or video playback are also different. There are, however, some insights you can gain profiling in Simulator, such as CPU stalls, that help you spot areas to investigate and address.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-automated-test-cases-and-run-them-regularly",
+          "level": 3,
+          "text": "Build automated test cases and run them regularly",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode comes with tools to help you automate the collection of performance data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/XCTest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " framework to build test cases to collect performance metrics. XCTest lets you gather several different metrics, including the time it takes to perform operations, the amount of CPU activity that occurs during the test, details about memory or storage use, and more.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use Instruments to collect metrics for specific interactions with your app. Record those interactions and play them back later to collect a new set of metrics.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Write custom scripts to gather performance-related data using system command-line tools. Integrate these scripts into your project’s build process to automate their execution.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure Xcode to run test cases each time you build your app, or create a separate target to run test cases or custom scripts on demand. Integrate your performance tests into your Xcode Cloud workflows, or your own custom continuous integration solution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Collect performance data using a production version of your app to obtain more accurate results. Debug builds contain additional code to support debugging operations and logging. You can collect data from debug builds too, but keep those metrics separate from production-build metrics.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about how to write test cases for your app, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/testing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For information about how to automate testing with Xcode Cloud, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/Xcode-Cloud",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/CoreLocation": {
+      "abstract": [
+        {
+          "text": "Obtain the geographic location and orientation of a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Location",
+      "type": "topic",
+      "url": "/documentation/CoreLocation"
+    },
+    "doc://com.apple.documentation/documentation/MetricKit": {
+      "abstract": [
+        {
+          "text": "Aggregate and analyze per-device reports on exception and crash diagnostics and on power and performance metrics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetricKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MetricKit",
+      "type": "topic",
+      "url": "/documentation/MetricKit"
+    },
+    "doc://com.apple.documentation/documentation/XCTest": {
+      "abstract": [
+        {
+          "text": "Create and run unit tests, performance tests, and UI tests for your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XCTest",
+      "type": "topic",
+      "url": "/documentation/XCTest"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Automatically build, test, and distribute your apps with Xcode Cloud to verify changes and create high-quality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/Xcode-Cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/Xcode/Xcode-Cloud"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/improving-your-app-s-performance": {
+      "abstract": [
+        {
+          "text": "Model, measure, and boost the performance of your app by using a continuous-improvement cycle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/improving-your-app-s-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving your app’s performance",
+      "type": "topic",
+      "url": "/documentation/Xcode/improving-your-app-s-performance"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/testing": {
+      "abstract": [
+        {
+          "text": "Develop and run tests to detect logic failures, UI problems, and performance regressions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/testing",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing",
+      "type": "topic",
+      "url": "/documentation/Xcode/testing"
+    },
+    "doc://com.apple.documentation/documentation/os/generating-log-messages-from-your-code": {
+      "abstract": [
+        {
+          "text": "Record useful debugging and analysis information, and include dynamic content in your messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/os/generating-log-messages-from-your-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating Log Messages from Your Code",
+      "type": "topic",
+      "url": "/documentation/os/generating-log-messages-from-your-code"
+    },
+    "doc://com.apple.documentation/documentation/os/recording-performance-data": {
+      "abstract": [
+        {
+          "text": "Add signposts to record interesting time-based events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/os/recording-performance-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Recording Performance Data",
+      "type": "topic",
+      "url": "/documentation/os/recording-performance-data"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/analyzing-the-performance-of-your-visionOS-app": {
+      "abstract": [
+        {
+          "text": "Use the RealityKit Trace template in Instruments to evaluate and improve the performance of your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/analyzing-the-performance-of-your-visionOS-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing the performance of your visionOS app",
+      "type": "topic",
+      "url": "/documentation/visionos/analyzing-the-performance-of-your-visionos-app"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-RealityKit-content-on-visionOS": {
+      "abstract": [
+        {
+          "text": "Optimize your app’s 3D augmented reality content to render efficiently on visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-RealityKit-content-on-visionOS",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing the rendering cost of RealityKit content on visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos/reducing-the-rendering-cost-of-realitykit-content-on-visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-your-UI-on-visionOS": {
+      "abstract": [
+        {
+          "text": "Optimize your 2D user interface rendering on visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-your-UI-on-visionOS",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing the rendering cost of your UI on visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos/reducing-the-rendering-cost-of-your-ui-on-visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/understanding-the-visionos-render-pipeline": {
+      "abstract": [
+        {
+          "text": "Compare how visionOS handles events and manages its rendering loop differently from other Apple platforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/understanding-the-visionos-render-pipeline",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding the visionOS render pipeline",
+      "type": "topic",
+      "url": "/documentation/visionos/understanding-the-visionos-render-pipeline"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Performance",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/analyzing-the-performance-of-your-visionOS-app",
+        "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-your-UI-on-visionOS",
+        "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-RealityKit-content-on-visionOS",
+        "doc://com.apple.visionOS/documentation/visionOS/understanding-the-visionos-render-pipeline"
+      ],
+      "title": "Performance"
+    }
+  ]
+}

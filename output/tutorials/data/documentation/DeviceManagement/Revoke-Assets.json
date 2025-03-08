@@ -1,0 +1,526 @@
+{
+  "abstract": [
+    {
+      "text": "Revoke assets from client user IDs and serial numbers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Revoke-Assets"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:vpp:post:v2-assets-revoke",
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Revoke Assets"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "Device Assignment Services"
+      },
+      {
+        "beta": false,
+        "name": "VPP License Management"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Revoke Assets"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://vpp.itunes.apple.com/mdm/"
+        },
+        {
+          "kind": "path",
+          "text": "v2/assets/revoke"
+        }
+      ]
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/RevokeAssetsRequest",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "mdm-apps:vpp:RevokeAssetsRequest",
+          "text": "RevokeAssetsRequest"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "missing",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/EventResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:EventResponse",
+              "text": "EventResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The provided token is invalid. It may either be missing or expired.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An internal server error occurred. Try again later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "anchor": "Example-Request-and-Response",
+          "level": 3,
+          "text": "Example Request and Response",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "    \"clientUserIds\": [",
+                    "        \"client-1\",",
+                    "        \"client-2\"",
+                    "    ],",
+                    "    \"serialNumbers\": [",
+                    "        \"serial-1\",",
+                    "        \"serial-2\"",
+                    "    ]",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "    \"eventId\": \"ed3edfc3-e617-465e-b309-a17925266e14\",",
+                    "    \"tokenExpirationDate\": \"2030-11-08T22:33:22+0000\",",
+                    "    \"uId\": \"2049025000431439\"",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Associate-Assets": {
+      "abstract": [
+        {
+          "text": "Associate assets with client user IDs and serial numbers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Associate-Assets",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Associate Assets"
+        }
+      ],
+      "role": "symbol",
+      "title": "Associate Assets",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/associate-assets"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Disassociate-Assets": {
+      "abstract": [
+        {
+          "text": "Disassociate assets from client user IDs and serial numbers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Disassociate-Assets",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Disassociate Assets"
+        }
+      ],
+      "role": "symbol",
+      "title": "Disassociate Assets",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/disassociate-assets"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorResponse": {
+      "abstract": [
+        {
+          "text": "The response that contains the error that occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/errorresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/EventResponse": {
+      "abstract": [
+        {
+          "text": "The response that contains the event identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "EventResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/EventResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EventResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "EventResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/eventresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-4ski1": {
+      "abstract": [
+        {
+          "text": "Get the set of assets that your organization manages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-4ski1",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Assets"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Assets",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-assets-4ski1"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-9wv1e": {
+      "abstract": [
+        {
+          "text": "Get the set of current assignments for users or devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-9wv1e",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Assignments"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Assignments",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-assignments-9wv1e"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Revoke-Assets": {
+      "abstract": [
+        {
+          "text": "Revoke assets from client user IDs and serial numbers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Revoke-Assets",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Revoke Assets"
+        }
+      ],
+      "role": "symbol",
+      "title": "Revoke Assets",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/revoke-assets"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/RevokeAssetsRequest": {
+      "abstract": [
+        {
+          "text": "The request for asset revocation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RevokeAssetsRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/RevokeAssetsRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RevokeAssetsRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "RevokeAssetsRequest",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/revokeassetsrequest"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Asset-Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-4ski1",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Associate-Assets",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Disassociate-Assets",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-9wv1e"
+      ],
+      "title": "Asset Management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Request-and-Response",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/RevokeAssetsRequest",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/EventResponse",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorResponse"
+      ],
+      "title": "Request and Response"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/revoke-assets"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

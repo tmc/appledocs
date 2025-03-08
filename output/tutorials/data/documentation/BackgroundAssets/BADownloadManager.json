@@ -1,0 +1,1745 @@
+{
+  "abstract": [
+    {
+      "text": "An object that manages the queue of scheduled asset downloads.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)BADownloadManager",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "BADownloadManager"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Background Assets"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "BADownloadManager"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.1",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.1",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": true,
+        "deprecated": false,
+        "introducedAt": "18.4",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": true,
+        "deprecated": false,
+        "introducedAt": "2.4",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "BADownloadManager"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "BADownloadManager"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to schedule and cancel asset downloads, monitor their progress, and access the queue of pending downloads. You don’t create instances of this class directly; instead, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/shared",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to access the framework’s singleton that it shares between your app and the app’s extension. Because the download manager is a shared resource, prevent race conditions by using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/withExclusiveControl(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "withExclusiveControl(beforeDate:_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods to assume absolute control of the manager before you schedule asset downloads or manipulate those already in the manager’s queue. To respond to asset download events and process concluded downloads, create a type that conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManagerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol and assign an instance of it to the download manager’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/delegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows how to create an asset download, acquire exclusive control of the shared download manager, and then use the manager to schedule the download:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let url = URL(string: \"https://cdn.example.com/level-resources.zip\")!",
+            "let request = URLRequest(url: url)",
+            "let identifier = \"group.com.example.my-game\"",
+            "",
+            "// Create an asset download.",
+            "let download = BAURLDownload(identifier: \"level-resources\",",
+            "                             request: request,",
+            "                             applicationGroupIdentifier: identifier)",
+            "",
+            "// Access the shared download manager.",
+            "let manager = BADownloadManager.shared",
+            "",
+            "// Assign the manager's delegate so the framework can notify",
+            "// the app of asset download events.",
+            "manager.delegate = self",
+            "",
+            "do {",
+            "    // Attempt to acquire exclusive control of the manager.",
+            "    manager.withExclusiveControl { error in",
+            "        // Return immediately if that attempt fails.",
+            "        if let error {",
+            "            print(error.localizedDescription)",
+            "            return",
+            "        }",
+            "        ",
+            "        // Use the manager to schedule the asset download.",
+            "        try manager.schedule(download)",
+            "    }",
+            "} catch {",
+            "    // Handle the error.",
+            "    print(error.localizedDescription)",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets": {
+      "abstract": [
+        {
+          "text": "Schedule background downloads of large assets after app installation, when the app updates, and periodically while the app remains on-device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Background Assets",
+      "type": "topic",
+      "url": "/documentation/backgroundassets"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager": {
+      "abstract": [
+        {
+          "text": "An object that manages the queue of scheduled asset downloads.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BADownloadManager"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BADownloadManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "BADownloadManager",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/badownloadmanager"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/cancel(_:)": {
+      "abstract": [
+        {
+          "text": "Cancels an asset download.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)BADownload",
+          "text": "BADownload"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/cancel(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cancelDownload:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "cancel(_:)",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/badownloadmanager/cancel(_:)"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/delegate": {
+      "abstract": [
+        {
+          "text": "The download manager’s delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)BADownloadManagerDelegate",
+          "text": "BADownloadManagerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/badownloadmanager/delegate"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/fetchCurrentDownloads()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchCurrentDownloads"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)BADownload",
+          "text": "BADownload"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/fetchCurrentDownloads()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchCurrentDownloads:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchCurrentDownloads()",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/badownloadmanager/fetchcurrentdownloads()"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/fetchCurrentDownloads(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Fetches the contents of the manager’s download queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchCurrentDownloads"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)BADownload",
+          "text": "BADownload"
+        },
+        {
+          "kind": "text",
+          "text": "], (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/fetchCurrentDownloads(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchCurrentDownloadsWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchCurrentDownloads(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/badownloadmanager/fetchcurrentdownloads(completionhandler:)"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/scheduleDownload(_:)": {
+      "abstract": [
+        {
+          "text": "Schedules an asset download to execute in the background at a nonspecific time in the future.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheduleDownload"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)BADownload",
+          "text": "BADownload"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/scheduleDownload(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scheduleDownload:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "scheduleDownload(_:)",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/badownloadmanager/scheduledownload(_:)"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/shared": {
+      "abstract": [
+        {
+          "text": "The download manager that both the app and the extension share.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)BADownloadManager",
+          "text": "BADownloadManager"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/shared",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sharedManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "shared",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/badownloadmanager/shared"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/startForegroundDownload(_:)": {
+      "abstract": [
+        {
+          "text": "Schedules an asset download that executes immediately in the foreground.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startForegroundDownload"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)BADownload",
+          "text": "BADownload"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/startForegroundDownload(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startForegroundDownload:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startForegroundDownload(_:)",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/badownloadmanager/startforegrounddownload(_:)"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/withExclusiveControl(_:)": {
+      "abstract": [
+        {
+          "text": "Attempts to acquire immediate, exclusive access to the download manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withExclusiveControl"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/withExclusiveControl(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "performWithExclusiveControl:"
+        }
+      ],
+      "role": "symbol",
+      "title": "withExclusiveControl(_:)",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/badownloadmanager/withexclusivecontrol(_:)"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/withExclusiveControl(beforeDate:perform:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withExclusiveControl"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "beforeDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/withExclusiveControl(beforeDate:perform:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "performWithExclusiveControlBeforeDate:performHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "withExclusiveControl(beforeDate:perform:)",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/badownloadmanager/withexclusivecontrol(beforedate:perform:)"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManagerDelegate": {
+      "abstract": [
+        {
+          "text": "An interface for reacting to asset download events and processing concluded downloads.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BADownloadManagerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManagerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BADownloadManagerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "BADownloadManagerDelegate",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/badownloadmanagerdelegate"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloaderExtension-qwaw": {
+      "abstract": [
+        {
+          "text": "An interface for reacting to app life-cycle events and processing concluded asset downloads while your app isn’t running.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BADownloaderExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloaderExtension-qwaw",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BADownloaderExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "BADownloaderExtension",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/badownloaderextension-qwaw"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloaderExtension-zuvm": {
+      "abstract": [
+        {
+          "text": "An interface for reacting to app life-cycle events and processing concluded asset downloads while your app isn’t running.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "BADownloaderExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloaderExtension-zuvm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BADownloaderExtension",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/badownloaderextension-zuvm"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloaderExtensionConfiguration": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BADownloaderExtensionConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloaderExtensionConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BADownloaderExtensionConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "BADownloaderExtensionConfiguration",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/badownloaderextensionconfiguration"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/downloading-essential-assets-in-the-background": {
+      "abstract": [
+        {
+          "text": "Fetch the assets your app requires before its first launch using an app extension and the Background Assets framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/downloading-essential-assets-in-the-background",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Downloading essential assets in the background",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/downloading-essential-assets-in-the-background"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Asset-download-management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloaderExtension-qwaw",
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloaderExtensionConfiguration",
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets/downloading-essential-assets-in-the-background"
+      ],
+      "title": "Asset download management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Accessing-the-download-manager",
+      "identifiers": [
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/shared"
+      ],
+      "title": "Accessing the download manager"
+    },
+    {
+      "anchor": "Managing-downloads",
+      "identifiers": [
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/scheduleDownload(_:)",
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/startForegroundDownload(_:)",
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/cancel(_:)"
+      ],
+      "title": "Managing downloads"
+    },
+    {
+      "anchor": "Monitoring-downloads",
+      "identifiers": [
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/delegate",
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManagerDelegate"
+      ],
+      "title": "Monitoring downloads"
+    },
+    {
+      "anchor": "Fetching-in-progress-downloads",
+      "identifiers": [
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/fetchCurrentDownloads()",
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/fetchCurrentDownloads(completionHandler:)"
+      ],
+      "title": "Fetching in-progress downloads"
+    },
+    {
+      "anchor": "Synchronizing-manager-access",
+      "identifiers": [
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/withExclusiveControl(_:)",
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/withExclusiveControl(beforeDate:perform:)"
+      ],
+      "title": "Synchronizing manager access"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.1",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.1",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": true,
+              "deprecated": false,
+              "introducedAt": "18.4",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": true,
+              "deprecated": false,
+              "introducedAt": "2.4",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "BADownloadManager"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BADownloadManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BADownloadManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.backgroundassets/documentation/BackgroundAssets"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Accessing-the-download-manager",
+              "identifiers": [
+                "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/shared"
+              ],
+              "title": "Accessing the download manager"
+            },
+            {
+              "anchor": "Managing-downloads",
+              "identifiers": [
+                "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/scheduleDownload(_:)",
+                "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/startForegroundDownload(_:)",
+                "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/cancel(_:)"
+              ],
+              "title": "Managing downloads"
+            },
+            {
+              "anchor": "Monitoring-downloads",
+              "identifiers": [
+                "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/delegate",
+                "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManagerDelegate"
+              ],
+              "title": "Monitoring downloads"
+            },
+            {
+              "anchor": "Fetching-in-progress-downloads",
+              "identifiers": [
+                "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/fetchCurrentDownloads()",
+                "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/fetchCurrentDownloads(completionHandler:)"
+              ],
+              "title": "Fetching in-progress downloads"
+            },
+            {
+              "anchor": "Synchronizing-manager-access",
+              "identifiers": [
+                "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/withExclusiveControl(_:)",
+                "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloadManager/withExclusiveControl(beforeDate:perform:)"
+              ],
+              "title": "Synchronizing manager access"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Asset-download-management",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownloaderExtension-zuvm"
+              ],
+              "title": "Asset download management"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "BADownloadManager"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager~1shared/title",
+          "value": "sharedManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager~1shared/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sharedManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager~1scheduleDownload(_:)/title",
+          "value": "scheduleDownload:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager~1scheduleDownload(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "scheduleDownload:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager~1withExclusiveControl(beforeDate:perform:)/title",
+          "value": "performWithExclusiveControlBeforeDate:performHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager~1withExclusiveControl(beforeDate:perform:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "performWithExclusiveControlBeforeDate:performHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager~1startForegroundDownload(_:)/title",
+          "value": "startForegroundDownload:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager~1startForegroundDownload(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startForegroundDownload:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager~1fetchCurrentDownloads(completionHandler:)/title",
+          "value": "fetchCurrentDownloadsWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager~1fetchCurrentDownloads(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchCurrentDownloadsWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager~1withExclusiveControl(_:)/title",
+          "value": "performWithExclusiveControl:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager~1withExclusiveControl(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "performWithExclusiveControl:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager/title",
+          "value": "BADownloadManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BADownloadManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BADownloadManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager~1cancel(_:)/title",
+          "value": "cancelDownload:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager~1cancel(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "cancelDownload:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager~1fetchCurrentDownloads()/title",
+          "value": "fetchCurrentDownloads:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManager~1fetchCurrentDownloads()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchCurrentDownloads:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManagerDelegate/title",
+          "value": "BADownloadManagerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManagerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BADownloadManagerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundassets~1documentation~1BackgroundAssets~1BADownloadManagerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BADownloadManagerDelegate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/backgroundassets/badownloadmanager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/backgroundassets/badownloadmanager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

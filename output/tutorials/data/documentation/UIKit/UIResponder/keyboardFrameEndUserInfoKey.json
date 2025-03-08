@@ -1,0 +1,1668 @@
+{
+  "abstract": [
+    {
+      "text": "A user info key to retrieve the keyboard’s frame at the end of its animation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/UIResponder"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardFrameEndUserInfoKey"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "UIKit",
+    "externalID": "c:@UIKeyboardFrameEndUserInfoKey",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "let"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "keyboardFrameEndUserInfoKey"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:SS",
+        "text": "String"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIKeyboardFrameEndUserInfoKey"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.2",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.2",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "property",
+    "title": "keyboardFrameEndUserInfoKey"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "nonisolated"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "let"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "keyboardFrameEndUserInfoKey"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SS",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SS",
+              "text": "String"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The value for this key is an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that contains a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for identifying the frame rectangle of the keyboard (in the screen’s coordinate space) after animating the keyboard. The frame rectangle reflects the current orientation of the device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Instead of using this key to track the keyboard’s frame, consider using ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKeyboardLayoutGuide",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", which allows you to respond dynamically to keyboard movement in your app. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/adjusting-your-layout-with-keyboard-layout-guide",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The keyboard’s frame uses the screen’s coordinate space, which is different than the coordinate space of your views. Although they might sometimes match, such as when your app is full screen, they might be different when your app isn’t full screen in Split View, Slide Over, and Stage Manager. This means you need to account for this difference by converting the keyboard’s frame from the screen’s coordinate space to that of your views. The following code example shows how to convert from the screen’s coordinate space to your view’s coordinate space:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "guard let userInfo = notification.userInfo else { return }",
+                    "",
+                    "// In iOS 16.1 and later, the keyboard notification object is the screen the keyboard appears on.",
+                    "guard let screen = notification.object as? UIScreen,",
+                    "      // Get the keyboard’s frame at the end of its animation.",
+                    "      let keyboardFrameEnd = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }",
+                    "",
+                    "// Use that screen to get the coordinate space to convert from.",
+                    "let fromCoordinateSpace = screen.coordinateSpace",
+                    "",
+                    "// Get your view's coordinate space.",
+                    "let toCoordinateSpace: UICoordinateSpace = view",
+                    "",
+                    "// Convert the keyboard's frame from the screen's coordinate space to your view's coordinate space.",
+                    "let convertedKeyboardFrameEnd = fromCoordinateSpace.convert(keyboardFrameEnd, to: toCoordinateSpace)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "NSDictionary *userInfo = [notification userInfo];",
+                    "",
+                    "// Get the keyboard’s frame at the end of its animation.",
+                    "CGRect keyboardFrameEnd = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];",
+                    "",
+                    "// In iOS 16.1 and later, the keyboard notification object is the screen the keyboard appears on.",
+                    "// Use that screen to get the coordinate space to convert from.",
+                    "id<UICoordinateSpace> fromCoordinateSpace = [(UIScreen *)notification.object coordinateSpace];",
+                    "",
+                    "// Get your view's coordinate space.",
+                    "id<UICoordinateSpace> toCoordinateSpace = self.view;",
+                    "",
+                    "// Convert the keyboard's frame from the screen's coordinate space to your view's coordinate space.",
+                    "keyboardFrameEnd = [fromCoordinateSpace convertRect:keyboardFrameEnd toCoordinateSpace:toCoordinateSpace];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The keyboard might overlap only part of your view, so after you convert the frame to your view’s coordinate space, get the intersection of the keyboard’s frame and the view or window it overlaps. Getting the intersection allows you to work with only the portion of the keyboard that overlaps your view. You can use this value to offset your views or perform other necessary updates to your UI. The following code example shows how to offset the bottom of your view the appropriate distance in relation to the keyboard’s frame:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Get the safe area insets when the keyboard is offscreen.",
+                    "var bottomOffset = view.safeAreaInsets.bottom",
+                    "    ",
+                    "// Get the intersection between the keyboard's frame and the view's bounds to work with the",
+                    "// part of the keyboard that overlaps your view.",
+                    "let viewIntersection = view.bounds.intersection(convertedKeyboardFrameEnd)",
+                    "    ",
+                    "// Check whether the keyboard intersects your view before adjusting your offset.",
+                    "if !viewIntersection.isEmpty {",
+                    "        ",
+                    "    // Adjust the offset by the difference between the view's height and the height of the",
+                    "    // intersection rectangle.",
+                    "    bottomOffset = view.bounds.maxY - viewIntersection.minY",
+                    "}",
+                    "",
+                    "// Use the new offset to adjust your UI, for example by changing a layout guide, offsetting",
+                    "// your view, changing a scroll inset, and so on. This example uses the new offset to update",
+                    "// the value of an existing Auto Layout constraint on the view.",
+                    "movingBottomConstraint.constant = bottomOffset"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Get the safe area insets when the keyboard is offscreen.",
+                    "CGFloat bottomOffset = self.view.safeAreaInsets.bottom;",
+                    "",
+                    "// Get the intersection between the keyboard's frame and the view's bounds to work with the",
+                    "// part of the keyboard that overlaps your view.",
+                    "CGRect viewIntersection = CGRectIntersection(self.view.bounds, keyboardFrameEnd);",
+                    "",
+                    "// Check whether the keyboard intersects your view before adjusting your offset.",
+                    "if (!CGRectIsEmpty(viewIntersection)) {",
+                    "",
+                    "    // Adjust the offset by the difference between the view's height and the height of the",
+                    "    // intersection rectangle.",
+                    "    bottomOffset = CGRectGetMaxY(self.view.bounds) - CGRectGetMinY(viewIntersection);",
+                    "}",
+                    "",
+                    "// Use the new offset to adjust your UI, for example by changing a layout guide, offsetting",
+                    "// your view, changing a scroll inset, and so on. This example uses the new offset to update",
+                    "// the value of an existing Auto Layout constraint on the view.",
+                    "self.movingBottomConstraint.constant = bottomOffset;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation/cgrect": {
+      "abstract": [
+        {
+          "text": "A structure that contains the location and dimensions of a rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRect",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgrect"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsvalue": {
+      "abstract": [
+        {
+          "text": "A simple container for a single C or Objective-C data item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSValue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIKeyboardLayoutGuide": {
+      "abstract": [
+        {
+          "text": "A layout guide that represents the space the keyboard occupies in your app’s layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIKeyboardLayoutGuide"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKeyboardLayoutGuide",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyboardLayoutGuide"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIKeyboardLayoutGuide",
+      "type": "topic",
+      "url": "/documentation/uikit/uikeyboardlayoutguide"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder": {
+      "abstract": [
+        {
+          "text": "An abstract interface for responding to and handling events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIResponder"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIResponder"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIResponder",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardAnimationCurveUserInfoKey": {
+      "abstract": [
+        {
+          "text": "A user info key to retrieve the animation curve that the system uses to animate the keyboard onto or off the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardAnimationCurveUserInfoKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardAnimationCurveUserInfoKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyboardAnimationCurveUserInfoKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyboardAnimationCurveUserInfoKey",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder/keyboardanimationcurveuserinfokey"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardAnimationDurationUserInfoKey": {
+      "abstract": [
+        {
+          "text": "A user info key to retrieve the duration of the keyboard animation in seconds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardAnimationDurationUserInfoKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardAnimationDurationUserInfoKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyboardAnimationDurationUserInfoKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyboardAnimationDurationUserInfoKey",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder/keyboardanimationdurationuserinfokey"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardDidChangeFrameNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts immediately after a change in the keyboard’s frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardDidChangeFrameNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardDidChangeFrameNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyboardDidChangeFrameNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyboardDidChangeFrameNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder/keyboarddidchangeframenotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardDidHideNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts immediately after dismissing the keyboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardDidHideNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardDidHideNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyboardDidHideNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyboardDidHideNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder/keyboarddidhidenotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardDidShowNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts immediately after displaying the keyboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardDidShowNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardDidShowNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyboardDidShowNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyboardDidShowNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder/keyboarddidshownotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardFrameBeginUserInfoKey": {
+      "abstract": [
+        {
+          "text": "A user info key to retrieve the keyboard’s frame at the beginning of its animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardFrameBeginUserInfoKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardFrameBeginUserInfoKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyboardFrameBeginUserInfoKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyboardFrameBeginUserInfoKey",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder/keyboardframebeginuserinfokey"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardFrameEndUserInfoKey": {
+      "abstract": [
+        {
+          "text": "A user info key to retrieve the keyboard’s frame at the end of its animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardFrameEndUserInfoKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardFrameEndUserInfoKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyboardFrameEndUserInfoKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyboardFrameEndUserInfoKey",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder/keyboardframeenduserinfokey"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardIsLocalUserInfoKey": {
+      "abstract": [
+        {
+          "text": "A user info key to retrieve a Boolean value that indicates whether the keyboard belongs to the current app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardIsLocalUserInfoKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardIsLocalUserInfoKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyboardIsLocalUserInfoKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyboardIsLocalUserInfoKey",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder/keyboardislocaluserinfokey"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardWillChangeFrameNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts immediately prior to a change in the keyboard’s frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardWillChangeFrameNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardWillChangeFrameNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyboardWillChangeFrameNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyboardWillChangeFrameNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder/keyboardwillchangeframenotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardWillHideNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts immediately prior to dismissing the keyboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardWillHideNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardWillHideNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyboardWillHideNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyboardWillHideNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder/keyboardwillhidenotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardWillShowNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts immediately prior to displaying the keyboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardWillShowNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardWillShowNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyboardWillShowNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyboardWillShowNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder/keyboardwillshownotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/adjusting-your-layout-with-keyboard-layout-guide": {
+      "abstract": [
+        {
+          "text": "Respond dynamically to keyboard movement by using the tracking features of the keyboard layout guide.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/adjusting-your-layout-with-keyboard-layout-guide",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adjusting your layout with keyboard layout guide",
+      "type": "topic",
+      "url": "/documentation/uikit/adjusting-your-layout-with-keyboard-layout-guide"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSString": {
+      "abstract": [
+        {
+          "text": "A static, plain-text Unicode string object which you use when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSString"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSString",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.externally.resolved.symbol/s:SS": {
+      "abstract": [
+        {
+          "text": "A Unicode string value that is a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/Swift/String"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Constants",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardAnimationCurveUserInfoKey",
+        "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardAnimationDurationUserInfoKey",
+        "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardDidChangeFrameNotification",
+        "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardDidHideNotification",
+        "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardDidShowNotification",
+        "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardFrameBeginUserInfoKey",
+        "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardIsLocalUserInfoKey",
+        "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardWillChangeFrameNotification",
+        "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardWillHideNotification",
+        "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardWillShowNotification"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.2",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.2",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Global Variable"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UIKeyboardFrameEndUserInfoKey"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "var"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyboardFrameEndUserInfoKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Constants",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardAnimationCurveUserInfoKey",
+                "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardAnimationDurationUserInfoKey",
+                "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardDidChangeFrameNotification",
+                "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardDidHideNotification",
+                "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardDidShowNotification",
+                "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardFrameBeginUserInfoKey",
+                "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardIsLocalUserInfoKey",
+                "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardWillChangeFrameNotification",
+                "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardWillHideNotification",
+                "doc://com.apple.uikit/documentation/UIKit/UIResponder/keyboardWillShowNotification"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "extern"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSString",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSString",
+                    "text": "NSString"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "const"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UIKeyboardFrameEndUserInfoKey"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardWillHideNotification/title",
+          "value": "UIKeyboardWillHideNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardWillHideNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyboardWillHideNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardFrameEndUserInfoKey/title",
+          "value": "UIKeyboardFrameEndUserInfoKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardFrameEndUserInfoKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyboardFrameEndUserInfoKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardDidShowNotification/title",
+          "value": "UIKeyboardDidShowNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardDidShowNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyboardDidShowNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)NSString/abstract",
+          "value": [
+            {
+              "text": "A static, plain-text Unicode string object.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardAnimationCurveUserInfoKey/title",
+          "value": "UIKeyboardAnimationCurveUserInfoKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardAnimationCurveUserInfoKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyboardAnimationCurveUserInfoKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardWillChangeFrameNotification/title",
+          "value": "UIKeyboardWillChangeFrameNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardWillChangeFrameNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyboardWillChangeFrameNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder/title",
+          "value": "UIResponder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardAnimationDurationUserInfoKey/title",
+          "value": "UIKeyboardAnimationDurationUserInfoKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardAnimationDurationUserInfoKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyboardAnimationDurationUserInfoKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyboardLayoutGuide/title",
+          "value": "UIKeyboardLayoutGuide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyboardLayoutGuide/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyboardLayoutGuide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyboardLayoutGuide/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyboardLayoutGuide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardDidChangeFrameNotification/title",
+          "value": "UIKeyboardDidChangeFrameNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardDidChangeFrameNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyboardDidChangeFrameNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardIsLocalUserInfoKey/title",
+          "value": "UIKeyboardIsLocalUserInfoKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardIsLocalUserInfoKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyboardIsLocalUserInfoKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardDidHideNotification/title",
+          "value": "UIKeyboardDidHideNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardDidHideNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyboardDidHideNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardFrameBeginUserInfoKey/title",
+          "value": "UIKeyboardFrameBeginUserInfoKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardFrameBeginUserInfoKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyboardFrameBeginUserInfoKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardWillShowNotification/title",
+          "value": "UIKeyboardWillShowNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1keyboardWillShowNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyboardWillShowNotification"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uiresponder/keyboardframeenduserinfokey"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uiresponder/keyboardframeenduserinfokey"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

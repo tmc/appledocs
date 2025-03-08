@@ -1,0 +1,1905 @@
+{
+  "abstract": [
+    {
+      "text": "Use the vImage convert-any-to-any functionality to perform real-time image processing of video frames streamed from your device’s camera.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-video-sample-buffers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.3",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Applying vImage operations to video sample buffers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vImage library provides the high-level convert-any-to-any ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to convert image data between Core Video and Core Graphics formats. The convert-any-to-any functionality is suited for apps that work across different platforms where ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/av-foundation/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " may provide video frames in different formats.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code app uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/av-foundation/",
+              "isActive": true,
+              "overridingTitle": "AVFoundation",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AVFoundation",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to access the Mac camera and vImage to convert the camera image to an RGB image that the app displays onscreen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-the-pixel-format",
+          "level": 3,
+          "text": "Specify the pixel format",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure that AVCapture doesn’t have to perform a conversion from the capture format to the output format, the sample code specifies the output format as the camera’s active format. After declaring ",
+              "type": "text"
+            },
+            {
+              "code": "videoOutput",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoDataOutput",
+              "isActive": true,
+              "overridingTitle": "AVCaptureVideoDataOutput",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AVCaptureVideoDataOutput",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " instance, the following code defines the output pixel format by creating the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoDataOutput/videoSettings",
+              "isActive": true,
+              "overridingTitle": "videoSettings",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "videoSettings",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " dictionary:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "pixelFormat = CMFormatDescriptionGetMediaSubType(camera.activeFormat.formatDescription)",
+            "videoOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: pixelFormat]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Lock-the-Core-Video-pixel-buffer",
+          "level": 3,
+          "text": "Lock the Core Video pixel buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app starts the flow of data through the capture pipeline, ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/av-foundation/",
+              "isActive": true,
+              "overridingTitle": "AVFoundation",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AVFoundation",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoDataOutputSampleBufferDelegate/captureOutput(_:didOutput:from:)",
+              "isActive": true,
+              "overridingTitle": "captureOutput(_:didOutput:from:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "captureOutput(_:didOutput:from:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " for each new video frame. The following code locks the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/CVPixelBuffer",
+              "isActive": true,
+              "overridingTitle": "CVPixelBuffer",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CVPixelBuffer",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " structure’s underlying memory to make it available exclusively to the vImage conversion function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "CVPixelBufferLockBaseAddress(",
+            "    pixelBuffer,",
+            "    CVPixelBufferLockFlags.readOnly)",
+            "",
+            "do {",
+            "    try convertVideoFormatToRGB(cvPixelBuffer: pixelBuffer)",
+            "} catch {",
+            "    fatalError(\"Unable to perform conversion.\")",
+            "}",
+            "",
+            "CVPixelBufferUnlockBaseAddress(",
+            "    pixelBuffer,",
+            "    CVPixelBufferLockFlags.readOnly)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-Core-Video-to-Core-Graphics-converter",
+          "level": 3,
+          "text": "Create a Core Video-to-Core Graphics converter",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vImage convert-any-to-any function requires a converter that describes the source and destination formats. The sample code app converts a Core Video pixel buffer to a Core Graphics image. The code calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageCVImageFormat/make(buffer:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to derive the source Core Video image format from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/CVPixelBuffer",
+              "isActive": true,
+              "overridingTitle": "CVPixelBuffer",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CVPixelBuffer",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". In some cases, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageCVImageFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance that the make function returns may have incomplete information. The following code ensures that the format has a color space and chrominance siting information:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let cvImageFormat = vImageCVImageFormat.make(buffer: cvPixelBuffer) else {",
+            "    fatalError(\"Unable to derive Core Video pixel format from buffer.\")",
+            "}",
+            "",
+            "if cvImageFormat.colorSpace == nil {",
+            "    cvImageFormat.colorSpace = CGColorSpaceCreateDeviceRGB()",
+            "}",
+            "",
+            "if cvImageFormat.chromaSiting == nil {",
+            "    cvImageFormat.chromaSiting = .center",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app specifies a three-channel, 8-bit-per-channel ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the conversion destination format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let cgImageFormat = vImage_CGImageFormat(",
+            "    bitsPerComponent: 8,",
+            "    bitsPerPixel: 8 * 3,",
+            "    colorSpace: CGColorSpaceCreateDeviceRGB(),",
+            "    bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue))!"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter/make(sourceFormat:destinationFormat:flags:)-8iupf",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type method creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance from the source and destination formats.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "converter = try? vImageConverter.make(sourceFormat: cvImageFormat,",
+            "                                      destinationFormat: cgImageFormat)",
+            "",
+            "if converter == nil {",
+            "    fatalError(\"Unable to create Core Video to Core Graphics converter.\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Initialize-the-destination-buffer",
+          "level": 3,
+          "text": "Initialize the destination buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The destination pixel buffer contains the RGB image after conversion. The code defines it as a three-channel, 8-bit-per-channel ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var destinationBuffer: vImage.PixelBuffer<vImage.Interleaved8x3>!"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first time that the app calls the conversion function, it runs the following code to initialize the destination pixel buffer with the same dimensions as the Core Video pixel buffer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let size = vImage.Size(cvPixelBuffer: cvPixelBuffer)",
+            "destinationBuffer = vImage.PixelBuffer<vImage.Interleaved8x3>(size: size)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Initialize-the-source-buffers",
+          "level": 3,
+          "text": "Initialize the source buffers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although the sample code app knows that the Core Graphics image format requires only a single buffer at compile time, the camera’s active format defines the number of source buffers and their pixel formats at runtime. Therefore, the code defines the source buffers as an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/DynamicPixelFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " pixel buffers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var sourceBuffers: [vImage.PixelBuffer<vImage.DynamicPixelFormat>]!"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter/makeCVToCGPixelBuffers(referencing:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function that returns an array of pixel buffers. These pixel buffers reference the underlying memory of each plane of the Core Video pixel buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "sourceBuffers = try converter.makeCVToCGPixelBuffers(referencing: cvPixelBuffer)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Convert-the-Core-Video-buffer-contents-to-a-Core-Graphics-format-image",
+          "level": 3,
+          "text": "Convert the Core Video buffer contents to a Core Graphics format image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter/convert(from:to:)-9s7p7",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function accepts the source and destination pixel buffers and converts the Core Video pixel buffer’s contents to a Core Graphics image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "try converter.convert(from: sourceBuffers, to: [destinationBuffer])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-an-output-Core-Graphics-image",
+          "level": 3,
+          "text": "Create an output Core Graphics image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, the code calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/makeCGImage(cgImageFormat:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create a Core Graphics image that it displays in the user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let rgbImage = destinationBuffer.makeCGImage(cgImageFormat: cgImageFormat)!"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "b94c9f2cfd41/ApplyingVImageOperationsToVideoSampleBuffers.zip": {
+      "checksum": "b94c9f2cfd41125de958509e849e68ed9194d389a049a43a4ba06af999e70f475526ae98bb851dc70e206e5209a3d6b0ed28bac7cfc691c39ead823face32e08",
+      "identifier": "b94c9f2cfd41/ApplyingVImageOperationsToVideoSampleBuffers.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/b94c9f2cfd41/ApplyingVImageOperationsToVideoSampleBuffers.zip"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/core-video-interoperability": {
+      "abstract": [
+        {
+          "text": "Pass image data between Core Video and vImage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/core-video-interoperability",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Core Video interoperability",
+      "type": "topic",
+      "url": "/documentation/accelerate/core-video-interoperability"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/improving-the-quality-of-quantized-images-with-dithering": {
+      "abstract": [
+        {
+          "text": "Apply dithering to simulate colors that are unavailable in reduced bit depths.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/improving-the-quality-of-quantized-images-with-dithering",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Improving the quality of quantized images with dithering",
+      "type": "topic",
+      "url": "/documentation/accelerate/improving-the-quality-of-quantized-images-with-dithering"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/integrating-vimage-pixel-buffers-into-a-core-image-workflow": {
+      "abstract": [
+        {
+          "text": "Share image data between Core Video pixel buffers and vImage buffers to integrate vImage operations into a Core Image workflow.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/integrating-vimage-pixel-buffers-into-a-core-image-workflow",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Integrating vImage pixel buffers into a Core Image workflow",
+      "type": "topic",
+      "url": "/documentation/accelerate/integrating-vimage-pixel-buffers-into-a-core-image-workflow"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/using-vimage-pixel-buffers-to-generate-video-effects": {
+      "abstract": [
+        {
+          "text": "Render real-time video effects with the vImage Pixel Buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/using-vimage-pixel-buffers-to-generate-video-effects",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using vImage pixel buffers to generate video effects",
+      "type": "topic",
+      "url": "/documentation/accelerate/using-vimage-pixel-buffers-to-generate-video-effects"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/DynamicPixelFormat": {
+      "abstract": [
+        {
+          "text": "A buffer that contains pixels with a data type that’s unknown at compile time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DynamicPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/DynamicPixelFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DynamicPixelFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.DynamicPixelFormat",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/dynamicpixelformat"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer": {
+      "abstract": [
+        {
+          "text": "An image buffer that stores an image’s pixel data, dimensions, bit depth, and number of channels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.PixelBuffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/makeCGImage(cgImageFormat:)": {
+      "abstract": [
+        {
+          "text": "Returns a Core Graphics image from the pixel buffer’s contents.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "StaticPixelFormat",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeCGImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "cgImageFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_CGImageFormat",
+          "text": "vImage_CGImageFormat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/makeCGImage(cgImageFormat:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeCGImage(cgImageFormat:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/makecgimage(cgimageformat:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageCVImageFormat": {
+      "abstract": [
+        {
+          "text": "A mutable description of image encoding in a Core Video pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageCVImageFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageCVImageFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageCVImageFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageCVImageFormat",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagecvimageformat"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageCVImageFormat/make(buffer:)": {
+      "abstract": [
+        {
+          "text": "Creates the description of the image encoding in an existing Core Video pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "make"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "buffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImageCVImageFormatRef",
+          "text": "vImageCVImageFormat"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageCVImageFormat/make(buffer:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "make(buffer:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagecvimageformat/make(buffer:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter": {
+      "abstract": [
+        {
+          "text": "A description of a conversion from one image format to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageConverter"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageConverter"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageConverter",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageconverter"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter/convert(from:to:)-9s7p7": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convert"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Src"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Dest"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Src"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Dest"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter/convert(from:to:)-9s7p7",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convert(from:to:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageconverter/convert(from:to:)-9s7p7"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter/make(sourceFormat:destinationFormat:flags:)-8iupf": {
+      "abstract": [
+        {
+          "text": "Creates a vImage converter that converts a Core Video-formatted image to a Core Graphics-formatted image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "make"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImageCVImageFormatRef",
+          "text": "vImageCVImageFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_CGImageFormat",
+          "text": "vImage_CGImageFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7OptionsV",
+          "text": "Options"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImageConverterRef",
+          "text": "vImageConverter"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter/make(sourceFormat:destinationFormat:flags:)-8iupf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "make(sourceFormat:destinationFormat:flags:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageconverter/make(sourceformat:destinationformat:flags:)-8iupf"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter/makeCVToCGPixelBuffers(referencing:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeCVToCGPixelBuffers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "referencing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO18DynamicPixelFormatV",
+          "text": "DynamicPixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter/makeCVToCGPixelBuffers(referencing:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeCVToCGPixelBuffers(referencing:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageconverter/makecvtocgpixelbuffers(referencing:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat": {
+      "abstract": [
+        {
+          "text": "The description of a Core Graphics image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_CGImageFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_CGImageFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_CGImageFormat",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_cgimageformat"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-library": {
+      "abstract": [
+        {
+          "text": "Manipulate large images using the CPU’s vector processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-library"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoDataOutput": {
+      "abstract": [
+        {
+          "text": "A capture output that records video and provides access to video frames for processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureVideoDataOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoDataOutput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureVideoDataOutput",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureVideoDataOutput"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoDataOutput/videoSettings": {
+      "abstract": [
+        {
+          "text": "A dictionary that contains the compression settings for the output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoSettings"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]! { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoDataOutput/videoSettings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "videoSettings",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureVideoDataOutput/videoSettings"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoDataOutputSampleBufferDelegate/captureOutput(_:didOutput:from:)": {
+      "abstract": [
+        {
+          "text": "Notifies the delegate that a new video frame was written.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "captureOutput"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "output"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureOutput",
+          "text": "AVCaptureOutput"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didOutput"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "sampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSampleBufferRef",
+          "text": "CMSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "connection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureConnection",
+          "text": "AVCaptureConnection"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoDataOutputSampleBufferDelegate/captureOutput(_:didOutput:from:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "captureOutput(_:didOutput:from:)",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureVideoDataOutputSampleBufferDelegate/captureOutput(_:didOutput:from:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/CVPixelBuffer": {
+      "abstract": [
+        {
+          "text": "A reference to a Core Video pixel buffer object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVImageBufferRef",
+          "text": "CVImageBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/CVPixelBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVPixelBuffer",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/CVPixelBuffer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/av-foundation/": {
+      "identifier": "https://developer.apple.com/av-foundation/",
+      "title": "AVFoundation",
+      "titleInlineContent": [
+        {
+          "text": "AVFoundation",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/av-foundation/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "b94c9f2cfd41/ApplyingVImageOperationsToVideoSampleBuffers.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Core-Video-Interoperation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/using-vimage-pixel-buffers-to-generate-video-effects",
+        "doc://com.apple.accelerate/documentation/Accelerate/integrating-vimage-pixel-buffers-into-a-core-image-workflow",
+        "doc://com.apple.accelerate/documentation/Accelerate/improving-the-quality-of-quantized-images-with-dithering",
+        "doc://com.apple.accelerate/documentation/Accelerate/core-video-interoperability"
+      ],
+      "title": "Core Video Interoperation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureVideoDataOutput~1videoSettings/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+              "text": "NSDictionary<NSString *,id>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "videoSettings"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureVideoDataOutputSampleBufferDelegate~1captureOutput(_:didOutput:from:)/title",
+          "value": "captureOutput:didOutputSampleBuffer:fromConnection:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureVideoDataOutputSampleBufferDelegate~1captureOutput(_:didOutput:from:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "captureOutput:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVCaptureOutput",
+              "text": "AVCaptureOutput"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "output"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didOutputSampleBuffer:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CMSampleBufferRef",
+              "text": "CMSampleBufferRef"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "sampleBuffer"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "fromConnection:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVCaptureConnection",
+              "text": "AVCaptureConnection"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "connection"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureVideoDataOutput/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureVideoDataOutput"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVCaptureOutput",
+              "text": "AVCaptureOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGImageFormat/title",
+          "value": "vImage_CGImageFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGImageFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_CGImageFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGImageFormat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_CGImageFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1CVPixelBuffer/title",
+          "value": "CVPixelBufferRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1CVPixelBuffer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CVImageBufferRef",
+              "text": "CVImageBufferRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CVPixelBufferRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConverter/title",
+          "value": "vImageConverterRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConverter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConverterRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConverter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConverterRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageCVImageFormat/title",
+          "value": "vImageCVImageFormatRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageCVImageFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageCVImageFormatRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageCVImageFormat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageCVImageFormatRef"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

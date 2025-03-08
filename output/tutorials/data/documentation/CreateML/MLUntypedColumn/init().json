@@ -1,0 +1,798 @@
+{
+  "abstract": [
+    {
+      "text": "Creates an empty, invalid column used to remove an existing column from",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "a data table.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateML/documentation/CreateML",
+        "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn/init()"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:8CreateML15MLUntypedColumnVACycfc",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "init"
+      },
+      {
+        "kind": "text",
+        "text": "()"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Create ML"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.14",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Initializer",
+    "symbolKind": "init",
+    "title": "init()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "init"
+            },
+            {
+              "kind": "text",
+              "text": "()"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An empty, invalid column.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this initializer to create an empty column that, when assigned to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the name of an existing column within a data table, will remove that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "column from the table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to remove a column from a data table, first start with a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variable data table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let data: [String: MLDataValueConvertible] = [",
+            "    \"Day\": [\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\"],",
+            "    \"Temperature\": [91.3, 85.8, 79.5, 83.4, 72.2]",
+            "]",
+            "",
+            "var table = try MLDataTable(dictionary: data)",
+            "",
+            "print(table)",
+            "/* Prints...",
+            " Columns:",
+            " Day    string",
+            " Temperature    float",
+            " Rows: 5",
+            " Data:",
+            " +----------------+----------------+",
+            " | Day            | Temperature    |",
+            " +----------------+----------------+",
+            " | Monday         | 91.3           |",
+            " | Tuesday        | 85.8           |",
+            " | Wednesday      | 79.5           |",
+            " | Thursday       | 83.4           |",
+            " | Friday         | 72.2           |",
+            " +----------------+----------------+",
+            " [5 rows x 2 columns]",
+            " */"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn/init()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create an empty column.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let emptyColumn = MLUntypedColumn()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn/subscript(_:)-9hr32",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to remove the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "existing column from the data table by setting the empty column to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "name of that existing column.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Remove the \"Temperature\" column from the data table",
+            "table[\"Temperature\"] = emptyColumn",
+            "",
+            "print(table)",
+            "/* Prints...",
+            " Columns:",
+            " Day    string",
+            " Rows: 5",
+            " Data:",
+            " +----------------+",
+            " | Day            |",
+            " +----------------+",
+            " | Monday         |",
+            " | Tuesday        |",
+            " | Wednesday      |",
+            " | Thursday       |",
+            " | Friday         |",
+            " +----------------+",
+            " [5 rows x 1 columns]",
+            " */"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CreateML/documentation/CreateML": {
+      "abstract": [
+        {
+          "text": "Create machine learning models for use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML",
+      "type": "topic",
+      "url": "/documentation/createml"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn": {
+      "abstract": [
+        {
+          "text": "A column of untyped values in a data table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLUntypedColumn"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLUntypedColumn"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLUntypedColumn",
+      "type": "topic",
+      "url": "/documentation/createml/mluntypedcolumn"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn/init()": {
+      "abstract": [
+        {
+          "text": "Creates an empty, invalid column used to remove an existing column from",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a data table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/createml/mluntypedcolumn/init()"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn/init(_:)-33tcv": {
+      "abstract": [
+        {
+          "text": "Creates a new column of integers from a given range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn/init(_:)-33tcv",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/createml/mluntypedcolumn/init(_:)-33tcv"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn/init(_:)-5by2g": {
+      "abstract": [
+        {
+          "text": "Creates a new column from a given sequence of machine learning data",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn/init(_:)-5by2g",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/createml/mluntypedcolumn/init(_:)-5by2g"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn/init(_:)-9no5": {
+      "abstract": [
+        {
+          "text": "Creates a new column of integers from a given closed range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SN",
+          "text": "ClosedRange"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn/init(_:)-9no5",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/createml/mluntypedcolumn/init(_:)-9no5"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn/init(_:)-ag8f": {
+      "abstract": [
+        {
+          "text": "Creates a new column from a given sequence of elements that can be",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "converted to machine learning data values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn/init(_:)-ag8f",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/createml/mluntypedcolumn/init(_:)-ag8f"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn/init(repeating:count:)-7ttf1": {
+      "abstract": [
+        {
+          "text": "Creates a new column with a repeating value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "repeating"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn/init(repeating:count:)-7ttf1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(repeating:count:)",
+      "type": "topic",
+      "url": "/documentation/createml/mluntypedcolumn/init(repeating:count:)-7ttf1"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn/init(repeating:count:)-q8yk": {
+      "abstract": [
+        {
+          "text": "Creates a new column with a repeating value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "repeating"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataValueO",
+          "text": "MLDataValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn/init(repeating:count:)-q8yk",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(repeating:count:)",
+      "type": "topic",
+      "url": "/documentation/createml/mluntypedcolumn/init(repeating:count:)-q8yk"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn/subscript(_:)-9hr32": {
+      "abstract": [
+        {
+          "text": "Creates a subset of the column by masking its elements with another",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "untyped column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML15MLUntypedColumnV",
+          "text": "MLUntypedColumn"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML15MLUntypedColumnV",
+          "text": "MLUntypedColumn"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn/subscript(_:)-9hr32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/createml/mluntypedcolumn/subscript(_:)-9hr32"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-an-untyped-column",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn/init(repeating:count:)-7ttf1",
+        "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn/init(repeating:count:)-q8yk",
+        "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn/init(_:)-33tcv",
+        "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn/init(_:)-9no5",
+        "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn/init(_:)-ag8f",
+        "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn/init(_:)-5by2g"
+      ],
+      "title": "Creating an untyped column"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createml/mluntypedcolumn/init()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

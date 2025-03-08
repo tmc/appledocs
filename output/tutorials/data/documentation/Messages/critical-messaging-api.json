@@ -1,0 +1,978 @@
+{
+  "abstract": [
+    {
+      "text": "Send critical messages from inside your app using the Critical Messaging API.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.messages/documentation/Messages"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.messages/documentation/Messages/critical-messaging-api"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Messages"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Sending SMS messages from an app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Critical Messaging API provides a way for apps to deliver",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "critical messages to a set of phone numbers. This",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can serve a number of purposes. For example, if an enterprise wants",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to receive check-ins from employees working in hazardous or rural",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "environments, being able to automatically message a corporate check-in point may help",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "check the safety of those employees without disrupting their",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "work, or if the employee is unable to access or unlock their iPhone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-your-app-to-use-the-Critical-Messaging-API",
+          "level": 3,
+          "text": "Enable your app to use the Critical Messaging API",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.developer.messages.critical-messaging",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to your app’s entitlement file in Xcode. For instructions on how to add this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entitlement, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.messages.critical-messaging",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition, add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCriticalMessagingUsageDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key",
+              "type": "text"
+            },
+            {
+              "text": "\n",
+              "type": "text"
+            },
+            {
+              "text": "to your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file and provide a usage description for the operating",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system to display when the framework requests a person’s authorization to use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this capability.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Critical messages sent via this API may not transmit in scenarios where SMS service is unavailable.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Understand-API-restrictions-and-usage-limitations",
+          "level": 3,
+          "text": "Understand API restrictions and usage limitations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You app’s use of this API must follow the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/support/terms/apple-developer-program-license-agreement#other-tech",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "; additionally the following API limitations and restrictions apply:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.messages/documentation/Messages/MSCriticalSMSMessenger/send(_:to:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method only works if the app is backgrounded, if it’s called from foreground the framework returns a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.messages/documentation/Messages/MSCriticalMessagingError/notSupported",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " error.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The system may impose a rate limit on frequency of messages sent, if usage exceeds this limit the framework returns a  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.messages/documentation/Messages/MSCriticalMessagingError/sendFailed",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " error.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When providing phone numbers through ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.messages/documentation/Messages/MSCriticalSMSMessenger/requestAuthorization(for:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", the Messages framework checks if the phone numbers are part of the user’s contacts and populates the users name in the authorization alert as well as in the Settings page.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A person can change the authorization to send critical messages in Settings, under Privacy & Security > Critical Messaging. Check authorization using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSCriticalSMSMessenger/checkAuthorizationStatus(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before using this capability.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Send-critical-SMS-messages-from-your-app",
+          "level": 3,
+          "text": "Send critical SMS messages from your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To send messages from your app, create an instance of the background",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "messaging manager and recipients, request authorization, then send",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your message. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let manager = MSCriticalSMSMessenger()",
+            "",
+            "let recipient1 = MSRecipient(phoneNumber: \"18005552222\")",
+            "let recipient2 = MSRecipient(phoneNumber: \"18005553333\")",
+            "let recipient3 = MSRecipient(phoneNumber: \"4401539702257\")",
+            "",
+            "let status = try await manager.requestAuthorization(to recipients: [recipient1, recipient2, recipient3])",
+            "let status = manager.send(to recipient: recipient1, message: MSCriticalMessage(\"Hello there\"))",
+            "",
+            "// Handle any error response the system returns."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.messages.critical-messaging": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an app can use the Critical Messaging API to send SMS messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.messages.critical-messaging",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Critical Messaging",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.messages.critical-messaging"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCriticalMessagingUsageDescription": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCriticalMessagingUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCriticalMessagingUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSCriticalMessagingUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.messages/documentation/Messages": {
+      "abstract": [
+        {
+          "text": "Create app extensions that allow users to send text, stickers, media files, and interactive messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Messages",
+      "type": "topic",
+      "url": "/documentation/messages"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSCriticalMessage": {
+      "abstract": [
+        {
+          "text": "MSCriticalMessage",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "A simple struct to encapsulate the message string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSCriticalMessage"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSCriticalMessage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSCriticalMessage"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSCriticalMessage",
+      "type": "topic",
+      "url": "/documentation/messages/mscriticalmessage"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSCriticalMessagingAuthorizationStatus": {
+      "abstract": [
+        {
+          "text": "Values that describe the authorization status for the Critical Messaging API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSCriticalMessagingAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSCriticalMessagingAuthorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSCriticalMessagingAuthorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSCriticalMessagingAuthorizationStatus",
+      "type": "topic",
+      "url": "/documentation/messages/mscriticalmessagingauthorizationstatus"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSCriticalMessagingError/notSupported": {
+      "abstract": [
+        {
+          "text": "The framework doesn’t support the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notSupported"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSCriticalMessagingError/notSupported",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MSCriticalMessagingError.notSupported",
+      "type": "topic",
+      "url": "/documentation/messages/mscriticalmessagingerror/notsupported"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSCriticalMessagingError/sendFailed": {
+      "abstract": [
+        {
+          "text": "The message failed to send.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendFailed"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSCriticalMessagingError/sendFailed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MSCriticalMessagingError.sendFailed",
+      "type": "topic",
+      "url": "/documentation/messages/mscriticalmessagingerror/sendfailed"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSCriticalSMSMessenger": {
+      "abstract": [
+        {
+          "text": "The user interface for the Critical Messaging API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSCriticalSMSMessenger"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSCriticalSMSMessenger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSCriticalSMSMessenger"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSCriticalSMSMessenger",
+      "type": "topic",
+      "url": "/documentation/messages/mscriticalsmsmessenger"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSCriticalSMSMessenger/checkAuthorizationStatus(for:)": {
+      "abstract": [
+        {
+          "text": "Confirms the current authorization status for sending critical messages from this app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "checkAuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8Messages11MSRecipientV",
+          "text": "MSRecipient"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8Messages11MSRecipientV",
+          "text": "MSRecipient"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8Messages38MSCriticalMessagingAuthorizationStatusO",
+          "text": "MSCriticalMessagingAuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSCriticalSMSMessenger/checkAuthorizationStatus(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "checkAuthorizationStatus(for:)",
+      "type": "topic",
+      "url": "/documentation/messages/mscriticalsmsmessenger/checkauthorizationstatus(for:)"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSCriticalSMSMessenger/requestAuthorization(for:)": {
+      "abstract": [
+        {
+          "text": "Requests a person’s authorization to send messages to the provided recipients.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8Messages11MSRecipientV",
+          "text": "MSRecipient"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8Messages11MSRecipientV",
+          "text": "MSRecipient"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8Messages38MSCriticalMessagingAuthorizationStatusO",
+          "text": "MSCriticalMessagingAuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSCriticalSMSMessenger/requestAuthorization(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestAuthorization(for:)",
+      "type": "topic",
+      "url": "/documentation/messages/mscriticalsmsmessenger/requestauthorization(for:)"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSCriticalSMSMessenger/send(_:to:)": {
+      "abstract": [
+        {
+          "text": "Sends a critical message to the specified recipient.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "send"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8Messages17MSCriticalMessageV",
+          "text": "MSCriticalMessage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8Messages11MSRecipientV",
+          "text": "MSRecipient"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSCriticalSMSMessenger/send(_:to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "send(_:to:)",
+      "type": "topic",
+      "url": "/documentation/messages/mscriticalsmsmessenger/send(_:to:)"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSRecipient": {
+      "abstract": [
+        {
+          "text": "A structure that describes the recipient of a critical message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSRecipient"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSRecipient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSRecipient"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSRecipient",
+      "type": "topic",
+      "url": "/documentation/messages/msrecipient"
+    },
+    "https://developer.apple.com/support/terms/apple-developer-program-license-agreement#other-tech": {
+      "identifier": "https://developer.apple.com/support/terms/apple-developer-program-license-agreement#other-tech",
+      "title": "Developer Program License Agreement",
+      "titleInlineContent": [
+        {
+          "text": "Developer Program License Agreement",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/terms/apple-developer-program-license-agreement#other-tech"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Critical-messages",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.messages/documentation/Messages/MSCriticalSMSMessenger",
+        "doc://com.apple.messages/documentation/Messages/MSRecipient",
+        "doc://com.apple.messages/documentation/Messages/MSCriticalMessage",
+        "doc://com.apple.messages/documentation/Messages/MSCriticalMessagingAuthorizationStatus"
+      ],
+      "title": "Critical messages"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Critical-messages",
+              "generated": true,
+              "identifiers": [],
+              "title": "Critical messages"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/messages/critical-messaging-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/messages/critical-messaging-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

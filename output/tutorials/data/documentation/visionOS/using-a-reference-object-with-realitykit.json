@@ -1,0 +1,1310 @@
+{
+  "abstract": [
+    {
+      "text": "Import a reference object file to track a real-world object in your visionOS app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS",
+        "doc://com.apple.visionOS/documentation/visionOS/implementing-object-tracking-in-your-visionOS-app"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/using-a-reference-object-with-realitykit"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using a reference object with RealityKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use reference objects in your visionOS app to track real-world objects in a person’s surroundings.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "With this capability, you can attach virtual content to those real-world objects to create engaging experiences.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, with a reference object, you can track a household item and add virtual content to it, like highlighting a part and showing how to fix it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a reference object, first, obtain a 3D model asset, train a machine learning model with that 3D model asset in Create ML, and then import the resulting reference object file into your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can use RealityKit to import the reference object file, track objects, and add virtual content for interactiveness.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about creating a reference object file, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.visionOS/documentation/visionOS/implementing-object-tracking-in-your-visionOS-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-your-reference-object-and-track-it-with-an-anchoring-component",
+          "level": 3,
+          "text": "Add your reference object and track it with an anchoring component",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After generating the ",
+              "type": "text"
+            },
+            {
+              "code": ".referenceobject",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file with Create ML, add the reference object file to your Xcode project’s main bundle.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then, create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/realitykit/anchoringcomponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to track the position of the reference object file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This allows the system to move the anchoring component to follow your real-world object, and to anchor virtual content to it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Using this ",
+              "type": "text"
+            },
+            {
+              "code": "AnchoringComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is equivalent to setting the Anchoring option on your component in Reality Composer Pro.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "code": "ImmersiveView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, initialize either an ",
+              "type": "text"
+            },
+            {
+              "code": "AnchoringComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or an ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/realitykit/anchorentity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/realitykit/anchoringcomponent/target-swift.enum/referenceobject(from:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " target, and create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/realitykit/anchoringcomponent/objectanchoringsource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to configure the anchoring.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// ImmersiveView.swift",
+            "struct ImmersiveView: View {",
+            "    var body: some View {",
+            "        RealityView { content in",
+            "            // Find the URL of the reference object file.",
+            "            let objectURL = Bundle.main.url(forResource: \"VintageGramophone\", withExtension: \".referenceobject\")!",
+            "            ",
+            "            // Create an object-anchoring entity.",
+            "            let anchorSource = AnchoringComponent.ObjectAnchoringSource(objectURL)",
+            "            let objectAnchor = AnchorEntity(.referenceObject(from: anchorSource))",
+            "            content.add(objectAnchor)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Import-the-USDZ-file-to-visualize-the-model",
+          "level": 3,
+          "text": "Import the USDZ file to visualize the model",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reference object files can optionally bundle with the USDZ file that Create ML uses for training.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Adding the USDZ file directly, even if your reference object doesn’t have the model file packaged within it, lets you directly load the ",
+              "type": "text"
+            },
+            {
+              "code": "objectURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " into your project.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Retrieve this USDZ file through ARKit and use it as a guide for RealityKit content creation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import ARKit",
+            "",
+            "// Use the same reference object file URL to load the object. ",
+            "guard let referenceObject = try? await ReferenceObject(from: objectURL) else {",
+            "    print(\"Failed to load reference object\")",
+            "    return",
+            "}",
+            "",
+            "// Load the USDZ file from your reference object.",
+            "guard let modelURL = referenceObject.usdzFile else {",
+            "    print(\"The USDZ file isn't bundled in the reference object\")",
+            "    return",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-occlusion-to-your-object",
+          "level": 3,
+          "text": "Add occlusion to your object",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The RealityKit ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/realitykit/occlusionmaterial/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides a way to render an entity that blocks and occludes other entities to reveal camera passthrough.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This is useful in creating the correct depth perception between the real-world object the system tracks and the virtual content you add to your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can use the imported USDZ file from your reference object file to create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/realitykit/modelentity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that generates a virtual representation of your physical object, so you can add occlusion behavior to it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "ambient-occlusion",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Load the `modelEntity` with the `modelURL` containing the USDZ file.",
+            "let modelEntity = try! await ModelEntity(contentsOf: modelURL)",
+            "",
+            "// Swap out the material of the `modelEntity` with `OcclusionMaterial`.",
+            "modelEntity.model?.materials = [OcclusionMaterial()]",
+            "objectAnchor.addChild(modelEntity)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-attachments-to-the-model",
+          "level": 3,
+          "text": "Add attachments to the model",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before adding interaction, incorporate guidance in your app so that anyone can navigate through using it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/realitykit/realityview/init(make:update:attachments:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to combine SwiftUI content with RealityKit content to create these guiding features.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Attach SwiftUI labels and interfaces to the object-tracking entities.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "attachments-globe",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "RealityView { content, attachments in",
+            "        // Set up the object-tracking `AnchorEntity`.",
+            "",
+            "        // Add an attachment to the object anchor.",
+            "        if let attachment = attachments.entity(for: \"TextPrompt\") {",
+            "            objectAnchor.addChild(attachment)",
+            "        }",
+            "    ",
+            "} attachments: {",
+            "        Attachment(id: \"TextPrompt\") {",
+            "            Text(\"Hello World\")",
+            "        }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-interaction-and-virtual-content-to-your-app",
+          "level": 3,
+          "text": "Add interaction and virtual content to your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RealityKit provides a seamless way to incorporate virtual content within your app. Use virtual effects to increase interaction with features like occlusion, physics simulation, collisions, and SwiftUI gestures.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To add effects, use ARKit to load the model and add content on top of the real-world object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Access-the-transform-with-a-tracking-session",
+          "level": 3,
+          "text": "Access the transform with a tracking session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before adding any interaction or virtual content to your app, you have the option to configure a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/realitykit/spatialtrackingsession/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".  A ",
+              "type": "text"
+            },
+            {
+              "code": "SpatialTrackingSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " requests world-tracking permission from the user, and provides the accurate position and rotation of the object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Creating an ",
+              "type": "text"
+            },
+            {
+              "code": "AnchoringComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " allows the system to properly track and anchor virtual content to the object.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, due to privacy reasons, transform information for the component isn’t available without user authorization.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The transform information allows you to track the accurate position and orientation in the real world.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ask for world-tracking authorization from the user, set up the ",
+              "type": "text"
+            },
+            {
+              "code": "SpatialTrackingSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/realitykit/spatialtrackingsession/configuration/anchorcapability/object",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " anchor capability.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you’re using the ARKit framework in your app, this authorization is always required.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set up a ",
+              "type": "text"
+            },
+            {
+              "code": "SpatialTrackingSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that your app shares, configure the session within ",
+              "type": "text"
+            },
+            {
+              "code": "AppModel",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// AppModel.swift",
+            "import RealityKit",
+            "",
+            "@MainActor",
+            "@Observable",
+            "",
+            "class AppModel {",
+            "    // Other existing properties in `AppModel`.",
+            "",
+            "    let spatialTrackingSession = SpatialTrackingSession()",
+            "} "
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "code": "ImmersiveView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, configure the ",
+              "type": "text"
+            },
+            {
+              "code": "SpatialTrackingSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to begin tracking the object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ImmersiveView: View {",
+            "    @Environment(AppModel.self) private var appModel",
+            "",
+            "    var body: some View {",
+            "        RealityView { content in",
+            "            // Initialize a spatial-tracking session.",
+            "            let configuration = SpatialTrackingSession.Configuration(tracking: [.object])",
+            "            await appModel.spatialTrackingSession.run(configuration)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-up-collision-and-physics-simulation-on-your-objects",
+          "level": 3,
+          "text": "Set up collision and physics simulation on your objects",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Incorporate virtual actions into your app by adding collisions and physics simulations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "code": "SpatialTrackingSession",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is required when using an ",
+                  "type": "text"
+                },
+                {
+                  "code": "AnchorEntity",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " physics simulation. Follow the guidelines above to configure a ",
+                  "type": "text"
+                },
+                {
+                  "code": "SpatialTrackingSession",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable collision and physics on your object-tracking entity, configure the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/realitykit/anchoringcomponent/physicssimulation-swift.enum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of your ",
+              "type": "text"
+            },
+            {
+              "code": "AnchorEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This property allows you to select entities with an ",
+              "type": "text"
+            },
+            {
+              "code": "AnchoringComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": "  to interact with each other physically.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let objectAnchor = AnchorEntity(.referenceObject(from: anchorSource), trackingMode: .continuous, physicsSimulation: .none)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With your ",
+              "type": "text"
+            },
+            {
+              "code": "PhysicsSimulation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in place, add a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/realitykit/collisioncomponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the object’s shape.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This creates a collision effect with other entities that are also collision components.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a `MeshResource` to define a high-level representation of your model. ",
+            "let referenceModel: MeshResource = modelEntity.model!.mesh",
+            "",
+            "//  Use `ShapeResource` to create the shape of your model to apply collision to. ",
+            "let referenceShape= try! await ShapeResource.generateConvex(from: referenceModel)",
+            "modelEntity.components.set(CollisionComponent(shapes: [referenceShape], mode: .colliding))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the collision feature in place, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/realitykit/collisionevents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to detect collisions when they begin, update, and end for your entities.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-interaction-with-gestures",
+          "level": 3,
+          "text": "Configure interaction with gestures",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To respond to SwiftUI gestures like ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/swiftui/spatialtapgesture/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/swiftui/draggesture/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/swiftui/rotategesture3d/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the object-anchored entity needs to have a ",
+              "type": "text"
+            },
+            {
+              "code": "CollisionComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for input detection and an ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/realitykit/inputtargetcomponent/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to handle all forms of input in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "modelEntity.components.set(InputTargetComponent(allowedInputTypes: .all))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, to make the object respond to a person’s gaze with a highlight, add a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/realitykit/hovereffectcomponent/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "modelEntity.components.set(HoverEffectComponent())"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "ambient-occlusion": {
+      "alt": "An image of a globe with multiple spacecrafts circling it. The globe is partially occluding two of the spacecrafts as they pass behind it.",
+      "identifier": "ambient-occlusion",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/216a6e342c7b5ab9da77adba7b8bcf1d/ambient-occlusion@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/76bfee16330fceb22dac2d082db86909/ambient-occlusion~dark@2x.png"
+        }
+      ]
+    },
+    "attachments-globe": {
+      "alt": "An image of a globe highlighting a continent with an attachment of a label and a window with selections.",
+      "identifier": "attachments-globe",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/37064d18ac85dd8e08a111c021eb5fba/attachments-globe@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3e208cda67c4f98826b1fc6130cc597b/attachments-globe~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/implementing-object-tracking-in-your-visionOS-app": {
+      "abstract": [
+        {
+          "text": "Create engaging interactions by training models to recognize and track real-world objects in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/implementing-object-tracking-in-your-visionOS-app",
+      "images": [
+        {
+          "identifier": "implementing-object-tracking-in-your-visionOS-app.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing object tracking in your visionOS app",
+      "type": "topic",
+      "url": "/documentation/visionos/implementing-object-tracking-in-your-visionos-app"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/using-a-reference-object-with-arkit": {
+      "abstract": [
+        {
+          "text": "Import a reference object file and track a real-world object in your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/using-a-reference-object-with-arkit",
+      "kind": "article",
+      "role": "article",
+      "title": "Using a reference object with ARKit",
+      "type": "topic",
+      "url": "/documentation/visionos/using-a-reference-object-with-arkit"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/using-a-reference-object-with-reality-composer-pro": {
+      "abstract": [
+        {
+          "text": "Import a reference object file to track a real-world object in your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/using-a-reference-object-with-reality-composer-pro",
+      "kind": "article",
+      "role": "article",
+      "title": "Using a reference object with Reality Composer Pro",
+      "type": "topic",
+      "url": "/documentation/visionos/using-a-reference-object-with-reality-composer-pro"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "https://developer.apple.com/documentation/realitykit/anchorentity": {
+      "identifier": "https://developer.apple.com/documentation/realitykit/anchorentity",
+      "title": "AnchorEntity",
+      "titleInlineContent": [
+        {
+          "code": "AnchorEntity",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/realitykit/anchorentity"
+    },
+    "https://developer.apple.com/documentation/realitykit/anchoringcomponent": {
+      "identifier": "https://developer.apple.com/documentation/realitykit/anchoringcomponent",
+      "title": "AnchoringComponent",
+      "titleInlineContent": [
+        {
+          "code": "AnchoringComponent",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/realitykit/anchoringcomponent"
+    },
+    "https://developer.apple.com/documentation/realitykit/anchoringcomponent/objectanchoringsource": {
+      "identifier": "https://developer.apple.com/documentation/realitykit/anchoringcomponent/objectanchoringsource",
+      "title": "ObjectAnchoringSource",
+      "titleInlineContent": [
+        {
+          "code": "ObjectAnchoringSource",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/realitykit/anchoringcomponent/objectanchoringsource"
+    },
+    "https://developer.apple.com/documentation/realitykit/anchoringcomponent/physicssimulation-swift.enum": {
+      "identifier": "https://developer.apple.com/documentation/realitykit/anchoringcomponent/physicssimulation-swift.enum",
+      "title": "PhysicsSimulation",
+      "titleInlineContent": [
+        {
+          "code": "PhysicsSimulation",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/realitykit/anchoringcomponent/physicssimulation-swift.enum"
+    },
+    "https://developer.apple.com/documentation/realitykit/anchoringcomponent/target-swift.enum/referenceobject(from:)": {
+      "identifier": "https://developer.apple.com/documentation/realitykit/anchoringcomponent/target-swift.enum/referenceobject(from:)",
+      "title": "referenceObject",
+      "titleInlineContent": [
+        {
+          "code": "referenceObject",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/realitykit/anchoringcomponent/target-swift.enum/referenceobject(from:)"
+    },
+    "https://developer.apple.com/documentation/realitykit/collisioncomponent": {
+      "identifier": "https://developer.apple.com/documentation/realitykit/collisioncomponent",
+      "title": "CollisionComponent",
+      "titleInlineContent": [
+        {
+          "code": "CollisionComponent",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/realitykit/collisioncomponent"
+    },
+    "https://developer.apple.com/documentation/realitykit/collisionevents": {
+      "identifier": "https://developer.apple.com/documentation/realitykit/collisionevents",
+      "title": "CollisionEvents",
+      "titleInlineContent": [
+        {
+          "code": "CollisionEvents",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/realitykit/collisionevents"
+    },
+    "https://developer.apple.com/documentation/realitykit/hovereffectcomponent/": {
+      "identifier": "https://developer.apple.com/documentation/realitykit/hovereffectcomponent/",
+      "title": "HoverEffectComponent",
+      "titleInlineContent": [
+        {
+          "code": "HoverEffectComponent",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/realitykit/hovereffectcomponent/"
+    },
+    "https://developer.apple.com/documentation/realitykit/inputtargetcomponent/": {
+      "identifier": "https://developer.apple.com/documentation/realitykit/inputtargetcomponent/",
+      "title": "InputTargetComponent",
+      "titleInlineContent": [
+        {
+          "code": "InputTargetComponent",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/realitykit/inputtargetcomponent/"
+    },
+    "https://developer.apple.com/documentation/realitykit/modelentity": {
+      "identifier": "https://developer.apple.com/documentation/realitykit/modelentity",
+      "title": "ModelEntity",
+      "titleInlineContent": [
+        {
+          "code": "ModelEntity",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/realitykit/modelentity"
+    },
+    "https://developer.apple.com/documentation/realitykit/occlusionmaterial/": {
+      "identifier": "https://developer.apple.com/documentation/realitykit/occlusionmaterial/",
+      "title": "OcclusionMaterial",
+      "titleInlineContent": [
+        {
+          "code": "OcclusionMaterial",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/realitykit/occlusionmaterial/"
+    },
+    "https://developer.apple.com/documentation/realitykit/realityview/init(make:update:attachments:)": {
+      "identifier": "https://developer.apple.com/documentation/realitykit/realityview/init(make:update:attachments:)",
+      "title": "attachments",
+      "titleInlineContent": [
+        {
+          "code": "attachments",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/realitykit/realityview/init(make:update:attachments:)"
+    },
+    "https://developer.apple.com/documentation/realitykit/spatialtrackingsession/": {
+      "identifier": "https://developer.apple.com/documentation/realitykit/spatialtrackingsession/",
+      "title": "SpatialTrackingSession",
+      "titleInlineContent": [
+        {
+          "code": "SpatialTrackingSession",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/realitykit/spatialtrackingsession/"
+    },
+    "https://developer.apple.com/documentation/realitykit/spatialtrackingsession/configuration/anchorcapability/object": {
+      "identifier": "https://developer.apple.com/documentation/realitykit/spatialtrackingsession/configuration/anchorcapability/object",
+      "title": "object",
+      "titleInlineContent": [
+        {
+          "code": "object",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/realitykit/spatialtrackingsession/configuration/anchorcapability/object"
+    },
+    "https://developer.apple.com/documentation/swiftui/draggesture/": {
+      "identifier": "https://developer.apple.com/documentation/swiftui/draggesture/",
+      "title": "DragGesture",
+      "titleInlineContent": [
+        {
+          "code": "DragGesture",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/swiftui/draggesture/"
+    },
+    "https://developer.apple.com/documentation/swiftui/rotategesture3d/": {
+      "identifier": "https://developer.apple.com/documentation/swiftui/rotategesture3d/",
+      "title": "RotateGesture3D",
+      "titleInlineContent": [
+        {
+          "code": "RotateGesture3D",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/swiftui/rotategesture3d/"
+    },
+    "https://developer.apple.com/documentation/swiftui/spatialtapgesture/": {
+      "identifier": "https://developer.apple.com/documentation/swiftui/spatialtapgesture/",
+      "title": "SpatialTapGesture",
+      "titleInlineContent": [
+        {
+          "code": "SpatialTapGesture",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/swiftui/spatialtapgesture/"
+    },
+    "implementing-object-tracking-in-your-visionOS-app.png": {
+      "alt": "An illustration of a globe within a bounding box.",
+      "identifier": "implementing-object-tracking-in-your-visionOS-app.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/49a7917ef036b2daf610527590ce056d/implementing-object-tracking-in-your-visionOS-app@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3e16e39548ccdcc1d5a21b2f18755c7b/implementing-object-tracking-in-your-visionOS-app~dark@2x.png"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Object-tracking-within-an-app",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/using-a-reference-object-with-reality-composer-pro",
+        "doc://com.apple.visionOS/documentation/visionOS/using-a-reference-object-with-arkit"
+      ],
+      "title": "Object tracking within an app"
+    }
+  ]
+}

@@ -1,0 +1,492 @@
+{
+  "abstract": [
+    {
+      "text": "Use distributed actors to take your Swift concurrency and actor-based apps beyond a single process.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/swift/tictacfish_implementing_a_game_using_distributed_actors"
+  },
+  "kind": "article",
+  "legacy_identifier": 3979139,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Distributed"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "TicTacFish: Implementing a game using distributed actors"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC22 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-4035263",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "4037447",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the sample app uses new Swift language features introduced in Swift 5.7, you need at least the following versions of iOS, macOS, and Xcode to edit and run the samples:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the iOS app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS 16",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS 13",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode 14",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the server-side application on your local Mac:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS 13",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode 14",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the server-side application on a Linux server, compile and run the ",
+              "type": "text"
+            },
+            {
+              "code": "Server",
+              "type": "codeVoice"
+            },
+            {
+              "text": " package using:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Any supported Linux distribution",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Swift 5.7",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can try out the peer-to-peer local networking part of the sample app by starting multiple simulators (such as an iPhone 13 and an iPhone 13 Pro) from the same Xcode project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/swift-standard-library": {
+      "abstract": [
+        {
+          "text": "Solve complex problems and write high-performance, readable code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/swift-standard-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Swift Standard Library",
+      "type": "topic",
+      "url": "/documentation/swift/swift-standard-library"
+    },
+    "doc://com.apple.documentation/documentation/swift": {
+      "identifier": "doc://com.apple.documentation/documentation/swift",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.documentation/documentation/swift/array": {
+      "abstract": [
+        {
+          "text": "An ordered, random-access collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Array"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/array",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Array",
+      "type": "topic",
+      "url": "/documentation/swift/array"
+    },
+    "doc://com.apple.documentation/documentation/swift/dictionary": {
+      "abstract": [
+        {
+          "text": "A collection whose elements are key-value pairs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Dictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/dictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Dictionary",
+      "type": "topic",
+      "url": "/documentation/swift/dictionary"
+    },
+    "doc://com.apple.documentation/documentation/swift/double": {
+      "abstract": [
+        {
+          "text": "A double-precision, floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/double",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Double",
+      "type": "topic",
+      "url": "/documentation/swift/double"
+    },
+    "doc://com.apple.documentation/documentation/swift/int": {
+      "abstract": [
+        {
+          "text": "A signed integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/int",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/swift/int"
+    },
+    "doc://com.apple.documentation/documentation/swift/string": {
+      "abstract": [
+        {
+          "text": "A Unicode string value that is a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/string",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/swift/string"
+    },
+    "doc://com.apple.documentation/documentation/swift/tictacfish_implementing_a_game_using_distributed_actors": {
+      "abstract": [
+        {
+          "text": "Use distributed actors to take your Swift concurrency and actor-based apps beyond a single process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/tictacfish_implementing_a_game_using_distributed_actors",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "TicTacFish: Implementing a game using distributed actors",
+      "type": "topic",
+      "url": "/documentation/swift/tictacfish_implementing_a_game_using_distributed_actors"
+    },
+    "doc://com.apple.documentation/documentation/swift/updating_an_app_to_use_swift_concurrency": {
+      "abstract": [
+        {
+          "text": "Improve your app’s performance by refactoring your code to take advantage of asynchronous functions in Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/updating_an_app_to_use_swift_concurrency",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Updating an App to Use Swift Concurrency",
+      "type": "topic",
+      "url": "/documentation/swift/updating_an_app_to_use_swift_concurrency"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs-assets.developer.apple.com/published/b583f10d72/TicTacFishImplementingAGameUsingDistributedActors.zip": {
+      "checksum": "0214358fd076b30dd56212a0be44d5038d28b6583a9ff2121db4e1f3cf3f277088ecdf914e65935d493b8e4f520863e1ecee62228f85677d48b7551f7212dac5",
+      "identifier": "https://docs-assets.developer.apple.com/published/b583f10d72/TicTacFishImplementingAGameUsingDistributedActors.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/b583f10d72/TicTacFishImplementingAGameUsingDistributedActors.zip"
+    },
+    "link-4035263": {
+      "identifier": "link-4035263",
+      "kind": "article",
+      "role": "link",
+      "title": "110356: Meet distributed actors in Swift",
+      "type": "topic",
+      "url": "https://developer.apple.com/wwdc22/110356/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/b583f10d72/TicTacFishImplementingAGameUsingDistributedActors.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/swift/int",
+        "doc://com.apple.documentation/documentation/swift/double",
+        "doc://com.apple.documentation/documentation/swift/string",
+        "doc://com.apple.documentation/documentation/swift/array",
+        "doc://com.apple.documentation/documentation/swift/dictionary",
+        "doc://com.apple.Swift/documentation/Swift/swift-standard-library",
+        "doc://com.apple.documentation/documentation/swift/updating_an_app_to_use_swift_concurrency"
+      ],
+      "title": "Standard Library"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/swift/tictacfish_implementing_a_game_using_distributed_actors"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

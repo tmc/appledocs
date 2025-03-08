@@ -1,0 +1,2040 @@
+{
+  "abstract": [
+    {
+      "text": "Methods that let you respond to user interactions with your payment authorization view controller.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.passkit/documentation/PassKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)PKPaymentAuthorizationViewControllerDelegate",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PKPaymentAuthorizationViewControllerDelegate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PassKit (Apple Pay and Wallet)"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PKPaymentAuthorizationViewControllerDelegate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "PKPaymentAuthorizationViewControllerDelegate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationViewControllerDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol is implemented by the payment authorization view controller’s delegate. You implement this protocol to respond to user interaction with that view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The payment authorization view controller automatically waits for its delegate to finish responding to one method before it calls other delegate methods. You indicate that the delegate is finished with the current method by calling that method’s completion block. This action tells the pay authorization view controller to proceed with the next step in the authorization process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There is one exception to this step-by-step procedure: The pay authorization view controller calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewControllerDidFinish(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method as soon as the user cancels a payment without authorizing a payment request, or when a payment is canceled after timing out. The controller can call this method at any time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.passkit/documentation/PassKit": {
+      "abstract": [
+        {
+          "text": "Process Apple Pay payments in your app, and create and distribute passes for the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PassKit (Apple Pay and Wallet)",
+      "type": "topic",
+      "url": "/documentation/passkit"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewController/delegate": {
+      "abstract": [
+        {
+          "text": "The view controller’s delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)PKPaymentAuthorizationViewControllerDelegate",
+          "text": "PKPaymentAuthorizationViewControllerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewController/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationviewcontroller/delegate"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate": {
+      "abstract": [
+        {
+          "text": "Methods that let you respond to user interactions with your payment authorization view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentAuthorizationViewControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentAuthorizationViewControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentAuthorizationViewControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationviewcontrollerdelegate"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didAuthorizePayment:completion:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the user authorized the payment request, and asks for a result.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentAuthorizationViewController",
+          "text": "PKPaymentAuthorizationViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAuthorizePayment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPayment",
+          "text": "PKPayment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PKPaymentAuthorizationStatus",
+          "text": "PKPaymentAuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didAuthorizePayment:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationViewController:didAuthorizePayment:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentAuthorizationViewController(_:didAuthorizePayment:completion:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationviewcontrollerdelegate/paymentauthorizationviewcontroller(_:didauthorizepayment:completion:)"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didAuthorizePayment:handler:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the user authorized the payment request, and asks for a result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentAuthorizationViewController",
+          "text": "PKPaymentAuthorizationViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAuthorizePayment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPayment",
+          "text": "PKPayment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentAuthorizationResult",
+          "text": "PKPaymentAuthorizationResult"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didAuthorizePayment:handler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationViewController:didAuthorizePayment:handler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentAuthorizationViewController(_:didAuthorizePayment:handler:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationviewcontrollerdelegate/paymentauthorizationviewcontroller(_:didauthorizepayment:handler:)"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didChangeCouponCode:handler:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the user entered or updated a coupon code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentAuthorizationViewController",
+          "text": "PKPaymentAuthorizationViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didChangeCouponCode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentRequestCouponCodeUpdate",
+          "text": "PKPaymentRequestCouponCodeUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didChangeCouponCode:handler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationViewController:didChangeCouponCode:handler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentAuthorizationViewController(_:didChangeCouponCode:handler:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationviewcontrollerdelegate/paymentauthorizationviewcontroller(_:didchangecouponcode:handler:)"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didRequestMerchantSessionUpdate:)": {
+      "abstract": [
+        {
+          "text": "Requests an object that validates the identity of a merchant for a payment request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentAuthorizationViewController",
+          "text": "PKPaymentAuthorizationViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didRequestMerchantSessionUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentRequestMerchantSessionUpdate",
+          "text": "PKPaymentRequestMerchantSessionUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didRequestMerchantSessionUpdate:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationViewController:didRequestMerchantSessionUpdate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentAuthorizationViewController(_:didRequestMerchantSessionUpdate:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationviewcontrollerdelegate/paymentauthorizationviewcontroller(_:didrequestmerchantsessionupdate:)"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelect:completion:)-30s85": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the user changed the payment method, and asks for an updated payment request.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentAuthorizationViewController",
+          "text": "PKPaymentAuthorizationViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didSelect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentMethod",
+          "text": "PKPaymentMethod"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentSummaryItem",
+          "text": "PKPaymentSummaryItem"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelect:completion:)-30s85",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationViewController:didSelectPaymentMethod:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentAuthorizationViewController(_:didSelect:completion:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationviewcontrollerdelegate/paymentauthorizationviewcontroller(_:didselect:completion:)-30s85"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelect:completion:)-9otrj": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the user selected a shipping method, and asks for an updated payment request.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentAuthorizationViewController",
+          "text": "PKPaymentAuthorizationViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didSelect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKShippingMethod",
+          "text": "PKShippingMethod"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PKPaymentAuthorizationStatus",
+          "text": "PKPaymentAuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ", ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentSummaryItem",
+          "text": "PKPaymentSummaryItem"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelect:completion:)-9otrj",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationViewController:didSelectShippingMethod:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentAuthorizationViewController(_:didSelect:completion:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationviewcontrollerdelegate/paymentauthorizationviewcontroller(_:didselect:completion:)-9otrj"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelect:handler:)-3bex6": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the user changed the payment method, and asks for an updated payment request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentAuthorizationViewController",
+          "text": "PKPaymentAuthorizationViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didSelect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentMethod",
+          "text": "PKPaymentMethod"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentRequestPaymentMethodUpdate",
+          "text": "PKPaymentRequestPaymentMethodUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelect:handler:)-3bex6",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationViewController:didSelectPaymentMethod:handler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentAuthorizationViewController(_:didSelect:handler:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationviewcontrollerdelegate/paymentauthorizationviewcontroller(_:didselect:handler:)-3bex6"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelect:handler:)-5r0i7": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the user selected a shipping method, and asks for an updated payment request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentAuthorizationViewController",
+          "text": "PKPaymentAuthorizationViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didSelect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKShippingMethod",
+          "text": "PKShippingMethod"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentRequestShippingMethodUpdate",
+          "text": "PKPaymentRequestShippingMethodUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelect:handler:)-5r0i7",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationViewController:didSelectShippingMethod:handler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentAuthorizationViewController(_:didSelect:handler:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationviewcontrollerdelegate/paymentauthorizationviewcontroller(_:didselect:handler:)-5r0i7"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelectShippingAddress:completion:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the user selected a shipping address.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentAuthorizationViewController",
+          "text": "PKPaymentAuthorizationViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didSelectShippingAddress"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ABRecordRef",
+          "text": "ABRecord"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PKPaymentAuthorizationStatus",
+          "text": "PKPaymentAuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ", ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKShippingMethod",
+          "text": "PKShippingMethod"
+        },
+        {
+          "kind": "text",
+          "text": "], ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentSummaryItem",
+          "text": "PKPaymentSummaryItem"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelectShippingAddress:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationViewController:didSelectShippingAddress:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentAuthorizationViewController(_:didSelectShippingAddress:completion:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationviewcontrollerdelegate/paymentauthorizationviewcontroller(_:didselectshippingaddress:completion:)"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelectShippingContact:completion:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the user selected a shipping address, and asks for an updated payment request.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentAuthorizationViewController",
+          "text": "PKPaymentAuthorizationViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didSelectShippingContact"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKContact",
+          "text": "PKContact"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PKPaymentAuthorizationStatus",
+          "text": "PKPaymentAuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ", ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKShippingMethod",
+          "text": "PKShippingMethod"
+        },
+        {
+          "kind": "text",
+          "text": "], ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentSummaryItem",
+          "text": "PKPaymentSummaryItem"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelectShippingContact:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationViewController:didSelectShippingContact:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentAuthorizationViewController(_:didSelectShippingContact:completion:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationviewcontrollerdelegate/paymentauthorizationviewcontroller(_:didselectshippingcontact:completion:)"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelectShippingContact:handler:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the user selected a shipping address, and asks for an updated payment request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentAuthorizationViewController",
+          "text": "PKPaymentAuthorizationViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didSelectShippingContact"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKContact",
+          "text": "PKContact"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentRequestShippingContactUpdate",
+          "text": "PKPaymentRequestShippingContactUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelectShippingContact:handler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationViewController:didSelectShippingContact:handler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentAuthorizationViewController(_:didSelectShippingContact:handler:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationviewcontrollerdelegate/paymentauthorizationviewcontroller(_:didselectshippingcontact:handler:)"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewControllerDidFinish(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that payment authorization finished.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationViewControllerDidFinish"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentAuthorizationViewController",
+          "text": "PKPaymentAuthorizationViewController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewControllerDidFinish(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationViewControllerDidFinish:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "paymentAuthorizationViewControllerDidFinish(_:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationviewcontrollerdelegate/paymentauthorizationviewcontrollerdidfinish(_:)"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewControllerWillAuthorizePayment(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the user is authorizing the payment request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationViewControllerWillAuthorizePayment"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentAuthorizationViewController",
+          "text": "PKPaymentAuthorizationViewController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewControllerWillAuthorizePayment(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationViewControllerWillAuthorizePayment:"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentAuthorizationViewControllerWillAuthorizePayment(_:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationviewcontrollerdelegate/paymentauthorizationviewcontrollerwillauthorizepayment(_:)"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Handling-user-interactions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewController/delegate"
+      ],
+      "title": "Handling user interactions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Handling-users-payment-authorization",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didRequestMerchantSessionUpdate:)",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewControllerWillAuthorizePayment(_:)",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didAuthorizePayment:handler:)",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didAuthorizePayment:completion:)",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewControllerDidFinish(_:)",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelect:handler:)-3bex6",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelect:completion:)-30s85"
+      ],
+      "title": "Handling user’s payment authorization"
+    },
+    {
+      "anchor": "Handling-coupons",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didChangeCouponCode:handler:)"
+      ],
+      "title": "Handling coupons"
+    },
+    {
+      "anchor": "Handling-shipping-information",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelectShippingContact:handler:)",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelectShippingContact:completion:)",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelect:handler:)-5r0i7",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelect:completion:)-9otrj"
+      ],
+      "title": "Handling shipping information"
+    },
+    {
+      "anchor": "Deprecated",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelectShippingAddress:completion:)"
+      ],
+      "title": "Deprecated"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "PKPaymentAuthorizationViewControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.passkit/documentation/PassKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Handling-users-payment-authorization",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didRequestMerchantSessionUpdate:)",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewControllerWillAuthorizePayment(_:)",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didAuthorizePayment:handler:)",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didAuthorizePayment:completion:)",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewControllerDidFinish(_:)",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelect:handler:)-3bex6",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelect:completion:)-30s85"
+              ],
+              "title": "Handling user’s payment authorization"
+            },
+            {
+              "anchor": "Handling-coupons",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didChangeCouponCode:handler:)"
+              ],
+              "title": "Handling coupons"
+            },
+            {
+              "anchor": "Handling-shipping-information",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelectShippingContact:handler:)",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelectShippingContact:completion:)",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelect:handler:)-5r0i7",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelect:completion:)-9otrj"
+              ],
+              "title": "Handling shipping information"
+            },
+            {
+              "anchor": "Deprecated",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewControllerDelegate/paymentAuthorizationViewController(_:didSelectShippingAddress:completion:)"
+              ],
+              "title": "Deprecated"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Handling-user-interactions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewController/delegate"
+              ],
+              "title": "Handling user interactions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PKPaymentAuthorizationViewControllerDelegate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate~1paymentAuthorizationViewController(_:didSelectShippingAddress:completion:)/title",
+          "value": "paymentAuthorizationViewController:didSelectShippingAddress:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate~1paymentAuthorizationViewController(_:didSelectShippingAddress:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentAuthorizationViewController:didSelectShippingAddress:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate~1paymentAuthorizationViewController(_:didSelect:completion:)-9otrj/title",
+          "value": "paymentAuthorizationViewController:didSelectShippingMethod:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate~1paymentAuthorizationViewController(_:didSelect:completion:)-9otrj/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentAuthorizationViewController:didSelectShippingMethod:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate/title",
+          "value": "PKPaymentAuthorizationViewControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate~1paymentAuthorizationViewController(_:didSelectShippingContact:completion:)/title",
+          "value": "paymentAuthorizationViewController:didSelectShippingContact:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate~1paymentAuthorizationViewController(_:didSelectShippingContact:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentAuthorizationViewController:didSelectShippingContact:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate~1paymentAuthorizationViewController(_:didAuthorizePayment:completion:)/title",
+          "value": "paymentAuthorizationViewController:didAuthorizePayment:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate~1paymentAuthorizationViewController(_:didAuthorizePayment:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentAuthorizationViewController:didAuthorizePayment:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate~1paymentAuthorizationViewController(_:didAuthorizePayment:handler:)/title",
+          "value": "paymentAuthorizationViewController:didAuthorizePayment:handler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate~1paymentAuthorizationViewController(_:didAuthorizePayment:handler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentAuthorizationViewController:didAuthorizePayment:handler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate~1paymentAuthorizationViewControllerDidFinish(_:)/title",
+          "value": "paymentAuthorizationViewControllerDidFinish:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate~1paymentAuthorizationViewControllerDidFinish(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentAuthorizationViewControllerDidFinish:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate~1paymentAuthorizationViewController(_:didSelect:handler:)-3bex6/title",
+          "value": "paymentAuthorizationViewController:didSelectPaymentMethod:handler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate~1paymentAuthorizationViewController(_:didSelect:handler:)-3bex6/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentAuthorizationViewController:didSelectPaymentMethod:handler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate~1paymentAuthorizationViewController(_:didRequestMerchantSessionUpdate:)/title",
+          "value": "paymentAuthorizationViewController:didRequestMerchantSessionUpdate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate~1paymentAuthorizationViewController(_:didRequestMerchantSessionUpdate:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentAuthorizationViewController:didRequestMerchantSessionUpdate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate~1paymentAuthorizationViewController(_:didSelect:completion:)-30s85/title",
+          "value": "paymentAuthorizationViewController:didSelectPaymentMethod:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate~1paymentAuthorizationViewController(_:didSelect:completion:)-30s85/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentAuthorizationViewController:didSelectPaymentMethod:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate~1paymentAuthorizationViewController(_:didSelectShippingContact:handler:)/title",
+          "value": "paymentAuthorizationViewController:didSelectShippingContact:handler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate~1paymentAuthorizationViewController(_:didSelectShippingContact:handler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentAuthorizationViewController:didSelectShippingContact:handler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate~1paymentAuthorizationViewController(_:didSelect:handler:)-5r0i7/title",
+          "value": "paymentAuthorizationViewController:didSelectShippingMethod:handler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate~1paymentAuthorizationViewController(_:didSelect:handler:)-5r0i7/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentAuthorizationViewController:didSelectShippingMethod:handler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewController~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewController~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate~1paymentAuthorizationViewControllerWillAuthorizePayment(_:)/title",
+          "value": "paymentAuthorizationViewControllerWillAuthorizePayment:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate~1paymentAuthorizationViewControllerWillAuthorizePayment(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentAuthorizationViewControllerWillAuthorizePayment:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate~1paymentAuthorizationViewController(_:didChangeCouponCode:handler:)/title",
+          "value": "paymentAuthorizationViewController:didChangeCouponCode:handler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewControllerDelegate~1paymentAuthorizationViewController(_:didChangeCouponCode:handler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentAuthorizationViewController:didChangeCouponCode:handler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/passkit/pkpaymentauthorizationviewcontrollerdelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/passkit/pkpaymentauthorizationviewcontrollerdelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

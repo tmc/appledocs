@@ -1,0 +1,5067 @@
+{
+  "abstract": [
+    {
+      "text": "An ",
+      "type": "text"
+    },
+    {
+      "code": "MCSession",
+      "type": "codeVoice"
+    },
+    {
+      "text": " object enables and manages communication among all peers in a Multipeer Connectivity session.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MCSession",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MCSession"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Multipeer Connectivity"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MCSession"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "MCSession"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MCSession"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Initiating-a-Session",
+          "level": 3,
+          "text": "Initiating a Session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set up a session:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCPeerID/init(displayName:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCPeerID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to create a peer ID that represents the local peer, or retrieve a peer ID that you previously archived (to maintain a stable peer ID over time).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the peer ID with the method ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/init(peer:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to initialize the session object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Invite peers to join the session using an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceBrowser",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object, an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCBrowserViewController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object, or your own peer discovery code. (Sessions currently support up to 8 peers, including the local peer.)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set up an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiser",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCAdvertiserAssistant",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object to allow other devices to ask your app to join a session that they create.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use one of the framework’s browser objects for peer discovery, when a peer accepts an invitation, the session calls its delegate object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionDelegate/session(_:peer:didChange:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionState/connected",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the new state, along with an object that tells you which peer became connected. See Creating a Session for related methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If instead you write your own peer discovery code, you are responsible for managing the connection manually. See the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession#Managing-Peers-Manually",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " section for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Communicating-with-Peers",
+          "level": 3,
+          "text": "Communicating with Peers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you have set up the session, your app can send data to other peers by calling one of the following methods, found in Sending Data and Resources:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/send(_:toPeers:with:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " sends an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object to the specified peers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On each recipient device, the delegate object’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionDelegate/session(_:didReceive:fromPeer:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method is called with the data object when the data has been fully received.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/sendResource(at:withName:toPeer:withCompletionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " sends the contents from an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSURL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object to the specified peer. The URL can be either a local file URL or a web URL. The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "completionHandler",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " block is called when the resource is fully received by the recipient peer or when an error occurs during transmission.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "This method returns an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSProgress",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object that you can use to cancel the transfer or check the current status of the transfer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the recipient device, the session calls its delegate object’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionDelegate/session(_:didStartReceivingResourceWithName:fromPeer:with:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method when the device begins receiving the resource, and calls its ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionDelegate/session(_:didFinishReceivingResourceWithName:fromPeer:at:withError:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method when the resource has been fully received or when an error occurs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/startStream(withName:toPeer:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " creates a connected byte stream (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSOutputStream",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") that you can use to send data to the specified peer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the recipient device, the session calls its delegate object’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionDelegate/session(_:didReceive:withName:fromPeer:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method with an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSInputStream",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object that represents the other endpoint of communication.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On both sides, your code must set the stream’s delegate, schedule the stream on a run loop, and open the stream. Your code must also implement stream delegate methods to manage sending and receiving stream data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Delegate calls occur on a private operation queue. If your app needs to perform an action on a particular run loop or operation queue, its delegate method should explicitly dispatch or schedule that work.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Managing-Peers-Manually",
+          "level": 3,
+          "text": "Managing Peers Manually",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If instead of using the framework’s browser and advertiser objects to perform peer discovery, you decide to write your own peer discovery code (with ",
+              "type": "text"
+            },
+            {
+              "code": "NSNetService",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or the Bonjour C API, for example), you can manually connect nearby peers into a session. To do this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Establish a connection from your app to nearby peers, and exchange peer IDs with those peers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each peer should serialize its own local ",
+              "type": "text"
+            },
+            {
+              "code": "MCPeerID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object with ",
+              "type": "text"
+            },
+            {
+              "code": "NSKeyedArchiver",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the receiving peer should unserialize it with ",
+              "type": "text"
+            },
+            {
+              "code": "NSKeyedUnarchiver",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Do not attempt to construct a peer ID object for a nonlocal peer using ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCPeerID/init(displayName:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". A peer ID object must be constructed ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "on the device that it represents",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Exchange connection data. After you have obtained the nearby peer’s ID object, call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/nearbyConnectionData(forPeer:withCompletionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to obtain a connection data object specific to that nearby peer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "start": 2,
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the completion handler block is called, send the resulting connection data object to that peer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Each device in the session must perform this step for each nonlocal peer in the session. So if there are four devices in the session, each device must generate a connection data object for each of the other three devices.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When your app receives connection data from another peer, it must call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/connectPeer(_:withNearbyConnectionData:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to add that peer to the session.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "start": 3,
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Each of the nonlocal peers must also call ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/connectPeer(_:withNearbyConnectionData:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " with the connection data that it received from your app and other nonlocal peers.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also cancel an outstanding connection attempt by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/cancelConnectPeer(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". These methods are described in the Managing Peers Manually group.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Disconnecting",
+          "level": 3,
+          "text": "Disconnecting",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To leave a session, your app must call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/disconnect()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more details, see Leaving a Session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSViewController/dismiss(_:)-91my5": {
+      "abstract": [
+        {
+          "text": "Dismisses a presented view controller, using the same animator that presented it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dismiss"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "viewController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSViewController/dismiss(_:)-91my5",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dismiss(_:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSViewController/dismiss(_:)-91my5"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSViewController/presentAsSheet(_:)": {
+      "abstract": [
+        {
+          "text": "Presents another view controller as a sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentAsSheet"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "viewController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSViewController/presentAsSheet(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presentAsSheet(_:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSViewController/presentAsSheet(_:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController/dismiss(animated:completion:)": {
+      "abstract": [
+        {
+          "text": "Dismisses the view controller that was presented modally by the view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dismiss"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "flag"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/dismiss(animated:completion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dismiss(animated:completion:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController/dismiss(animated:completion:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController/performSegue(withIdentifier:sender:)": {
+      "abstract": [
+        {
+          "text": "Initiates the segue with the specified identifier from the current view controller’s storyboard file.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performSegue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sender"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/performSegue(withIdentifier:sender:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performSegue(withIdentifier:sender:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController/performSegue(withIdentifier:sender:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController/prepare(for:sender:)": {
+      "abstract": [
+        {
+          "text": "Notifies the view controller that a segue is about to be performed.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepare"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "segue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIStoryboardSegue",
+          "text": "UIStoryboardSegue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sender"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/prepare(for:sender:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepare(for:sender:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController/prepare(for:sender:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController/present(_:animated:completion:)": {
+      "abstract": [
+        {
+          "text": "Presents a view controller modally.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "present"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "viewControllerToPresent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "flag"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/present(_:animated:completion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "present(_:animated:completion:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController/present(_:animated:completion:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity": {
+      "abstract": [
+        {
+          "text": "Support peer-to-peer connectivity and the discovery of nearby devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Multipeer Connectivity",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCAdvertiserAssistant": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "MCAdvertiserAssistant",
+          "type": "codeVoice"
+        },
+        {
+          "text": " is a convenience class that handles advertising, presents incoming invitations to the user, and handles users’ responses. Use this class to provide a user interface for handling invitations when your app does not require programmatic control over the invitation process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MCAdvertiserAssistant"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCAdvertiserAssistant",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MCAdvertiserAssistant"
+        }
+      ],
+      "role": "symbol",
+      "title": "MCAdvertiserAssistant",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcadvertiserassistant"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCBrowserViewController": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "MCBrowserViewController",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class presents nearby devices to the user and enables the user to invite nearby devices to a session. To use this class in iOS or tvOS, call methods from the underlying ",
+          "type": "text"
+        },
+        {
+          "code": "UIViewController",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class (",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/prepare(for:sender:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/performSegue(withIdentifier:sender:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " for storyboards or ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/present(_:animated:completion:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/dismiss(animated:completion:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " for nib-based views) to present and dismiss the view controller. In macOS, use the comparable ",
+          "type": "text"
+        },
+        {
+          "code": "NSViewController",
+          "type": "codeVoice"
+        },
+        {
+          "text": " methods ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/AppKit/NSViewController/presentAsSheet(_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/AppKit/NSViewController/dismiss(_:)-91my5",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instead.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MCBrowserViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCBrowserViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MCBrowserViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "MCBrowserViewController",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcbrowserviewcontroller"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCEncryptionPreference": {
+      "abstract": [
+        {
+          "text": "Indicates whether a session should use encryption when communicating with nearby peers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MCEncryptionPreference"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCEncryptionPreference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MCEncryptionPreference"
+        }
+      ],
+      "role": "symbol",
+      "title": "MCEncryptionPreference",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcencryptionpreference"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCError/Code": {
+      "abstract": [
+        {
+          "text": "Error codes found in ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCErrorDomain",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " error domain ",
+          "type": "text"
+        },
+        {
+          "code": "NSError",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects returned by methods in the Multipeer Connectivity framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCError/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "MCError.Code",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcerror/code"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCErrorDomain": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "NSError",
+          "type": "codeVoice"
+        },
+        {
+          "text": " domain constant. If the ",
+          "type": "text"
+        },
+        {
+          "code": "domain",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value for an ",
+          "type": "text"
+        },
+        {
+          "code": "NSError",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object is equal to ",
+          "type": "text"
+        },
+        {
+          "code": "MCErrorDomain",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", then the error was produced by the Multipeer Connectivity framework itself, as opposed to a lower-level framework on which it depends.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MCErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MCErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "MCErrorDomain",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcerrordomain"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiser": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "MCNearbyServiceAdvertiser",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class publishes an advertisement for a specific service that your app provides through the Multipeer Connectivity framework and notifies its delegate about invitations from nearby peers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MCNearbyServiceAdvertiser"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiser",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MCNearbyServiceAdvertiser"
+        }
+      ],
+      "role": "symbol",
+      "title": "MCNearbyServiceAdvertiser",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcnearbyserviceadvertiser"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceBrowser": {
+      "abstract": [
+        {
+          "text": "Searches (by service type) for services offered by nearby devices using infrastructure Wi-Fi, peer-to-peer Wi-Fi, and Bluetooth (in iOS) or Ethernet (in macOS and tvOS), and provides the ability to easily invite those devices to a Multipeer Connectivity session (",
+          "type": "text"
+        },
+        {
+          "code": "MCSession",
+          "type": "codeVoice"
+        },
+        {
+          "text": ").",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MCNearbyServiceBrowser"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceBrowser",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MCNearbyServiceBrowser"
+        }
+      ],
+      "role": "symbol",
+      "title": "MCNearbyServiceBrowser",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcnearbyservicebrowser"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCPeerID": {
+      "abstract": [
+        {
+          "text": "An  ",
+          "type": "text"
+        },
+        {
+          "code": "MCPeerID",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object represents a peer in a multipeer session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MCPeerID"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCPeerID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MCPeerID"
+        }
+      ],
+      "role": "symbol",
+      "title": "MCPeerID",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcpeerid"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCPeerID/init(displayName:)": {
+      "abstract": [
+        {
+          "text": "Initializes a peer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "displayName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCPeerID/init(displayName:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithDisplayName:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(displayName:)",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcpeerid/init(displayname:)"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession": {
+      "abstract": [
+        {
+          "text": "An ",
+          "type": "text"
+        },
+        {
+          "code": "MCSession",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object enables and manages communication among all peers in a Multipeer Connectivity session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MCSession"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MCSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "MCSession",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsession"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession#Managing-Peers-Manually": {
+      "abstract": [],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession#Managing-Peers-Manually",
+      "kind": "section",
+      "title": "Managing Peers Manually",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsession#Managing-Peers-Manually"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/cancelConnectPeer(_:)": {
+      "abstract": [
+        {
+          "text": "Cancels an attempt to connect to a peer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancelConnectPeer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCPeerID",
+          "text": "MCPeerID"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/cancelConnectPeer(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cancelConnectPeer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "cancelConnectPeer(_:)",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsession/cancelconnectpeer(_:)"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/connectPeer(_:withNearbyConnectionData:)": {
+      "abstract": [
+        {
+          "text": "Call this method to connect a peer to the session when using your own service discovery code instead of an  ",
+          "type": "text"
+        },
+        {
+          "code": "MCNearbyServiceBrowser",
+          "type": "codeVoice"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "code": "MCBrowserViewController",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "connectPeer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCPeerID",
+          "text": "MCPeerID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withNearbyConnectionData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/connectPeer(_:withNearbyConnectionData:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "connectPeer:withNearbyConnectionData:"
+        }
+      ],
+      "role": "symbol",
+      "title": "connectPeer(_:withNearbyConnectionData:)",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsession/connectpeer(_:withnearbyconnectiondata:)"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/connectedPeers": {
+      "abstract": [
+        {
+          "text": "An array of all peers that are currently connected to this session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "connectedPeers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCPeerID",
+          "text": "MCPeerID"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/connectedPeers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "connectedPeers"
+        }
+      ],
+      "role": "symbol",
+      "title": "connectedPeers",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsession/connectedpeers"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/delegate": {
+      "abstract": [
+        {
+          "text": "The delegate object that handles session-related events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MCSessionDelegate",
+          "text": "MCSessionDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsession/delegate"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/disconnect()": {
+      "abstract": [
+        {
+          "text": "Disconnects the local peer from the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "disconnect"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/disconnect()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "disconnect"
+        }
+      ],
+      "role": "symbol",
+      "title": "disconnect()",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsession/disconnect()"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/encryptionPreference": {
+      "abstract": [
+        {
+          "text": "A value indicating whether the connection prefers encrypted connections, unencrypted connections, or has no preference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encryptionPreference"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MCEncryptionPreference",
+          "text": "MCEncryptionPreference"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/encryptionPreference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "encryptionPreference"
+        }
+      ],
+      "role": "symbol",
+      "title": "encryptionPreference",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsession/encryptionpreference"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/init(peer:)": {
+      "abstract": [
+        {
+          "text": "Creates a Multipeer Connectivity session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "peer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCPeerID",
+          "text": "MCPeerID"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/init(peer:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithPeer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(peer:)",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsession/init(peer:)"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/init(peer:securityIdentity:encryptionPreference:)": {
+      "abstract": [
+        {
+          "text": "Creates a Multipeer Connectivity session, providing security information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "peer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCPeerID",
+          "text": "MCPeerID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "securityIdentity"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "encryptionPreference"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MCEncryptionPreference",
+          "text": "MCEncryptionPreference"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/init(peer:securityIdentity:encryptionPreference:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithPeer:securityIdentity:encryptionPreference:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(peer:securityIdentity:encryptionPreference:)",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsession/init(peer:securityidentity:encryptionpreference:)"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/myPeerID": {
+      "abstract": [
+        {
+          "text": "A local identifier that represents the device on which your app is currently running.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "myPeerID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCPeerID",
+          "text": "MCPeerID"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/myPeerID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "myPeerID"
+        }
+      ],
+      "role": "symbol",
+      "title": "myPeerID",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsession/mypeerid"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/nearbyConnectionData(forPeer:withCompletionHandler:)": {
+      "abstract": [
+        {
+          "text": "Obtains connection data for the specified peer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nearbyConnectionData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forPeer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCPeerID",
+          "text": "MCPeerID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/nearbyConnectionData(forPeer:withCompletionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nearbyConnectionDataForPeer:withCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "nearbyConnectionData(forPeer:withCompletionHandler:)",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsession/nearbyconnectiondata(forpeer:withcompletionhandler:)"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/securityIdentity": {
+      "abstract": [
+        {
+          "text": "The security identity of the local peer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "securityIdentity"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/securityIdentity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "securityIdentity"
+        }
+      ],
+      "role": "symbol",
+      "title": "securityIdentity",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsession/securityidentity"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/send(_:toPeers:with:)": {
+      "abstract": [
+        {
+          "text": "Sends a message to nearby peers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "send"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toPeers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCPeerID",
+          "text": "MCPeerID"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MCSessionSendDataMode",
+          "text": "MCSessionSendDataMode"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/send(_:toPeers:with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sendData:toPeers:withMode:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "send(_:toPeers:with:)",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsession/send(_:topeers:with:)"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/sendResource(at:withName:toPeer:withCompletionHandler:)": {
+      "abstract": [
+        {
+          "text": "Sends the contents of a URL to a peer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendResource"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toPeer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCPeerID",
+          "text": "MCPeerID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSProgress",
+          "text": "Progress"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/sendResource(at:withName:toPeer:withCompletionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sendResourceAtURL:withName:toPeer:withCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sendResource(at:withName:toPeer:withCompletionHandler:)",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsession/sendresource(at:withname:topeer:withcompletionhandler:)"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/startStream(withName:toPeer:)": {
+      "abstract": [
+        {
+          "text": "Opens a byte stream to a nearby peer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startStream"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toPeer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCPeerID",
+          "text": "MCPeerID"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOutputStream",
+          "text": "OutputStream"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/startStream(withName:toPeer:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startStreamWithName:toPeer:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startStream(withName:toPeer:)",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsession/startstream(withname:topeer:)"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionDelegate/session(_:didFinishReceivingResourceWithName:fromPeer:at:withError:)": {
+      "abstract": [
+        {
+          "text": "Indicates that the local peer finished receiving a resource from a nearby peer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCSession",
+          "text": "MCSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFinishReceivingResourceWithName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromPeer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCPeerID",
+          "text": "MCPeerID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withError"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionDelegate/session(_:didFinishReceivingResourceWithName:fromPeer:at:withError:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didFinishReceivingResourceWithName:fromPeer:atURL:withError:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "session(_:didFinishReceivingResourceWithName:fromPeer:at:withError:)",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsessiondelegate/session(_:didfinishreceivingresourcewithname:frompeer:at:witherror:)"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionDelegate/session(_:didReceive:fromPeer:)": {
+      "abstract": [
+        {
+          "text": "Indicates that an ",
+          "type": "text"
+        },
+        {
+          "code": "NSData",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object has been received from a nearby peer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCSession",
+          "text": "MCSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didReceive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromPeer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCPeerID",
+          "text": "MCPeerID"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionDelegate/session(_:didReceive:fromPeer:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didReceiveData:fromPeer:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "session(_:didReceive:fromPeer:)",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsessiondelegate/session(_:didreceive:frompeer:)"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionDelegate/session(_:didReceive:withName:fromPeer:)": {
+      "abstract": [
+        {
+          "text": "Called when a nearby peer opens a byte stream connection to the local peer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCSession",
+          "text": "MCSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didReceive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSInputStream",
+          "text": "InputStream"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromPeer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCPeerID",
+          "text": "MCPeerID"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionDelegate/session(_:didReceive:withName:fromPeer:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didReceiveStream:withName:fromPeer:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "session(_:didReceive:withName:fromPeer:)",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsessiondelegate/session(_:didreceive:withname:frompeer:)"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionDelegate/session(_:didStartReceivingResourceWithName:fromPeer:with:)": {
+      "abstract": [
+        {
+          "text": "Indicates that the local peer began receiving a resource from a nearby peer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCSession",
+          "text": "MCSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didStartReceivingResourceWithName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromPeer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCPeerID",
+          "text": "MCPeerID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSProgress",
+          "text": "Progress"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionDelegate/session(_:didStartReceivingResourceWithName:fromPeer:with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didStartReceivingResourceWithName:fromPeer:withProgress:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "session(_:didStartReceivingResourceWithName:fromPeer:with:)",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsessiondelegate/session(_:didstartreceivingresourcewithname:frompeer:with:)"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionDelegate/session(_:peer:didChange:)": {
+      "abstract": [
+        {
+          "text": "Called when the state of a nearby peer changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCSession",
+          "text": "MCSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "peer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCPeerID",
+          "text": "MCPeerID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didChange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MCSessionState",
+          "text": "MCSessionState"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionDelegate/session(_:peer:didChange:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:peer:didChangeState:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "session(_:peer:didChange:)",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsessiondelegate/session(_:peer:didchange:)"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionSendDataMode": {
+      "abstract": [
+        {
+          "text": "Indicates whether delivery of data should be guaranteed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MCSessionSendDataMode"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionSendDataMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MCSessionSendDataMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MCSessionSendDataMode",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsessionsenddatamode"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionState": {
+      "abstract": [
+        {
+          "text": "Indicates the current state of a given peer within a session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MCSessionState"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MCSessionState"
+        }
+      ],
+      "role": "symbol",
+      "title": "MCSessionState",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsessionstate"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionState/connected": {
+      "abstract": [
+        {
+          "text": "The peer is connected to this session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "connected"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionState/connected",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MCSessionStateConnected"
+        }
+      ],
+      "role": "symbol",
+      "title": "MCSessionState.connected",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsessionstate/connected"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/minimum_and_maximum_supported_peers": {
+      "abstract": [
+        {
+          "text": "Constants that define the minimum and maximum number of peers supported in a session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/minimum_and_maximum_supported_peers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Minimum and Maximum Supported Peers",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/minimum_and_maximum_supported_peers"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/multipeer_connectivity_error_domain": {
+      "abstract": [
+        {
+          "text": "The error domain for errors specific to Multipeer Connectivity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/multipeer_connectivity_error_domain",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Multipeer Connectivity Error Domain",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/multipeer_connectivity_error_domain"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Classes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCAdvertiserAssistant",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCBrowserViewController",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiser",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceBrowser",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCPeerID"
+      ],
+      "title": "Classes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Session",
+      "identifiers": [
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/init(peer:)",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/init(peer:securityIdentity:encryptionPreference:)",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/delegate",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/encryptionPreference",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/myPeerID",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/securityIdentity"
+      ],
+      "title": "Creating a Session"
+    },
+    {
+      "anchor": "Managing-Peers-Manually",
+      "identifiers": [
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/connectPeer(_:withNearbyConnectionData:)",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/cancelConnectPeer(_:)",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/connectedPeers",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/nearbyConnectionData(forPeer:withCompletionHandler:)"
+      ],
+      "title": "Managing Peers Manually"
+    },
+    {
+      "anchor": "Sending-Data-and-Resources",
+      "identifiers": [
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/send(_:toPeers:with:)",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/sendResource(at:withName:toPeer:withCompletionHandler:)",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/startStream(withName:toPeer:)"
+      ],
+      "title": "Sending Data and Resources"
+    },
+    {
+      "anchor": "Leaving-a-Session",
+      "identifiers": [
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/disconnect()"
+      ],
+      "title": "Leaving a Session"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionSendDataMode",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionState",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCEncryptionPreference",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCError/Code",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/multipeer_connectivity_error_domain",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/minimum_and_maximum_supported_peers"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.10",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MCSession"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Session",
+              "identifiers": [
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/init(peer:)",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/init(peer:securityIdentity:encryptionPreference:)",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/delegate",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/encryptionPreference",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/myPeerID",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/securityIdentity"
+              ],
+              "title": "Creating a Session"
+            },
+            {
+              "anchor": "Managing-Peers-Manually",
+              "identifiers": [
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/connectPeer(_:withNearbyConnectionData:)",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/cancelConnectPeer(_:)",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/connectedPeers",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/nearbyConnectionData(forPeer:withCompletionHandler:)"
+              ],
+              "title": "Managing Peers Manually"
+            },
+            {
+              "anchor": "Sending-Data-and-Resources",
+              "identifiers": [
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/send(_:toPeers:with:)",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/sendResource(at:withName:toPeer:withCompletionHandler:)",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/startStream(withName:toPeer:)"
+              ],
+              "title": "Sending Data and Resources"
+            },
+            {
+              "anchor": "Leaving-a-Session",
+              "identifiers": [
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession/disconnect()"
+              ],
+              "title": "Leaving a Session"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionSendDataMode",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionState",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCEncryptionPreference",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCError/Code",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/multipeer_connectivity_error_domain",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/minimum_and_maximum_supported_peers"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Classes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCAdvertiserAssistant",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCBrowserViewController",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiser",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceBrowser",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCPeerID"
+              ],
+              "title": "Classes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MCSession"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1dismiss(animated:completion:)/title",
+          "value": "dismissViewControllerAnimated:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1dismiss(animated:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "dismissViewControllerAnimated:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "flag"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completion:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)()) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completion"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSessionSendDataMode/title",
+          "value": "MCSessionSendDataMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSessionSendDataMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCSessionSendDataMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSessionSendDataMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCSessionSendDataMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSessionDelegate~1session(_:didReceive:fromPeer:)/title",
+          "value": "session:didReceiveData:fromPeer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSessionDelegate~1session(_:didReceive:fromPeer:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didReceiveData:fromPeer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSessionDelegate~1session(_:peer:didChange:)/title",
+          "value": "session:peer:didChangeState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSessionDelegate~1session(_:peer:didChange:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:peer:didChangeState:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCPeerID/title",
+          "value": "MCPeerID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCPeerID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCPeerID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCPeerID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCPeerID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1encryptionPreference/title",
+          "value": "encryptionPreference"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1encryptionPreference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "encryptionPreference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1sendResource(at:withName:toPeer:withCompletionHandler:)/title",
+          "value": "sendResourceAtURL:withName:toPeer:withCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1sendResource(at:withName:toPeer:withCompletionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sendResourceAtURL:withName:toPeer:withCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1disconnect()/title",
+          "value": "disconnect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1disconnect()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "disconnect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1present(_:animated:completion:)/title",
+          "value": "presentViewController:animated:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1present(_:animated:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentViewController:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "viewControllerToPresent"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "animated:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "flag"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completion:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)()) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completion"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1performSegue(withIdentifier:sender:)/title",
+          "value": "performSegueWithIdentifier:sender:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1performSegue(withIdentifier:sender:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "performSegueWithIdentifier:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "identifier"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "sender:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "id"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "sender"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1startStream(withName:toPeer:)/title",
+          "value": "startStreamWithName:toPeer:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1startStream(withName:toPeer:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startStreamWithName:toPeer:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1myPeerID/title",
+          "value": "myPeerID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1myPeerID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "myPeerID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1prepare(for:sender:)/title",
+          "value": "prepareForSegue:sender:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1prepare(for:sender:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "prepareForSegue:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIStoryboardSegue",
+              "text": "UIStoryboardSegue"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "segue"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "sender:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "id"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "sender"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSessionState/title",
+          "value": "MCSessionState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSessionState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCSessionState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSessionState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCSessionState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1init(peer:securityIdentity:encryptionPreference:)/title",
+          "value": "initWithPeer:securityIdentity:encryptionPreference:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1init(peer:securityIdentity:encryptionPreference:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithPeer:securityIdentity:encryptionPreference:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1nearbyConnectionData(forPeer:withCompletionHandler:)/title",
+          "value": "nearbyConnectionDataForPeer:withCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1nearbyConnectionData(forPeer:withCompletionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "nearbyConnectionDataForPeer:withCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCErrorDomain/title",
+          "value": "MCErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1connectedPeers/title",
+          "value": "connectedPeers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1connectedPeers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "connectedPeers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1cancelConnectPeer(_:)/title",
+          "value": "cancelConnectPeer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1cancelConnectPeer(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "cancelConnectPeer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession/title",
+          "value": "MCSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSessionDelegate~1session(_:didFinishReceivingResourceWithName:fromPeer:at:withError:)/title",
+          "value": "session:didFinishReceivingResourceWithName:fromPeer:atURL:withError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSessionDelegate~1session(_:didFinishReceivingResourceWithName:fromPeer:at:withError:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didFinishReceivingResourceWithName:fromPeer:atURL:withError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSViewController~1dismiss(_:)-91my5/title",
+          "value": "dismissViewController:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSViewController~1dismiss(_:)-91my5/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "dismissViewController:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSViewController",
+              "text": "NSViewController"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "viewController"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1send(_:toPeers:with:)/title",
+          "value": "sendData:toPeers:withMode:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1send(_:toPeers:with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sendData:toPeers:withMode:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSessionDelegate~1session(_:didStartReceivingResourceWithName:fromPeer:with:)/title",
+          "value": "session:didStartReceivingResourceWithName:fromPeer:withProgress:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSessionDelegate~1session(_:didStartReceivingResourceWithName:fromPeer:with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didStartReceivingResourceWithName:fromPeer:withProgress:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCNearbyServiceAdvertiser/title",
+          "value": "MCNearbyServiceAdvertiser"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCNearbyServiceAdvertiser/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCNearbyServiceAdvertiser"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCNearbyServiceAdvertiser/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCNearbyServiceAdvertiser"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCError~1Code/title",
+          "value": "MCErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCError~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCError~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCBrowserViewController/title",
+          "value": "MCBrowserViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCBrowserViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCBrowserViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCBrowserViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCBrowserViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSessionDelegate~1session(_:didReceive:withName:fromPeer:)/title",
+          "value": "session:didReceiveStream:withName:fromPeer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSessionDelegate~1session(_:didReceive:withName:fromPeer:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didReceiveStream:withName:fromPeer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCNearbyServiceBrowser/title",
+          "value": "MCNearbyServiceBrowser"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCNearbyServiceBrowser/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCNearbyServiceBrowser"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCNearbyServiceBrowser/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCNearbyServiceBrowser"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCAdvertiserAssistant/title",
+          "value": "MCAdvertiserAssistant"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCAdvertiserAssistant/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCAdvertiserAssistant"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCAdvertiserAssistant/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCAdvertiserAssistant"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1securityIdentity/title",
+          "value": "securityIdentity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1securityIdentity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "securityIdentity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSessionState~1connected/title",
+          "value": "MCSessionStateConnected"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSessionState~1connected/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCSessionStateConnected"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCEncryptionPreference/title",
+          "value": "MCEncryptionPreference"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCEncryptionPreference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCEncryptionPreference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCEncryptionPreference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCEncryptionPreference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1init(peer:)/title",
+          "value": "initWithPeer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1init(peer:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithPeer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1connectPeer(_:withNearbyConnectionData:)/title",
+          "value": "connectPeer:withNearbyConnectionData:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession~1connectPeer(_:withNearbyConnectionData:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "connectPeer:withNearbyConnectionData:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCPeerID~1init(displayName:)/title",
+          "value": "initWithDisplayName:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCPeerID~1init(displayName:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithDisplayName:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSViewController~1presentAsSheet(_:)/title",
+          "value": "presentViewControllerAsSheet:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSViewController~1presentAsSheet(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentViewControllerAsSheet:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSViewController",
+              "text": "NSViewController"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "viewController"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/multipeerconnectivity/mcsession"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/multipeerconnectivity/mcsession"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

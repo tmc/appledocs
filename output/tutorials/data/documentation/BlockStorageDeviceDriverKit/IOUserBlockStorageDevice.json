@@ -1,0 +1,913 @@
+{
+  "abstract": [
+    {
+      "text": "A DriverKit provider object that manages communications with a block storage device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOUserBlockStorageDevice",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "IOUserBlockStorageDevice"
+      }
+    ],
+    "modules": [
+      {
+        "name": "BlockStorageDeviceDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "IOUserBlockStorageDevice"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "21.0",
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "IOUserBlockStorageDevice"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOUserBlockStorageDevice"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement your driver by subclassing this class and overriding all C++ pure virtual methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specifying-the-Drivers-Personality-Information",
+          "level": 3,
+          "text": "Specifying the Driver’s Personality Information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you subclass ",
+              "type": "text"
+            },
+            {
+              "code": "IOUserBlockStorageDevice",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", update the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/IOKitPersonalities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key of your driver extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file with information to match your driver to the correct hardware. For this class, always include the keys and values in the following table:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "IOClass",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "IOUserBlockStorageDevice",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "IOUserClass",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name of your custom dext class",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "CFBundleIdentifierKernel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.iokit.IOStorageFamily",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for custom storage devices that communicate with the driver using custom protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BlockStorageDeviceDriverKit",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/BlockRange": {
+      "abstract": [
+        {
+          "text": "A structure that represents a range of blocks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "BlockRange"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/BlockRange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BlockRange",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/blockrange"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/DeviceParams": {
+      "abstract": [
+        {
+          "text": "A structure that represents hardware-specific properties of the block storage device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DeviceParams"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/DeviceParams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DeviceParams",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/deviceparams"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/DeviceString": {
+      "abstract": [
+        {
+          "text": "A type that represents a string of character data from the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DeviceString"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/DeviceString",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DeviceString",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/devicestring"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice": {
+      "abstract": [
+        {
+          "text": "A DriverKit provider object that manages communications with a block storage device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserBlockStorageDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserBlockStorageDevice",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/Complete": {
+      "abstract": [
+        {
+          "text": "Indicates that the dext completed an asynchronous call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Complete"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/Complete",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Complete",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice/complete"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/CompleteIO": {
+      "abstract": [
+        {
+          "text": "Indicates that the dext completed an asynchronous read-write call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CompleteIO"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/CompleteIO",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CompleteIO",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice/completeio"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/DoAsyncEjectMedia": {
+      "abstract": [
+        {
+          "text": "Ejects the media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DoAsyncEjectMedia"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/DoAsyncEjectMedia",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DoAsyncEjectMedia",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice/doasyncejectmedia"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/DoAsyncReadWrite": {
+      "abstract": [
+        {
+          "text": "Starts an asynchronous read or write operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DoAsyncReadWrite"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/DoAsyncReadWrite",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DoAsyncReadWrite",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice/doasyncreadwrite"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/DoAsyncSynchronize": {
+      "abstract": [
+        {
+          "text": "Forces the hardware buffer to flush data blocks to the media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DoAsyncSynchronize"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/DoAsyncSynchronize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DoAsyncSynchronize",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice/doasyncsynchronize"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/DoAsyncUnmap": {
+      "abstract": [
+        {
+          "text": "Sends an asynchronous request to the dext to reclaim storage by unmapping.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DoAsyncUnmap"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/DoAsyncUnmap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DoAsyncUnmap",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice/doasyncunmap"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/DoAsyncUnmapPriv": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DoAsyncUnmapPriv"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/DoAsyncUnmapPriv",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DoAsyncUnmapPriv",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice/doasyncunmappriv"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/GetAdditionalInfoString": {
+      "abstract": [
+        {
+          "text": "Gets a string that provides additional information in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetAdditionalInfoString"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/GetAdditionalInfoString",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetAdditionalInfoString",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice/getadditionalinfostring"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/GetDeviceParams": {
+      "abstract": [
+        {
+          "text": "Gets device parameters in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetDeviceParams"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/GetDeviceParams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetDeviceParams",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice/getdeviceparams"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/GetProductString": {
+      "abstract": [
+        {
+          "text": "Gets a string that identifies the product in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetProductString"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/GetProductString",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetProductString",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice/getproductstring"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/GetRevisionString": {
+      "abstract": [
+        {
+          "text": "Gets a string that identifies the current revision in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetRevisionString"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/GetRevisionString",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetRevisionString",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice/getrevisionstring"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/GetVendorString": {
+      "abstract": [
+        {
+          "text": "Gets a string that identifies the vendor in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetVendorString"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/GetVendorString",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetVendorString",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice/getvendorstring"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/RegisterDext": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "RegisterDext"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/RegisterDext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RegisterDext",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice/registerdext"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/ReportEjectability": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the media is ejectable, in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ReportEjectability"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/ReportEjectability",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ReportEjectability",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice/reportejectability"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/ReportRemovability": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the media is removable, in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ReportRemovability"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/ReportRemovability",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ReportRemovability",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice/reportremovability"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/ReportWriteProtection": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the media is write protected, in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ReportWriteProtection"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/ReportWriteProtection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ReportWriteProtection",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice/reportwriteprotection"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/Start": {
+      "abstract": [
+        {
+          "text": "Starts the current service and associates it with the specified provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Start"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/Start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Start",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice/start"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/Stop": {
+      "abstract": [
+        {
+          "text": "Stops the service associated with the specified provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Stop"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/Stop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Stop",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice/stop"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/free": {
+      "abstract": [
+        {
+          "text": "Performs any final cleanup for the service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice/free"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/init": {
+      "abstract": [
+        {
+          "text": "Handles the basic initialization of the service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice/init"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserStorageOptions": {
+      "abstract": [
+        {
+          "text": "Options that affect the performance of read-write operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserStorageOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserStorageOptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserStorageOptions",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserstorageoptions"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/IOKitPersonalities": {
+      "abstract": [
+        {
+          "text": "One or more groups of attributes that tell the system about the devices your driver supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/IOKitPersonalities",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOKitPersonalities",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/IOKitPersonalities"
+    },
+    "doc://com.apple.documentation/documentation/driverkit": {
+      "abstract": [
+        {
+          "text": "Develop device drivers that run in user space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DriverKit",
+      "type": "topic",
+      "url": "/documentation/driverkit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@S@IOService": {
+      "abstract": [
+        {
+          "text": "The base class for managing the setup and registration of your driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@S@IOService",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:@S@IOService"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "abstract": [
+        {
+          "text": "Override these functions from the base ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/driverkit",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " framework in your driver class.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Running-the-Service",
+      "identifiers": [
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/init",
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/Start",
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/Stop",
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/free"
+      ],
+      "title": "Running the Service"
+    },
+    {
+      "anchor": "Reporting-Device-Metadata",
+      "identifiers": [
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/GetVendorString",
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/GetProductString",
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/GetRevisionString",
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/GetAdditionalInfoString",
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/DeviceString",
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/GetDeviceParams",
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/DeviceParams"
+      ],
+      "title": "Reporting Device Metadata"
+    },
+    {
+      "anchor": "Reporting-Device-Capabilities",
+      "identifiers": [
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/ReportEjectability",
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/ReportRemovability",
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/ReportWriteProtection"
+      ],
+      "title": "Reporting Device Capabilities"
+    },
+    {
+      "anchor": "Accessing-the-Device",
+      "identifiers": [
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/DoAsyncUnmap",
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/BlockRange",
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/DoAsyncSynchronize",
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/DoAsyncEjectMedia",
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/Complete",
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/DoAsyncReadWrite",
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserStorageOptions",
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/CompleteIO"
+      ],
+      "title": "Accessing the Device"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "identifiers": [
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/DoAsyncUnmapPriv",
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/RegisterDext"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

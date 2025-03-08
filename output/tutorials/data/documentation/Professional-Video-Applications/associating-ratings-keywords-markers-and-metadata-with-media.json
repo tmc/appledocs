@@ -1,0 +1,2981 @@
+{
+  "abstract": [
+    {
+      "text": "Organize and annotate the media and projects your users send to and receive from Final Cut Pro.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Associating Ratings, Keywords, Markers, and Metadata with Media"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metadata, markers, and annotations, such as ratings and keywords, help your users sort, organize, and find their media. Include any of the following items in the FCPXML documents that your app sends to Final Cut Pro. If these items are in the FCPXML that your app receives from Final Cut Pro, you can use them to organize the incoming media.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Metadata, Markers, and Annotations",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Common metadata",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Information about the media that Final Cut Pro knows how to collect. Common metadata is typically ingested by Final Cut Pro from source media files. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer.png",
+                      "type": "image"
+                    },
+                    {
+                      "text": " For more information on including common metadata, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media#Include-Common-Metadata",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Custom metadata",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Information about the media that’s specific to your app’s workflow. Custom metadata is typically included in an FCPXML document sent to Final Cut Pro from your app.  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer.png",
+                      "type": "image"
+                    },
+                    {
+                      "text": " For more information on adding custom metadata, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media#Add-Custom-Metadata",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Share metadata",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Information, such as Copyright and Episode ID, that identifies media distributed to consumers.  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer.png",
+                      "type": "image"
+                    },
+                    {
+                      "text": " For more information on share metadata, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media#Review-Share-Metadata",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "; also see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://support.apple.com/guide/final-cut-pro/change-metadata-for-shared-items-ver8e9a81d37/10.4.7/mac/10.14",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ratings",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sections of a clip that has ratings, such as accepted or rejected. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer.png",
+                      "type": "image"
+                    },
+                    {
+                      "text": " For more information on ratings, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media#Add-Ratings-Keywords-and-Markers",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "; also see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://support.apple.com/guide/final-cut-pro/rate-clips-ver30ccd91f/mac",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Keywords",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Labeled sections of a clip used to categorize clips into keyword collections. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer.png",
+                      "type": "image"
+                    },
+                    {
+                      "text": " For more information on adding keywords to clips, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media#Add-Ratings-Keywords-and-Markers",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "; also see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://support.apple.com/guide/final-cut-pro/add-keywords-ver68416335/mac",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Markers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Labeled locations that let video editors jump to a specific point in time in a project sequence. A marker has no duration.  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer.png",
+                      "type": "image"
+                    },
+                    {
+                      "text": " For more information on adding markers, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media#Add-Ratings-Keywords-and-Markers",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "; also see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://support.apple.com/guide/final-cut-pro/intro-to-markers-ver397279dd/mac",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Include-Common-Metadata",
+          "level": 3,
+          "text": "Include Common Metadata",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Common metadata",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " includes information about how a user created a piece of media, notes about the editing or production process, or additional information about the item’s origin. Final Cut Pro provides an extensive list of both basic and specialized metadata; users can review and modify items in that list using the Info inspector. For more information on viewing and editing common metadata, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/final-cut-pro/view-and-change-clip-metadata-ver397298cc/mac",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Common metadata is typically stored in the media file. To read and write common metadata in a QuickTime Movie file, use the AVFoundation APIs. For more information on AVFoundation APIs, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Final Cut Pro also provides ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "metadata views",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to review and manage various groups of metadata. The currently selected metadata view determines which metadata Final Cut Pro includes in the FCPXML files that your app receives. For more information on using metadata views, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/final-cut-pro/modify-metadata-views-ver397297af/mac",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table shows a small subset of common metadata keys recognized by Final Cut Pro. To get the key for a particular metadata item, modify that item’s value in the Final Cut Pro Info inspector, select a metadata view that includes the item, and then, in Final Cut Pro, choose File > Export to XML. The metadata keys are identified in the resulting FCPXML document.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Display Name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.proapps.reel",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Scene",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.proapps.scene",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Take",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.proapps.take",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Camera Angle",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.proapps.angle",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Date Imported",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.proapps.ingestDate",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Date",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If the purpose of your app includes ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "writing",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " media files (for example, if your app is a recording app or a transcoding utility), then you may decide to include some of that metadata when your app writes the new media file—even though the metadata was read-only when the source file was consumed. When read-only metadata is included in the FCPXML, it doesn’t overwrite what’s already in the media file. However, where possible, your app should ingest the metadata directly from the media file.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-Custom-Metadata",
+          "level": 3,
+          "text": "Add Custom Metadata",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While Final Cut Pro already recognizes a comprehensive set of metadata, there are times when a particular workflow requires custom metadata.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Attach custom metadata to media assets by adding metadata tags in the FCPXML file. The following example shows two pieces of custom metadata attached to a media asset. The second piece of metadata is read-only. For more information about defining custom metadata in FCPXML, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media#Define-and-Register-Custom-Metadata-Keys",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<asset id=\"r2\" start=\"0s\" duration=\"10s\" hasVideo=\"1\" hasAudio=\"1\" format=\"r1\" audioSources=\"1\" audioChannels=\"2\" audioRate=\"48000\">",
+            "    <media-rep kind=\"original-media\" src=\"file://Volumes/Media/Evening.mov\"/>",
+            "    <metadata>",
+            "        <md key=\"com.myCompany.myApp.myCustomMetadata\" value=\"This is my media\" type=\"string\" editable=\"1\" displayName=\"My custom metadata\" source=\"custom\"/>",
+            "        <md key=\"com.myCompany.myApp.anotherCustomMetadata\" value=\"Another piece of metadata that is read only\" type=\"string\" displayName=\"Another custom metadata\" source=\"custom\"/>",
+            "    </metadata>",
+            "</asset>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make custom metadata visible and available to Final Cut Pro users, provide a property list file (a ",
+              "type": "text"
+            },
+            {
+              "code": ".plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file) with your app that specifies a definition and one or more metadata views for each piece of custom metadata. When Final Cut Pro users select the media or item annotated by the custom metadata, they see the custom metadata in the Info inspector window, and can manage it just as they do common metadata. For more information on managing custom metadata, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/final-cut-pro/view-and-change-clip-metadata-ver397298cc/mac",
+              "isActive": true,
+              "overridingTitle": "View and change clip metadata in Final Cut Pro",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "View and change clip metadata in Final Cut Pro",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t include a metadata view in the ",
+              "type": "text"
+            },
+            {
+              "code": ".plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, the custom metadata won’t be visible to users in Final Cut Pro until they add it manually to an existing or new metadata view. For more information about defining custom metadata in FCPXML, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media#Define-and-Register-Custom-Metadata-Keys",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If the FCPXML document your app sends to Final Cut Pro includes custom metadata values, Final Cut Pro uses the values for any editable metadata items and ignores the values for any noneditable (read-only) metadata.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Review-Share-Metadata",
+          "level": 3,
+          "text": "Review Share Metadata",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app receives a project or clip as a rendered media file through a Final Cut Pro custom share destination, the file may include predetermined metadata keys called share metadata. ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Share metadata",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " represents administrative information about a piece of media, such as its copyright information or an episode number, that helps identify media when it’s distributed to consumers. Final Cut Pro users decide which share metadata to include with the media, but the default items — Title, Description, Creator, and Tags — are included automatically.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Final Cut Pro users can review and manage the share metadata for a selected project in the Share inspector. For information on managing share metadata, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://support.apple.com/guide/final-cut-pro/change-metadata-for-shared-items-ver8e9a81d37/mac",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your users share a project or a clip through a custom share destination, Final Cut Pro queries your app about which share metadata to include with the media. Your app returns a key-value pair for each piece of share metadata it includes in the FCPXML file. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination#Provide-Responses-to-Apple-Events",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table shows the share metadata and keys that may be included with the movies or rendered media files your app receives from Final Cut Pro through a custom share destination:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Display Name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Actors",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.quicktime.artist",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Category",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.proapps.share.category",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copyright",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.quicktime.copyright",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Creator",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.quicktime.author",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " (Default share metadata key)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Date",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.quicktime.creationdate",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.quicktime.description",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " (Default share metadata key)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Directors",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.quicktime.director",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Episode ID",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.proapps.share.episodeID",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Episode Number",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.proapps.share.episodeNumber",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Genre",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.quicktime.genre",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Media Kind",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.proapps.share.mediaKind",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Producers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.quicktime.producer",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Screenwriters",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.proapps.share.screenWriter",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Season Number",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.proapps.share.seasonNumber",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Share ID",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.proapps.share.id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Show",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.quicktime.album",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tags",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.quicktime.keywords",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " (Default share metadata key)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Title",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.quicktime.title",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " (Default share metadata key)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "TV Network",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.proapps.share.tvNetwork",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "US Rating",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.quicktime.rating.user",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Add-Ratings-Keywords-and-Markers",
+          "level": 3,
+          "text": "Add Ratings, Keywords, and Markers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Final Cut Pro ratings, keywords, and markers, along with keyword collections_,_ help users annotate, sort, and organize their media. Your app can make use of this information when Final Cut Pro includes it in the FCPXML your app receives. (For more information about using ratings, keywords, and markers, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/final-cut-pro/rate-clips-ver30ccd91f/mac",
+              "isActive": true,
+              "overridingTitle": "Rate Clips in Final Cut Pro",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Rate Clips in Final Cut Pro",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/final-cut-pro/add-keywords-ver68416335/mac",
+              "isActive": true,
+              "overridingTitle": "Add keywords to clips in Final Cut Pro",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Add keywords to clips in Final Cut Pro",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/final-cut-pro/intro-to-markers-ver397279dd/mac",
+              "isActive": true,
+              "overridingTitle": "Intro to markers in Final Cut Pro",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Intro to markers in Final Cut Pro",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". For information about sample FCPXML code, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/describing-final-cut-pro-items-in-fcpxml",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code example below attaches rating to a clip and includes a value of either ",
+              "type": "text"
+            },
+            {
+              "code": "favorite",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "reject",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", along with the starting point and the duration of the rating.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<asset-clip name=\"Morning\" ref=\"r5\" format=\"r1\" duration=\"5s\" audioRole=\"dialogue\">",
+            "     <rating start=\"2s\" duration=\"1s\" value=\"favorite\"/>",
+            "     <rating start=\"4s\" duration=\"1s\" value=\"reject\"/>",
+            "</asset-clip>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users can group and sort clips into keyword collections with user-defined keywords. The next code listing attaches a keyword to a clip and has the keyword itself, along with its starting point and duration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<asset-clip name=\"Morning\" ref=\"r5\" format=\"r1\" duration=\"5s\" audioRole=\"dialogue\">",
+            "     <keyword start=\"2s\" duration=\"2s\" value=\"Ocean\"/>",
+            "</asset-clip>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a project, markers represent a point in time with no duration. In FCPXML, markers have a duration equal to a single video frame in the format used by the clip.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<asset-clip name=\"MyMovie1\" ref=\"r2\" start=\"0s\"  duration=\"5s\" audioRole=\"dialogue\">",
+            "     <marker start=\"3s\" duration=\"1000/30000s\" value=\"MyMarker1\"/>",
+            "</asset-clip>",
+            "<asset-clip name=\"MyMovie2\" ref=\"r3\" offset=\"5s\" start=\"5s\" duration=\"5s\" audioRole=\"dialogue\">",
+            "     <marker start=\"6s\" duration=\"1000/30000s\" value=\"MyToDo1\" completed=\"0\"/>",
+            "     <marker start=\"8s\" duration=\"1000/30000s\" value=\"MyToDo2\" completed=\"1\"/>",
+            "</asset-clip>",
+            "<asset-clip name=\"MyMovie3\" ref=\"r4\" offset=\"10s\" start=\"15s\" duration=\"5s\" audioRole=\"dialogue\">",
+            "     <chapter-marker start=\"18s\" duration=\"1000/30000s\" value=\"Chapter 2\" posterOffset=\"19s\"/>",
+            "</asset-clip>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-and-Register-Custom-Metadata-Keys",
+          "level": 3,
+          "text": "Define and Register Custom Metadata Keys",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the FCPXML document your app is sending to Final Cut Pro contains custom metadata and you want that metadata to be visible and available to users in Final Cut Pro, create a ",
+              "type": "text"
+            },
+            {
+              "code": ".plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to define the custom metadata keys and the metadata views to display them in the Final Cut Pro Info inspector window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When Final Cut Pro launches, it reads the ",
+              "type": "text"
+            },
+            {
+              "code": ".plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file and creates and populates the custom metadata view. Your users can then review the metadata in the Final Cut Pro Info inspector window, and modify and rearrange it just as they would with common metadata. For more information on modifying metadata view, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/final-cut-pro/modify-metadata-views-ver397297af/mac",
+              "isActive": true,
+              "overridingTitle": "Modify metadata views in Final Cut Pro",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Modify metadata views in Final Cut Pro",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". Without this ",
+              "type": "text"
+            },
+            {
+              "code": ".plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, users won’t be able to see custom metadata in Final Cut Pro unless they add it manually to a metadata view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add definitions for custom metadata keys and the associated metadata views, use any text editor to create a ",
+              "type": "text"
+            },
+            {
+              "code": ".plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. One ",
+              "type": "text"
+            },
+            {
+              "code": ".plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file can contain information for both the metadata definitions and metadata views. Distribute the ",
+              "type": "text"
+            },
+            {
+              "code": ".plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file along with your app and have your users install it in one of the following locations so Final Cut Pro can find it:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "/Library/Application Support/ProApps/Metadata Definitions/",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "~/Library/Application Support/ProApps/Metadata Definitions/",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": ".plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file has two components: ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "custom metadata definitions",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "metadata view definitions",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". The custom metadata definitions make up a dictionary that’s identified by the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.proapps.MetadataDefinitions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key under the root level dictionary in the ",
+              "type": "text"
+            },
+            {
+              "code": ".plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. The metadata view definitions make up an array that’s identified by the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.proapps.MetadataViewSets",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key under the root level dictionary in the ",
+              "type": "text"
+            },
+            {
+              "code": ".plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each entry in the custom metadata definitions dictionary defines one piece of custom metadata. Each entry is also a dictionary and is associated with a metadata key, for example, ",
+              "type": "text"
+            },
+            {
+              "code": "com.yourCompany.yourApp.yourCustomMetadata",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table shows the structure of the dictionary that defines one piece of custom metadata:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "displayName",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "String",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name to display in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Name",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field of the Final Cut Pro inspector.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "displayDescription",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "String",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The description to display in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Description",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field of the Final Cut Pro Metadata View Set editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "type",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "String",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The data type of this metadata; for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "string",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "boolean",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "integer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "float",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". These are the same data types used in FCPXML.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "source",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "String",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The source of the metadata to display in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Origin",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field of the Final Cut Pro Metadata View Set editor; for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "‘EXIF’",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "‘Apple’",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "‘BBC’",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "‘<your company name>’",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "editable",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Boolean",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Whether the user can modify this metadata.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each element in the metadata view definitions array defines one metadata view and is a dictionary. The following table shows the structure of the dictionary that defines one metadata view:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "displayName",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "String",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name to display in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Name",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field of the Final Cut Pro Metadata View Set editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "displayDescription",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "String",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The description to  display in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Description",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field of the Final Cut Pro Metadata View Set editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "keys",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "String",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Array",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array of metadata identifiers, in reverse DNS style.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows an example ",
+              "type": "text"
+            },
+            {
+              "code": ".plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file with a custom metadata key definition and a definition for a custom metadata view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+            "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+            "<plist version=\"1.0\">",
+            "    <dict>",
+            "        <key>com.apple.proapps.MetadataDefinitions</key>",
+            "        <dict>",
+            "            <key>com.myCompany.myApp.myCustomMetadata</key>",
+            "            <dict>",
+            "                <key>displayDescription</key>",
+            "                <string>Description of my custom metadata</string>",
+            "                <key>displayName</key>",
+            "                <string>My custom metadata</string>",
+            "                <key>source</key>",
+            "                <string>custom</string>",
+            "                <key>type</key>",
+            "                <string>string</string>",
+            "                <key>editable</key>",
+            "                <true/>",
+            "            </dict>",
+            "            <key>com.myCompany.myApp.anotherCustomMetadata</key>",
+            "            <dict>",
+            "                <key>displayDescription</key>",
+            "                <string>Description of another custom metadata</string>",
+            "                <key>displayName</key>",
+            "                <string>Another custom metadata</string>",
+            "                <key>source</key>",
+            "                <string>custom</string>",
+            "                <key>type</key>",
+            "                <string>string</string>",
+            "            </dict>",
+            "        </dict>",
+            "        <key>com.apple.proapps.MetadataViewSets</key>",
+            "        <array>",
+            "            <dict>",
+            "                <key>displayName</key>",
+            "                <string>My Application&apos;s Set</string>",
+            "                <key>keys</key>",
+            "                <array>",
+            "                    <string>com.myCompany.myApp.myCustomMetadata</string>",
+            "                    <string>com.myCompany.myApp.anotherCustomMetadata</string>",
+            "                </array>",
+            "            </dict>",
+            "        </array>",
+            "    </dict>",
+            "</plist>",
+            "",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media#Add-Custom-Metadata": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media#Add-Custom-Metadata",
+      "kind": "section",
+      "title": "Add Custom Metadata",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/associating-ratings-keywords-markers-and-metadata-with-media#Add-Custom-Metadata"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media#Add-Ratings-Keywords-and-Markers": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media#Add-Ratings-Keywords-and-Markers",
+      "kind": "section",
+      "title": "Add Ratings, Keywords, and Markers",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/associating-ratings-keywords-markers-and-metadata-with-media#Add-Ratings-Keywords-and-Markers"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media#Define-and-Register-Custom-Metadata-Keys": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media#Define-and-Register-Custom-Metadata-Keys",
+      "kind": "section",
+      "title": "Define and Register Custom Metadata Keys",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/associating-ratings-keywords-markers-and-metadata-with-media#Define-and-Register-Custom-Metadata-Keys"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media#Include-Common-Metadata": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media#Include-Common-Metadata",
+      "kind": "section",
+      "title": "Include Common Metadata",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/associating-ratings-keywords-markers-and-metadata-with-media#Include-Common-Metadata"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media#Review-Share-Metadata": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media#Review-Share-Metadata",
+      "kind": "section",
+      "title": "Review Share Metadata",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/associating-ratings-keywords-markers-and-metadata-with-media#Review-Share-Metadata"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/describing-final-cut-pro-items-in-fcpxml": {
+      "abstract": [
+        {
+          "text": "Describe clips, projects, and other items in FCPXML to exchange data with Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/describing-final-cut-pro-items-in-fcpxml",
+      "kind": "article",
+      "role": "article",
+      "title": "Describing Final Cut Pro Items in FCPXML",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/describing-final-cut-pro-items-in-fcpxml"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference": {
+      "abstract": [
+        {
+          "text": "Create documents that describe the data your app or workflow extension exchanges with Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fcpxml-reference",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FCPXML Reference",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fcpxml-reference"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/metadata": {
+      "abstract": [
+        {
+          "text": "Describe metadata about media that is of interest to other applications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/metadata",
+      "kind": "article",
+      "role": "article",
+      "title": "Metadata",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/metadata"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/metadata-keys-and-sources": {
+      "abstract": [
+        {
+          "text": "Define metadata keys that identify each metadata item and its sources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/metadata-keys-and-sources",
+      "kind": "article",
+      "role": "article",
+      "title": "Metadata Keys and Sources",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/metadata-keys-and-sources"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination#Provide-Responses-to-Apple-Events": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination#Provide-Responses-to-Apple-Events",
+      "kind": "section",
+      "title": "Provide Responses to Apple Events",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/receiving-media-and-data-through-a-custom-share-destination#Provide-Responses-to-Apple-Events"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188",
+      "title": "AVFoundation Programming Guide",
+      "titleInlineContent": [
+        {
+          "text": "AVFoundation Programming Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188"
+    },
+    "https://support.apple.com/guide/final-cut-pro/add-keywords-ver68416335/mac": {
+      "identifier": "https://support.apple.com/guide/final-cut-pro/add-keywords-ver68416335/mac",
+      "title": "Add keywords to clips in Final Cut Pro",
+      "titleInlineContent": [
+        {
+          "text": "Add keywords to clips in Final Cut Pro",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/final-cut-pro/add-keywords-ver68416335/mac"
+    },
+    "https://support.apple.com/guide/final-cut-pro/change-metadata-for-shared-items-ver8e9a81d37/10.4.7/mac/10.14": {
+      "identifier": "https://support.apple.com/guide/final-cut-pro/change-metadata-for-shared-items-ver8e9a81d37/10.4.7/mac/10.14",
+      "title": "Change metadata for shared items in Final Cut Pro",
+      "titleInlineContent": [
+        {
+          "text": "Change metadata for shared items in Final Cut Pro",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/final-cut-pro/change-metadata-for-shared-items-ver8e9a81d37/10.4.7/mac/10.14"
+    },
+    "https://support.apple.com/guide/final-cut-pro/change-metadata-for-shared-items-ver8e9a81d37/mac": {
+      "identifier": "https://support.apple.com/guide/final-cut-pro/change-metadata-for-shared-items-ver8e9a81d37/mac",
+      "title": "Change metadata for shared items in Final Cut Pro",
+      "titleInlineContent": [
+        {
+          "text": "Change metadata for shared items in Final Cut Pro",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/final-cut-pro/change-metadata-for-shared-items-ver8e9a81d37/mac"
+    },
+    "https://support.apple.com/guide/final-cut-pro/intro-to-markers-ver397279dd/mac": {
+      "identifier": "https://support.apple.com/guide/final-cut-pro/intro-to-markers-ver397279dd/mac",
+      "title": "Intro to markers in Final Cut Pro",
+      "titleInlineContent": [
+        {
+          "text": "Intro to markers in Final Cut Pro",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/final-cut-pro/intro-to-markers-ver397279dd/mac"
+    },
+    "https://support.apple.com/guide/final-cut-pro/modify-metadata-views-ver397297af/mac": {
+      "identifier": "https://support.apple.com/guide/final-cut-pro/modify-metadata-views-ver397297af/mac",
+      "title": "Modify metadata views in Final Cut Pro",
+      "titleInlineContent": [
+        {
+          "text": "Modify metadata views in Final Cut Pro",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/final-cut-pro/modify-metadata-views-ver397297af/mac"
+    },
+    "https://support.apple.com/guide/final-cut-pro/rate-clips-ver30ccd91f/mac": {
+      "identifier": "https://support.apple.com/guide/final-cut-pro/rate-clips-ver30ccd91f/mac",
+      "title": "Rate clips in Final Cut Pro",
+      "titleInlineContent": [
+        {
+          "text": "Rate clips in Final Cut Pro",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/final-cut-pro/rate-clips-ver30ccd91f/mac"
+    },
+    "https://support.apple.com/guide/final-cut-pro/view-and-change-clip-metadata-ver397298cc/mac": {
+      "identifier": "https://support.apple.com/guide/final-cut-pro/view-and-change-clip-metadata-ver397298cc/mac",
+      "title": "View and change clip metadata in Final Cut Pro",
+      "titleInlineContent": [
+        {
+          "text": "View and change clip metadata in Final Cut Pro",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/final-cut-pro/view-and-change-clip-metadata-ver397298cc/mac"
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    },
+    "spacer.png": {
+      "alt": null,
+      "identifier": "spacer.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Media-Metadata",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/metadata",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/metadata-keys-and-sources"
+      ],
+      "title": "Media Metadata"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Media-Metadata",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/metadata",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/metadata-keys-and-sources"
+              ],
+              "title": "Media Metadata"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/associating-ratings-keywords-markers-and-metadata-with-media"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/associating-ratings-keywords-markers-and-metadata-with-media"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

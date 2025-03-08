@@ -1,0 +1,1838 @@
+{
+  "abstract": [
+    {
+      "text": "Render real-time video effects with the vImage Pixel Buffer.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/using-vimage-pixel-buffers-to-generate-video-effects"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Using vImage pixel buffers to generate video effects"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "passThrough.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project captures video from a macOS device’s camera and applies video effects in real time. The sample converts the 8-bit YpCbCr video frames to 32-bit RGB ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " images and demonstrates image-processing techniques that are available only for 32-bit data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before exploring the code, build and run the app to familiarize yourself with the different visual results the app generates from the camera.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-any-to-any-converter",
+          "level": 3,
+          "text": "Create the any-to-any converter",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance that converts the YpCbCr video frames to three-channel, 32-bit-per-channel, floating-point interleaved image data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let cvImageFormat = vImageCVImageFormat.make(",
+            "    format: .format422YpCbCr8,",
+            "    matrix: kvImage_ARGBToYpCbCrMatrix_ITU_R_601_4.pointee,",
+            "    chromaSiting: .center,",
+            "    colorSpace: CGColorSpaceCreateDeviceRGB(),",
+            "    alphaIsOpaqueHint: true)!",
+            "",
+            "let cgImageFormat = vImage_CGImageFormat(",
+            "    bitsPerComponent: 32,",
+            "    bitsPerPixel: 32 * 3,",
+            "    colorSpace: CGColorSpaceCreateDeviceRGB(),",
+            "    bitmapInfo: CGBitmapInfo(",
+            "        rawValue: kCGBitmapByteOrder32Host.rawValue |",
+            "        CGBitmapInfo.floatComponents.rawValue |",
+            "        CGImageAlphaInfo.none.rawValue),",
+            "    renderingIntent: .defaultIntent)!",
+            "",
+            "lazy var converter: vImageConverter = {",
+            "    guard let converter = try? vImageConverter.make(",
+            "        sourceFormat: cvImageFormat,",
+            "        destinationFormat: cgImageFormat) else {",
+            "        fatalError(\"Unable to create converter\")",
+            "    }",
+            "    ",
+            "    return converter",
+            "}()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Convert-a-Core-Video-pixel-buffer-to-RGB",
+          "level": 3,
+          "text": "Convert a Core Video pixel buffer to RGB",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code defines ",
+              "type": "text"
+            },
+            {
+              "code": "destinationBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/InterleavedFx3",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " pixel buffer. The conversion function creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/DynamicPixelFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " source buffer that references the locked ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/CVPixelBuffer",
+              "isActive": true,
+              "overridingTitle": "CVPixelBuffer",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CVPixelBuffer",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " instance and passes that to the any-to-any converter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func populateDestinationBuffer(pixelBuffer: CVPixelBuffer) {",
+            "    ",
+            "    let sourceBuffer = vImage.PixelBuffer(",
+            "        referencing: pixelBuffer,",
+            "        converter: converter,",
+            "        destinationPixelFormat: vImage.DynamicPixelFormat.self)",
+            "    ",
+            "    do {",
+            "        try converter.convert(",
+            "            from: sourceBuffer,",
+            "            to: destinationBuffer)",
+            "    } catch {",
+            "        fatalError(\"Any-to-any conversion failure.\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "destinationBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the RGB representation of the YpCbCr video frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-the-noise-effect",
+          "level": 3,
+          "text": "Apply the noise effect",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample simulates noise or film grain by adding Gaussian noise (with a mean of zero) to each frame. The image below shows an example of the noise effect:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "noise.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Accelerate’s BNNS library provides the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSRandomFillNormalFloat(_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function that fills an array descriptor with random floating-point values mapped to a normal distribution. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/withUnsafeMutableBufferPointer(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to pass a pointer to the pixel buffer’s underlying data to a  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code generates the noise effect:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func applyNoise() {",
+            "    ",
+            "    noiseBuffer.withUnsafeMutableBufferPointer { noisePtr in",
+            "        ",
+            "        if var descriptor = BNNSNDArrayDescriptor(",
+            "            data: noisePtr,",
+            "            shape: BNNS.Shape.tensor3DFirstMajor(",
+            "                noiseBuffer.width,",
+            "                noiseBuffer.height,",
+            "                noiseBuffer.channelCount)) {",
+            "            ",
+            "            /// Fill `noiseBuffer` with random values mapped to a normal distribution with a mean",
+            "            /// of `0` and a standard deviation of `0.125`.",
+            "            let mean: Float = 0",
+            "            let stdDev: Float = 0.125",
+            "            ",
+            "            BNNSRandomFillNormalFloat(",
+            "                randomNumberGenerator,",
+            "                &descriptor,",
+            "                mean,",
+            "                stdDev)",
+            "        }",
+            "    }",
+            "    ",
+            "    /// Fill `mutableDestinationPtr` with the sum of the corresponding pixels",
+            "    /// in `destinationBuffer` and `noiseBuffer`.",
+            "    destinationBuffer.withUnsafeMutableBufferPointer { mutablDestinationPtr in",
+            "        ",
+            "        vDSP.add(destinationBuffer, noiseBuffer,",
+            "                 result: &mutablDestinationPtr)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Apply-the-temporal-blur-effect",
+          "level": 3,
+          "text": "Apply the temporal blur effect",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The temporal blur effect blurs the image over time by calculating a weighted average of the current frame and previous frames. The effect is analogous to an exaggerated motion blur.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The image below shows an example of a rotating image with the temporal blur effect:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "temporalBlur.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/linearInterpolate(bufferB:interpolationConstant:destination:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function calls the vDSP function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vintb",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to calculate the linear interpolation between the current frame and the previous interpolated frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code generates the temporal blur effect:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func applyTemporalBlur() {",
+            "    ",
+            "    let interpolationConstant: Float = 0.925",
+            "    ",
+            "    destinationBuffer.linearInterpolate(",
+            "        bufferB: temporalBuffer,",
+            "        interpolationConstant: interpolationConstant,",
+            "        destination: temporalBuffer)",
+            "    ",
+            "    temporalBuffer.copy(to: destinationBuffer)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Apply-the-posterization-effect",
+          "level": 3,
+          "text": "Apply the posterization effect",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The posterization effect reduces the continuous colors of an image to fewer tones. The effect produces results with regions of solid colors. The image below shows an example of the posterization effect:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "posterization.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample generates the posterization effect using histogram specification. The code achieves the reduced color count by calculating and specifying a histogram that has a low bin count. For more information about histogram specification, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/specifying-histograms-with-vimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code populates a multiple-plane pixel buffer from the interleaved destination buffer. The multiple-plane pixel buffer contains three discrete planar buffers, and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/Histogram888",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function returns the histogram for the individual red, green, and blue channels. Specifying a bin count of ",
+              "type": "text"
+            },
+            {
+              "code": "4",
+              "type": "codeVoice"
+            },
+            {
+              "text": " returns a result that contains a maximum of ",
+              "type": "text"
+            },
+            {
+              "code": "4 * 4 * 4",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "code": "64",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") colors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code generates the posterization effect:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func applyPosterization() {",
+            "    ",
+            "    destinationBuffer.deinterleave(",
+            "        destination: histogramBuffer)",
+            "    ",
+            "    let histogram = histogramBuffer.histogram(",
+            "        binCount: 4)",
+            "    ",
+            "    histogramBuffer.specifyHistogram(",
+            "        histogram,",
+            "        destination: histogramBuffer)",
+            "    ",
+            "    histogramBuffer.interleave(",
+            "        destination: destinationBuffer)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Apply-the-color-threshold-effect",
+          "level": 3,
+          "text": "Apply the color threshold effect",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The color threshold effect is similar to the posterization effect, but reduces each color channel to a single-bit, so each color is either ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The image below shows the color threshold effect:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "colorThreshold.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/colorThreshold(_:destination:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function sets pixel values equal to or greater than the specified threshold to ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and other pixel values to ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Because the function works over the individual red, green, and blue values, the result contains a maximum of ",
+              "type": "text"
+            },
+            {
+              "code": "2 * 2 * 2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "code": "8",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") colors. The effect is identical to the posterization effect with ",
+              "type": "text"
+            },
+            {
+              "code": "binCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " set to ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code generates the color threshold effect:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func applyColorThreshold() {",
+            "    ",
+            "    let threshold: Float = 0.5",
+            "    ",
+            "    destinationBuffer.colorThreshold(",
+            "        threshold,",
+            "        destination: destinationBuffer)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "ae55c5290a61/UsingVImagePixelBuffersToGenerateVideoEffects.zip": {
+      "checksum": "ae55c5290a6183d9862c06490b64fd3c342e4533295091617ef5d9be5936259a5bcb9c33ccc4846f1e858f8a96c8929c701b1e91da77b0feb95f406494cfc248",
+      "identifier": "ae55c5290a61/UsingVImagePixelBuffersToGenerateVideoEffects.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/ae55c5290a61/UsingVImagePixelBuffersToGenerateVideoEffects.zip"
+    },
+    "colorThreshold.png": {
+      "alt": "A photograph of flowers with a palette of eight colors.",
+      "identifier": "colorThreshold.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/26f381a5bde2648108cfaf7cf6d417e1/colorThreshold.png"
+        }
+      ]
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor": {
+      "abstract": [
+        {
+          "text": "A structure that describes the shape, stride, data type, and, optionally, the memory location of an n-dimensional array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSNDArrayDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSNDArrayDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSNDArrayDescriptor",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSRandomFillNormalFloat(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Fills the specified tensor with random floating-point values mapped to a normal distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSRandomFillNormalFloat"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@BNNSRandomGenerator",
+          "text": "BNNSRandomGenerator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSRandomFillNormalFloat(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSRandomFillNormalFloat"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSRandomFillNormalFloat(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsrandomfillnormalfloat(_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-video-sample-buffers": {
+      "abstract": [
+        {
+          "text": "Use the vImage convert-any-to-any functionality to perform real-time image processing of video frames streamed from your device’s camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-video-sample-buffers",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Applying vImage operations to video sample buffers",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-vimage-operations-to-video-sample-buffers"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/core-video-interoperability": {
+      "abstract": [
+        {
+          "text": "Pass image data between Core Video and vImage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/core-video-interoperability",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Core Video interoperability",
+      "type": "topic",
+      "url": "/documentation/accelerate/core-video-interoperability"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/improving-the-quality-of-quantized-images-with-dithering": {
+      "abstract": [
+        {
+          "text": "Apply dithering to simulate colors that are unavailable in reduced bit depths.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/improving-the-quality-of-quantized-images-with-dithering",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Improving the quality of quantized images with dithering",
+      "type": "topic",
+      "url": "/documentation/accelerate/improving-the-quality-of-quantized-images-with-dithering"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/integrating-vimage-pixel-buffers-into-a-core-image-workflow": {
+      "abstract": [
+        {
+          "text": "Share image data between Core Video pixel buffers and vImage buffers to integrate vImage operations into a Core Image workflow.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/integrating-vimage-pixel-buffers-into-a-core-image-workflow",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Integrating vImage pixel buffers into a Core Image workflow",
+      "type": "topic",
+      "url": "/documentation/accelerate/integrating-vimage-pixel-buffers-into-a-core-image-workflow"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/specifying-histograms-with-vimage": {
+      "abstract": [
+        {
+          "text": "Calculate the histogram of one image, and apply it to a second image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/specifying-histograms-with-vimage",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Specifying histograms with vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/specifying-histograms-with-vimage"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vintb": {
+      "abstract": [
+        {
+          "text": "Calculates the linear interpolation between the supplied single-precision vectors using the specified stride.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_vintb"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vintb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_vintb",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_vintb"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/DynamicPixelFormat": {
+      "abstract": [
+        {
+          "text": "A buffer that contains pixels with a data type that’s unknown at compile time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DynamicPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/DynamicPixelFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DynamicPixelFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.DynamicPixelFormat",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/dynamicpixelformat"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/InterleavedFx3": {
+      "abstract": [
+        {
+          "text": "A three-channel, 32-bit-per-channel, floating-point interleaved buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "InterleavedFx3"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/InterleavedFx3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InterleavedFx3"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.InterleavedFx3",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/interleavedfx3"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer": {
+      "abstract": [
+        {
+          "text": "An image buffer that stores an image’s pixel data, dimensions, bit depth, and number of channels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.PixelBuffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/Histogram888": {
+      "abstract": [
+        {
+          "text": "The histogram for three channel 8-bit pixel buffers.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "PixelFormat",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Format.ComponentType",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "UInt8",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Histogram888"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/Histogram888",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Histogram888"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.PixelBuffer.Histogram888",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/histogram888"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/colorThreshold(_:destination:)": {
+      "abstract": [
+        {
+          "text": "Creates a binary image from a 32-bit pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "StaticPixelFormat",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Format.ComponentType",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Float",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorThreshold"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/colorThreshold(_:destination:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "colorThreshold(_:destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/colorthreshold(_:destination:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/linearInterpolate(bufferB:interpolationConstant:destination:)": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "StaticPixelFormat",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Format.ComponentType",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Float",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "linearInterpolate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "bufferB"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "interpolationConstant"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/linearInterpolate(bufferB:interpolationConstant:destination:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "linearInterpolate(bufferB:interpolationConstant:destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/linearinterpolate(bufferb:interpolationconstant:destination:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/withUnsafeMutableBufferPointer(_:)": {
+      "abstract": [
+        {
+          "text": "Calls the given closure with a pointer to the buffer’s mutable contiguous storage.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "StaticPixelFormat",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withUnsafeMutableBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sr",
+          "text": "UnsafeMutableBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate11PixelFormatP13ComponentTypeQa",
+          "text": "ComponentType"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/withUnsafeMutableBufferPointer(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withUnsafeMutableBufferPointer(_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/withunsafemutablebufferpointer(_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter": {
+      "abstract": [
+        {
+          "text": "A description of a conversion from one image format to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageConverter"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageConverter"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageConverter",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageconverter"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-library": {
+      "abstract": [
+        {
+          "text": "Manipulate large images using the CPU’s vector processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-library"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/CVPixelBuffer": {
+      "abstract": [
+        {
+          "text": "A reference to a Core Video pixel buffer object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVImageBufferRef",
+          "text": "CVImageBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/CVPixelBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVPixelBuffer",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/CVPixelBuffer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "noise.png": {
+      "alt": "A photograph of flowers with overlaid random noise.",
+      "identifier": "noise.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d92c6c7ff1b6431235dd0b84f91d27f3/noise.png"
+        }
+      ]
+    },
+    "passThrough.png": {
+      "alt": "A photograph of flowers.",
+      "identifier": "passThrough.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/006e708bd29f4c3efb1aa38c0c48a4fb/passThrough.png"
+        }
+      ]
+    },
+    "posterization.png": {
+      "alt": "A photograph of flowers with a reduced color palette.",
+      "identifier": "posterization.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8f90c6016ab165f0792c1840d19120f4/posterization.png"
+        }
+      ]
+    },
+    "temporalBlur.png": {
+      "alt": "A photograph of flowers. The photograph appears rotated and shows radial motion blur.",
+      "identifier": "temporalBlur.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b96a0a3b3e6627db3620686810695c2f/temporalBlur.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "ae55c5290a61/UsingVImagePixelBuffersToGenerateVideoEffects.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Core-Video-Interoperation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/integrating-vimage-pixel-buffers-into-a-core-image-workflow",
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-video-sample-buffers",
+        "doc://com.apple.accelerate/documentation/Accelerate/improving-the-quality-of-quantized-images-with-dithering",
+        "doc://com.apple.accelerate/documentation/Accelerate/core-video-interoperability"
+      ],
+      "title": "Core Video Interoperation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSRandomFillNormalFloat(_:_:_:_:)/title",
+          "value": "BNNSRandomFillNormalFloat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSRandomFillNormalFloat(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSRandomFillNormalFloat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConverter/title",
+          "value": "vImageConverterRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConverter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConverterRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConverter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConverterRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1CVPixelBuffer/title",
+          "value": "CVPixelBufferRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1CVPixelBuffer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CVImageBufferRef",
+              "text": "CVImageBufferRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CVPixelBufferRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor/title",
+          "value": "BNNSNDArrayDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSNDArrayDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSNDArrayDescriptor"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}
